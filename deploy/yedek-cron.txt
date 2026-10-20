@@ -1,0 +1,34 @@
+# =====================================================================
+# Meberra — yedekleme için örnek crontab satırları
+# Düzenlemek için:  crontab -e     (Docker kurulumunda: sudo crontab -e)
+# Saatler sunucu saat dilimine göredir. Kontrol: timedatectl
+#   İstanbul saatine almak için: sudo timedatectl set-timezone Europe/Istanbul
+#
+# "node server/cli.js yedek" komutu çalışırken güvenli (online) yedek alır,
+# DATA_DIR/yedekler/meberra-YYYYMMDD-HHMM.db dosyası üretir ve son 14 yedeği tutar.
+# =====================================================================
+
+# --- 1) DOCKER kurulumu: her gece 03:30 --------------------------------
+30 3 * * * cd /opt/meberra && /usr/bin/docker compose exec -T meberra node server/cli.js yedek >> /var/log/meberra-yedek.log 2>&1
+
+# --- 2) DOCKER'SIZ (systemd) kurulum: her gece 03:30 -------------------
+# "meberra" kullanıcısının crontab'ına ekleyin:  sudo crontab -u meberra -e
+# 30 3 * * * cd /opt/meberra && set -a && . /opt/meberra/.env && set +a && /usr/bin/node server/cli.js yedek >> /opt/meberra/server/data/yedek.log 2>&1
+
+# --- 3) SUNUCU DIŞI KOPYA (şiddetle önerilir) --------------------------
+# Sunucu tamamen kaybolursa yedekler de gider. rclone ile her gece 04:00'te
+# yedek klasörünü bir bulut depolamaya (Backblaze B2, Google Drive, S3,
+# Hetzner Storage Box ...) kopyalayın.
+#   Kurulum:  sudo apt install rclone   ve   rclone config   (uzak adı: "yedekdepo")
+#
+# Docker: volume'un sunucudaki yolunu öğrenin:
+#   docker volume inspect meberra_meberra-data --format '{{ .Mountpoint }}'
+#   (genelde /var/lib/docker/volumes/meberra_meberra-data/_data)
+# 0 4 * * * /usr/bin/rclone copy /var/lib/docker/volumes/meberra_meberra-data/_data/yedekler yedekdepo:meberra-yedekler --max-age 48h >> /var/log/meberra-rclone.log 2>&1
+#
+# Docker'sız:
+# 0 4 * * * /usr/bin/rclone copy /opt/meberra/server/data/yedekler yedekdepo:meberra-yedekler --max-age 48h >> /var/log/meberra-rclone.log 2>&1
+#
+# Not: "rclone copy" uzak taraftaki eski yedekleri silmez; bulut tarafında
+# bir saklama (lifecycle) kuralı ile örn. 90 günden eskileri silebilirsiniz.
+# Ayda bir yedeği geri yüklemeyi deneyin: bkz. deploy/geri-yukleme.md

@@ -1,0 +1,38 @@
+# Meberra — Docker Compose
+# Kullanım:  docker compose up -d --build
+# nginx aynı sunucuda önde çalışır; uygulama yalnızca 127.0.0.1:3000'e açılır.
+services:
+  meberra:
+    build: .
+    image: meberra:latest
+    container_name: meberra
+    env_file:
+      - .env
+    environment:
+      # Docker içinde veri her zaman /data volume'undadır (.env'deki değeri ezer)
+      DATA_DIR: /data
+      PORT: "3000"
+      HOST: 0.0.0.0
+    volumes:
+      - meberra-data:/data
+    ports:
+      - "127.0.0.1:3000:3000"
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+volumes:
+  meberra-data:
+
+# ---------------------------------------------------------------------------
+# YEDEKLEME (isteğe bağlı) — ayrı bir servis yerine sunucudaki cron önerilir.
+# Sunucuda `crontab -e` ile şu satırı ekleyin (her gece 03:30):
+#
+#   30 3 * * * cd /opt/meberra && /usr/bin/docker compose exec -T meberra node server/cli.js yedek >> /var/log/meberra-yedek.log 2>&1
+#
+# Yedekler volume içinde /data/yedekler/ altına yazılır (son 14 tanesi tutulur).
+# Sunucu dışına kopyalamak için bkz. deploy/yedek-cron.txt
+# ---------------------------------------------------------------------------

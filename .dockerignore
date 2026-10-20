@@ -1,0 +1,44 @@
+# Sürüm kontrolü ve yerel ortam
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+node_modules
+npm-debug.log*
+
+# Veri (imaja asla girmez; /data volume'unda yaşar)
+server/data
+*.db
+*.db-wal
+*.db-shm
+*.db-journal
+
+# Geliştirme / arşiv / ajan klasörleri
+arsiv
+sunum
+_devre-disi
+.agents
+.claude
+araclar
+belgeler
+ornek
+
+# Sunucu testleri üretimde gerekmez
+server/test
+
+# Kök dizindeki Markdown dosyaları (proje.md, DEVAM-NOKTASI.md, CANLIYA-ALMA.md ...)
+/*.md
+
+# Dağıtım dosyalarının kendisi
+Dockerfile
+.dockerignore
+docker-compose.yml
+deploy
+
+# Editör / işletim sistemi artıkları
+.vscode
+.idea
+*.log
+Thumbs.db
+.DS_Store

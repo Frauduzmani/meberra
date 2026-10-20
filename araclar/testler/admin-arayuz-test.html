@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yönetici paneli arayüz testi | Meberra</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <link rel="stylesheet" href="../../assets/css/admin.css">
+  <script>
+  /*
+   * Sahte API ile admin.js arayüz testi (sunucu gerekmez; app.js yüklenmez).
+   * Sorgu parametreleri: ?rol=ogrenci (yetkisiz görünüm) · ?bos=1 (boş listeler) · ?hata=1 (500 hataları)
+   *                      ?oturum=yok (401 → giriş yönlendirmesi) · ?tema=dark|light
+   * window.__istekler: yapılan istekler (yöntem, yol, gövde, X-Meberra başlığı).
+   */
+  (function () {
+    var q = new URLSearchParams(location.search);
+    document.documentElement.setAttribute("data-apz-auth", "ok");
+    if (q.get("tema")) document.documentElement.setAttribute("data-theme", q.get("tema"));
+    var ROL = q.get("rol") || "yonetici", BOS = q.get("bos") === "1", HATA = q.get("hata") === "1", OTURUM_YOK = q.get("oturum") === "yok";
+    var gun = function (d) { return new Date(Date.now() - d * 864e5).toISOString(); };
+    var XSS = '<img src=x onerror="window.__xss=1">';
+
+    var users = [];
+    var adlar = ["Meberra", "Ayşe", "Mehmet", "Zeynep", "Can", "Elif", "Deniz", "Ece", "Kerem", "Selin", "Burak", "İpek"];
+    for (var i = 1; i <= 57; i++) {
+      users.push({
+        id: i, ad: i === 3 ? XSS : adlar[i % adlar.length], soyad: i === 5 ? "Çok-Uzun-Soyadlı-Bir-Kullanıcı-Adı-Örneği" : "Yılmaz",
+        kullaniciAdi: "kul" + i, eposta: i === 4 ? "çok.uzun.bir.eposta.adresi.ornegi.icin@ornek-alan-adi.com.tr" : "kul" + i + "@ornek.com",
+        rol: i === 1 ? "yonetici" : "ogrenci", olusturma: gun(i), sonGiris: i % 4 ? gun(i % 7) : null,
+        durum: i === 6 ? "askida" : "aktif", premium: i % 3 === 0, plan: i % 3 === 0 ? (i % 2 ? "aylik" : "yillik") : null,
+        bitis: i % 3 === 0 ? gun(-30) : null, cevapSayisi: (i * 37) % 900
+      });
+    }
+    var talepler = [
+      { id: 101, kullanici: { id: 2, ad: "Ayşe", soyad: "Yılmaz", eposta: "kul2@ornek.com" }, plan: "yillik", tutar: 2990, odeyenAd: "Ayşe Yılmaz", aciklama: "Havale açıklamasına MEB-2 yazdım.", durum: "bekliyor", olusturma: gun(0.2) },
+      { id: 102, kullanici: { id: 3, ad: XSS, soyad: "Yılmaz", eposta: "kul3@ornek.com" }, plan: "aylik", tutar: 349.9, odeyenAd: "Hasan Yılmaz (babası)", aciklama: XSS, durum: "bekliyor", olusturma: gun(1) },
+      { id: 103, kullanici: { id: 7, ad: "Deniz", soyad: "Yılmaz", eposta: "kul7@ornek.com" }, plan: "aylik", tutar: 349.9, odeyenAd: "Deniz Yılmaz", aciklama: "", durum: "onaylandi", olusturma: gun(5) },
+      { id: 104, kullanici: { id: 8, ad: "Ece", soyad: "Yılmaz", eposta: "kul8@ornek.com" }, plan: "yillik", tutar: 2990, odeyenAd: "Bilinmiyor", aciklama: "Dekont yok", durum: "reddedildi", olusturma: gun(9) }
+    ];
+    var audit = [];
+    for (var j = 1; j <= 33; j++) {
+      audit.push({ id: j, zaman: gun(j / 3), kullanici: j % 2 ? { id: 2, ad: "Ayşe", soyad: "Yılmaz", eposta: "kul2@ornek.com" } : 9,
+        yapan: j % 3 ? { id: 1, ad: "Meberra", soyad: "Yönetici" } : "sistem", eylem: ["talep.onay", "premium.ver", "auth.login", "kullanici.durum"][j % 4],
+        varlik: "talep", varlikId: 100 + j, ip: j % 5 ? "88.240.12." + j : "2a02:ff0:3315:27d0:1234:5678:9abc:def0",
+        ayrinti: j % 2 ? JSON.stringify({ plan: "yillik", tutar: 2990, not: XSS }) : (j % 3 ? { sebep: "deneme" } : null) });
+    }
+    function json(status, body) { return Promise.resolve(new Response(JSON.stringify(body), { status: status, headers: { "Content-Type": "application/json" } })); }
+    window.__istekler = [];
+    window.__yonlendirme = null;
+    window.fetch = function (url, opts) {
+      opts = opts || {};
+      var u = new URL(url, location.origin === "null" ? "http://x" : location.origin), yol = u.pathname, m = (opts.method || "GET").toUpperCase();
+      var govde = opts.body ? JSON.parse(opts.body) : null;
+      window.__istekler.push({ m: m, yol: yol + u.search, govde: govde, xm: opts.headers && opts.headers["X-Meberra"], cred: opts.credentials });
+      return new Promise(function (r) { setTimeout(r, 250); }).then(function () {
+        if (m !== "GET" && (!opts.headers || opts.headers["X-Meberra"] !== "1")) return json(403, { ok: false, error: "X-Meberra başlığı eksik." });
+        if (OTURUM_YOK) return json(401, { ok: false, error: "Oturum yok." });
+        if (yol === "/api/me") return json(200, { ok: true, user: { id: 1, ad: "Meberra", soyad: "Yönetici", kullaniciAdi: "admin", eposta: "admin@ornek.com", rol: ROL, olusturma: gun(100) }, profile: null, uyelik: { premium: false, plan: null, bitis: null, bekleyenTalep: null } });
+        if (HATA) return json(500, { ok: false, error: "Sunucu hatası (sahte)." });
+        var bekleyen = talepler.filter(function (t) { return t.durum === "bekliyor"; }).length;
+        if (yol === "/api/admin/stats") return json(200, { ok: true, kullanici: { toplam: BOS ? 0 : 1284, son7gun: 37, aktif7gun: 412 }, premium: { aktif: 96, aylik: 71, yillik: 25 }, talep: { bekleyen: BOS ? 0 : bekleyen }, cevap: { toplam: 248913, son7gun: 18342 }, gelirTahmini: { aylikTL: 31072.4 } });
+        if (yol === "/api/admin/talepler") {
+          var d = u.searchParams.get("durum");
+          var l = BOS ? [] : talepler.filter(function (t) { return !d || d === "tumu" || t.durum === d; });
+          return json(200, { ok: true, talepler: l });
+        }
+        var mt = yol.match(/^\/api\/admin\/talepler\/(\d+)$/);
+        if (mt && m === "POST") {
+          var t = talepler.filter(function (x) { return x.id === +mt[1]; })[0];
+          if (!t) return json(404, { ok: false, error: "Talep bulunamadı." });
+          if (t.durum !== "bekliyor") return json(409, { ok: false, error: "Bu talep zaten işlenmiş." });
+          if (govde.not === "hata") return json(400, { ok: false, error: "Sahte doğrulama hatası: not kabul edilmedi." });
+          t.durum = govde.islem === "onayla" ? "onaylandi" : "reddedildi";
+          return json(200, { ok: true, talep: t });
+        }
+        if (yol === "/api/admin/users") {
+          var qq = (u.searchParams.get("q") || "").toLocaleLowerCase("tr-TR"), s = +u.searchParams.get("sayfa") || 1, pr = u.searchParams.get("premium") === "1";
+          var f = BOS ? [] : users.filter(function (x) { return (!pr || x.premium) && (!qq || (x.ad + " " + x.soyad + " " + x.eposta).toLocaleLowerCase("tr-TR").indexOf(qq) >= 0); });
+          return json(200, { ok: true, toplam: f.length, sayfa: s, kullanicilar: f.slice((s - 1) * 25, s * 25) });
+        }
+        var mu = yol.match(/^\/api\/admin\/users\/(\d+)(\/premium(\/iptal)?|\/durum)?$/);
+        if (mu) {
+          var x = users.filter(function (y) { return y.id === +mu[1]; })[0];
+          if (!x) return json(404, { ok: false, error: "Kullanıcı bulunamadı." });
+          if (m === "POST" && mu[2] === "/premium") { if (govde.gun > 3650) return json(400, { ok: false, error: "Gün en fazla 3650.", errors: { gun: "Gün en fazla 3650." } }); x.premium = true; x.plan = govde.plan; x.bitis = gun(-(govde.gun || (govde.plan === "yillik" ? 365 : 30))); return json(200, { ok: true }); }
+          if (m === "POST" && mu[3]) { x.premium = false; x.plan = null; x.bitis = null; return json(200, { ok: true }); }
+          if (m === "POST" && mu[2] === "/durum") { x.durum = govde.durum; return json(200, { ok: true }); }
+          return json(200, {
+            ok: true,
+            user: { id: x.id, ad: x.ad, soyad: x.soyad, kullaniciAdi: x.kullaniciAdi, eposta: x.eposta, rol: x.rol, olusturma: x.olusturma },
+            profile: x.id === 9 ? null : { ogrenciModeli: "lise", sinif: "11", ulkeler: ["de", "it", "nl"], egitimDili: "en", okul: x.id === 3 ? XSS : "Kadıköy Anadolu Lisesi", okulSehir: "İstanbul", tamamlandi: true },
+            uyelik: { premium: x.premium, plan: x.plan, bitis: x.bitis, bekleyenTalep: x.id === 2 ? { id: 101, plan: "yillik", olusturma: gun(0.2) } : null },
+            abonelikler: x.premium ? [{ id: 1, plan: x.plan, baslangic: gun(10), bitis: x.bitis, kaynak: "talep", durum: "aktif", not: XSS }] : [],
+            talepler: talepler.filter(function (t) { return t.kullanici.id === x.id; }),
+            istatistik: { cevap: x.cevapSayisi, dogru: Math.round(x.cevapSayisi * 0.72), yanlisAcik: 14, deneme: 3, sonEtkinlik: x.sonGiris },
+            dersler: x.cevapSayisi ? [{ sayfa: "ap-calculus.html", cevap: 120, dogru: 96 }, { sayfa: "ap-physics.html", cevap: 80, dogru: 51 }, { sayfa: "ap-chemistry.html", cevap: 0, dogru: 0 }] : []
+          });
+        }
+        if (yol === "/api/admin/audit") {
+          var ku = u.searchParams.get("kullanici"), ey = u.searchParams.get("eylem"), sa = +u.searchParams.get("sayfa") || 1;
+          var a = BOS ? [] : audit.filter(function (r) { var id = typeof r.kullanici === "object" ? r.kullanici.id : r.kullanici; return (!ku || String(id) === ku) && (!ey || r.eylem.indexOf(ey) >= 0); });
+          return json(200, { ok: true, toplam: a.length, sayfa: sa, kayitlar: a.slice((sa - 1) * 10, sa * 10) });
+        }
+        return json(404, { ok: false, error: "Sahte API: bilinmeyen uç nokta " + yol });
+      });
+    };
+  })();
+  </script>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="#" class="nav-brand"><div class="brand-badge">Meberra</div><div><div class="brand-title">Yönetici paneli (TEST)</div></div></a>
+  </nav>
+  <main class="main-container adm-main" id="main-content">
+    <div id="adm-root"></div>
+  </main>
+  <script src="../../assets/js/admin.js"></script>
+  <script>window.MeberraAdmin.yonlendir = function (url) { window.__yonlendirme = url; };</script>
+</body>
+</html>

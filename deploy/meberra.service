@@ -1,0 +1,52 @@
+# =====================================================================
+# Meberra — systemd servis birimi (Docker'SIZ kurulum)
+# Kurulum:
+#   sudo cp deploy/meberra.service /etc/systemd/system/meberra.service
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now meberra
+# Günlükler:  journalctl -u meberra -f
+#
+# Varsayımlar: proje /opt/meberra altında, "meberra" sistem kullanıcısı var,
+# Node.js 24 /usr/bin/node konumunda (NodeSource). nvm kullanıyorsanız
+# ExecStart'taki yolu "which node" çıktısıyla değiştirin (nvm kullanıcı ev
+# dizinine kurar; o durumda ProtectHome satırını kaldırın).
+# .env içinde DATA_DIR=/opt/meberra/server/data ve HOST=127.0.0.1 olmalı.
+# =====================================================================
+[Unit]
+Description=Meberra web uygulamasi (Node.js + SQLite)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=meberra
+Group=meberra
+WorkingDirectory=/opt/meberra
+EnvironmentFile=/opt/meberra/.env
+Environment=NODE_ENV=production
+ExecStart=/usr/bin/node server/index.js
+Restart=always
+RestartSec=5
+# SQLite WAL'ın düzgün kapanması için SIGTERM sonrası bekleme süresi
+KillSignal=SIGTERM
+TimeoutStopSec=20
+
+# --- Sıkılaştırma (hardening) ---
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=full
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+RestrictRealtime=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+# Yazılabilir tek yer: veri klasörü (veritabanı, yüklemeler, yedekler)
+ReadWritePaths=/opt/meberra/server/data
+# Daha sıkı istenirse ProtectSystem=strict yapılabilir (ReadWritePaths yeterli).
+
+[Install]
+WantedBy=multi-user.target
