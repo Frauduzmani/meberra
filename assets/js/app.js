@@ -1647,6 +1647,7 @@ function initUniteGorunumu() {
       }
       son.parentNode.insertBefore(alt, son.nextSibling);
       goster([ust, alt].concat(u.bloklar.map(i => els[i])));
+      konulariKatla(u);
       document.title = u.baslik + " — " + baslik0;
     } else if (mod === "bolum") {
       const e = g.ekler[n - 1];
@@ -1659,6 +1660,51 @@ function initUniteGorunumu() {
       document.title = baslik0;
     }
   }
+  // Uzun anlatım: konu kartları (.lecture-card) katlanır, ilki açık. İçerik yükseklik 0 ile gizlenir (display:none değil),
+  // böylece MathJax gizli konuyu da doğru ölçüyle çizer. Hedef bağlantı kapalı konudaysa konu açılır.
+  let kartSayac = 0;
+  function konulariKatla(u) {
+    const kartlar = [];
+    u.bloklar.forEach(i => els[i].querySelectorAll(".lecture-card").forEach(k => kartlar.push(k)));
+    if (kartlar.length < 2) return;
+    const ac = (k, acik) => {
+      k.classList.toggle("ug-kapali", !acik);
+      const b = k.querySelector(":scope > .theory-title");
+      if (b) b.setAttribute("aria-expanded", String(acik));
+    };
+    kartlar.forEach((k, j) => {
+      if (k.dataset.ugKatla) return;
+      const baslik = k.querySelector(":scope > .theory-title"), govde = k.querySelector(":scope > .theory-body");
+      if (!baslik || !govde) return;
+      k.dataset.ugKatla = "1";
+      govde.id = govde.id || "ug-konu-" + (++kartSayac);
+      baslik.setAttribute("role", "button");
+      baslik.setAttribute("tabindex", "0");
+      baslik.setAttribute("aria-controls", govde.id);
+      baslik.classList.add("ug-konu-btn");
+      const cevir = () => ac(k, k.classList.contains("ug-kapali"));
+      baslik.addEventListener("click", cevir);
+      baslik.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); cevir(); } });
+      ac(k, j === 0);
+    });
+    const hepsi = document.createElement("button");
+    hepsi.type = "button";
+    hepsi.className = "btn-ghost btn-sm ug-hepsi";
+    const etiket = () => { hepsi.textContent = kartlar.every(k => !k.classList.contains("ug-kapali")) ? "Konuları kapat" : "Tüm konuları aç"; };
+    hepsi.addEventListener("click", () => { const acilsin = kartlar.some(k => k.classList.contains("ug-kapali")); kartlar.forEach(k => ac(k, acilsin)); etiket(); });
+    kartlar.forEach(k => k.querySelector(":scope > .theory-title") && k.querySelector(":scope > .theory-title").addEventListener("click", etiket));
+    etiket();
+    const sag = ust.querySelector(".ug-sag");
+    if (sag) sag.insertBefore(hepsi, sag.firstChild);
+    hedefKonuyuAc();
+  }
+  function hedefKonuyuAc() {
+    const id = decodeURIComponent((window.location.hash || "").slice(1));
+    const h = id ? document.getElementById(id) : null;
+    const k = h && h.closest(".lecture-card.ug-kapali");
+    if (k) { k.classList.remove("ug-kapali"); const b = k.querySelector(":scope > .theory-title"); if (b) b.setAttribute("aria-expanded", "true"); }
+  }
+
   // Görünüm seçimi: ?unite / ?bolum; yoksa #hedef hangi bloktaysa o (eski bağlantılar ve sayfa içi çapalar)
   function coz() {
     const q = new URLSearchParams(window.location.search);

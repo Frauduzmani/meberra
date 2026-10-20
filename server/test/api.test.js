@@ -145,6 +145,8 @@ test("Premium: talep → yönetici onayı → aktif üyelik; yetkisiz erişim en
   r = await yon("POST", "/api/admin/talepler/" + talepler[0].id, { islem: "onayla", not: "Dekont kontrol edildi" });
   assert.equal(r.durum, 200);
   assert.equal((await yon("POST", "/api/admin/talepler/" + talepler[0].id, { islem: "onayla" })).durum, 409, "aynı talep iki kez onaylanmaz");
+  const ileti = db().prepare("SELECT konu FROM email_outbox WHERE alici = 'premium@ornek.com' ORDER BY id DESC").get();
+  assert.equal(ileti && ileti.konu, "Meberra Premium hesabın açıldı", "öğrenciye onay e-postası kuyruğa yazılır");
 
   const u = (await ogr("GET", "/api/me")).govde.uyelik;
   assert.equal(u.premium, true);

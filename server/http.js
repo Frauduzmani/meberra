@@ -9,11 +9,11 @@ const TURLER = {
   ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8",
   ".json": "application/json; charset=utf-8", ".svg": "image/svg+xml", ".png": "image/png", ".jpg": "image/jpeg",
   ".jpeg": "image/jpeg", ".webp": "image/webp", ".gif": "image/gif", ".ico": "image/x-icon", ".woff2": "font/woff2",
-  ".woff": "font/woff", ".pdf": "application/pdf", ".txt": "text/plain; charset=utf-8", ".webmanifest": "application/manifest+json"
+  ".woff": "font/woff", ".pdf": "application/pdf", ".xml": "application/xml; charset=utf-8", ".txt": "text/plain; charset=utf-8", ".webmanifest": "application/manifest+json"
 };
 // Yalnızca bu klasörler ve kökteki .html/.txt/.ico/.webmanifest dosyaları sunulur
 const ACIK_KLASORLER = ["assets", "data", "kaynaklar"];
-const KOK_DOSYA_RE = /^[a-z0-9._-]+\.(html|txt|ico|webmanifest|png|svg)$/i;
+const KOK_DOSYA_RE = /^[a-z0-9._-]+\.(html|txt|ico|webmanifest|png|svg|xml)$/i;
 
 class HttpHata extends Error {
   constructor(kod, mesaj, alanlar) { super(mesaj); this.kod = kod; this.alanlar = alanlar; }

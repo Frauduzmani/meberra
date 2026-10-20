@@ -138,6 +138,7 @@ function yonetimRotalari(r, c) {
         .run(b.islem === "onayla" ? "onaylandi" : "reddedildi", req.kullanici.id, simdi(), not, t.id);
       if (b.islem === "onayla") abonelik = hesap.premiumVer(t.user_id, t.plan, null, { kaynak: "talep", tutar: t.tutar_tl, talepId: t.id, not, yapan: req.kullanici.id });
     });
+    if (abonelik) hesap.premiumBildir(t.user_id, abonelik.bitis);
     denetim({ eylem: b.islem === "onayla" ? "premium.talep-onay" : "premium.talep-red", kullanici: t.user_id, yapan: req.kullanici.id, istek: req,
       varlik: "upgrade_requests", varlikId: t.id, ayrinti: { plan: t.plan, tutar: t.tutar_tl, not } });
     return { ok: true, abonelik };

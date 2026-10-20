@@ -176,7 +176,19 @@ function hesapServisi(db, denetim, eposta) {
       if (q.bekleyenTalep.get(u.id)) throw new HttpHata(409, "Zaten onay bekleyen bir ödeme bildirimin var. Onaylandığında Premium otomatik açılır.");
       const id = Number(q.talepEkle.run(u.id, plan.id, plan.fiyat, odeyen, aciklama || null, simdi()).lastInsertRowid);
       denetim({ eylem: "premium.talep", kullanici: u.id, istek: req, varlik: "upgrade_requests", varlikId: id, ayrinti: { plan: plan.id, tutar: plan.fiyat } });
+      // Yöneticiye bildirim (ADMIN_EPOSTA tanımlıysa)
+      if (config.yonetici.eposta) eposta.gonder(config.yonetici.eposta, "Yeni ödeme bildirimi: " + u.ad + " " + u.soyad + " · " + plan.ad,
+        "Yeni Premium ödeme bildirimi\n\nÖğrenci: " + u.ad + " " + u.soyad + " <" + u.eposta + ">\nPlan: " + plan.ad + " · " + plan.fiyat + " TL\nÖdeyen: " + odeyen +
+        (aciklama ? "\nNot: " + aciklama : "") + "\n\nDekontu kontrol edip onaylamak için: " + config.baseUrl + "/admin.html#talepler");
       return { id, plan: plan.id, tutar: plan.fiyat, durum: "bekliyor" };
+    },
+
+    /** Premium açıldığında öğrenciye bilgi e-postası */
+    premiumBildir(userId, bitis) {
+      const u = q.kullaniciId.get(userId);
+      if (!u || !u.eposta) return;
+      eposta.gonder(u.eposta, "Meberra Premium hesabın açıldı", "Merhaba " + u.ad + ",\n\nÖdemen onaylandı; Premium hesabın açıldı. Bitiş tarihi: " +
+        new Date(bitis).toLocaleDateString("tr-TR") + ".\n\nTüm ünitelere ve sınırsız denemeye şimdi erişebilirsin: " + config.baseUrl + "/calis.html\n\nİyi çalışmalar,\nMeberra");
     },
 
     /** Premium dönemi ekler: mevcut aktif dönemin sonundan (yoksa şimdiden) itibaren. */
