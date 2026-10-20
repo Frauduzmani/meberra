@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rotam | AP MEBERRA</title>
+  <meta name="description" content="Seçtiğin ülkenin kabul kuralları, sınıfına göre tarihlenmiş adımlar, belge kontrol listesi ve rotanın sınavları.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="brand-badge">AP MEBERRA</div>
+      <div><div class="brand-title">Rotam</div></div>
+    </a>
+    <div class="nav-actions"></div>
+  </nav>
+
+  <main class="main-container" id="main-content">
+    <header class="page-head rota-head">
+      <span class="eyebrow">Rotam</span>
+      <h1 id="rota-h1">Rotam</h1>
+      <p id="rota-lead">Seçtiğin ülkenin kabul kuralları ve sınıfına göre tarihlenmiş adımların.</p>
+    </header>
+
+    <div id="rota-root" aria-live="polite">
+      <div class="empty-state"><div class="empty-ico" aria-hidden="true"><span class="spinner"></span></div><h2>Rota yükleniyor…</h2></div>
+    </div>
+    <p class="visually-hidden" id="rota-duyuru" role="status" aria-live="polite"></p>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom u-mt-0">
+      <div>Rota kuralları <code>data/mevzuat/ulke-rotalari.js</code> dosyasından okunur; her bilginin resmi kaynağı yanında. İşaretlerin yalnızca bu tarayıcıda saklanır ve yedeğe dahildir.</div>
+      <div><a href="index.html">← Bugün ekranına dön</a></div>
+    </div>
+  </footer>
+
+  <script src="data/mevzuat/ulke-rotalari.js"></script>
+  <script src="data/mevzuat/sinavlar.js"></script>
+  <script src="assets/js/eposta.js"></script>
+  <script src="assets/js/rota.js"></script>
+  <script src="data/mevzuat/ulke-dizini.js"></script>
+  <script src="assets/js/sartlar-motor.js"></script>
+  <script src="assets/js/sartlar-ui.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+  (function () {
+    "use strict";
+    var ME = window.APMEBERRA_ME, A = window.APMEBERRA, R = window.APMEBERRA_ROTA;
+    if (!ME || !ME.user || !ME.profile || !A || !R) return;
+    var $ = function (id) { return document.getElementById(id); };
+    var esc = apEsc, root = $("rota-root");
+    var ULKE_AD = R.ULKE_AD;
+    var SINAV = {};
+    (Array.isArray(window.APMEBERRA_SINAVLAR) ? window.APMEBERRA_SINAVLAR : []).forEach(function (s) { if (s && s.id) SINAV[s.id] = s; });
+    var GUIDE = { de: "almanya-muhendislik.html", it: "italya-muhendislik.html" };
+    var TUR = { sinav: "Sınav", belge: "Belge", basvuru: "Başvuru", karar: "Karar", hazirlik: "Hazırlık", bilgi: "Bilgi notu" };
+    // K5-a etiketleri (profil.html / auth.js ile aynı metin)
+    var YERLESME_AD = { "uygun": "Hedef alanla uyumlu bir lisans programına yerleştim", "yok": "Yerleşmem yok", "alan-uyumsuz": "Yerleştim ama alan farklı" };
+    function akademikYil(y) { return y ? y + "/" + String((y + 1) % 100).padStart(2, "0") : ""; }
+    var KES = { "Doğrulandı": "ok", "Yoruma açık": "warn", "Yayımlanmadı": "info", "Teyit gerekir": "warn", "Doğrulanamadı": "bad" };
+    var IC = {
+      ext: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
+      wait: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+      check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>',
+      warn: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l10 18H2z"/><path d="M12 10v4M12 17h.01"/></svg>',
+      flag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V4h13l-2 4 2 4H4"/></svg>',
+      doc: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>',
+      exam: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4h6M9 4a2 2 0 0 0-2 2H5v15h14V6h-2a2 2 0 0 0-2-2M9 4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2"/><path d="M8 12l2 2 4-4"/></svg>',
+      rule: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.4 8.3-8 9-4.6-.7-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg>',
+      fork: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="18" cy="5" r="2"/><circle cx="12" cy="19" r="2"/><path d="M6 7v2a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4V7M12 13v4"/></svg>',
+      arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+      cap: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>'
+    };
+    function isUrl(u) { return typeof u === "string" && /^https?:\/\//i.test(u); }
+    function host(u) { var m = /^https?:\/\/(?:www\.)?([^\/?#]+)/i.exec(u || ""); return m ? m[1] : ""; }
+    function src(u, label) {
+      return isUrl(u) ? '<a class="src-link" href="' + esc(u) + '" target="_blank" rel="noopener noreferrer">' + esc(label || ("Kaynak · " + host(u))) + IC.ext + '<span class="visually-hidden"> (yeni sekmede açılır)</span></a>'
+        : '<span class="unverified">Kaynak: Doğrulanamadı</span>';
+    }
+    function kes(k) {
+      var c = KES[k]; if (!c) return "";
+      return '<span class="kesinlik kesinlik-' + c + '" title="Bilginin kesinliği">' + esc(k) + '</span>';
+    }
+    function bugun() {
+      var o = window.APMEBERRA_BUGUN; // yalnızca test için (addInitScript)
+      return typeof o === "string" && /^\d{4}-\d{2}-\d{2}$/.test(o) ? o : new Date();
+    }
+    function duyur(m) { $("rota-duyuru").textContent = ""; setTimeout(function () { $("rota-duyuru").textContent = m; }, 30); }
+
+    var prof = ME.profile;
+    var ulkeler = A.rota.ulkeler();
+    var qm = /[?&]ulke=([a-z]{2})\b/.exec(location.search);
+    var aktif = A.rota.aktif(qm ? qm[1] : null);
+    if (aktif) A.rota.sec(aktif);
+    var sinifAd = prof.sinif === "mezun" ? "mezun" : (prof.sinif ? prof.sinif + ". sınıf" : "");
+
+    // ---------------- İskelet: rota seçici + panel ----------------
+    var selector = ulkeler.length > 1
+      ? '<div class="tabs rota-tabs" role="tablist" aria-label="Rota seç">' + ulkeler.map(function (u) {
+          var on = u === aktif;
+          return '<button type="button" class="tab" role="tab" id="rtab-' + u + '" data-ulke="' + u + '" aria-controls="rota-panel" aria-selected="' + on + '"' + (on ? "" : ' tabindex="-1"') + '>' +
+            '<span class="rota-dot rota-dot-' + u + '" aria-hidden="true"></span>' + esc(ULKE_AD[u]) + ' rotası <span class="tab-count" data-say="' + u + '"></span></button>';
+        }).join("") + '</div>'
+      : '<p class="rota-single">' + IC.flag + '<span>Profilinde tek hedef ülke var: <strong>' + esc(ULKE_AD[aktif] || "") + '</strong>. Diğer ülkenin rotasını açmak için <a href="profil.html#pf-ulkeler-group">hedef ülkelerini düzenle</a>.</span></p>';
+    root.innerHTML = selector + '<div id="rota-panel"' + (ulkeler.length > 1 ? ' role="tabpanel" aria-labelledby="rtab-' + aktif + '" tabindex="-1"' : "") + '></div>';
+    var panel = $("rota-panel");
+
+    function sayaclar() {
+      ulkeler.forEach(function (u) {
+        var el = root.querySelector('[data-say="' + u + '"]'); if (!el) return;
+        var v = A.rota.veri(u);
+        if (!v) { el.textContent = "–"; return; }
+        var c = R.zamanCizelgesi(v, prof, bugun(), A.rota.durum()[u]);
+        el.textContent = c.sayac.yapildi + "/" + c.sayac.toplam;
+        el.setAttribute("aria-label", c.sayac.yapildi + " / " + c.sayac.toplam + " adım yapıldı");
+      });
+    }
+
+    // ---------------- Bileşenler ----------------
+    function adimHtml(a) {
+      var h = R.bagliHedef(a.bagli);
+      var tarih = a.tarih && a.tarih.etiket ? a.tarih.etiket : "Tarih belirsiz";
+      var cls = "rs-step" + (a.yapildi ? " is-done" : "") + (a.siradaki ? " is-next" : "") + (a.gecikti ? " is-late" : "") + (a.zamanDurumu === "buay" ? " is-now" : "");
+      var cid = "rs-c-" + a.id;
+      return '<li class="' + cls + '" data-adim="' + esc(a.id) + '"' + (a.siradaki ? ' aria-current="step"' : "") + '>' +
+        '<div class="rs-mark"><input type="checkbox" class="rs-check" id="' + esc(cid) + '" data-adim="' + esc(a.id) + '"' + (a.yapildi ? " checked" : "") + ' aria-describedby="' + esc(cid) + '-t"><label for="' + esc(cid) + '"><span class="visually-hidden">Yapıldı: ' + esc(a.baslik) + '</span></label></div>' +
+        '<div class="rs-body">' +
+          '<div class="rs-top">' +
+            '<span class="rs-date">' + esc(tarih) + '</span>' +
+            (a.siradaki ? '<span class="rs-flag rs-flag-next">Sıradaki adım</span>' : "") +
+            (a.gecikti ? '<span class="rs-flag rs-flag-late">' + IC.warn + 'Tarihi geçti</span>' : "") +
+            (a.zamanDurumu === "buay" && !a.yapildi ? '<span class="rs-flag rs-flag-now">' + (a.tarih && a.tarih.simdi ? "Hemen" : "Bu ay") + '</span>' : "") +
+            (a.yapildi ? '<span class="rs-flag rs-flag-done">' + IC.check + 'Yapıldı</span>' : "") +
+          '</div>' +
+          '<h4 id="' + esc(cid) + '-t">' + esc(a.baslik) + '</h4>' +
+          (a.tarih && a.tarih.metin ? '<p class="rs-when">' + esc(a.tarih.metin) + '</p>' : "") +
+          // Sıradaki adımın açıklaması açık; diğer uzun açıklamalar "Ayrıntılar" altında (zaman çizelgesi taranabilir kalsın)
+          (a.detay ? (a.siradaki || String(a.detay).length <= 160
+            ? '<p class="rs-detail">' + esc(a.detay) + '</p>'
+            : '<details class="clamp-note rs-more"><summary>Ayrıntılar</summary><p class="rs-detail">' + esc(a.detay) + '</p></details>') : "") +
+          '<div class="rs-tags">' +
+            (TUR[a.tur] ? '<span class="rs-tag">' + TUR[a.tur] + '</span>' : "") +
+            '<span class="rs-tag' + (a.zorunlu === false ? "" : " rs-tag-req") + '">' + (a.zorunlu === false ? "İsteğe bağlı" : "Zorunlu") + '</span>' +
+            kes(a.kesinlik) +
+          '</div>' +
+          '<div class="rs-foot">' + src(a.kaynak) +
+            (h ? '<a class="btn-ghost rs-go" href="' + esc(h.href) + '">' + esc(h.tur === "sinav" && SINAV[h.id] ? SINAV[h.id].ad : h.etiket) + IC.arrow + '</a>' : "") +
+          '</div>' +
+        '</div></li>';
+    }
+
+    function zamanBolumu(id, baslik, alt, list, acik) {
+      if (!list.length) return "";
+      var body = '<ol class="rs-list">' + list.map(adimHtml).join("") + '</ol>';
+      if (acik === null) {
+        return '<section class="rs-group" aria-labelledby="' + id + '"><h3 class="rs-group-h" id="' + id + '">' + baslik + ' <span class="rs-count">' + list.length + '</span></h3>' + (alt ? '<p class="rs-group-sub">' + alt + '</p>' : "") + body + '</section>';
+      }
+      return '<details class="rs-group rs-past"' + (acik ? " open" : "") + '><summary><span class="rs-group-h" id="' + id + '">' + baslik + ' <span class="rs-count">' + list.length + '</span></span>' + (alt ? '<span class="rs-group-sub">' + alt + '</span>' : "") + '</summary>' + body + '</details>';
+    }
+
+    function sinavGrupHtml(gr, rol, notlar) {
+      return gr.map(function (g) {
+        var adlar = g.map(function (id) {
+          var s = SINAV[id];
+          return '<a class="exam-chip rs-exam" href="sinavlar.html#' + encodeURIComponent(id) + '"><span>' + esc(s ? s.ad : id) + (s ? '<small>' + esc(s.kategori || "") + (s.kurum ? " · " + esc(s.kurum) : "") + '</small>' : "") + '</span><span class="go" aria-hidden="true">→</span></a>';
+        });
+        var not = g.map(function (id) { return notlar[id]; }).filter(Boolean);
+        return '<li class="rs-exam-group">' +
+          (g.length > 1 ? '<span class="rs-alt-label">Biri yeterli</span>' : "") +
+          '<div class="rs-exam-list' + (g.length > 1 ? " is-alt" : "") + '">' + adlar.join(g.length > 1 ? '<span class="rs-or" aria-hidden="true">ya da</span>' : "") + '</div>' +
+          not.map(function (n) { return '<p class="rs-note">' + esc(n) + '</p>'; }).join("") +
+        '</li>';
+      }).join("");
+    }
+
+    /** K4-a: profile özel ortak uyarılar (data/mevzuat/ulke-rotalari.js -> APMEBERRA_ROTA_UYARILARI). */
+    function profilUyariHtml() {
+      var list = R.profilUyarilari ? R.profilUyarilari(window.APMEBERRA_ROTA_UYARILARI, prof) : [];
+      return list.map(function (u) {
+        return '<div class="alert alert-warn rota-uyari" role="note" data-uyari="' + esc(u.id || "") + '">' + IC.warn +
+          '<div class="u-min0">' + (u.baslik ? '<strong>' + esc(u.baslik) + '</strong>' : "") + '<p>' + esc(u.metin) + '</p>' +
+          '<div class="rs-foot">' + kes(u.kesinlik) + (Array.isArray(u.kaynaklar) ? u.kaynaklar.map(function (k) { return src(k && k.url, k && k.ad); }).join("") : "") + '</div></div></div>';
+      }).join("");
+    }
+
+    /** K5: mezun özeti (hedef yıl, yerleşme durumu, gizlenen adımlar). Mezun değilse boş. */
+    function mezunHtml(c) {
+      if (!c.mezun) return "";
+      var yd = c.yerlesmeDurumu;
+      var not = !yd
+        ? '<p class="rota-mezun-note is-warn">' + IC.warn + '<span>YKS yerleşme durumunu henüz belirtmedin. Şimdilik YKS adımları gösteriliyor. <a href="profil.html#pf-yerlesme">Profilinde belirt</a></span></p>'
+        : yd === "uygun"
+          ? '<p class="rota-mezun-note">' + IC.check + '<span>Hedef alanla uyumlu yerleşmen olduğu için YKS’ye yeniden girmen gerekmiyor' + (c.gizlenenKosul ? "; " + c.gizlenenKosul + " YKS adımı gizlendi" : "") + '. Üniversitenin geçmiş yıl belgesini kabul ettiğini yazılı teyit et.</span></p>'
+          : '<p class="rota-mezun-note is-info">' + IC.flag + '<span>YKS adımları ' + akademikYil(c.hedefYil) + ' hedefine göre gösteriliyor. Önceki yıl bir programa yerleştiysen yeni yılda OBP katsayın yarıya iner.</span></p>';
+      return '<section class="surface rota-mezun" aria-labelledby="rm-h">' +
+        '<div class="rota-mezun-top"><span class="rota-mezun-ico" aria-hidden="true">' + IC.cap + '</span><div class="u-min0">' +
+          '<span class="uni-sub">Mezun profili</span><h2 id="rm-h">Hedef: ' + esc(akademikYil(c.hedefYil)) + ' akademik yılı</h2>' +
+          '<p>Tarihler mezuniyet yılına göre değil, hedef başlangıç yılına göre hesaplanır. Okul dönemine denk gelen hazırlık adımları “Şimdi” olarak bu aya alındı.</p>' +
+        '</div></div>' +
+        '<dl class="rota-mezun-facts">' +
+          '<div><dt>Hedef başlangıç</dt><dd>' + esc(akademikYil(c.hedefYil)) + '</dd></div>' +
+          '<div><dt>Lise mezuniyeti</dt><dd>' + (c.mezuniyetYili ? "Haziran " + c.mezuniyetYili : '<span class="unverified">Girilmedi</span>') + '</dd></div>' +
+          '<div><dt>YKS yerleşmesi</dt><dd>' + (yd ? esc(YERLESME_AD[yd]) : '<span class="unverified">Belirtilmedi</span>') + '</dd></div>' +
+        '</dl>' + not +
+        '<p class="rota-mezun-edit"><a href="profil.html#pf-yerlesme">Mezun bilgilerini değiştir</a></p>' +
+      '</section>';
+    }
+
+    // ---------------- Genel yol haritası (Tur 11, D7) ----------------
+    var genelNo = 0;
+    function genelCiz(odakAdim) {
+      var GM = window.APMEBERRA_SARTLAR_MOTOR, GUI = window.APMEBERRA_SARTLAR_UI;
+      var DZ = window.APMEBERRA_ULKE_DIZINI || { ulkeler: [], genelAdimlar: [] };
+      var k = (DZ.ulkeler || []).filter(function (x) { return x.kod === aktif; })[0] || null;
+      var yl = prof.ogrenciModeli === "uni-mezun";
+      var anahtar = aktif + (yl ? "-yl" : "");
+      var secim = { model: prof.ogrenciModeli || "lise", sinif: prof.ogrenciModeli === "lise" ? prof.sinif : null, ulke: aktif, dil: prof.egitimDili === "yerel" ? "yerel" : "en", duzey: yl ? "yl" : "lisans" };
+      var no = ++genelNo;
+      panel.innerHTML = '<div class="empty-state"><span class="spinner" aria-hidden="true"></span> Yükleniyor…</div>';
+      GUI.veriYukle(aktif, k).then(function (r) {
+        if (no !== genelNo) return;
+        var g = GM.genelYol(r.veri, DZ.genelAdimlar, secim, { hedefYil: prof.hedefBaslangicYili }, bugun());
+        var dur = (A.rota.durum()[anahtar] || {}).adimlar || {};
+        var yapildi = g.adimlar.filter(function (a) { return dur[a.id] && dur[a.id].durum === "yapildi"; }).length;
+        $("rota-lead").textContent = "Bu sayfa yalnızca " + (ULKE_AD[aktif] || "") + " için geçerli. " +
+          (yl ? "Yüksek lisans için tarihli kişisel rota henüz yok" : "Tarihli kişisel rota yalnızca Almanya ve İtalya lisans için hazır") +
+          "; aşağıdaki genel yol haritasının ayları " + (g.baslangicYili ? akademikYil(g.baslangicYili) + " akademik yılı başlangıcına göre tahminidir." : "göreli verilmiştir.");
+        var sartlar = "sartlar.html?model=" + secim.model + (secim.sinif ? "&sinif=" + secim.sinif : "") + "&ulke=" + aktif + "&dil=" + secim.dil;
+        panel.innerHTML =
+          '<section class="surface rota-genel-ozet" aria-labelledby="rg-h"><div class="u-min0"><span class="uni-sub">Genel yol haritası · ' + esc(yl ? "Yüksek lisans" : "Lisans") + '</span>' +
+            '<h2 id="rg-h">' + esc((ULKE_AD[aktif] || "") + ": " + yapildi + " / " + g.adimlar.length + " adım yapıldı") + '</h2>' +
+            '<p>“Genel öneri” adımları mevzuat bilgisi değildir; ülkenin kaynaklı tarihleri kesinlik etiketiyle gösterilir. Şartların tamamı ülke şartları sayfasında.</p>' +
+            '<div class="btn-row"><a class="btn-primary" href="' + esc(sartlar) + '">' + esc(ULKE_AD[aktif] || "") + ' şartları</a><a class="btn-ghost" href="universiteler.html?ulke=' + esc(aktif) + '">Üniversiteler</a></div></div></section>' +
+          (r.veri ? "" : '<p class="rota-mezun-note is-info">' + IC.wait + '<span>' + esc((ULKE_AD[aktif] || "") + " için şartlar hazırlanıyor; şimdilik yalnızca genel öneri adımları gösteriliyor.") + '</span></p>') +
+          '<ol class="rs-list rs-genel">' + g.adimlar.map(function (a) {
+            var cid = "rs-c-" + a.id, on = !!(dur[a.id] && dur[a.id].durum === "yapildi");
+            return '<li class="rs-step' + (on ? " is-done" : "") + '" data-adim="' + esc(a.id) + '">' +
+              '<div class="rs-mark"><input type="checkbox" class="rs-check" id="' + esc(cid) + '" data-adim="' + esc(a.id) + '" data-anahtar="' + esc(anahtar) + '"' + (on ? " checked" : "") + ' aria-describedby="' + esc(cid) + '-t"><label for="' + esc(cid) + '"><span class="visually-hidden">Yapıldı: ' + esc(a.baslik) + '</span></label></div>' +
+              '<div class="rs-body"><div class="rs-top">' +
+                '<span class="rs-date">' + esc(a.tarih || a.goreli) + '</span>' +
+                (a.genel ? '<span class="rs-tag">Genel öneri</span>' : kes(a.kesinlik)) +
+                (a.tahmini ? '<span class="rs-tag rs-tag-tahmin">Tahmini</span>' : "") +
+                '<span class="rs-tag">' + esc(a.goreli) + '</span>' +
+              '</div><h3 id="' + esc(cid) + '-t">' + esc(a.baslik) + '</h3>' +
+              (a.metin ? '<p class="rs-when">' + esc(a.metin) + '</p>' : "") +
+              (a.detay ? '<details class="clamp-note"><summary>Ayrıntılar</summary><p class="rs-detail">' + esc(a.detay) + '</p></details>' : "") +
+              (a.kaynak && a.kaynak.length ? '<div class="rs-foot">' + a.kaynak.map(function (x) { return src(x && x.url, x && x.ad); }).join("") + '</div>' : "") +
+              '</div></li>';
+          }).join("") + '</ol>';
+        var say = root.querySelector('[data-say="' + aktif + '"]'); if (say) say.textContent = yapildi + "/" + g.adimlar.length;
+        if (odakAdim) { var el = document.getElementById(odakAdim); if (el) el.focus({ preventScroll: true }); }
+      });
+    }
+
+    // ---------------- Çizim ----------------
+    function ciz(odakAdim) {
+      var v = A.rota.veri(aktif);
+      $("rota-h1").textContent = ULKE_AD[aktif] ? ULKE_AD[aktif] + " rotası" : "Rotam";
+      document.title = (ULKE_AD[aktif] ? ULKE_AD[aktif] + " rotası" : "Rotam") + " | AP MEBERRA";
+      document.documentElement.setAttribute("data-rota", aktif === "de" || aktif === "it" ? aktif : (aktif ? "genel" : ""));
+      panel.setAttribute("data-ulke", aktif || "");
+      if (ulkeler.length > 1) panel.setAttribute("aria-labelledby", "rtab-" + aktif);
+
+      // Tur 11 (D7): tarihli rota yalnızca DE/IT lisans; diğer ülkeler ve yüksek lisans için genel yol haritası
+      var GM = window.APMEBERRA_SARTLAR_MOTOR, GUI = window.APMEBERRA_SARTLAR_UI;
+      if ((!v || prof.ogrenciModeli === "uni-mezun") && GM && GUI) { genelCiz(odakAdim); return; }
+      if (!v) {
+        $("rota-lead").textContent = "Bu sayfa yalnızca " + (ULKE_AD[aktif] || "seçtiğin ülkenin") + " kurallarını uygulayacak.";
+        panel.innerHTML = '<div class="empty-state"><div class="empty-ico" aria-hidden="true">' + IC.wait + '</div>' +
+          '<h2>Rota kuralları hazırlanıyor</h2>' +
+          '<p>Mevzuat uzmanımız ' + esc(ULKE_AD[aktif] || "") + ' rotasının adımlarını, belge listesini ve sınavlarını resmi kaynaklardan doğruluyor. Hazır olunca adımların sınıfına göre tarihlenmiş olarak burada görünecek.</p>' +
+          '<div class="btn-row"><a class="btn-ghost" href="universiteler.html#' + esc(aktif || "") + '">Üniversitelerim</a>' +
+          (GUIDE[aktif] ? '<a class="btn-ghost" href="' + GUIDE[aktif] + '">' + esc(ULKE_AD[aktif]) + ' rehberi</a>' : "") +
+          '<a class="btn-primary" href="sinavlar.html">Sınavlarım</a></div></div>';
+        sayaclar();
+        return;
+      }
+
+      var durum = A.rota.durum();
+      var c = R.zamanCizelgesi(v, prof, bugun(), durum[aktif]);
+      var bel = Array.isArray(v.belgeler) ? v.belgeler : [];
+      var belDurum = durum[aktif] ? durum[aktif].belgeler : {};
+      var belHazir = bel.filter(function (b) { return belDurum[b.id]; }).length;
+      var oran = c.sayac.toplam ? Math.round(c.sayac.yapildi / c.sayac.toplam * 100) : 0;
+      $("rota-lead").textContent = "Bu sayfa yalnızca " + ULKE_AD[aktif] + " kurallarını uygular. Adımlar " +
+        (c.mezun
+          ? "mezun öğrencisine ve yerleşme durumuna göre süzüldü ve " + akademikYil(c.hedefYil) + " akademik yılı başlangıcına göre tarihlendi."
+          : (sinifAd ? sinifAd + " öğrencisine göre süzüldü" : "sınıfına göre süzüldü") +
+            (c.mezuniyetYili ? " ve Haziran " + c.mezuniyetYili + " mezuniyetine göre tarihlendi." : "; mezuniyet yılın bilinmediği için tarihler gösterilemiyor."));
+
+      var gecmis = c.adimlar.filter(function (a) { return a.zamanDurumu === "gecmis"; });
+      var buay = c.adimlar.filter(function (a) { return a.zamanDurumu === "buay"; });
+      var gelecek = c.adimlar.filter(function (a) { return a.zamanDurumu === "gelecek"; });
+      var belirsiz = c.adimlar.filter(function (a) { return a.zamanDurumu === "belirsiz"; });
+      var nx = c.siradaki, nh = nx && R.bagliHedef(nx.bagli);
+      var tk = v.temelKural || {};
+      var g = R.sinavGruplari(v, prof); // mezunda AP sınavları çıkarılır (K5-b)
+      var alan = prof.hedefAlan || "Mühendislik";
+
+      var html = "";
+      // Özet şeridi
+      html += '<section class="rota-summary" aria-label="Rota özeti">' +
+        '<div class="surface rs-next">' +
+          '<span class="uni-sub">Sıradaki adım</span>' +
+          (nx ? '<strong>' + esc(nx.baslik) + '</strong><p>' + esc(nx.tarih && nx.tarih.etiket ? nx.tarih.etiket : "Tarih belirsiz") + (nx.tarih && nx.tarih.metin ? " · " + esc(nx.tarih.metin) : "") + '</p>' +
+                '<div class="btn-row">' + (nh ? '<a class="btn-primary" href="' + esc(nh.href) + '">' + esc(nh.etiket) + '</a>' : "") + '<a class="btn-ghost" href="#rs-c-' + esc(nx.id) + '" data-git="' + esc(nx.id) + '">Zaman çizelgesinde gör</a></div>'
+              : '<strong>Bekleyen adım yok</strong><p>' + (c.sayac.gecikmis ? "Tarihi geçmiş " + c.sayac.gecikmis + " zorunlu adımı kontrol et." : "Bu rotadaki tüm adımları tamamladın.") + '</p>') +
+        '</div>' +
+        '<div class="surface rs-stats">' +
+          '<div class="ring ring-sm" style="--p:' + oran + ';--ring-color:var(--rota-c);" aria-hidden="true"><span>%' + oran + '</span></div>' +
+          '<dl class="rs-stat-list">' +
+            '<div><dt>Adım</dt><dd>' + c.sayac.yapildi + ' / ' + c.sayac.toplam + ' yapıldı</dd></div>' +
+            '<div><dt>Belge</dt><dd>' + belHazir + ' / ' + bel.length + ' hazır</dd></div>' +
+            (c.mezun
+              ? '<div><dt>Hedef yıl</dt><dd>' + esc(akademikYil(c.hedefYil)) + '</dd></div>'
+              : '<div><dt>Mezuniyet</dt><dd>' + (c.mezuniyetYili ? "Haziran " + c.mezuniyetYili : '<span class="unverified">Bilinmiyor</span>') + '</dd></div>') +
+            (c.sayac.gecikmis ? '<div class="is-late"><dt>Tarihi geçen</dt><dd>' + c.sayac.gecikmis + ' zorunlu adım</dd></div>' : "") +
+          '</dl>' +
+        '</div>' +
+      '</section>';
+
+      // Mezun özeti ve profile özel uyarılar (K4-a, K5)
+      html += mezunHtml(c) + profilUyariHtml();
+
+      // Temel kural
+      html += '<section class="surface rota-rule" aria-labelledby="rr-h">' +
+        '<div class="rota-rule-ico" aria-hidden="true">' + IC.rule + '</div>' +
+        '<div class="rota-rule-body">' +
+          '<span class="uni-sub">Temel kural · Bu bilgi ' + esc(ULKE_AD[aktif]) + ' rotası içindir</span>' +
+          '<h2 id="rr-h">' + esc(tk.baslik || v.ad) + '</h2>' +
+          (tk.detay ? '<p>' + esc(tk.detay) + '</p>' : "") +
+          '<div class="rs-foot">' + kes(tk.kesinlik) + src(tk.kaynak) + '</div>' +
+          (aktif === "de" ? '<p class="rota-alan">' + IC.flag + '<span>Hedef alanın: <strong>' + esc(alan) + '</strong>. Türk diplomasıyla Almanya’da giriş hakkı YKS’de yerleştiğin alan ve komşu alanlar için doğar; YKS tercihini bu alana göre yap. <a href="profil.html#pf-hedefAlan">Hedef alanı değiştir</a></span></p>' : "") +
+        '</div>' +
+      '</section>';
+
+      // İki sütun: zaman çizelgesi + yan bilgiler
+      html += '<div class="rota-grid">';
+      html += '<section class="rota-main" aria-labelledby="rt-h"><div class="rota-sec-head"><h2 id="rt-h">Zaman çizelgesi</h2>' +
+        '<p>' + c.sayac.toplam + ' adım' +
+          (c.gizlenenSinif ? ' · ' + c.gizlenenSinif + ' adım ' + esc(sinifAd || "sınıfın") + ' için geçerli olmadığından gizlendi' : "") +
+          (c.gizlenenKosul ? ' · ' + c.gizlenenKosul + ' adım yerleşme durumun nedeniyle gizlendi' : "") +
+          (c.gizlenenDil ? ' · ' + c.gizlenenDil + ' adım ' + (c.egitimDili === "yerel" ? "İngilizce" : "yerel dil") + ' yoluna ait olduğundan gizlendi (eğitim dilin profilde)' : "") +
+          '. Yaptığın adımı işaretle; işaretler bu cihazda saklanır.</p></div>' +
+        (c.adimlar.length ? "" : '<div class="empty-state"><h3>Bu sınıf için adım yok</h3><p>Profilindeki sınıf bilgisini kontrol et.</p></div>') +
+        zamanBolumu("rg-past", "Geçmiş", c.sayac.gecikmis ? c.sayac.gecikmis + " zorunlu adımın tarihi geçti; yaptıysan işaretle." : "Tarihi geçen adımlar.", gecmis, c.sayac.gecikmis > 0 || (gecmis.length > 0 && !buay.length && !gelecek.length)) +
+        zamanBolumu("rg-now", "Bu ay", "", buay, null) +
+        zamanBolumu("rg-next", "Gelecek", "", gelecek, null) +
+        zamanBolumu("rg-tbd", "Tarihi belirsiz", "Tarih resmi kaynakta henüz yok ya da bir önceki adıma bağlı.", belirsiz, null) +
+      '</section>';
+
+      html += '<aside class="rota-side" aria-label="Rota bilgileri">';
+      // Koşullar
+      if (Array.isArray(v.kosullar) && v.kosullar.length) {
+        html += '<section class="surface rota-card" aria-labelledby="rk-h"><h2 class="panel-h" id="rk-h">' + IC.rule + 'Koşullar</h2><ul class="rk-list">' +
+          v.kosullar.map(function (k) {
+            return '<li><div class="rk-top"><strong>' + esc(k.baslik) + '</strong>' + kes(k.kesinlik) + '</div>' + (k.detay ? (String(k.detay).length > 160 ? '<details class="clamp-note"><summary>Ayrıntılar</summary><p>' + esc(k.detay) + '</p></details>' : '<p>' + esc(k.detay) + '</p>') : "") + src(k.kaynak) + '</li>';
+          }).join("") + '</ul></section>';
+      }
+      // Sınavlar
+      if (g.zorunlu.length || g.secmeli.length) {
+        html += '<section class="surface rota-card" aria-labelledby="rx-h"><h2 class="panel-h" id="rx-h">' + IC.exam + 'Rotanın sınavları</h2>' +
+          (g.zorunlu.length ? '<h3 class="rs-sub-h">Zorunlu</h3><ul class="rs-exams">' + sinavGrupHtml(g.zorunlu, "zorunlu", g.notlar) + '</ul>' : "") +
+          (g.secmeli.length ? '<h3 class="rs-sub-h">Seçmeli</h3><ul class="rs-exams">' + sinavGrupHtml(g.secmeli, "secmeli", g.notlar) + '</ul>' : "") +
+          '<p class="field-hint" style="margin-top:10px;"><a href="sinavlar.html?filtre=rota">Sınavlar</a> sayfasında “Rotamın sınavları” filtresiyle de görebilirsin.</p>' +
+        '</section>';
+      }
+      // Belgeler
+      if (bel.length) {
+        html += '<section class="surface rota-card" aria-labelledby="rb-h"><h2 class="panel-h" id="rb-h">' + IC.doc + 'Belge kontrol listesi</h2>' +
+          '<div class="rb-progress"><div class="rb-bar" role="progressbar" aria-label="Hazır belgeler" aria-valuemin="0" aria-valuemax="' + bel.length + '" aria-valuenow="' + belHazir + '"><span style="width:' + (bel.length ? Math.round(belHazir / bel.length * 100) : 0) + '%"></span></div><span>' + belHazir + ' / ' + bel.length + ' hazır</span></div>' +
+          '<ul class="rb-list">' + bel.map(function (b) {
+            var bid = "rb-c-" + b.id;
+            return '<li class="' + (belDurum[b.id] ? "is-done" : "") + '"><input type="checkbox" class="rb-check" id="' + esc(bid) + '" data-belge="' + esc(b.id) + '"' + (belDurum[b.id] ? " checked" : "") + '>' +
+              '<div><label for="' + esc(bid) + '">' + esc(b.ad) + '</label>' + (b.zorunlu === false ? ' <span class="rs-tag">İsteğe bağlı</span>' : "") +
+              (b.detay ? '<p>' + esc(b.detay) + '</p>' : "") + src(b.kaynak) + '</div></li>';
+          }).join("") + '</ul></section>';
+      }
+      // Açık kararlar (yalnızca doluysa)
+      if (Array.isArray(v.acikKararlar) && v.acikKararlar.length) {
+        html += '<section class="surface rota-card rota-decisions" aria-labelledby="rd-h"><h2 class="panel-h" id="rd-h">' + IC.fork + 'Açık kararlar</h2><ul class="rk-list">' +
+          v.acikKararlar.map(function (k) {
+            return '<li><div class="rk-top"><strong>' + esc(k.baslik) + '</strong>' + (k.id ? '<span class="decision-badge">' + esc(k.id) + '</span>' : "") + '</div>' +
+              (Array.isArray(k.secenekler) && k.secenekler.length ? '<ul class="rd-options">' + k.secenekler.map(function (s) { return '<li>' + esc(typeof s === "string" ? s : (s && (s.baslik || s.ad)) || "") + '</li>'; }).join("") + '</ul>' : "") +
+              (k.not ? '<p>' + esc(k.not) + '</p>' : "") + '</li>';
+          }).join("") + '</ul></section>';
+      }
+      // Uyarılar
+      if (Array.isArray(v.uyarilar) && v.uyarilar.length) {
+        html += '<section class="rota-card rota-warns" aria-labelledby="ru-h"><h2 class="panel-h" id="ru-h">' + IC.warn + 'Uyarılar</h2><ul>' +
+          v.uyarilar.map(function (u) { return '<li><p>' + esc(u.metin) + '</p>' + (u.kaynak ? src(u.kaynak) : "") + '</li>'; }).join("") + '</ul></section>';
+      }
+      html += '</aside></div>';
+
+      panel.innerHTML = html;
+      sayaclar();
+      if (odakAdim) {
+        var el = document.getElementById(odakAdim);
+        if (el) el.focus({ preventScroll: true });
+      }
+    }
+
+    // ---------------- Olaylar ----------------
+    panel.addEventListener("change", function (e) {
+      var t = e.target;
+      if (t.classList.contains("rs-check")) {
+        var d = R.adimIsaretle(A.rota.durum(), t.dataset.anahtar || aktif, t.dataset.adim, t.checked);
+        A.rota.durumYaz(d);
+        var baslik = (document.getElementById(t.id + "-t") || {}).textContent || "";
+        ciz(t.id);
+        duyur(baslik + (t.checked ? ": yapıldı olarak işaretlendi." : ": işaret kaldırıldı."));
+      } else if (t.classList.contains("rb-check")) {
+        A.rota.durumYaz(R.belgeIsaretle(A.rota.durum(), aktif, t.dataset.belge, t.checked));
+        ciz(t.id);
+        duyur(t.checked ? "Belge hazır olarak işaretlendi." : "Belge işareti kaldırıldı.");
+      }
+    });
+    panel.addEventListener("click", function (e) {
+      var gl = e.target.closest("[data-git]"); if (!gl) return;
+      e.preventDefault();
+      var li = panel.querySelector('.rs-step[data-adim="' + gl.dataset.git + '"]');
+      if (!li) return;
+      var det = li.closest("details"); if (det) det.open = true;
+      li.scrollIntoView({ block: "center" });
+      li.querySelector(".rs-check").focus({ preventScroll: true });
+    });
+
+    function rotaSec(u, odak) {
+      if (u === aktif || ulkeler.indexOf(u) < 0) return;
+      aktif = u;
+      A.rota.sec(u);
+      try { history.replaceState(null, "", "rota.html?ulke=" + u); } catch (e) { /* file:// */ }
+      root.querySelectorAll('.rota-tabs [role="tab"]').forEach(function (t) {
+        var on = t.dataset.ulke === u;
+        t.setAttribute("aria-selected", String(on)); t.tabIndex = on ? 0 : -1;
+        if (on && odak) t.focus();
+      });
+      ciz();
+      duyur(ULKE_AD[u] + " rotası gösteriliyor.");
+    }
+    var tabs = Array.prototype.slice.call(root.querySelectorAll('.rota-tabs [role="tab"]'));
+    tabs.forEach(function (t, i) {
+      t.addEventListener("click", function () { rotaSec(t.dataset.ulke); });
+      t.addEventListener("keydown", function (e) {
+        var n = e.key === "ArrowRight" ? (i + 1) % tabs.length : e.key === "ArrowLeft" ? (i - 1 + tabs.length) % tabs.length : e.key === "Home" ? 0 : e.key === "End" ? tabs.length - 1 : -1;
+        if (n >= 0) { e.preventDefault(); rotaSec(tabs[n].dataset.ulke, true); }
+      });
+    });
+
+    ciz();
+  })();
+  </script>
+</body>
+</html>

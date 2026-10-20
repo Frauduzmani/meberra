@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AP MEBERRA | 9 Uzman Yapay Zeka Ajan Konseyi & Mentörlük Merkezi</title>
+  <meta name="description" content="Öğrencinin 2 yıllık İtalya ve Almanya üniversite hazırlık ve AP maratonunu yöneten 9 uzman yapay zeka ajanından oluşan pedagojik konsey ve interaktif danışma terminali.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="brand-badge">AP MEBERRA</div>
+      <div>
+        <div class="brand-title">AGENT COUNCIL</div>
+        <div class="brand-subtitle">İstanbul • İtalya & Almanya • 9 Uzman Danışman</div>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Ana Sayfa</a></li>
+      <li><a href="ap-calculus.html" class="nav-link">Calculus</a></li>
+      <li><a href="ap-physics.html" class="nav-link">Physics</a></li>
+      <li><a href="ap-chemistry.html" class="nav-link">Chemistry</a></li>
+      <li><a href="ap-biology.html" class="nav-link">Biology</a></li>
+      <li><a href="ap-english.html" class="nav-link">English</a></li>
+      <li><a href="ap-electives.html" class="nav-link">Seçmeliler</a></li>
+      <li><a href="almanya-muhendislik.html" class="nav-link">Almanya</a></li>
+      <li><a href="italya-muhendislik.html" class="nav-link">İtalya</a></li>
+      <li><a href="istanbul-sinav-rehberi.html" class="nav-link">İstanbul Sınav</a></li>
+      <li><a href="ajanlar.html" class="nav-link" aria-current="page">Ajanlar</a></li>
+      <li><a href="bilgi-merkezi.html" class="nav-link">Bilgi Merkezi</a></li>
+      <li><a href="ilerleme.html" class="nav-link">İlerleme</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="btn-consult" onclick="scrollToTerminal()">
+        <span>Canlı Terminale Git</span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="main-container">
+
+    <!-- HERO SECTION -->
+    <header class="hero-section">
+      <div class="hero-pill">
+        <span class="pulse-dot"></span>
+        <span>9 Özelleşmiş AI Mentör Aktif • Kural 13 & Kural 9 Denetiminde • 7/24 Kesintisiz Rehberlik</span>
+      </div>
+      <h1 class="hero-title">Çoklu Yapay Zeka Danışman & Eğitmen Konseyi</h1>
+      <p class="hero-desc">
+        Bu platformda sen tek bir yapay zekaya değil; pedagoji, Avrupa kabul mevzuatı, sınav formatı, branş dersleri ve akademik İngilizce alanlarında özelleşmiş 9 farklı yapay zeka ajanınından oluşan bir konseye danışırsın. Ajanlar kendi aralarında konsensüs kurar ve sana çelişkisiz, net bir yol haritası çizer.
+      </p>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">9 <span class="stat-unit">AJAN</span></div>
+          <div class="stat-label">Akademik & Stratejik Mentör Kadrosu</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100% <span class="stat-unit">ENG</span></div>
+          <div class="stat-label">Claire Bennett Kural 13 Denetimi</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">4 <span class="stat-unit">KANAT</span></div>
+          <div class="stat-label">Pedagoji, Kabul, STEM & Dil</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">24/7 <span class="stat-unit">CANLI</span></div>
+          <div class="stat-label">Birebir & Konsey Tartışma Modu</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECTION 1: INTERACTIVE LIVE MENTORSHIP CHAMBER -->
+    <section id="terminal-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-tag">CANLI MENTÖRLÜK ODASI</span>
+          <h2 class="section-title">Birebir Ajan Danışma Terminali</h2>
+        </div>
+      </div>
+
+      <div class="chamber-container">
+        <!-- Sidebar: Agent Switcher -->
+        <div class="agent-selector-sidebar" id="agent-selector-list">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Main Terminal -->
+        <div class="chat-terminal">
+          <div class="terminal-header">
+            <div class="u-flex u-center u-gap-3">
+              <div class="u-fs-28 u-inset u-flex u-center u-jcenter" id="term-avatar" style="width: 44px; height: 44px;"></div>
+              <div>
+                <div class="u-fw-700 u-c-text u-fs-18" id="term-name">Dr. Aylin Kaya</div>
+                <div class="u-fs-12 u-c-cyan" id="term-role">Lead PM & Pedagojik Baş Danışman</div>
+              </div>
+            </div>
+            <div id="term-badge" class="card-badge badge-indigo u-mb-0">Master Pedagoji</div>
+          </div>
+
+          <div class="terminal-body" id="term-chat-stream">
+            <!-- Messages rendered dynamically -->
+          </div>
+
+          <!-- Quick Action Prompts -->
+          <div class="terminal-quick-prompts" id="term-quick-chips">
+            <!-- Dynamic prompt chips -->
+          </div>
+
+          <!-- Input bar -->
+          <div class="terminal-input-bar">
+            <input type="text" id="term-user-input" class="calc-input u-grow" placeholder="Sorunu yaz veya bir komut seç..." onkeydown="if(event.key==='Enter') sendCouncilChat()">
+            <button class="btn-card u-wauto u-py-0 u-px-6 u-btn-solid u-fw-700" onclick="sendCouncilChat()">Gönder</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: COUNCIL ROUND-TABLE DEBATE SIMULATOR -->
+    <section>
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-tag">AJANLAR ARASI KONSÜLTASYON</span>
+          <h2 class="section-title">Konsey Yuvarlak Masa Tartışması (Round-Table Simulator)</h2>
+        </div>
+      </div>
+
+      <div class="debate-box">
+        <p class="u-fs-16 u-c-muted u-mb-6">
+          Karmaşık bir akademik veya stratejik ikilem yaşadığında, konseyin tüm kilit ajanları bir araya gelir; pedagojik yükü, mevzuatı ve ders gereksinimlerini masaya yatırarak oy birliğiyle ortak bir eylem planı oluşturur.
+        </p>
+
+        <div class="notice is-warn" role="note">
+          <div><strong>PM notu (7 Ekim 2026):</strong> Konsey tartışma metinleri doğrulama raporuna göre güncellendi. Kabul şartları, tarihler ve ücretlerin kaynaklı ve güncel hali için <a href="bilgi-merkezi.html">Bilgi Merkezi</a>’ne bakın.</div>
+        </div>
+
+        <div class="u-flex u-gap-4 u-wrap u-mb-6">
+          <select id="debate-topic-select" class="calc-select u-grow" style="max-width: 580px;">
+            <option value="dilemma_calc">İkilem 1: 11. Sınıfta AP Calculus AB mi almalıyım yoksa doğrudan BC mi?</option>
+            <option value="dilemma_country">İkilem 2: Almanya %100 İngilizce Lisanslar mı, İtalya PoliMi / PoliTo mu?</option>
+            <option value="dilemma_workload">⏳ İkilem 3: Lise Okul Yazılıları (OBP) ile AP ve IELTS Çalışması Nasıl Dengelenir?</option>
+            <option value="dilemma_ielts">İkilem 4: IELTS Academic 7.5 Sınavına Ne Zaman Girilmeli ve Claire Nasıl Hazırlamalı?</option>
+          </select>
+          <button class="btn-card u-wauto u-py-3 u-px-6 u-btn-solid u-fw-700" onclick="triggerCouncilMeeting()">
+            Konseyi Topla & Tartışmayı Başlat
+          </button>
+        </div>
+
+        <div id="debate-output-container">
+          <div class="u-tc u-p-8 u-c-dim u-fs-14 u-dashed u-r-md">
+            Yukarıdan bir ikilem konusu seçin ve <strong>"Konseyi Topla"</strong> butonuna basarak 4 uzman ajanın sıralı analizini ve ortak sentez kararını izleyin.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: 9 AGENT DOSSIER CARDS & DIRECTORY -->
+    <section>
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-tag">MENTÖRLÜK KADROSU</span>
+          <h2 class="section-title">Dokuz Uzman Ajanın Detaylı Dosyaları</h2>
+        </div>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="council-nav-tabs">
+        <button class="council-tab active" onclick="filterAgentCards('all', this)">Tüm Ajanlar (9)</button>
+        <button class="council-tab" onclick="filterAgentCards('pedagogy', this)">Pedagoji & Liderlik</button>
+        <button class="council-tab" onclick="filterAgentCards('admissions', this)">Kabul & Sınav Stratejisi</button>
+        <button class="council-tab" onclick="filterAgentCards('stem', this)">STEM Bilim Eğitmenleri</button>
+        <button class="council-tab" onclick="filterAgentCards('humanities', this)">Dil & Sosyal Bilimler</button>
+      </div>
+
+      <!-- Agent Cards Grid -->
+      <div class="grid-3" id="agent-cards-grid">
+        <!-- Cards generated by JS -->
+      </div>
+    </section>
+
+  </div>
+
+  <!-- INTERACTIVE AGENT CONSULTATION MODAL (Fallback/Mobile) -->
+  <div id="agent-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <div id="modal-agent-name" class="modal-title">Ajan Adı</div>
+          <div class="u-fs-12 u-c-cyan" id="modal-agent-role">Ajan Rolü</div>
+        </div>
+        <button class="modal-close" onclick="closeAgentModal()">&times;</button>
+      </div>
+      <div id="modal-chat-messages" class="modal-body"></div>
+      <div class="modal-footer">
+        <input type="text" id="agent-user-input" class="calc-input u-grow" placeholder="Sorunu veya hedefini yaz..." onkeydown="if(event.key==='Enter') sendAgentMessage()">
+        <button class="btn-consult" onclick="sendAgentMessage()">Gönder</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="brand-title u-mb-2">AP MEBERRA MENTORSHIP SYSTEM</div>
+        <p class="u-fs-14 u-c-muted">
+          İtalya ve Almanya'da üniversite okumayı hedefleyen 9–12. sınıf ve mezun öğrenciler için Vibe Coding felsefesiyle tasarlanmış 9 yapay zeka ajanlı akıllı eğitim ekosistemi.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h5 class="u-c-text u-mb-3">Stratejik Portallar</h5>
+        <ul class="u-list-none u-fs-14 u-flex u-col u-gap-2">
+          <li><a class="u-c-muted u-nodec" href="index.html">Komuta Merkezi</a></li>
+          <li><a class="u-c-cyan u-nodec" href="ajanlar.html">Ajan Konseyi Merkezi</a></li>
+          <li><a class="u-c-muted u-nodec" href="istanbul-sinav-rehberi.html">İstanbul AP Sınav Merkezleri</a></li>
+          <li><a class="u-c-muted u-nodec" href="almanya-muhendislik.html">Almanya: Doğrulanmış 15 Program</a></li>
+          <li><a class="u-c-muted u-nodec" href="italya-muhendislik.html">İtalya: Doğrulanmış 10 Program</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5 class="u-c-text u-mb-3">Ajan Protokol Dokümanları</h5>
+        <ul class="u-list-none u-fs-14 u-flex u-col u-gap-2">
+          <li><a class="u-c-indigo u-nodec" href="AGENTS.md">AGENTS.md (Ajan Sistem Mimarisi)</a></li>
+          <li><a class="u-c-muted u-nodec" href="proje.md">proje.md (Master Protokol)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 AP MEBERRA Mentorship System. Tüm hakları saklıdır.</div>
+      <div>Vibe Coding • Multi-Agent Autonomous Council Architecture</div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

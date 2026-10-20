@@ -1,0 +1,116 @@
+{
+  "_meta": {
+    "hazirlayan": "Ajan 13 (mevzuat-uzmani)",
+    "tur": "Tur 14",
+    "tarih": "2026-10-20",
+    "hedef": ".agents/mevzuat/dogrulama/uni-it.json ve uni-fr.json > universiteler[] (aynı 'sira' değerli kaydın YERİNE geçer); sonra node araclar/mevzuat-aktar.js ve node araclar/ulke-veri-olustur.js",
+    "not": "Şema uni-*.json 'universiteler' öğesiyle birebir aynı (sira, ad, qsAd, sehir, qsSira, qsProfil, url, lisans{en,yerel,not,kaynak}, yuksekLisans{...}, muhendislik, harcNotu, basvuruUrl, kesinlik). qsSira, qsProfil ve harcNotu mevcut kayıttan aynen alındı (Tur 13 '=' temizliği ulke-veri-olustur.js içinde yapılır; burada kaynaktaki değer korundu). Etiketler dosyanın 'tanim' sözlüğüne göre: 'var' = en az 3 program; 'kısıtlı' = 1–2 program ya da yalnız üst yıl. UniBS ve UniFi siteleri Cloudflare korumalı; sayfalar gerçek (görünür) Chromium penceresiyle açıldı.",
+    "ozet": { "acikHucre": 6, "kapanan": 6, "kalan": 0 }
+  },
+  "uni-it": [
+    {
+      "sira": 13,
+      "ad": "Università degli Studi di Firenze (UniFi)",
+      "qsAd": "University of Florence",
+      "sehir": "Florence",
+      "qsSira": "=409",
+      "qsProfil": "https://www.topuniversities.com/universities/university-florence",
+      "url": "https://www.unifi.it/en",
+      "lisans": {
+        "en": "kısıtlı",
+        "yerel": "var",
+        "not": "2026/27 resmi lisans ve tek döngülü program kataloğunda 72 program var: 70'i İtalyanca, 2'si İngilizce (Geological Hazards and Environmental Sustainability, L-34; Sustainable Business for Societal Challenges, L-18, sınırlı kontenjan). İngilizce mühendislik lisansı yok; 7 mühendislik lisansının hepsi İtalyanca (Biomedical, Civil and Building for Sustainability, Computer, Electronics, Environmental, Management, Mechanical).",
+        "kaynak": "https://www.unifi.it/en/study-us/what-study/first-and-second-cycle-degree-programmes/first-cycle-and-single-cycle-degrees"
+      },
+      "yuksekLisans": {
+        "en": "var",
+        "yerel": "var",
+        "not": "Master başvuru portalında (DreamApply) 70 master var: 13'ü İngilizce (ör. Geoengineering, Mechanical Engineering for Sustainability, Software: Science and Technology, Physical and Astrophysical Sciences, Finance and Risk Management), 2'si İtalyanca + İngilizce, 55'i İtalyanca.",
+        "kaynak": "https://apply.unifi.it/courses/search"
+      },
+      "muhendislik": true,
+      "harcNotu": "",
+      "basvuruUrl": "https://apply.unifi.it",
+      "kesinlik": "Doğrulandı",
+      "_tur14": {
+        "kapananHucre": ["lisans.en"],
+        "eski": "lisans.en = Doğrulanamadı (unifi.it Cloudflare)",
+        "kaynaklar": [
+          { "ad": "Università di Firenze, First Cycle and Single Cycle Degrees, Academic Year 2026/2027 (7 sayfa, dil alanı)", "url": "https://www.unifi.it/en/study-us/what-study/first-and-second-cycle-degree-programmes/first-cycle-and-single-cycle-degrees", "belgeYili": "2026/27", "erisim": "2026-10-20" },
+          { "ad": "Università di Firenze, International Degree Programmes", "url": "https://www.unifi.it/en/study-us/what-study/first-and-second-cycle-degree-programmes/international-degree-programmes", "belgeYili": "2026/27", "erisim": "2026-10-20" }
+        ]
+      }
+    },
+    {
+      "sira": 19,
+      "ad": "Università degli Studi di Brescia (UniBS)",
+      "qsAd": "University of Brescia",
+      "sehir": "Brescia",
+      "qsSira": "=581",
+      "qsProfil": "https://www.topuniversities.com/universities/university-brescia",
+      "url": "https://en.unibs.it/",
+      "lisans": {
+        "en": "kısıtlı",
+        "yerel": "var",
+        "not": "UniBS 'Facts and figures': '2 three-year degree courses whose third year is offered in English'. İngilizce programlar sayfasında iki lisans var: Business and Economics (CEnT-S ile giriş) ve Economics and Data Analysis ('Third year taught in English'). İngilizce mühendislik lisansı yok. İtalyanca lisanslar: ekonomi (5), hukuk ve siyaset (2), mühendislik (10: Civil, Environmental and Territorial, Electronics and Telecommunications, Computer, Industrial Automation, Management, Physical and Mathematical, Mechanical and Materials, Engineering and Technologies for Digital Business, Medical Engineering; giriş TOLC-I), tarım, biyoteknoloji, spor bilimleri ve sağlık meslekleri.",
+        "kaynak": "https://www.unibs.it/en/english-study-programmes ; https://www.unibs.it/en/international/unibs-international/facts-and-figures ; https://www.unibs.it/en/education/enrolling/admission-degree-programs/bachelors-degree-courses"
+      },
+      "yuksekLisans": {
+        "en": "var",
+        "yerel": "var",
+        "not": "Tamamen İngilizce 3 master: Management (İngilizce iki curriculum: International Business; Green Economy and Sustainability), Analytics and Data Science for Economics and Management, Civil and Environmental Engineering. Mühendislikte İngilizce tek master Civil and Environmental Engineering. İtalyanca masterlar: ekonomi (Business Consultancy, Marketing for Made in Italy, Money Finance and Risk Management vb.), hukuk, mühendislik (Environmental and Land, Industrial Automation, Civil, Electronic, Management, Computer, Mechanical, Materials and Product Innovation), tarım ve tıp alanları.",
+        "kaynak": "https://www.unibs.it/en/english-study-programmes ; https://www.unibs.it/en/education/enrolling/admission-degree-programs/graduate-degree-programmes"
+      },
+      "muhendislik": true,
+      "harcNotu": "",
+      "basvuruUrl": "https://www.unibs.it/en/international/degree-seeking-students/admission",
+      "kesinlik": "Doğrulandı",
+      "_tur14": {
+        "kapananHucre": ["lisans.en", "lisans.yerel", "yuksekLisans.en", "yuksekLisans.yerel"],
+        "eski": "Dört hücre Doğrulanamadı ('Site 403 döndürüyor'), kaynak boş, basvuruUrl boş",
+        "yorum": "Business and Economics lisansının tamamen mi yalnız 3. yılda mı İngilizce olduğu iki resmi sayfa arasında muğlak (Facts and figures '2 programın 3. yılı' diyor; İngilizce programlar sayfası Business and Economics için 1. yıl ders planı veriyor ve giriş CEnT-S). Etiket iki okumada da 'kısıtlı' (1–2 program).",
+        "kaynaklar": [
+          { "ad": "UniBS, Study programmes taught in English (son güncelleme 23/09/2026)", "url": "https://www.unibs.it/en/english-study-programmes", "belgeYili": "2026/27", "erisim": "2026-10-20" },
+          { "ad": "UniBS, Facts and figures (Academic offer in English)", "url": "https://www.unibs.it/en/international/unibs-international/facts-and-figures", "belgeYili": "2026", "erisim": "2026-10-20" },
+          { "ad": "UniBS, Bachelor's degree courses (admission)", "url": "https://www.unibs.it/en/education/enrolling/admission-degree-programs/bachelors-degree-courses", "belgeYili": "2026", "erisim": "2026-10-20" },
+          { "ad": "UniBS, Graduate degree programmes (admission)", "url": "https://www.unibs.it/en/education/enrolling/admission-degree-programs/graduate-degree-programmes", "belgeYili": "2026", "erisim": "2026-10-20" }
+        ]
+      }
+    }
+  ],
+  "uni-fr": [
+    {
+      "sira": 15,
+      "ad": "Université Toulouse III – Paul Sabatier (Université de Toulouse çatısı)",
+      "qsAd": "Université Paul Sabatier Toulouse III",
+      "sehir": "Toulouse",
+      "qsSira": "=565",
+      "qsProfil": "https://www.topuniversities.com/universities/universite-paul-sabatier-toulouse-iii",
+      "url": "https://www.univ-tlse3.fr/",
+      "lisans": {
+        "en": "yok",
+        "yerel": "var",
+        "not": "Parcoursup 2025 verisinde kurum 'Université Toulouse III - Université Toulouse' adıyla 22 licence, 9 L.AS ve 15 PASS (tıp girişi) programı sunuyor. Bunlar Fransızca ulusal diplomalar. Kurum adı, Toulouse III'ün 'Université de Toulouse' çatısı altında ayrı kayıtla sürdüğünü gösteriyor (IW-8). Önceki tur notu: Campus France 'Taught in English' kataloğu: kurum adıyla hiç kayıt yok. Ana sayfa utoulouse.fr'ye yönlendiriyor; kurumsal yapı değişikliği teyit edilmeli.",
+        "kaynak": "https://data.enseignementsup-recherche.gouv.fr/explore/dataset/fr-esr-parcoursup/ (veri: https://data.enseignementsup-recherche.gouv.fr/api/explore/v2.1/catalog/datasets/fr-esr-parcoursup/records) ; https://taughtie.campusfrance.org/tiesearch/ (veri: https://tie-api.campusfrance.org/sgetprograms/1)"
+      },
+      "yuksekLisans": {
+        "en": "var",
+        "yerel": "var",
+        "not": "Toulouse üniversiteler birliğinin resmi 'Formations Master en anglais' kataloğunda 'Université Toulouse - Paul Sabatier' adına en az 11 tamamen İngilizce master parcours'u var; aralarında mühendislik ve bilişim: Computer Science for Aerospace, Techniques Spatiales et Instrumentation, Membrane Engineering for Sustainable Development (Erasmus Mundus), Materials for Energy Storage and Conversion (MESC), Performance in Software, Media and Scientific Computing (INP-ENSEEIHT ile); diğerleri: Statistics and Econometrics, Economics and Ecology, Biomolecular Sciences, Theoretical Chemistry and Computational Modelling, MITAT. Fransızca: Mon Master 2025 verisinde 32 master dalında 111 parcours.",
+        "kaynak": "https://formations.univ-toulouse.fr/fr/formations-master-en-anglais.html ; https://data.enseignementsup-recherche.gouv.fr/explore/dataset/fr-esr-mon_master/"
+      },
+      "muhendislik": true,
+      "harcNotu": "Fransa devlet üniversitesi (Yükseköğretim Bakanlığı'na bağlı): AB dışı öğrenci 2026-27'de licence 2.902 €/yıl, master 3.950 €/yıl; kurum muafiyet verebilir. Kaynak: https://www.campusfrance.org/en/tuition-fees-france",
+      "basvuruUrl": "https://www.utoulouse.fr/candidater-et-s-inscrire/informations-scolarite",
+      "kesinlik": "Doğrulandı",
+      "_tur14": {
+        "kapananHucre": ["yuksekLisans.en"],
+        "eski": "yuksekLisans.en = Doğrulanamadı (Campus France kataloğunda kurum kaydı yok)",
+        "yorum": "Katalog sayfasının telif satırı ©2025 (ComUE Toulouse); akademik yıl yazmıyor. Bazı parcours'lar yalnız M2 girişli olabilir; programa göre kontrol edilmeli. Lisans notundaki 'kurumsal yapı' uyarısı bilgi amaçlı korunur.",
+        "kaynaklar": [
+          { "ad": "Université de Toulouse (ComUE), Formations Master en anglais", "url": "https://formations.univ-toulouse.fr/fr/formations-master-en-anglais.html", "belgeYili": "2025 (sayfa telif yılı; akademik yıl belirtilmemiş)", "erisim": "2026-10-20" }
+        ]
+      }
+    }
+  ]
+}

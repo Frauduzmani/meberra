@@ -1,0 +1,140 @@
+{
+  "_meta": {
+    "hazirlayan": "Ajan 13 (mevzuat-uzmani)",
+    "tur": "Tur 14",
+    "tarih": "2026-10-19",
+    "hedef": "teyit-taslaklari-tur11.json taslaklarının 'kime' alanı (kaynağı: .agents/mevzuat/dogrulama/<dosya> > teyitTaslaklari[k]) ve araclar/teyit-taslak-olustur.js'in adres eşleştirmesi",
+    "neden": "teyit-taslak-olustur.js bir adresi ancak data/mevzuat/kaynak/*.json içinde kaynak URL'li bir maddede geçiyorsa 'eposta' yapar; geçmiyorsa 'adresAdayi' kalır ve mailto'ya yazılmaz. 13 taslakta (12 farklı adres yeri) adres kaynakla eşleşmiyordu. Her adres resmi iletişim sayfasından kontrol edildi.",
+    "uygulama": "PM iki adım uygular: (1) 'kimeDuzeltmesi' olan taslaklarda dogrulama dosyasındaki 'kime' metnini 'yeniKime' ile değiştirir. (2) Her satırdaki 'kaynakMaddesi'ni ilgili dogrulama dosyasının 'ortak' dizisine ekler (şema: id, baslik, metin, kaynak[], kesinlik, sonKontrol). Sonra node araclar/mevzuat-aktar.js ve node araclar/teyit-taslak-olustur.js çalıştırılır; 'kaynaksız adres adayı' sayısı 0 olmalıdır. E-posta gönderilmedi.",
+    "ozet": { "kontrolEdilen": 13, "aynenDogrulanan": 10, "duzeltilen": 2, "eksikAdresEklenen": 1 }
+  },
+  "adresler": [
+    {
+      "taslakSira": 17, "taslakId": "tt-it-yl-4", "kaynakDosya": "dogrulama/yl-it.json > teyitTaslaklari[3]",
+      "eskiKime": "Consolato Generale d'Italia a Istanbul (visti.istanbul@esteri.it)",
+      "eposta": "visti.istanbul@esteri.it", "durum": "Doğrulandı",
+      "kaynak": { "ad": "Consolato Generale d'Italia a Istanbul, Gli uffici della sede (Ufficio Visti; yazışma tercihen İtalyanca ya da İngilizce)", "url": "https://consistanbul.esteri.it/it/chi-siamo/gli-uffici/", "erisim": "2026-10-19" },
+      "kaynakMaddesi": { "id": "yl-it-iletisim-konsolosluk-vize", "baslik": "İtalya İstanbul Başkonsolosluğu vize ofisi adresi", "metin": "İstanbul Başkonsolosluğu vize ofisinin resmi e-posta adresi visti.istanbul@esteri.it (tercihen İtalyanca ya da İngilizce yaz); PEC adresi con.istanbul.visti@cert.esteri.it yalnız kayıtlı e-posta içindir.", "kaynak": [{ "ad": "Consolato Generale d'Italia a Istanbul, Gli uffici della sede", "url": "https://consistanbul.esteri.it/it/chi-siamo/gli-uffici/" }], "kesinlik": "Doğrulandı", "sonKontrol": "2026-10-19" }
+    },
+    {
+      "taslakSira": 18, "taslakId": "tt-it-yl-5", "kaynakDosya": "dogrulama/yl-it.json > teyitTaslaklari[4]",
+      "eskiKime": "Istituto Italiano di Cultura di Istanbul (iicistanbul@esteri.it)",
+      "eposta": "iicistanbul@esteri.it", "durum": "Doğrulandı (adres). Metin düzeltmesi gerekir: bkz. taslakMetinDuzeltmeleri",
+      "kaynak": { "ad": "İstanbul İtalyan Kültür Merkezi, iletişim", "url": "https://iicistanbul.esteri.it/chi-siamo/contatti", "erisim": "2026-10-19" },
+      "kaynakMaddesi": { "id": "yl-it-iletisim-iic-istanbul", "baslik": "İstanbul İtalyan Kültür Merkezi adresi (CILS sınav yeri)", "metin": "İstanbul İtalyan Kültür Merkezi'nin resmi e-posta adresi iicistanbul@esteri.it (tel. +90 212 293 98 48). Merkez, Siena'nın resmi listesinde CILS sınav yeri olarak geçiyor; CELI ve PLIDA merkez listelerinde yok.", "kaynak": [{ "ad": "İstanbul İtalyan Kültür Merkezi, iletişim", "url": "https://iicistanbul.esteri.it/chi-siamo/contatti" }, { "ad": "Università per Stranieri di Siena, CILS sınav yerleri: Türkiye", "url": "https://cils.unistrasi.it/1/180/123/TURCHIA.htm" }], "kesinlik": "Doğrulandı", "sonKontrol": "2026-10-19" }
+    },
+    {
+      "taslakSira": 35, "taslakId": "tt-fr-l-1", "kaynakDosya": "dogrulama/lisans-fr.json > teyitTaslaklari[0]",
+      "eskiKime": "Campus France İstanbul (campusfrance.istanbul@ifturquie.org)",
+      "eposta": "campusfrance.istanbul@ifturquie.org", "durum": "Doğrulandı",
+      "kaynak": { "ad": "Campus France Türkiye, 'Lisans 2. ve 3. sınıf, BUT ve Master başvuru işlemleri 2026' (PDF, Ekim 2025)", "url": "https://www.turquie.campusfrance.org/system/files/medias/documents/2025-10/Lisans%202.%20ve%203.%20s%C4%B1n%C4%B1f%2C%20BUT%20ve%20Master%20ba%C5%9Fvuru%20i%C5%9Flemleri%202026.pdf", "erisim": "2026-10-19" },
+      "kaynakMaddesi": { "id": "lis-fr-iletisim-campus-france-istanbul", "baslik": "Campus France İstanbul adresi", "metin": "Campus France İstanbul ofisinin resmi e-posta adresi campusfrance.istanbul@ifturquie.org (Ankara: campusfrance.ankara@ifturquie.org, İzmir: campusfrance.izmir@ifturquie.org). Kaynak: Campus France Türkiye'nin 2026 başvuru kılavuzu.", "kaynak": [{ "ad": "Campus France Türkiye, başvuru işlemleri 2026 (PDF)", "url": "https://www.turquie.campusfrance.org/system/files/medias/documents/2025-10/Lisans%202.%20ve%203.%20s%C4%B1n%C4%B1f%2C%20BUT%20ve%20Master%20ba%C5%9Fvuru%20i%C5%9Flemleri%202026.pdf" }], "kesinlik": "Doğrulandı", "sonKontrol": "2026-10-19" }
+    },
+    {
+      "taslakSira": 38, "taslakId": "tt-fr-yl-2", "kaynakDosya": "dogrulama/yl-fr.json > teyitTaslaklari[1]",
+      "eskiKime": "Campus France Türkiye (campusfrance.istanbul@ifturquie.org)",
+      "eposta": "campusfrance.istanbul@ifturquie.org", "durum": "Doğrulandı",
+      "kaynak": { "ad": "Campus France Türkiye, başvuru işlemleri 2026 (PDF, Ekim 2025)", "url": "https://www.turquie.campusfrance.org/system/files/medias/documents/2025-10/Lisans%202.%20ve%203.%20s%C4%B1n%C4%B1f%2C%20BUT%20ve%20Master%20ba%C5%9Fvuru%20i%C5%9Flemleri%202026.pdf", "erisim": "2026-10-19" },
+      "kaynakMaddesi": "Aynı adres; lis-fr-iletisim-campus-france-istanbul maddesi yeterli (adres eşleştirmesi tüm kaynak dosyalarında yapılır). İstenirse yl-fr.json'a aynı metinle 'yl-fr-iletisim-campus-france-istanbul' eklenir."
+    },
+    {
+      "taslakSira": 39, "taslakId": "tt-es-l-1", "kaynakDosya": "dogrulama/lisans-es.json > teyitTaslaklari[0]",
+      "eskiKime": "UC3M Admissions (prospectivestudents@uc3m.es)",
+      "eposta": "prospectivestudents@uc3m.es", "durum": "Doğrulandı",
+      "kaynak": { "ad": "UC3M, Early Admission – Contact us", "url": "https://www.uc3m.es/bachelor-degree/admission/application/international-students/early-admission/contact", "erisim": "2026-10-19" },
+      "kaynakMaddesi": { "id": "lis-es-iletisim-uc3m", "baslik": "UC3M uluslararası lisans başvuru adresi", "metin": "UC3M'nin uluslararası öğrenciler için Early Admission iletişim adresi prospectivestudents@uc3m.es. Genel lisans soruları için ayrıca web formu var.", "kaynak": [{ "ad": "UC3M, Early Admission – Contact us", "url": "https://www.uc3m.es/bachelor-degree/admission/application/international-students/early-admission/contact" }], "kesinlik": "Doğrulandı", "sonKontrol": "2026-10-19" }
+    },
+    {
+      "taslakSira": 44, "taslakId": "tt-se-l-2", "kaynakDosya": "dogrulama/lisans-se.json > teyitTaslaklari[1]",
+      "eskiKime": "Tisus, Stockholm Üniversitesi (tisus@su.se)",
+      "kimeDuzeltmesi": true,
+      "yeniKime": "Tisus, Stockholm Üniversitesi (tisus.svefler@su.se)",
+      "eposta": "tisus.svefler@su.se", "durum": "Düzeltildi: tisus@su.se resmi iletişim sayfalarında yok; Tisus yönetiminin adresi tisus.svefler@su.se",
+      "kaynak": { "ad": "Stockholm University, Tisus contact (Administration Tisus)", "url": "https://www.su.se/english/divisions/tisus---test-in-swedish-for-university-studies/contact", "erisim": "2026-10-19" },
+      "kaynakMaddesi": { "id": "lis-se-iletisim-tisus", "baslik": "Tisus yönetimi iletişim adresi", "metin": "Tisus yönetiminin resmi e-posta adresi tisus.svefler@su.se (Stockholm Üniversitesi, İsveç Dili ve Çok Dillilik Bölümü). Yurt dışı sınav için ilgi bildirimi web formuyla yapılır; yer onayı e-postayla gelir.", "kaynak": [{ "ad": "Stockholm University, Tisus contact", "url": "https://www.su.se/english/divisions/tisus---test-in-swedish-for-university-studies/contact" }], "kesinlik": "Doğrulandı", "sonKontrol": "2026-10-19" }
+    },
+    {
+      "taslakSira": 46, "taslakId": "tt-se-yl-2", "kaynakDosya": "dogrulama/yl-se.json > teyitTaslaklari[1]",
+      "eskiKime": "Tisus, Stockholm University",
+      "kimeDuzeltmesi": true,
+      "yeniKime": "Tisus, Stockholm University (tisus.svefler@su.se)",
+      "eposta": "tisus.svefler@su.se", "durum": "Eksik adres eklendi",
+      "kaynak": { "ad": "Stockholm University, Tisus contact", "url": "https://www.su.se/english/divisions/tisus---test-in-swedish-for-university-studies/contact", "erisim": "2026-10-19" },
+      "kaynakMaddesi": "lis-se-iletisim-tisus yeterli."
+    },
+    {
+      "taslakSira": 47, "taslakId": "tt-fi-l-1", "kaynakDosya": "dogrulama/lisans-fi.json > teyitTaslaklari[0]",
+      "eskiKime": "Aalto Admission Services (admissions@aalto.fi)",
+      "eposta": "admissions@aalto.fi", "durum": "Doğrulandı",
+      "kaynak": { "ad": "Aalto University, Contact Admission Services", "url": "https://www.aalto.fi/en/admission-services/contact-admission-services", "erisim": "2026-10-19" },
+      "kaynakMaddesi": { "id": "lis-fi-iletisim-aalto", "baslik": "Aalto kabul ofisi adresi", "metin": "Aalto Admission Services'in resmi e-posta adresi admissions@aalto.fi (tel. +358 2944 29290).", "kaynak": [{ "ad": "Aalto University, Contact Admission Services", "url": "https://www.aalto.fi/en/admission-services/contact-admission-services" }], "kesinlik": "Doğrulandı", "sonKontrol": "2026-10-19" }
+    },
+    {
+      "taslakSira": 49, "taslakId": "tt-fi-yl-1", "kaynakDosya": "dogrulama/yl-fi.json > teyitTaslaklari[0]",
+      "eskiKime": "Aalto University Admission Services (admissions@aalto.fi)",
+      "eposta": "admissions@aalto.fi", "durum": "Doğrulandı",
+      "kaynak": { "ad": "Aalto University, Contact Admission Services", "url": "https://www.aalto.fi/en/admission-services/contact-admission-services", "erisim": "2026-10-19" },
+      "kaynakMaddesi": "lis-fi-iletisim-aalto yeterli."
+    },
+    {
+      "taslakSira": 50, "taslakId": "tt-dk-l-1", "kaynakDosya": "dogrulama/lisans-dk.json > teyitTaslaklari[0]",
+      "eskiKime": "DTU Bachelor Admissions (bscadmissions@dtu.dk)",
+      "eposta": "bscadmissions@dtu.dk", "durum": "Doğrulandı",
+      "kaynak": { "ad": "DTU, BSc in General Engineering – Contact (Bachelor Admissions Office)", "url": "https://www.dtu.dk/english/education/undergraduate/general-engineering/admission-and-deadlines/contact", "erisim": "2026-10-19" },
+      "kaynakMaddesi": { "id": "lis-dk-iletisim-dtu-bsc", "baslik": "DTU lisans kabul ofisi adresleri", "metin": "DTU General Engineering (İngilizce lisans) giriş şartı soruları için Bachelor Admissions Office: bscadmissions@dtu.dk (tel. +45 45 25 72 90). Danca bachelor ve diplomingeniør başvuru soruları için Bacheloroptagelsen: optagelse@dtu.dk.", "kaynak": [{ "ad": "DTU, General Engineering – Contact", "url": "https://www.dtu.dk/english/education/undergraduate/general-engineering/admission-and-deadlines/contact" }, { "ad": "DTU, Kontakt optagelsen", "url": "https://www.dtu.dk/uddannelse/ansoegning-og-optagelse/diplomingenioer-bachelor-optagelse/kontakt-optagelsen" }], "kesinlik": "Doğrulandı", "sonKontrol": "2026-10-19" }
+    },
+    {
+      "taslakSira": 51, "taslakId": "tt-dk-l-2", "kaynakDosya": "dogrulama/lisans-dk.json > teyitTaslaklari[1]",
+      "eskiKime": "DTU Optagelse (optagelse@adm.dtu.dk)",
+      "kimeDuzeltmesi": true,
+      "yeniKime": "DTU Bacheloroptagelsen (optagelse@dtu.dk)",
+      "eposta": "optagelse@dtu.dk", "durum": "Düzeltildi: Danca bachelor/diplomingeniør başvurusu için DTU'nun yayımladığı adres Optagelse@dtu.dk. Eski adres (optagelse@adm.dtu.dk) yalnızca İngilizce sayfada 'bscadmissions@dtu.dk' bağlantısının arkasında geçiyor; görünen adres değil.",
+      "kaynak": { "ad": "DTU, Kontakt optagelsen (bachelor- og diplomingeniøruddannelser)", "url": "https://www.dtu.dk/uddannelse/ansoegning-og-optagelse/diplomingenioer-bachelor-optagelse/kontakt-optagelsen", "erisim": "2026-10-19" },
+      "kaynakMaddesi": "lis-dk-iletisim-dtu-bsc yeterli (iki adresi de içeriyor)."
+    },
+    {
+      "taslakSira": 55, "taslakId": "tt-ie-yl-1", "kaynakDosya": "dogrulama/yl-ie.json > teyitTaslaklari[0]",
+      "eskiKime": "Trinity College Dublin Academic Registry (academic.registry@tcd.ie)",
+      "eposta": "academic.registry@tcd.ie", "durum": "Doğrulandı",
+      "kaynak": { "ad": "Trinity College Dublin, Academic Registry – Contact", "url": "https://www.tcd.ie/academicregistry/contact/", "erisim": "2026-10-19" },
+      "kaynakMaddesi": { "id": "yl-ie-iletisim-tcd-ar", "baslik": "Trinity College Dublin Academic Registry adresi", "metin": "Trinity College Dublin Academic Registry'nin resmi e-posta adresi academic.registry@tcd.ie. Lisans başvurusu için ayrı adres study@tcd.ie.", "kaynak": [{ "ad": "Trinity College Dublin, Academic Registry – Contact", "url": "https://www.tcd.ie/academicregistry/contact/" }], "kesinlik": "Doğrulandı", "sonKontrol": "2026-10-19" }
+    },
+    {
+      "taslakSira": 65, "taslakId": "tt-cz-l-2", "kaynakDosya": "dogrulama/lisans-cz.json > teyitTaslaklari[1]",
+      "eskiKime": "Charles Üniversitesi ÚJOP (studujop@ujop.cuni.cz)",
+      "eposta": "studujop@ujop.cuni.cz", "durum": "Doğrulandı",
+      "kaynak": { "ad": "Charles University ÚJOP, contacts (Foundation Programmes)", "url": "https://ujop.cuni.cz/UJOPEN-30.html", "erisim": "2026-10-19" },
+      "kaynakMaddesi": { "id": "lis-cz-iletisim-ujop", "baslik": "ÚJOP hazırlık programları adresi", "metin": "Charles Üniversitesi ÚJOP hazırlık (Foundation) programlarının resmi e-posta adresi studujop@ujop.cuni.cz (tel. +420 778 754 481).", "kaynak": [{ "ad": "Charles University ÚJOP, contacts", "url": "https://ujop.cuni.cz/UJOPEN-30.html" }], "kesinlik": "Doğrulandı", "sonKontrol": "2026-10-19" }
+    }
+  ],
+  "taslakMetinDuzeltmeleri": [
+    {
+      "taslakSira": 12, "kaynakDosya": "dogrulama/lisans-it.json > teyitTaslaklari[2]",
+      "sorun": "İstanbul İtalyan Kültür Merkezi yalnız CILS sınav yeri; CELI ve PLIDA merkez listelerinde yok. Soru CILS'e daraltılmalı.",
+      "yeniKime": "Istituto Italiano di Cultura di Istanbul (iicistanbul@esteri.it)",
+      "yeniKonu": "CILS Due-B2 a Istanbul 2027-2028: sessioni, costi e tempi dei risultati",
+      "yeniMetin": "Gentile Istituto,\nvorrei ottenere la certificazione CILS Due-B2 (sistema CLIQ) per l'iscrizione universitaria in Italia nel 2028.\n1) In quali delle sessioni CILS 2027 e 2028 (calendario dell'Università per Stranieri di Siena) il vostro Istituto organizza il livello B2, e con quali scadenze di iscrizione?\n2) Qual è la quota d'esame per il livello B2 presso il vostro Istituto?\n3) In quanto tempo sono disponibili i risultati e il certificato?\nCordiali saluti,\n[Nome]"
+    },
+    {
+      "taslakSira": 18, "kaynakDosya": "dogrulama/yl-it.json > teyitTaslaklari[4]",
+      "sorun": "Aynı: CELI 3, PLIDA B2 ve cert.it İstanbul İtalyan Kültür Merkezi'nde yapılmıyor (resmi listeler). CELI için İtalyan Liseleri (m.vasapollo@ita.k12.tr), PLIDA için Italyan dil merkezi (info@italyandilmerkezi.com) ayrı merkezler.",
+      "yeniKonu": "Certificazione CILS Due-B2: sessioni 2027 e costi",
+      "yeniMetin": "Gentile Istituto Italiano di Cultura,\n\nho bisogno di una certificazione di lingua italiana di livello B2 per iscrivermi a una Laurea Magistrale in Italia nel settembre 2027. Potreste indicarmi:\n\n1. le sessioni CILS Due-B2 del 2027 organizzate presso il vostro Istituto, con le scadenze di iscrizione;\n2. la quota d'esame per il livello B2;\n3. i tempi di consegna dei risultati e del certificato.\n\nGrazie mille.\nCordiali saluti,\n[Nome, Cognome, telefono]"
+    },
+    {
+      "taslakSira": 44, "kaynakDosya": "dogrulama/lisans-se.json > teyitTaslaklari[1]",
+      "sorun": "Ücret ve kayıt penceresi artık resmi sayfada doğrulandı (2.875 SEK + sınav görevlisi ücreti; Mayıs 2027 için ilgi bildirimi 11 Ocak–19 Mart 2027). Soru yalnız İstanbul/Ankara oturumuna ve sınav görevlisi ücretine daraltılabilir.",
+      "yeniMetin": "Dear Tisus administration,\nI live in Istanbul and plan to apply to Swedish-taught bachelor's programmes. I intend to submit a report of interest for the Tisus test abroad on 11 May 2027. Is it likely that a test leader will be available in Istanbul or Ankara for that session, and approximately how much is the additional fee paid to the test leader on the test day?\nKind regards,\n[Name]"
+    },
+    {
+      "taslakSira": 2, "kaynakDosya": "dogrulama/lisans-de.json > teyitTaslaklari[2]",
+      "sorun": "C1 tarihleri (Şubat 2027'ye kadar) ve TL ücretleri ile TestDaF tarihleri artık resmi sayfalarda yayımlı. Soru 2027 sonbaharı–2028 Mayıs aralığına ve TestDaF'ın İstanbul'da hangi tarihlerde açıldığına daraltılabilir; TestDaF ücreti testdaf.de kayıt portalında görünür.",
+      "oneri": "Madde 2'yi (ücret) 'TestDaF'ın Türkiye ücreti' olarak daralt; madde 3'ü (sonuç süresi) sil (resmi sayfada: dijital yaklaşık 3 hafta)."
+    },
+    {
+      "taslakSira": 9, "kaynakDosya": "dogrulama/yl-de.json > teyitTaslaklari[6]",
+      "sorun": "Goethe Türkiye C2 sayfası 'şu anda sınav tarihi bulunmamaktadır' diyor; bu taslak geçerli ve öncelikli. TestDaF sorusu kısmen yanıtlandı (Goethe-Institut İstanbul g.a.s.t. listesinde TestDaF merkezi).",
+      "oneri": "Taslak kalsın; madde 2'ye 'TestDaF'ı hangi 2027 tarihlerinde açıyorsunuz?' eklenebilir."
+    }
+  ]
+}

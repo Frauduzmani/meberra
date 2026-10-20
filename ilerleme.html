@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>İlerleme & Hata Defteri | AP MEBERRA</title>
+  <meta name="description" content="Öğrencinin AP soru bankası ilerlemesi: ders ve ünite bazında çözülen, doğru, yanlış sayıları, Kırmızı/Sarı/Yeşil bölge rozetleri ve Hata Defteri.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="brand-badge">AP MEBERRA</div>
+      <div>
+        <div class="brand-title">İlerleme</div>
+        <div class="brand-subtitle">Soru bankası & Hata Defteri</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Ana Sayfa</a></li>
+      <li><a href="ap-calculus.html" class="nav-link">Calculus</a></li>
+      <li><a href="ap-physics.html" class="nav-link">Physics</a></li>
+      <li><a href="ap-chemistry.html" class="nav-link">Chemistry</a></li>
+      <li><a href="ap-biology.html" class="nav-link">Biology</a></li>
+      <li><a href="ap-english.html" class="nav-link">English</a></li>
+      <li><a href="ap-electives.html" class="nav-link">Seçmeliler</a></li>
+      <li><a href="almanya-muhendislik.html" class="nav-link">Almanya</a></li>
+      <li><a href="italya-muhendislik.html" class="nav-link">İtalya</a></li>
+      <li><a href="istanbul-sinav-rehberi.html" class="nav-link">İstanbul Sınav</a></li>
+      <li><a href="bilgi-merkezi.html" class="nav-link">Bilgi Merkezi</a></li>
+      <li><a href="ilerleme.html" class="nav-link" aria-current="page">İlerleme</a></li>
+    </ul>
+    <div class="nav-actions"></div>
+  </nav>
+
+  <main class="main-container" id="main-content">
+
+    <header class="page-head">
+      <span class="eyebrow" id="ilerleme-eyebrow">İlerleme</span>
+      <h1>Nerede güçlüsün, neyi tekrar etmelisin?</h1>
+      <p>Soru bankalarında verdiğin cevaplar bu cihazda saklanır. Aşağıda ders ve ünite bazında sonuçlarını, bölge rozetlerini ve yanlış yaptığın soruları (Hata Defteri) görebilirsin.</p>
+    </header>
+
+    <!-- GENEL ÖZET -->
+    <section class="section" aria-labelledby="ozet-title">
+      <h2 id="ozet-title" class="visually-hidden">Genel özet</h2>
+      <div class="backup-nudge u-mb-4" id="backup-nudge" role="note" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+        <div class="nudge-text"><strong>Yedek al</strong><span id="backup-nudge-text">İlerlemen yalnızca bu tarayıcıda duruyor.</span></div>
+        <button type="button" class="btn-ghost" id="backup-nudge-btn">Şimdi yedekle</button>
+      </div>
+      <div class="surface">
+        <div class="ring-row">
+          <div class="ring" id="overall-ring" role="img" aria-label="Genel başarı oranı">
+            <span id="overall-rate">–</span>
+          </div>
+          <div class="u-min0" style="flex: 1 1 260px;">
+            <div class="u-flex u-center u-gap-2 u-wrap u-mb-2">
+              <strong class="u-fs-18">Genel başarı</strong>
+              <span class="zone zone-none" id="overall-zone">Veri yok</span>
+            </div>
+            <div class="kv-list">
+              <div class="kv"><div class="kv-num" id="k-answered">0</div><div class="kv-label">Çözülen soru</div></div>
+              <div class="kv is-ok"><div class="kv-num" id="k-correct">0</div><div class="kv-label">Doğru</div></div>
+              <div class="kv is-bad"><div class="kv-num" id="k-wrong">0</div><div class="kv-label">Yanlış</div></div>
+              <div class="kv"><div class="kv-num" id="k-open">0</div><div class="kv-label">Hata Defteri (açık)</div></div>
+            </div>
+          </div>
+        </div>
+        <p class="side-note u-mt-4">
+          Bölgeler: <span class="zone zone-red">Kırmızı %0–49</span> <span class="zone zone-yellow">Sarı %50–74</span> <span class="zone zone-green">Yeşil %75–100</span>
+          — oran, o ünitede <em>çözdüğün</em> sorulardaki doğru yüzdesidir.
+        </p>
+      </div>
+    </section>
+
+    <!-- SEVİYE TESTİ RAPORU (özet) -->
+    <section class="section" id="seviye-section" aria-labelledby="seviye-title">
+      <div class="surface sv-mini">
+        <div class="sv-mini-head">
+          <div class="u-min0">
+            <h2 class="u-fs-22 u-fw-800" id="seviye-title">Seviye testi raporu</h2>
+            <p class="side-note" id="seviye-meta">Henüz seviye testi çözmedin.</p>
+          </div>
+          <a class="btn-ghost" id="seviye-link" href="seviye-testi.html">Seviye testine git →</a>
+        </div>
+        <ul class="sv-mini-list" id="seviye-list"></ul>
+      </div>
+    </section>
+
+    <!-- DERS / ÜNİTE -->
+    <section class="section" aria-labelledby="ders-title">
+      <h2 id="ders-title">Ders ve ünite bazında</h2>
+      <p class="section-lead">Toplam soru sayısı, dersin sayfası en az bir kez açıldığında öğrenilir; yeni sorular eklendikçe sayılar kendiliğinden güncellenir.</p>
+      <div id="course-root"></div>
+    </section>
+
+    <!-- HATA DEFTERİ -->
+    <section class="section" aria-labelledby="hata-title">
+      <div class="section-header u-mb-3">
+        <div class="section-title-wrap">
+          <h2 class="u-fs-22 u-fw-800" id="hata-title">Hata Defteri</h2>
+        </div>
+        <div class="u-flex u-gap-2 u-wrap">
+          <label for="err-course" class="visually-hidden">Derse göre filtrele</label>
+          <select id="err-course" class="calc-select u-wauto" style="min-width: 180px;">
+            <option value="all">Tüm dersler</option>
+          </select>
+          <button type="button" class="btn-ghost" id="toggle-resolved" aria-pressed="false">Düzeltilenleri de göster</button>
+          <a class="btn-primary" id="err-oturum" href="deneme.html?mod=yanlislar">Tek oturumda çöz</a>
+        </div>
+      </div>
+      <p class="section-lead">Yanlış yaptığın her soru burada; aynı soruyu sonra doğru çözersen “düzeltildi” olarak işaretlenir. “Soruya git” bağlantısı seni doğrudan o soruya götürür.</p>
+      <ul class="err-list" id="err-list"></ul>
+      <div class="empty-state" id="err-empty" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>
+        <strong id="err-empty-title">Hata Defterin boş</strong>
+        <span id="err-empty-text">Soru bankalarında yanlış yaptığın sorular burada listelenecek.</span>
+      </div>
+    </section>
+
+    <!-- YEDEKLE / TAŞI -->
+    <section class="section" id="yedek-section" aria-labelledby="yedek-title">
+      <div class="surface">
+        <div class="backup-head">
+          <span class="backup-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg></span>
+          <div class="u-min0">
+            <h2 id="yedek-title">Yedekle / Taşı</h2>
+            <p>Cevapların ve Hata Defterin yalnızca bu tarayıcıda saklanır; başka bir bilgisayara ya da tarayıcıya geçince görünmez. Dosyaya aktar, yeni cihazda “Dosyadan yükle” ile geri getir.</p>
+            <p class="backup-last u-mt-2" id="backup-last"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="backup-last-text">Henüz yedek alınmadı.</span></p>
+          </div>
+        </div>
+
+        <div class="backup-grid">
+          <div class="backup-pane">
+            <h3>İlerlemeyi dosyaya aktar</h3>
+            <p>Tüm cevaplar, Hata Defteri ve tema tercihin tek bir <code>apmeberra-ilerleme-YYYY-AA-GG.json</code> dosyasına indirilir.</p>
+            <button type="button" class="btn-primary" id="backup-export">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+              Dosyaya aktar
+            </button>
+          </div>
+          <div class="backup-pane">
+            <h3>Dosyadan yükle</h3>
+            <p id="backup-file-help">Daha önce aktardığın <code>.json</code> yedeğini seç. Yüklemeden önce içeriğini gösterip onayını isteriz.</p>
+            <input type="file" id="backup-file" accept=".json,application/json" class="visually-hidden" aria-describedby="backup-file-help">
+            <label for="backup-file" class="btn-ghost file-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>
+              Yedek dosyası seç
+            </label>
+          </div>
+        </div>
+
+        <div class="backup-preview" id="backup-preview" role="region" aria-labelledby="backup-preview-title" hidden>
+          <h3 id="backup-preview-title" tabindex="-1">Bu yedeği yüklemek istiyor musun?</h3>
+          <p class="backup-meta" id="backup-preview-meta"></p>
+          <div class="kv-list">
+            <div class="kv"><div class="kv-num" id="bp-answered">0</div><div class="kv-label">Çözülen soru</div></div>
+            <div class="kv is-ok"><div class="kv-num" id="bp-correct">0</div><div class="kv-label">Doğru</div></div>
+            <div class="kv is-bad"><div class="kv-num" id="bp-wrong">0</div><div class="kv-label">Yanlış</div></div>
+            <div class="kv"><div class="kv-num" id="bp-open">0</div><div class="kv-label">Açık hata</div></div>
+          </div>
+          <fieldset class="backup-modes">
+            <legend>Nasıl yüklensin?</legend>
+            <label class="mode-opt">
+              <input type="radio" name="backup-mode" value="merge" checked>
+              <span><strong>Birleştir (önerilen)</strong><span>Bu cihazdaki veriler korunur; aynı soruda daha yeni cevap kazanır, Hata Defteri kayıtları birleşir.</span></span>
+            </label>
+            <label class="mode-opt is-danger">
+              <input type="radio" name="backup-mode" value="replace">
+              <span><strong>Değiştir</strong><span>Bu cihazdaki tüm AP MEBERRA verisi silinir, yerine yedektekiler yazılır.</span></span>
+            </label>
+          </fieldset>
+          <div class="backup-actions">
+            <button type="button" class="btn-primary" id="backup-apply">Yedeği yükle</button>
+            <button type="button" class="btn-ghost" id="backup-cancel">Vazgeç</button>
+          </div>
+        </div>
+
+        <div class="backup-msg" id="backup-msg" role="status" aria-live="polite" tabindex="-1"></div>
+      </div>
+    </section>
+
+    <!-- SIFIRLAMA -->
+    <section class="section" aria-labelledby="reset-title">
+      <div class="surface u-flex u-center u-between u-gap-4 u-wrap">
+        <div class="u-min0" style="flex: 1 1 320px;">
+          <h2 class="u-fs-16 u-fw-800 u-mb-1" id="reset-title">Verileri sıfırla</h2>
+          <p class="u-c-muted u-fs-16">Bu cihazdaki tüm cevapları ve Hata Defterini siler. Tema tercihin korunur. Bu işlem geri alınamaz.</p>
+        </div>
+        <button type="button" class="btn-ghost btn-danger" id="reset-all">Tüm ilerlemeyi sıfırla</button>
+      </div>
+      <p class="visually-hidden" aria-live="polite" id="reset-live"></p>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom u-mt-0">
+      <div>© 2026 AP Meberra • İlerleme verileri yalnızca bu tarayıcıda (localStorage) tutulur — taşımak için <a href="#yedek-title">Yedekle / Taşı</a></div>
+      <div><a href="index.html">← Ana Sayfaya Dön</a></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+  (function () {
+    "use strict";
+    var A = window.APMEBERRA;
+    var ME = window.APMEBERRA_ME;
+    if (ME && ME.user) {
+      document.getElementById("ilerleme-eyebrow").textContent = "İlerleme · " + (ME.user.ad + " " + ME.user.soyad).trim();
+      document.title = "İlerleme & Hata Defteri — " + ME.user.ad + " | AP MEBERRA";
+    }
+    var showResolved = false;
+    var courseFilter = "all";
+
+    function esc(s) {
+      return String(s == null ? "" : s).replace(/[&<>"']/g, function (m) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m];
+      });
+    }
+    function pct(c, a) { return a > 0 ? Math.round(c / a * 100) : null; }
+    function zoneHtml(rate) { var z = A.zone(rate); return '<span class="zone ' + z.cls + '">' + z.label + (rate !== null ? " · %" + rate : "") + '</span>'; }
+    function bar(u) {
+      var t = Math.max(u.total, u.answered, 1);
+      return '<div class="minibar" aria-hidden="true"><i class="ok" style="width:' + (u.correct / t * 100) + '%"></i><i class="bad" style="width:' + (u.wrong / t * 100) + '%"></i></div>';
+    }
+    function fmtDate(iso) {
+      try { return new Date(iso).toLocaleString("tr-TR", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" }); }
+      catch (e) { return iso || ""; }
+    }
+    function courseName(page, s) {
+      var c = s.courses.filter(function (x) { return x.page === page; })[0];
+      return c ? c.name : page;
+    }
+
+    // Seviye testi: son raporun özeti (rapor ekranı her açıldığında özet güncellenir)
+    function renderSeviye() {
+      var sv = A.storeGet("apmeberra:seviye:v1", null) || {};
+      var R = Array.isArray(sv.raporlar) ? sv.raporlar : [];
+      var meta = document.getElementById("seviye-meta"), list = document.getElementById("seviye-list"), link = document.getElementById("seviye-link");
+      var CLS = { "calculus-ab": "c-calculus", "calculus-bc": "c-calculus", "physics-1": "c-physics", "chemistry": "c-chemistry", "biology": "c-biology", "english-language": "c-english" };
+      var BANT = { kirmizi: ["zone-red", "Kırmızı"], sari: ["zone-yellow", "Sarı"], yesil: ["zone-green", "Yeşil"] };
+      var devam = sv.devam && Array.isArray(sv.devam.sira) && sv.devam.sira.length ? " · yarım kalan bir testin var" : "";
+      if (!R.length) {
+        meta.textContent = "Henüz seviye testi çözmedin. AP kaydından önce test, hangi derste ne kadar hazır olduğunu ve kayıt kararını gösterir." + devam;
+        list.innerHTML = ""; list.hidden = true;
+        link.textContent = devam ? "Teste devam et →" : "Seviye testine git →"; link.href = "seviye-testi.html";
+        return;
+      }
+      var r = R[0];
+      var oz = r.ozet && Array.isArray(r.ozet.dersler) ? r.ozet.dersler : null;
+      meta.textContent = "Son test: " + fmtDate(r.tarih) + " · " + r.dersler.length + " ders" + (R.length > 1 ? " · " + R.length + " rapor kayıtlı" : "") + devam +
+        (oz && r.ozet.hesap ? " · kayıt önerisi " + fmtDate(r.ozet.hesap) + " itibarıyla" : "");
+      link.textContent = "Raporu aç →"; link.href = "seviye-testi.html#rapor";
+      list.hidden = false;
+      list.innerHTML = r.dersler.map(function (k) {
+        var s = r.sonuclar && r.sonuclar[k]; if (!s) return "";
+        var o = oz ? oz.filter(function (x) { return x.ders === k; })[0] : null;
+        var b = BANT[s.bant] || ["zone-none", "—"];
+        var n = (s.uniteler || []).reduce(function (a, u) { a[u.bant] = (a[u.bant] || 0) + 1; return a; }, {});
+        return '<li class="sv-mini-item ' + esc(CLS[k] || "") + '"><strong>' + esc(s.ad) + '</strong>' +
+          '<div><span class="zone ' + b[0] + '">' + b[1] + ' · %' + Math.round(s.skor) + '</span></div>' +
+          '<span>' + (n.kirmizi || 0) + ' kırmızı · ' + (n.sari || 0) + ' sarı · ' + (n.yesil || 0) + ' yeşil ünite</span>' +
+          (o ? '<span>Öneri: <strong style="color:var(--text);">' + esc(o.karar) + '</strong></span>' : '') + '</li>';
+      }).join("");
+    }
+
+    function render() {
+      renderSeviye();
+      var s = A.summary();
+
+      // Genel
+      var rate = pct(s.correct, s.answered);
+      var z = A.zone(rate);
+      var ring = document.getElementById("overall-ring");
+      ring.style.setProperty("--p", rate === null ? 0 : rate);
+      ring.style.setProperty("--ring-color", z.cls === "zone-green" ? "var(--ok)" : z.cls === "zone-yellow" ? "var(--warn)" : z.cls === "zone-red" ? "var(--bad)" : "var(--border-strong)");
+      ring.setAttribute("aria-label", rate === null ? "Henüz çözülmüş soru yok" : "Genel başarı oranı yüzde " + rate);
+      document.getElementById("overall-rate").textContent = rate === null ? "–" : "%" + rate;
+      var oz = document.getElementById("overall-zone");
+      oz.className = "zone " + z.cls; oz.textContent = z.label;
+      document.getElementById("k-answered").textContent = s.answered;
+      document.getElementById("k-correct").textContent = s.correct;
+      document.getElementById("k-wrong").textContent = s.wrong;
+      document.getElementById("k-open").textContent = s.openErrors.length;
+
+      // Dersler
+      var html = "";
+      s.courses.forEach(function (c) {
+        var cr = pct(c.correct, c.answered);
+        html += '<div class="surface course-block ' + esc(c.cls) + '" style="border-top:4px solid var(--cc, var(--border));">' +
+          '<div class="course-block-head">' +
+            '<h3><span class="nav-dot" style="--dot:var(--cc, var(--accent))"></span>' + esc(c.name) + '</h3>' +
+            '<div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">' +
+              (c.answered ? zoneHtml(cr) : "") +
+              '<a class="btn-ghost" href="' + esc(c.page) + '.html">Derse git</a>' +
+            '</div>' +
+          '</div>';
+        if (!c.visited) {
+          html += '<p class="side-note">Bu dersin sayfasını bu cihazda henüz açmadın. Açtığında soru bankası üniteleri burada görünür.</p>';
+        } else if (!c.units.length) {
+          html += '<p class="side-note">Bu sayfada henüz etkileşimli soru bankası yok.</p>';
+        } else {
+          html += '<p class="unit-nums" style="margin-bottom:10px;">' + c.answered + ' / ' + c.total + ' soru çözüldü · ' + c.correct + ' doğru · ' + c.wrong + ' yanlış</p>';
+          html += '<ul class="unit-list">' + c.units.map(function (u) {
+            var ur = pct(u.correct, u.answered);
+            return '<li class="unit-row">' +
+              '<div style="min-width:0;"><div class="unit-name"><a href="' + esc(c.page) + '.html#' + esc(u.id) + '" style="color:inherit; text-decoration:none;">' + esc(u.title) + '</a></div>' +
+              '<div class="unit-nums">' + u.answered + ' / ' + u.total + ' çözüldü · ' + u.correct + ' doğru · ' + u.wrong + ' yanlış</div></div>' +
+              (u.answered ? zoneHtml(ur) : '<span class="zone zone-none">Başlanmadı</span>') +
+              bar(u) +
+            '</li>';
+          }).join("") + '</ul>';
+        }
+        html += '</div>';
+      });
+      document.getElementById("course-root").innerHTML = html;
+
+      // Ders filtresi seçenekleri
+      var sel = document.getElementById("err-course");
+      var pages = {};
+      s.errors.forEach(function (e) { pages[e.page] = true; });
+      var current = sel.value;
+      sel.innerHTML = '<option value="all">Tüm dersler</option>' + Object.keys(pages).map(function (p) {
+        return '<option value="' + esc(p) + '">' + esc(courseName(p, s)) + '</option>';
+      }).join("");
+      sel.value = pages[current] ? current : "all";
+      courseFilter = sel.value;
+
+      // Hata Defteri
+      var list = s.errors.filter(function (e) {
+        if (!showResolved && e.resolved) return false;
+        if (courseFilter !== "all" && e.page !== courseFilter) return false;
+        return true;
+      });
+      var ul = document.getElementById("err-list");
+      ul.innerHTML = list.map(function (e) {
+        return '<li class="err-item' + (e.resolved ? " is-resolved" : "") + '">' +
+          '<div class="err-topic">' + esc(e.topic || e.id) + '</div>' +
+          '<a href="' + esc(e.page) + '.html#q-card-' + encodeURIComponent(e.id) + '">Soruya git →</a>' +
+          '<div class="err-tag">' + esc(e.errorTag) + '</div>' +
+          '<div class="err-meta">' +
+            '<span>' + esc(courseName(e.page, s)) + (e.unitTitle ? " · " + esc(e.unitTitle) : "") + '</span>' +
+            (e.number ? '<span>Soru ' + esc(e.number) + '</span>' : '') +
+            '<span>Senin cevabın: ' + esc(e.selected) + ' · Doğru: ' + esc(e.correct) + '</span>' +
+            '<span>' + (e.count > 1 ? e.count + " kez yanlış · " : "") + 'Son: ' + esc(fmtDate(e.date)) + '</span>' +
+            (e.resolved ? '<span class="zone zone-green" style="padding:0 8px;">Düzeltildi</span>' : '') +
+          '</div>' +
+        '</li>';
+      }).join("");
+      var empty = document.getElementById("err-empty");
+      empty.hidden = list.length !== 0;
+      if (!list.length) {
+        var anyOpen = s.openErrors.length > 0;
+        document.getElementById("err-empty-title").textContent = s.errors.length ? (anyOpen ? "Bu filtrede kayıt yok" : "Açık hatan kalmadı") : "Hata Defterin boş";
+        document.getElementById("err-empty-text").textContent = s.errors.length
+          ? (anyOpen ? "Filtreyi “Tüm dersler” yap." : "Tüm yanlışlarını düzelttin. Düzeltilenleri görmek için üstteki düğmeyi kullan.")
+          : "Soru bankalarında yanlış yaptığın sorular burada listelenecek.";
+      }
+    }
+
+    document.getElementById("toggle-resolved").addEventListener("click", function () {
+      showResolved = !showResolved;
+      this.setAttribute("aria-pressed", String(showResolved));
+      render();
+    });
+    document.getElementById("err-course").addEventListener("change", function () { courseFilter = this.value; render(); });
+    document.getElementById("reset-all").addEventListener("click", function () {
+      if (!window.confirm("Tüm cevapların ve Hata Defterin bu cihazdan silinecek. Emin misin?")) return;
+      A.resetAll();
+      render();
+      renderBackupState();
+      document.getElementById("reset-live").textContent = "Tüm ilerleme verileri silindi.";
+    });
+    // ---------------- Yedekle / Taşı ----------------
+    var B = A.backup;
+    var ICON_OK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>';
+    var ICON_BAD = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6"/><path d="M12 16.5v.01"/></svg>';
+    var pending = null; // {parsed, name}
+    var msgEl = document.getElementById("backup-msg");
+    var previewEl = document.getElementById("backup-preview");
+    var fileInput = document.getElementById("backup-file");
+
+    function showMsg(kind, text, focus) {
+      msgEl.className = "backup-msg " + (kind === "ok" ? "is-ok" : "is-bad");
+      msgEl.setAttribute("role", kind === "ok" ? "status" : "alert");
+      msgEl.innerHTML = "";
+      // aria-live bölgesinin değişikliği duyurması için içerik kısa bir gecikmeyle yazılır
+      window.setTimeout(function () {
+        msgEl.innerHTML = (kind === "ok" ? ICON_OK : ICON_BAD) + "<span>" + esc(text) + "</span>";
+        if (focus) msgEl.focus({ preventScroll: false });
+      }, 30);
+    }
+    function clearMsg() { msgEl.innerHTML = ""; msgEl.className = "backup-msg"; }
+    function daysAgo(iso) { var t = Date.parse(iso); return isNaN(t) ? null : Math.floor((Date.now() - t) / 864e5); }
+    function renderBackupState() {
+      if (!B) return;
+      var lb = B.lastBackup();
+      var d = lb ? daysAgo(lb) : null;
+      document.getElementById("backup-last-text").textContent = lb
+        ? "Son yedek: " + fmtDate(lb) + (d === 0 ? " (bugün)" : d === 1 ? " (dün)" : " (" + d + " gün önce)")
+        : "Bu cihazda henüz yedek alınmadı.";
+      var need = B.needsReminder();
+      var nudge = document.getElementById("backup-nudge");
+      nudge.hidden = !need;
+      if (need) {
+        document.getElementById("backup-nudge-text").textContent = lb
+          ? "Son yedeğin " + d + " gün önce alındı. Veri kaybetmemek için yeni bir yedek dosyası indir."
+          : "İlerlemen yalnızca bu tarayıcıda duruyor. Başka cihaza geçmeden ya da tarayıcı verisini silmeden önce yedek dosyası indir.";
+      }
+    }
+    function doExport() {
+      try {
+        var r = B.exportFile();
+        var o = r.data.ozet;
+        showMsg("ok", "“" + r.name + "” indirildi: " + o.cozulen + " çözülen soru, " + o.acikHata + " açık hata. Dosyayı yeni cihaza taşıyıp “Dosyadan yükle” ile geri getirebilirsin.");
+      } catch (e) {
+        showMsg("bad", "Dosya oluşturulamadı: " + (e && e.message ? e.message : "bilinmeyen hata"));
+      }
+      renderBackupState();
+    }
+    function closePreview() {
+      pending = null;
+      previewEl.hidden = true;
+      fileInput.value = "";
+    }
+
+    if (B) {
+      document.getElementById("backup-export").addEventListener("click", doExport);
+      document.getElementById("backup-nudge-btn").addEventListener("click", doExport);
+
+      fileInput.addEventListener("change", function () {
+        var f = fileInput.files && fileInput.files[0];
+        closePreview();
+        clearMsg();
+        if (!f) return;
+        if (f.size > 5 * 1024 * 1024) { showMsg("bad", "Dosya çok büyük (5 MB üstü). Bu bir AP MEBERRA yedeği gibi görünmüyor. Hiçbir veri değiştirilmedi.", true); return; }
+        var reader = new FileReader();
+        reader.onerror = function () { showMsg("bad", "Dosya okunamadı. Hiçbir veri değiştirilmedi.", true); };
+        reader.onload = function () {
+          var parsed;
+          try { parsed = B.parse(String(reader.result || "")); }
+          catch (e) { showMsg("bad", e.userMessage || "Dosya doğrulanamadı. Hiçbir veri değiştirilmedi.", true); return; }
+          pending = { parsed: parsed, name: f.name };
+          var o = parsed.ozet;
+          document.getElementById("bp-answered").textContent = o.cozulen;
+          document.getElementById("bp-correct").textContent = o.dogru;
+          document.getElementById("bp-wrong").textContent = o.yanlis;
+          document.getElementById("bp-open").textContent = o.acikHata;
+          document.getElementById("backup-preview-meta").textContent = f.name +
+            (parsed.olusturma ? " · oluşturma: " + fmtDate(parsed.olusturma) : "") +
+            " · " + Object.keys(parsed.anahtarlar).length + " kayıt";
+          previewEl.querySelector('input[value="merge"]').checked = true;
+          previewEl.hidden = false;
+          document.getElementById("backup-preview-title").focus();
+        };
+        reader.readAsText(f);
+      });
+
+      document.getElementById("backup-cancel").addEventListener("click", function () {
+        closePreview();
+        showMsg("ok", "Yükleme iptal edildi; hiçbir veri değiştirilmedi.");
+        fileInput.focus();
+      });
+
+      document.getElementById("backup-apply").addEventListener("click", function () {
+        if (!pending) return;
+        var mode = (previewEl.querySelector('input[name="backup-mode"]:checked') || {}).value === "replace" ? "replace" : "merge";
+        try {
+          var s = B.apply(pending.parsed, mode);
+          var name = pending.name;
+          closePreview();
+          render();
+          renderBackupState();
+          showMsg("ok", (mode === "replace" ? "Bu cihazdaki veriler “" + name + "” ile değiştirildi. " : "“" + name + "” bu cihazdaki verilerle birleştirildi. ") +
+            "Şimdi " + s.cozulen + " çözülen soru (" + s.dogru + " doğru, " + s.yanlis + " yanlış) ve " + s.acikHata + " açık hata var.", true);
+        } catch (e) {
+          showMsg("bad", e.userMessage || "Yükleme başarısız oldu; önceki veriler korundu.", true);
+        }
+      });
+    } else {
+      document.getElementById("yedek-section").hidden = true;
+    }
+
+    // Başka sekmede soru çözülürse güncelle
+    window.addEventListener("storage", function (e) { if (!e.key || e.key.indexOf("apmeberra:") === 0) { render(); renderBackupState(); } });
+
+    render();
+    renderBackupState();
+  })();
+  </script>
+</body>
+</html>

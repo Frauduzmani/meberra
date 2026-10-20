@@ -1,0 +1,144 @@
+// AP MEBERRA — PM Doğruluk Kapısı denetim aracı (AGENTS.md §2.1)
+// Kullanım (proje klasöründen): node araclar/pm-denetim.js
+// 1) Her ders sayfasındaki (ap-*.html) soru dizilerini, 2) seviye testi bankalarını (data/sorular/seviye/*.js)
+// çalıştırır ve şema/kalite kurallarını kontrol eder. Teslim şartı: 0 sorun.
+const fs = require("fs");
+const path = require("path");
+const vm = require("vm");
+
+const ROOT = path.resolve(__dirname, "..");
+const PAGES = fs.readdirSync(ROOT).filter(f => /^(ap|sinav)-.*\.html$/.test(f));
+const SEVIYE_DIR = path.join(ROOT, "data", "sorular", "seviye");
+const FORBIDDEN_SOURCE = /official|past exam|canonical|college board exam/i;
+const BANK_FIELDS = ["id", "topic", "difficulty", "source", "question", "options", "generalRemediation", "stepByStepSolution"];
+const SEVIYE_FIELDS = ["id", "unite", "beceri", "zorluk", "source", "question", "options", "generalRemediation", "stepByStepSolution"];
+const LETTER_REF = /(?:doğru\s+(?:cevap|yanıt|şık|seçenek)(?:\s+(?:budur|ise))?|cevap|answer|correct\s+(?:answer|choice|option)|sonuç)\s*(?:is|=|:|→|⇒|\\implies)?\s*\(?\s*([A-D])\s*\)?(?![\p{L}\d])|(?<![\p{L}\d])([A-D])\s*şıkkı\s*(?:doğru|doğrudur)/giu;
+
+function loadArrays(file) {
+  const html = fs.readFileSync(path.join(ROOT, file), "utf8");
+  const ctx = { document: { addEventListener() {} }, window: {}, console: { log() {}, warn() {} } };
+  vm.createContext(ctx);
+  for (const m of html.matchAll(/<script>([\s\S]*?)<\/script>/g)) {
+    // `const X_QUESTIONS` is not visible on the context object; expose it as var.
+    vm.runInContext(m[1].replace(/\bconst (\w+_QUESTIONS\w*)/g, "var $1"), ctx, { filename: file });
+  }
+  const arrays = Object.keys(ctx).filter(k => /_QUESTIONS/.test(k)).map(k => [k, ctx[k]]);
+  const containers = [...html.matchAll(/initInteractiveQuiz\(\s*"([^"]+)"\s*,\s*(\w+)\s*\)/g)].map(m => [m[1], m[2]]);
+  return { html, arrays, containers };
+}
+
+const textOf = o => String(o.text).replace(/<[^>]+>|\$/g, "");
+const norm = t => String(t).replace(/<[^>]+>|\$|\\\\?[a-z]+|\s+/gi, "").toLowerCase();
+
+// Shared per-question checks. Returns { pos, longest } and pushes into issues.
+function checkQuestions(qs, fields, seen, issues) {
+  const pos = { A: 0, B: 0, C: 0, D: 0 };
+  let longest = 0;
+  for (const q of qs) {
+    const tag = q.id || `#${q.number}`;
+    if (seen.has(q.id)) issues.push(`${tag}: tekrar eden id`);
+    seen.add(q.id);
+    for (const k of fields) if (!q[k]) issues.push(`${tag}: eksik alan ${k}`);
+    const opts = q.options || [];
+    const correct = opts.filter(o => o.isCorrect);
+    if (correct.length !== 1) issues.push(`${tag}: ${correct.length} doğru şık`);
+    else pos[correct[0].id] = (pos[correct[0].id] || 0) + 1;
+    if (opts.map(o => o.id).join("") !== "ABCD".slice(0, opts.length)) issues.push(`${tag}: şık harf sırası bozuk`);
+    for (const o of opts) if (!o.isCorrect && (!o.errorTag || !o.remediation)) issues.push(`${tag}: ${o.id} şıkkında errorTag/remediation eksik`);
+    if (FORBIDDEN_SOURCE.test(q.source || "")) issues.push(`${tag}: yanıltıcı source "${q.source}"`);
+    if (/\*\*[^*]+\*\*/.test(JSON.stringify(q))) issues.push(`${tag}: ham Markdown **`);
+    if (/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(Object.values(q).filter(v => typeof v === "string").join("") + opts.map(o => o.text + (o.remediation || "")).join(""))) issues.push(`${tag}: kontrol karakteri (tek ters bölü kaçışı?)`);
+    for (const field of [q.question, q.stepByStepSolution, q.generalRemediation]) {
+      const dollars = (String(field).replace(/\\\$/g, "").match(/\$/g) || []).length;
+      if (dollars % 2) { issues.push(`${tag}: tek sayıda $`); break; }
+    }
+    if (correct.length === 1) {
+      // Çözüm/açıklama metni doğru şıkkı harfle anıyorsa, işaretli doğru şıkla aynı olmalı.
+      const expl = [q.stepByStepSolution, q.generalRemediation].join(" ").replace(/<[^>]+>/g, " ");
+      for (const m of expl.matchAll(LETTER_REF)) {
+        const L = m[1] || m[2];
+        if (L !== L.toUpperCase()) continue; // şık adları büyük harf; "a", "c" gibi küçük harfler kelime parçasıdır
+        if (L !== correct[0].id) { issues.push(`${tag}: çözüm metni "${m[0].trim()}" diyor, işaretli doğru şık ${correct[0].id}`); break; }
+      }
+      const lens = opts.map(o => textOf(o).length);
+      const cl = textOf(correct[0]).length;
+      if (cl === Math.max(...lens) && lens.filter(l => l === cl).length === 1 && cl > 1.25 * Math.max(...lens.filter(l => l !== cl))) longest++;
+    }
+  }
+  if (qs.length >= 8 && Math.max(...Object.values(pos)) > qs.length * 0.5) issues.push(`doğru şık dağılımı dengesiz ${JSON.stringify(pos)}`);
+  if (qs.length >= 8 && longest / qs.length > 0.4) issues.push(`doğru şık belirgin en uzun: ${longest}/${qs.length}`);
+  return { pos, longest };
+}
+
+let total = 0, problems = 0;
+const rows = [];
+const bankTexts = new Map(); // normalized question text → id (kopya tanı sorusu yakalamak için)
+
+// 1) Ders sayfalarındaki soru bankası
+for (const file of PAGES) {
+  let data;
+  try { data = loadArrays(file); } catch (e) { console.log(`✗ ${file}: script hatası — ${e.message}`); problems++; continue; }
+  const { html, arrays, containers } = data;
+  const seen = new Set();
+  for (const [cid, arr] of containers) {
+    if (!html.includes(`id="${cid}"`)) { console.log(`✗ ${file}: container yok: ${cid}`); problems++; }
+    if (!arrays.some(([k]) => k === arr)) { console.log(`✗ ${file}: dizi yok: ${arr}`); problems++; }
+  }
+  for (const [name, qs] of arrays) {
+    const issues = [];
+    const { pos, longest } = checkQuestions(qs, BANK_FIELDS, seen, issues);
+    for (const q of qs) bankTexts.set(norm(q.question), q.id);
+    total += qs.length;
+    problems += issues.length;
+    rows.push({ file, name, n: qs.length, pos, longest, issues });
+  }
+}
+
+// 2) Seviye testi bankaları (data/sorular/seviye/*.js)
+let seviyeTotal = 0;
+const seviyeFiles = fs.existsSync(SEVIYE_DIR) ? fs.readdirSync(SEVIYE_DIR).filter(f => f.endsWith(".js") && !f.startsWith("_")) : [];
+const seviyeSeen = new Set();
+for (const f of seviyeFiles) {
+  const ctx = { window: {}, console: { log() {}, warn() {} } };
+  try { vm.runInNewContext(fs.readFileSync(path.join(SEVIYE_DIR, f), "utf8"), ctx, { filename: f }); }
+  catch (e) { console.log(`✗ seviye/${f}: script hatası — ${e.message}`); problems++; continue; }
+  for (const [key, c] of Object.entries(ctx.window.APMEBERRA_SEVIYE || {})) {
+    const issues = [];
+    const qs = c.sorular || [];
+    if (c.ders !== key) issues.push(`ders alanı (${c.ders}) anahtarla (${key}) aynı değil`);
+    for (const k of ["ad", "portalSayfasi", "uniteler"]) if (!c[k]) issues.push(`eksik alan ${k}`);
+    if (c.portalSayfasi && !fs.existsSync(path.join(ROOT, c.portalSayfasi))) issues.push(`portalSayfasi yok: ${c.portalSayfasi}`);
+    const units = (c.uniteler || []).map(u => String(u.no));
+    const portalHtml = c.portalSayfasi && fs.existsSync(path.join(ROOT, c.portalSayfasi)) ? fs.readFileSync(path.join(ROOT, c.portalSayfasi), "utf8") : null;
+    for (const u of c.uniteler || []) {
+      const uq = qs.filter(q => String(q.unite) === String(u.no));
+      if (uq.length < 3) issues.push(`ünite ${u.no} (${u.ad}): ${uq.length} soru (en az 3)`);
+      const diffs = new Set(uq.map(q => q.zorluk));
+      if (uq.length >= 3 && diffs.size < 2) issues.push(`ünite ${u.no}: zorluk çeşitliliği yok`);
+      if (typeof u.portaldaVar !== "boolean") issues.push(`ünite ${u.no}: portaldaVar true/false olmalı`);
+      if (u.portaldaVar && !u.portalCapa) issues.push(`ünite ${u.no}: portaldaVar true ama portalCapa yok`);
+      if (u.portalCapa && portalHtml !== null && !portalHtml.includes(`id="${u.portalCapa}"`)) issues.push(`ünite ${u.no}: portalCapa "${u.portalCapa}" ${c.portalSayfasi} içinde yok`);
+    }
+    for (const q of qs) {
+      if (!units.includes(String(q.unite))) issues.push(`${q.id}: tanımsız ünite "${q.unite}"`);
+      if (!["easy", "medium", "hard"].includes(q.zorluk)) issues.push(`${q.id}: zorluk easy/medium/hard olmalı`);
+      if (!(q.sureSn > 0)) issues.push(`${q.id}: sureSn eksik`);
+      if (typeof q.hesapMakinesi !== "boolean") issues.push(`${q.id}: hesapMakinesi true/false olmalı`);
+      const dup = bankTexts.get(norm(q.question));
+      if (dup) issues.push(`${q.id}: soru bankasındaki ${dup} ile aynı metin (tanı sorusu yeni olmalı)`);
+    }
+    const { pos, longest } = checkQuestions(qs, SEVIYE_FIELDS, seviyeSeen, issues);
+    seviyeTotal += qs.length;
+    problems += issues.length;
+    rows.push({ file: "seviye/" + f, name: `${key} (${units.length} ünite)`, n: qs.length, pos, longest, issues });
+  }
+}
+
+for (const r of rows) {
+  const mark = r.issues.length ? "✗" : "✓";
+  console.log(`${mark} ${r.file.padEnd(18)} ${r.name.padEnd(26)} ${String(r.n).padStart(3)} soru  A${r.pos.A} B${r.pos.B} C${r.pos.C} D${r.pos.D}  en-uzun-doğru:${r.longest}`);
+  for (const i of r.issues) console.log(`    - ${i}`);
+}
+console.log(`\nSEVİYE TESTİ: ${seviyeTotal} soru (${seviyeFiles.length} dosya)`);
+console.log(`TOPLAM: ${total} soru, ${problems} sorun`);
+process.exitCode = problems ? 1 : 0;

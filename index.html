@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bugün | AP MEBERRA — AP & Almanya / İtalya Mühendislik Hazırlığı</title>
+  <meta name="description" content="Bugün ekranı: sıradaki adım, yaklaşan tarihler, kaldığın yer, rota özeti, dersler ve ilerleme.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="brand-badge">AP MEBERRA</div>
+      <div>
+        <div class="brand-title">Hazırlık Portalı</div>
+        <div class="brand-subtitle">İstanbul • Almanya & İtalya • 2 yıllık plan</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link" aria-current="page">Ana Sayfa</a></li>
+      <li><a href="ap-calculus.html" class="nav-link">Calculus</a></li>
+      <li><a href="ap-physics.html" class="nav-link">Physics</a></li>
+      <li><a href="ap-chemistry.html" class="nav-link">Chemistry</a></li>
+      <li><a href="ap-biology.html" class="nav-link">Biology</a></li>
+      <li><a href="ap-english.html" class="nav-link">English</a></li>
+      <li><a href="ap-electives.html" class="nav-link">Seçmeliler</a></li>
+      <li><a href="almanya-muhendislik.html" class="nav-link">Almanya</a></li>
+      <li><a href="italya-muhendislik.html" class="nav-link">İtalya</a></li>
+      <li><a href="istanbul-sinav-rehberi.html" class="nav-link">İstanbul Sınav</a></li>
+      <li><a href="bilgi-merkezi.html" class="nav-link">Bilgi Merkezi</a></li>
+      <li><a href="ilerleme.html" class="nav-link">İlerleme</a></li>
+    </ul>
+    <div class="nav-actions">
+    </div>
+  </nav>
+
+  <main class="main-container bugun bugun-v4" id="main-content">
+
+    <!-- BUGÜN v4 (enerjik tema): selam → bugünkü görev + seri → yanlışlar · son deneme · yaklaşan → dersler.
+         Rota özeti, çalışma planı listesi, yol haritası ve rehberler Hedefim / Çalış sayfalarında. -->
+    <section class="bg-hello" aria-labelledby="today-title">
+      <div class="u-min0">
+        <h1 id="today-title">Merhaba</h1>
+        <p class="bg-hello-sub" id="hello-sub"></p>
+      </div>
+      <div class="bg-chips" id="hello-chips"></div>
+    </section>
+
+    <!-- Model bilgi şeridi: lise mezunu duyuruları / yüksek lisans dosyası (ayrıntı Hedefim › Şartlar'da: #mezun-panel / #yl-panel) -->
+    <div class="bugun-serit" id="bugun-serit" role="note" hidden></div>
+
+    <div class="bg-ust">
+      <!-- BUGÜNKÜ GÖREV: tek kart, tek birincil düğme (apSiradakiAdim) -->
+      <section class="bg-hero" id="siradaki" aria-labelledby="sa-title">
+        <div class="next-step" id="next-step" aria-live="polite">
+          <span class="sa-kicker">Bugünkü görevin</span>
+          <h2 id="sa-title">Yükleniyor…</h2>
+        </div>
+      </section>
+
+      <!-- ÇALIŞMA SERİSİ (apCalismaSerisi: cevap ve deneme günleri) -->
+      <section class="surface bg-seri" id="bg-seri" aria-labelledby="seri-title" data-ap-bolum>
+        <div class="bg-seri-ust">
+          <span class="bg-alev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c1 4 5 6 5 11a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-6 1-9.5z"/></svg></span>
+          <div><b id="seri-title">0 gün</b><span>Çalışma serin</span></div>
+        </div>
+        <ol class="bg-hafta" id="bg-hafta" aria-label="Bu hafta çalıştığın günler"></ol>
+        <p class="bg-seri-not" id="bg-seri-not"></p>
+      </section>
+    </div>
+
+    <div class="bg-uclu">
+      <!-- YANLIŞLARIM: açık hata sayısı -->
+      <a class="surface bg-mini u-nodec u-c-inherit" id="dv-yanlis" href="deneme.html?mod=yanlislar" data-ap-bolum>
+        <span class="bg-mini-h"><span class="bg-ico is-enerji" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></span><h3>Yanlışlarım</h3></span>
+        <span class="bg-sayi"><span id="dv-yanlis-sayi">0</span> <small>açık soru</small></span>
+        <span class="bg-mini-alt" id="dv-yanlis-alt">Yanlış yaptığın sorular burada birikir.</span>
+        <span class="bg-mini-git">Tekrar et →</span>
+      </a>
+
+      <!-- SON DENEME -->
+      <div class="surface bg-mini last-exam" id="last-exam" role="group" aria-labelledby="last-exam-title" data-ap-bolum>
+        <span class="bg-mini-h"><span class="bg-ico is-ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span><h3 id="last-exam-title">Son deneme</h3></span>
+        <div class="bg-mini-govde" id="last-exam-body"><p class="le-meta">Henüz deneme çözmedin.</p></div>
+      </div>
+
+      <!-- YAKLAŞAN TARİHLER: rota adımları + kayıtlı sınavlar + duyuru bitişleri (apYaklasanTarihler; yalnızca veride olan tarih) -->
+      <section class="surface bg-mini bugun-yaklasan" id="yaklasan" aria-labelledby="yt-title">
+        <span class="bg-mini-h"><span class="bg-ico is-mor" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg></span><h2 id="yt-title">Yaklaşan</h2>
+          <a class="yt-tumu" id="yt-tumu" href="yazismalar.html#son-tarihler" aria-label="Tüm son tarihler: Başvurularım">Tümü →</a></span>
+        <ol class="yt-list" id="yt-list"></ol>
+        <div class="yt-gecmis" id="yt-gecmis" hidden></div>
+        <p class="yt-not" id="yt-not" hidden></p>
+      </section>
+    </div>
+
+    <div class="backup-nudge" id="home-backup-nudge" role="note" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      <div class="nudge-text"><strong>Yedek al</strong><span id="home-backup-text">İlerlemen yalnızca bu tarayıcıda duruyor.</span></div>
+      <a href="ilerleme.html#yedek-title">Yedekle →</a>
+    </div>
+
+    <!-- DERSLER: halka = dersin soru bankasında çözülen oran -->
+    <section class="surface bg-dersler" id="dersler" aria-labelledby="courses-title" data-ap-bolum>
+      <div class="bg-sec-h">
+        <h2 id="courses-title">Derslerin</h2>
+        <a href="calis.html">Tümü →</a>
+      </div>
+      <ul class="bg-ders-list" id="course-grid">
+        <li><a class="bg-ders" href="ap-calculus.html" data-course="ap-calculus" style="--cc:var(--c-calculus)"><span class="bg-halka" data-v="–"></span><span class="u-min0"><b>Calculus AB / BC</b><span class="course-progress">Henüz başlanmadı</span></span></a></li>
+        <li><a class="bg-ders" href="ap-physics.html" data-course="ap-physics" style="--cc:var(--c-physics)"><span class="bg-halka" data-v="–"></span><span class="u-min0"><b>Physics 1 / C</b><span class="course-progress">Henüz başlanmadı</span></span></a></li>
+        <li><a class="bg-ders" href="ap-chemistry.html" data-course="ap-chemistry" style="--cc:var(--c-chemistry)"><span class="bg-halka" data-v="–"></span><span class="u-min0"><b>Chemistry</b><span class="course-progress">Henüz başlanmadı</span></span></a></li>
+        <li><a class="bg-ders" href="ap-biology.html" data-course="ap-biology" style="--cc:var(--c-biology)"><span class="bg-halka" data-v="–"></span><span class="u-min0"><b>Biology</b><span class="course-progress">Henüz başlanmadı</span></span></a></li>
+        <li><a class="bg-ders" href="ap-english.html" data-course="ap-english" style="--cc:var(--c-english)"><span class="bg-halka" data-v="–"></span><span class="u-min0"><b>English Language</b><span class="course-progress">Henüz başlanmadı</span></span></a></li>
+        <li><a class="bg-ders" href="ap-electives.html" data-course="ap-electives" style="--cc:var(--c-electives)"><span class="bg-halka" data-v="–"></span><span class="u-min0"><b>Ekonomi &amp; CS A</b><span class="course-progress">Henüz başlanmadı</span></span></a></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- AJAN DANIŞMA PENCERESİ -->
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="brand-title u-mb-2">AP MEBERRA</div>
+        <p class="u-fs-14 u-c-muted">
+          AP sınavları ve Almanya / İtalya İngilizce mühendislik hedefleri için öğrenci hazırlık portalı.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h5 class="u-mb-3">Portal</h5>
+        <ul class="u-list-none u-fs-14 u-flex u-col u-gap-2">
+          <li><a href="bilgi-merkezi.html">Bilgi Merkezi</a></li>
+          <li><a href="ilerleme.html">İlerleme & Hata Defteri</a></li>
+          <li><a href="istanbul-sinav-rehberi.html">İstanbul Sınav Rehberi</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5 class="u-mb-3">Resmi kaynaklar</h5>
+        <ul class="u-list-none u-fs-14 u-flex u-col u-gap-2">
+          <li><a href="https://apstudents.collegeboard.org" target="_blank" rel="noopener noreferrer">College Board — AP Students ↗</a></li>
+          <li><a href="https://anabin.kmk.org" target="_blank" rel="noopener noreferrer">anabin / KMK ↗</a></li>
+          <li><a href="https://www.uni-assist.de" target="_blank" rel="noopener noreferrer">uni-assist ↗</a></li>
+          <li><a href="https://www.universitaly.it" target="_blank" rel="noopener noreferrer">Universitaly ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 AP Meberra Mentorship System</div>
+      <div>Veriler yalnızca bu cihazda saklanır</div>
+    </div>
+  </footer>
+
+  <script src="data/mevzuat/sinav-takvimi.js"></script>
+  <script src="data/mevzuat/sinavlar.js"></script>
+  <script src="data/mevzuat/ulke-rotalari.js"></script>
+  <script src="assets/js/eposta.js"></script>
+  <script src="assets/js/rota.js"></script>
+  <script src="data/mevzuat/duyurular.js"></script>
+  <script src="data/mevzuat/yl-genel.js"></script>
+  <script src="data/mevzuat/ulke-dizini.js"></script>
+  <script src="assets/js/sartlar-motor.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+  (function () {
+    "use strict";
+    var A = window.APMEBERRA;
+    if (!A) return;
+    var s = A.summary();
+    var ME = window.APMEBERRA_ME;
+    var MODEL = ME && ME.profile ? ME.profile.ogrenciModeli : null;
+    var BG = typeof window.APMEBERRA_BUGUN === "string" ? window.APMEBERRA_BUGUN : null; // yalnızca test için
+    // Bugün ekranı girdileri (Tur 14 A3): aşağıdaki bölümler doldurur, bugunCiz() kullanır
+    var B = { rotaAdimlari: [], rotaUlke: "", rotaU: null, duyurular: [], plan: [], ylKalan: null };
+    function esc(x) { return String(x == null ? "" : x).replace(/[&<>"']/g, function (m) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]; }); }
+    function pct(c, a) { return a > 0 ? Math.round(c / a * 100) : null; }
+    var ICON = {
+      redo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>',
+      target: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>',
+      play: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M7 4l13 8-13 8z"/></svg>',
+      book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/></svg>',
+      info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>',
+      step: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
+    };
+    // Çalışma planı görevi: {icon, title, desc, href, linkText} — liste ve Sıradaki adım aynı veriyi kullanır
+    function gorev(icon, title, desc, href, linkText) { return { icon: icon, title: title, desc: desc, href: href, linkText: linkText }; }
+    function gorevHtml(g) {
+      return '<li class="todo-item"><span class="todo-ico" aria-hidden="true">' + g.icon + '</span>' +
+        '<div class="todo-body"><div class="todo-title">' + esc(g.title) + '</div><div class="todo-desc">' + esc(g.desc) + '</div></div>' +
+        (g.href ? '<a class="todo-link" href="' + esc(g.href) + '">' + esc(g.linkText || "Başla") + ' →</a>' : '') + '</li>';
+    }
+
+    // 0) Kişisel karşılama, başlangıç adımları, son deneme
+    (function () {
+      if (!ME || !ME.user) return;
+      var p = ME.profile || {};
+      var ULKE = A.ulkeAdlari || { de: "Almanya", it: "İtalya" };
+      var ul = Array.isArray(p.ulkeler) ? p.ulkeler : [];
+      var IC = {
+        check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>'
+      };
+      var saat = (BG ? new Date(BG + "T12:00:00") : new Date()).getHours();
+      document.getElementById("today-title").textContent = (saat < 12 ? "Günaydın, " : saat < 18 ? "İyi günler, " : "İyi akşamlar, ") + ME.user.ad + "!";
+      document.title = "Bugün — " + ME.user.ad + " | AP MEBERRA";
+      // Alt satır: sınıf · hedef ülke(ler) · AP sınavına kalan gün (yalnızca AP modellerinde, takvimde tarih varsa)
+      var T1 = window.APMEBERRA_TAKVIM, kalan = null;
+      if (MODEL !== "uni-mezun" && T1 && T1.sinavDonemi && /^\d{4}-\d{2}-\d{2}$/.test(T1.sinavDonemi.bas || "")) {
+        var g0 = BG ? new Date(BG + "T00:00:00") : new Date(); g0.setHours(0, 0, 0, 0);
+        kalan = Math.round((new Date(T1.sinavDonemi.bas + "T00:00:00") - g0) / 864e5);
+      }
+      document.getElementById("hello-sub").textContent = [
+        p.sinif ? (A.sinifEtiket ? A.sinifEtiket(p) : p.sinif) : "",
+        ul.length ? "Hedef: " + ul.map(function (u) { return ULKE[u] || u; }).join(" + ") : "",
+        kalan !== null && kalan >= 0 ? "AP sınavına " + kalan + " gün" : ""
+      ].filter(Boolean).join(" · ");
+
+      var panel = A.panel ? A.panel.get() : { sinavlarim: [] };
+      var den = A.denemeler ? A.denemeler() : [];
+      var steps = [
+        { t: "Üniversiteleri incele", done: !!panel.universiteGoruldu, href: "universiteler.html",
+          d: panel.universiteGoruldu ? ul.map(function (u) { return ULKE[u] || u; }).join(" ve ") + " listesini inceledin." : "Hedef ülkendeki programları ve isterleri gör.",
+          l: panel.universiteGoruldu ? "Tekrar bak" : "Üniversitelere git" },
+        { t: "Sınavlarını seç", done: panel.sinavlarim.length > 0, href: "sinavlar.html",
+          d: panel.sinavlarim.length ? panel.sinavlarim.length + " sınav listende." : "Girmen gereken sınavları “Listeme ekle” ile işaretle.",
+          l: panel.sinavlarim.length ? "Listemi gör" : "Sınavları seç" },
+        { t: "Ders çalış", done: s.answered > 0, href: s.answered ? "ilerleme.html" : "sinavlar.html",
+          d: s.answered ? s.answered + " soru çözdün · %" + pct(s.correct, s.answered) + " doğru." : "İngilizce ders anlatımını oku, ünite sorularını çöz.",
+          l: s.answered ? "İlerlemene bak" : "Derse başla" },
+        { t: "Deneme çöz", done: den.length > 0, href: "deneme.html",
+          d: den.length ? den.length + " deneme tamamladın." : "Ders denemesi ya da genel deneme çöz.",
+          l: den.length ? "Yeni deneme" : "Denemeye git" }
+      ];
+      var cur = steps.findIndex(function (x) { return !x.done; });
+      var roadmap = document.getElementById("roadmap");
+      if (roadmap) roadmap.innerHTML = steps.map(function (x, i) {
+        var st = x.done ? "is-done" : (i === cur ? "is-current" : "");
+        return '<li class="road-step ' + st + '"' + (i === cur ? ' aria-current="step"' : "") + '>' +
+          '<div class="road-top"><span class="road-num">' + (x.done ? IC.check + '<span class="visually-hidden">Tamamlandı: </span>' : (i + 1)) + '</span>' +
+          '<span class="road-state">' + (x.done ? "Tamamlandı" : i === cur ? "Sıradaki adım" : "Bekliyor") + '</span></div>' +
+          '<h3>' + (i + 1) + ". " + esc(x.t) + '</h3><p>' + esc(x.d) + '</p><a href="' + x.href + '">' + esc(x.l) + ' →</a></li>';
+      }).join("");
+      // Başlangıç adımı bitmediyse çalışma planına girer (Sıradaki adım kartının 4. önceliği)
+      if (cur >= 0) B.baslangic = { baslik: steps[cur].t, aciklama: steps[cur].d, href: steps[cur].href, etiket: steps[cur].l };
+
+      if (den.length) {
+        var d0 = den[0];
+        var when = d0.tarih && !isNaN(Date.parse(d0.tarih)) ? new Date(d0.tarih).toLocaleDateString("tr-TR", { day: "numeric", month: "long" }) : "";
+        document.getElementById("last-exam-body").innerHTML =
+          '<div class="ring-row"><div class="le-score">' + (d0.yuzde !== null ? "%" + d0.yuzde : "–") + '</div>' +
+          '<div style="min-width:0;"><strong>' + esc(d0.ders) + '</strong><div class="le-meta">' +
+          [d0.dogru !== null && d0.toplam ? d0.dogru + " / " + d0.toplam + " doğru" : "", when].filter(Boolean).join(" · ") + '</div></div></div>' +
+          '<p class="dv-git"><a href="deneme.html">Denemeler ve hata incelemesi →</a></p>';
+      } else {
+        document.getElementById("last-exam-body").innerHTML = '<p class="le-meta">Henüz deneme çözmedin. Ders denemesiyle başla; sonuç burada görünür.</p><p class="dv-git"><a href="deneme.html">Denemelere git →</a></p>';
+      }
+    })();
+
+    // 0b) Rotam: aktif rotanın sıradaki 3 adımı (daraltılmış özet) + KMK denetleyicisinin görünürlüğü
+    (function () {
+      var R = window.APMEBERRA_ROTA;
+      if (!ME || !ME.profile || !A.rota) return;
+      var sec = document.getElementById("panel-rota"), body = document.getElementById("pr-body");
+      var kmk = document.getElementById("kmk-calculator-section");
+      var AD = A.ulkeAdlari || { de: "Almanya", it: "İtalya" };
+      var TUR = { sinav: "Sınav", belge: "Belge", basvuru: "Başvuru", karar: "Karar", hazirlik: "Hazırlık", bilgi: "Bilgi notu" };
+      var KES = { "Doğrulandı": "ok", "Yoruma açık": "warn", "Yayımlanmadı": "info", "Teyit gerekir": "warn", "Doğrulanamadı": "bad" };
+      var mezun = ME.profile.sinif === "mezun";
+      var EXT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
+      var WARN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l10 18H2z"/><path d="M12 10v4M12 17h.01"/></svg>';
+      /** K4-a: profile özel ortak uyarılar (iki ülkeli mezun). */
+      function uyariHtml() {
+        var list = R && R.profilUyarilari ? R.profilUyarilari(window.APMEBERRA_ROTA_UYARILARI, ME.profile) : [];
+        return list.map(function (w) {
+          return '<div class="alert alert-warn rota-uyari" role="note" data-uyari="' + esc(w.id || "") + '">' + WARN + '<div class="u-min0">' +
+            (w.baslik ? '<strong>' + esc(w.baslik) + '</strong>' : "") + '<p>' + esc(w.metin) + '</p><div class="rs-foot">' +
+            (Array.isArray(w.kaynaklar) ? w.kaynaklar.filter(function (k) { return k && /^https?:\/\//.test(k.url || ""); }).map(function (k) {
+              return '<a class="src-link" href="' + esc(k.url) + '" target="_blank" rel="noopener noreferrer">' + esc(k.ad || "Kaynak") + EXT + '<span class="visually-hidden"> (yeni sekmede açılır)</span></a>';
+            }).join("") : "") + '</div></div></div>';
+        }).join("");
+      }
+      function ciz() {
+        var u = A.rota.aktif();
+        B.rotaU = u; B.rotaUlke = u ? AD[u] : ""; B.rotaAdimlari = [];
+        // KMK denetleyicisi: yalnızca profilde Almanya varken, Almanya rotası aktifken ve öğrenci mezun değilken (K5-b: mezunda AP gizli)
+        if (kmk) kmk.hidden = !(A.rota.ulkeler().indexOf("de") >= 0 && u === "de" && !mezun);
+        // v4: rota özeti Bugün'de çizilmez (Hedefim › Rotam); adımlar Sıradaki adım ve Yaklaşan için yine hesaplanır
+        if (!sec) {
+          var v0 = u ? A.rota.veri(u) : null;
+          if (v0 && R && ME.profile.ogrenciModeli !== "uni-mezun") {
+            B.rotaAdimlari = R.zamanCizelgesi(v0, ME.profile, BG || new Date(), A.rota.durum()[u]).adimlar.map(function (a) {
+              var h = R.bagliHedef(a.bagli);
+              return { id: a.id, baslik: a.baslik, tarih: a.tarih, yapildi: a.yapildi, zorunlu: a.zorunlu, bagli: a.bagli, href: h ? h.href : "rota.html?ulke=" + u, etiket: h ? h.etiket : "Rotamı aç" };
+            });
+          }
+          return;
+        }
+        if (!u) { sec.hidden = true; return; }
+        sec.hidden = false;
+        document.getElementById("pr-kicker").textContent = "Rotam · " + AD[u];
+        document.getElementById("pr-title").textContent = AD[u] + " rotasının sıradaki adımları";
+        var v = A.rota.veri(u);
+        // Tur 11 (D7): DE/IT dışında ve yüksek lisansta tarihli rota yok; Rotam genel yol haritası gösterir
+        if (!v || !R || ME.profile.ogrenciModeli === "uni-mezun") {
+          document.getElementById("pr-title").textContent = AD[u] + ": genel yol haritası";
+          body.innerHTML = '<p class="le-meta">' + esc(ME.profile.ogrenciModeli === "uni-mezun" ? "Yüksek lisans" : AD[u]) + ' için tarihli kişisel rota henüz yok. Rotam sayfasında göreli zamanlı genel adımları işaretleyebilirsin.</p>' +
+            '<p style="margin-top:8px;"><a href="rota.html?ulke=' + u + '">Genel yol haritasını aç →</a></p>';
+          return;
+        }
+        var c = R.zamanCizelgesi(v, ME.profile, BG || new Date(), A.rota.durum()[u]);
+        B.rotaAdimlari = c.adimlar.map(function (a) {
+          var h = R.bagliHedef(a.bagli);
+          return { id: a.id, baslik: a.baslik, tarih: a.tarih, yapildi: a.yapildi, zorunlu: a.zorunlu, bagli: a.bagli, href: h ? h.href : "rota.html?ulke=" + u, etiket: h ? h.etiket : "Rotamı aç" };
+        });
+        var list = R.siradakiAdimlar(c, 3);
+        body.innerHTML = uyariHtml() + (list.length ? '<ol class="pr-list">' + list.map(function (a) {
+            var h = R.bagliHedef(a.bagli);
+            return '<li class="pr-item' + (a.siradaki ? " is-next" : "") + '"' + (a.siradaki ? ' aria-current="step"' : "") + '>' +
+              '<div class="rs-top"><span class="rs-date">' + esc(a.tarih && a.tarih.etiket ? a.tarih.etiket : "Tarih belirsiz") + '</span>' +
+              (a.siradaki ? '<span class="rs-flag rs-flag-next">Sıradaki</span>' : "") + (a.zamanDurumu === "buay" ? '<span class="rs-flag rs-flag-now">Bu ay</span>' : "") + '</div>' +
+              '<h3>' + esc(a.baslik) + '</h3>' +
+              '<div class="rs-tags">' + (TUR[a.tur] ? '<span class="rs-tag">' + TUR[a.tur] + '</span>' : "") +
+                (a.zorunlu === false ? '<span class="rs-tag">İsteğe bağlı</span>' : "") +
+                (KES[a.kesinlik] ? '<span class="kesinlik kesinlik-' + KES[a.kesinlik] + '">' + esc(a.kesinlik) + '</span>' : "") + '</div>' +
+              (h ? '<a href="' + esc(h.href) + '">' + esc(h.etiket) + ' →</a>' : "") +
+            '</li>';
+          }).join("") + '</ol>'
+          : '<p class="le-meta">Bekleyen adımın yok. Tüm adımları Rotam sayfasında görebilirsin.</p>') +
+          '<div class="panel-rota-foot"><span>' + c.sayac.yapildi + ' / ' + c.sayac.toplam + ' adım yapıldı' +
+            (c.sayac.gecikmis ? ' · <span class="is-late">' + c.sayac.gecikmis + ' zorunlu adımın tarihi geçti</span>' : "") + '</span>' +
+            '<a class="btn-ghost" href="rota.html?ulke=' + u + '">Tüm rota ve belgeler →</a></div>';
+      }
+      var prSwitch = document.getElementById("pr-switch");
+      if (prSwitch) A.rota.anahtar(prSwitch, function () { ciz(); bugunCiz(); });
+      ciz();
+    })();
+
+    // 0c) Duyurular: modele uyan açık duyurular (bitiş gününe kadar). Tur 14 A4: tam kart Hedefim › Şartlar'da (#mezun-panel); burada şerit + Yaklaşan tarihler
+    function gun(iso) { var m = /^(d{4})-(d{2})-(d{2})$/.exec(iso || ""); return m ? new Date(+m[1], +m[2] - 1, +m[3]).toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" }) : ""; }
+    // Kişisel panellerin adresi: profildeki kendi seçimiyle şartlar sayfası (app.js apHedefimHref)
+    var SARTLAR_KENDI = A.hedefim ? A.hedefim.href("sartlar", "", ME && ME.profile) : "sartlar.html";
+    (function () {
+      var SM = window.APMEBERRA_SARTLAR_MOTOR, V = window.APMEBERRA_DUYURULAR;
+      if (!ME || !ME.profile) return;
+      // Ülke süzülmez (ulke: undefined): profilin modeline uyan tüm açık duyurular
+      B.duyurular = SM && Array.isArray(V) ? SM.duyuruSuz(V, { model: MODEL }, BG || new Date()) : [];
+    })();
+
+    // 0d) Üniversite mezunu (Tur 11, plan §6.1): AP bölümleri gizli. Tur 14 A4: YL belge listesi Hedefim › Şartlar'da (#yl-panel);
+    // Sıradaki adım ve şerit için özet veriden hesaplanır (app.js apYlKalan: yl-genel.js belgeleri + rota durumu genel.belgeler)
+    (function () {
+      var SM = window.APMEBERRA_SARTLAR_MOTOR, G = window.APMEBERRA_YL_GENEL;
+      if (!ME || !ME.profile || MODEL !== "uni-mezun") return;
+      document.body.classList.add("is-yl");
+      var belgeler = G && Array.isArray(G.belgeler) && SM ? G.belgeler.filter(function (m) { return !SM.maddeDogrula(m).length; }) : [];
+      B.ylKalan = A.hedefim ? A.hedefim.ylKalan(belgeler, (A.rota.durum().genel || {}).belgeler || {}) : null;
+    })();
+
+    // 1) Çalışma planı (eski "Bugün" listesi). Tur 14 A6: hesap app.js apCalismaPlani (Çalış merkezi aynı listeyi kullanır)
+    var T0 = window.APMEBERRA_TAKVIM;
+    var todos = (window.apCalismaPlani ? apCalismaPlani({
+      summary: s, mezun: !!(ME && ME.profile && ME.profile.sinif === "mezun"),
+      kayitSon: T0 && T0.kayit ? T0.kayit.sonGun : null, seviye: A.storeGet("apmeberra:seviye:v1", null), bugun: BG || new Date()
+    }) : []).map(function (t) { return gorev(ICON[t.ikon] || ICON.book, t.title, t.desc, t.href, t.linkText); });
+    var todoList = document.getElementById("todo-list");
+    if (todoList) todoList.innerHTML = todos.slice(0, 4).map(gorevHtml).join("");
+
+    // 2) Mini ilerleme (v4: Bugün'de yok; öğe varsa doldurulur)
+    var rate = pct(s.correct, s.answered);
+    var z = A.zone(rate);
+    var ring = document.getElementById("home-ring");
+    if (ring) {
+    ring.style.setProperty("--p", rate === null ? 0 : rate);
+    ring.style.setProperty("--ring-color", z.cls === "zone-green" ? "var(--ok)" : z.cls === "zone-yellow" ? "var(--warn)" : z.cls === "zone-red" ? "var(--bad)" : "var(--border-strong)");
+    document.getElementById("home-rate").textContent = rate === null ? "–" : "%" + rate;
+    var hz = document.getElementById("home-zone"); hz.className = "zone " + z.cls; hz.textContent = z.label;
+    if (s.answered) {
+      document.getElementById("home-nums").textContent = s.answered + " soru çözüldü · " + s.correct + " doğru · " + s.wrong + " yanlış · " + s.openErrors.length + " açık hata";
+    }
+    }
+
+    // 2b) Yedek hatırlatması (en az 1 cevap var ve hiç / 7 günden uzun süredir yedek yok)
+    if (A.backup && A.backup.needsReminder()) {
+      var lb = A.backup.lastBackup();
+      var nd = document.getElementById("home-backup-nudge");
+      if (nd) {
+        document.getElementById("home-backup-text").textContent = lb
+          ? "Son yedeğin " + Math.floor((Date.now() - Date.parse(lb)) / 864e5) + " gün önce alındı; yeni bir yedek dosyası indir."
+          : "İlerlemen yalnızca bu tarayıcıda duruyor; başka cihaza geçmeden önce dosyaya aktar.";
+        nd.hidden = false;
+      }
+    }
+
+    // 3) Ders kartlarında dinamik ilerleme (sabit soru sayısı yazılmaz)
+    s.courses.forEach(function (c) {
+      var el = document.querySelector('[data-course="' + c.page + '"] .course-progress');
+      if (!el) return;
+      if (c.answered) {
+        el.textContent = c.answered + "/" + c.total + " çözüldü · %" + pct(c.correct, c.answered) + " doğru";
+      } else if (c.visited && c.total) {
+        el.textContent = c.total + " soru hazır · başlanmadı";
+      }
+      // v4 halka: soru bankasında çözülen oran
+      var halka = document.querySelector('[data-course="' + c.page + '"] .bg-halka');
+      var oran = c.total ? Math.min(100, Math.round((c.answered || 0) / c.total * 100)) : null;
+      if (halka && oran !== null) { halka.style.setProperty("--p", oran); halka.setAttribute("data-v", "%" + oran); }
+    });
+
+    // 4) Devam et satırı: son çalışılan ünite (en yeni cevap) ve açık hata sayısı
+    (function () {
+      // v4: kaldığın yer, bugünkü görev kartında ikincil bağlantı olarak gösterilir (bugunCiz)
+      var k = window.apKaldiginYer ? apKaldiginYer(A.loadProgress(), A.courses) : null;
+      B.kaldigin = k ? { href: k.page + ".html#" + encodeURIComponent(k.unitId), baslik: k.title } : null;
+      var n = s.openErrors.length, yk = document.getElementById("dv-yanlis");
+      document.getElementById("dv-yanlis-sayi").textContent = String(n);
+      document.getElementById("dv-yanlis-alt").textContent = n ? "En son: " + (s.openErrors[0].topic || s.openErrors[0].id) + ". Doğru çözdüğünde listeden çıkar." : "Açık hatan yok; yanlış yaptığın sorular burada birikir.";
+      yk.classList.add(n >= 5 ? "is-uyari" : n === 0 ? "is-iyi" : "is-orta");
+    })();
+
+    // 4b) v4 çalışma serisi + selam rozetleri (app.js apCalismaSerisi: gerçek cevap ve deneme günleri)
+    (function () {
+      if (!window.apCalismaSerisi || MODEL === "uni-mezun") return;
+      var sr = apCalismaSerisi(A.loadProgress(), A.denemeler ? A.denemeler() : [], BG || new Date());
+      var CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>';
+      var FLAME = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 4 5 6 5 11a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-6 1-9.5z"/></svg>';
+      var ZAP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>';
+      document.getElementById("seri-title").textContent = sr.seri + " gün";
+      document.getElementById("bg-hafta").innerHTML = sr.hafta.map(function (h) {
+        var durum = h.var ? "çalıştın" : h.bugun ? "henüz çalışmadın" : h.gelecek ? "gelecek gün" : "çalışmadın";
+        return '<li><span class="bg-gun' + (h.var ? " is-var" : "") + (h.bugun ? " is-bugun" : "") + '">' + (h.var ? CHECK : "") +
+          '<span class="visually-hidden">' + h.etiket + ': ' + durum + '</span></span><span aria-hidden="true">' + h.etiket + '</span></li>';
+      }).join("");
+      document.getElementById("bg-seri-not").innerHTML = sr.bugunVar
+        ? "Bugünü tamamladın. Yarın da çalışırsan serin <strong>" + (sr.seri + 1) + " gün</strong> olur."
+        : sr.seri ? "Bugün bir soru çözersen serin <strong>" + (sr.seri + 1) + " gün</strong> olur."
+        : "Bugün bir soru çöz, serini başlat.";
+      document.getElementById("hello-chips").innerHTML =
+        (sr.seri ? '<span class="bg-chip is-enerji">' + FLAME + sr.seri + ' gün seri</span>' : "") +
+        (s.answered ? '<span class="bg-chip is-mor">' + ZAP + s.answered + ' soru çözdün</span>' : "");
+    })();
+
+    // 5) Sıradaki adım + Yaklaşan tarihler (saf fonksiyonlar app.js: apSiradakiAdim, apYaklasanTarihler)
+    var TUR_AD = { deneme: "Yarım deneme", rota: "Rota adımı", hata: "Yanlışlarım", plan: "Çalışma planı", profil: "Profil", bos: "Durum" };
+    function profilEksik() {
+      var p = (ME && ME.profile) || {}, e = [];
+      if (!Array.isArray(p.ulkeler) || !p.ulkeler.length) e.push("hedef ülke");
+      if (MODEL === "uni-mezun" && !p.lisansAlani) e.push("lisans alanı");
+      return e;
+    }
+    function bugunCiz() {
+      if (!ME || !ME.profile || !window.apSiradakiAdim) return;
+      var bugun = BG || new Date();
+      // Plan görevleri: AP modellerinde çalışma planı (başlangıç adımı ilk sırada değilse plan listesi), YL'de belge listesi
+      var plan;
+      if (MODEL === "uni-mezun") {
+        plan = B.ylKalan && B.ylKalan.ilk ? [{ baslik: "Belgeni hazırla: " + B.ylKalan.ilk, aciklama: "Başvuru dosyan: " + B.ylKalan.hazir + " / " + B.ylKalan.toplam + " belge hazır.", href: SARTLAR_KENDI + "#yl-panel", etiket: "Belge listesini aç" }] : [];
+        if (B.baslangic && B.baslangic.href === "universiteler.html") plan.push(B.baslangic);
+      } else {
+        plan = (B.baslangic && B.baslangic.href === "universiteler.html" ? [B.baslangic] : []).concat(todos.map(function (g) { return { baslik: g.title, aciklama: g.desc, href: g.href, etiket: g.linkText }; }));
+      }
+      var dn = A.storeGet(A.keys.deneme, null);
+      var ak = dn && dn.aktif && Array.isArray(dn.aktif.sorular) && dn.aktif.sorular.length ? dn.aktif : null;
+      var sa = apSiradakiAdim({
+        bugun: bugun,
+        yarimDeneme: ak ? { ad: ak.ad, cevaplanan: Object.keys(ak.cevaplar || {}).length, toplam: ak.sorular.length } : null,
+        rotaAdimlari: B.rotaAdimlari, rotaUlke: B.rotaUlke,
+        acikHata: s.openErrors.length, sonHata: s.openErrors[0] ? (s.openErrors[0].topic || s.openErrors[0].id) : null,
+        plan: plan, profilEksik: profilEksik(),
+        bosHref: B.rotaU ? "rota.html?ulke=" + B.rotaU : "rota.html"
+      });
+      var ns = document.getElementById("next-step");
+      ns.setAttribute("data-tur", sa.tur);
+      // v4 ikincil bağlantı: kaldığın ünite (görev zaten oraya gitmiyorsa), yoksa Çalış merkezi
+      var ik = B.kaldigin && B.kaldigin.href !== sa.href && MODEL !== "uni-mezun"
+        ? '<a class="sa-ikincil" href="' + esc(B.kaldigin.href) + '">Kaldığın yer: ' + esc(B.kaldigin.baslik) + '</a>'
+        : (MODEL !== "uni-mezun" ? '<a class="sa-ikincil" href="calis.html">Başka bir ders seç</a>' : "");
+      ns.innerHTML = '<span class="sa-kicker">' + ICON.step + 'Bugünkü görevin <span class="sa-tur">' + esc(TUR_AD[sa.tur] || "") + '</span></span>' +
+        '<h2 id="sa-title">' + esc(sa.baslik) + '</h2>' + (sa.aciklama ? '<p class="sa-meta">' + esc(sa.aciklama) + '</p>' : "") +
+        '<div class="sa-actions"><a class="btn-energy" id="sa-git" href="' + esc(sa.href) + '">' + ICON.play + esc(sa.etiket) + '</a>' + ik +
+        '<details class="sa-neden"><summary>Neden bu?</summary><p>' + esc(sa.neden) + '</p></details></div>';
+
+      // Yaklaşan tarihler: AP takvimi yalnızca lise öğrencisinde (K5-b: mezunda AP yok); kayıtlı sınavlar "Listem"den
+      var T = window.APMEBERRA_TAKVIM, S = window.APMEBERRA_SINAVLAR || [];
+      var liste = (A.panel ? A.panel.get().sinavlarim : []).map(function (id) { return S.find(function (x) { return x && x.id === id; }); }).filter(Boolean);
+      // K14-5: süresi dolan gün düzeyindeki tarih ayrı satırda (en fazla 2), sonraki dönem tarihiyle ya da "henüz açıklanmadı"
+      var ytHam = apYaklasanTarihler({
+        bugun: bugun, n: 3, nGecmis: 2, duyuruHref: SARTLAR_KENDI + "#mezun-panel",
+        rotaAdimlari: B.rotaAdimlari, rotaUlke: B.rotaUlke,
+        apTakvim: MODEL === "lise" && T && T.kayit ? { kayitSon: T.kayit.sonGun, gecKayitBas: T.kayit.gecKayitBas, gecKayitSon: T.kayit.gecKayitSon, sinavBas: T.sinavDonemi && T.sinavDonemi.bas,
+          kayitSonraki: T.kayit.sonrakiTarih, gecKayitSonraki: T.kayit.gecKayitSonrakiTarih, sinavSonraki: T.sinavDonemi && T.sinavDonemi.sonrakiTarih } : null,
+        sinavlar: liste,
+        duyurular: B.duyurular
+      });
+      var yt = ytHam.filter(function (x) { return !x.suresiDoldu; }), ytGecen = ytHam.filter(function (x) { return x.suresiDoldu; });
+      var yg = document.getElementById("yt-gecmis");
+      yg.hidden = !ytGecen.length;
+      yg.innerHTML = ytGecen.length ? '<p class="yt-gecmis-h">Süresi dolanlar</p><ul>' + ytGecen.map(function (x) {
+        return '<li data-yt="' + esc(x.anahtar) + '"><span class="st-doldu">Süresi doldu</span><span><strong>' + esc(x.baslik) + '</strong> <small>' + esc(x.tarihMetni + " · " + x.sonrakiMetni) + '</small></span></li>';
+      }).join("") + '</ul>' : "";
+      var TUR_ALT = { ap: "AP · College Board", sinav: "Sınav · listende", rota: (B.rotaUlke ? B.rotaUlke + " rotası" : "Rota") + " · ay düzeyinde", duyuru: "Duyuru" };
+      function kalanMetni(x) { return x.ayDuzeyi ? (x.kalanGun === 0 ? "ayın son günü" : "ay bitimine " + x.kalanGun + " gün") : (x.kalanGun === 0 ? "bugün" : x.kalanGun === 1 ? "yarın" : x.kalanGun + " gün kaldı"); }
+      document.getElementById("yt-list").innerHTML = yt.length ? yt.map(function (x) {
+        return '<li class="yt-item' + (x.ayDuzeyi ? " is-ay" : "") + (x.kalanGun <= 14 ? " is-yakin" : "") + '" data-yt="' + esc(x.anahtar) + '"><a href="' + esc(x.href) + '">' +
+          '<span class="yt-tarih" aria-hidden="true"><b>' + esc(x.ust) + '</b><small>' + esc(x.alt) + '</small></span>' +
+          '<span class="yt-govde"><strong>' + esc(x.baslik) + '</strong><span><span class="visually-hidden">' + esc(x.tarihMetni) + ' · </span>' + esc(TUR_ALT[x.tur] || "") + ' · ' + esc(kalanMetni(x)) + '</span></span></a></li>';
+      }).join("") : '<li class="yt-bos">' + (MODEL === "uni-mezun"
+          ? "Kayıtlı bir tarih yok. Sınavlar sayfasında girmek istediğin sınavı “Listeme ekle” ile işaretlediğinde tarihi burada görünür."
+          : "Önümüzdeki dönemde kayıtlı bir tarih yok.") + '</li>';
+      // Tur 14 A5: "Tümü →" Başvuru › Son tarihler şeridine (A3 açık kalanı)
+      var not = document.getElementById("yt-not");
+      var ayVar = yt.some(function (x) { return x.ayDuzeyi; });
+      not.hidden = !ayVar;
+      not.textContent = ayVar ? "Rota adımlarının tarihi ay düzeyindedir; kesin son gün adımın resmi kaynağındadır." : "";
+
+      // Model bilgi şeridi: lise mezunu duyuruları / YL başvuru dosyası (ayrıntı ikincil grupta)
+      var serit = document.getElementById("bugun-serit");
+      if (MODEL === "uni-mezun" && B.ylKalan) {
+        serit.innerHTML = ICON.info + '<span><strong>Yüksek lisans başvuru dosyan:</strong> ' + B.ylKalan.hazir + ' / ' + B.ylKalan.toplam + ' belge hazır</span><a href="' + esc(SARTLAR_KENDI) + '#yl-panel">Dosyayı aç →</a>';
+        serit.hidden = false;
+      } else if (B.duyurular.length) {
+        var d0 = B.duyurular.slice().sort(function (a, b) { return String(a.bitis).localeCompare(String(b.bitis)); })[0];
+        serit.innerHTML = ICON.info + '<span><strong>' + B.duyurular.length + ' açık duyuru</strong> · en yakın son gün ' + esc(gun(d0.bitis)) + '</span><a href="' + esc(SARTLAR_KENDI) + '#mezun-panel">Duyurular →</a>';
+        serit.hidden = false;
+      } else serit.hidden = true;
+    }
+    bugunCiz();
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giriş yap / Kayıt ol | AP MEBERRA</title>
+  <meta name="description" content="AP MEBERRA hazırlık portalına giriş yap ya da yeni öğrenci hesabı oluştur.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="giris.html" class="nav-brand">
+      <div class="brand-badge">AP MEBERRA</div>
+      <div><div class="brand-title">Hazırlık Portalı</div></div>
+    </a>
+    <div class="nav-actions"></div>
+  </nav>
+
+  <main class="auth-main" id="main-content">
+    <div class="auth-shell">
+
+      <section class="auth-intro" aria-labelledby="intro-title">
+        <span class="auth-eyebrow">AP · Almanya · İtalya</span>
+        <h1 id="intro-title">Avrupa’da mühendislik hedefin için tek çalışma alanı</h1>
+        <p>Hesabını oluştur, okulunu ve hedef ülkeni seç. Portal sana o ülkenin üniversitelerini, isterlerini, girmen gereken sınavları ve her dersin denemesini sırayla gösterir.</p>
+        <ul class="auth-points">
+          <li>
+            <span class="todo-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg></span>
+            <div><strong>Üniversiteler ve isterler</strong><span>Seçtiğin ülkenin programları, kabul yolu ve takvimi, resmi kaynaklarıyla.</span></div>
+          </li>
+          <li>
+            <span class="todo-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/></svg></span>
+            <div><strong>Sınavlar ve İngilizce ders anlatımı</strong><span>Her sınav ayrı kartta: format, süre, puanlama ve tarih.</span></div>
+          </li>
+          <li>
+            <span class="todo-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></span>
+            <div><strong>Ders denemeleri ve genel deneme</strong><span>Sonuçların ve hata defterin hesabında saklanır.</span></div>
+          </li>
+        </ul>
+        <a class="auth-open-link" id="acik-link" href="sartlar.html">
+          <span class="auth-open-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span><strong>Giriş yapmadan şartlara bak</strong><small>Almanya ve İtalya şartları, sınıfına göre. Hesap gerekmez.</small></span>
+          <svg class="auth-open-go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </section>
+
+      <div class="auth-card">
+        <div class="auth-context" id="auth-context" hidden>
+          <span class="auth-context-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+          <div><strong id="auth-context-title"></strong><p id="auth-context-text"></p></div>
+        </div>
+        <div class="form-alert is-ok" id="auth-status" role="status" aria-live="polite" tabindex="-1" hidden></div>
+
+        <!-- GİRİŞ / KAYIT -->
+        <div id="view-auth">
+          <div class="tabs" role="tablist" aria-label="Hesap">
+            <button type="button" class="tab" role="tab" id="tab-giris" aria-selected="true" aria-controls="panel-giris">Giriş yap</button>
+            <button type="button" class="tab" role="tab" id="tab-kayit" aria-selected="false" aria-controls="panel-kayit" tabindex="-1">Kayıt ol</button>
+          </div>
+
+          <section id="panel-giris" role="tabpanel" aria-labelledby="tab-giris">
+            <form id="form-giris" class="form-stack" novalidate>
+              <div class="form-alert" id="giris-alert" role="alert" tabindex="-1" hidden></div>
+              <div class="field">
+                <label for="giris-kullaniciAdi">Kullanıcı adı veya e-posta</label>
+                <input class="text-input" id="giris-kullaniciAdi" name="kullaniciAdi" autocomplete="username" autocapitalize="none" spellcheck="false" aria-describedby="giris-kullaniciAdi-err" required>
+                <p class="field-error" id="giris-kullaniciAdi-err"></p>
+              </div>
+              <div class="field">
+                <label for="giris-sifre">Şifre</label>
+                <div class="input-wrap">
+                  <input class="text-input" id="giris-sifre" name="sifre" type="password" autocomplete="current-password" aria-describedby="giris-sifre-err" required>
+                  <button type="button" class="pw-toggle" aria-controls="giris-sifre" aria-pressed="false" aria-label="Şifreyi göster">
+                    <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18M10.6 5.1A10.4 10.4 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.2 4M6.6 6.6C3.7 8.4 2 12 2 12s3.6 7 10 7a9.8 9.8 0 0 0 5.4-1.6M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+                  </button>
+                </div>
+                <p class="field-error" id="giris-sifre-err"></p>
+              </div>
+              <button type="submit" class="btn-primary btn-block" id="giris-submit">Giriş yap</button>
+              <p class="field-hint">Şifreni mi unuttun? <button type="button" class="link-btn" id="to-recover">Kurtarma koduyla yeni şifre belirle</button></p>
+            </form>
+          </section>
+
+          <section id="panel-kayit" role="tabpanel" aria-labelledby="tab-kayit" hidden>
+            <form id="form-kayit" class="form-stack" novalidate>
+              <div class="form-alert" id="kayit-alert" role="alert" tabindex="-1" hidden></div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="kayit-ad">Ad</label>
+                  <input class="text-input" id="kayit-ad" name="ad" autocomplete="given-name" maxlength="40" aria-describedby="kayit-ad-err" required>
+                  <p class="field-error" id="kayit-ad-err"></p>
+                </div>
+                <div class="field">
+                  <label for="kayit-soyad">Soyad</label>
+                  <input class="text-input" id="kayit-soyad" name="soyad" autocomplete="family-name" maxlength="40" aria-describedby="kayit-soyad-err" required>
+                  <p class="field-error" id="kayit-soyad-err"></p>
+                </div>
+              </div>
+              <div class="field">
+                <label for="kayit-kullaniciAdi">Kullanıcı adı veya e-posta</label>
+                <input class="text-input" id="kayit-kullaniciAdi" name="kullaniciAdi" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="64" aria-describedby="kayit-kullaniciAdi-hint kayit-kullaniciAdi-err" required>
+                <p class="field-hint" id="kayit-kullaniciAdi-hint">3–64 karakter: İngilizce harf, rakam ve . _ - @ + (ör. ogrenci.k veya e-posta adresin). Büyük/küçük harf fark etmez.</p>
+                <p class="field-error" id="kayit-kullaniciAdi-err"></p>
+              </div>
+              <div class="field">
+                <label for="kayit-sifre">Şifre</label>
+                <div class="input-wrap">
+                  <input class="text-input" id="kayit-sifre" name="sifre" type="password" autocomplete="new-password" minlength="8" aria-describedby="kayit-sifre-hint kayit-sifre-err" required>
+                  <button type="button" class="pw-toggle" aria-controls="kayit-sifre" aria-pressed="false" aria-label="Şifreyi göster">
+                    <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18M10.6 5.1A10.4 10.4 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.2 4M6.6 6.6C3.7 8.4 2 12 2 12s3.6 7 10 7a9.8 9.8 0 0 0 5.4-1.6M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+                  </button>
+                </div>
+                <p class="field-hint" id="kayit-sifre-hint">En az 8 karakter. Başka sitelerde kullanmadığın bir şifre seç.</p>
+                <p class="field-error" id="kayit-sifre-err"></p>
+              </div>
+              <div class="field">
+                <label for="kayit-sifre2">Şifre (tekrar)</label>
+                <div class="input-wrap">
+                  <input class="text-input" id="kayit-sifre2" name="sifre2" type="password" autocomplete="new-password" aria-describedby="kayit-sifre2-err" required>
+                  <button type="button" class="pw-toggle" aria-controls="kayit-sifre2" aria-pressed="false" aria-label="Şifreyi göster">
+                    <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18M10.6 5.1A10.4 10.4 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.2 4M6.6 6.6C3.7 8.4 2 12 2 12s3.6 7 10 7a9.8 9.8 0 0 0 5.4-1.6M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+                  </button>
+                </div>
+                <p class="field-error" id="kayit-sifre2-err"></p>
+              </div>
+              <button type="submit" class="btn-primary btn-block" id="kayit-submit">Hesap oluştur</button>
+            </form>
+          </section>
+        </div>
+
+        <!-- ŞİFREMİ UNUTTUM -->
+        <section id="view-recover" aria-labelledby="recover-title" hidden>
+          <h2 id="recover-title" tabindex="-1">Yeni şifre belirle</h2>
+          <p class="auth-lead">Kayıt olurken sana verilen kurtarma kodunu gir. Kod doğruysa yeni şifren kaydedilir ve sana yeni bir kurtarma kodu verilir.</p>
+          <form id="form-kurtar" class="form-stack" novalidate>
+            <div class="form-alert" id="kurtar-alert" role="alert" tabindex="-1" hidden></div>
+            <div class="field">
+              <label for="kurtar-kullaniciAdi">Kullanıcı adı veya e-posta</label>
+              <input class="text-input" id="kurtar-kullaniciAdi" autocomplete="username" autocapitalize="none" spellcheck="false" aria-describedby="kurtar-kullaniciAdi-err">
+              <p class="field-error" id="kurtar-kullaniciAdi-err"></p>
+            </div>
+            <div class="field">
+              <label for="kurtar-kod">Kurtarma kodu</label>
+              <input class="text-input font-mono" id="kurtar-kod" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX" aria-describedby="kurtar-kod-err">
+              <p class="field-error" id="kurtar-kod-err"></p>
+            </div>
+            <div class="field">
+              <label for="kurtar-sifre">Yeni şifre</label>
+              <div class="input-wrap">
+                <input class="text-input" id="kurtar-sifre" type="password" autocomplete="new-password" aria-describedby="kurtar-sifre-err">
+                <button type="button" class="pw-toggle" aria-controls="kurtar-sifre" aria-pressed="false" aria-label="Şifreyi göster">
+                  <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18M10.6 5.1A10.4 10.4 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.2 4M6.6 6.6C3.7 8.4 2 12 2 12s3.6 7 10 7a9.8 9.8 0 0 0 5.4-1.6M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+                </button>
+              </div>
+              <p class="field-error" id="kurtar-sifre-err"></p>
+            </div>
+            <div class="field">
+              <label for="kurtar-sifre2">Yeni şifre (tekrar)</label>
+              <input class="text-input" id="kurtar-sifre2" type="password" autocomplete="new-password" aria-describedby="kurtar-sifre2-err">
+              <p class="field-error" id="kurtar-sifre2-err"></p>
+            </div>
+            <button type="submit" class="btn-primary btn-block" id="kurtar-submit">Şifremi yenile</button>
+            <p class="field-hint"><button type="button" class="link-btn" id="recover-back">← Girişe dön</button></p>
+          </form>
+        </section>
+
+        <!-- KURTARMA KODU (bir kez gösterilir) -->
+        <section id="view-code" aria-labelledby="code-title" hidden>
+          <h2 id="code-title" tabindex="-1">Kurtarma kodunu kaydet</h2>
+          <p class="auth-lead" id="code-lead">Şifreni unutursan yeni şifre belirlemenin tek yolu bu kod. Kod yalnızca şimdi gösterilir; biz de göremeyiz.</p>
+          <div class="recovery-box">
+            <strong>Kurtarma kodun</strong>
+            <code class="recovery-code" id="code-value" aria-describedby="code-lead"></code>
+            <div class="btn-row">
+              <button type="button" class="btn-ghost" id="code-copy">Kopyala</button>
+              <button type="button" class="btn-ghost" id="code-download">Dosya olarak indir (.txt)</button>
+            </div>
+            <p class="field-hint u-mt-2" id="code-msg" role="status" aria-live="polite"></p>
+          </div>
+          <div class="form-stack u-mt-4">
+            <label class="check-row"><input type="checkbox" id="code-ack"> <span>Kodu güvenli bir yere kaydettim.</span></label>
+            <button type="button" class="btn-primary btn-block" id="code-continue" disabled>Devam et</button>
+          </div>
+        </section>
+
+        <!-- SAHİPSİZ ESKİ İLERLEME -->
+        <section id="view-orphan" aria-labelledby="orphan-title" hidden>
+          <h2 id="orphan-title" tabindex="-1">Bu cihazda önceki ilerleme bulundu</h2>
+          <p class="auth-lead">Hesap sistemi gelmeden önce bu tarayıcıda çözülmüş sorular var. Hesabına aktarılsın mı?</p>
+          <div class="kv-list u-mb-4" id="orphan-stats"></div>
+          <p class="field-hint u-mb-4">Aktarmazsan veri silinmez. Daha sonra Profil › Hesap bölümünden aktarabilirsin.</p>
+          <div class="btn-row">
+            <button type="button" class="btn-primary" id="orphan-yes">Hesabıma aktar</button>
+            <button type="button" class="btn-ghost" id="orphan-no">Şimdi aktarma</button>
+          </div>
+        </section>
+
+        <p class="storage-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          <span>Hesabın ve ilerlemen bu cihazdaki tarayıcıda saklanır; şifren hiçbir sunucuya gönderilmez. Başka cihaza geçmek için Yedek Al / Yükle kullan.</span>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+  (function () {
+    "use strict";
+    var AUTH = window.APMEBERRA_AUTH, UI = AUTH.ui;
+    var $ = function (id) { return document.getElementById(id); };
+    var params = new URLSearchParams(location.search);
+    var donus = AUTH.safeReturn(params.get("donus"));
+    var statusEl = $("auth-status");
+    var views = ["view-auth", "view-recover", "view-code", "view-orphan"];
+    var pending = null; // {user, isNew, orphan}
+
+    function show(id, focusId) {
+      views.forEach(function (v) { $(v).hidden = v !== id; });
+      if (focusId) { var f = $(focusId); if (f) f.focus(); }
+    }
+    UI.wirePasswordToggles();
+
+    // --- Sekmeler (ok tuşları, Home/End, kayan tabindex) ---
+    var tabs = [$("tab-giris"), $("tab-kayit")];
+    function selectTab(tab, focus) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute("aria-selected", String(on));
+        t.tabIndex = on ? 0 : -1;
+        $(t.getAttribute("aria-controls")).hidden = !on;
+      });
+      if (focus) tab.focus();
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener("click", function () { selectTab(t); });
+      t.addEventListener("keydown", function (e) {
+        var n = null;
+        if (e.key === "ArrowRight") n = tabs[(i + 1) % tabs.length];
+        if (e.key === "ArrowLeft") n = tabs[(i - 1 + tabs.length) % tabs.length];
+        if (e.key === "Home") n = tabs[0];
+        if (e.key === "End") n = tabs[tabs.length - 1];
+        if (n) { e.preventDefault(); selectTab(n, true); }
+      });
+    });
+    if (location.hash === "#kayit") selectTab(tabs[1]);
+
+    // --- K4: şartlar sayfasından gelen seçim (ülke, sınıf) ve kilitli sayfa bağlamı ---
+    var SECIM = (window.APMEBERRA && APMEBERRA.erisim) ? APMEBERRA.erisim.secimSorgusu(location.search) : "";
+    $("acik-link").setAttribute("href", "sartlar.html" + SECIM);
+    (function baglam() {
+      // Tur 11: model · sınıf · ülke · dil (app.js secimMetni; ör. "Almanya · 11. sınıf · İngilizce")
+      var secimMetni = SECIM && window.APMEBERRA && APMEBERRA.erisim.secimMetni ? APMEBERRA.erisim.secimMetni(SECIM) : "";
+      var sayfa = donus ? donus.split(/[?#]/)[0].replace(/\.html$/i, "") : "";
+      var acik = window.APMEBERRA && APMEBERRA.erisim ? APMEBERRA.erisim.acik(sayfa) : false;
+      var AD = { index: "Bugün", calis: "Çalış", rota: "Rotam", yazismalar: "Yazışmalarım", deneme: "Denemeler", ilerleme: "İlerleme", "seviye-testi": "Seviye testi", "sinav-cents": "CEnT-S hazırlığı" };
+      (typeof APMEBERRA_COURSES !== "undefined" ? APMEBERRA_COURSES : []).forEach(function (c) { AD[c.page] = c.name; });
+      var calisma = /^(ap-|calis$|deneme$|seviye-testi$|sinav-cents$)/.test(sayfa);
+      var title = "", text = "";
+      if (sayfa && !acik) {
+        title = calisma ? "Ders çalışma ve soru çözme kişisel hesabınla açılır" : "Bu sayfa kişisel koçluğun parçası";
+        text = "Giriş yaptıktan sonra “" + (AD[sayfa] || sayfa) + "” sayfasına döneceksin. Hesabın yoksa birkaç dakikada kayıt olabilirsin.";
+      } else if (secimMetni) {
+        title = "Kişisel koçluğu başlat";
+        text = "Seçimin (" + secimMetni + ") kayıttan sonra profil sihirbazında hazır gelir; istediğin zaman değiştirebilirsin.";
+      }
+      if (!title) return;
+      if (sayfa && !acik && secimMetni) text += " Seçimin (" + secimMetni + ") profiline taşınacak.";
+      $("auth-context-title").textContent = title;
+      $("auth-context-text").textContent = text;
+      $("auth-context").hidden = false;
+    })();
+
+    function go() {
+      if (pending && pending.isNew) location.replace("profil.html" + SECIM);
+      else location.replace(donus || "index.html");
+    }
+
+    // Kayıt / giriş sonrası: kurtarma kodu -> sahipsiz veri sorusu -> yönlendirme
+    function afterAuth(res, isNew) {
+      pending = { user: res.user, isNew: isNew, orphan: res.orphan };
+      if (res.kurtarmaKodu) return showCode(res.user, res.kurtarmaKodu, "Hesabın oluşturuldu. Şifreni unutursan yeni şifre belirlemenin tek yolu bu kod. Kod yalnızca şimdi gösterilir.", afterCode);
+      afterCode();
+    }
+    function afterCode() {
+      if (pending && pending.orphan) return showOrphan(pending.orphan);
+      go();
+    }
+
+    var codeNext = null;
+    function showCode(user, code, lead, next) {
+      codeNext = next;
+      $("code-value").textContent = code;
+      $("code-lead").textContent = lead;
+      $("code-ack").checked = false; $("code-continue").disabled = true; $("code-msg").textContent = "";
+      $("code-copy").onclick = function () {
+        UI.copy(code, $("code-value")).then(function (ok) { $("code-msg").textContent = ok ? "Kod panoya kopyalandı." : "Kopyalanamadı; kodu seçip elle kopyala."; });
+      };
+      $("code-download").onclick = function () {
+        UI.download("apmeberra-kurtarma-kodu-" + user.kullaniciAdi.replace(/[^A-Za-z0-9._-]/g, "_") + ".txt", UI.recoveryText(user, code));
+        $("code-msg").textContent = "Dosya indirildi. Güvenli bir yerde sakla.";
+      };
+      show("view-code", "code-title");
+    }
+    $("code-ack").addEventListener("change", function () { $("code-continue").disabled = !this.checked; });
+    $("code-continue").addEventListener("click", function () { if (codeNext) codeNext(); });
+
+    function showOrphan(o) {
+      var s = o.ozet || {};
+      $("orphan-stats").innerHTML =
+        '<div class="kv"><div class="kv-num">' + (s.cozulen || 0) + '</div><div class="kv-label">çözülmüş soru</div></div>' +
+        '<div class="kv is-ok"><div class="kv-num">' + (s.dogru || 0) + '</div><div class="kv-label">doğru</div></div>' +
+        '<div class="kv is-bad"><div class="kv-num">' + (s.acikHata || 0) + '</div><div class="kv-label">açık hata</div></div>';
+      show("view-orphan", "orphan-title");
+    }
+    $("orphan-yes").addEventListener("click", function () {
+      UI.busy(this, true, "Aktarılıyor…");
+      AUTH.acceptOrphan().then(go, go);
+    });
+    $("orphan-no").addEventListener("click", function () {
+      AUTH.declineOrphan(pending.user.id).then(go, go);
+    });
+
+    // --- Giriş ---
+    $("form-giris").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var btn = $("giris-submit"), alertEl = $("giris-alert");
+      var f = { kullaniciAdi: $("giris-kullaniciAdi").value.trim(), sifre: $("giris-sifre").value };
+      var errs = {};
+      if (!f.kullaniciAdi) errs.kullaniciAdi = "Kullanıcı adını yaz.";
+      if (!f.sifre) errs.sifre = "Şifreni yaz.";
+      UI.alert(alertEl, "");
+      UI.alert(statusEl, "");
+      var first = UI.showErrors("giris", errs, ["kullaniciAdi", "sifre"]);
+      if (first) { first.focus(); return; }
+      UI.busy(btn, true, "Giriş yapılıyor…");
+      AUTH.login(f.kullaniciAdi, f.sifre).then(function (res) {
+        UI.busy(btn, false);
+        if (!res.ok) {
+          UI.alert(alertEl, res.error);
+          $("giris-sifre").value = "";
+          alertEl.focus();
+          return;
+        }
+        afterAuth(res, false);
+      });
+    });
+
+    // --- Kayıt ---
+    var KAYIT_FIELDS = ["ad", "soyad", "kullaniciAdi", "sifre", "sifre2"];
+    $("form-kayit").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var btn = $("kayit-submit"), alertEl = $("kayit-alert");
+      var f = {};
+      KAYIT_FIELDS.forEach(function (k) { f[k] = $("kayit-" + k).value; });
+      UI.alert(alertEl, "");
+      UI.alert(statusEl, "");
+      UI.busy(btn, true, "Hesap oluşturuluyor…");
+      AUTH.register(f).then(function (res) {
+        UI.busy(btn, false);
+        if (!res.ok) {
+          var first = UI.showErrors("kayit", res.errors, KAYIT_FIELDS);
+          var n = Object.keys(res.errors).length;
+          UI.alert(alertEl, res.errors.genel || ("Formda " + n + " alan düzeltilmeli."));
+          (first || alertEl).focus();
+          return;
+        }
+        UI.showErrors("kayit", {}, KAYIT_FIELDS);
+        afterAuth(res, true);
+      });
+    });
+
+    // --- Şifremi unuttum ---
+    $("to-recover").addEventListener("click", function () {
+      $("kurtar-kullaniciAdi").value = $("giris-kullaniciAdi").value;
+      show("view-recover", "recover-title");
+    });
+    $("recover-back").addEventListener("click", function () { show("view-auth"); selectTab(tabs[0], true); });
+    var KURTAR_FIELDS = ["kullaniciAdi", "kod", "sifre", "sifre2"];
+    $("form-kurtar").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var btn = $("kurtar-submit"), alertEl = $("kurtar-alert");
+      var kad = $("kurtar-kullaniciAdi").value.trim(), kod = $("kurtar-kod").value;
+      var errs = {};
+      if (!kad) errs.kullaniciAdi = "Kullanıcı adını yaz.";
+      if (!kod.trim()) errs.kod = "Kurtarma kodunu yaz.";
+      UI.alert(alertEl, "");
+      var first = UI.showErrors("kurtar", errs, KURTAR_FIELDS);
+      if (first) { first.focus(); return; }
+      UI.busy(btn, true, "Kontrol ediliyor…");
+      AUTH.resetWithRecovery(kad, kod, $("kurtar-sifre").value, $("kurtar-sifre2").value).then(function (res) {
+        UI.busy(btn, false);
+        if (!res.ok) {
+          var first2 = UI.showErrors("kurtar", res.errors, KURTAR_FIELDS);
+          UI.alert(alertEl, res.errors.genel || "Formdaki hataları düzelt.");
+          (res.errors.genel ? alertEl : (first2 || alertEl)).focus();
+          return;
+        }
+        $("form-kurtar").reset();
+        showCode({ kullaniciAdi: kad }, res.kurtarmaKodu, "Şifren yenilendi. Eski kurtarma kodun artık geçersiz; yeni kodun aşağıda. Kod yalnızca şimdi gösterilir.", function () {
+          show("view-auth"); selectTab(tabs[0]);
+          $("giris-kullaniciAdi").value = kad;
+          UI.alert(statusEl, "Şifren yenilendi. Yeni şifrenle giriş yapabilirsin.", "ok");
+          $("giris-sifre").focus();
+        });
+      });
+    });
+
+    // --- Açılış: çıkış isteği ya da açık oturum ---
+    if (params.get("cikis") === "1") {
+      // app.js menüyü DOMContentLoaded ile kuruyor; çıkışı ondan sonra yap ki hesap menüsü de kaldırılabilsin
+      var whenReady = function (fn) { if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn); else fn(); };
+      whenReady(function () { AUTH.logout().then(function (r) {
+        params.delete("cikis");
+        var q = params.toString();
+        history.replaceState(null, "", "giris.html" + (q ? "?" + q : ""));
+        UI.alert(statusEl, r.ok ? "Çıkış yaptın. İlerlemen hesabına kaydedildi." : r.error, r.ok ? "ok" : null);
+        var acc = document.querySelector(".navbar .account"); if (acc) acc.remove();
+        $("giris-kullaniciAdi").focus();
+      }); });
+    } else {
+      AUTH.resume().then(function (cur) {
+        if (cur && cur.user) {
+          UI.alert(statusEl, "Zaten giriş yaptın (" + cur.user.ad + "). Yönlendiriliyorsun…", "ok");
+          location.replace(donus || "index.html");
+        }
+      });
+      AUTH.store.available().then(function (ok) {
+        if (!ok) UI.alert(statusEl, "Tarayıcı depolaması kapalı görünüyor (gizli pencere ya da güvenlik ayarı). Hesap oluşturmak ve ilerlemeni saklamak için normal bir pencerede aç.", "info");
+      });
+    }
+  })();
+  </script>
+</body>
+</html>

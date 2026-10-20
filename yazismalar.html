@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Başvuru ve yazışmalarım | AP MEBERRA</title>
+  <meta name="description" content="Üniversiteye ilk başvuru e-postası profil bilgilerinle İngilizce hazırlanır; kurumlara teyit taslakları, yazışma geçmişi ve yaklaşan son tarihler. Portal e-posta göndermez: kopyala ya da e-posta programında aç.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="brand-badge">AP MEBERRA</div>
+      <div><div class="brand-title">Yazışmalarım</div></div>
+    </a>
+    <div class="nav-actions"></div>
+  </nav>
+
+  <main class="main-container" id="main-content">
+    <header class="page-head yz-head">
+      <span class="eyebrow">Başvuru</span>
+      <h1>Başvuru ve yazışmalarım</h1>
+      <p>Üniversiteye ilk e-postayı profil bilgilerinle İngilizce hazırla, kurumlara teyit sor, gönderdiklerini takip et.</p>
+    </header>
+
+    <!-- Tur 14 A5 (plan §2.3-D): Son tarihler şeridi — rota adımları, AP takvimi, listendeki sınavlar, duyurular (app.js apYaklasanTarihler; K14-5: süresi dolanlar ayrı satırda) -->
+    <section class="surface son-tarihler" id="son-tarihler" aria-labelledby="st-title" tabindex="-1">
+      <div class="st-head">
+        <h2 id="st-title">Son tarihler</h2>
+        <p class="st-links"><a href="rota.html" id="st-rota">Rotam</a><span aria-hidden="true"> · </span><a href="sinavlar.html">Sınavlar</a></p>
+      </div>
+      <ol class="st-list" id="st-list"><li class="st-bos">Yükleniyor…</li></ol>
+      <button type="button" class="link-btn st-daha" id="st-daha" aria-controls="st-list" aria-expanded="false" hidden></button>
+      <div class="st-gecmis" id="st-gecmis" hidden></div>
+      <p class="field-hint st-not" id="st-not" hidden></p>
+    </section>
+
+    <p class="notice" role="note" id="durust-not">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+      <span><strong>Portal e-posta göndermez.</strong> Metni kopyalar ya da e-posta programında açarsın; e-postayı başvuruda kullanacağın kendi adresinden sen gönderirsin.</span>
+    </p>
+
+    <!-- Tur 14 A5 (Ajan 14 planı §3.3): üç sekme; eski çapalar (#sablonlar, #taslaklar, #gecmis) ilgili sekmeyi açar -->
+    <div class="tabs yz-sekmeler" role="tablist" aria-label="Yazışma bölümleri">
+      <button type="button" class="tab" role="tab" id="sek-ilk" aria-controls="pnl-ilk" aria-selected="true">Üniversiteye ilk e-posta</button>
+      <button type="button" class="tab" role="tab" id="sek-teyit" aria-controls="pnl-teyit" aria-selected="false" tabindex="-1">Teyit taslakları <span class="tab-count" id="sek-teyit-say"></span></button>
+      <button type="button" class="tab" role="tab" id="sek-gecmis" aria-controls="pnl-gecmis" aria-selected="false" tabindex="-1">Yazışma geçmişi <span class="tab-count" id="sek-gecmis-say"></span></button>
+    </div>
+
+    <!-- SEKME 1: ÜNİVERSİTEYE İLK E-POSTA (Ajan 14 Faz 2; motor assets/js/eposta.js ilkBasvuruHazirla — yalnızca çağrılır) -->
+    <section class="ie" role="tabpanel" id="pnl-ilk" aria-labelledby="sek-ilk" tabindex="-1">
+      <form class="surface ie-secim" id="ie-form" novalidate aria-label="Üniversite ve amaç seçimi">
+        <div class="field"><label for="ie-ulke">Ülke</label><select class="calc-select" id="ie-ulke"></select></div>
+        <div class="field"><label for="ie-uni">Üniversite</label><select class="calc-select" id="ie-uni" disabled><option value="">Önce ülke seç</option></select></div>
+        <div class="field"><label for="ie-prog">Program <span class="ie-istege">(isteğe bağlı)</span></label>
+          <input class="text-input" id="ie-prog" maxlength="120" autocomplete="off" placeholder="ör. Mechanical Engineering" aria-describedby="ie-prog-hint" lang="en">
+          <p class="field-hint" id="ie-prog-hint">Boş bırakırsan metin programları genel olarak sorar.</p></div>
+        <fieldset class="field ie-amac"><legend>Amaç</legend>
+          <div class="sr-seg"><label class="sr-opt"><input type="radio" name="ie-amac" value="ilk-iletisim" checked><span>İlk iletişim</span></label><label class="sr-opt"><input type="radio" name="ie-amac" value="takip"><span>Takip</span></label></div></fieldset>
+        <div class="field" id="ie-takip-wrap" hidden><label for="ie-takip">İlk e-postayı gönderdiğin tarih</label><input class="text-input" type="date" id="ie-takip" aria-describedby="ie-takip-hint"><p class="field-hint" id="ie-takip-hint">Geçmişte “Gönderildi” işaretli e-posta varsa tarihi oradan gelir.</p></div>
+      </form>
+
+      <div class="empty-state ie-bos" id="ie-bos">
+        <div class="empty-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+        <h2 id="ie-bos-h">Üniversiteni seç, e-posta hazır gelsin</h2>
+        <p id="ie-bos-p">Metin İngilizce, profil bilgilerinle dolu ve üniversitelerin resmi iletişim yönergelerine göre hazırlanır. Üniversiteler sayfasındaki her kartta da “İlk e-posta” düğmesi var.</p>
+        <p><a class="btn-ghost" href="universiteler.html">Üniversitelere göz at</a></p>
+      </div>
+
+      <div class="ie-grid" id="ie-grid" hidden>
+        <aside class="surface ie-kontrol" aria-labelledby="ie-kontrol-h">
+          <h2 class="ie-h" id="ie-kontrol-h">Kontrol</h2>
+          <div class="ie-blok" id="ie-alici"></div>
+          <div class="ie-blok" id="ie-kelime" aria-live="polite"></div>
+          <div class="ie-blok" id="ie-eksik" aria-live="polite"></div>
+          <div class="ie-blok" id="ie-uyarilar"></div>
+          <div class="ie-blok" id="ie-not"></div>
+          <p class="ie-blok ie-hatirlat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Bu e-postayı başvuruda kullanacağın <strong>kendi e-posta adresinden</strong> gönder; üniversite yanıtı ve başvuru yazışmalarını o adrese yapar.</span></p>
+          <details class="ie-blok src-details" id="ie-dayanak"><summary>Dayanak</summary><ul class="src-list"></ul></details>
+        </aside>
+        <div class="surface ie-onizleme">
+          <div class="ie-onizleme-head"><h2 class="ie-h" id="ie-onizleme-h">Önizleme</h2><span class="pill">İngilizce · düzenlenebilir</span></div>
+          <div class="form-stack">
+            <div class="field">
+              <div class="label-row"><label for="ie-konu">Konu (Subject)</label><button type="button" class="link-btn" id="ie-konu-kopyala">Konuyu kopyala</button></div>
+              <input class="text-input" id="ie-konu" maxlength="300" spellcheck="true" lang="en">
+            </div>
+            <div class="field">
+              <div class="label-row"><label for="ie-govde">E-posta metni</label><span class="ie-sayac" id="ie-sayac" aria-live="off"></span></div>
+              <textarea class="text-input mail-body" id="ie-govde" rows="18" spellcheck="true" lang="en" aria-describedby="ie-duzen-not ie-sayac"></textarea>
+              <p class="field-hint" id="ie-duzen-not"></p>
+            </div>
+          </div>
+          <div class="mail-warn" id="ie-uyari" hidden></div>
+          <div class="composer-actions ie-actions">
+            <button type="button" class="btn-ghost" id="ie-kopyala"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>Kopyala</button>
+            <a class="btn-ghost" id="ie-mailto" href="mailto:"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>E-posta programında aç</a>
+            <button type="button" class="btn-ghost" id="ie-taslak"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>Taslak olarak kaydet</button>
+            <button type="button" class="btn-primary" id="ie-gonderildi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Gönderildi olarak işaretle</button>
+          </div>
+          <p class="form-alert is-info" id="ie-durum" role="status" aria-live="polite" tabindex="-1" hidden></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEKME 2: TEYİT TASLAKLARI (kişisel şablonlar + hazır teyit taslakları + oluşturucu; Tur 5b / Tur 12) -->
+    <div class="yz-panel" role="tabpanel" id="pnl-teyit" aria-labelledby="sek-teyit" tabindex="-1" hidden>
+
+    <!-- Tur 12 (plan tur12-ekran-plani.md Y1): ortak süzgeç — durum (düzey) ve ülke; iki bölümü birlikte süzer -->
+    <form class="sn-filtre yz-filtre" id="yz-filtre" role="search" aria-label="Yazışmaları süz" novalidate>
+      <fieldset class="sn-grup sn-grup-model" id="yz-model">
+        <legend class="uni-filtre-ad">Durumun</legend>
+        <div class="sr-seg sn-seg">
+          <label class="sr-opt"><input type="radio" name="yz-model" value="lise"><span>Lise öğrencisi</span></label>
+          <label class="sr-opt"><input type="radio" name="yz-model" value="lise-mezun"><span>Lise mezunu</span></label>
+          <label class="sr-opt"><input type="radio" name="yz-model" value="uni-mezun"><span>Üniversite mezunu</span></label>
+        </div>
+      </fieldset>
+      <div class="sn-grup filter-field">
+        <label for="yz-ulke" class="uni-filtre-ad">Ülke</label>
+        <select class="calc-select" id="yz-ulke"></select>
+      </div>
+      <div class="sn-ozet"><p id="yz-ozet" aria-live="polite"></p></div>
+    </form>
+
+    <ol class="wizard-progress mail-steps" aria-label="Adımlar">
+      <li id="ms-1" aria-current="step">1. Şablon ya da taslak</li>
+      <li id="ms-2">2. Alıcı ve bilgiler</li>
+      <li id="ms-3">3. Önizle ve gönder</li>
+    </ol>
+
+    <!-- 1a. KİŞİSEL ŞABLONLAR (profil bilgileriyle dolar) -->
+    <section class="mail-section" id="sablonlar" aria-labelledby="sb-title">
+      <div class="mail-section-head">
+        <div>
+          <h2 id="sb-title" class="yz-bolum-h">Kişisel şablonlar <span class="yz-say" id="sb-say"></span></h2>
+          <p class="section-lead" id="sb-lead">Profil bilgilerinle otomatik dolan e-postalar.</p>
+        </div>
+        <div id="sb-rota"></div>
+      </div>
+      <div id="sb-root" aria-live="polite">
+        <div class="empty-state"><div class="empty-ico" aria-hidden="true"><span class="spinner"></span></div><h3>Yükleniyor…</h3></div>
+      </div>
+    </section>
+
+    <!-- 1b. HAZIR TEYİT TASLAKLARI (Ajan 13; hazır metin, değişken yok) -->
+    <section class="mail-section" id="taslaklar" aria-labelledby="tt-title">
+      <div class="mail-section-head">
+        <div>
+          <h2 id="tt-title" class="yz-bolum-h" tabindex="-1">Hazır teyit taslakları <span class="yz-say" id="tt-say"></span></h2>
+          <p class="section-lead" id="tt-lead">Mevzuat uzmanının hazırladığı, kurumun dilinde yazılmış teyit soruları. Köşeli parantezli yerleri ([Name] gibi) göndermeden önce kendin doldur.</p>
+        </div>
+      </div>
+      <div id="tt-root" aria-live="polite"></div>
+    </section>
+
+    <!-- 2–3. OLUŞTUR -->
+    <section class="surface composer" id="olustur" aria-labelledby="ol-title" hidden>
+      <div class="composer-head">
+        <div class="u-min0">
+          <span class="uni-sub" id="ol-kicker">Yeni yazışma</span>
+          <h2 id="ol-title" tabindex="-1">E-postayı hazırla</h2>
+          <p class="panel-lead u-mb-0" id="ol-amac"></p>
+        </div>
+        <button type="button" class="btn-ghost" id="ol-kapat">Şablonu değiştir</button>
+      </div>
+
+      <div class="composer-grid">
+        <div class="composer-side">
+          <!-- Alıcı -->
+          <fieldset class="composer-block" id="ol-alici-blok">
+            <legend class="composer-legend"><span class="step-dot" aria-hidden="true">2</span>Alıcı</legend>
+            <div class="form-stack">
+              <div class="field" id="ol-uni-wrap" hidden>
+                <label for="ol-uni">Üniversite</label>
+                <select class="calc-select" id="ol-uni" aria-describedby="ol-uni-err"></select>
+                <p class="field-error" id="ol-uni-err"></p>
+              </div>
+              <div class="field" id="ol-prog-wrap" hidden>
+                <label for="ol-prog">Program</label>
+                <select class="calc-select" id="ol-prog" aria-describedby="ol-prog-err"></select>
+                <p class="field-error" id="ol-prog-err"></p>
+              </div>
+              <div class="recipient-info" id="ol-alici-bilgi"></div>
+              <div class="field">
+                <label for="ol-alici">Alıcının e-posta adresi</label>
+                <input class="text-input" id="ol-alici" type="email" inputmode="email" autocomplete="off" maxlength="200" placeholder="ör. admissions@universite.de" aria-describedby="ol-alici-hint ol-alici-err">
+                <p class="field-hint" id="ol-alici-hint">Boş bırakırsan adresi e-posta programında yazarsın.</p>
+                <p class="field-error" id="ol-alici-err"></p>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Eksik bilgiler -->
+          <div class="composer-block missing-box" id="ol-eksik" role="region" aria-labelledby="ol-eksik-title" aria-live="polite"></div>
+        </div>
+
+        <!-- Önizleme -->
+        <div class="composer-block composer-preview">
+          <h3 class="composer-legend"><span class="step-dot" aria-hidden="true">3</span>Önizle ve düzenle</h3>
+          <div class="form-stack">
+            <div class="field">
+              <div class="label-row">
+                <label for="ol-konu">Konu</label>
+                <button type="button" class="link-btn" id="ol-konu-kopyala">Konuyu kopyala</button>
+              </div>
+              <input class="text-input" id="ol-konu" maxlength="300" spellcheck="true">
+            </div>
+            <div class="field">
+              <div class="label-row">
+                <label for="ol-govde">E-posta metni</label>
+                <span class="field-hint" id="ol-sayac" aria-live="off"></span>
+              </div>
+              <textarea class="text-input mail-body" id="ol-govde" rows="16" spellcheck="true" aria-describedby="ol-duzen-not"></textarea>
+              <p class="field-hint" id="ol-duzen-not"></p>
+            </div>
+          </div>
+          <div class="mail-warn" id="ol-uyari" hidden></div>
+          <div class="composer-actions">
+            <button type="button" class="btn-ghost" id="ol-kopyala">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>Kopyala</button>
+            <a class="btn-ghost" id="ol-mailto" href="mailto:">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>E-posta programında aç</a>
+            <button type="button" class="btn-ghost" id="ol-taslak">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>Taslak olarak kaydet</button>
+            <button type="button" class="btn-primary" id="ol-gonderildi">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Gönderildi olarak işaretle</button>
+          </div>
+          <p class="form-alert is-info" id="ol-durum" role="status" aria-live="polite" tabindex="-1" hidden></p>
+        </div>
+      </div>
+    </section>
+
+    </div>
+
+    <!-- SEKME 3: YAZIŞMA GEÇMİŞİ -->
+    <div class="yz-panel" role="tabpanel" id="pnl-gecmis" aria-labelledby="sek-gecmis" tabindex="-1" hidden>
+    <section class="mail-section" id="gecmis" aria-labelledby="gc-title">
+      <div class="mail-section-head">
+        <div>
+          <h2 id="gc-title">Yazışma geçmişi</h2>
+          <p class="section-lead">Taslaklarını, gönderdiklerini ve gelen yanıtların notlarını burada tutarsın.</p>
+        </div>
+        <div class="chip-group" id="gc-filtre" role="group" aria-label="Duruma göre süz"></div>
+      </div>
+      <div id="gc-root"></div>
+    </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom u-mt-0">
+      <div>İlk e-posta şablonları <code>data/kocluk/ilk-basvuru-sablonlari.js</code> (resmi iletişim yönergelerine dayalı), üniversite listeleri <code>data/mevzuat/ulke/</code>, kişisel şablonlar <code>data/kocluk/eposta-sablonlari.js</code>, hazır taslaklar <code>data/kocluk/teyit-taslaklari.js</code>, üniversiteler <code>data/mevzuat/ulkeler.js</code> dosyasından okunur. Yazışma geçmişin yalnızca bu tarayıcıda saklanır ve yedeğe dahildir.</div>
+      <div><a href="index.html">← Bugün ekranına dön</a></div>
+    </div>
+  </footer>
+
+  <script src="data/mevzuat/ulkeler.js"></script>
+  <script src="data/mevzuat/sinavlar.js"></script>
+  <script src="data/kocluk/eposta-sablonlari.js"></script>
+  <script src="data/kocluk/teyit-taslaklari.js"></script>
+  <script src="data/kocluk/ilk-basvuru-sablonlari.js"></script>
+  <script src="data/mevzuat/ulke-rotalari.js"></script>
+  <script src="data/mevzuat/sinav-takvimi.js"></script>
+  <script src="data/mevzuat/duyurular.js"></script>
+  <script src="assets/js/sartlar-motor.js"></script>
+  <script src="assets/js/eposta.js"></script>
+  <script src="assets/js/rota.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+  (function () {
+    "use strict";
+    var ME = window.APMEBERRA_ME, A = window.APMEBERRA, E = window.APMEBERRA_EPOSTA, AUTH = window.APMEBERRA_AUTH;
+    if (!ME || !ME.user || !ME.profile || !E) return;
+    var $ = function (id) { return document.getElementById(id); };
+    var esc = apEsc;
+    var user = ME.user, prof = ME.profile;
+    var KEY = E.DEPO_ANAHTARI;
+    var ULKE_AD = Object.assign({ de: "Almanya", it: "İtalya" }, A.ulkeAdlari || {}, { genel: "Genel" }); // Tur 12: 15 ülke
+    var DIL_AD = { en: "EN", de: "DE", it: "IT" };
+    var DIL_UZUN = { en: "İngilizce", de: "Almanca", it: "İtalyanca", fr: "Fransızca", es: "İspanyolca", tr: "Türkçe" };
+    var MODEL_AD = { "lise": "Lise öğrencisi", "lise-mezun": "Lise mezunu", "uni-mezun": "Üniversite mezunu" };
+    var MODEL_DUZEY = { "lise": "lisans", "lise-mezun": "lisans", "uni-mezun": "yl" };
+    var DURUM = { taslak: "Taslak", gonderildi: "Gönderildi", yanit: "Yanıt geldi" };
+    var ICON = {
+      ext: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
+      wait: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+      mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>',
+      clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+      user: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>',
+      warn: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l10 18H2z"/><path d="M12 10v4M12 17h.01"/></svg>',
+      check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>'
+    };
+    function isUrl(u) { return typeof u === "string" && /^https?:\/\//i.test(u); }
+    function extLink(href, text) {
+      return isUrl(href) ? '<a class="src-link" href="' + esc(href) + '" target="_blank" rel="noopener noreferrer">' + esc(text) + ICON.ext + '<span class="visually-hidden"> (yeni sekmede açılır)</span></a>' : "";
+    }
+    function host(u) { var m = /^https?:\/\/(?:www\.)?([^\/?#]+)/i.exec(u || ""); return m ? m[1] : u; }
+    /** Şablonun dayanak + alıcı kaynak bağlantıları (tekrarsız). */
+    function kaynakListesi(s, ekler) {
+      var out = [];
+      function ekle(u, etiket) { if (isUrl(u) && !out.some(function (x) { return x[0] === u; })) out.push([u, etiket]); }
+      (ekler || []).forEach(function (x) { ekle(x[0], x[1]); });
+      ekle(s.alici && s.alici.kaynak, "Alıcı bilgisinin kaynağı");
+      (Array.isArray(s.dayanak) ? s.dayanak : (s.dayanak ? [s.dayanak] : [])).forEach(function (u) { ekle(u, "Dayanak"); });
+      return out;
+    }
+    function kaynakUl(list) {
+      return '<ul class="src-list">' + list.map(function (x) { return '<li>' + extLink(x[0], x[1] + " · " + host(x[0])) + '</li>'; }).join("") + '</ul>';
+    }
+    function fmt(iso) {
+      if (!iso) return "";
+      var d = new Date(iso); if (isNaN(d)) return "";
+      return d.toLocaleString("tr-TR", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" });
+    }
+
+    // ---------------- Veri ----------------
+    var HAM = window.APMEBERRA_EPOSTA_SABLONLARI;
+    var SABLONLAR = Array.isArray(HAM) ? HAM.filter(function (s) { return !E.sablonDogrula(s).length; }) : null;
+    var GECERSIZ = Array.isArray(HAM) ? HAM.length - SABLONLAR.length : 0;
+    var ULKELER = Array.isArray(window.APMEBERRA_ULKELER) ? window.APMEBERRA_ULKELER.filter(function (c) { return c && c.id; }) : [];
+    var KATALOG = Array.isArray(window.APMEBERRA_SINAVLAR) ? window.APMEBERRA_SINAVLAR : [];
+    var profUlke = Array.isArray(prof.ulkeler) ? prof.ulkeler : [];
+    // Tur 12: hazır teyit taslakları (üretilmiş dosya; yoksa bölüm "yüklenemedi" der, şablonlar çalışır)
+    var TT = window.APMEBERRA_TEYIT_TASLAKLARI;
+    var TASLAKLAR = TT && Array.isArray(TT.taslaklar) ? TT.taslaklar.filter(function (t) { return E.taslakDogrula && !E.taslakDogrula(t).length; }) : null;
+    function taslakBul(id) { return (TASLAKLAR || []).filter(function (t) { return t.id === id; })[0] || null; }
+
+    // ---------------- Süzgeç (Tur 12, plan Y1/Y5): URL > profil ----------------
+    function profilModeli() {
+      if (MODEL_DUZEY[prof.ogrenciModeli]) return prof.ogrenciModeli;
+      return prof.sinif === "mezun" ? "lise-mezun" : prof.sinif === "lisans-mezun" ? "uni-mezun" : "lise";
+    }
+    var qp = function (k) { var m = new RegExp("[?&]" + k + "=([^&#]*)").exec(location.search); try { return m ? decodeURIComponent(m[1]).toLowerCase() : ""; } catch (e) { return ""; } };
+    var sz = {
+      model: MODEL_DUZEY[qp("model")] ? qp("model") : profilModeli(),
+      ulke: ULKE_AD[qp("ulke")] && qp("ulke") !== "genel" ? qp("ulke") : (qp("ulke") === "hepsi" || !profUlke.length ? "hepsi" : "profil")
+    };
+    function ulkeSecimi() { return sz.ulke === "profil" ? profUlke : sz.ulke === "hepsi" ? "hepsi" : sz.ulke; }
+    function ulkeMetni() { return sz.ulke === "profil" ? "Hedef ülkelerin (" + profUlke.map(function (u) { return ULKE_AD[u] || u; }).join(", ") + ")" : sz.ulke === "hepsi" ? "Tüm ülkeler" : ULKE_AD[sz.ulke]; }
+    function sablonDuzey(s) { return s.duzey === "yl" ? "yl" : "lisans"; } // mevcut 9 şablon lisans yoluna ait
+    (function suzgecKur() {
+      var sel = $("yz-ulke");
+      sel.innerHTML = (profUlke.length ? '<option value="profil">Hedef ülkelerim (' + esc(profUlke.map(function (u) { return ULKE_AD[u] || u; }).join(", ")) + ')</option>' : "") +
+        '<option value="hepsi">Tüm ülkeler</option><optgroup label="Ülke seç">' +
+        Object.keys(ULKE_AD).filter(function (u) { return u !== "genel"; }).sort(function (a, b) { return ULKE_AD[a].localeCompare(ULKE_AD[b], "tr"); })
+          .map(function (u) { return '<option value="' + u + '">' + esc(ULKE_AD[u]) + '</option>'; }).join("") + '</optgroup>';
+      sel.value = sz.ulke;
+      document.querySelectorAll('input[name="yz-model"]').forEach(function (r) { r.checked = r.value === sz.model; });
+    })();
+    function suzgecUrl() {
+      var q = "?model=" + sz.model + (sz.ulke !== "profil" ? "&ulke=" + sz.ulke : "");
+      try { history.replaceState(null, "", "yazismalar.html" + q + location.hash); } catch (e) {}
+    }
+
+    function depoOku() { try { return E.depoNormalize(JSON.parse(localStorage.getItem(KEY) || "null")); } catch (e) { return { kayitlar: [] }; } }
+    function depoYaz(d) { try { localStorage.setItem(KEY, JSON.stringify(d)); return true; } catch (e) { return false; } }
+    function sablonBul(id) { return (SABLONLAR || []).filter(function (s) { return s.id === id; })[0] || null; }
+    function uniBul(id) {
+      for (var i = 0; i < ULKELER.length; i++) {
+        var u = (ULKELER[i].universiteler || []).filter(function (x) { return x && x.id === id; })[0];
+        if (u) return { uni: u, ulke: ULKELER[i].id };
+      }
+      return null;
+    }
+
+    // ---------------- Adım göstergesi ----------------
+    function adim(n) {
+      [1, 2, 3].forEach(function (i) {
+        var li = $("ms-" + i);
+        li.classList.toggle("is-done", i < n);
+        if (i === n) li.setAttribute("aria-current", "step"); else li.removeAttribute("aria-current");
+      });
+    }
+
+    // ================= 1. ŞABLON LİSTESİ =================
+    var secili = null, rotaBagli = [];
+    function sablonKarti(s) {
+      var us = E.universiteSecimi(s);
+      var aliciMetin = s.alici.tur === "universite" ? "Seçeceğin üniversite" + (us.izinli ? " (" + us.izinli.length + " doğrulanmış kanal)" : "")
+        : (s.alici.kurum || (us.gerekli ? "Seçeceğin üniversiteye göre değişir" : "Kurum"));
+      var kaynaklar = kaynakListesi(s);
+      return '<article class="tpl-card" data-ulke="' + esc(s.ulke) + '" aria-labelledby="tpl-' + esc(s.id) + '">' +
+        '<div class="pill-row">' +
+          '<span class="pill' + (profUlke.indexOf(s.ulke) >= 0 ? " pill-accent" : "") + '">' + esc(ULKE_AD[s.ulke] || s.ulke) + '</span>' +
+          (s.dil ? '<span class="pill" title="E-postanın dili"><span class="visually-hidden">Dil: </span>' + esc(DIL_AD[s.dil] || s.dil) + '</span>' : "") +
+          (rotaBagli.indexOf(s.id) >= 0 && A.rota && (s.ulke === A.rota.aktif() || s.ulke === "genel") ? '<span class="rota-badge rota-badge-sablon" title="Bu e-posta rotandaki bir adıma bağlı">Rotamda</span>' : "") +
+          (s.kararNotu ? '<span class="decision-badge" title="İlgili karar notu maddesi">Karar notu ' + esc(s.kararNotu) + '</span>' : "") +
+          (Array.isArray(s.siniflar) && s.siniflar.length ? '<span class="grade-badge">Yalnız ' + s.siniflar.map(function (x) { return esc(AUTH.sinifLabel(String(x))); }).join(", ") + '</span>' : "") +
+        '</div>' +
+        '<h3 id="tpl-' + esc(s.id) + '">' + esc(s.baslik) + '</h3>' +
+        (s.amac ? '<p class="tpl-amac">' + esc(s.amac) + '</p>' : "") +
+        '<dl class="tpl-facts">' +
+          '<div><dt>' + ICON.clock + 'Ne zaman</dt><dd>' + esc(s.neZaman || "Belirtilmedi") + '</dd></div>' +
+          '<div><dt>' + ICON.user + 'Alıcı</dt><dd>' + esc(aliciMetin) + '</dd></div>' +
+        '</dl>' +
+        (kaynaklar.length ? '<details class="src-details"><summary>Dayanak ve kaynaklar (' + kaynaklar.length + ')</summary>' + kaynakUl(kaynaklar) + '</details>' : "") +
+        '<div class="tpl-foot">' +
+          '<span></span>' +
+          '<button type="button" class="btn-primary" data-sablon="' + esc(s.id) + '" aria-pressed="false" aria-controls="olustur">Bu şablonu kullan</button>' +
+        '</div>' +
+      '</article>';
+    }
+    function sablonlariCiz() {
+      var root = $("sb-root");
+      if (!SABLONLAR) {
+        root.innerHTML = '<div class="empty-state"><div class="empty-ico" aria-hidden="true">' + ICON.wait + '</div><h3>Şablonlar hazırlanıyor</h3>' +
+          '<p>Mevzuat uzmanımız üniversitelere ve kurumlara gönderilecek resmi e-posta şablonlarını resmi kaynaklara göre hazırlıyor. Bu sırada profilindeki iletişim bilgilerini tamamlayabilirsin; şablonlar gelince e-postaların bu bilgilerle otomatik dolar.</p>' +
+          '<div class="btn-row"><a class="btn-ghost" href="profil.html#iletisim">Profilimi tamamla</a><a class="btn-ghost" href="universiteler.html">Üniversitelerim</a></div></div>';
+        $("sb-lead").textContent = "Şablon dosyası henüz yok.";
+        return;
+      }
+      // Tur 12: ülke (15) ve durum (düzey) süzgeci; sınıf süzmesi (siniflar) korunur
+      var duzey = MODEL_DUZEY[sz.model];
+      var r = E.sablonUlkeSuz(SABLONLAR, ulkeSecimi(), prof.sinif);
+      var liste = r.liste.filter(function (s) { return sablonDuzey(s) === duzey; });
+      $("sb-say").textContent = liste.length ? "(" + liste.length + ")" : "";
+      $("sb-lead").textContent = "Profil bilgilerinle otomatik dolan e-postalar · " + ulkeMetni() + " · " + liste.length + " şablon" + (GECERSIZ ? " · " + GECERSIZ + " şablon şema hatası nedeniyle gösterilmiyor" : "");
+      if (!liste.length) {
+        var tSay = TASLAKLAR ? E.taslaklariSuz(TASLAKLAR, { model: sz.model, ulke: ulkeSecimi() }).length : 0;
+        var tek = sz.ulke !== "profil" && sz.ulke !== "hepsi";
+        var h = duzey === "yl" ? "Yüksek lisans için kişisel şablon yok"
+          : tek ? ULKE_AD[sz.ulke] + " için kişisel şablon yok" : "Hedef ülkelerin için kişisel şablon yok";
+        var p = duzey === "yl"
+          ? "Profil bilgilerinle dolan kişisel şablonlar şimdilik Almanya ve İtalya lisans başvuruları için. Yüksek lisans soruların için aşağıdaki hazır teyit taslaklarını kullan."
+          : "Profil bilgilerinle dolan kişisel şablonlar şimdilik Almanya ve İtalya için. " + (tSay ? "Bu seçim için aşağıdaki hazır teyit taslaklarını kullan" : "Kurumun uluslararası ofisine (International Office / Admissions) genel bir soru e-postası yaz; adresini kurumun resmi sitesinden bul") + ".";
+        root.innerHTML = '<div class="empty-state yz-bos-ulke" data-bos="sablon"><div class="empty-ico" aria-hidden="true">' + ICON.mail + '</div><h3>' + esc(h) + '</h3><p>' + esc(p) + '</p>' +
+          '<div class="btn-row">' + (tSay ? '<a class="btn-ghost" href="#taslaklar" data-git="taslaklar">Hazır taslaklara git (' + tSay + ')</a>' : "") +
+          (sz.ulke !== "hepsi" && duzey !== "yl" ? '<button type="button" class="btn-ghost" data-ulke-sec="hepsi">Tüm ülkelerin şablonları</button>' : "") + '</div></div>';
+        return;
+      }
+      // Tur 6: aktif rotanın şablonları önce (rotanın adımlarına bağlı olanlar en başta)
+      var RT = window.APMEBERRA_ROTA, rU = A.rota ? A.rota.aktif() : null, rV = rU ? A.rota.veri(rU) : null;
+      rotaBagli = RT && rV ? RT.rotaSablonlari(rV) : [];
+      if (RT && rU) liste = RT.sablonSirala(liste, rU, rV);
+      if (rU) $("sb-lead").textContent += " · " + ULKE_AD[rU] + " rotasının şablonları önce";
+      root.innerHTML = '<div class="tpl-grid">' + liste.map(sablonKarti).join("") + '</div>';
+      seciliIsaretle();
+    }
+    var seciliTaslak = null;
+    function seciliIsaretle() {
+      $("sb-root").querySelectorAll("[data-sablon]").forEach(function (b) {
+        var on = !!secili && b.dataset.sablon === secili.id;
+        b.setAttribute("aria-pressed", String(on));
+        b.textContent = on ? "Seçili" : "Bu şablonu kullan";
+        b.closest(".tpl-card").classList.toggle("is-selected", on);
+      });
+      $("tt-root").querySelectorAll("[data-taslak-kullan]").forEach(function (b) {
+        var on = !!seciliTaslak && b.dataset.taslakKullan === seciliTaslak.id;
+        b.setAttribute("aria-pressed", String(on));
+        b.textContent = on ? "Seçili" : "Bu taslağı kullan";
+        b.closest(".tt-card").classList.toggle("is-selected", on);
+      });
+    }
+    $("sb-root").addEventListener("click", function (e) {
+      var u = e.target.closest("[data-ulke-sec]");
+      if (u) { sz.ulke = u.dataset.ulkeSec; $("yz-ulke").value = sz.ulke; suzgecDegisti(); return; }
+      var g = e.target.closest("[data-git]");
+      if (g) { e.preventDefault(); $("taslaklar").scrollIntoView({ block: "start" }); $("tt-title").focus({ preventScroll: true }); return; }
+      var b = e.target.closest("[data-sablon]"); if (!b) return;
+      var s = sablonBul(b.dataset.sablon); if (!s) return;
+      ac({ sablon: s });
+    });
+
+    // ================= 1b. HAZIR TEYİT TASLAKLARI (Tur 12) =================
+    var DOC = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>';
+    function adresSatiri(t) {
+      var a = E.taslakAlicisi(t);
+      if (a.eposta) return '<p class="tt-adres is-ok">' + ICON.check + '<span>Resmi adres: <code>' + esc(a.eposta) + '</code> · ' + extLink(a.kaynak, "kaynak") + '</span></p>';
+      if (a.adresAdayi) return '<p class="tt-adres is-warn">' + ICON.warn + '<span>Taslakta <code>' + esc(a.adresAdayi) + '</code> adresi geçiyor ama resmi bir kaynakla eşleşmedi; e-posta programına otomatik yazılmaz. Göndermeden önce kurumun iletişim sayfasından doğrula.</span></p>';
+      return '<p class="tt-adres is-muted">' + ICON.user + '<span>Doğrulanmış adres yok: kurumun uluslararası ofisi ya da kabul birimi. Adresi ya da iletişim formunu kurumun resmi sitesinden bul.</span></p>';
+    }
+    function taslakKarti(t) {
+      var yt = E.yerTutucuKalan(t.metin).length;
+      var lang = t.dil && t.dil !== "tr" ? ' lang="' + esc(t.dil) + '"' : "";
+      return '<article class="tt-card" data-taslak="' + esc(t.id) + '" data-ulke="' + esc(t.ulke) + '" aria-labelledby="tt-h-' + esc(t.id) + '">' +
+        '<div class="pill-row">' +
+          '<span class="pill' + (profUlke.indexOf(t.ulke) >= 0 ? " pill-accent" : "") + '">' + esc(ULKE_AD[t.ulke] || t.ulke) + '</span>' +
+          '<span class="pill">' + (t.duzey === "yl" ? "Yüksek lisans" : "Lisans") + '</span>' +
+          '<span class="pill" title="E-postanın dili"><span class="visually-hidden">Dil: </span>' + esc(DIL_UZUN[t.dil] || t.dil) + '</span>' +
+          (yt ? '<span class="grade-badge" title="Göndermeden önce doldurulacak yerler">' + yt + ' yer tutucu</span>' : "") +
+        '</div>' +
+        '<p class="tt-kime"><span class="visually-hidden">Kime: </span>' + esc(t.kime) + '</p>' +
+        '<h3 id="tt-h-' + esc(t.id) + '" class="tt-konu"' + lang + '>' + esc(t.konu) + '</h3>' +
+        adresSatiri(t) +
+        '<p class="tt-onizle"' + lang + '>' + esc(t.metin) + '</p>' +
+        '<details class="tt-tam"><summary>Metnin tamamı</summary><pre' + lang + '>' + esc(t.metin) + '</pre></details>' +
+        '<div class="tt-foot">' +
+          '<button type="button" class="btn-primary" data-taslak-kullan="' + esc(t.id) + '" aria-pressed="false" aria-controls="olustur">Bu taslağı kullan</button>' +
+          '<button type="button" class="btn-ghost" data-taslak-kopyala="' + esc(t.id) + '">Metni kopyala</button>' +
+        '</div>' +
+        '<p class="tt-durum" role="status" aria-live="polite"></p>' +
+      '</article>';
+    }
+    function taslaklariCiz() {
+      var root = $("tt-root");
+      if (!TASLAKLAR) {
+        $("tt-say").textContent = "";
+        root.innerHTML = '<div class="empty-state" data-bos="taslak-dosya"><div class="empty-ico" aria-hidden="true">' + ICON.wait + '</div><h3>Teyit taslakları yüklenemedi</h3><p>data/kocluk/teyit-taslaklari.js bulunamadı. Kişisel şablonlar ve yazışma geçmişin çalışmaya devam eder.</p></div>';
+        return;
+      }
+      var liste = E.taslaklariSuz(TASLAKLAR, { model: sz.model, ulke: ulkeSecimi() });
+      $("tt-say").textContent = "(" + liste.length + ")";
+      var duz = MODEL_DUZEY[sz.model] === "yl" ? "yüksek lisans" : "lisans";
+      $("tt-lead").textContent = "Mevzuat uzmanının hazırladığı, kurumun dilinde yazılmış teyit soruları · " + ulkeMetni() + " · " + duz + " · " + liste.length + " taslak. Köşeli parantezli yerleri ([Name] gibi) göndermeden önce kendin doldur.";
+      var ozelVar = liste.some(function (t) { return t.ulke !== "genel"; });
+      if (!ozelVar) {
+        var tek = sz.ulke !== "profil" && sz.ulke !== "hepsi";
+        var bos = '<div class="empty-state yz-bos-ulke" data-bos="taslak"><div class="empty-ico" aria-hidden="true">' + ICON.mail + '</div><h3>' + esc((tek ? ULKE_AD[sz.ulke] : "Hedef ülkelerin") + " için hazır " + duz + " teyit taslağı yok") + '</h3>' +
+          '<p>Kurumun uluslararası ofisine (International Office / Admissions) genel bir soru e-postası yaz; adresini kurumun resmi sitesinden bul. Taslaklar mevzuat uzmanının her turunda genişliyor.</p></div>';
+        root.innerHTML = bos + (liste.length ? '<div class="tt-grup"><h3 class="tt-grup-h">Tüm ülkeler için (Türkiye’deki kurumlar ve burs programları)</h3><div class="tpl-grid">' + liste.map(taslakKarti).join("") + '</div></div>' : "");
+      } else {
+        var gruplar = {};
+        liste.forEach(function (t) { (gruplar[t.ulke] = gruplar[t.ulke] || []).push(t); });
+        var sira = Object.keys(gruplar).sort(function (a, b) {
+          if (a === "genel" || b === "genel") return a === "genel" ? 1 : -1;
+          var pa = profUlke.indexOf(a) < 0, pb = profUlke.indexOf(b) < 0;
+          return pa !== pb ? pa - pb : ULKE_AD[a].localeCompare(ULKE_AD[b], "tr");
+        });
+        root.innerHTML = sira.map(function (u) {
+          return '<div class="tt-grup" data-grup="' + esc(u) + '"><h3 class="tt-grup-h">' + (u === "genel" ? "Tüm ülkeler için (Türkiye’deki kurumlar ve burs programları)" : '<span class="cc-rozet" aria-hidden="true">' + esc(u.toUpperCase()) + '</span>' + esc(ULKE_AD[u])) +
+            ' <span class="yz-say">(' + gruplar[u].length + ')</span></h3><div class="tpl-grid">' + gruplar[u].map(taslakKarti).join("") + '</div></div>';
+        }).join("");
+      }
+      seciliIsaretle();
+    }
+    $("tt-root").addEventListener("click", function (e) {
+      var k = e.target.closest("[data-taslak-kullan]");
+      if (k) { var t = taslakBul(k.dataset.taslakKullan); if (t) ac({ taslak: t }); return; }
+      var c = e.target.closest("[data-taslak-kopyala]");
+      if (c) {
+        var t2 = taslakBul(c.dataset.taslakKopyala); if (!t2) return;
+        var out = c.closest(".tt-card").querySelector(".tt-durum");
+        kopyala(t2.metin).then(function (ok) {
+          out.className = "tt-durum" + (ok ? "" : " is-bad");
+          out.textContent = ok ? "Metin panoya kopyalandı. Köşeli parantezli yerleri doldurmayı unutma." : "Kopyalanamadı; “Metnin tamamı”nı açıp seç ve Ctrl+C ile kopyala.";
+        });
+      }
+    });
+
+    function ozetYaz() {
+      var ts = TASLAKLAR ? E.taslaklariSuz(TASLAKLAR, { model: sz.model, ulke: ulkeSecimi() }).length : 0;
+      var ss = $("sb-root").querySelectorAll(".tpl-card").length;
+      $("sek-teyit-say").textContent = String(ss + ts);
+      $("yz-ozet").innerHTML = '<strong>' + esc(MODEL_AD[sz.model] + " (" + (MODEL_DUZEY[sz.model] === "yl" ? "yüksek lisans" : "lisans") + ") · " + ulkeMetni()) + '</strong> — ' + ss + ' kişisel şablon, ' + ts + ' hazır taslak';
+    }
+    function suzgecDegisti() { sablonlariCiz(); taslaklariCiz(); ozetYaz(); suzgecUrl(); }
+    $("yz-ulke").addEventListener("change", function () { sz.ulke = this.value; suzgecDegisti(); });
+    $("yz-filtre").addEventListener("change", function (e) { if (e.target.name === "yz-model") { sz.model = e.target.value; suzgecDegisti(); } });
+    $("yz-filtre").addEventListener("submit", function (e) { e.preventDefault(); });
+
+    // ================= 2–3. OLUŞTURUCU =================
+    var st = null; // {sablon, uniId, progIdx, kayitId, duzenlendi}
+    var onay = null; // eksikle "gönderildi" için ikinci basış bekleniyor mu
+
+    function uniSecenekleri(s) {
+      var ulkeler = s.ulke === "genel" ? (profUlke.length ? profUlke : ["de", "it"]) : [s.ulke];
+      var izinli = E.universiteSecimi(s).izinli;
+      if (izinli) ulkeler = ULKELER.map(function (c) { return c.id; }); // seçenekler ülke sınırını belirler
+      var gruplar = ULKELER.filter(function (c) {
+        return ulkeler.indexOf(c.id) >= 0 && (c.universiteler || []).some(function (u) { return !izinli || izinli.indexOf(u.id) >= 0; });
+      });
+      var html = '<option value="">— Üniversite seç —</option>';
+      gruplar.forEach(function (c) {
+        var opts = (c.universiteler || []).filter(function (u) { return !izinli || izinli.indexOf(u.id) >= 0; }).map(function (u) { return '<option value="' + esc(u.id) + '">' + esc(u.ad) + (u.sehir ? " · " + esc(u.sehir) : "") + '</option>'; }).join("");
+        html += gruplar.length > 1 ? '<optgroup label="' + esc(c.ad) + '">' + opts + '</optgroup>' : opts;
+      });
+      return html;
+    }
+    function programSecenekleri(u) {
+      var p = (u && u.programlar) || [];
+      return '<option value="">' + (p.length ? "— Program seç —" : "Bu üniversitede program verisi yok") + '</option>' +
+        p.map(function (x, i) { return '<option value="' + i + '">' + esc(x.ad) + (x.derece ? " (" + esc(x.derece) + ")" : "") + '</option>'; }).join("");
+    }
+
+    /** Oluşturucuyu açar. o: {sablon} | {taslak} | {kayit} */
+    function ac(o) {
+      sekmeSec("teyit");
+      var k = o.kayit || null;
+      var s = o.sablon || (k && sablonBul(k.sablonId)) || null;
+      var t = s ? null : (o.taslak || (k && k.taslakId && taslakBul(k.taslakId)) || null);
+      st = { sablon: s, taslak: t, uniId: k ? k.universiteId : null, progIdx: null, kayitId: k ? k.id : null, duzenlendi: !!k };
+      onay = null;
+      secili = s; seciliTaslak = t; seciliIsaretle();
+      $("olustur").hidden = false;
+      $("ol-kicker").textContent = k ? "Kayıtlı yazışma · " + DURUM[k.durum] : t ? "Hazır teyit taslağı" : "Yeni yazışma";
+      $("ol-title").textContent = s ? s.baslik : t ? "Teyit e-postası: " + t.kime : (k && k.konu) || "Yazışma";
+      $("ol-amac").textContent = s ? (s.amac || "") : t ? "Mevzuat uzmanının hazır metni (" + (DIL_UZUN[t.dil] || t.dil) + "). Köşeli parantezli yerleri doldur, metni gözden geçir; e-postayı kendin gönderirsin." : "Bu yazışmanın şablonu artık listede yok; metni doğrudan düzenleyebilirsin.";
+      var uniMod = !!s && E.universiteSecimi(s).gerekli;
+      $("ol-uni-wrap").hidden = !uniMod; $("ol-prog-wrap").hidden = !uniMod;
+      $("ol-uni-err").textContent = ""; $("ol-prog-err").textContent = "";
+      if (uniMod) {
+        $("ol-uni").innerHTML = uniSecenekleri(s);
+        if (st.uniId && uniBul(st.uniId) && !Array.prototype.some.call($("ol-uni").options, function (o) { return o.value === st.uniId; })) {
+          // eski kayıt: üniversite artık seçenek listesinde değil -> yine de göster (genel alıcıya düşer)
+          $("ol-uni").insertAdjacentHTML("beforeend", '<option value="' + esc(st.uniId) + '">' + esc(uniBul(st.uniId).uni.ad) + '</option>');
+        }
+        $("ol-uni").value = st.uniId || "";
+        if ($("ol-uni").value !== (st.uniId || "")) st.uniId = null;
+        programDoldur(k ? k.programAd : null);
+      }
+      $("ol-alici").value = k ? (k.alici || "") : t ? (E.taslakAlicisi(t).eposta || "") : varsayilanAlici();
+      $("ol-alici").dataset.oto = k ? "0" : "1";
+      UI_err("alici", "");
+      if (k) { $("ol-konu").value = k.konu; $("ol-govde").value = k.govde; }
+      else if (t) { $("ol-konu").value = t.konu; $("ol-govde").value = t.metin; }
+      yenile(!k);
+      durum("");
+      adim(2);
+      $("olustur").scrollIntoView({ block: "start" });
+      $("ol-title").focus({ preventScroll: true });
+    }
+    function programDoldur(programAd) {
+      var u = st.uniId && uniBul(st.uniId);
+      var sel = $("ol-prog");
+      sel.innerHTML = programSecenekleri(u && u.uni);
+      sel.disabled = !u;
+      st.progIdx = null;
+      if (u) {
+        var p = u.uni.programlar || [];
+        var i = programAd ? p.map(function (x) { return x.ad; }).indexOf(programAd) : (p.length === 1 ? 0 : -1);
+        if (i >= 0) { sel.value = String(i); st.progIdx = i; }
+      }
+    }
+    function alici() { return E.aliciCoz(st.sablon, st.uniId); }
+    function varsayilanAlici() {
+      if (!st.sablon) return "";
+      var a = alici();
+      if (a.eposta) return a.eposta;
+      var u = st.uniId && uniBul(st.uniId);
+      var adr = u && (u.uni.eposta || u.uni.iletisimEposta);
+      return E.epostaGecerli(adr) ? adr : "";
+    }
+    function aliciAdi() {
+      if (!st.sablon) return "";
+      var a = alici(), u = st.uniId && uniBul(st.uniId);
+      return a.kurum || (u ? u.uni.ad : "");
+    }
+    function aliciBilgi() {
+      var s = st.sablon, box = $("ol-alici-bilgi");
+      if (!s && st.taslak) {
+        // Tur 12 (Y3): adres yalnız kaynaklıysa alıcı alanına yazılır; aday adres yalnızca uyarıyla gösterilir
+        box.innerHTML = '<div class="recipient-card"><strong>' + esc(st.taslak.kime) + '</strong>' + adresSatiri(st.taslak) + '</div>';
+        return;
+      }
+      if (!s) { box.innerHTML = ""; return; }
+      var us = E.universiteSecimi(s), u = st.uniId && uniBul(st.uniId), a = alici();
+      if (us.gerekli && !u && (s.alici.tur === "universite" || us.izinli)) {
+        box.innerHTML = '<p class="field-hint">Önce üniversiteyi seç; alıcının iletişim kanalı burada görünecek.</p>' +
+          (s.alici.not ? '<p class="recipient-note" style="margin-top:6px;">' + esc(s.alici.not) + '</p>' : "");
+        return;
+      }
+      var resmi = a.eposta || varsayilanAlici();
+      var linkler = [];
+      if (isUrl(a.iletisimSayfasi)) linkler.push(extLink(a.iletisimSayfasi, resmi ? "İletişim sayfası" : "İletişim sayfası / formu"));
+      if (!a.secenektenMi && u) { var w = u.uni.iletisimSayfasi || u.uni.web; if (isUrl(w) && w !== a.iletisimSayfasi) linkler.push(extLink(w, "Üniversitenin sitesi")); }
+      var kaynaklar = kaynakListesi(s, a.secenektenMi && isUrl(a.kaynak) ? [[a.kaynak, "Bu kanalın kaynağı"]] : []);
+      var notlar = [a.not, a.genelNot].filter(Boolean);
+      box.innerHTML = '<div class="recipient-card">' +
+        (aliciAdi() ? '<strong>' + esc(aliciAdi()) + '</strong>' : "") +
+        (resmi
+          ? '<span>Resmi e-posta: <code>' + esc(resmi) + '</code></span>'
+          : '<span class="unverified-soft">' + ICON.warn + '<span>Doğrulanmış e-posta adresi yok' + (u && !a.secenektenMi && us.izinli ? " (bu üniversite doğrulanmış kanal listesinde değil)" : "") + '. ' + (isUrl(a.iletisimSayfasi) ? "İletişim sayfasındaki formu kullan ya da adresi oradan bulup aşağıya yaz." : "Adresi üniversitenin resmi sitesinden bulup aşağıya yaz.") + '</span></span>') +
+        notlar.map(function (n) { return '<p class="recipient-note">' + esc(n) + '</p>'; }).join("") +
+        (linkler.length ? '<span class="recipient-links">' + linkler.join("") + '</span>' : "") +
+        (kaynaklar.length ? '<details class="src-details"><summary>Dayanak ve kaynaklar (' + kaynaklar.length + ')</summary>' + kaynakUl(kaynaklar) + '</details>' : "") +
+      '</div>';
+    }
+
+    function secim() {
+      var s = st.sablon, u = st.uniId && uniBul(st.uniId);
+      var prog = u && st.progIdx != null ? (u.uni.programlar || [])[st.progIdx] : null;
+      return {
+        dil: (s && s.dil) || "en",
+        ulke: s && s.ulke !== "genel" ? s.ulke : (u ? u.ulke : (profUlke[0] || "")),
+        universite: u ? { ad: u.uni.ad, sehir: u.uni.sehir } : null,
+        program: prog || null,
+        sinavlarim: A.panel.get().sinavlarim,
+        sinavKatalogu: KATALOG
+      };
+    }
+    function sonuc() {
+      if (!st.sablon) return { konu: "", govde: "", eksikler: [], bilinmeyenler: [] };
+      return E.olustur(st.sablon, E.degiskenler(prof, user, secim()));
+    }
+
+    /** Değişkenleri yeniden hesaplar; metin elle düzenlenmediyse önizlemeyi tazeler. */
+    function yenile(metniYaz) {
+      var r = sonuc();
+      if (metniYaz && st.sablon) { $("ol-konu").value = r.konu; $("ol-govde").value = r.govde; st.duzenlendi = false; }
+      aliciBilgi();
+      eksikCiz(r);
+      metaGuncelle(r);
+    }
+
+    function eksikCiz(r) {
+      var box = $("ol-eksik");
+      var eks = r.eksikler.filter(function (y) { return r.bilinmeyenler.indexOf(y) < 0; });
+      var kalan = E.kalanEksikler($("ol-konu").value + "\n" + $("ol-govde").value);
+      if (!st.sablon && st.taslak) {
+        // Hazır taslak: değişken yok; doldurulmamış köşeli parantezli yerler listelenir
+        var yt = E.yerTutucuKalan($("ol-konu").value + "\n" + $("ol-govde").value);
+        box.hidden = false;
+        box.className = "composer-block missing-box" + (yt.length ? "" : " is-ok");
+        box.innerHTML = yt.length
+          ? '<h3 class="composer-legend" id="ol-eksik-title"><span class="step-dot warn" aria-hidden="true">!</span>' + yt.length + ' yer tutucu doldurulmadı</h3>' +
+            '<p class="field-hint">Metinde şu yerleri kendi bilgilerinle değiştir (köşeli parantezleri de sil):</p><ul class="missing-list">' + yt.map(function (x) { return '<li><span><code>' + esc(x) + '</code></span></li>'; }).join("") + '</ul>'
+          : '<h3 class="composer-legend" id="ol-eksik-title"><span class="step-dot ok" aria-hidden="true">' + ICON.check + '</span>Yer tutucular dolduruldu</h3><p class="field-hint">Göndermeden önce metni bir kez daha oku.</p>';
+        return;
+      }
+      if (!st.sablon) { box.hidden = true; return; }
+      box.hidden = false;
+      if (!eks.length && !r.bilinmeyenler.length) {
+        box.className = "composer-block missing-box is-ok";
+        box.innerHTML = '<h3 class="composer-legend" id="ol-eksik-title"><span class="step-dot ok" aria-hidden="true">' + ICON.check + '</span>Bilgiler tamam</h3>' +
+          '<p class="field-hint">Şablondaki tüm alanlar profilinden ve seçimlerinden dolduruldu.' + (kalan.length ? " Metinde hâlâ “[eksik: …]” işareti var; düzenlediğin metni kontrol et ya da şablondan yeniden oluştur." : "") + '</p>';
+        return;
+      }
+      box.className = "composer-block missing-box";
+      var profilAlanlari = [], satirlar = [];
+      eks.forEach(function (yol) {
+        var kay = E.KAYNAK[yol] || {}, ad = E.etiket(yol), cozum = "";
+        if (kay.tur === "profil" && ["eposta", "dogumTarihi", "okulSehir", "mezuniyetYili"].indexOf(kay.alan) >= 0) {
+          if (kay.alan === "mezuniyetYili" && prof.sinif !== "mezun") cozum = '<a href="profil.html#pf-sinif-group">Profilde sınıfını seç</a>';
+          else { if (profilAlanlari.indexOf(kay.alan) < 0) profilAlanlari.push(kay.alan); cozum = '<a href="profil.html#pf-' + kay.alan + '">Profilde düzenle</a>'; }
+        } else if (kay.tur === "profil") cozum = '<a href="profil.html#pf-' + esc(kay.alan) + '">Profilde düzenle</a>';
+        else if (kay.tur === "sinavlar") cozum = '<a href="sinavlar.html">Sınavlar sayfasında AP derslerini “Listeme ekle” ile işaretle</a>';
+        else if (kay.tur === "secim") cozum = '<button type="button" class="link-btn" data-odak="ol-' + (kay.alan === "program" ? "prog" : "uni") + '">Yukarıdan ' + (kay.alan === "program" ? "programı" : "üniversiteyi") + ' seç</button>';
+        satirlar.push('<li><span>' + esc(ad) + '</span>' + cozum + '</li>');
+      });
+      r.bilinmeyenler.forEach(function (yol) { satirlar.push('<li><span>Şablonda tanımsız alan: <code>' + esc(yol) + '</code></span><span class="field-hint">Metinde elle doldur.</span></li>'); });
+      var form = "";
+      if (profilAlanlari.length) {
+        var yil = new Date().getFullYear();
+        var GIRDI = {
+          eposta: ['E-posta adresin', '<input class="text-input" id="fx-eposta" type="email" inputmode="email" autocomplete="email" maxlength="120" placeholder="ad.soyad@ornek.com" aria-describedby="fx-eposta-err">'],
+          dogumTarihi: ['Doğum tarihin', '<input class="text-input" id="fx-dogumTarihi" type="date" autocomplete="bday" min="' + (yil - 40) + '-01-01" max="' + (yil - 10) + '-12-31" aria-describedby="fx-dogumTarihi-err">'],
+          okulSehir: ['Okulunun şehri', '<input class="text-input" id="fx-okulSehir" maxlength="60" placeholder="İstanbul" aria-describedby="fx-okulSehir-err">'],
+          mezuniyetYili: ['Mezuniyet yılın', '<input class="text-input" id="fx-mezuniyetYili" inputmode="numeric" maxlength="4" placeholder="ör. 2025" aria-describedby="fx-mezuniyetYili-err">']
+        };
+        form = '<form class="fix-form" id="fx-form" novalidate><p class="fix-lead">Buradan doldur, profiline kaydedilsin:</p><div class="field-row">' +
+          profilAlanlari.map(function (a) {
+            return '<div class="field"><label for="fx-' + a + '">' + GIRDI[a][0] + '</label>' + GIRDI[a][1] + '<p class="field-error" id="fx-' + a + '-err"></p></div>';
+          }).join("") + '</div><button type="submit" class="btn-ghost" id="fx-kaydet">Profilime kaydet</button></form>';
+      }
+      var odak = document.activeElement && document.activeElement.id;
+      var degerler = {};
+      profilAlanlari.forEach(function (a) { var el = $("fx-" + a); if (el) degerler[a] = el.value; });
+      box.innerHTML = '<h3 class="composer-legend" id="ol-eksik-title"><span class="step-dot warn" aria-hidden="true">!</span>' + eks.length + ' eksik bilgi</h3>' +
+        '<p class="field-hint">Bunlar tamamlanmadan metinde “[eksik: …]” işareti kalır.</p>' +
+        '<ul class="missing-list">' + satirlar.join("") + '</ul>' + form;
+      Object.keys(degerler).forEach(function (a) { if ($("fx-" + a)) $("fx-" + a).value = degerler[a]; });
+      if (odak && /^fx-/.test(odak) && $(odak)) $(odak).focus();
+    }
+
+    function metaGuncelle() {
+      var konu = $("ol-konu").value, govde = $("ol-govde").value;
+      var m = E.mailto($("ol-alici").value, konu, govde);
+      $("ol-mailto").href = m.uzun ? E.mailto($("ol-alici").value, konu, "").url : m.url;
+      $("ol-sayac").textContent = govde.length + " karakter";
+      $("ol-duzen-not").innerHTML = st.duzenlendi && st.sablon
+        ? 'Metni elle düzenledin; bilgiler değişince otomatik güncellenmez. <button type="button" class="link-btn" id="ol-yeniden">Şablondan yeniden oluştur</button>'
+        : (st.sablon || st.taslak ? "Metni gönderimden önce dilediğin gibi düzenleyebilirsin." : "");
+      var kalan = E.kalanEksikler(konu + "\n" + govde);
+      var yt = st.taslak ? E.yerTutucuKalan(konu + "\n" + govde) : [];
+      var uyari = [];
+      if (kalan.length) uyari.push(ICON.warn + '<span>Metinde ' + kalan.length + ' “[eksik: …]” alanı var: ' + kalan.map(function (y) { return esc(E.etiket(y)); }).join(", ") + '. Göndermeden önce tamamla.</span>');
+      if (yt.length) uyari.push(ICON.warn + '<span>Metinde ' + yt.length + ' doldurulmamış yer tutucu var: ' + yt.map(esc).join(", ") + '. Göndermeden önce kendi bilgilerinle değiştir.</span>');
+      if (m.uzun) uyari.push(ICON.warn + '<span>Metin uzun (bağlantı ' + m.uzunluk + ' karakter). Bazı e-posta programları bağlantıyla gelen uzun metni keser; “E-posta programında aç” metni panoya kopyalar ve yalnız alıcı ile konuyu doldurur, sen metni yapıştırırsın.</span>');
+      $("ol-uyari").hidden = !uyari.length;
+      $("ol-uyari").innerHTML = uyari.map(function (u) { return '<p>' + u + '</p>'; }).join("");
+      $("ol-kopyala").className = m.uzun ? "btn-primary" : "btn-ghost";
+      var tamam = st.taslak ? !yt.length : st.sablon && !kalan.length && (!E.universiteSecimi(st.sablon).gerekli || st.uniId);
+      adim(tamam ? 3 : 2);
+    }
+
+    function UI_err(alan, msg) {
+      $("ol-" + alan + "-err").textContent = msg || "";
+      if (msg) $("ol-" + alan).setAttribute("aria-invalid", "true"); else $("ol-" + alan).removeAttribute("aria-invalid");
+    }
+    function durum(msg, tur) {
+      var el = $("ol-durum");
+      el.className = "form-alert is-" + (tur || "info");
+      el.textContent = msg || ""; el.hidden = !msg;
+    }
+
+    // Olaylar
+    $("ol-uni").addEventListener("change", function () {
+      st.uniId = this.value || null; programDoldur(null);
+      if (!$("ol-alici").value || $("ol-alici").dataset.oto === "1") { $("ol-alici").value = varsayilanAlici(); $("ol-alici").dataset.oto = "1"; }
+      yenile(!st.duzenlendi);
+    });
+    $("ol-prog").addEventListener("change", function () { st.progIdx = this.value === "" ? null : +this.value; yenile(!st.duzenlendi); });
+    $("ol-alici").addEventListener("input", function () { this.dataset.oto = "0"; UI_err("alici", ""); metaGuncelle(); });
+    $("ol-alici").addEventListener("change", function () {
+      var v = this.value.trim();
+      UI_err("alici", v && !E.epostaGecerli(v) ? "Geçerli bir e-posta adresi yaz ya da boş bırak." : "");
+    });
+    ["ol-konu", "ol-govde"].forEach(function (id) {
+      $(id).addEventListener("input", function () { st.duzenlendi = true; onay = null; metaGuncelle(); eksikCiz(sonuc()); });
+    });
+    $("olustur").addEventListener("click", function (e) {
+      if (e.target.id === "ol-yeniden") { yenile(true); $("ol-govde").focus(); durum("Metin şablondan yeniden oluşturuldu.", "info"); return; }
+      var o = e.target.closest("[data-odak]"); if (o) { $(o.dataset.odak).focus(); }
+    });
+    $("ol-eksik").addEventListener("submit", function (e) {
+      if (e.target.id !== "fx-form") return;
+      e.preventDefault();
+      var data = {};
+      e.target.querySelectorAll("input").forEach(function (i) { data[i.id.slice(3)] = i.value; });
+      var btn = $("fx-kaydet"); btn.disabled = true;
+      AUTH.updateProfileExtras(user.id, data).then(function (res) {
+        btn.disabled = false;
+        if (!res.ok) {
+          var first = AUTH.ui.showErrors("fx", res.errors, Object.keys(data));
+          if (res.errors.genel) durum(res.errors.genel, "bad");
+          if (first) first.focus();
+          return;
+        }
+        prof = res.profile; ME.profile = res.profile;
+        yenile(!st.duzenlendi);
+        durum("Bilgiler profiline kaydedildi" + (st.duzenlendi ? ". Metni elle düzenlediğin için “Şablondan yeniden oluştur” ile güncelleyebilirsin." : " ve e-postaya işlendi."), "ok");
+        $("ol-durum").focus();
+      });
+    });
+    $("ol-kapat").addEventListener("click", function () {
+      $("olustur").hidden = true; st = null; secili = null; seciliTaslak = null; seciliIsaretle(); adim(1);
+      var b = $("sb-root").querySelector("[data-sablon]"); (b || $("sb-title")).focus();
+    });
+
+    function kopyala(metin) {
+      function elle() {
+        var ta = document.createElement("textarea");
+        ta.value = metin; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        var ok = false; try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+        ta.remove(); return ok;
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(metin).then(function () { return true; }, function () { return elle(); });
+      return Promise.resolve(elle());
+    }
+    $("ol-kopyala").addEventListener("click", function () {
+      kopyala($("ol-govde").value).then(function (ok) {
+        durum(ok ? "E-posta metni panoya kopyalandı. Konuyu da “Konuyu kopyala” ile alabilirsin." : "Kopyalanamadı; metni seçip Ctrl+C ile kopyala.", ok ? "ok" : "bad");
+        if (!ok) { $("ol-govde").focus(); $("ol-govde").select(); }
+      });
+    });
+    $("ol-konu-kopyala").addEventListener("click", function () {
+      kopyala($("ol-konu").value).then(function (ok) { durum(ok ? "Konu panoya kopyalandı." : "Kopyalanamadı; konuyu seçip kopyala.", ok ? "ok" : "bad"); });
+    });
+    $("ol-mailto").addEventListener("click", function () {
+      metaGuncelle();
+      var m = E.mailto($("ol-alici").value, $("ol-konu").value, $("ol-govde").value);
+      if (m.uzun) {
+        kopyala($("ol-govde").value).then(function (ok) {
+          durum(ok ? "Metin uzun olduğu için panoya kopyalandı: e-posta programında gövdeye yapıştır (Ctrl+V). Gönderdikten sonra “Gönderildi olarak işaretle”ye bas."
+                   : "Metin uzun ve panoya kopyalanamadı; önce “Kopyala”yı dene.", ok ? "info" : "bad");
+        });
+      } else {
+        durum("E-posta programın açılıyor. Gönderdikten sonra buraya dönüp “Gönderildi olarak işaretle”ye bas.", "info");
+      }
+    });
+
+    /** Oluşturucudaki metni kayda yazar (yoksa yeni kayıt). Dönüş: kayıt | null */
+    function kaydet(yeniDurum) {
+      var v = $("ol-alici").value.trim();
+      if (v && !E.epostaGecerli(v)) { UI_err("alici", "Geçerli bir e-posta adresi yaz ya da boş bırak."); $("ol-alici").focus(); return null; }
+      if (!$("ol-konu").value.trim() && !$("ol-govde").value.trim()) { durum("Konu ve metin boş; kaydedilecek bir şey yok.", "bad"); return null; }
+      var s = st.sablon, u = st.uniId && uniBul(st.uniId);
+      var prog = u && st.progIdx != null ? (u.uni.programlar || [])[st.progIdx] : null;
+      var d = depoOku(), simdi = new Date().toISOString();
+      var k = st.kayitId && d.kayitlar.filter(function (x) { return x.id === st.kayitId; })[0];
+      if (!k) {
+        k = E.yeniKayit({ sablonId: s ? s.id : null, taslakId: !s && st.taslak ? st.taslak.id : null });
+        d.kayitlar.unshift(k);
+      }
+      k.alici = v;
+      k.aliciAd = s ? aliciAdi() : st.taslak ? st.taslak.kime : (k.aliciAd || "");
+      if (s && E.universiteSecimi(s).gerekli) { k.universiteId = st.uniId || null; k.programAd = prog ? prog.ad : null; }
+      k.konu = $("ol-konu").value; k.govde = $("ol-govde").value; k.guncelleme = simdi;
+      if (yeniDurum === "gonderildi" && k.durum === "taslak") { k.durum = "gonderildi"; k.gonderim = simdi; }
+      if (!depoYaz(d)) { durum("Kaydedilemedi: tarayıcı depolaması dolu ya da kapalı.", "bad"); return null; }
+      st.kayitId = k.id;
+      $("ol-kicker").textContent = "Kayıtlı yazışma · " + DURUM[k.durum];
+      gecmisCiz();
+      return k;
+    }
+    $("ol-taslak").addEventListener("click", function () {
+      var k = kaydet("taslak"); if (!k) return;
+      durum(k.durum === "taslak" ? "Taslak kaydedildi. Geçmişten istediğin zaman açıp devam edebilirsin." : "Değişiklikler kaydedildi (durum: " + DURUM[k.durum] + ").", "ok");
+    });
+    $("ol-gonderildi").addEventListener("click", function () {
+      var kalan = E.kalanEksikler($("ol-konu").value + "\n" + $("ol-govde").value);
+      if (st && st.taslak) kalan = kalan.concat(E.yerTutucuKalan($("ol-konu").value + "\n" + $("ol-govde").value));
+      if (kalan.length && onay !== "gonderildi") {
+        onay = "gonderildi";
+        durum("Metinde hâlâ " + kalan.length + " eksik alan var. Yine de gönderdiysen “Gönderildi olarak işaretle”ye bir kez daha bas.", "bad");
+        return;
+      }
+      onay = null;
+      var k = kaydet("gonderildi"); if (!k) return;
+      durum("Gönderildi olarak işaretlendi (" + fmt(k.gonderim) + "). Yanıt gelince geçmişten not ekleyebilirsin.", "ok");
+      $("ol-durum").focus();
+    });
+
+    // ================= GEÇMİŞ =================
+    var filtre = "hepsi";
+    function gecmisCiz() {
+      var d = depoOku(), say = { hepsi: d.kayitlar.length, taslak: 0, gonderildi: 0, yanit: 0 };
+      d.kayitlar.forEach(function (k) { say[k.durum]++; });
+      $("gc-filtre").innerHTML = [["hepsi", "Tümü"], ["taslak", "Taslak"], ["gonderildi", "Gönderildi"], ["yanit", "Yanıt geldi"]].map(function (f) {
+        return '<button type="button" class="chip" data-filtre="' + f[0] + '" aria-pressed="' + (filtre === f[0]) + '">' + f[1] + ' <span class="chip-count">' + say[f[0]] + '</span></button>';
+      }).join("");
+      $("gc-filtre").hidden = !d.kayitlar.length;
+      $("sek-gecmis-say").textContent = d.kayitlar.length ? String(d.kayitlar.length) : "";
+      var liste = d.kayitlar.filter(function (k) { return filtre === "hepsi" || k.durum === filtre; });
+      if (!d.kayitlar.length) {
+        $("gc-root").innerHTML = '<div class="empty-state"><div class="empty-ico" aria-hidden="true">' + ICON.mail + '</div><h3>Henüz yazışma yok</h3><p>Bir şablonla e-posta hazırlayıp “Taslak olarak kaydet” ya da “Gönderildi olarak işaretle”ye bastığında burada görünür.</p></div>';
+        return;
+      }
+      if (!liste.length) { $("gc-root").innerHTML = '<div class="empty-state"><h3>Bu durumda yazışma yok</h3></div>'; return; }
+      $("gc-root").innerHTML = '<ul class="mail-list">' + liste.map(kayitSatiri).join("") + '</ul>';
+    }
+    function kayitSatiri(k) {
+      var s = sablonBul(k.sablonId) || (k.taslakId && taslakBul(k.taslakId) ? { baslik: "Hazır teyit taslağı" } : null) ||
+        (ilkSablon(k.sablonId) ? { baslik: (/^takip-/.test(k.sablonId) ? "Takip e-postası" : "Üniversiteye ilk e-posta") } : null);
+      var u = k.universiteId && uniBul(k.universiteId);
+      var kime = [k.aliciAd || (u && u.uni.ad) || "", k.alici ? "<" + k.alici + ">" : ""].filter(Boolean).join(" ");
+      var tarihler = ["Oluşturma: " + fmt(k.olusturma)];
+      if (k.gonderim) tarihler.push("Gönderim: " + fmt(k.gonderim));
+      if (k.yanitTarihi) tarihler.push("Yanıt: " + fmt(k.yanitTarihi));
+      var hid = "gc-h-" + k.id;
+      return '<li class="mail-item" data-id="' + esc(k.id) + '" data-durum="' + esc(k.durum) + '">' +
+        '<article aria-labelledby="' + hid + '">' +
+        '<div class="mail-item-head">' +
+          '<span class="mail-state mail-state-' + esc(k.durum) + '">' + DURUM[k.durum] + '</span>' +
+          '<h3 id="' + hid + '">' + esc(k.konu || "(konu yok)") + '</h3>' +
+        '</div>' +
+        '<p class="mail-meta">' + (kime ? '<span>' + ICON.user + esc(kime) + '</span>' : "") +
+          (k.programAd ? '<span>' + esc(k.programAd) + '</span>' : "") +
+          (s ? '<span>' + esc(s.baslik) + '</span>' : "") + '</p>' +
+        '<p class="mail-dates">' + tarihler.map(esc).join(" · ") + '</p>' +
+        (k.yanitNotu ? '<div class="reply-note"><strong>Yanıt notu</strong><p>' + esc(k.yanitNotu) + '</p></div>' : "") +
+        '<div class="mail-actions">' +
+          '<button type="button" class="btn-ghost" data-act="ac">Aç ve düzenle</button>' +
+          (k.durum === "taslak" ? '<button type="button" class="btn-ghost" data-act="gonderildi">Gönderildi olarak işaretle</button>' : "") +
+          '<button type="button" class="btn-ghost" data-act="not" aria-expanded="false" aria-controls="gc-not-' + esc(k.id) + '">' + (k.yanitNotu ? "Yanıt notunu düzenle" : "Yanıt notu ekle") + '</button>' +
+          '<button type="button" class="btn-ghost btn-danger" data-act="sil">Sil</button>' +
+        '</div>' +
+        '<form class="reply-form" id="gc-not-' + esc(k.id) + '" hidden>' +
+          '<label for="gc-not-t-' + esc(k.id) + '" class="field-label">Yanıt notu</label>' +
+          '<textarea class="text-input" id="gc-not-t-' + esc(k.id) + '" rows="3" maxlength="2000" placeholder="Kurum ne yanıt verdi? Tarih, kişi, istenen belge…">' + esc(k.yanitNotu || "") + '</textarea>' +
+          '<label class="check-row"><input type="checkbox" name="yanit"' + (k.durum !== "taslak" ? " checked" : "") + '> <span>Durumu “Yanıt geldi” yap</span></label>' +
+          '<div class="btn-row"><button type="submit" class="btn-primary">Notu kaydet</button><button type="button" class="btn-ghost" data-act="not-iptal">Vazgeç</button></div>' +
+        '</form>' +
+        '</article></li>';
+    }
+    function kayitGuncelle(id, fn) {
+      var d = depoOku(), k = d.kayitlar.filter(function (x) { return x.id === id; })[0];
+      if (!k) return null;
+      if (fn(k, d) === false) return null;
+      k.guncelleme = new Date().toISOString();
+      depoYaz(d); return k;
+    }
+    function gcDuyur(msg) { var el = $("gc-duyuru"); if (el) el.textContent = msg; }
+    $("gc-filtre").addEventListener("click", function (e) {
+      var b = e.target.closest("[data-filtre]"); if (!b) return;
+      filtre = b.dataset.filtre; gecmisCiz();
+      var nb = $("gc-filtre").querySelector('[data-filtre="' + filtre + '"]'); if (nb) nb.focus();
+    });
+    $("gc-root").addEventListener("click", function (e) {
+      var b = e.target.closest("[data-act]"); if (!b) return;
+      var li = b.closest(".mail-item"), id = li.dataset.id, act = b.dataset.act;
+      if (act === "ac") {
+        var k = depoOku().kayitlar.filter(function (x) { return x.id === id; })[0];
+        if (k && ilkSablon(k.sablonId)) ilkAc(k);
+        else if (k) ac({ kayit: k });
+      } else if (act === "gonderildi") {
+        kayitGuncelle(id, function (k) { k.durum = "gonderildi"; k.gonderim = new Date().toISOString(); });
+        gecmisCiz(); gcDuyur("Gönderildi olarak işaretlendi.");
+        var nli = $("gc-root").querySelector('[data-id="' + id + '"] [data-act="ac"]'); if (nli) nli.focus();
+        if (st && st.kayitId === id) $("ol-kicker").textContent = "Kayıtlı yazışma · Gönderildi";
+      } else if (act === "not") {
+        var f = $("gc-not-" + id), acik = f.hidden;
+        f.hidden = !acik; b.setAttribute("aria-expanded", String(acik));
+        if (acik) f.querySelector("textarea").focus();
+      } else if (act === "not-iptal") {
+        var f2 = b.closest("form"); f2.hidden = true;
+        var nb = li.querySelector('[data-act="not"]'); nb.setAttribute("aria-expanded", "false"); nb.focus();
+      } else if (act === "sil") {
+        if (b.dataset.onay !== "1") {
+          b.dataset.onay = "1"; b.textContent = "Emin misin? Sil";
+          setTimeout(function () { if (b.isConnected) { b.dataset.onay = ""; b.textContent = "Sil"; } }, 5000);
+          return;
+        }
+        var d = depoOku(); d.kayitlar = d.kayitlar.filter(function (x) { return x.id !== id; }); depoYaz(d);
+        if (st && st.kayitId === id) { st.kayitId = null; $("ol-kicker").textContent = "Yeni yazışma (kayıt silindi)"; }
+        gecmisCiz(); gcDuyur("Yazışma silindi.");
+        $("gc-title").setAttribute("tabindex", "-1"); $("gc-title").focus();
+      }
+    });
+    $("gc-root").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var f = e.target, id = f.closest(".mail-item").dataset.id;
+      var not = f.querySelector("textarea").value.trim(), yanit = f.querySelector('input[name="yanit"]').checked;
+      kayitGuncelle(id, function (k) {
+        k.yanitNotu = not;
+        if (not && yanit) { k.durum = "yanit"; k.yanitTarihi = k.yanitTarihi || new Date().toISOString(); if (!k.gonderim) k.gonderim = k.yanitTarihi; }
+      });
+      gecmisCiz(); gcDuyur(not ? "Yanıt notu kaydedildi." : "Yanıt notu silindi.");
+      var nb = $("gc-root").querySelector('[data-id="' + id + '"] [data-act="not"]'); if (nb) nb.focus();
+    });
+
+    // Ekran okuyucu duyurusu
+    var duyuru = document.createElement("p");
+    duyuru.id = "gc-duyuru"; duyuru.className = "visually-hidden"; duyuru.setAttribute("role", "status"); duyuru.setAttribute("aria-live", "polite");
+    $("gecmis").appendChild(duyuru);
+
+    if (A.rota && A.rota.aktif()) A.rota.anahtar($("sb-rota"), sablonlariCiz);
+    sablonlariCiz();
+    taslaklariCiz();
+    ozetYaz();
+    gecmisCiz();
+    // ================= SEKMELER (Tur 14 A5) =================
+    // Sekme = sayfa içi panel (role=tablist); ok tuşları / Home / End, kayan tabindex. Çapalar: #ilk-eposta · #sablonlar #taslaklar #teyit #olustur · #gecmis
+    var SEKMELER = ["ilk", "teyit", "gecmis"];
+    var SEKME_CAPA = { ilk: "#ilk-eposta", teyit: "#teyit", gecmis: "#gecmis" };
+    function sekmeSec(ad, odak, adresYaz) {
+      if (SEKMELER.indexOf(ad) < 0) ad = "ilk";
+      SEKMELER.forEach(function (x) {
+        var t = $("sek-" + x), on = x === ad;
+        t.setAttribute("aria-selected", String(on)); t.tabIndex = on ? 0 : -1;
+        $("pnl-" + x).hidden = !on;
+      });
+      if (odak) $("sek-" + ad).focus();
+      if (adresYaz) { try { history.replaceState(null, "", location.pathname.split("/").pop() + location.search + SEKME_CAPA[ad]); } catch (e) {} }
+    }
+    SEKMELER.forEach(function (x, i) {
+      var t = $("sek-" + x);
+      t.addEventListener("click", function () { sekmeSec(x, false, true); });
+      t.addEventListener("keydown", function (e) {
+        var n = e.key === "ArrowRight" ? (i + 1) % 3 : e.key === "ArrowLeft" ? (i + 2) % 3 : e.key === "Home" ? 0 : e.key === "End" ? 2 : -1;
+        if (n >= 0) { e.preventDefault(); sekmeSec(SEKMELER[n], true, true); }
+      });
+    });
+    function capadanSekme(h) {
+      if (/^#(sablonlar|taslaklar|teyit|olustur)$/.test(h)) return "teyit";
+      if (h === "#gecmis") return "gecmis";
+      return null;
+    }
+
+    // ================= ÜNİVERSİTEYE İLK E-POSTA (Ajan 14 Faz 2, plan tur14-ilk-basvuru-eposta-plani.md §3.1) =================
+    // Motor: E.ilkBasvuruHazirla (saf; e-posta GÖNDERMEZ). Bu bölüm yalnızca çağırır, metni gösterir ve kayda yazar.
+    var ILK = Array.isArray(window.APMEBERRA_ILK_BASVURU_SABLONLARI) ? window.APMEBERRA_ILK_BASVURU_SABLONLARI : [];
+    function ilkSablon(id) { return !!id && ILK.some(function (x) { return x && x.id === id; }); }
+    var BUGUN = typeof window.APMEBERRA_BUGUN === "string" ? window.APMEBERRA_BUGUN : undefined; // yalnızca test
+    var ULKE_KODLARI = Object.keys(A.ulkeAdlari || {});
+    var ie = { cc: null, uni: null, kim: null, amac: "ilk-iletisim", r: null, duzenlendi: false, kayitId: null, onay: false };
+    var veriYuk = {};
+    /** data/mevzuat/ulke/<cc>.js gerektiğinde (file:// altında da çalışır: dinamik <script>). */
+    function ulkeVeriYukle(cc) {
+      var V = window.APMEBERRA_ULKE_VERI || {};
+      if (V[cc]) return Promise.resolve(V[cc]);
+      if (ULKE_KODLARI.indexOf(cc) < 0) return Promise.resolve(null);
+      if (veriYuk[cc]) return veriYuk[cc];
+      veriYuk[cc] = new Promise(function (res) {
+        var sc = document.createElement("script"), bitti = false;
+        function son() { if (bitti) return; bitti = true; clearTimeout(t); var v = (window.APMEBERRA_ULKE_VERI || {})[cc] || null; if (!v) delete veriYuk[cc]; res(v); }
+        var t = setTimeout(son, 8000);
+        sc.src = "data/mevzuat/ulke/" + cc + ".js"; sc.async = true; sc.onload = son; sc.onerror = son;
+        document.head.appendChild(sc);
+      });
+      return veriYuk[cc];
+    }
+    function uniListesi(cc) {
+      var v = (window.APMEBERRA_ULKE_VERI || {})[cc];
+      var L = v && v.universiteler && Array.isArray(v.universiteler.liste) ? v.universiteler.liste.slice() : [];
+      return L.sort(function (a, b) { return (+a.sira || 999) - (+b.sira || 999); });
+    }
+    (function ulkeSecenekleri() {
+      var benim = profUlke.filter(function (u) { return ULKE_KODLARI.indexOf(u) >= 0; });
+      var diger = ULKE_KODLARI.filter(function (u) { return benim.indexOf(u) < 0; }).sort(function (a, b) { return ULKE_AD[a].localeCompare(ULKE_AD[b], "tr"); });
+      $("ie-ulke").innerHTML = '<option value="">— Ülke seç —</option>' +
+        (benim.length ? '<optgroup label="Hedef ülkelerim">' + benim.map(function (u) { return '<option value="' + u + '">' + esc(ULKE_AD[u]) + '</option>'; }).join("") + '</optgroup>' : "") +
+        '<optgroup label="' + (benim.length ? "Diğer ülkeler" : "Ülkeler") + '">' + diger.map(function (u) { return '<option value="' + u + '">' + esc(ULKE_AD[u]) + '</option>'; }).join("") + '</optgroup>';
+    })();
+    function ieAdresYaz() {
+      var q = ie.kim ? "?uni=" + encodeURIComponent(ie.kim) + "&amac=" + ie.amac : "";
+      try { history.replaceState(null, "", "yazismalar.html" + q + "#ilk-eposta"); } catch (e) {}
+    }
+    /** Ülkeyi seçer, listesini yükler; kim verilirse o üniversiteyi seçer. Dönüş: Promise<bool> (üniversite bulundu mu) */
+    function ieUlkeSec(cc, kim) {
+      ie.cc = cc || null; ie.uni = null; ie.kim = null;
+      $("ie-ulke").value = cc || "";
+      var sel = $("ie-uni");
+      if (!cc) { sel.innerHTML = '<option value="">Önce ülke seç</option>'; sel.disabled = true; ieHazirla(true); return Promise.resolve(false); }
+      sel.disabled = true; sel.innerHTML = '<option value="">Yükleniyor…</option>';
+      return ulkeVeriYukle(cc).then(function () {
+        if (ie.cc !== cc) return false;
+        var L = uniListesi(cc);
+        sel.innerHTML = L.length
+          ? '<option value="">— Üniversite seç (' + L.length + ', QS sırasıyla) —</option>' + L.map(function (u) {
+              return '<option value="' + esc(E.universiteKimligi(cc, u)) + '">' + esc((u.sira ? u.sira + ". " : "") + u.ad + (u.sehir ? " · " + u.sehir : "")) + '</option>';
+            }).join("")
+          : '<option value="">Bu ülkenin üniversite listesi hazırlanıyor</option>';
+        sel.disabled = !L.length;
+        var bulundu = false;
+        if (kim) {
+          var b = E.universiteBul(window.APMEBERRA_ULKE_VERI, kim);
+          if (b && b.ulke === cc) { sel.value = kim; ie.uni = b.universite; ie.kim = kim; bulundu = true; }
+        }
+        ieTakipVarsayilan();
+        ieHazirla(true);
+        return bulundu;
+      });
+    }
+    function ieTakipVarsayilan() {
+      if (!ie.kim) return;
+      var g = depoOku().kayitlar.filter(function (k) { return k.universiteId === ie.kim && k.gonderim; })
+        .sort(function (a, b) { return String(a.gonderim).localeCompare(String(b.gonderim)); })[0];
+      if (g && !$("ie-takip").value) $("ie-takip").value = String(g.gonderim).slice(0, 10);
+    }
+    function ieSonuc() {
+      return E.ilkBasvuruHazirla(prof, user, ie.uni, ie.cc, ie.amac, {
+        bugun: BUGUN,
+        program: $("ie-prog").value.trim() ? { ad: $("ie-prog").value.trim() } : null,
+        sinavlarim: A.panel.get().sinavlarim,
+        sinavKatalogu: KATALOG,
+        ilkGonderim: ie.amac === "takip" && $("ie-takip").value ? $("ie-takip").value : null
+      });
+    }
+    /** Metni (yeniden) hazırlar. metniYaz: elle düzenlenmiş olsa da üzerine yaz. */
+    function ieHazirla(metniYaz) {
+      var hazir = !!(ie.uni && ie.cc);
+      $("ie-grid").hidden = !hazir; $("ie-bos").hidden = hazir;
+      if (!hazir) { ie.r = null; return; }
+      var r = ieSonuc();
+      ie.r = r;
+      if (!r.sablonId) {
+        $("ie-grid").hidden = true; $("ie-bos").hidden = false;
+        $("ie-bos-h").textContent = "Bu durum için şablon yok";
+        $("ie-bos-p").textContent = (r.uyarilar[0] || "") + " Teyit taslakları sekmesindeki genel soruları kullanabilirsin.";
+        return;
+      }
+      $("ie-bos-h").textContent = "Üniversiteni seç, e-posta hazır gelsin";
+      if (metniYaz || !ie.duzenlendi) { $("ie-konu").value = r.konu; $("ie-govde").value = r.govde; ie.duzenlendi = false; }
+      ie.onay = false;
+      ieKontrolCiz(); ieMetaCiz();
+    }
+    function ieCozum(yol) {
+      var k = E.KAYNAK[yol] || {};
+      if (k.tur === "profil") return '<a href="profil.html#' + esc(k.capa || "pf-" + k.alan) + '">Profilini tamamla</a>'; // eposta.js 1.1.1: KAYNAK.capa
+      if (k.tur === "hesap") return '<a href="profil.html">Profilini tamamla</a>';
+      if (k.tur === "sinavlar") return '<a href="sinavlar.html">Sınavlarını “Listeme ekle” ile seç</a>';
+      if (k.tur === "secim") return '<button type="button" class="link-btn" data-ie-odak="' + (k.alan === "program" ? "ie-prog" : k.alan === "ilkGonderim" ? "ie-takip" : "ie-uni") + '">Yukarıdan seç</button>';
+      return '<a href="profil.html">Profilini tamamla</a>';
+    }
+    function ieKontrolCiz() {
+      var r = ie.r; if (!r) return;
+      var a = r.alici || {};
+      $("ie-alici").innerHTML = '<h3 class="ie-alt-h">Alıcı</h3>' + (a.eposta
+        ? '<p class="ie-alici is-ok">' + ICON.check + '<span><strong>' + esc(a.kurum || ie.uni.ad) + '</strong><code>' + esc(a.eposta) + '</code>' + extLink(a.kaynak, "Adresin kaynağı") + '</span></p>' + (a.not ? '<p class="recipient-note">' + esc(a.not) + '</p>' : "")
+        : '<p class="ie-alici is-warn">' + ICON.warn + '<span><strong>' + esc(a.kurum || ie.uni.ad) + '</strong>Bu üniversite için doğrulanmış e-posta adresi yok. Metni iletişim sayfasındaki forma yapıştır ya da sayfada yazan adrese gönder.' +
+            (isUrl(a.iletisimSayfasi) ? extLink(a.iletisimSayfasi, "İletişim / başvuru sayfası") : "") + '</span></p>');
+      var eks = r.eksikler.filter(function (y) { return y !== "sablon"; });
+      $("ie-eksik").innerHTML = eks.length
+        ? '<h3 class="ie-alt-h"><span class="step-dot warn" aria-hidden="true">!</span>' + eks.length + ' eksik bilgi</h3><p class="field-hint">Tamamlanmadan metinde “[eksik: …]” işareti kalır.</p><ul class="missing-list">' +
+            eks.map(function (y) { return '<li data-eksik="' + esc(y) + '"><span>' + esc(E.etiket(y)) + '</span>' + ieCozum(y) + '</li>'; }).join("") + '</ul>'
+        : '<h3 class="ie-alt-h"><span class="step-dot ok" aria-hidden="true">' + ICON.check + '</span>Bilgiler tamam</h3><p class="field-hint">Şablondaki tüm alanlar profilinden ve seçimlerinden dolduruldu.</p>';
+      // Kelime uyarısı canlı sayaçta; diğer motor uyarıları burada
+      var uy = r.uyarilar.filter(function (u) { return !/^Gövde \d+ kelime/.test(u) && !/kaynaklı bir e-posta adresi yok/.test(u); });
+      $("ie-uyarilar").innerHTML = uy.length ? '<h3 class="ie-alt-h">Uyarılar</h3><ul class="ie-uyari-list">' + uy.map(function (u) { return '<li>' + ICON.warn + '<span>' + esc(u) + '</span></li>'; }).join("") + '</ul>' : "";
+      $("ie-uyarilar").hidden = !uy.length;
+      $("ie-not").innerHTML = r.not ? '<h3 class="ie-alt-h">Prosedür notu</h3><p>' + esc(r.not) + '</p>' : "";
+      $("ie-not").hidden = !r.not;
+      var dy = $("ie-dayanak");
+      dy.querySelector("summary").textContent = "Dayanak: resmi iletişim yönergeleri (" + r.dayanak.length + ")";
+      dy.querySelector("ul").innerHTML = r.dayanak.map(function (u) { return '<li>' + extLink(u, host(u)) + '</li>'; }).join("");
+    }
+    function ieMetaCiz() {
+      if (!ie.r) return;
+      var konu = $("ie-konu").value, govde = $("ie-govde").value;
+      var n = E.kelimeSay(govde), ok = n >= 120 && n <= 220;
+      $("ie-sayac").textContent = n + " kelime";
+      $("ie-sayac").className = "ie-sayac " + (ok ? "is-ok" : "is-warn");
+      $("ie-kelime").innerHTML = '<h3 class="ie-alt-h">Uzunluk</h3><p class="ie-kelime ' + (ok ? "is-ok" : "is-warn") + '">' + (ok ? ICON.check : ICON.warn) + '<span><strong>' + n + ' kelime</strong> · hedef 120–220' +
+        (ok ? "" : n < 120 ? ". Kısa: sorunu ve kim olduğunu bir cümleyle netleştir." : ". Uzun: en fazla 3 soru bırak, tekrarları çıkar.") + '</span></p>';
+      var eposta = ie.r.alici && ie.r.alici.eposta ? ie.r.alici.eposta : "";
+      var m = E.mailto(eposta, konu, govde);
+      $("ie-mailto").href = m.uzun ? E.mailto(eposta, konu, "").url : m.url;
+      var kalan = E.kalanEksikler(konu + "\n" + govde), uyari = [];
+      if (kalan.length) uyari.push(ICON.warn + '<span>Metinde ' + kalan.length + ' “[eksik: …]” alanı var: ' + kalan.map(function (y) { return esc(E.etiket(y)); }).join(", ") + '. Göndermeden önce tamamla.</span>');
+      if (!eposta) uyari.push(ICON.info + '<span>Alıcı adresi boş: “E-posta programında aç” yalnızca konu ve metni doldurur; adresi üniversitenin iletişim sayfasından yaz ya da metni formuna yapıştır.</span>');
+      if (m.uzun) uyari.push(ICON.warn + '<span>Metin uzun (bağlantı ' + m.uzunluk + ' karakter); “E-posta programında aç” metni panoya kopyalar, sen gövdeye yapıştırırsın.</span>');
+      $("ie-uyari").hidden = !uyari.length;
+      $("ie-uyari").innerHTML = uyari.map(function (u) { return '<p>' + u + '</p>'; }).join("");
+      $("ie-duzen-not").innerHTML = ie.duzenlendi
+        ? 'Metni elle düzenledin; seçim değişince otomatik güncellenmez. <button type="button" class="link-btn" id="ie-yeniden">Şablondan yeniden oluştur</button>'
+        : "Göndermeden önce metni dilediğin gibi düzenleyebilirsin.";
+    }
+    function ieDurum(msg, tur) { var el = $("ie-durum"); el.className = "form-alert is-" + (tur || "info"); el.textContent = msg || ""; el.hidden = !msg; }
+
+    $("ie-ulke").addEventListener("change", function () { ie.duzenlendi = false; ie.kayitId = null; ieDurum(""); ieUlkeSec(this.value).then(ieAdresYaz); });
+    $("ie-uni").addEventListener("change", function () {
+      var kim = this.value, b = kim ? E.universiteBul(window.APMEBERRA_ULKE_VERI, kim) : null;
+      ie.uni = b ? b.universite : null; ie.kim = b ? kim : null; ie.kayitId = null; ie.duzenlendi = false; ieDurum("");
+      ieTakipVarsayilan(); ieHazirla(true); ieAdresYaz();
+    });
+    var progTmr;
+    $("ie-prog").addEventListener("input", function () { clearTimeout(progTmr); progTmr = setTimeout(function () { ieHazirla(false); }, 200); });
+    $("ie-form").addEventListener("change", function (e) {
+      if (e.target.name === "ie-amac") { ie.amac = e.target.value; $("ie-takip-wrap").hidden = ie.amac !== "takip"; ie.kayitId = null; ieTakipVarsayilan(); ieHazirla(false); ieAdresYaz(); }
+      if (e.target.id === "ie-takip") ieHazirla(false);
+    });
+    $("ie-form").addEventListener("submit", function (e) { e.preventDefault(); });
+    ["ie-konu", "ie-govde"].forEach(function (id) { $(id).addEventListener("input", function () { ie.duzenlendi = true; ie.onay = false; ieMetaCiz(); }); });
+    $("pnl-ilk").addEventListener("click", function (e) {
+      if (e.target.id === "ie-yeniden") { ieHazirla(true); $("ie-govde").focus(); ieDurum("Metin şablondan yeniden oluşturuldu.", "info"); return; }
+      var o = e.target.closest("[data-ie-odak]"); if (o && $(o.dataset.ieOdak)) $(o.dataset.ieOdak).focus();
+    });
+    $("ie-kopyala").addEventListener("click", function () {
+      kopyala($("ie-konu").value + "\n\n" + $("ie-govde").value).then(function (ok) {
+        ieDurum(ok ? "Konu ve metin panoya kopyalandı. Kendi e-posta adresinden gönderdikten sonra “Gönderildi olarak işaretle”ye bas." : "Kopyalanamadı; metni seçip Ctrl+C ile kopyala.", ok ? "ok" : "bad");
+        if (!ok) { $("ie-govde").focus(); $("ie-govde").select(); }
+      });
+    });
+    $("ie-konu-kopyala").addEventListener("click", function () { kopyala($("ie-konu").value).then(function (ok) { ieDurum(ok ? "Konu panoya kopyalandı." : "Kopyalanamadı; konuyu seçip kopyala.", ok ? "ok" : "bad"); }); });
+    $("ie-mailto").addEventListener("click", function () {
+      ieMetaCiz();
+      var eposta = ie.r && ie.r.alici && ie.r.alici.eposta ? ie.r.alici.eposta : "";
+      var m = E.mailto(eposta, $("ie-konu").value, $("ie-govde").value);
+      if (m.uzun) kopyala($("ie-govde").value).then(function (ok) { ieDurum(ok ? "Metin uzun olduğu için panoya kopyalandı: e-posta programında gövdeye yapıştır (Ctrl+V)." : "Metin uzun ve panoya kopyalanamadı; önce “Kopyala”yı dene.", ok ? "info" : "bad"); });
+      else ieDurum("E-posta programın açılıyor. Kendi adresinden gönderdikten sonra buraya dönüp “Gönderildi olarak işaretle”ye bas.", "info");
+    });
+    /** İlk e-postayı apmeberra:yazisma:v1 deposuna yazar (E.yeniKayit). Dönüş: kayıt | null */
+    function ieKaydet(yeniDurum) {
+      if (!ie.r || !ie.r.sablonId) return null;
+      if (!$("ie-konu").value.trim() && !$("ie-govde").value.trim()) { ieDurum("Konu ve metin boş; kaydedilecek bir şey yok.", "bad"); return null; }
+      var d = depoOku(), simdi = new Date().toISOString();
+      var k = ie.kayitId && d.kayitlar.filter(function (x) { return x.id === ie.kayitId; })[0];
+      if (!k) {
+        k = E.yeniKayit({ sablonId: ie.r.sablonId, universiteId: ie.kim, programAd: $("ie-prog").value.trim(), alici: ie.r.alici && ie.r.alici.eposta || "", aliciAd: (ie.r.alici && ie.r.alici.kurum) || ie.uni.ad });
+        d.kayitlar.unshift(k);
+      }
+      k.sablonId = ie.r.sablonId; k.universiteId = ie.kim; k.programAd = $("ie-prog").value.trim() || null;
+      k.konu = $("ie-konu").value; k.govde = $("ie-govde").value; k.guncelleme = simdi;
+      if (yeniDurum === "gonderildi" && k.durum === "taslak") { k.durum = "gonderildi"; k.gonderim = simdi; }
+      if (!depoYaz(d)) { ieDurum("Kaydedilemedi: tarayıcı depolaması dolu ya da kapalı.", "bad"); return null; }
+      ie.kayitId = k.id;
+      gecmisCiz();
+      return k;
+    }
+    $("ie-taslak").addEventListener("click", function () {
+      var k = ieKaydet("taslak"); if (!k) return;
+      ieDurum(k.durum === "taslak" ? "Taslak kaydedildi. Yazışma geçmişinden istediğin zaman açıp devam edebilirsin." : "Değişiklikler kaydedildi (durum: " + DURUM[k.durum] + ").", "ok");
+    });
+    $("ie-gonderildi").addEventListener("click", function () {
+      var kalan = E.kalanEksikler($("ie-konu").value + "\n" + $("ie-govde").value);
+      if (kalan.length && !ie.onay) { ie.onay = true; ieDurum("Metinde hâlâ " + kalan.length + " eksik alan var. Yine de gönderdiysen “Gönderildi olarak işaretle”ye bir kez daha bas.", "bad"); return; }
+      ie.onay = false;
+      var k = ieKaydet("gonderildi"); if (!k) return;
+      ieDurum("Gönderildi olarak işaretlendi (" + fmt(k.gonderim) + "). Yanıt gelince Yazışma geçmişinden not ekleyebilirsin; 10 iş günü yanıt gelmezse Amaç › Takip ile kısa bir hatırlatma hazırla.", "ok");
+      $("ie-durum").focus();
+    });
+    /** Geçmişteki ilk e-posta kaydını İlk e-posta sekmesinde açar. */
+    function ilkAc(k) {
+      sekmeSec("ilk");
+      var cc = String(k.universiteId || "").split("-")[0];
+      ie.amac = /^takip-/.test(k.sablonId) ? "takip" : "ilk-iletisim";
+      document.querySelectorAll('input[name="ie-amac"]').forEach(function (r) { r.checked = r.value === ie.amac; });
+      $("ie-takip-wrap").hidden = ie.amac !== "takip";
+      $("ie-prog").value = k.programAd || "";
+      ieUlkeSec(cc, k.universiteId).then(function () {
+        if (!ie.uni) { ieDurum("Bu kaydın üniversitesi artık listede yok; metni Teyit taslakları sekmesindeki oluşturucuda açabilirsin.", "bad"); return; }
+        $("ie-konu").value = k.konu; $("ie-govde").value = k.govde; ie.duzenlendi = true; ie.kayitId = k.id;
+        ieMetaCiz(); ieDurum("Kayıtlı yazışma açıldı (" + DURUM[k.durum] + ").", "info"); ieAdresYaz();
+        $("ie-govde").focus({ preventScroll: true }); document.querySelector(".yz-sekmeler").scrollIntoView({ block: "start" });
+      });
+    }
+
+    // ================= SON TARİHLER ŞERİDİ (Tur 14 A5; K14-5) =================
+    (function sonTarihler() {
+      var g = A.sonTarihGirdisi ? A.sonTarihGirdisi({ bugun: BUGUN }) : null;
+      var list = $("st-list");
+      if (!g || !A.bugun) { list.innerHTML = '<li class="st-bos">Tarih verisi yüklenemedi.</li>'; return; }
+      g.n = 8; g.nGecmis = 4;
+      var yt = A.bugun.yaklasanTarihler(g);
+      var gelen = yt.filter(function (x) { return !x.suresiDoldu; }), gecen = yt.filter(function (x) { return x.suresiDoldu; });
+      var TUR_ALT = { ap: "AP · College Board", sinav: "Sınav · listende", rota: (g.rotaUlke ? g.rotaUlke + " rotası" : "Rota") + " · ay düzeyinde", duyuru: "Duyuru" };
+      function kalan(x) { return x.ayDuzeyi ? (x.kalanGun === 0 ? "ayın son günü" : "ay bitimine " + x.kalanGun + " gün") : (x.kalanGun === 0 ? "bugün" : x.kalanGun === 1 ? "yarın" : x.kalanGun + " gün kaldı"); }
+      list.innerHTML = gelen.length ? gelen.map(function (x) {
+        return '<li class="st-item' + (x.kalanGun <= 14 ? " is-yakin" : "") + (x.ayDuzeyi ? " is-ay" : "") + '" data-st="' + esc(x.anahtar) + '"><a href="' + esc(x.href) + '">' +
+          '<span class="yt-tarih" aria-hidden="true"><b>' + esc(x.ust) + '</b><small>' + esc(x.alt) + '</small></span>' +
+          '<span class="st-govde"><strong>' + esc(x.baslik) + '</strong><span><span class="visually-hidden">' + esc(x.tarihMetni) + ' · </span>' + esc(TUR_ALT[x.tur] || "") + ' · ' + esc(kalan(x)) + '</span></span></a></li>';
+      }).join("") : '<li class="st-bos">Önümüzdeki dönemde kayıtlı bir son tarih yok. Sınavlar sayfasında girmek istediğin sınavları “Listeme ekle” ile işaretlediğinde tarihleri burada görünür.</li>';
+      // İlk 4 tarih görünür; kalanı "daha fazla" ile (şerit kısa kalsın, oluşturucu ilk ekrana yakın olsun)
+      var GORUNUR = 4, fazla = Math.max(0, gelen.length - GORUNUR), daha = $("st-daha");
+      list.querySelectorAll(".st-item").forEach(function (li, i) { if (i >= GORUNUR) li.hidden = true; });
+      daha.hidden = !fazla;
+      daha.textContent = "+" + fazla + " tarih daha";
+      daha.addEventListener("click", function () {
+        var ac = daha.getAttribute("aria-expanded") !== "true";
+        list.querySelectorAll(".st-item").forEach(function (li, i) { if (i >= GORUNUR) li.hidden = !ac; });
+        daha.setAttribute("aria-expanded", String(ac));
+        daha.textContent = ac ? "Daha az göster" : "+" + fazla + " tarih daha";
+      });
+      var gc = $("st-gecmis");
+      gc.hidden = !gecen.length;
+      gc.innerHTML = gecen.length ? '<h3 class="st-gecmis-h">Süresi dolanlar</h3><ul class="st-gecmis-list">' + gecen.map(function (x) {
+        return '<li data-st="' + esc(x.anahtar) + '"><span class="st-doldu">Süresi doldu</span><span class="st-gecmis-govde"><strong>' + esc(x.baslik) + '</strong><span>' + esc(x.tarihMetni) + ' · ' + esc(x.sonrakiMetni) + '</span></span></li>';
+      }).join("") + '</ul>' : "";
+      var ay = gelen.some(function (x) { return x.ayDuzeyi; });
+      $("st-not").hidden = !ay;
+      $("st-not").textContent = ay ? "Rota adımlarının tarihi ay düzeyindedir; kesin son gün adımın resmi kaynağındadır." : "";
+      if (g.rotaU) $("st-rota").setAttribute("href", "rota.html?ulke=" + g.rotaU);
+    })();
+
+    // ================= Açılış: derin bağlantı ve çapalar =================
+    // ?uni=<universiteKimligi>&amac=ilk-iletisim|takip → İlk e-posta sekmesi o üniversiteyle (Ajan 14 planı §3.1-7)
+    var q = /[?&]sablon=([^&#]+)/.exec(location.search);
+    var qt = /[?&]taslak=([^&#]+)/.exec(location.search);
+    var qu = /[?&]uni=([a-z0-9-]+)/.exec(location.search);
+    var qa = /[?&]amac=(ilk-iletisim|takip)(?:&|#|$)/.exec(location.search);
+    sekmeSec(q || qt ? "teyit" : (capadanSekme(location.hash) || "ilk"));
+    // Sayfa içi çapa bağlantıları (#taslaklar, #gecmis, #ilk-eposta, #son-tarihler) da sekmeyi seçer
+    window.addEventListener("hashchange", function () {
+      var h = location.hash, t = capadanSekme(h) || (h === "#ilk-eposta" ? "ilk" : null);
+      if (t) sekmeSec(t);
+      if (h === "#son-tarihler") $("son-tarihler").focus();
+    });
+    if (location.hash === "#son-tarihler") $("son-tarihler").focus();
+    if (q) { var sq = sablonBul(decodeURIComponent(q[1])); if (sq) ac({ sablon: sq }); }
+    if (qt && !q) { var tq = taslakBul(decodeURIComponent(qt[1])); if (tq) ac({ taslak: tq }); }
+    if (qa) { ie.amac = qa[1]; document.querySelectorAll('input[name="ie-amac"]').forEach(function (r) { r.checked = r.value === ie.amac; }); $("ie-takip-wrap").hidden = ie.amac !== "takip"; }
+    if (qu && !q && !qt) {
+      var kimlik = qu[1], ccq = kimlik.split("-")[0];
+      if (ULKE_KODLARI.indexOf(ccq) >= 0) {
+        ieUlkeSec(ccq, kimlik).then(function (bulundu) {
+          if (!bulundu) ieDurum("Bağlantıdaki üniversite listede bulunamadı; listeden seç.", "bad");
+          document.querySelector(".yz-sekmeler").scrollIntoView({ block: "start" });
+        });
+      } else { ieUlkeSec(null); ieDurum("Bağlantıdaki üniversite tanınmadı; ülke ve üniversiteyi seç.", "bad"); }
+    } else if (!q && !qt) {
+      var ilkUlke = profUlke.indexOf(prof.aktifRota) >= 0 ? prof.aktifRota : profUlke[0];
+      if (ilkUlke) ieUlkeSec(ilkUlke);
+    }
+
+  })();
+  </script>
+</body>
+</html>

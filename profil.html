@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil ve hesap | AP MEBERRA</title>
+  <meta name="description" content="Durumunu, hedef ülkelerini ve eğitim dilini belirle; şifreni değiştir, ilerlemeni yedekle.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="brand-badge">AP MEBERRA</div>
+      <div><div class="brand-title">Profil</div></div>
+    </a>
+    <div class="nav-actions"></div>
+  </nav>
+
+  <main class="main-container" id="main-content">
+
+    <!-- ============ İLK GİRİŞ SİHİRBAZI ============ -->
+    <div class="wizard" id="wizard" hidden>
+      <header class="page-head u-mb-6">
+        <span class="eyebrow">Hoş geldin</span>
+        <h1 id="wz-hello">Seni tanıyalım</h1>
+        <p>Dört kısa adım. Cevaplarına göre sana uygun şartları, üniversiteleri ve yol haritanı göstereceğiz. Bunları sonradan Profil sayfasından değiştirebilirsin.</p>
+      </header>
+
+      <ol class="wizard-progress wizard-progress-4" aria-label="Adımlar">
+        <li id="wzp-1">1. Durumun</li>
+        <li id="wzp-2">2. Ayrıntılar</li>
+        <li id="wzp-3">3. Hedef ülkeler</li>
+        <li id="wzp-4">4. Eğitim dili</li>
+      </ol>
+
+      <form id="wz-form" class="wizard-card" novalidate>
+        <div class="form-alert" id="wz-alert" role="alert" tabindex="-1" hidden></div>
+
+        <section id="wz-step-1" aria-labelledby="wz-t1">
+          <fieldset aria-describedby="wz-ogrenciModeli-err">
+            <legend><h2 id="wz-t1" tabindex="-1">Şu an hangi durumdasın?</h2></legend>
+            <p class="step-lead">Lise öğrencileri ve lise mezunları lisansa, üniversite mezunları yüksek lisansa başvurur; şartlar buna göre değişir.</p>
+            <div class="choice-grid" id="wz-ogrenciModeli-group" data-choice-group></div>
+            <p class="field-error u-mt-2" id="wz-ogrenciModeli-err"></p>
+          </fieldset>
+        </section>
+
+        <section id="wz-step-2" aria-labelledby="wz-t2" hidden>
+          <h2 id="wz-t2" tabindex="-1">Biraz daha ayrıntı</h2>
+          <p class="step-lead" id="wz-t2-lead">Takvimini ve yol haritanı buna göre hesaplayacağız.</p>
+          <div class="field" id="wz-okul-wrap">
+            <label for="wz-okul">Lisenin adı (isteğe bağlı)</label>
+            <input class="text-input" id="wz-okul" list="okul-listesi" autocomplete="organization" maxlength="100" aria-describedby="wz-okul-hint wz-okul-err">
+            <p class="field-hint" id="wz-okul-hint">Listede okulun yoksa adını yazman yeterli.</p>
+            <p class="field-error" id="wz-okul-err"></p>
+          </div>
+          <fieldset class="u-min0 u-mt-4" id="wz-sinif-wrap" aria-describedby="wz-sinif-err">
+            <legend class="field-label">Kaçıncı sınıftasın?</legend>
+            <div class="grade-grid" id="wz-sinif-group" data-choice-group></div>
+            <p class="field-error u-mt-2" id="wz-sinif-err"></p>
+          </fieldset>
+          <div class="mezun-box" id="wz-uni" hidden>
+              <p class="mezun-box-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>Lisans bilgilerin</p>
+              <div class="field">
+                <label for="wz-lisansAlani">Lisans alanın</label>
+                <input class="text-input" id="wz-lisansAlani" list="lisans-alan-listesi" maxlength="80" placeholder="ör. Makine Mühendisliği" aria-describedby="wz-lisansAlani-err">
+                <p class="field-error" id="wz-lisansAlani-err"></p>
+              </div>
+              <div class="field">
+                <label for="wz-lisansUniversitesi">Üniversiten <span class="opt-tag">isteğe bağlı</span></label>
+                <input class="text-input" id="wz-lisansUniversitesi" maxlength="100" autocomplete="organization" aria-describedby="wz-lisansUniversitesi-err">
+                <p class="field-error" id="wz-lisansUniversitesi-err"></p>
+              </div>
+              <fieldset class="u-min0 mezun-q" aria-describedby="wz-lisansDurumu-err">
+                <legend class="field-label">Lisans durumun</legend>
+                <div class="choice-grid yerlesme-grid" id="wz-lisansDurumu-group" data-choice-group></div>
+                <p class="field-error u-mt-1" id="wz-lisansDurumu-err"></p>
+              </fieldset>
+              <div class="field-row">
+                <div class="field">
+                  <label for="wz-lisansMezuniyetYili" id="wz-lisansMezuniyetYili-label">Mezuniyet yılın</label>
+                  <input class="text-input" id="wz-lisansMezuniyetYili" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="ör. 2026" aria-describedby="wz-lisansMezuniyetYili-err">
+                  <p class="field-error" id="wz-lisansMezuniyetYili-err"></p>
+                </div>
+                <div class="field">
+                  <label for="wz-gpa4">Not ortalaman (4’lük) <span class="opt-tag">isteğe bağlı</span></label>
+                  <input class="text-input" id="wz-gpa4" inputmode="decimal" maxlength="4" placeholder="ör. 3.25" aria-describedby="wz-gpa4-hint wz-gpa4-err">
+                  <p class="field-hint" id="wz-gpa4-hint">Transkriptindeki 4’lük not. 100’lük notu kendin çevirme.</p>
+                  <p class="field-error" id="wz-gpa4-err"></p>
+                </div>
+              </div>
+            </div>
+          <div class="mezun-box" id="wz-mezun" hidden>
+            <p class="mezun-box-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>Hedef yılın</p>
+            <div class="field">
+              <label for="wz-hedefBaslangicYili">Hangi akademik yılda başlamak istiyorsun?</label>
+              <select class="text-input" id="wz-hedefBaslangicYili" aria-describedby="wz-hedefBaslangicYili-hint wz-hedefBaslangicYili-err"></select>
+              <p class="field-hint" id="wz-hedefBaslangicYili-hint">Rotandaki tarihler bu yıla göre hesaplanır.</p>
+              <p class="field-error" id="wz-hedefBaslangicYili-err"></p>
+            </div>
+            <fieldset class="u-min0 mezun-q" id="wz-yerlesme" aria-describedby="wz-yerlesmeDurumu-hint wz-yerlesmeDurumu-err">
+              <legend class="field-label">YKS'de bir lisans programına yerleştin mi?</legend>
+              <p class="field-hint" id="wz-yerlesmeDurumu-hint">Almanya'da giriş hakkı yerleştiğin alana bağlıdır; Rotam YKS adımlarını buna göre gösterir.</p>
+              <div class="choice-grid yerlesme-grid" id="wz-yerlesmeDurumu-group" data-choice-group></div>
+              <p class="field-error u-mt-1" id="wz-yerlesmeDurumu-err"></p>
+            </fieldset>
+          </div>
+        </section>
+
+        <section id="wz-step-3" aria-labelledby="wz-t3" hidden>
+          <fieldset aria-describedby="wz-ulkeler-hint wz-ulkeler-err">
+            <legend><h2 id="wz-t3" tabindex="-1">Hangi ülkede okumak istiyorsun?</h2></legend>
+            <p class="step-lead" id="wz-ulkeler-hint">En fazla 5 ülke seçebilirsin. Almanya ve İtalya’da tarihli kişisel rota var; diğer ülkelerde genel yol haritası gösterilir.</p>
+            <div class="choice-grid ulke-choice-grid" id="wz-ulkeler-group" data-choice-group></div>
+            <p class="field-error u-mt-2" id="wz-ulkeler-err"></p>
+          </fieldset>
+          <fieldset class="first-route" id="wz-rota-wrap" aria-describedby="wz-rota-hint" hidden>
+            <legend class="field-label">Önce hangi rotayla başlamak istersin?</legend>
+            <p class="field-hint" id="wz-rota-hint">Her ülke ayrı izlenir; her rota kendi ülkesinin kurallarıyla ilerler. Seçimini Rotam sayfasından ya da profilinden istediğin zaman değiştirebilirsin.</p>
+            <div class="choice-grid route-grid" id="wz-rota-group" data-choice-group></div>
+          </fieldset>
+        </section>
+
+        <section id="wz-step-4" aria-labelledby="wz-t4" hidden>
+          <fieldset aria-describedby="wz-egitimDili-err">
+            <legend><h2 id="wz-t4" tabindex="-1">Hangi dilde okumak istiyorsun?</h2></legend>
+            <p class="step-lead">Şartlar, tarihler, dil sınavları ve burslar seçtiğin dile göre gelir. Ülke şartları sayfasında istediğin zaman diğer dile bakabilirsin.</p>
+            <div class="choice-grid yerlesme-grid" id="wz-egitimDili-group" data-choice-group></div>
+            <p class="field-error u-mt-2" id="wz-egitimDili-err"></p>
+          </fieldset>
+        </section>
+
+        <div class="wizard-nav">
+          <button type="button" class="btn-ghost" id="wz-back" hidden>← Geri</button>
+          <button type="submit" class="btn-primary" id="wz-next">Devam et →</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- ============ PROFİL DÜZENLEME + HESAP ============ -->
+    <div id="profile" hidden>
+      <div class="profile-id">
+        <span class="avatar" id="pf-avatar" aria-hidden="true"></span>
+        <div class="u-min0">
+          <h1 id="pf-name">Profil</h1>
+          <p id="pf-sub"></p>
+        </div>
+      </div>
+
+      <div class="profile-layout">
+        <section class="surface" aria-labelledby="pf-title">
+          <h2 class="panel-h" id="pf-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>Okul ve hedefler</h2>
+          <p class="panel-lead">Üniversite ve sınav listelerin bu bilgilere göre süzülür.</p>
+          <form id="pf-form" class="form-stack" novalidate>
+            <div class="form-alert" id="pf-alert" role="status" aria-live="polite" tabindex="-1" hidden></div>
+            <div class="field" id="pf-okul-wrap">
+              <label for="pf-okul">Okul adı</label>
+              <input class="text-input" id="pf-okul" list="okul-listesi" autocomplete="organization" maxlength="100" aria-describedby="pf-okul-err">
+              <p class="field-error" id="pf-okul-err"></p>
+            </div>
+            <fieldset class="u-min0" aria-describedby="pf-sinif-err" style="border: 0;">
+              <legend class="field-label u-mb-1">Durumun</legend>
+              <div class="grade-grid durum-grid" id="pf-sinif-group" data-choice-group></div>
+              <p class="field-error u-mt-1" id="pf-sinif-err"></p>
+            </fieldset>
+<div class="mezun-box" id="pf-uni" hidden>
+              <p class="mezun-box-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>Lisans bilgilerin</p>
+              <div class="field">
+                <label for="pf-lisansAlani">Lisans alanın</label>
+                <input class="text-input" id="pf-lisansAlani" list="lisans-alan-listesi" maxlength="80" placeholder="ör. Makine Mühendisliği" aria-describedby="pf-lisansAlani-err">
+                <p class="field-error" id="pf-lisansAlani-err"></p>
+              </div>
+              <div class="field">
+                <label for="pf-lisansUniversitesi">Üniversiten <span class="opt-tag">isteğe bağlı</span></label>
+                <input class="text-input" id="pf-lisansUniversitesi" maxlength="100" autocomplete="organization" aria-describedby="pf-lisansUniversitesi-err">
+                <p class="field-error" id="pf-lisansUniversitesi-err"></p>
+              </div>
+              <fieldset class="u-min0 mezun-q" aria-describedby="pf-lisansDurumu-err">
+                <legend class="field-label">Lisans durumun</legend>
+                <div class="choice-grid yerlesme-grid" id="pf-lisansDurumu-group" data-choice-group></div>
+                <p class="field-error u-mt-1" id="pf-lisansDurumu-err"></p>
+              </fieldset>
+              <div class="field-row">
+                <div class="field">
+                  <label for="pf-lisansMezuniyetYili" id="pf-lisansMezuniyetYili-label">Mezuniyet yılın</label>
+                  <input class="text-input" id="pf-lisansMezuniyetYili" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="ör. 2026" aria-describedby="pf-lisansMezuniyetYili-err">
+                  <p class="field-error" id="pf-lisansMezuniyetYili-err"></p>
+                </div>
+                <div class="field">
+                  <label for="pf-gpa4">Not ortalaman (4’lük) <span class="opt-tag">isteğe bağlı</span></label>
+                  <input class="text-input" id="pf-gpa4" inputmode="decimal" maxlength="4" placeholder="ör. 3.25" aria-describedby="pf-gpa4-hint pf-gpa4-err">
+                  <p class="field-hint" id="pf-gpa4-hint">Transkriptindeki 4’lük not. 100’lük notu kendin çevirme.</p>
+                  <p class="field-error" id="pf-gpa4-err"></p>
+                </div>
+              </div>
+            </div>
+            <div class="mezun-box" id="pf-mezun" hidden>
+              <p class="mezun-box-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>Mezun bilgileri</p>
+              <div class="field">
+                <label for="pf-hedefBaslangicYili">Hedef başlangıç yılı</label>
+                <select class="text-input" id="pf-hedefBaslangicYili" aria-describedby="pf-hedefBaslangicYili-hint pf-hedefBaslangicYili-err"></select>
+                <p class="field-hint" id="pf-hedefBaslangicYili-hint">Rotam ve e-posta şablonları tarihleri bu akademik yıla göre hesaplar.</p>
+                <p class="field-error" id="pf-hedefBaslangicYili-err"></p>
+              </div>
+              <fieldset class="u-min0 mezun-q" id="pf-yerlesme" aria-describedby="pf-yerlesmeDurumu-hint pf-yerlesmeDurumu-err">
+                <legend class="field-label">YKS yerleşme durumun</legend>
+                <p class="field-hint" id="pf-yerlesmeDurumu-hint">Almanya'da giriş hakkı yerleştiğin alana bağlıdır; Rotam YKS adımlarını buna göre gösterir.</p>
+                <div class="choice-grid yerlesme-grid" id="pf-yerlesmeDurumu-group" data-choice-group></div>
+                <p class="field-error u-mt-1" id="pf-yerlesmeDurumu-err"></p>
+              </fieldset>
+            </div>
+            <fieldset class="u-min0" aria-describedby="pf-ulkeler-err" style="border: 0;">
+              <legend class="field-label u-mb-1">Hedef ülkeler</legend>
+              <div class="choice-grid" id="pf-ulkeler-group" data-choice-group></div>
+              <p class="field-error u-mt-1" id="pf-ulkeler-err"></p>
+            </fieldset>
+            <fieldset class="first-route u-min0" id="pf-rota-wrap" aria-describedby="pf-rota-hint" style="border: 0;" hidden>
+              <legend class="field-label u-mb-1">Aktif rota</legend>
+              <div class="choice-grid route-grid" id="pf-rota-group" data-choice-group></div>
+              <p class="field-hint u-mt-1" id="pf-rota-hint">Bugün, Rotam, Sınavlar ve Yazışmalarım bu rotanın kurallarını öne alır.</p>
+            </fieldset>
+            <fieldset class="u-min0" aria-describedby="pf-egitimDili-err" style="border: 0;">
+              <legend class="field-label u-mb-1">Eğitim dili</legend>
+              <div class="choice-grid yerlesme-grid" id="pf-egitimDili-group" data-choice-group></div>
+              <p class="field-error u-mt-1" id="pf-egitimDili-err"></p>
+            </fieldset>
+            <div class="field">
+              <label for="pf-hedefAlan" id="pf-hedefAlan-label">Hedef alanın</label>
+              <input class="text-input" id="pf-hedefAlan" list="alan-listesi" maxlength="60" placeholder="Mühendislik" aria-describedby="pf-hedefAlan-hint pf-hedefAlan-err">
+              <p class="field-hint" id="pf-hedefAlan-hint">Almanya rotasında YKS’de yerleştiğin alan ve komşu alanlar için giriş hakkı doğar; Rotam bu alanı uyarıda kullanır.</p>
+              <p class="field-error" id="pf-hedefAlan-err"></p>
+            </div>
+            <fieldset class="extra-fields" id="iletisim" aria-describedby="pf-extra-hint">
+              <legend class="field-label">Resmi yazışma bilgileri <span class="opt-tag">isteğe bağlı</span></legend>
+              <p class="field-hint" id="pf-extra-hint">Üniversitelere ve kurumlara yazacağın e-postalar bu bilgilerle otomatik doldurulur. Boş bırakabilirsin; e-posta oluştururken eksikse sorulur.</p>
+              <div class="field-row">
+                <div class="field">
+                  <label for="pf-eposta">E-posta adresin</label>
+                  <input class="text-input" id="pf-eposta" type="email" inputmode="email" autocomplete="email" maxlength="120" placeholder="ad.soyad@ornek.com" aria-describedby="pf-eposta-err">
+                  <p class="field-error" id="pf-eposta-err"></p>
+                </div>
+                <div class="field">
+                  <label for="pf-dogumTarihi">Doğum tarihin</label>
+                  <input class="text-input" id="pf-dogumTarihi" type="date" autocomplete="bday" aria-describedby="pf-dogumTarihi-err">
+                  <p class="field-error" id="pf-dogumTarihi-err"></p>
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="pf-okulSehir">Okulunun şehri</label>
+                  <input class="text-input" id="pf-okulSehir" autocomplete="address-level2" maxlength="60" placeholder="İstanbul" aria-describedby="pf-okulSehir-err">
+                  <p class="field-error" id="pf-okulSehir-err"></p>
+                </div>
+                <div class="field" id="pf-mezuniyetYili-wrap" hidden>
+                  <label for="pf-mezuniyetYili">Mezuniyet yılın</label>
+                  <input class="text-input" id="pf-mezuniyetYili" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="ör. 2025" aria-describedby="pf-mezuniyetYili-hint pf-mezuniyetYili-err">
+                  <p class="field-hint" id="pf-mezuniyetYili-hint">Yalnızca mezunlar için. Öğrenciysen mezuniyet yılın sınıfından hesaplanır.</p>
+                  <p class="field-error" id="pf-mezuniyetYili-err"></p>
+                </div>
+              </div>
+            </fieldset>
+            <div class="btn-row">
+              <button type="submit" class="btn-primary" id="pf-save">Değişiklikleri kaydet</button>
+              <a class="btn-ghost" href="universiteler.html">Üniversitelerime git</a>
+              <a class="btn-ghost" href="yazismalar.html">Resmi yazışmalarım</a>
+            </div>
+          </form>
+        </section>
+
+        <section class="surface" id="hesap" aria-labelledby="hesap-title">
+          <h2 class="panel-h" id="hesap-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Hesap</h2>
+          <p class="panel-lead" id="hesap-user"></p>
+
+          <div class="sub-block">
+            <h3 class="panel-h u-fs-16">Şifre değiştir</h3>
+            <form id="pw-form" class="form-stack" novalidate>
+              <div class="form-alert" id="pw-alert" role="status" aria-live="polite" tabindex="-1" hidden></div>
+              <div class="field">
+                <label for="pw-eski">Mevcut şifre</label>
+                <div class="input-wrap">
+                  <input class="text-input" id="pw-eski" type="password" autocomplete="current-password" aria-describedby="pw-eski-err">
+                  <button type="button" class="pw-toggle" aria-controls="pw-eski" aria-pressed="false" aria-label="Şifreyi göster">
+                    <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18M10.6 5.1A10.4 10.4 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.2 4M6.6 6.6C3.7 8.4 2 12 2 12s3.6 7 10 7a9.8 9.8 0 0 0 5.4-1.6M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+                  </button>
+                </div>
+                <p class="field-error" id="pw-eski-err"></p>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="pw-yeni">Yeni şifre</label>
+                  <input class="text-input" id="pw-yeni" type="password" autocomplete="new-password" aria-describedby="pw-yeni-err">
+                  <p class="field-error" id="pw-yeni-err"></p>
+                </div>
+                <div class="field">
+                  <label for="pw-yeni2">Yeni şifre (tekrar)</label>
+                  <input class="text-input" id="pw-yeni2" type="password" autocomplete="new-password" aria-describedby="pw-yeni2-err">
+                  <p class="field-error" id="pw-yeni2-err"></p>
+                </div>
+              </div>
+              <button type="submit" class="btn-primary" id="pw-save" style="align-self: flex-start;">Şifreyi değiştir</button>
+            </form>
+          </div>
+
+          <div class="sub-block">
+            <h3 class="panel-h u-fs-16">Kurtarma kodu</h3>
+            <p class="panel-lead u-mb-2">Kodunu kaybettiysen şifrenle yeni bir kod üret. Eski kod geçersiz olur.</p>
+            <form id="rc-form" class="form-stack" novalidate>
+              <div class="field">
+                <label for="rc-sifre">Şifren</label>
+                <input class="text-input" id="rc-sifre" type="password" autocomplete="current-password" aria-describedby="rc-sifre-err">
+                <p class="field-error" id="rc-sifre-err"></p>
+              </div>
+              <button type="submit" class="btn-ghost" id="rc-submit" style="align-self: flex-start;">Yeni kurtarma kodu üret</button>
+              <div class="recovery-box" id="rc-box" hidden>
+                <strong>Yeni kurtarma kodun (yalnızca şimdi gösterilir)</strong>
+                <code class="recovery-code" id="rc-code"></code>
+                <div class="btn-row">
+                  <button type="button" class="btn-ghost" id="rc-copy">Kopyala</button>
+                  <button type="button" class="btn-ghost" id="rc-download">Dosya olarak indir (.txt)</button>
+                </div>
+                <p class="field-hint u-mt-2" id="rc-msg" role="status" aria-live="polite"></p>
+              </div>
+            </form>
+          </div>
+
+          <div class="sub-block" id="yedek">
+            <h3 class="panel-h u-fs-16">Yedek al / yükle</h3>
+            <p class="panel-lead u-mb-2">İlerlemen yalnızca bu tarayıcıda durur. Başka cihaza geçmek için yedek dosyası indir; diğer cihazda hesabına girip yükle.</p>
+            <p class="backup-last u-mb-2" id="bk-last"></p>
+            <div class="btn-row">
+              <button type="button" class="btn-primary" id="bk-export">Yedek al (.json)</button>
+              <input type="file" id="bk-file" accept=".json,application/json" class="visually-hidden">
+              <label for="bk-file" class="btn-ghost file-btn">Yedek yükle…</label>
+            </div>
+            <div class="backup-preview" id="bk-preview" role="region" aria-labelledby="bk-preview-title" hidden>
+              <h3 id="bk-preview-title" tabindex="-1">Bu yedeği yüklemek istiyor musun?</h3>
+              <p class="backup-meta" id="bk-meta"></p>
+              <fieldset class="backup-modes">
+                <legend>Nasıl yüklensin?</legend>
+                <label class="check-row"><input type="radio" name="bk-mode" value="merge" checked> <span><strong>Birleştir</strong> — bu cihazdaki ilerleme korunur, yedektekiler eklenir.</span></label>
+                <label class="check-row"><input type="radio" name="bk-mode" value="replace"> <span><strong>Değiştir</strong> — hesabındaki ilerleme silinir, yerine yedektekiler yazılır.</span></label>
+              </fieldset>
+              <div class="btn-row">
+                <button type="button" class="btn-primary" id="bk-apply">Yedeği yükle</button>
+                <button type="button" class="btn-ghost" id="bk-cancel">Vazgeç</button>
+              </div>
+            </div>
+            <div class="form-alert u-mt-3" id="bk-msg" role="status" aria-live="polite" tabindex="-1" hidden></div>
+          </div>
+
+          <div class="sub-block" id="orphan-block" hidden>
+            <h3 class="panel-h u-fs-16">Sahipsiz eski ilerleme</h3>
+            <p class="panel-lead u-mb-2" id="orphan-text"></p>
+            <button type="button" class="btn-ghost" id="orphan-accept">Hesabıma aktar</button>
+          </div>
+
+          <div class="sub-block">
+            <p class="storage-note u-mt-0">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+              <span>Hesabın ve ilerlemen bu cihazdaki tarayıcıda saklanır; şifren hiçbir sunucuya gönderilmez. Başka cihaza geçmek için Yedek Al / Yükle kullan.</span>
+            </p>
+            <a class="btn-ghost btn-danger u-mt-3" href="giris.html?cikis=1">Çıkış yap</a>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <datalist id="alan-listesi">
+      <option value="Mühendislik"></option>
+      <option value="Bilgisayar Bilimi / Yapay Zekâ"></option>
+      <option value="Doğa Bilimleri"></option>
+      <option value="Ekonomi / İşletme"></option>
+      <option value="Tıp / Sağlık"></option>
+    </datalist>
+    <datalist id="lisans-alan-listesi">
+      <option value="Makine Mühendisliği"></option>
+      <option value="Elektrik-Elektronik Mühendisliği"></option>
+      <option value="Bilgisayar Mühendisliği"></option>
+      <option value="Endüstri Mühendisliği"></option>
+      <option value="İnşaat Mühendisliği"></option>
+      <option value="Kimya Mühendisliği"></option>
+      <option value="Fizik"></option>
+      <option value="Matematik"></option>
+      <option value="İktisat"></option>
+      <option value="İşletme"></option>
+    </datalist>
+    <datalist id="okul-listesi">
+      <option value="Hisar Okulları"></option>
+      <option value="MEF Okulları"></option>
+      <option value="Bilfen Liseleri"></option>
+      <option value="Koç Özel Lisesi"></option>
+      <option value="Açı Okulları"></option>
+      <option value="Eyüboğlu Koleji"></option>
+    </datalist>
+  </main>
+
+  <script src="data/mevzuat/ulke-dizini.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+  (function () {
+    "use strict";
+    var AUTH = window.APMEBERRA_AUTH, UI = AUTH.ui, A = window.APMEBERRA;
+    var ME = window.APMEBERRA_ME;
+    if (!ME || !ME.user) return; // koruma giriş sayfasına yönlendiriyor
+    var $ = function (id) { return document.getElementById(id); };
+    var user = ME.user, prof = ME.profile || {};
+    var CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>';
+    // Tur 11 (karar D5, plan §3.8 ve §4): öğrenci modeli, 15 ülke (en fazla 5), eğitim dili, üniversite mezunu alanları.
+    var MODELLER = [
+      ["lise", "Lise öğrencisi", "", "9–12. sınıf; lisansa hazırlanıyorum."],
+      ["lise-mezun", "Lise mezunu", "", "Liseyi bitirdim; lisansa başvuracağım."],
+      ["uni-mezun", "Üniversite mezunu", "", "Lisansı bitirdim ya da son sınıftayım; yüksek lisansa başvuracağım."]
+    ];
+    var SINIFLAR = [["9", "9. sınıf"], ["10", "10. sınıf"], ["11", "11. sınıf"], ["12", "12. sınıf"]];
+    /** Düzenleme formunda tek grup: sınıf ya da mezuniyet durumu (değer = profildeki sinif alanı) */
+    var DURUMLAR = SINIFLAR.concat([["mezun", "Lise mezunu"], ["lisans-mezun", "Üniversite mezunu"]]);
+    var DILLER = [
+      ["en", "İngilizce", "", "İngilizce programlar; IELTS / TOEFL gibi sınavlar."],
+      ["yerel", "Yerel dil", "", "Ülkenin dilinde programlar (ör. Almanca, İtalyanca, Felemenkçe); o dilin sınavları."]
+    ];
+    var LISANS_DURUM = [["mezun", "Mezun oldum", "", ""], ["son-sinif", "Son sınıftayım", "", "Beklenen mezuniyet yılını yaz."]];
+    var DIZIN = {}; ((window.APMEBERRA_ULKE_DIZINI || {}).ulkeler || []).forEach(function (u) { DIZIN[u.kod] = u; });
+    var ULKE_ACIKLAMA = {
+      de: "İngilizce lisanslar; uni-assist, KMK/anabin kuralları, Studienkolleg yolu.",
+      it: "İngilizce lisanslar; Universitaly, CEnT-S / TIL-I gibi giriş sınavları, DSU bursu."
+    };
+    var ULKELER = (AUTH.ULKE_KODLARI || ["de", "it"]).map(function (k) {
+      var d = DIZIN[k] || {};
+      return [k, AUTH.ulkeAd(k), k.toUpperCase(), ULKE_ACIKLAMA[k] || ("Yerel dil: " + (d.yerelDilAd || "—") + (d.rozet ? " · " + d.rozet : "") + " · genel yol haritası")];
+    });
+    var EN_FAZLA = AUTH.EN_FAZLA_ULKE || 5;
+    UI.wirePasswordToggles();
+    var ROTALAR = ULKELER.map(function (u) {
+      return [u[0], u[1] + " rotası", "", u[0] === "de" ? "uni-assist, YKS yerleşmesi ve alana bağlı giriş." : u[0] === "it" ? "Giriş sınavı (CEnT-S / TIL-I / TOL / SAT), YKS sonuç belgesi, DoV." : "Genel yol haritası (göreli zamanlı adımlar)."];
+    });
+    /** Birden fazla ülke seçiliyse "önce hangi rota" sorusunu gösterir; seçimi korur. Dönüş: seçili rota | null */
+    function rotaGrubu(prefix, onceki) {
+      var ul = values($(prefix + "-ulkeler-group"));
+      var wrap = $(prefix + "-rota-wrap"), g = $(prefix + "-rota-group");
+      var cur = (g.querySelector("input:checked") || {}).value || onceki;
+      if (ul.length < 2) { wrap.hidden = true; return ul[0] || null; }
+      if (ul.indexOf(cur) < 0) cur = ul[0];
+      wrap.hidden = false;
+      choiceGroup(g, prefix + "-rota", "radio", ROTALAR.filter(function (r) { return ul.indexOf(r[0]) >= 0; }), [cur]);
+      return cur;
+    }
+    /** En fazla 5 ülke: fazlası seçilirse son seçim geri alınır ve uyarı gösterilir. */
+    function ulkeSiniri(prefix) {
+      $(prefix + "-ulkeler-group").addEventListener("change", function (e) {
+        var t = e.target;
+        if (t && t.checked && values($(prefix + "-ulkeler-group")).length > EN_FAZLA) {
+          t.checked = false; t.closest(".choice-card").classList.remove("is-checked");
+          groupError(prefix, "ulkeler", "En fazla " + EN_FAZLA + " ülke seçebilirsin.");
+        } else groupError(prefix, "ulkeler", "");
+        rotaGrubu(prefix);
+      });
+    }
+
+    // K5-a: mezun alanları. Tur 11: hedef yıl hem lise hem üniversite mezununda; yerleşme yalnızca lise mezununda.
+    var YE = AUTH.YERLESME_ETIKET || {};
+    var YERLESME = [
+      ["uygun", YE["uygun"], "", "YKS'ye yeniden girmen gerekmez; Rotam YKS adımlarını gizler."],
+      ["yok", YE["yok"], "", "YKS'ye gireceksin; Rotam YKS adımlarını gösterir."],
+      ["alan-uyumsuz", YE["alan-uyumsuz"], "", "Hedef alan için yeniden YKS gerekir; YKS adımları gösterilir."]
+    ];
+    /** Bu yıl … +3 seçenekleri; varsayılan bir sonraki akademik yıl (auth.js ile aynı aralık). */
+    function yilSecenekleri(sel, secili) {
+      var Y = new Date().getFullYear(), vars = AUTH.varsayilanHedefYili();
+      var cur = /^\d{4}$/.test(String(secili || "")) && +secili >= Y && +secili <= Y + 3 ? +secili : vars;
+      var html = "";
+      for (var y = Y; y <= Y + 3; y++) {
+        html += '<option value="' + y + '"' + (y === cur ? " selected" : "") + '>' + y + "/" + String((y + 1) % 100).padStart(2, "0") +
+          (y < vars ? " · başladı" : y === vars ? " · bir sonraki" : "") + '</option>';
+      }
+      sel.innerHTML = html;
+    }
+    /** Modele göre mezun ve üniversite alanlarını toplar. */
+    function modelVeri(prefix, model) {
+      var o = {};
+      o.hedefBaslangicYili = model === "lise-mezun" || model === "uni-mezun" ? $(prefix + "-hedefBaslangicYili").value : "";
+      o.yerlesmeDurumu = model === "lise-mezun" ? (values($(prefix + "-yerlesmeDurumu-group"))[0] || "") : "";
+      if (model === "uni-mezun") {
+        o.lisansAlani = $(prefix + "-lisansAlani").value;
+        o.lisansUniversitesi = $(prefix + "-lisansUniversitesi").value;
+        o.lisansDurumu = values($(prefix + "-lisansDurumu-group"))[0] || "";
+        o.lisansMezuniyetYili = $(prefix + "-lisansMezuniyetYili").value;
+        o.gpa4 = $(prefix + "-gpa4").value;
+      }
+      return o;
+    }
+    function uniDoldur(prefix, p) {
+      $(prefix + "-lisansAlani").value = p.lisansAlani || "";
+      $(prefix + "-lisansUniversitesi").value = p.lisansUniversitesi || "";
+      $(prefix + "-lisansMezuniyetYili").value = p.lisansMezuniyetYili || "";
+      $(prefix + "-gpa4").value = p.gpa4 || "";
+      choiceGroup($(prefix + "-lisansDurumu-group"), prefix + "-lisansDurumu", "radio", LISANS_DURUM, p.lisansDurumu ? [p.lisansDurumu] : []);
+      function etiket() {
+        var son = values($(prefix + "-lisansDurumu-group"))[0] === "son-sinif";
+        $(prefix + "-lisansMezuniyetYili-label").textContent = son ? "Beklenen mezuniyet yılın" : "Mezuniyet yılın";
+        groupError(prefix, "lisansDurumu", "");
+      }
+      $(prefix + "-lisansDurumu-group").addEventListener("change", etiket);
+      etiket();
+      // Yazmaya başlayınca o alanın hatası temizlenir
+      ["lisansAlani", "lisansUniversitesi", "lisansMezuniyetYili", "gpa4"].forEach(function (k) {
+        $(prefix + "-" + k).addEventListener("input", function () { UI.showErrors(prefix, {}, [k]); });
+      });
+    }
+    var UNI_ALANLAR = ["lisansAlani", "lisansUniversitesi", "lisansMezuniyetYili", "gpa4"];
+
+    /** Seçim kartlarını çizer ve işaretli görünümü senkron tutar. */
+    function choiceGroup(container, name, type, items, selected) {
+      container.innerHTML = items.map(function (it) {
+        var on = selected.indexOf(it[0]) >= 0;
+        return '<label class="choice-card' + (on ? " is-checked" : "") + '" data-type="' + type + '">' +
+          '<input type="' + type + '" name="' + name + '" value="' + it[0] + '"' + (on ? " checked" : "") + '>' +
+          '<span class="choice-check" aria-hidden="true">' + CHECK + '</span>' +
+          '<span class="choice-body"><strong>' + it[1] + (it[2] ? '<span class="choice-code">' + it[2] + '</span>' : "") + '</strong>' +
+          (it[3] ? '<span>' + it[3] + '</span>' : "") + '</span></label>';
+      }).join("");
+      if (!container.dataset.esle) {
+        container.dataset.esle = "1";
+        container.addEventListener("change", function () {
+          container.querySelectorAll(".choice-card").forEach(function (c) { c.classList.toggle("is-checked", c.querySelector("input").checked); });
+        });
+      }
+    }
+    function values(container) {
+      return Array.prototype.map.call(container.querySelectorAll("input:checked"), function (i) { return i.value; });
+    }
+    function groupError(prefix, field, msg) {
+      var el = $(prefix + "-" + field + "-err"); if (el) el.textContent = msg || "";
+      var g = $(prefix + "-" + field + "-group");
+      if (!g) return;
+      if (msg) g.setAttribute("aria-invalid", "true"); else g.removeAttribute("aria-invalid");
+    }
+
+    // ---------------- SİHİRBAZ ----------------
+    if (!prof.tamamlandi) {
+      $("wizard").hidden = false;
+      $("wz-hello").textContent = "Merhaba " + user.ad + ", seni tanıyalım";
+      $("wz-okul").value = prof.okul || "";
+      // Ülke şartları sayfasından gelen seçim (?model=&sinif=&ulke=&dil=) yalnızca ÖN DOLDURUR (eski ?ulke=de&sinif=11 de)
+      var on = A && A.erisim && A.erisim.secimCoz ? A.erisim.secimCoz(location.search) : {};
+      var onModel = prof.ogrenciModeli || on.model || null;
+      var onSinif = prof.ogrenciModeli === "lise" && prof.sinif ? prof.sinif : (on.model === "lise" ? on.sinif : null);
+      var onUlke = prof.ulkeler && prof.ulkeler.length ? prof.ulkeler : (on.ulke ? [on.ulke] : []);
+      var onDil = prof.egitimDili || (on.ulke ? on.dil : "en") || "en";
+      choiceGroup($("wz-ogrenciModeli-group"), "wz-ogrenciModeli", "radio", MODELLER, onModel ? [onModel] : []);
+      choiceGroup($("wz-sinif-group"), "wz-sinif", "radio", SINIFLAR, onSinif ? [onSinif] : []);
+      choiceGroup($("wz-ulkeler-group"), "wz-ulkeler", "checkbox", ULKELER, onUlke);
+      choiceGroup($("wz-egitimDili-group"), "wz-egitimDili", "radio", DILLER, [onDil]);
+      yilSecenekleri($("wz-hedefBaslangicYili"), prof.hedefBaslangicYili);
+      choiceGroup($("wz-yerlesmeDurumu-group"), "wz-yerlesmeDurumu", "radio", YERLESME, prof.yerlesmeDurumu ? [prof.yerlesmeDurumu] : []);
+      uniDoldur("wz", prof);
+      function wzModel() { return values($("wz-ogrenciModeli-group"))[0] || null; }
+      function wzAyrinti() {
+        var m = wzModel();
+        $("wz-okul-wrap").hidden = m === "uni-mezun";
+        $("wz-sinif-wrap").hidden = m !== "lise";
+        $("wz-mezun").hidden = m !== "lise-mezun" && m !== "uni-mezun";
+        $("wz-yerlesme").hidden = m !== "lise-mezun";
+        $("wz-uni").hidden = m !== "uni-mezun";
+        $("wz-t2").textContent = m === "lise" ? "Okulun ve sınıfın" : m === "lise-mezun" ? "Liseni ve hedef yılını yaz" : "Lisans bilgilerin";
+        $("wz-t2-lead").textContent = m === "uni-mezun" ? "Yüksek lisans şartları lisans alanına ve mezuniyet durumuna göre değişir." : "Takvimini ve yol haritanı buna göre hesaplayacağız.";
+      }
+      wzAyrinti();
+      $("wz-ogrenciModeli-group").addEventListener("change", function () { groupError("wz", "ogrenciModeli", ""); wzAyrinti(); });
+      $("wz-yerlesmeDurumu-group").addEventListener("change", function () { groupError("wz", "yerlesmeDurumu", ""); });
+      $("wz-sinif-group").addEventListener("change", function () { groupError("wz", "sinif", ""); });
+      rotaGrubu("wz", prof.aktifRota);
+      ulkeSiniri("wz");
+      var step = 1, ADIM = 4;
+      function render(focus) {
+        for (var i = 1; i <= ADIM; i++) {
+          $("wz-step-" + i).hidden = i !== step;
+          var p = $("wzp-" + i);
+          p.classList.toggle("is-done", i < step);
+          if (i === step) p.setAttribute("aria-current", "step"); else p.removeAttribute("aria-current");
+        }
+        $("wz-back").hidden = step === 1;
+        $("wz-next").textContent = step === ADIM ? (wzModel() === "uni-mezun" ? "Bitir ve üniversiteleri gör →" : "Bitir ve seviye testine başla →") : "Devam et →";
+        UI.alert($("wz-alert"), "");
+        if (focus) $("wz-t" + step).focus();
+      }
+      render(false);
+      $("wz-back").addEventListener("click", function () { step--; render(true); });
+      $("wz-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var m = wzModel();
+        var okul = $("wz-okul").value.trim();
+        if (step === 1) {
+          groupError("wz", "ogrenciModeli", m ? "" : "Durumunu seç.");
+          if (!m) { $("wz-ogrenciModeli-group").querySelector("input").focus(); return; }
+          wzAyrinti(); step = 2; return render(true);
+        }
+        if (step === 2) {
+          if (m === "lise") {
+            var s = values($("wz-sinif-group"));
+            groupError("wz", "sinif", s.length ? "" : "Sınıfını seç.");
+            if (!s.length) { $("wz-sinif-group").querySelector("input").focus(); return; }
+          }
+          if (m === "lise-mezun" && !modelVeri("wz", m).yerlesmeDurumu) {
+            groupError("wz", "yerlesmeDurumu", "Yerleşme durumunu seç.");
+            $("wz-yerlesmeDurumu-group").querySelector("input").focus();
+            return;
+          }
+          groupError("wz", "yerlesmeDurumu", "");
+          if (m === "uni-mezun") {
+            var u = modelVeri("wz", m), ue = {};
+            if (!u.lisansAlani.trim()) ue.lisansAlani = "Lisans alanını yaz (ör. Makine Mühendisliği).";
+            if (!/^\d{4}$/.test(u.lisansMezuniyetYili.trim())) ue.lisansMezuniyetYili = "Mezuniyet yılını 4 haneli yaz.";
+            if (u.gpa4 && !/^\d([.,]\d{1,2})?$/.test(u.gpa4.trim())) ue.gpa4 = "Not ortalamasını 4'lük sistemde, en fazla iki ondalıkla yaz (ör. 3.25).";
+            var first = UI.showErrors("wz", ue, UNI_ALANLAR);
+            groupError("wz", "lisansDurumu", u.lisansDurumu ? "" : "Lisans durumunu seç.");
+            if (!u.lisansDurumu && !first) first = $("wz-lisansDurumu-group").querySelector("input");
+            if (first) { first.focus(); return; }
+          }
+          step = 3; return render(true);
+        }
+        if (step === 3) {
+          var ul = values($("wz-ulkeler-group"));
+          groupError("wz", "ulkeler", ul.length ? "" : "En az bir hedef ülke seç.");
+          if (!ul.length) { $("wz-ulkeler-group").querySelector("input").focus(); return; }
+          step = 4; return render(true);
+        }
+        var dil = values($("wz-egitimDili-group"))[0];
+        groupError("wz", "egitimDili", dil ? "" : "Eğitim dilini seç.");
+        if (!dil) { $("wz-egitimDili-group").querySelector("input").focus(); return; }
+        UI.busy($("wz-next"), true, "Kaydediliyor…");
+        var wzVeri = { okul: m === "uni-mezun" ? okul : okul, ogrenciModeli: m, sinif: m === "lise" ? values($("wz-sinif-group"))[0] : "", ulkeler: values($("wz-ulkeler-group")), aktifRota: rotaGrubu("wz"), egitimDili: dil };
+        var mv = modelVeri("wz", m); Object.keys(mv).forEach(function (k) { wzVeri[k] = mv[k]; });
+        AUTH.saveProfile(user.id, wzVeri).then(function (res) {
+          if (!res.ok) {
+            UI.busy($("wz-next"), false);
+            var uniHata = UNI_ALANLAR.concat(["lisansDurumu"]).some(function (k) { return res.errors[k]; });
+            if (uniHata) { step = 2; render(false); UI.showErrors("wz", res.errors, UNI_ALANLAR); groupError("wz", "lisansDurumu", res.errors.lisansDurumu); }
+            UI.alert($("wz-alert"), res.errors.genel || Object.keys(res.errors).map(function (k) { return res.errors[k]; }).join(" "));
+            $("wz-alert").focus();
+            return;
+          }
+          // AP modellerinde ilk deneyim çalışma olsun: karşılama seviye testinde biter
+          location.replace(m === "uni-mezun" ? "universiteler.html" : "seviye-testi.html");
+        });
+      });
+      return;
+    }
+
+    // ---------------- PROFİL DÜZENLEME ----------------
+    $("profile").hidden = false;
+    function head(p) {
+      $("pf-avatar").textContent = apInitials(user);
+      $("pf-name").textContent = (user.ad + " " + user.soyad).trim();
+      $("pf-sub").textContent = [p.okul, AUTH.sinifLabel(p.sinif), (p.ulkeler || []).map(AUTH.ulkeAd).join(" + ")].filter(Boolean).join(" · ");
+    }
+    head(prof);
+    $("hesap-user").textContent = "Kullanıcı adı: " + user.kullaniciAdi;
+    $("pf-okul").value = prof.okul || "";
+    var durum0 = prof.ogrenciModeli === "uni-mezun" ? "lisans-mezun" : prof.ogrenciModeli === "lise-mezun" ? "mezun" : prof.sinif;
+    choiceGroup($("pf-sinif-group"), "pf-sinif", "radio", DURUMLAR, durum0 ? [durum0] : []);
+    choiceGroup($("pf-ulkeler-group"), "pf-ulkeler", "checkbox", ULKELER, prof.ulkeler || []);
+    choiceGroup($("pf-egitimDili-group"), "pf-egitimDili", "radio", DILLER, [prof.egitimDili === "yerel" ? "yerel" : "en"]);
+    rotaGrubu("pf", prof.aktifRota);
+    ulkeSiniri("pf");
+    $("pf-hedefAlan").value = prof.hedefAlan || (AUTH.VARSAYILAN_ALAN || "Mühendislik");
+    uniDoldur("pf", prof);
+
+    // §7.3 isteğe bağlı alanlar (resmi yazışmalar)
+    var EXTRA = ["eposta", "dogumTarihi", "okulSehir", "mezuniyetYili"];
+    $("pf-eposta").value = prof.eposta || "";
+    $("pf-dogumTarihi").value = prof.dogumTarihi || "";
+    $("pf-okulSehir").value = prof.okulSehir || "İstanbul";
+    $("pf-mezuniyetYili").value = prof.mezuniyetYili || "";
+    var yil = new Date().getFullYear();
+    $("pf-dogumTarihi").min = (yil - 40) + "-01-01";
+    $("pf-dogumTarihi").max = (yil - 10) + "-12-31";
+    yilSecenekleri($("pf-hedefBaslangicYili"), prof.hedefBaslangicYili);
+    choiceGroup($("pf-yerlesmeDurumu-group"), "pf-yerlesmeDurumu", "radio", YERLESME, prof.yerlesmeDurumu ? [prof.yerlesmeDurumu] : []);
+    $("pf-yerlesmeDurumu-group").addEventListener("change", function () { groupError("pf", "yerlesmeDurumu", ""); });
+    function pfDurum() { return values($("pf-sinif-group"))[0] || ""; }
+    function syncMezun() {
+      var d = pfDurum();
+      $("pf-mezuniyetYili-wrap").hidden = d !== "mezun";
+      $("pf-mezun").hidden = d !== "mezun" && d !== "lisans-mezun";
+      $("pf-yerlesme").hidden = d !== "mezun";
+      $("pf-uni").hidden = d !== "lisans-mezun";
+      $("pf-okul-wrap").hidden = d === "lisans-mezun";
+      $("pf-hedefAlan-label").textContent = d === "lisans-mezun" ? "Hedef yüksek lisans alanın" : "Hedef alanın";
+    }
+    syncMezun();
+    $("pf-sinif-group").addEventListener("change", syncMezun);
+    // Yazışmalarım sayfasından "profilde tamamla" ile gelindiyse ilgili alana odaklan
+    (function focusFromHash() {
+      var id = decodeURIComponent((location.hash || "").slice(1));
+      if (id === "iletisim") id = "pf-eposta";
+      var el = /^pf-[A-Za-z]+$/.test(id) && $(id);
+      if (id === "pf-yerlesme" && el) el = $("pf-yerlesmeDurumu-group").querySelector("input:checked") || $("pf-yerlesmeDurumu-group").querySelector("input");
+      if (id === "pf-yerlesme" && el && el.closest("[hidden]")) id = "pf-mezuniyetYili"; // mezun değilse sınıf seçimine
+      if (!el || el.closest("[hidden]")) { if (id === "pf-mezuniyetYili") el = $("pf-sinif-group").querySelector("input"); else return; }
+      // Tarayıcının #parça kaydırması odağı sıfırlayabilir: yükleme bittikten sonra odakla
+      function go() { setTimeout(function () { el.scrollIntoView({ block: "center" }); el.focus({ preventScroll: true }); }, 30); }
+      if (document.readyState === "complete") go(); else window.addEventListener("load", go);
+    })();
+
+    $("pf-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var d = pfDurum(), model = AUTH.modelFromSinif ? AUTH.modelFromSinif(d) : null;
+      var data = { okul: $("pf-okul").value, ogrenciModeli: model, sinif: d, ulkeler: values($("pf-ulkeler-group")), aktifRota: rotaGrubu("pf"), hedefAlan: $("pf-hedefAlan").value,
+        egitimDili: values($("pf-egitimDili-group"))[0] || "en" };
+      EXTRA.forEach(function (k) { data[k] = $("pf-" + k).value; });
+      if (d !== "mezun") data.mezuniyetYili = "";
+      var mv = modelVeri("pf", model); Object.keys(mv).forEach(function (k) { data[k] = mv[k]; });
+      UI.busy($("pf-save"), true, "Kaydediliyor…");
+      AUTH.saveProfile(user.id, data).then(function (res) {
+        UI.busy($("pf-save"), false);
+        var errs = res.ok ? {} : res.errors;
+        var first = UI.showErrors("pf", errs, ["okul", "hedefAlan", "hedefBaslangicYili"].concat(UNI_ALANLAR, EXTRA));
+        groupError("pf", "sinif", errs.sinif); groupError("pf", "ulkeler", errs.ulkeler); groupError("pf", "yerlesmeDurumu", errs.yerlesmeDurumu);
+        groupError("pf", "lisansDurumu", errs.lisansDurumu); groupError("pf", "egitimDili", errs.egitimDili);
+        if (!first && errs.yerlesmeDurumu) first = $("pf-yerlesmeDurumu-group").querySelector("input");
+        if (!first && errs.lisansDurumu) first = $("pf-lisansDurumu-group").querySelector("input");
+        if (!res.ok) {
+          UI.alert($("pf-alert"), errs.genel || "Kaydedilmedi: işaretli alanları düzelt.", null);
+          (first || $("pf-alert")).focus();
+          return;
+        }
+        head(res.profile);
+        ME.profile = res.profile;
+        if (res.profile.aktifRota) document.documentElement.setAttribute("data-rota", res.profile.aktifRota === "de" || res.profile.aktifRota === "it" ? res.profile.aktifRota : "genel");
+        UI.alert($("pf-alert"), "Profilin kaydedildi.", "ok");
+        var accSub = document.querySelector(".account-id span");
+        if (accSub) accSub.textContent = [res.profile.okul, AUTH.sinifLabel(res.profile.sinif)].filter(Boolean).join(" · ");
+      });
+    });
+
+    // Şifre değiştir
+    $("pw-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var F = ["eski", "sifre", "sifre2"];
+      UI.busy($("pw-save"), true, "Değiştiriliyor…");
+      AUTH.changePassword(user.id, $("pw-eski").value, $("pw-yeni").value, $("pw-yeni2").value).then(function (res) {
+        UI.busy($("pw-save"), false);
+        var errs = res.ok ? {} : res.errors;
+        // auth hatası anahtarları (sifre/sifre2) -> alan kimlikleri (yeni/yeni2)
+        var mapped = { eski: errs.eski, yeni: errs.sifre, yeni2: errs.sifre2 };
+        var first = UI.showErrors("pw", mapped, ["eski", "yeni", "yeni2"]);
+        if (!res.ok) { UI.alert($("pw-alert"), errs.genel || "Şifre değiştirilmedi: işaretli alanları düzelt."); (first || $("pw-alert")).focus(); return; }
+        $("pw-form").reset();
+        UI.alert($("pw-alert"), "Şifren değiştirildi. Bir sonraki girişte yeni şifreni kullan.", "ok");
+        $("pw-alert").focus();
+      });
+    });
+
+    // Kurtarma kodu yenile
+    $("rc-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      UI.busy($("rc-submit"), true, "Üretiliyor…");
+      AUTH.newRecoveryCode(user.id, $("rc-sifre").value).then(function (res) {
+        UI.busy($("rc-submit"), false);
+        var first = UI.showErrors("rc", res.ok ? {} : res.errors, ["sifre"]);
+        if (!res.ok) { if (first) first.focus(); return; }
+        $("rc-sifre").value = "";
+        $("rc-code").textContent = res.kurtarmaKodu;
+        $("rc-box").hidden = false; $("rc-msg").textContent = "";
+        $("rc-copy").onclick = function () { UI.copy(res.kurtarmaKodu, $("rc-code")).then(function (ok) { $("rc-msg").textContent = ok ? "Kod panoya kopyalandı." : "Kopyalanamadı; kodu seçip elle kopyala."; }); };
+        $("rc-download").onclick = function () { UI.download("apmeberra-kurtarma-kodu.txt", UI.recoveryText(user, res.kurtarmaKodu)); $("rc-msg").textContent = "Dosya indirildi."; };
+        $("rc-code").focus && $("rc-box").scrollIntoView({ block: "nearest" });
+      });
+    });
+
+    // Yedek al / yükle (app.js yedekleme modülü)
+    var B = A && A.backup, parsed = null;
+    function lastText() {
+      var lb = B && B.lastBackup();
+      $("bk-last").textContent = lb ? "Son yedek: " + new Date(lb).toLocaleString("tr-TR", { dateStyle: "medium", timeStyle: "short" }) : "Bu cihazda henüz yedek alınmadı.";
+    }
+    if (B) {
+      lastText();
+      $("bk-export").addEventListener("click", function () {
+        var r = B.exportFile(); lastText();
+        UI.alert($("bk-msg"), "“" + r.name + "” indirildi (" + r.data.ozet.cozulen + " çözülmüş soru).", "ok");
+      });
+      $("bk-file").addEventListener("change", function () {
+        var f = this.files && this.files[0]; if (!f) return;
+        var rd = new FileReader();
+        rd.onload = function () {
+          try {
+            parsed = B.parse(String(rd.result));
+            $("bk-meta").textContent = f.name + " · " + (parsed.olusturma ? new Date(parsed.olusturma).toLocaleString("tr-TR") : "tarih yok") +
+              " · " + parsed.ozet.cozulen + " çözülmüş soru, " + parsed.ozet.acikHata + " açık hata";
+            $("bk-preview").hidden = false; UI.alert($("bk-msg"), "");
+            $("bk-preview-title").focus();
+          } catch (err) {
+            parsed = null; $("bk-preview").hidden = true;
+            UI.alert($("bk-msg"), err.userMessage || "Dosya okunamadı."); $("bk-msg").focus();
+          }
+          $("bk-file").value = "";
+        };
+        rd.readAsText(f);
+      });
+      $("bk-cancel").addEventListener("click", function () { parsed = null; $("bk-preview").hidden = true; });
+      $("bk-apply").addEventListener("click", function () {
+        if (!parsed) return;
+        var mode = (document.querySelector('input[name="bk-mode"]:checked') || {}).value === "replace" ? "replace" : "merge";
+        try {
+          var s = B.apply(parsed, mode);
+          $("bk-preview").hidden = true; parsed = null; lastText();
+          UI.alert($("bk-msg"), "Yedek yüklendi. Hesabında şimdi " + s.cozulen + " çözülmüş soru ve " + s.acikHata + " açık hata var.", "ok");
+        } catch (err) { UI.alert($("bk-msg"), err.userMessage || "Yedek yüklenemedi."); }
+        $("bk-msg").focus();
+      });
+    }
+
+    // Sahipsiz eski ilerleme (teklif reddedildiyse burada kalır)
+    AUTH.anyOrphan().then(function (o) {
+      if (!o) return;
+      $("orphan-block").hidden = false;
+      $("orphan-text").textContent = "Hesap sistemi öncesinden kalan " + o.ozet.cozulen + " çözülmüş soru ve " + o.ozet.acikHata + " açık hata kaydı bu cihazda bekliyor.";
+      $("orphan-accept").addEventListener("click", function () {
+        AUTH.acceptOrphan().then(function () {
+          $("orphan-text").textContent = "Aktarıldı. İlerleme sayfasında görebilirsin.";
+          $("orphan-accept").remove();
+        });
+      });
+    });
+  })();
+  </script>
+</body>
+</html>

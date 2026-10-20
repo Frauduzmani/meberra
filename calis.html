@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Çalış | AP MEBERRA</title>
+  <meta name="description" content="Çalış merkezi: sıradaki çalışma, kaldığın yer, 6 AP dersi ve CEnT-S (ilerleme, konu anlatımı, deneme), denemeler, yanlışlarım ve seviye testi tek sayfada.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="brand-badge">AP MEBERRA</div>
+      <div><div class="brand-title">Çalış</div></div>
+    </a>
+    <div class="nav-actions"></div>
+  </nav>
+
+  <!-- Tur 14 A6 (plan §2.3-C): Çalış merkezi — sıradaki çalışma (Bugün ile aynı saf fonksiyonlar: apSiradakiAdim + apCalismaPlani),
+       kaldığın yer (apKaldiginYer), dersler (6 AP + CEnT-S), ölç ve tekrar et (Denemeler · Yanlışlarım · Seviye testi). K4: giriş gerekir. -->
+  <main class="main-container calis" id="main-content">
+    <header class="page-head calis-head">
+      <span class="eyebrow">Çalış</span>
+      <h1 id="calis-title">Ne çalışayım?</h1>
+      <p>Derslerin, denemelerin ve yanlışların tek yerde. Sıradaki çalışma Bugün ekranıyla aynı kurallarla seçilir.</p>
+    </header>
+
+    <!-- Üniversite mezunu: AP çalışma alanı yok (menüde Çalış yerine Sınavlar) -->
+    <section class="surface calis-yl" id="calis-yl" aria-labelledby="cyl-title" hidden>
+      <h2 id="cyl-title">Çalış alanı lise öğrencileri ve lise mezunları içindir</h2>
+      <p>Yüksek lisans başvurusunda AP dersleri ve CEnT-S gerekmez. Dil sınavları ile GRE / GMAT bilgileri Sınavlar sayfasında.</p>
+      <p class="calis-yl-eylem"><a class="btn-primary" href="sinavlar.html?model=uni-mezun">Sınavlara git →</a> <a class="btn-ghost" href="index.html">Bugün'e dön</a></p>
+    </section>
+
+    <div class="calis-icerik" id="calis-icerik">
+      <div class="bugun-ust calis-ust">
+        <!-- SIRADAKİ ÇALIŞMA: tek kart, tek birincil düğme -->
+        <section class="surface bugun-siradaki" id="calis-siradaki" aria-labelledby="cs-title">
+          <div class="next-step" id="cs-next" aria-live="polite">
+            <span class="sa-kicker">Sıradaki çalışma</span>
+            <h2 id="cs-title">Yükleniyor…</h2>
+          </div>
+        </section>
+
+        <!-- KALDIĞIN YER: son ünite · yarım deneme · son deneme -->
+        <section class="surface calis-kaldigin" id="calis-kaldigin" aria-labelledby="ck-title">
+          <div class="bugun-kart-h"><h2 id="ck-title">Kaldığın yer</h2></div>
+          <ul class="ck-list" id="ck-list"></ul>
+        </section>
+      </div>
+
+      <!-- DERSLER: 6 AP dersi + CEnT-S -->
+      <section class="calis-bolum" id="calis-dersler" aria-labelledby="cd-title">
+        <div class="calis-bolum-h">
+          <h2 id="cd-title">Derslerin</h2>
+          <p>Konu anlatımları ve sorular İngilizce. Halka, dersin soru bankasında ne kadarını çözdüğünü gösterir.</p>
+        </div>
+        <div class="calis-grid" id="calis-grid"></div>
+      </section>
+
+      <!-- ÖLÇ VE TEKRAR ET -->
+      <section class="calis-bolum" id="calis-olc" aria-labelledby="co-title">
+        <div class="calis-bolum-h"><h2 id="co-title">Ölç ve tekrar et</h2></div>
+        <div class="calis-olc-grid">
+          <a class="surface dv-kart u-nodec u-c-inherit" id="co-deneme" href="deneme.html">
+            <h3>Denemeler</h3>
+            <span class="dv-ana" id="co-deneme-ana">Ders denemesi ya da genel deneme</span>
+            <span class="dv-alt" id="co-deneme-alt">Bluebook benzeri ekran; sonunda ünite bazında sonuç.</span>
+            <span class="dv-git" id="co-deneme-git">Denemelere git →</span>
+          </a>
+          <a class="surface dv-kart u-nodec u-c-inherit" id="co-yanlis" href="deneme.html?mod=yanlislar">
+            <h3>Yanlışlarım</h3>
+            <span class="dv-sayi" id="co-yanlis-sayi">0</span>
+            <span class="dv-alt" id="co-yanlis-alt">açık soru</span>
+            <span class="dv-git" id="co-yanlis-git">Yanlışlarımı çöz →</span>
+          </a>
+          <a class="surface dv-kart u-nodec u-c-inherit" id="co-seviye" href="seviye-testi.html">
+            <h3>Seviye testi</h3>
+            <span class="dv-ana" id="co-seviye-ana">Hangi derste ne kadar hazırsın?</span>
+            <span class="dv-alt" id="co-seviye-alt">Rapor, AP kayıt kararına yardım eder.</span>
+            <span class="dv-git" id="co-seviye-git">Teste başla →</span>
+          </a>
+        </div>
+        <p class="calis-ek"><a href="istanbul-sinav-rehberi.html">İstanbul sınav rehberi →</a><a href="ilerleme.html">İlerleme ve Hata Defteri →</a></p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom u-mt-0">
+      <div>İlerleme, deneme sonuçları ve Hata Defteri yalnızca bu tarayıcıda saklanır — taşımak için <a href="ilerleme.html#yedek-title">Yedekle / Taşı</a>.</div>
+      <div><a href="index.html">← Bugün ekranına dön</a></div>
+    </div>
+  </footer>
+
+  <script src="data/mevzuat/sinav-takvimi.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+  (function () {
+    "use strict";
+    var A = window.APMEBERRA, ME = window.APMEBERRA_ME;
+    if (!A || !ME || !ME.profile) return;
+    var MODEL = ME.profile.ogrenciModeli;
+    var BG = typeof window.APMEBERRA_BUGUN === "string" ? window.APMEBERRA_BUGUN : null; // yalnızca test için
+    function esc(x) { return String(x == null ? "" : x).replace(/[&<>"']/g, function (m) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]; }); }
+    function pct(c, a) { return a > 0 ? Math.round(c / a * 100) : null; }
+    function tarihKisa(iso) { var d = new Date(iso); return isNaN(d) ? "" : d.toLocaleDateString("tr-TR", { day: "numeric", month: "short" }); }
+
+    if (MODEL === "uni-mezun") {
+      document.getElementById("calis-icerik").hidden = true;
+      document.getElementById("calis-yl").hidden = false;
+      return;
+    }
+
+    var IC = {
+      step: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+      book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/></svg>',
+      clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+      play: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg>',
+      chart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>'
+    };
+
+    var s = A.summary();
+    var dn = A.storeGet(A.keys.deneme, null) || {};
+    var gecmis = Array.isArray(dn.gecmis) ? dn.gecmis : [];
+    var ak = dn.aktif && Array.isArray(dn.aktif.sorular) && dn.aktif.sorular.length ? dn.aktif : null;
+    var sv = A.storeGet(A.keys.seviye, null) || {};
+    var progress = A.loadProgress();
+
+    // Dersler: 6 AP (APMEBERRA_COURSES) + CEnT-S; deneme kodları deneme bankasıyla aynı (deneme.html?ders=<kod>)
+    var EK = {
+      "ap-calculus": { etiket: "Matematik", d: "Limit, türev, integral; teorem ön koşulları ve FRQ çözüm şablonları.", deneme: [["calculus-ab", "AB denemesi"], ["calculus-bc", "BC denemesi"]] },
+      "ap-physics": { etiket: "Doğa bilimi", d: "Kinematik, dinamik, enerji; serbest cisim diyagramları ve deney tasarımı.", deneme: [["physics-1", "Deneme"]] },
+      "ap-chemistry": { etiket: "Doğa bilimi", d: "Atom yapısı, kinetik, denge, termodinamik ve asit-baz sistemleri.", deneme: [["chemistry", "Deneme"]] },
+      "ap-biology": { etiket: "Doğa bilimi", d: "Biyokimya, hücre, enerji dönüşümleri, genetik ve biyoistatistik.", deneme: [["biology", "Deneme"]] },
+      "ap-english": { etiket: "Dil", d: "Retorik analiz, sentez ve argümantasyon kompozisyonları.", deneme: [["english-language", "Deneme"]] },
+      "ap-electives": { etiket: "Seçmeli", d: "Mikro/makroekonomi grafik modelleri ve Java ile nesne yönelimli programlama.", deneme: [["cs-a", "CS A denemesi"], ["economics", "Ekonomi denemesi"]] },
+      "sinav-cents": { etiket: "Giriş sınavı · İtalya", d: "CISIA CEnT-S: okuma, matematik, akıl yürütme ve fen bölümleri.", deneme: [["cents", "Deneme"]] }
+    };
+    var dersler = A.courses.map(function (c) { return { page: c.page, name: c.name, cls: c.cls }; })
+      .concat([{ page: "sinav-cents", name: "CEnT-S (CISIA)", cls: "" }]);
+    var ozet = {};
+    s.courses.forEach(function (c) { ozet[c.page] = c; });
+    var hataSay = {};
+    s.openErrors.forEach(function (e) { hataSay[e.page] = (hataSay[e.page] || 0) + 1; });
+
+    // 1) Sıradaki çalışma (Bugün ile aynı: apSiradakiAdim öncelikleri + apCalismaPlani; rota ve profil adımları Bugün'de)
+    var T = window.APMEBERRA_TAKVIM;
+    var plan = apCalismaPlani({
+      summary: s, mezun: ME.profile.sinif === "mezun",
+      kayitSon: T && T.kayit ? T.kayit.sonGun : null, seviye: sv, bugun: BG || new Date()
+    });
+    var sa = apSiradakiAdim({
+      bugun: BG || new Date(),
+      yarimDeneme: ak ? { ad: ak.ad, cevaplanan: Object.keys(ak.cevaplar || {}).length, toplam: ak.sorular.length } : null,
+      acikHata: s.openErrors.length, sonHata: s.openErrors[0] ? (s.openErrors[0].topic || s.openErrors[0].id) : null,
+      plan: plan.map(function (t) { return { baslik: t.title, aciklama: t.desc, href: t.href, etiket: t.linkText }; }),
+      profilEksik: [], bosHref: "deneme.html"
+    });
+    var TUR_AD = { deneme: "Yarım deneme", hata: "Yanlışlarım", plan: "Çalışma planı", bos: "Durum" };
+    var ns = document.getElementById("cs-next");
+    ns.setAttribute("data-tur", sa.tur);
+    ns.innerHTML = '<span class="sa-kicker">' + IC.step + 'Sıradaki çalışma <span class="sa-tur">' + esc(TUR_AD[sa.tur] || "") + '</span></span>' +
+      '<h2 id="cs-title">' + esc(sa.baslik) + '</h2>' + (sa.aciklama ? '<p class="sa-meta">' + esc(sa.aciklama) + '</p>' : "") +
+      '<div class="sa-actions"><a class="btn-primary" id="cs-git" href="' + esc(sa.href) + '">' + esc(sa.etiket) + ' →</a>' +
+      '<details class="sa-neden"><summary>Neden bu?</summary><p>' + esc(sa.neden) + ' Bugün ekranı aynı sırayı kullanır; orada ayrıca yakın tarihli rota adımları öne geçebilir.</p></details></div>';
+
+    // 2) Kaldığın yer: son ünite · yarım deneme · son deneme
+    var ck = [];
+    var k = apKaldiginYer(progress, dersler);
+    if (k) {
+      ck.push({ id: "ck-unite", ic: IC.book, href: k.page + ".html#" + encodeURIComponent(k.unitId), ana: k.title,
+        alt: k.ders + " · " + k.answered + (k.total ? " / " + k.total : "") + " soru · %" + pct(k.correct, k.answered) + " doğru", git: "Sürdür" });
+    }
+    if (ak) {
+      var n = Object.keys(ak.cevaplar || {}).length;
+      ck.push({ id: "ck-deneme", ic: IC.clock, href: "deneme.html", ana: (ak.ad || "Deneme") + " yarım kaldı", alt: n + " / " + ak.sorular.length + " soru cevaplandı", git: "Devam et", vurgu: true });
+    }
+    if (gecmis[0] && gecmis[0].id) {
+      var g0 = gecmis[0];
+      ck.push({ id: "ck-son", ic: IC.chart, href: "deneme.html?sonuc=" + encodeURIComponent(g0.id), ana: "Son deneme: %" + g0.yuzde + " · " + (g0.ad || g0.kod),
+        alt: g0.dogru + " / " + g0.soruSayisi + " doğru · " + tarihKisa(g0.tarih), git: "İncele" });
+    }
+    document.getElementById("ck-list").innerHTML = ck.length ? ck.map(function (x) {
+      return '<li class="ck-item' + (x.vurgu ? " is-vurgu" : "") + '" id="' + x.id + '"><a href="' + esc(x.href) + '"><span class="ck-ico">' + x.ic + '</span>' +
+        '<span class="ck-govde"><strong>' + esc(x.ana) + '</strong><span>' + esc(x.alt) + '</span></span><span class="ck-git">' + esc(x.git) + ' →</span></a></li>';
+    }).join("") : '<li class="ck-bos">Henüz soru çözmedin. Bir dersin konu anlatımını oku, ardından ünite sorularını çöz; kaldığın yer burada görünür.</li>';
+
+    // 3) Ders kartları
+    document.getElementById("calis-grid").innerHTML = dersler.map(function (d) {
+      var e = EK[d.page] || { etiket: "", d: "", deneme: [] };
+      var c = ozet[d.page] || { answered: 0, correct: 0, total: 0, visited: false };
+      var kapsam = c.total ? Math.min(100, Math.round(c.answered / c.total * 100)) : 0;
+      var dogru = pct(c.correct, c.answered);
+      var durum = c.answered ? c.answered + (c.total ? " / " + c.total : "") + " soru çözüldü · %" + dogru + " doğru"
+        : (c.visited && c.total ? c.total + " soru hazır · başlanmadı" : "Henüz başlanmadı");
+      var one = {}; one[d.page] = progress.pages[d.page];
+      var kd = progress.pages[d.page] ? apKaldiginYer({ pages: one }, dersler) : null;
+      var hs = hataSay[d.page] || 0;
+      var kodlar = e.deneme.map(function (x) { return x[0]; });
+      var son = null;
+      for (var i = 0; i < gecmis.length; i++) if (kodlar.indexOf(gecmis[i].kod) >= 0) { son = gecmis[i]; break; }
+      var ringAd = c.total ? "Soru bankasının yüzde " + kapsam + "'i çözüldü" : "Henüz başlanmadı";
+      return '<article class="surface cd-kart ' + esc(d.cls) + '" data-ders="' + esc(d.page) + '"' + (d.cls ? "" : ' style="--cc:var(--accent-teal)"') + ' aria-labelledby="cd-' + esc(d.page) + '">' +
+        '<div class="cd-ust"><div class="u-min0"><span class="cd-etiket">' + esc(e.etiket) + '</span><h3 id="cd-' + esc(d.page) + '">' + esc(d.name) + '</h3></div>' +
+        '<div class="ring ring-sm cd-ring" role="img" aria-label="' + esc(ringAd) + '" style="--p:' + kapsam + '"><span>' + (c.total ? "%" + kapsam : "–") + '</span></div></div>' +
+        '<p class="cd-d">' + esc(e.d) + '</p>' +
+        '<p class="cd-durum">' + esc(durum) + (hs ? ' · <a class="cd-hata" href="deneme.html?mod=yanlislar' + (e.deneme.length === 1 ? "&amp;ders=" + encodeURIComponent(e.deneme[0][0]) : "") + '">' + hs + ' açık hata</a>' : "") + '</p>' +
+        (kd ? '<p class="cd-kaldigin"><span>Kaldığın yer</span><a href="' + esc(d.page) + '.html#' + encodeURIComponent(kd.unitId) + '">' + esc(kd.title) + ' →</a></p>' : "") +
+        (son ? '<p class="cd-son">Son deneme: <a href="deneme.html?sonuc=' + encodeURIComponent(son.id) + '">%' + esc(son.yuzde) + ' · ' + esc(tarihKisa(son.tarih)) + '</a></p>' : "") +
+        '<div class="cd-eylem"><a class="btn-ghost btn-sm" href="' + esc(d.page) + '.html" data-konu>' + IC.book + '<span>Konu anlatımı</span></a>' +
+        e.deneme.map(function (x) { return '<a class="btn-secondary btn-sm" href="deneme.html?ders=' + encodeURIComponent(x[0]) + '" data-deneme="' + esc(x[0]) + '">' + IC.play + '<span>' + esc(x[1]) + '</span></a>'; }).join("") +
+        '</div></article>';
+    }).join("");
+
+    // 4) Ölç ve tekrar et
+    if (ak) {
+      document.getElementById("co-deneme-ana").textContent = (ak.ad || "Deneme") + " yarım kaldı";
+      document.getElementById("co-deneme-alt").textContent = Object.keys(ak.cevaplar || {}).length + " / " + ak.sorular.length + " soru cevaplandı";
+      document.getElementById("co-deneme-git").textContent = "Denemeye devam et →";
+    } else if (gecmis.length) {
+      document.getElementById("co-deneme-ana").textContent = gecmis.length + " deneme tamamladın";
+      document.getElementById("co-deneme-alt").textContent = "Son: %" + gecmis[0].yuzde + " · " + (gecmis[0].ad || gecmis[0].kod);
+      document.getElementById("co-deneme-git").textContent = "Yeni deneme kur →";
+    }
+    var nh = s.openErrors.length, yk = document.getElementById("co-yanlis");
+    document.getElementById("co-yanlis-sayi").textContent = String(nh);
+    document.getElementById("co-yanlis-alt").textContent = nh ? "açık soru · en son: " + (s.openErrors[0].topic || s.openErrors[0].id) : "Açık hatan yok; yanlış yaptığın sorular burada birikir.";
+    yk.classList.add(nh >= 5 ? "is-uyari" : nh === 0 ? "is-iyi" : "is-orta");
+    var rap = Array.isArray(sv.raporlar) ? sv.raporlar : [];
+    var sl = document.getElementById("co-seviye");
+    if (sv.devam && Array.isArray(sv.devam.sira) && sv.devam.sira.length) {
+      document.getElementById("co-seviye-ana").textContent = "Yarım kalan seviye testi";
+      document.getElementById("co-seviye-alt").textContent = "Kaldığın yerden devam edebilirsin.";
+      document.getElementById("co-seviye-git").textContent = "Devam et →";
+    } else if (rap.length) {
+      sl.setAttribute("href", "seviye-testi.html#rapor");
+      document.getElementById("co-seviye-ana").textContent = "Son rapor: " + tarihKisa(rap[0].tarih);
+      document.getElementById("co-seviye-alt").textContent = rap.length + " rapor kayıtlı; yeniden çözüp karşılaştırabilirsin.";
+      document.getElementById("co-seviye-git").textContent = "Raporu aç →";
+    }
+  })();
+  </script>
+</body>
+</html>

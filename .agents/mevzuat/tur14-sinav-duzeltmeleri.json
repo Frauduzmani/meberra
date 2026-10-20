@@ -1,0 +1,180 @@
+{
+  "_meta": {
+    "hazirlayan": "Ajan 13 (mevzuat-uzmani)",
+    "tur": "Tur 14",
+    "tarih": "2026-10-19/20",
+    "hedefDosya": "data/mevzuat/sinavlar.js (window.APMEBERRA_SINAVLAR)",
+    "aktarim": "node araclar/sinav-aktar.js --girdi .agents/mevzuat/tur14-sinav-duzeltmeleri.json --kuru  (önce kuru çalıştırma; sonra --kuru olmadan)",
+    "not": "Biçim sinavlar-tur12.json ile aynı: 'mevcutGuncellemeler[].alanlar' doğrudan alan değeridir ve mevcut değerin YERİNE geçer (tarih, ucret, sure, puanlama, kesinlik, sonKontrol). 'notEki' mevcut 'not' metninin SONUNA eklenir. 'ulkeler' birleşir (mevcutlar korunur). 'kaynak' dizisi 'kaynaklar'a eklenir. Proje veri dosyası düzenlenmedi. Erişim tarihleri: 2026-10-19 (sınav, GRE) ve 2026-10-20 (Goethe B2). Türkiye Goethe sayfaları gerçek tarayıcıyla (Chromium, headless) açıldı; 403 aşıldı. TestDaF Türkiye merkezleri ve tarihleri g.a.s.t.'nin (TestDaF-Institut kayıt sistemi) testdaf.de'deki merkez arama aracının kullandığı açık API'den okundu.",
+    "ozet": {
+      "teyitGerekirdenDogrulandiya": ["goethe-c1-c2", "testdaf", "cils", "celi", "tisus"],
+      "dogrulanamadidanDogrulandiya": ["studieproven-dansk"],
+      "kismenIlerleyenAmaTeyitGerekirKalan": ["telc-c1-hochschule", "plida"],
+      "dokunulmayanTeyitGerekir": ["osd-c1-c2", "siele", "cce-b2", "macarca-ecl-hazirlik", "cambridge-c1-c2"],
+      "kapsamGenisleyen": ["gre-general (+nl, fi, es)", "gmat (+nl, fi)"]
+    }
+  },
+  "mevcutGuncellemeler": [
+    {
+      "id": "goethe-c1-c2",
+      "alanlar": {
+        "kesinlik": "Doğrulandı",
+        "sonKontrol": "2026-10-19",
+        "sure": "C1: Okuma 65 dk, Dinleme 40 dk, Yazma 75 dk, Konuşma 20 dk (toplam yaklaşık 3 saat 20 dk). C2: Dinleme 35 dk, Okuma 80 dk, Yazma 80 dk, Konuşma 15 dk (toplam yaklaşık 3 saat 30 dk). Kaynak: Goethe-Institut Türkiye C1 ve C2 sayfaları.",
+        "puanlama": "C1 sertifikası CEFR C1, C2: GDS sertifikası CEFR C2 düzeyini belgeler. Modüller ayrı ayrı ya da birlikte alınabilir (C2 sayfası: 'Dört modül tek tek veya kombinasyon halinde kaydedilebilir'). Geçme eşiği bu turda okunmadı (sınav yönetmeliği PDF'inde).",
+        "tarih": "Türkiye'de sınav birimleri: Ankara, İstanbul (Beyoğlu), İzmir; tarih listesinde Adana da var. C1 oturumları (Goethe-Institut Türkiye C1 sayfası, 19 Ekim 2026): 2 Kasım 2026 İstanbul (bilgisayarda), 4 Kasım Ankara (kağıt), 17 Kasım İstanbul (kağıt), 1 Aralık İstanbul (kağıt), 9 Aralık Ankara (bilgisayarda), 19 Ocak 2027 İstanbul (kağıt), 16 Şubat 2027 İstanbul (kağıt). 2027 oturumlarına kayıt 22 Ekim 2026 saat 11:00'de açılıyor. C2: Türkiye sayfasında şu an tarih yok ('Şu anda sınav tarihi bulunmamaktadır'); enstitüyle iletişim isteniyor. İstanbul sınav birimi: pruefung-istanbul@goethe.de (telefonla bilgi Pzt–Cum 10:00–12:00 ve 15:30–16:30). Goethe, C1'e 16, C2'ye 18 yaşından itibaren girmeyi öneriyor.",
+        "ucret": "C1 (KDV'den muaf): 2026 oturumları tam sınav 19.030 TL, tek modül 8.570 TL; 2027 oturumları tam sınav 20.930 TL, tek modül 9.430 TL. C2: tarih yayımlanmadığı için ücret görünmüyor (Teyit gerekir)."
+      },
+      "notEki": "Tur 14 (19–20 Ekim 2026): Türkiye sınav sayfaları gerçek tarayıcıyla açıldı; C1 tarih ve TL ücretleri doğrulandı. Bilgi: Goethe-Zertifikat B2 İstanbul oturumları 12, 16, 23 Kasım ve 7 Aralık 2026 (tam sınav 17.860 TL, tek modül 6.410 TL; Adana 19.860 TL). Türk öğrenci için: C2 Türkiye'de şu an takvimde yok; DSH muafiyeti C2'ye bağlı olduğundan (RO-DT) C2 isteyen programlar için tarih Goethe İstanbul'dan yazılı sorulmalı.",
+      "gerekce": "Tur 13 backlog §28.9/3: 'Goethe Türkiye (403)'. Sayfa Chromium ile açıldı; tarih ve ücretler birincil kaynaktan okundu.",
+      "kaynak": [
+        { "ad": "Goethe-Institut Türkiye, Goethe-Zertifikat C1 (tarihler ve TL ücretleri)", "url": "https://www.goethe.de/ins/tr/tr/spr/prf/gzc1.cfm", "belgeYili": "2026 (Kasım 2026–Şubat 2027 oturumları)", "erisim": "2026-10-19" },
+        { "ad": "Goethe-Institut Türkiye, Goethe-Zertifikat C2: GDS (modül süreleri; Türkiye'de tarih yok)", "url": "https://www.goethe.de/ins/tr/tr/spr/prf/gzc2.cfm", "belgeYili": "2026", "erisim": "2026-10-19" },
+        { "ad": "Goethe-Institut Türkiye, Goethe-Zertifikat B2 (tarihler ve TL ücretleri)", "url": "https://www.goethe.de/ins/tr/tr/spr/prf/gzb2.cfm", "belgeYili": "2026 (Kasım–Aralık 2026 oturumları)", "erisim": "2026-10-20" },
+        { "ad": "Goethe-Institut Türkiye, Almanca sınavları (merkezler ve iletişim)", "url": "https://www.goethe.de/ins/tr/tr/spr/prf.html", "belgeYili": "2026", "erisim": "2026-10-19" }
+      ]
+    },
+    {
+      "id": "testdaf",
+      "alanlar": {
+        "kesinlik": "Doğrulandı",
+        "sonKontrol": "2026-10-19",
+        "sure": "Dijital TestDaF: Okuma yaklaşık 55 dk, Dinleme yaklaşık 40 dk, Yazma yaklaşık 60 dk, Konuşma yaklaşık 35 dk (toplam yaklaşık 3 saat 10 dk; görev sayısı ve süre değişebilir). Kağıt TestDaF: 60 + 40 + 60 + 35 dk, 'reine Prüfungszeit' 3 saat 15 dk; bölümler arasında mola var (süresini test merkezi bildirir).",
+        "tarih": "Sınav tarihleri ve kayıt son günleri (g.a.s.t./TestDaF-Institut, 19 Ekim 2026): Dijital 12 Kasım 2026 (kayıt 31 Ekim), Dijital 10 Aralık 2026 (kayıt 28 Kasım), Dijital 20 Ocak 2027 (kayıt 11 Ocak), Kağıt 2 Şubat 2027 (kayıt 14 Aralık 2026), Dijital 3 Mart 2027 (kayıt 20 Şubat), Dijital 14 Nisan 2027 (kayıt 3 Nisan), Kağıt 13 Mayıs 2027 (kayıt 13 Nisan), Dijital 8 Haziran 2027 (kayıt 26 Mayıs), Dijital ve kağıt 19 Ağustos 2027, Dijital ve kağıt 15 Eylül 2027, Dijital ve kağıt 7 Ekim 2027, Dijital ve kağıt 11 Kasım 2027. Kayıt yalnızca testdaf.de üzerinden; her merkez bu tarihlerin hangilerini açacağını kendisi seçer, kontenjan sınırlı. Sonuç dijitalde yaklaşık 3, kağıtta yaklaşık 6 hafta. Türkiye'deki lisanslı TestDaF merkezleri (20): İstanbul — Goethe-Institut İstanbul, İstanbul Üniversitesi-Cerrahpaşa, Marmara Üniversitesi (Göztepe), Türk-Alman Üniversitesi (Beykoz), ALKEV Özel Okulu, ALEV Okulu, Carl Duisberg Centren; Ankara — Goethe-Institut Ankara, Ankara Üniversitesi TÖMER, Hacettepe Üniversitesi YDYO; İzmir — Goethe-Institut İzmir, Ege Üniversitesi; ayrıca Bursa (Uludağ Üniv. YDYO), Eskişehir (Anadolu Üniv.), Antalya (Akdeniz Üniv., ARTI Dil Okulu, Antalya Koleji), Adana (Çukurova Üniv.), Erzurum (Atatürk Üniv., Bilkent Erzurum Laboratuvar Okulu). 19 Ekim'de önümüzdeki 6 ayda boş yeri görünen İstanbul merkezleri: İÜ-Cerrahpaşa, Marmara Üniversitesi, Türk-Alman Üniversitesi.",
+        "ucret": "Türkiye tutarı yalnızca kayıt portalında (g.a.s.t. katılımcı portalı) seçim yapınca görünüyor; testdaf.de ve g.a.s.t. açık sayfalarında ülke tutarı yok. Teyit gerekir."
+      },
+      "notEki": "Tur 14: Türkiye merkezleri ve 2026–2027 tarihleri g.a.s.t.'nin (TestDaF-Institut) testdaf.de merkez arama aracının kullandığı açık API'den okundu (api.gast.de/event/api/public/...). Türk öğrenci için: İstanbul'da en az üç merkez boş yer gösteriyor; 2028 güzü başvurusu için 2027 Mart–Haziran dijital oturumları son sınıfla çakışmayan güvenli pencere.",
+      "gerekce": "Tur 13 backlog §28.9/3: 'TestDaF Türkiye merkezleri'. Merkez arama aracı JS ile çalıştığı için önceki turda okunamamıştı.",
+      "kaynak": [
+        { "ad": "TestDaF, test merkezi bul (g.a.s.t. merkez arama aracı; Türkei)", "url": "https://www.testdaf.de/de/teilnehmende/mein-testdaf/testzentrum-finden/", "belgeYili": "2026", "erisim": "2026-10-19" },
+        { "ad": "g.a.s.t. açık API: Türkiye TestDaF merkezleri (aracın veri ucu)", "url": "https://api.gast.de/event/api/public/center-search/world/by-country/with-event-availability?isoCode=TR&product=1", "belgeYili": "2026", "erisim": "2026-10-19" },
+        { "ad": "g.a.s.t. açık API: TestDaF sınav tarihleri ve kayıt son günleri", "url": "https://api.gast.de/event/api/public/events/testdaf", "belgeYili": "2026–2027", "erisim": "2026-10-19" },
+        { "ad": "TestDaF, dijital TestDaF yapısı (bölüm süreleri)", "url": "https://www.testdaf.de/de/teilnehmende/der-digitale-testdaf/aufbau-des-digitalen-testdaf/", "belgeYili": "2026", "erisim": "2026-10-19" },
+        { "ad": "TestDaF, kağıt TestDaF yapısı (3 sa 15 dk)", "url": "https://www.testdaf.de/de/teilnehmende/der-papierbasierte-testdaf/aufbau-des-papierbasierten-testdaf/", "belgeYili": "2026", "erisim": "2026-10-19" },
+        { "ad": "Goethe-Institut Türkiye, TestDaF sayfası (kayıt yalnız testdaf.de, yılda altı sabit tarih ifadesi)", "url": "https://www.goethe.de/ins/tr/tr/spr/prf/testdaf.html", "belgeYili": "2026", "erisim": "2026-10-19" }
+      ]
+    },
+    {
+      "id": "telc-c1-hochschule",
+      "alanlar": {
+        "kesinlik": "Teyit gerekir",
+        "sonKontrol": "2026-10-19",
+        "tarih": "telc'in resmi merkez haritasında Türkiye'de 14 lisanslı telc sınav merkezi var: İstanbul — DAS Akademie İstanbul (Ataşehir), Euroversity Yurtdışı Eğitim (Halaskargazi Cad., Şişli), Yabancı Hocam Eğitim Hizmetleri, deutschmitspring/Mısra (Ümraniye), İstanbul Üniversitesi-Cerrahpaşa Sosyal Bilimler MYO (sinavmerkezi.iuc.edu.tr); Ankara — ANKA Dil Okulu, TOBB ETÜ, Berliner Tercüme, Lingosmart, TEOL; İzmir — DAS Akademie İzmir, İzdaf Akademi (Narlıdere); Adana ve Antalya — Kökdil. Hangi merkezin 'telc Deutsch C1 Hochschule' sınavını, hangi tarihlerde yaptığı haritada yazmıyor: merkezden teyit gerekir.",
+        "ucret": "Merkeze göre; Türkiye tutarı Teyit gerekir."
+      },
+      "notEki": "Tur 14: Türkiye merkez listesi telc.net merkez haritasının sayfa verisinden okundu (14 merkez). Dikkat: genel 'telc Deutsch C1' DSH muafiyeti vermez; merkezden özellikle 'C1 Hochschule' oturumu sorulmalı.",
+      "gerekce": "Tur 13 backlog §28.9/3: 'telc Türkiye merkezleri'. Merkezler bulundu; C1 Hochschule oturumu ve ücret merkez bazında olduğundan kayıt Teyit gerekir kalır.",
+      "kaynak": [
+        { "ad": "telc, Prüfungszentrum finden (resmi merkez haritası; Türkiye kayıtları)", "url": "https://www.telc.net/sprachpruefungen/pruefungszentrum-finden/", "belgeYili": "2026", "erisim": "2026-10-19" }
+      ]
+    },
+    {
+      "id": "cils",
+      "alanlar": {
+        "kesinlik": "Doğrulandı",
+        "sonKontrol": "2026-10-19",
+        "tarih": "2027 oturumları (Siena takvimi): 18 Şubat (kayıt 18 Ocak), 8 Nisan (8 Mart), 10 Haziran (1 Mayıs), 22 Temmuz (22 Haziran), 21 Ekim (21 Eylül), 2 Aralık 2027 (23 Ekim). B2 oturumları Haziran ve Aralık'ta (Tur 11). 2026'nın son oturumu 3 Aralık 2026 (kayıt 24 Ekim 2026). Türkiye'deki CILS sınav yerleri (Siena resmi listesi): İstanbul — İtalyan Kültür Merkezi (Tepebaşı, Meşrutiyet Cad. 75; +90 212 293 98 48), Desk Unistrasi Turchia (Bomonti–Şişli, Kazım Orbay Cad. 15, Evrim Okulu içinde; +90 212 231 34 31), Firenze Yurtdışı Eğitim (Bağdat Cad. 374/5, Şaşkınbakkal; +90 216 302 24 55); İzmir — İtalyan Dostluk ve Kültür Derneği (Kıbrıs Şehitleri Cad. 58). Her yerin hangi oturumu açtığı merkezden sorulur."
+      },
+      "notEki": "Tur 14: İstanbul'da CILS yapan üç yer Siena'nın resmi yurt dışı sınav yeri listesinden doğrulandı. Ücret merkeze göre değişir; İstanbul tutarı hâlâ Teyit gerekir (iicistanbul@esteri.it).",
+      "gerekce": "Tur 13 backlog §28.9/3: 'CILS İstanbul'.",
+      "kaynak": [
+        { "ad": "Università per Stranieri di Siena, CILS sınav yerleri: Türkiye", "url": "https://cils.unistrasi.it/1/180/123/TURCHIA.htm", "belgeYili": "2026", "erisim": "2026-10-19" },
+        { "ad": "İstanbul İtalyan Kültür Merkezi, iletişim (iicistanbul@esteri.it)", "url": "https://iicistanbul.esteri.it/chi-siamo/contatti", "belgeYili": "2026", "erisim": "2026-10-19" }
+      ]
+    },
+    {
+      "id": "celi",
+      "alanlar": {
+        "kesinlik": "Doğrulandı",
+        "sonKontrol": "2026-10-19",
+        "tarih": "2027 genel CELI oturumları (CVCL takvimi): 9 Mart 2027, yalnızca A1–B2 (kayıt son günü 9 Şubat 2027); 11 Haziran 2027, A1–C2 (11 Mayıs 2027); 16 Kasım 2027, A1–C2 (16 Ekim 2027). Sınav merkezleri kayıt son gününü öne çekebilir. Türkiye'deki CELI merkezleri (Perugia CVCL'nin yurt dışı anlaşmalı merkez listesi, güncelleme 19.03.2026): İstanbul — İtalyan Liseleri / Ita Okulları (Abide-i Hürriyet Cad. 5/7, Şişli; m.vasapollo@ita.k12.tr); Ankara — Casa Italia (Kuzgun Cad. 95/A, Ayrancı; casaitaliaankara@gmail.com); İzmir — İzmir Ekonomi Üniversitesi (Sakarya Cad. 156), Özel İtalyan Ana ve İlkokulu (Alsancak). İstanbul İtalyan Kültür Merkezi bu listede yok.",
+        "ucret": "Perugia dışındaki merkezlerde merkeze göre; Türkiye tutarı Teyit gerekir."
+      },
+      "notEki": "Tur 14 düzeltmesi: 'İstanbul İtalyan Kültür Merkezi CELI yapıyor' ifadesi resmi listeyle desteklenmiyor; İstanbul'daki CELI merkezi İtalyan Liseleri (Şişli). Türk öğrenci için: Mart 2027 oturumu (yalnız A1–B2) İstanbul'da açılıyor mu, okuldan sorulmalı.",
+      "gerekce": "Tur 13 backlog §28.9/3: 'CELI İstanbul'. CVCL'nin resmi yurt dışı merkez PDF'i okundu.",
+      "kaynak": [
+        { "ad": "CVCL Perugia, yurt dışı anlaşmalı CELI merkezleri (PDF, güncelleme 19.03.2026)", "url": "https://cvcl.unistrapg.it/MC-API/Risorse/StreamRisorsa.ashx?guid=0c566c9e-fef7-4b02-815d-328ce3329a5d", "belgeYili": "2026", "erisim": "2026-10-19" },
+        { "ad": "CVCL Perugia, Centri d'esame convenzionati CELI", "url": "https://cvcl.unistrapg.it/pagine/centri-desame-convenzionati-celi-000", "belgeYili": "2026", "erisim": "2026-10-19" }
+      ]
+    },
+    {
+      "id": "plida",
+      "alanlar": {
+        "kesinlik": "Teyit gerekir",
+        "sonKontrol": "2026-10-19",
+        "tarih": "60'tan fazla ülkede 300'den fazla merkez. PLIDA sitesinde 19 Ekim 2026'da hâlâ 2026 takvimi var; 2027 takvimi yayımlanmadı. Türkiye'deki tek PLIDA merkezi (Società Dante Alighieri resmi merkez listesi): 'Italyan dil merkezi (Centro PLIDA)', Merkez Mah. Halaskargazi Cad. No. 143, İstanbul (listede posta kodu 34716 Kadıköy yazıyor); info@italyandilmerkezi.com, +90 212 612 00 39. İstanbul İtalyan Kültür Merkezi PLIDA merkezleri listesinde yok.",
+        "ucret": "Merkeze göre; Teyit gerekir."
+      },
+      "notEki": "Tur 14 düzeltmesi: 'İstanbul İtalyan Kültür Merkezi PLIDA yapıyor' ifadesi resmi listeyle desteklenmiyor. 2027 takvimi yayımlanınca kayıt Doğrulandı'ya çevrilebilir.",
+      "gerekce": "Tur 13 backlog §28.9/3: 'PLIDA İstanbul'. Merkez doğrulandı; 2027 takvimi henüz yok.",
+      "kaynak": [
+        { "ad": "Società Dante Alighieri, merkezler listesi (Turchia)", "url": "https://www.dante.global/it/contatti/lista-contatti", "belgeYili": "2026", "erisim": "2026-10-19" },
+        { "ad": "PLIDA ana sayfa (2026 takvimi bağlantısı)", "url": "https://plida.dante.global/it", "belgeYili": "2026", "erisim": "2026-10-19" }
+      ]
+    },
+    {
+      "id": "tisus",
+      "alanlar": {
+        "kesinlik": "Doğrulandı",
+        "sonKontrol": "2026-10-19",
+        "sure": "Okuma ve Yazma alt testleri genellikle salı sabahı birlikte, yaklaşık dört saat. Sözlü alt test ayrı yapılır (yurt dışında sınav görevlisiyle).",
+        "tarih": "Yurt dışı oturumlar ve ilgi bildirimi pencereleri: 20 Ekim 2026 (ilgi bildirimi 22 Haziran–28 Ağustos 2026, ödeme son günü 4 Eylül 2026); 11 Mayıs 2027 (ilgi bildirimi 11 Ocak 2027 08:00–19 Mart 2027 17:00, ödeme 26 Mart 2027); 26 Ekim 2027 (28 Haziran–3 Eylül 2027, ödeme 10 Eylül 2027); 9 Mayıs 2028 (10 Ocak–17 Mart 2028, ödeme 24 Mart 2028). Saatler İsveç saati. Yurt dışında kalıcı sınav yeri yok: aday ilgi bildirir, Stockholm Üniversitesi istenen yerde sınav görevlisi bulabilirse e-postayla onay ve ödeme bağlantısı gönderir, bulamazsa başka yer önerir. İstanbul 2025 yurt dışı sınav yerleri haritasında vardı; 2027 İstanbul oturumu önceden doğrulanamaz (yapısı gereği talebe bağlı). Sonuç yaklaşık 5 hafta.",
+        "ucret": "Yurt dışı Tisus (2026'dan itibaren): tam sınav 2.875 SEK, kalan bölüm (restprov) 1.440 SEK; kartla ödenir. Buna ek olarak yurt dışındaki sınav görevlisine sınav günü doğrudan ödenen bir ücret (posta, salon, gözetmen) çoğu zaman eklenir. İptal: sınavdan en geç 11 gün önce, idari kesintiyle."
+      },
+      "notEki": "Tur 14: ücret ve 2027 pencereleri Stockholm Üniversitesi'nin İsveççe 'Om Tisus' sayfasından doğrulandı. Türk öğrenci için: Mayıs 2027 oturumu için ilgi bildirimi 11 Ocak–19 Mart 2027; İstanbul açılmazsa en yakın yer SU tarafından önerilir. Resmi iletişim adresi tisus.svefler@su.se (tisus@su.se değil).",
+      "gerekce": "Tur 13 backlog §28.9/3: 'Tisus 2027 İstanbul oturumu'. Ücret ve pencere doğrulandı; İstanbul oturumu kurum işleyişi gereği önceden doğrulanamaz.",
+      "kaynak": [
+        { "ad": "Stockholm Üniversitesi, Om Tisus (Anmälan och avgift Tisus utland)", "url": "https://www.su.se/enheter/tisus---test-i-svenska-for-universitets--och-hogskolestudier/om-tisus", "belgeYili": "2026", "erisim": "2026-10-19" },
+        { "ad": "Stockholm University, About Tisus (test dates abroad, test locations)", "url": "https://www.su.se/english/divisions/tisus---test-in-swedish-for-university-studies/about-tisus", "belgeYili": "2026", "erisim": "2026-10-19" },
+        { "ad": "Stockholm University, Tisus contact", "url": "https://www.su.se/english/divisions/tisus---test-in-swedish-for-university-studies/contact", "belgeYili": "2026", "erisim": "2026-10-19" }
+      ]
+    },
+    {
+      "id": "studieproven-dansk",
+      "alanlar": {
+        "kesinlik": "Doğrulandı",
+        "sonKontrol": "2026-10-19",
+        "sure": "Yazılı ve sözlü bölüm; yazılı bölüm tek günde, sözlü bölüm ayrı dönemde. Bölüm süreleri bu turda okunmadı.",
+        "tarih": "Sınavlar Danimarka'da, Göç ve Entegrasyon Bakanlığı'na bağlı SIRI'nin yetkilendirdiği sınav yapan dil merkezlerinde (prøveafholdende udbyder) yapılır; aday sınava girmek istediği sprogcenter'a doğrudan kaydolur. Yönetmelikte yurt dışında sınav yeri öngören bir hüküm yok; Türkiye'de sınav yeri yok. 2027: Mayıs–Haziran dönemi yazılı sınavlar 10–13 Mayıs 2027, sözlü 14–25 Haziran 2027, kayıt son günü 1 Mart 2027; Kasım–Aralık dönemi Studieprøven 8 Kasım 2027, Prøve i Dansk 3 9 Kasım 2027, sözlü 6–17 Aralık 2027, kayıt son günü 30 Ağustos 2027. Kayıt, dönem başlangıcından en az 10 hafta önce.",
+        "ucret": "Kendi parasıyla giren aday için ücret merkezde ödenir; Kopenhag Belediyesi dil merkezinde Danca sınav kaydı 1.646 DKK. Studieprøven tutarı merkeze göre; Teyit gerekir."
+      },
+      "notEki": "Tur 14: 'Türkiye'de mi, Danimarka'da mı' sorusu kapandı: Danimarka'da. Türk öğrenci için pratik yol: İngilizce programla Danimarka'ya gidip Danca'yı orada öğrenmek ve sınava orada girmek (Bakanlık önerisiyle uyumlu). Danca lisansa doğrudan başvuru, Türkiye'den sınav yapılamadığı için gerçekçi değil.",
+      "gerekce": "Tur 13 backlog §28.9/3: 'Danca sınav (Doğrulanamadı)'. SIRI/UIM sınav yönetmeliği, danskogproever.dk 2027 takvimi ve Kopenhag Belediyesi sayfası okundu.",
+      "kaynak": [
+        { "ad": "Bekendtgørelse nr. 1627 af 6. december 2024 om prøver inden for danskuddannelse til voksne udlændinge m.fl. (Lovtidende A 2024)", "url": "https://www.lovtidende.dk/api/pdf/247028", "belgeYili": "2024 (yürürlükteki son metin olarak bulundu)", "erisim": "2026-10-19" },
+        { "ad": "danskogproever.dk, kayıt son günleri ve sınav tarihleri", "url": "https://danskogproever.dk/tilmeldingsfrister-og-proevedatoer/", "belgeYili": "2026", "erisim": "2026-10-19" },
+        { "ad": "danskogproever.dk, Prøvedatoer 2027 (PDF)", "url": "https://danskogproever.dk/media/hjhnubl1/proevedatoer-2027.pdf", "belgeYili": "2027", "erisim": "2026-10-19" },
+        { "ad": "Københavns Kommune, Danskprøver – selvbetalt", "url": "https://www.kk.dk/borger/uddannelse/danskuddannelse-til-nyankomne-udlaendinge/danskproever-selvbetalt", "belgeYili": "2026", "erisim": "2026-10-19" }
+      ]
+    },
+    {
+      "id": "gre-general",
+      "alanlar": {
+        "ulkeler": ["nl", "fi", "es"],
+        "sonKontrol": "2026-10-19"
+      },
+      "notEki": "Tur 14 (ilk-20 kapsam taraması): Hollanda — Maastricht MSc International Business: AACSB/EQUIS akreditesi olmayan uluslararası lisans diploması olan aday GMAT (Focus 515+, 595+ otomatik kabul) ya da eşdeğer GRE sunmak zorunda (2025-26 belgesi); Tilburg Research Master Economics: GRE zorunlu, sayısal en az 164, sınav en fazla 2 yıllık (resmi SSS sayfası; sayfa otomatik erişime 403, metin arama dizininden; ayrıca bu program lisans derecesini belirli ülkelerle sınırlıyor, Türkiye listede görünmüyor). Finlandiya — Aalto School of Business: Finlandiya dışından lisans derecesi olan aday (Kabul grubu 2) için GMAT ya da GRE zorunlu; GRE en az 154 sözel / 155 sayısal, Business Analytics ve International Management için 157/158; skor 12 Ocak 2027'ye kadar ulaşmalı, en eski sınav tarihi 7 Aralık 2021 (2027 kabulleri). İspanya — UC3M Master in Economic Analysis: GRE zorunlu değil ama şiddetle önerilir; sayısal bölümde 80. yüzdeliğin altı genellikle değerlendirilmez. Örnek bulunamayan ülkeler (resmi kaynakta zorunlu GRE görmedik): İsveç, Danimarka, İrlanda, Macaristan, Polonya, Fransa. Avusturya: CEU MA programları için 'bölüm sınavı ya da GRE' bilgisi yalnız ÖPUK sayfasında (Yoruma açık). Çekya: CERGE-EI (Charles) MA in Economic Research GRE/GMAT'ı 'şiddetle teşvik ediyor, zorunlu değil'. Mühendislik YL'lerinde bu ülkelerde GRE şartı görmedik; şart iktisat ve işletme YL'lerinde yoğunlaşıyor.",
+      "gerekce": "Tur 13 backlog §28.9/3: 'GRE kapsamı yalnız de/be/it/ch'. Ülke ekleme ölçütü Tur 12 PM Kararı 1 ile aynı: ilk-20'deki bir üniversitede zorunlu ya da 'şiddetle önerilir' (KU Leuven, PoliTo emsali).",
+      "kaynak": [
+        { "ad": "Maastricht University, MSc International Business – Marketing-Finance, admission requirements 2025-2026 (PDF)", "url": "https://www.maastrichtuniversity.nl/file/admissionrequirementsmainternationalbusiness-marketing-finance2025-2026pdf", "belgeYili": "2025-26 (eski akademik yıl; 2027-28 sürümü kontrol edilmeli)", "erisim": "2026-10-19" },
+        { "ad": "Tilburg University, Research Master Economics – FAQ (GRE zorunlu, QR 164)", "url": "https://www.tilburguniversity.edu/education/masters-programmes/research-master-economics/faq", "belgeYili": "2026 (sayfa 403; metin arama dizininden)", "erisim": "2026-10-19" },
+        { "ad": "Aalto University, GMAT and GRE exams (Updated 16.9.2026; 2027 admissions)", "url": "https://www.aalto.fi/en/admission-services/gmat-and-gre-exams", "belgeYili": "2026 (2027 kabulleri)", "erisim": "2026-10-19" },
+        { "ad": "UC3M, Master in Economic Analysis (GRE not compulsory but highly recommended; 80th percentile)", "url": "https://www.uc3m.es/master/economic-analysis", "belgeYili": "2026/27", "erisim": "2026-10-19" },
+        { "ad": "CERGE-EI, MA in Economic Research FAQ (GRE/GMAT encouraged, not required)", "url": "https://ei.cerge-ei.cz/ma-in-economic-research/ma-in-economic-research-faq", "belgeYili": "2026", "erisim": "2026-10-19" }
+      ]
+    },
+    {
+      "id": "gmat",
+      "alanlar": {
+        "ulkeler": ["nl", "fi"],
+        "sonKontrol": "2026-10-19"
+      },
+      "notEki": "Tur 14: Hollanda — Maastricht MSc International Business, AACSB/EQUIS akreditesi olmayan uluslararası diplomalı aday için GMAT (Focus 515+) ya da GRE zorunlu (2025-26 belgesi). Finlandiya — Aalto School of Business, Finlandiya dışı lisans derecesi için GMAT ya da GRE zorunlu (GMAT Focus 515, Business Analytics ve International Management için 555; 2027 kabulleri). Türk öğrenci için: Türk üniversitesinin AACSB/EQUIS akreditesi Maastricht'te sınav muafiyeti yerine portfolyo seçeneği açar; akreditasyon üniversiteden teyit edilmeli.",
+      "gerekce": "GRE taramasında aynı programlar GMAT'ı da şart koşuyor.",
+      "kaynak": [
+        { "ad": "Maastricht University, MSc International Business – Marketing-Finance, admission requirements 2025-2026 (PDF)", "url": "https://www.maastrichtuniversity.nl/file/admissionrequirementsmainternationalbusiness-marketing-finance2025-2026pdf", "belgeYili": "2025-26", "erisim": "2026-10-19" },
+        { "ad": "Aalto University, GMAT and GRE exams (Updated 16.9.2026)", "url": "https://www.aalto.fi/en/admission-services/gmat-and-gre-exams", "belgeYili": "2026 (2027 kabulleri)", "erisim": "2026-10-19" }
+      ]
+    }
+  ]
+}

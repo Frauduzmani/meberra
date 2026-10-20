@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bugün — örnek tasarım</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Nunito:wght@700;800;900&display=swap&subset=latin-ext" rel="stylesheet">
+<style>
+/* Enerjik tema — örnek. Tüm renk çiftleri WCAG AA (≥ 4.5:1) ile hesaplandı. */
+:root {
+  --bg: #FAF8FF; --card: #FFFFFF; --text: #1A1033; --muted: #5E5873; --line: #E9E4FA;
+  --primary: #5B3DF5; --on-primary: #FFFFFF; --primary-soft: #EFEBFF;
+  --energy: #FF6B2C; --on-energy: #1A1033; --energy-text: #C2410C; --energy-soft: #FFF0E8;
+  --success: #15803D; --success-soft: #E8F7EE;
+  --hero-a: #5B3DF5; --hero-b: #8B5CF6;
+  --radius: 20px; --shadow: 0 1px 2px rgba(26,16,51,.06), 0 8px 24px rgba(91,61,245,.08);
+  --font-head: "Nunito", system-ui, sans-serif; --font-body: "DM Sans", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F0B1F; --card: #1A1530; --text: #F3F0FF; --muted: #A8A3BF; --line: #2C2547;
+    --primary: #9D8BFF; --on-primary: #0F0B1F; --primary-soft: #2A2250;
+    --energy-text: #FF8A57; --energy-soft: #3A2218; --success: #4ADE80; --success-soft: #16301F;
+    --hero-a: #4C2FE0; --hero-b: #7C3AED; --shadow: 0 1px 2px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F0B1F; --card: #1A1530; --text: #F3F0FF; --muted: #A8A3BF; --line: #2C2547;
+  --primary: #9D8BFF; --on-primary: #0F0B1F; --primary-soft: #2A2250;
+  --energy-text: #FF8A57; --energy-soft: #3A2218; --success: #4ADE80; --success-soft: #16301F;
+  --hero-a: #4C2FE0; --hero-b: #7C3AED; --shadow: 0 1px 2px rgba(0,0,0,.4);
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 400 16px/1.5 var(--font-body); }
+h1, h2, h3 { font-family: var(--font-head); margin: 0; line-height: 1.2; }
+a { color: inherit; }
+svg.i { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; border-radius: 10px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Örnek uyarısı */
+.demo-note { background: var(--primary-soft); color: var(--text); font-size: 13px; text-align: center; padding: 6px 16px; }
+
+/* Üst menü */
+.top { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.top-in { max-width: 1080px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; gap: 16px; }
+.brand { display: flex; align-items: center; gap: 8px; font: 900 18px var(--font-head); text-decoration: none; }
+.brand-mark { width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; background: linear-gradient(135deg, var(--hero-a), var(--energy)); color: #fff; }
+.tabs { display: flex; gap: 4px; margin: 0 auto; }
+.tab { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 12px; text-decoration: none; font-weight: 700; color: var(--muted); transition: background .2s, color .2s; }
+.tab:hover { background: var(--primary-soft); color: var(--text); }
+.tab[aria-current="page"] { background: var(--primary-soft); color: var(--primary); }
+.top-actions { display: flex; align-items: center; gap: 8px; }
+.icon-btn { width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line); background: var(--card); color: var(--text); display: grid; place-items: center; cursor: pointer; }
+.avatar { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--primary); color: var(--on-primary); font-weight: 700; }
+
+/* Sayfa */
+main { max-width: 1080px; margin: 0 auto; padding: 24px 16px 112px; display: grid; gap: 20px; }
+.hello { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px; }
+.hello h1 { font-size: clamp(26px, 4vw, 34px); font-weight: 900; }
+.hello p { margin: 4px 0 0; color: var(--muted); }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 14px; border-radius: 999px; font-weight: 700; font-size: 14px; }
+.chip.fire { background: var(--energy-soft); color: var(--energy-text); }
+.chip.xp { background: var(--primary-soft); color: var(--primary); }
+
+.card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; }
+.label { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+.row-top { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+
+/* Bugünkü görev */
+.hero { position: relative; overflow: hidden; border: 0; color: #fff; background: linear-gradient(135deg, var(--hero-a), var(--hero-b)); padding: 28px; display: grid; gap: 16px; align-content: start; }
+.hero::after { content: ""; position: absolute; right: -60px; top: -60px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(255,107,44,.55), transparent 70%); pointer-events: none; }
+.hero > * { position: relative; z-index: 1; }
+.hero .label { color: rgba(255,255,255,.85); }
+.hero h2 { font-size: clamp(24px, 3.4vw, 32px); font-weight: 900; }
+.hero-meta { display: flex; flex-wrap: wrap; gap: 8px 16px; color: rgba(255,255,255,.9); font-size: 15px; }
+.hero-meta span { display: inline-flex; align-items: center; gap: 6px; }
+.bar { height: 10px; border-radius: 999px; background: rgba(255,255,255,.25); overflow: hidden; }
+.bar > i { display: block; height: 100%; width: var(--p, 0%); border-radius: inherit; background: var(--energy); }
+.bar-cap { display: flex; justify-content: space-between; font-size: 14px; color: rgba(255,255,255,.9); margin-top: 6px; }
+.hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 14px; border: 0; font: 800 17px var(--font-head); white-space: nowrap; text-decoration: none; cursor: pointer; transition: transform .15s ease, box-shadow .2s; }
+.btn:active { transform: scale(.97); }
+.btn-energy { background: var(--energy); color: var(--on-energy); box-shadow: 0 6px 18px rgba(255,107,44,.35); }
+.btn-energy:hover { box-shadow: 0 8px 24px rgba(255,107,44,.5); }
+.btn-ghost-light { background: transparent; color: #fff; text-decoration: underline; text-underline-offset: 3px; font-weight: 700; font-size: 15px; padding: 0 8px; }
+.btn-primary { background: var(--primary); color: var(--on-primary); }
+.btn-soft { background: var(--primary-soft); color: var(--primary); min-height: 44px; font-size: 15px; padding: 0 16px; }
+
+/* Seri */
+.streak { display: grid; gap: 14px; align-content: start; }
+.streak-big { display: flex; align-items: center; gap: 12px; }
+.flame { flex: none; width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center; background: var(--energy-soft); color: var(--energy-text); }
+.flame svg.i { width: 30px; height: 30px; }
+.streak-big b { font: 900 32px var(--font-head); display: block; line-height: 1; }
+.streak-big span { color: var(--muted); font-size: 14px; }
+.week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; list-style: none; margin: 0; padding: 0; }
+.week li { display: grid; justify-items: center; gap: 4px; font-size: 12px; color: var(--muted); font-weight: 700; }
+.dot { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; border: 2px dashed var(--line); }
+.dot.ok { border: 0; background: var(--energy); color: var(--on-energy); }
+.dot.today { border: 2px solid var(--energy); }
+.dot svg.i { width: 16px; height: 16px; stroke-width: 3; }
+.streak p { margin: 0; font-size: 14px; color: var(--muted); }
+
+/* Üçlü kartlar */
+.row-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.mini { display: flex; flex-direction: column; gap: 10px; }
+.mini > .btn, .mini > .tag { margin-top: auto; align-self: flex-start; }
+.mini > .btn { align-self: stretch; }
+.mini-head { display: flex; align-items: center; gap: 10px; }
+.mini-ico { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; }
+.mini h3 { font-size: 18px; font-weight: 800; }
+.mini p { margin: 0; color: var(--muted); font-size: 15px; }
+.big-num { font: 900 36px var(--font-head); line-height: 1; }
+.big-num small { font-size: 18px; color: var(--muted); font-weight: 800; }
+.tag { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--energy-soft); color: var(--energy-text); }
+.score { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
+.score i { height: 8px; border-radius: 4px; background: var(--line); }
+.score i.on { background: var(--success); }
+.date { display: flex; align-items: center; gap: 12px; }
+.date-box { width: 56px; text-align: center; border-radius: 12px; background: var(--primary-soft); color: var(--primary); padding: 6px 0; }
+.date-box b { display: block; font: 900 22px var(--font-head); line-height: 1.1; }
+.date-box span { font-size: 12px; font-weight: 700; }
+
+/* Dersler */
+.sec-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 14px; }
+.sec-head h2 { font-size: 22px; font-weight: 900; }
+.sec-head a { font-weight: 700; color: var(--primary); text-decoration: none; }
+.courses { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; list-style: none; margin: 0; padding: 0; }
+.course { display: flex; align-items: center; gap: 14px; padding: 14px; border-radius: 16px; border: 1px solid var(--line); text-decoration: none; min-height: 72px; transition: border-color .2s, transform .2s; }
+.course:hover { border-color: var(--primary); transform: translateY(-2px); }
+.ring { --p: 0; width: 48px; height: 48px; flex: none; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--c) calc(var(--p) * 1%), var(--line) 0); font-size: 12px; font-weight: 800; }
+.ring::before { content: attr(data-v); width: 38px; height: 38px; border-radius: 50%; background: var(--card); display: grid; place-items: center; }
+.course b { display: block; font-weight: 700; }
+.course span { font-size: 13px; color: var(--muted); }
+
+/* Premium */
+.premium { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; background: linear-gradient(120deg, var(--energy-soft), var(--primary-soft)); border: 0; }
+.premium-txt { display: flex; align-items: center; gap: 14px; }
+.premium h2 { font-size: 20px; font-weight: 900; }
+.premium p { margin: 2px 0 0; color: var(--muted); font-size: 15px; }
+
+/* Alt menü (telefon) */
+.bottom { display: none; }
+
+@media (max-width: 860px) {
+  .row-top, .row-3 { grid-template-columns: 1fr; }
+  .courses { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .tabs, .top-actions .icon-btn { display: none; }
+  .top-in { justify-content: space-between; }
+  main { padding-top: 16px; gap: 16px; }
+  .hero { padding: 22px; }
+  .hero::after { opacity: .5; }
+  .hero-cta { flex-direction: column; align-items: stretch; gap: 4px; }
+  .courses { grid-template-columns: 1fr; }
+  .bottom { display: grid; grid-template-columns: repeat(4, 1fr); position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; background: var(--card); border-top: 1px solid var(--line); padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); }
+  .bottom a { display: grid; justify-items: center; gap: 2px; min-height: 52px; padding-top: 6px; border-radius: 12px; text-decoration: none; font-size: 12px; font-weight: 700; color: var(--muted); }
+  .bottom a[aria-current="page"] { color: var(--primary); background: var(--primary-soft); }
+}
+
+/* Giriş animasyonu — hareket azaltma tercihinde kapalı */
+@media (prefers-reduced-motion: no-preference) {
+  .rise { animation: rise .45s cubic-bezier(.2,.8,.2,1.2) both; animation-delay: calc(var(--d, 0) * 70ms); }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px) scale(.98); } }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2zM22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 2c1 4 5 6 5 11a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-6 1-9.5z"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></symbol>
+  <symbol id="i-redo" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></symbol>
+  <symbol id="i-crown" viewBox="0 0 24 24"><path d="M3 7l4 4 5-7 5 7 4-4-2 12H5z"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</svg>
+
+<p class="demo-note">Örnek tasarım — veriler temsilîdir, bağlantılar çalışmaz.</p>
+
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#" aria-label="Ana sayfa">
+      <span class="brand-mark"><svg class="i"><use href="#i-zap"/></svg></span>
+      <span>AP Hazırlık</span>
+    </a>
+    <nav class="tabs" aria-label="Ana menü">
+      <a class="tab" href="#" aria-current="page"><svg class="i"><use href="#i-home"/></svg>Bugün</a>
+      <a class="tab" href="#"><svg class="i"><use href="#i-book"/></svg>Çalış</a>
+      <a class="tab" href="#"><svg class="i"><use href="#i-target"/></svg>Hedefim</a>
+      <a class="tab" href="#"><svg class="i"><use href="#i-user"/></svg>Ben</a>
+    </nav>
+    <div class="top-actions">
+      <button class="icon-btn" type="button" id="tema" aria-label="Temayı değiştir"><svg class="i"><use href="#i-moon"/></svg></button>
+      <span class="avatar" aria-label="Profil: Deneme Öğrenci">DÖ</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hello rise" style="--d:0">
+    <div>
+      <h1>Günaydın, Deneme!</h1>
+      <p>11. sınıf · Hedef: Almanya · AP sınavına 195 gün</p>
+    </div>
+    <div class="chips">
+      <span class="chip fire"><svg class="i"><use href="#i-flame"/></svg>5 gün seri</span>
+      <span class="chip xp"><svg class="i"><use href="#i-zap"/></svg>340 puan</span>
+    </div>
+  </section>
+
+  <div class="row-top">
+    <section class="card hero rise" style="--d:1" aria-labelledby="gorev-baslik">
+      <span class="label">Bugünkü görevin</span>
+      <h2 id="gorev-baslik">Türev kuralları: 10 soru</h2>
+      <div class="hero-meta">
+        <span><svg class="i"><use href="#i-book"/></svg>AP Calculus AB · Ünite 2</span>
+        <span><svg class="i"><use href="#i-clock"/></svg>yaklaşık 15 dk</span>
+      </div>
+      <div>
+        <div class="bar" style="--p:30%" role="progressbar" aria-valuemin="0" aria-valuemax="10" aria-valuenow="3" aria-label="Günlük hedef"><i></i></div>
+        <div class="bar-cap"><span>3 / 10 soru</span><span>Kalan 7 soru · +70 puan</span></div>
+      </div>
+      <div class="hero-cta">
+        <a class="btn btn-energy" href="#"><svg class="i"><use href="#i-play"/></svg>Devam et</a>
+        <a class="btn btn-ghost-light" href="#">Başka bir ders seç</a>
+      </div>
+    </section>
+
+    <section class="card streak rise" style="--d:2" aria-labelledby="seri-baslik">
+      <div class="streak-big">
+        <span class="flame"><svg class="i"><use href="#i-flame"/></svg></span>
+        <div><b id="seri-baslik">5 gün</b><span>Çalışma serin</span></div>
+      </div>
+      <ol class="week" aria-label="Bu hafta">
+        <li><span class="dot ok"><svg class="i"><use href="#i-check"/></svg></span>Pzt</li>
+        <li><span class="dot ok"><svg class="i"><use href="#i-check"/></svg></span>Sal</li>
+        <li><span class="dot ok"><svg class="i"><use href="#i-check"/></svg></span>Çar</li>
+        <li><span class="dot ok"><svg class="i"><use href="#i-check"/></svg></span>Per</li>
+        <li><span class="dot ok"><svg class="i"><use href="#i-check"/></svg></span>Cum</li>
+        <li><span class="dot today" aria-label="Bugün, henüz tamamlanmadı"></span>Cmt</li>
+        <li><span class="dot"></span>Paz</li>
+      </ol>
+      <p>Bugünkü görevi bitirirsen serin <strong>6 gün</strong> olur.</p>
+    </section>
+  </div>
+
+  <div class="row-3">
+    <section class="card mini rise" style="--d:3">
+      <div class="mini-head">
+        <span class="mini-ico" style="background:var(--energy-soft);color:var(--energy-text)"><svg class="i"><use href="#i-redo"/></svg></span>
+        <h3>Tekrar zamanı</h3>
+      </div>
+      <div class="big-num">4 <small>soru</small></div>
+      <p>Daha önce yanlış yaptığın 4 soru bugün tekrar sırasında. Doğru çözersen kalıcı olarak öğrenmiş sayılırsın.</p>
+      <a class="btn btn-soft" href="#">Tekrar et<svg class="i"><use href="#i-arrow"/></svg></a>
+    </section>
+
+    <section class="card mini rise" style="--d:4">
+      <div class="mini-head">
+        <span class="mini-ico" style="background:var(--success-soft);color:var(--success)"><svg class="i"><use href="#i-trend"/></svg></span>
+        <h3>Tahmini AP puanın</h3>
+      </div>
+      <div class="big-num">3 <small>/ 5 · Calculus AB</small></div>
+      <div class="score" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+      <p>Son 2 denemene göre. 4'e çıkmak için en çok <strong>Ünite 4</strong> çalış.</p>
+      <span class="tag"><svg class="i" style="width:14px;height:14px"><use href="#i-crown"/></svg>Premium</span>
+    </section>
+
+    <section class="card mini rise" style="--d:5">
+      <div class="mini-head">
+        <span class="mini-ico" style="background:var(--primary-soft);color:var(--primary)"><svg class="i"><use href="#i-cal"/></svg></span>
+        <h3>Yaklaşan</h3>
+      </div>
+      <div class="date">
+        <div class="date-box"><b>13</b><span>KAS</span></div>
+        <div><strong>AP sınav kaydı son günü</strong><p>24 gün kaldı · College Board</p></div>
+      </div>
+      <a class="btn btn-soft" href="#">Kayıt adımlarını gör<svg class="i"><use href="#i-arrow"/></svg></a>
+    </section>
+  </div>
+
+  <section class="card rise" style="--d:6" aria-labelledby="ders-baslik">
+    <div class="sec-head">
+      <h2 id="ders-baslik">Derslerin</h2>
+      <a href="#">Tümü →</a>
+    </div>
+    <ul class="courses">
+      <li><a class="course" href="#"><span class="ring" style="--p:42;--c:#5B3DF5" data-v="%42"></span><div><b>Calculus AB</b><span>Sıradaki: Ünite 2 · Türev</span></div></a></li>
+      <li><a class="course" href="#"><span class="ring" style="--p:18;--c:#FF6B2C" data-v="%18"></span><div><b>Physics 1</b><span>Sıradaki: Ünite 1 · Kinematik</span></div></a></li>
+      <li><a class="course" href="#"><span class="ring" style="--p:0;--c:#16A34A" data-v="%0"></span><div><b>Chemistry</b><span>Henüz başlamadın</span></div></a></li>
+    </ul>
+  </section>
+
+  <section class="card premium rise" style="--d:7">
+    <div class="premium-txt">
+      <span class="flame" style="background:var(--card)"><svg class="i"><use href="#i-crown"/></svg></span>
+      <div>
+        <h2>Premium ile sınırsız çalış</h2>
+        <p>Tüm soru bankası, sınırsız deneme, akıllı tekrar ve tahmini AP puanı.</p>
+      </div>
+    </div>
+    <a class="btn btn-primary" href="#">Planları gör</a>
+  </section>
+</main>
+
+<nav class="bottom" aria-label="Ana menü">
+  <a href="#" aria-current="page"><svg class="i"><use href="#i-home"/></svg>Bugün</a>
+  <a href="#"><svg class="i"><use href="#i-book"/></svg>Çalış</a>
+  <a href="#"><svg class="i"><use href="#i-target"/></svg>Hedefim</a>
+  <a href="#"><svg class="i"><use href="#i-user"/></svg>Ben</a>
+</nav>
+
+<script>
+  // Tema düğmesi: açık ↔ koyu (tercih yalnızca bu tarayıcıda hatırlanır)
+  (function () {
+    var root = document.documentElement;
+    try { var t = localStorage.getItem("ornek-tema"); if (t) root.dataset.theme = t; } catch (e) {}
+    document.getElementById("tema").addEventListener("click", function () {
+      var koyu = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+      root.dataset.theme = koyu ? "light" : "dark";
+      try { localStorage.setItem("ornek-tema", root.dataset.theme); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>

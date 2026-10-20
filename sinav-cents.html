@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CEnT-S Hazırlık Stüdyosu | AP MEBERRA</title>
+  <meta name="description" content="CISIA CEnT-S (CISIA English Test – Sciences) hazırlığı: resmi kaynaklarla doğrulanmış sınav yapısı ve puanlama, bölüm bölüm İngilizce konu anlatımı ve hata teşhisli interaktif soru istasyonları.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async id="MathJax-script"></script>
+  <style>
+    /* Sayfaya özel küçük düzenler — yalnızca styles.css token'ları (var(--...)) kullanılır. */
+    .cents-toc { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-4); }
+    .cents-toc a { display: inline-flex; align-items: center; padding: 6px 12px; border: 1px solid var(--border); border-radius: var(--radius-full); background: var(--surface); color: var(--text); text-decoration: none; font-size: 0.88rem; font-weight: 600; }
+    .cents-toc a:hover, .cents-toc a:focus-visible { border-color: var(--accent); color: var(--accent); }
+    .cents-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--sp-4); margin-top: var(--sp-4); }
+    .cents-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--sp-4); min-width: 0; }
+    .cents-box h3 { font-size: 1rem; font-weight: 700; margin-bottom: var(--sp-2); color: var(--text); }
+    .cents-box p, .cents-box li { font-size: 0.92rem; color: var(--text-muted); overflow-wrap: anywhere; }
+    .cents-box ul { padding-left: 1.1rem; display: flex; flex-direction: column; gap: 4px; }
+    .cents-src { font-size: 0.8rem; color: var(--text-dim); margin-top: var(--sp-2); overflow-wrap: anywhere; }
+    .cents-src a { color: var(--accent); }
+    .cents-unverified { display: inline-block; padding: 1px 8px; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 800; color: var(--warn); border: 1px solid var(--warn); background: color-mix(in srgb, var(--warn) 10%, transparent); }
+    .cents-verified { display: inline-block; padding: 1px 8px; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 800; color: var(--ok); border: 1px solid var(--ok); background: color-mix(in srgb, var(--ok) 10%, transparent); }
+    .cents-table-wrap { overflow-x: auto; max-width: 100%; margin-top: var(--sp-2); }
+    .cents-data { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: var(--sp-2) 0; }
+    .cents-data th, .cents-data td { border: 1px solid var(--border); padding: 6px 10px; text-align: left; color: var(--text); }
+    .cents-data thead th { background: var(--surface-2); font-weight: 700; }
+    .cents-data tfoot td, .cents-data tfoot th { background: var(--surface-2); font-weight: 700; }
+    .question-body .cents-data { width: auto; min-width: 60%; }
+    .cents-formula-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: var(--sp-2); margin-top: var(--sp-2); }
+    .cents-formula-list > div { background: var(--surface-2); border-radius: var(--radius-sm); padding: 8px 10px; font-size: 0.9rem; color: var(--text); overflow-x: auto; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR (menü app.js tarafından doldurulur) -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="brand-badge">AP MEBERRA</div>
+      <div>
+        <div class="brand-title">CEnT-S STUDIO</div>
+        <div class="brand-subtitle">CISIA English Test – Sciences • İtalya</div>
+      </div>
+    </a>
+    <ul class="nav-links"></ul>
+    <div class="nav-actions">
+    </div>
+  </nav>
+
+  <div class="main-container">
+
+    <!-- HERO -->
+    <header class="hero-section">
+      <div class="hero-pill">
+        <span class="pulse-dot"></span>
+        <span>İtalya İngilizce Lisans Girişi • Politecnico di Milano TOL alternatifi</span>
+      </div>
+      <h1 class="hero-title">CEnT-S Hazırlık Stüdyosu</h1>
+      <p class="hero-desc">
+        CISIA'nın İngilizce bilim sınavı CEnT-S için resmi müfredata göre bölüm bölüm konu anlatımı (English) ve hata teşhisli soru istasyonları. Sınav bilgileri yalnızca resmi CISIA ve Politecnico di Milano sayfalarından alınmıştır. Resmi belgesi henüz çıkmamış maddeler <span class="cents-unverified">Yayımlanmadı</span> (son yayımlanan yılın bilgisiyle), yalnızca kurumun cevaplayabileceği maddeler <span class="cents-unverified">Teyit gerekir</span> olarak işaretlidir.
+      </p>
+      <nav class="cents-toc" aria-label="Sayfa bölümleri">
+        <a href="#cents-ozet">Sınav özeti</a>
+        <a href="#cents-polimi">PoliMi kullanımı</a>
+        <a href="#cents-reading">1 · Reading</a>
+        <a href="#cents-math">2 · Mathematics</a>
+        <a href="#cents-reasoning">3 · Reasoning</a>
+        <a href="#cents-biology">4 · Biology</a>
+        <a href="#cents-chemistry">5 · Chemistry</a>
+        <a href="#cents-physics">6 · Physics</a>
+      </nav>
+    </header>
+
+    <!-- ===================== SINAV ÖZETİ ===================== -->
+    <section class="interactive-panel" id="cents-ozet">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag">SINAV ÖZETİ • KAYNAKLI</span>
+        <span class="card-badge badge-cyan">Doğrulama tarihi: 12 Ekim 2026</span>
+      </div>
+      <h2 class="panel-title">CEnT-S Sınav Özeti: Yapı, Puanlama, Tarihler</h2>
+      <p class="panel-sub">
+        CEnT-S, CISIA'nın İngilizce TOLC sınavlarının (English TOLC-I, -E, -F) yerine 4 Kasım 2025'te başlattığı tek İngilizce bilim sınavıdır. Bilgisayarda, üniversite salonunda (CEnT@UNI) veya evden gözetimli (CEnT@HOME; CISIA takviminde "CENT@CASA") yapılır.
+      </p>
+
+      <h3 class="u-mt-4">Güncel yapı (CISIA structure and syllabus sayfası) <span class="cents-verified">Doğrulandı</span></h3>
+      <div class="cents-table-wrap">
+        <table class="cents-data">
+          <thead><tr><th>#</th><th>Section</th><th>Soru</th><th>Süre (dk)</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Reading and comprehension</td><td>10</td><td>30</td></tr>
+            <tr><td>2</td><td>Mathematics</td><td>15</td><td>30</td></tr>
+            <tr><td>3</td><td>Reasoning on texts and data</td><td>15</td><td>30</td></tr>
+            <tr><td>4</td><td>Biology</td><td>10</td><td>20</td></tr>
+            <tr><td>5</td><td>Chemistry</td><td>10</td><td>20</td></tr>
+            <tr><td>6</td><td>Physics</td><td>5</td><td>10</td></tr>
+          </tbody>
+          <tfoot><tr><td></td><th>Toplam</th><td>65</td><td>140</td></tr></tfoot>
+        </table>
+      </div>
+      <p class="cents-src">Kaynak: <a href="https://www.cisiaonline.it/en/cent/cent-s/structure-and-syllabus" target="_blank" rel="noopener">cisiaonline.it/en/cent/cent-s/structure-and-syllabus</a> ve İtalyanca sürüm <a href="https://cisiaonline.it/cent/cent-s" target="_blank" rel="noopener">cisiaonline.it/cent/cent-s</a> (ikisi de 65 soru / 140 dk gösteriyor).</p>
+
+      <div class="cents-grid">
+        <div class="cents-box">
+          <h3>Sürüm farkı — dikkat</h3>
+          <ul>
+            <li>CISIA kurallar belgesinin 2025–26 sürümü: 5 bölüm, 55 soru (Reading yok), 110 dk. Başlangıç duyurusu da 55 soru / 110 dk diyor.</li>
+            <li>Güncel yapı sayfası: 6 bölüm, 65 soru, 140 dk (Reading and comprehension eklenmiş).</li>
+            <li>65 soruluk yapının hangi tarihten itibaren uygulandığı: <span class="cents-unverified">Yoruma açık</span>. 2025–26 kuralları 31 Ekim 2026'ya kadarki sınavlar için 55 soru diyor ve PoliMi ile Napoli de 2026–27 kaydında 55 soruluk yapıyı kullanıyor; bu yüzden 65 soruluk yapı büyük olasılıkla Kasım 2026'da başlayan 2026–27 test sezonundan (2027–28 kaydı) itibaren geçerli. Yapı sayfası ise tarih vermiyor. Yeni kurallar belgesi 31 Ekim 2026'ya kadar bekleniyor.</li>
+          </ul>
+          <p class="cents-src">Kaynak: <a href="https://www.cisiaonline.it/en/cent/all-about-CEnT/CEnT-rules" target="_blank" rel="noopener">CEnT rules</a> · <a href="https://www.cisiaonline.it/en/news/new-cent-s-here" target="_blank" rel="noopener">The new CEnT-S is here (4.11.2025)</a></p>
+        </div>
+        <div class="cents-box">
+          <h3>Puanlama <span class="cents-verified">Doğrulandı</span></h3>
+          <ul>
+            <li>Doğru: <strong>+1</strong> · Boş: <strong>0</strong> · Yanlış: <strong>−0,25</strong></li>
+            <li>Her soru 5 seçenekli, tek doğru (kurallar belgesi, 2025–26).</li>
+            <li>Ham puan, her makro dönem sonunda bölüm bazında bir normalizasyon katsayısıyla düzeltilir; toplam puan bölüm puanlarının toplamıdır.</li>
+            <li>Geçme eşiğini ve ağırlıkları her üniversite kendisi belirler.</li>
+          </ul>
+          <p class="cents-src">Kaynak: <a href="https://www.cisiaonline.it/en/cent/all-about-CEnT/CEnT-rules" target="_blank" rel="noopener">CEnT rules</a> · <a href="https://www.cisiaonline.it/en/cent/cent-s/structure-and-syllabus" target="_blank" rel="noopener">Structure and syllabus</a></p>
+        </div>
+        <div class="cents-box">
+          <h3>Sınav kuralları <span class="cents-verified">Doğrulandı</span></h3>
+          <ul>
+            <li>Her bölümün kendi süresi var; bir bölümde ayrılan sürenin en az %50'si geçmeden sonrakine geçilemez.</li>
+            <li>Erken biten bölümün kalan süresi başka bölüme aktarılmaz; önceki bölüme dönülemez.</li>
+            <li><strong>Hesap makinesi yok</strong>: yalnızca kalem ve verilen boş kâğıt (@UNI ve @HOME).</li>
+            <li>Sınavlar yalnızca öğleden sonra; kimlik kontrolü 14:15, başlangıç 14:30 (İtalya saati).</li>
+            <li>Her makro dönemde en fazla bir kez girilebilir.</li>
+          </ul>
+          <p class="cents-src">Kaynak: <a href="https://www.cisiaonline.it/en/cent/all-about-CEnT/CEnT-rules" target="_blank" rel="noopener">CEnT rules</a> · <a href="https://www.cisiaonline.it/en/news/new-cent-s-here" target="_blank" rel="noopener">CISIA duyurusu</a></p>
+        </div>
+        <div class="cents-box">
+          <h3>Ücret</h3>
+          <ul>
+            <li>Kasım 2025 – Ekim 2026 sınavları: <strong>55 €</strong>, iade edilmez <span class="cents-verified">Doğrulandı</span></li>
+            <li>"All about CEnT" sayfası: "Every CEnT costs 55 Euros". 2026–27 dönemi için resmi kurallar belgesi henüz yayımlanmadı: <span class="cents-unverified">Yayımlanmadı</span> (kurallara göre değişiklikler 31 Ekim'e kadar duyurulur; takvim: cisiaonline.it)</li>
+            <li>Ödeme: kredi kartı veya MAV (İtalyan ödeme sistemi).</li>
+          </ul>
+          <p class="cents-src">Kaynak: <a href="https://www.cisiaonline.it/en/cent/all-about-CEnT/CEnT-rules" target="_blank" rel="noopener">CEnT rules</a> · <a href="https://www.cisiaonline.it/en/cent/all-about-CEnT/all-about-CEnT" target="_blank" rel="noopener">All about CEnT</a></p>
+        </div>
+        <div class="cents-box">
+          <h3>2026–27 makro dönemleri <span class="cents-verified">Doğrulandı</span></h3>
+          <ul>
+            <li>2026–27'den itibaren 5 makro dönem: Kasım–Ocak, Şubat–Mart, Nisan–Mayıs, Haziran–Temmuz, Ağustos–Eylül.</li>
+            <li>Normalize puan yayın tarihleri: 29 Ocak, 31 Mart, 31 Mayıs, 30 Temmuz, 17 Eylül.</li>
+          </ul>
+          <p class="cents-src">Kaynak: <a href="https://www.cisiaonline.it/en/cent/all-about-CEnT/all-about-CEnT" target="_blank" rel="noopener">All about CEnT</a> · <a href="https://www.cisiaonline.it/en/cent/cent-s/structure-and-syllabus" target="_blank" rel="noopener">Structure and syllabus</a></p>
+        </div>
+        <div class="cents-box">
+          <h3>2026–27 oturum tarihleri <span class="cents-unverified">Yayımlanmadı</span></h3>
+          <ul>
+            <li>CISIA 2026–27 için tam takvim yayımlamadı; tarihleri üniversiteler açıyor.</li>
+            <li>CISIA CEnT-S takviminde (12.10.2026) 15.10.2026 sonrası yalnızca iki satır var: Università di Messina, 26.11.2026 ve 17.12.2026 (tabloda "TOLC@UNI" etiketiyle). Bunların CEnT-S oturumu olduğu teyit edilemedi.</li>
+            <li>Başvurmadan önce takvimi ve üniversitenin başvuru çağrısını (bando) kontrol et.</li>
+          </ul>
+          <p class="cents-src">Kaynak: <a href="https://testcisia.it/calendario.php?tolc=cents&amp;lingua=inglese&amp;date=tutte" target="_blank" rel="noopener">CISIA CEnT-S takvimi (tüm tarihler)</a></p>
+        </div>
+        <div class="cents-box">
+          <h3>Referans: 2025–26 tarihleri <span class="cents-verified">Doğrulandı</span></h3>
+          <ul>
+            <li>1. dönem: 27 Kas, 16 Ara 2025, 15 Oca 2026</li>
+            <li>2. dönem: 19 Şub, 26 Şub, 12 Mar 2026</li>
+            <li>3. dönem: 23 Nis, 21 May, 9 Haz 2026</li>
+            <li>4. dönem: 17 Eyl, 15 Eki 2026</li>
+            <li>Takvimde ek tarihler de var (ör. 20 Oca, 19 Mar, 7 May, 16 ve 18 Haz 2026).</li>
+          </ul>
+          <p class="cents-src">Kaynak: <a href="https://www.cisiaonline.it/en/cent/all-about-CEnT/CEnT-rules" target="_blank" rel="noopener">CEnT rules</a> · <a href="https://testcisia.it/calendario.php?tolc=cents&amp;lingua=inglese&amp;date=tutte" target="_blank" rel="noopener">CISIA takvimi</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== POLIMI ===================== -->
+    <section class="interactive-panel" id="cents-polimi">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag">POLITECNICO DI MILANO • ELENA ROSSI</span>
+        <span class="card-badge badge-amber">2026–27 çağrısına göre</span>
+      </div>
+      <h2 class="panel-title">PoliMi CEnT-S'i Nasıl Kullanıyor?</h2>
+      <div class="cents-grid">
+        <div class="cents-box">
+          <h3>Dönüşüm ve eşik <span class="cents-verified">Doğrulandı</span></h3>
+          <ul>
+            <li>CEnT-S, PoliMi'nin kendi sınavı TOL'a alternatif kabul edilir; sonuç PoliMi'nin formülüyle 100 üzerinden puana çevrilir.</li>
+            <li>Dönüşümde <strong>Biology ve Chemistry bölümleri sayılmaz</strong>.</li>
+            <li>Kayıt için en düşük puan: TOL'da (veya dönüştürülmüş puanda) <strong>30/100</strong>.</li>
+            <li>Dönüşüm sonucu sınav yılına göre değişebilir; dönüşüm aracı: <a href="https://www.polimi.it/punteggi_test_alternativi" target="_blank" rel="noopener">polimi.it/punteggi_test_alternativi</a>.</li>
+          </ul>
+          <p class="cents-src">Kaynak: <a href="https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-programmes/engineering/you-have-an-alternative-test/cent-s" target="_blank" rel="noopener">PoliMi — CEnT-S sayfası</a> · <a href="https://www.polimi.it/fileadmin/user_upload/futuri_studenti/Engineering_BSc_call_for_admission_2026-27__English_.pdf" target="_blank" rel="noopener">Engineering BSc Call for Admission 2026-27 (Art. 1.1)</a></p>
+        </div>
+        <div class="cents-box">
+          <h3>Erken kabul (75/100) — önemli düzeltme</h3>
+          <ul>
+            <li>2026–27 çağrısı Art. 3: Sondan bir önceki sınıftaki adaylar TOL'da veya dönüştürülmüş alternatif test puanında <strong>≥ 75/100</strong> ile erken kayıt alır; bu yol <strong>İtalyanca eğitim veren programlar</strong> için tanımlı. <span class="cents-verified">Doğrulandı</span></li>
+            <li>Aynı madde: "For courses taught in English, access will be granted through specific rankings." Yani İngilizce programlarda 75/100 ile otomatik erken kabul <strong>yok</strong>; ayrı sıralama var.</li>
+            <li>Bugün 11. sınıfta olan öğrencileri ilgilendirecek 2027–28 çağrısı (2028–29 erken girişi) henüz yayımlanmadı: <span class="cents-unverified">Yayımlanmadı</span> (beklenen Kasım 2026; önceki çağrı 19 Kasım 2025)</li>
+          </ul>
+          <p class="cents-src">Kaynak: <a href="https://www.polimi.it/fileadmin/user_upload/futuri_studenti/Engineering_BSc_call_for_admission_2026-27__English_.pdf" target="_blank" rel="noopener">Engineering BSc Call for Admission 2026-27 (Art. 3)</a></p>
+        </div>
+        <div class="cents-box">
+          <h3>Açık sorular</h3>
+          <ul>
+            <li>Yeni Reading and comprehension bölümünün PoliMi dönüşümüne girip girmediği: <span class="cents-unverified">Yayımlanmadı</span>. PoliMi 2026/27 sayfası hâlâ 55 soruluk, 5 bölümlük yapıyı anlatıyor ve yalnızca Biology ile Chemistry'nin sayılmadığını yazıyor; 65 soruluk yapının kuralı 2027–28 çağrısında (beklenen Kasım 2026) belirlenecek.</li>
+            <li>Dönüşüm formülünün kendisi yayımlanmıyor <span class="cents-verified">Doğrulandı</span>: PoliMi sayfası formül vermiyor, yalnızca TOLC-I, CEnT-S ve SAT için çevrimiçi dönüştürücülere bağlantı veriyor (polimi.it/punteggi_test_alternativi).</li>
+            <li>İngilizce programlar için rekabetçi sıralama puanları (ör. 60+ hedefi) resmi bir eşik değildir; yalnızca strateji önerisidir.</li>
+          </ul>
+          <p class="cents-src">Kaynak: <a href="https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-programmes/engineering/scores-and-rankings" target="_blank" rel="noopener">PoliMi — Scores and rankings</a></p>
+        </div>
+      </div>
+      <div class="pitfall-box u-mt-4">
+        <strong>Strateji notu (Prof. Demir & Dr. Yıldız):</strong> PoliMi dönüşümünde Mathematics, Reasoning on texts and data ve Physics bölümleri sayılıyor. Bu yüzden çalışma zamanının büyük kısmını bu üç bölüme ayır; Biology ve Chemistry'yi ise diğer İtalyan üniversitelerinin CEnT-S kullanımı için ihmal etme. Yanlış cevap −0,25 olduğu için iki şıkka indirdiğin soruda tahmin beklenen değeri artırır ($0.5 \cdot 1 - 0.5 \cdot 0.25 = +0.375$); hiç fikrin yoksa 5 şıkta rastgele tahminin beklenen değeri $0.2 - 0.8 \cdot 0.25 = 0$'dır.
+      </div>
+    </section>
+
+    <!-- ===================== SECTION 1 — READING ===================== -->
+    <section class="interactive-panel" id="cents-reading">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag">SECTION 1 • 10 QUESTIONS • 30 MIN</span>
+      </div>
+      <h2 class="panel-title">Section 1 — Reading and comprehension</h2>
+      <p class="panel-sub">
+        The official syllabus describes B2-level (upper intermediate) English texts — non-fiction, literary or journalistic — and tests comprehension, abstraction, the relationships between parts of a text, and implied meaning. No specialist knowledge is required: every answer must be justified by the text itself. With 3 minutes per question, you have time to read carefully — but not to re-read the whole passage for every item.
+      </p>
+      <div class="u-flex u-col u-gap-6">
+        <div class="lecture-card">
+          <div class="theory-title"><span>The seven question types</span><span class="concept-badge">Know what is being asked</span></div>
+          <div class="theory-body">
+            <div class="cents-table-wrap">
+              <table class="cents-data">
+                <thead><tr><th>Type</th><th>Typical stem</th><th>What to do</th></tr></thead>
+                <tbody>
+                  <tr><td>Main idea</td><td>"best expresses the main point"</td><td>Find the author's conclusion (often after <em>Rather</em>, <em>However</em>, <em>In short</em>).</td></tr>
+                  <tr><td>Detail</td><td>"According to the passage..."</td><td>Locate the key word in the text; the answer is a paraphrase of that sentence.</td></tr>
+                  <tr><td>Inference</td><td>"It can be inferred..."</td><td>Choose what <em>must</em> follow from the text, not what <em>might</em> be true.</td></tr>
+                  <tr><td>Vocabulary in context</td><td>"most nearly means"</td><td>Substitute each option into the sentence; the dictionary's first meaning is often a trap.</td></tr>
+                  <tr><td>Purpose / function</td><td>"mentions X in order to"</td><td>Ask which claim the example supports — look at the next sentence.</td></tr>
+                  <tr><td>Reference</td><td>"'this' refers to"</td><td>Go back to the previous sentence and find the matching noun or verb.</td></tr>
+                  <tr><td>Tone / attitude</td><td>"the tone is best described as"</td><td>Collect evaluative adjectives and adverbs; balanced language = cautious tone.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="lecture-card violet-edge">
+          <div class="theory-title"><span>Worked example</span><span class="concept-badge">Eliminate, then confirm</span></div>
+          <div class="theory-body">
+            <p><em>"Electric scooters were welcomed as a clean alternative to short car trips. Surveys, however, show that most scooter journeys replace walking or public transport, not driving. Their environmental benefit is therefore smaller than early advocates claimed."</em></p>
+            <p><strong>Question:</strong> Which statement would the author most likely agree with?</p>
+            <div class="theory-callout">
+              (1) "E-scooters have no environmental benefit." — <em>Too extreme</em>: the text says "smaller", not "none".<br/>
+              (2) "E-scooters mostly replace car trips." — <em>Contradicted</em>: surveys show the opposite.<br/>
+              (3) "Early advocates overestimated the benefit of e-scooters." — <em>Supported</em>: "smaller than early advocates claimed".<br/>
+              (4) "Public transport should be replaced by e-scooters." — <em>Not stated</em>: no recommendation is made.<br/>
+              Answer: statement (3).
+            </div>
+          </div>
+        </div>
+        <div class="lecture-card amber-edge">
+          <div class="theory-title"><span>Typical traps</span><span class="concept-badge">Why wrong answers look right</span></div>
+          <div class="theory-body">
+            <div class="pitfall-box">
+              <strong>1. Extreme words:</strong> <em>always, never, only, all, no, prove</em> — rarely justified by a cautious academic text.<br/>
+              <strong>2. True but not stated:</strong> an option that matches general knowledge but not the passage is wrong.<br/>
+              <strong>3. Old view vs new view:</strong> texts often present a belief and then correct it; check which one the question asks about.<br/>
+              <strong>4. Right words, wrong relationship:</strong> an option can reuse words from the text but connect them incorrectly (wrong subject, wrong cause).<br/>
+              <strong>5. Reversed question:</strong> watch for <em>NOT</em>, <em>EXCEPT</em>, <em>least</em>, <em>smallest</em> in the stem.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="interactive-panel" id="cents-reading-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag">SECTION 1 İNTERAKTİF SORU BANKASI</span>
+        <span class="card-badge badge-indigo">10 SORU</span>
+      </div>
+      <h2 class="panel-title">Section 1 — Reading and comprehension: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub">Bu istasyondaki sorular CISIA syllabus'una göre <strong>özgün olarak hazırlanmış CEnT-S tarzı sorulardır</strong>; gerçek sınav soruları değildir. Gerçek sınavda 5 seçenek varken portal şeması 4 seçenek kullanır. Her soru kendi kısa metnini içerir.</p>
+      <div class="u-mt-6" id="cents-reading-quiz-container"></div>
+    </section>
+
+    <!-- ===================== SECTION 2 — MATHEMATICS ===================== -->
+    <section class="interactive-panel" id="cents-math">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag">SECTION 2 • 15 QUESTIONS • 30 MIN</span>
+      </div>
+      <h2 class="panel-title">Section 2 — Mathematics</h2>
+      <p class="panel-sub">
+        Syllabus: numbers (operations, divisibility, powers, roots, percentages), algebra (expressions, equations, inequalities, factorisation, systems), geometry (plane and solid figures, similarity, Cartesian coordinates, lines and circles), functions (composition, inverses, graph transformations, elementary functions), exponentials and logarithms, combinatorics and probability, and basic statistics. You have 2 minutes per question and <strong>no calculator</strong>, so the numbers are designed to be handled mentally.
+      </p>
+      <div class="u-flex u-col u-gap-6">
+        <div class="lecture-card">
+          <div class="theory-title"><span>Key formulas</span><span class="concept-badge">Memorise these</span></div>
+          <div class="theory-body">
+            <div class="cents-formula-list">
+              <div><strong>Percent change:</strong> multiply by $(1 \pm p/100)$; successive changes multiply.</div>
+              <div><strong>Powers:</strong> $a^m a^n = a^{m+n}$, $(a^m)^n = a^{mn}$, $a^{-n} = \frac{1}{a^n}$</div>
+              <div><strong>Logs:</strong> $\log(ab) = \log a + \log b$, $\log a^k = k \log a$, $\log_a b = c \iff a^c = b$</div>
+              <div><strong>Quadratic:</strong> $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$; $x_1 + x_2 = -\frac{b}{a}$, $x_1 x_2 = \frac{c}{a}$</div>
+              <div><strong>Line:</strong> $y - y_0 = m(x - x_0)$; parallel: equal $m$; perpendicular: $m_1 m_2 = -1$</div>
+              <div><strong>Circle:</strong> $(x - a)^2 + (y - b)^2 = r^2$</div>
+              <div><strong>Distance:</strong> $d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$</div>
+              <div><strong>Counting:</strong> $n!$, $\binom{n}{k} = \frac{n!}{k!(n-k)!}$ (order irrelevant)</div>
+              <div><strong>Probability:</strong> $P(A \cup B) = P(A) + P(B) - P(A \cap B)$; independent: $P(A \cap B) = P(A)P(B)$</div>
+              <div><strong>Statistics:</strong> sum $=$ mean $\times n$; median = middle value of the <em>sorted</em> list</div>
+            </div>
+          </div>
+        </div>
+        <div class="lecture-card violet-edge">
+          <div class="theory-title"><span>Worked example: inequality with a sign chart</span><span class="concept-badge">Algebra</span></div>
+          <div class="theory-body">
+            <p><strong>Problem:</strong> Solve $\frac{x + 2}{x - 1} \gt 0$.</p>
+            <div class="theory-callout">
+              1. Critical points: numerator zero at $x = -2$, denominator zero at $x = 1$.<br/>
+              2. Test each interval: $x = -3$ gives $\frac{-1}{-4} \gt 0$ ✓; $x = 0$ gives $\frac{2}{-1} \lt 0$ ✗; $x = 2$ gives $\frac{4}{1} \gt 0$ ✓.<br/>
+              3. Strict inequality: neither endpoint is included. Solution: $x \lt -2$ or $x \gt 1$.<br/>
+              Never multiply both sides by $(x - 1)$ without knowing its sign — that is the classic error.
+            </div>
+          </div>
+        </div>
+        <div class="lecture-card amber-edge">
+          <div class="theory-title"><span>Typical traps</span><span class="concept-badge">Exam-tested errors</span></div>
+          <div class="theory-body">
+            <div class="pitfall-box">
+              <strong>1.</strong> $+20\%$ then $-20\%$ is <em>not</em> zero change ($1.2 \times 0.8 = 0.96$).<br/>
+              <strong>2.</strong> $\log(a + b) \ne \log a + \log b$; always check the domain of a log equation.<br/>
+              <strong>3.</strong> $f^{-1}(x) \ne \frac{1}{f(x)}$; and $f(g(x))$ means $g$ first.<br/>
+              <strong>4.</strong> "At least one" → use the complement: total minus "none".<br/>
+              <strong>5.</strong> Two dice give 36 equally likely ordered outcomes, not 11 equally likely sums.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="interactive-panel" id="cents-math-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag">SECTION 2 İNTERAKTİF SORU BANKASI</span>
+        <span class="card-badge badge-indigo">10 SORU</span>
+      </div>
+      <h2 class="panel-title">Section 2 — Mathematics: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub">CISIA syllabus'una göre <strong>özgün CEnT-S tarzı sorular</strong>; gerçek sınav soruları değildir. Hesap makinesi kullanmadan çöz. Tüm cevaplar sympy ile bağımsız olarak doğrulandı.</p>
+      <div class="u-mt-6" id="cents-math-quiz-container"></div>
+    </section>
+
+    <!-- ===================== SECTION 3 — REASONING ===================== -->
+    <section class="interactive-panel" id="cents-reasoning">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag">SECTION 3 • 15 QUESTIONS • 30 MIN</span>
+      </div>
+      <h2 class="panel-title">Section 3 — Reasoning on texts and data</h2>
+      <p class="panel-sub">
+        Syllabus: logic (connectives, quantifiers, negation, counterexamples, necessary and sufficient conditions), interpreting data (extracting information from texts, tables and graphs, drawing conclusions, sorting criteria) and problem solving (translating a situation into a model, estimation, percentages, ratios, proportionality, and checking whether a result makes sense).
+      </p>
+      <div class="u-flex u-col u-gap-6">
+        <div class="lecture-card">
+          <div class="theory-title"><span>Logic essentials</span><span class="concept-badge">Connectives & quantifiers</span></div>
+          <div class="theory-body">
+            <div class="cents-formula-list">
+              <div><strong>Negation of "all":</strong> "every $x$ is $P$" → "at least one $x$ is not $P$"</div>
+              <div><strong>Negation of "some":</strong> "some $x$ is $P$" → "no $x$ is $P$"</div>
+              <div><strong>De Morgan:</strong> not ($A$ and $B$) = (not $A$) or (not $B$)</div>
+              <div><strong>Conditional:</strong> "if $P$ then $Q$" ≡ "if not $Q$ then not $P$" (contrapositive)</div>
+              <div><strong>Not equivalent:</strong> converse $Q \Rightarrow P$ and inverse $\neg P \Rightarrow \neg Q$</div>
+              <div><strong>Conditions:</strong> in $P \Rightarrow Q$, $P$ is <em>sufficient</em> for $Q$ and $Q$ is <em>necessary</em> for $P$</div>
+              <div><strong>"$P$ only if $Q$":</strong> means $P \Rightarrow Q$</div>
+              <div><strong>Counterexample:</strong> one case with $P$ true and $Q$ false disproves "if $P$ then $Q$"</div>
+            </div>
+          </div>
+        </div>
+        <div class="lecture-card violet-edge">
+          <div class="theory-title"><span>Worked example: weighted average from a table</span><span class="concept-badge">Data interpretation</span></div>
+          <div class="theory-body">
+            <p><strong>Problem:</strong> Class X (20 students) has a mean score of 70; class Y (30 students) has a mean of 80. What is the mean of all 50 students?</p>
+            <div class="theory-callout">
+              1. Do <em>not</em> average the averages: $\frac{70 + 80}{2} = 75$ ignores class sizes.<br/>
+              2. Total points: $20 \cdot 70 + 30 \cdot 80 = 1400 + 2400 = 3800$.<br/>
+              3. Mean: $\frac{3800}{50} = 76$.<br/>
+              Sense check: the answer is closer to 80 because class Y is larger.
+            </div>
+          </div>
+        </div>
+        <div class="lecture-card amber-edge">
+          <div class="theory-title"><span>Typical traps</span><span class="concept-badge">Read the rule, not your intuition</span></div>
+          <div class="theory-body">
+            <div class="pitfall-box">
+              <strong>1.</strong> Confusing a <em>rate</em> (percentage) with a <em>count</em> in tables.<br/>
+              <strong>2.</strong> Percentage change uses the <em>original</em> value as the denominator.<br/>
+              <strong>3.</strong> "And" requires both conditions; "or" requires at least one.<br/>
+              <strong>4.</strong> Inverse proportionality: more workers → less time.<br/>
+              <strong>5.</strong> After a long calculation, check the order of magnitude: is the answer plausible?
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="interactive-panel" id="cents-reasoning-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag">SECTION 3 İNTERAKTİF SORU BANKASI</span>
+        <span class="card-badge badge-indigo">10 SORU</span>
+      </div>
+      <h2 class="panel-title">Section 3 — Reasoning on texts and data: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub">CISIA syllabus'una göre <strong>özgün CEnT-S tarzı sorular</strong>; gerçek sınav soruları değildir. Sayısal cevaplar Python ile bağımsız olarak doğrulandı.</p>
+      <div class="u-mt-6" id="cents-reasoning-quiz-container"></div>
+    </section>
+
+    <!-- ===================== SECTION 4 — BIOLOGY ===================== -->
+    <section class="interactive-panel" id="cents-biology">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag">SECTION 4 • 10 QUESTIONS • 20 MIN</span>
+      </div>
+      <h2 class="panel-title">Section 4 — Biology</h2>
+      <p class="panel-sub">
+        Syllabus: biological molecules (water, carbohydrates, lipids, proteins, nucleic acids); cell biology (prokaryotic and eukaryotic cells, organelles, plant-specific structures); cell cycle, division and inheritance (DNA and RNA, replication, transcription, translation, mitosis, meiosis, Mendelian genetics); plant biology and ecology (photosynthesis, energy flow, food chains, biotic interactions); animal anatomy and physiology (tissues, musculoskeletal, digestive, respiratory, circulatory, excretory and nervous systems). Note: Politecnico di Milano does not count this section in its CEnT-S conversion, but other universities may.
+      </p>
+      <div class="u-flex u-col u-gap-6">
+        <div class="lecture-card">
+          <div class="theory-title"><span>Core facts</span><span class="concept-badge">High-yield summary</span></div>
+          <div class="theory-body">
+            <div class="cents-formula-list">
+              <div><strong>DNA:</strong> sugar–phosphate backbone (phosphodiester bonds); bases paired by hydrogen bonds: A–T (2), G–C (3); strands antiparallel.</div>
+              <div><strong>Chargaff:</strong> in double-stranded DNA, $\%A = \%T$ and $\%G = \%C$.</div>
+              <div><strong>Central dogma:</strong> DNA → (transcription, nucleus) → mRNA → (translation, ribosome) → protein. RNA uses U instead of T.</div>
+              <div><strong>Prokaryotes:</strong> no nucleus, no membrane-bound organelles; they do have ribosomes (70S), a cell membrane and DNA.</div>
+              <div><strong>Mitosis:</strong> $2n \to 2n$, two identical cells. <strong>Meiosis:</strong> $2n \to n$, four genetically different cells.</div>
+              <div><strong>Monohybrid cross</strong> $Aa \times Aa$: genotypes $1:2:1$, phenotypes $3:1$.</div>
+              <div><strong>Photosynthesis:</strong> $6\text{CO}_2 + 6\text{H}_2\text{O} \to \text{C}_6\text{H}_{12}\text{O}_6 + 6\text{O}_2$; $\text{O}_2$ comes from water.</div>
+              <div><strong>Energy flow:</strong> roughly $10\%$ passes to each next trophic level.</div>
+              <div><strong>Vessels:</strong> arteries carry blood away from the heart, veins towards it (the pulmonary vein carries oxygenated blood).</div>
+              <div><strong>Nephron:</strong> filtration (glomerulus) → reabsorption (proximal tubule) → loop of Henle → collecting duct.</div>
+            </div>
+          </div>
+        </div>
+        <div class="lecture-card violet-edge">
+          <div class="theory-title"><span>Worked example: test cross</span><span class="concept-badge">Mendelian genetics</span></div>
+          <div class="theory-body">
+            <p><strong>Problem:</strong> A plant with the dominant phenotype is crossed with a homozygous recessive plant ($aa$). Half of the offspring show the recessive phenotype. What was the genotype of the first plant?</p>
+            <div class="theory-callout">
+              1. If the plant were $AA$: $AA \times aa$ → all $Aa$ → 100% dominant. ✗<br/>
+              2. If it were $Aa$: $Aa \times aa$ → $\frac{1}{2} Aa$, $\frac{1}{2} aa$ → 50% recessive. ✓<br/>
+              Genotype: $Aa$. This is why a cross with $aa$ is called a <em>test cross</em>: it reveals hidden recessive alleles.
+            </div>
+          </div>
+        </div>
+        <div class="lecture-card amber-edge">
+          <div class="theory-title"><span>Typical traps</span><span class="concept-badge">Precise vocabulary</span></div>
+          <div class="theory-body">
+            <div class="pitfall-box">
+              <strong>1.</strong> Chromosomes vs chromatids: after S phase the chromosome number stays $2n$; only the chromatid count doubles.<br/>
+              <strong>2.</strong> mRNA is complementary <em>and</em> antiparallel to the template strand.<br/>
+              <strong>3.</strong> "Among offspring with the dominant phenotype..." is a conditional fraction (denominator 3, not 4).<br/>
+              <strong>4.</strong> Artery/vein names depend on direction, not on oxygen content.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="interactive-panel" id="cents-biology-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag">SECTION 4 İNTERAKTİF SORU BANKASI</span>
+        <span class="card-badge badge-indigo">10 SORU</span>
+      </div>
+      <h2 class="panel-title">Section 4 — Biology: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub">CISIA syllabus'una göre <strong>özgün CEnT-S tarzı sorular</strong>; gerçek sınav soruları değildir.</p>
+      <div class="u-mt-6" id="cents-biology-quiz-container"></div>
+    </section>
+
+    <!-- ===================== SECTION 5 — CHEMISTRY ===================== -->
+    <section class="interactive-panel" id="cents-chemistry">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag">SECTION 5 • 10 QUESTIONS • 20 MIN</span>
+      </div>
+      <h2 class="panel-title">Section 5 — Chemistry</h2>
+      <p class="panel-sub">
+        Syllabus: macroscopic properties (states of matter, mixtures and separation, basic gas laws), microscopic properties (atomic structure, Lewis structures, bonding, intermolecular forces, molecular geometry), the periodic table and periodic trends, reactions and stoichiometry (balancing, moles, Avogadro's constant, limiting reactant, concentration), thermodynamics, kinetics and equilibrium, compounds and solutions, acids and bases (pH, indicators, neutralisation, buffers), redox, organic chemistry (hybridisation, isomerism, functional groups) and applied chemistry. Politecnico di Milano does not count this section in its conversion.
+      </p>
+      <div class="u-flex u-col u-gap-6">
+        <div class="lecture-card">
+          <div class="theory-title"><span>Key relationships</span><span class="concept-badge">No calculator — keep numbers simple</span></div>
+          <div class="theory-body">
+            <div class="cents-formula-list">
+              <div><strong>Moles:</strong> $n = \frac{m}{M}$; particles $= n N_A$, $N_A \approx 6.0 \times 10^{23}\ \text{mol}^{-1}$</div>
+              <div><strong>Concentration:</strong> $c = \frac{n}{V}$; dilution $c_1 V_1 = c_2 V_2$</div>
+              <div><strong>Ideal gas:</strong> $pV = nRT$ with $T$ in kelvin ($T = \theta + 273$)</div>
+              <div><strong>pH:</strong> $\text{pH} = -\log[\text{H}^+]$; at $25^\circ$C, $\text{pH} + \text{pOH} = 14$</div>
+              <div><strong>Oxidation numbers:</strong> sum $= 0$ (neutral) or the ion charge; O $= -2$, H $= +1$, group 1 $= +1$</div>
+              <div><strong>VSEPR:</strong> 4 regions: 4 bonds tetrahedral, 3 + 1 lone pair trigonal pyramidal, 2 + 2 bent</div>
+              <div><strong>Periodic trends:</strong> radius ↑ down a group, ↓ across a period; electronegativity the opposite</div>
+              <div><strong>Le Chatelier:</strong> the system shifts to oppose a change; a catalyst does not shift equilibrium</div>
+            </div>
+          </div>
+        </div>
+        <div class="lecture-card violet-edge">
+          <div class="theory-title"><span>Worked example: neutralisation</span><span class="concept-badge">Stoichiometry + acids</span></div>
+          <div class="theory-body">
+            <p><strong>Problem:</strong> What volume of $0.10$ mol/L NaOH neutralises $20$ mL of $0.20$ mol/L $\text{H}_2\text{SO}_4$?</p>
+            <div class="theory-callout">
+              1. $\text{H}_2\text{SO}_4$ is diprotic: $\text{H}_2\text{SO}_4 + 2\text{NaOH} \to \text{Na}_2\text{SO}_4 + 2\text{H}_2\text{O}$.<br/>
+              2. Moles of acid: $0.20 \times 0.020 = 0.0040$ mol ⟹ moles of NaOH needed: $0.0080$ mol.<br/>
+              3. Volume: $\frac{0.0080}{0.10} = 0.080$ L $= 80$ mL.<br/>
+              Forgetting the factor 2 gives 40 mL — the most common wrong answer.
+            </div>
+          </div>
+        </div>
+        <div class="lecture-card amber-edge">
+          <div class="theory-title"><span>Typical traps</span><span class="concept-badge">Units and definitions</span></div>
+          <div class="theory-body">
+            <div class="pitfall-box">
+              <strong>1.</strong> Gas laws in °C instead of K.<br/>
+              <strong>2.</strong> Molecules vs atoms: one $\text{H}_2\text{O}$ molecule contains 3 atoms.<br/>
+              <strong>3.</strong> Electron geometry vs molecular shape (lone pairs are not "seen" in the shape name).<br/>
+              <strong>4.</strong> In dilution, use the <em>final</em> volume, not the volume of water added.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="interactive-panel" id="cents-chemistry-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag">SECTION 5 İNTERAKTİF SORU BANKASI</span>
+        <span class="card-badge badge-indigo">10 SORU</span>
+      </div>
+      <h2 class="panel-title">Section 5 — Chemistry: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub">CISIA syllabus'una göre <strong>özgün CEnT-S tarzı sorular</strong>; gerçek sınav soruları değildir. Sayısal cevaplar Python ile bağımsız olarak doğrulandı.</p>
+      <div class="u-mt-6" id="cents-chemistry-quiz-container"></div>
+    </section>
+
+    <!-- ===================== SECTION 6 — PHYSICS ===================== -->
+    <section class="interactive-panel" id="cents-physics">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag">SECTION 6 • 5 QUESTIONS • 10 MIN</span>
+      </div>
+      <h2 class="panel-title">Section 6 — Physics</h2>
+      <p class="panel-sub">
+        Syllabus: physical quantities (SI units, scientific notation, vectors, graphs), kinematics (uniform and accelerated motion, free fall, circular motion, relative motion), dynamics, work and energy (Newton's laws, common forces, work, power, energy conservation), fluids and thermodynamics (Pascal, Stevin and Archimedes, Bernoulli, ideal gas law, temperature scales, qualitative first and second laws) and electromagnetism and waves (Coulomb's law, electric field, Ohm's law, magnetic fields, waves and the electromagnetic spectrum). Only 5 questions in 10 minutes — 2 minutes each, so recall formulas instantly.
+      </p>
+      <div class="u-flex u-col u-gap-6">
+        <div class="lecture-card">
+          <div class="theory-title"><span>Formula sheet (not provided in the exam)</span><span class="concept-badge">Take $g = 10\ \text{m/s}^2$ unless told otherwise</span></div>
+          <div class="theory-body">
+            <div class="cents-formula-list">
+              <div><strong>Kinematics:</strong> $v = v_0 + at$, $s = v_0 t + \frac{1}{2}at^2$, $v^2 = v_0^2 + 2as$</div>
+              <div><strong>Circular motion:</strong> $a_c = \frac{v^2}{r}$, $v = \frac{2\pi r}{T}$</div>
+              <div><strong>Newton:</strong> $\sum F = ma$; weight $mg$; friction $f = \mu N$</div>
+              <div><strong>Energy:</strong> $E_k = \frac{1}{2}mv^2$, $E_p = mgh$, $W = Fs\cos\theta$, $P = \frac{W}{t} = Fv$</div>
+              <div><strong>Fluids:</strong> $p = p_0 + \rho g h$; buoyancy $F_B = \rho_{fluid} V g$; $A_1 v_1 = A_2 v_2$</div>
+              <div><strong>Ideal gas:</strong> $pV = nRT$; $T(\text{K}) = \theta(^\circ\text{C}) + 273$</div>
+              <div><strong>Electricity:</strong> $V = IR$, $P = VI$; series $R = R_1 + R_2$; parallel $\frac{1}{R} = \frac{1}{R_1} + \frac{1}{R_2}$</div>
+              <div><strong>Coulomb:</strong> $F = k\frac{|q_1 q_2|}{r^2}$; field $E = \frac{F}{q}$</div>
+              <div><strong>Waves:</strong> $v = \lambda f$, $T = \frac{1}{f}$; light $c = 3.0 \times 10^8$ m/s</div>
+              <div><strong>Units:</strong> $1\ \text{km/h} = \frac{1}{3.6}\ \text{m/s}$; $1\ \text{kPa} = 10^3$ Pa</div>
+            </div>
+          </div>
+        </div>
+        <div class="lecture-card violet-edge">
+          <div class="theory-title"><span>Worked example: Archimedes' principle</span><span class="concept-badge">Fluids</span></div>
+          <div class="theory-body">
+            <p><strong>Problem:</strong> A solid block of volume $2.0 \times 10^{-3}\ \text{m}^3$ and mass $1.5$ kg is held fully under water ($\rho = 1000\ \text{kg/m}^3$). When released, does it rise or sink, and what is the net force?</p>
+            <div class="theory-callout">
+              1. Buoyant force: $F_B = \rho V g = 1000 \cdot 2.0 \times 10^{-3} \cdot 10 = 20$ N.<br/>
+              2. Weight: $mg = 1.5 \cdot 10 = 15$ N.<br/>
+              3. Net force: $20 - 15 = 5$ N upwards ⟹ the block rises.<br/>
+              Shortcut: block density $= \frac{1.5}{2.0 \times 10^{-3}} = 750\ \text{kg/m}^3 \lt 1000$ ⟹ it floats.
+            </div>
+          </div>
+        </div>
+        <div class="lecture-card amber-edge">
+          <div class="theory-title"><span>Typical traps</span><span class="concept-badge">Check units first</span></div>
+          <div class="theory-body">
+            <div class="pitfall-box">
+              <strong>1.</strong> Forgetting the $\frac{1}{2}$ in $s = \frac{1}{2}at^2$ and $E_k = \frac{1}{2}mv^2$.<br/>
+              <strong>2.</strong> Using mass (kg) where a force (N) is needed: weight $= mg$.<br/>
+              <strong>3.</strong> Absolute vs gauge pressure: "how much greater than at the surface" means $\rho g h$ only.<br/>
+              <strong>4.</strong> Inverse-square laws: tripling the distance divides the force by 9.<br/>
+              <strong>5.</strong> km/h → m/s: divide by 3.6 (the m/s value is always smaller).
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="interactive-panel" id="cents-physics-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag">SECTION 6 İNTERAKTİF SORU BANKASI</span>
+        <span class="card-badge badge-indigo">10 SORU</span>
+      </div>
+      <h2 class="panel-title">Section 6 — Physics: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub">CISIA syllabus'una göre <strong>özgün CEnT-S tarzı sorular</strong>; gerçek sınav soruları değildir. Sayısal cevaplar Python ile bağımsız olarak doğrulandı.</p>
+      <div class="u-mt-6" id="cents-physics-quiz-container"></div>
+    </section>
+
+    <script>
+      const CENTS_READING_QUESTIONS = [
+        {
+          id: "cents-reading-01",
+          number: 1,
+          topic: "Reading 1 — Main idea of a non-fiction text",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Reading and comprehension — non-fiction text, B2)",
+          question: "<em>Passage A.</em> \"Cities are often several degrees warmer than the surrounding countryside, a phenomenon known as the urban heat island. Many municipalities have responded by planting trees and installing reflective 'cool roofs'. The results are uneven: a new park in one European city lowered night-time temperatures in the nearby streets, but the effect faded within a few hundred metres. None of this means such measures are pointless. Rather, cooling a whole city seems to require many small interventions spread across it, not a few large ones concentrated in a single district.\"<br/><br/>Which statement best expresses the main point of the passage?",
+          options: [
+            { id: "A", text: "Urban heat islands are caused mainly by traffic and air conditioning.", isCorrect: false, errorTag: "Metinde olmayan bilgi (not stated): Genel kültürü metne yüklemek.", remediation: "Pasaj ısı adasının nedenlerini tartışmıyor; sadece önlemlerin etkisini anlatıyor. Main idea sorusunda yalnızca metnin söylediğine dayan." },
+            { id: "B", text: "Cooling a city works best through many small, widely spread measures.", isCorrect: true },
+            { id: "C", text: "Cool roofs are a more effective solution than new parks.", isCorrect: false, errorTag: "Desteklenmeyen karşılaştırma (unsupported comparison).", remediation: "Metin parkla cool roof'u birbirine kıyaslamıyor. Bir karşılaştırma şıkkı ancak metin iki şeyi açıkça kıyaslıyorsa doğru olabilir." },
+            { id: "D", text: "Planting trees in cities is pointless because the effect is local.", isCorrect: false, errorTag: "Ters okuma (contradiction): Yazarın açıkça reddettiği görüşü seçmek.", remediation: "\"None of this means such measures are pointless\" cümlesi bu şıkkı doğrudan çürütür. Yazarın 'Rather...' ile verdiği sonuca odaklan." }
+          ],
+          generalRemediation: "Main idea sorularında son paragraftaki 'Rather...', 'In short...', 'However...' gibi sinyal kelimelerinden sonra gelen cümle çoğu zaman yazarın vardığı sonuçtur. Tek bir ayrıntıyı (park örneği) ana fikir sanma.",
+          stepByStepSolution: "1. Pasajın yapısı: problem (heat island) → önlem (trees, cool roofs) → sınırlı yerel etki (park örneği) → sonuç cümlesi.<br/>2. Sonuç cümlesi: 'cooling a whole city seems to require many small interventions spread across it'.<br/>3. Bu cümleyi yeniden ifade eden (paraphrase) şık: 'many small, widely spread measures'.<br/>4. Diğer şıklar ya metinde yok (nedenler, kıyas) ya da metinle çelişiyor ('pointless')."
+        },
+        {
+          id: "cents-reading-02",
+          number: 2,
+          topic: "Reading 2 — Locating a specific detail",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Reading and comprehension — detail retrieval, B2)",
+          question: "<em>Passage B.</em> \"The main cause of the urban heat island is not the heat released by cars and air conditioners, although this contributes, but the materials cities are built from. Asphalt and concrete absorb sunlight during the day and release it slowly at night, so the difference between city and countryside is usually largest after sunset rather than at midday.\"<br/><br/>According to the passage, when is the temperature difference between a city and the countryside usually greatest?",
+          options: [
+            { id: "A", text: "At midday, when sunlight is strongest", isCorrect: false, errorTag: "Sezgiye güvenme: Metin yerine 'en sıcak an öğlendir' önyargısını kullanmak.", remediation: "Metin açıkça 'rather than at midday' diyor. Detail sorularında cevabı metindeki cümleyle birebir eşleştir." },
+            { id: "B", text: "During the morning rush hour traffic", isCorrect: false, errorTag: "Yan bilgiyi ana bilgi sanmak: Trafiğin katkısını zamanlama bilgisine çevirmek.", remediation: "Trafik yalnızca 'although this contributes' diye yan katkı olarak geçiyor; zamanla ilgili hiçbir bilgi vermiyor." },
+            { id: "C", text: "In the hours after sunset", isCorrect: true },
+            { id: "D", text: "In winter, when heating is switched on", isCorrect: false, errorTag: "Metinde olmayan bilgi (not stated): Mevsim bilgisi uydurmak.", remediation: "Pasaj mevsimden hiç söz etmiyor. Metinde dayanağı olmayan şık, mantıklı görünse bile yanlıştır." }
+          ],
+          generalRemediation: "Detail sorularında soru kökündeki anahtar kelimeyi ('difference ... largest') metinde bul ve o cümlenin devamını oku. Buradaki karşılık: 'largest after sunset rather than at midday'.",
+          stepByStepSolution: "1. Soru: farkın en büyük olduğu zaman.<br/>2. Metindeki eşleşme: 'the difference between city and countryside is usually largest after sunset'.<br/>3. Neden: asfalt ve beton gündüz depoladığı ısıyı gece yavaşça bırakır.<br/>4. Doğru şık 'In the hours after sunset'."
+        },
+        {
+          id: "cents-reading-03",
+          number: 3,
+          topic: "Reading 3 — Inference from stated conditions",
+          difficulty: "hard",
+          source: "CEnT-S-style original (CISIA syllabus: Reading and comprehension — implicit meaning, B2)",
+          question: "<em>Passage C.</em> \"Cool roofs help most in neighbourhoods with low buildings, where roofs make up a large share of the surface exposed to the sun. Among tall towers, by contrast, most sunlight strikes walls and streets instead.\"<br/><br/>Based on the passage, in which area would installing cool roofs probably have the <strong>smallest</strong> cooling effect?",
+          options: [
+            { id: "A", text: "A suburb made up mostly of single-storey houses", isCorrect: false, errorTag: "Soru kökündeki 'smallest' kelimesini kaçırmak (en büyük etkiyi seçmek).", remediation: "Tek katlı evler 'low buildings' örneğidir; metne göre etki burada EN BÜYÜK olur. Soru en küçük etkiyi istiyor." },
+            { id: "B", text: "An industrial zone of large, low warehouses", isCorrect: false, errorTag: "Koşulu yanlış eşleştirme: 'Large' kelimesini 'tall' sanmak.", remediation: "Depolar büyük ama alçaktır (low); geniş çatı yüzeyi güneşe açıktır, yani cool roof iyi çalışır." },
+            { id: "C", text: "A neighbourhood located next to a large park", isCorrect: false, errorTag: "Konu dışı değişken (irrelevant factor): Pasajın tartışmadığı bir etkeni seçmek.", remediation: "Bu pasaj cool roof etkisini bina yüksekliğine bağlıyor; parka yakınlık burada belirleyici bir değişken değildir." },
+            { id: "D", text: "A business district of high-rise office towers", isCorrect: true }
+          ],
+          generalRemediation: "Inference sorusu metnin açıkça söylemediği ama metinden zorunlu olarak çıkan sonucu ister. Kural: 'etki, çatının güneş alan yüzeydeki payıyla artar'. Payın en küçük olduğu yer: yüksek kuleler.",
+          stepByStepSolution: "1. Metindeki kural: alçak binalarda çatı, güneş alan yüzeyin büyük kısmıdır ⟹ cool roof etkili.<br/>2. Yüksek kulelerde güneş çoğunlukla duvara ve sokağa düşer ⟹ çatının payı küçük.<br/>3. Soru en KÜÇÜK etkiyi soruyor ⟹ yüksek ofis kuleleri.<br/>4. Tek katlı evler ve alçak depolar tam tersine en büyük etkiyi verir."
+        },
+        {
+          id: "cents-reading-04",
+          number: 4,
+          topic: "Reading 4 — Vocabulary in context",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Reading and comprehension — meaning in context, B2)",
+          question: "<em>Passage D.</em> \"Many municipalities have begun planting trees and installing reflective roofs. The results, however, are <strong>uneven</strong>: a park cooled the streets immediately around it, but the effect faded within a few hundred metres.\"<br/><br/>As used in the passage, the word \"uneven\" most nearly means:",
+          options: [
+            { id: "A", text: "different from one place to another", isCorrect: true },
+            { id: "B", text: "physically bumpy or not level", isCorrect: false, errorTag: "Sözlük anlamı tuzağı: Kelimenin bağlamdan bağımsız ilk anlamını seçmek.", remediation: "'Uneven road' bağlamında 'bumpy' doğrudur; burada ise 'results' nitelendiriliyor. Kelimeyi şıkla değiştirip cümleyi yeniden oku." },
+            { id: "C", text: "unfair to some of the citizens", isCorrect: false, errorTag: "Yan anlam karışıklığı: 'Uneven' kelimesini 'unjust' ile karıştırmak.", remediation: "Metin adalet ya da eşitsizlikten söz etmiyor; iki nokta üst üsteden sonra gelen örnek, etkinin YERE GÖRE değiştiğini anlatıyor." },
+            { id: "D", text: "disappointing in every location", isCorrect: false, errorTag: "Aşırı genelleme (overgeneralisation).", remediation: "Park, hemen çevresindeki sokakları serinletmiş; yani sonuçlar her yerde kötü değil. 'Every' gibi mutlak ifadeler genellikle tuzaktır." }
+          ],
+          generalRemediation: "Vocabulary-in-context sorularında: (1) kelimenin yerine her şıkkı koy, (2) iki nokta üst üste (:) veya 'for example' ile gelen açıklamayı kullan. Burada açıklama: etki yakında var, uzakta yok ⟹ yere göre değişken.",
+          stepByStepSolution: "1. 'Uneven' sonrası gelen iki nokta, kelimenin örneğini veriyor.<br/>2. Örnek: park yakın sokaklarda etkili, birkaç yüz metre sonra etkisiz.<br/>3. Bu, sonuçların yerden yere farklı olduğunu gösterir.<br/>4. Şık 'different from one place to another' cümleye yerleştirildiğinde anlam korunur."
+        },
+        {
+          id: "cents-reading-05",
+          number: 5,
+          topic: "Reading 5 — Purpose of an example",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Reading and comprehension — relationships between parts of a text, B2)",
+          question: "<em>Passage E.</em> \"Planting trees is now a standard response to urban heat. A study of one European city, however, found that a new park lowered night-time temperatures noticeably in the streets immediately around it, but the effect faded within a few hundred metres. Cooling a whole city therefore seems to require many small green spaces rather than one large one.\"<br/><br/>The author mentions the study of one European city mainly in order to:",
+          options: [
+            { id: "A", text: "show that a park's cooling effect is limited to its surroundings", isCorrect: true },
+            { id: "B", text: "prove that parks have no measurable effect on temperature", isCorrect: false, errorTag: "Abartılı okuma: Sınırlı etkiyi 'hiç etki yok' diye yorumlamak.", remediation: "Çalışma 'lowered night-time temperatures noticeably' diyor; etki var ama yerel. 'Prove ... no effect' metinle çelişir." },
+            { id: "C", text: "argue that European cities are leaders in climate policy", isCorrect: false, errorTag: "Konu dışı amaç: Örneğin içeriğini değil yerini (Avrupa) öne çıkarmak.", remediation: "Şehrin Avrupa'da olması örneğin amacı değil, ayrıntısıdır. Purpose sorusunda örneğin hangi iddiayı desteklediğine bak." },
+            { id: "D", text: "explain why parks are cheaper to build than cool roofs", isCorrect: false, errorTag: "Metinde olmayan bilgi: Maliyet karşılaştırması uydurmak.", remediation: "Pasajda maliyetten hiç söz edilmiyor. Bir örneğin amacı, onu izleyen cümledeki sonuçla ('therefore ...') bağlantılıdır." }
+          ],
+          generalRemediation: "'In order to' / 'purpose' sorularında örnekten hemen sonra gelen bağlaca (therefore, thus, so) bak: örnek, o sonucu desteklemek için verilmiştir.",
+          stepByStepSolution: "1. Örnek: park çevresini serinletiyor, etki birkaç yüz metrede kayboluyor.<br/>2. Hemen ardından: 'therefore ... many small green spaces rather than one large one'.<br/>3. Yani örnek, etkinin yerel (sınırlı) olduğunu göstermek için verilmiş.<br/>4. Doğru şık: 'show that a park's cooling effect is limited to its surroundings'."
+        },
+        {
+          id: "cents-reading-06",
+          number: 6,
+          topic: "Reading 6 — Identifying a view the author reports",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Reading and comprehension — non-fiction text, B2)",
+          question: "<em>Passage F.</em> \"For decades, sleep was regarded as a passive state, a pause in which the brain simply switched off. That view began to change when researchers recorded the electrical activity of sleeping brains and found that it was anything but quiet.\"<br/><br/>According to the passage, the traditional view of sleep was that it is:",
+          options: [
+            { id: "A", text: "a period of intense memory formation", isCorrect: false, errorTag: "Eski görüş / yeni görüş karışıklığı.", remediation: "Hafıza ile ilgili aktif uyku görüşü, araştırmaların ortaya koyduğu YENİ görüştür. Soru 'traditional view' istiyor." },
+            { id: "B", text: "a state of unusual electrical activity", isCorrect: false, errorTag: "Bulguyu görüşle karıştırmak.", remediation: "Elektriksel aktivite, eski görüşü değiştiren bulgudur ('That view began to change when...'). Eski görüşün kendisi değildir." },
+            { id: "C", text: "a time when the brain is inactive", isCorrect: true },
+            { id: "D", text: "a dangerous loss of consciousness", isCorrect: false, errorTag: "Metinde olmayan değerlendirme (not stated).", remediation: "Metin uyku için 'dangerous' gibi bir yargı içermiyor. 'Passive state ... switched off' ifadesini yeniden ifade eden şıkkı ara." }
+          ],
+          generalRemediation: "Metinler sık sık 'For decades X was believed... That view changed when...' kalıbını kullanır. Soru eski görüşü mü yoksa yeni bulguyu mu soruyor, önce bunu belirle.",
+          stepByStepSolution: "1. Eski görüş: 'sleep was regarded as a passive state ... the brain simply switched off'.<br/>2. 'Passive' ve 'switched off' ⟹ etkin olmayan (inactive).<br/>3. 'Anything but quiet' bulgusu bu görüşü değiştiren yeni bilgidir.<br/>4. Doğru şık: 'a time when the brain is inactive'."
+        },
+        {
+          id: "cents-reading-07",
+          number: 7,
+          topic: "Reading 7 — Reference (what a phrase refers to)",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Reading and comprehension — relationships between parts of a text, B2)",
+          question: "<em>Passage G.</em> \"During certain stages of sleep, the hippocampus — a region essential for forming new memories — replays patterns of activity first produced while the animal was awake, often at several times the original speed. Experiments with rats suggested what <strong>this replay</strong> might be for.\"<br/><br/>In the passage, \"this replay\" refers to:",
+          options: [
+            { id: "A", text: "rats running the same maze again on the next day", isCorrect: false, errorTag: "Gerçek dünyadaki 'tekrar' ile metindeki göndermeyi karıştırmak.", remediation: "Pasajda farelerin labirenti tekrar koşmasından söz edilmiyor. Gönderme (reference) her zaman metinde daha önce geçen bir ifadeye işaret eder." },
+            { id: "B", text: "the hippocampus reproducing activity from waking hours", isCorrect: true },
+            { id: "C", text: "scientists re-examining their recordings of brain waves", isCorrect: false, errorTag: "Yanlış özne: Eylemi araştırmacılara atfetmek.", remediation: "'Replays' fiilinin öznesi 'the hippocampus'tur; araştırmacılar değil." },
+            { id: "D", text: "the animal waking up at several times its usual speed", isCorrect: false, errorTag: "Kelime parçası eşleştirme: 'several times the original speed' ifadesini yanlış öğeye bağlamak.", remediation: "'Several times the original speed' tekrar EDİLEN aktivite desenlerinin hızıdır; hayvanın uyanmasıyla ilgisi yoktur." }
+          ],
+          generalRemediation: "'This/that/these + isim' göndermelerinde bir önceki cümlede aynı kökü taşıyan fiili ara: 'replays' → 'this replay'. Öznesi kimse gönderme odur.",
+          stepByStepSolution: "1. 'This replay' bir önceki cümledeki 'replays' fiilini isimleştiriyor.<br/>2. O fiilin öznesi: 'the hippocampus'.<br/>3. Nesnesi: 'patterns of activity first produced while the animal was awake'.<br/>4. Yani: hipokampusun uyanıkken oluşan aktiviteyi yeniden üretmesi."
+        },
+        {
+          id: "cents-reading-08",
+          number: 8,
+          topic: "Reading 8 — Understanding experimental results in a text",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Reading and comprehension — non-fiction text, B2)",
+          question: "<em>Passage H.</em> \"When the replay was disrupted, the rats performed worse the next day on the maze they had learned; when it was left alone, their performance improved, even though they had not practised.\"<br/><br/>Which conclusion is most directly supported by these results?",
+          options: [
+            { id: "A", text: "Rats improve on a maze only if they practise it again.", isCorrect: false, errorTag: "Metinle çelişen sonuç (contradiction).", remediation: "Metin 'even though they had not practised' diyor: pratik yapmadan da gelişme oldu. Bu şık bulguyla çelişir." },
+            { id: "B", text: "Disrupting replay makes rats sleep for longer.", isCorrect: false, errorTag: "Ölçülmeyen değişken: Uyku süresi hakkında sonuç çıkarmak.", remediation: "Deneyde ölçülen sonuç değişkeni labirent performansıdır; uyku süresi hiç ölçülmemiştir." },
+            { id: "C", text: "Replay during sleep is the only way memories form.", isCorrect: false, errorTag: "Aşırı genelleme (overgeneralisation): 'only' ile mutlak iddia.", remediation: "Deney replay'in performansı ETKİLEDİĞİNİ gösterir; hafızanın tek yolu olduğunu göstermez. 'Only', 'always', 'never' şıkları çoğu zaman tuzaktır." },
+            { id: "D", text: "Replay during sleep helps the rats remember the maze.", isCorrect: true }
+          ],
+          generalRemediation: "Deney anlatan metinlerde: değiştirilen değişken (replay bozuldu / bozulmadı) ve ölçülen sonuç (ertesi gün performans) nedir? Desteklenen sonuç bu ikisini bağlayan, abartısız cümledir.",
+          stepByStepSolution: "1. Değiştirilen: replay bozuldu mu, bozulmadı mı.<br/>2. Ölçülen: ertesi gün labirent performansı.<br/>3. Replay bozulunca performans düştü, bozulmayınca pratik olmadan arttı.<br/>4. En doğrudan sonuç: replay labirenti hatırlamaya yardım ediyor."
+        },
+        {
+          id: "cents-reading-09",
+          number: 9,
+          topic: "Reading 9 — Author's position",
+          difficulty: "hard",
+          source: "CEnT-S-style original (CISIA syllabus: Reading and comprehension — implicit meaning, B2)",
+          question: "<em>Passage I.</em> \"Researchers are careful not to overstate the case. Sleep appears to strengthen some kinds of memory more than others, and it cannot rescue information that was never properly learned in the first place. A student who skims a chapter at midnight should not expect a good night's sleep to turn that skim into understanding.\"<br/><br/>Which statement would the author most likely agree with?",
+          options: [
+            { id: "A", text: "Sleep can reinforce learning but cannot replace proper study.", isCorrect: true },
+            { id: "B", text: "Sleep strengthens every kind of memory to the same degree.", isCorrect: false, errorTag: "Metinle çelişen genelleme.", remediation: "Metin 'some kinds of memory more than others' diyor; yani etki türden türe farklı. 'Every ... same degree' bununla çelişir." },
+            { id: "C", text: "Studying late at night is the most efficient way to learn.", isCorrect: false, errorTag: "Örneğin amacını tersine çevirmek.", remediation: "Gece yarısı göz gezdiren öğrenci olumsuz örnek olarak veriliyor; yazar bunu tavsiye etmiyor." },
+            { id: "D", text: "Research on sleep and memory has produced no useful results.", isCorrect: false, errorTag: "Temkinli tonu 'tamamen olumsuz' sanmak.", remediation: "'Not to overstate the case' temkin ifadesidir, reddetme değil. Yazar etkiyi kabul ediyor ama sınırlarını çiziyor." }
+          ],
+          generalRemediation: "'Would most likely agree' sorularında yazarın hem kabul ettiğini (sleep strengthens memory) hem de sınırladığını (cannot rescue unlearned information) birlikte yansıtan şıkkı seç.",
+          stepByStepSolution: "1. Yazarın kabul ettiği: uyku bazı hafıza türlerini güçlendirir.<br/>2. Yazarın sınırı: hiç öğrenilmemiş bilgiyi kurtaramaz.<br/>3. Örnek: göz gezdirmek + iyi uyku ≠ anlamak.<br/>4. Bu iki fikri birleştiren şık: 'Sleep can reinforce learning but cannot replace proper study'."
+        },
+        {
+          id: "cents-reading-10",
+          number: 10,
+          topic: "Reading 10 — Tone of a paragraph",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Reading and comprehension — abstraction, B2)",
+          question: "<em>Passage J.</em> \"The findings are promising, yet they come with important limits. Most studies have involved small groups of volunteers, and the effects, while real, are modest. It would be premature to redesign school timetables around them.\"<br/><br/>The tone of this paragraph is best described as:",
+          options: [
+            { id: "A", text: "enthusiastic and celebratory", isCorrect: false, errorTag: "Tek kelimeye takılma: 'promising' kelimesinden tüm tonu çıkarmak.", remediation: "'Promising' hemen ardından 'yet ... important limits' ile dengeleniyor. Ton tek bir olumlu kelimeyle belirlenmez." },
+            { id: "B", text: "cautious and measured", isCorrect: true },
+            { id: "C", text: "dismissive and hostile", isCorrect: false, errorTag: "Temkini düşmanlıkla karıştırmak.", remediation: "Yazar bulguları 'real' ve 'promising' olarak kabul ediyor; reddetmiyor. Hostile ton için küçümseyici ifadeler gerekirdi." },
+            { id: "D", text: "ironic and humorous", isCorrect: false, errorTag: "Metinde dayanağı olmayan ton.", remediation: "Paragrafta ironi veya mizah işareti (abartı, tezat şakası) yok; dil nesnel ve akademik." }
+          ],
+          generalRemediation: "Ton sorularında sıfat ve zarfları topla: 'promising', 'important limits', 'modest', 'premature'. Olumlu + sınırlayıcı karışımı temkinli (cautious, measured, balanced) tonu gösterir.",
+          stepByStepSolution: "1. Olumlu işaret: 'promising', 'real'.<br/>2. Sınırlayıcı işaretler: 'important limits', 'small groups', 'modest', 'premature'.<br/>3. Yazar ne coşkulu ne de reddedici; dengeli ve temkinli.<br/>4. Doğru şık: 'cautious and measured'."
+        }
+      ];
+
+      const CENTS_MATH_QUESTIONS = [
+        {
+          id: "cents-math-01",
+          number: 1,
+          topic: "Numbers — Successive percentage changes",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Mathematics — numbers, percentages)",
+          question: "The price of a bicycle is increased by $20\\%$ and the new price is then decreased by $20\\%$. Compared with the original price, the final price is:",
+          options: [
+            { id: "A", text: "the same as the original price", isCorrect: false, errorTag: "Toplamsal düşünme: $+20\\% - 20\\% = 0$ sanmak.", remediation: "Yüzde değişimler ÇARPILIR: $1.20 \\times 0.80 = 0.96$. İkinci %20 daha büyük bir tutar üzerinden hesaplandığı için düşüş daha büyüktür." },
+            { id: "B", text: "$4\\%$ higher than the original price", isCorrect: false, errorTag: "İşaret hatası: $-0.04$ terimini artış olarak okumak.", remediation: "$(1 + 0.2)(1 - 0.2) = 1 - 0.04 = 0.96 \\lt 1$: fiyat düşmüştür, artmamıştır." },
+            { id: "C", text: "$4\\%$ lower than the original price", isCorrect: true },
+            { id: "D", text: "$0.4\\%$ lower than the original price", isCorrect: false, errorTag: "Ondalık-yüzde dönüşüm hatası: $0.04$'ü $0.4\\%$ diye yazmak.", remediation: "$0.04 = 4\\%$ (100 ile çarp). $0.4\\%$ ise $0.004$ olurdu." }
+          ],
+          generalRemediation: "Ardışık yüzde değişimlerinde çarpanları çarp: artış $p\\%$ ⟹ $\\times(1 + p/100)$, azalış $q\\%$ ⟹ $\\times(1 - q/100)$. Hesap makinesi yok; $1.2 \\times 0.8$ gibi çarpımları zihinden yap.",
+          stepByStepSolution: "1. Orijinal fiyat $P$ olsun.<br/>2. %20 artış: $1.2P$.<br/>3. %20 azalış: $0.8 \\times 1.2P = 0.96P$.<br/>4. $0.96P = P - 0.04P$ ⟹ fiyat orijinalden $4\\%$ düşüktür."
+        },
+        {
+          id: "cents-math-02",
+          number: 2,
+          topic: "Algebra — Rational inequality",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Mathematics — algebra, inequalities)",
+          question: "Which set contains exactly the real numbers $x$ that satisfy $\\dfrac{x - 3}{x + 1} \\le 0$?",
+          options: [
+            { id: "A", text: "$-1 \\lt x \\le 3$", isCorrect: true },
+            { id: "B", text: "$-1 \\le x \\le 3$", isCorrect: false, errorTag: "Tanım kümesi hatası: Paydayı sıfır yapan $x = -1$'i dahil etmek.", remediation: "$x = -1$'de kesir tanımsızdır; eşitsizliği sağlayamaz. Paydanın kökü her zaman açık uç (strict) olur." },
+            { id: "C", text: "$x \\le 3$", isCorrect: false, errorTag: "Paydayla çarpma hatası: $(x+1)$'in işaretini kontrol etmeden her iki tarafı çarpmak.", remediation: "$x + 1$ negatif olabilir; o zaman eşitsizlik yön değiştirir. Doğru yöntem işaret tablosudur." },
+            { id: "D", text: "$x \\lt -1$ or $x \\ge 3$", isCorrect: false, errorTag: "İşaret tablosunu ters okumak: $\\ge 0$ bölgesini seçmek.", remediation: "Bu küme $\\frac{x-3}{x+1} \\ge 0$'ın çözümüdür. Soru $\\le 0$ istiyor: pay ve payda zıt işaretli olmalı." }
+          ],
+          generalRemediation: "Rasyonel eşitsizlik: (1) pay ve paydanın köklerini bul ($x = 3$, $x = -1$), (2) işaret tablosu kur, (3) payın kökü eşitlik varsa dahil, paydanın kökü ASLA dahil değil.",
+          stepByStepSolution: "1. Kritik noktalar: $x = 3$ (pay) ve $x = -1$ (payda).<br/>2. $x \\lt -1$: $\\frac{(-)}{(-)} \\gt 0$.<br/>3. $-1 \\lt x \\lt 3$: $\\frac{(-)}{(+)} \\lt 0$ ✓.<br/>4. $x \\gt 3$: $\\frac{(+)}{(+)} \\gt 0$.<br/>5. $x = 3$ değeri $0$ verir ve dahil; $x = -1$ tanımsız ⟹ $-1 \\lt x \\le 3$."
+        },
+        {
+          id: "cents-math-03",
+          number: 3,
+          topic: "Exponentials and logarithms — Log equation with domain check",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Mathematics — exponentials and logarithms)",
+          question: "Solve $\\log_2 x + \\log_2 (x - 2) = 3$.",
+          options: [
+            { id: "A", text: "$x = 4$ or $x = -2$", isCorrect: false, errorTag: "Tanım kümesi kontrolü eksik: Negatif kökü elememek.", remediation: "$\\log_2 x$ yalnızca $x \\gt 0$ için, $\\log_2(x-2)$ yalnızca $x \\gt 2$ için tanımlıdır. $x = -2$ geçersizdir." },
+            { id: "B", text: "$x = 4$", isCorrect: true },
+            { id: "C", text: "$x = 5$", isCorrect: false, errorTag: "Logaritma kuralı hatası: $\\log a + \\log b = \\log(a + b)$ sanmak.", remediation: "Doğru kural $\\log a + \\log b = \\log(ab)$. $\\log_2(2x - 2) = 3$ yazmak yanlıştır." },
+            { id: "D", text: "$x = \\frac{16}{7}$", isCorrect: false, errorTag: "Kural karışıklığı: Toplamı bölüm kuralıyla $\\log\\frac{a}{b}$ diye birleştirmek.", remediation: "$\\log\\frac{a}{b}$ FARK için geçerlidir. Toplam için çarpım kuralını kullan: $x(x-2) = 2^3$." }
+          ],
+          generalRemediation: "Log denklemi: (1) tanım kümesini yaz ($x \\gt 2$), (2) $\\log a + \\log b = \\log(ab)$ ile birleştir, (3) üstel forma geç, (4) kökleri tanım kümesiyle kontrol et.",
+          stepByStepSolution: "1. Tanım kümesi: $x \\gt 0$ ve $x \\gt 2$ ⟹ $x \\gt 2$.<br/>2. $\\log_2[x(x-2)] = 3$ ⟹ $x(x-2) = 8$.<br/>3. $x^2 - 2x - 8 = 0$ ⟹ $(x-4)(x+2) = 0$.<br/>4. $x = 4$ veya $x = -2$; yalnızca $x = 4$ tanım kümesinde.<br/>5. Kontrol: $\\log_2 4 + \\log_2 2 = 2 + 1 = 3$ ✓."
+        },
+        {
+          id: "cents-math-04",
+          number: 4,
+          topic: "Geometry — Circle from its general equation",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Mathematics — analytic geometry, circles)",
+          question: "The circle $x^2 + y^2 - 6x + 4y - 12 = 0$ has centre $C$ and radius $r$. Which is correct?",
+          options: [
+            { id: "A", text: "$C = (-3, 2)$, $r = 5$", isCorrect: false, errorTag: "Merkez işaret hatası: $-6x$'ten $x = -3$ okumak.", remediation: "$(x - a)^2$ açılınca $-2ax$ verir. $-2a = -6$ ⟹ $a = 3$. Merkezin koordinatı katsayının yarısının TERS işaretlisidir." },
+            { id: "B", text: "$C = (3, -2)$, $r = 2\\sqrt{3}$", isCorrect: false, errorTag: "Kareye tamamlama eksik: $r^2 = 12$ almak.", remediation: "Kareye tamamlarken eklenen $9$ ve $4$ de sağ tarafa geçer: $r^2 = 12 + 9 + 4 = 25$." },
+            { id: "C", text: "$C = (3, -2)$, $r = 25$", isCorrect: false, errorTag: "Karekök unutma: $r^2$ değerini yarıçap sanmak.", remediation: "Standart form $(x-a)^2 + (y-b)^2 = r^2$. Sağdaki $25$, $r^2$'dir ⟹ $r = 5$." },
+            { id: "D", text: "$C = (3, -2)$, $r = 5$", isCorrect: true }
+          ],
+          generalRemediation: "Genel denklem $x^2 + y^2 + Dx + Ey + F = 0$ için merkez $\\left(-\\frac{D}{2}, -\\frac{E}{2}\\right)$, yarıçap $r = \\sqrt{\\frac{D^2}{4} + \\frac{E^2}{4} - F}$.",
+          stepByStepSolution: "1. $x^2 - 6x = (x - 3)^2 - 9$.<br/>2. $y^2 + 4y = (y + 2)^2 - 4$.<br/>3. $(x-3)^2 - 9 + (y+2)^2 - 4 - 12 = 0$ ⟹ $(x-3)^2 + (y+2)^2 = 25$.<br/>4. Merkez $(3, -2)$, $r = \\sqrt{25} = 5$."
+        },
+        {
+          id: "cents-math-05",
+          number: 5,
+          topic: "Functions — Composition",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Mathematics — functions, composition)",
+          question: "Let $f(x) = 2x + 1$ and $g(x) = x^2 - 3$. What is $f(g(2))$?",
+          options: [
+            { id: "A", text: "$3$", isCorrect: true },
+            { id: "B", text: "$22$", isCorrect: false, errorTag: "Bileşke sırası hatası: $g(f(2))$ hesaplamak.", remediation: "$f(g(2))$'de İÇTEKİ fonksiyon önce: önce $g(2)$, sonra sonucu $f$'e ver. $g(f(2)) = g(5) = 22$ farklı bir bileşkedir." },
+            { id: "C", text: "$5$", isCorrect: false, errorTag: "Bileşkeyi çarpım sanmak: $f(2) \\cdot g(2)$.", remediation: "$f \\circ g$ çarpım değildir; $g$'nin çıktısı $f$'in girdisi olur. $f(2) \\cdot g(2) = 5 \\cdot 1 = 5$ yanlış işlemdir." },
+            { id: "D", text: "$6$", isCorrect: false, errorTag: "Bileşkeyi toplam sanmak: $f(2) + g(2)$.", remediation: "Bileşke iç içe uygulamadır; $f(2) + g(2) = 5 + 1 = 6$ bir toplamdır, bileşke değil." }
+          ],
+          generalRemediation: "$f(g(a))$: içten dışa çalış. Önce $g(a)$'yı bul, bu sayıyı $f$'in içine koy.",
+          stepByStepSolution: "1. $g(2) = 2^2 - 3 = 1$.<br/>2. $f(1) = 2(1) + 1 = 3$.<br/>3. $f(g(2)) = 3$."
+        },
+        {
+          id: "cents-math-06",
+          number: 6,
+          topic: "Functions — Inverse of a rational function",
+          difficulty: "hard",
+          source: "CEnT-S-style original (CISIA syllabus: Mathematics — functions, inverse functions)",
+          question: "Let $f(x) = \\dfrac{2x - 1}{x + 3}$ for $x \\ne -3$. Which expression gives $f^{-1}(x)$?",
+          options: [
+            { id: "A", text: "$\\dfrac{x + 3}{2x - 1}$", isCorrect: false, errorTag: "Ters fonksiyonu çarpmaya göre ters (reciprocal) sanmak.", remediation: "$f^{-1}$, $\\frac{1}{f}$ demek değildir. $y = f(x)$ denkleminde $x$'i $y$ cinsinden çözmek gerekir." },
+            { id: "B", text: "$\\dfrac{3x + 1}{x - 2}$", isCorrect: false, errorTag: "Terim taşırken işaret hatası (payda).", remediation: "$x(y - 2) = -3y - 1$ ⟹ $x = \\frac{-3y - 1}{y - 2} = \\frac{3y + 1}{2 - y}$. Pay ve paydanın yalnızca birinin işaretini değiştirmek sonucu bozar." },
+            { id: "C", text: "$\\dfrac{3x + 1}{2 - x}$", isCorrect: true },
+            { id: "D", text: "$\\dfrac{3x - 1}{2 - x}$", isCorrect: false, errorTag: "Terim taşırken işaret hatası (pay).", remediation: "$xy + 3y = 2x - 1$ ⟹ $xy - 2x = -1 - 3y$. Sabit $-1$ sağda kalır; pay $-(3y + 1)$ olur." }
+          ],
+          generalRemediation: "Ters fonksiyon: $y = f(x)$ yaz, $x$'i yalnız bırak, sonra $x \\leftrightarrow y$ değiştir. Kontrol: $f(f^{-1}(x)) = x$ olmalı; ör. $f(0) = -\\frac{1}{3}$ ise $f^{-1}(-\\frac{1}{3}) = 0$.",
+          stepByStepSolution: "1. $y = \\frac{2x - 1}{x + 3}$ ⟹ $y(x + 3) = 2x - 1$.<br/>2. $xy + 3y = 2x - 1$ ⟹ $xy - 2x = -3y - 1$.<br/>3. $x(y - 2) = -(3y + 1)$ ⟹ $x = \\frac{3y + 1}{2 - y}$.<br/>4. Değişken değiştir: $f^{-1}(x) = \\frac{3x + 1}{2 - x}$.<br/>5. Kontrol: $f(0) = -\\frac{1}{3}$; $f^{-1}(-\\frac{1}{3}) = \\frac{-1 + 1}{2 + \\frac{1}{3}} = 0$ ✓."
+        },
+        {
+          id: "cents-math-07",
+          number: 7,
+          topic: "Combinatorics — Committees with an 'at least one' condition",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Mathematics — combinatorics)",
+          question: "A committee of $3$ people is chosen from $5$ students and $4$ teachers. In how many ways can it be chosen if it must include <strong>at least one</strong> teacher?",
+          options: [
+            { id: "A", text: "$84$", isCorrect: false, errorTag: "Koşulu yok saymak: Tüm komiteleri saymak.", remediation: "$\\binom{9}{3} = 84$ öğretmensiz komiteleri de içerir. Bunları çıkarmak gerekir." },
+            { id: "B", text: "$74$", isCorrect: true },
+            { id: "C", text: "$112$", isCorrect: false, errorTag: "Çift sayma (overcounting): Önce bir öğretmen seçip kalan 2 kişiyi serbest seçmek.", remediation: "$4 \\cdot \\binom{8}{2} = 112$, iki veya üç öğretmenli komiteleri birden çok kez sayar. 'En az bir' için tümleyen yöntemi kullan." },
+            { id: "D", text: "$40$", isCorrect: false, errorTag: "'En az bir' ile 'tam bir' karışıklığı.", remediation: "$4 \\cdot \\binom{5}{2} = 40$ yalnızca TAM bir öğretmenli komitelerdir. 2 ve 3 öğretmenli durumlar da sayılmalı." }
+          ],
+          generalRemediation: "'At least one' sorularında tümleyen (complement) yöntemi: istenen = toplam − hiç olmayan. $\\binom{n}{k} = \\frac{n!}{k!(n-k)!}$.",
+          stepByStepSolution: "1. Toplam: $\\binom{9}{3} = \\frac{9 \\cdot 8 \\cdot 7}{6} = 84$.<br/>2. Hiç öğretmen yok (yalnız öğrenci): $\\binom{5}{3} = 10$.<br/>3. En az bir öğretmen: $84 - 10 = 74$.<br/>4. Kontrol (doğrudan): 1 öğretmen $4 \\cdot 10 = 40$; 2 öğretmen $6 \\cdot 5 = 30$; 3 öğretmen $4$ ⟹ $40 + 30 + 4 = 74$ ✓."
+        },
+        {
+          id: "cents-math-08",
+          number: 8,
+          topic: "Probability — Sum of two dice",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Mathematics — probability)",
+          question: "Two fair six-sided dice are rolled. What is the probability that the sum of the two numbers is $8$?",
+          options: [
+            { id: "A", text: "$\\frac{1}{11}$", isCorrect: false, errorTag: "Eşit olasılık varsayımı: 2–12 arasındaki 11 toplamı eşit olasılıklı saymak.", remediation: "Toplamlar eşit olasılıklı değildir. Eşit olasılıklı olanlar 36 sıralı $(a, b)$ çiftidir." },
+            { id: "B", text: "$\\frac{1}{12}$", isCorrect: false, errorTag: "Sırasız sayma: $(2,6)$ ile $(6,2)$'yi tek sonuç saymak.", remediation: "İki zar ayırt edilebilir; $(2,6)$ ve $(6,2)$ farklı sonuçlardır. Sırasız sayınca 3 sonuç bulunur ve $\\frac{3}{36}$ yanlış olur." },
+            { id: "C", text: "$\\frac{1}{6}$", isCorrect: false, errorTag: "Çift sayma: $(4,4)$'ü iki kez saymak.", remediation: "$(4,4)$ yalnızca bir sıralı çifttir. Doğru liste: $(2,6), (3,5), (4,4), (5,3), (6,2)$ = 5 sonuç." },
+            { id: "D", text: "$\\frac{5}{36}$", isCorrect: true }
+          ],
+          generalRemediation: "Klasik olasılık: $P = \\frac{\\text{favourable outcomes}}{\\text{equally likely outcomes}}$. İki zarda örnek uzay 36 sıralı çifttir.",
+          stepByStepSolution: "1. Örnek uzay: $6 \\times 6 = 36$ eşit olasılıklı sıralı çift.<br/>2. Toplamı 8 olanlar: $(2,6), (3,5), (4,4), (5,3), (6,2)$ ⟹ 5 sonuç.<br/>3. $P = \\frac{5}{36}$."
+        },
+        {
+          id: "cents-math-09",
+          number: 9,
+          topic: "Statistics — Mean after adding a value",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Mathematics — basic statistics, mean)",
+          question: "The mean of five numbers is $12$. A sixth number is added and the mean of all six numbers becomes $13$. What is the sixth number?",
+          options: [
+            { id: "A", text: "$18$", isCorrect: true },
+            { id: "B", text: "$13$", isCorrect: false, errorTag: "Yeni ortalamayı yeni değer sanmak.", remediation: "Ortalamaya $13$ eklemek ortalamayı $13$'e çıkarmaz: $\\frac{60 + 13}{6} \\approx 12.17$. Toplamları kullan." },
+            { id: "C", text: "$17$", isCorrect: false, errorTag: "Artışı yalnızca eski 5 sayıya dağıtmak.", remediation: "Ortalama 1 artınca 6 sayının HER BİRİ için +1 gerekir: yeni sayı $12 + 6 \\cdot 1 = 18$. $12 + 5 = 17$ yeni sayının kendi payını unutur." },
+            { id: "D", text: "$25$", isCorrect: false, errorTag: "Ortalamaları toplamak: $12 + 13$.", remediation: "İki ortalamanın toplamı anlamlı bir büyüklük değildir. Toplam = ortalama × adet: $6 \\cdot 13 - 5 \\cdot 12$." }
+          ],
+          generalRemediation: "Ortalama sorularında toplamla çalış: $\\text{sum} = \\text{mean} \\times n$. Eklenen değer = yeni toplam − eski toplam.",
+          stepByStepSolution: "1. Eski toplam: $5 \\cdot 12 = 60$.<br/>2. Yeni toplam: $6 \\cdot 13 = 78$.<br/>3. Altıncı sayı: $78 - 60 = 18$."
+        },
+        {
+          id: "cents-math-10",
+          number: 10,
+          topic: "Numbers — Powers with the same base",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Mathematics — numbers, powers)",
+          question: "Simplify $\\dfrac{3^8 + 3^8 + 3^8}{9^4}$.",
+          options: [
+            { id: "A", text: "$1$", isCorrect: false, errorTag: "Toplamı tek terim sanmak: $3^8 + 3^8 + 3^8 = 3^8$.", remediation: "Üç eşit terimin toplamı $3 \\cdot 3^8 = 3^9$'dur; tek bir $3^8$ değildir." },
+            { id: "B", text: "$3^{16}$", isCorrect: false, errorTag: "Toplamda üsleri toplamak: $3^8 + 3^8 + 3^8 = 3^{24}$.", remediation: "Üsler ÇARPIMDA toplanır ($3^a \\cdot 3^b = 3^{a+b}$), toplamda değil. $3^8 + 3^8 + 3^8 = 3 \\cdot 3^8$." },
+            { id: "C", text: "$3$", isCorrect: true },
+            { id: "D", text: "$3^{-7}$", isCorrect: false, errorTag: "Kuvvetin kuvveti hatası: $9^4 = 3^{2^4} = 3^{16}$ yazmak.", remediation: "$(a^m)^n = a^{mn}$: $9^4 = (3^2)^4 = 3^{8}$, $3^{16}$ değil." }
+          ],
+          generalRemediation: "Önce her şeyi aynı tabana çevir ($9 = 3^2$). Sonra: aynı terimlerin toplamı katsayı olur, çarpımda üsler toplanır, kuvvetin kuvvetinde üsler çarpılır.",
+          stepByStepSolution: "1. Pay: $3^8 + 3^8 + 3^8 = 3 \\cdot 3^8 = 3^9$.<br/>2. Payda: $9^4 = (3^2)^4 = 3^8$.<br/>3. $\\frac{3^9}{3^8} = 3$."
+        }
+      ];
+
+      const CENTS_REASONING_QUESTIONS = [
+        {
+          id: "cents-reasoning-01",
+          number: 1,
+          topic: "Logic — Negating a universal statement",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Reasoning on texts and data — logic, negation and quantifiers)",
+          question: "Which statement is the <strong>negation</strong> of: \"Every student in the class passed the exam\"?",
+          options: [
+            { id: "A", text: "No student in the class passed the exam.", isCorrect: false, errorTag: "Karşıt (contrary) ile değil (negation) karışıklığı.", remediation: "'Hiçbiri geçmedi' çok güçlü bir iddiadır. Orijinal ifadeyi yanlışlamak için TEK bir başarısız öğrenci yeter." },
+            { id: "B", text: "At least one student in the class passed the exam.", isCorrect: false, errorTag: "Niceleyiciyi değiştirip yüklemi değiştirmemek.", remediation: "'Her biri geçti'nin değili 'en az biri GEÇMEDİ'dir. Hem niceleyici (every → some) hem yüklem (passed → did not pass) değişmeli." },
+            { id: "C", text: "Not every student in the class took the exam.", isCorrect: false, errorTag: "Konu değiştirme: Sınava girme ile sınavı geçmeyi karıştırmak.", remediation: "Orijinal ifade sınavı GEÇMEK hakkındadır; sınava girmek farklı bir yüklemdir." },
+            { id: "D", text: "At least one student in the class did not pass the exam.", isCorrect: true }
+          ],
+          generalRemediation: "Değil kuralları: $\\neg(\\forall x\\, P(x)) \\equiv \\exists x\\, \\neg P(x)$ ve $\\neg(\\exists x\\, P(x)) \\equiv \\forall x\\, \\neg P(x)$. 'Every' → 'at least one ... not'.",
+          stepByStepSolution: "1. Orijinal: tüm öğrenciler için 'passed' doğru.<br/>2. Bunu yanlışlamak için bir karşı örnek (counterexample) yeter.<br/>3. Değil: 'At least one student did not pass'.<br/>4. 'No student passed' değil değil, karşıt ifadedir: ikisi birlikte yanlış olabilir."
+        },
+        {
+          id: "cents-reasoning-02",
+          number: 2,
+          topic: "Logic — Contrapositive of a conditional",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Reasoning on texts and data — logic, necessary and sufficient conditions)",
+          question: "Assume the statement \"If it rains, the match is cancelled\" is true. Which of the following must also be true?",
+          options: [
+            { id: "A", text: "If the match is cancelled, then it rained.", isCorrect: false, errorTag: "Karşıt (converse) hatası: $P \\Rightarrow Q$'dan $Q \\Rightarrow P$ çıkarmak.", remediation: "Maç başka nedenlerle (ör. hakem hastalığı) de iptal olabilir. $P \\Rightarrow Q$ doğruyken $Q \\Rightarrow P$ yanlış olabilir." },
+            { id: "B", text: "If the match is not cancelled, then it did not rain.", isCorrect: true },
+            { id: "C", text: "If it does not rain, the match is not cancelled.", isCorrect: false, errorTag: "Ters (inverse) hatası: $\\neg P \\Rightarrow \\neg Q$ çıkarmak.", remediation: "Yağmur yağmasa da maç başka bir nedenle iptal edilebilir. Ters önerme, karşıt önermeyle denktir; orijinalle değil." },
+            { id: "D", text: "Rain is a necessary condition for the match to be cancelled.", isCorrect: false, errorTag: "Gerekli/yeterli koşul karışıklığı.", remediation: "Orijinal ifadede yağmur, iptal için YETERLİ koşuldur. 'Gerekli' demek 'iptal ⟹ yağmur' (converse) demektir." }
+          ],
+          generalRemediation: "$P \\Rightarrow Q$ yalnızca kontrapozitifine $\\neg Q \\Rightarrow \\neg P$ denktir. $P$ yeterli koşul, $Q$ gerekli koşuldur.",
+          stepByStepSolution: "1. $P$: yağmur yağar; $Q$: maç iptal edilir. Verilen $P \\Rightarrow Q$.<br/>2. Kontrapozitif: $\\neg Q \\Rightarrow \\neg P$ = 'maç iptal edilmediyse yağmur yağmamıştır'.<br/>3. Mantık: yağmur yağsaydı maç iptal edilirdi; edilmediyse yağmamıştır.<br/>4. Karşıt ve ters önermeler zorunlu olarak doğru değildir."
+        },
+        {
+          id: "cents-reasoning-03",
+          number: 3,
+          topic: "Logic — Syllogism with 'all' and 'no'",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Reasoning on texts and data — logic, quantifiers)",
+          question: "\"All physicists at the conference are members of the Society. No member of the Society is under 25.\" Which conclusion follows necessarily?",
+          options: [
+            { id: "A", text: "No physicist at the conference is under 25.", isCorrect: true },
+            { id: "B", text: "All members of the Society are physicists.", isCorrect: false, errorTag: "Kapsamı tersine çevirmek: 'All A are B' ⟹ 'All B are A'.", remediation: "Fizikçiler üyelerin bir alt kümesidir; Society'de fizikçi olmayan üyeler de olabilir." },
+            { id: "C", text: "Some physicists at the conference are under 25.", isCorrect: false, errorTag: "Öncüllerle çelişen sonuç.", remediation: "Her fizikçi üyedir ve hiçbir üye 25 yaşından küçük değildir; o halde 25 yaşından küçük fizikçi olamaz." },
+            { id: "D", text: "Everyone at the conference over 25 is a physicist.", isCorrect: false, errorTag: "Desteklenmeyen genelleme.", remediation: "Öncüller konferanstaki fizikçi OLMAYAN kişiler hakkında hiçbir şey söylemez." }
+          ],
+          generalRemediation: "Küme (Venn) düşün: Physicists ⊆ Members, ve Members ∩ Under-25 = ∅ ⟹ Physicists ∩ Under-25 = ∅.",
+          stepByStepSolution: "1. 'All physicists are members' ⟹ fizikçi kümesi üyeler kümesinin içinde.<br/>2. 'No member is under 25' ⟹ üyeler kümesi 25 altı kümesiyle kesişmez.<br/>3. İçteki küme de kesişemez ⟹ hiçbir fizikçi 25 yaşından küçük değildir."
+        },
+        {
+          id: "cents-reasoning-04",
+          number: 4,
+          topic: "Interpreting data — Rates versus counts in a table",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Reasoning on texts and data — interpreting tables, percentages)",
+          question: "The table shows applications to three degree programmes.<table class=\"cents-data\"><thead><tr><th>Programme</th><th>Applicants</th><th>Admitted</th></tr></thead><tbody><tr><td>A</td><td>400</td><td>25%</td></tr><tr><td>B</td><td>250</td><td>36%</td></tr><tr><td>C</td><td>150</td><td>60%</td></tr></tbody></table>Which statement is supported by the data?",
+          options: [
+            { id: "A", text: "Programme C admitted the largest number of students.", isCorrect: false, errorTag: "Oran ile sayı karışıklığı.", remediation: "C'nin oranı en yüksektir ama sayısı $0.60 \\cdot 150 = 90$. A ise $0.25 \\cdot 400 = 100$ öğrenci almıştır." },
+            { id: "B", text: "Overall, about 40% of all applicants were admitted.", isCorrect: false, errorTag: "Ağırlıksız ortalama: Yüzdelerin ortalamasını almak.", remediation: "$\\frac{25 + 36 + 60}{3} \\approx 40.3\\%$ başvuru sayılarını hesaba katmaz. Genel oran = toplam kabul / toplam başvuru." },
+            { id: "C", text: "Overall, 35% of all applicants were admitted.", isCorrect: true },
+            { id: "D", text: "Programme B admitted fewer students than Programme C.", isCorrect: false, errorTag: "Hesap yapmadan oranlara göre karar vermek.", remediation: "B: $0.36 \\cdot 250 = 90$; C: $0.60 \\cdot 150 = 90$. Sayılar eşittir; 'fewer' yanlıştır." }
+          ],
+          generalRemediation: "Tablolarda yüzde ve sayı farklı sorulardır. Genel oran her zaman ağırlıklı ortalamadır: $\\frac{\\sum \\text{admitted}}{\\sum \\text{applicants}}$.",
+          stepByStepSolution: "1. A: $0.25 \\cdot 400 = 100$.<br/>2. B: $0.36 \\cdot 250 = 90$.<br/>3. C: $0.60 \\cdot 150 = 90$.<br/>4. Toplam kabul $280$, toplam başvuru $800$ ⟹ $\\frac{280}{800} = 0.35 = 35\\%$."
+        },
+        {
+          id: "cents-reasoning-05",
+          number: 5,
+          topic: "Problem solving — Combined proportionality",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Reasoning on texts and data — problem solving, proportionality)",
+          question: "Six identical printers print $900$ pages in $5$ minutes. Working at the same rate, how many minutes do four of these printers need to print $1200$ pages?",
+          options: [
+            { id: "A", text: "$10$", isCorrect: true },
+            { id: "B", text: "$\\frac{40}{9}$", isCorrect: false, errorTag: "Ters orantıyı doğru orantı sanmak: Süreyi yazıcı sayısıyla aynı yönde ölçeklemek.", remediation: "Daha az yazıcı ⟹ daha UZUN süre. Yazıcı oranı $\\frac{6}{4}$ ile çarpılmalı, $\\frac{4}{6}$ ile değil." },
+            { id: "C", text: "$\\frac{20}{3}$", isCorrect: false, errorTag: "Yazıcı sayısındaki değişimi yok saymak.", remediation: "$5 \\cdot \\frac{1200}{900} = \\frac{20}{3}$ yalnızca sayfa artışını hesaba katar; yazıcı 6'dan 4'e düştü." },
+            { id: "D", text: "$\\frac{15}{2}$", isCorrect: false, errorTag: "Sayfa sayısındaki değişimi yok saymak.", remediation: "$5 \\cdot \\frac{6}{4} = 7.5$ yalnızca yazıcı azalmasını içerir; sayfa 900'den 1200'e çıktı." }
+          ],
+          generalRemediation: "Birim hız yöntemi: önce 1 yazıcının 1 dakikadaki iş miktarını bul, sonra yeni duruma uygula. Sonucu sağduyuyla kontrol et: daha çok iş + daha az makine ⟹ süre artmalı.",
+          stepByStepSolution: "1. Birim hız: $\\frac{900}{6 \\cdot 5} = 30$ sayfa / (yazıcı·dakika).<br/>2. 4 yazıcının hızı: $4 \\cdot 30 = 120$ sayfa/dk.<br/>3. Süre: $\\frac{1200}{120} = 10$ dakika.<br/>4. Kontrol: $5 \\cdot \\frac{1200}{900} \\cdot \\frac{6}{4} = 5 \\cdot \\frac{4}{3} \\cdot \\frac{3}{2} = 10$ ✓."
+        },
+        {
+          id: "cents-reasoning-06",
+          number: 6,
+          topic: "Logic — Ordering from comparative statements",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Reasoning on texts and data — sorting criteria)",
+          question: "Anna is taller than Ben. Carla is shorter than Ben. Dario is taller than Anna. Who is the <strong>second</strong> tallest of the four?",
+          options: [
+            { id: "A", text: "Dario", isCorrect: false, errorTag: "'İkinci' yerine 'en uzun' kişiyi seçmek.", remediation: "Dario en uzundur. Soru sıralamada İKİNCİ kişiyi istiyor." },
+            { id: "B", text: "Anna", isCorrect: true },
+            { id: "C", text: "Ben", isCorrect: false, errorTag: "Sıralamayı yarıda bırakmak.", remediation: "Ben, Anna'dan kısadır; Anna da Dario'dan kısa. Ben üçüncü sıradadır." },
+            { id: "D", text: "It cannot be determined.", isCorrect: false, errorTag: "Bilgi yetersizliği varsaymak.", remediation: "Üç karşılaştırma dört kişiyi tek bir zincirde birleştirir: Dario > Anna > Ben > Carla. Sıra kesindir." }
+          ],
+          generalRemediation: "Karşılaştırmalı ifadeleri tek bir zincire yaz (a > b). Tüm kişiler tek zincirde birleşiyorsa sıralama kesindir.",
+          stepByStepSolution: "1. Anna > Ben.<br/>2. Ben > Carla.<br/>3. Dario > Anna.<br/>4. Zincir: Dario > Anna > Ben > Carla ⟹ ikinci en uzun Anna."
+        },
+        {
+          id: "cents-reasoning-07",
+          number: 7,
+          topic: "Interpreting data — Percentage decrease from a table",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Reasoning on texts and data — interpreting tables, percentages)",
+          question: "A household's monthly electricity use was recorded.<table class=\"cents-data\"><thead><tr><th>Month</th><th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th></tr></thead><tbody><tr><td>kWh</td><td>300</td><td>270</td><td>240</td><td>180</td></tr></tbody></table>By what percentage did consumption fall from January to April?",
+          options: [
+            { id: "A", text: "about $66.7\\%$", isCorrect: false, errorTag: "Yanlış referans: Değişimi son değere bölmek.", remediation: "Yüzde değişim BAŞLANGIÇ değerine göre hesaplanır: $\\frac{120}{300}$, $\\frac{120}{180}$ değil." },
+            { id: "B", text: "$60\\%$", isCorrect: false, errorTag: "Oranı değişim sanmak: $\\frac{180}{300}$.", remediation: "$\\frac{180}{300} = 60\\%$, Nisan'ın Ocak'a ORANIDIR. Düşüş $100\\% - 60\\% = 40\\%$." },
+            { id: "C", text: "about $13.3\\%$", isCorrect: false, errorTag: "Aylık ortalama düşüşü toplam düşüş sanmak.", remediation: "$\\frac{40}{300}$ yaklaşık aylık ortalama düşüştür; soru Ocak'tan Nisan'a TOPLAM düşüşü soruyor." },
+            { id: "D", text: "$40\\%$", isCorrect: true }
+          ],
+          generalRemediation: "Yüzde değişim $= \\frac{\\text{new} - \\text{old}}{\\text{old}} \\times 100\\%$. Payda daima başlangıç (old) değeridir.",
+          stepByStepSolution: "1. Değişim: $180 - 300 = -120$ kWh.<br/>2. Başlangıç: $300$ kWh.<br/>3. $\\frac{120}{300} = 0.4$ ⟹ $40\\%$ düşüş."
+        },
+        {
+          id: "cents-reasoning-08",
+          number: 8,
+          topic: "Problem solving — Order-of-magnitude estimation",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Reasoning on texts and data — estimation, checking results)",
+          question: "Which is the best estimate of the number of <strong>seconds</strong> in one year?",
+          options: [
+            { id: "A", text: "$5 \\times 10^{5}$", isCorrect: false, errorTag: "Birim dönüşümünü yarıda bırakmak: Dakika sayısını vermek.", remediation: "$365 \\cdot 24 \\cdot 60 \\approx 5.3 \\times 10^5$ bir yıldaki DAKİKA sayısıdır. Saniyeye geçmek için bir kez daha $\\times 60$ gerekir." },
+            { id: "B", text: "$1.3 \\times 10^{6}$", isCorrect: false, errorTag: "Bir çarpanı atlamak: Gün başına 24 saati unutmak.", remediation: "$365 \\cdot 3600 \\approx 1.3 \\times 10^6$ günde yalnızca 1 saat varmış gibi hesaplar. Zincir: gün → saat → dakika → saniye." },
+            { id: "C", text: "$3 \\times 10^{7}$", isCorrect: true },
+            { id: "D", text: "$2 \\times 10^{9}$", isCorrect: false, errorTag: "Fazladan bir $\\times 60$ çarpanı.", remediation: "Saat → saniye dönüşümü $\\times 3600 = \\times 60 \\times 60$'tır; üçüncü bir $\\times 60$ yoktur." }
+          ],
+          generalRemediation: "Tahmin sorularında yuvarla: $365 \\approx 400$, $24 \\approx 25$ ⟹ $400 \\cdot 25 = 10^4$ saat; $\\times 3600 \\approx 3.6 \\times 10^7$ ⟹ büyüklük mertebesi $10^7$.",
+          stepByStepSolution: "1. $365 \\cdot 24 = 8760$ saat.<br/>2. $8760 \\cdot 3600 = 31\\,536\\,000$ saniye.<br/>3. $\\approx 3.15 \\times 10^7$ ⟹ en iyi tahmin $3 \\times 10^7$."
+        },
+        {
+          id: "cents-reasoning-09",
+          number: 9,
+          topic: "Interpreting texts — Applying a rule with 'and' / 'or'",
+          difficulty: "hard",
+          source: "CEnT-S-style original (CISIA syllabus: Reasoning on texts and data — logical connectives, extracting information)",
+          question: "A university rule says: \"To enrol, a candidate must hold a school diploma <strong>and</strong> must either have a test score of at least 60 <strong>or</strong> hold a language certificate.\" Three candidates apply:<br/>• Luca: diploma, test score 55, language certificate.<br/>• Marta: no diploma, test score 80, no certificate.<br/>• Paolo: diploma, test score 58, no certificate.<br/>Who can enrol?",
+          options: [
+            { id: "A", text: "Luca and Marta", isCorrect: false, errorTag: "'And' bağlacını göz ardı etmek: Diploma şartını atlamak.", remediation: "Diploma ZORUNLU koşuldur ('must hold ... and'). Marta'nın yüksek puanı diplomasızlığı telafi etmez." },
+            { id: "B", text: "Luca only", isCorrect: true },
+            { id: "C", text: "Luca and Paolo", isCorrect: false, errorTag: "Eşiği esnetmek: 58'i 60'a yuvarlamak.", remediation: "'At least 60' kesin bir eşiktir; 58 bu koşulu sağlamaz ve Paolo'nun sertifikası da yok." },
+            { id: "D", text: "None of them", isCorrect: false, errorTag: "'Or' bağlacını 'and' gibi okumak.", remediation: "İkinci koşul 'puan ≥ 60 VEYA sertifika'dır; ikisinden biri yeter. Luca diploma + sertifika ile koşulu sağlar." }
+          ],
+          generalRemediation: "Kuralı mantıksal forma çevir: $D \\land (S \\ge 60 \\lor C)$. Her adayı iki parçada ayrı ayrı test et.",
+          stepByStepSolution: "1. Kural: Diploma VE (puan ≥ 60 VEYA sertifika).<br/>2. Luca: diploma ✓; puan 55 ✗ ama sertifika ✓ ⟹ kabul.<br/>3. Marta: diploma ✗ ⟹ ret (ikinci kısım önemsiz).<br/>4. Paolo: diploma ✓; puan 58 ✗, sertifika ✗ ⟹ ret.<br/>5. Yalnızca Luca kayıt olabilir."
+        },
+        {
+          id: "cents-reasoning-10",
+          number: 10,
+          topic: "Problem solving — Linear model from a text",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Reasoning on texts and data — problem solving, models)",
+          question: "A taxi charges a fixed fee of €3.00 plus €1.20 for every kilometre travelled. A ride costs €15.00 in total. How many kilometres long was the ride?",
+          options: [
+            { id: "A", text: "$10$", isCorrect: true },
+            { id: "B", text: "$12.5$", isCorrect: false, errorTag: "Sabit ücreti unutmak: $\\frac{15}{1.2}$.", remediation: "Toplam = sabit + km ücreti. Önce sabit €3'ü çıkar: $15 - 3 = 12$." },
+            { id: "C", text: "$15$", isCorrect: false, errorTag: "Sabit ücreti eklemek: $\\frac{15 + 3}{1.2}$.", remediation: "Sabit ücret toplamın İÇİNDEDİR; çıkarılmalı, eklenmemeli." },
+            { id: "D", text: "$14.4$", isCorrect: false, errorTag: "Bölmek yerine çarpmak: $12 \\cdot 1.2$.", remediation: "Km başına ücret verildiğinde km sayısı = ücret / birim fiyat: $\\frac{12}{1.2}$." }
+          ],
+          generalRemediation: "Metni doğrusal modele çevir: $C = 3 + 1.2d$. Bilinmeyeni yalnız bırak ve sonucu yerine koyarak kontrol et.",
+          stepByStepSolution: "1. Model: $15 = 3 + 1.2d$.<br/>2. $1.2d = 12$.<br/>3. $d = \\frac{12}{1.2} = 10$ km.<br/>4. Kontrol: $3 + 1.2 \\cdot 10 = 15$ ✓."
+        }
+      ];
+
+      const CENTS_BIOLOGY_QUESTIONS = [
+        {
+          id: "cents-biology-01",
+          number: 1,
+          topic: "Biological molecules — DNA double helix bonding",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Biology — biological molecules, nucleic acids)",
+          question: "Which type of bond holds the two strands of a DNA double helix together?",
+          options: [
+            { id: "A", text: "Hydrogen bonds between complementary bases", isCorrect: true },
+            { id: "B", text: "Phosphodiester bonds between nucleotides", isCorrect: false, errorTag: "Zincir içi / zincirler arası bağ karışıklığı.", remediation: "Fosfodiester bağları TEK bir zincir boyunca şeker-fosfat omurgasını oluşturur. İki zinciri birbirine bağlayan bazlar arası hidrojen bağlarıdır." },
+            { id: "C", text: "Peptide bonds between amino acids", isCorrect: false, errorTag: "Makromolekül karışıklığı: Protein bağını DNA'ya atfetmek.", remediation: "Peptit bağı amino asitleri birleştirir (proteinler). DNA nükleotitlerden oluşur." },
+            { id: "D", text: "Ionic bonds between phosphate groups", isCorrect: false, errorTag: "Yük karışıklığı: Fosfatlar arasında çekim varsaymak.", remediation: "Fosfat grupları negatif yüklüdür ve birbirini İTER; zincirleri bir arada tutamazlar. Omurga dışarıda, bazlar içeridedir." }
+          ],
+          generalRemediation: "DNA yapısı: şeker-fosfat omurgası (fosfodiester bağları) dışarıda; bazlar içeride ve A–T (2 H-bağı), G–C (3 H-bağı) olarak hidrojen bağlarıyla eşleşir.",
+          stepByStepSolution: "1. Her zincir kendi içinde fosfodiester bağlarıyla bağlıdır.<br/>2. İki zincir, karşılıklı bazlar arasındaki hidrojen bağlarıyla bir arada durur.<br/>3. A–T arasında 2, G–C arasında 3 hidrojen bağı bulunur.<br/>4. Hidrojen bağları zayıf olduğu için zincirler replikasyon ve transkripsiyonda ayrılabilir."
+        },
+        {
+          id: "cents-biology-02",
+          number: 2,
+          topic: "Cell biology — Prokaryotic vs eukaryotic cells",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Biology — cell biology, prokaryotes and eukaryotes)",
+          question: "Which structure is found in <strong>both</strong> prokaryotic and eukaryotic cells?",
+          options: [
+            { id: "A", text: "A membrane-bound nucleus", isCorrect: false, errorTag: "Tanımı ters okuma: Prokaryotların çekirdeği yoktur.", remediation: "'Pro-karyot' = çekirdek öncesi. Prokaryotlarda DNA, zarsız bir nükleoid bölgesinde bulunur." },
+            { id: "B", text: "Mitochondria", isCorrect: false, errorTag: "Zarlı organelleri prokaryotlara atfetmek.", remediation: "Prokaryotlarda zarla çevrili organel yoktur; solunum hücre zarında gerçekleşir." },
+            { id: "C", text: "Endoplasmic reticulum", isCorrect: false, errorTag: "Zarlı organel hatası.", remediation: "Endoplazmik retikulum bir iç zar sistemidir ve yalnızca ökaryotlarda bulunur." },
+            { id: "D", text: "Ribosomes", isCorrect: true }
+          ],
+          generalRemediation: "Tüm hücrelerde ortak: hücre zarı, sitoplazma, DNA ve ribozom. Prokaryot ribozomu 70S, ökaryot sitoplazmik ribozomu 80S'dir; ama ikisinde de vardır.",
+          stepByStepSolution: "1. Prokaryotlarda zarla çevrili organel yoktur ⟹ çekirdek, mitokondri ve ER elenir.<br/>2. Protein sentezi her canlıda gereklidir ⟹ ribozom her hücrede vardır.<br/>3. Doğru şık: ribozomlar."
+        },
+        {
+          id: "cents-biology-03",
+          number: 3,
+          topic: "Nucleic acids — Chargaff's base-pairing rule",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Biology — biological molecules, nucleic acids)",
+          question: "In a sample of double-stranded DNA, $30\\%$ of the bases are adenine. What percentage of the bases are cytosine?",
+          options: [
+            { id: "A", text: "$30\\%$", isCorrect: false, errorTag: "Yanlış eşleşme: Sitozini adeninle eşit saymak.", remediation: "A, T ile eşleşir (A = T); C, G ile eşleşir (C = G). A ile C arasında eşitlik yoktur." },
+            { id: "B", text: "$40\\%$", isCorrect: false, errorTag: "Yarıya bölmeyi unutmak: C + G toplamını C sanmak.", remediation: "$100 - 60 = 40\\%$ C ve G'nin TOPLAMIDIR. C = G olduğu için her biri $20\\%$." },
+            { id: "C", text: "$20\\%$", isCorrect: true },
+            { id: "D", text: "$70\\%$", isCorrect: false, errorTag: "Timini unutmak: $100 - 30$.", remediation: "Adeninin eşi timin de $30\\%$'dur. Kalan $100 - 30 - 30 = 40\\%$ C ve G'ye bölünür." }
+          ],
+          generalRemediation: "Çift zincirli DNA'da Chargaff kuralı: $\\%A = \\%T$, $\\%C = \\%G$ ve $\\%A + \\%T + \\%C + \\%G = 100\\%$.",
+          stepByStepSolution: "1. $A = 30\\%$ ⟹ $T = 30\\%$.<br/>2. $C + G = 100 - 60 = 40\\%$.<br/>3. $C = G$ ⟹ $C = 20\\%$."
+        },
+        {
+          id: "cents-biology-04",
+          number: 4,
+          topic: "Inheritance — Transcription of a DNA template",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Biology — transcription and the genetic code)",
+          question: "A DNA template strand has the sequence $3'$-TACGGA-$5'$. Which mRNA is transcribed from it?",
+          options: [
+            { id: "A", text: "$5'$-ATGCCT-$3'$", isCorrect: false, errorTag: "RNA'da urasil kuralını unutmak: T yazmak.", remediation: "RNA'da timin (T) yoktur; adeninin karşısına urasil (U) gelir." },
+            { id: "B", text: "$5'$-AUGCCU-$3'$", isCorrect: true },
+            { id: "C", text: "$5'$-UACGGA-$3'$", isCorrect: false, errorTag: "Kalıbı kopyalamak: Tamamlayıcı yerine aynı diziyi yazıp T'yi U yapmak.", remediation: "mRNA kalıp zincirin TAMAMLAYICISIDIR: T→A, A→U, C→G, G→C." },
+            { id: "D", text: "$3'$-AUGCCU-$5'$", isCorrect: false, errorTag: "Yön (polarity) hatası: Antiparalel kuralını uygulamamak.", remediation: "Kalıp $3' \\to 5'$ ise mRNA ona antiparalel olarak $5' \\to 3'$ yönünde sentezlenir; aynı harfler ters yönde farklı bir molekül demektir." }
+          ],
+          generalRemediation: "Transkripsiyon: (1) tamamlayıcı baz eşle (A–U, T–A, G–C, C–G), (2) yönü ters çevir (antiparallel): kalıp $3' \\to 5'$ ⟹ mRNA $5' \\to 3'$.",
+          stepByStepSolution: "1. Kalıp: $3'$-T A C G G A-$5'$.<br/>2. Tamamlayıcı RNA bazları: A U G C C U.<br/>3. Antiparalel yön: $5'$-AUGCCU-$3'$.<br/>4. Not: AUG başlangıç kodonudur (Met)."
+        },
+        {
+          id: "cents-biology-05",
+          number: 5,
+          topic: "Cell division — Chromosome number after meiosis",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Biology — cell cycle, mitosis and meiosis)",
+          question: "A human cell with $2n = 46$ completes meiosis I and meiosis II. What does each resulting cell contain?",
+          options: [
+            { id: "A", text: "$23$ chromosomes, each a single chromatid", isCorrect: true },
+            { id: "B", text: "$46$ chromosomes, each a single chromatid", isCorrect: false, errorTag: "Mayozu mitozla karıştırmak.", remediation: "Mitoz kromozom sayısını korur ($2n \\to 2n$); mayoz yarıya indirir ($2n \\to n$)." },
+            { id: "C", text: "$92$ chromosomes, each a single chromatid", isCorrect: false, errorTag: "S evresindeki kromatit sayısını kromozom sayısı sanmak.", remediation: "S evresinden sonra $46$ kromozom × 2 kromatit = $92$ kromatit vardır; kromozom sayısı yine $46$'dır ve mayoz bunu yarıya indirir." },
+            { id: "D", text: "$23$ chromosomes, each with two chromatids", isCorrect: false, errorTag: "Mayoz I sonunu mayoz II sonu sanmak.", remediation: "Mayoz I'den sonra hücreler $n = 23$ ama kromozomlar hâlâ iki kromatitlidir. Mayoz II'de kardeş kromatitler ayrılır." }
+          ],
+          generalRemediation: "Mayoz I homolog kromozomları ayırır ($2n \\to n$, kromozomlar çift kromatitli). Mayoz II kardeş kromatitleri ayırır ($n$, tek kromatitli). Sonuç: 4 haploit hücre.",
+          stepByStepSolution: "1. Başlangıç: $2n = 46$; S evresinden sonra her kromozom 2 kromatitli.<br/>2. Mayoz I: homologlar ayrılır ⟹ $23$ kromozom, her biri 2 kromatitli.<br/>3. Mayoz II: kardeş kromatitler ayrılır ⟹ $23$ kromozom, her biri tek kromatitli.<br/>4. 4 haploit gamet oluşur."
+        },
+        {
+          id: "cents-biology-06",
+          number: 6,
+          topic: "Mendelian inheritance — Conditional probability in a monohybrid cross",
+          difficulty: "hard",
+          source: "CEnT-S-style original (CISIA syllabus: Biology — Mendelian inheritance)",
+          question: "Two heterozygous plants ($Aa \\times Aa$) are crossed; $A$ is completely dominant. Among the offspring that show the <strong>dominant phenotype</strong>, what fraction is heterozygous?",
+          options: [
+            { id: "A", text: "$\\frac{1}{2}$", isCorrect: false, errorTag: "Koşulu yok saymak: Tüm yavrulardaki heterozigot oranını vermek.", remediation: "$\\frac{1}{2}$, TÜM yavrular içindeki $Aa$ oranıdır. Soru yalnızca baskın fenotipli yavruları soruyor; $aa$ dışarıda kalır." },
+            { id: "B", text: "$\\frac{3}{4}$", isCorrect: false, errorTag: "Fenotip oranını genotip oranı sanmak.", remediation: "$\\frac{3}{4}$ baskın fenotipli yavruların oranıdır; bunların içinde $AA$ da vardır." },
+            { id: "C", text: "$\\frac{2}{3}$", isCorrect: true },
+            { id: "D", text: "$\\frac{1}{4}$", isCorrect: false, errorTag: "Yanlış genotip: $AA$ veya $aa$ oranını vermek.", remediation: "$\\frac{1}{4}$, $AA$'nın (ya da $aa$'nın) tüm yavrulardaki oranıdır; heterozigot oranı değildir." }
+          ],
+          generalRemediation: "Koşullu oran: önce koşulu sağlayan grubu belirle (baskın fenotip = $AA$ + $Aa$), sonra bu grubun içindeki payı hesapla.",
+          stepByStepSolution: "1. Punnett: $AA : Aa : aa = 1 : 2 : 1$.<br/>2. Baskın fenotip: $AA + Aa = 1 + 2 = 3$ pay.<br/>3. Bunların heterozigot olanı: $2$ pay.<br/>4. Oran: $\\frac{2}{3}$."
+        },
+        {
+          id: "cents-biology-07",
+          number: 7,
+          topic: "Plant biology — Source of oxygen in photosynthesis",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Biology — plant biology, photosynthesis)",
+          question: "In photosynthesis, the oxygen gas ($\\text{O}_2$) released by a plant comes from which molecule?",
+          options: [
+            { id: "A", text: "Carbon dioxide", isCorrect: false, errorTag: "Formül sezgisi: $\\text{CO}_2$'deki oksijenin serbest kaldığını sanmak.", remediation: "İzotop ($^{18}\\text{O}$) deneyleri $\\text{CO}_2$'nin oksijeninin glikoz ve suya geçtiğini, $\\text{O}_2$'ye geçmediğini gösterir." },
+            { id: "B", text: "Glucose", isCorrect: false, errorTag: "Ürünü kaynak sanmak.", remediation: "Glikoz fotosentezin ÜRÜNÜDÜR; oksijen kaynağı olamaz." },
+            { id: "C", text: "ATP", isCorrect: false, errorTag: "Enerji taşıyıcıyı madde kaynağı sanmak.", remediation: "ATP ışık reaksiyonlarında üretilir ve Calvin döngüsünde enerji sağlar; $\\text{O}_2$ kaynağı değildir." },
+            { id: "D", text: "Water", isCorrect: true }
+          ],
+          generalRemediation: "Işığa bağlı reaksiyonlarda fotosistem II suyu parçalar (photolysis): $2\\text{H}_2\\text{O} \\to 4\\text{H}^+ + 4e^- + \\text{O}_2$. Elektronlar zincire, $\\text{O}_2$ atmosfere gider.",
+          stepByStepSolution: "1. Işığa bağlı reaksiyonlar tilakoid zarında gerçekleşir.<br/>2. Fotosistem II'nin kaybettiği elektronlar sudan karşılanır.<br/>3. Suyun fotolizi $\\text{O}_2$ açığa çıkarır.<br/>4. Kaynak: su."
+        },
+        {
+          id: "cents-biology-08",
+          number: 8,
+          topic: "Ecology — Energy flow between trophic levels",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Biology — ecology, energy flow and food chains)",
+          question: "In a food chain, producers capture $10\\,000$ kJ of energy. Assuming that about $10\\%$ of the energy is passed on at each step, how much energy reaches the <strong>tertiary</strong> consumers?",
+          options: [
+            { id: "A", text: "$100$ kJ", isCorrect: false, errorTag: "Basamak sayma hatası: İkincil tüketicide durmak.", remediation: "Üretici → birincil (1000) → ikincil (100) → üçüncül (10). Üç aktarım gerekir." },
+            { id: "B", text: "$10$ kJ", isCorrect: true },
+            { id: "C", text: "$1$ kJ", isCorrect: false, errorTag: "Fazladan bir aktarım yapmak.", remediation: "Üreticiden üçüncül tüketiciye 3 adım vardır; 4 adım dördüncül tüketiciyi verir." },
+            { id: "D", text: "$1000$ kJ", isCorrect: false, errorTag: "Yalnızca bir aktarım yapmak.", remediation: "$1000$ kJ birincil tüketicilerin enerjisidir." }
+          ],
+          generalRemediation: "%10 kuralı: $E_n = E_0 \\cdot (0.1)^n$, $n$ = üreticiden itibaren aktarım sayısı. Üçüncül tüketici için $n = 3$.",
+          stepByStepSolution: "1. Birincil tüketici: $10\\,000 \\cdot 0.1 = 1000$ kJ.<br/>2. İkincil: $100$ kJ.<br/>3. Üçüncül: $10$ kJ."
+        },
+        {
+          id: "cents-biology-09",
+          number: 9,
+          topic: "Animal physiology — Pulmonary circulation",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Biology — animal physiology, circulatory system)",
+          question: "Which blood vessel carries oxygen-rich blood from the lungs to the heart?",
+          options: [
+            { id: "A", text: "Pulmonary vein", isCorrect: true },
+            { id: "B", text: "Pulmonary artery", isCorrect: false, errorTag: "'Arter = oksijenli kan' ezberi.", remediation: "Arterler kanı kalpten UZAKLAŞTIRIR, venler kalbe getirir. Pulmoner arter oksijensiz kanı akciğere taşır." },
+            { id: "C", text: "Aorta", isCorrect: false, errorTag: "Sistemik dolaşımla karıştırmak.", remediation: "Aorta oksijenli kanı sol karıncıktan VÜCUDA taşır; akciğerden kalbe değil." },
+            { id: "D", text: "Vena cava", isCorrect: false, errorTag: "Yön doğru, kaynak yanlış.", remediation: "Vena cava kanı kalbe getirir ama vücuttan ve oksijensiz olarak; sağ kulakçığa açılır." }
+          ],
+          generalRemediation: "Damar adı YÖNE göre verilir (artery: kalpten dışarı, vein: kalbe), oksijene göre değil. Pulmoner dolaşımda bu yüzden kural tersine döner.",
+          stepByStepSolution: "1. Kalbe gelen damar ⟹ ven.<br/>2. Akciğerden gelen ⟹ pulmoner.<br/>3. Pulmoner ven oksijenli kanı sol kulakçığa getirir."
+        },
+        {
+          id: "cents-biology-10",
+          number: 10,
+          topic: "Animal physiology — Filtration in the nephron",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Biology — animal physiology, excretory system)",
+          question: "In the human kidney, where does the <strong>filtration</strong> of blood plasma into the nephron take place?",
+          options: [
+            { id: "A", text: "Loop of Henle", isCorrect: false, errorTag: "Süzülme ile su geri emilimini karıştırmak.", remediation: "Henle kulpu, böbrek özünde tuz gradyanı oluşturur ve su/tuz geri emilimini sağlar; süzülme yeri değildir." },
+            { id: "B", text: "Collecting duct", isCorrect: false, errorTag: "Son aşamayı ilk aşama sanmak.", remediation: "Toplama kanalı ADH kontrolünde suyun son ayarını yapar; süzülme nefronun başında olur." },
+            { id: "C", text: "Glomerulus and Bowman's capsule", isCorrect: true },
+            { id: "D", text: "Proximal convoluted tubule", isCorrect: false, errorTag: "Geri emilimi süzülme sanmak.", remediation: "Proksimal tüp glikozun, amino asitlerin ve suyun büyük kısmının GERİ EMİLDİĞİ yerdir." }
+          ],
+          generalRemediation: "Nefron sırası: glomerulus + Bowman kapsülü (filtration) → proximal tubule (reabsorption) → loop of Henle (concentration gradient) → distal tubule (secretion) → collecting duct (water balance, ADH).",
+          stepByStepSolution: "1. Kan basıncı plazmayı glomerulus kılcallarından dışarı iter.<br/>2. Süzüntü Bowman kapsülünde toplanır.<br/>3. Sonraki bölümler süzüntüyü geri emer ve değiştirir.<br/>4. Süzülme yeri: glomerulus ve Bowman kapsülü."
+        }
+      ];
+
+      const CENTS_CHEMISTRY_QUESTIONS = [
+        {
+          id: "cents-chemistry-01",
+          number: 1,
+          topic: "Stoichiometry — Moles, molecules and atoms",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Chemistry — moles and Avogadro's constant)",
+          question: "How many <strong>atoms</strong> are there in $9.0$ g of water? (Molar mass of $\\text{H}_2\\text{O} = 18$ g/mol; $N_A = 6.0 \\times 10^{23}$ mol$^{-1}$)",
+          options: [
+            { id: "A", text: "$3.0 \\times 10^{23}$", isCorrect: false, errorTag: "Molekül sayısını atom sayısı sanmak.", remediation: "$0.5 \\cdot N_A = 3.0 \\times 10^{23}$ MOLEKÜL sayısıdır. Her $\\text{H}_2\\text{O}$ molekülünde 3 atom vardır." },
+            { id: "B", text: "$9.0 \\times 10^{23}$", isCorrect: true },
+            { id: "C", text: "$1.2 \\times 10^{24}$", isCorrect: false, errorTag: "Mol formülünü ters kurmak: $n = \\frac{M}{m}$.", remediation: "$n = \\frac{m}{M} = \\frac{9.0}{18} = 0.5$ mol; $\\frac{18}{9.0} = 2$ değil." },
+            { id: "D", text: "$5.4 \\times 10^{24}$", isCorrect: false, errorTag: "Kütleyi mol sayısı sanmak: $9.0 \\cdot N_A$.", remediation: "Gram doğrudan mol değildir; önce molar kütleye böl: $9.0 / 18 = 0.5$ mol." }
+          ],
+          generalRemediation: "Zincir: kütle → mol ($n = m/M$) → molekül ($\\times N_A$) → atom ($\\times$ molekül başına atom sayısı).",
+          stepByStepSolution: "1. $n = \\frac{9.0}{18} = 0.50$ mol.<br/>2. Molekül: $0.50 \\cdot 6.0 \\times 10^{23} = 3.0 \\times 10^{23}$.<br/>3. Atom: $3 \\cdot 3.0 \\times 10^{23} = 9.0 \\times 10^{23}$."
+        },
+        {
+          id: "cents-chemistry-02",
+          number: 2,
+          topic: "Stoichiometry — Limiting reactant",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Chemistry — reactions, limiting reactant)",
+          question: "For the reaction $2\\text{H}_2 + \\text{O}_2 \\to 2\\text{H}_2\\text{O}$, a vessel contains $4$ mol of $\\text{H}_2$ and $3$ mol of $\\text{O}_2$. What is the maximum amount of water that can form?",
+          options: [
+            { id: "A", text: "$4$ mol", isCorrect: true },
+            { id: "B", text: "$6$ mol", isCorrect: false, errorTag: "Sınırlayıcı bileşeni yanlış seçmek: Fazla olan $\\text{O}_2$'ye göre hesaplamak.", remediation: "$3$ mol $\\text{O}_2$ için $6$ mol $\\text{H}_2$ gerekir ama yalnızca $4$ mol var. $\\text{H}_2$ önce biter; ürünü o belirler." },
+            { id: "C", text: "$3$ mol", isCorrect: false, errorTag: "Katsayıları yok sayıp en küçük mol sayısını almak.", remediation: "Mol oranı $\\text{O}_2 : \\text{H}_2\\text{O} = 1 : 2$'dir; $\\text{O}_2$ sınırlayıcı olsaydı bile $3$ değil $6$ mol su çıkardı." },
+            { id: "D", text: "$7$ mol", isCorrect: false, errorTag: "Kütle/mol korunumu yanılgısı: Girenlerin mollerini toplamak.", remediation: "Moller korunmaz; atomlar korunur. Ürün miktarı sınırlayıcı bileşenin mol sayısından stokiyometriyle bulunur." }
+          ],
+          generalRemediation: "Sınırlayıcı bileşen: her girenin mol sayısını katsayısına böl; en küçük oran sınırlayıcıdır. $\\text{H}_2$: $4/2 = 2$; $\\text{O}_2$: $3/1 = 3$ ⟹ $\\text{H}_2$ sınırlayıcı.",
+          stepByStepSolution: "1. $\\frac{n(\\text{H}_2)}{2} = 2$, $\\frac{n(\\text{O}_2)}{1} = 3$ ⟹ $\\text{H}_2$ sınırlayıcı.<br/>2. $\\text{H}_2 : \\text{H}_2\\text{O} = 2 : 2$ ⟹ $4$ mol su.<br/>3. Harcanan $\\text{O}_2$: $2$ mol; $1$ mol $\\text{O}_2$ artar."
+        },
+        {
+          id: "cents-chemistry-03",
+          number: 3,
+          topic: "Molecular geometry — VSEPR shape of NH3",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Chemistry — microscopic properties, molecular geometry)",
+          question: "What is the molecular geometry of ammonia, $\\text{NH}_3$?",
+          options: [
+            { id: "A", text: "Trigonal planar", isCorrect: false, errorTag: "Ortaklanmamış elektron çiftini yok saymak.", remediation: "Azotun 3 bağına ek olarak 1 ortaklanmamış çifti vardır; 4 elektron bölgesi düzlemsel olamaz." },
+            { id: "B", text: "Tetrahedral", isCorrect: false, errorTag: "Elektron geometrisini molekül geometrisi sanmak.", remediation: "4 elektron bölgesi elektron geometrisini dört yüzlü yapar; ama molekül şekli yalnızca ATOMLARIN konumuyla adlandırılır." },
+            { id: "C", text: "Bent", isCorrect: false, errorTag: "$\\text{H}_2\\text{O}$ ile karıştırmak.", remediation: "Bent (açısal) şekil 2 bağ + 2 ortaklanmamış çift içindir ($\\text{H}_2\\text{O}$). $\\text{NH}_3$'te 3 bağ var." },
+            { id: "D", text: "Trigonal pyramidal", isCorrect: true }
+          ],
+          generalRemediation: "VSEPR: elektron bölgesi sayısı (bağ + ortaklanmamış çift) elektron geometrisini verir; molekül şekli yalnızca atomlara bakar. AX$_3$E ⟹ trigonal pyramidal (~107°).",
+          stepByStepSolution: "1. N: 5 değerlik elektronu; 3'ü H ile bağ yapar, 2'si bir çift olarak kalır.<br/>2. Elektron bölgesi: 3 bağ + 1 çift = 4 ⟹ tetrahedral elektron geometrisi.<br/>3. Bir köşe ortaklanmamış çift ⟹ molekül şekli trigonal pyramidal."
+        },
+        {
+          id: "cents-chemistry-04",
+          number: 4,
+          topic: "Periodic trends — Atomic radius",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Chemistry — periodic table and periodic properties)",
+          question: "Which of the following atoms has the <strong>largest</strong> atomic radius: Na, Mg, Cl, K?",
+          options: [
+            { id: "A", text: "Na", isCorrect: false, errorTag: "Grup eğilimini unutmak.", remediation: "Na ve K aynı gruptadır (1A); K bir alt periyotta, ek bir elektron kabuğuna sahiptir ⟹ daha büyük." },
+            { id: "B", text: "Cl", isCorrect: false, errorTag: "Periyot eğilimini ters uygulamak.", remediation: "Bir periyotta sağa doğru çekirdek yükü artar, elektronlar daha çok çekilir ⟹ yarıçap KÜÇÜLÜR. Cl, 3. periyodun en küçüklerindendir." },
+            { id: "C", text: "K", isCorrect: true },
+            { id: "D", text: "Mg", isCorrect: false, errorTag: "Kütleyi boyutla karıştırmak.", remediation: "Mg, Na'dan ağırdır ama daha küçüktür; atom yarıçapını kütle değil kabuk sayısı ve etkin çekirdek yükü belirler." }
+          ],
+          generalRemediation: "Atom yarıçapı: grupta aşağı doğru ARTAR (yeni kabuk), periyotta sağa doğru AZALIR (artan etkin çekirdek yükü). En büyük atom sol-alt köşeye en yakın olandır.",
+          stepByStepSolution: "1. Na, Mg, Cl: 3. periyot; sıralama Na > Mg > Cl.<br/>2. K: 4. periyot, Na ile aynı grup ⟹ K > Na.<br/>3. En büyük: K."
+        },
+        {
+          id: "cents-chemistry-05",
+          number: 5,
+          topic: "Acids and bases — pH of a strong acid",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Chemistry — acids and bases, pH)",
+          question: "What is the pH of a $0.010$ mol/L solution of hydrochloric acid, HCl (a strong acid), at $25^\\circ$C?",
+          options: [
+            { id: "A", text: "$12$", isCorrect: false, errorTag: "pH ile pOH'u karıştırmak.", remediation: "$12$, $[\\text{OH}^-] = 0.01$ olan bir bazın pH'ıdır. Asit çözeltisinin pH'ı 7'den küçük olmalı." },
+            { id: "B", text: "$2$", isCorrect: true },
+            { id: "C", text: "$-2$", isCorrect: false, errorTag: "Eksi işaretini unutmak: pH = $\\log[\\text{H}^+]$.", remediation: "Tanım $\\text{pH} = -\\log[\\text{H}^+]$; $\\log(10^{-2}) = -2$, eksiyle çarpınca $+2$." },
+            { id: "D", text: "$1$", isCorrect: false, errorTag: "Ondalık basamakları yanlış saymak.", remediation: "$0.010 = 10^{-2}$ (virgülden sonraki ikinci basamak). $10^{-1} = 0.1$ olurdu." }
+          ],
+          generalRemediation: "Güçlü asit tamamen iyonlaşır: $[\\text{H}^+] = c$. $\\text{pH} = -\\log[\\text{H}^+]$; $c = 10^{-k}$ ise pH $= k$.",
+          stepByStepSolution: "1. HCl güçlü asit ⟹ $[\\text{H}^+] = 0.010 = 10^{-2}$ mol/L.<br/>2. $\\text{pH} = -\\log(10^{-2}) = 2$."
+        },
+        {
+          id: "cents-chemistry-06",
+          number: 6,
+          topic: "Solutions — Dilution",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Chemistry — concentration of solutions)",
+          question: "$50$ mL of a $2.0$ mol/L NaCl solution is diluted with water to a final volume of $200$ mL. What is the new concentration?",
+          options: [
+            { id: "A", text: "$8.0$ mol/L", isCorrect: false, errorTag: "Seyreltme formülünü ters kurmak.", remediation: "Seyreltme derişimi AZALTIR. $c_2 = \\frac{c_1 V_1}{V_2}$; $V_1/V_2$ ters çevrilirse sonuç artar ve anlamsız olur." },
+            { id: "B", text: "$0.67$ mol/L", isCorrect: false, errorTag: "Eklenen su hacmini son hacim sanmak.", remediation: "Eklenen su $150$ mL'dir ama son hacim $200$ mL'dir. Formülde SON hacim kullanılır." },
+            { id: "C", text: "$2.0$ mol/L", isCorrect: false, errorTag: "Mol korunumunu derişim korunumu sanmak.", remediation: "Seyreltmede MOL sayısı korunur, derişim korunmaz. Aynı mol daha büyük hacme dağılır." },
+            { id: "D", text: "$0.50$ mol/L", isCorrect: true }
+          ],
+          generalRemediation: "Seyreltme: $c_1 V_1 = c_2 V_2$ (mol sayısı sabit). Hacimler aynı birimde olmalı; $V_2$ son toplam hacimdir.",
+          stepByStepSolution: "1. Mol: $2.0 \\cdot 0.050 = 0.10$ mol.<br/>2. Yeni hacim: $0.200$ L.<br/>3. $c_2 = \\frac{0.10}{0.200} = 0.50$ mol/L."
+        },
+        {
+          id: "cents-chemistry-07",
+          number: 7,
+          topic: "Redox — Oxidation numbers",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Chemistry — oxidation numbers)",
+          question: "What is the oxidation number of manganese in potassium permanganate, $\\text{KMnO}_4$?",
+          options: [
+            { id: "A", text: "$+7$", isCorrect: true },
+            { id: "B", text: "$+8$", isCorrect: false, errorTag: "Potasyumu unutmak.", remediation: "K (1A grubu) her zaman $+1$'dir. $+1 + x + 4(-2) = 0$ ⟹ $x = +7$." },
+            { id: "C", text: "$-7$", isCorrect: false, errorTag: "İşaret hatası: Oksijenin işaretini ters almak.", remediation: "Oksijen bileşiklerde genellikle $-2$'dir; dört oksijenin toplam katkısı $-8$, Mn bunu dengelemek için pozitif olmalı." },
+            { id: "D", text: "$+3$", isCorrect: false, errorTag: "Oksijeni $-1$ almak (peroksit kuralını yanlış uygulamak).", remediation: "$-1$ yalnızca peroksitlerde ($\\text{O}_2^{2-}$) geçerlidir. Permanganatta O $= -2$." }
+          ],
+          generalRemediation: "Nötr bileşikte yükseltgenme sayılarının toplamı $0$'dır. Sabit kurallar: 1A metalleri $+1$, O genellikle $-2$, H genellikle $+1$.",
+          stepByStepSolution: "1. K $= +1$, O $= -2$, Mn $= x$.<br/>2. $+1 + x + 4(-2) = 0$.<br/>3. $x - 7 = 0$ ⟹ $x = +7$."
+        },
+        {
+          id: "cents-chemistry-08",
+          number: 8,
+          topic: "Gas laws — Pressure and absolute temperature",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Chemistry — gas laws)",
+          question: "A gas in a rigid (constant-volume) container has a pressure of $2.0$ atm at $27^\\circ$C. It is heated to $177^\\circ$C. What is its new pressure? (Use $T(\\text{K}) = T(^\\circ\\text{C}) + 273$.)",
+          options: [
+            { id: "A", text: "about $13$ atm", isCorrect: false, errorTag: "Celsius ile hesaplamak.", remediation: "Gaz yasalarında sıcaklık her zaman KELVİN olmalı. $2.0 \\cdot \\frac{177}{27} \\approx 13$ atm fiziksel olarak anlamsızdır." },
+            { id: "B", text: "$1.3$ atm", isCorrect: false, errorTag: "Basınç-sıcaklık ilişkisini ters kurmak.", remediation: "Sabit hacimde $P \\propto T$ (Gay-Lussac): ısınan gazın basıncı ARTAR. $2.0 \\cdot \\frac{300}{450}$ ters orandır." },
+            { id: "C", text: "$3.0$ atm", isCorrect: true },
+            { id: "D", text: "$2.0$ atm", isCorrect: false, errorTag: "Sabit hacmi sabit basınç sanmak.", remediation: "Kap rijit olduğu için HACİM sabittir; basınç sıcaklıkla değişir." }
+          ],
+          generalRemediation: "Sabit $V$ ve $n$ için $\\frac{P_1}{T_1} = \\frac{P_2}{T_2}$, $T$ kelvin cinsinden. Önce dönüştür, sonra oranla.",
+          stepByStepSolution: "1. $T_1 = 27 + 273 = 300$ K; $T_2 = 177 + 273 = 450$ K.<br/>2. $P_2 = P_1 \\cdot \\frac{T_2}{T_1} = 2.0 \\cdot \\frac{450}{300}$.<br/>3. $P_2 = 2.0 \\cdot 1.5 = 3.0$ atm."
+        },
+        {
+          id: "cents-chemistry-09",
+          number: 9,
+          topic: "Equilibrium — Le Chatelier's principle",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Chemistry — chemical equilibrium)",
+          question: "For the equilibrium $\\text{N}_2(g) + 3\\text{H}_2(g) \\rightleftharpoons 2\\text{NH}_3(g)$, $\\Delta H \\lt 0$, which change increases the equilibrium amount of $\\text{NH}_3$?",
+          options: [
+            { id: "A", text: "Raising the temperature", isCorrect: false, errorTag: "Ekzotermik tepkimede sıcaklık etkisini ters okumak.", remediation: "$\\Delta H \\lt 0$ ⟹ ileri tepkime ısı verir. Sıcaklığı artırmak dengeyi ısıyı tüketen yöne, yani GERİ yöne kaydırır." },
+            { id: "B", text: "Raising the total pressure", isCorrect: true },
+            { id: "C", text: "Adding a catalyst", isCorrect: false, errorTag: "Katalizörü dengeyi kaydırıyor sanmak.", remediation: "Katalizör ileri ve geri tepkimeyi EŞİT hızlandırır; dengeye daha çabuk ulaşılır ama denge miktarları değişmez." },
+            { id: "D", text: "Removing some $\\text{N}_2$", isCorrect: false, errorTag: "Girenin azaltılmasının etkisini ters okumak.", remediation: "Bir giren uzaklaştırılırsa denge onu yeniden üretmek için GERİ yöne kayar; $\\text{NH}_3$ azalır." }
+          ],
+          generalRemediation: "Le Chatelier: sistem bozulmayı azaltacak yöne kayar. Basınç artınca gaz mol sayısı az olan tarafa: sol 4 mol, sağ 2 mol ⟹ sağa.",
+          stepByStepSolution: "1. Gaz molleri: sol $1 + 3 = 4$, sağ $2$.<br/>2. Basınç artışı ⟹ daha az gaz molü olan yöne (sağa) kayma ⟹ $\\text{NH}_3$ artar.<br/>3. Sıcaklık artışı ekzotermik tepkimeyi geri iter; katalizör dengeyi değiştirmez; $\\text{N}_2$ uzaklaştırmak geri iter."
+        },
+        {
+          id: "cents-chemistry-10",
+          number: 10,
+          topic: "Organic chemistry — Structural isomers of pentane",
+          difficulty: "hard",
+          source: "CEnT-S-style original (CISIA syllabus: Organic chemistry — isomerism)",
+          question: "How many structural (constitutional) isomers have the molecular formula $\\text{C}_5\\text{H}_{12}$?",
+          options: [
+            { id: "A", text: "$2$", isCorrect: false, errorTag: "Eksik sayma: Neopentanı (2,2-dimetilpropan) atlamak.", remediation: "Düz zincir ve tek dallı yapının yanında dört metilin tek bir karbona bağlandığı 2,2-dimetilpropan da vardır." },
+            { id: "B", text: "$4$", isCorrect: false, errorTag: "Aynı molekülü farklı çizimle iki kez saymak.", remediation: "2-metilbutan ile 3-metilbutan AYNI moleküldür (zinciri diğer uçtan numaralandır). Yapıları IUPAC adıyla kontrol et." },
+            { id: "C", text: "$5$", isCorrect: false, errorTag: "Karbon sayısını izomer sayısı sanmak.", remediation: "İzomer sayısı karbon sayısına eşit olmak zorunda değildir; sistematik olarak en uzun zinciri kısaltarak say." },
+            { id: "D", text: "$3$", isCorrect: true }
+          ],
+          generalRemediation: "Sistematik sayım: en uzun zincir 5 → 4 → 3 karbon; her adımda dalları farklı konumlara koy, aynı yapıları IUPAC adıyla ele.",
+          stepByStepSolution: "1. 5 karbonlu düz zincir: pentan.<br/>2. 4 karbonlu ana zincir + 1 metil: 2-metilbutan (3-metilbutan aynı molekül).<br/>3. 3 karbonlu ana zincir + 2 metil: 2,2-dimetilpropan.<br/>4. Toplam: 3 izomer."
+        }
+      ];
+
+      const CENTS_PHYSICS_QUESTIONS = [
+        {
+          id: "cents-physics-01",
+          number: 1,
+          topic: "Kinematics — Uniformly accelerated motion from rest",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Physics — kinematics, uniformly accelerated motion)",
+          question: "A car starts from rest and accelerates uniformly at $2\\ \\text{m/s}^2$ for $5$ s. How far does it travel in this time?",
+          options: [
+            { id: "A", text: "$50$ m", isCorrect: false, errorTag: "$\\frac{1}{2}$ çarpanını unutmak: $s = at^2$.", remediation: "Durgunluktan başlayan düzgün ivmeli harekette $s = \\frac{1}{2}at^2$. $at^2 = 50$ iki kat fazladır." },
+            { id: "B", text: "$10$ m", isCorrect: false, errorTag: "Hızı yol sanmak: $v = at$.", remediation: "$at = 10$ m/s son HIZDIR, yol değil. Birimler de farklı: m/s ≠ m." },
+            { id: "C", text: "$5$ m", isCorrect: false, errorTag: "Zamanın karesini almamak: $\\frac{1}{2}at$.", remediation: "Formülde $t^2$ vardır: $\\frac{1}{2} \\cdot 2 \\cdot 5^2 = 25$ m." },
+            { id: "D", text: "$25$ m", isCorrect: true }
+          ],
+          generalRemediation: "Düzgün ivmeli hareket: $v = v_0 + at$, $s = v_0 t + \\frac{1}{2}at^2$, $v^2 = v_0^2 + 2as$. Durgunluktan başlıyorsa $v_0 = 0$.",
+          stepByStepSolution: "1. $v_0 = 0$, $a = 2\\ \\text{m/s}^2$, $t = 5$ s.<br/>2. $s = \\frac{1}{2} \\cdot 2 \\cdot 5^2 = 25$ m.<br/>3. Kontrol: ortalama hız $\\frac{0 + 10}{2} = 5$ m/s, $5 \\cdot 5 = 25$ m ✓."
+        },
+        {
+          id: "cents-physics-02",
+          number: 2,
+          topic: "Kinematics — Free fall time",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Physics — kinematics, free fall)",
+          question: "A stone is dropped from rest from a height of $20$ m. Neglecting air resistance and taking $g = 10\\ \\text{m/s}^2$, how long does it take to reach the ground?",
+          options: [
+            { id: "A", text: "$4$ s", isCorrect: false, errorTag: "Karekök almayı unutmak: $t = \\frac{2h}{g}$.", remediation: "$h = \\frac{1}{2}gt^2$ ⟹ $t^2 = \\frac{2h}{g} = 4$ ⟹ $t = 2$ s. $4$, $t^2$'dir." },
+            { id: "B", text: "$2$ s", isCorrect: true },
+            { id: "C", text: "$1$ s", isCorrect: false, errorTag: "Cebir hatası: $t^2 = \\frac{h}{2g}$ yazmak.", remediation: "$\\frac{1}{2}$ çarpanı karşıya geçince payda değil PAYA 2 olarak gider: $t^2 = \\frac{2h}{g}$." },
+            { id: "D", text: "$\\sqrt{2}$ s", isCorrect: false, errorTag: "$\\frac{1}{2}$ çarpanını tamamen unutmak: $t^2 = \\frac{h}{g}$.", remediation: "Serbest düşmede $h = \\frac{1}{2}gt^2$; $h = gt^2$ değil." }
+          ],
+          generalRemediation: "Serbest düşme: $v_0 = 0$, $a = g$ ⟹ $h = \\frac{1}{2}gt^2$, $t = \\sqrt{\\frac{2h}{g}}$, $v = gt = \\sqrt{2gh}$.",
+          stepByStepSolution: "1. $20 = \\frac{1}{2} \\cdot 10 \\cdot t^2 = 5t^2$.<br/>2. $t^2 = 4$ ⟹ $t = 2$ s.<br/>3. Kontrol: $v = gt = 20$ m/s ve $\\sqrt{2gh} = \\sqrt{400} = 20$ m/s ✓."
+        },
+        {
+          id: "cents-physics-03",
+          number: 3,
+          topic: "Dynamics — Newton's second law with friction",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Physics — dynamics, Newton's second law)",
+          question: "A $5$ kg box on a horizontal floor is pushed with a horizontal force of $30$ N. The kinetic friction force on the box is $10$ N. What is the box's acceleration?",
+          options: [
+            { id: "A", text: "$6\\ \\text{m/s}^2$", isCorrect: false, errorTag: "Sürtünmeyi yok saymak.", remediation: "Newton'un 2. yasası NET kuvvetle çalışır: $F_{net} = 30 - 10 = 20$ N." },
+            { id: "B", text: "$8\\ \\text{m/s}^2$", isCorrect: false, errorTag: "Sürtünmeyi itme yönünde eklemek.", remediation: "Kinetik sürtünme harekete ZIT yöndedir; çıkarılmalı: $30 - 10$, $30 + 10$ değil." },
+            { id: "C", text: "$4\\ \\text{m/s}^2$", isCorrect: true },
+            { id: "D", text: "$2\\ \\text{m/s}^2$", isCorrect: false, errorTag: "Yalnızca sürtünme kuvvetini kullanmak.", remediation: "$\\frac{10}{5} = 2$ sürtünmenin tek başına vereceği yavaşlamadır; itme kuvveti de hesaba katılmalı." }
+          ],
+          generalRemediation: "Önce serbest cisim diyagramı (FBD) çiz, sonra $\\sum F = ma$ uygula. Sürtünme harekete zıt yöndedir.",
+          stepByStepSolution: "1. Yatay kuvvetler: itme $+30$ N, sürtünme $-10$ N.<br/>2. $F_{net} = 20$ N.<br/>3. $a = \\frac{F_{net}}{m} = \\frac{20}{5} = 4\\ \\text{m/s}^2$."
+        },
+        {
+          id: "cents-physics-04",
+          number: 4,
+          topic: "Energy — Conservation of mechanical energy",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Physics — work, kinetic and potential energy, conservation)",
+          question: "A small block is released from rest at the top of a frictionless slide $5$ m high. Taking $g = 10\\ \\text{m/s}^2$, what is its speed at the bottom?",
+          options: [
+            { id: "A", text: "$10$ m/s", isCorrect: true },
+            { id: "B", text: "$5\\sqrt{2}$ m/s", isCorrect: false, errorTag: "Kinetik enerjideki $\\frac{1}{2}$ çarpanını unutmak: $mgh = mv^2$.", remediation: "$E_k = \\frac{1}{2}mv^2$. $mgh = \\frac{1}{2}mv^2$ ⟹ $v = \\sqrt{2gh}$, $\\sqrt{gh}$ değil." },
+            { id: "C", text: "$100$ m/s", isCorrect: false, errorTag: "Karekök almayı unutmak: $v^2$'yi $v$ sanmak.", remediation: "$2gh = 100$ değeri $v^2$'dir (birimi m²/s²). $v = \\sqrt{100} = 10$ m/s." },
+            { id: "D", text: "$\\sqrt{10}$ m/s", isCorrect: false, errorTag: "$g$'yi unutmak: $v = \\sqrt{2h}$.", remediation: "Potansiyel enerji $mgh$'dir; $g$ atlanırsa birimler de tutmaz." }
+          ],
+          generalRemediation: "Sürtünmesiz yüzeyde mekanik enerji korunur: $mgh = \\frac{1}{2}mv^2$ ⟹ $v = \\sqrt{2gh}$. Kütle sadeleşir; eğimin şekli sonucu değiştirmez.",
+          stepByStepSolution: "1. Tepede: $E = mgh$, altta: $E = \\frac{1}{2}mv^2$.<br/>2. $v^2 = 2gh = 2 \\cdot 10 \\cdot 5 = 100$.<br/>3. $v = 10$ m/s."
+        },
+        {
+          id: "cents-physics-05",
+          number: 5,
+          topic: "Work and power — Lifting at constant speed",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Physics — work and power)",
+          question: "A motor lifts a $20$ kg load vertically through $3$ m at constant speed in $4$ s. Taking $g = 10\\ \\text{m/s}^2$, what is the motor's average power output?",
+          options: [
+            { id: "A", text: "$600$ W", isCorrect: false, errorTag: "İşi güç sanmak.", remediation: "$W = mgh = 600$ J bir ENERJİDİR. Güç, birim zamandaki iştir: $P = \\frac{W}{t}$." },
+            { id: "B", text: "$2400$ W", isCorrect: false, errorTag: "Zamanla bölmek yerine çarpmak.", remediation: "$P = \\frac{W}{t}$; $W \\cdot t$ (J·s) gücün birimi değildir." },
+            { id: "C", text: "$15$ W", isCorrect: false, errorTag: "Kütleyi ağırlık sanmak: $g$'yi unutmak.", remediation: "Kaldırmak için gereken kuvvet ağırlıktır: $mg = 200$ N, $20$ N değil." },
+            { id: "D", text: "$150$ W", isCorrect: true }
+          ],
+          generalRemediation: "Sabit hızla kaldırmada motor kuvveti = ağırlık ($mg$). $W = mgh$, $P = \\frac{W}{t}$ (ya da $P = Fv$).",
+          stepByStepSolution: "1. $W = mgh = 20 \\cdot 10 \\cdot 3 = 600$ J.<br/>2. $P = \\frac{600}{4} = 150$ W.<br/>3. Kontrol: $v = \\frac{3}{4}$ m/s, $P = Fv = 200 \\cdot 0.75 = 150$ W ✓."
+        },
+        {
+          id: "cents-physics-06",
+          number: 6,
+          topic: "Kinematics — Centripetal acceleration",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Physics — kinematics, uniform circular motion)",
+          question: "An object moves at a constant speed of $4$ m/s around a circle of radius $2$ m. What is the magnitude of its centripetal acceleration?",
+          options: [
+            { id: "A", text: "$2\\ \\text{m/s}^2$", isCorrect: false, errorTag: "Hızın karesini almamak: $a = \\frac{v}{r}$.", remediation: "Merkezcil ivme $a_c = \\frac{v^2}{r}$; $\\frac{v}{r}$ açısal hızdır (rad/s)." },
+            { id: "B", text: "$8\\ \\text{m/s}^2$", isCorrect: true },
+            { id: "C", text: "$32\\ \\text{m/s}^2$", isCorrect: false, errorTag: "Yarıçapla bölmek yerine çarpmak: $v^2 r$.", remediation: "$a_c = \\frac{v^2}{r}$: yarıçap büyüdükçe ivme KÜÇÜLÜR." },
+            { id: "D", text: "$16\\ \\text{m/s}^2$", isCorrect: false, errorTag: "Yarıçapı unutmak: $a = v^2$.", remediation: "$v^2 = 16$ m²/s² ivme birimi değildir; $r$ ile bölünmelidir." }
+          ],
+          generalRemediation: "Düzgün çembersel hareket: hız sabit büyüklükte ama yön değişir ⟹ merkeze doğru ivme $a_c = \\frac{v^2}{r} = \\omega^2 r$.",
+          stepByStepSolution: "1. $a_c = \\frac{v^2}{r}$.<br/>2. $a_c = \\frac{4^2}{2} = \\frac{16}{2} = 8\\ \\text{m/s}^2$."
+        },
+        {
+          id: "cents-physics-07",
+          number: 7,
+          topic: "Fluids — Hydrostatic pressure (Stevin's law)",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Physics — fluids, hydrostatics)",
+          question: "By how much does the pressure at a depth of $3$ m in a lake exceed the pressure at the surface? (Water density $1000\\ \\text{kg/m}^3$, $g = 10\\ \\text{m/s}^2$.)",
+          options: [
+            { id: "A", text: "$3$ kPa", isCorrect: false, errorTag: "$g$'yi unutmak: $\\Delta p = \\rho h$.", remediation: "$\\rho h$ birimi kg/m² olur, basınç değil. Stevin yasası $\\Delta p = \\rho g h$." },
+            { id: "B", text: "$131$ kPa", isCorrect: false, errorTag: "Fark yerine mutlak basıncı vermek.", remediation: "$p_{atm} + \\rho g h \\approx 101 + 30 = 131$ kPa, derinlikteki TOPLAM basınçtır. Soru yüzeye göre FARKI soruyor." },
+            { id: "C", text: "$30$ kPa", isCorrect: true },
+            { id: "D", text: "$300$ kPa", isCorrect: false, errorTag: "Birim dönüşüm hatası: Pa'dan kPa'ya geçerken 100'e bölmek.", remediation: "$1$ kPa $= 1000$ Pa. $30\\,000$ Pa $= 30$ kPa." }
+          ],
+          generalRemediation: "Stevin yasası: $p(h) = p_0 + \\rho g h$. Yüzeye göre fark (gauge pressure) yalnızca $\\rho g h$'dir.",
+          stepByStepSolution: "1. $\\Delta p = \\rho g h = 1000 \\cdot 10 \\cdot 3$.<br/>2. $\\Delta p = 30\\,000$ Pa.<br/>3. $30\\,000$ Pa $= 30$ kPa."
+        },
+        {
+          id: "cents-physics-08",
+          number: 8,
+          topic: "Electricity — Resistors in parallel and Ohm's law",
+          difficulty: "medium",
+          source: "CEnT-S-style original (CISIA syllabus: Physics — electric current, Ohm's law)",
+          question: "Resistors of $6\\ \\Omega$ and $3\\ \\Omega$ are connected in <strong>parallel</strong> across an ideal $12$ V battery. What current does the battery supply?",
+          options: [
+            { id: "A", text: "$6$ A", isCorrect: true },
+            { id: "B", text: "$\\frac{4}{3}$ A", isCorrect: false, errorTag: "Paralel bağlamayı seri gibi hesaplamak: $R = 6 + 3$.", remediation: "Seri bağlamada dirençler toplanır; paralelde $\\frac{1}{R} = \\frac{1}{6} + \\frac{1}{3}$ ⟹ $R = 2\\ \\Omega$." },
+            { id: "C", text: "$4$ A", isCorrect: false, errorTag: "Yalnızca tek bir dalın akımını vermek ($3\\ \\Omega$).", remediation: "$\\frac{12}{3} = 4$ A yalnızca $3\\ \\Omega$'luk koldan geçer. Pil iki kolun TOPLAM akımını verir: $4 + 2 = 6$ A." },
+            { id: "D", text: "$2$ A", isCorrect: false, errorTag: "Yalnızca tek bir dalın akımını vermek ($6\\ \\Omega$).", remediation: "$\\frac{12}{6} = 2$ A yalnızca $6\\ \\Omega$'luk koldan geçer. Toplam akım iki kolun toplamıdır." }
+          ],
+          generalRemediation: "Paralel bağlamada her kolun gerilimi aynıdır (pil gerilimi); toplam akım kol akımlarının toplamıdır. $R_{eq} = \\frac{R_1 R_2}{R_1 + R_2}$.",
+          stepByStepSolution: "1. $R_{eq} = \\frac{6 \\cdot 3}{6 + 3} = 2\\ \\Omega$.<br/>2. $I = \\frac{V}{R_{eq}} = \\frac{12}{2} = 6$ A.<br/>3. Kontrol: $\\frac{12}{6} + \\frac{12}{3} = 2 + 4 = 6$ A ✓."
+        },
+        {
+          id: "cents-physics-09",
+          number: 9,
+          topic: "Electrostatics — Coulomb's law and distance",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Physics — electromagnetism, Coulomb's law)",
+          question: "Two point charges exert an electric force of magnitude $F$ on each other. If the distance between them is tripled and the charges are unchanged, the force becomes:",
+          options: [
+            { id: "A", text: "$\\frac{F}{3}$", isCorrect: false, errorTag: "Ters kare yerine ters orantı kullanmak.", remediation: "Coulomb kuvveti uzaklığın KARESİYLE ters orantılıdır: $F \\propto \\frac{1}{r^2}$." },
+            { id: "B", text: "$9F$", isCorrect: false, errorTag: "Ters kareyi doğru orantı gibi uygulamak.", remediation: "Uzaklık arttıkça kuvvet AZALIR. $3^2 = 9$ ile bölünmeli, çarpılmamalı." },
+            { id: "C", text: "$3F$", isCorrect: false, errorTag: "Doğru orantı varsaymak.", remediation: "Yükler uzaklaştıkça etkileşim zayıflar; kuvvet artamaz." },
+            { id: "D", text: "$\\frac{F}{9}$", isCorrect: true }
+          ],
+          generalRemediation: "Coulomb yasası: $F = k\\frac{|q_1 q_2|}{r^2}$. Uzaklık $n$ katına çıkarsa kuvvet $\\frac{1}{n^2}$ katına iner.",
+          stepByStepSolution: "1. $F \\propto \\frac{1}{r^2}$.<br/>2. $r \\to 3r$ ⟹ $F' = \\frac{F}{3^2}$.<br/>3. $F' = \\frac{F}{9}$."
+        },
+        {
+          id: "cents-physics-10",
+          number: 10,
+          topic: "Physical quantities — Unit conversion km/h to m/s",
+          difficulty: "easy",
+          source: "CEnT-S-style original (CISIA syllabus: Physics — physical quantities, SI units)",
+          question: "A train travels at $72$ km/h. What is this speed in m/s?",
+          options: [
+            { id: "A", text: "$259.2$ m/s", isCorrect: false, errorTag: "$3.6$ ile bölmek yerine çarpmak.", remediation: "km/h → m/s için $3.6$'ya BÖL. Sağduyu kontrolü: m/s değeri km/h değerinden her zaman küçüktür." },
+            { id: "B", text: "$20$ m/s", isCorrect: true },
+            { id: "C", text: "$1.2$ m/s", isCorrect: false, errorTag: "Saati dakika sanmak ve km'yi m'ye çevirmemek: $\\frac{72}{60}$.", remediation: "$1$ h $= 3600$ s ve $1$ km $= 1000$ m: $\\frac{72 \\cdot 1000}{3600}$." },
+            { id: "D", text: "$1200$ m/s", isCorrect: false, errorTag: "Yarım dönüşüm: Saati yalnızca dakikaya çevirmek.", remediation: "$\\frac{72\\,000}{60} = 1200$ m/dakikadır, m/s değil. Bir kez daha $60$'a böl: $20$ m/s." }
+          ],
+          generalRemediation: "$1\\ \\text{km/h} = \\frac{1000\\ \\text{m}}{3600\\ \\text{s}} = \\frac{1}{3.6}\\ \\text{m/s}$. km/h → m/s: $\\div 3.6$; m/s → km/h: $\\times 3.6$.",
+          stepByStepSolution: "1. $72\\ \\text{km/h} = \\frac{72 \\cdot 1000\\ \\text{m}}{3600\\ \\text{s}}$.<br/>2. $= \\frac{72\\,000}{3600} = 20$ m/s.<br/>3. Kısa yol: $\\frac{72}{3.6} = 20$."
+        }
+      ];
+
+      document.addEventListener("DOMContentLoaded", () => {
+        initInteractiveQuiz("cents-reading-quiz-container", CENTS_READING_QUESTIONS);
+        initInteractiveQuiz("cents-math-quiz-container", CENTS_MATH_QUESTIONS);
+        initInteractiveQuiz("cents-reasoning-quiz-container", CENTS_REASONING_QUESTIONS);
+        initInteractiveQuiz("cents-biology-quiz-container", CENTS_BIOLOGY_QUESTIONS);
+        initInteractiveQuiz("cents-chemistry-quiz-container", CENTS_CHEMISTRY_QUESTIONS);
+        initInteractiveQuiz("cents-physics-quiz-container", CENTS_PHYSICS_QUESTIONS);
+      });
+    </script>
+
+  </div>
+
+  <!-- AGENT MODAL (Shared) -->
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-bottom u-mt-0">
+      <div>© 2026 AP Meberra • CEnT-S Studio</div>
+      <div><a class="u-c-cyan u-nodec" href="index.html">← Komuta Merkezine Dön</a></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

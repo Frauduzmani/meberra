@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Üniversitelerim | AP MEBERRA</title>
+  <meta name="description" content="15 Avrupa ülkesinde en iyi 20 üniversite (QS, ülke içi), lisans ve yüksek lisans, İngilizce ve yerel dil; Almanya ve İtalya için seçilmiş programlar, kabul yolu ve takvim — resmi kaynaklarıyla.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="brand-badge">AP MEBERRA</div>
+      <div><div class="brand-title">Üniversitelerim</div></div>
+    </a>
+    <div class="nav-actions"></div>
+  </nav>
+
+  <main class="main-container" id="main-content">
+    <header class="page-head">
+      <span class="eyebrow">Üniversiteler</span>
+      <h1>Hedef ülkendeki üniversiteler ve isterleri</h1>
+      <p id="uni-lead">Liste en üstte: QS sıralamasına göre ülke içi ilk 20 üniversite; her kartta istenen sınavlar, hazırlayan dersler, ilk e-posta ve “Listeme ekle”. Kabul yolu ve takvim listenin altında.</p>
+    </header>
+
+    <div id="uni-root" aria-live="polite">
+      <div class="empty-state">
+        <div class="empty-ico" aria-hidden="true"><span class="spinner"></span></div>
+        <h2>Veri yükleniyor…</h2>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom u-mt-0">
+      <div>İlk 20 listesi <code>data/mevzuat/ulke/</code>, seçilmiş üniversiteler <code>data/mevzuat/ulkeler.js</code>, sınav verisi <code>data/mevzuat/sinavlar.js</code> dosyasından okunur. Başvurudan önce bilgileri resmi kaynaktan teyit et.</div>
+      <div><a href="index.html">← Bugün ekranına dön</a></div>
+    </div>
+  </footer>
+
+  <script src="data/mevzuat/ulkeler.js"></script>
+  <script src="data/mevzuat/sinavlar.js"></script>
+  <script src="data/mevzuat/ulke-dizini.js"></script>
+  <script src="assets/js/sartlar-motor.js"></script>
+  <script src="assets/js/sartlar-ui.js"></script>
+  <script src="assets/js/universite-isterleri.js"></script>
+  <script src="assets/js/eposta.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+  (function () {
+    "use strict";
+    var ME = window.APMEBERRA_ME, A = window.APMEBERRA;
+    // K4: oturumsuz ziyaretçi iki ülkeyi de genel görünümde görür; oturumluysa kişisel görünüm aynen
+    var GUEST = !ME;
+    if (!GUEST && !ME.profile) return;
+    var root = document.getElementById("uni-root");
+    var esc = apEsc;
+    var DATA = Array.isArray(window.APMEBERRA_ULKELER) ? window.APMEBERRA_ULKELER.filter(function (c) { return c && c.id; }) : [];
+    var SINAV = {};
+    (Array.isArray(window.APMEBERRA_SINAVLAR) ? window.APMEBERRA_SINAVLAR : []).forEach(function (s) { if (s && s.id) SINAV[s.id] = s; });
+    var ICON = {
+      ext: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
+      pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>',
+      search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>',
+      wait: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+      mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>',
+      star: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>',
+      lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>'
+    };
+    var GUIDE = { de: "almanya-muhendislik.html", it: "italya-muhendislik.html" };
+    var E = window.APMEBERRA_EPOSTA;
+
+    // Tur 14 A4 (plan §2.3-B): kart eylemleri — İlk e-posta (Ajan 14 derin bağlantısı) ve Listeme ekle (apmeberra:panel:v1 → universitelerim).
+    // Ziyaretçide ikisi de giriş sayfasına gider (K4): kilit ikonu + "Giriş gerekir"; dönüş adresi ?donus= ile korunur.
+    function listemOku() { var L = !GUEST && A && A.panel ? A.panel.get().universitelerim : null; return Array.isArray(L) ? L : []; }
+    function eylemHtml(cc, u) {
+      var kim = E && E.universiteKimligi ? E.universiteKimligi(cc, u) : "";
+      if (!kim) return "";
+      var hedef = "yazismalar.html?uni=" + encodeURIComponent(kim) + "&amac=ilk-iletisim";
+      var ad = '<span class="visually-hidden">: ' + esc(u.ad) + '</span>';
+      if (GUEST) {
+        return '<a class="btn-ghost btn-sm uni-eylem is-kilitli" data-ilk-eposta="' + esc(kim) + '" href="giris.html?donus=' + encodeURIComponent(hedef) + '">' + ICON.lock + '<span>İlk e-posta</span>' + ad + '<span class="visually-hidden"> (giriş gerekir)</span></a>' +
+          '<a class="btn-ghost btn-sm uni-eylem is-kilitli" data-listem-kilit="' + esc(kim) + '" href="giris.html?donus=' + encodeURIComponent("universiteler.html?ulke=" + cc) + '">' + ICON.lock + '<span>Listeme ekle</span>' + ad + '<span class="visually-hidden"> (giriş gerekir)</span></a>' +
+          '<span class="uni-eylem-not" aria-hidden="true">Giriş gerekir</span>';
+      }
+      var on = listemOku().indexOf(kim) >= 0;
+      return '<a class="btn-ghost btn-sm uni-eylem" data-ilk-eposta="' + esc(kim) + '" href="' + esc(hedef) + '">' + ICON.mail + '<span>İlk e-posta</span>' + ad + '</a>' +
+        '<button type="button" class="btn-ghost btn-sm uni-eylem uni-listem" data-listem="' + esc(kim) + '" aria-pressed="' + on + '">' + ICON.star + '<span class="uni-listem-t">' + (on ? "Listemde" : "Listeme ekle") + '</span>' + ad + '</button>';
+    }
+
+    function isUrl(u) { return typeof u === "string" && /^https?:\/\//i.test(u); }
+    function src(u, label) {
+      return isUrl(u) ? '<a class="src-link" href="' + esc(u) + '" target="_blank" rel="noopener noreferrer">' + esc(label || "Resmi kaynak") + ICON.ext + '<span class="visually-hidden"> (yeni sekmede açılır)</span></a>' : "";
+    }
+    function val(v) {
+      if (v == null || v === "") return '<span class="unverified">Doğrulanamadı</span>';
+      var s = String(v);
+      return /doğrulanamadı/i.test(s) ? '<span class="unverified">' + esc(s) + '</span>' : esc(s);
+    }
+    function arr(x) { return Array.isArray(x) ? x : []; }
+    function fmtDate(iso) {
+      var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(iso || ""));
+      if (!m) return esc(iso || "");
+      return new Date(+m[1], +m[2] - 1, +m[3]).toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" });
+    }
+    function daysTo(iso) {
+      var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(iso || "")); if (!m) return null;
+      var n = new Date();
+      return Math.round((Date.UTC(+m[1], +m[2] - 1, +m[3]) - Date.UTC(n.getFullYear(), n.getMonth(), n.getDate())) / 864e5);
+    }
+
+    // Ziyaret: yol haritası 1. adım
+    if (!GUEST && A && A.panel) A.panel.update(function (o) { if (!o.universiteGoruldu) o.universiteGoruldu = new Date().toISOString(); });
+
+    // Tur 11 (karar D3, plan §3.6): QS ülke içi ilk 20 (15 ülke, düzey/dil filtresi) + DE/IT seçilmiş üniversiteler
+    var MO = window.APMEBERRA_SARTLAR_MOTOR, SUI = window.APMEBERRA_SARTLAR_UI;
+    var DZ = window.APMEBERRA_ULKE_DIZINI && Array.isArray(window.APMEBERRA_ULKE_DIZINI.ulkeler) ? window.APMEBERRA_ULKE_DIZINI.ulkeler : [];
+    var DZK = {}; DZ.forEach(function (u) { DZK[u.kod] = u; });
+    var SIRALI = DZ.filter(function (u) { return u.grup === "ana"; }).concat(DZ.filter(function (u) { return u.grup !== "ana"; }).sort(function (a, b) { return a.ad.localeCompare(b.ad, "tr"); })).map(function (u) { return u.kod; });
+    var qUlke0 = /[?&]ulke=([a-z]{2})(?:&|#|$)/.exec(location.search);
+    var istenen = qUlke0 && DZK[qUlke0[1]] ? qUlke0[1] : null;
+    var qD = /[?&]duzey=(lisans|yl)(?:&|#|$)/.exec(location.search), qL = /[?&]dil=(en|yerel|hepsi)(?:&|#|$)/.exec(location.search);
+    var FILTRE = {
+      duzey: qD ? qD[1] : (!GUEST && ME.profile && ME.profile.ogrenciModeli === "uni-mezun" ? "yl" : "lisans"),
+      dil: qL ? qL[1] : (!GUEST && ME.profile && ME.profile.egitimDili ? ME.profile.egitimDili : "hepsi")
+    };
+    var wanted = GUEST ? (SIRALI.length ? SIRALI : ["de", "it"]) : arr(ME.profile.ulkeler).slice();
+    if (!GUEST && istenen && wanted.indexOf(istenen) < 0) wanted.push(istenen);
+    if (GUEST) {
+      document.title = "Üniversiteler | AP MEBERRA";
+      var eb = document.querySelector(".page-head .eyebrow"); if (eb) eb.textContent = "Üniversiteler · Giriş gerekmez";
+      var h1 = document.querySelector(".page-head h1"); if (h1) h1.textContent = "Avrupa’da en iyi üniversiteler ve isterleri";
+      var ld = document.getElementById("uni-lead"); if (ld) ld.textContent = "Ülkeni seç; QS sıralamasına göre ülke içi ilk 20 üniversiteyi lisans ya da yüksek lisans ve eğitim diline göre süz. Her kartta istenen sınavlar ve hazırlayan dersler var; ilk e-posta ve kişisel liste giriş yapınca açılır. Her bilginin yanında resmi kaynağı var.";
+      var back = document.querySelector('.footer a[href="index.html"]');
+      if (back) { back.setAttribute("href", "sartlar.html" + A.erisim.secimSorgusu()); back.textContent = "← Ülke şartlarına dön"; }
+    }
+    var countries = wanted.map(function (id) { return DATA.filter(function (c) { return c.id === id; })[0] || { id: id, _missing: true }; });
+
+    if (!DATA.length && !DZ.length) {
+      root.innerHTML =
+        '<div class="empty-state">' +
+          '<div class="empty-ico" aria-hidden="true">' + ICON.wait + '</div>' +
+          '<h2>Üniversite verisi hazırlanıyor</h2>' +
+          '<p>Kabul danışmanlarımız ülke ve üniversite listesini resmi kaynaklardan doğruluyor. Bu sırada doğrulanmış program listelerini rehber sayfalarında görebilirsin.</p>' +
+          '<div class="btn-row">' + wanted.map(function (id) { return '<a class="btn-ghost" href="' + GUIDE[id] + '">' + esc(window.APMEBERRA_AUTH ? APMEBERRA_AUTH.ulkeAd(id) : (id === "de" ? "Almanya" : "İtalya")) + ' rehberi</a>'; }).join("") +
+          '<a class="btn-primary" href="sinavlar.html">Sınavlarıma geç</a></div>' +
+        '</div>';
+      return;
+    }
+
+    var ULKE_AD = MO ? MO.ULKE_ADLARI : { de: "Almanya", it: "İtalya" };
+    root.innerHTML =
+      '<div class="tabs country-tabs" role="tablist" aria-label="Hedef ülkeler">' +
+        countries.map(function (c, i) {
+          var ilk = DZK[c.id] && DZK[c.id].veri ? DZK[c.id].veri.uni : 0, say = ilk || (c._missing ? 0 : arr(c.universiteler).length); // Tur 11: önce ilk 20 sayısı
+          return '<button type="button" class="tab" role="tab" id="tab-' + esc(c.id) + '" aria-controls="panel-' + esc(c.id) + '" aria-selected="' + (i === 0) + '"' + (i ? ' tabindex="-1"' : "") + '>' +
+            (c.id === "de" || c.id === "it" ? '<span class="rota-dot rota-dot-' + esc(c.id) + '" aria-hidden="true"></span>' : '<span class="cc-rozet" aria-hidden="true">' + esc(c.id.toUpperCase()) + '</span>') +
+            esc(c.ad || ULKE_AD[c.id] || c.id) + (say ? ' <span class="tab-count">' + say + '</span>' : "") + '</button>';
+        }).join("") +
+      '</div>' +
+      (!GUEST ? '<div class="uni-diger"><label for="uni-diger">Başka bir ülkeye bak</label><select class="calc-select" id="uni-diger"><option value="">Ülke seç…</option>' +
+        SIRALI.filter(function (k) { return wanted.indexOf(k) < 0; }).map(function (k) { return '<option value="' + k + '">' + esc(ULKE_AD[k] || k) + '</option>'; }).join("") + '</select></div>' : "") +
+      countries.map(function (c, i) { return '<section class="country-panel" role="tabpanel" id="panel-' + esc(c.id) + '" aria-labelledby="tab-' + esc(c.id) + '"' + (i ? " hidden" : "") + ' data-id="' + esc(c.id) + '"></section>'; }).join("") +
+      (GUEST
+        ? '<p class="field-hint" style="margin-top:24px;">Sınıfına göre tarihlenmiş kişisel rota, ders çalışma ve denemeler için <a href="giris.html' + esc(A.erisim.secimSorgusu()) + '">giriş yap ya da kayıt ol</a>.</p>'
+        : '<p class="field-hint" style="margin-top:24px;">Bir ülkeyi rotana eklemek için <a href="profil.html">profilinde hedef ülkelerini</a> güncelle.</p>');
+    var digerSec = document.getElementById("uni-diger");
+    if (digerSec) digerSec.addEventListener("change", function () { if (digerSec.value) location.href = "universiteler.html?ulke=" + digerSec.value + "&duzey=" + FILTRE.duzey + "&dil=" + FILTRE.dil; });
+
+    var rendered = {};
+    function renderCountry(c) {
+      var panel = document.getElementById("panel-" + c.id);
+      if (rendered[c.id]) return; rendered[c.id] = true;
+      panel.innerHTML = '<div class="uni-ilk20-yer" id="u-' + esc(c.id) + '-yer"></div><div class="uni-secilmis-yer"></div>';
+      ilk20Ciz(c.id);
+      var yer = panel.querySelector(".uni-secilmis-yer");
+      if (c._missing) {
+        if (c.id === "de" || c.id === "it") yer.innerHTML = '<div class="empty-state"><div class="empty-ico" aria-hidden="true">' + ICON.wait + '</div><h2>Üniversite verisi hazırlanıyor</h2><p>Bu ülkenin seçilmiş üniversite listesi henüz eklenmedi.</p>' +
+          (GUIDE[c.id] ? '<div class="btn-row"><a class="btn-ghost" href="' + GUIDE[c.id] + '">' + esc(ULKE_AD[c.id]) + ' rehberini aç</a></div>' : "") + '</div>';
+        else yer.innerHTML = '<p class="field-hint uni-sartlar-link"><a href="sartlar.html?' + (GUEST ? "" : "model=" + esc((ME.profile && ME.profile.ogrenciModeli) || "lise") + "&") + 'ulke=' + esc(c.id) + '&dil=' + (FILTRE.dil === "yerel" ? "yerel" : "en") + '">' + esc(ULKE_AD[c.id] || c.id) + ': kabul şartları, tarihler ve burslar →</a></p>';
+        return;
+      }
+      var unis = arr(c.universiteler);
+      var progCount = unis.reduce(function (s, u) { return s + arr(u.programlar).length; }, 0);
+      var exams = arr(c.sinavlar);
+      var p = "c-" + c.id + "-";
+      var cities = unis.map(function (u) { return u.sehir; }).filter(function (x, i, a) { return x && a.indexOf(x) === i; }).sort(function (a, b) { return a.localeCompare(b, "tr"); });
+      var takvim = arr(c.takvim).slice().sort(function (a, b) { return String(a.tarih).localeCompare(String(b.tarih)); });
+
+      // Tur 14 A4 (plan §2.3-B): önce seçilmiş üniversiteler (arama + şehir), sonra "Bu ülkede kabul nasıl işler?" açılır bölümleri
+      var html = '<h2 class="uni-katman-h">Rotaya uygun seçilmiş üniversiteler ve programlar</h2>';
+      var uniHtml = '';
+      var nasil = '<section class="uni-nasil" aria-labelledby="' + p + 'nasil-h"><h2 class="uni-katman-h uni-nasil-h" id="' + p + 'nasil-h">' + esc(c.ad) + ': kabul nasıl işler?</h2>' +
+        '<div class="country-hero">' +
+        '<div class="surface"><span class="uni-sub">Özet</span><p class="lead">' + esc(c.ozet || "") + '</p>' +
+          '<p class="uni-nasil-links">' +
+          (GUEST ? '<a href="sartlar.html?ulke=' + esc(c.id) + '">' + esc(c.ad) + ': sınıfına göre şartlar →</a>'
+                 : '<a href="rota.html?ulke=' + esc(c.id) + '">' + esc(c.ad) + ' rotam: tarihli adımlar →</a>') +
+          (GUIDE[c.id] ? '<a href="' + GUIDE[c.id] + '">Ayrıntılı ' + esc(c.ad) + ' rehberi →</a>' : "") + '</p></div>' +
+        '<div class="surface"><span class="uni-sub">Bir bakışta</span><div class="stat-trio u-mt-2">' +
+          '<div class="stat-box"><b>' + unis.length + '</b><span>üniversite</span></div>' +
+          '<div class="stat-box"><b>' + progCount + '</b><span>program</span></div>' +
+          '<div class="stat-box"><b>' + exams.length + '</b><span>gerekli sınav</span></div>' +
+        '</div></div>' +
+      '</div>';
+      // Açılır bölüm: <details id="c-de-kabul"> — eski çapalar (#c-de-kabul …) bölümü açar
+      function acilir(id, baslik, sayi, govde) {
+        return '<details class="cs-section cs-acilir" id="' + p + id + '"><summary><h3 id="' + p + id + '-h">' + baslik + '</h3>' + (sayi ? '<span class="rs-count">' + sayi + '</span>' : "") + '</summary><div class="cs-acilir-govde">' + govde + '</div></details>';
+      }
+
+      nasil += acilir("kabul", "Kabul yolu", arr(c.kabulYolu).length,
+        '<p class="section-lead">Lise diplomanla bu ülkede lisansa nasıl başvurulur, adım adım.</p>' +
+        (arr(c.kabulYolu).length ? '<ol class="path-steps">' + arr(c.kabulYolu).map(function (k) {
+          // Uzun açıklamada ilk cümle görünür, devamı açılır alanda (sayfa taranabilir kalsın)
+          var d = String(k.detay || ''), cut = d.length > 240 ? d.indexOf('. ', 120) : -1;
+          var body = cut > 0 && cut < d.length - 40 ? '<p>' + esc(d.slice(0, cut + 1)) + '</p><details class="clamp-note"><summary>Devamı</summary><p>' + esc(d.slice(cut + 2)) + '</p></details>' : '<p>' + esc(d) + '</p>';
+          return '<li><div class="u-min0"><h4>' + esc(k.baslik) + '</h4>' + body + src(k.kaynak) + '</div></li>';
+        }).join("") + '</ol>' : '<p class="field-hint">Henüz eklenmedi.</p>'));
+
+      nasil += acilir("isterler", "Genel isterler", arr(c.genelIsterler).length,
+        '<p class="section-lead">Tüm üniversiteler için geçerli belgeler ve şartlar.</p>' +
+        (arr(c.genelIsterler).length ? '<div class="req-grid">' + arr(c.genelIsterler).map(function (k) {
+          return '<article class="req-card"><h4>' + esc(k.baslik) + '</h4><p>' + esc(k.detay) + '</p>' + src(k.kaynak) + '</article>';
+        }).join("") + '</div>' : '<p class="field-hint">Henüz eklenmedi.</p>'));
+
+      nasil += acilir("sinavlar", "Gerekli sınavlar", exams.length,
+        '<p class="section-lead">Her sınavın formatı, tarihi, İngilizce ders anlatımı ve denemesi Sınavlar sayfasında.</p>' +
+        (exams.length ? '<div class="exam-chip-grid">' + exams.map(function (id) {
+          var s = SINAV[id];
+          return '<a class="exam-chip" href="sinavlar.html#' + encodeURIComponent(id) + '"><span>' + esc(s ? s.ad : id) + (s ? '<small>' + esc(s.kategori || "") + (s.kurum ? " · " + esc(s.kurum) : "") + '</small>' : "") + '</span><span class="go" aria-hidden="true">→</span></a>';
+        }).join("") + '</div>' : '<p class="field-hint">Henüz eklenmedi.</p>'));
+
+      nasil += acilir("takvim", "Takvim", takvim.length,
+        '<p class="section-lead">Tarihler resmi kaynaklardan; her yıl değişebilir.</p>' +
+        (takvim.length ? '<ol class="timeline">' + takvim.map(function (t) {
+          var d = daysTo(t.tarih);
+          var when = d === null ? "" : d < 0 ? '<span class="tl-when">geçti</span>' : d === 0 ? '<span class="tl-when is-soon">bugün</span>' : '<span class="tl-when' + (d <= 30 ? " is-soon" : "") + '">' + d + ' gün kaldı</span>';
+          return '<li class="' + (d !== null && d < 0 ? "is-past" : "") + '"><span class="tl-date">' + fmtDate(t.tarih) + '</span>' + when + '<span class="tl-text">' + esc(t.olay) + ' ' + src(t.kaynak, "Kaynak") + '</span></li>';
+        }).join("") + '</ol>' : '<p class="field-hint">Henüz eklenmedi.</p>'));
+
+      uniHtml += '<section class="cs-section uni-secilmis" id="' + p + 'uniler" aria-labelledby="' + p + 'uniler-h"><h3 id="' + p + 'uniler-h" class="visually-hidden">Seçilmiş üniversiteler</h3>' +
+        '<p class="section-lead">' + esc(c.ad) + ' için İngilizce lisans programları, üniversiteye özel isterler, başvuru dönemi ve ücret.</p>' +
+        '<div class="uni-toolbar" role="search">' +
+          '<div class="search-wrap">' + ICON.search + '<label class="visually-hidden" for="' + p + 'q">Üniversite, şehir ya da program ara</label>' +
+            '<input class="text-input" type="search" id="' + p + 'q" placeholder="Üniversite, şehir ya da program ara"></div>' +
+          (cities.length > 1 ? '<label class="visually-hidden" for="' + p + 'city">Şehir</label><select class="calc-select" id="' + p + 'city"><option value="">Tüm şehirler</option>' +
+            cities.map(function (ct) { return '<option>' + esc(ct) + '</option>'; }).join("") + '</select>' : "") +
+        '</div>' +
+        '<p class="result-count" id="' + p + 'count" aria-live="polite"></p>' +
+        '<div class="uni-grid">' + unis.map(function (u) {
+          var progs = arr(u.programlar), req = arr(u.isterler);
+          var hay = [u.ad, u.sehir].concat(progs.map(function (x) { return x.ad; })).join(" ").toLocaleLowerCase("tr-TR");
+          return '<article class="uni-card" data-city="' + esc(u.sehir || "") + '" data-hay="' + esc(hay) + '" aria-labelledby="' + p + 'u-' + esc(u.id) + '">' +
+            '<div class="uni-head"><div style="min-width:0;"><h4 id="' + p + 'u-' + esc(u.id) + '">' + esc(u.ad) + '</h4>' +
+              '<span class="uni-city">' + ICON.pin + esc(u.sehir || "") + '</span></div>' +
+              (isUrl(u.web) ? '<a class="src-link" href="' + esc(u.web) + '" target="_blank" rel="noopener noreferrer">Web' + ICON.ext + '<span class="visually-hidden"> (yeni sekmede açılır)</span></a>' : "") + '</div>' +
+            '<div><div class="uni-sub">Programlar (' + progs.length + ')</div><ul class="program-list">' + progs.map(function (pr) {
+              return '<li><strong>' + esc(pr.ad) + '</strong><span class="pmeta">' + [pr.derece, pr.dil, pr.sure].filter(Boolean).map(esc).join(" · ") + '</span> ' + src(pr.kaynak, "Program sayfası") + '</li>';
+            }).join("") + '</ul></div>' +
+            (req.length ? '<details><summary>Üniversiteye özel isterler (' + req.length + ')</summary><ul class="req-list">' + req.map(function (r) {
+              return '<li><b>' + esc(r.baslik) + '</b><span>' + val(r.detay) + '</span>' + src(r.kaynak, "Kaynak") + '</li>';
+            }).join("") + '</ul></details>' : "") +
+            '<dl class="uni-facts"><div><dt>Başvuru dönemi</dt><dd>' + val(u.basvuruDonemi) + '</dd></div><div><dt>Ücret</dt><dd>' + val(u.ucret) + '</dd></div></dl>' +
+            '<div class="uni-foot"><span>' + (u.dogrulamaTarihi ? "Doğrulama: " + fmtDate(u.dogrulamaTarihi) : "Doğrulama tarihi yok") + '</span>' + src(u.kaynak, "Resmi kaynak") + '</div>' +
+          '</article>';
+        }).join("") + '</div>' +
+        '<div class="empty-state" id="' + p + 'empty" hidden><h3>Sonuç yok</h3><p>Aramanı değiştir ya da şehir filtresini kaldır.</p></div>' +
+      '</section>';
+
+      if (arr(c.kaynaklar).length) {
+        nasil += acilir("kaynaklar", "Kaynaklar", arr(c.kaynaklar).filter(isUrl).length, '<ul class="src-list">' +
+          arr(c.kaynaklar).filter(isUrl).map(function (u) { return '<li>' + src(u, u) + '</li>'; }).join("") + '</ul>');
+      }
+      nasil += '</section>';
+      yer.innerHTML = html + uniHtml + nasil;
+      // Eski çapa (#c-de-kabul, #c-de-takvim …) açılır bölümü açar
+      var hedefBolum = location.hash.length > 1 ? document.getElementById(location.hash.slice(1)) : null;
+      if (hedefBolum && hedefBolum.tagName === "DETAILS" && panel.contains(hedefBolum)) { hedefBolum.open = true; hedefBolum.scrollIntoView({ block: "start" }); }
+
+      // Arama + şehir filtresi (yalnızca hidden özelliği değişir; DOM yeniden kurulmaz)
+      var q = document.getElementById(p + "q"), city = document.getElementById(p + "city");
+      var cards = panel.querySelectorAll(".uni-card"), count = document.getElementById(p + "count"), empty = document.getElementById(p + "empty");
+      function apply() {
+        var term = (q.value || "").trim().toLocaleLowerCase("tr-TR"), ct = city ? city.value : "", n = 0;
+        cards.forEach(function (el) {
+          var ok = (!term || el.dataset.hay.indexOf(term) >= 0) && (!ct || el.dataset.city === ct);
+          el.hidden = !ok; if (ok) n++;
+        });
+        count.textContent = n + " / " + cards.length + " üniversite gösteriliyor";
+        empty.hidden = n > 0;
+      }
+      var tmr; q.addEventListener("input", function () { clearTimeout(tmr); tmr = setTimeout(apply, 120); });
+      if (city) city.addEventListener("change", apply);
+      apply();
+    }
+
+    // ---------------- İlk 20 (QS, ülke içi) — Tur 11 ----------------
+    function adresYaz(cc) {
+      try { history.replaceState(null, "", "universiteler.html?ulke=" + cc + "&duzey=" + FILTRE.duzey + "&dil=" + FILTRE.dil + "#" + cc); } catch (e) { /* file:// */ }
+    }
+    function ilk20Ciz(cc) {
+      var yer = document.getElementById("u-" + cc + "-yer");
+      if (!yer || !MO || !SUI) return;
+      var k = DZK[cc] || { kod: cc, ad: ULKE_AD[cc] || cc, yerelDil: [] };
+      var id = "u-" + cc;
+      var seg = function (ad, deger, secenek) {
+        return '<div class="sr-seg uni-seg" role="radiogroup" aria-label="' + esc(ad) + '">' + secenek.map(function (o) {
+          return '<label class="sr-opt"><input type="radio" name="' + id + '-' + deger + '" value="' + o[0] + '"' + (FILTRE[deger] === o[0] ? " checked" : "") + '><span>' + esc(o[1]) + '</span></label>';
+        }).join("") + '</div>';
+      };
+      var yerelAd = MO.yalnizIngilizce(cc, k) ? null : MO.dilAd("yerel", k, (window.APMEBERRA_ULKE_DIZINI || {}).dilAd);
+      yer.innerHTML = '<section class="cs-section uni-ilk20" aria-labelledby="' + id + '-h"><h2 class="uni-katman-h" id="' + id + '-h">' + esc(k.ad) + ': en iyi 20 üniversite</h2>' +
+        '<div class="uni-filtre" role="search" aria-label="İlk 20 listesini süz">' +
+          '<div class="uni-filtre-grup"><span class="uni-filtre-ad" aria-hidden="true">Düzey</span>' + seg("Düzey", "duzey", [["lisans", "Lisans"], ["yl", "Yüksek lisans"]]) + '</div>' +
+          '<div class="uni-filtre-grup"><span class="uni-filtre-ad" aria-hidden="true">Dil</span>' + seg("Eğitim dili", "dil", [["hepsi", "Hepsi"], ["en", "İngilizce"]].concat(yerelAd ? [["yerel", yerelAd]] : [])) + '</div>' +
+          '<div class="search-wrap">' + ICON.search + '<label class="visually-hidden" for="' + id + '-q">Üniversite ya da şehir ara</label><input class="text-input" type="search" id="' + id + '-q" placeholder="Üniversite ya da şehir ara"></div>' +
+          (GUEST ? "" : '<label class="check-row uni-listem-filtre"><input type="checkbox" id="' + id + '-listem"' + (FILTRE.listem ? " checked" : "") + '> <span>Yalnızca listem <span class="tab-count" data-listem-say>' + listemOku().length + '</span></span></label>') +
+        '</div><div id="' + id + '-tablo"><div class="empty-state"><span class="spinner" aria-hidden="true"></span> Yükleniyor…</div></div></section>';
+      SUI.veriYukle(cc, DZK[cc]).then(function (r) {
+        var U = r.veri && r.veri.universiteler && Array.isArray(r.veri.universiteler.liste) && r.veri.universiteler.liste.length ? r.veri.universiteler : null;
+        var tablo = document.getElementById(id + "-tablo");
+        var q = document.getElementById(id + "-q");
+        if (!U) {
+          q.disabled = true;
+          tablo.innerHTML = '<div class="sr-empty">' + ICON.wait + '<div><strong>İlk 20 listesi hazırlanıyor</strong><p>' + esc(k.ad) + ' için QS sıralamasına göre ülke içi ilk 20 üniversite ve programlarının dili resmi sayfalarından doğrulanıyor.</p></div></div>';
+          return;
+        }
+        function ciz() {
+          var res = MO.universiteSuz(U.liste, { duzey: FILTRE.duzey, dil: FILTRE.dil, q: q.value });
+          // Tur 14 A4: "Yalnızca listem" (apmeberra:panel:v1 universitelerim) — süzgeç yalnızca gösterimi daraltır
+          if (FILTRE.listem && E) {
+            var L = listemOku();
+            res = Object.assign({}, res, { liste: res.liste.filter(function (u) { return L.indexOf(E.universiteKimligi(cc, u)) >= 0; }) });
+            res.gosterilen = res.liste.length;
+          }
+          var alan = FILTRE.duzey === "yl" ? "yuksekLisans" : "lisans";
+          var sir = U.siralama || {};
+          var zAd = FILTRE.duzey === "yl" ? "YL" : "lisans";
+          tablo.innerHTML = SUI.ozetUyariHtml(MO.ozetUyari(k, FILTRE.duzey, FILTRE.dil === "yerel" ? "yerel" : "en")) +
+            '<p class="sr-ilk20-lead">' + SUI.siralamaHtml(sir) +
+              ' · <span id="' + id + '-say">' + res.toplam + ' üniversiteden ' + res.gosterilen + ' gösteriliyor' + (res.teyit ? " (" + res.teyit + " doğrulanamadı, listenin sonunda)" : "") + '</span>' +
+              ' · <small class="field-hint" style="margin:0;">(QS: Küresel Dünya Sıralaması)</small></p>' +
+            (res.toplam < 20 ? '<p class="field-hint">' + esc((sir.ad || "Sıralama") + " listesinde " + k.ad + "’dan " + res.toplam + " üniversite var; listenin tamamı bu.") + '</p>' : "") +
+            (res.gosterilen ? '<table class="uni-tablo"><thead><tr><th scope="col" title="Ülke içi sıralama">#</th><th scope="col">Üniversite</th><th scope="col">Şehir</th><th scope="col" title="QS World University Rankings 2027 Dünya Sıralaması">QS Dünya Sırası</th>' +
+              '<th scope="col">EN ' + zAd + '</th><th scope="col">Yerel ' + zAd + '</th><th scope="col">Mühendislik</th><th scope="col">Başvuru</th></tr></thead><tbody>' +
+              res.liste.map(function (u, idx) {
+                var b = u[alan] || {};
+                var kaynak = (Array.isArray(b.kaynak) ? b.kaynak : (b.kaynak ? [b.kaynak] : [])).map(function (x) { return typeof x === "string" ? { ad: "Program kataloğu", url: x } : x; });
+                var UI_IST = window.APMEBERRA_UNI_ISTERLERI;
+                var ist = UI_IST ? UI_IST.kartIsterHtml(u, cc, FILTRE, "u-tbl-" + (u.sira || idx), { eylemHtml: eylemHtml(cc, u) }) : { ozetHtml: "", drawerHtml: "" };
+                var qsTemiz = String(u.qsSira || "—").replace(/^=\s*/, "");
+                return '<tr' + (u._teyit ? ' class="is-teyit"' : "") + '><td data-etiket="Sıra"><span class="sr-uni-sira">' + esc(u.sira) + '</span></td>' +
+                  '<th scope="row" data-etiket="Üniversite"><strong>' + esc(u.ad) + '</strong>' + (u._teyit ? SUI.teyitRozet() : "") +
+                    ist.ozetHtml + ist.drawerHtml +
+                    ((b.not || u.harcNotu || kaynak.length || u.kesinlik) ? '<details class="uni-ayrinti"><summary>Resmi kaynak & harç</summary>' +
+                      (b.not ? '<p>' + esc(b.not) + '</p>' : "") + (u.harcNotu ? '<p><b>Harç:</b> ' + esc(u.harcNotu) + '</p>' : "") +
+                      '<div class="sr-meta">' + SUI.kes(u.kesinlik) + kaynak.map(function (x) { return SUI.src(x.url, x.ad); }).join("") + SUI.src(u.url, "Üniversite") + '</div></details>' : "") + '</th>' +
+                  '<td data-etiket="Şehir">' + esc(u.sehir || "—") + '</td><td data-etiket="QS Dünya Sırası"><strong>' + esc(qsTemiz) + '</strong></td>' +
+                  '<td data-etiket="EN ' + zAd + '">' + SUI.uniDilRozet(b.en) + '</td><td data-etiket="Yerel ' + zAd + '">' + (MO.yalnizIngilizce(cc, k) ? "—" : SUI.uniDilRozet(b.yerel)) + '</td>' +
+                  '<td data-etiket="Mühendislik">' + (u.muhendislik === true ? "Var" : u.muhendislik === false ? "Yok" : "—") + '</td>' +
+                  '<td data-etiket="Başvuru">' + (u.basvuruUrl ? SUI.src(u.basvuruUrl, "Başvuru") : "—") + '</td></tr>';
+              }).join("") + '</tbody></table>'
+              : (FILTRE.listem
+                ? '<div class="sr-empty" data-bos="listem">' + ICON.star + '<div><strong>Listende bu filtreye uyan ' + esc(k.ad) + ' üniversitesi yok.</strong><p>Kartlardaki “Listeme ekle” ile üniversite seç. <button type="button" class="btn-ghost btn-sm" data-listem-kapat>Tüm listeyi göster</button></p></div></div>'
+                : '<div class="sr-empty">' + ICON.wait + '<div><strong>Bu filtreyle ilk 20’de üniversite yok.</strong><p><button type="button" class="btn-ghost btn-sm" data-temizle>Filtreleri temizle</button></p></div></div>'));
+          var tb = tablo.querySelector("[data-temizle]");
+          if (tb) tb.addEventListener("click", function () { FILTRE.dil = "hepsi"; q.value = ""; ilk20Ciz(cc); adresYaz(cc); });
+        }
+        var lf = document.getElementById(id + "-listem");
+        if (lf) lf.addEventListener("change", function () { FILTRE.listem = lf.checked; ciz(); });
+        tablo.addEventListener("click", function (e) {
+          var lb = e.target.closest(".uni-listem");
+          if (lb && A && A.panel) {
+            var kim = lb.getAttribute("data-listem");
+            var o = A.panel.update(function (pn) {
+              var Ls = Array.isArray(pn.universitelerim) ? pn.universitelerim : [];
+              var i = Ls.indexOf(kim);
+              if (i >= 0) Ls.splice(i, 1); else Ls.push(kim);
+              pn.universitelerim = Ls;
+            });
+            var on = o.universitelerim.indexOf(kim) >= 0;
+            lb.setAttribute("aria-pressed", String(on));
+            lb.querySelector(".uni-listem-t").textContent = on ? "Listemde" : "Listeme ekle";
+            document.querySelectorAll("[data-listem-say]").forEach(function (x) { x.textContent = String(o.universitelerim.length); });
+            if (FILTRE.listem && !on) { ciz(); var ilk = tablo.querySelector(".uni-listem") || lf; if (ilk) ilk.focus(); }
+            return;
+          }
+          if (e.target.closest("[data-listem-kapat]")) { FILTRE.listem = false; if (lf) lf.checked = false; ciz(); if (lf) lf.focus(); return; }
+          var tog = e.target.closest(".sr-req-toggle");
+          if (tog) {
+            var drId = tog.getAttribute("aria-controls");
+            var dr = document.getElementById(drId);
+            if (dr) {
+              var open = !dr.hidden;
+              dr.hidden = open;
+              tog.setAttribute("aria-expanded", String(!open));
+            }
+            return;
+          }
+          var cls = e.target.closest(".sr-drawer-close");
+          if (cls) {
+            var drId2 = cls.getAttribute("aria-controls");
+            var dr2 = document.getElementById(drId2);
+            if (dr2) {
+              dr2.hidden = true;
+              var b2 = tablo.querySelector('[aria-controls="' + drId2 + '"]');
+              if (b2) b2.setAttribute("aria-expanded", "false");
+            }
+            return;
+          }
+        });
+        ciz();
+        var tmr; q.addEventListener("input", function () { clearTimeout(tmr); tmr = setTimeout(ciz, 120); });
+        yer.querySelectorAll('input[type=radio]').forEach(function (i) {
+          i.addEventListener("change", function () { FILTRE[i.name.split("-").pop()] = i.value; ciz(); adresYaz(cc); });
+        });
+      });
+      // Veri yoksa da filtreler URL'yi günceller (seçim paylaşılabilir kalsın)
+      yer.querySelectorAll('input[type=radio]').forEach(function (i) {
+        i.addEventListener("change", function () { FILTRE[i.name.split("-").pop()] = i.value; adresYaz(cc); });
+      });
+    }
+
+    // Sekmeler
+    var tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
+    function select(i, focus) {
+      tabs.forEach(function (t, j) {
+        var on = i === j;
+        t.setAttribute("aria-selected", String(on)); t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+      });
+      renderCountry(countries[i]);
+      // Dar ekranda sekme şeridi yatay kayar: seçili sekme görünür alana getirilir (sayfa kaydırılmaz)
+      var serit = tabs[i].parentElement;
+      if (serit && serit.scrollWidth > serit.clientWidth) serit.scrollLeft = Math.max(0, tabs[i].offsetLeft - serit.offsetLeft - 16);
+      if (focus) tabs[i].focus({ preventScroll: true });
+      adresYaz(countries[i].id);
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener("click", function () { select(i); });
+      t.addEventListener("keydown", function (e) {
+        var n = e.key === "ArrowRight" ? (i + 1) % tabs.length : e.key === "ArrowLeft" ? (i - 1 + tabs.length) % tabs.length : e.key === "Home" ? 0 : e.key === "End" ? tabs.length - 1 : -1;
+        if (n >= 0) { e.preventDefault(); select(n, true); }
+      });
+    });
+    // Adres satırında #de/#it yoksa aktif rotanın sekmesi açık gelir (Tur 6)
+    var byHash = countries.findIndex(function (c) { return "#" + c.id === location.hash; });
+    var aktifRota = A && A.rota ? A.rota.aktif() : null;
+    if (istenen) aktifRota = istenen;
+    var start = byHash >= 0 ? byHash : Math.max(0, countries.findIndex(function (c) { return c.id === aktifRota; }));
+    if (tabs.length) select(start, false);
+  })();
+  </script>
+</body>
+</html>

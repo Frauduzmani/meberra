@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ülke şartları | AP MEBERRA</title>
+  <meta name="description" content="Avrupa'da lisans ve yüksek lisans: lise öğrencisi, lise mezunu ya da üniversite mezunu olarak 15 ülkede İngilizce ve yerel dilde ne gerektiği, tarihler, sık hatalar, burslar ve ilk 20 üniversite — resmi kaynaklarıyla. Giriş gerekmez.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body class="page-sartlar">
+  <nav class="navbar">
+    <a href="sartlar.html" class="nav-brand">
+      <div class="brand-badge">AP MEBERRA</div>
+      <div><div class="brand-title">Ülke şartları</div></div>
+    </a>
+    <div class="nav-actions"></div>
+  </nav>
+
+  <main class="main-container" id="main-content">
+    <header class="page-head sr-head">
+      <span class="eyebrow">Ülke şartları · Giriş gerekmez</span>
+      <h1 id="sr-h1" tabindex="-1">Avrupa’da lisans ve yüksek lisans: durumuna göre şartlar</h1>
+      <p id="sr-lead">Durumunu, ülkeni ve eğitim dilini seç. Ne gerektiğini, kaçırmaman gereken tarihleri, sık yapılan hataları, bursları ve ülkenin en iyi üniversitelerini resmi kaynaklarıyla gör.</p>
+    </header>
+
+    <!-- Seçici (Tur 11, plan §2): model → sınıf (yalnızca lise) → ülke → dil. Seçim adres satırında durur. -->
+    <form class="sr-picker sr-picker-v2" id="sr-form" action="sartlar.html" method="get" aria-label="Durum, ülke ve eğitim dili seçimi">
+      <div class="sr-ozetbar" id="sr-ozetbar" hidden>
+        <p class="sr-ozet-chips" id="sr-ozet-chips"></p>
+        <button type="button" class="btn-ghost btn-sm" id="sr-degistir" aria-expanded="false" aria-controls="sr-adimlar">Seçimi değiştir</button>
+      </div>
+      <div class="sr-adimlar" id="sr-adimlar">
+        <fieldset class="sr-field2" id="sr-f-model">
+          <legend class="sr-leg"><span class="sr-no" aria-hidden="true">1</span>Durumun</legend>
+          <div class="sr-cards">
+            <label class="sr-card"><input type="radio" name="model" value="lise"><span><strong>Lise öğrencisi</strong><small>9–12. sınıf · lisansa hazırlık</small></span></label>
+            <label class="sr-card"><input type="radio" name="model" value="lise-mezun"><span><strong>Lise mezunu</strong><small>Lisansa başvuru</small></span></label>
+            <label class="sr-card"><input type="radio" name="model" value="uni-mezun"><span><strong>Üniversite mezunu</strong><small>Yüksek lisans (YL)</small></span></label>
+          </div>
+        </fieldset>
+        <fieldset class="sr-field2" id="sr-f-sinif">
+          <legend class="sr-leg"><span class="sr-no" aria-hidden="true">2</span>Sınıfın</legend>
+          <div class="sr-seg sr-seg-sinif">
+            <label class="sr-opt"><input type="radio" name="sinif" value="9"><span>9. sınıf</span></label>
+            <label class="sr-opt"><input type="radio" name="sinif" value="10"><span>10. sınıf</span></label>
+            <label class="sr-opt"><input type="radio" name="sinif" value="11"><span>11. sınıf</span></label>
+            <label class="sr-opt"><input type="radio" name="sinif" value="12"><span>12. sınıf</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="sr-field2" id="sr-f-ulke">
+          <legend class="sr-leg"><span class="sr-no" aria-hidden="true">3</span>Ülke</legend>
+          <div class="sr-ulke-arac">
+            <label class="check-row sr-yalniz"><input type="checkbox" name="yalniz-en" id="sr-yalniz-en"> <span id="sr-yalniz-metin">Yalnızca İngilizce lisans programı olanlar</span></label>
+            <span class="sr-ulke-say" id="sr-ulke-say" aria-live="polite"></span>
+          </div>
+          <p class="field-hint" id="sr-yalniz-not" hidden></p>
+          <div id="sr-ulke-grid"></div>
+        </fieldset>
+        <fieldset class="sr-field2" id="sr-f-dil">
+          <legend class="sr-leg"><span class="sr-no" aria-hidden="true">4</span>Eğitim dili</legend>
+          <div class="sr-seg sr-seg-dil">
+            <label class="sr-opt"><input type="radio" name="dil" value="en"><span>İngilizce</span></label>
+            <label class="sr-opt"><input type="radio" name="dil" value="yerel"><span id="sr-yerel-ad">Yerel dil</span></label>
+          </div>
+          <p class="field-hint" id="sr-dil-not" hidden></p>
+        </fieldset>
+        <noscript><button type="submit" class="btn-primary">Şartları göster</button></noscript>
+      </div>
+    </form>
+
+    <!-- Tur 14 A4: oturumlu öğrencinin kişisel panelleri (önceden Bugün ekranında): duyurular (lise mezunu) · YL başvuru dosyası (üniversite mezunu) -->
+    <div class="sr-kisisel" id="sr-kisisel" hidden></div>
+
+    <div id="sr-root" aria-live="polite">
+      <div class="empty-state"><div class="empty-ico" aria-hidden="true"><span class="spinner"></span></div><h2>Yükleniyor…</h2></div>
+    </div>
+    <p class="visually-hidden" id="sr-duyuru" role="status" aria-live="polite"></p>
+
+    <aside class="alert sr-legal" aria-label="Önemli not">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>
+      <div><strong>Resmi kaynak esastır; son kararı üniversite verir.</strong> <span id="sr-kontrol">Buradaki bilgiler resmi kaynaklara bağlantıyla verilir; başvurmadan önce her maddeyi kaynağından ve üniversitenin güncel çağrısından kontrol et.</span></div>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom u-mt-0">
+      <div>Şartlar <code>data/mevzuat/ulke/</code> ve <code>data/mevzuat/ulke-dizini.js</code>, tarihli yol haritası <code>data/mevzuat/ulke-rotalari.js</code> dosyasından okunur. Seçimin yalnızca adres satırında durur; hiçbir şey kaydedilmez.</div>
+      <div><a href="universiteler.html">Üniversiteler →</a></div>
+    </div>
+  </footer>
+
+  <script src="data/mevzuat/ulke-dizini.js"></script>
+  <script src="data/mevzuat/ulke-rotalari.js"></script>
+  <script src="data/mevzuat/duyurular.js"></script>
+  <script src="data/mevzuat/yl-genel.js"></script>
+  <script src="data/mevzuat/sinavlar.js"></script>
+  <script src="assets/js/sinav-motor.js"></script>
+  <script src="assets/js/eposta.js"></script>
+  <script src="assets/js/rota.js"></script>
+  <script src="assets/js/sartlar-motor.js"></script>
+  <script src="assets/js/sartlar-ui.js"></script>
+  <script src="assets/js/universite-isterleri.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+  (function () {
+    "use strict";
+    var M = window.APMEBERRA_SARTLAR_MOTOR, UI = window.APMEBERRA_SARTLAR_UI, A = window.APMEBERRA, ME = window.APMEBERRA_ME;
+    var $ = function (id) { return document.getElementById(id); };
+    var root = $("sr-root"), form = $("sr-form");
+    if (!M || !UI) { root.innerHTML = '<div class="empty-state"><h2>Sayfa yüklenemedi</h2><p>sartlar-motor.js ya da sartlar-ui.js bulunamadı.</p></div>'; return; }
+    var esc = UI.esc, src = UI.src, kes = UI.kes, gunYaz = UI.gunYaz;
+    var DIZIN = window.APMEBERRA_ULKE_DIZINI && Array.isArray(window.APMEBERRA_ULKE_DIZINI.ulkeler) ? window.APMEBERRA_ULKE_DIZINI : { ulkeler: [], genelAdimlar: [], dilAd: {} };
+    var DK = {}; DIZIN.ulkeler.forEach(function (u) { DK[u.kod] = u; });
+    var ROTALAR = window.APMEBERRA_ROTALAR || {};
+    var DUYURULAR = Array.isArray(window.APMEBERRA_DUYURULAR) ? window.APMEBERRA_DUYURULAR : [];
+    var YLG = window.APMEBERRA_YL_GENEL || null;
+    var SINAVLAR = Array.isArray(window.APMEBERRA_SINAVLAR) ? window.APMEBERRA_SINAVLAR : [];
+    var ULKE_AD = M.ULKE_ADLARI;
+    var GUEST = !ME || !ME.user;
+    var PROF = !GUEST && ME.profile ? ME.profile : null;
+    var REHBER = { de: "almanya-muhendislik.html", it: "italya-muhendislik.html" };
+    var TUR = { sinav: "Sınav", belge: "Belge", basvuru: "Başvuru", karar: "Karar", hazirlik: "Hazırlık", bilgi: "Bilgi notu", tarih: "Tarih" };
+    var S = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"';
+    var IC = {
+      wait: UI.IC.wait,
+      route: '<svg ' + S + '><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M12 19h4.5a3.5 3.5 0 0 0 0-7h-9a3.5 3.5 0 0 1 0-7H12"/></svg>',
+      rule: '<svg ' + S + '><path d="M12 3l8 4v5c0 5-3.4 8.3-8 9-4.6-.7-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg>',
+      link: '<svg ' + S + '><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>',
+      arrow: '<svg ' + S + '><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+      coach: '<svg ' + S + '><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>',
+      cond: '<svg ' + S + '><circle cx="6" cy="5" r="2"/><circle cx="18" cy="5" r="2"/><circle cx="12" cy="19" r="2"/><path d="M6 7v2a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4V7M12 13v4"/></svg>',
+      globe: '<svg ' + S + '><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>',
+      bell: '<svg ' + S + '><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg>',
+      warn: '<svg ' + S + '><path d="M12 3l10 18H2z"/><path d="M12 10v4M12 17h.01"/></svg>',
+      info: '<svg ' + S + '><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>',
+      uni: '<svg ' + S + '><path d="M3 10l9-6 9 6"/><path d="M5 10v9M19 10v9M9 10v9M15 10v9M3 21h18"/></svg>',
+      exam: '<svg ' + S + '><path d="M9 4h6M9 4a2 2 0 0 0-2 2H5v15h14V6h-2a2 2 0 0 0-2-2"/><path d="M9 12h6M9 16h4"/></svg>',
+      ext: UI.IC.ext
+    };
+    var BOS_METIN = {
+      gerekenler: "Bu seçim için şart maddeleri resmi kaynaklarla doğrulanıyor.",
+      buYil: "Bu sınıfta yapılacaklar listesi resmi kaynaklarla doğrulanıyor.",
+      tarihler: "Tarihler resmi takvimlerle karşılaştırılıyor.",
+      hatalar: "Sık yapılan hatalar listesi derleniyor."
+    };
+    var EK_BOLUMLER = [
+      { id: "apEtkisi", baslik: "AP’nin etkisi", duzey: "lisans" },
+      { id: "burslar", baslik: "Burslar" }
+    ];
+    var YL_ORTAK = [
+      ["belgeler", "Gerekli belgeler"], ["takvim", "Genel takvim"], ["turkiyeBurslari", "Türkiye’den burslar"], ["abBurslari", "AB ve uluslararası burslar"],
+      ["dilSinavlari", "Dil sınavları"], ["gre", "GRE / GMAT"], ["askerlik", "Askerlik"]
+    ];
+
+    function bugun() {
+      var o = window.APMEBERRA_BUGUN; // yalnızca test için (addInitScript)
+      return typeof o === "string" && /^\d{4}-\d{2}-\d{2}$/.test(o) ? o : new Date();
+    }
+    function duyur(m) { $("sr-duyuru").textContent = ""; setTimeout(function () { $("sr-duyuru").textContent = m; }, 30); }
+    function ccRozet(cc) { return '<span class="cc-rozet" aria-hidden="true">' + esc(String(cc || "").toUpperCase()) + '</span>'; }
+    function kayit(cc) { return DK[cc] || { kod: cc, ad: ULKE_AD[cc] || cc, bulunma: (ULKE_AD[cc] || cc) + "’da", yerelDil: [], program: null, veri: { dosya: true } }; }
+    function bulunma(k) { return String(k.bulunma || k.ad).replace(/'/g, "’"); }
+    function duzeyAd(d) { return d === "yl" ? "yüksek lisans" : "lisans"; }
+    function duzeyKisa(d) { return d === "yl" ? "YL" : "lisans"; }
+    function dilEtiket(dil, k) { return M.dilAd(dil, k, DIZIN.dilAd); }
+    function kimKisa(s) { return s.model === "lise" ? (s.sinif ? s.sinif + ". sınıf" : "Lise öğrencisi") : M.modelAd(s.model); }
+    function tam(s) { return !!(s.model && (s.model !== "lise" || s.sinif) && s.ulke); }
+
+    // ---------------- Seçim ----------------
+    var secim = M.secimCoz(location.search);
+    var acik = false; // tam seçimde "Seçimi değiştir" ile açılan seçici
+    var cizimNo = 0;
+
+    function ulkeGridHtml() {
+      var duzey = secim.model ? M.duzeyOf(secim.model) : "lisans";
+      var yalniz = $("sr-yalniz-en").checked;
+      var bilinen = DIZIN.ulkeler.some(function (k) { return M.programDurumu(k, duzey, "en") !== "veri-yok"; });
+      var gosterilen = 0;
+      function kart(k) {
+        var d = M.programDurumu(k, duzey, "en");
+        var gizli = yalniz && bilinen && d !== "genis" && d !== "kisitli";
+        if (!gizli) gosterilen++;
+        return '<label class="sr-ulke' + (k.kod === secim.ulke ? " is-checked" : "") + '" data-ulke="' + esc(k.kod) + '"' + (gizli ? " hidden" : "") + '>' +
+          '<input type="radio" name="ulke" value="' + esc(k.kod) + '"' + (k.kod === secim.ulke ? " checked" : "") + '>' +
+          '<span class="sr-ulke-in">' +
+            '<span class="sr-ulke-top">' + ccRozet(k.kod) + '<strong>' + esc(k.ad) + '</strong>' + (k.rozet ? '<span class="mz-rozet">' + esc(k.rozet) + '</span>' : "") + '</span>' +
+            '<span class="sr-ulke-meta">' + UI.durumRozet(d, "EN " + duzeyKisa(duzey)) + '</span>' +
+            (M.ozetUyari(k, duzey, "en") ? '<span class="sr-ulke-uyari"><span aria-hidden="true">! </span>' + esc(M.ozetUyari(k, duzey, "en").metin) + '</span>' : "") +
+            '<span class="sr-ulke-sub">Yerel: ' + esc(k.yerelDilAd || "—") + (k.tarihliRota && k.tarihliRota[duzey] ? ' · <span class="sr-ulke-rota">Tarihli rota</span>' : "") + '</span>' +
+          '</span></label>';
+      }
+      var ana = DIZIN.ulkeler.filter(function (k) { return k.grup === "ana"; });
+      var diger = DIZIN.ulkeler.filter(function (k) { return k.grup !== "ana"; }).sort(function (a, b) { return a.ad.localeCompare(b.ad, "tr"); });
+      var html = '<p class="sr-ulke-grup-h">Tarihli rotası olanlar</p><div class="sr-ulke-grid">' + ana.map(kart).join("") + '</div>' +
+        '<p class="sr-ulke-grup-h">Diğer ülkeler</p><div class="sr-ulke-grid">' + diger.map(kart).join("") + '</div>';
+      $("sr-ulke-grid").innerHTML = html;
+      $("sr-ulke-say").textContent = DIZIN.ulkeler.length + " ülke · " + gosterilen + " gösteriliyor";
+      $("sr-yalniz-metin").textContent = "Yalnızca İngilizce " + duzeyAd(duzey) + " programı olanlar";
+      $("sr-yalniz-en").disabled = !bilinen;
+      var not = $("sr-yalniz-not");
+      not.hidden = bilinen;
+      not.textContent = bilinen ? "" : "Bu süzgeç, ülkelerin ilk 20 üniversite listeleri eklenince kullanılabilir. Şimdilik her ülkenin rozeti “Hazırlanıyor” gösteriyor.";
+    }
+
+    function formuEsle() {
+      form.querySelectorAll("input[name=model]").forEach(function (i) { i.checked = i.value === secim.model; i.closest(".sr-card").classList.toggle("is-checked", i.checked); });
+      form.querySelectorAll("input[name=sinif]").forEach(function (i) { i.checked = i.value === secim.sinif; });
+      form.querySelectorAll("input[name=ulke]").forEach(function (i) { i.checked = i.value === secim.ulke; i.closest(".sr-ulke").classList.toggle("is-checked", i.checked); });
+      form.querySelectorAll("input[name=dil]").forEach(function (i) { i.checked = i.value === secim.dil; });
+      var k = secim.ulke ? kayit(secim.ulke) : null;
+      var ie = !!(k && M.yalnizIngilizce(k.kod, k));
+      $("sr-yerel-ad").textContent = k && k.yerelDilAd && !ie ? "Yerel dil (" + k.yerelDilAd + ")" : "Yerel dil";
+      var yr = form.querySelector("input[name=dil][value=yerel]");
+      yr.disabled = ie;
+      $("sr-dil-not").hidden = !ie;
+      $("sr-dil-not").textContent = ie ? "İrlanda’da öğretim dili İngilizce; yerel dil seçeneği yok." : "";
+      // Adım görünürlüğü ve numaraları
+      var lise = secim.model === "lise" || !secim.model;
+      $("sr-f-sinif").hidden = !lise;
+      var n = 1;
+      ["sr-f-model", "sr-f-sinif", "sr-f-ulke", "sr-f-dil"].forEach(function (id) { var f = $(id); if (!f.hidden) f.querySelector(".sr-no").textContent = n++; });
+      $("sr-f-sinif").classList.toggle("is-soluk", !secim.model);
+      $("sr-f-ulke").classList.toggle("is-soluk", !secim.model || (secim.model === "lise" && !secim.sinif));
+      $("sr-f-dil").classList.toggle("is-soluk", !secim.ulke);
+      // Özet çubuğu ve kompakt görünüm
+      var t = tam(secim);
+      form.classList.toggle("is-kompakt", t && !acik);
+      $("sr-ozetbar").hidden = !t;
+      $("sr-adimlar").hidden = t && !acik;
+      $("sr-degistir").setAttribute("aria-expanded", String(t && acik));
+      $("sr-degistir").textContent = acik ? "Seçimi kapat" : "Seçimi değiştir";
+      if (t) {
+        $("sr-ozet-chips").innerHTML = [esc(secim.model === "lise" ? "Lise · " + kimKisa(secim) : kimKisa(secim)), ccRozet(secim.ulke) + esc(k.ad), esc(dilEtiket(secim.dil, k))]
+          .map(function (x) { return '<span class="sr-ozet-chip">' + x + '</span>'; }).join('<span class="sr-ozet-ayrac" aria-hidden="true">·</span>');
+      }
+    }
+
+    function adresiYaz(push) {
+      var url = M.secimAdres("sartlar.html", secim) + (push ? "" : location.hash);
+      try { history[push ? "pushState" : "replaceState"](null, "", url); } catch (e) { /* file:// bazı tarayıcılarda */ }
+      var q = A && A.erisim ? A.erisim.secimSorgusu("?" + (url.split("?")[1] || "").split("#")[0]) : "";
+      document.querySelectorAll(".nav-login, .nav-guest-mobile .btn-ghost").forEach(function (a) { a.setAttribute("href", "giris.html" + q); });
+      document.querySelectorAll(".nav-signup, .nav-guest-mobile .btn-primary").forEach(function (a) { a.setAttribute("href", "giris.html" + q + "#kayit"); });
+    }
+
+    // ---------------- Bileşenler ----------------
+    function introHtml() {
+      var eksik = !secim.model ? "durum" : secim.model === "lise" && !secim.sinif ? "sinif" : "ulke";
+      var BASLIK = { durum: "Önce durumunu seç", sinif: "Şimdi sınıfını seç", ulke: "Şimdi ülkeni seç" };
+      var METIN = {
+        durum: "Lise öğrencisi, lise mezunu ya da üniversite mezunu olmana göre farklı şartlar ve takvimler geçerli. Seçimin adres satırına yazılır; bağlantıyı paylaşabilirsin. Hiçbir şey kaydedilmez.",
+        sinif: "Sınıfına göre bu yıl yapman gerekenler ve takvim tarihleri değişir.",
+        ulke: "Yukarıdaki 15 ülkeden birini seç. Kartlardaki rozet, ülkede İngilizce " + duzeyAd(secim.duzey || "lisans") + " programı olup olmadığını gösterir."
+      };
+      var kendi = null;
+      if (PROF && PROF.ogrenciModeli && Array.isArray(PROF.ulkeler) && PROF.ulkeler.length) {
+        kendi = { model: PROF.ogrenciModeli, sinif: PROF.ogrenciModeli === "lise" ? PROF.sinif : null, ulke: PROF.ulkeler.indexOf(PROF.aktifRota) >= 0 ? PROF.aktifRota : PROF.ulkeler[0], dil: PROF.egitimDili === "yerel" ? "yerel" : "en" };
+      }
+      return '<section class="sr-intro" aria-labelledby="sr-intro-h">' +
+        '<span class="sr-intro-ico" aria-hidden="true">' + IC.globe + '</span>' +
+        '<h2 id="sr-intro-h">' + BASLIK[eksik] + '</h2>' +
+        '<p>' + esc(METIN[eksik]) + '</p>' +
+        '<ol class="sr-intro-list">' +
+          '<li><span aria-hidden="true">' + UI.IC.gerekenler + '</span>Ne gerekiyor</li>' +
+          '<li><span aria-hidden="true">' + UI.IC.tarihler + '</span>Kaçırılmaması gereken tarihler</li>' +
+          '<li><span aria-hidden="true">' + UI.IC.hatalar + '</span>Sık yapılan hatalar</li>' +
+          '<li><span aria-hidden="true">' + UI.IC.burslar + '</span>Burslar ve ilk 20 üniversite</li>' +
+        '</ol>' +
+        (kendi ? '<div class="btn-row u-jcenter"><a class="btn-ghost" id="sr-kendi" href="' + esc(M.secimAdres("sartlar.html", kendi)) + '" data-secim=\'' + esc(JSON.stringify(kendi)) + '\'>Kendi profilime göre göster (' +
+          esc(ULKE_AD[kendi.ulke] + " · " + kimKisa(kendi)) + ')</a></div>' : "") +
+      '</section>';
+    }
+
+    function koclukHtml() {
+      var ul = secim.ulke;
+      if (!GUEST) {
+        var benim = PROF && Array.isArray(PROF.ulkeler) && PROF.ulkeler.indexOf(ul) >= 0;
+        return '<div class="sr-cta surface"><span class="sr-cta-ico" aria-hidden="true">' + IC.coach + '</span><div class="u-min0">' +
+          '<h2>Kişisel koçluğun açık</h2><p>' + (benim ? "Bu ülke profilinde var; adımların Rotam sayfasında." : "Bu ülkeyi rotana eklemek için profilindeki hedef ülkeleri güncelle.") + '</p>' +
+          '<div class="btn-row">' + (benim ? '<a class="btn-primary" href="rota.html?ulke=' + ul + '">Rotamı aç' + IC.arrow + '</a>' : '<a class="btn-primary" href="profil.html#pf-ulkeler-group">Profilimi düzenle</a>') +
+          '<a class="btn-ghost" href="index.html">Bugün ekranına git</a></div></div></div>';
+      }
+      var q = M.secimAdres("giris.html", secim);
+      return '<div class="sr-cta surface"><span class="sr-cta-ico" aria-hidden="true">' + IC.coach + '</span><div class="u-min0">' +
+        '<h2>Kişisel koçluk</h2>' +
+        '<p>' + (secim.model === "uni-mezun" ? "Kişisel yol haritası, belge kontrol listesi ve resmi yazışmalar" : "Ders çalışma, soru çözme, denemeler, kişisel rota ve resmi yazışmalar") +
+        ' hesabınla açılır. Seçimin (' + esc(ULKE_AD[ul] + " · " + kimKisa(secim)) + ') profiline taşınır.</p>' +
+        '<div class="btn-row"><a class="btn-primary" id="sr-kocluk" href="' + esc(q) + '#kayit">Kişisel koçluğu başlat' + IC.arrow + '</a>' +
+        '<a class="btn-ghost" href="' + esc(q) + '">Hesabım var, giriş yap</a></div></div></div>';
+    }
+
+    var DONEM_AD = function (d) {
+      if (!d) return "Zamanı belirsiz";
+      if (d.tur === "sinif") return d.sinif === "12" ? "12. sınıf (son sınıf)" : d.sinif + ". sınıf";
+      if (d.tur === "yaz") return d.sonra + ". sınıftan sonraki yaz";
+      if (d.tur === "mezuniyetYazi") return "Mezuniyet yazı";
+      if (d.tur === "sonra") return "Mezuniyetten sonra";
+      return "Diğer";
+    };
+    function donemKey(d) { return d ? d.tur + ":" + (d.sinif || d.sonra || d.fark || "") : "yok"; }
+    function adimHtml(a) {
+      var ay = a.goreli.split(" · ")[1] || "";
+      return '<li class="sr-step' + (a.buYil ? " is-now" : "") + (a.gecti ? " is-past" : "") + '">' +
+        '<div class="sr-step-when"><span class="sr-step-month">' + esc(ay || "—") + '</span>' + (a.tarih ? '<span class="sr-step-cal">' + esc(a.tarih) + '</span>' : "") + '</div>' +
+        '<div class="sr-step-body">' +
+          '<div class="rs-top">' +
+            (a.gecti ? '<span class="rs-flag sr-flag-past">Tarihi geçti</span>' : "") +
+            (TUR[a.tur] ? '<span class="rs-tag">' + TUR[a.tur] + '</span>' : "") +
+            '<span class="rs-tag' + (a.zorunlu ? " rs-tag-req" : "") + '">' + (a.zorunlu ? "Zorunlu" : "İsteğe bağlı") + '</span>' +
+            kes(a.kesinlik) +
+          '</div>' +
+          '<h4>' + esc(a.baslik) + '</h4>' +
+          (a.metin ? '<p class="rs-when">' + esc(a.metin) + '</p>' : "") +
+          (a.kosulNotu ? '<p class="rs-kosul">' + IC.cond + '<span>' + esc(a.kosulNotu) + '</span></p>' : "") +
+          (a.detay ? '<details class="clamp-note"><summary>Ayrıntılar</summary><p class="rs-detail">' + esc(a.detay) + '</p></details>' : "") +
+          '<div class="sr-step-foot">' + src(a.kaynak) + '</div>' +
+        '</div></li>';
+    }
+    /** DE/IT lisans: tarihli rota verisinden genel yol haritası (Tur 10 davranışı aynen) */
+    function tarihliYolHtml(ulke, sinif) {
+      var rv = ROTALAR[ulke];
+      var y = M.yolHaritasi(rv, sinif, bugun(), secim.dil);
+      var tk = rv.temelKural || {};
+      var gruplar = [], son = null;
+      y.adimlar.forEach(function (a) {
+        var k = donemKey(a.donem);
+        if (!son || son.k !== k) { son = { k: k, d: a.donem, list: [], now: false }; gruplar.push(son); }
+        son.list.push(a); if (a.buYil) son.now = true;
+      });
+      var lead = y.adimlar.length + " adım" +
+        (y.gizlenen ? " · " + y.gizlenen + " adım " + M.sinifAd(sinif).toLocaleLowerCase("tr-TR") + " için geçerli olmadığından gizlendi" : "") +
+        (y.gizlenenDil ? " · " + y.gizlenenDil + " adım " + (secim.dil === "yerel" ? "İngilizce" : "yerel dil") + " yoluna ait olduğundan gizlendi" : "") +
+        (y.mezuniyetYili ? ". Takvim tarihleri Haziran " + y.mezuniyetYili + " mezuniyetine göre hesaplandı." : ". Zamanlar lise mezuniyetine göre göreli yazıldı; mezunsan “12. sınıf” dönemini başvuracağın yıldan önceki öğretim yılı olarak oku.") +
+        (y.hedefYili ? " Kesinlik etiketleri en erken hedef olan " + y.hedefYili + "/" + String((y.hedefYili + 1) % 100).padStart(2, "0") + " akademik yılına göre gösterilir; giriş yapınca Rotam kendi hedef yılına göre hesaplar." : "");
+      return '<section class="sr-road" id="sr-yol" aria-labelledby="sr-yol-h">' +
+        '<div class="sr-road-head"><h2 id="sr-yol-h">' + IC.route + 'Genel yol haritası <span class="rs-tag">Tarihli rota</span></h2>' +
+          '<p>' + esc(ULKE_AD[ulke]) + ' rotasının doğrulanmış adımları, durumuna göre süzülmüş hâliyle. ' + esc(lead) + '</p></div>' +
+        (tk.baslik ? '<div class="surface sr-rule"><span class="sr-rule-ico" aria-hidden="true">' + IC.rule + '</span><div class="u-min0">' +
+          '<span class="uni-sub">Temel kural</span><h3>' + esc(tk.baslik) + '</h3>' +
+          (tk.detay ? '<details class="clamp-note"><summary>Kuralın ayrıntısı</summary><p>' + esc(tk.detay) + '</p></details>' : "") +
+          '<div class="sr-meta">' + kes(tk.kesinlik) + src(tk.kaynak) + '</div></div></div>' : "") +
+        (gruplar.length ? gruplar.map(function (g, i) {
+          var gid = "sr-g-" + i;
+          return '<section class="sr-phase' + (g.now ? " is-now" : "") + '" aria-labelledby="' + gid + '">' +
+            '<h3 class="sr-phase-h" id="' + gid + '"><span>' + esc(DONEM_AD(g.d)) + '</span>' + (g.now ? '<span class="rs-flag rs-flag-now">Bu yıl</span>' : "") + '<span class="rs-count">' + g.list.length + '</span></h3>' +
+            '<ol class="sr-steps">' + g.list.map(adimHtml).join("") + '</ol></section>';
+        }).join("") : '<div class="sr-empty">' + IC.wait + '<div><strong>Bu sınıf için adım yok</strong><p>Başka bir sınıf seçerek genel takvimi görebilirsin.</p></div></div>') +
+      '</section>';
+    }
+    /** Diğer ülkeler ve YL: göreli genel yol haritası (D7) */
+    function genelYolHtml(veri, k) {
+      var g = M.genelYol(veri, DIZIN.genelAdimlar, secim, { hedefYil: PROF && PROF.hedefBaslangicYili }, bugun());
+      var ay = g.baslangicYili ? g.baslangicYili + "/" + String((g.baslangicYili + 1) % 100).padStart(2, "0") : "";
+      var neden = secim.duzey === "yl" ? "Yüksek lisans için tarihli kişisel rota henüz yok." : "Tarihli kişisel rota yalnızca Almanya ve İtalya lisans için hazır.";
+      return '<section class="sr-road" id="sr-yol" aria-labelledby="sr-yol-h">' +
+        '<div class="sr-road-head"><h2 id="sr-yol-h">' + IC.route + 'Genel yol haritası <span class="rs-tag">Genel</span></h2>' +
+          '<p>' + esc(neden + " Bu liste " + k.ad + " için göreli zamanlı genel adımlardır" + (ay ? "; takvim ayları " + ay + " akademik yılının başlangıcına (Eylül) göre tahminidir." : ".") +
+          " “Genel öneri” adımları mevzuat bilgisi değildir; ülkenin kaynaklı tarihleri kesinlik etiketiyle gösterilir.") + '</p></div>' +
+        '<ol class="sr-steps sr-steps-genel">' + g.adimlar.map(function (a) {
+          return '<li class="sr-step' + (a.gecti ? " is-past" : "") + '" data-adim="' + esc(a.id) + '">' +
+            '<div class="sr-step-when"><span class="sr-step-month">' + esc(a.tarih ? a.tarih.split(" ")[0] : "—") + '</span>' +
+              '<span class="sr-step-cal">' + esc(a.goreli) + '</span></div>' +
+            '<div class="sr-step-body"><div class="rs-top">' +
+              (a.gecti ? '<span class="rs-flag sr-flag-past">Tarihi geçti</span>' : "") +
+              (a.genel ? '<span class="rs-tag">Genel öneri</span>' : (TUR[a.tur] ? '<span class="rs-tag">' + TUR[a.tur] + '</span>' : "")) +
+              (a.tahmini ? '<span class="rs-tag rs-tag-tahmin">Tahmini: ' + esc(a.tarih) + '</span>' : "") +
+              (a.genel ? "" : kes(a.kesinlik)) +
+            '</div><h4>' + esc(a.baslik) + '</h4>' +
+            (a.metin ? '<p class="rs-when">' + esc(a.metin) + '</p>' : "") +
+            (a.detay ? '<details class="clamp-note"><summary>Ayrıntılar</summary><p class="rs-detail">' + esc(a.detay) + '</p></details>' : "") +
+            (a.kaynak && a.kaynak.length ? '<div class="sr-step-foot">' + a.kaynak.map(function (x) { return src(x && x.url, x && x.ad); }).join("") + '</div>' : "") +
+          '</div></li>';
+        }).join("") + '</ol></section>';
+    }
+
+    /**
+     * Tur 12 (plan tur12-ekran-plani.md §1.2): dil sınavları sınav motorundan süzülür (ülke × model düzeyi × eğitim dili).
+     * YL'de ayrıca yüksek lisans giriş sınavları (GRE/GMAT). Kayıt yoksa bölüm "hazırlanıyor" notuyla yine görünür (15 ülke).
+     */
+    function dilSinavlariHtml(k) {
+      var SMo = window.APMEBERRA_SINAV_MOTOR;
+      var yl = secim.duzey === "yl";
+      var list = !SMo ? [] : SMo.suz(SINAVLAR, { model: secim.model, ulke: k.kod, dil: secim.dil }, { dizin: DK }).filter(function (x) {
+        return x.kategori === "Dil Sınavı" || (yl && x.kategori === "Giriş Sınavı" && SMo.duzeyleri(x).indexOf("yl") >= 0);
+      });
+      var baslik = yl ? "Dil sınavları ve GRE/GMAT" : "Dil sınavları";
+      var q = SMo ? SMo.secimAdres("sinavlar.html", { model: secim.model, sinif: secim.sinif, ulke: k.kod, dil: secim.dil }) : "sinavlar.html?ulke=" + k.kod;
+      var head = '<div class="sr-sec-head"><span class="sr-sec-ico" aria-hidden="true">' + IC.exam + '</span><h2 id="sr-sinavlar-h">' + baslik + '</h2><span class="rs-count">' + list.length + '</span></div>';
+      if (!list.length) {
+        return '<section class="sr-sinav" id="sr-sinavlar" aria-labelledby="sr-sinavlar-h">' + head +
+          '<div class="sr-empty">' + IC.wait + '<div><strong>Bu ülke için dil sınavı kaydı hazırlanıyor</strong><p>' + esc(k.ad) + ' için ' + (secim.dil === "yerel" ? esc(dilEtiket("yerel", k)) + " dil sınavları" : "İngilizce dil sınavları") +
+          ' resmi kaynaklardan sınav kartlarına ekleniyor. Dil şartı yukarıdaki “Ne gerekiyor” maddelerinde.</p><a href="' + esc(SMo ? SMo.secimAdres("sinavlar.html", { model: secim.model, sinif: secim.sinif, dil: "hepsi" }) : "sinavlar.html") + '">Tüm sınavlar</a></div></div></section>';
+      }
+      return '<section class="sr-sinav" id="sr-sinavlar" aria-labelledby="sr-sinavlar-h">' + head +
+        '<div class="chip-group">' + list.map(function (x) { return '<a class="chip" href="' + esc(q) + '#' + esc(x.id) + '">' + esc(x.ad) + '</a>'; }).join("") + '</div></section>';
+    }
+
+    /**
+     * Tur 14 A4 (plan §2.3-B): "En iyi 20" listesi artık yalnızca Hedefim › Üniversiteler'de (aynı veri iki kez listelenmez).
+     * Burada sıralama bilgisi, seçime uyan üniversite sayısı ve Üniversiteler sekmesine bağlantı kartı kalır (#sr-ilk20 çapası korunur).
+     */
+    function ilk20Html(veri, k) {
+      var hedef = "universiteler.html?ulke=" + k.kod + "&duzey=" + secim.duzey + "&dil=" + secim.dil;
+      var U = veri && veri.universiteler && Array.isArray(veri.universiteler.liste) ? veri.universiteler : null;
+      var head = '<div class="sr-sec-head"><span class="sr-sec-ico" aria-hidden="true">' + IC.uni + '</span><h2 id="sr-ilk20-h">Üniversiteler</h2></div>';
+      if (!U || !U.liste.length) {
+        return '<section class="sr-ilk20" id="sr-ilk20" aria-labelledby="sr-ilk20-h">' + head +
+          '<div class="sr-empty">' + IC.wait + '<div><strong>İlk 20 listesi hazırlanıyor</strong><p>' + esc(k.ad) + ' için QS sıralamasına göre ilk 20 üniversite ve programlarının dili resmi sayfalarından doğrulanıyor.</p></div></div></section>';
+      }
+      var r = M.universiteSuz(U.liste, { duzey: secim.duzey, dil: secim.dil });
+      var sir = U.siralama || {};
+      var ilk3 = r.liste.slice(0, 3).map(function (u) { return u.ad; });
+      return '<section class="sr-ilk20" id="sr-ilk20" aria-labelledby="sr-ilk20-h">' + head +
+        '<div class="sr-uni-kart">' +
+          '<span class="sr-uni-kart-say" aria-hidden="true"><b>' + r.eslesen + '</b><small>/ ' + r.toplam + '</small></span>' +
+          '<div class="sr-uni-kart-govde"><strong>' + esc("Bu ülkenin " + r.toplam + " üniversitesi") + '</strong>' +
+            '<span>' + esc(r.eslesen + " tanesi " + dilEtiket(secim.dil, k) + " " + duzeyAd(secim.duzey) + " sunuyor" + (r.teyit ? " · " + r.teyit + " doğrulanamadı" : "") + ". İstenen sınavlar, hazırlayan dersler ve ilk e-posta Üniversiteler sekmesinde.") + '</span>' +
+            (ilk3.length ? '<span class="sr-uni-kart-ilk">' + esc("İlk sıradakiler: " + ilk3.join(" · ")) + '</span>' : "") +
+            '<p class="sr-ilk20-foot"><a class="btn-primary btn-sm" href="' + esc(hedef) + '">' + r.toplam + ' üniversitenin tümünü gör' + IC.arrow + '</a></p>' +
+          '</div></div>' +
+        '<p class="sr-ilk20-lead">' + UI.siralamaHtml(sir) + '</p>' +
+        (r.toplam < 20 ? '<p class="field-hint">' + esc((sir.ad || "Sıralama") + " listesinde " + k.ad + "’dan " + r.toplam + " üniversite var; listenin tamamı bu.") + '</p>' : "") + '</section>';
+    }
+
+    function maddeListeHtml(list) { return '<ul class="sr-items">' + list.map(function (m) { return UI.maddeHtml(m, null); }).join("") + '</ul>'; }
+
+    function bantlarHtml(k, veri, B, durum) {
+      var h = "", dAd = dilEtiket(secim.dil, k), zAd = duzeyAd(secim.duzey);
+      if (secim.ulke === "ie" || secim.notlar.indexOf("ie-yerel") >= 0) {
+        h += '<aside class="alert sr-band" data-bant="ie">' + IC.info + '<div class="u-min0"><strong>İrlanda’da öğretim dili İngilizce; yerel dil seçeneği yok.</strong></div></aside>';
+      }
+      if (durum === "yok") {
+        h += '<aside class="alert alert-bad sr-band" data-bant="yok">' + IC.warn + '<div class="u-min0"><strong>' + esc(bulunma(k) + " " + dAd + " " + zAd + " programı yok.") + '</strong>' +
+          '<p>İlk 20’de ' + esc(dAd + " " + zAd) + ' sunan üniversite bulunamadı.</p>' +
+          (secim.dil === "en" && !M.yalnizIngilizce(k.kod, k) ? '<button type="button" class="btn-ghost btn-sm" data-dil-gec="yerel">Yerel dil şartlarını gör</button>' : "") + '</div></aside>';
+      } else if (durum === "kisitli") {
+        // PM kuralı: özet yalnızca "var" (en az 3 program) sayısına bakar; bantta iki sayı ayrı yazılır
+        var alanK = secim.duzey === "yl" ? "yuksekLisans" : "lisans", dilK = M.yalnizIngilizce(k.kod, k) ? "en" : secim.dil;
+        var liste = veri && veri.universiteler ? veri.universiteler.liste || [] : [];
+        var nVar = liste.filter(function (u) { return (u[alanK] || {})[dilK] === "var"; }).length;
+        var nKis = liste.filter(function (u) { return (u[alanK] || {})[dilK] === "kismi"; }).length;
+        h += '<aside class="alert alert-warn sr-band" data-bant="kisitli">' + IC.warn + '<div class="u-min0"><strong>' + esc(dAd + " " + zAd + " programı kısıtlı:") + '</strong> ' +
+          esc("ilk " + liste.length + " üniversiteden " + nVar + " tanesinde en az 3 program, " + nKis + " tanesinde 1–2 program var.") + ' <a href="#sr-ilk20">Üniversitelere geç</a></div></aside>';
+      } else if (durum === "teyit") {
+        h += '<aside class="alert alert-warn sr-band" data-bant="teyit">' + IC.warn + '<div class="u-min0"><strong>' + esc(dAd + " " + zAd + " programlarının durumu teyit gerektiriyor.") + '</strong> Bu bilgi resmi yazılı yanıtla teyit edilmedi.</div></aside>';
+      }
+      if (k.rozet === "Teyit gerekir") {
+        h += '<aside class="alert alert-warn sr-band" data-bant="rozet">' + IC.warn + '<div class="u-min0"><strong>Teyit gerekir.</strong> Bu ülkedeki bazı temel şartlar henüz resmi yazılı yanıtla teyit edilmedi; maddelerdeki kesinlik etiketlerine bak.</div></aside>';
+      }
+      if (secim.model === "lise-mezun" && k.mezunNotu) {
+        var mn = k.mezunNotu;
+        h += '<aside class="alert sr-band" data-bant="mezun-notu">' + IC.info + '<div class="u-min0"><strong>' + esc(mn.baslik || "Ön değerlendirme") + '</strong><p>' + esc(mn.metin) + '</p>' +
+          '<div class="sr-meta"><span class="sr-srcs">' + (mn.kaynak || []).map(function (x) { return src(x.url, x.ad); }).join("") + '</span>' + (mn.sonKontrol ? '<span class="sr-checked">Son kontrol: ' + esc(gunYaz(mn.sonKontrol)) + '</span>' : "") + '</div></div></aside>';
+      }
+      if (B && B.uyarilar.length) {
+        h += '<section class="sr-uyari alert alert-warn sr-band" data-bant="uyarilar" aria-label="Uyarılar">' + IC.warn + '<div class="u-min0"><strong>Uyarılar</strong>' + maddeListeHtml(B.uyarilar) + '</div></section>';
+      }
+      var duy = M.duyuruSuz(DUYURULAR, secim, bugun());
+      if (duy.length) {
+        h += '<section class="sr-duyurular" aria-labelledby="sr-duy-h"><h2 class="mz-h" id="sr-duy-h">' + IC.bell + 'Duyurular</h2>' + duy.map(function (d) {
+          return '<article class="mz-duyuru" id="m-' + esc(d.id) + '" data-duyuru="' + esc(d.id) + '">' +
+            '<div class="mz-duyuru-top"><span class="mz-duyuru-son">Son gün: ' + esc(gunYaz(d.bitis)) + '</span>' + kes(d.kesinlik) + '</div>' +
+            '<h3>' + esc(d.baslik) + '</h3><p>' + esc(d.metin) + '</p>' +
+            '<div class="sr-meta"><span class="sr-srcs">' + (d.kaynak || []).map(function (x) { return src(x.url, x.ad); }).join("") + '</span>' +
+            (d.sonKontrol ? '<span class="sr-checked">Son kontrol: ' + esc(gunYaz(d.sonKontrol)) + '</span>' : "") + '</div></article>';
+        }).join("") + '</section>';
+      }
+      return h;
+    }
+
+    function hazirlaniyorHtml(k, hata) {
+      var zAd = duzeyAd(secim.duzey);
+      return '<section class="sr-hazir surface" id="sr-hazir" aria-labelledby="sr-hazir-h">' +
+        '<span class="sr-intro-ico" aria-hidden="true">' + IC.wait + '</span>' +
+        '<h2 id="sr-hazir-h">' + esc(hata ? k.ad + " verisi yüklenemedi." : k.ad + " için " + (secim.duzey === "yl" ? zAd + " " : "") + "şartlar hazırlanıyor.") + '</h2>' +
+        '<p>' + esc(hata ? "Sayfayı yenilemeyi dene. Sorun sürerse veri dosyası eksik olabilir." : "Mevzuat uzmanı resmi kaynakları doğruluyor. Hazır olunca ne gerektiği, tarihler, sık hatalar ve burslar burada görünecek.") + '</p>' +
+        '<div class="btn-row u-jcenter">' +
+          (k.portal ? '<a class="btn-ghost" href="' + esc(k.portal.url) + '" target="_blank" rel="noopener noreferrer">' + esc(k.portal.ad) + IC.ext + '<span class="visually-hidden"> (yeni sekmede açılır)</span></a>' : "") +
+          '<button type="button" class="btn-ghost" data-ulke-sec>Başka ülke seç</button></div></section>';
+    }
+
+    function sonucHtml(veri, hata) {
+      var ul = secim.ulke, k = kayit(ul);
+      var duzey = secim.duzey, dil = secim.dil;
+      var B = veri ? M.ulkeBolumleri(veri, secim, YLG) : null;
+      var varMi = !!(B && B["var"]);
+      var durum = M.programDurumu(k, duzey, dil);
+      var mez = secim.model === "lise" ? M.mezuniyetYili(secim.sinif, bugun()) : null;
+      var bas = M.baslangicYili(secim, { hedefYil: PROF && PROF.hedefBaslangicYili }, bugun());
+      var core = M.BOLUMLER.filter(function (b) { return duzey === "lisans" || b.id !== "buYil"; });
+      var ek = varMi ? EK_BOLUMLER.filter(function (b) { return (!b.duzey || b.duzey === duzey) && B[b.id].length; }) : [];
+      var dolu = varMi ? core.filter(function (b) { return B[b.id].length; }).length + ek.length : 0;
+      var toplamB = core.length + (varMi ? ek.length : 0);
+      var dAd = dilEtiket(dil, k);
+      var rehber = REHBER[ul] && duzey === "lisans" ? '<a class="btn-ghost btn-sm" href="' + REHBER[ul] + '">' + esc(k.ad) + ' rehberi</a>' : "";
+      var ozet = duzey === "yl" ? (k.ylOzet || (veri && veri.yl && veri.yl.ozet) || "") : (k.ozet || (veri && veri.lisans && veri.lisans.ozet) || "");
+      var html =
+        '<div class="sr-top">' +
+          '<section class="sr-summary surface" aria-labelledby="sr-sum-h">' +
+            '<span class="uni-sub">Seçimin</span>' +
+            '<h2 id="sr-sum-h">' + ccRozet(ul) + '<span>' + esc(k.ad + " · " + kimKisa(secim)) + '</span>' + (k.rozet ? '<span class="kesinlik kesinlik-warn">' + esc(k.rozet) + '</span>' : "") + '</h2>' +
+            (ozet ? (function () {
+              // Uzun özet: ilk cümle görünür, devamı açılır alanda (telefonda ilk ekran dolmasın)
+              var kes = ozet.length > 220 ? ozet.indexOf(". ", 90) : -1;
+              return kes > 0 && kes < ozet.length - 40
+                ? '<p class="sr-ozet-p">' + esc(ozet.slice(0, kes + 1)) + '</p><details class="clamp-note sr-ozet-devam"><summary>Özetin devamı</summary><p class="sr-ozet-p">' + esc(ozet.slice(kes + 2)) + '</p></details>'
+                : '<p class="sr-ozet-p">' + esc(ozet) + '</p>';
+            })() : "") +
+            '<dl class="sr-facts">' +
+              (secim.model === "lise"
+                ? '<div><dt>Mezuniyet</dt><dd>' + (mez ? "Haziran " + mez : "—") + '</dd></div>'
+                : '<div><dt>Başlangıç</dt><dd>' + (bas ? (PROF && PROF.hedefBaslangicYili ? "" : "En erken ") + bas + "/" + String((bas + 1) % 100).padStart(2, "0") : "—") + '</dd></div>') +
+              '<div><dt>Eğitim dili</dt><dd>' + esc(dAd) +
+                (M.yalnizIngilizce(ul, k) ? "" : '<button type="button" class="sr-dil-gec" data-dil-gec="' + (dil === "en" ? "yerel" : "en") + '">' + (dil === "en" ? "Yerel dile geç" : "İngilizceye geç") + '</button>') + '</dd></div>' +
+              '<div><dt>' + esc(duzey === "yl" ? "Program (YL)" : "Program (lisans)") + '</dt><dd>' + UI.durumRozet(durum) + '</dd></div>' +
+              '<div><dt>Hazır bölüm</dt><dd>' + dolu + ' / ' + toplamB + '</dd></div>' +
+              (k.sonKontrol ? '<div><dt>Son kontrol</dt><dd>' + esc(gunYaz(k.sonKontrol)) + '</dd></div>' : "") +
+            '</dl>' +
+            UI.ozetUyariHtml(M.ozetUyari(k, duzey, dil)) +
+            '<div class="btn-row"><button type="button" class="btn-ghost btn-sm" id="sr-kopyala">' + IC.link + 'Bağlantıyı kopyala</button>' +
+              '<a class="btn-ghost btn-sm" href="universiteler.html?ulke=' + ul + '&amp;duzey=' + duzey + '&amp;dil=' + dil + '">' + esc(k.ad) + ' üniversiteleri</a>' + rehber + '</div>' +
+            '<p class="field-hint" id="sr-kopya-msg" role="status" aria-live="polite"></p>' +
+          '</section>' +
+          koclukHtml() +
+        '</div>' +
+        bantlarHtml(k, veri, B, durum);
+
+      if (!varMi) {
+        return html + hazirlaniyorHtml(k, hata) + ilk20Html(veri, k) + genelYolHtml(veri, k);
+      }
+      var jump = core.concat(ek).map(function (b) { return '<a class="chip" href="#sr-' + b.id + '">' + esc(b.baslik) + (B[b.id].length ? " (" + B[b.id].length + ")" : "") + '</a>'; });
+      if (duzey === "yl" && B.ornekProgramlar.length) jump.push('<a class="chip" href="#sr-ornek">Örnek programlar (' + B.ornekProgramlar.length + ')</a>');
+      if (duzey === "yl") jump.push('<a class="chip" href="#sr-ylortak">Tüm ülkeler için YL notları</a>');
+      var sinavH = dilSinavlariHtml(k);
+      jump.push('<a class="chip" href="#sr-sinavlar">' + (duzey === "yl" ? "Dil sınavları ve GRE/GMAT" : "Dil sınavları") + '</a>');
+      jump.push('<a class="chip" href="#sr-ilk20">Üniversiteler</a>', '<a class="chip" href="#sr-yol">Yol haritası</a>');
+      html += '<nav class="jump-nav sr-jump" aria-label="Bu sayfadaki bölümler">' + jump.join("") + '</nav>' +
+        '<div class="sr-grid">' + core.map(function (b) {
+          return UI.bolumHtml(b, B[b.id], { mez: mez, bosMetin: BOS_METIN[b.id], bosEk: "Şimdilik aşağıdaki genel yol haritasına bakabilirsin." });
+        }).join("") + '</div>' +
+        (ek.length ? '<div class="sr-grid sr-grid-ek">' + ek.map(function (b) { return UI.bolumHtml(b, B[b.id], { mez: mez }); }).join("") + '</div>' : "");
+      if (duzey === "yl") {
+        if (B.ornekProgramlar.length) {
+          html += '<section class="sr-ornek" id="sr-ornek" aria-labelledby="sr-ornek-h"><div class="sr-sec-head"><span class="sr-sec-ico" aria-hidden="true">' + UI.IC.ornekProgramlar + '</span><h2 id="sr-ornek-h">Örnek programlar</h2><span class="rs-count">' + B.ornekProgramlar.length + '</span></div>' +
+            '<ul class="sr-uni-list">' + B.ornekProgramlar.map(function (p) {
+              return '<li class="sr-uni"><div class="u-min0"><strong>' + esc(p.program) + '</strong><span class="sr-uni-sub">' + esc(p.universite) + (p.dil ? " · " + (p.dil === "en" ? "İngilizce" : dAd) : "") + '</span>' +
+                (p.not ? '<span class="sr-uni-sub">' + esc(p.not) + '</span>' : "") + src(p.url, "Program sayfası") + '</div></li>';
+            }).join("") + '</ul></section>';
+        }
+        html += '<section class="sr-ylortak" id="sr-ylortak" aria-labelledby="sr-ylortak-h"><div class="sr-sec-head"><span class="sr-sec-ico" aria-hidden="true">' + UI.IC.ylOrtak + '</span><h2 id="sr-ylortak-h">Tüm ülkeler için ortak YL notları</h2></div>' +
+          (B.ylOrtak && YL_ORTAK.some(function (x) { return B.ylOrtak[x[0]].length; })
+            ? YL_ORTAK.filter(function (x) { return B.ylOrtak[x[0]].length; }).map(function (x) {
+                return '<details class="sr-yl-grup"><summary>' + esc(x[1]) + ' <span class="rs-count">' + B.ylOrtak[x[0]].length + '</span></summary>' + maddeListeHtml(B.ylOrtak[x[0]]) + '</details>';
+              }).join("")
+            : '<div class="sr-empty">' + IC.wait + '<div><strong>Bu bölüm hazırlanıyor</strong><p>Belgeler, Türkiye ve AB bursları, askerlik ve GRE notları resmi kaynaklarla doğrulanıyor.</p></div></div>') +
+          '</section>';
+      }
+      html += sinavH + ilk20Html(veri, k);
+      html += ROTALAR[ul] && duzey === "lisans" && Array.isArray(ROTALAR[ul].adimlar)
+        ? tarihliYolHtml(ul, secim.model === "lise-mezun" ? "mezun" : secim.sinif)
+        : genelYolHtml(veri, k);
+      return html;
+    }
+
+    // ---------------- Çizim ----------------
+    function ciz(odak) {
+      var no = ++cizimNo;
+      formuEsle();
+      var ul = secim.ulke;
+      document.documentElement.setAttribute("data-rota", ul === "de" || ul === "it" ? ul : (ul ? "genel" : ""));
+      root.classList.toggle("is-intro", !tam(secim));
+      if (!tam(secim)) {
+        document.title = "Ülke şartları | AP MEBERRA";
+        $("sr-h1").textContent = "Avrupa’da lisans ve yüksek lisans: durumuna göre şartlar";
+        root.innerHTML = introHtml();
+        return;
+      }
+      var k = kayit(ul);
+      var baslik = k.ad + " · " + kimKisa(secim) + " · " + dilEtiket(secim.dil, k);
+      document.title = baslik + " şartları | AP MEBERRA";
+      var dilSifat = secim.dil === "en" ? "İngilizce" : (k.yerelDil && k.yerelDil.length > 1 ? "yerel dilde" : dilEtiket("yerel", k));
+      var kim = secim.model === "lise" ? secim.sinif + ". sınıf öğrencisi" : secim.model === "lise-mezun" ? "lise mezunları" : "üniversite mezunları";
+      $("sr-h1").textContent = bulunma(k) + " " + dilSifat + " " + duzeyAd(secim.duzey) + ": " + kim + " için şartlar";
+      root.innerHTML = '<div class="empty-state"><div class="empty-ico" aria-hidden="true"><span class="spinner"></span></div><h2>' + esc(k.ad) + ' verisi yükleniyor…</h2></div>';
+      UI.veriYukle(ul, DK[ul]).then(function (r) {
+        if (no !== cizimNo) return; // bu arada seçim değişti
+        root.innerHTML = sonucHtml(r.veri, r.hata);
+        var kb = $("sr-kopyala"); if (kb) kb.addEventListener("click", kopyala);
+        if (odak) duyur(baslik + " için şartlar gösteriliyor.");
+        if (/^#(sr|m)-[\w-]+$/.test(location.hash) && odak === "hash") { var h = document.getElementById(location.hash.slice(1)); if (h) h.scrollIntoView({ block: "start" }); }
+      });
+    }
+    function kopyala() {
+      var url = location.href.split("#")[0];
+      var msg = $("sr-kopya-msg");
+      function elle() {
+        var t = document.createElement("textarea");
+        t.value = url; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.opacity = "0";
+        document.body.appendChild(t); t.select();
+        var ok = false; try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+        t.remove();
+        msg.textContent = ok ? "Bağlantı kopyalandı." : "Kopyalanamadı; adres satırındaki bağlantıyı kullan.";
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(function () { msg.textContent = "Bağlantı kopyalandı."; }, elle);
+      else elle();
+    }
+    function secimDegisti(yeni) {
+      var onceTam = tam(secim), onceModel = secim.model;
+      secim = yeni;
+      secim.duzey = secim.model ? M.duzeyOf(secim.model) : null;
+      if (secim.model !== "lise") secim.sinif = null;
+      if (secim.ulke && M.yalnizIngilizce(secim.ulke, DK[secim.ulke])) secim.dil = "en";
+      if (!onceTam && tam(secim)) acik = false;
+      if (onceModel !== secim.model) ulkeGridHtml();
+      adresiYaz(!onceTam);
+      ciz(true);
+      if (!onceTam && tam(secim)) { var h = $("sr-h1"); h.scrollIntoView({ block: "start" }); }
+    }
+
+    // ---------------- Olaylar ----------------
+    form.addEventListener("change", function (e) {
+      var t = e.target; if (!t || !t.name) return;
+      if (t.name === "yalniz-en") { ulkeGridHtml(); formuEsle(); return; }
+      var y = { model: secim.model, sinif: secim.sinif, ulke: secim.ulke, dil: secim.dil, notlar: [] };
+      y[t.name] = t.value;
+      secimDegisti(y);
+      var odak = form.querySelector('input[name="' + t.name + '"][value="' + t.value + '"]');
+      if (odak && !odak.closest("[hidden]")) odak.focus();
+    });
+    form.addEventListener("submit", function (e) { e.preventDefault(); });
+    $("sr-degistir").addEventListener("click", function () {
+      acik = !acik; formuEsle();
+      if (acik) { var i = form.querySelector("#sr-adimlar input:checked") || form.querySelector("#sr-adimlar input"); if (i) i.focus(); }
+    });
+    root.addEventListener("click", function (e) {
+      var tog = e.target.closest(".sr-req-toggle");
+      if (tog) {
+        var drId = tog.getAttribute("aria-controls");
+        var dr = document.getElementById(drId);
+        if (dr) {
+          var open = !dr.hidden;
+          dr.hidden = open;
+          tog.setAttribute("aria-expanded", String(!open));
+        }
+        return;
+      }
+      var cls = e.target.closest(".sr-drawer-close");
+      if (cls) {
+        var drId2 = cls.getAttribute("aria-controls");
+        var dr2 = document.getElementById(drId2);
+        if (dr2) {
+          dr2.hidden = true;
+          var b2 = root.querySelector('[aria-controls="' + drId2 + '"]');
+          if (b2) b2.setAttribute("aria-expanded", "false");
+        }
+        return;
+      }
+      var a = e.target.closest("[data-secim]");
+      if (a) {
+        e.preventDefault();
+        var s; try { s = JSON.parse(a.getAttribute("data-secim")); } catch (x) { return; }
+        acik = false; s.notlar = []; secimDegisti(s); return;
+      }
+      var d = e.target.closest("[data-dil-gec]");
+      if (d) { secimDegisti({ model: secim.model, sinif: secim.sinif, ulke: secim.ulke, dil: d.getAttribute("data-dil-gec"), notlar: [] }); return; }
+      if (e.target.closest("[data-ulke-sec]")) {
+        acik = true; formuEsle();
+        var u = form.querySelector("input[name=ulke]:checked") || form.querySelector("input[name=ulke]");
+        if (u) { u.closest(".sr-ulke").scrollIntoView({ block: "center" }); u.focus(); }
+      }
+    });
+    window.addEventListener("popstate", function () {
+      var onceModel = secim.model;
+      secim = M.secimCoz(location.search);
+      if (onceModel !== secim.model) ulkeGridHtml();
+      adresiYaz(false); ciz(false);
+    });
+
+    // ---------------- Tur 14 A4: kişisel paneller (plan §2.3-A "mezun/YL panellerinin içeriği Hedefim'e taşınır") ----------------
+    // Seçimden bağımsızdır (profilin modeline göre): duyurular tüm ülkelerden, YL belge listesi rota durumunda (genel.belgeler).
+    // Bugün ekranındaki bilgi şeridi buraya (#mezun-panel / #yl-panel) bağlanır; çapa paneli açar.
+    function kisiselCiz() {
+      var kut = $("sr-kisisel");
+      if (!kut || GUEST || !PROF) return;
+      var model = PROF.ogrenciModeli, html = "", hash = location.hash;
+      var duy = M.duyuruSuz(DUYURULAR, { model: model }, bugun());
+      if (model === "lise-mezun" || duy.length) {
+        var d0 = duy.slice().sort(function (a, b) { return String(a.bitis).localeCompare(String(b.bitis)); })[0];
+        html += '<details class="surface mz-panel sr-kisisel-panel" id="mezun-panel" data-kisisel="duyuru"' + (hash === "#mezun-panel" ? " open" : "") + '>' +
+          '<summary><span class="sr-kisisel-ico" aria-hidden="true">' + IC.bell + '</span><span class="u-min0 sr-kisisel-baslik"><span class="uni-sub">Senin için</span>' +
+            '<h2 id="mzp-title">' + (model === "lise-mezun" ? "Lise mezunları için duyurular" : "Senin için duyurular") + ' <span class="rs-count">' + duy.length + '</span></h2>' +
+            '<span class="sr-kisisel-alt">' + (d0 ? "En yakın son gün: " + esc(gunYaz(d0.bitis)) : "Şu an açık duyuru yok") + '</span></span>' +
+            '<span class="sr-kisisel-ok" aria-hidden="true"></span></summary>' +
+          '<div class="sr-kisisel-govde">' +
+          (duy.length ? '<ul class="mz-panel-list">' + duy.map(function (d) {
+            var k = (d.kaynak || [])[0];
+            return '<li class="mz-panel-item" data-duyuru="' + esc(d.id) + '"><span class="mz-duyuru-son">Son gün: ' + esc(gunYaz(d.bitis)) + '</span><strong>' + esc(d.baslik) + '</strong><p>' + esc(d.metin) + '</p>' +
+              (k ? src(k.url, k.ad) : "") + '</li>';
+          }).join("") + '</ul>' : '<p class="le-meta">Şu an açık bir duyuru yok. 15 ülkenin lise mezunu şartları bu sayfada; ülkeni seçerek bakabilirsin.</p>') +
+          '<p class="sr-kisisel-foot"><a data-tum-sartlar href="sartlar.html?model=' + esc(model || "lise") + '">Tüm ülkelerin şartları →</a></p></div></details>';
+      }
+      var belgeler = [];
+      if (model === "uni-mezun") {
+        belgeler = YLG && Array.isArray(YLG.belgeler) && M.maddeDogrula ? YLG.belgeler.filter(function (m) { return !M.maddeDogrula(m).length; }) : [];
+        var dil = PROF.egitimDili === "yerel" ? "yerel" : "en";
+        var ul = Array.isArray(PROF.ulkeler) ? PROF.ulkeler : [];
+        var durum = A && A.rota ? ((A.rota.durum().genel || {}).belgeler || {}) : {};
+        html += '<details class="surface yl-panel sr-kisisel-panel" id="yl-panel" data-kisisel="yl"' + (hash === "#yl-panel" ? " open" : "") + '>' +
+          '<summary><span class="sr-kisisel-ico" aria-hidden="true">' + UI.IC.ylOrtak + '</span><span class="u-min0 sr-kisisel-baslik"><span class="uni-sub">Senin için · Yüksek lisans</span>' +
+            '<h2 id="ylp-title">Başvuru dosyan</h2><span class="sr-kisisel-alt" id="yl-say"></span><span class="sr-kisisel-bar" aria-hidden="true"><span id="yl-bar"></span></span></span>' +
+            '<span class="sr-kisisel-ok" aria-hidden="true"></span></summary>' +
+          '<div class="sr-kisisel-govde">' +
+          (belgeler.length
+            ? '<ul class="yl-belgeler">' + belgeler.map(function (m) {
+                var id = "ylb-" + esc(m.id || "");
+                return '<li><label class="check-row"><input type="checkbox" data-yl-belge="' + esc(m.id || "") + '" id="' + id + '"' + (durum[m.id] ? " checked" : "") + '> <span><strong>' + esc(m.baslik || m.metin) + '</strong>' + (m.baslik ? '<small>' + esc(m.metin) + '</small>' : "") + '</span></label></li>';
+              }).join("") + '</ul>'
+            : '<p class="le-meta">Belge kontrol listesi (diploma, transkript, niyet mektubu, referanslar, dil belgesi) resmi kaynaklarla hazırlanıyor. Aşağıda her ülkenin istediği belgeleri görebilirsin.</p>') +
+          '<p class="le-meta yl-dil">Eğitim dili: <strong>' + (dil === "en" ? "İngilizce" : "Yerel dil") + '</strong> · Hedef ülkeler: ' + esc(ul.map(function (u) { return ULKE_AD[u] || u; }).join(", ") || "—") +
+            ' · <a href="sinavlar.html?model=uni-mezun">Dil sınavları ve GRE</a></p></div></details>';
+      }
+      kut.innerHTML = html;
+      kut.hidden = !html;
+      function ylSayYaz() {
+        var say = $("yl-say"); if (!say) return;
+        var dr = A && A.rota ? ((A.rota.durum().genel || {}).belgeler || {}) : {};
+        var ks = A && A.hedefim ? A.hedefim.ylKalan(belgeler, dr) : null;
+        say.textContent = ks ? ks.hazir + " / " + ks.toplam + " belge hazır" + (ks.ilk ? " · sıradaki: " + ks.ilk : "") : "Belge listesi hazırlanıyor";
+        $("yl-bar").style.width = ks && ks.toplam ? Math.round(ks.hazir / ks.toplam * 100) + "%" : "0%";
+      }
+      ylSayYaz();
+      kut.addEventListener("change", function (e) {
+        var t = e.target; if (!t || !t.dataset.ylBelge || !window.APMEBERRA_ROTA || !A.rota) return;
+        A.rota.durumYaz(window.APMEBERRA_ROTA.belgeIsaretle(A.rota.durum(), "genel", t.dataset.ylBelge, t.checked));
+        ylSayYaz();
+      });
+      var hedef = hash === "#mezun-panel" || hash === "#yl-panel" ? document.getElementById(hash.slice(1)) : null;
+      if (hedef) setTimeout(function () { hedef.scrollIntoView({ block: "start" }); }, 0);
+    }
+    kisiselCiz();
+    // Oturumlu öğrencide "Giriş gerekmez" ibaresi anlamsız (Hedefim alanının parçası)
+    if (!GUEST) { var ebq = document.querySelector(".sr-head .eyebrow"); if (ebq) ebq.textContent = "Ülke şartları"; }
+
+    var sorun = M.dizinDogrula(DIZIN);
+    if (sorun.length && window.console) console.warn("data/mevzuat/ulke-dizini.js şema uyarıları:", sorun);
+    if (DIZIN.sonKontrol) $("sr-kontrol").textContent = "Bu sayfadaki maddeler en son " + gunYaz(DIZIN.sonKontrol) + " tarihinde resmi kaynaklarla karşılaştırıldı. Başvurmadan önce her maddeyi kaynağından ve üniversitenin güncel çağrısından kontrol et.";
+    ulkeGridHtml();
+    adresiYaz(false);
+    ciz("hash");
+  })();
+  </script>
+</body>
+</html>

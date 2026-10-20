@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seviye Testi & Sınav Hazırlık Raporu | AP MEBERRA</title>
+  <meta name="description" content="AP sınav kaydından önce kısa tanı testi: ders ve ünite bazında hazırlık, sınava kadar açığın kapanıp kapanmayacağı ve kayıt / sınav günü kontrol listesi.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      startup: {
+        ready: function () {
+          MathJax.startup.defaultReady();
+          MathJax.startup.promise.then(function () { if (window.APMEBERRA_SEVIYE_MJ_HAZIR) window.APMEBERRA_SEVIYE_MJ_HAZIR(); });
+        }
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async id="MathJax-script"></script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="brand-badge">AP MEBERRA</div>
+      <div>
+        <div class="brand-title">Seviye Testi</div>
+        <div class="brand-subtitle">Sınav hazırlık raporu</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Ana Sayfa</a></li>
+      <li><a href="seviye-testi.html" class="nav-link" aria-current="page">Seviye Testi</a></li>
+      <li><a href="ilerleme.html" class="nav-link">İlerleme</a></li>
+      <li><a href="bilgi-merkezi.html" class="nav-link">Bilgi Merkezi</a></li>
+    </ul>
+    <div class="nav-actions"></div>
+  </nav>
+
+  <main class="main-container sv-main" id="main-content">
+
+    <p class="sv-live visually-hidden" id="sv-live" aria-live="polite" aria-atomic="true"></p>
+
+    <div class="sv-loading" id="sv-loading" role="status">Soru dosyaları yükleniyor…</div>
+
+    <!-- 1. BAŞLANGIÇ -->
+    <section id="sv-start" aria-labelledby="sv-start-title" hidden>
+      <header class="page-head">
+        <span class="eyebrow">Seviye Testi</span>
+        <h1 id="sv-start-title" tabindex="-1">AP kaydından önce: hangi derste ne kadar hazırsın?</h1>
+        <p>Her ünitenin en temel kavramını ölçen kısa bir tanı testi. Test sırasında doğru/yanlış gösterilmez; bitirince ders ve ünite bazında hazırlığını, sınava kadar açığın kapanıp kapanmayacağını ve kayıt için yapman gerekenleri gösteren bir rapor alırsın.</p>
+      </header>
+
+      <div id="sv-deadline"></div>
+
+      <div class="sv-resume" id="sv-resume" role="region" aria-label="Yarım kalan test" tabindex="-1" hidden></div>
+
+      <div class="sv-disclaimer is-soft" role="note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+        <p>Rapor bir AP puanı tahmini değildir; kısa bir tanı testine dayanan planlama aracıdır. Kayıt kararını öğretmeninle birlikte ver.</p>
+      </div>
+
+      <form class="surface sv-form" id="sv-form" novalidate>
+        <fieldset class="sv-fieldset">
+          <legend class="sv-legend" id="sv-courses-legend" tabindex="-1">1. Dersleri seç</legend>
+          <p class="side-note">Calculus için AB ya da BC’den yalnızca birini seçebilirsin. Soru dosyası henüz hazır olmayan dersler soluk görünür.</p>
+          <div class="sv-courses" id="sv-courses"></div>
+          <p class="sv-empty-note" id="sv-courses-empty" hidden>Şu an hiçbir dersin tanı soruları yüklenemedi. Soru dosyaları <code>data/sorular/seviye/</code> klasörüne eklendikçe dersler burada açılır.</p>
+          <p class="sv-form-msg" id="sv-form-msg" role="alert"></p>
+        </fieldset>
+
+        <div class="sv-form-row">
+          <div class="calc-field sv-hours-field">
+            <label class="calc-label sv-legend" for="sv-hours">2. Haftada AP’ye ayırabileceğim saat</label>
+            <div class="sv-hours-input"><input class="calc-input" type="number" id="sv-hours" name="sv-hours" value="15" min="5" max="18" step="0.5" inputmode="decimal" aria-describedby="sv-hours-help sv-hours-msg"><span aria-hidden="true">saat / hafta</span></div>
+            <span class="side-note" id="sv-hours-help">5–18 arası. Öneri: haftalık AP çalışması en fazla 18 saat. Bu saat, seçtiğin derslere eşit bölünür.</span>
+            <span class="sv-form-msg" id="sv-hours-msg" role="alert"></span>
+          </div>
+          <div class="calc-field">
+            <span class="calc-label sv-legend">3. Mod</span>
+            <label class="sv-switch"><input type="checkbox" id="sv-timed" name="sv-timed"><span class="sv-switch-ui" aria-hidden="true"></span><span><strong>Süreli mod</strong><span class="side-note sv-block">Toplam süre, soruların önerilen sürelerinin toplamıdır. Süre bitince kalan sorular cevapsız sayılır.</span></span></label>
+          </div>
+        </div>
+
+        <div class="sv-start-foot">
+          <p class="sv-estimate" id="sv-estimate" aria-live="polite"></p>
+          <button type="submit" class="btn-primary sv-start-btn" id="sv-start-btn" disabled>Testi başlat</button>
+        </div>
+        <p class="side-note" id="sv-last-report" hidden></p>
+      </form>
+    </section>
+
+    <!-- 2. TEST -->
+    <section id="sv-test" aria-label="Seviye testi" hidden>
+      <div class="sv-test-bar" id="sv-test-bar">
+        <div class="sv-test-bar-row">
+          <div class="sv-test-where"><strong id="sv-test-course"></strong><span id="sv-test-pos"></span></div>
+          <div class="sv-test-tools">
+            <span class="sv-timer" id="sv-timer" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="visually-hidden">Kalan süre</span><span id="sv-timer-val" role="timer" aria-live="off">00:00</span></span>
+            <button type="button" class="btn-ghost" id="sv-pause">Kaydet ve çık</button>
+            <button type="button" class="btn-ghost" id="sv-finish">Testi bitir</button>
+          </div>
+        </div>
+        <div class="quiz-progress">
+          <div class="quiz-progress-track" id="sv-test-progress" role="progressbar" aria-label="İşaretlenen soru" aria-valuemin="0" aria-valuenow="0" aria-valuemax="1"><div class="sv-progress-fill" id="sv-test-progress-fill"></div></div>
+          <span class="quiz-progress-label" id="sv-test-progress-label">0 / 0</span>
+        </div>
+      </div>
+
+      <div class="sv-confirm" id="sv-finish-confirm" role="alertdialog" aria-labelledby="sv-finish-confirm-title" aria-describedby="sv-finish-text" hidden>
+        <h2 id="sv-finish-confirm-title" tabindex="-1">Testi şimdi bitirmek istiyor musun?</h2>
+        <p id="sv-finish-text"></p>
+        <div class="sv-actions">
+          <button type="button" class="btn-primary" id="sv-finish-yes">Evet, bitir ve raporu gör</button>
+          <button type="button" class="btn-ghost" id="sv-finish-no">Teste dön</button>
+        </div>
+      </div>
+
+      <form id="sv-q-form" novalidate>
+        <article class="question-card sv-q-card" id="sv-q-card"></article>
+        <p class="sv-form-msg" id="sv-q-msg" role="alert"></p>
+        <div class="sv-q-actions">
+          <button type="button" class="btn-ghost" id="sv-prev">← Önceki</button>
+          <button type="button" class="btn-ghost" id="sv-skip">Bilmiyorum / atla</button>
+          <button type="submit" class="btn-primary" id="sv-next">İleri →</button>
+        </div>
+        <p class="kbd-hint sv-kbd"><kbd>A</kbd>–<kbd>D</kbd> ya da <kbd>1</kbd>–<kbd>4</kbd> şık seçer · <kbd>Enter</kbd> ileri · <kbd>0</kbd> bilmiyorum / atla · Test sırasında doğru/yanlış gösterilmez; cevapların her adımda bu cihaza kaydedilir.</p>
+      </form>
+    </section>
+
+    <!-- 3. RAPOR -->
+    <section id="sv-report" class="sv-report" aria-labelledby="sv-report-title" hidden></section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom u-mt-0">
+      <div>© 2026 AP Meberra • Seviye testi soruları <code>data/sorular/seviye/</code>, sınav takvimi <code>data/mevzuat/sinav-takvimi.js</code> dosyasından okunur. Sonuçlar yalnızca bu tarayıcıda saklanır — taşımak için <a href="ilerleme.html#yedek-title">Yedekle / Taşı</a></div>
+      <div><a href="index.html">← Ana Sayfaya Dön</a></div>
+    </div>
+  </footer>
+
+  <script src="data/mevzuat/sinav-takvimi.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/seviye.js"></script>
+</body>
+</html>

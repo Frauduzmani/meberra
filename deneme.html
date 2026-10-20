@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deneme Sınavı | AP MEBERRA</title>
+  <meta name="description" content="AP dersleri için süreli ya da süresiz çoktan seçmeli deneme: ders bazında ve karma genel deneme, Bluebook benzeri ekran, ünite bazında sonuç, soru soru inceleme ve Hata Defteri bağlantısı.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/deneme.css">
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async id="MathJax-script"></script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="brand-badge">AP MEBERRA</div>
+      <div>
+        <div class="brand-title">Deneme Sınavı</div>
+        <div class="brand-subtitle">Ders bazında ve genel deneme</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Ana Sayfa</a></li>
+      <li><a href="deneme.html" class="nav-link" aria-current="page">Deneme</a></li>
+      <li><a href="seviye-testi.html" class="nav-link">Seviye Testi</a></li>
+      <li><a href="ilerleme.html" class="nav-link">İlerleme</a></li>
+    </ul>
+    <div class="nav-actions"></div>
+  </nav>
+
+  <main class="main-container dn-main" id="main-content">
+    <p class="visually-hidden" id="dn-live" aria-live="polite" aria-atomic="true"></p>
+    <div id="dn-view">
+      <noscript><p>Deneme sınavı için JavaScript gerekir.</p></noscript>
+      <p class="dn-loading" role="status">Deneme yükleniyor…</p>
+    </div>
+  </main>
+
+  <footer class="footer dn-footer-site">
+    <div class="footer-bottom u-mt-0">
+      <div>© 2026 AP Meberra • Deneme soruları ders sayfalarındaki soru bankasından üretilir (<code>data/sorular/deneme-bankasi.js</code>). Sonuçlar yalnızca bu tarayıcıda saklanır — taşımak için <a href="ilerleme.html#yedek-title">Yedekle / Taşı</a></div>
+      <div><a href="index.html">← Bugün ekranına dön</a></div>
+    </div>
+  </footer>
+
+  <script src="data/sorular/deneme-bankasi.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/deneme.js"></script>
+</body>
+</html>
