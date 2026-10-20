@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>İlerleme & Hata Defteri | AP MEBERRA</title>
+  <title>İlerleme & Hata Defteri | Meberra</title>
   <meta name="description" content="Öğrencinin AP soru bankası ilerlemesi: ders ve ünite bazında çözülen, doğru, yanlış sayıları, Kırmızı/Sarı/Yeşil bölge rozetleri ve Hata Defteri.">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
@@ -12,7 +12,7 @@
 
   <nav class="navbar">
     <a href="index.html" class="nav-brand">
-      <div class="brand-badge">AP MEBERRA</div>
+      <div class="brand-badge">Meberra</div>
       <div>
         <div class="brand-title">İlerleme</div>
         <div class="brand-subtitle">Soru bankası & Hata Defteri</div>
@@ -170,7 +170,7 @@
             </label>
             <label class="mode-opt is-danger">
               <input type="radio" name="backup-mode" value="replace">
-              <span><strong>Değiştir</strong><span>Bu cihazdaki tüm AP MEBERRA verisi silinir, yerine yedektekiler yazılır.</span></span>
+              <span><strong>Değiştir</strong><span>Bu cihazdaki tüm Meberra verisi silinir, yerine yedektekiler yazılır.</span></span>
             </label>
           </fieldset>
           <div class="backup-actions">
@@ -199,7 +199,7 @@
 
   <footer class="footer">
     <div class="footer-bottom u-mt-0">
-      <div>© 2026 AP Meberra • İlerleme verileri yalnızca bu tarayıcıda (localStorage) tutulur — taşımak için <a href="#yedek-title">Yedekle / Taşı</a></div>
+      <div>© 2026 Meberra • İlerleme verileri yalnızca bu tarayıcıda (localStorage) tutulur — taşımak için <a href="#yedek-title">Yedekle / Taşı</a></div>
       <div><a href="index.html">← Ana Sayfaya Dön</a></div>
     </div>
   </footer>
@@ -212,7 +212,7 @@
     var ME = window.APMEBERRA_ME;
     if (ME && ME.user) {
       document.getElementById("ilerleme-eyebrow").textContent = "İlerleme · " + (ME.user.ad + " " + ME.user.soyad).trim();
-      document.title = "İlerleme & Hata Defteri — " + ME.user.ad + " | AP MEBERRA";
+      document.title = "İlerleme & Hata Defteri — " + ME.user.ad + " | Meberra";
     }
     var showResolved = false;
     var courseFilter = "all";
@@ -438,7 +438,7 @@
         closePreview();
         clearMsg();
         if (!f) return;
-        if (f.size > 5 * 1024 * 1024) { showMsg("bad", "Dosya çok büyük (5 MB üstü). Bu bir AP MEBERRA yedeği gibi görünmüyor. Hiçbir veri değiştirilmedi.", true); return; }
+        if (f.size > 5 * 1024 * 1024) { showMsg("bad", "Dosya çok büyük (5 MB üstü). Bu bir Meberra yedeği gibi görünmüyor. Hiçbir veri değiştirilmedi.", true); return; }
         var reader = new FileReader();
         reader.onerror = function () { showMsg("bad", "Dosya okunamadı. Hiçbir veri değiştirilmedi.", true); };
         reader.onload = function () {

@@ -1,5 +1,5 @@
 /**
- * AP MEBERRA — Hesap ve oturum katmanı (Ajan 11, Tur 5)
+ * Meberra — Hesap ve oturum katmanı (Ajan 11, Tur 5)
  * Sözleşme: .agents/rules/tur5-platform-spec.md §2
  *
  * - Şifre düz metin SAKLANMAZ: PBKDF2-SHA-256, 16 bayt rastgele salt, 150.000 iterasyon.
@@ -817,11 +817,138 @@
       return Promise.resolve(manual());
     },
     recoveryText: function (user, code) {
-      return "AP MEBERRA — Hesap kurtarma kodu\r\n\r\nKullanıcı adı: " + user.kullaniciAdi + "\r\nKurtarma kodu: " + code +
+      return "Meberra — Hesap kurtarma kodu\r\n\r\nKullanıcı adı: " + user.kullaniciAdi + "\r\nKurtarma kodu: " + code +
         "\r\nOluşturma: " + new Date().toLocaleString("tr-TR") +
         "\r\n\r\nŞifreni unutursan giriş sayfasındaki \"Şifremi unuttum\" bağlantısıyla bu kodu kullanarak yeni şifre belirleyebilirsin.\r\nKod tek kullanımlıktır; kullandığında yenisi verilir. Bu dosyayı kimseyle paylaşma.\r\n";
     }
   };
+
+  // ------------------------------------------------------------------------
+  // 6. SUNUCU MODU (Meberra sunucusu sayfaya <meta name="meberra-api"> ekler)
+  //    Hesap ve şifre sunucuda; tarayıcıdaki "apmeberra-hesap:v1:*" anahtarları yalnızca oturum önbelleğidir
+  //    (app.js oturum korumasının eşzamanlı okuması için). Öğrenci verisi app.js MEBERRA_SYNC ile senkronlanır.
+  // ------------------------------------------------------------------------
+  var SUNUCU = typeof document !== "undefined" && !!document.querySelector('meta[name="meberra-api"]');
+  api.sunucu = SUNUCU;
+  if (SUNUCU) {
+    var AG_HATA = "Sunucuya ulaşılamadı. İnternet bağlantını kontrol edip tekrar dene.";
+    var UYELIK_KEY = P + "uyelik";
+    var istek = function (yontem, yol, govde) {
+      return fetch(yol, {
+        method: yontem, credentials: "same-origin",
+        headers: { "Content-Type": "application/json", "X-Meberra": "1" },
+        body: govde ? JSON.stringify(govde) : undefined
+      }).then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (j) { j.durum = r.status; if (j.ok === undefined) j.ok = r.ok; return j; });
+      }, function () { return { ok: false, durum: 0, error: AG_HATA }; });
+    };
+    var sessiz = function (fn) { var S = window.MEBERRA_SYNC; return S && S.sessiz ? S.sessiz(fn) : fn(); };
+    var onbellekTemizle = function () {
+      sessiz(function () {
+        liveKeys().forEach(lsDel);
+        [KEYS.users, KEYS.session, KEYS.active, KEYS.orphan, UYELIK_KEY, P + "kuyruk", P + "son-cekme"].forEach(lsDel);
+        try {
+          for (var i = window.localStorage.length - 1; i >= 0; i--) {
+            var k = window.localStorage.key(i);
+            if (k && (k.indexOf(P + "profil:") === 0 || k.indexOf(P + "veri:") === 0)) lsDel(k);
+          }
+        } catch (e) { /* yok say */ }
+      });
+    };
+    /** Sunucu yanıtını (user, profile, uyelik, state) tarayıcı önbelleğine yazar; canlı veriyi sunucudakiyle değiştirir. */
+    var oturumYaz = function (res) {
+      var u = res.user;
+      onbellekTemizle();
+      sessiz(function () {
+        lsSet(KEYS.users, [{ id: u.id, ad: u.ad, soyad: u.soyad, kullaniciAdi: u.kullaniciAdi, eposta: u.eposta, rol: u.rol, olusturma: u.olusturma }]);
+        if (res.profile) lsSet(KEYS.profile(u.id), res.profile);
+        lsSet(UYELIK_KEY, res.uyelik || { premium: false });
+        var st = res.state || {};
+        Object.keys(st).forEach(function (k) {
+          if (k.indexOf(LIVE_PREFIX) === 0 && st[k] && typeof st[k].deger === "string") window.localStorage.setItem(k, st[k].deger);
+        });
+        lsSet(P + "son-cekme", new Date().toISOString());
+        lsSet(KEYS.active, u.id);
+        lsSet(KEYS.session, { id: u.id, baslangic: new Date().toISOString(), sunucu: true });
+      });
+      return { id: u.id, ad: u.ad, soyad: u.soyad, kullaniciAdi: u.kullaniciAdi, eposta: u.eposta, rol: u.rol, olusturma: u.olusturma };
+    };
+    var hataEsle = function (j) {
+      var e = {};
+      Object.keys(j.errors || {}).forEach(function (k) { e[k === "eposta" ? "kullaniciAdi" : k] = j.errors[k]; });
+      if (!Object.keys(e).length) e.genel = j.error || AG_HATA;
+      return e;
+    };
+
+    store.available = function () { return Promise.resolve(true); };
+    store.saveProfile = function (id, p) {
+      return istek("PUT", "/api/profile", { profile: p }).then(function (j) {
+        if (!j.ok) throw new Error(j.error || AG_HATA);
+        sessiz(function () { lsSet(KEYS.profile(id), j.profile || p); });
+        return j.profile || p;
+      });
+    };
+
+    api.register = function (f) {
+      f = f || {};
+      return istek("POST", "/api/auth/register", {
+        ad: f.ad, soyad: f.soyad, eposta: String(f.eposta || f.kullaniciAdi || "").trim(), sifre: f.sifre, sifre2: f.sifre2,
+        kosullar: !!f.kosullar, kvkk: !!f.kvkk, veliOnay: !!f.veliOnay
+      }).then(function (j) {
+        if (!j.ok) return { ok: false, errors: hataEsle(j) };
+        return { ok: true, user: oturumYaz(j), orphan: null };
+      });
+    };
+    api.login = function (kimlik, sifre) {
+      return istek("POST", "/api/auth/login", { kimlik: kimlik, sifre: sifre }).then(function (j) {
+        if (!j.ok) return { ok: false, error: j.error || AG_HATA };
+        return { ok: true, user: oturumYaz(j), orphan: null };
+      });
+    };
+    api.logout = function () {
+      var S = window.MEBERRA_SYNC;
+      return Promise.resolve(S && S.gonder ? S.gonder() : null).catch(function () { return null; })
+        .then(function () { return istek("POST", "/api/auth/logout"); })
+        .then(function () { onbellekTemizle(); return { ok: true }; });
+    };
+    api.changePassword = function (id, eski, yeni, yeni2) {
+      return istek("POST", "/api/auth/password", { eski: eski, yeni: yeni, yeni2: yeni2 }).then(function (j) {
+        return j.ok ? { ok: true } : { ok: false, errors: hataEsle(j) };
+      });
+    };
+    api.sifreUnuttum = function (eposta) { return istek("POST", "/api/auth/forgot", { eposta: eposta }); };
+    api.sifreSifirla = function (token, yeni, yeni2) {
+      return istek("POST", "/api/auth/reset", { token: token, yeni: yeni, yeni2: yeni2 }).then(function (j) {
+        return j.ok ? { ok: true } : { ok: false, errors: hataEsle(j) };
+      });
+    };
+    api.hesapSil = function (sifre) {
+      return istek("POST", "/api/account/delete", { sifre: sifre }).then(function (j) {
+        if (j.ok) onbellekTemizle();
+        return j.ok ? { ok: true } : { ok: false, errors: hataEsle(j) };
+      });
+    };
+    api.premiumTalep = function (plan, odeyenAd, aciklama) {
+      return istek("POST", "/api/premium/talep", { plan: plan, odeyenAd: odeyenAd, aciklama: aciklama }).then(function (j) {
+        if (j.ok && j.uyelik) sessiz(function () { lsSet(UYELIK_KEY, j.uyelik); });
+        return j.ok ? { ok: true, talep: j.talep, uyelik: j.uyelik } : { ok: false, errors: hataEsle(j), error: j.error };
+      });
+    };
+    api.premiumDurum = function () {
+      return istek("GET", "/api/premium").then(function (j) {
+        if (j.ok && j.uyelik) sessiz(function () { lsSet(UYELIK_KEY, j.uyelik); });
+        return j;
+      });
+    };
+    api.uyelik = function () { return lsGet(UYELIK_KEY) || { premium: false }; };
+    // Kurtarma kodu ve cihaz içi "sahipsiz veri" yalnızca tarayıcı modunda vardır
+    api.resetWithRecovery = function () { return Promise.resolve({ ok: false, errors: { genel: "Şifreni e-postayla sıfırla: giriş sayfasında “Şifremi unuttum”a bas." } }); };
+    api.newRecoveryCode = function () { return Promise.resolve({ ok: false, errors: { genel: "Kurtarma kodu artık gerekmiyor; şifreni e-postayla sıfırlayabilirsin." } }); };
+    api.orphanInfo = function () { return Promise.resolve(null); };
+    api.anyOrphan = function () { return Promise.resolve(null); };
+    api.acceptOrphan = function () { return Promise.resolve({ ok: true }); };
+    api.declineOrphan = function () { return Promise.resolve(); };
+  }
 
   window.APMEBERRA_AUTH = api;
 })();

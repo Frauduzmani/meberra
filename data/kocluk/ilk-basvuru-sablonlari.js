@@ -1,4 +1,4 @@
-// AP MEBERRA — Üniversiteye ilk başvuru e-postası şablonları (Tur 14, Ajan 14 eposta-uzmani, Faz 1). Hazırlanma: 19 Ekim 2026.
+// Meberra — Üniversiteye ilk başvuru e-postası şablonları (Tur 14, Ajan 14 eposta-uzmani, Faz 1). Hazırlanma: 19 Ekim 2026.
 // Motor: assets/js/eposta.js > ilkBasvuruHazirla(profil, kullanici, universite, ulkeKod, amac)
 // Plan: .agents/rules/tur14-ilk-basvuru-eposta-plani.md · Yönergeler: kaynaklar/eposta-ornekleri/anonim/yonergeler.md (Y1–Y11, K1–K10)
 //

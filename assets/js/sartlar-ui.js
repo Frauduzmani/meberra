@@ -1,5 +1,5 @@
 /**
- * AP MEBERRA — Şartlar sayfaları için ortak madde bileşeni (Ajan 11, Tur 10)
+ * Meberra — Şartlar sayfaları için ortak madde bileşeni (Ajan 11, Tur 10)
  * Kullanan sayfalar: sartlar.html (Almanya / İtalya, sınıfa göre) ve mezun.html (Mezun Menüsü).
  * Yalnızca HTML dizesi üretir; DOM'a ve depolamaya dokunmaz. Madde şeması data/mevzuat/sartlar.js ile aynıdır:
  * {id, baslik?, metin, kaynak: [{ad, url}], kesinlik, sonKontrol, zaman?}

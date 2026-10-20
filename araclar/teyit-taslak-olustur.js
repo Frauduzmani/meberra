@@ -1,4 +1,4 @@
-// AP MEBERRA — Hazır teyit e-postası taslakları üreticisi (Ajan 11, Tur 12; plan .agents/rules/tur12-ekran-plani.md Y2–Y5)
+// Meberra — Hazır teyit e-postası taslakları üreticisi (Ajan 11, Tur 12; plan .agents/rules/tur12-ekran-plani.md Y2–Y5)
 // Kullanım (proje klasöründen): node araclar/teyit-taslak-olustur.js [--kuru]
 // Girdi : .agents/mevzuat/teyit-taslaklari-tur11.json  ({olusturma, sayi, taslaklar: [{ulke, tur, kime, konu, metin}]}, Ajan 13)
 // Çıktı : data/kocluk/teyit-taslaklari.js              (window.APMEBERRA_TEYIT_TASLAKLARI; ELLE DÜZENLENMEZ)
@@ -120,7 +120,7 @@ function yazilacak(r) {
     sayi: r.taslaklar.length,
     taslaklar: r.taslaklar
   };
-  return "// AP MEBERRA — Hazır teyit e-postası taslakları (Tur 12). ÜRETİLMİŞ DOSYA: elle düzenlemeyin.\n" +
+  return "// Meberra — Hazır teyit e-postası taslakları (Tur 12). ÜRETİLMİŞ DOSYA: elle düzenlemeyin.\n" +
     "// Üretici: node araclar/teyit-taslak-olustur.js · Girdi: .agents/mevzuat/teyit-taslaklari-tur11.json (Ajan 13).\n" +
     "// eposta yalnızca data/mevzuat/kaynak/*.json içinde kaynaklı bir maddede geçen adrestir (epostaKaynak); adresAdayi mailto'ya yazılmaz.\n" +
     "window.APMEBERRA_TEYIT_TASLAKLARI = " + JSON.stringify(veri, null, 1) + ";\n";

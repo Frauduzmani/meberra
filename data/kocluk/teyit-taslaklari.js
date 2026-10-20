@@ -1,4 +1,4 @@
-// AP MEBERRA — Hazır teyit e-postası taslakları (Tur 12). ÜRETİLMİŞ DOSYA: elle düzenlemeyin.
+// Meberra — Hazır teyit e-postası taslakları (Tur 12). ÜRETİLMİŞ DOSYA: elle düzenlemeyin.
 // Üretici: node araclar/teyit-taslak-olustur.js · Girdi: .agents/mevzuat/teyit-taslaklari-tur11.json (Ajan 13).
 // eposta yalnızca data/mevzuat/kaynak/*.json içinde kaynaklı bir maddede geçen adrestir (epostaKaynak); adresAdayi mailto'ya yazılmaz.
 window.APMEBERRA_TEYIT_TASLAKLARI = {

@@ -1,4 +1,4 @@
-// AP MEBERRA — Seviye Testi (Tanı Sınavı): AP English Language and Composition
+// Meberra — Seviye Testi (Tanı Sınavı): AP English Language and Composition
 // Hazırlayan: Claire Bennett (MA, Oxon) — Kural 13: soru metinleri %100 İngilizce.
 // Yapı: CED üniteleri beceri sarmalı (spiral) olduğundan tanı "ünitesi" = Big Idea × Bölüm.
 //   R1–R4: Reading (Skill 1, 3, 5, 7)   W1–W4: Writing (Skill 2, 4, 6, 8)

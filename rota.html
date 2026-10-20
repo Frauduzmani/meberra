@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rotam | AP MEBERRA</title>
+  <title>Rotam | Meberra</title>
   <meta name="description" content="Seçtiğin ülkenin kabul kuralları, sınıfına göre tarihlenmiş adımlar, belge kontrol listesi ve rotanın sınavları.">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
@@ -12,7 +12,7 @@
 
   <nav class="navbar">
     <a href="index.html" class="nav-brand">
-      <div class="brand-badge">AP MEBERRA</div>
+      <div class="brand-badge">Meberra</div>
       <div><div class="brand-title">Rotam</div></div>
     </a>
     <div class="nav-actions"></div>
@@ -260,7 +260,7 @@
     function ciz(odakAdim) {
       var v = A.rota.veri(aktif);
       $("rota-h1").textContent = ULKE_AD[aktif] ? ULKE_AD[aktif] + " rotası" : "Rotam";
-      document.title = (ULKE_AD[aktif] ? ULKE_AD[aktif] + " rotası" : "Rotam") + " | AP MEBERRA";
+      document.title = (ULKE_AD[aktif] ? ULKE_AD[aktif] + " rotası" : "Rotam") + " | Meberra";
       document.documentElement.setAttribute("data-rota", aktif === "de" || aktif === "it" ? aktif : (aktif ? "genel" : ""));
       panel.setAttribute("data-ulke", aktif || "");
       if (ulkeler.length > 1) panel.setAttribute("aria-labelledby", "rtab-" + aktif);

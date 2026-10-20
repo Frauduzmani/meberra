@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium | Meberra</title>
+  <meta name="description" content="Meberra Premium: tüm üniteler, sınırsız deneme ve tahmini puan bandı. Havale/EFT ile öde, onaylandığında hesabına tanımlansın.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+  <nav class="navbar"><a href="index.html" class="nav-brand"><div class="brand-badge">Meberra</div></a></nav>
+  <main class="main-container pr-sayfa" id="main-content">
+    <header class="pr-ust">
+      <span class="section-tag">Premium</span>
+      <h1>Tüm ünitelere ve sınırsız denemeye geç</h1>
+      <p class="pr-alt">Ödemeni havale/EFT ile yap, aşağıdan bildir. Onaylandığında Premium hesabına tanımlanır (genellikle 1 iş günü içinde).</p>
+    </header>
+
+    <div class="pr-durum" id="pr-durum" aria-live="polite"></div>
+
+    <div class="pr-izgara" id="pr-akis">
+      <section class="surface pr-kart" aria-labelledby="pr-plan-h">
+        <h2 id="pr-plan-h"><span class="pr-adim">1</span>Planını seç</h2>
+        <fieldset class="pr-planlar" id="pr-planlar"><legend class="visually-hidden">Plan</legend></fieldset>
+        <ul class="pr-fayda">
+          <li>Her derste tüm üniteler: İngilizce konu anlatımı ve AP tarzı sorular</li>
+          <li>Sınırsız ders denemesi ve genel deneme, tahmini puan bandı</li>
+          <li>Yanlışlarım, çalışma serisi ve kişisel rota (ücretsiz planda da var)</li>
+        </ul>
+      </section>
+
+      <section class="surface pr-kart" aria-labelledby="pr-banka-h">
+        <h2 id="pr-banka-h"><span class="pr-adim">2</span>Havale / EFT yap</h2>
+        <dl class="pr-banka" id="pr-banka">
+          <div><dt>Banka</dt><dd id="pr-banka-ad">—</dd></div>
+          <div><dt>Hesap sahibi</dt><dd id="pr-sahip">—</dd></div>
+          <div><dt>IBAN</dt><dd><code id="pr-iban">—</code> <button type="button" class="btn-ghost btn-sm" id="pr-iban-kopya">Kopyala</button></dd></div>
+          <div><dt>Tutar</dt><dd><strong id="pr-tutar">—</strong></dd></div>
+          <div><dt>Açıklama</dt><dd>Kayıtlı e-postan: <code id="pr-eposta"></code></dd></div>
+        </dl>
+        <p class="field-hint" id="pr-kopya-msg" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="surface pr-kart pr-genis" aria-labelledby="pr-bildir-h">
+        <h2 id="pr-bildir-h"><span class="pr-adim">3</span>Ödemeni bildir</h2>
+        <form id="pr-form" class="form-stack" novalidate>
+          <div class="form-alert" id="pr-alert" role="alert" tabindex="-1" hidden></div>
+          <div class="field">
+            <label for="pr-odeyenAd">Ödemeyi yapan kişinin adı soyadı</label>
+            <input class="text-input" id="pr-odeyenAd" autocomplete="name" maxlength="100" aria-describedby="pr-odeyenAd-hint pr-odeyenAd-err">
+            <p class="field-hint" id="pr-odeyenAd-hint">Ödemeyi velin yaptıysa onun adını yaz; dekontta görünen ad.</p>
+            <p class="field-error" id="pr-odeyenAd-err"></p>
+          </div>
+          <div class="field">
+            <label for="pr-aciklama">Not (isteğe bağlı)</label>
+            <input class="text-input" id="pr-aciklama" maxlength="300" placeholder="ör. Ziraat Bankası, 21 Ekim 14:30">
+          </div>
+          <label class="check-row"><input type="checkbox" id="pr-sozlesme"> <span><a href="mesafeli-satis.html" target="_blank" rel="noopener">Ön bilgilendirme formunu ve mesafeli satış sözleşmesini</a> okudum, kabul ediyorum.</span></label>
+          <p class="field-error" id="pr-sozlesme-err"></p>
+          <button type="submit" class="btn-energy" id="pr-btn">Ödememi bildir</button>
+        </form>
+      </section>
+    </div>
+
+    <section class="surface pr-kart u-mt-6" id="pr-gecmis" hidden aria-labelledby="pr-gecmis-h">
+      <h2 id="pr-gecmis-h">Ödeme bildirimlerin</h2>
+      <ul class="pr-gecmis-liste" id="pr-gecmis-liste"></ul>
+    </section>
+  </main>
+
+  <script src="assets/js/urun.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+  (function () {
+    "use strict";
+    var AUTH = window.APMEBERRA_AUTH, UI = AUTH.ui, ME = window.APMEBERRA_ME, U = window.MEBERRA_URUN;
+    var $ = function (id) { return document.getElementById(id); };
+    function esc(x) { return String(x == null ? "" : x).replace(/[&<>"']/g, function (m) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]; }); }
+    function tl(n) { return Number(n).toLocaleString("tr-TR") + " ₺"; }
+    function tarih(iso) { return iso ? new Date(iso).toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" }) : ""; }
+    var DURUM = { bekliyor: "Onay bekliyor", onaylandi: "Onaylandı", reddedildi: "Reddedildi", iptal: "İptal" };
+    var planlar = U.planlar.slice();
+    var secili = new URLSearchParams(location.search).get("plan");
+    if (!planlar.some(function (p) { return p.id === secili; })) secili = "yillik";
+
+    if (!AUTH.sunucu) {
+      $("pr-akis").hidden = true;
+      $("pr-durum").innerHTML = '<div class="notice is-info">Premium satın alma, Meberra sunucusu üzerinden açıldığında çalışır.</div>';
+      return;
+    }
+    $("pr-eposta").textContent = ME && ME.user ? ME.user.eposta || ME.user.kullaniciAdi : "";
+
+    function planCiz() {
+      $("pr-planlar").innerHTML = '<legend class="visually-hidden">Plan</legend>' + planlar.map(function (p) {
+        return '<label class="pr-plan' + (p.id === secili ? " is-secili" : "") + '"><input type="radio" name="plan" value="' + esc(p.id) + '"' + (p.id === secili ? " checked" : "") + '>' +
+          '<span class="pr-plan-ad">' + esc(p.ad) + (p.oneCikan ? ' <span class="pr-rozet">En avantajlı</span>' : "") + '</span>' +
+          '<span class="pr-plan-fiyat">' + tl(p.fiyat) + ' <small>/ ' + esc(p.donem) + '</small></span><span class="pr-plan-not">' + esc(p.aciklama) + '</span></label>';
+      }).join("");
+      var p = planlar.filter(function (x) { return x.id === secili; })[0];
+      $("pr-tutar").textContent = p ? tl(p.fiyat) : "—";
+    }
+    $("pr-planlar").addEventListener("change", function (e) { if (e.target.name === "plan") { secili = e.target.value; planCiz(); } });
+
+    function durumCiz(j) {
+      var u = j.uyelik || {}, d = $("pr-durum");
+      if (u.premium) {
+        d.innerHTML = '<div class="notice is-ok"><strong>Premium hesabın aktif.</strong> Bitiş: ' + esc(tarih(u.bitis)) + '. Süre bitmeden yeni ödeme bildirirsen süren uzatılır.</div>';
+      } else if (u.bekleyenTalep) {
+        d.innerHTML = '<div class="notice is-warn"><strong>Ödeme bildirimin alındı.</strong> ' + esc(tarih(u.bekleyenTalep.olusturma)) + ' tarihli bildirimin kontrol ediliyor; onaylanınca Premium otomatik açılır.</div>';
+        $("pr-akis").hidden = true;
+      } else d.innerHTML = "";
+      var t = j.talepler || [];
+      $("pr-gecmis").hidden = !t.length;
+      $("pr-gecmis-liste").innerHTML = t.map(function (x) {
+        return '<li><span class="pr-rozet pr-' + esc(x.durum) + '">' + esc(DURUM[x.durum] || x.durum) + '</span> ' + esc(x.plan === "yillik" ? "Yıllık" : "Aylık") + ' · ' + tl(x.tutar_tl) + ' · ' + esc(tarih(x.olusturma)) +
+          (x.islem_notu ? ' <small>— ' + esc(x.islem_notu) + '</small>' : "") + '</li>';
+      }).join("");
+    }
+
+    planCiz();
+    fetch("/api/public/config").then(function (r) { return r.json(); }).then(function (c) {
+      if (!c || !c.ok) return;
+      if (Array.isArray(c.planlar) && c.planlar.length) { planlar = c.planlar; planCiz(); }
+      $("pr-banka-ad").textContent = c.banka.banka;
+      $("pr-sahip").textContent = c.banka.hesapSahibi;
+      $("pr-iban").textContent = c.banka.iban;
+    }).catch(function () { /* statik değerler kalır */ });
+    AUTH.premiumDurum().then(durumCiz);
+
+    $("pr-iban-kopya").addEventListener("click", function () {
+      UI.copy($("pr-iban").textContent.replace(/\s/g, ""), $("pr-iban")).then(function (ok) { $("pr-kopya-msg").textContent = ok ? "IBAN kopyalandı." : "Kopyalanamadı; elle seç."; });
+    });
+
+    $("pr-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var errs = {};
+      if (!$("pr-odeyenAd").value.trim()) errs.odeyenAd = "Ödemeyi yapan kişinin adını yaz.";
+      if (!$("pr-sozlesme").checked) errs.sozlesme = "Devam etmek için sözleşmeyi kabul et.";
+      var f = UI.showErrors("pr", errs, ["odeyenAd", "sozlesme"]);
+      UI.alert($("pr-alert"), "");
+      if (f) { f.focus(); return; }
+      UI.busy($("pr-btn"), true, "Gönderiliyor…");
+      AUTH.premiumTalep(secili, $("pr-odeyenAd").value.trim(), $("pr-aciklama").value.trim()).then(function (r) {
+        UI.busy($("pr-btn"), false);
+        if (!r.ok) {
+          var f2 = UI.showErrors("pr", r.errors, ["odeyenAd"]);
+          UI.alert($("pr-alert"), r.error || r.errors.genel || "Bildirim gönderilemedi.");
+          (f2 || $("pr-alert")).focus();
+          return;
+        }
+        AUTH.premiumDurum().then(durumCiz);
+        $("pr-durum").scrollIntoView({ block: "start" });
+      });
+    });
+  })();
+  </script>
+</body>
+</html>

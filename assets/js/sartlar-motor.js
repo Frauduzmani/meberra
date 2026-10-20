@@ -1,5 +1,5 @@
 /**
- * AP MEBERRA — Herkese açık "Ülke şartları" motoru (Ajan 11, Tur 10, Karar K4)
+ * Meberra — Herkese açık "Ülke şartları" motoru (Ajan 11, Tur 10, Karar K4)
  * Sayfa: sartlar.html · Veri: data/mevzuat/sartlar.js (window.APMEBERRA_SARTLAR)
  *
  * Saf fonksiyonlar: DOM'a ve localStorage'a dokunmaz. Tarayıcıda window.APMEBERRA_SARTLAR_MOTOR,

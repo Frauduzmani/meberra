@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * AP MEBERRA — Ülke verisi üreticisi (Ajan 11, Tur 11, kararlar D6/D8; PM onayı 15 Ekim 2026)
+ * Meberra — Ülke verisi üreticisi (Ajan 11, Tur 11, kararlar D6/D8; PM onayı 15 Ekim 2026)
  *
  * TEK KAYNAK: data/mevzuat/kaynak/*.json (PM onaylı). Sayfalar bu klasörü OKUMAZ; bu araç şunları üretir:
  *   data/mevzuat/ulke-dizini.js   window.APMEBERRA_ULKE_DIZINI  (15 ülke özeti; her açık sayfada)
@@ -211,7 +211,7 @@ if (KONTROL) { console.log("\n--kontrol: 0 sorun, dosya yazılmadı."); process.
 
 // ---------------- Yazım ----------------
 const BASLIK = "// ÜRETİLEN DOSYA — elle düzenlemeyin. Kaynak: data/mevzuat/kaynak/*.json · Üretici: node araclar/ulke-veri-olustur.js\n" +
-  "// AP MEBERRA Tur 11 (kararlar D6/D8). Şema: .agents/rules/tur11-ekran-plani.md §5\n";
+  "// Meberra Tur 11 (kararlar D6/D8). Şema: .agents/rules/tur11-ekran-plani.md §5\n";
 const js = v => JSON.stringify(v, null, 1);
 fs.mkdirSync(path.join(CIKTI, "ulke"), { recursive: true });
 fs.writeFileSync(path.join(CIKTI, "ulke-dizini.js"), BASLIK + "window.APMEBERRA_ULKE_DIZINI = " + js(DIZIN) + ";\n", "utf8");

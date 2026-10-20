@@ -1,5 +1,5 @@
 /**
- * AP MEBERRA — Ülkeye özel yol (rota) motoru (Ajan 11, Tur 6)
+ * Meberra — Ülkeye özel yol (rota) motoru (Ajan 11, Tur 6)
  * Sözleşme: .agents/rules/tur5-platform-spec.md §8
  *
  * Saf fonksiyonlar: DOM'a, localStorage'a ve global veriye dokunmaz.

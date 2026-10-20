@@ -1,4 +1,4 @@
-// AP MEBERRA — Mezun Menüsü: Almanya ve İtalya dışındaki ülkeler — Tur 10 (14 Ekim 2026)
+// Meberra — Mezun Menüsü: Almanya ve İtalya dışındaki ülkeler — Tur 10 (14 Ekim 2026)
 // İÇERİK SAHİBİ: Ajan 13 (Mevzuat); PM doldurdu. Kaynak: .agents/mevzuat/karar-notu-2026-10-14-mezun-diger-ulkeler.md
 // Kullanıcı kararı (14 Ekim 2026): Mezun Menüsü Macaristan + Polonya ile başlar. Avusturya ve Hollanda
 // teyit e-postaları (T-D1, T-D2) yanıtlanınca eklenebilir. BME duyurusu 15 Kasım 2026'dan sonra gösterilmez.

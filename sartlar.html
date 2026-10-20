@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ülke şartları | AP MEBERRA</title>
+  <title>Ülke şartları | Meberra</title>
   <meta name="description" content="Avrupa'da lisans ve yüksek lisans: lise öğrencisi, lise mezunu ya da üniversite mezunu olarak 15 ülkede İngilizce ve yerel dilde ne gerektiği, tarihler, sık hatalar, burslar ve ilk 20 üniversite — resmi kaynaklarıyla. Giriş gerekmez.">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
@@ -11,7 +11,7 @@
 <body class="page-sartlar">
   <nav class="navbar">
     <a href="sartlar.html" class="nav-brand">
-      <div class="brand-badge">AP MEBERRA</div>
+      <div class="brand-badge">Meberra</div>
       <div><div class="brand-title">Ülke şartları</div></div>
     </a>
     <div class="nav-actions"></div>
@@ -571,14 +571,14 @@
       document.documentElement.setAttribute("data-rota", ul === "de" || ul === "it" ? ul : (ul ? "genel" : ""));
       root.classList.toggle("is-intro", !tam(secim));
       if (!tam(secim)) {
-        document.title = "Ülke şartları | AP MEBERRA";
+        document.title = "Ülke şartları | Meberra";
         $("sr-h1").textContent = "Avrupa’da lisans ve yüksek lisans: durumuna göre şartlar";
         root.innerHTML = introHtml();
         return;
       }
       var k = kayit(ul);
       var baslik = k.ad + " · " + kimKisa(secim) + " · " + dilEtiket(secim.dil, k);
-      document.title = baslik + " şartları | AP MEBERRA";
+      document.title = baslik + " şartları | Meberra";
       var dilSifat = secim.dil === "en" ? "İngilizce" : (k.yerelDil && k.yerelDil.length > 1 ? "yerel dilde" : dilEtiket("yerel", k));
       var kim = secim.model === "lise" ? secim.sinif + ". sınıf öğrencisi" : secim.model === "lise-mezun" ? "lise mezunları" : "üniversite mezunları";
       $("sr-h1").textContent = bulunma(k) + " " + dilSifat + " " + duzeyAd(secim.duzey) + ": " + kim + " için şartlar";

@@ -1,4 +1,4 @@
-// AP MEBERRA — Resmi yazışma (teyit e-postası) şablonları (Tur 5b, spec §7.1–7.2)
+// Meberra — Resmi yazışma (teyit e-postası) şablonları (Tur 5b, spec §7.1–7.2)
 // Sahibi: Ajan 13 Kıdemli Uluslararası Kabul Mevzuatı Uzmanı. Hazırlanma: 12 Ekim 2026.
 // Dayanak: .agents/mevzuat/karar-notu-2026-10-12.md (T1–T3 taslakları). K1–K3 kararları 12 Ekim 2026'da kullanıcı tarafından kapatıldı (spec §8, §8.3);
 //          şablonlar rota adımlarına bağlıdır (data/mevzuat/ulke-rotalari.js), kararNotu alanları null.

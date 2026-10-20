@@ -1,4 +1,4 @@
-// AP MEBERRA — Ülkeye özel yol (rota) kural verisi (Tur 6, spec §8.1 ve §8.3)
+// Meberra — Ülkeye özel yol (rota) kural verisi (Tur 6, spec §8.1 ve §8.3)
 // Sahibi: Ajan 13 (Kıdemli Uluslararası Kabul Mevzuatı Uzmanı) + Ajan 2 (Weber & Rossi). Hazırlanma: 12 Ekim 2026.
 // Dayanak: .agents/mevzuat/karar-notu-2026-10-12.md + bu turda yeniden kontrol edilen resmi kaynaklar (erişim: 12 Ekim 2026).
 // Kullanıcı kararı K1: Almanya ve İtalya iki bağımsız rotadır; biri diğerinin yedeği değildir.

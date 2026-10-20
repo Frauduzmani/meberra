@@ -1,4 +1,4 @@
-// AP MEBERRA — AP Biology Seviye Testi (Tanı Sınavı)
+// Meberra — AP Biology Seviye Testi (Tanı Sınavı)
 // Hazırlayan: Dr. Zeynep Aksoy (AP Biology). 8 CED ünitesi × 3 soru = 24 soru.
 // Soru metinleri %100 İngilizce (Kural 13); açıklamalar Türkçe + İngilizce terimler.
 window.APMEBERRA_SEVIYE = window.APMEBERRA_SEVIYE || {};

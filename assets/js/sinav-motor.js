@@ -1,5 +1,5 @@
 /**
- * AP MEBERRA — Sınav süzgeci motoru (Ajan 11, Tur 12; plan .agents/rules/tur12-ekran-plani.md S1–S8)
+ * Meberra — Sınav süzgeci motoru (Ajan 11, Tur 12; plan .agents/rules/tur12-ekran-plani.md S1–S8)
  * Veri: data/mevzuat/sinavlar.js (window.APMEBERRA_SINAVLAR). Saf fonksiyonlar: DOM'a ve localStorage'a dokunmaz.
  * Tarayıcıda window.APMEBERRA_SINAV_MOTOR, Node'da module.exports (araclar/sinav-aktar.js ve birim testleri).
  *

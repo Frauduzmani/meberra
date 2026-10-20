@@ -1,4 +1,4 @@
-// AP MEBERRA — Sınav kartları (Tur 5, spec §5.2). Her sınav ayrı kayıt.
+// Meberra — Sınav kartları (Tur 5, spec §5.2). Her sınav ayrı kayıt.
 // Hazırlayan: Ajan 3 Canan Yılmaz + Ajan 2 Weber & Rossi. Doğrulama: 12 Ekim 2026.
 // AP format/süre: College Board AP Central sınav sayfaları (May 2027 sınavı için gösterilen değerler).
 // AP tarih/oturum ve hibrit/tam dijital bilgisi data/mevzuat/sinav-takvimi.js ile aynıdır (Türkiye UTC+3: Session 1 10:00, Session 2 14:00).

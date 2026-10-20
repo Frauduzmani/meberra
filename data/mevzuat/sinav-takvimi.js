@@ -1,4 +1,4 @@
-// AP MEBERRA — Sınav takvimi ve kayıt gereklilikleri (seviye testi raporu bu dosyayı okur)
+// Meberra — Sınav takvimi ve kayıt gereklilikleri (seviye testi raporu bu dosyayı okur)
 // YALNIZCA resmi kaynakla doğrulanmış bilgi girilir. Doğrulanmamış alan null bırakılır;
 // rapor bu durumda "doğrulanmadı" gösterir. Tarihler İstanbul saatine göre değil, College Board'un yerel takvimine göredir.
 // Oturum: College Board 2027'den itibaren "Session 1 / Session 2" adlarını kullanıyor ve bunları

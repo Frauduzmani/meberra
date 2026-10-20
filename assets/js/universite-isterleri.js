@@ -1,5 +1,5 @@
 /**
- * AP MEBERRA — Üniversite İsterleri, Sınavlar ve Ders Bağlantıları Motoru (Tur 13)
+ * Meberra — Üniversite İsterleri, Sınavlar ve Ders Bağlantıları Motoru (Tur 13)
  * Ajan 11 (Frontend & UX) + Ajan 12 (İçerik & Deneme) + Ajan 2 (Weber & Rossi)
  *
  * Sorumluluk:

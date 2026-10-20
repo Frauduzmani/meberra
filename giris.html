@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Giriş yap / Kayıt ol | AP MEBERRA</title>
-  <meta name="description" content="AP MEBERRA hazırlık portalına giriş yap ya da yeni öğrenci hesabı oluştur.">
+  <title>Giriş yap / Kayıt ol | Meberra</title>
+  <meta name="description" content="Meberra hazırlık portalına giriş yap ya da yeni öğrenci hesabı oluştur.">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
@@ -12,7 +12,7 @@
 
   <nav class="navbar">
     <a href="giris.html" class="nav-brand">
-      <div class="brand-badge">AP MEBERRA</div>
+      <div class="brand-badge">Meberra</div>
       <div><div class="brand-title">Hazırlık Portalı</div></div>
     </a>
     <div class="nav-actions"></div>
@@ -64,7 +64,7 @@
             <form id="form-giris" class="form-stack" novalidate>
               <div class="form-alert" id="giris-alert" role="alert" tabindex="-1" hidden></div>
               <div class="field">
-                <label for="giris-kullaniciAdi">Kullanıcı adı veya e-posta</label>
+                <label for="giris-kullaniciAdi">E-posta</label>
                 <input class="text-input" id="giris-kullaniciAdi" name="kullaniciAdi" autocomplete="username" autocapitalize="none" spellcheck="false" aria-describedby="giris-kullaniciAdi-err" required>
                 <p class="field-error" id="giris-kullaniciAdi-err"></p>
               </div>
@@ -100,9 +100,9 @@
                 </div>
               </div>
               <div class="field">
-                <label for="kayit-kullaniciAdi">Kullanıcı adı veya e-posta</label>
-                <input class="text-input" id="kayit-kullaniciAdi" name="kullaniciAdi" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="64" aria-describedby="kayit-kullaniciAdi-hint kayit-kullaniciAdi-err" required>
-                <p class="field-hint" id="kayit-kullaniciAdi-hint">3–64 karakter: İngilizce harf, rakam ve . _ - @ + (ör. ogrenci.k veya e-posta adresin). Büyük/küçük harf fark etmez.</p>
+                <label for="kayit-kullaniciAdi">E-posta</label>
+                <input class="text-input" id="kayit-kullaniciAdi" name="kullaniciAdi" type="email" inputmode="email" autocomplete="email" autocapitalize="none" spellcheck="false" maxlength="120" aria-describedby="kayit-kullaniciAdi-hint kayit-kullaniciAdi-err" required>
+                <p class="field-hint" id="kayit-kullaniciAdi-hint">Giriş, şifre sıfırlama ve Premium bildirimleri için kullanılır.</p>
                 <p class="field-error" id="kayit-kullaniciAdi-err"></p>
               </div>
               <div class="field">
@@ -128,7 +128,14 @@
                 </div>
                 <p class="field-error" id="kayit-sifre2-err"></p>
               </div>
-              <button type="submit" class="btn-primary btn-block" id="kayit-submit">Hesap oluştur</button>
+              <div class="form-stack onay-grup">
+                <label class="check-row"><input type="checkbox" id="kayit-kosullar" aria-describedby="kayit-kosullar-err"> <span><a href="kosullar.html" target="_blank" rel="noopener">Kullanım koşullarını</a> okudum ve kabul ediyorum.</span></label>
+                <p class="field-error" id="kayit-kosullar-err"></p>
+                <label class="check-row"><input type="checkbox" id="kayit-kvkk" aria-describedby="kayit-kvkk-err"> <span><a href="kvkk.html" target="_blank" rel="noopener">KVKK aydınlatma metnini</a> okudum.</span></label>
+                <p class="field-error" id="kayit-kvkk-err"></p>
+                <label class="check-row"><input type="checkbox" id="kayit-veliOnay"> <span>18 yaşından küçüğüm ve velim bu hesabı açmama onay verdi. <small>(18 yaşından küçüksen işaretle)</small></span></label>
+              </div>
+              <button type="submit" class="btn-primary btn-block" id="kayit-submit">Ücretsiz hesap oluştur</button>
             </form>
           </section>
         </div>
@@ -354,12 +361,13 @@
     });
 
     // --- Kayıt ---
-    var KAYIT_FIELDS = ["ad", "soyad", "kullaniciAdi", "sifre", "sifre2"];
+    var KAYIT_FIELDS = ["ad", "soyad", "kullaniciAdi", "sifre", "sifre2", "kosullar", "kvkk"];
     $("form-kayit").addEventListener("submit", function (e) {
       e.preventDefault();
       var btn = $("kayit-submit"), alertEl = $("kayit-alert");
       var f = {};
-      KAYIT_FIELDS.forEach(function (k) { f[k] = $("kayit-" + k).value; });
+      KAYIT_FIELDS.forEach(function (k) { var el = $("kayit-" + k); f[k] = el.type === "checkbox" ? el.checked : el.value; });
+      f.veliOnay = $("kayit-veliOnay").checked;
       UI.alert(alertEl, "");
       UI.alert(statusEl, "");
       UI.busy(btn, true, "Hesap oluşturuluyor…");
@@ -377,6 +385,18 @@
       });
     });
 
+    // --- Sunucu modu: şifre e-postayla sıfırlanır; ilerleme sunucuda saklanır ---
+    if (AUTH.sunucu) {
+      $("to-recover").textContent = "Şifremi unuttum";
+      $("recover-title").textContent = "Şifremi unuttum";
+      document.querySelector("#view-recover .auth-lead").textContent = "Hesabının e-posta adresini yaz; sana şifreni sıfırlaman için bir bağlantı gönderelim. Bağlantı 1 saat geçerlidir.";
+      document.querySelector("label[for='kurtar-kullaniciAdi']").textContent = "E-posta";
+      ["kurtar-kod", "kurtar-sifre", "kurtar-sifre2"].forEach(function (id) { var fl = $(id).closest(".field"); if (fl) fl.hidden = true; });
+      $("kurtar-submit").textContent = "Sıfırlama bağlantısı gönder";
+      var not = document.querySelector(".storage-note span");
+      if (not) not.textContent = "Hesabın ve ilerlemen güvenli sunucumuzda saklanır; her cihazdan giriş yapıp kaldığın yerden devam edebilirsin.";
+    }
+
     // --- Şifremi unuttum ---
     $("to-recover").addEventListener("click", function () {
       $("kurtar-kullaniciAdi").value = $("giris-kullaniciAdi").value;
@@ -389,6 +409,20 @@
       var btn = $("kurtar-submit"), alertEl = $("kurtar-alert");
       var kad = $("kurtar-kullaniciAdi").value.trim(), kod = $("kurtar-kod").value;
       var errs = {};
+      if (AUTH.sunucu) {
+        if (!AUTH.validateEmail(kad)) errs.kullaniciAdi = "Geçerli bir e-posta adresi yaz.";
+        UI.alert(alertEl, "");
+        var f0 = UI.showErrors("kurtar", errs, KURTAR_FIELDS);
+        if (f0) { f0.focus(); return; }
+        UI.busy(btn, true, "Gönderiliyor…");
+        AUTH.sifreUnuttum(kad).then(function (r) {
+          UI.busy(btn, false);
+          if (r && r.durum === 0) { UI.alert(alertEl, r.error); alertEl.focus(); return; }
+          UI.alert(alertEl, "Bu e-postayla bir hesap varsa sıfırlama bağlantısı gönderdik. Gelen kutunu (ve gereksiz klasörünü) kontrol et.", "ok");
+          alertEl.focus();
+        });
+        return;
+      }
       if (!kad) errs.kullaniciAdi = "Kullanıcı adını yaz.";
       if (!kod.trim()) errs.kod = "Kurtarma kodunu yaz.";
       UI.alert(alertEl, "");

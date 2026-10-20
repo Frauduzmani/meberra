@@ -50,7 +50,7 @@ function yonetimRotalari(r, c) {
     const satirlar = db.prepare(`SELECT u.*, (SELECT COUNT(*) FROM answers a WHERE a.user_id = u.id) AS cevap_sayisi
       FROM users u ${where} ORDER BY u.olusturma DESC LIMIT ? OFFSET ?`).all(...arg, SAYFA_BOYU, (sayfa - 1) * SAYFA_BOYU);
     return {
-      ok: true, toplam, sayfa, sayfaBoyu: SAYFA_BOYU,
+      ok: true, toplam, sayfa, sayfaBoyu: SAYFA_BOYU, sayfaBoyutu: SAYFA_BOYU,
       kullanicilar: satirlar.map(u => {
         const y = hesap.uyelik(u.id);
         return { id: u.public_id, ad: u.ad, soyad: u.soyad, eposta: u.eposta, rol: u.rol, olusturma: u.olusturma, sonGiris: u.son_giris, durum: u.durum,
@@ -156,7 +156,7 @@ function yonetimRotalari(r, c) {
       FROM audit_log a LEFT JOIN users ku ON ku.id = a.user_id LEFT JOIN users yu ON yu.id = a.yapan_id ${where}
       ORDER BY a.id DESC LIMIT ? OFFSET ?`).all(...arg, 50, (sayfa - 1) * 50);
     return {
-      ok: true, toplam, sayfa, sayfaBoyu: 50,
+      ok: true, toplam, sayfa, sayfaBoyu: 50, sayfaBoyutu: 50,
       kayitlar: satirlar.map(a => ({
         id: a.id, zaman: a.zaman, eylem: a.eylem, varlik: a.varlik, varlikId: a.varlik_id, ip: a.ip, ayrinti: json(a.ayrinti),
         kullanici: a.k_id ? { id: a.k_id, ad: a.k_ad, soyad: a.k_soyad, eposta: a.k_eposta } : null,

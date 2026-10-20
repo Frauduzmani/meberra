@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profil ve hesap | AP MEBERRA</title>
+  <title>Profil ve hesap | Meberra</title>
   <meta name="description" content="Durumunu, hedef ülkelerini ve eğitim dilini belirle; şifreni değiştir, ilerlemeni yedekle.">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
@@ -12,7 +12,7 @@
 
   <nav class="navbar">
     <a href="index.html" class="nav-brand">
-      <div class="brand-badge">AP MEBERRA</div>
+      <div class="brand-badge">Meberra</div>
       <div><div class="brand-title">Profil</div></div>
     </a>
     <div class="nav-actions"></div>
@@ -304,7 +304,7 @@
             </form>
           </div>
 
-          <div class="sub-block">
+          <div class="sub-block" id="rc-block">
             <h3 class="panel-h u-fs-16">Kurtarma kodu</h3>
             <p class="panel-lead u-mb-2">Kodunu kaybettiysen şifrenle yeni bir kod üret. Eski kod geçersiz olur.</p>
             <form id="rc-form" class="form-stack" novalidate>
@@ -349,6 +349,26 @@
               </div>
             </div>
             <div class="form-alert u-mt-3" id="bk-msg" role="status" aria-live="polite" tabindex="-1" hidden></div>
+          </div>
+
+          <!-- Meberra sunucu modu: KVKK hakları (veri indirme, hesap silme) -->
+          <div class="sub-block" id="kvkk-block" hidden>
+            <h3 class="panel-h u-fs-16">Verilerin ve hesabın</h3>
+            <p class="panel-lead u-mb-2">KVKK kapsamındaki hakların: tüm verilerini bir dosya olarak indirebilir ya da hesabını kalıcı olarak silebilirsin. Ayrıntılar: <a href="kvkk.html">KVKK aydınlatma metni</a>.</p>
+            <div class="btn-row"><a class="btn-ghost" id="kv-indir" href="/api/account/export" download="meberra-verilerim.json">Verilerimi indir (.json)</a></div>
+            <details class="u-mt-3" id="kv-sil-detay">
+              <summary class="link-btn">Hesabımı sil</summary>
+              <form id="kv-sil-form" class="form-stack u-mt-2" novalidate>
+                <div class="form-alert" id="kv-sil-alert" role="alert" tabindex="-1" hidden></div>
+                <p class="field-hint">Hesabın, profilin ve tüm çalışma verilerin silinir; bu işlem geri alınamaz. Yasal saklama gereği ödeme kayıtları anonim olarak tutulur.</p>
+                <div class="field">
+                  <label for="kv-sil-sifre">Onaylamak için şifreni yaz</label>
+                  <input class="text-input" id="kv-sil-sifre" type="password" autocomplete="current-password" aria-describedby="kv-sil-sifre-err">
+                  <p class="field-error" id="kv-sil-sifre-err"></p>
+                </div>
+                <button type="submit" class="btn-ghost btn-danger" id="kv-sil-btn" style="align-self: flex-start;">Hesabımı kalıcı olarak sil</button>
+              </form>
+            </details>
           </div>
 
           <div class="sub-block" id="orphan-block" hidden>
@@ -771,6 +791,30 @@
         $("rc-code").focus && $("rc-box").scrollIntoView({ block: "nearest" });
       });
     });
+
+    // Meberra sunucu modu: kurtarma kodu yok (e-postayla sıfırlama); ilerleme sunucuda; KVKK hakları
+    if (AUTH.sunucu) {
+      $("rc-block").hidden = true;
+      $("kvkk-block").hidden = false;
+      var yl = document.querySelector("#yedek .panel-lead");
+      if (yl) yl.textContent = "İlerlemen hesabına otomatik kaydedilir; her cihazdan giriş yapınca kaldığın yerden devam edersin. İstersen ayrıca bir yedek dosyası indirip saklayabilirsin.";
+      var sn = document.querySelector("#hesap .storage-note span");
+      if (sn) sn.textContent = "Hesabın ve ilerlemen güvenli sunucumuzda saklanır. Şifren tek yönlü özetlenerek tutulur; kimse göremez.";
+      $("kv-sil-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        UI.busy($("kv-sil-btn"), true, "Siliniyor…");
+        AUTH.hesapSil($("kv-sil-sifre").value).then(function (res) {
+          UI.busy($("kv-sil-btn"), false);
+          if (!res.ok) {
+            var f1 = UI.showErrors("kv-sil", res.errors, ["sifre"]);
+            UI.alert($("kv-sil-alert"), res.errors.genel || "Hesap silinemedi.");
+            (f1 || $("kv-sil-alert")).focus();
+            return;
+          }
+          location.replace("vitrin.html");
+        });
+      });
+    }
 
     // Yedek al / yükle (app.js yedekleme modülü)
     var B = A && A.backup, parsed = null;

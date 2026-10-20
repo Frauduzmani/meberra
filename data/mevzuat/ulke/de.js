@@ -1,5 +1,5 @@
 // ÜRETİLEN DOSYA — elle düzenlemeyin. Kaynak: data/mevzuat/kaynak/*.json · Üretici: node araclar/ulke-veri-olustur.js
-// AP MEBERRA Tur 11 (kararlar D6/D8). Şema: .agents/rules/tur11-ekran-plani.md §5
+// Meberra Tur 11 (kararlar D6/D8). Şema: .agents/rules/tur11-ekran-plani.md §5
 (window.APMEBERRA_ULKE_VERI = window.APMEBERRA_ULKE_VERI || {})["de"] = {
  "ulke": "de",
  "ad": "Almanya",

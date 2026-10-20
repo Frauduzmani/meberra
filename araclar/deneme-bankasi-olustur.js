@@ -1,4 +1,4 @@
-// AP MEBERRA — Deneme soru bankası üreticisi (Tur 5, Ajan 12 + Ajan 3 Canan Yılmaz)
+// Meberra — Deneme soru bankası üreticisi (Tur 5, Ajan 12 + Ajan 3 Canan Yılmaz)
 // Kullanım (proje klasöründen): node araclar/deneme-bankasi-olustur.js
 //
 // ap-*.html ve sinav-*.html sayfalarındaki tüm `const X_QUESTIONS = [...]` dizilerini

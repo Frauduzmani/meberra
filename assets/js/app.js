@@ -1,5 +1,5 @@
 /**
- * AP MEBERRA - Master Interactive Application & Multi-Agent Council Engine
+ * Meberra - Master Interactive Application & Multi-Agent Council Engine
  * Supports KMK Germany Validation, Italy University Matching, 9-Agent Council Chamber,
  * Round-Table Debate Simulator, and Live Exam Counters
  *
@@ -120,10 +120,12 @@ const APMEBERRA_ACCOUNT_KEYS = {
 // liste sunucu tarafındaki yetkilendirmeye taşınır; tek kaynak burasıdır (bkz. auth.js adaptörü).
 const APMEBERRA_ACIK_SAYFALAR = Object.freeze([
   "giris", "sartlar", "mezun", "almanya-muhendislik", "italya-muhendislik", "universiteler",
-  "sinavlar", "istanbul-sinav-rehberi", "bilgi-merkezi", "ajanlar"
+  "sinavlar", "istanbul-sinav-rehberi", "bilgi-merkezi",
+  // Meberra ürün sayfaları: tanıtım, fiyatlar, şifre sıfırlama ve yasal metinler
+  "vitrin", "fiyatlar", "sifre-sifirla", "kvkk", "gizlilik", "kosullar", "mesafeli-satis", "cerez"
 ]);
 /** Oturumsuz ziyaretçinin açık giriş noktası (index.html'e oturumsuz gelen buraya gider). */
-const APMEBERRA_ACIK_GIRIS = "sartlar.html";
+const APMEBERRA_ACIK_GIRIS = "vitrin.html";
 function apSayfaAcik(page) { return APMEBERRA_ACIK_SAYFALAR.indexOf(String(page || "")) >= 0; }
 window.APMEBERRA_ACIK_SAYFALAR = APMEBERRA_ACIK_SAYFALAR;
 
@@ -170,9 +172,12 @@ const APMEBERRA_ME = (function apSessionGuard() {
     const u = s && s.id && Array.isArray(users) ? users.find(x => x && x.id === s.id) : null;
     if (u && parse(APMEBERRA_ACCOUNT_KEYS.active) === s.id) {
       me = {
-        user: { id: u.id, ad: String(u.ad || ""), soyad: String(u.soyad || ""), kullaniciAdi: String(u.kullaniciAdi || "") },
-        profile: apProfilNorm(parse(APMEBERRA_ACCOUNT_KEYS.profilePrefix + u.id))
+        user: { id: u.id, ad: String(u.ad || ""), soyad: String(u.soyad || ""), kullaniciAdi: String(u.kullaniciAdi || ""), eposta: u.eposta || "", rol: u.rol || "ogrenci" },
+        profile: apProfilNorm(parse(APMEBERRA_ACCOUNT_KEYS.profilePrefix + u.id)),
+        // Sunucu modu: üyelik önbelleği (yöneticiye her şey açık)
+        uyelik: parse("apmeberra-hesap:v1:uyelik") || { premium: false }
       };
+      if (me.user.rol === "yonetici") me.uyelik = Object.assign({}, me.uyelik, { premium: true, yonetici: true });
     }
   } catch (e) {
     // Depolama kapalı: hesap sistemi çalışamaz; sayfa yine de açılır (giris.html uyarır)
@@ -197,6 +202,121 @@ const APMEBERRA_ME = (function apSessionGuard() {
   return me;
 })();
 window.APMEBERRA_ME = APMEBERRA_ME;
+
+// --- Meberra sunucu senkronu ----------------------------------------------------------------
+// Sunucu sayfaya <meta name="meberra-api"> ekler. Bu durumda tarayıcı deposundaki her "apmeberra:*" yazımı yakalanır,
+// kuyruğa alınır (kuyruk da depoda tutulur; sayfa değişse de kaybolmaz) ve toplu olarak PUT /api/state ile gönderilir.
+// Sayfa açılışında oturum sunucuda doğrulanır (GET /api/me) ve başka cihazdan gelen yeni veriler çekilir.
+// Mevcut sayfa kodu değişmeden çalışır: depo hâlâ eşzamanlı önbellektir, doğruluk kaynağı sunucudur.
+const MEBERRA_SUNUCU = !!document.querySelector('meta[name="meberra-api"]');
+const MEBERRA_SYNC = (function () {
+  if (!MEBERRA_SUNUCU) return null;
+  let ls;
+  try { ls = window.localStorage; ls.getItem("x"); } catch (e) { return null; }
+  const P = "apmeberra-hesap:v1:";
+  const KUYRUK = P + "kuyruk", SON_CEKME = P + "son-cekme", OTURUM = P + "oturum";
+  const proto = Object.getPrototypeOf(ls);
+  const setO = proto.setItem, remO = proto.removeItem;
+  const izle = k => typeof k === "string" && k.indexOf("apmeberra:") === 0;
+  const oturumVar = () => !!ls.getItem(OTURUM);
+  let kuyruk = {};
+  try { kuyruk = JSON.parse(ls.getItem(KUYRUK) || "{}") || {}; } catch (e) { kuyruk = {}; }
+  let sessizMi = 0, zaman = null, suruyor = null, bekleme = 2000;
+  const kuyrukYaz = () => { try { setO.call(ls, KUYRUK, JSON.stringify(kuyruk)); } catch (e) { /* depo dolu */ } };
+  const basliklar = { "Content-Type": "application/json", "X-Meberra": "1" };
+
+  function isaretle(k, v) {
+    if (sessizMi || !oturumVar()) return;
+    kuyruk[k] = v;
+    kuyrukYaz();
+    clearTimeout(zaman);
+    zaman = setTimeout(gonder, 1200);
+  }
+  proto.setItem = function (k, v) { setO.call(this, k, v); if (this === ls && izle(k)) isaretle(k, String(v)); };
+  proto.removeItem = function (k) { remO.call(this, k); if (this === ls && izle(k)) isaretle(k, null); };
+
+  function sessiz(fn) { sessizMi++; try { return fn(); } finally { sessizMi--; } }
+  function oturumBitti() {
+    sessiz(() => {
+      for (let i = ls.length - 1; i >= 0; i--) { const k = ls.key(i); if (k && (k.indexOf(P) === 0 || (izle(k) && k !== "apmeberra:theme"))) remO.call(ls, k); }
+    });
+    kuyruk = {};
+    const page = apCurrentPage();
+    if (page !== "giris" && !apSayfaAcik(page)) window.location.replace("giris.html?donus=" + encodeURIComponent((window.location.pathname.split("/").pop() || "index.html") + window.location.search));
+  }
+
+  /** Bekleyen değişiklikleri gönderir. Dönüş: Promise. keepalive: sayfa kapanırken (kuyruk silinmez; sonraki açılışta yeniden denenir) */
+  function gonder(keepalive) {
+    clearTimeout(zaman);
+    if (!Object.keys(kuyruk).length || !oturumVar()) return Promise.resolve();
+    if (keepalive) {
+      try { fetch("/api/state", { method: "PUT", credentials: "same-origin", keepalive: true, headers: basliklar, body: JSON.stringify({ degisiklikler: kuyruk }) }); } catch (e) { /* yok say */ }
+      return Promise.resolve();
+    }
+    if (suruyor) return suruyor.then(() => gonder());
+    const paket = kuyruk;
+    kuyruk = {};
+    kuyrukYaz();
+    suruyor = fetch("/api/state", { method: "PUT", credentials: "same-origin", headers: basliklar, body: JSON.stringify({ degisiklikler: paket }) })
+      .then(r => r.json().catch(() => ({})).then(j => {
+        if (r.status === 401) { oturumBitti(); return; }
+        if (!r.ok) throw new Error(j.error || "senkron hatası");
+        bekleme = 2000;
+        // Sunucuda birleşen değer (başka cihazın cevaplarıyla) depoya yazılır; bu arada yerelde yeniden değişmediyse
+        const b = j.birlesen || {};
+        sessiz(() => Object.keys(b).forEach(k => { if (!(k in kuyruk) && typeof b[k] === "string") setO.call(ls, k, b[k]); }));
+      }))
+      .catch(() => {
+        Object.keys(paket).forEach(k => { if (!(k in kuyruk)) kuyruk[k] = paket[k]; });
+        kuyrukYaz();
+        bekleme = Math.min(bekleme * 2, 60000);
+        zaman = setTimeout(gonder, bekleme);
+      })
+      .finally(() => { suruyor = null; });
+    return suruyor;
+  }
+  window.addEventListener("pagehide", () => gonder(true));
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") gonder(true); });
+  window.addEventListener("online", () => gonder());
+
+  // Açılış: oturumu doğrula, üyeliği tazele, başka cihazdan gelen veriyi çek, bekleyen kuyruğu gönder
+  if (oturumVar()) {
+    fetch("/api/me", { credentials: "same-origin" }).then(r => {
+      if (r.status === 401) { oturumBitti(); return null; }
+      return r.ok ? r.json() : null;
+    }).then(j => {
+      if (!j || !j.ok) return null;
+      sessiz(() => {
+        try {
+          const users = JSON.parse(ls.getItem(P + "kullanicilar") || "[]");
+          if (users[0] && users[0].id === j.user.id) { users[0].rol = j.user.rol; users[0].ad = j.user.ad; users[0].soyad = j.user.soyad; setO.call(ls, P + "kullanicilar", JSON.stringify(users)); }
+          setO.call(ls, P + "uyelik", JSON.stringify(j.uyelik || { premium: false }));
+          if (j.profile) setO.call(ls, P + "profil:" + j.user.id, JSON.stringify(j.profile));
+        } catch (e) { /* önbellek bozuksa bir sonraki girişte düzelir */ }
+      });
+      return fetch("/api/state", { credentials: "same-origin" }).then(r => (r.ok ? r.json() : null));
+    }).then(s => {
+      if (!s || !s.ok) return;
+      const son = ls.getItem(SON_CEKME) || "";
+      sessiz(() => Object.keys(s.keys || {}).forEach(k => {
+        const v = s.keys[k];
+        if (!izle(k) || k in kuyruk || !v || v.guncelleme <= son) return;
+        if (ls.getItem(k) !== v.deger) setO.call(ls, k, v.deger);
+      }));
+      setO.call(ls, SON_CEKME, new Date().toISOString());
+      gonder();
+    }).catch(() => { /* çevrimdışı: kuyruk sonra gönderilir */ });
+  }
+
+  return { gonder, sessiz, bekleyen: () => Object.keys(kuyruk).length };
+})();
+window.MEBERRA_SYNC = MEBERRA_SYNC;
+/** Premium mu? Sunucu modu dışında (tarayıcı modu) her şey açıktır. */
+function apPremiumMu() {
+  if (!MEBERRA_SUNUCU) return true;
+  return !!(APMEBERRA_ME && APMEBERRA_ME.uyelik && APMEBERRA_ME.uyelik.premium);
+}
+window.apPremiumMu = apPremiumMu;
 
 /** Oturumdaki öğrencinin adı (yoksa boş). */
 function apStudentName() { return APMEBERRA_ME && APMEBERRA_ME.user ? APMEBERRA_ME.user.ad : ""; }
@@ -295,7 +415,8 @@ function apNavEtkin(item, current) {
 const APMEBERRA_NAV_ACIK = [
   { id: "sartlar", href: "sartlar.html", label: "Şartlar" },
   { id: "universiteler", href: "universiteler.html", label: "Üniversiteler" },
-  { id: "sinavlar", href: "sinavlar.html", label: "Sınavlar" }
+  { id: "sinavlar", href: "sinavlar.html", label: "Sınavlar" },
+  { id: "fiyatlar", href: "fiyatlar.html", label: "Fiyatlar" }
 ];
 // Tur 14 A1: Rehberler üst menüden çıktı; her sayfanın altbilgisinde (initFooterRehber) durur.
 const APMEBERRA_REHBERLER = [
@@ -306,6 +427,7 @@ const APMEBERRA_REHBERLER = [
 ];
 
 const APMEBERRA_ICONS = {
+  crown: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l4 4 5-7 5 7 4-4-2 12H5z"/></svg>',
   caret: '<svg class="nav-caret" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 8l5 5 5-5"/></svg>',
   menu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
   moon: '<svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>',
@@ -410,7 +532,7 @@ function initGlobalNav() {
   if (!nav) {
     nav = document.createElement("nav");
     nav.className = "navbar";
-    nav.innerHTML = '<a href="index.html" class="nav-brand"><div class="brand-badge">AP MEBERRA</div><div><div class="brand-title">Hazırlık Portalı</div></div></a>';
+    nav.innerHTML = '<a href="index.html" class="nav-brand"><div class="brand-badge">Meberra</div><div><div class="brand-title">Hazırlık Portalı</div></div></a>';
     document.body.insertBefore(nav, document.body.firstChild);
   }
   if (nav.dataset.navEnhanced) return;
@@ -561,7 +683,12 @@ function initGlobalNav() {
         '</div>' +
         '<ul>' +
           (minimal ? "" : '<li><a href="profil.html"' + (current === "profil.html" ? ' aria-current="page"' : "") + '>' + APMEBERRA_ICONS.user + '<span>Profil ve hesap</span></a></li>' +
-          '<li><a href="profil.html#yedek">' + APMEBERRA_ICONS.save + '<span>Yedek al / yükle</span></a></li>') +
+          '<li><a href="profil.html#yedek">' + APMEBERRA_ICONS.save + '<span>Yedek al / yükle</span></a></li>' +
+          // Meberra: Premium durumu ve yönetici paneli (sunucu modu)
+          (MEBERRA_SUNUCU ? (me.uyelik && me.uyelik.premium && !me.uyelik.yonetici
+            ? '<li><a href="premium.html">' + APMEBERRA_ICONS.crown + '<span>Premium · aktif</span></a></li>'
+            : me.uyelik && me.uyelik.yonetici ? "" : '<li><a href="premium.html" class="account-premium">' + APMEBERRA_ICONS.crown + '<span>Premium' + "'" + 'a geç</span></a></li>') : "") +
+          (me.user.rol === "yonetici" ? '<li><a href="admin.html">' + APMEBERRA_ICONS.crown + '<span>Yönetici paneli</span></a></li>' : "")) +
           '<li><a href="giris.html?cikis=1" class="account-logout">' + APMEBERRA_ICONS.logout + '<span>Çıkış yap</span></a></li>' +
         '</ul>' +
       '</div>';
@@ -1007,7 +1134,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // --- Sayfa kabuğu (v3): tek tip marka satırı, ders sayfası vurgu rengi ---
 function initPageChrome() {
   const page = apCurrentPage();
-  // Marka satırı her sayfada aynı: "AP MEBERRA · Hazırlık Portalı" (eski sayfa başlıkları büyük harfli "STUDIO" adları taşıyordu)
+  // Marka satırı her sayfada aynı: "Meberra · Hazırlık Portalı" (eski sayfa başlıkları büyük harfli "STUDIO" adları taşıyordu)
   document.querySelectorAll(".navbar .nav-brand").forEach(b => {
     const t = b.querySelector(".brand-title");
     if (t) t.textContent = "Hazırlık Portalı";
@@ -1015,9 +1142,9 @@ function initPageChrome() {
     if (apMisafirMi()) {
       // Ziyaretçi için marka bağlantısı açık giriş noktasına gider (Bugün ekranı kilitli)
       b.setAttribute("href", APMEBERRA_ACIK_GIRIS);
-      b.setAttribute("aria-label", "AP MEBERRA Hazırlık Portalı — Ülke şartları");
+      b.setAttribute("aria-label", "Meberra Hazırlık Portalı — Ülke şartları");
     } else {
-      b.setAttribute("aria-label", "AP MEBERRA Hazırlık Portalı — Bugün");
+      b.setAttribute("aria-label", "Meberra Hazırlık Portalı — Bugün");
     }
   });
   if (/^ap-/.test(page)) {
@@ -1454,6 +1581,9 @@ function initUniteGorunumu() {
   const anlatimlar = g.uniteler.filter(u => u.anlatim);
   const dersFarkli = anlatimlar.every(u => u.ders) && new Set(anlatimlar.map(u => u.ders)).size > 1;
   const yuzde = (a, b) => (b ? Math.round(a / b * 100) : 0);
+  // Meberra: ücretsiz kullanıcıya her derste ilk N ünite açık (urun.js; yoksa 2). Tarayıcı modunda hepsi açık.
+  const ucretsizN = (window.MEBERRA_URUN && window.MEBERRA_URUN.ucretsiz && window.MEBERRA_URUN.ucretsiz.uniteSayisi) || 2;
+  const kilitli = u => !apPremiumMu() && u.no > ucretsizN;
 
   // Özet paneli: ünite kartları + ek bölümler
   const panel = document.createElement("section");
@@ -1464,8 +1594,8 @@ function initUniteGorunumu() {
     (T.t ? " · " + T.c + " / " + T.t + " soru çözüldü" : "") + '</span></div><ol class="ug-liste">' +
     g.uniteler.map(u => {
       const durum = u.cevap ? u.cevap + " / " + u.toplam + " soru · %" + yuzde(u.dogru, u.cevap) + " doğru" : u.toplam ? u.toplam + " soru · başlanmadı" : "Konu anlatımı";
-      const git = !u.cevap ? "Başla" : u.cevap >= u.toplam ? "Tekrar et" : "Sürdür";
-      return '<li><a class="ug-kart' + (u.cevap && u.cevap >= u.toplam ? " is-bitti" : "") + '" href="' + base + "?unite=" + u.no + '">' +
+      const git = kilitli(u) ? APMEBERRA_ICONS.crown + "Premium" : !u.cevap ? "Başla" : u.cevap >= u.toplam ? "Tekrar et" : "Sürdür";
+      return '<li><a class="ug-kart' + (u.cevap && u.cevap >= u.toplam ? " is-bitti" : "") + (kilitli(u) ? " is-kilitli" : "") + '" href="' + base + "?unite=" + u.no + '">' +
         '<span class="ug-no" aria-hidden="true">' + u.no + '</span><span class="ug-govde">' +
         (dersFarkli && u.ders ? '<span class="ug-ders">' + apEsc(u.ders) + "</span>" : "") + "<b>" + apEsc(u.baslik) + "</b><small>" + apEsc(durum) + "</small>" +
         (u.toplam ? '<span class="ug-cubuk" aria-hidden="true"><i style="--w:' + yuzde(u.cevap, u.toplam) + '%"></i></span>' : "") +
@@ -1483,7 +1613,9 @@ function initUniteGorunumu() {
   alt.className = "ug-alt";
   alt.setAttribute("aria-label", "Önceki ve sonraki ünite");
 
-  const tumu = [hero, panel, ust, alt].concat(els).filter(Boolean);
+  const duvar = document.createElement("section");
+  duvar.className = "surface ug-duvar";
+  const tumu = [hero, panel, ust, alt, duvar].concat(els).filter(Boolean);
   const goster = liste => tumu.forEach(el => el.classList.toggle("ug-gizli", liste.indexOf(el) < 0));
   const baslik0 = document.title;
   function ciz(mod, n) {
@@ -1499,6 +1631,20 @@ function initUniteGorunumu() {
         (s ? '<a class="btn-energy ug-sonraki" href="' + base + "?unite=" + s.no + '">Sonraki ünite →</a>' : '<a class="btn-primary" href="' + base + '">Ünite listesine dön</a>');
       const ilk = els[u.bloklar[0]], son = els[u.bloklar[u.bloklar.length - 1]];
       ilk.parentNode.insertBefore(ust, ilk);
+      if (kilitli(u)) {
+        // Premium ünitesi: içerik gösterilmez, tanıtım paneli çıkar
+        duvar.innerHTML = '<span class="ug-duvar-ico" aria-hidden="true">' + APMEBERRA_ICONS.crown + '</span>' +
+          "<h2>" + apEsc(u.baslik) + " Premium'da</h2>" +
+          "<p>Ücretsiz planda her dersin ilk " + ucretsizN + " ünitesi açık. Premium ile bu dersin tüm ünitelerine, sınırsız denemeye ve tahmini puan bandına eriş.</p>" +
+          '<ul class="ug-duvar-liste"><li>Tüm üniteler: konu anlatımı + AP tarzı sorular</li><li>Sınırsız ders denemesi ve genel deneme</li><li>Yanlışlarını tekrar et, ilerlemeni takip et</li></ul>' +
+          '<div class="ug-duvar-eylem"><a class="btn-energy" href="premium.html">Premium' + "'" + 'a geç</a><a class="btn-ghost" href="fiyatlar.html">Planları karşılaştır</a></div>' +
+          '<p class="ug-duvar-not">Ücretsiz üniteler: ' + g.uniteler.filter(x => !kilitli(x)).map(x => '<a href="' + base + "?unite=" + x.no + '">' + apEsc(x.baslik) + "</a>").join(" · ") + "</p>";
+        ilk.parentNode.insertBefore(duvar, ilk);
+        ilk.parentNode.insertBefore(alt, duvar.nextSibling);
+        goster([ust, duvar, alt]);
+        document.title = u.baslik + " — " + baslik0;
+        return;
+      }
       son.parentNode.insertBefore(alt, son.nextSibling);
       goster([ust, alt].concat(u.bloklar.map(i => els[i])));
       document.title = u.baslik + " — " + baslik0;
@@ -3062,8 +3208,8 @@ window.APMEBERRA = {
 
   /** Dosya metnini doğrular. Hata durumunda e.userMessage içeren Error fırlatır. */
   function parse(text) {
-    if (typeof text !== "string" || !text.trim()) fail("Dosya boş. Lütfen AP MEBERRA’dan dışa aktarılmış bir .json yedeği seç.");
-    if (text.length > MAX_BYTES) fail("Dosya çok büyük (5 MB üstü). Bu bir AP MEBERRA yedeği gibi görünmüyor.");
+    if (typeof text !== "string" || !text.trim()) fail("Dosya boş. Lütfen Meberra’dan dışa aktarılmış bir .json yedeği seç.");
+    if (text.length > MAX_BYTES) fail("Dosya çok büyük (5 MB üstü). Bu bir Meberra yedeği gibi görünmüyor.");
     let data;
     try { data = JSON.parse(text.replace(/^﻿/, "")); } catch (e) { fail("Dosya okunamadı: geçerli bir JSON değil ya da bozulmuş. Hiçbir veri değiştirilmedi."); }
     // Tur 10: kod adı taşımasından önce alınmış yedekler (format "apazra-yedek", anahtarlar "apazra:…") da kabul edilir;
@@ -3077,13 +3223,13 @@ window.APMEBERRA = {
       data.anahtarlar = yeni;
       data.format = FORMAT;
     }
-    if (!isObj(data) || data.format !== FORMAT) fail("Bu dosya bir AP MEBERRA ilerleme yedeği değil (format alanı “" + FORMAT + "” olmalı). Hiçbir veri değiştirilmedi.");
+    if (!isObj(data) || data.format !== FORMAT) fail("Bu dosya bir Meberra ilerleme yedeği değil (format alanı “" + FORMAT + "” olmalı). Hiçbir veri değiştirilmedi.");
     if (typeof data.surum !== "number" || data.surum < 1 || Math.floor(data.surum) !== data.surum) fail("Yedek sürümü tanınmadı. Hiçbir veri değiştirilmedi.");
     if (data.surum > VERSION) fail("Bu yedek portalın daha yeni bir sürümüyle oluşturulmuş (sürüm " + data.surum + "). Portalı güncelleyip tekrar dene. Hiçbir veri değiştirilmedi.");
     if (!isObj(data.anahtarlar)) fail("Yedekte “anahtarlar” bölümü yok ya da bozuk. Hiçbir veri değiştirilmedi.");
     const keys = Object.keys(data.anahtarlar);
     const bad = keys.filter(k => k.indexOf(PREFIX) !== 0);
-    if (bad.length) fail("Yedekte AP MEBERRA’ya ait olmayan anahtarlar var (" + bad.slice(0, 3).join(", ") + "). Güvenlik için yükleme durduruldu; hiçbir veri değiştirilmedi.");
+    if (bad.length) fail("Yedekte Meberra’ya ait olmayan anahtarlar var (" + bad.slice(0, 3).join(", ") + "). Güvenlik için yükleme durduruldu; hiçbir veri değiştirilmedi.");
     keys.forEach(k => {
       const v = data.anahtarlar[k];
       if (typeof v !== "string" && !isObj(v)) fail("“" + k + "” anahtarının değeri geçersiz. Hiçbir veri değiştirilmedi.");

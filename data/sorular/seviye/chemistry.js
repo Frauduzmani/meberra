@@ -1,4 +1,4 @@
-// AP MEBERRA — Seviye Testi (Tanı Sınavı): AP Chemistry
+// Meberra — Seviye Testi (Tanı Sınavı): AP Chemistry
 // Hazırlayan: Doç. Dr. Selin Erdem (AP Kimya Baş Eğitmeni). Şema: PM Tur 3 seviye şeması.
 // Her CED ünitesi için 3 yeni tanı sorusu (easy / medium / hard). Tüm sayısal cevaplar Python 3.11 ile bağımsız doğrulandı.
 // Not: AP Chemistry'de hesap makinesi sınavın TAMAMINDA (MCQ + FRQ) serbesttir; soru düzeyindeki

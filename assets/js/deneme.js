@@ -1,5 +1,5 @@
 /**
- * AP MEBERRA — Deneme Sınavı motoru (Tur 5 · Ajan 12 İçerik & Deneme Sorumlusu + Ajan 3 Canan Yılmaz)
+ * Meberra — Deneme Sınavı motoru (Tur 5 · Ajan 12 İçerik & Deneme Sorumlusu + Ajan 3 Canan Yılmaz)
  *
  * Veri: window.APMEBERRA_DENEME_BANKASI (data/sorular/deneme-bankasi.js, `node araclar/deneme-bankasi-olustur.js` üretir).
  * Depolama: localStorage "apmeberra:deneme:v1" (apmeberra: önekli → hesap takası ve Yedekle/Taşı otomatik kapsar)
@@ -242,7 +242,7 @@
 
   function renderLanding() {
     var d = load();
-    document.title = "Deneme Sınavı | AP MEBERRA";
+    document.title = "Deneme Sınavı | Meberra";
     var cards = KODLAR.map(function (kod) {
       var k = BANK.kodlar[kod], n = onerilen(kod), last = lastFor(kod, d);
       var t = TEMPO[kod] || {};
@@ -304,7 +304,7 @@
 
   function renderYanlislar(opt) {
     opt = opt || {};
-    document.title = "Yanlışlarım | AP MEBERRA";
+    document.title = "Yanlışlarım | Meberra";
     var h = yanlisHavuzu(), d = load();
     var kaynak = opt.deneme ? d.gecmis.filter(function (r) { return r.id === opt.deneme; })[0] || null : null;
     var havuz = h.havuz;
@@ -499,7 +499,7 @@
   function renderSetup(kod) {
     var isGenel = kod === "genel";
     var k = isGenel ? null : BANK.kodlar[kod];
-    document.title = (isGenel ? "Genel deneme" : k.ad + " denemesi") + " | AP MEBERRA";
+    document.title = (isGenel ? "Genel deneme" : k.ad + " denemesi") + " | Meberra";
     view.innerHTML =
       '<p class="dn-back"><a href="deneme.html">← Tüm denemeler</a></p>' +
       '<header class="page-head" style="--dn-c:' + colorVar(kod) + '">' +
@@ -521,7 +521,25 @@
   var timerId = null, lastTick = 0, sinceSave = 0, warned = false;
   var navOpen = false;
 
+  // Meberra ücretsiz plan: her dersten 1 deneme; genel deneme Premium (sunucu modu dışında her şey açık)
+  function premiumGerekli(cfg) {
+    if (!window.apPremiumMu || window.apPremiumMu()) return false;
+    if (cfg.kod === "genel") return true;
+    var hak = (window.MEBERRA_URUN && window.MEBERRA_URUN.ucretsiz && window.MEBERRA_URUN.ucretsiz.dersDenemesi) || 1;
+    return load().gecmis.filter(function (r) { return r.kod === cfg.kod && r.mod !== "yanlislar"; }).length >= hak;
+  }
+  function renderPremiumDuvar(cfg) {
+    view.innerHTML = '<section class="surface ug-duvar" aria-labelledby="dn-duvar-h">' +
+      '<h2 id="dn-duvar-h" tabindex="-1">' + (cfg.kod === "genel" ? "Genel deneme Premium'da" : "Bu dersin ücretsiz denemesini kullandın") + '</h2>' +
+      '<p>Ücretsiz planda her dersten 1 deneme çözebilirsin. Premium ile sınırsız ders denemesi ve genel deneme çöz, tahmini puan bandını takip et.</p>' +
+      '<div class="ug-duvar-eylem"><a class="btn-energy" href="premium.html">Premium\'a geç</a><button type="button" class="btn-ghost" id="dn-duvar-geri">Denemelere dön</button></div>' +
+      '<p class="ug-duvar-not">Yanlışlarını tekrar çözmek ücretsiz: <a href="deneme.html?mod=yanlislar">Yanlışlarım</a></p></section>';
+    document.getElementById("dn-duvar-geri").addEventListener("click", function () { renderLanding(); });
+    var h = document.getElementById("dn-duvar-h"); if (h) h.focus();
+  }
+
   function startExam(cfg) {
+    if (premiumGerekli(cfg)) { renderPremiumDuvar(cfg); return; }
     var seed = (Math.floor(Math.random() * 0xFFFFFFFF) >>> 0) || 1;
     var list = selectQuestions(cfg, seed);
     if (!list.length) return;
@@ -548,7 +566,7 @@
     A.sorular = A.sorular.filter(function (x) { return !!BY_KEY[x.k]; });
     if (!A.sorular.length) { var d = load(); d.aktif = null; save(d); renderLanding(); return; }
     if (A.mevcut >= A.sorular.length) A.mevcut = 0;
-    document.title = "Deneme sürüyor — " + A.ad + " | AP MEBERRA";
+    document.title = "Deneme sürüyor — " + A.ad + " | Meberra";
     document.body.classList.add("dn-exam-mode");
     view.innerHTML =
       '<section class="dn-exam" id="dn-exam" aria-label="Deneme sınavı" style="--dn-c:' + colorVar(A.kod) + '">' +
@@ -826,7 +844,7 @@
   }
 
   function renderResult(rec, auto) {
-    document.title = "Deneme sonucu — " + rec.ad + " | AP MEBERRA";
+    document.title = "Deneme sonucu — " + rec.ad + " | Meberra";
     var units = Object.keys(rec.uniteler).map(function (k) { return rec.uniteler[k]; });
     var kodOrder = rec.dersler || [rec.kod];
     units.sort(function (a, b) {

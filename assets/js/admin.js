@@ -197,7 +197,8 @@
     kul: { q: "", premium: false, sayfa: 1, boyut: 0, istek: 0, satirlar: [] },
     secili: null,          // { id, veri }
     den: { kullanici: "", eylem: "", sayfa: 1, boyut: 0, istek: 0 },
-    talepIstek: 0
+    talepIstek: 0,
+    durumBilinen: {}       // detay yanıtında user.durum yoksa son başarılı /durum işleminin sonucu
   };
   var SEKMELER = [
     { id: "ozet", ad: "Özet" },
@@ -614,6 +615,8 @@
   function hesapDurumu(v) {
     if (v.user && v.user.durum) return v.user.durum;
     if (v.durum) return v.durum;
+    var id = String(v.user && v.user.id);
+    if (S.durumBilinen[id]) return S.durumBilinen[id];
     var sat = S.kul.satirlar.filter(function (x) { return String(x.id) === String(v.user && v.user.id); })[0];
     return sat ? sat.durum : "aktif";
   }
@@ -786,6 +789,7 @@
         onayMetni: hedef === "askida" ? "Evet, askıya al" : "Evet, etkinleştir", tehlike: hedef === "askida",
         onayla: function () {
           return api("/api/admin/users/" + uid + "/durum", "POST", { durum: hedef }).then(function () {
+            S.durumBilinen[String(u.id)] = hedef;
             bildir(hedef === "askida" ? ad + " hesabı askıya alındı." : ad + " hesabı etkinleştirildi.", "ok"); islemSonrasi();
           });
         }

@@ -1,4 +1,4 @@
-// AP MEBERRA — Seviye Testi (Tanı Sınavı): AP Calculus AB & BC
+// Meberra — Seviye Testi (Tanı Sınavı): AP Calculus AB & BC
 // Hazırlayan: Prof. Sinan Demir (AP Calculus). Şema: PM Tur 3 seviye şeması.
 // Her ünite 3 soru (easy / medium / hard). Tüm sorular yeni ve AP-style original'dır.
 window.APMEBERRA_SEVIYE = window.APMEBERRA_SEVIYE || {};

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Şifre sıfırla | Meberra</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+  <nav class="navbar"><a href="index.html" class="nav-brand"><div class="brand-badge">Meberra</div></a></nav>
+  <main class="main-container" id="main-content">
+    <div class="auth-shell">
+      <div class="surface auth-card ss-kart">
+        <h1 class="u-fs-22" id="ss-baslik" tabindex="-1">Yeni şifre belirle</h1>
+        <p class="auth-lead">Hesabın için yeni bir şifre seç. Şifre değişince tüm cihazlardaki oturumların kapanır.</p>
+        <form id="ss-form" class="form-stack" novalidate>
+          <div class="form-alert" id="ss-alert" role="alert" tabindex="-1" hidden></div>
+          <div class="field">
+            <label for="ss-sifre">Yeni şifre</label>
+            <input class="text-input" id="ss-sifre" type="password" autocomplete="new-password" minlength="8" aria-describedby="ss-sifre-hint ss-sifre-err">
+            <p class="field-hint" id="ss-sifre-hint">En az 8 karakter.</p>
+            <p class="field-error" id="ss-sifre-err"></p>
+          </div>
+          <div class="field">
+            <label for="ss-sifre2">Yeni şifre (tekrar)</label>
+            <input class="text-input" id="ss-sifre2" type="password" autocomplete="new-password" aria-describedby="ss-sifre2-err">
+            <p class="field-error" id="ss-sifre2-err"></p>
+          </div>
+          <button type="submit" class="btn-primary btn-block" id="ss-btn">Şifremi kaydet</button>
+        </form>
+        <p class="field-hint u-mt-4"><a href="giris.html">← Girişe dön</a></p>
+      </div>
+    </div>
+  </main>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+  (function () {
+    "use strict";
+    var AUTH = window.APMEBERRA_AUTH, UI = AUTH.ui, $ = function (id) { return document.getElementById(id); };
+    var tok = new URLSearchParams(location.search).get("t") || "";
+    if (!tok || !AUTH.sifreSifirla) {
+      UI.alert($("ss-alert"), "Bağlantı eksik ya da geçersiz. Giriş sayfasından yeniden “Şifremi unuttum” iste.");
+      $("ss-form").querySelectorAll("input, button").forEach(function (x) { x.disabled = true; });
+      return;
+    }
+    $("ss-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      UI.busy($("ss-btn"), true, "Kaydediliyor…");
+      AUTH.sifreSifirla(tok, $("ss-sifre").value, $("ss-sifre2").value).then(function (r) {
+        UI.busy($("ss-btn"), false);
+        if (!r.ok) {
+          var f = UI.showErrors("ss", r.errors, ["sifre", "sifre2"]);
+          UI.alert($("ss-alert"), r.errors.genel || "Şifre kaydedilemedi: işaretli alanları düzelt.");
+          (f || $("ss-alert")).focus();
+          return;
+        }
+        $("ss-form").hidden = true;
+        $("ss-baslik").textContent = "Şifren değişti";
+        document.querySelector(".auth-lead").innerHTML = 'Yeni şifrenle giriş yapabilirsin. <a href="giris.html">Giriş yap →</a>';
+        $("ss-baslik").focus();
+      });
+    });
+  })();
+  </script>
+</body>
+</html>

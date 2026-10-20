@@ -1,5 +1,5 @@
 /**
- * AP MEBERRA — Seviye Testi + Sınav Hazırlık Raporu (Ajan 11 — Frontend & UX)
+ * Meberra — Seviye Testi + Sınav Hazırlık Raporu (Ajan 11 — Frontend & UX)
  *
  * Veri:  data/sorular/seviye/<ders>.js  → window.APMEBERRA_SEVIYE[ders]   (salt okunur)
  *        data/mevzuat/sinav-takvimi.js → window.APMEBERRA_TAKVIM          (salt okunur)

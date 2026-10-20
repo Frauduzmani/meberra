@@ -1,4 +1,4 @@
-// AP MEBERRA — Sınav kayıtları aktarımı (Ajan 11, Tur 12; plan .agents/rules/tur12-ekran-plani.md S8)
+// Meberra — Sınav kayıtları aktarımı (Ajan 11, Tur 12; plan .agents/rules/tur12-ekran-plani.md S8)
 // Kullanım (proje klasöründen; PM çalıştırır):
 //   node araclar/sinav-aktar.js                       -> .agents/mevzuat/dogrulama/sinavlar-tur12.json'u data/mevzuat/sinavlar.js'e aktarır
 //   node araclar/sinav-aktar.js --kuru                -> yazmadan rapor verir

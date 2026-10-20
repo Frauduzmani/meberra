@@ -1,4 +1,4 @@
-// AP MEBERRA — Seviye Testi (Tanı Sınavı): AP Physics 1 — Dr. Emre Yıldız
+// Meberra — Seviye Testi (Tanı Sınavı): AP Physics 1 — Dr. Emre Yıldız
 // 8 CED ünitesi × 3 soru (easy / medium / hard). Aksi belirtilmedikçe g = 10 m/s² (AP Physics 1 kuralı).
 window.APMEBERRA_SEVIYE = window.APMEBERRA_SEVIYE || {};
 window.APMEBERRA_SEVIYE["physics-1"] = {

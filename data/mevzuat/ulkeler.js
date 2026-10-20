@@ -1,4 +1,4 @@
-// AP MEBERRA — Hedef ülkeler, kabul yolları ve İngilizce lisans programları (Tur 5, spec §5.1)
+// Meberra — Hedef ülkeler, kabul yolları ve İngilizce lisans programları (Tur 5, spec §5.1)
 // Hazırlayan: Ajan 2 Dr. Marcus Weber & Elena Rossi (+ Ajan 3 Canan Yılmaz). Doğrulama tarihi: 12 Ekim 2026.
 // KURAL (AGENTS.md §2.1): Her bilgi resmi kaynak URL'si taşır. Tahmin yazılmaz. Etiketler (spec §10): "Yayımlanmadı" (resmi belge henüz çıkmadı; son yılın bilgisiyle),
 // "Teyit gerekir" (yalnızca kurum cevaplayabilir), "Yoruma açık" (kaynaklar çelişiyor), "Doğrulanamadı" (hiçbir resmi iz yok).

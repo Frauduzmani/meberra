@@ -1,5 +1,5 @@
 /**
- * AP MEBERRA — Resmi yazışma (e-posta) şablon motoru (Ajan 11, Tur 5b)
+ * Meberra — Resmi yazışma (e-posta) şablon motoru (Ajan 11, Tur 5b)
  * Sözleşme: .agents/rules/tur5-platform-spec.md §7
  *
  * Saf fonksiyonlar: DOM'a, localStorage'a ve global veriye dokunmaz.

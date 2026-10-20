@@ -1,4 +1,4 @@
-// AP MEBERRA — Herkese açık ülke şartları verisi (sartlar.html) — Tur 10, Karar K4 (14 Ekim 2026)
+// Meberra — Herkese açık ülke şartları verisi (sartlar.html) — Tur 10, Karar K4 (14 Ekim 2026)
 // ŞEMA SAHİBİ: Ajan 11 (Frontend). İÇERİK SAHİBİ: Ajan 13 (Mevzuat) + Ajan 2 (Weber & Rossi); PM onayı (AGENTS.md §2.1).
 // İçerik kaynağı: .agents/mevzuat/karar-notu-2026-10-14-mezun-sinif.md (Ajan 13, 14 Ekim 2026). PM doldurdu.
 //

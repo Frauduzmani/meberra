@@ -1,4 +1,4 @@
-// AP MEBERRA — Bilgi Merkezi veri dosyası
+// Meberra — Bilgi Merkezi veri dosyası
 // PM onaylı doğrulama: 7 Ekim 2026. Her madde resmi kaynağa dayanır.
 // durum: "dogrulandi" = resmi kaynakla teyitli | "dikkat" = doğru ama önemli kısıt/değişiklik var | "dogrulanamadi" = resmi teyit yok
 window.BILGI_MERKEZI = {

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * AP MEBERRA — Mevzuat aktarımı (PM aracı, Tur 11, 15 Ekim 2026)
+ * Meberra — Mevzuat aktarımı (PM aracı, Tur 11, 15 Ekim 2026)
  *
  * Ajan 13'ün PM doğrulamasından geçen bulgularını (.agents/mevzuat/dogrulama/) üreticinin girdi klasörüne
  * (data/mevzuat/kaynak/) aktarır. Sonra `node araclar/ulke-veri-olustur.js` sayfaların okuduğu dosyaları üretir.

@@ -84,7 +84,7 @@
 .vt-badge { position: absolute; top: -14px; right: 20px; display: inline-flex; align-items: center; min-height: 28px; padding: 0 12px; border-radius: var(--radius-full); background: var(--energy); color: var(--on-energy); font: 800 var(--fs-14)/1 var(--font-head); }
 .vt-price { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; margin: 0; }
 .vt-price b { font: 900 clamp(2.25rem, 1.9rem + 1.2vw, 2.75rem)/1 var(--font-head); color: var(--text); }
-.vt-price span { color: var(--text-muted); font-weight: 700; }
+.vt-price > span { color: var(--text-muted); font-weight: 700; }
 .vt-plan-note { margin: 0; color: var(--text-muted); font-size: var(--fs-14); }
 .vt-checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .vt-checks li { display: flex; gap: 10px; align-items: flex-start; line-height: var(--lh-snug); }
@@ -102,7 +102,7 @@
 .vt-table-wrap { border: 1px solid var(--border); border-radius: var(--radius-xl); background: var(--surface); overflow: hidden; }
 .vt-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
 .vt-table caption { text-align: left; padding: var(--sp-4) var(--sp-5) 0; font-weight: 800; font-family: var(--font-head); }
-.vt-table th, .vt-table td { padding: 14px var(--sp-5); text-align: left; vertical-align: top; border-top: 1px solid var(--border); overflow-wrap: anywhere; line-height: var(--lh-snug); }
+.vt-table th, .vt-table td { padding: 14px var(--sp-5); text-align: left; vertical-align: top; border-top: 1px solid var(--border); overflow-wrap: break-word; hyphens: auto; line-height: var(--lh-snug); }
 .vt-table thead th { border-top: 0; background: var(--surface-2); font-family: var(--font-head); font-weight: 900; }
 .vt-table thead th:first-child { width: 44%; }
 .vt-table tbody th { font-weight: 600; }
@@ -193,7 +193,8 @@
   .vt-hero-cta a, .vt-final-cta a { width: 100%; }
   .vt-sec-head { margin-bottom: var(--sp-6); }
   .vt-table th, .vt-table td { padding: 12px 10px; font-size: var(--fs-14); }
-  .vt-table thead th:first-child { width: 40%; }
+  .vt-table thead th:first-child { width: 36%; }
+  .vt-table td svg { display: none; }
   .vt-faq summary { padding: 12px var(--sp-4); }
   .vt-faq-body { padding: 0 var(--sp-4) var(--sp-4); }
   .lg-toc ol { columns: 1; }
