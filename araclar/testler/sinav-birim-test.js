@@ -13,7 +13,7 @@ const SM = require(path.join(ROOT, "assets", "js", "sinav-motor.js"));
 let pass = 0, fail = 0;
 const ok = (c, m, x) => { if (!c) console.log("FAIL " + m + (x === undefined ? "" : " -> " + JSON.stringify(x).slice(0, 400))); c ? pass++ : fail++; };
 const eq = (a, b, m) => ok(JSON.stringify(a) === JSON.stringify(b), m, { gelen: a, beklenen: b });
-const yukle = rel => { const ctx = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(ROOT, rel), "utf8"), ctx); return ctx.window; };
+const yukle = rel => { const ctx = { window: {} }; vm.runInNewContext(fs.readFileSync(path.resolve(ROOT, rel), "utf8"), ctx); return ctx.window; };
 
 // Süzgeç ve aktarım testleri SABİT fixture ile çalışır (aktarım öncesi 18 kayıt; arsiv v11.0): diskteki sinavlar.js'in
 // durumu (PM aktarımı öncesi/sonrası) sonucu etkilemez. Gerçek veri ayrıca §11'de tutarlılık için denetlenir.

@@ -214,3 +214,12 @@ test("hız sınırı: çok fazla hatalı giriş 429 döner", async () => {
   await new Promise(r => kucuk.server.close(r));
   assert.deepEqual(sonuc, [401, 401, 401, 429], "3 denemeye izin verilir, 4. engellenir");
 });
+
+test("senkron: kullanıcı başına anahtar sınırı", async () => {
+  const c = istemci();
+  await c("POST", "/api/auth/register", kayitBilgi("sinir@ornek.com"));
+  const d = {};
+  for (let i = 0; i < 65; i++) d["apmeberra:deneme-" + i] = "{}";
+  const r = await c("PUT", "/api/state", { degisiklikler: d });
+  assert.equal(r.govde.reddedilen.length, 5, "60'tan sonrası reddedilir");
+});

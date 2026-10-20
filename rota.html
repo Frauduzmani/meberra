@@ -33,7 +33,7 @@
 
   <footer class="footer">
     <div class="footer-bottom u-mt-0">
-      <div>Rota kuralları <code>data/mevzuat/ulke-rotalari.js</code> dosyasından okunur; her bilginin resmi kaynağı yanında. İşaretlerin yalnızca bu tarayıcıda saklanır ve yedeğe dahildir.</div>
+      <div>Rota kuralları <code>data/mevzuat/ulke-rotalari.js</code> dosyasından okunur; her bilginin resmi kaynağı yanında. İşaretlerin hesabına kaydedilir ve yedeğe dahildir.</div>
       <div><a href="index.html">← Bugün ekranına dön</a></div>
     </div>
   </footer>
@@ -345,7 +345,7 @@
           (c.gizlenenSinif ? ' · ' + c.gizlenenSinif + ' adım ' + esc(sinifAd || "sınıfın") + ' için geçerli olmadığından gizlendi' : "") +
           (c.gizlenenKosul ? ' · ' + c.gizlenenKosul + ' adım yerleşme durumun nedeniyle gizlendi' : "") +
           (c.gizlenenDil ? ' · ' + c.gizlenenDil + ' adım ' + (c.egitimDili === "yerel" ? "İngilizce" : "yerel dil") + ' yoluna ait olduğundan gizlendi (eğitim dilin profilde)' : "") +
-          '. Yaptığın adımı işaretle; işaretler bu cihazda saklanır.</p></div>' +
+          '. Yaptığın adımı işaretle; işaretler hesabına kaydedilir.</p></div>' +
         (c.adimlar.length ? "" : '<div class="empty-state"><h3>Bu sınıf için adım yok</h3><p>Profilindeki sınıf bilgisini kontrol et.</p></div>') +
         zamanBolumu("rg-past", "Geçmiş", c.sayac.gecikmis ? c.sayac.gecikmis + " zorunlu adımın tarihi geçti; yaptıysan işaretle." : "Tarihi geçen adımlar.", gecmis, c.sayac.gecikmis > 0 || (gecmis.length > 0 && !buay.length && !gelecek.length)) +
         zamanBolumu("rg-now", "Bu ay", "", buay, null) +

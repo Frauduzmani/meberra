@@ -150,7 +150,7 @@
     </div>
     <div class="footer-bottom">
       <div>© 2026 Meberra</div>
-      <div>Veriler yalnızca bu cihazda saklanır</div>
+      <div>İlerlemen hesabına otomatik kaydedilir</div>
     </div>
   </footer>
 
@@ -382,7 +382,7 @@
     }
 
     // 2b) Yedek hatırlatması (en az 1 cevap var ve hiç / 7 günden uzun süredir yedek yok)
-    if (A.backup && A.backup.needsReminder()) {
+    if (!window.MEBERRA_SYNC && A.backup && A.backup.needsReminder()) {
       var lb = A.backup.lastBackup();
       var nd = document.getElementById("home-backup-nudge");
       if (nd) {

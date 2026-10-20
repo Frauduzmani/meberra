@@ -11,6 +11,7 @@ const ANAHTAR = {
 };
 const ANAHTAR_RE = /^apmeberra:[a-z0-9:._-]{1,60}$/i;
 const EN_FAZLA_DEGER = 2 * 1024 * 1024; // anahtar başına 2 MB
+const EN_FAZLA_ANAHTAR = 60;              // kullanıcı başına (disk doldurmaya karşı)
 
 function isObj(v) { return v !== null && typeof v === "object" && !Array.isArray(v); }
 function ms(iso) { const n = Date.parse(iso); return isNaN(n) ? null : n; }
@@ -103,6 +104,7 @@ function veriServisi(db) {
     yaz: db.prepare(`INSERT INTO user_state (user_id, anahtar, deger, guncelleme) VALUES (?, ?, ?, ?)
       ON CONFLICT(user_id, anahtar) DO UPDATE SET deger = excluded.deger, guncelleme = excluded.guncelleme`),
     sil: db.prepare("DELETE FROM user_state WHERE user_id = ? AND anahtar = ?"),
+    say: db.prepare("SELECT COUNT(*) AS n FROM user_state WHERE user_id = ?"),
     cevap: db.prepare(`INSERT OR IGNORE INTO answers (user_id, sayfa, unite, unite_baslik, soru, secim, dogru, zaman) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`),
     hata: db.prepare(`INSERT INTO wrong_answers (user_id, sayfa, soru, unite, konu, hata_etiketi, secilen, dogru_cevap, ilk_yanlis, son_yanlis, yanlis_sayisi, cozuldu)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -180,6 +182,7 @@ function veriServisi(db) {
           }
           if (coz(yeni) === undefined) { reddedilen.push(k); return; }
           const eski = st.tek.get(userId, k);
+          if (!eski && st.say.get(userId).n >= EN_FAZLA_ANAHTAR) { reddedilen.push(k); return; }
           const son = birlestir(k, eski ? eski.deger : null, yeni);
           st.yaz.run(userId, k, son, simdi());
           if (son !== yeni) birlesen[k] = son;

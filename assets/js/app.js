@@ -1206,7 +1206,7 @@ function apSiradakiAdim(g) {
   if (yd && +yd.toplam > 0) {
     const n = Math.max(0, Math.min(+yd.cevaplanan || 0, +yd.toplam));
     return { tur: "deneme", baslik: (yd.ad || "Deneme") + " yarım kaldı (" + n + "/" + yd.toplam + ")",
-      aciklama: "Kaldığın sorudan devam et; cevapların bu cihazda kayıtlı.", href: "deneme.html", etiket: "Denemeye devam et",
+      aciklama: "Kaldığın sorudan devam et; cevapların hesabında kayıtlı.", href: "deneme.html", etiket: "Denemeye devam et",
       neden: "Yarım kalan deneme önce gelir: cevapların ve süren kaldığın yerde bekliyor." };
   }
   const yakin = apDiz(g.rotaAdimlari)
@@ -1625,7 +1625,7 @@ function initUniteGorunumu() {
       let kutu = null;
       u.bloklar.some(i => (kutu = Array.from(els[i].querySelectorAll("[id]")).find(k => k._questionsData)));
       ust.innerHTML = '<a class="ug-geri" href="' + base + '">← ' + apEsc(ders) + " üniteleri</a>" +
-        '<span class="ug-sag">' + (u.anlatim && kutu ? '<a class="ug-sorular" href="#' + apEsc(kutu.id) + '">Sorulara geç ↓</a>' : "") +
+        '<span class="ug-sag">' + (u.anlatim && kutu && !kilitli(u) ? '<a class="ug-sorular" href="#' + apEsc(kutu.id) + '">Sorulara geç ↓</a>' : "") +
         '<span class="ug-sayac">Ünite ' + n + " / " + g.uniteler.length + "</span></span>";
       alt.innerHTML = (o ? '<a class="btn-ghost ug-onceki" href="' + base + "?unite=" + o.no + '">← Önceki: ' + apEsc(o.baslik) + "</a>" : "<span></span>") +
         (s ? '<a class="btn-energy ug-sonraki" href="' + base + "?unite=" + s.no + '">Sonraki ünite →</a>' : '<a class="btn-primary" href="' + base + '">Ünite listesine dön</a>');
@@ -2471,7 +2471,7 @@ function initInteractiveQuiz(containerId, questionsData) {
   container.appendChild(dashboard);
   const hintEl = document.createElement("p");
   hintEl.className = "kbd-hint";
-  hintEl.innerHTML = "İpucu: Bir şıkka odaklanıp <kbd>A</kbd>–<kbd>D</kbd> tuşlarıyla seçebilir, <kbd>↑</kbd>/<kbd>↓</kbd> ile şıklar arasında gezinebilirsin. İlerlemen bu cihazda otomatik kaydedilir.";
+  hintEl.innerHTML = "İpucu: Bir şıkka odaklanıp <kbd>A</kbd>–<kbd>D</kbd> tuşlarıyla seçebilir, <kbd>↑</kbd>/<kbd>↓</kbd> ile şıklar arasında gezinebilirsin. İlerlemen otomatik kaydedilir.";
   container.appendChild(hintEl);
 
   const frag = document.createDocumentFragment();
