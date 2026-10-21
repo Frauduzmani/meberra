@@ -31,10 +31,27 @@
 
     <div id="pr-durum" aria-live="polite"></div>
 
+    <!-- 1.6.0: 7 günlük ücretsiz deneme (yalnızca uygun hesaplarda görünür) -->
+    <section class="surface pm-card bu-deneme" id="bu-deneme" hidden aria-labelledby="bu-deneme-h">
+      <h2 id="bu-deneme-h" tabindex="-1"><span class="bu-deneme-rozet" aria-hidden="true">7</span>7 gün ücretsiz Premium dene</h2>
+      <p id="bu-deneme-t">Tüm üniteler, sınırsız deneme ve sınırsız soru-cevap. Ödeme bilgisi gerekmez; otomatik ücret alınmaz, deneme bitince hesabın ücretsiz plana döner.</p>
+      <div class="pm-actions"><button type="button" class="btn-energy" id="bu-deneme-btn">Ücretsiz denemeyi başlat</button></div>
+      <p class="field-error" id="bu-deneme-err" role="alert"></p>
+    </section>
+
     <!-- 1. Plan -->
     <section class="surface pm-card pm-panel" id="pm-p1" aria-labelledby="pm-p1-h">
       <h2 id="pm-p1-h" tabindex="-1"><span class="pm-n">1</span>Planını seç</h2>
       <fieldset class="pm-plans" id="pr-planlar"><legend class="visually-hidden">Plan</legend></fieldset>
+      <details class="bu-kupon" id="bu-kupon">
+        <summary>İndirim kodun var mı?</summary>
+        <div class="bu-kupon-satir">
+          <label for="bu-kupon-kod" class="visually-hidden">İndirim kodu</label>
+          <input class="text-input" id="bu-kupon-kod" maxlength="30" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Kodu yaz" aria-describedby="bu-kupon-msg">
+          <button type="button" class="btn-ghost btn-sm" id="bu-kupon-btn">Uygula</button>
+        </div>
+        <p class="field-hint" id="bu-kupon-msg" role="status" aria-live="polite"></p>
+      </details>
       <ul class="pm-fayda" aria-label="Premium ile">
         <li>Tüm üniteler</li><li>Sınırsız ders denemesi</li><li>Genel deneme</li><li>Sınırsız soru-cevap</li><li>Haftada 2 seri koruma</li>
       </ul>
@@ -161,7 +178,69 @@
       var p = planlar.filter(function (x) { return x.id === secili; })[0];
       $("pr-tutar").textContent = p ? tl(p.fiyat) : "—";
       $("pr-plan-ad").textContent = p ? "· " + p.ad + " plan" : "";
+      kuponFiyatCiz();
     }
+
+    // --- İndirim kodu (1.6.0): POST /api/kupon/dogrula { kod, plan } → indirimli tutar; bildirimde kod gönderilir, sunucu yeniden doğrular ---
+    var kupon = null; // { kod, plan, liste, indirim, tutar, aciklama }
+    function kuponFiyatCiz() {
+      var el = $("pr-tutar"), msg = $("bu-kupon-msg");
+      if (!el || !msg) return;
+      if (kupon && kupon.plan === secili) {
+        el.innerHTML = '<s class="bu-eski">' + tl(kupon.liste) + "</s> " + tl(kupon.tutar);
+        msg.className = "field-hint bu-ok";
+        msg.textContent = kupon.kod + " uygulandı: " + tl(kupon.indirim) + " indirim" + (kupon.aciklama ? " · " + kupon.aciklama : "") + ". Ödenecek: " + tl(kupon.tutar) + ".";
+      } else if (kupon && kupon.plan !== secili) {
+        kuponDogrula(kupon.kod, true);
+      }
+    }
+    function kuponDogrula(kod, sessizce) {
+      var msg = $("bu-kupon-msg"), btn = $("bu-kupon-btn");
+      kod = String(kod || "").trim();
+      if (!kod) { kupon = null; msg.textContent = ""; planCiz(); return; }
+      UI.busy(btn, true, "…");
+      fetch("/api/kupon/dogrula", { method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json", "X-Meberra": "1" }, body: JSON.stringify({ kod: kod, plan: secili }) })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { j.ok = r.ok && j.ok !== false; return j; }); },
+          function () { return { ok: false, error: "Sunucuya ulaşılamadı. İnternet bağlantını kontrol edip tekrar dene." }; })
+        .then(function (j) {
+          UI.busy(btn, false);
+          if (!j.ok) {
+            kupon = null; planCiz();
+            msg.className = "field-error"; msg.textContent = (j.errors && j.errors.kupon) || j.error || "Kod uygulanamadı.";
+            if (!sessizce) $("bu-kupon-kod").setAttribute("aria-invalid", "true");
+            return;
+          }
+          $("bu-kupon-kod").removeAttribute("aria-invalid");
+          kupon = j; kuponFiyatCiz();
+          if (window.MeberraOlcum) window.MeberraOlcum.olay("kupon_uygulandi", { plan: j.plan });
+        });
+    }
+    $("bu-kupon-btn").addEventListener("click", function () { kuponDogrula($("bu-kupon-kod").value); });
+    $("bu-kupon-kod").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); kuponDogrula(this.value); } });
+
+    // --- 7 günlük ücretsiz deneme (1.6.0): GET/POST /api/premium/deneme ---
+    function denemeCiz(d) {
+      var kart = $("bu-deneme");
+      kart.hidden = !(d && d.ok && d.uygun);
+      if (!kart.hidden && /[?&]deneme=1/.test(location.search)) { kart.classList.add("is-vurgu"); $("bu-deneme-h").focus(); }
+    }
+    fetch("/api/premium/deneme", { credentials: "same-origin" }).then(function (r) { return r.json(); }).then(denemeCiz).catch(function () {});
+    $("bu-deneme-btn").addEventListener("click", function () {
+      var btn = this, err = $("bu-deneme-err");
+      UI.busy(btn, true, "Başlatılıyor…");
+      fetch("/api/premium/deneme", { method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json", "X-Meberra": "1" }, body: "{}" })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { j.ok = r.ok && j.ok !== false; return j; }); },
+          function () { return { ok: false, error: "Sunucuya ulaşılamadı. İnternet bağlantını kontrol edip tekrar dene." }; })
+        .then(function (j) {
+          if (!j.ok) { UI.busy(btn, false); err.textContent = j.error || "Deneme başlatılamadı."; return; }
+          err.textContent = "";
+          try { localStorage.setItem("apmeberra-hesap:v1:uyelik", JSON.stringify(j.uyelik)); } catch (e) { /* önbellek */ }
+          $("bu-deneme-h").textContent = "Premium denemen başladı";
+          $("bu-deneme-t").textContent = "Bitiş: " + tarih(j.bitis) + ". Bu sürede tüm ünitelere, sınırsız denemeye ve sınırsız soru-cevaba erişebilirsin.";
+          btn.outerHTML = '<a class="btn-energy" href="calis.html">Çalışmaya başla</a>';
+          AUTH.premiumDurum().then(durumCiz);
+        });
+    });
     $("pr-planlar").addEventListener("change", function (e) { if (e.target.name === "plan") { secili = e.target.value; planCiz(); var r = $("pr-planlar").querySelector('input[value="' + secili + '"]'); if (r) r.focus(); } });
 
     function durumCiz(j) {
@@ -233,7 +312,7 @@
       UI.alert($("pr-alert"), "");
       if (f) { f.focus(); return; }
       UI.busy($("pr-btn"), true, "Gönderiliyor…");
-      AUTH.premiumTalep(secili, $("pr-odeyenAd").value.trim(), $("pr-aciklama").value.trim()).then(function (r) {
+      AUTH.premiumTalep(secili, $("pr-odeyenAd").value.trim(), $("pr-aciklama").value.trim(), kupon && kupon.plan === secili ? kupon.kod : "").then(function (r) {
         UI.busy($("pr-btn"), false);
         if (!r.ok) {
           var f2 = UI.showErrors("pr", r.errors, ["odeyenAd"]);
@@ -242,6 +321,7 @@
           return;
         }
         $("pr-form").reset();
+        kupon = null; $("bu-kupon-kod").value = ""; $("bu-kupon-msg").textContent = "";
         AUTH.premiumDurum().then(function (s) { durumCiz(s); var h = $("pm-p4-h"); if (h) h.focus(); });
       });
     });

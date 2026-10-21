@@ -903,7 +903,8 @@
       f = f || {};
       return istek("POST", "/api/auth/register", {
         ad: f.ad, soyad: f.soyad, eposta: String(f.eposta || f.kullaniciAdi || "").trim(), sifre: f.sifre, sifre2: f.sifre2,
-        kosullar: !!f.kosullar, kvkk: !!f.kvkk, veliOnay: !!f.veliOnay
+        kosullar: !!f.kosullar, kvkk: !!f.kvkk, veliOnay: !!f.veliOnay,
+        davet: (function () { try { return window.localStorage.getItem("meberra:davet") || undefined; } catch (e) { return undefined; } })() // 1.6.0 davet kodu (buyume.js)
       }).then(function (j) {
         if (!j.ok) return { ok: false, errors: hataEsle(j) };
         return { ok: true, user: oturumYaz(j), orphan: null };
@@ -938,8 +939,8 @@
         return j.ok ? { ok: true } : { ok: false, errors: hataEsle(j) };
       });
     };
-    api.premiumTalep = function (plan, odeyenAd, aciklama) {
-      return istek("POST", "/api/premium/talep", { plan: plan, odeyenAd: odeyenAd, aciklama: aciklama }).then(function (j) {
+    api.premiumTalep = function (plan, odeyenAd, aciklama, kupon) {
+      return istek("POST", "/api/premium/talep", { plan: plan, odeyenAd: odeyenAd, aciklama: aciklama, kupon: kupon || undefined }).then(function (j) {
         if (j.ok && j.uyelik) sessiz(function () { lsSet(UYELIK_KEY, j.uyelik); });
         return j.ok ? { ok: true, talep: j.talep, uyelik: j.uyelik } : { ok: false, errors: hataEsle(j), error: j.error };
       });

@@ -3155,7 +3155,8 @@ window.APMEBERRA = {
   var SURUM = "20261021a";
   var kok = (document.currentScript && document.currentScript.src) ? document.currentScript.src.replace(/assets\/js\/app\.js.*$/, "") : "";
   if (/admin\.html$/.test(location.pathname)) return;
-  [["script", "assets/js/hata-izle.js"], ["link", "assets/css/oyun.css"], ["link", "assets/css/bildirim.css"], ["script", "assets/js/oyun.js"], ["script", "assets/js/bildirim.js"]].forEach(function (m) {
+  [["script", "assets/js/hata-izle.js"], ["link", "assets/css/oyun.css"], ["link", "assets/css/bildirim.css"], ["script", "assets/js/oyun.js"], ["script", "assets/js/bildirim.js"],
+    ["script", "assets/js/olcum.js"], ["link", "assets/css/buyume.css"], ["script", "assets/js/buyume.js"]].forEach(function (m) {
     // Sayfa modülü statik olarak (head'de) yüklüyorsa ikinci kez eklenmez: stil ilk boyamada hazır olur, içerik kaymaz
     if (document.querySelector(m[0] === "link" ? 'link[href*="' + m[1] + '"]' : 'script[src*="' + m[1] + '"]')) return;
     var el = document.createElement(m[0]);
