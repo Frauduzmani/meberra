@@ -4427,3 +4427,109 @@ a.surface:hover, a.bg-mini:hover, .bg-ders:hover, a.dv-kart:hover, .pf-sorular-k
 .options-container[aria-busy="true"] .option-btn { pointer-events: none; }
 .sb-cevap-hata { margin: var(--sp-2) 0 0; color: var(--bad); font-weight: 600; }
 @media (prefers-reduced-motion: reduce) { .sb-isk { animation: none; } }
+
+/* ============================================================================
+   v1.9.0 Tasarım geçişi — "woow ama kaotik değil": tek odak, sakin kartlar, tutarlı başlık/boş durum.
+   Yalnızca ekleme/inceltme: mevcut paylaşılan sınıflar yeniden adlandırılmadı.
+   ========================================================================== */
+
+/* 1.9.1 Profil: sol alt menü (masaüstü) / segment (telefon); app.js initProfilSekmeler */
+.pf-kabuk { display: grid; gap: var(--sp-6); align-items: start; }
+.pf-icerik { display: grid; gap: var(--sp-5); min-width: 0; }
+.pf-icerik > .profile-layout { grid-template-columns: minmax(0, 1fr); gap: var(--sp-5); margin: 0; }
+.pf-icerik > .profile-layout[hidden] { display: none; }
+.pf-kabuk[data-aktif] .profile-layout > [data-pf-grup] { display: none; }
+.pf-kabuk[data-aktif="hedef"] .profile-layout > [data-pf-grup="hedef"]:not([hidden]),
+.pf-kabuk[data-aktif="hesap"] .profile-layout > [data-pf-grup="hesap"]:not([hidden]),
+.pf-kabuk[data-aktif="veli"] .profile-layout > [data-pf-grup="veli"]:not([hidden]),
+.pf-kabuk[data-aktif="topluluk"] .profile-layout > [data-pf-grup="topluluk"]:not([hidden]) { display: block; }
+.pf-kabuk[data-aktif="topluluk"] .profile-layout > .pf-sorular-kart:not([hidden]) { display: flex; }
+.pf-altmenu ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.pf-altmenu li[hidden] { display: none; }
+.pf-altmenu-btn { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 44px; padding: 10px 14px; border: 0; border-radius: var(--radius-md); background: transparent; color: var(--text-muted); font: inherit; font-weight: 700; text-align: left; cursor: pointer; transition: background-color .15s ease, color .15s ease; }
+.pf-altmenu-btn svg { width: 18px; height: 18px; flex: none; }
+.pf-altmenu-btn:hover { background: var(--surface-2); color: var(--text); }
+.pf-altmenu-btn.is-active { background: var(--accent-soft); color: var(--accent); }
+.pf-altmenu-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.pf-kisa { display: none; }
+.pf-sekmeli .profile-id { margin-bottom: var(--sp-6); }
+@media (min-width: 901px) {
+  .pf-kabuk { grid-template-columns: 236px minmax(0, 760px); justify-content: center; }
+  .pf-sekmeli .profile-id { max-width: calc(236px + 760px + var(--sp-6)); margin-inline: auto; }
+  .pf-altmenu-btn { white-space: nowrap; }
+  .pf-altmenu { position: sticky; top: calc(var(--nav-h, 64px) + 24px); padding: var(--sp-2); border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-card); }
+}
+@media (max-width: 900px) {
+  .pf-altmenu { position: sticky; top: calc(var(--nav-h, 56px) + 4px); z-index: 5; margin: 0 calc(-1 * var(--sp-1)); padding: 4px; border-radius: var(--radius-full); background: color-mix(in srgb, var(--surface) 92%, transparent); border: 1px solid var(--border); box-shadow: var(--shadow-sm); backdrop-filter: blur(8px); }
+  .pf-altmenu ul { grid-auto-flow: column; grid-auto-columns: 1fr; gap: 2px; }
+  .pf-altmenu-btn { justify-content: center; min-height: 40px; padding: 8px 6px; border-radius: var(--radius-full); font-size: var(--fs-14); }
+  .pf-altmenu-btn svg { display: none; }
+  .pf-uzun { display: none; }
+  .pf-kisa { display: inline; }
+  .pf-altmenu-btn.is-active { background: var(--btn-bg); color: var(--on-btn); }
+}
+/* Profil › hedef ülkeler: seçili olmayan 13 ülke kompakt (yalnız ad); seçince açıklama görünür */
+#profile #pf-ulkeler-group { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--sp-2); }
+#profile #pf-ulkeler-group .choice-card:not(:has(input:checked)) { padding-block: 10px; align-items: center; }
+#profile #pf-ulkeler-group .choice-card:not(:has(input:checked)) .choice-body > span { display: none; }
+#profile #pf-ulkeler-group .choice-card:has(input:checked) { grid-column: span 2; }
+@media (max-width: 420px) { #profile #pf-ulkeler-group .choice-card:has(input:checked) { grid-column: 1 / -1; } }
+
+/* 1.9.2 Çalış: sayfada tek Tilo (ilk ders kartı); kart içi "kaldığın yer" kutu değil sakin satır */
+.calis-grid .cd-kart:not(:first-child) .cn-tilo { display: none; }
+.calis-grid .cd-kaldigin { padding: 0; background: none; border: 0; }
+
+/* 1.9.3 Soru kartı geri bildirimi: tek sakin kutu (renk yalnız başlıkta), iç paneller çizgiyle ayrılır */
+.question-card.state-correct, .question-card.state-wrong { border-left-width: 3px; }
+.feedback-box.correct-box, .feedback-box.wrong-box { background: var(--surface-2); border: 1px solid var(--border); border-top: 3px solid var(--ok); }
+.feedback-box.wrong-box { border-top-color: var(--bad); }
+.feedback-box .remediation-panel, .feedback-box .solution-panel { background: transparent; border: 0; border-top: 1px solid var(--border); border-radius: 0; padding: var(--sp-3) 0 0; margin-top: var(--sp-3); }
+.feedback-box .remediation-title, .feedback-box .solution-title { font-size: var(--fs-12); font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--text-muted); }
+.feedback-box .remediation-title svg, .feedback-box .remediation-title .ico { color: var(--warn); }
+.feedback-box .solution-title svg { color: var(--accent); }
+
+/* 1.9.4 İlerleme: başlanmamış ders kartı tek satır (5 aynı boş kart yerine sakin liste) */
+.course-block:has(> .course-block-head + .side-note:last-child) { padding-block: var(--sp-3); box-shadow: none; margin-bottom: var(--sp-3); }
+.course-block:has(> .course-block-head + .side-note:last-child) .course-block-head { margin-bottom: 0; }
+.course-block:has(> .course-block-head + .side-note:last-child) .side-note { margin: 2px 0 0; font-size: var(--fs-12); color: var(--text-muted); }
+.course-block:has(> .course-block-head + .side-note:last-child) .btn-ghost { min-height: 36px; padding-block: 6px; }
+
+/* 1.9.5 Seviye testi: form tek odak; geri sayım ince şerit, uyarı formun altında sakin not */
+.sv-deadline { gap: var(--sp-3); padding: 10px var(--sp-4); margin-bottom: var(--sp-4); border-radius: var(--radius-md); }
+.sv-deadline-num { font-size: 1.35rem; min-width: 0; }
+.sv-deadline-txt { font-size: var(--fs-14); }
+#sv-start > .sv-disclaimer.is-soft { margin: var(--sp-3) 0 0; padding: 0 var(--sp-1); background: none; border: 0; color: var(--text-muted); gap: var(--sp-2); }
+#sv-start > .sv-disclaimer.is-soft svg { width: 16px; height: 16px; margin-top: 2px; color: var(--text-dim); }
+#sv-start > .sv-disclaimer.is-soft p { font-size: var(--fs-14); color: var(--text-muted); }
+
+/* 1.9.6 Sorularım: liste boşken başlıktaki "Soru sor" gizlenir — boş durumdaki tek CTA odak olur */
+.sr-sayfa:has(#sorularim .bd-bos-kutu) .sr-bas > .bd-yeni-soru { display: none; }
+
+/* 1.9.7 Bugün hero: Tilo selamı zaten karşılıyor → "Hoş geldin" rozeti ve görev türü çipi tekrar; tek başlık + tek CTA kalır */
+.bugun-v5 .bg-hero .bg-ilk-rozet, .bugun-v5 .bg-hero .sa-tur { display: none; }
+@media (max-width: 900px) { .pf-altmenu-btn { white-space: nowrap; font-size: 13px; padding-inline: 4px; } }
+#profile #pf-ulkeler-group .choice-code { white-space: nowrap; }
+#profile #pf-ulkeler-group .choice-body strong { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
+/* İlerleme › Yanlışlarım boşken "Tek oturumda çöz" birincil butonu gizlenir (çözülecek soru yok) */
+.section:has(> #err-empty:not([hidden])) #err-oturum { display: none; }
+/* Çalış: "Kilitli üniteler Premium ile açılır" notu yalnız ilk kartta (7 kez tekrar etmesin) */
+.calis-grid .cd-kart:not(:first-child) .cn-yol__not { display: none; }
+.pf-kabuk[data-aktif="topluluk"] .pf-icerik > .bd-profil-ek { order: -1; }
+
+/* 1.9.8 Kısa sayfalarda altbilgi sayfa dibinde (şifre sıfırlama, 404, boş durumlar): altbilgi ortada yüzmez */
+body:has(> main):has(> footer.footer) { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
+body:has(> main):has(> footer.footer) > main { flex: 1 0 auto; width: 100%; }
+body:has(> main):has(> footer.footer) > footer.footer { flex-shrink: 0; }
+
+/* 1.9.9 Kayma önleme (CLS): navbar XP çipinin yerleşim kuralları ortak dosyada da var. canli.css'i statik yüklemeyen
+   sayfalarda (deneme, premium, seviye, rota…) çip CSS gelene kadar biçimsiz kalıp menüyü 60 → 92 px'e uzatıyordu. */
+.nav-xp { display: inline-flex; align-items: center; gap: 4px; flex: none; min-height: 36px; padding: 0 12px 0 8px; border-radius: var(--radius-full); background: var(--energy-soft); color: var(--energy-text); font: 800 var(--fs-14)/1 var(--font-head, system-ui, sans-serif); text-decoration: none; white-space: nowrap; }
+.nav-xp svg { width: 18px; height: 18px; flex: none; }
+.nav-xp [data-xp-deger] { font-variant-numeric: tabular-nums; min-width: 2ch; text-align: right; display: inline-block; }
+@media (max-width: 420px) { .nav-xp { padding: 0 10px 0 6px; } .nav-xp__ek { display: none; } }
+
+/* 1.9.10 Ders hub'ı: başlık satırında tek birincil eylem (Sürdür/Başla: Ünite N) */
+.ug-panel .bg-sec-h { align-items: center; flex-wrap: wrap; }
+.ug-panel .bg-sec-h .ug-ozet { display: block; margin-top: 2px; }
+.ug-panel .bg-sec-h .ug-devam { color: var(--on-btn); flex: none; }
+@media (max-width: 520px) { .ug-panel .bg-sec-h .ug-devam { width: 100%; justify-content: center; } }

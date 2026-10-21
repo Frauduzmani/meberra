@@ -267,3 +267,10 @@ body.page-course .question-card, .dn-wrap .question-card { animation: ic-yuksel 
 .sr-top > .sr-cta { align-self: start; }
 .hero-section .ic-ayrinti { margin: var(--sp-2) 0 var(--sp-4); }
 @media (prefers-reduced-motion: reduce) { .main-container > .page-head { animation: none !important; } }
+
+/* 1.9.0 Okunabilir anlatım (telefon): iç içe kartların dolgusu inceltildi → metin sütunu ~270 → ~320 px */
+@media (max-width: 640px) {
+  .interactive-panel { padding-left: 12px; padding-right: 12px; }
+  .interactive-panel .lecture-card { padding: 16px 14px 16px 16px; }
+  .interactive-panel .lecture-card .lecture-card, .interactive-panel .theory-body > div[class*="u-blc"] { padding-left: 12px; padding-right: 10px; }
+}

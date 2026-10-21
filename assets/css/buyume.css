@@ -17,3 +17,19 @@
 .bu-davet-link { display: flex; gap: var(--sp-2, 8px); flex-wrap: wrap; align-items: center; margin-bottom: var(--sp-2, 8px); }
 .bu-davet-link .text-input { flex: 1 1 220px; min-width: 0; font-family: var(--font-mono); font-size: var(--fs-14); }
 .bu-olcum .field-hint { margin-top: var(--sp-2, 8px); }
+
+/* 1.9.0 Premium sayfası: deneme teklifi ikincil şerit (sayfanın birincil eylemi plan seçimi) */
+.pm-wrap .bu-deneme, #bu-deneme { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "h b" "t b" "e e"; column-gap: var(--sp-4); row-gap: 2px; align-items: center; border: 1px solid color-mix(in srgb, var(--energy) 35%, var(--border)); background: linear-gradient(90deg, var(--energy-soft), var(--surface) 60%); box-shadow: none; padding: var(--sp-4) var(--sp-5); }
+#bu-deneme[hidden] { display: none; }
+#bu-deneme h2 { grid-area: h; display: flex; align-items: center; gap: 10px; margin: 0; font-size: var(--fs-16); font-weight: 800; }
+#bu-deneme h2 .bu-deneme-rozet { width: 28px; height: 28px; font-size: var(--fs-14); flex: none; }
+#bu-deneme > p:not(.field-error) { grid-area: t; font-size: var(--fs-14); padding-left: 38px; }
+#bu-deneme .pm-actions { grid-area: b; margin: 0; }
+#bu-deneme .field-error { grid-area: e; margin: 0; }
+#bu-deneme .btn-energy { background: var(--surface); color: var(--energy-text); border: 1px solid color-mix(in srgb, var(--energy) 55%, var(--border)); box-shadow: none; }
+#bu-deneme .btn-energy:hover { background: var(--energy-soft); color: var(--energy-text); box-shadow: none; }
+@media (max-width: 640px) {
+  #bu-deneme { grid-template-columns: minmax(0, 1fr); grid-template-areas: "h" "t" "b" "e"; row-gap: var(--sp-2); }
+  #bu-deneme .pm-actions .btn-energy { width: 100%; }
+  #bu-deneme > p:not(.field-error) { padding-left: 0; }
+}

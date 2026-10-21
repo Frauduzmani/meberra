@@ -67,6 +67,11 @@
     if (!tok || !AUTH.sifreSifirla) {
       UI.alert($("ss-alert"), "Bağlantı eksik ya da geçersiz. Giriş sayfasından yeniden “Şifremi unuttum” iste.");
       $("ss-form").querySelectorAll("input, button").forEach(function (x) { x.disabled = true; });
+      // 1.9.0: geçersiz bağlantıda boş form yerine tek eylem: girişe dön
+      $("ss-form").classList.add("is-gecersiz");
+      var git = document.createElement("a"); git.className = "btn-primary btn-block"; git.href = "/giris"; git.textContent = "Girişe dön ve yeni bağlantı iste";
+      $("ss-form").appendChild(git);
+      var sw = document.querySelector(".gr-switch"); if (sw) sw.hidden = true;
       return;
     }
     // Şifre gücü (giris.html ile aynı ölçek)

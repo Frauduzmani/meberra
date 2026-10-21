@@ -159,3 +159,16 @@ a.oy-tekrar-kart:hover { border-color: var(--accent); transform: translateY(-2px
   .oy-dalga { display: none; }
   a.oy-tekrar-kart:hover, .oy-dugum:hover, .oy-dugum:active { transform: none; }
 }
+
+/* 1.9.0 Rozet duvarı sadeleşti: kazanılanlar tam kart, kazanılmayanlar küçük ve soluk (ilerleme göz ucuyla okunur) */
+.oy-rozetler { grid-template-columns: repeat(auto-fill, minmax(min(100%, 112px), 1fr)); gap: 10px; }
+.oy-rozet:not(.is-kazanildi) { padding: 12px 8px; gap: 2px; border-style: solid; border-color: var(--border); background: transparent; }
+.oy-rozet:not(.is-kazanildi) .oy-rozet-ik { width: 36px; height: 36px; margin-bottom: 2px; }
+.oy-rozet:not(.is-kazanildi) .oy-rozet-ik svg { width: 18px; height: 18px; }
+.oy-rozet:not(.is-kazanildi) strong { font-size: var(--fs-12); color: var(--text-muted); }
+.oy-rozet:not(.is-kazanildi) small { font-size: 11px; color: var(--text-muted); }
+.oy-rozet:not(.is-kazanildi) .oy-rozet-durum { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (max-width: 520px) {
+  .oy-rozetler { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .oy-rozet:not(.is-kazanildi) small { display: none; }
+}

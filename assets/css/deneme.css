@@ -293,3 +293,30 @@ body.dn-exam-mode .footer { display: none; }
 @media print { .dn-sonuc-eylem, .dn-yk { display: none !important; } }
 /* Program odağı alan başlık (tabindex=-1, etkileşimsiz): ekran okuyucu için odak, görsel halka gerekmez */
 #dn-h1:focus { outline: none; box-shadow: none; }
+
+/* 1.9.0 Odak modu: sınav sırasında ana menü, XP, zil, hesap ve alt gezinme gizlenir (marka + tema kalır).
+   Çıkış yolu: "Gözden geçir" › "Denemeyi iptal et" ya da marka bağlantısı. */
+body.dn-exam-mode .navbar .nav-links,
+body.dn-exam-mode .navbar .nav-xp,
+body.dn-exam-mode .navbar .bd-zil-kap,
+body.dn-exam-mode .navbar .account,
+body.dn-exam-mode .navbar .nav-menu-btn,
+body.dn-exam-mode .bottom-nav,
+body.dn-exam-mode .bn-sheet { display: none !important; }
+body.dn-exam-mode .navbar .nav-brand::after { content: "Deneme · odak modu"; margin-left: 10px; font-size: var(--fs-14); font-weight: 700; color: var(--text-muted); white-space: nowrap; }
+body.dn-exam-mode .navbar .nav-brand { display: inline-flex; align-items: center; }
+body.dn-exam-mode.has-bottom-nav { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+/* 1.9.0 Katalog kartları: sakin not metni, tek tip CTA, kapsam tek satır, "önerilen" çip */
+.dn-card { gap: var(--sp-2); border-top-width: 3px; }
+.dn-card .dn-note { color: var(--text-muted); font-size: var(--fs-12); line-height: 1.45; }
+.dn-card .dn-note.dn-hak-bitti { color: var(--text-muted); margin-top: auto; }
+.dn-card .dn-note.dn-hak-bitti + .dn-card-cta { margin-top: 0; }
+.dn-card .dn-note.dn-oneri { align-self: flex-start; margin: 0 0 2px; padding: 2px 10px; border-radius: var(--radius-full); background: var(--accent-soft); color: var(--accent); font-weight: 800; font-size: var(--fs-12); }
+.dn-facts dd { min-width: 0; }
+.dn-facts > div:nth-child(2) dd { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dn-card-cta { margin-top: auto; }
+.dn-card .dn-card-cta { margin-top: auto; }
+.dn-card .dn-card-cta + .dn-note { margin-top: 2px; }
+.dn-card .btn-energy.dn-card-cta { background: transparent; color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border)); box-shadow: none; }
+.dn-card .btn-energy.dn-card-cta:hover { background: var(--accent-soft); color: var(--accent); box-shadow: none; }

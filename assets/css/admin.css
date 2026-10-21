@@ -343,7 +343,7 @@
 .adm-tile-ikon { display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; flex: none; background: var(--accent-soft); color: var(--accent); }
 .adm-tile.is-enerji .adm-tile-ikon { background: var(--energy-soft); color: var(--energy-text); }
 .adm-tile.is-ok .adm-tile-ikon { background: var(--ok-bg); color: var(--ok); }
-.adm-tile.is-bad { border-top-color: var(--adm-kirmizi); }
+.adm-tile.is-bad { border-top: 3px solid var(--adm-kirmizi); }
 .adm-tile.is-bad .adm-tile-ikon { background: var(--bad-bg); color: var(--bad); }
 .adm-tile.is-bad .adm-tile-deger { color: var(--bad); }
 .adm-tile.is-tik:hover { box-shadow: var(--shadow-lg); }
@@ -868,3 +868,11 @@ html.adm-kilit { overflow: hidden; }
   .adm-sb-fark-iki { grid-template-columns: 1fr; }
   .adm-sb-dagilim li { grid-template-columns: 2.5rem 1fr 5rem; }
 }
+
+/* 1.9.0 Özet kutuları: tek tip kart (renkli üst çizgi yalnız uyarıda), eşit yükseklik, sıfır günler de çubuk olarak okunur */
+.adm-tiles { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.adm-tile, .adm-tile.is-mor, .adm-tile.is-ok, .adm-tile.is-enerji { border-top: 1px solid var(--border); }
+.adm-tile.is-bad { border-top: 3px solid var(--adm-kirmizi); }
+.adm-tile { min-height: 148px; }
+.adm-tile-etiket { line-height: 1.3; }
+.adm-mini-cubuk { min-height: 3px; }

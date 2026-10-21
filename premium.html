@@ -32,14 +32,6 @@
 
     <div id="pr-durum" aria-live="polite"></div>
 
-    <!-- 1.6.0: 7 günlük ücretsiz deneme (yalnızca uygun hesaplarda görünür) -->
-    <section class="surface pm-card bu-deneme" id="bu-deneme" hidden aria-labelledby="bu-deneme-h">
-      <h2 id="bu-deneme-h" tabindex="-1"><span class="bu-deneme-rozet" aria-hidden="true">7</span>7 gün ücretsiz Premium dene</h2>
-      <p id="bu-deneme-t">Tüm üniteler, sınırsız deneme ve sınırsız soru-cevap. Ödeme bilgisi gerekmez; otomatik ücret alınmaz, deneme bitince hesabın ücretsiz plana döner.</p>
-      <div class="pm-actions"><button type="button" class="btn-energy" id="bu-deneme-btn">Ücretsiz denemeyi başlat</button></div>
-      <p class="field-error" id="bu-deneme-err" role="alert"></p>
-    </section>
-
     <!-- 1. Plan -->
     <section class="surface pm-card pm-panel" id="pm-p1" aria-labelledby="pm-p1-h">
       <h2 id="pm-p1-h" tabindex="-1"><span class="pm-n">1</span>Planını seç</h2>
@@ -119,6 +111,14 @@
       <p class="field-hint">Yanlış plan seçtiysen ya da ödemeyi yapmadıysan bildirimini geri çekebilirsin.</p>
       <button type="button" class="btn-ghost btn-sm" id="pr-talep-iptal">Bildirimimi iptal et</button>
       <p class="field-error" id="pr-talep-iptal-err" role="alert"></p>
+    </section>
+
+    <!-- 1.6.0: 7 günlük ücretsiz deneme (yalnızca uygun hesaplarda görünür). 1.9.0: plan kartının altında ikincil şerit — birincil eylem plan seçimi; geç gelince üstteki içeriği itmez -->
+    <section class="surface pm-card bu-deneme" id="bu-deneme" hidden aria-labelledby="bu-deneme-h">
+      <h2 id="bu-deneme-h" tabindex="-1"><span class="bu-deneme-rozet" aria-hidden="true">7</span>7 gün ücretsiz Premium dene</h2>
+      <p id="bu-deneme-t">Tüm üniteler, sınırsız deneme ve sınırsız soru-cevap. Ödeme bilgisi gerekmez; otomatik ücret alınmaz, deneme bitince hesabın ücretsiz plana döner.</p>
+      <div class="pm-actions"><button type="button" class="btn-energy" id="bu-deneme-btn">Ücretsiz denemeyi başlat</button></div>
+      <p class="field-error" id="bu-deneme-err" role="alert"></p>
     </section>
 
     <section class="surface pm-card" id="pr-gecmis" hidden aria-labelledby="pr-gecmis-h">

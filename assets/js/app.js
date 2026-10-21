@@ -677,7 +677,8 @@ function initGlobalNav() {
   }
   // 1.4.0 maskot/hareket — navbar XP çipi ([data-xp-sayac]: "+10 XP" buraya uçar). Değeri assets/js/canli.js günceller;
   // ilk değer kayıtlı XP (apmeberra:oyun:v1.xp) ile hemen çizilir ki menü sonradan kaymasın. Yüksek lisans modelinde yok.
-  if (me && !minimal && navModel !== "uni-mezun" && !actions.querySelector(".nav-xp")) {
+  // 1.9.0: yönetim panelinde XP çipi yok (öğrenci oyunlaştırması; panelde canli.css yüklenmez)
+  if (me && !minimal && navModel !== "uni-mezun" && apCurrentPage() !== "admin" && !actions.querySelector(".nav-xp")) {
     let xp0 = 0;
     try { xp0 = Number((JSON.parse(localStorage.getItem("apmeberra:oyun:v1") || "{}") || {}).xp) || 0; } catch (e) { xp0 = 0; }
     const xa = document.createElement("a");
@@ -851,6 +852,7 @@ function initFooterRehber() {
   const me = guest ? null : APMEBERRA_ME;
   if (!guest && !(me && me.profile && me.profile.tamamlandi)) return;
   if (document.querySelector(".footer-rehber")) return;
+  if (apCurrentPage() === "admin") return; // 1.9.0: yönetim panelinde öğrenci rehber şeridi yok
   if (apCurrentPage() === "index") return; // Bugün sade kalır: altbilgide yalnızca "Hedefim" bağlantısı
   const model = me && me.profile ? me.profile.ogrenciModeli : null;
   const current = apAdres(apCurrentPage());
@@ -984,7 +986,98 @@ document.addEventListener("DOMContentLoaded", () => {
   initKMKChecker();
   initFormulaCopies();
   initUniteMetinleri();
+  initProfilSekmeler();
 });
+
+/**
+ * 1.9.0 Profil düzeni: tek uzun form duvarı yerine 4 bölüm. Masaüstünde sol alt menü, telefonda yatay segment.
+ * Yalnızca görünürlük değişir (bölümler yerinde kalır; profil/bildirim/büyüme betikleri aynı kimliklerle çalışır).
+ * Sonradan eklenen kartlar (davet, ölçüm, lig) MutationObserver ile gruplanır. #çapa bağlantıları (/profil#veli,
+ * /profil#pf-hedefAlan, /profil#bildirim-ayarlari) ilgili bölümü açar.
+ */
+const APMEBERRA_PROFIL_GRUPLAR = [
+  { id: "hedef", label: "Hedeflerim", kisa: "Hedefler", ikon: '<path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/>' },
+  { id: "hesap", label: "Hesap ve bildirimler", kisa: "Hesap", ikon: '<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>' },
+  { id: "veli", label: "Velin", ikon: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17.5" cy="9.5" r="2.5"/><path d="M16 14.5a5 5 0 0 1 6 4.9"/>' },
+  { id: "topluluk", label: "Lig ve davet", kisa: "Lig", ikon: '<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/>' }
+];
+function apProfilGrubu(el) {
+  if (!el || el.nodeType !== 1) return null;
+  if (el.id === "ap-dersler" || el.querySelector("#pf-form")) return "hedef";
+  if (el.id === "hesap" || el.classList.contains("bu-olcum")) return "hesap";
+  if (el.id === "veli") return "veli";
+  if (el.id === "lig" || el.id === "davet" || el.classList.contains("pf-sorular-kart")) return "topluluk";
+  return null;
+}
+function initProfilSekmeler() {
+  const kok = document.getElementById("profile");
+  if (!kok || kok.dataset.pfSekme) return;
+  kok.dataset.pfSekme = "1";
+  const kimlik = kok.querySelector(".profile-id");
+  const icerik = document.createElement("div");
+  icerik.className = "pf-icerik";
+  kok.querySelectorAll(":scope > .profile-layout").forEach(l => icerik.appendChild(l));
+  const nav = document.createElement("nav");
+  nav.className = "pf-altmenu";
+  nav.setAttribute("aria-label", "Profil bölümleri");
+  nav.innerHTML = '<ul>' + APMEBERRA_PROFIL_GRUPLAR.map(g =>
+    '<li><button type="button" class="pf-altmenu-btn" data-pf-grup="' + g.id + '" aria-controls="pf-icerik">' +
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + g.ikon + '</svg>' +
+    '<span class="pf-uzun">' + apEsc(g.label) + '</span><span class="pf-kisa" aria-hidden="true">' + apEsc(g.kisa || g.label) + '</span></button></li>').join("") + '</ul>';
+  icerik.id = "pf-icerik";
+  const kabuk = document.createElement("div");
+  kabuk.className = "pf-kabuk";
+  kabuk.appendChild(nav);
+  kabuk.appendChild(icerik);
+  if (kimlik && kimlik.nextSibling) kok.insertBefore(kabuk, kimlik.nextSibling); else kok.appendChild(kabuk);
+  kok.classList.add("pf-sekmeli");
+
+  let aktif = "hedef";
+  const uyeler = () => [...icerik.querySelectorAll(".profile-layout > *")];
+  const isaretle = () => uyeler().forEach(el => { const g = apProfilGrubu(el); if (g && el.dataset.pfGrup !== g) el.dataset.pfGrup = g; });
+  const goster = (id, odak) => {
+    aktif = id;
+    kabuk.dataset.aktif = id;
+    nav.querySelectorAll(".pf-altmenu-btn").forEach(b => {
+      const on = b.dataset.pfGrup === id;
+      b.classList.toggle("is-active", on);
+      if (on) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current");
+      // Bölümü olmayan sekme (ör. velin kartı gizli) gösterilmez
+      const yok = !uyeler().some(el => el.dataset.pfGrup === b.dataset.pfGrup && !el.hidden);
+      if (b.parentElement.hidden !== yok) b.parentElement.hidden = yok;
+    });
+    icerik.querySelectorAll(".profile-layout").forEach(l => {
+      const gizle = ![...l.children].some(el => el.dataset.pfGrup === id && !el.hidden);
+      if (l.hidden !== gizle) l.hidden = gizle;
+    });
+    if (odak) { const h = icerik.querySelector('.profile-layout > [data-pf-grup="' + id + '"]:not([hidden]) h2'); if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); } }
+  };
+  nav.addEventListener("click", e => {
+    const b = e.target.closest(".pf-altmenu-btn");
+    if (!b) return;
+    goster(b.dataset.pfGrup, true);
+    try { history.replaceState(null, "", window.location.pathname + window.location.search + "#" + b.dataset.pfGrup); } catch (x) { /* yok say */ }
+    if (kabuk.getBoundingClientRect().top < 0) kabuk.scrollIntoView({ block: "start" });
+  });
+  const capadan = () => {
+    const id = decodeURIComponent((window.location.hash || "").slice(1));
+    if (!id) return false;
+    if (APMEBERRA_PROFIL_GRUPLAR.some(g => g.id === id) && id !== "veli" && id !== "hesap") { goster(id); return true; }
+    const h = document.getElementById(id);
+    const el = h && h.closest("[data-pf-grup]");
+    if (!el) return false;
+    goster(el.dataset.pfGrup);
+    requestAnimationFrame(() => h.scrollIntoView({ block: "start" }));
+    return true;
+  };
+  isaretle();
+  if (!capadan()) goster(aktif);
+  let t = null;
+  // Sonradan eklenen kartlar (.profile-layout içine) ve bölümlerin kendi hidden değişimi; goster yalnızca farkı yazar → döngü yok
+  if (window.MutationObserver) new MutationObserver(() => { clearTimeout(t); t = setTimeout(() => { isaretle(); goster(aktif); }, 60); })
+    .observe(icerik, { childList: true, subtree: true, attributes: true, attributeFilter: ["hidden"] });
+  window.addEventListener("hashchange", capadan);
+}
 
 // --- Sayfa kabuğu (v3): tek tip marka satırı, ders sayfası vurgu rengi ---
 function initPageChrome() {
@@ -1534,8 +1627,13 @@ function initUniteGorunumu() {
   const panel = document.createElement("section");
   panel.className = "surface ug-panel";
   panel.setAttribute("aria-labelledby", "ug-baslik");
-  const panelCiz = () => { const T = g.uniteler.reduce((a, u) => ({ t: a.t + u.toplam, c: a.c + u.cevap }), { t: 0, c: 0 }); panel.innerHTML = '<div class="bg-sec-h"><h2 id="ug-baslik">' + (bolumMu ? "Bölümler" : "Üniteler") + '</h2><span class="ug-ozet">' + g.uniteler.length + " " + birim +
-    (T.t ? " · " + T.c + " / " + T.t + " soru çözüldü" : "") + '</span></div><ol class="ug-liste">' +
+  const panelCiz = () => { const T = g.uniteler.reduce((a, u) => ({ t: a.t + u.toplam, c: a.c + u.cevap }), { t: 0, c: 0 }); // 1.9.0: hub'ın tek birincil eylemi — yarım kalan (yoksa ilk başlanmamış) açık ünite
+    const acik = g.uniteler.filter(u => !kilitli(u));
+    const hedefU = acik.find(u => u.cevap && u.cevap < u.toplam) || acik.find(u => !u.cevap) || null;
+    const devam = hedefU ? '<a class="btn-primary btn-sm ug-devam" href="' + base + "?unite=" + hedefU.no + '">' + (hedefU.cevap ? "Sürdür" : "Başla") +
+      ": " + (bolumMu ? "Bölüm " : "Ünite ") + apEsc(String(hedefU.no)) + " →</a>" : "";
+    panel.innerHTML = '<div class="bg-sec-h"><div class="u-min0"><h2 id="ug-baslik">' + (bolumMu ? "Bölümler" : "Üniteler") + '</h2><span class="ug-ozet">' + g.uniteler.length + " " + birim +
+    (T.t ? " · " + T.c + " / " + T.t + " soru çözüldü" : "") + '</span></div>' + devam + '</div><ol class="ug-liste">' +
     g.uniteler.map(u => {
       const durum = u.cevap ? u.cevap + " / " + u.toplam + " soru · %" + yuzde(u.dogru, u.cevap) + " doğru" : u.toplam ? u.toplam + " soru · başlanmadı" : "Konu anlatımı";
       const git = kilitli(u) ? APMEBERRA_ICONS.crown + "Premium" : !u.cevap ? "Başla" : u.cevap >= u.toplam ? "Tekrar et" : "Sürdür";
