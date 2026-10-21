@@ -66,7 +66,8 @@ function hesapServisi(db, denetim, eposta) {
   function uyelik(userId) {
     const a = q.aktifAbonelik.get(userId, simdi());
     const t = q.bekleyenTalep.get(userId);
-    return { premium: !!a, plan: a ? a.plan : null, bitis: a ? a.bitis : null, bekleyenTalep: t ? { id: t.id, plan: t.plan, olusturma: t.olusturma } : null };
+    // deneme: 7 günlük ücretsiz deneme dönemi (1.6.0; kaynak = 'deneme')
+    return { premium: !!a, plan: a ? a.plan : null, bitis: a ? a.bitis : null, deneme: !!(a && a.kaynak === "deneme"), bekleyenTalep: t ? { id: t.id, plan: t.plan, olusturma: t.olusturma } : null };
   }
 
   function oturumAc(userId, req) {
@@ -249,20 +250,22 @@ function hesapServisi(db, denetim, eposta) {
 
     // --- Premium ---------------------------------------------------------
     talepler(u) { return q.talepler.all(u.id); },
-    talepOlustur(u, f, req) {
+    /** ek (1.6.0, isteğe bağlı): { tutar, kuponKod } — indirim kodu uygulanmış tutar (kampanya.js doğrular) */
+    talepOlustur(u, f, req, ek) {
       const plan = config.plan(f && f.plan);
       const odeyen = kirp(f && f.odeyenAd), aciklama = kirp(f && f.aciklama).slice(0, 500), e = {};
       if (!plan) e.plan = "Bir plan seç.";
       if (!odeyen) e.odeyenAd = "Ödemeyi yapan kişinin adını yaz."; else if (odeyen.length > 100) e.odeyenAd = "En fazla 100 karakter.";
       if (Object.keys(e).length) throw new HttpHata(400, "Lütfen işaretli alanları düzelt.", e);
       if (q.bekleyenTalep.get(u.id)) throw new HttpHata(409, "Zaten onay bekleyen bir ödeme bildirimin var. Onaylandığında Premium otomatik açılır.");
-      const id = Number(q.talepEkle.run(u.id, plan.id, plan.fiyat, odeyen, aciklama || null, simdi()).lastInsertRowid);
-      denetim({ eylem: "premium.talep", kullanici: u.id, istek: req, varlik: "upgrade_requests", varlikId: id, ayrinti: { plan: plan.id, tutar: plan.fiyat } });
+      const tutar = ek && ek.tutar != null ? ek.tutar : plan.fiyat;
+      const id = Number(q.talepEkle.run(u.id, plan.id, tutar, odeyen, aciklama || null, simdi()).lastInsertRowid);
+      denetim({ eylem: "premium.talep", kullanici: u.id, istek: req, varlik: "upgrade_requests", varlikId: id, ayrinti: { plan: plan.id, tutar, kupon: (ek && ek.kuponKod) || undefined } });
       // Yöneticiye bildirim (ADMIN_EPOSTA tanımlıysa)
       if (config.yonetici.eposta) eposta.gonder(config.yonetici.eposta, "Yeni ödeme bildirimi: " + u.ad + " " + u.soyad + " · " + plan.ad,
-        "Yeni Premium ödeme bildirimi\n\nÖğrenci: " + u.ad + " " + u.soyad + " <" + u.eposta + ">\nPlan: " + plan.ad + " · " + plan.fiyat + " TL\nÖdeyen: " + odeyen +
+        "Yeni Premium ödeme bildirimi\n\nÖğrenci: " + u.ad + " " + u.soyad + " <" + u.eposta + ">\nPlan: " + plan.ad + " · " + tutar + " TL" + (ek && ek.kuponKod ? " (indirim kodu " + ek.kuponKod + ", liste fiyatı " + plan.fiyat + " TL)" : "") + "\nÖdeyen: " + odeyen +
         (aciklama ? "\nNot: " + aciklama : "") + "\n\nDekontu kontrol edip onaylamak için: " + config.baseUrl + "/admin.html#talepler");
-      return { id, plan: plan.id, tutar: plan.fiyat, durum: "bekliyor" };
+      return { id, plan: plan.id, tutar, durum: "bekliyor" };
     },
     /** Öğrenci kendi bekleyen ödeme bildirimini geri çeker (ör. yanlış plan seçtiyse). */
     talepIptal(u, req) {

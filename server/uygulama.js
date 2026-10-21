@@ -24,6 +24,9 @@ const { varlikServisi } = require("./varlik");
 const { ayarServisi, bakimServisi, ipEngelServisi } = require("./erisim");
 const { operasyonRotalari } = require("./operasyon");
 const zaman = require("./zaman");
+// 1.6.0
+const { huniServisi, huniRotalari } = require("./huni");
+const { kampanyaServisi, kampanyaRotalari } = require("./kampanya");
 
 // Bakım modunda yönetici olmayanlara da açık API yolları (giriş yapabilmek ve durumu görebilmek için)
 const BAKIM_ACIK_API = new Set(["/api/health", "/api/public/config", "/api/auth/login", "/api/auth/logout", "/api/me"]);
@@ -253,6 +256,17 @@ function olustur(secenek) {
     testRotalari: secenek.testRotalari != null ? !!secenek.testRotalari : (process.env.NODE_ENV === "test" || process.env.MEBERRA_TEST_ROTALARI === "1") });
   operasyonRotalari(r, { db, denetim, yoneticiGerekli, zamanlayici: zamanlayiciS, eposta, varlik, bakim, ipEngel, sinirlar, izle, dbDosya });
 
+  // ==== 1.6.0 büyüme: ölçüm hunisi, 7 günlük Premium denemesi, indirim kodu, davet (server/huni.js, server/kampanya.js) ====
+  const huni = huniServisi(db, { olaySiniri: secenek.olaySiniri });
+  const kampanya = kampanyaServisi({ db, hesap, bildirim, huni, denetim, gunluk, kuponSiniri: secenek.kuponSiniri });
+  huniRotalari(r, { huni, yoneticiGerekli });
+  kampanyaRotalari(r, { db, kampanya, huni, hesap, denetim, oturumGerekli, yoneticiGerekli });
+  zamanlayiciS.isEkle("denemeBildirim", "Premium denemesi bildirimleri", ms => kampanya.denemeBildirimleri(ms));
+  zamanlayiciS.isEkle("davetOdul", "Davet ödülleri", () => kampanya.davetTarama(), { sessizde: true });
+  zamanlayiciS.isEkle("olaySaklama", "Ölçüm saklama (400 gün)", ms => huni.saklama(ms), { sessizde: true });
+  sinirlar.olay = huni.sinir; sinirlar.kupon = kampanya.kuponSinir;
+  // ==== /1.6.0 ====
+
   /** Bakım sayfası (503). Yönetici oturumu olan bu sayfayı görmez. */
   function bakimSayfasi(req, res) {
     const k = hesap.oturumKullanici(cerezleriOku(req)[CEREZ]);
@@ -307,7 +321,7 @@ function olustur(secenek) {
       req.params = eslesme.params;
       req.sorgu = u.searchParams;
       // İstemci hata raporu küçük olmalı (16 KB); diğer istekler 6 MB
-      req.body = req.method === "GET" ? {} : await govdeOku(req, u.pathname === "/api/log" ? 16 * 1024 : 6 * 1024 * 1024);
+      req.body = req.method === "GET" ? {} : await govdeOku(req, (u.pathname === "/api/log" || u.pathname === "/api/olay") ? 16 * 1024 : 6 * 1024 * 1024);
       let sonuc;
       for (const f of eslesme.isleyiciler) sonuc = await f(req, res);
       // Kayan oturum: sunucuda süre uzadıysa çerez de yeni Max-Age ile yazılır (rota çerezi kendisi yazmadıysa)

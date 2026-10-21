@@ -135,6 +135,8 @@ function zamanlayici(c) {
 
   // İş başına son çalışma (yönetici "Sistem" sekmesi)
   const isBilgi = {};
+  // Modüllerin eklediği işler (1.6.0: deneme bildirimleri, davet ödülleri, olay saklama): { ad, baslik, fn(simdiMs), sessizde }
+  const ekIsler = [];
   async function isCalistir(ad, fn) {
     const bas = Date.now();
     try {
@@ -143,7 +145,7 @@ function zamanlayici(c) {
       return sonuc;
     } catch (e) {
       isBilgi[ad] = { sonCalisma: simdi(), sureMs: Date.now() - bas, sonuc: null, hata: String((e && e.message) || e).slice(0, 300) };
-      isHatasi(ISLER[ad] || ad, e);
+      isHatasi(ISLER[ad] || (ekIsler.find(x => x.ad === ad) || {}).baslik || ad, e);
       return null;
     }
   }
@@ -157,9 +159,11 @@ function zamanlayici(c) {
     // Sistem günlüğü saklama: bilgi 7 gün, uyarı/hata 90 gün
     if (gunluk) sonuc.gunlukSilinen = (await isCalistir("temizlik", () => gunluk.temizlik(simdiMs))) || 0;
     sonuc.erisim = await isCalistir("erisim", () => erisimTemizligi(simdiMs));
+    for (const e of ekIsler) if (e.sessizde) sonuc[e.ad] = await isCalistir(e.ad, () => e.fn(simdiMs));
     if (zaman.sessizMi(simdiMs)) return bitir();
     sonuc.hatirlatma = (await isCalistir("hatirlatma", () => hatirlatmalar(simdiMs))) || 0;
     sonuc.veliRaporu = (await isCalistir("veliRaporu", () => veliRaporlari(simdiMs))) || 0;
+    for (const e of ekIsler) if (!e.sessizde) sonuc[e.ad] = await isCalistir(e.ad, () => e.fn(simdiMs));
     return bitir();
   }
 
@@ -173,13 +177,21 @@ function zamanlayici(c) {
     if (ad === "lig") return { calisti: true, sonuc: await isCalistir("lig", () => lig.devir(simdiMs)) };
     if (ad === "temizlik") return { calisti: true, sonuc: await isCalistir("temizlik", () => (gunluk ? gunluk.temizlik(simdiMs) : 0)) };
     if (ad === "erisim") return { calisti: true, sonuc: await isCalistir("erisim", () => erisimTemizligi(simdiMs)) };
+    const ek = ekIsler.find(e => e.ad === ad);
+    if (ek) {
+      if (!ek.sessizde && zaman.sessizMi(simdiMs)) return { calisti: false, neden: "Sessiz saatler (22:00–08:00): bildirim gönderilmez." };
+      return { calisti: true, sonuc: await isCalistir(ad, () => ek.fn(simdiMs)) };
+    }
     return null;
   }
 
   let zamanlayiciId = null, ilk = null;
   return {
     tik, calismaDurumu, calistir, erisimTemizligi,
-    durum: () => Object.assign({}, durumBilgi, { isler: Object.keys(ISLER).map(ad => Object.assign({ ad, baslik: ISLER[ad] }, isBilgi[ad] || {})) }),
+    durum: () => Object.assign({}, durumBilgi, { isler: Object.keys(ISLER).map(ad => Object.assign({ ad, baslik: ISLER[ad] }, isBilgi[ad] || {}))
+      .concat(ekIsler.map(e => Object.assign({ ad: e.ad, baslik: e.baslik }, isBilgi[e.ad] || {}))) }),
+    /** İş ekler. sessizde: true → sessiz saatlerde de çalışır (bildirim göndermeyen işler) */
+    isEkle(ad, baslik, fn, sec) { if (!ekIsler.some(e => e.ad === ad)) ekIsler.push({ ad, baslik, fn, sessizde: !!(sec && sec.sessizde) }); },
     baslat(araligiMs) {
       if (zamanlayiciId) return;
       durumBilgi.acik = true; durumBilgi.aralikMs = araligiMs || 10 * 60e3;
