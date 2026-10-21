@@ -62,6 +62,7 @@
   display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: var(--radius-full);
   background: var(--energy); color: var(--on-energy); font: 800 0.75rem/1 var(--font-sans);
 }
+.adm-sayac[hidden] { display: none; }
 .adm-panel { min-width: 0; display: grid; gap: var(--sp-4); }
 .adm-panel:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: var(--radius-md); }
 .adm-panel[hidden] { display: none; }
@@ -212,6 +213,64 @@
 .adm-form-satir { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-3); }
 .adm-islem .field-error[hidden] { display: none; }
 
+/* --- Sorular ------------------------------------------------------------- */
+.adm-soru-liste-gorunum, .adm-veri-liste-gorunum { display: grid; gap: var(--sp-4); min-width: 0; }
+.adm-soru-liste-gorunum[hidden], .adm-veri-liste-gorunum[hidden] { display: none; }
+.adm-soru-liste-gorunum > *, .adm-veri-liste-gorunum > *, .adm-detay > * { min-width: 0; }
+.adm-sorular { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-4); }
+.adm-soru { display: grid; gap: var(--sp-3); border-left: 4px solid var(--border-strong); border-radius: var(--radius-xl); min-width: 0; }
+.adm-soru.is-warn { border-left-color: var(--warn); }
+.adm-soru.is-ok { border-left-color: var(--ok); }
+.adm-soru-metin { margin: 0; white-space: pre-line; }
+.adm-soru-alt { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; }
+.adm-baglam h3, .adm-lig-grup h3 { font-size: var(--fs-18); font-weight: 800; margin: 0 0 var(--sp-3); }
+.adm-baglam-secenek { margin: 0; padding-left: 1.4em; }
+.adm-mesajlar { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-3); }
+.adm-mesaj { max-width: min(680px, 92%); padding: var(--sp-3) var(--sp-4); border-radius: var(--radius-lg); border: 1px solid var(--border); background: var(--surface-2); min-width: 0; }
+.adm-mesaj.is-yonetici { justify-self: end; background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
+.adm-mesaj-ust { margin: 0 0 4px; font-size: var(--fs-12); color: var(--text-muted); }
+.adm-mesaj-metin { margin: 0; white-space: pre-line; }
+.adm-yanit-form, .adm-duyuru-form { background: var(--surface); }
+
+/* --- Duyuru önizleme ------------------------------------------------------- */
+.adm-bildirim-kart { display: flex; gap: 12px; align-items: flex-start; padding: var(--sp-4); border-radius: var(--radius-lg); border: 1px solid var(--border); background: var(--surface-2); box-shadow: var(--shadow-sm); }
+.adm-bildirim-ikon { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; background: #5B3DF5; color: #fff; font: 900 1.2rem/1 var(--font-head); }
+.adm-bildirim-baslik { margin: 0; font-weight: 800; overflow-wrap: anywhere; }
+.adm-bildirim-metin { margin: 2px 0 0; color: var(--text-muted); white-space: pre-line; }
+
+/* --- Lig ------------------------------------------------------------------- */
+.adm-lig-gruplar { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); gap: var(--sp-4); }
+.adm-lig-grup { border-radius: var(--radius-xl); min-width: 0; }
+.adm-lig-liste { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.adm-lig-liste > li { padding: 8px 0; border-bottom: 1px solid var(--border); }
+.adm-lig-liste > li:last-child { border-bottom: 0; }
+.adm-lig-satir { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.adm-lig-sira { flex: none; width: 28px; text-align: center; font-weight: 900; color: var(--text-muted); }
+.adm-lig-ad { flex: 1 1 140px; display: grid; }
+.adm-lig-xp { font-weight: 800; white-space: nowrap; }
+.adm-lig-satir .adm-eylem { margin-left: auto; }
+.adm-lig-liste .adm-onay { margin-top: var(--sp-2); }
+
+/* --- Veri ------------------------------------------------------------------ */
+.adm-veri-arac .adm-field-dar { flex: 1 1 150px; }
+.adm-veri-arac a.btn-ghost { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
+.adm-veri-kap { max-height: 70vh; overflow: auto; }
+.adm-veri-tablo { font-size: var(--fs-12); }
+.adm-veri-tablo th, .adm-veri-tablo td { padding: 8px 10px; white-space: nowrap; max-width: 260px; overflow: hidden; text-overflow: ellipsis; }
+.adm-veri-tablo thead th { position: sticky; top: 0; z-index: 1; text-transform: none; letter-spacing: 0; }
+.adm-veri-tablo th.is-duzen { color: var(--accent); }
+.adm-veri-tablo tbody tr { cursor: pointer; }
+.adm-veri-tablo tbody tr:hover td, .adm-veri-tablo tbody tr:focus-visible td { background: var(--surface-2); }
+.adm-veri-tablo tbody tr:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.adm-veri-tablo td.is-null { color: var(--text-dim); }
+.adm-veri-tablo td.is-gizli { color: var(--text-dim); letter-spacing: .1em; }
+.adm-veri-dl dd { font-weight: 500; }
+.adm-kod-alan { font-family: var(--font-mono); font-size: var(--fs-12); }
+.adm-fark { font-size: var(--fs-14); }
+.adm-fark td { vertical-align: top; }
+.adm-fark td.is-once { color: var(--bad); text-decoration: line-through; text-decoration-thickness: 1px; }
+.adm-fark td.is-sonra { color: var(--ok); font-weight: 700; }
+
 /* --- Dar ekran ----------------------------------------------------------- */
 @media (max-width: 900px) {
   .adm-izgara { grid-template-columns: 1fr; }
@@ -229,6 +288,13 @@
   .adm-sayfa .btn-ghost { flex: 1 1 0; }
   .adm-sayfa-bilgi { order: -1; flex-basis: 100%; }
   .adm-talep-ust { flex-direction: column; }
+  .adm-soru-alt > .btn-primary { flex: 1 1 100%; }
+  .adm-mesaj { max-width: 100%; }
+  .adm-lig-satir .adm-eylem { margin-left: 0; flex: 1 1 100%; }
+  .adm-lig-satir .adm-eylem .btn-ghost { flex: 1 1 0; min-height: 44px; }
+  .adm-veri-arac .adm-field-dar { flex: 1 1 100%; }
+  .adm-tablo-kap.adm-veri-kap { max-height: none; overflow-x: auto; border: 1px solid var(--border); background: var(--surface); }
+  .adm-fark td { white-space: normal; }
 
   /* Tablo → kart */
   .adm-kartlas, .adm-kartlas tbody, .adm-kartlas tr, .adm-kartlas td { display: block; width: 100%; }

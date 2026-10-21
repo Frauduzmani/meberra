@@ -46,6 +46,27 @@
         varlik: "talep", varlikId: 100 + j, ip: j % 5 ? "88.240.12." + j : "2a02:ff0:3315:27d0:1234:5678:9abc:def0",
         ayrinti: j % 2 ? JSON.stringify({ plan: "yillik", tutar: 2990, not: XSS }) : (j % 3 ? { sebep: "deneme" } : null) });
     }
+    // Sorular, lig ve Veri sekmesi için sahte veri
+    var sorular = [
+      { id: 7, kullanici: { id: 2, ad: "Ayşe", soyad: "Yılmaz", eposta: "kul2@ornek.com", premium: false }, sayfa: "ap-calculus", soruRef: "calc-unit1|q3", metin: "Bu sorunun çözümünde 2. adımı anlamadım.\nNeden sin x / x → 1?", durum: "bekliyor", olusturma: gun(2), guncelleme: gun(1), mesajSayisi: 2, sonMesajRol: "ogrenci",
+        baglam: { soru: "lim x→0 sin x / x = ?", secenekler: ["0", "1", "∞", XSS], ogrenciCevabi: "0", dogruCevap: "1", ekstra: XSS },
+        mesajlar: [{ id: 1, rol: "ogrenci", metin: "Bu sorunun çözümünde 2. adımı anlamadım.", tarih: gun(2), yazan: { ad: "Ayşe", soyad: "Yılmaz" } }, { id: 2, rol: "ogrenci", metin: XSS, tarih: gun(1), yazan: { ad: "Ayşe", soyad: "Yılmaz" } }], sss: [] },
+      { id: 8, kullanici: { id: 3, ad: XSS, soyad: "Yılmaz", eposta: "kul3@ornek.com", premium: true }, sayfa: "ap-physics", soruRef: null, metin: XSS, durum: "cevaplandi", olusturma: gun(4), guncelleme: gun(3), mesajSayisi: 2, sonMesajRol: "yonetici", baglam: null,
+        mesajlar: [{ id: 3, rol: "ogrenci", metin: XSS, tarih: gun(4) }, { id: 4, rol: "yonetici", metin: "Yanıt", tarih: gun(3), okundu: gun(2), yazan: { ad: "Meberra", soyad: "Yönetici" } }], sss: [] }
+    ];
+    var ligUyeler = [];
+    for (var li = 1; li <= 12; li++) ligUyeler.push({ userId: li, kullaniciId: "u" + li, ad: li === 3 ? XSS : adlar[li % adlar.length], soyad: "Yılmaz", takmaAd: li === 4 ? "Çok_uzun_takma_ad_20" : "oyuncu_" + li, durum: li === 5 ? "gizli" : "aktif", xp: 400 - li * 25, sonuc: null });
+    var sutun = function (ad, o) { return Object.assign({ ad: ad, tur: "TEXT", anahtar: false, gizli: false, duzenlenebilir: false, kural: null }, o || {}); };
+    var veriTablolar = [
+      { ad: "users", aciklama: "Kullanıcı hesapları", satir: 57, anahtar: "id", saltOkunur: false, duzenlenebilir: ["ad", "soyad", "durum", "rol"], sutunlar: [
+        sutun("id", { tur: "INTEGER", anahtar: true }), sutun("eposta"), sutun("ad", { duzenlenebilir: true, kural: { tur: "metin", min: 1, max: 40 } }), sutun("soyad", { duzenlenebilir: true, kural: { tur: "metin", min: 1, max: 40 } }),
+        sutun("sifre_hash", { gizli: true }), sutun("rol", { duzenlenebilir: true, kural: { tur: "secim", degerler: ["ogrenci", "yonetici"] } }), sutun("durum", { duzenlenebilir: true, kural: { tur: "secim", degerler: ["aktif", "askida"] } }), sutun("olusturma")] },
+      { ad: "audit_log", aciklama: "Denetim kaydı (salt okunur)", satir: 33, anahtar: "id", saltOkunur: true, duzenlenebilir: [], sutunlar: [sutun("id", { tur: "INTEGER", anahtar: true }), sutun("eylem"), sutun("ayrinti")] }
+    ];
+    var veriSatirlar = {
+      users: users.map(function (x) { return { _id: x.id, id: x.id, eposta: x.eposta, ad: x.ad, soyad: x.soyad, sifre_hash: "••••", rol: x.rol, durum: x.durum, olusturma: x.olusturma }; }),
+      audit_log: audit.map(function (a) { return { _id: a.id, id: a.id, eylem: a.eylem, ayrinti: typeof a.ayrinti === "string" ? a.ayrinti : JSON.stringify(a.ayrinti) }; })
+    };
     function json(status, body) { return Promise.resolve(new Response(JSON.stringify(body), { status: status, headers: { "Content-Type": "application/json" } })); }
     window.__istekler = [];
     window.__yonlendirme = null;
@@ -60,7 +81,7 @@
         if (yol === "/api/me") return json(200, { ok: true, user: { id: 1, ad: "Meberra", soyad: "Yönetici", kullaniciAdi: "admin", eposta: "admin@ornek.com", rol: ROL, olusturma: gun(100) }, profile: null, uyelik: { premium: false, plan: null, bitis: null, bekleyenTalep: null } });
         if (HATA) return json(500, { ok: false, error: "Sunucu hatası (sahte)." });
         var bekleyen = talepler.filter(function (t) { return t.durum === "bekliyor"; }).length;
-        if (yol === "/api/admin/stats") return json(200, { ok: true, kullanici: { toplam: BOS ? 0 : 1284, son7gun: 37, aktif7gun: 412 }, premium: { aktif: 96, aylik: 71, yillik: 25 }, talep: { bekleyen: BOS ? 0 : bekleyen }, cevap: { toplam: 248913, son7gun: 18342 }, gelirTahmini: { aylikTL: 31072.4 } });
+        if (yol === "/api/admin/stats") return json(200, { ok: true, kullanici: { toplam: BOS ? 0 : 1284, son7gun: 37, aktif7gun: 412 }, premium: { aktif: 96, aylik: 71, yillik: 25 }, talep: { bekleyen: BOS ? 0 : bekleyen }, soru: { bekleyen: BOS ? 0 : sorular.filter(function (q) { return q.durum === "bekliyor"; }).length, son7gun: 9 }, cevap: { toplam: 248913, son7gun: 18342 }, gelirTahmini: { aylikTL: 31072.4 } });
         if (yol === "/api/admin/talepler") {
           var d = u.searchParams.get("durum");
           var l = BOS ? [] : talepler.filter(function (t) { return !d || d === "tumu" || t.durum === d; });
@@ -102,6 +123,62 @@
           var ku = u.searchParams.get("kullanici"), ey = u.searchParams.get("eylem"), sa = +u.searchParams.get("sayfa") || 1;
           var a = BOS ? [] : audit.filter(function (r) { var id = typeof r.kullanici === "object" ? r.kullanici.id : r.kullanici; return (!ku || String(id) === ku) && (!ey || r.eylem.indexOf(ey) >= 0); });
           return json(200, { ok: true, toplam: a.length, sayfa: sa, kayitlar: a.slice((sa - 1) * 10, sa * 10) });
+        }
+        // --- Sorular / SSS ---
+        if (yol === "/api/admin/sorular") {
+          var sd = u.searchParams.get("durum") || "bekliyor";
+          var sl = BOS ? [] : sorular.filter(function (q) { return sd === "hepsi" || q.durum === sd; });
+          return json(200, { ok: true, toplam: sl.length, sayfa: 1, sayfaBoyu: 25, sorular: sl });
+        }
+        var ms = yol.match(/^\/api\/admin\/sorular\/(\d+)(\/yanit|\/durum)?$/);
+        if (ms) {
+          var sq = sorular.filter(function (q) { return q.id === +ms[1]; })[0];
+          if (!sq) return json(404, { ok: false, error: "Soru bulunamadı." });
+          if (m === "POST" && ms[2] === "/yanit") { sq.mesajlar.push({ id: Date.now(), rol: "yonetici", metin: govde.metin, tarih: gun(0), okundu: null, yazan: { ad: "Meberra", soyad: "Yönetici" } }); sq.durum = "cevaplandi"; }
+          if (m === "POST" && ms[2] === "/durum") sq.durum = govde.durum;
+          return json(200, { ok: true, soru: sq });
+        }
+        if (yol === "/api/admin/sss" && m === "POST") {
+          var kq = sorular.filter(function (q) { return q.id === govde.kaynakSoruId; })[0];
+          var yf = { id: Date.now(), soru: govde.soru, cevap: govde.cevap, sayfa: govde.sayfa || null, durum: "yayinda" };
+          if (kq) kq.sss.push(yf);
+          return json(200, { ok: true, sss: yf });
+        }
+        // --- Duyuru ---
+        if (yol === "/api/admin/duyuru" && m === "POST") {
+          var dn = govde.hedef === "premium" ? 96 : govde.hedef === "ucretsiz" ? 1188 : 1284;
+          if (govde.link && !/^\/(?![/\\])/.test(govde.link)) return json(400, { ok: false, error: "Lütfen işaretli alanları düzelt.", errors: { link: "Yalnızca site içi bağlantı." } });
+          return json(200, govde.onizleme ? { ok: true, onizleme: true, alici: dn } : { ok: true, alici: dn, push: 41 });
+        }
+        // --- Lig ---
+        if (yol === "/api/admin/lig") {
+          return json(200, { ok: true, hafta: u.searchParams.get("hafta") || "2026-W43", kapandi: !!u.searchParams.get("hafta"), uyeSayisi: { aktif: 31, gizli: 1, ayrildi: 2 }, haftalar: ["2026-W43", "2026-W42"],
+            gruplar: BOS ? [] : [{ kademe: 2, kademeAd: "Gümüş", grup: 1, uyeler: ligUyeler }] });
+        }
+        // --- Veri ---
+        if (yol === "/api/admin/veri/tablolar") return json(200, { ok: true, sayfaBoyu: 50, tablolar: veriTablolar });
+        var mv = yol.match(/^\/api\/admin\/veri\/([a-z_]+)(?:\/([^/]+))?$/);
+        if (mv) {
+          var vt = veriTablolar.filter(function (t) { return t.ad === mv[1]; })[0];
+          if (!vt) return json(404, { ok: false, error: "Tablo bulunamadı ya da izin listesinde değil." });
+          var vs = veriSatirlar[vt.ad] || [];
+          if (mv[2]) {
+            var row = vs.filter(function (r) { return String(r._id) === mv[2]; })[0];
+            if (!row) return json(404, { ok: false, error: "Satır bulunamadı." });
+            if (m === "PUT") {
+              if (vt.saltOkunur) return json(403, { ok: false, error: "Bu tablo salt okunur." });
+              var bad = Object.keys(govde.degisiklikler).filter(function (k) { return vt.duzenlenebilir.indexOf(k) < 0; });
+              if (bad.length) return json(403, { ok: false, error: "Düzenlenemeyen alan: " + bad.join(", ") });
+              if (govde.degisiklikler.ad === "hata") return json(400, { ok: false, error: "ad: Sahte doğrulama hatası." });
+              Object.assign(row, govde.degisiklikler);
+              return json(200, { ok: true, satir: row, degisen: Object.keys(govde.degisiklikler) });
+            }
+            return json(200, { ok: true, tablo: vt.ad, saltOkunur: vt.saltOkunur, sutunlar: vt.sutunlar, satir: row });
+          }
+          var vq = (u.searchParams.get("q") || "").toLocaleLowerCase("tr-TR");
+          var vf = vs.filter(function (r) { return !vq || JSON.stringify(r).toLocaleLowerCase("tr-TR").indexOf(vq) >= 0; });
+          var vsa = +u.searchParams.get("sayfa") || 1;
+          return json(200, { ok: true, tablo: vt.ad, toplam: vf.length, sayfa: vsa, sayfaBoyu: 50, saltOkunur: vt.saltOkunur, sutunlar: vt.sutunlar, satirlar: vf.slice((vsa - 1) * 50, vsa * 50) });
         }
         return json(404, { ok: false, error: "Sahte API: bilinmeyen uç nokta " + yol });
       });

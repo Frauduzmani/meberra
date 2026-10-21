@@ -139,7 +139,41 @@
     return { ok: true, gun: n };
   }
 
+  var SORU_DURUM = { bekliyor: "Bekliyor", cevaplandi: "Yanıtlandı", kapandi: "Kapandı" };
+  function soruDurumAd(d) { return SORU_DURUM[d] || (d ? String(d) : "—"); }
+  function soruDurumTon(d) { return d === "bekliyor" ? "warn" : d === "cevaplandi" ? "ok" : "notr"; }
+  var HEDEF = { hepsi: "Tüm kullanıcılar", premium: "Yalnızca Premium üyeler", ucretsiz: "Yalnızca ücretsiz üyeler" };
+  function hedefAd(h) { return HEDEF[h] || (h ? String(h) : "—"); }
+  var KADEME = ["Bronz", "Gümüş", "Altın", "Elmas", "Şampiyon"];
+  function kademeAd(k) { return KADEME[Number(k) - 1] || (k ? String(k) : "—"); }
+  function kisalt(v, n) {
+    var s = v == null ? "" : String(v);
+    return s.length > n ? s.slice(0, Math.max(1, n - 1)) + "…" : s;
+  }
+  /** Veri hücresi metni: null → "∅", nesne → JSON, uzun metin kısaltılır */
+  function hucreMetni(v, n) {
+    if (v === null || v === undefined) return "∅";
+    if (typeof v === "object") { try { v = JSON.stringify(v); } catch (e) { v = String(v); } }
+    return kisalt(v, n || 60);
+  }
+  /** Düzenleme farkı: yalnızca değişen alanlar ({alan, once, sonra}). null ve "" eşit sayılır. */
+  function farkHesapla(orijinal, yeni) {
+    var n = function (v) { return v == null ? "" : String(v); };
+    return Object.keys(yeni || {}).filter(function (k) { return n((orijinal || {})[k]) !== n(yeni[k]); })
+      .map(function (k) { return { alan: k, once: (orijinal || {})[k], sonra: yeni[k] }; });
+  }
+  /** Duyuru bağlantısı: boş ya da site içi göreli yol ("/..."); "//", "http:", "javascript:" geçmez */
+  function linkGecerli(l) { return !l || /^\/(?![/\\])[^\s<>"']*$/.test(String(l)); }
+  /** Veri tablosu adresi (liste ya da CSV) */
+  function veriYolu(tablo, f, csv) {
+    f = f || {};
+    return "/api/admin/veri/" + encodeURIComponent(tablo) + (csv ? ".csv" : "") +
+      sorgu({ q: f.q, alan: f.alan && f.deger !== undefined ? f.alan : "", deger: f.alan ? f.deger : "", sirala: f.sirala, yon: f.sirala ? f.yon : "", sayfa: csv ? "" : (f.sayfa > 1 ? f.sayfa : "") });
+  }
+
   var yardimci = {
+    soruDurumAd: soruDurumAd, soruDurumTon: soruDurumTon, hedefAd: hedefAd, kademeAd: kademeAd, kisalt: kisalt, hucreMetni: hucreMetni,
+    farkHesapla: farkHesapla, linkGecerli: linkGecerli, veriYolu: veriYolu,
     esc: esc, sayi: sayi, tl: tl, tarih: tarih, gunTarih: gunTarih, yuzde: yuzde, planAd: planAd,
     talepDurumAd: talepDurumAd, talepDurumTon: talepDurumTon, hesapDurumAd: hesapDurumAd, modelAd: modelAd,
     ulkeListesi: ulkeListesi, dilAd: dilAd, dersAd: dersAd, sorgu: sorgu, sayfaBilgisi: sayfaBilgisi,
@@ -198,12 +232,19 @@
     secili: null,          // { id, veri }
     den: { kullanici: "", eylem: "", sayfa: 1, boyut: 0, istek: 0 },
     talepIstek: 0,
-    durumBilinen: {}       // detay yanıtında user.durum yoksa son başarılı /durum işleminin sonucu
+    durumBilinen: {},      // detay yanıtında user.durum yoksa son başarılı /durum işleminin sonucu
+    soru: { durum: "bekliyor", sayfa: 1, istek: 0, secili: null },
+    veri: { tablolar: null, tablo: "", q: "", alan: "", deger: "", sirala: "", yon: "desc", sayfa: 1, istek: 0, sonuc: null, secili: null },
+    lig: { hafta: "", istek: 0 }
   };
   var SEKMELER = [
     { id: "ozet", ad: "Özet" },
-    { id: "talepler", ad: "Ödeme talepleri" },
+    { id: "talepler", ad: "Ödeme talepleri", sayac: "adm-bekleyen" },
+    { id: "sorular", ad: "Sorular", sayac: "adm-soru-bekleyen" },
     { id: "kullanicilar", ad: "Kullanıcılar" },
+    { id: "duyuru", ad: "Duyuru" },
+    { id: "lig", ad: "Lig" },
+    { id: "veri", ad: "Veri" },
     { id: "denetim", ad: "Denetim kaydı" }
   ];
   var main, bildirimEl, bildirimZaman;
@@ -302,7 +343,7 @@
       '<div class="adm-sekme-kap"><div class="adm-sekmeler" role="tablist" aria-label="Yönetici bölümleri">' +
         SEKMELER.map(function (s) {
           return '<button type="button" role="tab" class="adm-sekme" id="sekme-' + s.id + '" aria-controls="panel-' + s.id + '" aria-selected="false" tabindex="-1" data-sekme="' + s.id + '">' +
-            esc(s.ad) + (s.id === "talepler" ? ' <span class="adm-sayac" id="adm-bekleyen" hidden></span>' : "") + "</button>";
+            esc(s.ad) + (s.sayac ? ' <span class="adm-sayac" id="' + s.sayac + '" hidden></span>' : "") + "</button>";
         }).join("") +
       "</div></div>" +
       SEKMELER.map(function (s) {
@@ -328,7 +369,7 @@
       tabs[j].focus();
     });
 
-    panelOzetKur(); panelTalepKur(); panelKulKur(); panelDenKur();
+    panelOzetKur(); panelTalepKur(); panelSoruKur(); panelKulKur(); panelDuyuruKur(); panelLigKur(); panelVeriKur(); panelDenKur();
 
     var ilk = (location.hash || "").replace(/^#/, "");
     sekmeAc(SEKMELER.some(function (s) { return s.id === ilk; }) ? ilk : "ozet");
@@ -349,6 +390,10 @@
     else if (id === "talepler") talepYukle();
     else if (id === "kullanicilar") { if (!S.yuklendi.kullanicilar) kulYukle(); }
     else if (id === "denetim") denYukle();
+    else if (id === "sorular") { if (!S.soru.secili) soruYukle(); }
+    else if (id === "duyuru") duyuruOnizle();
+    else if (id === "lig") ligYukle();
+    else if (id === "veri") { if (!S.veri.tablolar) veriTablolarYukle(); }
   }
 
   /* ------------------------------------------------------------------------
@@ -362,8 +407,8 @@
       var git = e.target.closest("[data-git]"); if (git) { sekmeAc(git.getAttribute("data-git")); $("#sekme-" + git.getAttribute("data-git")).focus(); }
     });
   }
-  function bekleyenRozet(n) {
-    var r = $("#adm-bekleyen"); if (!r) return;
+  function bekleyenRozet(n, id) {
+    var r = $("#" + (id || "adm-bekleyen")); if (!r) return;
     var x = Number(n) || 0;
     r.hidden = x <= 0;
     r.textContent = sayi(x);
@@ -374,8 +419,9 @@
     if (!sessiz) { kap.innerHTML = yukleniyor("Özet yükleniyor…"); kap.setAttribute("aria-busy", "true"); }
     return api("/api/admin/stats").then(function (v) {
       bekleyenRozet(v.talep && v.talep.bekleyen);
+      bekleyenRozet(v.soru && v.soru.bekleyen, "adm-soru-bekleyen");
       if (sessiz && S.sekme !== "ozet") return;
-      var k = v.kullanici || {}, pr = v.premium || {}, t = v.talep || {}, c = v.cevap || {}, g = v.gelirTahmini || {};
+      var k = v.kullanici || {}, pr = v.premium || {}, t = v.talep || {}, c = v.cevap || {}, g = v.gelirTahmini || {}, sq = v.soru || {};
       var kart = function (etiket, deger, alt, ton, git) {
         var ic = '<span class="adm-tile-etiket">' + esc(etiket) + '</span><span class="adm-tile-deger">' + deger + "</span>" +
           (alt ? '<span class="adm-tile-alt">' + alt + "</span>" : "");
@@ -385,6 +431,7 @@
       };
       kap.innerHTML = '<ul class="adm-tiles">' +
         kart("Bekleyen ödeme talebi", esc(sayi(t.bekleyen)), Number(t.bekleyen) > 0 ? "İncelemek için tıkla" : "Bekleyen talep yok", Number(t.bekleyen) > 0 ? "enerji" : "notr", "talepler") +
+        kart("Bekleyen soru", esc(sayi(sq.bekleyen)), Number(sq.bekleyen) > 0 ? "Yanıtlamak için tıkla" : "Bekleyen soru yok", Number(sq.bekleyen) > 0 ? "enerji" : "notr", "sorular") +
         kart("Aktif Premium", esc(sayi(pr.aktif)), "Aylık " + esc(sayi(pr.aylik)) + " · Yıllık " + esc(sayi(pr.yillik)), "mor") +
         kart("Tahmini aylık gelir", esc(tl(g.aylikTL)), "Aktif aboneliklere göre", "ok") +
         kart("Toplam kullanıcı", esc(sayi(k.toplam)), "", "notr", "kullanicilar") +
@@ -903,7 +950,598 @@
   }
 
   /* ------------------------------------------------------------------------
-     9. BAŞLAT
+     9. SORULAR (öğrenci soruları: gelen kutusu, yazışma, yanıt, SSS)
+     ------------------------------------------------------------------------ */
+  function panelSoruKur() {
+    var p = $("#panel-sorular");
+    p.innerHTML =
+      '<div class="adm-soru-liste-gorunum">' +
+        '<div class="adm-panel-ust"><h2>Sorular</h2>' +
+          '<div class="adm-arac">' +
+            '<div class="field adm-field-dar"><label for="soru-durum">Durum</label>' +
+              '<select id="soru-durum" class="text-input">' +
+                '<option value="bekliyor">Yanıt bekleyenler</option><option value="cevaplandi">Yanıtlananlar</option>' +
+                '<option value="kapandi">Kapananlar</option><option value="hepsi">Tümü</option>' +
+              "</select></div>" +
+            '<button type="button" class="btn-ghost" data-yenile>Yenile</button>' +
+          "</div></div>" +
+        '<p class="adm-ipucu">Öğrencilerin sorularını yanıtla. Yanıt, öğrenciye uygulama içi bildirim (ve tercih ettiyse e-posta) olarak gider. Bekleyenler en eski önce listelenir.</p>' +
+        '<p class="adm-sonuc" id="soru-ozet" aria-live="polite"></p>' +
+        '<div class="adm-soru-liste"></div><div class="adm-soru-sayfa"></div>' +
+      "</div>" +
+      '<div class="adm-detay adm-soru-detay" hidden></div>';
+    $("#soru-durum").addEventListener("change", function (e) { S.soru.durum = e.target.value; S.soru.sayfa = 1; soruYukle(); });
+    $(".adm-soru-liste-gorunum", p).addEventListener("click", function (e) {
+      if (e.target.closest("[data-yenile],[data-tekrar]")) { soruYukle(); return; }
+      var sb = e.target.closest("[data-sayfa]");
+      if (sb && !sb.disabled) { S.soru.sayfa = Number(sb.getAttribute("data-sayfa")); soruYukle().then(function () { $("#soru-ozet").focus(); }); return; }
+      var a = e.target.closest("[data-soru]"); if (a) soruAc(a.getAttribute("data-soru"));
+    });
+    $(".adm-soru-detay", p).addEventListener("click", soruDetayTik);
+    $(".adm-soru-detay", p).addEventListener("submit", soruDetayGonder);
+    $(".adm-soru-detay", p).addEventListener("input", function (e) {
+      var t = e.target.closest("[data-sayac-icin]"); if (!t) return;
+      var c = $("#" + t.getAttribute("data-sayac-icin")); if (c) c.textContent = sayi(t.value.length) + " / " + sayi(t.maxLength);
+    });
+  }
+  function soruYukle() {
+    var kap = $("#panel-sorular .adm-soru-liste"), say = $("#panel-sorular .adm-soru-sayfa"), oz = $("#soru-ozet");
+    var no = ++S.soru.istek;
+    kap.setAttribute("aria-busy", "true");
+    kap.innerHTML = yukleniyor("Sorular yükleniyor…");
+    return api("/api/admin/sorular" + sorgu({ durum: S.soru.durum, sayfa: S.soru.sayfa > 1 ? S.soru.sayfa : "" })).then(function (v) {
+      if (no !== S.soru.istek) return;
+      var liste = Array.isArray(v.sorular) ? v.sorular : [];
+      if (S.soru.durum === "bekliyor") bekleyenRozet(v.toplam, "adm-soru-bekleyen");
+      var b = sayfaBilgisi(v.toplam, v.sayfa || S.soru.sayfa, v.sayfaBoyu || 25, liste.length);
+      oz.tabIndex = -1;
+      oz.textContent = b.toplam ? sayi(b.toplam) + " soru." : "";
+      if (!liste.length) { kap.innerHTML = bos(S.soru.durum === "bekliyor" ? "Yanıt bekleyen soru yok." : "Bu filtreye uyan soru yok."); say.innerHTML = ""; return; }
+      kap.innerHTML = '<ul class="adm-sorular">' + liste.map(function (q) {
+        var u = q.kullanici || {};
+        return '<li class="adm-soru surface is-' + esc(soruDurumTon(q.durum)) + '">' +
+          '<div class="adm-talep-ust"><div class="adm-min0"><h3 class="adm-talep-ad">' + esc(adSoyad(u)) + "</h3>" +
+            '<p class="adm-alt adm-kir">' + esc(u.eposta || "—") + " · " + esc(dersAd(q.sayfa)) + (q.soruRef ? " · " + esc(q.soruRef) : "") + "</p></div>" +
+            '<div class="adm-rozetler">' + rozet(soruDurumAd(q.durum), soruDurumTon(q.durum)) + (u.premium ? rozet("Premium", "mor") : "") + "</div></div>" +
+          '<p class="adm-soru-metin adm-kir">' + esc(kisalt(q.metin, 280)) + "</p>" +
+          '<div class="adm-soru-alt"><span class="adm-alt">' + esc(tarih(q.guncelleme)) + " · " + esc(sayi(q.mesajSayisi)) + " mesaj" +
+            (q.sonMesajRol === "ogrenci" && q.durum !== "bekliyor" ? " · son mesaj öğrenciden" : "") + "</span>" +
+            '<button type="button" class="btn-primary btn-sm" data-soru="' + esc(q.id) + '">Aç ve yanıtla</button></div>' +
+          "</li>";
+      }).join("") + "</ul>";
+      say.innerHTML = sayfalamaHtml(b, "Soru sayfaları", "soru");
+    }).catch(function (e) {
+      if (no === S.soru.istek) { kap.innerHTML = hataKutusu(e.message); say.innerHTML = ""; }
+    }).then(function () { kap.removeAttribute("aria-busy"); });
+  }
+  function soruAc(id) {
+    var p = $("#panel-sorular"), d = $(".adm-soru-detay", p);
+    $(".adm-soru-liste-gorunum", p).hidden = true; d.hidden = false;
+    S.soru.secili = { id: id, veri: null };
+    d.innerHTML = '<div class="adm-detay-ust"><button type="button" class="btn-ghost" data-geri>‹ Soru listesine dön</button></div>' + yukleniyor("Soru yükleniyor…");
+    $("[data-geri]", d).focus();
+    return soruDetayYukle();
+  }
+  function soruDetayYukle(odakla) {
+    var d = $("#panel-sorular .adm-soru-detay"), id = S.soru.secili && S.soru.secili.id;
+    if (!id) return Promise.resolve();
+    d.setAttribute("aria-busy", "true");
+    return api("/api/admin/sorular/" + encodeURIComponent(id)).then(function (v) {
+      if (!S.soru.secili || S.soru.secili.id !== id) return;
+      S.soru.secili.veri = v.soru;
+      d.innerHTML = soruDetayHtml(v.soru);
+      var h = $(odakla || "#soru-detay-baslik", d); if (h) h.focus();
+    }).catch(function (e) {
+      d.innerHTML = '<div class="adm-detay-ust"><button type="button" class="btn-ghost" data-geri>‹ Soru listesine dön</button></div>' + hataKutusu(e.message);
+    }).then(function () { d.removeAttribute("aria-busy"); });
+  }
+  function soruKapat() {
+    var p = $("#panel-sorular");
+    S.soru.secili = null;
+    $(".adm-soru-detay", p).hidden = true; $(".adm-soru-detay", p).innerHTML = "";
+    $(".adm-soru-liste-gorunum", p).hidden = false;
+    soruYukle().then(function () { var h = $("#panel-sorular h2"); if (h) { h.tabIndex = -1; h.focus(); } });
+  }
+  /** Soru bağlamı: bilinen alanlar okunur biçimde, gerisi JSON */
+  function baglamHtml(b) {
+    if (!b || typeof b !== "object") return "";
+    var bilinen = [["soru", "Soru"], ["soruMetni", "Soru"], ["secenekler", "Seçenekler"], ["ogrenciCevabi", "Öğrencinin cevabı"], ["secilen", "Öğrencinin cevabı"], ["dogruCevap", "Doğru cevap"], ["dogru", "Doğru cevap"], ["unite", "Ünite"], ["konu", "Konu"]];
+    var kalan = Object.assign({}, b), satir = [];
+    bilinen.forEach(function (k) {
+      if (b[k[0]] === undefined || b[k[0]] === null || b[k[0]] === "") return;
+      var v = b[k[0]];
+      var h = Array.isArray(v)
+        ? '<ol class="adm-baglam-secenek">' + v.map(function (x) { return "<li>" + esc(typeof x === "object" ? JSON.stringify(x) : x) + "</li>"; }).join("") + "</ol>"
+        : esc(typeof v === "object" ? JSON.stringify(v) : v);
+      satir.push('<div class="adm-dl-genis"><dt>' + esc(k[1]) + "</dt><dd>" + h + "</dd></div>");
+      delete kalan[k[0]];
+    });
+    var ek = Object.keys(kalan).length ? '<details class="adm-ayrinti"><summary>Diğer bağlam alanları</summary><pre>' + esc(ayrintiMetni(kalan)) + "</pre></details>" : "";
+    return '<section class="surface adm-baglam" aria-labelledby="soru-baglam-b"><h3 id="soru-baglam-b">Soru bağlamı</h3>' +
+      (satir.length ? '<dl class="adm-dl">' + satir.join("") + "</dl>" : "") + ek + "</section>";
+  }
+  function soruDetayHtml(q) {
+    var u = q.kullanici || {}, msj = Array.isArray(q.mesajlar) ? q.mesajlar : [];
+    var sonYanit = msj.filter(function (m) { return m.rol === "yonetici"; }).pop();
+    var sssVar = Array.isArray(q.sss) ? q.sss : [];
+    return '<div class="adm-detay-ust"><button type="button" class="btn-ghost" data-geri>‹ Soru listesine dön</button>' +
+        (u.id ? '<button type="button" class="btn-ghost" data-kul-git="' + esc(u.id) + '">Öğrenci profili</button>' : "") + "</div>" +
+      '<header class="surface adm-kisi">' +
+        '<div class="adm-kisi-ust"><h2 id="soru-detay-baslik" tabindex="-1">Soru #' + esc(q.id) + " · " + esc(adSoyad(u)) + "</h2>" +
+          '<div class="adm-rozetler">' + rozet(soruDurumAd(q.durum), soruDurumTon(q.durum)) + (u.premium ? rozet("Premium", "mor") : rozet("Ücretsiz", "notr")) + "</div></div>" +
+        '<p class="adm-alt adm-kir">' + esc(u.eposta || "—") + " · " + esc(dersAd(q.sayfa)) + (q.soruRef ? " · " + esc(q.soruRef) : "") + " · " + esc(tarih(q.olusturma)) + "</p>" +
+      "</header>" +
+      baglamHtml(q.baglam) +
+      '<section class="surface" aria-labelledby="soru-yazisma-b"><h3 id="soru-yazisma-b">Yazışma</h3>' +
+        '<ol class="adm-mesajlar">' + msj.map(function (m) {
+          var yon = m.rol === "yonetici";
+          return '<li class="adm-mesaj ' + (yon ? "is-yonetici" : "is-ogrenci") + '">' +
+            '<p class="adm-mesaj-ust"><strong>' + esc(yon ? "Meberra ekibi" + (m.yazan ? " (" + adSoyad(m.yazan) + ")" : "") : adSoyad(u)) + "</strong> · " + esc(tarih(m.tarih)) +
+              (yon ? " · " + (m.okundu ? "okundu" : "henüz okunmadı") : "") + "</p>" +
+            '<p class="adm-mesaj-metin adm-kir">' + esc(m.metin) + "</p></li>";
+        }).join("") + "</ol>" +
+      "</section>" +
+      '<section class="surface" aria-labelledby="soru-yanit-b"><h3 id="soru-yanit-b">Yanıtla</h3>' +
+        '<form class="adm-islem adm-yanit-form" data-form="yanit" novalidate>' +
+          '<div class="field"><label for="soru-yanit">Yanıtın (öğrenci "Meberra ekibi" imzasıyla görür)</label>' +
+            '<textarea id="soru-yanit" class="text-input adm-not" rows="6" maxlength="2000" data-sayac-icin="soru-yanit-sayac" required></textarea>' +
+            '<p class="field-hint" id="soru-yanit-sayac" aria-live="polite">0 / 2.000</p></div>' +
+          '<p class="field-error" id="soru-yanit-hata" role="alert" hidden></p>' +
+          '<div class="adm-eylem"><button type="submit" class="btn-primary">Yanıtı gönder</button>' +
+            (q.durum !== "kapandi"
+              ? '<button type="button" class="btn-ghost" data-soru-durum="kapandi" aria-expanded="false">Soruyu kapat</button>'
+              : '<button type="button" class="btn-ghost" data-soru-durum="bekliyor" aria-expanded="false">Yeniden aç</button>') +
+          "</div><div class=\"adm-onay\" hidden></div>" +
+        "</form>" +
+      "</section>" +
+      '<section class="surface" aria-labelledby="soru-sss-b"><h3 id="soru-sss-b">SSS\'ye ekle</h3>' +
+        (sssVar.length ? '<p class="adm-alt">Bu sorudan yayınlanan: ' + sssVar.map(function (f) { return esc(kisalt(f.soru, 60)) + " (" + esc(f.durum === "gizli" ? "gizli" : "yayında") + ")"; }).join(", ") + "</p>" : "") +
+        '<form class="adm-islem" data-form="sss" novalidate>' +
+          '<p class="adm-alt">Öğrencinin adı ve kişisel bilgisi SSS\'ye girmesin; soruyu genel bir dille yaz.</p>' +
+          '<div class="field"><label for="sss-soru">Soru</label><textarea id="sss-soru" class="text-input adm-not" rows="2" maxlength="500">' + esc(kisalt(q.metin, 500)) + "</textarea></div>" +
+          '<div class="field"><label for="sss-cevap">Cevap</label><textarea id="sss-cevap" class="text-input adm-not" rows="5" maxlength="4000">' + esc(sonYanit ? sonYanit.metin : "") + "</textarea></div>" +
+          '<div class="field"><label for="sss-sayfa">Sayfa (boş: genel)</label><input id="sss-sayfa" class="text-input" maxlength="80" value="' + esc(q.sayfa || "") + '" placeholder="ör. ap-calculus"></div>' +
+          '<p class="field-error" id="sss-hata" role="alert" hidden></p>' +
+          '<div class="adm-eylem"><button type="submit" class="btn-primary">SSS\'de yayınla</button></div>' +
+        "</form>" +
+      "</section>";
+  }
+  function soruDetayTik(e) {
+    if (e.target.closest("[data-geri]")) { soruKapat(); return; }
+    if (e.target.closest("[data-tekrar]")) { soruDetayYukle(); return; }
+    var kg = e.target.closest("[data-kul-git]");
+    if (kg) { sekmeAc("kullanicilar"); detayAc(kg.getAttribute("data-kul-git")); return; }
+    var b = e.target.closest("[data-soru-durum]");
+    if (!b || !S.soru.secili) return;
+    var hedef = b.getAttribute("data-soru-durum"), id = S.soru.secili.id;
+    onayAc(b.closest("form").querySelector(".adm-onay"), b, {
+      baslik: hedef === "kapandi" ? "Soru kapatılsın mı?" : "Soru yeniden açılsın mı?",
+      metin: hedef === "kapandi" ? "Öğrenci bu soruya artık yazamaz; gerekirse yeni soru açar." : "Soru yeniden yanıt bekleyenlere döner.",
+      onayMetni: hedef === "kapandi" ? "Evet, kapat" : "Evet, yeniden aç",
+      onayla: function () {
+        return api("/api/admin/sorular/" + encodeURIComponent(id) + "/durum", "POST", { durum: hedef }).then(function () {
+          bildir(hedef === "kapandi" ? "Soru kapatıldı." : "Soru yeniden açıldı.", "ok");
+          soruDetayYukle(); ozetYukle(true);
+        });
+      }
+    });
+  }
+  function soruDetayGonder(e) {
+    var f = e.target.closest("form"); if (!f) return;
+    e.preventDefault();
+    var q = S.soru.secili && S.soru.secili.veri; if (!q) return;
+    var dugme = f.querySelector("[type=submit]");
+    if (f.getAttribute("data-form") === "yanit") {
+      var t = $("#soru-yanit", f), h = $("#soru-yanit-hata", f), metin = t.value.trim();
+      if (!metin) { h.textContent = "Yanıtı yaz."; h.hidden = false; t.setAttribute("aria-invalid", "true"); t.focus(); return; }
+      h.hidden = true; t.removeAttribute("aria-invalid");
+      dugme.disabled = true; dugme.textContent = "Gönderiliyor…";
+      api("/api/admin/sorular/" + encodeURIComponent(q.id) + "/yanit", "POST", { metin: metin }).then(function () {
+        bildir("Yanıt gönderildi; öğrenciye bildirim gitti.", "ok");
+        ozetYukle(true);
+        return soruDetayYukle("#soru-yazisma-b");
+      }).catch(function (err) {
+        dugme.disabled = false; dugme.textContent = "Yanıtı gönder";
+        h.textContent = err.message; h.hidden = false;
+      });
+    } else if (f.getAttribute("data-form") === "sss") {
+      var hs = $("#sss-hata", f), govde = { soru: $("#sss-soru", f).value.trim(), cevap: $("#sss-cevap", f).value.trim(), sayfa: $("#sss-sayfa", f).value.trim(), kaynakSoruId: q.id };
+      if (!govde.soru || !govde.cevap) { hs.textContent = "Soru ve cevap gerekli."; hs.hidden = false; return; }
+      hs.hidden = true;
+      dugme.disabled = true; dugme.textContent = "Yayınlanıyor…";
+      api("/api/admin/sss", "POST", govde).then(function () {
+        bildir("SSS'de yayınlandı.", "ok");
+        return soruDetayYukle("#soru-sss-b");
+      }).catch(function (err) {
+        dugme.disabled = false; dugme.textContent = "SSS'de yayınla";
+        hs.textContent = err.message; hs.hidden = false;
+      });
+    }
+  }
+
+  /* ------------------------------------------------------------------------
+     10. DUYURU
+     ------------------------------------------------------------------------ */
+  function panelDuyuruKur() {
+    var p = $("#panel-duyuru");
+    p.innerHTML =
+      '<div class="adm-panel-ust"><h2>Duyuru</h2></div>' +
+      '<p class="adm-ipucu">Duyuru, seçilen kitledeki her etkin kullanıcıya uygulama içi bildirim olarak gider; tarayıcı bildirimini açmış olanlara (sessiz saatler 22:00–08:00 dışında) anlık bildirim de gönderilir. Kısa, nazik ve bilgilendirici yaz; reklam/kampanya için ayrıca ticari ileti onayı gerekir.</p>' +
+      '<div class="adm-izgara">' +
+        '<form class="surface adm-islem adm-duyuru-form" novalidate>' +
+          '<div class="field"><label for="duy-hedef">Kime</label><select id="duy-hedef" class="text-input">' +
+            '<option value="hepsi">Tüm kullanıcılar</option><option value="ucretsiz">Yalnızca ücretsiz üyeler</option><option value="premium">Yalnızca Premium üyeler</option></select></div>' +
+          '<div class="field"><label for="duy-baslik">Başlık</label><input id="duy-baslik" class="text-input" maxlength="120" autocomplete="off" placeholder="ör. Yeni AP Physics denemeleri eklendi"></div>' +
+          '<div class="field"><label for="duy-metin">Metin</label><textarea id="duy-metin" class="text-input adm-not" rows="5" maxlength="1000"></textarea>' +
+            '<p class="field-hint" id="duy-sayac">0 / 1.000</p></div>' +
+          '<div class="field"><label for="duy-link">Bağlantı (isteğe bağlı, site içi)</label><input id="duy-link" class="text-input" maxlength="300" autocomplete="off" placeholder="/sinavlar.html" aria-describedby="duy-link-hata"></div>' +
+          '<p class="field-error" id="duy-hata" role="alert" hidden></p>' +
+          '<div class="adm-eylem"><button type="submit" class="btn-primary" aria-expanded="false">Gönder…</button></div>' +
+          '<div class="adm-onay" hidden></div>' +
+        "</form>" +
+        '<section class="surface" aria-labelledby="duy-onizleme-b"><h3 id="duy-onizleme-b">Önizleme</h3>' +
+          '<div class="adm-onizleme" aria-live="polite"></div>' +
+          '<p class="adm-sonuc" id="duy-alici"></p>' +
+        "</section>" +
+      "</div>";
+    var f = $(".adm-duyuru-form", p), zaman = null;
+    f.addEventListener("input", function () {
+      $("#duy-sayac").textContent = sayi($("#duy-metin").value.length) + " / 1.000";
+      onizlemeCiz();
+      clearTimeout(zaman); zaman = setTimeout(duyuruOnizle, 400);
+    });
+    f.addEventListener("change", function (e) { if (e.target.id === "duy-hedef") duyuruOnizle(); });
+    f.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var g = duyuruGovde(), h = $("#duy-hata");
+      var hata = !g.baslik ? "Başlık yaz." : !g.metin ? "Metin yaz." : !linkGecerli(g.link) ? "Bağlantı / ile başlayan site içi bir yol olmalı (ör. /sinavlar.html)." : "";
+      if (hata) { h.textContent = hata; h.hidden = false; return; }
+      h.hidden = true;
+      var tetik = f.querySelector("[type=submit]");
+      api("/api/admin/duyuru", "POST", Object.assign({ onizleme: true }, g)).then(function (v) {
+        onayAc($(".adm-onay", f), tetik, {
+          baslik: hedefAd(g.hedef) + " (" + sayi(v.alici) + " kişi) için duyuru gönderilsin mi?",
+          metin: "“" + g.baslik + "” — gönderilen duyuru geri alınamaz.",
+          onayMetni: "Evet, gönder",
+          onayla: function () {
+            return api("/api/admin/duyuru", "POST", g).then(function (r) {
+              bildir("Duyuru " + sayi(r.alici) + " kişiye gönderildi (" + sayi(r.push) + " anlık bildirim).", "ok");
+              $("#duy-baslik").value = ""; $("#duy-metin").value = ""; $("#duy-link").value = ""; onizlemeCiz();
+            });
+          }
+        });
+      }).catch(function (err) { h.textContent = err.message; h.hidden = false; });
+    });
+    onizlemeCiz();
+  }
+  function duyuruGovde() {
+    var g = { hedef: $("#duy-hedef").value, baslik: $("#duy-baslik").value.trim(), metin: $("#duy-metin").value.trim() };
+    var l = $("#duy-link").value.trim(); if (l) g.link = l;
+    return g;
+  }
+  function onizlemeCiz() {
+    var g = duyuruGovde(), k = $("#panel-duyuru .adm-onizleme"); if (!k) return;
+    k.innerHTML = '<div class="adm-bildirim-kart"><span class="adm-bildirim-ikon" aria-hidden="true">M</span><div class="adm-min0">' +
+      '<p class="adm-bildirim-baslik">' + esc(g.baslik || "Başlık") + "</p>" +
+      '<p class="adm-bildirim-metin adm-kir">' + esc(g.metin || "Duyuru metni burada görünecek.") + "</p>" +
+      (g.link ? '<p class="adm-alt adm-kir">' + (linkGecerli(g.link) ? "Bağlantı: " + esc(g.link) : '<span class="adm-uyari-not">Geçersiz bağlantı</span>') + "</p>" : "") +
+      "</div></div>";
+  }
+  function duyuruOnizle() {
+    var a = $("#duy-alici"); if (!a) return;
+    var g = duyuruGovde();
+    api("/api/admin/duyuru", "POST", { onizleme: true, hedef: g.hedef, baslik: g.baslik || "x", metin: g.metin || "x" }).then(function (v) {
+      a.textContent = hedefAd(g.hedef) + ": " + sayi(v.alici) + " alıcı.";
+    }).catch(function () { a.textContent = ""; });
+  }
+
+  /* ------------------------------------------------------------------------
+     11. LİG (haftalık gruplar, takma ad moderasyonu)
+     ------------------------------------------------------------------------ */
+  function panelLigKur() {
+    var p = $("#panel-lig");
+    p.innerHTML =
+      '<div class="adm-panel-ust"><h2>Lig</h2><div class="adm-arac">' +
+        '<div class="field adm-field-dar"><label for="lig-hafta">Hafta</label><select id="lig-hafta" class="text-input"><option value="">Bu hafta</option></select></div>' +
+        '<button type="button" class="btn-ghost" data-yenile>Yenile</button></div></div>' +
+      '<p class="adm-ipucu">Öğrenciler birbirini yalnızca takma adla görür. Uygunsuz bir takma adı gizle (öğrenciden yeni ad seçmesi istenir) ya da yeniden adlandır. XP: her cevap 5, doğru cevap +5, biten deneme 50.</p>' +
+      '<p class="adm-sonuc" id="lig-ozet" aria-live="polite"></p><div class="adm-lig-icerik"></div>';
+    $("#lig-hafta").addEventListener("change", function (e) { S.lig.hafta = e.target.value; ligYukle(); });
+    p.addEventListener("click", function (e) {
+      if (e.target.closest("[data-yenile],[data-tekrar]")) { ligYukle(); return; }
+      var b = e.target.closest("[data-lig-islem]"); if (!b) return;
+      var satir = b.closest("[data-lig-uye]"), uid = satir.getAttribute("data-lig-uye"), ad = satir.getAttribute("data-takma");
+      var kap = satir.querySelector(".adm-onay") || b.closest("li,tr").querySelector(".adm-onay");
+      var islem = b.getAttribute("data-lig-islem");
+      if (islem === "adlandir") {
+        kap.hidden = false;
+        kap.innerHTML = '<form class="adm-onay-ic" data-lig-ad-form novalidate><div class="field"><label for="lig-ad-' + esc(uid) + '">Yeni takma ad</label>' +
+          '<input id="lig-ad-' + esc(uid) + '" class="text-input" maxlength="20" value="' + esc(ad) + '"></div>' +
+          '<p class="adm-onay-hata" role="alert" hidden></p><div class="adm-eylem"><button type="submit" class="btn-primary">Kaydet</button><button type="button" class="btn-ghost" data-lig-vazgec>Vazgeç</button></div></form>';
+        $("input", kap).focus();
+        return;
+      }
+      var hedef = islem === "gizle" ? "gizli" : "aktif";
+      onayAc(kap, b, {
+        baslik: islem === "gizle" ? "“" + ad + "” takma adı gizlensin mi?" : "“" + ad + "” yeniden görünür olsun mu?",
+        metin: islem === "gizle" ? "Diğer öğrenciler “Gizli üye” görür; öğrenciden yeni bir takma ad seçmesi istenir." : "Takma ad sıralamada yeniden görünür.",
+        onayMetni: islem === "gizle" ? "Evet, gizle" : "Evet, göster", tehlike: islem === "gizle",
+        onayla: function () {
+          return api("/api/admin/veri/lig_uyeleri/" + encodeURIComponent(uid), "PUT", { degisiklikler: { durum: hedef } }).then(function () {
+            bildir(islem === "gizle" ? "Takma ad gizlendi." : "Takma ad görünür.", "ok"); ligYukle();
+          });
+        }
+      });
+    });
+    p.addEventListener("submit", function (e) {
+      var f = e.target.closest("[data-lig-ad-form]"); if (!f) return;
+      e.preventDefault();
+      var uid = f.closest("[data-lig-uye]").getAttribute("data-lig-uye"), h = $(".adm-onay-hata", f), v = $("input", f).value.trim();
+      api("/api/admin/veri/lig_uyeleri/" + encodeURIComponent(uid), "PUT", { degisiklikler: { takma_ad: v } }).then(function () {
+        bildir("Takma ad “" + v + "” olarak değiştirildi.", "ok"); ligYukle();
+      }).catch(function (err) { h.textContent = err.message; h.hidden = false; });
+    });
+    p.addEventListener("click", function (e) {
+      var v = e.target.closest("[data-lig-vazgec]"); if (!v) return;
+      var k = v.closest(".adm-onay"); k.hidden = true; k.innerHTML = "";
+    });
+  }
+  function ligYukle() {
+    var kap = $("#panel-lig .adm-lig-icerik"), oz = $("#lig-ozet");
+    var no = ++S.lig.istek;
+    kap.setAttribute("aria-busy", "true");
+    kap.innerHTML = yukleniyor("Lig yükleniyor…");
+    return api("/api/admin/lig" + sorgu({ hafta: S.lig.hafta })).then(function (v) {
+      if (no !== S.lig.istek) return;
+      var sec = $("#lig-hafta"), haftalar = Array.isArray(v.haftalar) ? v.haftalar : [];
+      sec.innerHTML = '<option value="">Bu hafta</option>' + haftalar.map(function (h) { return '<option value="' + esc(h) + '"' + (h === S.lig.hafta ? " selected" : "") + ">" + esc(h) + "</option>"; }).join("");
+      var us = v.uyeSayisi || {};
+      oz.textContent = v.hafta + (v.kapandi ? " (kapandı)" : " (sürüyor)") + " · Üyeler: " + sayi(us.aktif || 0) + " aktif, " + sayi(us.gizli || 0) + " gizli, " + sayi(us.ayrildi || 0) + " ayrıldı.";
+      var gruplar = Array.isArray(v.gruplar) ? v.gruplar : [];
+      if (!gruplar.length) { kap.innerHTML = bos("Bu hafta için henüz grup yok. Gruplar, bir üye ligi ilk açtığında kurulur."); return; }
+      kap.innerHTML = '<div class="adm-lig-gruplar">' + gruplar.map(function (g) {
+        return '<section class="surface adm-lig-grup" aria-label="' + esc(g.kademeAd + " ligi, grup " + g.grup) + '">' +
+          "<h3>" + esc(g.kademeAd) + ' <span class="adm-alt">· Grup ' + esc(g.grup) + " · " + esc(sayi(g.uyeler.length)) + " üye</span></h3>" +
+          '<ol class="adm-lig-liste">' + g.uyeler.map(function (u, i) {
+            var gizli = u.durum === "gizli";
+            return '<li data-lig-uye="' + esc(u.userId) + '" data-takma="' + esc(u.takmaAd) + '">' +
+              '<div class="adm-lig-satir"><span class="adm-lig-sira">' + (i + 1) + "</span>" +
+                '<span class="adm-min0 adm-lig-ad"><strong class="adm-kir">' + esc(u.takmaAd) + "</strong>" +
+                  '<span class="adm-alt adm-kir">' + esc(adSoyad(u)) + "</span></span>" +
+                '<span class="adm-lig-xp">' + esc(sayi(u.xp)) + " XP</span>" +
+                (gizli ? rozet("Gizli", "bad") : "") + (u.durum === "ayrildi" ? rozet("Ayrıldı", "notr") : "") +
+                (u.sonuc ? rozet(u.sonuc === "yukseldi" ? "Yükseldi" : u.sonuc === "dustu" ? "Düştü" : "Kaldı", u.sonuc === "yukseldi" ? "ok" : u.sonuc === "dustu" ? "warn" : "notr") : "") +
+                '<span class="adm-eylem">' +
+                  '<button type="button" class="btn-ghost btn-sm" data-lig-islem="adlandir">Yeniden adlandır</button>' +
+                  (u.durum !== "ayrildi" ? '<button type="button" class="btn-ghost btn-sm' + (gizli ? "" : " adm-ghost-tehlike") + '" data-lig-islem="' + (gizli ? "goster" : "gizle") + '" aria-expanded="false">' + (gizli ? "Göster" : "Gizle") + "</button>" : "") +
+                "</span></div>" +
+              '<div class="adm-onay" hidden></div></li>';
+          }).join("") + "</ol></section>";
+      }).join("") + "</div>";
+    }).catch(function (e) {
+      if (no === S.lig.istek) kap.innerHTML = hataKutusu(e.message);
+    }).then(function () { kap.removeAttribute("aria-busy"); });
+  }
+
+  /* ------------------------------------------------------------------------
+     12. VERİ (tablo tarayıcı / düzenleyici)
+     ------------------------------------------------------------------------ */
+  function panelVeriKur() {
+    var p = $("#panel-veri");
+    p.innerHTML =
+      '<div class="adm-veri-liste-gorunum">' +
+        '<div class="adm-panel-ust"><h2>Veri</h2></div>' +
+        '<p class="adm-ipucu">Tabloları incele, ara, CSV olarak indir. Yalnızca izin verilen alanlar düzenlenebilir; hiçbir şey silinmez. Gizli alanlar (şifre özeti, belirteçler, push anahtarları) “••••” görünür. Her düzenleme denetim kaydına önceki/sonraki değerle yazılır.</p>' +
+        '<form class="adm-arac adm-arac-genis adm-veri-arac" role="search" aria-label="Veri ara" novalidate>' +
+          '<div class="field adm-field-dar"><label for="veri-tablo">Tablo</label><select id="veri-tablo" class="text-input"><option value="">Yükleniyor…</option></select></div>' +
+          '<div class="field adm-field-esnek"><label for="veri-q">Ara (metin sütunlarında)</label><input type="search" id="veri-q" class="text-input" maxlength="100" autocomplete="off"></div>' +
+          '<div class="field adm-field-dar"><label for="veri-alan">Süz: sütun</label><select id="veri-alan" class="text-input"><option value="">—</option></select></div>' +
+          '<div class="field adm-field-dar"><label for="veri-deger">Değer</label><input id="veri-deger" class="text-input" maxlength="200" autocomplete="off" placeholder="__null__ = boş"></div>' +
+          '<div class="field adm-field-dar"><label for="veri-sirala">Sırala</label><select id="veri-sirala" class="text-input"><option value="">Varsayılan</option></select></div>' +
+          '<div class="field adm-field-dar"><label for="veri-yon">Yön</label><select id="veri-yon" class="text-input"><option value="desc">Azalan</option><option value="asc">Artan</option></select></div>' +
+          '<div class="adm-eylem adm-eylem-alt"><button type="submit" class="btn-primary">Uygula</button><a class="btn-ghost" id="veri-csv" href="#" download>CSV indir</a></div>' +
+        "</form>" +
+        '<p class="adm-alt" id="veri-aciklama"></p>' +
+        '<p class="adm-sonuc" id="veri-ozet" aria-live="polite"></p>' +
+        '<div class="adm-veri-liste"></div><div class="adm-veri-sayfa"></div>' +
+      "</div>" +
+      '<div class="adm-detay adm-veri-detay" hidden></div>';
+    var f = $(".adm-veri-arac", p);
+    $("#veri-tablo").addEventListener("change", function (e) {
+      S.veri.tablo = e.target.value; S.veri.q = ""; S.veri.alan = ""; S.veri.deger = ""; S.veri.sirala = ""; S.veri.yon = "desc"; S.veri.sayfa = 1;
+      $("#veri-q").value = ""; $("#veri-deger").value = ""; $("#veri-yon").value = "desc";
+      veriSutunSecenekleri(); veriYukle();
+    });
+    f.addEventListener("submit", function (e) {
+      e.preventDefault();
+      S.veri.q = $("#veri-q").value.trim(); S.veri.alan = $("#veri-alan").value; S.veri.deger = $("#veri-deger").value;
+      S.veri.sirala = $("#veri-sirala").value; S.veri.yon = $("#veri-yon").value; S.veri.sayfa = 1;
+      veriYukle();
+    });
+    $(".adm-veri-liste-gorunum", p).addEventListener("click", function (e) {
+      if (e.target.closest("[data-tekrar]")) { if (S.veri.tablolar) veriYukle(); else veriTablolarYukle(); return; }
+      var sb = e.target.closest("[data-sayfa]");
+      if (sb && !sb.disabled) { S.veri.sayfa = Number(sb.getAttribute("data-sayfa")); veriYukle().then(function () { $("#veri-ozet").focus(); }); return; }
+      var tr = e.target.closest("[data-veri-satir]");
+      if (tr) veriSatirAc(tr.getAttribute("data-veri-satir"));
+    });
+    $(".adm-veri-liste-gorunum", p).addEventListener("keydown", function (e) {
+      var tr = e.target.closest("[data-veri-satir]");
+      if (tr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); veriSatirAc(tr.getAttribute("data-veri-satir")); }
+    });
+    var d = $(".adm-veri-detay", p);
+    d.addEventListener("click", function (e) {
+      if (e.target.closest("[data-geri]")) { veriDetayKapat(); return; }
+    });
+    d.addEventListener("submit", veriKaydet);
+  }
+  function veriTablo() { return (S.veri.tablolar || []).filter(function (t) { return t.ad === S.veri.tablo; })[0] || null; }
+  function veriTablolarYukle() {
+    var kap = $("#panel-veri .adm-veri-liste");
+    kap.innerHTML = yukleniyor("Tablolar yükleniyor…");
+    return api("/api/admin/veri/tablolar").then(function (v) {
+      S.veri.tablolar = Array.isArray(v.tablolar) ? v.tablolar : [];
+      if (!S.veri.tablo && S.veri.tablolar.length) S.veri.tablo = S.veri.tablolar[0].ad;
+      $("#veri-tablo").innerHTML = S.veri.tablolar.map(function (t) {
+        return '<option value="' + esc(t.ad) + '"' + (t.ad === S.veri.tablo ? " selected" : "") + ">" + esc(t.ad) + " (" + esc(sayi(t.satir)) + ")" + (t.saltOkunur ? " · salt okunur" : "") + "</option>";
+      }).join("");
+      veriSutunSecenekleri();
+      return veriYukle();
+    }).catch(function (e) { kap.innerHTML = hataKutusu(e.message); });
+  }
+  function veriSutunSecenekleri() {
+    var t = veriTablo(); if (!t) return;
+    var acik = t.sutunlar.filter(function (s) { return !s.gizli; });
+    $("#veri-alan").innerHTML = '<option value="">—</option>' + acik.map(function (s) { return '<option value="' + esc(s.ad) + '">' + esc(s.ad) + "</option>"; }).join("");
+    $("#veri-sirala").innerHTML = '<option value="">Varsayılan</option>' + acik.map(function (s) { return '<option value="' + esc(s.ad) + '">' + esc(s.ad) + "</option>"; }).join("");
+    $("#veri-aciklama").textContent = (t.aciklama || "") + (t.saltOkunur ? "" : " · Düzenlenebilir: " + t.duzenlenebilir.join(", "));
+  }
+  function veriYukle() {
+    var t = veriTablo(); if (!t) return Promise.resolve();
+    var kap = $("#panel-veri .adm-veri-liste"), say = $("#panel-veri .adm-veri-sayfa"), oz = $("#veri-ozet");
+    var no = ++S.veri.istek;
+    var f = { q: S.veri.q, alan: S.veri.alan, deger: S.veri.alan ? S.veri.deger : undefined, sirala: S.veri.sirala, yon: S.veri.yon, sayfa: S.veri.sayfa };
+    $("#veri-csv").setAttribute("href", veriYolu(t.ad, f, true));
+    kap.setAttribute("aria-busy", "true");
+    if (!kap.querySelector("table")) kap.innerHTML = yukleniyor("Satırlar yükleniyor…"); else kap.classList.add("is-soluk");
+    return api(veriYolu(t.ad, f, false)).then(function (v) {
+      if (no !== S.veri.istek) return;
+      S.veri.sonuc = v;
+      var liste = Array.isArray(v.satirlar) ? v.satirlar : [], sut = Array.isArray(v.sutunlar) ? v.sutunlar : [];
+      var b = sayfaBilgisi(v.toplam, v.sayfa || S.veri.sayfa, v.sayfaBoyu || 50, liste.length);
+      oz.tabIndex = -1;
+      oz.textContent = sayi(b.toplam) + " satır" + (v.saltOkunur ? " · salt okunur" : " · düzenlemek için satıra tıkla") + ".";
+      if (!liste.length) { kap.innerHTML = bos("Bu filtreye uyan satır yok."); say.innerHTML = ""; return; }
+      kap.innerHTML = '<div class="adm-tablo-kap adm-veri-kap"><table class="adm-tablo adm-veri-tablo">' +
+        '<caption class="visually-hidden">' + esc(t.ad) + " tablosu, sayfa " + esc(sayi(b.sayfa)) + "</caption>" +
+        "<thead><tr>" + sut.map(function (s) {
+          return '<th scope="col"' + (s.duzenlenebilir ? ' class="is-duzen" title="Düzenlenebilir"' : "") + ">" + esc(s.ad) + (s.duzenlenebilir ? " ✎" : "") + "</th>";
+        }).join("") + "</tr></thead><tbody>" +
+        liste.map(function (r) {
+          return '<tr data-veri-satir="' + esc(r._id) + '" tabindex="0" aria-label="Satır ' + esc(r._id) + ' ayrıntısı">' + sut.map(function (s) {
+            var v2 = r[s.ad];
+            return "<td" + (v2 === null ? ' class="is-null"' : s.gizli ? ' class="is-gizli"' : "") + ">" + esc(hucreMetni(v2, 60)) + "</td>";
+          }).join("") + "</tr>";
+        }).join("") + "</tbody></table></div>";
+      say.innerHTML = sayfalamaHtml(b, "Veri sayfaları", "satır");
+    }).catch(function (e) {
+      if (no === S.veri.istek) { kap.innerHTML = hataKutusu(e.message); say.innerHTML = ""; }
+    }).then(function () { kap.removeAttribute("aria-busy"); kap.classList.remove("is-soluk"); });
+  }
+  function veriSatirAc(id) {
+    var t = veriTablo(); if (!t) return;
+    var p = $("#panel-veri"), d = $(".adm-veri-detay", p);
+    $(".adm-veri-liste-gorunum", p).hidden = true; d.hidden = false;
+    S.veri.secili = { id: id, satir: null };
+    d.innerHTML = '<div class="adm-detay-ust"><button type="button" class="btn-ghost" data-geri>‹ Tabloya dön</button></div>' + yukleniyor("Satır yükleniyor…");
+    $("[data-geri]", d).focus();
+    return api("/api/admin/veri/" + encodeURIComponent(t.ad) + "/" + encodeURIComponent(id)).then(function (v) {
+      if (!S.veri.secili || S.veri.secili.id !== id) return;
+      S.veri.secili.satir = v.satir;
+      d.innerHTML = veriFormHtml(t, v);
+      var h = $("#veri-detay-baslik", d); if (h) h.focus();
+    }).catch(function (e) {
+      d.innerHTML = '<div class="adm-detay-ust"><button type="button" class="btn-ghost" data-geri>‹ Tabloya dön</button></div>' + hataKutusu(e.message);
+    });
+  }
+  function veriDetayKapat() {
+    var p = $("#panel-veri"), id = S.veri.secili && S.veri.secili.id;
+    S.veri.secili = null;
+    $(".adm-veri-detay", p).hidden = true; $(".adm-veri-detay", p).innerHTML = "";
+    $(".adm-veri-liste-gorunum", p).hidden = false;
+    var tr = id != null ? p.querySelector('[data-veri-satir="' + (window.CSS && CSS.escape ? CSS.escape(String(id)) : String(id)) + '"]') : null;
+    if (tr) tr.focus(); else $("#veri-tablo").focus();
+  }
+  function alanGirdisi(s, deger) {
+    var id = "veri-f-" + s.ad, k = s.kural || {};
+    var v = deger == null ? "" : typeof deger === "object" ? JSON.stringify(deger) : String(deger);
+    var giris;
+    if (k.tur === "secim") {
+      giris = '<select id="' + esc(id) + '" class="text-input" name="' + esc(s.ad) + '">' + k.degerler.map(function (x) { return '<option value="' + esc(x) + '"' + (x === v ? " selected" : "") + ">" + esc(x) + "</option>"; }).join("") +
+        (k.degerler.indexOf(v) < 0 ? '<option value="' + esc(v) + '" selected>' + esc(v) + " (mevcut)</option>" : "") + "</select>";
+    } else if (k.tur === "bool") {
+      giris = '<select id="' + esc(id) + '" class="text-input" name="' + esc(s.ad) + '"><option value="1"' + (v === "1" ? " selected" : "") + '>1 (evet)</option><option value="0"' + (v !== "1" ? " selected" : "") + ">0 (hayır)</option></select>";
+    } else if (k.tur === "tamsayi") {
+      giris = '<input id="' + esc(id) + '" class="text-input" name="' + esc(s.ad) + '" type="number" step="1" min="' + esc(k.min) + '" max="' + esc(k.max) + '" value="' + esc(v) + '">';
+    } else if (k.tur === "json" || (k.max && k.max > 200)) {
+      if (k.tur === "json") { try { v = JSON.stringify(JSON.parse(v), null, 2); } catch (e) { /* olduğu gibi */ } }
+      giris = '<textarea id="' + esc(id) + '" class="text-input adm-not' + (k.tur === "json" ? " adm-kod-alan" : "") + '" name="' + esc(s.ad) + '" rows="' + (k.tur === "json" ? 8 : 4) + '"' + (k.max ? ' maxlength="' + esc(k.max) + '"' : "") + ">" + esc(v) + "</textarea>";
+    } else {
+      giris = '<input id="' + esc(id) + '" class="text-input" name="' + esc(s.ad) + '" value="' + esc(v) + '"' + (k.max ? ' maxlength="' + esc(k.max) + '"' : "") + (k.tur === "tarih" ? ' placeholder="2026-12-31T21:00:00.000Z"' : "") + ">";
+    }
+    var ipucu = k.tur === "secim" ? "Seçenekler: " + k.degerler.join(", ") : k.tur === "tarih" ? "ISO tarih (UTC)" : k.tur === "tamsayi" ? k.min + "–" + k.max : k.tur === "takmaAd" ? "3–20 karakter; harf, rakam, _" : k.max ? "En fazla " + k.max + " karakter" + (k.min ? "" : " (boş: ∅)") : "";
+    return '<div class="field"><label for="' + esc(id) + '">' + esc(s.ad) + "</label>" + giris + (ipucu ? '<p class="field-hint">' + esc(ipucu) + "</p>" : "") + "</div>";
+  }
+  function veriFormHtml(t, v) {
+    var r = v.satir || {}, sut = Array.isArray(v.sutunlar) ? v.sutunlar : [];
+    var duzen = sut.filter(function (s) { return s.duzenlenebilir; }), diger = sut.filter(function (s) { return !s.duzenlenebilir; });
+    return '<div class="adm-detay-ust"><button type="button" class="btn-ghost" data-geri>‹ Tabloya dön</button></div>' +
+      '<header class="surface adm-kisi"><div class="adm-kisi-ust"><h2 id="veri-detay-baslik" tabindex="-1">' + esc(t.ad) + " · #" + esc(r._id) + "</h2>" +
+        (v.saltOkunur ? rozet("Salt okunur", "notr") : rozet("Düzenlenebilir", "mor")) + "</div></header>" +
+      (duzen.length && !v.saltOkunur
+        ? '<section class="surface" aria-labelledby="veri-duzen-b"><h3 id="veri-duzen-b">Düzenle</h3>' +
+            '<form class="adm-islem adm-veri-form" novalidate>' + duzen.map(function (s) { return alanGirdisi(s, r[s.ad]); }).join("") +
+              '<p class="field-error" id="veri-hata" role="alert" hidden></p>' +
+              '<div class="adm-eylem"><button type="submit" class="btn-primary" aria-expanded="false">Değişiklikleri gözden geçir…</button></div>' +
+              '<div class="adm-onay" hidden></div></form></section>'
+        : "") +
+      '<section class="surface" aria-labelledby="veri-tum-b"><h3 id="veri-tum-b">Tüm alanlar</h3><dl class="adm-dl adm-veri-dl">' +
+        (v.saltOkunur ? sut : diger).map(function (s) {
+          var x = r[s.ad], uzun = typeof x === "string" && x.length > 120;
+          return '<div class="' + (uzun ? "adm-dl-genis" : "") + '"><dt>' + esc(s.ad) + "</dt><dd>" +
+            (uzun ? '<details class="adm-ayrinti"><summary>' + esc(kisalt(x, 80)) + "</summary><pre>" + esc(ayrintiMetni(x)) + "</pre></details>" : '<span class="adm-kir">' + esc(hucreMetni(x, 200)) + "</span>") +
+            "</dd></div>";
+        }).join("") + "</dl></section>";
+  }
+  function veriKaydet(e) {
+    var f = e.target.closest(".adm-veri-form"); if (!f) return;
+    e.preventDefault();
+    var t = veriTablo(), sec = S.veri.secili; if (!t || !sec || !sec.satir) return;
+    var yeni = {};
+    Array.prototype.forEach.call(f.querySelectorAll("[name]"), function (el) {
+      var v = el.value;
+      var s = t.sutunlar.filter(function (x) { return x.ad === el.name; })[0];
+      if (s && s.kural && s.kural.tur === "json") { try { v = JSON.stringify(JSON.parse(v)); } catch (err) { /* sunucu doğrular */ } }
+      yeni[el.name] = v;
+    });
+    var orijinal = {};
+    Object.keys(yeni).forEach(function (k) {
+      var o = sec.satir[k], s = t.sutunlar.filter(function (x) { return x.ad === k; })[0];
+      if (s && s.kural && s.kural.tur === "json" && typeof o === "string") { try { o = JSON.stringify(JSON.parse(o)); } catch (err) { /* */ } }
+      orijinal[k] = o;
+    });
+    var fark = farkHesapla(orijinal, yeni), h = $("#veri-hata", f);
+    if (!fark.length) { h.textContent = "Değişiklik yok."; h.hidden = false; return; }
+    h.hidden = true;
+    var tetik = f.querySelector("[type=submit]"), kap = $(".adm-onay", f);
+    onayAc(kap, tetik, {
+      baslik: t.ad + " #" + sec.id + ": " + fark.length + " alan değişecek. Onaylıyor musun?",
+      metin: "Değişiklik denetim kaydına önceki ve sonraki değerleriyle yazılır.",
+      onayMetni: "Evet, kaydet",
+      onayla: function () {
+        var degisiklikler = {}, onceki = {};
+        fark.forEach(function (x) { degisiklikler[x.alan] = x.sonra; onceki[x.alan] = sec.satir[x.alan]; });
+        return api("/api/admin/veri/" + encodeURIComponent(t.ad) + "/" + encodeURIComponent(sec.id), "PUT", { degisiklikler: degisiklikler, onceki: onceki }).then(function (r) {
+          bildir(t.ad + " #" + sec.id + " güncellendi (" + (r.degisen || []).join(", ") + ").", "ok");
+          veriSatirAc(sec.id);
+          veriYukle();
+        });
+      }
+    });
+    // Fark önizlemesi onay kutusunun içine
+    var ic = $(".adm-onay-ic", kap);
+    if (ic) {
+      var tablo = document.createElement("div");
+      tablo.className = "adm-tablo-kap";
+      tablo.innerHTML = '<table class="adm-tablo adm-fark"><caption class="visually-hidden">Değişiklik önizlemesi</caption><thead><tr><th scope="col">Alan</th><th scope="col">Önce</th><th scope="col">Sonra</th></tr></thead><tbody>' +
+        fark.map(function (x) { return "<tr><td><code class=\"adm-kod\">" + esc(x.alan) + '</code></td><td class="is-once adm-kir">' + esc(hucreMetni(x.once, 300)) + '</td><td class="is-sonra adm-kir">' + esc(hucreMetni(x.sonra === "" ? null : x.sonra, 300)) + "</td></tr>"; }).join("") +
+        "</tbody></table>";
+      ic.insertBefore(tablo, $(".adm-onay-hata", ic));
+    }
+  }
+
+  /* ------------------------------------------------------------------------
+     13. BAŞLAT
      ------------------------------------------------------------------------ */
   function yetkisiz(metin, girisLinki) {
     main.innerHTML = '<section class="surface adm-yetkisiz" role="alert">' +

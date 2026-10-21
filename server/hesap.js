@@ -34,6 +34,8 @@ function hesapServisi(db, denetim, eposta) {
     oturumUzat: db.prepare("UPDATE sessions SET son_kullanim = ?, bitis = ? WHERE id = ?"),
     oturumIptal: db.prepare("UPDATE sessions SET iptal = ? WHERE token_hash = ?"),
     oturumlariIptal: db.prepare("UPDATE sessions SET iptal = ? WHERE user_id = ? AND iptal IS NULL"),
+    digerOturumlariIptal: db.prepare("UPDATE sessions SET iptal = ? WHERE user_id = ? AND iptal IS NULL AND id != ?"),
+    resetleriIptal: db.prepare("UPDATE password_resets SET kullanildi = ? WHERE user_id = ? AND kullanildi IS NULL"),
     resetEkle: db.prepare("INSERT INTO password_resets (user_id, token_hash, olusturma, bitis, ip) VALUES (?, ?, ?, ?, ?)"),
     resetBul: db.prepare("SELECT * FROM password_resets WHERE token_hash = ? AND kullanildi IS NULL"),
     resetKullan: db.prepare("UPDATE password_resets SET kullanildi = ? WHERE id = ?"),
@@ -41,6 +43,7 @@ function hesapServisi(db, denetim, eposta) {
     bekleyenTalep: db.prepare("SELECT id, plan, olusturma FROM upgrade_requests WHERE user_id = ? AND durum = 'bekliyor' ORDER BY id DESC LIMIT 1"),
     talepler: db.prepare("SELECT id, plan, tutar_tl, odeyen_ad, aciklama, durum, olusturma, islem_zamani, islem_notu FROM upgrade_requests WHERE user_id = ? ORDER BY id DESC"),
     talepEkle: db.prepare("INSERT INTO upgrade_requests (user_id, plan, tutar_tl, odeyen_ad, aciklama, olusturma) VALUES (?, ?, ?, ?, ?, ?)"),
+    talepIptal: db.prepare("UPDATE upgrade_requests SET durum = 'iptal', isleyen = ?, islem_zamani = ?, islem_notu = ? WHERE id = ? AND user_id = ? AND durum = 'bekliyor'"),
     abonelikEkle: db.prepare(`INSERT INTO subscriptions (user_id, plan, baslangic, bitis, kaynak, tutar_tl, talep_id, not_, olusturan, olusturma)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
   };
@@ -102,14 +105,18 @@ function hesapServisi(db, denetim, eposta) {
       return { kullanici: u, oturum: oturumAc(u.id, req) };
     },
 
-    /** Çerezdeki belirteçten kullanıcı (yoksa null). Oturum kayar: günde bir kez süresi uzar. */
+    /** Çerezdeki belirteçten kullanıcı (yoksa null). Oturum kayar: günde bir kez süresi uzar; o zaman r.uzatildi işaretlenir
+     *  ve çağıran çerezi yeni Max-Age ile yeniden yazar (yoksa tarayıcı çerezi ilk girişteki süreyle siler). */
     oturumKullanici(tok) {
       if (!tok) return null;
       const r = q.oturumBul.get(ozet(tok));
       if (!r) return null;
       const z = simdi();
       if (r.bitis <= z || r.durum !== "aktif") return null;
-      if (Date.parse(z) - Date.parse(r.son_kullanim) > GUN) q.oturumUzat.run(z, tarihEkle(z, config.oturumGun), r.sid);
+      if (Date.parse(z) - Date.parse(r.son_kullanim) > GUN) {
+        q.oturumUzat.run(z, tarihEkle(z, config.oturumGun), r.sid);
+        r.uzatildi = true;
+      }
       return r;
     },
     cikis(tok, kullanici, req) {
@@ -135,8 +142,15 @@ function hesapServisi(db, denetim, eposta) {
       if (!sifreDogrula(String(f.eski || ""), u.sifre_hash)) e.eski = "Mevcut şifre hatalı.";
       sifreKurali(f.yeni, f.yeni2, e, "sifre", "sifre2");
       if (Object.keys(e).length) throw new HttpHata(400, "Şifre değiştirilemedi.", e);
-      q.sifreGuncelle.run(sifreOzetle(f.yeni), simdi(), u.id);
-      denetim({ eylem: "auth.sifre-degisti", kullanici: u.id, istek: req });
+      // Şifre değişince bu oturum dışındaki tüm oturumlar ve açık sıfırlama bağlantıları geçersiz olur
+      let kapanan = 0;
+      islem(db, () => {
+        const z = simdi();
+        q.sifreGuncelle.run(sifreOzetle(f.yeni), z, u.id);
+        kapanan = Number(q.digerOturumlariIptal.run(z, u.id, u.sid || 0).changes);
+        q.resetleriIptal.run(z, u.id);
+      });
+      denetim({ eylem: "auth.sifre-degisti", kullanici: u.id, istek: req, ayrinti: { kapananOturum: kapanan } });
     },
 
     sifreUnuttum(epostaAdresi, req) {
@@ -159,6 +173,7 @@ function hesapServisi(db, denetim, eposta) {
       if (Object.keys(e).length) throw new HttpHata(400, "Şifre kaydedilemedi.", e);
       islem(db, () => {
         q.resetKullan.run(simdi(), r.id);
+        q.resetleriIptal.run(simdi(), r.user_id); // aynı kullanıcının diğer açık bağlantıları da kapanır
         q.sifreGuncelle.run(sifreOzetle(yeni), simdi(), r.user_id);
         q.oturumlariIptal.run(simdi(), r.user_id);
       });
@@ -182,19 +197,30 @@ function hesapServisi(db, denetim, eposta) {
         (aciklama ? "\nNot: " + aciklama : "") + "\n\nDekontu kontrol edip onaylamak için: " + config.baseUrl + "/admin.html#talepler");
       return { id, plan: plan.id, tutar: plan.fiyat, durum: "bekliyor" };
     },
+    /** Öğrenci kendi bekleyen ödeme bildirimini geri çeker (ör. yanlış plan seçtiyse). */
+    talepIptal(u, req) {
+      const t = q.bekleyenTalep.get(u.id);
+      if (!t || Number(q.talepIptal.run(u.id, simdi(), "Öğrenci tarafından iptal edildi", t.id, u.id).changes) !== 1)
+        throw new HttpHata(409, "İptal edilecek bekleyen bir ödeme bildirimin yok.");
+      denetim({ eylem: "premium.talep-iptal", kullanici: u.id, istek: req, varlik: "upgrade_requests", varlikId: t.id, ayrinti: { plan: t.plan } });
+      return { id: t.id, plan: t.plan, durum: "iptal" };
+    },
 
     /** Premium açıldığında öğrenciye bilgi e-postası */
     premiumBildir(userId, bitis) {
       const u = q.kullaniciId.get(userId);
       if (!u || !u.eposta) return;
       eposta.gonder(u.eposta, "Meberra Premium hesabın açıldı", "Merhaba " + u.ad + ",\n\nÖdemen onaylandı; Premium hesabın açıldı. Bitiş tarihi: " +
-        new Date(bitis).toLocaleDateString("tr-TR") + ".\n\nTüm ünitelere ve sınırsız denemeye şimdi erişebilirsin: " + config.baseUrl + "/calis.html\n\nİyi çalışmalar,\nMeberra");
+        new Date(bitis).toLocaleDateString("tr-TR", { timeZone: "Europe/Istanbul" }) + ".\n\nTüm ünitelere ve sınırsız denemeye şimdi erişebilirsin: " + config.baseUrl + "/calis.html\n\nİyi çalışmalar,\nMeberra");
     },
 
     /** Premium dönemi ekler: mevcut aktif dönemin sonundan (yoksa şimdiden) itibaren. */
     premiumVer(userId, plan, gun, ek) {
       const p = config.plan(plan);
-      const sure = gun && +gun > 0 ? Math.min(3650, Math.floor(+gun)) : (p ? p.gun : 30);
+      // gun verildiyse 1..3650 arası tam sayı olmalı; verilmediyse plan süresi
+      if (gun != null && !(Number.isInteger(+gun) && +gun >= 1 && +gun <= 3650)) throw new HttpHata(400, "Gün sayısı 1 ile 3650 arasında tam sayı olmalı.", { gun: "1–3650 arası tam sayı yaz." });
+      if (gun == null && !p) throw new HttpHata(400, "Plan (aylik/yillik) ya da gün sayısı gerekli.");
+      const sure = gun != null ? +gun : p.gun;
       const z = simdi();
       const a = q.aktifAbonelik.get(userId, z);
       const bas = a ? a.bitis : z;
@@ -220,19 +246,40 @@ function hesapServisi(db, denetim, eposta) {
         seviyeTestleri: tablo("SELECT tarih, veri FROM level_tests WHERE user_id = ?"),
         tarayiciVerisi: tablo("SELECT anahtar, guncelleme FROM user_state WHERE user_id = ?"),
         oturumlar: tablo("SELECT olusturma, son_kullanim, ip, tarayici FROM sessions WHERE user_id = ?"),
-        denetimKaydi: tablo("SELECT zaman, eylem, ip FROM audit_log WHERE user_id = ? ORDER BY zaman")
+        denetimKaydi: tablo("SELECT zaman, eylem, ip FROM audit_log WHERE user_id = ? ORDER BY zaman"),
+        sorular: tablo("SELECT id, sayfa, soru_ref, metin, durum, olusturma FROM questions WHERE user_id = ? ORDER BY id"),
+        soruMesajlari: tablo("SELECT m.question_id, m.rol, m.metin, m.tarih FROM question_messages m JOIN questions q ON q.id = m.question_id WHERE q.user_id = ? ORDER BY m.id"),
+        bildirimler: tablo("SELECT tur, baslik, metin, link, okundu, olusturma FROM notifications WHERE user_id = ? ORDER BY id"),
+        bildirimAyarlari: tablo("SELECT eposta_hatirlatma, push, eposta_bildirim, hatirlatma_saati, veli_raporu, veli_eposta, veli_dogrulandi FROM notification_prefs WHERE user_id = ?"),
+        pushCihazlari: tablo("SELECT tarayici, olusturma, son_basari FROM push_subscriptions WHERE user_id = ?"),
+        lig: tablo("SELECT takma_ad, kademe, durum, katilma FROM lig_uyeleri WHERE user_id = ?"),
+        ligHaftalari: tablo("SELECT hafta, kademe, grup, xp, sonuc FROM lig_haftalik WHERE user_id = ? ORDER BY hafta")
       };
     },
     hesapSil(u, sifre, req) {
       if (!sifreDogrula(String(sifre || ""), u.sifre_hash)) throw new HttpHata(400, "Şifre hatalı.", { sifre: "Şifre hatalı." });
+      const z = simdi(), ep = String(u.eposta || "").toLowerCase();
       islem(db, () => {
-        ["profiles", "user_state", "answers", "wrong_answers", "exams", "level_tests", "sessions", "password_resets"].forEach(t => db.prepare("DELETE FROM " + t + " WHERE user_id = ?").run(u.id));
-        // Muhasebe kayıtları (abonelik, ödeme bildirimi) yasal saklama için kalır; kişisel alanlar anonimleştirilir
+        ["profiles", "user_state", "state_tombstones", "answers", "wrong_answers", "exams", "level_tests", "sessions", "password_resets",
+          "questions", "notifications", "notification_prefs", "push_subscriptions", "reminder_log", "lig_uyeleri", "lig_haftalik"].forEach(t => db.prepare("DELETE FROM " + t + " WHERE user_id = ?").run(u.id));
+        // Muhasebe kayıtları (abonelik, ödeme bildirimi) yasal saklama için kalır; kişisel alanlar anonimleştirilir.
+        // Bekleyen bildirim iptal edilir (silinmiş hesaba Premium açılmasın), aktif dönem sonlandırılır.
+        db.prepare("UPDATE upgrade_requests SET durum = 'iptal', islem_zamani = ?, islem_notu = 'Hesap silindi' WHERE user_id = ? AND durum = 'bekliyor'").run(z, u.id);
         db.prepare("UPDATE upgrade_requests SET odeyen_ad = 'silindi', aciklama = NULL WHERE user_id = ?").run(u.id);
+        db.prepare("UPDATE subscriptions SET durum = 'iptal', iptal_zamani = ? WHERE user_id = ? AND durum = 'aktif' AND bitis > ?").run(z, u.id, z);
+        // Denetim kaydı: satırlar kalır (kim ne yaptı); IP, tarayıcı ve ayrıntıdaki e-posta silinir
+        db.prepare("UPDATE audit_log SET ip = NULL, tarayici = NULL WHERE user_id = ? OR yapan_id = ?").run(u.id, u.id);
+        if (ep) {
+          db.prepare("UPDATE audit_log SET ayrinti = REPLACE(ayrinti, ?, 'silindi') WHERE instr(ayrinti, ?) > 0").run(ep, ep);
+          db.prepare("UPDATE audit_log SET ayrinti = NULL WHERE instr(lower(ayrinti), ?) > 0").run(ep); // harf büyüklüğü farklı kalanlar
+          // Giden e-postalar: öğrenciye gidenler ve adını/adresini içeren yönetici bildirimleri (bağlantılar metinde)
+          db.prepare("UPDATE email_outbox SET alici = 'silindi', konu = '[silinmiş kullanıcı]', metin = '[silindi]', html = NULL WHERE lower(alici) = ? OR instr(lower(metin), ?) > 0")
+            .run(ep, "<" + ep + ">");
+        }
         db.prepare(`UPDATE users SET eposta = NULL, kullanici_adi = ?, ad = 'Silinmiş', soyad = 'Kullanıcı', sifre_hash = '!', durum = 'silindi', guncelleme = ? WHERE id = ?`)
-          .run("silindi-" + u.id, simdi(), u.id);
+          .run("silindi-" + u.id, z, u.id);
       });
-      denetim({ eylem: "hesap.silindi", kullanici: u.id, istek: req });
+      denetim({ eylem: "hesap.silindi", kullanici: u.id }); // istek verilmez: IP/tarayıcı yazılmaz
     },
 
     /** İlk çalıştırmada yönetici hesabı (ADMIN_EPOSTA + ADMIN_SIFRE) ya da var olanı yöneticiye yükseltme */

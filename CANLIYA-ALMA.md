@@ -272,6 +272,30 @@ Notlar:
 
 ---
 
+## E2) Bildirimler, hatırlatmalar ve uygulama (PWA)
+
+- [ ] **Tarayıcı bildirimleri (web push) yalnızca HTTPS'te çalışır** (yerelde `http://localhost` istisnadır).
+      Service worker kökte `/sw.js` olarak sunulur; nginx'te ek ayar gerekmez.
+- [ ] **VAPID anahtarları:** `.env` içindeki `VAPID_PUBLIC` / `VAPID_PRIVATE` boşsa uygulama ilk açılışta
+      anahtar üretir ve `DATA_DIR/vapid.json` dosyasına yazar. Bu dosya **yedeklenmeli** ve korunmalıdır: kaybolursa
+      tüm tarayıcı abonelikleri geçersiz olur (öğrencilerin bildirimi yeniden açması gerekir). İsterseniz anahtarları
+      `npx web-push generate-vapid-keys` ile üretip `.env`'e yazın; `VAPID_SUBJECT=mailto:destek@alanadiniz.com`.
+- [ ] **iPhone/iPad:** iOS 16.4 ve üzeri gerekir ve bildirimler yalnızca site **Ana Ekrana Ekle** ile uygulama gibi
+      eklendiğinde çalışır (Safari sekmesinde çalışmaz). Öğrencilere bunu anlatan kısa bir not ekleyin.
+- [ ] **Zamanlayıcı:** Uygulama 10 dakikada bir hatırlatmaları, pazar 18:00 veli raporlarını ve haftalık lig devrini
+      işler (`ZAMANLAYICI=0` ile kapatılır). Birden fazla uygulama örneği çalıştırmayın: hatırlatma kaydı (reminder_log)
+      tekrar gönderimi engeller ama tek örnek en sağlıklısıdır.
+- [ ] **Kurallar (sahibinin kararı):** Tüm e-posta/push tercihleri varsayılan **kapalıdır** (açık rıza). Günde en fazla
+      1 hatırlatma; 22:00–08:00 (İstanbul) arası hatırlatma/push gönderilmez; her e-postada tek tıkla iptal bağlantısı
+      vardır. Veli raporu yalnızca veli e-postadaki onay bağlantısına tıkladıktan sonra gönderilir.
+- [ ] **İYS / ticari ileti:** Çalışma hatırlatmaları, soru yanıtı ve veli raporu kullanıcının istediği **hizmet
+      iletileri** olarak tasarlandı; kampanya/indirim/tanıtım içeren duyurular ise 6563 sayılı Kanun kapsamında
+      **ticari elektronik ileti** sayılır ve İleti Yönetim Sistemi (İYS) kaydı + onay gerektirir. Duyuru sekmesini
+      reklam için kullanmadan önce ve hatırlatma metinlerinin hizmet iletisi sayılıp sayılmadığı konusunda
+      **hukuki görüş alın**. Kullanıcıların çoğu reşit olmadığından veli onayı süreçlerini de avukatınızla gözden geçirin.
+
+---
+
 ## F) Sorun giderme
 
 | Belirti | Olası neden | Çözüm |

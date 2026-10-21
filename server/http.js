@@ -11,12 +11,14 @@ const TURLER = {
   ".jpeg": "image/jpeg", ".webp": "image/webp", ".gif": "image/gif", ".ico": "image/x-icon", ".woff2": "font/woff2",
   ".woff": "font/woff", ".pdf": "application/pdf", ".xml": "application/xml; charset=utf-8", ".txt": "text/plain; charset=utf-8", ".webmanifest": "application/manifest+json"
 };
-// Yalnızca bu klasörler ve kökteki .html/.txt/.ico/.webmanifest dosyaları sunulur
+// Yalnızca bu klasörler, kökteki .html/.txt/.ico/.webmanifest dosyaları ve service worker (sw.js) sunulur
 const ACIK_KLASORLER = ["assets", "data", "kaynaklar"];
 const KOK_DOSYA_RE = /^[a-z0-9._-]+\.(html|txt|ico|webmanifest|png|svg|xml)$/i;
+const KOK_JS = ["sw.js"];
 
+/** ek: hata yanıtına eklenecek alanlar (ör. { kalan: 0, premiumGerekli: true }) */
 class HttpHata extends Error {
-  constructor(kod, mesaj, alanlar) { super(mesaj); this.kod = kod; this.alanlar = alanlar; }
+  constructor(kod, mesaj, alanlar, ek) { super(mesaj); this.kod = kod; this.alanlar = alanlar; this.ek = ek; }
 }
 
 function cerezleriOku(req) {
@@ -44,6 +46,7 @@ function guvenlikBasliklari(res) {
   res.setHeader("Content-Security-Policy", [
     "default-src 'self'", "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net", "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: blob:", "font-src 'self' data: https://cdn.jsdelivr.net", "connect-src 'self'", "frame-ancestors 'self'",
+    "worker-src 'self'", "manifest-src 'self'",
     "base-uri 'self'", "form-action 'self' mailto:", "object-src 'none'"
   ].join("; "));
   if (config.cookieSecure) res.setHeader("Strict-Transport-Security", "max-age=15552000; includeSubDomains");
@@ -108,7 +111,7 @@ function statikYol(urlYol) {
   if (yol.includes("\0") || yol.includes("..")) return null;
   const parcalar = yol.split("/").filter(Boolean);
   if (!parcalar.length) return null;
-  if (parcalar.length === 1) { if (!KOK_DOSYA_RE.test(parcalar[0])) return null; }
+  if (parcalar.length === 1) { if (!KOK_DOSYA_RE.test(parcalar[0]) && KOK_JS.indexOf(parcalar[0]) < 0) return null; }
   else if (ACIK_KLASORLER.indexOf(parcalar[0]) < 0) return null;
   if (parcalar.some(p => p.startsWith("."))) return null;
   const tam = path.join(config.ROOT, ...parcalar);
@@ -129,8 +132,9 @@ function statikSun(req, res) {
   res.setHeader("Content-Type", tur);
   const etag = 'W/"' + bilgi.size.toString(16) + "-" + Math.floor(bilgi.mtimeMs).toString(16) + '"';
   res.setHeader("ETag", etag);
-  // HTML her açılışta doğrulanır; diğer varlıklar 1 saat önbellekte
-  res.setHeader("Cache-Control", uzanti === ".html" ? "no-cache" : "public, max-age=3600");
+  // HTML, service worker ve manifest her açılışta doğrulanır; diğer varlıklar 1 saat önbellekte
+  const tazele = uzanti === ".html" || uzanti === ".webmanifest" || path.basename(tam) === "sw.js";
+  res.setHeader("Cache-Control", tazele ? "no-cache" : "public, max-age=3600");
   if (req.headers["if-none-match"] === etag) { res.statusCode = 304; res.end(); return true; }
   const sikistir = /\bgzip\b/.test(String(req.headers["accept-encoding"] || "")) && /^(text\/|application\/(json|javascript)|image\/svg)/.test(tur) && bilgi.size > 1024;
   if (uzanti === ".html") {

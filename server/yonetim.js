@@ -8,7 +8,7 @@ const SAYFA_BOYU = 25;
 const sayfaNo = q => Math.max(1, Math.floor(+q.get("sayfa") || 1));
 
 function yonetimRotalari(r, c) {
-  const { db, hesap, denetim, yoneticiGerekli } = c;
+  const { db, hesap, denetim, yoneticiGerekli, bildirim } = c;
   const kullaniciBul = pid => {
     const u = db.prepare("SELECT * FROM users WHERE public_id = ?").get(pid);
     if (!u) throw new HttpHata(404, "Kullanıcı bulunamadı.");
@@ -24,7 +24,14 @@ function yonetimRotalari(r, c) {
     const prem = db.prepare(`SELECT plan, COUNT(DISTINCT user_id) AS n FROM subscriptions WHERE durum = 'aktif' AND bitis > ? AND baslangic <= ? GROUP BY plan`).all(z, z);
     const say = p => (prem.find(x => x.plan === p) || { n: 0 }).n;
     const aylik = say("aylik"), yillik = say("yillik"), ozel = say("ozel");
-    const fiyat = id => (config.plan(id) || { fiyat: 0 }).fiyat;
+    // Gelir tahmini: yalnızca ödemesi onaylanmış (talep kaynaklı, tutarlı) ve hesabı aktif kullanıcıların şu an geçerli
+    // dönemleri; ödenen gerçek tutar dönem uzunluğuna bölünüp 30 güne çevrilir (bugünkü fiyat değil)
+    const odenen = db.prepare(`SELECT s.tutar_tl, s.baslangic, s.bitis FROM subscriptions s JOIN users u ON u.id = s.user_id
+      WHERE s.durum = 'aktif' AND s.bitis > ? AND s.baslangic <= ? AND s.kaynak = 'talep' AND s.tutar_tl > 0 AND u.durum = 'aktif'`).all(z, z);
+    const aylikGelir = odenen.reduce((t, s) => {
+      const gun = (Date.parse(s.bitis) - Date.parse(s.baslangic)) / 864e5;
+      return gun > 0 ? t + s.tutar_tl / gun * 30 : t;
+    }, 0);
     return {
       ok: true,
       kullanici: {
@@ -34,8 +41,9 @@ function yonetimRotalari(r, c) {
       },
       premium: { aktif: aylik + yillik + ozel, aylik, yillik, ozel },
       talep: { bekleyen: tek("SELECT COUNT(*) AS n FROM upgrade_requests WHERE durum = 'bekliyor'").n },
+      soru: { bekleyen: tek("SELECT COUNT(*) AS n FROM questions WHERE durum = 'bekliyor'").n, son7gun: tek("SELECT COUNT(*) AS n FROM questions WHERE olusturma >= ?", g7).n },
       cevap: { toplam: tek("SELECT COUNT(*) AS n FROM answers").n, son7gun: tek("SELECT COUNT(*) AS n FROM answers WHERE zaman >= ?", g7).n },
-      gelirTahmini: { aylikTL: Math.round(aylik * fiyat("aylik") + yillik * fiyat("yillik") / 12) }
+      gelirTahmini: { aylikTL: Math.round(aylikGelir) }
     };
   });
 
@@ -84,9 +92,11 @@ function yonetimRotalari(r, c) {
   r.post("/api/admin/users/:id/premium", req => {
     yoneticiGerekli(req);
     const u = kullaniciBul(req.params.id), b = req.body || {};
-    if (!config.plan(b.plan) && !(b.gun > 0)) throw new HttpHata(400, "Plan (aylik/yillik) ya da gün sayısı gerekli.");
+    const gun = b.gun === undefined || b.gun === null || b.gun === "" ? null : b.gun;
+    if (!config.plan(b.plan) && gun == null) throw new HttpHata(400, "Plan (aylik/yillik) ya da gün sayısı gerekli.");
+    if (u.durum === "silindi") throw new HttpHata(409, "Silinmiş hesaba Premium verilemez.");
     const not = String(b.not || "").slice(0, 300) || null;
-    const s = hesap.premiumVer(u.id, b.plan, b.gun, { kaynak: "elle", not, yapan: req.kullanici.id });
+    const s = hesap.premiumVer(u.id, b.plan, gun, { kaynak: "elle", not, yapan: req.kullanici.id });
     denetim({ eylem: "premium.ver", kullanici: u.id, yapan: req.kullanici.id, istek: req, varlik: "subscriptions", varlikId: s.id, ayrinti: { plan: b.plan || "ozel", gun: s.gun, not } });
     return { ok: true, abonelik: s, uyelik: hesap.uyelik(u.id) };
   });
@@ -125,23 +135,58 @@ function yonetimRotalari(r, c) {
     };
   });
 
-  r.post("/api/admin/talepler/:id", req => {
+  r.post("/api/admin/talepler/:id", async req => {
     yoneticiGerekli(req);
     const b = req.body || {}, not = String(b.not || "").slice(0, 300) || null;
     if (b.islem !== "onayla" && b.islem !== "reddet") throw new HttpHata(400, "islem onayla ya da reddet olmalı.");
-    const t = db.prepare("SELECT * FROM upgrade_requests WHERE id = ?").get(+req.params.id);
-    if (!t) throw new HttpHata(404, "Talep bulunamadı.");
-    if (t.durum !== "bekliyor") throw new HttpHata(409, "Bu talep zaten işlenmiş (" + t.durum + ").");
-    let abonelik = null;
+    let t = null, abonelik = null;
+    // Durum kontrolü işlemin içinde ve koşullu UPDATE ile: iki yönetici aynı anda onaylasa da tek dönem açılır
     islem(db, () => {
-      db.prepare("UPDATE upgrade_requests SET durum = ?, isleyen = ?, islem_zamani = ?, islem_notu = ? WHERE id = ?")
-        .run(b.islem === "onayla" ? "onaylandi" : "reddedildi", req.kullanici.id, simdi(), not, t.id);
+      t = db.prepare("SELECT t.*, u.durum AS kullanici_durum FROM upgrade_requests t JOIN users u ON u.id = t.user_id WHERE t.id = ?").get(+req.params.id);
+      if (!t) throw new HttpHata(404, "Talep bulunamadı.");
+      if (t.durum !== "bekliyor") throw new HttpHata(409, "Bu talep zaten işlenmiş (" + t.durum + ").");
+      if (b.islem === "onayla" && t.kullanici_durum !== "aktif") throw new HttpHata(409, "Hesap aktif değil (" + t.kullanici_durum + "); talep onaylanamaz, reddedebilirsin.");
+      const n = Number(db.prepare("UPDATE upgrade_requests SET durum = ?, isleyen = ?, islem_zamani = ?, islem_notu = ? WHERE id = ? AND durum = 'bekliyor'")
+        .run(b.islem === "onayla" ? "onaylandi" : "reddedildi", req.kullanici.id, simdi(), not, t.id).changes);
+      if (n !== 1) throw new HttpHata(409, "Bu talep zaten işlenmiş.");
       if (b.islem === "onayla") abonelik = hesap.premiumVer(t.user_id, t.plan, null, { kaynak: "talep", tutar: t.tutar_tl, talepId: t.id, not, yapan: req.kullanici.id });
     });
-    if (abonelik) hesap.premiumBildir(t.user_id, abonelik.bitis);
+    if (abonelik) {
+      hesap.premiumBildir(t.user_id, abonelik.bitis);
+      if (bildirim) await bildirim.olustur(t.user_id, { tur: "premium", baslik: "Premium hesabın açıldı", link: "/calis.html",
+        metin: "Ödemen onaylandı. Tüm ünitelere, sınırsız denemeye ve sınırsız soru sormaya artık erişebilirsin. Bitiş: " +
+          new Date(abonelik.bitis).toLocaleDateString("tr-TR", { timeZone: "Europe/Istanbul" }) + "." }, { push: true }).push;
+    }
     denetim({ eylem: b.islem === "onayla" ? "premium.talep-onay" : "premium.talep-red", kullanici: t.user_id, yapan: req.kullanici.id, istek: req,
       varlik: "upgrade_requests", varlikId: t.id, ayrinti: { plan: t.plan, tutar: t.tutar_tl, not } });
     return { ok: true, abonelik };
+  });
+
+  // Duyuru: hedef kitleye uygulama içi bildirim (+ push tercihi açık ve sessiz saat değilse push). onizleme:true → yalnızca alıcı sayısı
+  const HEDEF_SQL = {
+    hepsi: "",
+    premium: "AND EXISTS (SELECT 1 FROM subscriptions s WHERE s.user_id = u.id AND s.durum = 'aktif' AND s.bitis > ?)",
+    ucretsiz: "AND NOT EXISTS (SELECT 1 FROM subscriptions s WHERE s.user_id = u.id AND s.durum = 'aktif' AND s.bitis > ?)"
+  };
+  r.post("/api/admin/duyuru", async req => {
+    yoneticiGerekli(req);
+    const b = req.body || {}, e = {};
+    const baslik = String(b.baslik == null ? "" : b.baslik).trim().replace(/\s+/g, " ");
+    const metin = String(b.metin == null ? "" : b.metin).replace(/\r\n?/g, "\n").trim();
+    if (!baslik) e.baslik = "Başlık yaz."; else if (baslik.length > 120) e.baslik = "En fazla 120 karakter.";
+    if (!metin) e.metin = "Metin yaz."; else if (metin.length > 1000) e.metin = "En fazla 1000 karakter.";
+    const link = b.link == null || b.link === "" ? null : bildirim.linkTemiz(b.link);
+    if (b.link && !link) e.link = "Yalnızca site içi bağlantı (/ ile başlayan yol) kullanılabilir.";
+    if (!Object.prototype.hasOwnProperty.call(HEDEF_SQL, b.hedef)) e.hedef = "Hedef hepsi, premium ya da ucretsiz olmalı.";
+    if (Object.keys(e).length) throw new HttpHata(400, "Lütfen işaretli alanları düzelt.", e);
+    const arg = b.hedef === "hepsi" ? [] : [simdi()];
+    const alicilar = db.prepare("SELECT u.id FROM users u WHERE u.durum = 'aktif' " + HEDEF_SQL[b.hedef]).all(...arg).map(x => x.id);
+    if (b.onizleme === true) return { ok: true, onizleme: true, alici: alicilar.length };
+    const sozler = [];
+    islem(db, () => { alicilar.forEach(id => sozler.push(bildirim.olustur(id, { tur: "duyuru", baslik, metin, link }, { push: true }).push)); });
+    const push = (await Promise.all(sozler)).reduce((t, n) => t + n, 0);
+    denetim({ eylem: "duyuru.gonder", yapan: req.kullanici.id, istek: req, ayrinti: { hedef: b.hedef, alici: alicilar.length, push, baslik } });
+    return { ok: true, alici: alicilar.length, push };
   });
 
   r.get("/api/admin/audit", req => {

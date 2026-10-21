@@ -22,6 +22,13 @@ const env = process.env;
 const uretim = env.NODE_ENV === "production";
 const sayi = (v, d) => (v !== undefined && v !== "" && !isNaN(+v) ? +v : d);
 
+// Yıllık plan açıklaması fiyatlardan hesaplanır (assets/js/urun.js aynı formülü kullanır): "Ayda yaklaşık 124 ₺ · %38 tasarruf"
+function yillikAciklama(aylik, yillik) {
+  const ay = Math.round(yillik / 12), tasarruf = Math.round((1 - yillik / (aylik * 12)) * 100);
+  return "Ayda yaklaşık " + ay.toLocaleString("tr-TR") + " ₺" + (tasarruf > 0 ? " · %" + tasarruf + " tasarruf" : "");
+}
+const FIYAT_AYLIK = sayi(env.FIYAT_AYLIK, 199), FIYAT_YILLIK = sayi(env.FIYAT_YILLIK, 1490);
+
 const config = {
   ROOT,
   uretim,
@@ -40,13 +47,20 @@ const config = {
     from: env.SMTP_FROM || "Meberra <destek@meberra.com>"
   },
   yonetici: { eposta: env.ADMIN_EPOSTA || "", sifre: env.ADMIN_SIFRE || "" },
+  // Web push (VAPID). Boşsa anahtarlar bir kez üretilip DATA_DIR/vapid.json'a yazılır.
+  vapid: { public: env.VAPID_PUBLIC || "", private: env.VAPID_PRIVATE || "", subject: env.VAPID_SUBJECT || "" },
+  // Hatırlatmalar: zamanlayıcı (ZAMANLAYICI=0 ile kapatılır) ve yeni kullanıcının varsayılan saati (8–21, İstanbul)
+  zamanlayici: env.ZAMANLAYICI !== "0",
+  hatirlatmaSaati: Math.min(21, Math.max(8, Math.floor(sayi(env.HATIRLATMA_SAATI, 19)))),
+  // Ücretsiz planda takvim ayı başına soru hakkı (Premium ve yöneticiler sınırsız)
+  soruHakki: Math.max(0, Math.floor(sayi(env.UCRETSIZ_SORU_HAKKI, 3))),
   urun: {
     marka: "Meberra",
     para: "₺",
     destekEposta: env.DESTEK_EPOSTA || "destek@meberra.com",
     planlar: [
-      { id: "aylik", ad: "Aylık", fiyat: sayi(env.FIYAT_AYLIK, 199), donem: "ay", gun: 30, aciklama: "İstediğin zaman bırak" },
-      { id: "yillik", ad: "Yıllık", fiyat: sayi(env.FIYAT_YILLIK, 1490), donem: "yıl", gun: 365, aciklama: "En avantajlı plan", oneCikan: true }
+      { id: "aylik", ad: "Aylık", fiyat: FIYAT_AYLIK, donem: "ay", gun: 30, aciklama: "İstediğin zaman bırak" },
+      { id: "yillik", ad: "Yıllık", fiyat: FIYAT_YILLIK, donem: "yıl", gun: 365, aciklama: yillikAciklama(FIYAT_AYLIK, FIYAT_YILLIK), oneCikan: true }
     ],
     ucretsiz: { uniteSayisi: 2, dersDenemesi: 1 },
     banka: {

@@ -33,6 +33,7 @@ test("sağlık ve genel yapılandırma", async () => {
   const k = (await c("GET", "/api/public/config")).govde;
   assert.equal(k.marka, "Meberra");
   assert.deepEqual(k.planlar.map(p => [p.id, p.fiyat]), [["aylik", 199], ["yillik", 1490]]);
+  assert.equal(k.planlar[1].aciklama, "Ayda yaklaşık 124 ₺ · %38 tasarruf", "yıllık açıklama fiyatlardan hesaplanır (urun.js ile aynı)");
 });
 
 test("statik sunum: korumalı dosyalar açılmaz, HTML'e sunucu etiketi eklenir", async () => {
@@ -156,13 +157,16 @@ test("Premium: talep → yönetici onayı → aktif üyelik; yetkisiz erişim en
 
   const st = (await yon("GET", "/api/admin/stats")).govde;
   assert.equal(st.premium.yillik, 1);
-  assert.equal(st.gelirTahmini.aylikTL, Math.round(1490 / 12));
+  assert.equal(st.gelirTahmini.aylikTL, Math.round(1490 / 365 * 30), "ödenen tutar dönem gününe bölünüp 30 güne çevrilir");
 
   // Elle ek süre: mevcut bitişin üstüne eklenir; iptal
   const liste = (await yon("GET", "/api/admin/users?q=premium@")).govde.kullanicilar;
   assert.equal(liste.length, 1);
+  assert.equal((await yon("POST", "/api/admin/users/" + liste[0].id + "/premium", { gun: 0.5 })).durum, 400, "gün tam sayı olmalı");
+  assert.equal((await yon("POST", "/api/admin/users/" + liste[0].id + "/premium", { gun: 0 })).durum, 400, "gün en az 1");
   r = await yon("POST", "/api/admin/users/" + liste[0].id + "/premium", { gun: 10, not: "Hediye" });
   assert.ok(Date.parse(r.govde.uyelik.bitis) > Date.parse(u.bitis));
+  assert.equal((await yon("GET", "/api/admin/stats")).govde.gelirTahmini.aylikTL, Math.round(1490 / 365 * 30), "elle verilen (ücretsiz) dönem gelire sayılmaz");
   r = await yon("POST", "/api/admin/users/" + liste[0].id + "/premium/iptal", {});
   assert.equal(r.govde.uyelik.premium, false);
 
@@ -224,4 +228,171 @@ test("senkron: kullanıcı başına anahtar sınırı", async () => {
   for (let i = 0; i < 65; i++) d["apmeberra:deneme-" + i] = "{}";
   const r = await c("PUT", "/api/state", { degisiklikler: d });
   assert.equal(r.govde.reddedilen.length, 5, "60'tan sonrası reddedilir");
+});
+
+test("kayan oturum: süre uzayınca çerez yeni Max-Age ile yeniden yazılır", async () => {
+  const k = await fetch(base + "/api/auth/register", { method: "POST", headers: { "Content-Type": "application/json", "X-Meberra": "1" }, body: JSON.stringify(kayitBilgi("kayan@ornek.com")) });
+  const cerez = /meberra_sid=[^;]*/.exec(k.headers.get("set-cookie"))[0];
+  let r = await fetch(base + "/api/me", { headers: { Cookie: cerez } });
+  assert.equal(r.status, 200);
+  assert.equal(r.headers.get("set-cookie"), null, "aynı gün içinde çerez yeniden yazılmaz");
+  const uid = db().prepare("SELECT id FROM users WHERE eposta = 'kayan@ornek.com'").get().id;
+  db().prepare("UPDATE sessions SET son_kullanim = ? WHERE user_id = ?").run(new Date(Date.now() - 2 * 864e5).toISOString(), uid);
+  r = await fetch(base + "/api/me", { headers: { Cookie: cerez } });
+  assert.equal(r.status, 200);
+  const sc = r.headers.get("set-cookie") || "";
+  assert.ok(sc.includes(cerez + ";"), "aynı belirteç");
+  assert.match(sc, /Max-Age=2592000/, "30 günlük yeni süre");
+});
+
+test("şifre değiştirme diğer oturumları ve açık sıfırlama bağlantılarını kapatır", async () => {
+  const a = istemci(), b = istemci();
+  await a("POST", "/api/auth/register", kayitBilgi("sifredegis@ornek.com"));
+  await b("POST", "/api/auth/login", { kimlik: "sifredegis@ornek.com", sifre: "Deneme-12345" });
+  await istemci()("POST", "/api/auth/forgot", { eposta: "sifredegis@ornek.com" });
+  const ileti = db().prepare("SELECT metin FROM email_outbox WHERE alici = 'sifredegis@ornek.com' ORDER BY id DESC").get();
+  const tok = decodeURIComponent(/sifre-sifirla\.html\?t=([^\s]+)/.exec(ileti.metin)[1]);
+  assert.equal((await a("POST", "/api/auth/password", { eski: "Deneme-12345", yeni: "Yeni-sifre-77", yeni2: "Yeni-sifre-77" })).durum, 200);
+  assert.equal((await a("GET", "/api/me")).durum, 200, "şifreyi değiştiren oturum açık kalır");
+  assert.equal((await b("GET", "/api/me")).durum, 401, "diğer cihazın oturumu kapanır");
+  assert.equal((await istemci()("POST", "/api/auth/reset", { token: tok, yeni: "Baska-sifre-88", yeni2: "Baska-sifre-88" })).durum, 400, "eski sıfırlama bağlantısı geçersiz");
+});
+
+test("öğrenci bekleyen ödeme bildirimini iptal eder", async () => {
+  const c = istemci();
+  await c("POST", "/api/auth/register", kayitBilgi("talepiptal@ornek.com"));
+  assert.equal((await c("POST", "/api/premium/talep/iptal")).durum, 409, "bekleyen talep yoksa 409");
+  await c("POST", "/api/premium/talep", { plan: "aylik", odeyenAd: "Ali Veli" });
+  assert.equal((await c("POST", "/api/premium/talep/iptal", null, { "X-Meberra": "" })).durum, 403, "CSRF başlığı zorunlu");
+  const r = await c("POST", "/api/premium/talep/iptal");
+  assert.equal(r.durum, 200);
+  assert.equal(r.govde.talep.durum, "iptal");
+  assert.equal(r.govde.uyelik.bekleyenTalep, null);
+  const p = (await c("GET", "/api/premium")).govde;
+  assert.equal(p.talepler[0].durum, "iptal");
+  const uid = db().prepare("SELECT id FROM users WHERE eposta = 'talepiptal@ornek.com'").get().id;
+  assert.ok(db().prepare("SELECT 1 FROM audit_log WHERE user_id = ? AND eylem = 'premium.talep-iptal'").get(uid));
+  assert.equal((await c("POST", "/api/premium/talep", { plan: "yillik", odeyenAd: "Ali Veli" })).durum, 200, "iptalden sonra yeni bildirim açılabilir");
+});
+
+test("talep onayı: yarış güvenli, aktif olmayan hesap onaylanamaz; hesap silme kişisel izleri temizler", async () => {
+  const yon = istemci();
+  app.hesap.yoneticiHazirla("yonetici2@ornek.com", "Yonetici-12345");
+  await yon("POST", "/api/auth/login", { kimlik: "yonetici2@ornek.com", sifre: "Yonetici-12345" });
+
+  // Aynı talebe eşzamanlı iki onay: biri başarılı, diğeri 409; tek dönem açılır
+  const a = istemci();
+  await a("POST", "/api/auth/register", kayitBilgi("yaris@ornek.com"));
+  const t1 = (await a("POST", "/api/premium/talep", { plan: "aylik", odeyenAd: "Ali" })).govde.talep.id;
+  const sonuc = await Promise.all([yon("POST", "/api/admin/talepler/" + t1, { islem: "onayla" }), yon("POST", "/api/admin/talepler/" + t1, { islem: "onayla" })]);
+  assert.deepEqual(sonuc.map(x => x.durum).sort(), [200, 409]);
+  assert.equal(db().prepare("SELECT COUNT(*) AS n FROM subscriptions WHERE talep_id = ?").get(t1).n, 1);
+
+  // Askıdaki kullanıcının talebi onaylanamaz
+  const b = istemci();
+  await b("POST", "/api/auth/register", kayitBilgi("askida@ornek.com"));
+  const t2 = (await b("POST", "/api/premium/talep", { plan: "aylik", odeyenAd: "Ali" })).govde.talep.id;
+  const pid = db().prepare("SELECT public_id FROM users WHERE eposta = 'askida@ornek.com'").get().public_id;
+  await yon("POST", "/api/admin/users/" + pid + "/durum", { durum: "askida" });
+  assert.equal((await yon("POST", "/api/admin/talepler/" + t2, { islem: "onayla" })).durum, 409);
+  assert.equal(db().prepare("SELECT durum FROM upgrade_requests WHERE id = ?").get(t2).durum, "bekliyor", "onaylanmayan talep bekliyor kalır");
+
+  // Hesap silme: bekleyen talep iptal, aktif dönem biter, denetim/e-posta kişisel alanları anonim
+  const c = istemci();
+  await c("POST", "/api/auth/register", kayitBilgi("kvkk2@ornek.com"));
+  const uid = db().prepare("SELECT id FROM users WHERE eposta = 'kvkk2@ornek.com'").get().id;
+  app.hesap.premiumVer(uid, "aylik", null, { kaynak: "elle" });
+  await istemci()("POST", "/api/auth/login", { kimlik: "kvkk2@ornek.com", sifre: "yanlis" }); // ayrıntıda e-posta olan kayıt
+  await istemci()("POST", "/api/auth/forgot", { eposta: "kvkk2@ornek.com" });
+  const t3 = (await c("POST", "/api/premium/talep", { plan: "yillik", odeyenAd: "Veli" })).govde.talep.id;
+  assert.equal((await c("POST", "/api/account/delete", { sifre: "Deneme-12345" })).durum, 200);
+  assert.equal(db().prepare("SELECT durum FROM upgrade_requests WHERE id = ?").get(t3).durum, "iptal");
+  assert.equal(db().prepare("SELECT COUNT(*) AS n FROM subscriptions WHERE user_id = ? AND durum = 'aktif'").get(uid).n, 0);
+  assert.equal(db().prepare("SELECT COUNT(*) AS n FROM audit_log WHERE (user_id = ? OR yapan_id = ?) AND (ip IS NOT NULL OR tarayici IS NOT NULL)").get(uid, uid).n, 0);
+  assert.equal(db().prepare("SELECT COUNT(*) AS n FROM audit_log WHERE ayrinti LIKE '%kvkk2@ornek.com%'").get().n, 0);
+  assert.equal(db().prepare("SELECT COUNT(*) AS n FROM email_outbox WHERE alici = 'kvkk2@ornek.com' OR metin LIKE '%kvkk2@ornek.com%'").get().n, 0);
+  assert.equal((await yon("POST", "/api/admin/talepler/" + t3, { islem: "onayla" })).durum, 409, "silinen hesabın talebi onaylanamaz");
+});
+
+test("senkron: deneme/seviye geçmişi cihazlar arasında birleşir, deneme hakkı silinmez", async () => {
+  const c = istemci();
+  await c("POST", "/api/auth/register", kayitBilgi("deneme-birles@ornek.com"));
+  const uid = db().prepare("SELECT id FROM users WHERE eposta = 'deneme-birles@ornek.com'").get().id;
+  const kayit = (id, tarih) => ({ id, kod: "calc-ab", ad: "AP Calculus AB", tarih, soruSayisi: 10, dogru: 5, yanlis: 5, bos: 0, yuzde: 50, sureSn: 600 });
+  const DK = "apmeberra:deneme:v1";
+  await c("PUT", "/api/state", { degisiklikler: { [DK]: JSON.stringify({ v: 1, aktif: null, gecmis: [kayit("d1", "2026-10-20T10:00:00.000Z")] }) } });
+  // Diğer cihaz: d1'den habersiz, d2'yi bitirmiş; yarım deneme d3
+  let r = await c("PUT", "/api/state", { degisiklikler: { [DK]: JSON.stringify({ v: 1, aktif: { id: "d3", sorular: [] }, gecmis: [kayit("d2", "2026-10-21T10:00:00.000Z")] }) } });
+  let d = JSON.parse(r.govde.birlesen[DK]);
+  assert.deepEqual(d.gecmis.map(x => x.id), ["d2", "d1"], "iki cihazın denemeleri birleşir, en yeni başta");
+  assert.equal(d.aktif.id, "d3");
+  // Bitmiş görünen deneme (geçmişte d3 var) yarım deneme olarak geri dönmez
+  r = await c("PUT", "/api/state", { degisiklikler: { [DK]: JSON.stringify({ v: 1, aktif: { id: "d3", sorular: [] }, gecmis: [kayit("d3", "2026-10-21T11:00:00.000Z")] }) } });
+  d = JSON.parse(r.govde.birlesen[DK]);
+  assert.equal(d.aktif, null);
+  assert.equal(db().prepare("SELECT COUNT(*) AS n FROM exams WHERE user_id = ?").get(uid).n, 3);
+
+  const SK = "apmeberra:seviye:v1", rap = (id, tarih) => ({ id, tarih, guncelleme: tarih, dersler: ["calc"], sonuclar: {} });
+  await c("PUT", "/api/state", { degisiklikler: { [SK]: JSON.stringify({ v: 1, devam: null, raporlar: [rap("r1", "2026-10-20T10:00:00.000Z")], kontrol: { g1: { c: true, t: "2026-10-20T10:00:00.000Z" } } }) } });
+  r = await c("PUT", "/api/state", { degisiklikler: { [SK]: JSON.stringify({ v: 1, devam: null, raporlar: [rap("r2", "2026-10-21T10:00:00.000Z")], kontrol: { g1: { c: false, t: "2026-10-19T10:00:00.000Z" } } }) } });
+  const s = JSON.parse(r.govde.birlesen[SK]);
+  assert.deepEqual(s.raporlar.map(x => x.id), ["r2", "r1"]);
+  assert.equal(s.kontrol.g1.c, true, "kontrol işaretinde daha yeni damga kazanır");
+
+  const HK = "apmeberra:deneme-hak:v1";
+  await c("PUT", "/api/state", { degisiklikler: { [HK]: JSON.stringify({ "ap-calculus": { t: 2000, kod: "calc-ab" } }) } });
+  r = await c("PUT", "/api/state", { degisiklikler: { [HK]: JSON.stringify({ "ap-calculus": { t: 5000, kod: "calc-ab" }, "ap-physics": { t: 3000, kod: "phys-1" } }) } });
+  assert.deepEqual(JSON.parse(r.govde.birlesen[HK]), { "ap-calculus": { t: 2000, kod: "calc-ab" }, "ap-physics": { t: 3000, kod: "phys-1" } }, "en erken kullanım kalır");
+  r = await c("PUT", "/api/state", { degisiklikler: { [HK]: "{}" } });
+  assert.equal(Object.keys(JSON.parse(r.govde.birlesen[HK])).length, 2, "eksik gönderim kaydı silmez");
+  await c("PUT", "/api/state", { degisiklikler: { [HK]: null } });
+  assert.equal(Object.keys(JSON.parse((await c("GET", "/api/state")).govde.keys[HK].deger)).length, 2, "silme isteği de kaydı silmez");
+});
+
+test("senkron: silinen Yanlışlarım eski cihazdan geri gelmez (silme izi)", async () => {
+  const c = istemci();
+  await c("POST", "/api/auth/register", kayitBilgi("silmeizi@ornek.com"));
+  const uid = db().prepare("SELECT id FROM users WHERE eposta = 'silmeizi@ornek.com'").get().id;
+  const EK = "apmeberra:errors:v1";
+  const hata = (id, date) => ({ id, page: "ap-calculus", unit: "u1", topic: "Limits", selected: "A", correct: "B", date, count: 1, resolved: false });
+  const eski = new Date(Date.now() - 864e5).toISOString();
+  await c("PUT", "/api/state", { degisiklikler: { [EK]: JSON.stringify({ v: 1, items: { "ap-calculus|q1": hata("q1", eski) } }) } });
+  assert.equal(db().prepare("SELECT COUNT(*) AS n FROM wrong_answers WHERE user_id = ?").get(uid).n, 1);
+  // Cihaz A Yanlışlarım'ı sıfırlar
+  await c("PUT", "/api/state", { degisiklikler: { [EK]: null } });
+  const st = (await c("GET", "/api/state")).govde.keys[EK];
+  assert.deepEqual(JSON.parse(st.deger).items, {}, "diğer cihazlar çekince boş değeri alır");
+  // Eski cihaz B silinen q1'i ve silmeden sonra yaptığı yeni yanlışı (q2) gönderir
+  const yeni = new Date(Date.now() + 60e3).toISOString();
+  const r = await c("PUT", "/api/state", { degisiklikler: { [EK]: JSON.stringify({ v: 1, items: { "ap-calculus|q1": hata("q1", eski), "ap-calculus|q2": hata("q2", yeni) } }) } });
+  assert.deepEqual(Object.keys(JSON.parse(r.govde.birlesen[EK]).items), ["ap-calculus|q2"], "silinen kayıt geri gelmez, yenisi kalır");
+  assert.deepEqual(db().prepare("SELECT soru FROM wrong_answers WHERE user_id = ?").all(uid).map(x => x.soru), ["q2"]);
+});
+
+test("hız sınırı: vekilde son X-Forwarded-For adresi, başarılı giriş IP sayacını sıfırlar, kimlik normalleşir", async () => {
+  const config = require("../config");
+  const onceki = config.trustProxy;
+  config.trustProxy = true;
+  const kucuk = olustur({ dbDosya: ":memory:", yoneticiAtla: true, girisSiniri: 3 });
+  await new Promise(r => kucuk.server.listen(0, "127.0.0.1", r));
+  const b = "http://127.0.0.1:" + kucuk.server.address().port;
+  const dene = (kimlik, sifre, xff) => fetch(b + "/api/auth/login", { method: "POST", headers: { "Content-Type": "application/json", "X-Meberra": "1", "X-Forwarded-For": xff },
+    body: JSON.stringify({ kimlik, sifre }) }).then(r => r.status);
+  try {
+    // Baştaki (istemcinin yazabildiği) adres değişse de son adres aynı: sınır işler
+    const s1 = [];
+    for (let i = 0; i < 4; i++) s1.push(await dene("x" + i + "@b.co", "x", "10.0.0." + i + ", 203.0.113.5"));
+    assert.deepEqual(s1, [401, 401, 401, 429]);
+    // Başarılı giriş IP sayacını sıfırlar
+    await fetch(b + "/api/auth/register", { method: "POST", headers: { "Content-Type": "application/json", "X-Meberra": "1", "X-Forwarded-For": "203.0.113.9" }, body: JSON.stringify(kayitBilgi("nat@ornek.com")) });
+    assert.deepEqual([await dene("y1@b.co", "x", "203.0.113.9"), await dene("y2@b.co", "x", "203.0.113.9")], [401, 401]);
+    assert.equal(await dene("nat@ornek.com", "Deneme-12345", "203.0.113.9"), 200);
+    assert.deepEqual([await dene("y3@b.co", "x", "203.0.113.9"), await dene("y4@b.co", "x", "203.0.113.9"), await dene("y5@b.co", "x", "203.0.113.9")], [401, 401, 401]);
+    // Hesap anahtarı kırpılır/küçültülür: farklı yazımlar aynı sayaca düşer
+    const s2 = [await dene(" Z@B.co ", "x", "198.51.100.1"), await dene("z@b.co", "x", "198.51.100.2"), await dene("Z@b.CO", "x", "198.51.100.3"), await dene("  z@b.co", "x", "198.51.100.4")];
+    assert.deepEqual(s2, [401, 401, 401, 429]);
+  } finally {
+    config.trustProxy = onceki;
+    await new Promise(r => kucuk.server.close(r));
+  }
 });
