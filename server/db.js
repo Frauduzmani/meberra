@@ -22,23 +22,31 @@ function ac(dosya) {
   return db;
 }
 
-// migrations/NNN_*.sql dosyalarını sırayla, bir kez uygular
+// migrations/NNN_*.sql (ya da NNN_*.js) dosyalarını sırayla, bir kez uygular.
+// .js geçişi: module.exports = { calistir(db), fkKapali?: true }. fkKapali: tablo yeniden kurulurken (ör. CHECK kısıtı
+// değişimi) yabancı anahtarlar işlem DIŞINDA kapatılır (SQLite'ın önerdiği yol; DROP TABLE'ın örtük DELETE'i CASCADE
+// tetiklemesin); işlem sonunda foreign_key_check temiz olmalı, sonra yeniden açılır.
 function gecis(db) {
   db.exec("CREATE TABLE IF NOT EXISTS schema_migrations (surum TEXT PRIMARY KEY, uygulama TEXT NOT NULL)");
   const yapilan = new Set(db.prepare("SELECT surum FROM schema_migrations").all().map(r => r.surum));
   const klasor = path.join(__dirname, "migrations");
-  const dosyalar = fs.readdirSync(klasor).filter(f => /^\d+_.*\.sql$/.test(f)).sort();
+  const dosyalar = fs.readdirSync(klasor).filter(f => /^\d+_.*\.(sql|js)$/.test(f)).sort();
   for (const f of dosyalar) {
     if (yapilan.has(f)) continue;
-    const sql = fs.readFileSync(path.join(klasor, f), "utf8");
+    const js = /\.js$/.test(f) ? require(path.join(klasor, f)) : null;
+    const fkKapali = !!(js && js.fkKapali);
+    if (fkKapali) db.exec("PRAGMA foreign_keys = OFF");
     db.exec("BEGIN");
     try {
-      db.exec(sql);
+      if (js) js.calistir(db); else db.exec(fs.readFileSync(path.join(klasor, f), "utf8"));
+      if (fkKapali && db.prepare("PRAGMA foreign_key_check").all().length) throw new Error("yabancı anahtar denetimi başarısız");
       db.prepare("INSERT INTO schema_migrations (surum, uygulama) VALUES (?, ?)").run(f, simdi());
       db.exec("COMMIT");
     } catch (e) {
       db.exec("ROLLBACK");
       throw new Error("Şema geçişi başarısız: " + f + " — " + e.message);
+    } finally {
+      if (fkKapali) db.exec("PRAGMA foreign_keys = ON");
     }
   }
 }

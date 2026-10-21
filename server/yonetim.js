@@ -80,12 +80,15 @@ function yonetimRotalari(r, c) {
     const es = esikler(), v = req.sorgu.get("varlik");
     if (v === "cevrimici" || v === "yakin") { kosul.push("u.son_gorulme >= ?"); arg.push(es[v]); }
     else if (v === "engelli") kosul.push("u.durum = 'askida'");
+    const rol = req.sorgu.get("rol"); // 1.7.0: ogrenci | veli | yonetici
+    if (rol === "ogrenci" || rol === "veli" || rol === "yonetici") { kosul.push("u.rol = ?"); arg.push(rol); }
     const SIRA = { kayit: "u.olusturma DESC", gorulme: "u.son_gorulme IS NULL, u.son_gorulme DESC, u.olusturma DESC", giris: "u.son_giris IS NULL, u.son_giris DESC, u.olusturma DESC" };
     const sira = SIRA[req.sorgu.get("sirala")] || SIRA.kayit;
     const where = "WHERE " + kosul.join(" AND ");
     const toplam = db.prepare("SELECT COUNT(*) AS n FROM users u " + where).get(...arg).n;
     const satirlar = db.prepare(`SELECT u.*, (SELECT COUNT(*) FROM answers a WHERE a.user_id = u.id) AS cevap_sayisi,
-        (SELECT adet FROM giris_sayilari g WHERE g.user_id = u.id AND g.gun = ?) AS bugun_giris
+        (SELECT adet FROM giris_sayilari g WHERE g.user_id = u.id AND g.gun = ?) AS bugun_giris,
+        (SELECT COUNT(*) FROM veli_baglantilari b WHERE b.durum = 'aktif' AND (b.ogrenci_id = u.id OR b.veli_id = u.id)) AS bagli_sayisi
       FROM users u ${where} ORDER BY ${sira} LIMIT ? OFFSET ?`).all(bugun(), ...arg, SAYFA_BOYU, (sayfa - 1) * SAYFA_BOYU);
     return {
       ok: true, toplam, sayfa, sayfaBoyu: SAYFA_BOYU, sayfaBoyutu: SAYFA_BOYU,
@@ -93,7 +96,7 @@ function yonetimRotalari(r, c) {
         const y = hesap.uyelik(u.id);
         return { id: u.public_id, ad: u.ad, soyad: u.soyad, eposta: u.eposta, rol: u.rol, olusturma: u.olusturma, sonGiris: u.son_giris, durum: u.durum,
           premium: y.premium, plan: y.plan, bitis: y.bitis, bekleyenTalep: !!y.bekleyenTalep, cevapSayisi: u.cevap_sayisi,
-          sonGorulme: u.son_gorulme, sonIp: u.son_ip, sonGirisIp: u.son_giris_ip, varlik: varlikDurumu(u.son_gorulme), bugunGiris: u.bugun_giris || 0, engel: engelBilgisi(u) };
+          sonGorulme: u.son_gorulme, sonIp: u.son_ip, sonGirisIp: u.son_giris_ip, varlik: varlikDurumu(u.son_gorulme), bugunGiris: u.bugun_giris || 0, engel: engelBilgisi(u), bagliSayisi: u.bagli_sayisi || 0 };
       })
     };
   });

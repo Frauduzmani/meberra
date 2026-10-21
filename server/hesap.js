@@ -5,6 +5,7 @@ const { islem, simdi } = require("./db");
 const { sifreOzetle, sifreDogrula, belirtec, ozet, publicId } = require("./guvenlik");
 const { HttpHata } = require("./http");
 const zaman = require("./zaman");
+const AP_HEDEF = require("../assets/js/ap-hedef"); // 1.7.0
 
 const EPOSTA_RE = /^[^\s@<>()",;:]+@[^\s@<>()",;:]+\.[A-Za-z]{2,}$/;
 const GUN = 864e5;
@@ -193,8 +194,12 @@ function hesapServisi(db, denetim, eposta) {
 
     profilKaydet(u, profil, req) {
       if (!profil || typeof profil !== "object" || Array.isArray(profil)) throw new HttpHata(400, "Geçersiz profil.");
+      if (JSON.stringify(profil).length > 20000) throw new HttpHata(413, "Profil çok büyük.");
+      // 1.7.0: AP dersleri / hedef puan / sınav yılı (assets/js/ap-hedef.js; istemciyle aynı kural)
+      const apH = AP_HEDEF.dogrula(profil);
+      if (!apH.ok) throw new HttpHata(400, "Lütfen işaretli alanları düzelt.", apH.hatalar);
+      Object.assign(profil, apH.deger);
       const veri = JSON.stringify(profil);
-      if (veri.length > 20000) throw new HttpHata(413, "Profil çok büyük.");
       const ulkeler = Array.isArray(profil.ulkeler) ? profil.ulkeler.filter(x => /^[a-z]{2}$/.test(x)).slice(0, 15) : [];
       const eski = profilAl(u.id);
       q.profilYaz.run(u.id, kirp(profil.ogrenciModeli).slice(0, 20) || null, kirp(profil.sinif).slice(0, 20) || null, ulkeler.join(","),
@@ -323,7 +328,9 @@ function hesapServisi(db, denetim, eposta) {
         bildirimAyarlari: tablo("SELECT eposta_hatirlatma, push, eposta_bildirim, hatirlatma_saati, veli_raporu, veli_eposta, veli_dogrulandi FROM notification_prefs WHERE user_id = ?"),
         pushCihazlari: tablo("SELECT tarayici, olusturma, son_basari FROM push_subscriptions WHERE user_id = ?"),
         lig: tablo("SELECT takma_ad, kademe, durum, katilma FROM lig_uyeleri WHERE user_id = ?"),
-        ligHaftalari: tablo("SELECT hafta, kademe, grup, xp, sonuc FROM lig_haftalik WHERE user_id = ? ORDER BY hafta")
+        ligHaftalari: tablo("SELECT hafta, kademe, grup, xp, sonuc FROM lig_haftalik WHERE user_id = ? ORDER BY hafta"),
+        veliBaglantilari: db.prepare(`SELECT CASE WHEN b.ogrenci_id = ? THEN 'ogrenci' ELSE 'veli' END AS rolum, b.durum, b.eposta, b.rapor, b.olusturma, b.kabul, b.iptal_zamani
+          FROM veli_baglantilari b WHERE b.ogrenci_id = ? OR b.veli_id = ? ORDER BY b.id`).all(u.id, u.id, u.id) // 1.7.0
       };
     },
     hesapSil(u, sifre, req) {
@@ -337,6 +344,9 @@ function hesapServisi(db, denetim, eposta) {
         db.prepare("UPDATE upgrade_requests SET durum = 'iptal', islem_zamani = ?, islem_notu = 'Hesap silindi' WHERE user_id = ? AND durum = 'bekliyor'").run(z, u.id);
         db.prepare("UPDATE upgrade_requests SET odeyen_ad = 'silindi', aciklama = NULL WHERE user_id = ?").run(u.id);
         db.prepare("UPDATE subscriptions SET durum = 'iptal', iptal_zamani = ? WHERE user_id = ? AND durum = 'aktif' AND bitis > ?").run(z, u.id, z);
+        // 1.7.0: veli bağlantıları kapanır, davet adresleri ve belirteçler silinir
+        db.prepare(`UPDATE veli_baglantilari SET durum = 'iptal', iptal_zamani = COALESCE(iptal_zamani, ?), eposta = NULL, belirtec_hash = NULL, rapor_belirtec = NULL
+          WHERE ogrenci_id = ? OR veli_id = ?`).run(z, u.id, u.id);
         // Denetim kaydı: satırlar kalır (kim ne yaptı); IP, tarayıcı ve ayrıntıdaki e-posta silinir
         db.prepare("UPDATE audit_log SET ip = NULL, tarayici = NULL WHERE user_id = ? OR yapan_id = ?").run(u.id, u.id);
         if (ep) {
