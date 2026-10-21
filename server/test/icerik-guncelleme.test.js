@@ -12,6 +12,9 @@ const { TOHUM, TOHUM_AYAR, tohumSurumOku } = require("../sorubankasi");
 
 const GUNCEL = JSON.parse(fs.readFileSync(TOHUM, "utf8"));
 const ARSIVLENEN = GUNCEL.sorular.filter(r => r.durum === "arsiv").map(r => r.id);
+// v1.11.0: tohumdaki taslaklar (onay kuyruğu) ayrı sayılır; 1.10.0 tohumu = taslaksız 1131 soru
+const TASLAK = GUNCEL.sorular.filter(r => r.durum === "taslak").map(r => r.id);
+const YAYIN = GUNCEL.sorular.length - TASLAK.length;
 const klasor = fs.mkdtempSync(path.join(os.tmpdir(), "meberra-icerik-"));
 after(() => { try { fs.rmSync(klasor, { recursive: true, force: true }); } catch (e) { /* Windows: WAL dosyası kilitli kalabilir */ } });
 
@@ -19,6 +22,7 @@ after(() => { try { fs.rmSync(klasor, { recursive: true, force: true }); } catch
 function eskiTohum() {
   const t = JSON.parse(JSON.stringify(GUNCEL));
   t.surum = 1;
+  t.sorular = t.sorular.filter(r => r.durum !== "taslak"); // 1.10.0 öncesinde taslak üretimler yoktu
   for (const r of t.sorular) {
     if (r.durum === "arsiv") r.durum = "aktif";
     const ek = {};
@@ -81,16 +85,18 @@ const satir = (app, id) => app.db.prepare("SELECT * FROM questions_bank WHERE id
 test("tohum: arşivlenen birebir tekrarlar var, satırlar silinmedi; aktif içerikte iç not yok", () => {
   assert.ok(GUNCEL.surum >= 2, "tohum sürümü artırıldı");
   assert.deepEqual(ARSIVLENEN.sort(), ["calc_u6_q33", "chem_u8_q11"]);
-  assert.equal(GUNCEL.sorular.length, 1131);
+  assert.equal(YAYIN, 1131);
+  assert.equal(TASLAK.length, 229, "1.11.0 taslakları");
   assert.doesNotMatch(JSON.stringify(GUNCEL.sorular), /Erdem standardı/);
-  const ekli = GUNCEL.sorular.filter(r => r.tur !== "vitrin" && r.ek.kavram && r.ek.ipucu && r.ek.sikHata && r.ek.cedKonu).length;
+  const ekli = GUNCEL.sorular.filter(r => r.tur !== "vitrin" && r.durum !== "taslak" && r.ek.kavram && r.ek.ipucu && r.ek.sikHata && r.ek.cedKonu).length;
   assert.equal(ekli, 1130);
 });
 
 test("yeni veritabanı tohumdan kurulur ve tohum sürümü ayarlara yazılır", async () => {
   const app = await ac(":memory:");
   try {
-    assert.equal(app.db.prepare("SELECT COUNT(*) AS n FROM questions_bank").get().n, 1131);
+    assert.equal(app.db.prepare("SELECT COUNT(*) AS n FROM questions_bank").get().n, GUNCEL.sorular.length);
+    assert.equal(app.db.prepare("SELECT COUNT(*) AS n FROM questions_bank WHERE durum = 'taslak'").get().n, TASLAK.length, "taslaklar taslak kalır");
     assert.equal(tohumSurumOku(app.db), GUNCEL.surum);
     for (const id of ARSIVLENEN) assert.equal(satir(app, id).durum, "arsiv");
     assert.equal(app.db.prepare("SELECT COUNT(*) AS n FROM questions_bank_history").get().n, 0, "ilk kurulumda geçmiş yok");
@@ -131,6 +137,9 @@ test("eski veritabanı güncellenir; yönetici düzenlemesi korunur; arşivlenen
     assert.match(satir(app, "bio_u2_q8").aciklama, /güçlü biçimde destekler/);
     assert.ok(JSON.parse(satir(app, "calc_u1_q2").ek).kavram, "ek zenginleştirmesi geldi");
     for (const id of ARSIVLENEN) assert.equal(satir(app, id).durum, "arsiv");
+    // 1.11.0: tohumdaki YENİ taslak sorular eklendi ve taslak kaldı
+    assert.equal(app.db.prepare("SELECT COUNT(*) AS n FROM questions_bank WHERE durum = 'taslak'").get().n, TASLAK.length);
+    assert.equal(satir(app, TASLAK[0]).guncelleyen, "tohum");
     // yönetici düzenlemesi korundu ve sistem günlüğüne bilgi olarak yazıldı
     assert.equal(satir(app, "chem_u8_q9").genel_hatirlatma, "Yönetici metni: Topic 8.3 seyreltme.");
     const log = app.db.prepare("SELECT seviye, mesaj FROM system_logs WHERE mesaj LIKE '%chem_u8_q9%'").get();

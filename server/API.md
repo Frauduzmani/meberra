@@ -381,6 +381,7 @@ Yer aldığı yanıtlar: `POST /api/sorular-bankasi/cevap` (`ek` ve `cozum.ek`),
 - `POST /api/admin/soru-bankasi/soru/:id/arsiv` `{ geriAl? }` — silme yok; arşiv öğrenciye ve denemelere gelmez.
 - `POST /api/admin/soru-bankasi/soru/:id/geri-yukle` `{ surum }` — o sürümün içeriği yeni sürüm olarak yazılır.
 - `GET /api/admin/soru-bankasi/disa-aktar?tur&sayfa` — JSON (tohumla aynı biçim, `Content-Disposition: attachment`).
+- Toplu onay / ret: aşağıda **Onay kuyruğu (v1.11.0)**.
 
 ### Soru bankası tohum güncellemesi (v1.10.0)
 Tohumun üst düzey `surum` alanı (içerik sürümü) `ayarlar` tablosunda `soru_tohum_surum` anahtarıyla saklanır (yeni geçiş gerekmez).
@@ -395,6 +396,24 @@ Açılışta (`sorubankasi.tohumEsitle`):
 Arşiv: `durum = 'arsiv'` satırlar silinmez; ünite/kutu listeleri, deneme havuzu/katalog, seviye bankası ve `getir` göstermez, `cevap` 404 döner;
 önceden kurulmuş deneme/seviye oturumları ve `answers` / `wrong_answers` geçmişi bu kimliklerle çözülmeye devam eder.
 İçerik düzeltmeleri tohuma `node araclar/icerik-uygula.js` ile uygulanır (`--kuru` önizleme; günlük: `araclar/icerik-denetim/UYGULAMA.md`).
+
+### Onay kuyruğu (v1.11.0; taslak sorular)
+Yeni üretilen sorular tohuma `node araclar/yeni-soru-ekle.js` ile `durum = 'taslak'` olarak eklenir (`--kuru` önizleme; tohum `surum` +1 →
+mevcut veritabanları açılışta yeni soruları yukarıdaki yolla **taslak** olarak alır). Taslak öğrenciye **hiçbir** uçta gitmez: ünite/kutu listeleri
+ve sayıları, `cevap` (404), `getir` (`eksik`), deneme katalog/kurulum/yanlışlar, katalogdaki `pasajlar` (yalnız aktif havuzun pasajları),
+istemciden eşitlenmiş eski deneme incelemesi (`GET /api/deneme/:id`), seviye bankası/teslim/çözümler, vitrin demo. Yalnız taslak sorusu olan kutu
+öğrenci listesinde hiç görünmez. Uçlar (rol: yonetici; her soru için ayrı denetim kaydı):
+- `GET /api/admin/soru-bankasi/onay-kuyrugu?sayfa&kutu&unite&uretim&sayfaNo&sayfaBoyu` — `sayfa` ders sayfası (ör. `ap-physics`), `unite`
+  sayıysa `unite_no`, değilse `unite` metni; `uretim` = `ek.uretim` (ör. `1.11.0`); `sayfaBoyu` ≤ 200 (varsayılan 50).
+  Dönüş: `{ toplam (filtreli), sayfa, sayfaBoyu, sayilar: { toplam, sayfa: [{ sayfa, n }], kutu: [{ sayfa, kutu, baslik, unite_no, n, aktif, yeniKutu }],
+  uretim: [{ uretim, n }] }, sorular: [yönetici satırı: doğru şık, açıklama, hata açıklamaları, ek, surum…], pasajlar: { anahtar: { baslik, html } } }`.
+- `POST /api/admin/soru-bankasi/onayla` `{ ids: [...] }` (≤ 500) — taslak → `aktif`; her soru yeni sürüm (eski hâl geçmişe, not
+  `onaylandı (onay kuyruğu)`, `guncelleyen` = yönetici → sonraki tohum güncellemeleri bu soruyu korur). Dönüş `{ onaylanan, atlanan: [{ id, neden }], sorular: [{ id, surum }] }`.
+  Eylem: `soru-bankasi.onayla`.
+- `POST /api/admin/soru-bankasi/reddet` `{ ids: [...], neden }` (neden 3–500 karakter, zorunlu) — taslak → `arsiv`; `ek.red = { neden, zaman, yapan }`,
+  geçmiş notu `reddedildi: <neden>`. Dönüş `{ reddedilen, atlanan, sorular }`. Eylem: `soru-bankasi.reddet` (ayrıntıda neden).
+Taslak olmayan ya da bulunamayan kimlikler `atlanan` içinde döner (hata değil). Tekil durum değişikliği için mevcut `PUT .../soru/:id` (`durum`) ve
+`POST .../soru/:id/arsiv` kullanılmaya devam eder.
 
 ## Büyüme (v1.6.0, `007_buyume.sql`; `server/huni.js`, `server/kampanya.js`)
 Ölçüm birinci taraftır (üçüncü taraf betik yok). Olay satırında IP, tarayıcı, e-posta yoktur; `anon_id` tarayıcının ürettiği rastgele

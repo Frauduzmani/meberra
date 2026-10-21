@@ -349,7 +349,7 @@ function soruBankasiRotalari(r, bag) {
     const sorular = {}, eksik = [], pasajlar = {};
     l.forEach(k => {
       const p = String(k).split("|"), sayfa = sayfaAd(p[0]), row = tek(p[1]);
-      if (!row || row.tur !== "ders" || row.sayfa !== sayfa || row.durum === "arsiv") { eksik.push(k); return; }
+      if (!row || row.tur !== "ders" || row.sayfa !== sayfa || row.durum !== "aktif") { eksik.push(k); return; }
       const izin = prem || ucretsizMi(row) || q.cevapVar.get(uid, sayfa, row.id) || q.yanlisVar.get(uid, sayfa, row.id);
       if (!izin) { eksik.push(k); return; }
       const s = Object.assign(acikSoru(row), { sayfa: row.sayfa + ".html", kap: row.kutu, kapBaslik: row.kutu_baslik, pasaj: row.pasaj || null });
@@ -411,7 +411,10 @@ function soruBankasiRotalari(r, bag) {
     const h = havuz(), meta = denemeMeta(), kodlar = kodlarCanli(h), uid = req.kullanici.id, prem = premiumMu(req);
     const haklar = {};
     Object.keys(kodlar).forEach(k => { const s = kodSayfa(kodlar, k); if (!(s in haklar)) haklar[s] = hakKullanildi(uid, s, kodlar); });
-    return { ok: true, premium: prem, haklar, kodlar, pasajlar: meta.pasajlar,
+    // Yalnız aktif havuzdaki sorularda geçen pasajlar (taslak sorulara ait yeni pasajlar onaydan önce gönderilmez)
+    const pasajlar = {};
+    h.forEach(x => { if (x.pasaj && meta.pasajlar[x.pasaj]) pasajlar[x.pasaj] = meta.pasajlar[x.pasaj]; });
+    return { ok: true, premium: prem, haklar, kodlar, pasajlar,
       sorular: h.map(x => ({ sayfa: x.sayfa + ".html", id: x.id, unite: x.unite, denemeKodlari: x.denemeKodlari, pasaj: x.pasaj, number: x.number, kap: x.kap, kapBaslik: x.kapBaslik, topic: x.topic })) };
   });
 
@@ -495,7 +498,8 @@ function soruBankasiRotalari(r, bag) {
     const e = q.sinav.get(req.kullanici.id, String(req.params.id || ""));
     const rec = e ? jsonCoz(e.veri, null) : null;
     if (!rec || !Array.isArray(rec.inceleme)) throw new HttpHata(404, "Deneme bulunamadı.");
-    const keys = rec.inceleme.map(x => String(x && x.k || "")).filter(Boolean);
+    // İstemciden eşitlenmiş kayıt: taslak (henüz yayımlanmamış) soruların içeriği / çözümü bu yoldan verilmez
+    const keys = rec.inceleme.map(x => String(x && x.k || "")).filter(Boolean).filter(k => { const row = tek(k.split("|")[1]); return !row || row.durum !== "taslak"; });
     return { ok: true, deneme: { id: rec.id, kod: rec.kod, ad: rec.ad, seed: rec.seed, sorular: rec.inceleme.map(x => ({ k: x.k, kod: x.kod })), teslim: rec.tarih },
       icerik: icerikHaritasi(keys.map(k => ({ k }))), cozumler: cozumHaritasi(keys), eski: true };
   });
@@ -550,9 +554,10 @@ function soruBankasiRotalari(r, bag) {
     });
     return { ok: true, bankalar: out };
   });
+  /** Seviye sorusu. Taslak hiçbir zaman (yayımlanmamış); arşivlenmiş soru eski raporlar için çözülmeye devam eder. */
   function seviyeSatiri(k) {
     const p = String(k).split("|"), row = tek(p.slice(1).join("|"));
-    return row && row.tur === "seviye" && row.ders === p[0] ? row : null;
+    return row && row.tur === "seviye" && row.ders === p[0] && row.durum !== "taslak" ? row : null;
   }
   r.post("/api/seviye/teslim", (req, res) => {
     oturumGerekli(req); ozel(res);
@@ -766,6 +771,80 @@ function soruBankasiRotalari(r, bag) {
     islem(db, () => { s = surumYaz(db, st, eski, Object.assign({}, eski, { durum: hedef }), req.kullanici.id, hedef === "arsiv" ? "arşivlendi" : "arşivden çıkarıldı"); });
     denetim({ eylem: hedef === "arsiv" ? "soru-bankasi.arsiv" : "soru-bankasi.arsivden-cikar", yapan: req.kullanici.id, istek: req, varlik: "questions_bank", varlikId: eski.id, ayrinti: { surum: s.surum } });
     return { ok: true, surum: s.surum, durum: hedef };
+  });
+
+  // ==== v1.11.0 onay kuyruğu: taslak sorular (tohumdan gelen üretimler ya da panelde eklenen) toplu onay / ret ==========
+  // Taslak öğrenciye hiçbir uçta sunulmaz; onay → aktif (yeni sürüm, geçmişe yazılır), ret → arsiv (neden ek.red'e ve geçmiş notuna).
+  const TOPLU_EN_COK = 500;
+  r.get("/api/admin/soru-bankasi/onay-kuyrugu", req => {
+    yoneticiGerekli(req);
+    const g = k => kirp(req.sorgu.get(k));
+    const sart = ["q.durum = 'taslak'"], p = [];
+    const ekle = (s, v) => { sart.push(s); p.push(v); };
+    if (g("sayfa")) ekle("q.sayfa = ?", sayfaAd(g("sayfa")));
+    if (g("kutu")) ekle("q.kutu = ?", g("kutu"));
+    if (/^\d+$/.test(g("unite"))) ekle("q.unite_no = ?", Number(g("unite")));
+    else if (g("unite")) ekle("q.unite = ?", g("unite"));
+    if (g("uretim")) ekle("json_extract(q.ek, '$.uretim') = ?", g("uretim"));
+    const where = " WHERE " + sart.join(" AND ");
+    const boyut = Math.max(1, Math.min(200, Number(g("sayfaBoyu")) || 50)), sayfaNo = Math.max(1, Number(g("sayfaNo")) || 1);
+    const toplam = db.prepare("SELECT COUNT(*) AS n FROM questions_bank q" + where).get(...p).n;
+    const satirlar = db.prepare("SELECT q.*, s.cevap, s.dogru_sayi FROM questions_bank q " + STAT_SQL + where + " ORDER BY q.sayfa, q.unite_no, q.kutu, q.sira, q.rowid LIMIT ? OFFSET ?")
+      .all(...p, boyut, (sayfaNo - 1) * boyut).map(yoneticiSatir);
+    // Önizleme: sorularda geçen pasaj metinleri (deneme-meta.json)
+    const meta = denemeMeta(), pasajlar = {};
+    satirlar.forEach(x => { if (x.pasaj && meta.pasajlar[x.pasaj]) pasajlar[x.pasaj] = meta.pasajlar[x.pasaj]; });
+    // Sayılar (filtreden bağımsız; tüm taslaklar): sayfa, istasyon (kutu) ve üretim etiketine göre
+    const sayilar = {
+      toplam: db.prepare("SELECT COUNT(*) AS n FROM questions_bank WHERE durum = 'taslak'").get().n,
+      sayfa: db.prepare("SELECT sayfa, COUNT(*) AS n FROM questions_bank WHERE durum = 'taslak' GROUP BY sayfa ORDER BY sayfa").all(),
+      kutu: db.prepare(`SELECT sayfa, kutu, MAX(kutu_baslik) AS baslik, MIN(unite_no) AS unite_no, COUNT(*) AS n,
+        (SELECT COUNT(*) FROM questions_bank a WHERE a.durum = 'aktif' AND a.sayfa = t.sayfa AND a.kutu IS t.kutu) AS aktif
+        FROM questions_bank t WHERE durum = 'taslak' GROUP BY sayfa, kutu ORDER BY sayfa, MIN(unite_no), kutu`).all()
+        .map(x => Object.assign(x, { yeniKutu: x.aktif === 0 })),
+      uretim: db.prepare("SELECT json_extract(ek, '$.uretim') AS uretim, COUNT(*) AS n FROM questions_bank WHERE durum = 'taslak' GROUP BY uretim ORDER BY uretim").all()
+    };
+    return { ok: true, toplam, sayfa: sayfaNo, sayfaBoyu: boyut, sayilar, sorular: satirlar, pasajlar };
+  });
+
+  function topluIdler(b) {
+    const ids = Array.isArray(b && b.ids) ? Array.from(new Set(b.ids.map(x => String(x == null ? "" : x).trim()).filter(Boolean))) : [];
+    if (!ids.length) throw new HttpHata(400, "En az bir soru seç.", { ids: "Soru kimliği listesi boş." });
+    if (ids.length > TOPLU_EN_COK) throw new HttpHata(400, "Tek seferde en fazla " + TOPLU_EN_COK + " soru.", { ids: "Çok fazla soru." });
+    return ids;
+  }
+  /** Toplu durum değişikliği (yalnız taslak sorularda). Dönüş: { islenen: [{id, surum}], atlanan: [{id, neden}] } */
+  function topluDurum(req, ids, hedef, not, ekFn, eylem, ayrinti) {
+    const islenen = [], atlanan = [];
+    islem(db, () => {
+      for (const id of ids) {
+        const eski = tek(id);
+        if (!eski) { atlanan.push({ id, neden: "bulunamadı" }); continue; }
+        if (eski.durum !== "taslak") { atlanan.push({ id, neden: "taslak değil (" + eski.durum + ")" }); continue; }
+        const yeni = Object.assign({}, eski, { durum: hedef });
+        if (ekFn) yeni.ek = ekFn(eski.ek || {});
+        const s = surumYaz(db, st, eski, yeni, req.kullanici.id, not);
+        islenen.push({ id, surum: s.surum });
+      }
+    });
+    islenen.forEach(x => denetim({ eylem, yapan: req.kullanici.id, istek: req, varlik: "questions_bank", varlikId: x.id, ayrinti: Object.assign({ surum: x.surum }, ayrinti || {}) }));
+    return { islenen, atlanan };
+  }
+  r.post("/api/admin/soru-bankasi/onayla", req => {
+    yoneticiGerekli(req);
+    const ids = topluIdler(req.body);
+    const s = topluDurum(req, ids, "aktif", "onaylandı (onay kuyruğu)", null, "soru-bankasi.onayla", { toplu: ids.length });
+    return { ok: true, onaylanan: s.islenen.length, atlanan: s.atlanan, sorular: s.islenen };
+  });
+  r.post("/api/admin/soru-bankasi/reddet", req => {
+    yoneticiGerekli(req);
+    const ids = topluIdler(req.body);
+    const neden = kirp(req.body && req.body.neden).slice(0, 500);
+    if (neden.length < 3) throw new HttpHata(400, "Ret nedenini yaz.", { neden: "En az 3 karakter." });
+    const zaman = simdi();
+    const s = topluDurum(req, ids, "arsiv", "reddedildi: " + neden.slice(0, 280),
+      ek => Object.assign({}, ek, { red: { neden, zaman, yapan: String(req.kullanici.id) } }), "soru-bankasi.reddet", { toplu: ids.length, neden });
+    return { ok: true, reddedilen: s.islenen.length, atlanan: s.atlanan, sorular: s.islenen };
   });
 
   r.post("/api/admin/soru-bankasi/soru/:id/geri-yukle", req => {

@@ -12,7 +12,10 @@ const { eskiSema } = require("./soru-aktar.js");
 const ROOT = path.resolve(__dirname, "..");
 const TOHUM = (() => { const i = process.argv.indexOf("--tohum"); return i > 0 ? path.resolve(process.argv[i + 1]) : path.join(ROOT, "server", "tohum", "soru-bankasi.json"); })();
 const TUM = JSON.parse(fs.readFileSync(TOHUM, "utf8")).sorular;
-const BANKA = TUM.filter(r => r.durum !== "arsiv");
+// v1.11.0: taslak sorular öğrenciye sunulmaz → sayfa/istasyon denetimi yalnız AKTİF sorularla yapılır; taslaklar ayrıca
+// (onaylandıktan sonraki hâl: aktif + taslak birlikte) kalite kurallarıyla denetlenir ve ayrı sayılır.
+const BANKA = TUM.filter(r => r.durum !== "arsiv" && r.durum !== "taslak");
+const TASLAK = TUM.filter(r => r.durum === "taslak");
 const PAGES = fs.readdirSync(ROOT).filter(f => /^(ap|sinav)-.*.html$/.test(f));
 const SEVIYE_DIR = path.join(ROOT, "data", "sorular", "seviye");
 const FORBIDDEN_SOURCE = /official|past exam|canonical|college board exam/i;
@@ -73,7 +76,7 @@ function checkQuestions(qs, fields, seen, issues) {
 }
 
 let total = 0, problems = 0;
-const rows = [];
+const rows = [], uyarilar = [];
 const bankTexts = new Map(); // normalized question text → id (kopya tanı sorusu yakalamak için)
 
 // 1) Ders sayfalarındaki soru bankası
@@ -85,8 +88,18 @@ for (const file of PAGES) {
   for (const [cid] of containers) {
     if (!html.includes(`id="${cid}"`)) { console.log(`✗ ${file}: soru istasyonu (container) sayfada yok: ${cid}`); problems++; }
   }
-  // Sayfadaki her soru istasyonunun bankada sorusu olmalı (boş istasyon öğrenciye "soru yok" gösterir)
-  for (const m of html.matchAll(/id="([^"]*-quiz-container)"/g)) if (!arrays.some(([k]) => k === m[1])) { console.log(`✗ ${file}: ${m[1]} için bankada aktif soru yok`); problems++; }
+  // Sayfadaki her soru istasyonunun bankada sorusu olmalı (boş istasyon öğrenciye "soru yok" gösterir).
+  // Yalnız taslak sorusu olan istasyon sorun değil, uyarıdır (onay kuyruğunda bekliyor).
+  const sayfaAdi = file.replace(/.html$/, "");
+  for (const m of html.matchAll(/id="([^"]*-quiz-container)"/g)) {
+    if (arrays.some(([k]) => k === m[1])) continue;
+    if (TASLAK.some(r => r.tur === "ders" && r.sayfa === sayfaAdi && r.kutu === m[1])) { uyarilar.push(`${file}: ${m[1]} sayfada var ama yalnız taslak sorusu var (onaylanana dek öğrenci boş istasyon görür)`); continue; }
+    console.log(`✗ ${file}: ${m[1]} için bankada aktif soru yok`); problems++;
+  }
+  // Taslak istasyonları: sayfada henüz yoksa uyarı (arayüz ekleyecek); kalite denetimi aşağıda (TASLAK bölümü)
+  for (const k of new Set(TASLAK.filter(r => r.tur === "ders" && r.sayfa === sayfaAdi).map(r => r.kutu))) {
+    if (!html.includes(`id="${k}"`)) uyarilar.push(`${file}: taslak istasyonu sayfada henüz yok: ${k}`);
+  }
   if (/_QUESTIONSs*=|isCorrect|stepByStepSolution/.test(html)) { console.log(`✗ ${file}: sayfada cevap anahtarı / soru dizisi izi var (sorular yalnız veritabanında olmalı)`); problems++; }
   for (const [name, qs] of arrays) {
     const issues = [];
@@ -139,6 +152,25 @@ for (const f of seviyeFiles) {
   }
 }
 
+// 2b) v1.11.0 taslaklar (onay kuyruğu): istasyon başına, onaylandıktan sonraki hâl (aktif + taslak) kalite kurallarıyla denetlenir.
+const taslakRows = [];
+{
+  const by = new Map();
+  for (const r of TASLAK) { if (r.tur !== "ders") continue; const k = r.sayfa + "|" + r.kutu; if (!by.has(k)) by.set(k, []); by.get(k).push(r); }
+  for (const [k, ts] of by) {
+    const [sayfa, kutu] = k.split("|");
+    const aktif = BANKA.filter(r => r.tur === "ders" && r.sayfa === sayfa && r.kutu === kutu);
+    const issues = [];
+    const { pos, longest } = checkQuestions(aktif.concat(ts).map(eskiSema), BANK_FIELDS, new Set(), issues);
+    problems += issues.length;
+    taslakRows.push({ file: sayfa, name: kutu, n: ts.length, aktif: aktif.length, pos, longest, issues });
+  }
+  for (const r of TASLAK) if (r.tur !== "ders") { console.log(`✗ ${r.id}: taslak yalnız ders sorusu için denetlenir (tur ${r.tur})`); problems++; }
+  const ids = new Map();
+  for (const r of TUM) ids.set(r.id, (ids.get(r.id) || 0) + 1);
+  for (const [id, n] of ids) if (n > 1) { console.log(`✗ ${id}: tohumda ${n} kez`); problems++; }
+}
+
 // 3) v1.10.0 içerik sağlığı: durum sayıları, ek zenginleştirme kapsamı, tekrar sorular (normalleştirilmiş kök + şık kümesi özeti).
 //    Tekrar özeti: HTML/$/biçim komutları (\displaystyle, \left, \text, \dfrac…) ve BC etiketleri atılır, şıklar sıralanır.
 //    Aktif (arşivlenmemiş) iki soru aynı özeti taşıyorsa sorun sayılır; arşivlenmiş kopya sayılmaz.
@@ -172,6 +204,13 @@ for (const r of rows) {
   for (const i of r.issues) console.log(`    - ${i}`);
 }
 console.log(`\nSEVİYE TESTİ: ${seviyeTotal} soru (${seviyeFiles.length} dosya)`);
+const taslakToplam = taslakRows.reduce((s, r) => s + r.n, 0);
+console.log(`\nTASLAK (onay kuyruğu, öğrenciye sunulmaz): ${taslakToplam} soru, ${taslakRows.length} istasyon — denetim: aktif + taslak birlikte`);
+for (const r of taslakRows) {
+  console.log(`${r.issues.length ? "✗" : "✓"} ${r.file.padEnd(14)} ${r.name.padEnd(36)} +${String(r.n).padStart(3)} taslak (aktif ${r.aktif})  A${r.pos.A} B${r.pos.B} C${r.pos.C} D${r.pos.D}  en-uzun-doğru:${r.longest}`);
+  for (const i of r.issues) console.log(`    - ${i}`);
+}
+for (const u of uyarilar) console.log(`  uyarı: ${u}`);
 console.log(`DURUM: ${Object.entries(durumSay).map(([k, v]) => k + " " + v).join(" · ")} (toplam ${TUM.length})`);
 console.log(`EK ZENGİNLEŞTİRME: ${ekTam}/${denetlenen} soru (%${denetlenen ? Math.round(ekTam / denetlenen * 1000) / 10 : 0}; kavram, ipucu, sikHata, cedKonu, hesapMakinesi; vitrin hariç)`);
 console.log(`TEKRAR (normalleştirilmiş kök + şık kümesi): ${tekrarlar.length} aktif tekrar grubu`);

@@ -56,17 +56,20 @@ function cevapAlaniVar(o) {
 const dogruOf = id => db().prepare("SELECT dogru FROM questions_bank WHERE id = ?").get(id).dogru;
 const yanlisOf = id => ["A", "B", "C", "D"].find(x => x !== dogruOf(id));
 
-test("tohum: sayılar pm-denetim ile aynı (977 ders + 153 seviye + 1 vitrin), veritabanı dolu, upsert idempotent", () => {
+test("tohum: sayılar pm-denetim ile aynı (977 ders [975 aktif + 2 arşiv] + 153 seviye + 1 vitrin; taslaklar ayrı), veritabanı dolu, upsert idempotent", () => {
   const t = JSON.parse(fs.readFileSync(TOHUM, "utf8"));
-  const say = tur => t.sorular.filter(x => x.tur === tur).length;
+  const say = (tur, durum) => t.sorular.filter(x => x.tur === tur && (durum ? x.durum === durum : x.durum !== "taslak")).length;
+  assert.equal(say("ders", "aktif"), 975);
+  assert.equal(say("ders", "arsiv"), 2);
+  assert.equal(say("ders", "taslak"), 229, "1.11.0 onay kuyruğu");
   assert.equal(say("ders"), 977);
   assert.equal(say("seviye"), 153);
   assert.equal(say("vitrin"), 1);
   assert.equal(new Set(t.sorular.map(x => x.id)).size, t.sorular.length, "kimlikler benzersiz");
-  const n = db().prepare("SELECT tur, COUNT(*) AS n FROM questions_bank GROUP BY tur").all().reduce((a, x) => (a[x.tur] = x.n, a), {});
+  const n = db().prepare("SELECT tur, COUNT(*) AS n FROM questions_bank WHERE durum != 'taslak' GROUP BY tur").all().reduce((a, x) => (a[x.tur] = x.n, a), {});
   assert.deepEqual(n, { ders: 977, seviye: 153, vitrin: 1 });
   const s = tohumUpsert(db(), t.sorular, { guncelleyen: "test" });
-  assert.equal(s.eklenen, 0); assert.equal(s.guncellenen, 0); assert.equal(s.ayni, 1131);
+  assert.equal(s.eklenen, 0); assert.equal(s.guncellenen, 0); assert.equal(s.ayni, t.sorular.length);
   // Tohum statik olarak sunulmaz (server/ klasörü açık değil)
   assert.ok(TOHUM.startsWith(path.join(__dirname, "..")));
 });
@@ -280,7 +283,7 @@ test("yönetici: liste + istatistik (şüpheli), düzenleme yeni sürüm, doğru
   const id = "calc_u1_q5";
   // 5 öğrenci hepsi doğru → %100 → şüpheli
   for (let i = 0; i < 5; i++) { const o = await ogrenci(false); await o("POST", "/api/sorular-bankasi/cevap", { soruId: id, secim: dogruOf(id) }); }
-  let r = await y("GET", "/api/admin/soru-bankasi?sayfa=ap-calculus&unite=1");
+  let r = await y("GET", "/api/admin/soru-bankasi?sayfa=ap-calculus&unite=1&durum=aktif");
   assert.equal(r.durum, 200);
   assert.equal(r.govde.toplam, 22);
   const satir = r.govde.sorular.find(x => x.id === id);
