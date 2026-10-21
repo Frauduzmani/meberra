@@ -5,6 +5,7 @@
  */
 (function () {
   "use strict";
+  document.documentElement.setAttribute("data-apz-auth", "ok"); // styles.css oturum kapısı (app.js yüklenmez; erişimi sunucu denetler)
   var $ = function (id) { return document.getElementById(id); };
   var esc = function (x) { return String(x == null ? "" : x).replace(/[&<>"']/g, function (m) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]; }); };
   var AG = "Sunucuya ulaşılamadı. İnternet bağlantınızı kontrol edip tekrar deneyin.";
@@ -301,7 +302,8 @@
     $("vb-aciklama").textContent = c.ad + " " + c.soyad + " · Meberra";
     $("vo-odeyenAd").value = ME ? (ME.ad + " " + ME.soyad) : "";
     uyari($("vp-odeme-alert"), "");
-    $("vp-odeme-baslik").focus();
+    window.scrollTo(0, 0);
+    $("vp-odeme-baslik").focus({ preventScroll: true });
   }
   $("vp-odeme-geri").addEventListener("click", function () { panelYukle(); });
   $("vp-odeme-form").addEventListener("submit", function (e) {

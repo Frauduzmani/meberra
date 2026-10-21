@@ -34,6 +34,7 @@
 /* Karşılama sihirbazı: AP modellerinde 5. adım (AP derslerin) */
 .wizard-progress-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 @media (max-width: 480px) { .wizard-progress-5 li { font-size: 0.68rem; } }
+.wizard-nav [hidden], .wizard-progress li[hidden] { display: none !important; } /* .btn-ghost display kuralı hidden'ı ezmesin */
 
 /* Profil: veli bölümü (assets/js/veli-ogrenci.js) */
 .vo-liste { list-style: none; margin: var(--sp-3) 0; padding: 0; display: grid; gap: var(--sp-2); }
