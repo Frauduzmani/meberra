@@ -15,7 +15,7 @@
  *                 sureModu, dersler, inceleme:[{k, kod, s}] } ]   // en yeni başta, en fazla 50 kayıt
  *   }
  * Tur 14 A7 (Ajan 11, arayüz/akış katmanı): Yanlışlarım modu — deneme.html?mod=yanlislar[&ders=<kod>][&deneme=<sonuç id>].
- *   Soru havuzu = Hata Defterindeki AÇIK kayıtlar (apmeberra:errors:v1, resolved:false) ∩ deneme bankası; yeni depolama anahtarı yok.
+ *   Soru havuzu = Yanlışlarım’daki AÇIK kayıtlar (apmeberra:errors:v1, resolved:false) ∩ deneme bankası; yeni depolama anahtarı yok.
  *   aktif/gecmis kaydına kod:"yanlislar", mod:"yanlislar", kaynakDeneme:<id>|null eklenir (ek alanlar; mevcut alanlar aynı),
  *   her sorunun kendi ders kodu sorular[i].kod'da durur. Teslimde mevcut writeErrors: doğru → hata kapanır (resolved),
  *   yanlış → açık kalır (count+1), boş → değişmez. Soru nesnesi ve banka değişmez.
@@ -24,7 +24,7 @@
  *   ve hiç silinmez (iptal, 50 kayıtlık geçmiş sınırı hakkı geri getirmez; sunucu anahtarı yalnız ekleyerek birleştirir).
  *   Geriye uyum: o sayfaya ait tamamlanmış bir geçmiş kaydı da hakkı kullanılmış sayar. Başlamış deneme her zaman sürdürülebilir.
  * Sınav sırasında doğru/yanlış gösterilmez. Süre yalnızca sayfa açıkken işler (gecenSn birikir);
- * yenilemede deneme kaldığı yerden sürer. Yanlışlar app.js Hata Defterine ("apmeberra:errors:v1") aynı
+ * yenilemede deneme kaldığı yerden sürer. Yanlışlar app.js Yanlışlarım’a ("apmeberra:errors:v1") aynı
  * biçimde yazılır.
  */
 (function () {
@@ -120,7 +120,7 @@
   function param(name) { var m = new RegExp("[?&]" + name + "=([^&#]*)").exec(window.location.search); return m ? decodeURIComponent(m[1]) : null; }
 
   if (!BANK || !BANK.sorular || !BANK.kodlar) {
-    view.innerHTML = '<div class="dn-alert is-bad" role="alert"><strong>Deneme soru bankası bulunamadı.</strong> <code>data/sorular/deneme-bankasi.js</code> dosyası eksik. Proje klasöründe <code>node araclar/deneme-bankasi-olustur.js</code> çalıştırılmalı.</div>';
+    view.innerHTML = '<div class="dn-alert is-bad" role="alert"><strong>Deneme soruları yüklenemedi.</strong> Sayfayı yenilemeyi dene; sorun sürerse biraz sonra tekrar dene.</div>';
     return;
   }
 
@@ -136,7 +136,7 @@
     for (var i = 0; i < k.uniteler.length; i++) if (k.uniteler[i].no === no) return k.uniteler[i].ad;
     return no;
   }
-  function unitLabel(kod, no) { return /^\d+$/.test(no) ? (kod === "english-language" ? "Skill Cat. " : "Unit ") + no : no; }
+  function unitLabel(kod, no) { return /^\d+$/.test(no) ? (kod === "english-language" ? "Beceri " : "Ünite ") + no : no; }
   function onerilen(kod) { var n = BANK.kodlar[kod].soruSayisi; return Math.min(n, 20); }
 
   // ---------------- Tur 14 A7: Yanlışlarım modu yardımcıları ----------------
@@ -148,7 +148,7 @@
     var e = (window.APMEBERRA && typeof window.APMEBERRA.loadErrors === "function") ? window.APMEBERRA.loadErrors() : sget(ERR_KEY, null);
     return e && typeof e === "object" && e.items && typeof e.items === "object" ? e : { v: 1, items: {} };
   }
-  /** Hata Defterindeki açık kayıtlar (en yeni önce) → {acik:[kayıt], havuz:[{q, kod, hata}], disarida:[kayıt]} */
+  /** Yanlışlarım’daki açık kayıtlar (en yeni önce) → {acik:[kayıt], havuz:[{q, kod, hata}], disarida:[kayıt]} */
   function yanlisHavuzu() {
     var items = hataDefteri().items;
     var acik = Object.keys(items).map(function (k) { return items[k]; }).filter(function (e) { return e && !e.resolved && e.page && e.id; })
@@ -241,13 +241,13 @@
   function coverageText(kod) {
     var u = BANK.kodlar[kod].uniteler, have = u.filter(function (x) { return x.soruSayisi > 0; });
     var label = BANK.kodlar[kod].uniteTuru === "CED Skill Category" ? "beceri kategorisi" : "ünite";
-    return have.length + " / " + u.length + " " + label + " (" + have.map(function (x) { return unitLabel(kod, x.no).replace(/^Unit |^Skill Cat\. /, ""); }).join(", ") + ")";
+    return have.length + " / " + u.length + " " + label + " (" + have.map(function (x) { return unitLabel(kod, x.no).replace(/^Ünite |^Beceri /, ""); }).join(", ") + ")";
   }
   function lastFor(kod, d) { for (var i = 0; i < d.gecmis.length; i++) if (d.gecmis[i].kod === kod) return d.gecmis[i]; return null; }
 
   function renderLanding() {
     var d = load();
-    document.title = "Deneme Sınavı | Meberra";
+    document.title = "Deneme | Meberra";
     var ucretsiz = ucretsizPlan();
     var cards = KODLAR.map(function (kod) {
       var k = BANK.kodlar[kod], n = onerilen(kod), last = lastFor(kod, d);
@@ -273,9 +273,9 @@
 
     view.innerHTML =
       '<header class="page-head">' +
-      '<span class="eyebrow">Deneme Sınavı</span>' +
+      '<span class="eyebrow">Deneme</span>' +
       '<h1 tabindex="-1" id="dn-h1">AP çoktan seçmeli deneme</h1>' +
-      '<p>Bluebook benzeri sade ekran: sınav sırasında doğru/yanlış gösterilmez, soruları işaretleyip sonra dönebilirsin. Bitirince ünite bazında sonuç, soru soru inceleme ve Hata Defteri kaydı alırsın. Sorular ders sayfalarındaki AP-style özgün soru bankasından gelir.</p>' +
+      '<p>Bluebook (AP’nin dijital sınav uygulaması) benzeri sade ekran: sınav sırasında doğru/yanlış gösterilmez, soruları işaretleyip sonra dönebilirsin. Bitirince ünite bazında sonuç, soru soru inceleme ve Yanlışlarım kaydı alırsın. Sorular ders sayfalarındaki AP-style özgün soru bankasından gelir.</p>' +
       '</header>' +
       yanlisGirisKarti() +
       '<section class="dn-section" aria-labelledby="dn-ders-title">' +
@@ -306,12 +306,12 @@
   /** Denemeler giriş ekranında Yanlışlarım kısayolu */
   function yanlisGirisKarti() {
     var h = yanlisHavuzu(), n = h.havuz.length;
-    var metin = n ? '<strong>' + n + '</strong> açık hatan deneme havuzunda. Tek oturumda tekrar çöz; doğru çözdüğün hata Hata Defterinde kapanır.'
+    var metin = n ? '<strong>' + n + '</strong> açık hatan deneme havuzunda. Tek oturumda tekrar çöz; doğru çözdüğün hata Yanlışlarım’da kapanır.'
       : (h.acik.length ? h.acik.length + ' açık hatan var ama deneme havuzunda değil; ders sayfasından çözebilirsin.' : 'Açık hatan yok. Deneme ya da ünite sorularında yanlış yaptığın sorular burada birikir.');
     return '<section class="dn-yk' + (n ? "" : " is-bos") + '" id="dn-yanlis-kart" aria-labelledby="dn-yk-title">' +
       '<span class="dn-yk-ico">' + (n ? IC_Y.redo : IC_Y.ok) + '</span>' +
       '<div class="dn-yk-body"><h2 id="dn-yk-title">Yanlışlarım</h2><p>' + metin + '</p></div>' +
-      (n ? '<a class="btn-primary" href="deneme.html?mod=yanlislar">Yanlışlarımı çöz →</a>' : (h.acik.length ? '<a class="btn-ghost" href="ilerleme.html#hata-title">Hata Defteri →</a>' : '')) +
+      (n ? '<a class="btn-primary" href="deneme.html?mod=yanlislar">Yanlışlarımı çöz →</a>' : (h.acik.length ? '<a class="btn-ghost" href="ilerleme.html#hata-title">Yanlışlarım →</a>' : '')) +
       '</section>';
   }
 
@@ -326,19 +326,19 @@
       '<header class="page-head dn-y-head">' +
       '<span class="eyebrow">Yanlışlarım</span>' +
       '<h1 tabindex="-1" id="dn-h1">' + (kaynak ? "Bu denemenin yanlışlarını çöz" : "Yanlışlarını tek oturumda çöz") + '</h1>' +
-      '<p>' + (kaynak ? esc(kaynak.ad) + ' · ' + esc(fmtTarih(kaynak.tarih)) + '. ' : '') + 'Hata Defterindeki açık sorular tek bir oturumda gelir. Doğru çözdüğün hata kapanır, yine yanlışsa defterde kalır. Sınav sırasında doğru/yanlış gösterilmez; teslimden sonra her sorunun çözümünü görürsün.</p>' +
+      '<p>' + (kaynak ? esc(kaynak.ad) + ' · ' + esc(fmtTarih(kaynak.tarih)) + '. ' : '') + 'Yanlışlarım’daki açık sorular tek bir oturumda gelir. Doğru çözdüğün hata kapanır, yine yanlışsa defterde kalır. Sınav sırasında doğru/yanlış gösterilmez; teslimden sonra her sorunun çözümünü görürsün.</p>' +
       '</header>';
     if (!havuz.length) {
       var tumu = kaynak && h.havuz.length;
       var baslik = !h.acik.length ? "Açık hatan yok" : (kaynak ? "Bu denemenin açık yanlışı kalmadı" : "Açık hataların deneme havuzunda değil");
-      var aciklama = !h.acik.length ? "Yanlış yaptığın sorular Hata Defterine yazılır ve burada tek oturumda tekrar çözülür. Şimdilik kapatılacak hata yok."
-        : (kaynak ? "Bu denemede yanlış yaptığın sorular kapandı ya da hiç yanlışın yoktu." : h.acik.length + " açık hatan ders sayfalarındaki soru istasyonlarında; Hata Defteri’nden soruya git.");
+      var aciklama = !h.acik.length ? "Yanlış yaptığın sorular Yanlışlarım’a yazılır ve burada tek oturumda tekrar çözülür. Şimdilik kapatılacak hata yok."
+        : (kaynak ? "Bu denemede yanlış yaptığın sorular kapandı ya da hiç yanlışın yoktu." : h.acik.length + " açık hatan ders sayfalarındaki sorularda; Yanlışlarım’nden soruya git.");
       view.innerHTML = bas +
         '<section class="dn-empty" id="dn-yanlis-bos" role="status" aria-labelledby="dn-yb-title">' +
         '<span class="dn-empty-ico">' + IC_Y.ok + '</span><h2 id="dn-yb-title">' + baslik + '</h2><p>' + aciklama + '</p>' +
         '<div class="dn-actions">' +
         (tumu ? '<a class="btn-primary" href="deneme.html?mod=yanlislar">Tüm yanlışlarım (' + h.havuz.length + ')</a>' :
-          (h.acik.length ? '<a class="btn-primary" href="ilerleme.html#hata-title">Hata Defteri’ne git</a>' : '<a class="btn-primary" href="deneme.html">Deneme çöz</a>')) +
+          (h.acik.length ? '<a class="btn-primary" href="ilerleme.html#hata-title">Yanlışlarım’a git</a>' : '<a class="btn-primary" href="deneme.html">Deneme çöz</a>')) +
         '<a class="btn-ghost" href="calis.html">Çalış</a><a class="btn-ghost" href="index.html">Bugün’e dön</a></div></section>';
       focusH1();
       return;
@@ -369,7 +369,7 @@
       '<div class="dn-actions"><button type="submit" class="btn-primary" id="dn-ystart">Yanlışlarımı çözmeye başla</button></div>' +
       '</form>' +
       '<p class="dn-note">Süre tutulmaz; geçen süre kayda yazılır. Boş bıraktığın hata açık kalır.' +
-      (h.disarida.length ? ' ' + h.disarida.length + ' açık hata ders sayfalarındaki soru istasyonlarında: <a href="ilerleme.html#hata-title">Hata Defteri</a>.' : '') + '</p>' +
+      (h.disarida.length ? ' ' + h.disarida.length + ' açık hata ders sayfalarındaki sorularda: <a href="ilerleme.html#hata-title">Yanlışlarım</a>.' : '') + '</p>' +
       '</section>';
     var form = document.getElementById("dn-yform");
     function secim() {
@@ -837,13 +837,13 @@
     renderResult(rec, auto);
   }
 
-  /** app.js Hata Defteri biçimi (handleOptionClick ile aynı alanlar). Doğru cevaplanan açık kayıt çözüldü sayılır. */
+  /** app.js Yanlışlarım biçimi (handleOptionClick ile aynı alanlar). Doğru cevaplanan açık kayıt çözüldü sayılır. */
   function writeErrors(rec, now) {
     var errors = (window.APMEBERRA && typeof window.APMEBERRA.loadErrors === "function") ? window.APMEBERRA.loadErrors() : sget(ERR_KEY, null);
     if (!errors || typeof errors !== "object" || !errors.items) errors = { v: 1, items: {} };
     var changed = false;
     rec.inceleme.forEach(function (it) {
-      if (!it.s) return; // boş bırakılan soru hata defterine yazılmaz
+      if (!it.s) return; // boş bırakılan soru Yanlışlarım’a yazılmaz
       var q = BY_KEY[it.k]; if (!q) return;
       var page = q.sayfa.replace(/\.html?$/i, ""), key = page + "|" + q.id;
       var sel = q.options.filter(function (o) { return o.id === it.s; })[0];
@@ -884,10 +884,10 @@
     units.forEach(function (u) { var p = perKod[u.kod] || (perKod[u.kod] = { soru: 0, dogru: 0 }); p.soru += u.soru; p.dogru += u.dogru; });
     var bandHtml;
     if (rec.kod === YKOD) {
-      // Tur 14 A7: Yanlışlarım oturumu — tahmini bant yerine Hata Defteri sonucu
+      // Tur 14 A7: Yanlışlarım oturumu — tahmini bant yerine Yanlışlarım sonucu
       bandHtml = '<div class="dn-band dn-y-sonuc" id="dn-y-sonuc"><div class="dn-band-num is-ok" aria-hidden="true">' + rec.dogru + '</div><div>' +
         '<p class="dn-band-title"><strong>' + rec.dogru + '</strong> hata kapandı · <strong>' + (rec.yanlis + rec.bos) + '</strong> hata açık kaldı</p>' +
-        '<p class="dn-band-warn">Doğru çözdüğün sorular Hata Defterinde "çözüldü" olarak işaretlendi. Yine yanlış yaptıkların ve boş bıraktıkların açık kalır; konu hatırlatmasını okuyup tekrar dene.</p></div></div>';
+        '<p class="dn-band-warn">Doğru çözdüğün sorular Yanlışlarım’da "çözüldü" olarak işaretlendi. Yine yanlış yaptıkların ve boş bıraktıkların açık kalır; konu hatırlatmasını okuyup tekrar dene.</p></div></div>';
     } else if (rec.kod !== "genel") {
       bandHtml = '<div class="dn-band"><div class="dn-band-num" aria-hidden="true">' + rec.tahminiBand + '</div><div>' +
         '<p class="dn-band-title">Tahmini AP bandı: <strong>' + rec.tahminiBand + '</strong> <span class="dn-tag">yaklaşık</span></p>' +
@@ -923,8 +923,8 @@
       bandHtml +
       '<section class="dn-section" aria-labelledby="dn-ut-title"><h2 class="panel-title" id="dn-ut-title">Ünite bazında</h2>' +
       '<div class="dn-table-wrap"><table class="dn-table"><thead><tr><th scope="col">Ünite</th><th scope="col">Soru</th><th scope="col">Doğru</th><th scope="col">Yanlış</th><th scope="col">Boş</th><th scope="col">%</th><th scope="col"><span class="visually-hidden">Bağlantı</span></th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
-      (rec.kod === YKOD ? '<p class="dn-note">Doğru çözdüğün hatalar kapandı; yanlışlar ve boşlar Hata Defterinde açık kaldı (<a href="ilerleme.html#hata-title">İlerleme → Hata Defteri</a>).</p>'
-        : '<p class="dn-note">Yanlış cevapladığın sorular Hata Defterine eklendi (<a href="ilerleme.html">İlerleme → Hata Defteri</a>). Boş bıraktıkların eklenmez.</p>') +
+      (rec.kod === YKOD ? '<p class="dn-note">Doğru çözdüğün hatalar kapandı; yanlışlar ve boşlar Yanlışlarım’da açık kaldı (<a href="ilerleme.html#hata-title">İlerleme → Yanlışlarım</a>).</p>'
+        : '<p class="dn-note">Yanlış cevapladığın sorular Yanlışlarım’a eklendi (<a href="ilerleme.html">İlerleme → Yanlışlarım</a>). Boş bıraktıkların eklenmez.</p>') +
       '</section>' +
       '<section class="dn-section" aria-labelledby="dn-rev-title"><h2 class="panel-title" id="dn-rev-title">Soru soru inceleme</h2>' +
       '<div class="dn-filter" role="group" aria-label="İnceleme filtresi">' +
@@ -1048,7 +1048,7 @@
     return '<section class="dn-section" aria-labelledby="dn-hist-title"><h2 class="panel-title" id="dn-hist-title">Geçmiş</h2>' +
       '<div class="dn-sparks">' + sparks + '</div>' +
       '<div class="dn-table-wrap"><table class="dn-table dn-hist"><thead><tr><th scope="col">Tarih</th><th scope="col">Deneme</th><th scope="col">Doğru</th><th scope="col">%</th><th scope="col">Bant</th><th scope="col">Süre</th><th scope="col"><span class="visually-hidden">İşlem</span></th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
-      '<p class="dn-note">Son ' + Math.min(d.gecmis.length, 15) + ' deneme gösteriliyor; bu cihazda en fazla ' + MAX_GECMIS + ' kayıt tutulur. Bant sütunu tahminidir, resmi ölçekleme değildir.</p></section>';
+      '<p class="dn-note">Son ' + Math.min(d.gecmis.length, 15) + ' deneme gösteriliyor; en fazla ' + MAX_GECMIS + ' kayıt tutulur. Bant sütunu tahminidir, resmi ölçekleme değildir.</p></section>';
   }
   function bindHistory() {
     view.querySelectorAll("button[data-open]").forEach(function (b) {

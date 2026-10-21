@@ -3,7 +3,7 @@
  * Bugün ekranı yardımcıları, ünite görünümü ve Premium kilitleri, soru motoru, ilerleme ve yedekleme.
  *
  * v2 (Ajan 11 — Frontend & UX): tema (açık/koyu), ortak gezinme menüsü (tüm
- * sayfalara JS ile enjekte edilir), kalıcı soru bankası ilerlemesi + Hata Defteri
+ * sayfalara JS ile enjekte edilir), kalıcı soru bankası ilerlemesi + Yanlışlarım
  * (localStorage), klavye ile şık seçimi ve aria-live geri bildirim.
  */
 
@@ -208,6 +208,9 @@ window.APMEBERRA_ME = APMEBERRA_ME;
 // Sayfa açılışında oturum sunucuda doğrulanır (GET /api/me) ve başka cihazdan gelen yeni veriler çekilir.
 // Mevcut sayfa kodu değişmeden çalışır: depo hâlâ eşzamanlı önbellektir, doğruluk kaynağı sunucudur.
 const MEBERRA_SUNUCU = !!document.querySelector('meta[name="meberra-api"]');
+// Depolama kipine göre metin/arayüz (styles.css): .yalniz-dosya yalnız dosya kipinde (file://, tarayıcı deposu), .yalniz-sunucu
+// yalnız sunucu kipinde görünür. Kurtarma kodu, kullanıcı adı, "Yedek al / yükle" gibi eski yerel özellikler .yalniz-dosya taşır.
+document.documentElement.classList.add(MEBERRA_SUNUCU ? "mod-sunucu" : "mod-dosya");
 const MEBERRA_SYNC = (function () {
   if (!MEBERRA_SUNUCU) return null;
   let ls;
@@ -391,23 +394,18 @@ const APMEBERRA_NAV = [
   // merkez sayfada. Ders/deneme/seviye sayfalarında da Çalış etkin görünür (etkinSayfalar).
   { id: "calis", href: "calis.html", label: "Çalış", modeller: AP_MODELLER,
     etkinSayfalar: APMEBERRA_COURSES.map(c => c.page + ".html").concat(["sinav-cents.html", "deneme.html", "seviye-testi.html", "istanbul-sinav-rehberi.html"]) },
-  // Tur 14 A4: Hedefim sayfalarında ortak sekme çubuğu var (initHedefimSekmeler) → telefonda alt gezinme doğrudan Üniversiteler'e gider
-  { id: "hedefim", href: "universiteler.html", label: "Hedefim", mobilBaglanti: true, children: [
-    { href: "sartlar.html", label: "Ülke şartları", desc: "Durumuna, ülkene ve eğitim diline göre şartlar (15 ülke)" },
-    { href: "universiteler.html", label: "Üniversiteler", desc: "Ülke başına ilk 20, isterler, ders ve denemeler" },
-    { href: "rota.html", label: "Rotam", desc: "Tarihli adımlar ve belge listesi" },
-    { href: "sinavlar.html", label: "Sınavlar", desc: "AP, giriş ve dil sınavları; tarihler ve kayıt", modeller: AP_MODELLER },
-    { href: "yazismalar.html", label: "Başvurularım", desc: "Üniversitelere e-posta ve teyit taslakları" },
-    { group: "Ülke rehberi" },
-    { href: "almanya-muhendislik.html", label: "Almanya rehberi" },
-    { href: "italya-muhendislik.html", label: "İtalya rehberi" }
+  // Sade Hedefim (3 görünüm): Ülkem (sartlar + üniversiteler + ülke rehberleri) · Takvimim (rota + sınavlar) · Başvurularım
+  { id: "hedefim", href: "sartlar.html", label: "Hedefim", mobilBaglanti: true,
+    etkinSayfalar: ["universiteler.html", "sinavlar.html", "almanya-muhendislik.html", "italya-muhendislik.html", "bilgi-merkezi.html"], children: [
+    { href: "sartlar.html", label: "Ülkem", desc: "Hedef ülkenin şartları ve en iyi üniversiteleri" },
+    { href: "rota.html", label: "Takvimim", desc: "Tarihli adımlar ve sınav tarihleri" },
+    { href: "yazismalar.html", label: "Başvurularım", desc: "Üniversitelere hazır e-posta taslakları" }
   ] },
   { id: "sinavlar", href: "sinavlar.html?model=uni-mezun", label: "Sınavlar", modeller: ["uni-mezun"] },
   { id: "ben", href: "ilerleme.html", label: "Ben", modeller: AP_MODELLER, mobilBaglanti: true, children: [
-    { href: "ilerleme.html", label: "İlerleme", desc: "Ders sonuçların ve Hata Defteri" },
-    { href: "profil.html", label: "Profil ve hesap" },
-    { href: "profil.html#yedek", label: "Yedek al / yükle" }
-  ] },
+    { href: "ilerleme.html", label: "İlerleme", desc: "Ders sonuçların ve Yanlışlarım" },
+    { href: "profil.html", label: "Profil ve hesap" }
+  ].concat(MEBERRA_SUNUCU ? [] : [{ href: "profil.html#yedek", label: "Yedek al / yükle" }]) },
   { id: "ben", href: "profil.html", label: "Ben", modeller: ["uni-mezun"] }
 ];
 /** Tur 11 (plan §1.2): menü öğesi bu öğrenci modeline gösterilir mi? (modeller yoksa herkese) */
@@ -436,8 +434,7 @@ function apNavEtkin(item, current) {
 
 // Oturumsuz ziyaretçi menüsü (K4): yalnızca APMEBERRA_ACIK_SAYFALAR'daki sayfalar. Rehberler altbilgide (APMEBERRA_REHBERLER).
 const APMEBERRA_NAV_ACIK = [
-  { id: "sartlar", href: "sartlar.html", label: "Şartlar" },
-  { id: "universiteler", href: "universiteler.html", label: "Üniversiteler" },
+  { id: "sartlar", href: "sartlar.html", label: "Ülkeler" },
   { id: "sinavlar", href: "sinavlar.html", label: "Sınavlar" },
   { id: "fiyatlar", href: "fiyatlar.html", label: "Fiyatlar" }
 ];
@@ -445,8 +442,7 @@ const APMEBERRA_NAV_ACIK = [
 const APMEBERRA_REHBERLER = [
   { href: "almanya-muhendislik.html", label: "Almanya rehberi" },
   { href: "italya-muhendislik.html", label: "İtalya rehberi" },
-  { href: "istanbul-sinav-rehberi.html", label: "İstanbul sınav rehberi", modeller: AP_MODELLER },
-  { href: "bilgi-merkezi.html", label: "Bilgi Merkezi" }
+  { href: "istanbul-sinav-rehberi.html", label: "İstanbul sınav rehberi", modeller: AP_MODELLER }
 ];
 
 const APMEBERRA_ICONS = {
@@ -541,7 +537,7 @@ function initGlobalNav() {
   if (!nav) {
     nav = document.createElement("nav");
     nav.className = "navbar";
-    nav.innerHTML = '<a href="index.html" class="nav-brand"><div class="brand-badge">Meberra</div><div><div class="brand-title">Hazırlık Portalı</div></div></a>';
+    nav.innerHTML = '<a href="index.html" class="nav-brand"><div class="brand-badge">Meberra</div></a>';
     document.body.insertBefore(nav, document.body.firstChild);
   }
   if (nav.dataset.navEnhanced) return;
@@ -692,7 +688,7 @@ function initGlobalNav() {
         '</div>' +
         '<ul>' +
           (minimal ? "" : '<li><a href="profil.html"' + (current === "profil.html" ? ' aria-current="page"' : "") + '>' + APMEBERRA_ICONS.user + '<span>Profil ve hesap</span></a></li>' +
-          '<li><a href="profil.html#yedek">' + APMEBERRA_ICONS.save + '<span>Yedek al / yükle</span></a></li>' +
+          (MEBERRA_SUNUCU ? "" : '<li><a href="profil.html#yedek">' + APMEBERRA_ICONS.save + '<span>Yedek al / yükle</span></a></li>') +
           // Meberra: Premium durumu ve yönetici paneli (sunucu modu)
           (MEBERRA_SUNUCU ? (me.uyelik && me.uyelik.premium && !me.uyelik.yonetici
             ? '<li><a href="premium.html">' + APMEBERRA_ICONS.crown + '<span>Premium · aktif</span></a></li>'
@@ -834,6 +830,7 @@ function initFooterRehber() {
   const me = guest ? null : APMEBERRA_ME;
   if (!guest && !(me && me.profile && me.profile.tamamlandi)) return;
   if (document.querySelector(".footer-rehber")) return;
+  if (apCurrentPage() === "index") return; // Bugün sade kalır: altbilgide yalnızca "Hedefim" bağlantısı
   const model = me && me.profile ? me.profile.ogrenciModeli : null;
   const current = apCurrentPage() + ".html";
   let footer = document.querySelector("footer.footer");
@@ -854,14 +851,13 @@ function initFooterRehber() {
 /**
  * Tur 14 A4 (plan §2.3-B): Hedefim alanı — sartlar.html · universiteler.html · rota.html üstünde ortak sekme çubuğu.
  * Sayfalar arası gezinme olduğu için bağlantı listesidir (aria-current="page", role=tab değil). Seçim (ülke, durum, dil)
- * adres satırından, yoksa profilden taşınır. Ziyaretçi (K4): yalnızca Şartlar · Üniversiteler (Rotam kilitli sayfa).
+ * adres satırından, yoksa profilden taşınır. Ziyaretçi (K4): yalnızca Şartlar · Üniversiteler (Takvimim kilitli sayfa).
  */
 // v4: 4 sekmeli menü — Başvuru ana öğesi kalktı; Sınavlar ve Başvurularım Hedefim sekme çubuğunda
+// Sade Hedefim: 3 görünüm. altSayfalar: o sekmenin altındaki sayfalar (sekme çubuğu orada da görünür, sekme etkin olur).
 const APMEBERRA_HEDEFIM = [
-  { id: "sartlar", label: "Şartlar" },
-  { id: "universiteler", label: "Üniversiteler" },
-  { id: "rota", label: "Rotam", oturum: true },
-  { id: "sinavlar", label: "Sınavlar", oturum: true, modeller: AP_MODELLER },
+  { id: "sartlar", label: "Ülkem", altSayfalar: ["universiteler"] },
+  { id: "rota", label: "Takvimim", oturum: true, altSayfalar: ["sinavlar"] },
   { id: "yazismalar", label: "Başvurularım", oturum: true }
 ];
 /** Profildeki kendi seçimi {model, sinif, ulke, dil} | null (sartlar.html "Kendi profilime göre göster" ile aynı kural). */
@@ -909,8 +905,10 @@ function initHedefimSekmeler() {
   const guest = apMisafirMi();
   const me = guest ? null : APMEBERRA_ME;
   const model = me && me.profile ? me.profile.ogrenciModeli : null;
+  if (guest) return; // ziyaretçi yalnızca Ülkem'i görür; tek sekmelik çubuk gereksiz
   const items = APMEBERRA_HEDEFIM.filter(h => (!h.oturum || !guest) && apNavUygun(h, model));
-  if (!items.some(h => h.id === page)) return;
+  const sekmeMi = h => h.id === page || (Array.isArray(h.altSayfalar) && h.altSayfalar.indexOf(page) >= 0);
+  if (!items.some(sekmeMi)) return;
   if (!guest && !(me && me.profile && me.profile.tamamlandi)) return;
   const main = document.querySelector("main.main-container");
   if (!main || main.querySelector(".hedefim-bar")) return;
@@ -918,7 +916,7 @@ function initHedefimSekmeler() {
   nav.className = "hedefim-bar";
   nav.setAttribute("aria-label", "Hedefim");
   nav.innerHTML = '<span class="hedefim-ad" aria-hidden="true">Hedefim</span><ul class="hedefim-tabs" style="--hb-n:' + items.length + '">' +
-    items.map(h => '<li><a class="hedefim-tab" data-hedefim="' + h.id + '" href="' + h.id + '.html"' + (h.id === page ? ' aria-current="page"' : "") + '>' + apEsc(h.label) + '</a></li>').join("") + '</ul>';
+    items.map(h => '<li><a class="hedefim-tab" data-hedefim="' + h.id + '" href="' + h.id + '.html"' + (sekmeMi(h) ? ' aria-current="page"' : "") + '>' + apEsc(h.label) + '</a></li>').join("") + '</ul>';
   main.insertBefore(nav, main.firstChild);
   // v4: telefonda sekmeler yatay kayar; etkin sekme görünür alana getirilir (sayfa dikey kaymaz)
   const ul = nav.querySelector(".hedefim-tabs"), etkin = nav.querySelector('[aria-current="page"]');
@@ -963,22 +961,23 @@ document.addEventListener("DOMContentLoaded", () => {
   initCountdown();
   initKMKChecker();
   initFormulaCopies();
+  initUniteMetinleri();
 });
 
 // --- Sayfa kabuğu (v3): tek tip marka satırı, ders sayfası vurgu rengi ---
 function initPageChrome() {
   const page = apCurrentPage();
-  // Marka satırı her sayfada aynı: "Meberra · Hazırlık Portalı" (eski sayfa başlıkları büyük harfli "STUDIO" adları taşıyordu)
+  // Marka satırı her sayfada aynı: yalnızca "Meberra" rozeti (eski sayfa başlıkları büyük harfli "STUDIO" adları taşıyordu)
   document.querySelectorAll(".navbar .nav-brand").forEach(b => {
     const t = b.querySelector(".brand-title");
-    if (t) t.textContent = "Hazırlık Portalı";
+    if (t) t.remove();
     b.querySelectorAll(".brand-subtitle").forEach(x => x.remove());
     if (apMisafirMi()) {
       // Ziyaretçi için marka bağlantısı açık giriş noktasına gider (Bugün ekranı kilitli)
       b.setAttribute("href", APMEBERRA_ACIK_GIRIS);
-      b.setAttribute("aria-label", "Meberra Hazırlık Portalı — Ülke şartları");
+      b.setAttribute("aria-label", "Meberra — Ülkeler");
     } else {
-      b.setAttribute("aria-label", "Meberra Hazırlık Portalı — Bugün");
+      b.setAttribute("aria-label", "Meberra — Bugün");
     }
   });
   if (/^ap-/.test(page)) {
@@ -1053,14 +1052,14 @@ function apSiradakiAdim(g) {
     const etiket = a.tarih.etiket || (AP_AYLAR[a.tarih.ay - 1] + " " + a.tarih.yil);
     return { tur: "rota", baslik: a.baslik, kalanGun: yakin.kalan,
       aciklama: [g.rotaUlke ? g.rotaUlke + " rotası" : "", etiket, yakin.kalan === 0 ? "ayın son günü" : "ay bitimine " + yakin.kalan + " gün"].filter(Boolean).join(" · "),
-      href: a.href || "rota.html", etiket: a.etiket || "Rotamı aç",
+      href: a.href || "rota.html", etiket: a.etiket || "Takvimimi aç",
       neden: "Bu rota adımının ayı " + yakin.kalan + " gün içinde bitiyor. Adımın tarihi ay düzeyindedir; kesin son gün için adımın kaynağına bak." };
   }
   const hata = Math.max(0, +g.acikHata || 0);
   if (hata >= 5) {
-    return { tur: "hata", baslik: hata + " yanlış soruyu tekrar çöz", aciklama: g.sonHata ? "En son yanlışın: " + g.sonHata : "Hata Defterindeki açık sorular",
+    return { tur: "hata", baslik: hata + " yanlış soruyu tekrar çöz", aciklama: g.sonHata ? "En son yanlışın: " + g.sonHata : "Yanlışlarım’daki açık sorular",
       href: "deneme.html?mod=yanlislar", etiket: "Yanlışlarımı çöz",
-      neden: "Hata Defterinde 5 ya da daha fazla açık soru var; yanlışları kapatmak yeni konudan önce gelir. Hepsi tek oturumda gelir; doğru çözdüğün hata kapanır." };
+      neden: "Yanlışlarım’da 5 ya da daha fazla açık soru var; yanlışları kapatmak yeni konudan önce gelir. Hepsi tek oturumda gelir; doğru çözdüğün hata kapanır." };
   }
   const p0 = apDiz(g.plan).find(x => x && x.baslik && x.href);
   if (p0) {
@@ -1072,7 +1071,7 @@ function apSiradakiAdim(g) {
     return { tur: "profil", baslik: "Profilini tamamla", aciklama: "Eksik: " + eksik.join(", "), href: "profil.html", etiket: "Profili düzenle",
       neden: "Öneriler ve tarihler profilindeki bilgilere göre hesaplanır." };
   }
-  return { tur: "bos", baslik: "Acil bir işin yok", aciklama: "Rotandaki sonraki adımlara ve yaklaşan tarihlere göz at.", href: g.bosHref || "rota.html", etiket: "Rotamı aç",
+  return { tur: "bos", baslik: "Acil bir işin yok", aciklama: "Takvimindeki sonraki adımlara ve yaklaşan tarihlere göz at.", href: g.bosHref || "rota.html", etiket: "Takvimimi aç",
     neden: "Yarım deneme, yakın tarihli rota adımı, birikmiş hata ya da plan görevi yok." };
 }
 
@@ -1132,7 +1131,7 @@ function apYaklasanTarihler(g) {
   apDiz(g.rotaAdimlari).forEach(a => {
     if (!a || a.yapildi || !a.tarih || !(+a.tarih.yil) || !(+a.tarih.ay >= 1 && +a.tarih.ay <= 12)) return;
     const yil = +a.tarih.yil, ay = +a.tarih.ay, son = apAySonuNo(yil, ay);
-    if (son < bugun) return; // geciken rota adımı bir görevdir (Rotam'da "tarihi geçti"), dönemlik son tarih değil
+    if (son < bugun) return; // geciken rota adımı bir görevdir (Takvimim'de "tarihi geçti"), dönemlik son tarih değil
     const ayKey = yil + "-" + String(ay).padStart(2, "0");
     if (a.bagli && /^ap-/.test(String(a.bagli.sinav || "")) && apAylari.indexOf(ayKey) >= 0) return; // AP kayıt son günüyle aynı iş
     out.push({ anahtar: "rota-" + a.id, tur: "rota", gun: null, ayDuzeyi: true, ust: AP_AYLAR_KISA[ay - 1].toLocaleUpperCase("tr-TR"), alt: String(yil),
@@ -1225,7 +1224,7 @@ function apCalismaPlani(g) {
   const kilitli = (c, u) => g.premium === false && !kutuAcik(c.page, u.id);
   if (acik.length) {
     const e0 = acik[0];
-    out.push(gorev("redo", "Hata Defterindeki " + acik.length + " soruyu tekrar çöz", "En son yanlışın: " + (e0.topic || e0.id), "deneme.html?mod=yanlislar", "Yanlışlarımı çöz"));
+    out.push(gorev("redo", "Yanlışlarım’daki " + acik.length + " soruyu tekrar çöz", "En son yanlışın: " + (e0.topic || e0.id), "deneme.html?mod=yanlislar", "Yanlışlarımı çöz"));
   }
   let weakest = null;
   courses.forEach(c => apDiz(c.units).forEach(u => {
@@ -1266,7 +1265,7 @@ function apCalismaPlani(g) {
     else if (kalan <= 21) it = gorev("target", "Seviye raporuna göre kayıt kararını ver", gunMetni + ". Son raporunu öğretmeninle gözden geçir.", "seviye-testi.html#rapor", "Raporu aç");
     if (it) { if (kalan <= 60) out.unshift(it); else out.push(it); }
   }
-  out.push(gorev("book", "Son tarihleri kontrol et", "Kayıt ve sınav tarihleri Bilgi Merkezi’nde kaynaklarıyla birlikte tutulur.", "bilgi-merkezi.html", "Bilgi Merkezi"));
+  out.push(gorev("book", "Son tarihleri kontrol et", "Kayıt ve sınav tarihleri Takvimim’de kaynaklarıyla birlikte tutulur.", "rota.html", "Takvimim"));
   return out;
 }
 
@@ -1305,6 +1304,36 @@ function apCalismaSerisi(progress, denemeler, bugun) {
   return { seri, bugunVar, hafta };
 }
 // --- Bugün ekranı sonu ---
+
+// --- Ders başlıklarının öğrenciye görünen hâli (saf) ---
+// Kaynak başlıklar İngilizce CED adlarıyla kalır (apTocParse, deneme bankası üreticisi ve testler onları okur); ekranda
+// "Unit 1: Limits — Ultra-Comprehensive Concept Mastery" → "Ünite 1 · Limits", "…: İnteraktif Soru İstasyonu" → "… · Sorular".
+function apUniteGorunenAd(text) {
+  let t = String(text || "").replace(/\s+/g, " ").trim();
+  const quiz = /İnteraktif Soru İstasyonu/i.test(t);
+  t = t.replace(/\s*[:\-–—]?\s*İnteraktif Soru İstasyonu.*$/i, "");
+  let birim = false;
+  t = t.replace(/\b(Units?|Section) ([0-9A-Z]+(?:\s*[–&-]\s*[0-9]+)?)\b( \(cont\.\))?(\s*(?::|—|–)\s*|\s+(?=[A-Z(]))?/g, (m, k, n, c, ayr) => {
+    birim = true;
+    return (/^Section/.test(k) ? "Bölüm " : "Ünite ") + n.replace(/\s+/g, " ") + (c ? " (devam)" : "") + (ayr ? " · " : "");
+  });
+  if (!birim) return quiz ? (t ? t + " · Sorular" : "Sorular") : t;
+  if (!quiz) {
+    // Anlatım başlığında konu adından sonraki pazarlama/alt başlık kuyruğu atılır ("— Ultra-Comprehensive Concept Mastery")
+    const i = t.search(/(Ünite|Bölüm) [^·]*· /);
+    if (i >= 0) { const j = t.indexOf(" · ", i) + 3; t = t.slice(0, j) + t.slice(j).split(" — ")[0]; }
+  }
+  return quiz ? t.replace(/\s*·\s*$/, "") + " · Sorular" : t;
+}
+/** Ders sayfasındaki h2 başlıklarını görünen hâline çevirir; asıl metin data-orijinal'de kalır (soru kaydı ve odak kodu onu okur). */
+function initUniteMetinleri() {
+  if (!/^ap-|^sinav-cents$/.test(apCurrentPage())) return;
+  document.querySelectorAll(".main-container h2").forEach(h => {
+    if (h.children.length || h.closest(".question-card, .feedback-box, .modal-overlay, .doc-toc, .ug-panel")) return;
+    const yeni = apUniteGorunenAd(h.textContent);
+    if (yeni && yeni !== h.textContent.replace(/\s+/g, " ").trim()) { h.dataset.orijinal = h.textContent; h.textContent = yeni; }
+  });
+}
 
 // --- İçindekiler veri modeli (Tur 14): başlık metninden ünite anahtarı, numara ve kısa ad çıkarılır ---
 // Yeni ünite eklemek için yalnızca ders sayfasına h2 yazmak yeter ("Unit 7: …" ve "Unit 7 …: İnteraktif Soru İstasyonu");
@@ -1516,12 +1545,12 @@ function initUniteGorunumu() {
       const git = kilitli(u) ? APMEBERRA_ICONS.crown + "Premium" : !u.cevap ? "Başla" : u.cevap >= u.toplam ? "Tekrar et" : "Sürdür";
       return '<li><a class="ug-kart' + (u.cevap && u.cevap >= u.toplam ? " is-bitti" : "") + (kilitli(u) ? " is-kilitli" : "") + '" href="' + base + "?unite=" + u.no + '">' +
         '<span class="ug-no" aria-hidden="true">' + u.no + '</span><span class="ug-govde">' +
-        (dersFarkli && u.ders ? '<span class="ug-ders">' + apEsc(u.ders) + "</span>" : "") + "<b>" + apEsc(u.baslik) + "</b><small>" + apEsc(durum) + "</small>" +
+        (dersFarkli && u.ders ? '<span class="ug-ders">' + apEsc(u.ders) + "</span>" : "") + "<b>" + apEsc(apUniteGorunenAd(u.baslik)) + "</b><small>" + apEsc(durum) + "</small>" +
         (u.toplam ? '<span class="ug-cubuk" aria-hidden="true"><i style="--w:' + yuzde(u.cevap, u.toplam) + '%"></i></span>' : "") +
         '</span><span class="ug-git">' + git + " →</span></a></li>";
     }).join("") + "</ol>" +
     (g.ekler.length ? '<h3 class="ug-ek-h">Ek bölümler</h3><ul class="ug-ekler">' +
-      g.ekler.map((e, k) => '<li><a class="ug-ek" href="' + base + "?bolum=" + (k + 1) + '">' + apEsc(e.baslik) + "</a></li>").join("") + "</ul>" : ""); };
+      g.ekler.map((e, k) => '<li><a class="ug-ek" href="' + base + "?bolum=" + (k + 1) + '">' + apEsc(apUniteGorunenAd(e.baslik)) + "</a></li>").join("") + "</ul>" : ""); };
   panelCiz();
   main.insertBefore(panel, hero ? hero.nextSibling : main.firstChild);
 
@@ -1554,28 +1583,28 @@ function initUniteGorunumu() {
       if (kilitli(u)) {
         // Premium ünitesi: içerik gösterilmez, tanıtım paneli çıkar
         duvar.innerHTML = '<span class="ug-duvar-ico" aria-hidden="true">' + APMEBERRA_ICONS.crown + '</span>' +
-          "<h2>" + apEsc(u.baslik) + " Premium'da</h2>" +
+          "<h2>" + apEsc(apUniteGorunenAd(u.baslik)) + " Premium'da</h2>" +
           "<p>Ücretsiz planda bu sayfada " + ucretsizNolar.length + " " + birim + " açık. Premium ile tüm " + (bolumMu ? "bölümlere" : "ünitelere") + ", sınırsız ders denemesine ve genel denemeye eriş.</p>" +
           '<ul class="ug-duvar-liste"><li>Tüm üniteler: konu anlatımı + AP tarzı sorular</li><li>Sınırsız ders denemesi ve genel deneme</li><li>Yanlışlarını tekrar et, ilerlemeni takip et</li></ul>' +
           '<div class="ug-duvar-eylem"><a class="btn-energy" href="premium.html">Premium' + "'" + 'a geç</a><a class="btn-ghost" href="fiyatlar.html">Planları karşılaştır</a></div>' +
-          '<p class="ug-duvar-not">Ücretsiz üniteler: ' + g.uniteler.filter(x => !kilitli(x)).map(x => '<a href="' + base + "?unite=" + x.no + '">' + apEsc(x.baslik) + "</a>").join(" · ") + "</p>";
+          '<p class="ug-duvar-not">Ücretsiz üniteler: ' + g.uniteler.filter(x => !kilitli(x)).map(x => '<a href="' + base + "?unite=" + x.no + '">' + apEsc(apUniteGorunenAd(x.baslik)) + "</a>").join(" · ") + "</p>";
         ilk.parentNode.insertBefore(duvar, ilk);
         ilk.parentNode.insertBefore(alt, duvar.nextSibling);
         goster([ust, duvar, alt]);
-        document.title = u.baslik + " — " + baslik0;
+        document.title = apUniteGorunenAd(u.baslik) + " — " + baslik0;
         return;
       }
       son.parentNode.insertBefore(alt, son.nextSibling);
       if (duvar.parentNode) duvar.parentNode.removeChild(duvar);
       goster([ust, alt].concat(u.bloklar.map(i => els[i])));
       konulariKatla(u);
-      document.title = u.baslik + " — " + baslik0;
+      document.title = apUniteGorunenAd(u.baslik) + " — " + baslik0;
     } else if (mod === "bolum") {
       const e = g.ekler[n - 1];
       ust.innerHTML = '<a class="ug-geri" href="' + base + '">← ' + apEsc(ders) + "</a>";
       els[e.blok].parentNode.insertBefore(ust, els[e.blok]);
       goster([ust, els[e.blok]]);
-      document.title = e.baslik + " — " + baslik0;
+      document.title = apUniteGorunenAd(e.baslik) + " — " + baslik0;
     } else {
       goster([hero, panel].concat(g.genel.map(i => els[i])));
       document.title = baslik0;
@@ -1668,6 +1697,9 @@ function initDocToc() {
     return Object.assign(apTocParse(h.textContent), { id: h.id, el: h });
   });
   const html = apTocHtml(items);
+  // Görünen metin: "Unit 5: …" → "Ünite 5 · …" (apTocHtml çıktısı testlerde İngilizce kalır)
+  html.list = html.list.replace(/>([^<]+)</g, (m, x) => /\b(Units?|Section) [0-9A-Z]/.test(x) ? ">" + (x.match(/^\s*/)[0]) + apUniteGorunenAd(x) + (/\s$/.test(x) ? " " : "") + "<" : m)
+    .replace(/aria-label="(Unit|Section) ([^"]*?) soru istasyonu"/g, (m, k, n) => 'aria-label="' + (k === "Section" ? "Bölüm " : "Ünite ") + n + ' soruları"');
 
   const hero = main.querySelector(":scope > .hero-section, :scope > .page-head");
   const layout = document.createElement("div");
@@ -1803,7 +1835,7 @@ function initKMKChecker() {
         <strong>Ders kombinasyonun ABD diploması için tanımlı kurala uyuyor</strong> (${mathScore}, ${scienceScore}, ${langScore}, ${electiveScore} puan).<br/>
         ${kuralNotu}
         • <em>Doğa bilimi notu:</em> Fizik yalnızca <strong>Physics C: Mechanics + Physics C: E&amp;M birlikte</strong> sayılır; Physics 1 fen dersi sayılmaz.${elective === "second_science" ? " İkinci bir fen dersinin (ör. Physics C ile Chemistry birlikte) 4. ek ders olarak sayılıp sayılmayacağı: <strong>Yoruma açık</strong> (anabin'de teyit gerekir). Güvenli 4. ders: CS A ya da Micro + Macro birlikte." : " Physics C ve Chemistry ayrı derslerdir; ikisini de alabilirsin, ikisi de fen şartını karşılar."}<br/>
-        • <em>Dil:</em> İngilizce programlar için genellikle IELTS/TOEFL istenir; kesin puan her programın sayfasında yazar. Kaynaklar için <a href="bilgi-merkezi.html">Bilgi Merkezi</a>'ne bak.
+        • <em>Dil:</em> İngilizce programlar için genellikle IELTS/TOEFL istenir; kesin puan her programın sayfasında yazar. Kaynaklar için <a href="sartlar.html?ulke=de">Ülkem</a> sayfasına bak.
       `;
     } else {
       let missing = [];
@@ -1820,7 +1852,7 @@ function initKMKChecker() {
         <strong>Dikkat${apStudentName() ? " " + escapeHtml(apStudentName()) : ""}:</strong> Mevcut seçiminde KMK (anabin USA-BV07) kuralına göre eksikler bulunuyor:<br/>
         • <em>Eksik Kriterler:</em> ${missing.join(", ")}.<br/>
         ${kuralNotu}
-        • Ayrıntı ve kaynaklar için <a href="bilgi-merkezi.html">Bilgi Merkezi</a>'ne bak.
+        • Ayrıntı ve kaynaklar için <a href="almanya-muhendislik.html">Almanya detaylı rehberine</a> bak.
       `;
     }
 
@@ -1855,7 +1887,7 @@ function escapeHtml(text) {
 
 // ==========================================================================
 // INTERACTIVE QUESTION BANK & DIAGNOSTIC REMEDIATION ENGINE (v2)
-// - Cevaplar ve Hata Defteri localStorage'da (try/catch) saklanır.
+// - Cevaplar ve Yanlışlarım localStorage'da (try/catch) saklanır.
 // - Her quiz kendi istatistiğini tutar (birden çok ünite aynı sayfada).
 // - Klavye: şıklar <button>; odak bir soru kartındayken A–E tuşları seçer,
 //   ↑/↓ şıklar arasında gezinir. Geri bildirim aria-live ile duyurulur.
@@ -1892,8 +1924,9 @@ function apUnitRecord(progress, page, containerId) {
 function apUnitTitle(container, containerId) {
   const section = container.closest("section");
   const t = section && section.querySelector(".panel-title");
-  if (t && t.textContent.trim()) {
-    const clean = t.textContent.replace(/\s+/g, " ").trim()
+  const tMetin = t ? (t.dataset.orijinal || t.textContent) : "";
+  if (tMetin.trim()) {
+    const clean = tMetin.replace(/\s+/g, " ").trim()
       .replace(/\s*[:\-–—]?\s*(İnteraktif|Interactive)\b.*$/i, "").trim();
     if (clean) return clean;
   }
@@ -1969,7 +2002,7 @@ function initInteractiveQuiz(containerId, questionsData) {
         <button type="button" class="btn-ghost" id="${containerId}-wrong-only" aria-pressed="false" onclick="toggleWrongOnly('${containerId}')" disabled>
           Sadece yanlışlarımı tekrar çöz
         </button>
-        <button type="button" class="btn-ghost btn-danger" onclick="resetQuiz('${containerId}')" title="Bu ünitedeki cevaplarını sil (Hata Defteri korunur)">
+        <button type="button" class="btn-ghost btn-danger" onclick="resetQuiz('${containerId}')" title="Bu ünitedeki cevaplarını sil (Yanlışlarım korunur)">
           Sıfırla
         </button>
       </div>
@@ -2111,7 +2144,7 @@ function handleOptionClick(containerId, questionId, selectedOptionId) {
   unit.answers[questionId] = { s: selectedOptionId, c: isCorrect, t: now };
   apStoreSet(APMEBERRA_KEYS.progress, progress);
 
-  // 2) Hata Defteri
+  // 2) Yanlışlarım
   const errors = apLoadErrors();
   const key = page + "|" + questionId;
   if (!isCorrect) {
@@ -2357,7 +2390,7 @@ function toggleWrongOnly(containerId) {
 function resetQuiz(containerId) {
   const container = document.getElementById(containerId);
   if (!container || !container._questionsData) return;
-  const ok = window.confirm("Bu ünitedeki tüm cevapların silinecek. Hata Defteri kayıtların korunur. Devam edilsin mi?");
+  const ok = window.confirm("Bu ünitedeki tüm cevapların silinecek. Yanlışlarım kayıtların korunur. Devam edilsin mi?");
   if (!ok) return;
   const progress = apLoadProgress();
   const pageRec = progress.pages[apCurrentPage()];
@@ -2368,7 +2401,7 @@ function resetQuiz(containerId) {
   initInteractiveQuiz(containerId, container._questionsData);
 }
 
-/** İlerleme / Hata Defteri bağlantısıyla gelindiğinde (#q-card-...) soruyu bul ve vurgula. */
+/** İlerleme / Yanlışlarım bağlantısıyla gelindiğinde (#q-card-...) soruyu bul ve vurgula. */
 function initQuizHashFocus() {
   const hash = decodeURIComponent(window.location.hash || "");
   // Tur 14 A7: #konu-<soru kabı> → o ünitenin soru istasyonundan önceki en yakın konu anlatımı başlığı (deneme sonucu "Konu anlatımına dön")
@@ -2380,7 +2413,7 @@ function initQuizHashFocus() {
       const heads = Array.from(document.querySelectorAll(".main-container h2")).filter(h => !h.closest(".modal-overlay, .hero-section, .question-card, .feedback-box, .doc-toc"));
       const once = heads.filter(h => h.compareDocumentPosition(kap) & Node.DOCUMENT_POSITION_FOLLOWING);
       let hedef = null;
-      for (let i = once.length - 1; i >= 0; i--) { if (!AP_TOC_QUIZ.test(once[i].textContent)) { hedef = once[i]; break; } }
+      for (let i = once.length - 1; i >= 0; i--) { if (!AP_TOC_QUIZ.test(once[i].dataset.orijinal || once[i].textContent)) { hedef = once[i]; break; } }
       const el = hedef || kap;
       el.scrollIntoView({ block: "start" });
       if (!el.hasAttribute("tabindex")) el.setAttribute("tabindex", "-1");
@@ -2754,7 +2787,7 @@ window.APMEBERRA = {
     const pr = data.anahtarlar[APMEBERRA_KEYS.progress];
     if (pr !== undefined && !(isObj(pr) && isObj(pr.pages))) fail("Yedekteki soru cevapları bozuk görünüyor. Hiçbir veri değiştirilmedi.");
     const er = data.anahtarlar[APMEBERRA_KEYS.errors];
-    if (er !== undefined && !(isObj(er) && isObj(er.items))) fail("Yedekteki Hata Defteri bozuk görünüyor. Hiçbir veri değiştirilmedi.");
+    if (er !== undefined && !(isObj(er) && isObj(er.items))) fail("Yedekteki Yanlışlarım bozuk görünüyor. Hiçbir veri değiştirilmedi.");
     const sv = data.anahtarlar[APMEBERRA_KEYS.seviye];
     if (sv !== undefined && !(isObj(sv) && (sv.raporlar === undefined || (Array.isArray(sv.raporlar) && sv.raporlar.every(isObj))) &&
         (sv.kontrol === undefined || isObj(sv.kontrol)) && (sv.devam === undefined || sv.devam === null || isObj(sv.devam)))) {
@@ -2797,7 +2830,7 @@ window.APMEBERRA = {
     return out;
   }
 
-  // Hata Defteri: kayıtlar "sayfa|soru id" ile birleşir; yanlış sayısı = en
+  // Yanlışlarım: kayıtlar "sayfa|soru id" ile birleşir; yanlış sayısı = en
   // büyüğü, ilk tarih = en eski, son yanlış = en yeni. "Düzeltildi" bilgisi,
   // düzeltme bilinen en son yanlıştan sonra (ya da aynı anda) yapıldıysa korunur.
   function mergeErrorItem(a, b) {

@@ -356,7 +356,7 @@
   }
 
   // ------------------------------------------------------------------------
-  // Şablonlar (Yazışmalarım): aktif rotanın şablonları önce
+  // Şablonlar (Başvurularım): aktif rotanın şablonları önce
   // ------------------------------------------------------------------------
   /** Rota adımlarında bağlanan şablon id'leri (sırayla, tekrarsız). */
   function rotaSablonlari(rota) {
@@ -448,8 +448,8 @@
 
   var SAYFA_AD = {
     "universiteler.html": "Üniversitelerim", "almanya-muhendislik.html": "Almanya rehberi", "italya-muhendislik.html": "İtalya rehberi",
-    "sinavlar.html": "Sınavlar", "yazismalar.html": "Yazışmalarım", "bilgi-merkezi.html": "Bilgi Merkezi",
-    "istanbul-sinav-rehberi.html": "İstanbul sınav rehberi", "profil.html": "Profilim", "rota.html": "Rotam",
+    "sinavlar.html": "Sınavlar", "yazismalar.html": "Başvurularım", "bilgi-merkezi.html": "Kaynaklar",
+    "istanbul-sinav-rehberi.html": "İstanbul sınav rehberi", "profil.html": "Profilim", "rota.html": "Takvimim",
     "seviye-testi.html": "Seviye testi", "deneme.html": "Denemeler", "sinav-cents.html": "CEnT-S hazırlığı"
   };
   /** Bağlı öğe -> {tur, id, href, etiket}. Yalnızca yerel ve güvenli yollar. */

@@ -4,37 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <title>Bugün | Meberra — AP & Almanya / İtalya Mühendislik Hazırlığı</title>
-  <meta name="description" content="Bugün ekranı: sıradaki adım, yaklaşan tarihler, kaldığın yer, rota özeti, dersler ve ilerleme.">
+  <title>Bugün | Meberra</title>
+  <meta name="description" content="Bugün ekranı: bugünkü görevin, çalışma serin, Yanlışlarım ve derslerin.">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
 
   <nav class="navbar">
-    <a href="index.html" class="nav-brand">
-      <div class="brand-badge">Meberra</div>
-      <div>
-        <div class="brand-title">Hazırlık Portalı</div>
-        <div class="brand-subtitle">İstanbul • Almanya & İtalya • 2 yıllık plan</div>
-      </div>
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html" class="nav-link" aria-current="page">Ana Sayfa</a></li>
-      <li><a href="ap-calculus.html" class="nav-link">Calculus</a></li>
-      <li><a href="ap-physics.html" class="nav-link">Physics</a></li>
-      <li><a href="ap-chemistry.html" class="nav-link">Chemistry</a></li>
-      <li><a href="ap-biology.html" class="nav-link">Biology</a></li>
-      <li><a href="ap-english.html" class="nav-link">English</a></li>
-      <li><a href="ap-electives.html" class="nav-link">Seçmeliler</a></li>
-      <li><a href="almanya-muhendislik.html" class="nav-link">Almanya</a></li>
-      <li><a href="italya-muhendislik.html" class="nav-link">İtalya</a></li>
-      <li><a href="istanbul-sinav-rehberi.html" class="nav-link">İstanbul Sınav</a></li>
-      <li><a href="bilgi-merkezi.html" class="nav-link">Bilgi Merkezi</a></li>
-      <li><a href="ilerleme.html" class="nav-link">İlerleme</a></li>
-    </ul>
-    <div class="nav-actions">
-    </div>
+    <a href="index.html" class="nav-brand"><div class="brand-badge">Meberra</div></a>
+    <div class="nav-actions"></div>
   </nav>
 
   <main class="main-container bugun bugun-v4" id="main-content">
@@ -71,6 +50,9 @@
         <p class="bg-seri-not" id="bg-seri-not"></p>
       </section>
     </div>
+
+    <!-- OYUNLAŞTIRMA ALANI: bildirim zili, günlük hedef, görevler gibi yeni bileşenler buraya eklenecek (şimdilik boş). -->
+    <div id="bg-oyun"></div>
 
     <div class="bg-uclu">
       <!-- YANLIŞLARIM: açık hata sayısı -->
@@ -123,35 +105,10 @@
 
   <!-- AJAN DANIŞMA PENCERESİ -->
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-col">
-        <div class="brand-title u-mb-2">Meberra</div>
-        <p class="u-fs-14 u-c-muted">
-          AP sınavları ve Almanya / İtalya İngilizce mühendislik hedefleri için öğrenci hazırlık portalı.
-        </p>
-      </div>
-      <div class="footer-col">
-        <h5 class="u-mb-3">Portal</h5>
-        <ul class="u-list-none u-fs-14 u-flex u-col u-gap-2">
-          <li><a href="bilgi-merkezi.html">Bilgi Merkezi</a></li>
-          <li><a href="ilerleme.html">İlerleme & Hata Defteri</a></li>
-          <li><a href="istanbul-sinav-rehberi.html">İstanbul Sınav Rehberi</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5 class="u-mb-3">Resmi kaynaklar</h5>
-        <ul class="u-list-none u-fs-14 u-flex u-col u-gap-2">
-          <li><a href="https://apstudents.collegeboard.org" target="_blank" rel="noopener noreferrer">College Board — AP Students ↗</a></li>
-          <li><a href="https://anabin.kmk.org" target="_blank" rel="noopener noreferrer">anabin / KMK ↗</a></li>
-          <li><a href="https://www.uni-assist.de" target="_blank" rel="noopener noreferrer">uni-assist ↗</a></li>
-          <li><a href="https://www.universitaly.it" target="_blank" rel="noopener noreferrer">Universitaly ↗</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div>© 2026 Meberra</div>
-      <div>İlerlemen hesabına otomatik kaydedilir</div>
+  <footer class="footer footer-mini">
+    <div class="footer-bottom u-mt-0">
+      <div>© 2026 Meberra · <span class="yalniz-sunucu">İlerlemen hesabına kaydedilir, her cihazdan devam edersin.</span><span class="yalniz-dosya">İlerlemen bu tarayıcıda saklanır.</span></div>
+      <div><a href="sartlar.html">Hedefim →</a></div>
     </div>
   </footer>
 
@@ -259,7 +216,7 @@
       }
     })();
 
-    // 0b) Rotam: aktif rotanın sıradaki 3 adımı (daraltılmış özet) + KMK denetleyicisinin görünürlüğü
+    // 0b) Takvimim: aktif rotanın sıradaki 3 adımı (daraltılmış özet) + KMK denetleyicisinin görünürlüğü
     (function () {
       var R = window.APMEBERRA_ROTA;
       if (!ME || !ME.profile || !A.rota) return;
@@ -287,33 +244,33 @@
         B.rotaU = u; B.rotaUlke = u ? AD[u] : ""; B.rotaAdimlari = [];
         // KMK denetleyicisi: yalnızca profilde Almanya varken, Almanya rotası aktifken ve öğrenci mezun değilken (K5-b: mezunda AP gizli)
         if (kmk) kmk.hidden = !(A.rota.ulkeler().indexOf("de") >= 0 && u === "de" && !mezun);
-        // v4: rota özeti Bugün'de çizilmez (Hedefim › Rotam); adımlar Sıradaki adım ve Yaklaşan için yine hesaplanır
+        // v4: rota özeti Bugün'de çizilmez (Hedefim › Takvimim); adımlar Sıradaki adım ve Yaklaşan için yine hesaplanır
         if (!sec) {
           var v0 = u ? A.rota.veri(u) : null;
           if (v0 && R && ME.profile.ogrenciModeli !== "uni-mezun") {
             B.rotaAdimlari = R.zamanCizelgesi(v0, ME.profile, BG || new Date(), A.rota.durum()[u]).adimlar.map(function (a) {
               var h = R.bagliHedef(a.bagli);
-              return { id: a.id, baslik: a.baslik, tarih: a.tarih, yapildi: a.yapildi, zorunlu: a.zorunlu, bagli: a.bagli, href: h ? h.href : "rota.html?ulke=" + u, etiket: h ? h.etiket : "Rotamı aç" };
+              return { id: a.id, baslik: a.baslik, tarih: a.tarih, yapildi: a.yapildi, zorunlu: a.zorunlu, bagli: a.bagli, href: h ? h.href : "rota.html?ulke=" + u, etiket: h ? h.etiket : "Takvimimi aç" };
             });
           }
           return;
         }
         if (!u) { sec.hidden = true; return; }
         sec.hidden = false;
-        document.getElementById("pr-kicker").textContent = "Rotam · " + AD[u];
+        document.getElementById("pr-kicker").textContent = "Takvimim · " + AD[u];
         document.getElementById("pr-title").textContent = AD[u] + " rotasının sıradaki adımları";
         var v = A.rota.veri(u);
-        // Tur 11 (D7): DE/IT dışında ve yüksek lisansta tarihli rota yok; Rotam genel yol haritası gösterir
+        // Tur 11 (D7): DE/IT dışında ve yüksek lisansta tarihli rota yok; Takvimim genel yol haritası gösterir
         if (!v || !R || ME.profile.ogrenciModeli === "uni-mezun") {
           document.getElementById("pr-title").textContent = AD[u] + ": genel yol haritası";
-          body.innerHTML = '<p class="le-meta">' + esc(ME.profile.ogrenciModeli === "uni-mezun" ? "Yüksek lisans" : AD[u]) + ' için tarihli kişisel rota henüz yok. Rotam sayfasında göreli zamanlı genel adımları işaretleyebilirsin.</p>' +
+          body.innerHTML = '<p class="le-meta">' + esc(ME.profile.ogrenciModeli === "uni-mezun" ? "Yüksek lisans" : AD[u]) + ' için tarihli kişisel rota henüz yok. Takvimim sayfasında göreli zamanlı genel adımları işaretleyebilirsin.</p>' +
             '<p style="margin-top:8px;"><a href="rota.html?ulke=' + u + '">Genel yol haritasını aç →</a></p>';
           return;
         }
         var c = R.zamanCizelgesi(v, ME.profile, BG || new Date(), A.rota.durum()[u]);
         B.rotaAdimlari = c.adimlar.map(function (a) {
           var h = R.bagliHedef(a.bagli);
-          return { id: a.id, baslik: a.baslik, tarih: a.tarih, yapildi: a.yapildi, zorunlu: a.zorunlu, bagli: a.bagli, href: h ? h.href : "rota.html?ulke=" + u, etiket: h ? h.etiket : "Rotamı aç" };
+          return { id: a.id, baslik: a.baslik, tarih: a.tarih, yapildi: a.yapildi, zorunlu: a.zorunlu, bagli: a.bagli, href: h ? h.href : "rota.html?ulke=" + u, etiket: h ? h.etiket : "Takvimimi aç" };
         });
         var list = R.siradakiAdimlar(c, 3);
         body.innerHTML = uyariHtml() + (list.length ? '<ol class="pr-list">' + list.map(function (a) {
@@ -328,7 +285,7 @@
               (h ? '<a href="' + esc(h.href) + '">' + esc(h.etiket) + ' →</a>' : "") +
             '</li>';
           }).join("") + '</ol>'
-          : '<p class="le-meta">Bekleyen adımın yok. Tüm adımları Rotam sayfasında görebilirsin.</p>') +
+          : '<p class="le-meta">Bekleyen adımın yok. Tüm adımları Takvimim sayfasında görebilirsin.</p>') +
           '<div class="panel-rota-foot"><span>' + c.sayac.yapildi + ' / ' + c.sayac.toplam + ' adım yapıldı' +
             (c.sayac.gecikmis ? ' · <span class="is-late">' + c.sayac.gecikmis + ' zorunlu adımın tarihi geçti</span>' : "") + '</span>' +
             '<a class="btn-ghost" href="rota.html?ulke=' + u + '">Tüm rota ve belgeler →</a></div>';

@@ -130,7 +130,7 @@
         {
           id: "de-mezun-yerlesme-kontrol",
           baslik: "Elindeki yerleşme belgesi hangi alanda?",
-          detay: "Önce elindeki ÖSYM \"Yerleştirme Sonuçları\" belgesinin alanını kontrol et. Hedef Alman programıyla aynı ya da komşu alandaysa YKS'ye yeniden girmen gerekmez: anabin TUR-BV05 eşikleri sınav yılına göre verir ve yerleşmenin hangi yılda olduğuna dair bir süre sınırı koymaz. Üniversitenin geçmiş yıl yerleşme belgesini kabul ettiğini yine de yazılı teyit et; bunu yalnızca üniversite söyleyebilir (teyit gerekir). Yerleşmen yoksa ya da alan uymuyorsa YKS'ye yeniden girmen gerekir. Önceki yıl bir programa yerleştiysen (kayıt yaptırmasan da) yeni yılın yerleştirmesinde OBP katsayın yarıya iner (ÖSYM 2026-YKS Kılavuzu §4.2). Yerleşme durumunu profilinde belirtirsen Rotam yalnızca sana uyan adımları gösterir.",
+          detay: "Önce elindeki ÖSYM \"Yerleştirme Sonuçları\" belgesinin alanını kontrol et. Hedef Alman programıyla aynı ya da komşu alandaysa YKS'ye yeniden girmen gerekmez: anabin TUR-BV05 eşikleri sınav yılına göre verir ve yerleşmenin hangi yılda olduğuna dair bir süre sınırı koymaz. Üniversitenin geçmiş yıl yerleşme belgesini kabul ettiğini yine de yazılı teyit et; bunu yalnızca üniversite söyleyebilir (teyit gerekir). Yerleşmen yoksa ya da alan uymuyorsa YKS'ye yeniden girmen gerekir. Önceki yıl bir programa yerleştiysen (kayıt yaptırmasan da) yeni yılın yerleştirmesinde OBP katsayın yarıya iner (ÖSYM 2026-YKS Kılavuzu §4.2). Yerleşme durumunu profilinde belirtirsen Takvimim yalnızca sana uyan adımları gösterir.",
           kaynak: ANABIN,
           kesinlik: "Doğrulandı",
           zaman: { mezuniyetGore: -1, ay: 9, metin: "Hemen; YKS'ye yeniden girip girmeyeceğine karar vermeden önce" },
@@ -205,7 +205,7 @@
         {
           id: "de-teyit-universite",
           baslik: "Hedef üniversiteye yazılı teyit e-postası",
-          detay: "Her hedef üniversiteye şunu yazılı olarak sor: (1) Türk diploması + AP ile giriş mümkün mü, yoksa TUR-BV05 (YKS yerleşmesi) tek yol mu; (2) YKS yerleştirme sonucu son başvuru tarihinden sonra gelirse sonradan teslim edilebilir mi; (3) bu program uni-assist VPD istiyor mu. 11. sınıftaysan beklemeden şimdi gönderebilirsin; yanıtlar planını erken netleştirir. Mezunsan ayrıca sor: geçmiş yılın YKS yerleşme belgesini kabul ediyorlar mı (anabin bir süre sınırı koymuyor, ama üniversitenin kendi kuralı olabilir) ve mezuniyetten sonraki dönemi ayrıca belgelemen gerekiyor mu. Kendi durumuna özel bir belge sorusu varsa uni-assist için de hazır bir şablon var (Yazışmalarım).",
+          detay: "Her hedef üniversiteye şunu yazılı olarak sor: (1) Türk diploması + AP ile giriş mümkün mü, yoksa TUR-BV05 (YKS yerleşmesi) tek yol mu; (2) YKS yerleştirme sonucu son başvuru tarihinden sonra gelirse sonradan teslim edilebilir mi; (3) bu program uni-assist VPD istiyor mu. 11. sınıftaysan beklemeden şimdi gönderebilirsin; yanıtlar planını erken netleştirir. Mezunsan ayrıca sor: geçmiş yılın YKS yerleşme belgesini kabul ediyorlar mı (anabin bir süre sınırı koymuyor, ama üniversitenin kendi kuralı olabilir) ve mezuniyetten sonraki dönemi ayrıca belgelemen gerekiyor mu. Kendi durumuna özel bir belge sorusu varsa uni-assist için de hazır bir şablon var (Başvurularım).",
           kaynak: ANABIN,
           kesinlik: "Doğrulandı",
           zaman: { mezuniyetGore: -1, ay: 10, metin: "En geç son sınıfın güzünde (Ekim–Aralık)" },
@@ -593,7 +593,7 @@
         {
           id: "it-cents-asil",
           baslik: "Asıl CEnT-S: kayıt yılın için geçerli sezonda gir",
-          detay: "Kayıt yılın için geçerli CEnT-S sezonu, mezuniyetinden önceki yılın Kasım ayında başlar ve mezuniyet yılının Ekim ayında biter. Her makro dönemde bir kez girilebilir. Padova gibi üniversiteler testin belirli bir makro dönemin sonuna kadar alınmasını ister ve AB dışı başvuru penceresi erkendir (2027/28 için 7 Ocak–7 Mart 2027). Bu yüzden ilk makro dönemde (Kasım–Ocak) gir; gerekirse sonraki dönemde tekrarla. Hangi oturumların geçerli olduğunu hedef üniversiteye Yazışmalarım sayfasındaki \"CEnT-S geçerlilik dönemi ve AB dışı kontenjan\" şablonuyla yazılı sor.",
+          detay: "Kayıt yılın için geçerli CEnT-S sezonu, mezuniyetinden önceki yılın Kasım ayında başlar ve mezuniyet yılının Ekim ayında biter. Her makro dönemde bir kez girilebilir. Padova gibi üniversiteler testin belirli bir makro dönemin sonuna kadar alınmasını ister ve AB dışı başvuru penceresi erkendir (2027/28 için 7 Ocak–7 Mart 2027). Bu yüzden ilk makro dönemde (Kasım–Ocak) gir; gerekirse sonraki dönemde tekrarla. Hangi oturumların geçerli olduğunu hedef üniversiteye Başvurularım sayfasındaki \"CEnT-S geçerlilik dönemi ve AB dışı kontenjan\" şablonuyla yazılı sor.",
           kaynak: CISIA_GEC,
           kesinlik: "Doğrulandı",
           zaman: { mezuniyetGore: -1, ay: 11, metin: "Son sınıfın Kasım–Ocak döneminde (ilk makro dönem)" },
@@ -769,7 +769,7 @@
   };
 
   // =====================================================================================
-  // PROFİLE ÖZEL ORTAK UYARILAR (Tur 10, K4-a) — Panelim ve Rotam'da, koşulu tutan profile gösterilir.
+  // PROFİLE ÖZEL ORTAK UYARILAR (Tur 10, K4-a) — Panelim ve Takvimim'de, koşulu tutan profile gösterilir.
   // kosul: "mezun-de-it" -> mezun ve hedef ülkelerinde hem Almanya hem İtalya var (rota.js profilUyarilari).
   // =====================================================================================
   window.APMEBERRA_ROTA_UYARILARI = [

@@ -4,26 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <title>Üniversitelerim | Meberra</title>
-  <meta name="description" content="15 Avrupa ülkesinde en iyi 20 üniversite (QS, ülke içi), lisans ve yüksek lisans, İngilizce ve yerel dil; Almanya ve İtalya için seçilmiş programlar, kabul yolu ve takvim — resmi kaynaklarıyla.">
+  <title>Üniversiteler | Meberra</title>
+  <meta name="description" content="15 Avrupa ülkesinde en iyi 20 üniversite (QS sıralaması, ülke içi), İngilizce ve yerel dilde lisans; Almanya ve İtalya için seçilmiş programlar, kabul yolu ve takvim — resmi kaynaklarıyla.">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
 
   <nav class="navbar">
-    <a href="index.html" class="nav-brand">
-      <div class="brand-badge">Meberra</div>
-      <div><div class="brand-title">Üniversitelerim</div></div>
-    </a>
+    <a href="index.html" class="nav-brand"><div class="brand-badge">Meberra</div></a>
     <div class="nav-actions"></div>
   </nav>
 
   <main class="main-container" id="main-content">
     <header class="page-head">
-      <span class="eyebrow">Üniversiteler</span>
+      <span class="eyebrow"><a href="sartlar.html" id="uni-ulkem">← Ülkem</a> · Üniversiteler</span>
       <h1>Hedef ülkendeki üniversiteler ve isterleri</h1>
-      <p id="uni-lead">Liste en üstte: QS sıralamasına göre ülke içi ilk 20 üniversite; her kartta istenen sınavlar, hazırlayan dersler, ilk e-posta ve “Listeme ekle”. Kabul yolu ve takvim listenin altında.</p>
+      <p id="uni-lead">Liste en üstte: QS (dünya üniversite sıralaması) listesine göre ülke içi ilk 20 üniversite; her kartta istenen sınavlar, hazırlayan dersler, ilk e-posta ve “Listeme ekle”. Kabul yolu ve takvim listenin altında.</p>
     </header>
 
     <div id="uni-root" aria-live="polite">
@@ -36,8 +33,8 @@
 
   <footer class="footer">
     <div class="footer-bottom u-mt-0">
-      <div>İlk 20 listesi <code>data/mevzuat/ulke/</code>, seçilmiş üniversiteler <code>data/mevzuat/ulkeler.js</code>, sınav verisi <code>data/mevzuat/sinavlar.js</code> dosyasından okunur. Başvurudan önce bilgileri resmi kaynaktan teyit et.</div>
-      <div><a href="index.html">← Bugün ekranına dön</a></div>
+      <div>Başvurudan önce bilgileri resmi kaynaktan teyit et. Sonraki adım: <a href="rota.html">Takvimim →</a></div>
+      <div><a href="sartlar.html" class="uni-geri">← Ülkem</a></div>
     </div>
   </footer>
 
@@ -132,10 +129,12 @@
     if (GUEST) {
       document.title = "Üniversiteler | Meberra";
       var eb = document.querySelector(".page-head .eyebrow"); if (eb) eb.textContent = "Üniversiteler · Giriş gerekmez";
+      document.querySelectorAll('.footer a[href="rota.html"]').forEach(function (a) { a.setAttribute("href", "giris.html#kayit"); a.textContent = "Kayıt ol →"; });
       var h1 = document.querySelector(".page-head h1"); if (h1) h1.textContent = "Avrupa’da en iyi üniversiteler ve isterleri";
-      var ld = document.getElementById("uni-lead"); if (ld) ld.textContent = "Ülkeni seç; QS sıralamasına göre ülke içi ilk 20 üniversiteyi lisans ya da yüksek lisans ve eğitim diline göre süz. Her kartta istenen sınavlar ve hazırlayan dersler var; ilk e-posta ve kişisel liste giriş yapınca açılır. Her bilginin yanında resmi kaynağı var.";
-      var back = document.querySelector('.footer a[href="index.html"]');
-      if (back) { back.setAttribute("href", "sartlar.html" + A.erisim.secimSorgusu()); back.textContent = "← Ülke şartlarına dön"; }
+      var ld = document.getElementById("uni-lead"); if (ld) ld.textContent = "Ülkeni seç; QS (dünya üniversite sıralaması) listesine göre ülke içi ilk 20 üniversiteyi eğitim diline göre süz. Her kartta istenen sınavlar ve hazırlayan dersler var; ilk e-posta ve kişisel liste giriş yapınca açılır. Her bilginin yanında resmi kaynağı var.";
+      var back = document.querySelector('.footer a.uni-geri');
+      if (back) { back.setAttribute("href", "sartlar.html" + A.erisim.secimSorgusu()); back.textContent = "← Ülke şartları"; }
+      var ulk = document.getElementById("uni-ulkem"); if (ulk) ulk.remove();
     }
     var countries = wanted.map(function (id) { return DATA.filter(function (c) { return c.id === id; })[0] || { id: id, _missing: true }; });
 
@@ -144,7 +143,7 @@
         '<div class="empty-state">' +
           '<div class="empty-ico" aria-hidden="true">' + ICON.wait + '</div>' +
           '<h2>Üniversite verisi hazırlanıyor</h2>' +
-          '<p>Kabul danışmanlarımız ülke ve üniversite listesini resmi kaynaklardan doğruluyor. Bu sırada doğrulanmış program listelerini rehber sayfalarında görebilirsin.</p>' +
+          '<p>Ülke ve üniversite listesi resmi kaynaklardan doğrulanıyor. Bu sırada doğrulanmış program listelerini detaylı rehberlerde görebilirsin.</p>' +
           '<div class="btn-row">' + wanted.map(function (id) { return '<a class="btn-ghost" href="' + GUIDE[id] + '">' + esc(window.APMEBERRA_AUTH ? APMEBERRA_AUTH.ulkeAd(id) : (id === "de" ? "Almanya" : "İtalya")) + ' rehberi</a>'; }).join("") +
           '<a class="btn-primary" href="sinavlar.html">Sınavlarıma geç</a></div>' +
         '</div>';
@@ -314,7 +313,8 @@
       var yerelAd = MO.yalnizIngilizce(cc, k) ? null : MO.dilAd("yerel", k, (window.APMEBERRA_ULKE_DIZINI || {}).dilAd);
       yer.innerHTML = '<section class="cs-section uni-ilk20" aria-labelledby="' + id + '-h"><h2 class="uni-katman-h" id="' + id + '-h">' + esc(k.ad) + ': en iyi 20 üniversite</h2>' +
         '<div class="uni-filtre" role="search" aria-label="İlk 20 listesini süz">' +
-          '<div class="uni-filtre-grup"><span class="uni-filtre-ad" aria-hidden="true">Düzey</span>' + seg("Düzey", "duzey", [["lisans", "Lisans"], ["yl", "Yüksek lisans"]]) + '</div>' +
+          // Yüksek lisans süzgeci yalnızca bu düzeyde gelen (eski üniversite mezunu) öğrenciye gösterilir
+          (FILTRE.duzey === "yl" ? '<div class="uni-filtre-grup"><span class="uni-filtre-ad" aria-hidden="true">Düzey</span>' + seg("Düzey", "duzey", [["lisans", "Lisans"], ["yl", "Yüksek lisans"]]) + '</div>' : "") +
           '<div class="uni-filtre-grup"><span class="uni-filtre-ad" aria-hidden="true">Dil</span>' + seg("Eğitim dili", "dil", [["hepsi", "Hepsi"], ["en", "İngilizce"]].concat(yerelAd ? [["yerel", yerelAd]] : [])) + '</div>' +
           '<div class="search-wrap">' + ICON.search + '<label class="visually-hidden" for="' + id + '-q">Üniversite ya da şehir ara</label><input class="text-input" type="search" id="' + id + '-q" placeholder="Üniversite ya da şehir ara"></div>' +
           (GUEST ? "" : '<label class="check-row uni-listem-filtre"><input type="checkbox" id="' + id + '-listem"' + (FILTRE.listem ? " checked" : "") + '> <span>Yalnızca listem <span class="tab-count" data-listem-say>' + listemOku().length + '</span></span></label>') +
@@ -338,7 +338,7 @@
           }
           var alan = FILTRE.duzey === "yl" ? "yuksekLisans" : "lisans";
           var sir = U.siralama || {};
-          var zAd = FILTRE.duzey === "yl" ? "YL" : "lisans";
+          var zAd = FILTRE.duzey === "yl" ? "yüksek lisans" : "lisans";
           tablo.innerHTML = SUI.ozetUyariHtml(MO.ozetUyari(k, FILTRE.duzey, FILTRE.dil === "yerel" ? "yerel" : "en")) +
             '<p class="sr-ilk20-lead">' + SUI.siralamaHtml(sir) +
               ' · <span id="' + id + '-say">' + res.toplam + ' üniversiteden ' + res.gosterilen + ' gösteriliyor' + (res.teyit ? " (" + res.teyit + " doğrulanamadı, listenin sonunda)" : "") + '</span>' +

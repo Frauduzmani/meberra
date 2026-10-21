@@ -4,32 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <title>Ülke şartları | Meberra</title>
-  <meta name="description" content="Avrupa'da lisans ve yüksek lisans: lise öğrencisi, lise mezunu ya da üniversite mezunu olarak 15 ülkede İngilizce ve yerel dilde ne gerektiği, tarihler, sık hatalar, burslar ve ilk 20 üniversite — resmi kaynaklarıyla. Giriş gerekmez.">
+  <title>Ülkem | Meberra</title>
+  <meta name="description" content="15 Avrupa ülkesinde lisans: lise öğrencisi ya da lise mezunu olarak İngilizce ve yerel dilde ne gerektiği, tarihler, sık hatalar, burslar ve en iyi üniversiteler — resmi kaynaklarıyla. Giriş gerekmez.">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body class="page-sartlar">
   <nav class="navbar">
-    <a href="sartlar.html" class="nav-brand">
-      <div class="brand-badge">Meberra</div>
-      <div><div class="brand-title">Ülke şartları</div></div>
-    </a>
+    <a href="sartlar.html" class="nav-brand"><div class="brand-badge">Meberra</div></a>
     <div class="nav-actions"></div>
   </nav>
 
   <main class="main-container" id="main-content">
     <header class="page-head sr-head">
       <span class="eyebrow">Ülke şartları · Giriş gerekmez</span>
-      <h1 id="sr-h1" tabindex="-1">Avrupa’da lisans ve yüksek lisans: durumuna göre şartlar</h1>
-      <p id="sr-lead">Durumunu, ülkeni ve eğitim dilini seç. Ne gerektiğini, kaçırmaman gereken tarihleri, sık yapılan hataları, bursları ve ülkenin en iyi üniversitelerini resmi kaynaklarıyla gör.</p>
+      <h1 id="sr-h1" tabindex="-1">15 Avrupa ülkesinde lisans: durumuna göre şartlar</h1>
+      <p id="sr-lead">Ne gerektiğini, kaçırmaman gereken tarihleri, sık yapılan hataları, bursları ve ülkenin en iyi üniversitelerini resmi kaynaklarıyla gör.</p>
     </header>
 
     <!-- Seçici (Tur 11, plan §2): model → sınıf (yalnızca lise) → ülke → dil. Seçim adres satırında durur. -->
     <form class="sr-picker sr-picker-v2" id="sr-form" action="sartlar.html" method="get" aria-label="Durum, ülke ve eğitim dili seçimi">
       <div class="sr-ozetbar" id="sr-ozetbar" hidden>
         <p class="sr-ozet-chips" id="sr-ozet-chips"></p>
-        <button type="button" class="btn-ghost btn-sm" id="sr-degistir" aria-expanded="false" aria-controls="sr-adimlar">Seçimi değiştir</button>
+        <button type="button" class="btn-ghost btn-sm" id="sr-degistir" aria-expanded="false" aria-controls="sr-adimlar">Başka ülkeye bak</button>
       </div>
       <div class="sr-adimlar" id="sr-adimlar">
         <fieldset class="sr-field2" id="sr-f-model">
@@ -37,7 +34,7 @@
           <div class="sr-cards">
             <label class="sr-card"><input type="radio" name="model" value="lise"><span><strong>Lise öğrencisi</strong><small>9–12. sınıf · lisansa hazırlık</small></span></label>
             <label class="sr-card"><input type="radio" name="model" value="lise-mezun"><span><strong>Lise mezunu</strong><small>Lisansa başvuru</small></span></label>
-            <label class="sr-card"><input type="radio" name="model" value="uni-mezun"><span><strong>Üniversite mezunu</strong><small>Yüksek lisans (YL)</small></span></label>
+            <label class="sr-card" id="sr-card-uni" hidden><input type="radio" name="model" value="uni-mezun"><span><strong>Üniversite mezunu</strong><small>Yüksek lisans</small></span></label>
           </div>
         </fieldset>
         <fieldset class="sr-field2" id="sr-f-sinif">
@@ -86,8 +83,8 @@
 
   <footer class="footer">
     <div class="footer-bottom u-mt-0">
-      <div>Şartlar <code>data/mevzuat/ulke/</code> ve <code>data/mevzuat/ulke-dizini.js</code>, tarihli yol haritası <code>data/mevzuat/ulke-rotalari.js</code> dosyasından okunur. Seçimin yalnızca adres satırında durur; hiçbir şey kaydedilmez.</div>
-      <div><a href="universiteler.html">Üniversiteler →</a></div>
+      <div>Her maddenin resmi kaynağı yanında. <a href="bilgi-merkezi.html">Kaynaklar</a></div>
+      <div><a href="universiteler.html">Üniversiteler →</a> <a href="rota.html" id="sr-sonraki" hidden>· Sonraki adım: Takvimim →</a></div>
     </div>
   </footer>
 
@@ -109,7 +106,7 @@
     var M = window.APMEBERRA_SARTLAR_MOTOR, UI = window.APMEBERRA_SARTLAR_UI, A = window.APMEBERRA, ME = window.APMEBERRA_ME;
     var $ = function (id) { return document.getElementById(id); };
     var root = $("sr-root"), form = $("sr-form");
-    if (!M || !UI) { root.innerHTML = '<div class="empty-state"><h2>Sayfa yüklenemedi</h2><p>sartlar-motor.js ya da sartlar-ui.js bulunamadı.</p></div>'; return; }
+    if (!M || !UI) { root.innerHTML = '<div class="empty-state"><h2>Sayfa yüklenemedi</h2><p>Sayfayı yenile; sorun sürerse biraz sonra tekrar dene.</p></div>'; return; }
     var esc = UI.esc, src = UI.src, kes = UI.kes, gunYaz = UI.gunYaz;
     var DIZIN = window.APMEBERRA_ULKE_DIZINI && Array.isArray(window.APMEBERRA_ULKE_DIZINI.ulkeler) ? window.APMEBERRA_ULKE_DIZINI : { ulkeler: [], genelAdimlar: [], dilAd: {} };
     var DK = {}; DIZIN.ulkeler.forEach(function (u) { DK[u.kod] = u; });
@@ -121,6 +118,12 @@
     var GUEST = !ME || !ME.user;
     var PROF = !GUEST && ME.profile ? ME.profile : null;
     var REHBER = { de: "almanya-muhendislik.html", it: "italya-muhendislik.html" };
+    // AP'nin bu ülkedeki gerçek rolü (lisans; ayrıntı ve kaynak aşağıdaki maddelerde)
+    var AP_NOTU = {
+      de: "Türk diploması + AP ile doğrudan giriş yok; YKS'de bir lisans programına yerleşmen gerekir. AP, derslerde hazırlık ve bazı üniversitelerde ek değerlendirme için işe yarar.",
+      it: "AP kabul şartı değil; kabulü üniversitenin giriş sınavı (CEnT-S: İtalya mühendislik giriş sınavı, TOLC, TIL-I gibi) belirler. AP bu sınavlara hazırlıkta işe yarar.",
+      nl: "Bazı üniversiteler (Twente, Groningen) Türk diplomasıyla birlikte en az 4 AP (her biri 3–5) ister; burada AP doğrudan kabul şartıdır."
+    };
     var TUR = { sinav: "Sınav", belge: "Belge", basvuru: "Başvuru", karar: "Karar", hazirlik: "Hazırlık", bilgi: "Bilgi notu", tarih: "Tarih" };
     var S = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"';
     var IC = {
@@ -170,6 +173,14 @@
 
     // ---------------- Seçim ----------------
     var secim = M.secimCoz(location.search);
+    // Ülkem: oturumlu öğrenci adres satırında seçim getirmediyse kendi profilinden başlar (formu yeniden doldurmaz).
+    // Profil anahtarları: ogrenciModeli, sinif, ulkeler (dizi), aktifRota (ulkeler içinden), egitimDili.
+    var KENDI = null;
+    if (PROF && PROF.ogrenciModeli && Array.isArray(PROF.ulkeler) && PROF.ulkeler.length) {
+      KENDI = { model: PROF.ogrenciModeli, sinif: PROF.ogrenciModeli === "lise" ? PROF.sinif : null, ulke: PROF.ulkeler.indexOf(PROF.aktifRota) >= 0 ? PROF.aktifRota : PROF.ulkeler[0], dil: PROF.egitimDili === "yerel" ? "yerel" : "en" };
+      if (!secim.model && !secim.ulke) secim = M.secimCoz("?" + (M.secimAdres("sartlar.html", KENDI).split("?")[1] || ""));
+    }
+    function kendiUlkemMi() { return !!(KENDI && secim.ulke === KENDI.ulke && secim.model === KENDI.model); }
     var acik = false; // tam seçimde "Seçimi değiştir" ile açılan seçici
     var cizimNo = 0;
 
@@ -206,6 +217,8 @@
 
     function formuEsle() {
       form.querySelectorAll("input[name=model]").forEach(function (i) { i.checked = i.value === secim.model; i.closest(".sr-card").classList.toggle("is-checked", i.checked); });
+      // Yüksek lisans yolu yeni öğrencilere sunulmaz; yalnızca bu modeldeki (eski) seçimde görünür
+      $("sr-card-uni").hidden = secim.model !== "uni-mezun";
       form.querySelectorAll("input[name=sinif]").forEach(function (i) { i.checked = i.value === secim.sinif; });
       form.querySelectorAll("input[name=ulke]").forEach(function (i) { i.checked = i.value === secim.ulke; i.closest(".sr-ulke").classList.toggle("is-checked", i.checked); });
       form.querySelectorAll("input[name=dil]").forEach(function (i) { i.checked = i.value === secim.dil; });
@@ -230,7 +243,7 @@
       $("sr-ozetbar").hidden = !t;
       $("sr-adimlar").hidden = t && !acik;
       $("sr-degistir").setAttribute("aria-expanded", String(t && acik));
-      $("sr-degistir").textContent = acik ? "Seçimi kapat" : "Seçimi değiştir";
+      $("sr-degistir").textContent = acik ? "Kapat" : "Başka ülkeye bak";
       if (t) {
         $("sr-ozet-chips").innerHTML = [esc(secim.model === "lise" ? "Lise · " + kimKisa(secim) : kimKisa(secim)), ccRozet(secim.ulke) + esc(k.ad), esc(dilEtiket(secim.dil, k))]
           .map(function (x) { return '<span class="sr-ozet-chip">' + x + '</span>'; }).join('<span class="sr-ozet-ayrac" aria-hidden="true">·</span>');
@@ -250,7 +263,7 @@
       var eksik = !secim.model ? "durum" : secim.model === "lise" && !secim.sinif ? "sinif" : "ulke";
       var BASLIK = { durum: "Önce durumunu seç", sinif: "Şimdi sınıfını seç", ulke: "Şimdi ülkeni seç" };
       var METIN = {
-        durum: "Lise öğrencisi, lise mezunu ya da üniversite mezunu olmana göre farklı şartlar ve takvimler geçerli. Seçimin adres satırına yazılır; bağlantıyı paylaşabilirsin. Hiçbir şey kaydedilmez.",
+        durum: "Lise öğrencisi ya da lise mezunu olmana göre farklı şartlar ve takvimler geçerli.",
         sinif: "Sınıfına göre bu yıl yapman gerekenler ve takvim tarihleri değişir.",
         ulke: "Yukarıdaki 15 ülkeden birini seç. Kartlardaki rozet, ülkede İngilizce " + duzeyAd(secim.duzey || "lisans") + " programı olup olmadığını gösterir."
       };
@@ -266,7 +279,7 @@
           '<li><span aria-hidden="true">' + UI.IC.gerekenler + '</span>Ne gerekiyor</li>' +
           '<li><span aria-hidden="true">' + UI.IC.tarihler + '</span>Kaçırılmaması gereken tarihler</li>' +
           '<li><span aria-hidden="true">' + UI.IC.hatalar + '</span>Sık yapılan hatalar</li>' +
-          '<li><span aria-hidden="true">' + UI.IC.burslar + '</span>Burslar ve ilk 20 üniversite</li>' +
+          '<li><span aria-hidden="true">' + UI.IC.burslar + '</span>Burslar ve en iyi üniversiteler</li>' +
         '</ol>' +
         (kendi ? '<div class="btn-row u-jcenter"><a class="btn-ghost" id="sr-kendi" href="' + esc(M.secimAdres("sartlar.html", kendi)) + '" data-secim=\'' + esc(JSON.stringify(kendi)) + '\'>Kendi profilime göre göster (' +
           esc(ULKE_AD[kendi.ulke] + " · " + kimKisa(kendi)) + ')</a></div>' : "") +
@@ -278,14 +291,14 @@
       if (!GUEST) {
         var benim = PROF && Array.isArray(PROF.ulkeler) && PROF.ulkeler.indexOf(ul) >= 0;
         return '<div class="sr-cta surface"><span class="sr-cta-ico" aria-hidden="true">' + IC.coach + '</span><div class="u-min0">' +
-          '<h2>Kişisel koçluğun açık</h2><p>' + (benim ? "Bu ülke profilinde var; adımların Rotam sayfasında." : "Bu ülkeyi rotana eklemek için profilindeki hedef ülkeleri güncelle.") + '</p>' +
-          '<div class="btn-row">' + (benim ? '<a class="btn-primary" href="rota.html?ulke=' + ul + '">Rotamı aç' + IC.arrow + '</a>' : '<a class="btn-primary" href="profil.html#pf-ulkeler-group">Profilimi düzenle</a>') +
-          '<a class="btn-ghost" href="index.html">Bugün ekranına git</a></div></div></div>';
+          '<h2>Sonraki adım: Takvimim</h2><p>' + (benim ? "Bu ülke hedeflerinde var; tarihli adımların Takvimim’de." : "Bu ülkeyi hedef ülkelerine eklersen tarihli adımları Takvimim’de görürsün.") + '</p>' +
+          '<div class="btn-row">' + (benim ? '<a class="btn-primary" href="rota.html?ulke=' + ul + '">Takvimimi aç' + IC.arrow + '</a>' : '<a class="btn-primary" href="profil.html#pf-ulkeler-group">Takvimime ekle' + IC.arrow + '</a>') +
+          '</div></div></div>';
       }
       var q = M.secimAdres("giris.html", secim);
       return '<div class="sr-cta surface"><span class="sr-cta-ico" aria-hidden="true">' + IC.coach + '</span><div class="u-min0">' +
         '<h2>Kişisel koçluk</h2>' +
-        '<p>' + (secim.model === "uni-mezun" ? "Kişisel yol haritası, belge kontrol listesi ve resmi yazışmalar" : "Ders çalışma, soru çözme, denemeler, kişisel rota ve resmi yazışmalar") +
+        '<p>' + (secim.model === "uni-mezun" ? "Kişisel takvim, belge kontrol listesi ve başvuru e-postaları" : "AP dersleri, sorular, denemeler, kişisel takvim ve başvuru e-postaları") +
         ' hesabınla açılır. Seçimin (' + esc(ULKE_AD[ul] + " · " + kimKisa(secim)) + ') profiline taşınır.</p>' +
         '<div class="btn-row"><a class="btn-primary" id="sr-kocluk" href="' + esc(q) + '#kayit">Kişisel koçluğu başlat' + IC.arrow + '</a>' +
         '<a class="btn-ghost" href="' + esc(q) + '">Hesabım var, giriş yap</a></div></div></div>';
@@ -333,7 +346,7 @@
         (y.gizlenen ? " · " + y.gizlenen + " adım " + M.sinifAd(sinif).toLocaleLowerCase("tr-TR") + " için geçerli olmadığından gizlendi" : "") +
         (y.gizlenenDil ? " · " + y.gizlenenDil + " adım " + (secim.dil === "yerel" ? "İngilizce" : "yerel dil") + " yoluna ait olduğundan gizlendi" : "") +
         (y.mezuniyetYili ? ". Takvim tarihleri Haziran " + y.mezuniyetYili + " mezuniyetine göre hesaplandı." : ". Zamanlar lise mezuniyetine göre göreli yazıldı; mezunsan “12. sınıf” dönemini başvuracağın yıldan önceki öğretim yılı olarak oku.") +
-        (y.hedefYili ? " Kesinlik etiketleri en erken hedef olan " + y.hedefYili + "/" + String((y.hedefYili + 1) % 100).padStart(2, "0") + " akademik yılına göre gösterilir; giriş yapınca Rotam kendi hedef yılına göre hesaplar." : "");
+        (y.hedefYili ? " Kesinlik etiketleri en erken hedef olan " + y.hedefYili + "/" + String((y.hedefYili + 1) % 100).padStart(2, "0") + " akademik yılına göre gösterilir; giriş yapınca Takvimim kendi hedef yılına göre hesaplar." : "");
       return '<section class="sr-road" id="sr-yol" aria-labelledby="sr-yol-h">' +
         '<div class="sr-road-head"><h2 id="sr-yol-h">' + IC.route + 'Genel yol haritası <span class="rs-tag">Tarihli rota</span></h2>' +
           '<p>' + esc(ULKE_AD[ulke]) + ' rotasının doğrulanmış adımları, durumuna göre süzülmüş hâliyle. ' + esc(lead) + '</p></div>' +
@@ -407,7 +420,7 @@
       var head = '<div class="sr-sec-head"><span class="sr-sec-ico" aria-hidden="true">' + IC.uni + '</span><h2 id="sr-ilk20-h">Üniversiteler</h2></div>';
       if (!U || !U.liste.length) {
         return '<section class="sr-ilk20" id="sr-ilk20" aria-labelledby="sr-ilk20-h">' + head +
-          '<div class="sr-empty">' + IC.wait + '<div><strong>İlk 20 listesi hazırlanıyor</strong><p>' + esc(k.ad) + ' için QS sıralamasına göre ilk 20 üniversite ve programlarının dili resmi sayfalarından doğrulanıyor.</p></div></div></section>';
+          '<div class="sr-empty">' + IC.wait + '<div><strong>Üniversite listesi hazırlanıyor</strong><p>' + esc(k.ad) + ' için QS (dünya üniversite sıralaması) listesine göre ilk 20 üniversite ve programlarının dili resmi sayfalarından doğrulanıyor.</p></div></div></section>';
       }
       var r = M.universiteSuz(U.liste, { duzey: secim.duzey, dil: secim.dil });
       var sir = U.siralama || {};
@@ -416,7 +429,7 @@
         '<div class="sr-uni-kart">' +
           '<span class="sr-uni-kart-say" aria-hidden="true"><b>' + r.eslesen + '</b><small>/ ' + r.toplam + '</small></span>' +
           '<div class="sr-uni-kart-govde"><strong>' + esc("Bu ülkenin " + r.toplam + " üniversitesi") + '</strong>' +
-            '<span>' + esc(r.eslesen + " tanesi " + dilEtiket(secim.dil, k) + " " + duzeyAd(secim.duzey) + " sunuyor" + (r.teyit ? " · " + r.teyit + " doğrulanamadı" : "") + ". İstenen sınavlar, hazırlayan dersler ve ilk e-posta Üniversiteler sekmesinde.") + '</span>' +
+            '<span>' + esc(r.eslesen + " tanesi " + dilEtiket(secim.dil, k) + " " + duzeyAd(secim.duzey) + " sunuyor" + (r.teyit ? " · " + r.teyit + " doğrulanamadı" : "") + ". İstenen sınavlar, hazırlayan dersler ve ilk e-posta Üniversiteler sayfasında.") + '</span>' +
             (ilk3.length ? '<span class="sr-uni-kart-ilk">' + esc("İlk sıradakiler: " + ilk3.join(" · ")) + '</span>' : "") +
             '<p class="sr-ilk20-foot"><a class="btn-primary btn-sm" href="' + esc(hedef) + '">' + r.toplam + ' üniversitenin tümünü gör' + IC.arrow + '</a></p>' +
           '</div></div>' +
@@ -475,7 +488,7 @@
       return '<section class="sr-hazir surface" id="sr-hazir" aria-labelledby="sr-hazir-h">' +
         '<span class="sr-intro-ico" aria-hidden="true">' + IC.wait + '</span>' +
         '<h2 id="sr-hazir-h">' + esc(hata ? k.ad + " verisi yüklenemedi." : k.ad + " için " + (secim.duzey === "yl" ? zAd + " " : "") + "şartlar hazırlanıyor.") + '</h2>' +
-        '<p>' + esc(hata ? "Sayfayı yenilemeyi dene. Sorun sürerse veri dosyası eksik olabilir." : "Mevzuat uzmanı resmi kaynakları doğruluyor. Hazır olunca ne gerektiği, tarihler, sık hatalar ve burslar burada görünecek.") + '</p>' +
+        '<p>' + esc(hata ? "Sayfayı yenilemeyi dene. Sorun sürerse veri dosyası eksik olabilir." : "Resmi kaynaklar doğrulanıyor. Hazır olunca ne gerektiği, tarihler, sık hatalar ve burslar burada görünecek.") + '</p>' +
         '<div class="btn-row u-jcenter">' +
           (k.portal ? '<a class="btn-ghost" href="' + esc(k.portal.url) + '" target="_blank" rel="noopener noreferrer">' + esc(k.portal.ad) + IC.ext + '<span class="visually-hidden"> (yeni sekmede açılır)</span></a>' : "") +
           '<button type="button" class="btn-ghost" data-ulke-sec>Başka ülke seç</button></div></section>';
@@ -494,7 +507,8 @@
       var dolu = varMi ? core.filter(function (b) { return B[b.id].length; }).length + ek.length : 0;
       var toplamB = core.length + (varMi ? ek.length : 0);
       var dAd = dilEtiket(dil, k);
-      var rehber = REHBER[ul] && duzey === "lisans" ? '<a class="btn-ghost btn-sm" href="' + REHBER[ul] + '">' + esc(k.ad) + ' rehberi</a>' : "";
+      var rehber = REHBER[ul] && duzey === "lisans" ? '<a class="btn-ghost btn-sm" href="' + REHBER[ul] + '">Detaylı rehber</a>' : "";
+      var apNotu = AP_NOTU[ul] && duzey === "lisans" ? '<p class="sr-ozet-p sr-ap-notu"><strong>AP burada ne işe yarar?</strong> ' + esc(AP_NOTU[ul]) + '</p>' : "";
       var ozet = duzey === "yl" ? (k.ylOzet || (veri && veri.yl && veri.yl.ozet) || "") : (k.ozet || (veri && veri.lisans && veri.lisans.ozet) || "");
       var html =
         '<div class="sr-top">' +
@@ -508,6 +522,7 @@
                 ? '<p class="sr-ozet-p">' + esc(ozet.slice(0, kes + 1)) + '</p><details class="clamp-note sr-ozet-devam"><summary>Özetin devamı</summary><p class="sr-ozet-p">' + esc(ozet.slice(kes + 2)) + '</p></details>'
                 : '<p class="sr-ozet-p">' + esc(ozet) + '</p>';
             })() : "") +
+            apNotu +
             '<dl class="sr-facts">' +
               (secim.model === "lise"
                 ? '<div><dt>Mezuniyet</dt><dd>' + (mez ? "Haziran " + mez : "—") + '</dd></div>'
@@ -520,7 +535,8 @@
             '</dl>' +
             UI.ozetUyariHtml(M.ozetUyari(k, duzey, dil)) +
             '<div class="btn-row"><button type="button" class="btn-ghost btn-sm" id="sr-kopyala">' + IC.link + 'Bağlantıyı kopyala</button>' +
-              '<a class="btn-ghost btn-sm" href="universiteler.html?ulke=' + ul + '&amp;duzey=' + duzey + '&amp;dil=' + dil + '">' + esc(k.ad) + ' üniversiteleri</a>' + rehber + '</div>' +
+              '<a class="btn-primary btn-sm" id="sr-uni-git" href="universiteler.html?ulke=' + ul + '&amp;duzey=' + duzey + '&amp;dil=' + dil + '">Üniversiteler</a>' + rehber +
+              '<a class="btn-ghost btn-sm" href="bilgi-merkezi.html">Kaynaklar</a></div>' +
             '<p class="field-hint" id="sr-kopya-msg" role="status" aria-live="polite"></p>' +
           '</section>' +
           koclukHtml() +
@@ -572,14 +588,16 @@
       document.documentElement.setAttribute("data-rota", ul === "de" || ul === "it" ? ul : (ul ? "genel" : ""));
       root.classList.toggle("is-intro", !tam(secim));
       if (!tam(secim)) {
-        document.title = "Ülke şartları | Meberra";
-        $("sr-h1").textContent = "Avrupa’da lisans ve yüksek lisans: durumuna göre şartlar";
+        document.title = (GUEST ? "Ülke şartları" : "Ülkem") + " | Meberra";
+        $("sr-h1").textContent = "15 Avrupa ülkesinde lisans: durumuna göre şartlar";
         root.innerHTML = introHtml();
         return;
       }
       var k = kayit(ul);
       var baslik = k.ad + " · " + kimKisa(secim) + " · " + dilEtiket(secim.dil, k);
-      document.title = baslik + " şartları | Meberra";
+      document.title = (kendiUlkemMi() ? "Ülkem · " : "") + baslik + " şartları | Meberra";
+      var eb = document.querySelector(".sr-head .eyebrow");
+      if (eb && !GUEST) eb.textContent = kendiUlkemMi() ? "Ülkem" : "Başka ülke";
       var dilSifat = secim.dil === "en" ? "İngilizce" : (k.yerelDil && k.yerelDil.length > 1 ? "yerel dilde" : dilEtiket("yerel", k));
       var kim = secim.model === "lise" ? secim.sinif + ". sınıf öğrencisi" : secim.model === "lise-mezun" ? "lise mezunları" : "üniversite mezunları";
       $("sr-h1").textContent = bulunma(k) + " " + dilSifat + " " + duzeyAd(secim.duzey) + ": " + kim + " için şartlar";
@@ -740,11 +758,12 @@
       if (hedef) setTimeout(function () { hedef.scrollIntoView({ block: "start" }); }, 0);
     }
     kisiselCiz();
+    if (!GUEST) { var srn = $("sr-sonraki"); if (srn) srn.hidden = false; }
     // Oturumlu öğrencide "Giriş gerekmez" ibaresi anlamsız (Hedefim alanının parçası)
-    if (!GUEST) { var ebq = document.querySelector(".sr-head .eyebrow"); if (ebq) ebq.textContent = "Ülke şartları"; }
+    if (!GUEST) { var ebq = document.querySelector(".sr-head .eyebrow"); if (ebq && ebq.textContent.indexOf("Giriş gerekmez") >= 0) ebq.textContent = "Ülkem"; }
 
     var sorun = M.dizinDogrula(DIZIN);
-    if (sorun.length && window.console) console.warn("data/mevzuat/ulke-dizini.js şema uyarıları:", sorun);
+    if (sorun.length && window.console) console.warn("ülke dizini şema uyarıları:", sorun);
     if (DIZIN.sonKontrol) $("sr-kontrol").textContent = "Bu sayfadaki maddeler en son " + gunYaz(DIZIN.sonKontrol) + " tarihinde resmi kaynaklarla karşılaştırıldı. Başvurmadan önce her maddeyi kaynağından ve üniversitenin güncel çağrısından kontrol et.";
     ulkeGridHtml();
     adresiYaz(false);

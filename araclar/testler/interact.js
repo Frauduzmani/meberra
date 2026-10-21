@@ -65,7 +65,7 @@ let fail = 0; const ok = (c, m) => { log((c ? 'PASS ' : 'FAIL ') + m); if (!c) f
   ok(await p.evaluate(h => { const el = document.getElementById(h); const r = el.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; }, href.split('#')[1]), 'Hata Defteri baglantisi soruya goturuyor');
   await p.evaluate(() => localStorage.setItem('apmeberra:theme', 'light'));
   await p.goto(URL('index.html')); await p.waitForTimeout(400);
-  ok((await p.textContent('#todo-list')).includes('Hata Defterindeki 1'), 'Ana sayfa Bugun listesi Hata Defterini oneriyor');
+  ok((await p.textContent('#todo-list')).includes('Yanlışlarım’daki 1'), 'Ana sayfa Bugun listesi Hata Defterini oneriyor');
   await p.click('#btn-check-kmk');
   ok(await p.isVisible('#kmk-status-badge.is-ok'), 'KMK hesaplayici calisiyor');
   await p.screenshot({ path: `${SHOTS}/index-data-desktop-light.png` });

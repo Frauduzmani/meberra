@@ -135,7 +135,7 @@ ok(apKaldiginYer({ pages: {} }, []) === null && apKaldiginYer(null) === null, "k
     { page: "ap-calculus", name: "AP Calculus AB / BC", units: [{ id: "u1", title: "Unit 1", total: 10, answered: 10, correct: 9 }, { id: "u2", title: "Unit 2", total: 10, answered: 2, correct: 1 }] },
     { page: "ap-physics", name: "AP Physics 1 / C", units: [{ id: "p1", title: "Unit 1 Kinematics", total: 20, answered: 4, correct: 1 }] }] };
   pl = apCalismaPlani({ summary: dolu, kayitSon: null, bugun: BUGUN });
-  ok(pl.map(x => x.ikon).join() === "redo,target,play,book" && pl[0].title === "Hata Defterindeki 2 soruyu tekrar çöz" && pl[0].href === "deneme.html?mod=yanlislar" && /Limits/.test(pl[0].desc) &&
+  ok(pl.map(x => x.ikon).join() === "redo,target,play,book" && pl[0].title === "Yanlışlarım’daki 2 soruyu tekrar çöz" && pl[0].href === "deneme.html?mod=yanlislar" && /Limits/.test(pl[0].desc) &&
     pl[1].title === "Zayıf üniteni güçlendir: Unit 1 Kinematics" && pl[1].href === "ap-physics.html#p1" && /%25 doğru/.test(pl[1].desc) &&
     pl[2].title === "Kaldığın yerden devam et: Unit 2" && pl[2].href === "ap-calculus.html#u2", "çalışma planı (dolu): hata, en zayıf ünite (%25), ilk eksik ünite, son tarihler", pl);
   const sa = apSiradakiAdim({ bugun: BUGUN, acikHata: 2, plan: pl.map(t => ({ baslik: t.title, aciklama: t.desc, href: t.href, etiket: t.linkText })) });

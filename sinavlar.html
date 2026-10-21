@@ -12,18 +12,15 @@
 <body class="page-sinavlar">
 
   <nav class="navbar">
-    <a href="index.html" class="nav-brand">
-      <div class="brand-badge">Meberra</div>
-      <div><div class="brand-title">Sınavlar</div></div>
-    </a>
+    <a href="index.html" class="nav-brand"><div class="brand-badge">Meberra</div></a>
     <div class="nav-actions"></div>
   </nav>
 
   <main class="main-container" id="main-content">
     <header class="page-head">
-      <span class="eyebrow">Sınavlar</span>
+      <span class="eyebrow"><a href="rota.html" id="sv-takvim">← Takvimim</a> · Sınavlar</span>
       <h1>Girmen gereken sınavlar, tek tek</h1>
-      <p>Durumunu, hedef ülkeni ve sınav dilini seç; sana uyan AP, giriş, dil ve yüksek lisans sınavları ayrı kartlarda format, süre, puanlama ve tarihle gelir. Ders anlatımları İngilizcedir.</p>
+      <p>Durumunu, hedef ülkeni ve sınav dilini seç; sana uyan AP, giriş ve dil sınavları ayrı kartlarda format, süre, puanlama ve tarihle gelir. Ders anlatımları İngilizcedir.</p>
     </header>
 
     <div class="genel-banner">
@@ -41,8 +38,8 @@
 
   <footer class="footer">
     <div class="footer-bottom u-mt-0">
-      <div>Sınav verisi <code>data/mevzuat/sinavlar.js</code> dosyasından okunur; süzgeç <code>assets/js/sinav-motor.js</code>. Seçimin yalnızca adres satırında durur. Tarih ve ücretleri kayıttan önce resmi kaynaktan teyit et.</div>
-      <div><a href="index.html">← Bugün ekranına dön</a></div>
+      <div>Tarih ve ücretleri kayıttan önce resmi kaynaktan teyit et. <span class="sv-sonraki">Sonraki adım: <a href="yazismalar.html">Başvurularım →</a></span></div>
+      <div><a href="rota.html" class="sv-geri">← Takvimim</a></div>
     </div>
   </footer>
 
@@ -182,7 +179,7 @@
           '<div class="sr-seg sn-seg">' + ["9", "10", "11", "12"].map(function (x) { return seg("sinif", x, x + '<span class="visually-hidden">. sınıf</span>'); }).join("") + '</div></fieldset>' +
         '<div class="sn-grup filter-field"><label for="ulke-filtre" class="uni-filtre-ad">Ülke</label><select class="calc-select" id="ulke-filtre">' +
           (profUlke.length ? '<option value="profil">Hedef ülkelerim (' + esc(profUlke.map(function (u) { return ULKE[u] || u; }).join(", ")) + ')</option>' : "") +
-          (rotaU ? '<option value="rota" id="opt-rota">Rotamın sınavları</option>' : "") +
+          (rotaU ? '<option value="rota" id="opt-rota">Takvimimdeki sınavlar</option>' : "") +
           '<option value="hepsi">Tüm ülkeler</option>' +
           '<optgroup label="Ülke seç">' + ulkeOpts + '</optgroup>' +
           (GUEST ? "" : '<option value="listem">Yalnızca listem</option>') +
@@ -287,7 +284,7 @@
     function ozetYaz(toplam) {
       var u = tekUlke(), parca = [];
       if (st.model) parca.push(MODEL_AD[st.model] + (st.model === "lise" && st.sinif ? " · " + st.sinif + ". sınıf" : ""));
-      parca.push(sel.value === "profil" ? "Hedef ülkelerim" : sel.value === "rota" ? "Rotamın sınavları" : sel.value === "listem" ? "Listem" : u ? ULKE[u] : "Tüm ülkeler");
+      parca.push(sel.value === "profil" ? "Hedef ülkelerim" : sel.value === "rota" ? "Takvimimdeki sınavlar" : sel.value === "listem" ? "Listem" : u ? ULKE[u] : "Tüm ülkeler");
       if (!listeModu()) parca.push(st.dil === "en" ? "İngilizce sınavlar" : st.dil === "yerel" ? "Yerel dil sınavları" + (u && yerelAd(u) && u !== "ie" ? " (" + yerelAd(u) + ")" : "") : "Tüm sınav dilleri");
       document.getElementById("sn-ozet-metin").innerHTML = '<strong>' + parca.map(esc).join(" · ") + '</strong> — ' + toplam + ' sınav';
       var link = document.getElementById("sn-sartlar");
@@ -387,7 +384,7 @@
       degisti();
     });
 
-    // Rota bağlamı (Tur 6): aktif rotaya göre "Bu rotada zorunlu" / "Seçmeli" rozetleri ve "Rotamın sınavları" filtresi
+    // Rota bağlamı (Tur 6): aktif rotaya göre "Bu rotada zorunlu" / "Seçmeli" rozetleri ve "Takvimimdeki sınavlar" filtresi
     function rotaGuncelle() {
       rotaU = A.rota.aktif(); rotaVeri = rotaU ? A.rota.veri(rotaU) : null;
       var ad = ULKE[rotaU] || "";
@@ -403,10 +400,10 @@
         b.hidden = !rol;
       });
       var o = document.getElementById("opt-rota");
-      if (o) o.textContent = "Rotamın sınavları (" + ad + ")";
+      if (o) o.textContent = "Takvimimdeki sınavlar (" + ad + ")";
       var n = cards.filter(function (el) { return el.dataset.rol; }).length;
       document.getElementById("rota-ctx").innerHTML = rotaU
-        ? (rotaVeri ? '<strong>' + esc(ad) + ' rotası</strong>: ' + n + ' sınav bu rotada zorunlu ya da seçmeli olarak işaretli. Ayrıntılar ve tarihler <a href="rota.html?ulke=' + rotaU + '">Rotam</a> sayfasında.'
+        ? (rotaVeri ? '<strong>' + esc(ad) + ' rotası</strong>: ' + n + ' sınav bu rotada zorunlu ya da seçmeli olarak işaretli. Ayrıntılar ve tarihler <a href="rota.html?ulke=' + rotaU + '">Takvimim</a> sayfasında.'
                     : (rotaU === 'de' || rotaU === 'it') ? '<strong>' + esc(ad) + ' rotası</strong>: rota kuralları hazırlanıyor; şimdilik bu ülkenin sınavları gösteriliyor.'
                     : '<strong>' + esc(ad) + '</strong>: tarihli rota Almanya ve İtalya lisans için hazır; bu ülkenin dil sınavları ve şartları <a href="sartlar.html?model=' + esc((ME.profile && ME.profile.ogrenciModeli) || "lise") + '&amp;ulke=' + rotaU + '&amp;dil=' + (ME.profile && ME.profile.egitimDili === "yerel" ? "yerel" : "en") + '">Ülke şartları</a> sayfasında.')
         : "";
@@ -415,15 +412,17 @@
     if (rotaU) A.rota.anahtar(document.getElementById("rota-switch"), rotaGuncelle);
     cards.forEach(function (el) { el.dataset.rol = ""; });
     if (GUEST) {
-      // Ziyaretçi: genel deneme ve "Bugün ekranına dön" yerine giriş / şartlar
+      // Ziyaretçi: genel deneme ve "← Takvimim" yerine giriş / şartlar
       var gb = document.querySelector(".genel-banner");
       if (gb) {
-        gb.querySelector("p").textContent = "Ders anlatımları, ders denemeleri ve genel deneme kişisel hesabınla açılır. Sonuçların ve hata defterin hesabında saklanır.";
+        gb.querySelector("p").textContent = "Ders anlatımları, ders denemeleri ve genel deneme kişisel hesabınla açılır. Sonuçların ve yanlışların hesabında saklanır.";
         var ga = gb.querySelector("a");
         ga.setAttribute("href", "giris.html?donus=" + encodeURIComponent("deneme.html?ders=genel"));
         ga.innerHTML = LOCK + "Giriş yap ve denemeye başla";
       }
-      var back = document.querySelector('.footer a[href="index.html"]');
+      var sn = document.querySelector(".footer .sv-sonraki"); if (sn) sn.remove();
+      var tk = document.getElementById("sv-takvim"); if (tk) tk.remove();
+      var back = document.querySelector('.footer a.sv-geri');
       if (back) { back.setAttribute("data-geri", ""); back.setAttribute("href", "sartlar.html" + A.erisim.secimSorgusu()); back.textContent = "← Ülke şartlarına dön"; }
     }
     if (rotaU) rotaGuncelle();

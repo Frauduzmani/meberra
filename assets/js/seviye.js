@@ -352,7 +352,7 @@
     var html = "";
     // Kayıt şeridi
     if (kb.kalan === null) {
-      html += '<div class="notice">' + ICON.info + '<div>Kayıt son günü henüz doğrulanmadı. <a href="bilgi-merkezi.html">Bilgi Merkezi</a>’ni kontrol et.</div></div>';
+      html += '<div class="notice">' + ICON.info + '<div>Kayıt son günü henüz doğrulanmadı. <a href="sinavlar.html">Sınavlar</a> sayfasını kontrol et.</div></div>';
     } else if (kb.kalan >= 0) {
       html += '<div class="sv-deadline' + (kb.kalan <= 14 ? " is-urgent" : "") + '"><span class="sv-deadline-num">' + kb.kalan + '</span><span class="sv-deadline-txt"><strong>gün kaldı</strong> — AP sınav kaydının son günü ' + esc(fmtIsoGun(kb.k.sonGun)) + '. Kayıttan önce testi çöz, raporla birlikte karar ver.</span></div>';
     } else {
@@ -418,7 +418,7 @@
 
   function gecKayitMetni(kb) {
     var k = kb.k;
-    if (!k.gecKayitSon) return "Geç kayıt penceresi doğrulanmadı; <a href=\"bilgi-merkezi.html\">Bilgi Merkezi</a>’ne ve okul koordinatörüne danış.";
+    if (!k.gecKayitSon) return "Geç kayıt penceresi doğrulanmadı; <a href=\"sinavlar.html\">Sınavlar</a> sayfasına bak ve okul koordinatörüne sor.";
     if (kb.gecKalan !== null && kb.gecKalan < 0) return "Geç kayıt penceresi de " + esc(fmtIsoGun(k.gecKayitSon)) + " tarihinde kapandı.";
     return "Geç kayıt penceresi: <strong>" + esc(fmtIsoGun(k.gecKayitBas)) + " – " + esc(fmtIsoGun(k.gecKayitSon)) + "</strong>" +
       (k.gecUcretUSD != null ? "; sınav başına <strong>+" + esc(k.gecUcretUSD) + " USD</strong> geç sipariş ücreti" + (k.sinavUcretiUSD != null ? " (sınav ücreti " + esc(k.sinavUcretiUSD) + " USD + " + esc(k.gecUcretUSD) + " USD)" : "") : "; geç ücret doğrulanmadı") + ".";
@@ -954,7 +954,7 @@
   function kontrolBolumu() {
     var G = Array.isArray(takvim().gereklilikler) ? takvim().gereklilikler : [];
     var html = '<section class="section sv-sec" aria-labelledby="sv-f"><h2 id="sv-f"><span class="sv-sec-letter" aria-hidden="true">f</span>Kayıt ve sınav günü kontrol listesi</h2>';
-    if (!G.length) return html + '<div class="empty-state" id="sv-check-empty">' + ICON.clock + '<strong>Gereklilik listesi doğrulanıyor</strong><span>Kayıt ve sınav günü adımları resmi kaynaklarla doğrulandıkça burada görünecek. Bu arada <a href="istanbul-sinav-rehberi.html">İstanbul Sınav Rehberi</a>’ne ve <a href="bilgi-merkezi.html">Bilgi Merkezi</a>’ne bak.</span></div></section>';
+    if (!G.length) return html + '<div class="empty-state" id="sv-check-empty">' + ICON.clock + '<strong>Gereklilik listesi doğrulanıyor</strong><span>Kayıt ve sınav günü adımları resmi kaynaklarla doğrulandıkça burada görünecek. Bu arada <a href="istanbul-sinav-rehberi.html">İstanbul Sınav Rehberi</a>’ne bak.</span></div></section>';
     var gruplar = [], byG = {};
     G.forEach(function (g) {
       var k = g.ne_zaman || "diger";
@@ -966,7 +966,7 @@
       return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
     });
     var done = G.filter(function (g) { return V.kontrol[g.id] && V.kontrol[g.id].c; }).length;
-    html += '<p class="section-lead" id="sv-check-count" aria-live="polite">' + done + ' / ' + G.length + ' adım tamamlandı. İşaretlerin bu cihazda saklanır.</p><div class="sv-checklist">';
+    html += '<p class="section-lead" id="sv-check-count" aria-live="polite">' + done + ' / ' + G.length + ' adım tamamlandı. İşaretlerin kaydedilir.</p><div class="sv-checklist">';
     gruplar.forEach(function (gr, gi) {
       html += '<div class="surface sv-check-group" data-grup="' + esc(gr) + '"><h3 id="sv-cg-' + gi + '">' + esc(NE_ZAMAN_AD[gr] || gr) + ' <span class="sv-summary-sub">' + byG[gr].length + ' adım</span></h3><ul class="sv-check-list" aria-labelledby="sv-cg-' + gi + '">';
       byG[gr].forEach(function (g) {
@@ -1024,7 +1024,7 @@
 
   // Rapor geçmişi
   function gecmisBolumu(r) {
-    var html = '<section class="section sv-sec sv-history" aria-labelledby="sv-h"><h2 id="sv-h">Rapor geçmişi</h2><p class="section-lead">Son ' + MAX_RAPOR + ' rapor bu cihazda saklanır (yedekleme dosyasına da dahildir).</p><ol class="sv-hist-list">';
+    var html = '<section class="section sv-sec sv-history" aria-labelledby="sv-h"><h2 id="sv-h">Rapor geçmişi</h2><p class="section-lead">Son ' + MAX_RAPOR + ' rapor saklanır.</p><ol class="sv-hist-list">';
     V.raporlar.forEach(function (x) {
       html += '<li class="sv-hist-item' + (x.id === r.id ? " is-current" : "") + '"><div><strong>' + esc(fmtZaman(x.tarih)) + '</strong><span>' +
         x.dersler.map(function (k) { var s = x.sonuclar[k]; return esc(s.ad) + " " + pct(s.skor); }).join(" · ") + '</span></div>' +
@@ -1082,7 +1082,7 @@
         cb.closest(".sv-check").classList.toggle("is-done", cb.checked);
         var G = takvim().gereklilikler || [];
         var done = G.filter(function (g) { return V.kontrol[g.id] && V.kontrol[g.id].c; }).length;
-        $("sv-check-count").textContent = done + " / " + G.length + " adım tamamlandı. İşaretlerin bu cihazda saklanır.";
+        $("sv-check-count").textContent = done + " / " + G.length + " adım tamamlandı. İşaretlerin kaydedilir.";
       });
     });
   }

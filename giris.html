@@ -5,17 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <title>Giriş yap / Kayıt ol | Meberra</title>
-  <meta name="description" content="Meberra hazırlık portalına giriş yap ya da yeni öğrenci hesabı oluştur.">
+  <meta name="description" content="Meberra'ya giriş yap ya da yeni öğrenci hesabı oluştur.">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
 
   <nav class="navbar">
-    <a href="giris.html" class="nav-brand">
-      <div class="brand-badge">Meberra</div>
-      <div><div class="brand-title">Hazırlık Portalı</div></div>
-    </a>
+    <a href="giris.html" class="nav-brand"><div class="brand-badge">Meberra</div></a>
     <div class="nav-actions"></div>
   </nav>
 
@@ -23,26 +20,26 @@
     <div class="auth-shell">
 
       <section class="auth-intro" aria-labelledby="intro-title">
-        <span class="auth-eyebrow">AP · Almanya · İtalya</span>
-        <h1 id="intro-title">Avrupa’da mühendislik hedefin için tek çalışma alanı</h1>
-        <p>Hesabını oluştur, okulunu ve hedef ülkeni seç. Portal sana o ülkenin üniversitelerini, isterlerini, girmen gereken sınavları ve her dersin denemesini sırayla gösterir.</p>
+        <span class="auth-eyebrow">AP · 15 Avrupa ülkesi</span>
+        <h1 id="intro-title">AP sınavlarına hazırlan, puanınla hangi ülkeye nasıl gideceğini gör</h1>
+        <p>Hesabını oluştur, sınıfını ve hedef ülkeni seç. Meberra sana her gün ne çalışacağını, denemelerini ve hedef ülkenin şartlarını tek yerde gösterir.</p>
         <ul class="auth-points">
           <li>
             <span class="todo-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg></span>
-            <div><strong>Üniversiteler ve isterler</strong><span>Seçtiğin ülkenin programları, kabul yolu ve takvimi, resmi kaynaklarıyla.</span></div>
+            <div><strong>Hedef ülken</strong><span>Şartlar, en iyi üniversiteler ve tarihli takvim, resmi kaynaklarıyla.</span></div>
           </li>
           <li>
             <span class="todo-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/></svg></span>
-            <div><strong>Sınavlar ve İngilizce ders anlatımı</strong><span>Her sınav ayrı kartta: format, süre, puanlama ve tarih.</span></div>
+            <div><strong>AP dersleri</strong><span>Ünite ünite İngilizce anlatım ve sorular.</span></div>
           </li>
           <li>
             <span class="todo-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></span>
-            <div><strong>Ders denemeleri ve genel deneme</strong><span>Sonuçların ve hata defterin hesabında saklanır.</span></div>
+            <div><strong>Ders denemeleri ve genel deneme</strong><span>Sonuçların ve yanlışların hesabında saklanır.</span></div>
           </li>
         </ul>
         <a class="auth-open-link" id="acik-link" href="sartlar.html">
           <span class="auth-open-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
-          <span><strong>Giriş yapmadan şartlara bak</strong><small>Almanya ve İtalya şartları, sınıfına göre. Hesap gerekmez.</small></span>
+          <span><strong>Giriş yapmadan şartlara bak</strong><small>15 Avrupa ülkesinin şartları, sınıfına göre. Hesap gerekmez.</small></span>
           <svg class="auth-open-go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </section>
@@ -81,7 +78,7 @@
                 <p class="field-error" id="giris-sifre-err"></p>
               </div>
               <button type="submit" class="btn-primary btn-block" id="giris-submit">Giriş yap</button>
-              <p class="field-hint">Şifreni mi unuttun? <button type="button" class="link-btn" id="to-recover">Kurtarma koduyla yeni şifre belirle</button></p>
+              <p class="field-hint"><button type="button" class="link-btn" id="to-recover">Şifremi unuttum</button></p>
             </form>
           </section>
 
@@ -152,7 +149,7 @@
               <input class="text-input" id="kurtar-kullaniciAdi" autocomplete="username" autocapitalize="none" spellcheck="false" aria-describedby="kurtar-kullaniciAdi-err">
               <p class="field-error" id="kurtar-kullaniciAdi-err"></p>
             </div>
-            <div class="field">
+            <div class="field yalniz-dosya">
               <label for="kurtar-kod">Kurtarma kodu</label>
               <input class="text-input font-mono" id="kurtar-kod" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX" aria-describedby="kurtar-kod-err">
               <p class="field-error" id="kurtar-kod-err"></p>
@@ -179,7 +176,7 @@
         </section>
 
         <!-- KURTARMA KODU (bir kez gösterilir) -->
-        <section id="view-code" aria-labelledby="code-title" hidden>
+        <section id="view-code" class="yalniz-dosya" aria-labelledby="code-title" hidden>
           <h2 id="code-title" tabindex="-1">Kurtarma kodunu kaydet</h2>
           <p class="auth-lead" id="code-lead">Şifreni unutursan yeni şifre belirlemenin tek yolu bu kod. Kod yalnızca şimdi gösterilir; biz de göremeyiz.</p>
           <div class="recovery-box">
@@ -197,8 +194,8 @@
           </div>
         </section>
 
-        <!-- SAHİPSİZ ESKİ İLERLEME -->
-        <section id="view-orphan" aria-labelledby="orphan-title" hidden>
+        <!-- SAHİPSİZ ESKİ İLERLEME (yalnız dosya kipi) -->
+        <section id="view-orphan" class="yalniz-dosya" aria-labelledby="orphan-title" hidden>
           <h2 id="orphan-title" tabindex="-1">Bu cihazda önceki ilerleme bulundu</h2>
           <p class="auth-lead">Hesap sistemi gelmeden önce bu tarayıcıda çözülmüş sorular var. Hesabına aktarılsın mı?</p>
           <div class="kv-list u-mb-4" id="orphan-stats"></div>
@@ -211,7 +208,7 @@
 
         <p class="storage-note">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-          <span>Hesabın ve ilerlemen bu cihazdaki tarayıcıda saklanır; şifren hiçbir sunucuya gönderilmez. Başka cihaza geçmek için Yedek Al / Yükle kullan.</span>
+          <span class="yalniz-dosya">Hesabın ve ilerlemen bu cihazdaki tarayıcıda saklanır; şifren hiçbir sunucuya gönderilmez. Başka cihaza geçmek için Yedek Al / Yükle kullan.</span><span class="yalniz-sunucu">İlerlemen hesabına kaydedilir, her cihazdan devam edersin.</span>
         </p>
       </div>
     </div>
@@ -268,7 +265,7 @@
       var secimMetni = SECIM && window.APMEBERRA && APMEBERRA.erisim.secimMetni ? APMEBERRA.erisim.secimMetni(SECIM) : "";
       var sayfa = donus ? donus.split(/[?#]/)[0].replace(/\.html$/i, "") : "";
       var acik = window.APMEBERRA && APMEBERRA.erisim ? APMEBERRA.erisim.acik(sayfa) : false;
-      var AD = { index: "Bugün", calis: "Çalış", rota: "Rotam", yazismalar: "Yazışmalarım", deneme: "Denemeler", ilerleme: "İlerleme", "seviye-testi": "Seviye testi", "sinav-cents": "CEnT-S hazırlığı" };
+      var AD = { index: "Bugün", calis: "Çalış", rota: "Takvimim", yazismalar: "Başvurularım", deneme: "Denemeler", ilerleme: "İlerleme", "seviye-testi": "Seviye testi", "sinav-cents": "CEnT-S hazırlığı" };
       (typeof APMEBERRA_COURSES !== "undefined" ? APMEBERRA_COURSES : []).forEach(function (c) { AD[c.page] = c.name; });
       var calisma = /^(ap-|calis$|deneme$|seviye-testi$|sinav-cents$)/.test(sayfa);
       var title = "", text = "";
@@ -342,7 +339,7 @@
       var btn = $("giris-submit"), alertEl = $("giris-alert");
       var f = { kullaniciAdi: $("giris-kullaniciAdi").value.trim(), sifre: $("giris-sifre").value };
       var errs = {};
-      if (!f.kullaniciAdi) errs.kullaniciAdi = "Kullanıcı adını yaz.";
+      if (!f.kullaniciAdi) errs.kullaniciAdi = "E-posta adresini yaz.";
       if (!f.sifre) errs.sifre = "Şifreni yaz.";
       UI.alert(alertEl, "");
       UI.alert(statusEl, "");
@@ -394,8 +391,6 @@
       document.querySelector("label[for='kurtar-kullaniciAdi']").textContent = "E-posta";
       ["kurtar-kod", "kurtar-sifre", "kurtar-sifre2"].forEach(function (id) { var fl = $(id).closest(".field"); if (fl) fl.hidden = true; });
       $("kurtar-submit").textContent = "Sıfırlama bağlantısı gönder";
-      var not = document.querySelector(".storage-note span");
-      if (not) not.textContent = "Hesabın ve ilerlemen güvenli sunucumuzda saklanır; her cihazdan giriş yapıp kaldığın yerden devam edebilirsin.";
     }
 
     // --- Şifremi unuttum ---
@@ -424,7 +419,7 @@
         });
         return;
       }
-      if (!kad) errs.kullaniciAdi = "Kullanıcı adını yaz.";
+      if (!kad) errs.kullaniciAdi = "E-posta adresini yaz.";
       if (!kod.trim()) errs.kod = "Kurtarma kodunu yaz.";
       UI.alert(alertEl, "");
       var first = UI.showErrors("kurtar", errs, KURTAR_FIELDS);

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <title>Seviye Testi & Sınav Hazırlık Raporu | Meberra</title>
+  <title>Seviye testi | Meberra</title>
   <meta name="description" content="AP sınav kaydından önce kısa tanı testi: ders ve ünite bazında hazırlık, sınava kadar açığın kapanıp kapanmayacağı ve kayıt / sınav günü kontrol listesi.">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
@@ -30,19 +30,7 @@
 <body>
 
   <nav class="navbar">
-    <a href="index.html" class="nav-brand">
-      <div class="brand-badge">Meberra</div>
-      <div>
-        <div class="brand-title">Seviye Testi</div>
-        <div class="brand-subtitle">Sınav hazırlık raporu</div>
-      </div>
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html" class="nav-link">Ana Sayfa</a></li>
-      <li><a href="seviye-testi.html" class="nav-link" aria-current="page">Seviye Testi</a></li>
-      <li><a href="ilerleme.html" class="nav-link">İlerleme</a></li>
-      <li><a href="bilgi-merkezi.html" class="nav-link">Bilgi Merkezi</a></li>
-    </ul>
+    <a href="index.html" class="nav-brand"><div class="brand-badge">Meberra</div></a>
     <div class="nav-actions"></div>
   </nav>
 
@@ -55,7 +43,7 @@
     <!-- 1. BAŞLANGIÇ -->
     <section id="sv-start" aria-labelledby="sv-start-title" hidden>
       <header class="page-head">
-        <span class="eyebrow">Seviye Testi</span>
+        <span class="eyebrow">Seviye testi</span>
         <h1 id="sv-start-title" tabindex="-1">AP kaydından önce: hangi derste ne kadar hazırsın?</h1>
         <p>Her ünitenin en temel kavramını ölçen kısa bir tanı testi. Test sırasında doğru/yanlış gösterilmez; bitirince ders ve ünite bazında hazırlığını, sınava kadar açığın kapanıp kapanmayacağını ve kayıt için yapman gerekenleri gösteren bir rapor alırsın.</p>
       </header>
@@ -74,7 +62,7 @@
           <legend class="sv-legend" id="sv-courses-legend" tabindex="-1">1. Dersleri seç</legend>
           <p class="side-note">Calculus için AB ya da BC’den yalnızca birini seçebilirsin. Soru dosyası henüz hazır olmayan dersler soluk görünür.</p>
           <div class="sv-courses" id="sv-courses"></div>
-          <p class="sv-empty-note" id="sv-courses-empty" hidden>Şu an hiçbir dersin tanı soruları yüklenemedi. Soru dosyaları <code>data/sorular/seviye/</code> klasörüne eklendikçe dersler burada açılır.</p>
+          <p class="sv-empty-note" id="sv-courses-empty" hidden>Şu an hiçbir dersin tanı soruları yüklenemedi. Sorular eklendikçe dersler burada açılır.</p>
           <p class="sv-form-msg" id="sv-form-msg" role="alert"></p>
         </fieldset>
 
@@ -144,8 +132,8 @@
 
   <footer class="footer">
     <div class="footer-bottom u-mt-0">
-      <div>© 2026 Meberra • Seviye testi soruları <code>data/sorular/seviye/</code>, sınav takvimi <code>data/mevzuat/sinav-takvimi.js</code> dosyasından okunur. Sonuçlar hesabına kaydedilir; istersen ek güvence için <a href="ilerleme.html#yedek-title">Yedekle / Taşı</a></div>
-      <div><a href="index.html">← Ana Sayfaya Dön</a></div>
+      <div>© 2026 Meberra • <span class="yalniz-sunucu">Sonuçların hesabına kaydedilir, her cihazdan devam edersin.</span><span class="yalniz-dosya">Sonuçların bu tarayıcıda saklanır; başka cihaza geçmek için <a href="ilerleme.html#yedek-title">Yedekle / Taşı</a>.</span></div>
+      <div><a href="index.html">← Bugün</a></div>
     </div>
   </footer>
 

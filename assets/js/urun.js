@@ -15,7 +15,7 @@
   var AYLIK = 199, YILLIK = 1490;
   var URUN = Object.freeze({
     marka: "Meberra",
-    slogan: "AP sınavlarına ve Avrupa'da üniversiteye adım adım hazırlık",
+    slogan: "AP sınavlarına hazırlan, puanınla hangi ülkeye nasıl gideceğini gör",
     destekEposta: "destek@meberra.com",
     para: "₺",
     planlar: Object.freeze([

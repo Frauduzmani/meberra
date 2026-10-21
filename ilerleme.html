@@ -4,35 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <title>İlerleme & Hata Defteri | Meberra</title>
-  <meta name="description" content="Öğrencinin AP soru bankası ilerlemesi: ders ve ünite bazında çözülen, doğru, yanlış sayıları, Kırmızı/Sarı/Yeşil bölge rozetleri ve Hata Defteri.">
+  <title>İlerleme & Yanlışlarım | Meberra</title>
+  <meta name="description" content="Öğrencinin AP soru bankası ilerlemesi: ders ve ünite bazında çözülen, doğru, yanlış sayıları, Kırmızı/Sarı/Yeşil bölge rozetleri ve Yanlışlarım.">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
 
   <nav class="navbar">
-    <a href="index.html" class="nav-brand">
-      <div class="brand-badge">Meberra</div>
-      <div>
-        <div class="brand-title">İlerleme</div>
-        <div class="brand-subtitle">Soru bankası & Hata Defteri</div>
-      </div>
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html" class="nav-link">Ana Sayfa</a></li>
-      <li><a href="ap-calculus.html" class="nav-link">Calculus</a></li>
-      <li><a href="ap-physics.html" class="nav-link">Physics</a></li>
-      <li><a href="ap-chemistry.html" class="nav-link">Chemistry</a></li>
-      <li><a href="ap-biology.html" class="nav-link">Biology</a></li>
-      <li><a href="ap-english.html" class="nav-link">English</a></li>
-      <li><a href="ap-electives.html" class="nav-link">Seçmeliler</a></li>
-      <li><a href="almanya-muhendislik.html" class="nav-link">Almanya</a></li>
-      <li><a href="italya-muhendislik.html" class="nav-link">İtalya</a></li>
-      <li><a href="istanbul-sinav-rehberi.html" class="nav-link">İstanbul Sınav</a></li>
-      <li><a href="bilgi-merkezi.html" class="nav-link">Bilgi Merkezi</a></li>
-      <li><a href="ilerleme.html" class="nav-link" aria-current="page">İlerleme</a></li>
-    </ul>
+    <a href="index.html" class="nav-brand"><div class="brand-badge">Meberra</div></a>
     <div class="nav-actions"></div>
   </nav>
 
@@ -41,7 +21,7 @@
     <header class="page-head">
       <span class="eyebrow" id="ilerleme-eyebrow">İlerleme</span>
       <h1>Nerede güçlüsün, neyi tekrar etmelisin?</h1>
-      <p>Soru bankalarında verdiğin cevaplar hesabına kaydedilir. Aşağıda ders ve ünite bazında sonuçlarını, bölge rozetlerini ve yanlış yaptığın soruları (Hata Defteri) görebilirsin.</p>
+      <p>Soru bankalarında verdiğin cevaplar hesabına kaydedilir. Aşağıda ders ve ünite bazında sonuçlarını, bölge rozetlerini ve yanlış yaptığın soruları (Yanlışlarım) görebilirsin.</p>
     </header>
 
     <!-- GENEL ÖZET -->
@@ -66,7 +46,7 @@
               <div class="kv"><div class="kv-num" id="k-answered">0</div><div class="kv-label">Çözülen soru</div></div>
               <div class="kv is-ok"><div class="kv-num" id="k-correct">0</div><div class="kv-label">Doğru</div></div>
               <div class="kv is-bad"><div class="kv-num" id="k-wrong">0</div><div class="kv-label">Yanlış</div></div>
-              <div class="kv"><div class="kv-num" id="k-open">0</div><div class="kv-label">Hata Defteri (açık)</div></div>
+              <div class="kv"><div class="kv-num" id="k-open">0</div><div class="kv-label">Yanlışlarım (açık)</div></div>
             </div>
           </div>
         </div>
@@ -102,7 +82,7 @@
     <section class="section" aria-labelledby="hata-title">
       <div class="section-header u-mb-3">
         <div class="section-title-wrap">
-          <h2 class="u-fs-22 u-fw-800" id="hata-title">Hata Defteri</h2>
+          <h2 class="u-fs-22 u-fw-800" id="hata-title">Yanlışlarım</h2>
         </div>
         <div class="u-flex u-gap-2 u-wrap">
           <label for="err-course" class="visually-hidden">Derse göre filtrele</label>
@@ -117,19 +97,19 @@
       <ul class="err-list" id="err-list"></ul>
       <div class="empty-state" id="err-empty" hidden>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>
-        <strong id="err-empty-title">Hata Defterin boş</strong>
+        <strong id="err-empty-title">Yanlışlarım boş</strong>
         <span id="err-empty-text">Soru bankalarında yanlış yaptığın sorular burada listelenecek.</span>
       </div>
     </section>
 
     <!-- YEDEKLE / TAŞI -->
-    <section class="section" id="yedek-section" aria-labelledby="yedek-title">
+    <section class="section yalniz-dosya" id="yedek-section" aria-labelledby="yedek-title">
       <div class="surface">
         <div class="backup-head">
           <span class="backup-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg></span>
           <div class="u-min0">
             <h2 id="yedek-title">Yedekle / Taşı</h2>
-            <p>Cevapların ve Hata Defterin hesabına otomatik kaydedilir; başka bir cihazdan giriş yapınca hepsi orada olur. İstersen ek güvence için bir yedek dosyası indirebilir, gerektiğinde “Dosyadan yükle” ile geri alabilirsin.</p>
+            <p>Cevapların ve Yanlışlarım hesabına otomatik kaydedilir; başka bir cihazdan giriş yapınca hepsi orada olur. İstersen ek güvence için bir yedek dosyası indirebilir, gerektiğinde “Dosyadan yükle” ile geri alabilirsin.</p>
             <p class="backup-last u-mt-2" id="backup-last"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="backup-last-text">Henüz yedek alınmadı.</span></p>
           </div>
         </div>
@@ -137,7 +117,7 @@
         <div class="backup-grid">
           <div class="backup-pane">
             <h3>İlerlemeyi dosyaya aktar</h3>
-            <p>Tüm cevaplar, Hata Defteri ve tema tercihin tek bir <code>apmeberra-ilerleme-YYYY-AA-GG.json</code> dosyasına indirilir.</p>
+            <p>Tüm cevaplar, Yanlışlarım ve tema tercihin tek bir <code>apmeberra-ilerleme-YYYY-AA-GG.json</code> dosyasına indirilir.</p>
             <button type="button" class="btn-primary" id="backup-export">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
               Dosyaya aktar
@@ -167,7 +147,7 @@
             <legend>Nasıl yüklensin?</legend>
             <label class="mode-opt">
               <input type="radio" name="backup-mode" value="merge" checked>
-              <span><strong>Birleştir (önerilen)</strong><span>Bu cihazdaki veriler korunur; aynı soruda daha yeni cevap kazanır, Hata Defteri kayıtları birleşir.</span></span>
+              <span><strong>Birleştir (önerilen)</strong><span>Bu cihazdaki veriler korunur; aynı soruda daha yeni cevap kazanır, Yanlışlarım kayıtları birleşir.</span></span>
             </label>
             <label class="mode-opt is-danger">
               <input type="radio" name="backup-mode" value="replace">
@@ -189,7 +169,7 @@
       <div class="surface u-flex u-center u-between u-gap-4 u-wrap">
         <div class="u-min0" style="flex: 1 1 320px;">
           <h2 class="u-fs-16 u-fw-800 u-mb-1" id="reset-title">Verileri sıfırla</h2>
-          <p class="u-c-muted u-fs-16">Bu cihazdaki tüm cevapları ve Hata Defterini siler. Tema tercihin korunur. Bu işlem geri alınamaz.</p>
+          <p class="u-c-muted u-fs-16">Tüm cevaplarını ve Yanlışlarım’ı siler. Tema tercihin korunur. Bu işlem geri alınamaz.</p>
         </div>
         <button type="button" class="btn-ghost btn-danger" id="reset-all">Tüm ilerlemeyi sıfırla</button>
       </div>
@@ -200,8 +180,8 @@
 
   <footer class="footer">
     <div class="footer-bottom u-mt-0">
-      <div>© 2026 Meberra • İlerleme verilerin hesabına kaydedilir; istersen ek güvence için <a href="#yedek-title">Yedekle / Taşı</a></div>
-      <div><a href="index.html">← Ana Sayfaya Dön</a></div>
+      <div>© 2026 Meberra • <span class="yalniz-sunucu">İlerlemen hesabına kaydedilir, her cihazdan devam edersin.</span><span class="yalniz-dosya">İlerlemen bu tarayıcıda saklanır; başka cihaza geçmek için <a href="#yedek-title">Yedekle / Taşı</a>.</span></div>
+      <div><a href="index.html">← Bugün</a></div>
     </div>
   </footer>
 
@@ -213,7 +193,7 @@
     var ME = window.APMEBERRA_ME;
     if (ME && ME.user) {
       document.getElementById("ilerleme-eyebrow").textContent = "İlerleme · " + (ME.user.ad + " " + ME.user.soyad).trim();
-      document.title = "İlerleme & Hata Defteri — " + ME.user.ad + " | Meberra";
+      document.title = "İlerleme & Yanlışlarım — " + ME.user.ad + " | Meberra";
     }
     var showResolved = false;
     var courseFilter = "all";
@@ -332,7 +312,7 @@
       sel.value = pages[current] ? current : "all";
       courseFilter = sel.value;
 
-      // Hata Defteri
+      // Yanlışlarım
       var list = s.errors.filter(function (e) {
         if (!showResolved && e.resolved) return false;
         if (courseFilter !== "all" && e.page !== courseFilter) return false;
@@ -357,7 +337,7 @@
       empty.hidden = list.length !== 0;
       if (!list.length) {
         var anyOpen = s.openErrors.length > 0;
-        document.getElementById("err-empty-title").textContent = s.errors.length ? (anyOpen ? "Bu filtrede kayıt yok" : "Açık hatan kalmadı") : "Hata Defterin boş";
+        document.getElementById("err-empty-title").textContent = s.errors.length ? (anyOpen ? "Bu filtrede kayıt yok" : "Açık hatan kalmadı") : "Yanlışlarım boş";
         document.getElementById("err-empty-text").textContent = s.errors.length
           ? (anyOpen ? "Filtreyi “Tüm dersler” yap." : "Tüm yanlışlarını düzelttin. Düzeltilenleri görmek için üstteki düğmeyi kullan.")
           : "Soru bankalarında yanlış yaptığın sorular burada listelenecek.";
@@ -371,7 +351,7 @@
     });
     document.getElementById("err-course").addEventListener("change", function () { courseFilter = this.value; render(); });
     document.getElementById("reset-all").addEventListener("click", function () {
-      if (!window.confirm("Tüm cevapların ve Hata Defterin bu cihazdan silinecek. Emin misin?")) return;
+      if (!window.confirm("Tüm cevapların ve Yanlışlarım silinecek. Emin misin?")) return;
       A.resetAll();
       render();
       renderBackupState();

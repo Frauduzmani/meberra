@@ -4,42 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <title>Bilgi Merkezi | Meberra</title>
-  <meta name="description" content="Öğrenciler için doğrulanmış kritik bilgiler: AP sınavları, Almanya ve İtalya başvuru şartları. Her madde durum rozeti ve resmi kaynak bağlantısıyla.">
+  <title>Kaynaklar | Meberra</title>
+  <meta name="description" content="Doğrulanmış kritik bilgiler ve resmi kaynaklar: AP sınavları, Almanya ve İtalya başvuru şartları. Her madde durum rozeti ve resmi kaynak bağlantısıyla.">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
 
   <nav class="navbar">
-    <a href="index.html" class="nav-brand">
-      <div class="brand-badge">Meberra</div>
-      <div>
-        <div class="brand-title">Bilgi Merkezi</div>
-        <div class="brand-subtitle">Doğrulanmış kritik bilgiler</div>
-      </div>
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html" class="nav-link">Ana Sayfa</a></li>
-      <li><a href="ap-calculus.html" class="nav-link">Calculus</a></li>
-      <li><a href="ap-physics.html" class="nav-link">Physics</a></li>
-      <li><a href="ap-chemistry.html" class="nav-link">Chemistry</a></li>
-      <li><a href="ap-biology.html" class="nav-link">Biology</a></li>
-      <li><a href="ap-english.html" class="nav-link">English</a></li>
-      <li><a href="ap-electives.html" class="nav-link">Seçmeliler</a></li>
-      <li><a href="almanya-muhendislik.html" class="nav-link">Almanya</a></li>
-      <li><a href="italya-muhendislik.html" class="nav-link">İtalya</a></li>
-      <li><a href="istanbul-sinav-rehberi.html" class="nav-link">İstanbul Sınav</a></li>
-      <li><a href="bilgi-merkezi.html" class="nav-link" aria-current="page">Bilgi Merkezi</a></li>
-      <li><a href="ilerleme.html" class="nav-link">İlerleme</a></li>
-    </ul>
+    <a href="index.html" class="nav-brand"><div class="brand-badge">Meberra</div></a>
     <div class="nav-actions"></div>
   </nav>
 
   <main class="main-container" id="main-content">
 
     <header class="page-head">
-      <span class="eyebrow">Bilgi Merkezi</span>
+      <span class="eyebrow">Kaynaklar</span>
       <h1>Bilmen gereken kritik bilgiler</h1>
       <p>Tarihler, şartlar ve kurallar burada kısa kartlar halinde. Her kartta bilginin doğrulanma durumu ve resmi kaynağın bağlantısı var. Karar vermeden önce kaynağa mutlaka bir kez daha bak.</p>
     </header>
@@ -52,7 +32,7 @@
     <div class="toolbar" role="search">
       <div class="search-wrap">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-        <label for="kb-search" class="visually-hidden">Bilgi Merkezinde ara</label>
+        <label for="kb-search" class="visually-hidden">Kaynaklarda ara</label>
         <input type="search" id="kb-search" class="text-input" placeholder="Ara: KMK, TOLC, kayıt, burs…" autocomplete="off">
       </div>
       <div class="chip-group" role="group" aria-label="Duruma göre filtrele" id="kb-filters">
@@ -86,7 +66,7 @@
         </div>
         <div class="kb-card">
           <span class="status status-dogrulanamadi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg>Doğrulanamadı</span>
-          <p>Resmi kaynakta teyit edilemedi. Bu bilgiye dayanarak karar verme; danışmanına sor.</p>
+          <p>Resmi kaynakta teyit edilemedi. Bu bilgiye dayanarak karar verme; önce resmi kaynaktan teyit et.</p>
         </div>
       </div>
     </section>
@@ -95,8 +75,8 @@
 
   <footer class="footer">
     <div class="footer-bottom u-mt-0">
-      <div>© 2026 Meberra • Bilgi Merkezi — içerik <code>data/rehber/bilgi-merkezi.js</code> dosyasından okunur</div>
-      <div><a href="index.html">← Ana Sayfaya Dön</a></div>
+      <div>© 2026 Meberra • Kaynaklar</div>
+      <div><a href="sartlar.html">← Ülkem</a></div>
     </div>
   </footer>
 
@@ -136,11 +116,11 @@
     function statusOf(m) { return STATUS[m.durum] ? m.durum : "dogrulanamadi"; }
 
     if (!data || !Array.isArray(data.bolumler)) {
-      updateText.textContent = "veri dosyası (data/rehber/bilgi-merkezi.js) yüklenemedi.";
+      updateText.textContent = "veri yüklenemedi.";
       updateBox.classList.add("is-warn");
       empty.hidden = false;
-      empty.querySelector("strong").textContent = "Bilgi Merkezi verisi bulunamadı";
-      empty.querySelector("span").textContent = "data/rehber/bilgi-merkezi.js dosyasının proje klasöründe olduğundan emin ol.";
+      empty.querySelector("strong").textContent = "Kaynak verisi bulunamadı";
+      empty.querySelector("span").textContent = "Sayfayı yenile; sorun sürerse daha sonra tekrar dene.";
       return;
     }
 

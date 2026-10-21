@@ -4,25 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <title>Başvuru ve yazışmalarım | Meberra</title>
-  <meta name="description" content="Üniversiteye ilk başvuru e-postası profil bilgilerinle İngilizce hazırlanır; kurumlara teyit taslakları, yazışma geçmişi ve yaklaşan son tarihler. Portal e-posta göndermez: kopyala ya da e-posta programında aç.">
+  <title>Başvurularım | Meberra</title>
+  <meta name="description" content="Üniversiteye ilk başvuru e-postası profil bilgilerinle İngilizce hazırlanır; kurumlara teyit taslakları, yazışma geçmişi ve yaklaşan son tarihler. Meberra e-posta göndermez: kopyala ya da e-posta programında aç.">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
 
   <nav class="navbar">
-    <a href="index.html" class="nav-brand">
-      <div class="brand-badge">Meberra</div>
-      <div><div class="brand-title">Yazışmalarım</div></div>
-    </a>
+    <a href="index.html" class="nav-brand"><div class="brand-badge">Meberra</div></a>
     <div class="nav-actions"></div>
   </nav>
 
   <main class="main-container" id="main-content">
     <header class="page-head yz-head">
-      <span class="eyebrow">Başvuru</span>
-      <h1>Başvuru ve yazışmalarım</h1>
+      <span class="eyebrow">Hedefim</span>
+      <h1>Başvurularım</h1>
       <p>Üniversiteye ilk e-postayı profil bilgilerinle İngilizce hazırla, kurumlara teyit sor, gönderdiklerini takip et.</p>
     </header>
 
@@ -30,7 +27,7 @@
     <section class="surface son-tarihler" id="son-tarihler" aria-labelledby="st-title" tabindex="-1">
       <div class="st-head">
         <h2 id="st-title">Son tarihler</h2>
-        <p class="st-links"><a href="rota.html" id="st-rota">Rotam</a><span aria-hidden="true"> · </span><a href="sinavlar.html">Sınavlar</a></p>
+        <p class="st-links"><a href="rota.html" id="st-rota">Takvimim</a><span aria-hidden="true"> · </span><a href="sinavlar.html">Sınavlar</a></p>
       </div>
       <ol class="st-list" id="st-list"><li class="st-bos">Yükleniyor…</li></ol>
       <button type="button" class="link-btn st-daha" id="st-daha" aria-controls="st-list" aria-expanded="false" hidden></button>
@@ -40,7 +37,7 @@
 
     <p class="notice" role="note" id="durust-not">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
-      <span><strong>Portal e-posta göndermez.</strong> Metni kopyalar ya da e-posta programında açarsın; e-postayı başvuruda kullanacağın kendi adresinden sen gönderirsin.</span>
+      <span><strong>Meberra e-posta göndermez.</strong> Metni kopyalar ya da e-posta programında açarsın; e-postayı başvuruda kullanacağın kendi adresinden sen gönderirsin.</span>
     </p>
 
     <!-- Tur 14 A5 (Ajan 14 planı §3.3): üç sekme; eski çapalar (#sablonlar, #taslaklar, #gecmis) ilgili sekmeyi açar -->
@@ -253,8 +250,8 @@
 
   <footer class="footer">
     <div class="footer-bottom u-mt-0">
-      <div>İlk e-posta şablonları <code>data/kocluk/ilk-basvuru-sablonlari.js</code> (resmi iletişim yönergelerine dayalı), üniversite listeleri <code>data/mevzuat/ulke/</code>, kişisel şablonlar <code>data/kocluk/eposta-sablonlari.js</code>, hazır taslaklar <code>data/kocluk/teyit-taslaklari.js</code>, üniversiteler <code>data/mevzuat/ulkeler.js</code> dosyasından okunur. Yazışma geçmişin hesabına kaydedilir ve yedeğe dahildir.</div>
-      <div><a href="index.html">← Bugün ekranına dön</a></div>
+      <div>Şablonlar resmi iletişim yönergelerine dayanır. <span class="yalniz-sunucu">Yazışma geçmişin hesabına kaydedilir, her cihazdan devam edersin.</span><span class="yalniz-dosya">Yazışma geçmişin bu tarayıcıda saklanır.</span></div>
+      <div><a href="index.html">Sonraki adım: Bugün’ün görevi →</a></div>
     </div>
   </footer>
 
@@ -388,7 +385,7 @@
         '<div class="pill-row">' +
           '<span class="pill' + (profUlke.indexOf(s.ulke) >= 0 ? " pill-accent" : "") + '">' + esc(ULKE_AD[s.ulke] || s.ulke) + '</span>' +
           (s.dil ? '<span class="pill" title="E-postanın dili"><span class="visually-hidden">Dil: </span>' + esc(DIL_AD[s.dil] || s.dil) + '</span>' : "") +
-          (rotaBagli.indexOf(s.id) >= 0 && A.rota && (s.ulke === A.rota.aktif() || s.ulke === "genel") ? '<span class="rota-badge rota-badge-sablon" title="Bu e-posta rotandaki bir adıma bağlı">Rotamda</span>' : "") +
+          (rotaBagli.indexOf(s.id) >= 0 && A.rota && (s.ulke === A.rota.aktif() || s.ulke === "genel") ? '<span class="rota-badge rota-badge-sablon" title="Bu e-posta rotandaki bir adıma bağlı">Takvimimde</span>' : "") +
           (s.kararNotu ? '<span class="decision-badge" title="İlgili karar notu maddesi">Karar notu ' + esc(s.kararNotu) + '</span>' : "") +
           (Array.isArray(s.siniflar) && s.siniflar.length ? '<span class="grade-badge">Yalnız ' + s.siniflar.map(function (x) { return esc(AUTH.sinifLabel(String(x))); }).join(", ") + '</span>' : "") +
         '</div>' +
@@ -409,7 +406,7 @@
       var root = $("sb-root");
       if (!SABLONLAR) {
         root.innerHTML = '<div class="empty-state"><div class="empty-ico" aria-hidden="true">' + ICON.wait + '</div><h3>Şablonlar hazırlanıyor</h3>' +
-          '<p>Mevzuat uzmanımız üniversitelere ve kurumlara gönderilecek resmi e-posta şablonlarını resmi kaynaklara göre hazırlıyor. Bu sırada profilindeki iletişim bilgilerini tamamlayabilirsin; şablonlar gelince e-postaların bu bilgilerle otomatik dolar.</p>' +
+          '<p>Üniversitelere ve kurumlara gönderilecek e-posta şablonları resmi kaynaklara göre hazırlanıyor. Bu sırada profilindeki iletişim bilgilerini tamamlayabilirsin; şablonlar gelince e-postaların bu bilgilerle otomatik dolar.</p>' +
           '<div class="btn-row"><a class="btn-ghost" href="profil.html#iletisim">Profilimi tamamla</a><a class="btn-ghost" href="universiteler.html">Üniversitelerim</a></div></div>';
         $("sb-lead").textContent = "Şablon dosyası henüz yok.";
         return;
@@ -500,7 +497,7 @@
       var root = $("tt-root");
       if (!TASLAKLAR) {
         $("tt-say").textContent = "";
-        root.innerHTML = '<div class="empty-state" data-bos="taslak-dosya"><div class="empty-ico" aria-hidden="true">' + ICON.wait + '</div><h3>Teyit taslakları yüklenemedi</h3><p>data/kocluk/teyit-taslaklari.js bulunamadı. Kişisel şablonlar ve yazışma geçmişin çalışmaya devam eder.</p></div>';
+        root.innerHTML = '<div class="empty-state" data-bos="taslak-dosya"><div class="empty-ico" aria-hidden="true">' + ICON.wait + '</div><h3>Teyit taslakları yüklenemedi</h3><p>Sayfayı yenilemeyi dene. Kişisel şablonlar ve yazışma geçmişin çalışmaya devam eder.</p></div>';
         return;
       }
       var liste = E.taslaklariSuz(TASLAKLAR, { model: sz.model, ulke: ulkeSecimi() });

@@ -74,7 +74,7 @@
   /** Sıralama satırı: "QS World University Rankings 2027 · yayın: Haziran 2026 · ülke içi sıra · Sıralama kaynağı" */
   function siralamaHtml(sir) {
     sir = sir || {};
-    return esc(sir.ad || "Sıralama") + (sir.yayin ? " · yayın: " + esc(yayinYaz(sir.yayin)) : "") + " · ülke içi sıra · " + src(sir.url, "Sıralama kaynağı");
+    return esc(sir.ad || "Sıralama") + (/^QS/.test(sir.ad || "") ? " (dünyanın en çok kullanılan üniversite sıralaması)" : "") + (sir.yayin ? " · yayın: " + esc(yayinYaz(sir.yayin)) : "") + " · ülke içi sıra · " + src(sir.url, "Sıralama kaynağı");
   }
   /** K-D: ülke özet uyarısı satırı */
   function ozetUyariHtml(u) {
