@@ -313,6 +313,7 @@ function hesapServisi(db, denetim, eposta) {
         yanlislar: tablo("SELECT sayfa, soru, konu, hata_etiketi, ilk_yanlis, son_yanlis, yanlis_sayisi, cozuldu FROM wrong_answers WHERE user_id = ?"),
         denemeler: tablo("SELECT kod, ad, tarih, soru_sayisi, dogru, yanlis, bos, yuzde, sure_sn FROM exams WHERE user_id = ?"),
         seviyeTestleri: tablo("SELECT tarih, veri FROM level_tests WHERE user_id = ?"),
+        soruOturumlari: tablo("SELECT id, tur, kod, sayfa, ucretsiz_hak, olusturma, teslim FROM soru_oturumlari WHERE user_id = ? ORDER BY olusturma"),
         tarayiciVerisi: tablo("SELECT anahtar, guncelleme FROM user_state WHERE user_id = ?"),
         oturumlar: tablo("SELECT olusturma, son_kullanim, son_gorulme, ip, son_ip, tarayici FROM sessions WHERE user_id = ?"),
         denetimKaydi: tablo("SELECT zaman, eylem, ip FROM audit_log WHERE user_id = ? ORDER BY zaman"),
@@ -330,7 +331,7 @@ function hesapServisi(db, denetim, eposta) {
       const z = simdi(), ep = String(u.eposta || "").toLowerCase();
       islem(db, () => {
         ["profiles", "user_state", "state_tombstones", "answers", "wrong_answers", "exams", "level_tests", "sessions", "password_resets",
-          "questions", "notifications", "notification_prefs", "push_subscriptions", "reminder_log", "lig_uyeleri", "lig_haftalik", "giris_sayilari"].forEach(t => db.prepare("DELETE FROM " + t + " WHERE user_id = ?").run(u.id));
+          "questions", "notifications", "notification_prefs", "push_subscriptions", "reminder_log", "lig_uyeleri", "lig_haftalik", "giris_sayilari", "soru_oturumlari"].forEach(t => db.prepare("DELETE FROM " + t + " WHERE user_id = ?").run(u.id));
         // Muhasebe kayıtları (abonelik, ödeme bildirimi) yasal saklama için kalır; kişisel alanlar anonimleştirilir.
         // Bekleyen bildirim iptal edilir (silinmiş hesaba Premium açılmasın), aktif dönem sonlandırılır.
         db.prepare("UPDATE upgrade_requests SET durum = 'iptal', islem_zamani = ?, islem_notu = 'Hesap silindi' WHERE user_id = ? AND durum = 'bekliyor'").run(z, u.id);

@@ -12,8 +12,19 @@ const bas = src.indexOf("const AP_TOC_QUIZ"), son = src.indexOf("// --- İçinde
 if (bas < 0 || son < bas) { console.error("FAIL apTocParse / apUniteGrupla bölümü app.js içinde bulunamadı"); process.exit(1); }
 const ctx = { apEsc: x => String(x == null ? "" : x) };
 vm.createContext(ctx);
-vm.runInContext(src.slice(bas, son) + "\nthis.F = { apTocParse, apUniteGrupla, apUcretsizUniteNolari, AP_UCRETSIZ_KUTULAR, apKutuUcretsizMi, apCapaUcretsizMi };", ctx);
-const { apTocParse, apUniteGrupla, apUcretsizUniteNolari, AP_UCRETSIZ_KUTULAR, apKutuUcretsizMi, apCapaUcretsizMi } = ctx.F;
+vm.runInContext(src.slice(bas, son) + "\nthis.F = { apTocParse, apUniteGrupla };", ctx);
+const { apTocParse, apUniteGrupla } = ctx.F;
+// Ücretsiz kural ortak modülde (istemci + sunucu aynı dosyayı kullanır)
+const { apUcretsizUniteNolari, AP_UCRETSIZ_KUTULAR, apKutuUcretsizMi, apCapaUcretsizMi } = require(path.join(ROOT, "assets/js/ucretsiz-kural.js"));
+// Tarayıcı yolu: dosya window'a da yazar
+{
+  const w = {}, c3 = { window: w };
+  vm.createContext(c3);
+  vm.runInContext(fs.readFileSync(path.join(ROOT, "assets/js/ucretsiz-kural.js"), "utf8"), c3);
+  if (typeof w.apKutuUcretsizMi !== "function" || typeof w.apUcretsizUniteNolari !== "function" || !w.AP_UCRETSIZ_KUTULAR) {
+    console.error("FAIL ucretsiz-kural.js tarayıcıda window'a yazmıyor"); process.exit(1);
+  }
+}
 
 let pass = 0, fail = 0;
 const ok = (c, m, x) => { console.log((c ? "PASS " : "FAIL ") + m + (!c && x !== undefined ? " -> " + JSON.stringify(x) : "")); c ? pass++ : fail++; };

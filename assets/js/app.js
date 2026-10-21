@@ -972,6 +972,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initHedefimSekmeler();
   initPageChrome();
   initUniteGorunumu();
+  initSoruKutulari();
   initDocToc();
   initQuizHashFocus();
   initCountdown();
@@ -1455,65 +1456,8 @@ function apUniteGrupla(bloklar) {
   return { uniteler, ekler, genel };
 }
 
-/**
- * Meberra ücretsiz ünite kuralı (açık ve belgeli; sıra numarasına göre DEĞİL).
- * Varsayılan: sayfadaki ilk N farklı ünite numarası açık (N = MEBERRA_URUN.ucretsiz.uniteSayisi, yoksa 2). Aynı numaralı
- * devam üniteleri ("Unit 2 (cont.): Circular Motion") o ünitenin parçasıdır → Physics'te Unit 1, Unit 2 ve Unit 2 (cont.) açık.
- * Numarasız ünite kendi sırasıyla sayılır. Sayfa istisnaları AP_UCRETSIZ_KURALI'nda:
- *   - ap-electives: tek sayfada birden çok ders var → her dersin (CS A, Ekonomi istasyonu, Micro, Macro) ilk ünitesi açık
- *   - ap-english: yalnızca 2 ünite (A, B) → ilki açık
- *   - sinav-cents: ilk 2 bölüm (Section 1–2) açık (ap- dışındaki tek ünite görünümlü sayfa)
- * Sayfa dışı kullanım (Bugün/Çalış görevleri, seviye testi önerileri) için ücretsiz soru kutuları AP_UCRETSIZ_KUTULAR'da;
- * araclar/testler/unite-birim-test.js bu listenin gerçek sayfalardaki kurala birebir uyduğunu denetler.
- */
-const AP_UCRETSIZ_KURALI = {
-  "ap-electives": { dersBasina: true },
-  "ap-english": { n: 1 },
-  "sinav-cents": { n: 2 }
-};
-/** Ücretsiz ünitelerin `no` değerleri (apUniteGrupla çıktısının uniteler dizisi üzerinde; saf). */
-function apUcretsizUniteNolari(page, uniteler, n) {
-  const k = AP_UCRETSIZ_KURALI[page] || {};
-  const list = Array.isArray(uniteler) ? uniteler : [];
-  if (k.dersBasina) {
-    const gor = {};
-    return list.filter(u => { const d = u.ders || ""; if (gor[d]) return false; gor[d] = 1; return true; }).map(u => u.no);
-  }
-  const sinir = k.n || n || 2, nolar = [], out = [];
-  list.forEach(u => {
-    const a = u.num != null ? "n:" + u.num : "#" + u.no;
-    if (nolar.indexOf(a) < 0) nolar.push(a);
-    if (nolar.indexOf(a) < sinir) out.push(u.no);
-  });
-  return out;
-}
-/** Ücretsiz ünitelerdeki soru kutuları (sayfa → kutu kimlikleri). Listede olmayan sayfa = kural yok (hepsi açık). */
-const AP_UCRETSIZ_KUTULAR = {
-  "ap-calculus": ["calc-unit1-quiz-container", "calc-unit2-quiz-container"],
-  "ap-physics": ["phys-unit1-quiz-container", "phys-unit2-quiz-container", "phys-unit3-quiz-container"], // unit3 kutusu = Unit 2 (cont.)
-  "ap-chemistry": ["chem-unit1-quiz-container", "chem-unit2-quiz-container"],
-  "ap-biology": ["bio-unit1-quiz-container", "bio-unit2-quiz-container"],
-  "ap-english": ["eng-reading-quiz-container"],
-  "ap-electives": ["csa-quiz-container", "econ-quiz-container", "micro34-quiz-container", "micro56-quiz-container", "macro14-quiz-container", "macro56-quiz-container"],
-  "sinav-cents": ["cents-reading-quiz-container", "cents-math-quiz-container"]
-};
-/** Bu soru kutusu ücretsiz planda açık mı? (saf; premium kontrolü çağırana aittir) */
-function apKutuUcretsizMi(page, kutuId) {
-  const l = AP_UCRETSIZ_KUTULAR[String(page || "").replace(/\.html?$/i, "")];
-  return !l || l.indexOf(kutuId) >= 0;
-}
-/**
- * Sayfa içi çapa (ör. seviye testi portalCapa: "phys-unit3-wep-lecture", "unit1-quiz-section", "bio-unit3-lecture-section")
- * ücretsiz bir üniteye mi düşer? Çapa kökü ("…-quiz-section", "…-lecture(-section)" ekleri atılır) ile kutu kökü eşleşir.
- * Saf. Kuralı olmayan sayfada (ya da çapa yoksa) true; kurallı sayfada ücretsiz kutuyla eşleşmeyen çapa kilitli (false).
- */
-function apCapaUcretsizMi(page, capa) {
-  const l = AP_UCRETSIZ_KUTULAR[String(page || "").replace(/\.html?$/i, "")];
-  if (!l || !capa) return true;
-  const kok = String(capa).replace(/-(quiz-section|quiz-container|lecture-section|lecture|section)$/, "");
-  const es = id => id === kok + "-quiz-container" || id.slice(-(kok.length + 16)) === "-" + kok + "-quiz-container";
-  return l.some(es);
-}
+// Meberra ücretsiz ünite kuralı (AP_UCRETSIZ_KURALI, apUcretsizUniteNolari, AP_UCRETSIZ_KUTULAR, apKutuUcretsizMi, apCapaUcretsizMi):
+// assets/js/ucretsiz-kural.js (UMD; app.js'ten önce yüklenir, sunucu da aynı dosyayı require eder).
 
 // --- v4 ünite görünümü (ders sayfaları): özet (?) · tek ünite (?unite=N) · tek ek bölüm (?bolum=K) ---
 // İçerik tek dosyada kalır; bloklar yalnızca gizlenir/gösterilir. Eski #bağlantılar hedefin ünitesini açar.
@@ -1534,18 +1478,22 @@ function initUniteGorunumu() {
   if (g.uniteler.length < 2) return;
   document.body.classList.add("has-unite");
 
-  // Ünite ilerlemesi: ünitedeki soru kutuları (initInteractiveQuiz'in işaretlediği _questionsData) + progress kaydı
-  const kayit = ((apLoadProgress().pages || {})[page] || {}).units || {};
-  g.uniteler.forEach(u => {
-    let toplam = 0, cevap = 0, dogru = 0;
-    u.bloklar.forEach(i => els[i].querySelectorAll("[id]").forEach(k => {
-      if (!k._questionsData) return;
-      const r = kayit[k.id] || {}, ans = r.answers && typeof r.answers === "object" ? r.answers : {};
-      toplam += +r.total || k._questionsData.length;
-      Object.keys(ans).forEach(q => { cevap++; if (ans[q] && ans[q].c) dogru++; });
-    }));
-    Object.assign(u, { toplam, cevap, dogru });
-  });
+  // Ünite ilerlemesi: ünitedeki soru kutuları (kimliği "-quiz-container" ile biten) + progress kaydı. v1.5.0: sorular sayfada
+  // değil sunucuda; soru sayısı sunucu özetinden (data-sb-toplam, GET /api/sorular-bankasi/<sayfa>) ya da kayıttaki total'den.
+  const kutularOf = u => [].concat.apply([], u.bloklar.map(i => Array.from(els[i].querySelectorAll("[id]")).filter(apSoruKutusuMu)));
+  function istatistik() {
+    const kayit = ((apLoadProgress().pages || {})[page] || {}).units || {};
+    g.uniteler.forEach(u => {
+      let toplam = 0, cevap = 0, dogru = 0;
+      kutularOf(u).forEach(k => {
+        const r = kayit[k.id] || {}, ans = r.answers && typeof r.answers === "object" ? r.answers : {};
+        toplam += +k.dataset.sbToplam || +r.total || (k._questionsData ? k._questionsData.length : 0);
+        Object.keys(ans).forEach(q => { cevap++; if (ans[q] && ans[q].c) dogru++; });
+      });
+      Object.assign(u, { toplam, cevap, dogru });
+    });
+  }
+  istatistik();
   const ders = (APMEBERRA_COURSES.find(c => c.page === page) || {}).name || document.title.split("|")[0].trim();
   const base = page + ".html";
   // Ders adı üst etiketi yalnızca birden çok dersi karıştıran sayfada (Seçmeliler: CSA · Mikro · Makro), tutarlı olduğunda
@@ -1564,8 +1512,7 @@ function initUniteGorunumu() {
   const panel = document.createElement("section");
   panel.className = "surface ug-panel";
   panel.setAttribute("aria-labelledby", "ug-baslik");
-  const T = g.uniteler.reduce((a, u) => ({ t: a.t + u.toplam, c: a.c + u.cevap }), { t: 0, c: 0 });
-  const panelCiz = () => { panel.innerHTML = '<div class="bg-sec-h"><h2 id="ug-baslik">' + (bolumMu ? "Bölümler" : "Üniteler") + '</h2><span class="ug-ozet">' + g.uniteler.length + " " + birim +
+  const panelCiz = () => { const T = g.uniteler.reduce((a, u) => ({ t: a.t + u.toplam, c: a.c + u.cevap }), { t: 0, c: 0 }); panel.innerHTML = '<div class="bg-sec-h"><h2 id="ug-baslik">' + (bolumMu ? "Bölümler" : "Üniteler") + '</h2><span class="ug-ozet">' + g.uniteler.length + " " + birim +
     (T.t ? " · " + T.c + " / " + T.t + " soru çözüldü" : "") + '</span></div><ol class="ug-liste">' +
     g.uniteler.map(u => {
       const durum = u.cevap ? u.cevap + " / " + u.toplam + " soru · %" + yuzde(u.dogru, u.cevap) + " doğru" : u.toplam ? u.toplam + " soru · başlanmadı" : "Konu anlatımı";
@@ -1598,8 +1545,7 @@ function initUniteGorunumu() {
     if (mod === "unite") {
       const u = g.uniteler[n - 1], o = g.uniteler[n - 2], s = g.uniteler[n];
       // Uzun anlatımda doğrudan sorulara inen kısayol (ünitenin ilk soru kutusu)
-      let kutu = null;
-      u.bloklar.some(i => (kutu = Array.from(els[i].querySelectorAll("[id]")).find(k => k._questionsData)));
+      const kutu = kutularOf(u)[0] || null;
       ust.innerHTML = '<a class="ug-geri" href="' + base + '">← ' + apEsc(ders) + " üniteleri</a>" +
         '<span class="ug-sag">' + (u.anlatim && kutu && !kilitli(u) ? '<a class="ug-sorular" href="#' + apEsc(kutu.id) + '">Sorulara geç ↓</a>' : "") +
         '<span class="ug-sayac">' + (bolumMu ? "Bölüm " : "Ünite ") + n + " / " + g.uniteler.length + "</span></span>";
@@ -1625,6 +1571,7 @@ function initUniteGorunumu() {
       if (duvar.parentNode) duvar.parentNode.removeChild(duvar);
       goster([ust, alt].concat(u.bloklar.map(i => els[i])));
       konulariKatla(u);
+      apSbKutulariYukle(kutularOf(u));
       document.title = apUniteGorunenAd(u.baslik) + " — " + baslik0;
     } else if (mod === "bolum") {
       const e = g.ekler[n - 1];
@@ -1700,12 +1647,20 @@ function initUniteGorunumu() {
     return ["ozet", 0];
   }
   ciz.apply(null, coz());
-  apUniteGorunumuYenile = () => { panelCiz(); ciz.apply(null, coz()); };
+  apUniteGorunumuYenile = () => { istatistik(); panelCiz(); ciz.apply(null, coz()); };
+  // Sunucu özeti (kutu başına soru sayısı; cevap içermez) gelince ünite kartlarındaki sayılar güncellenir
+  apSbOzet(page).then(oz => {
+    if (!oz || !Array.isArray(oz.kutular)) return;
+    oz.kutular.forEach(k => { const el = document.getElementById(k.kutu); if (el) el.dataset.sbToplam = k.toplam; });
+    istatistik(); panelCiz();
+    if (window.APMEBERRA_UNITELER) window.APMEBERRA_UNITELER.uniteler.forEach(x => { const u = g.uniteler.find(y => y.no === x.no); if (u) x.toplam = u.toplam; });
+    try { window.dispatchEvent(new CustomEvent("meberra:unite-ozet", { detail: { page } })); } catch (e) { /* eski tarayıcı */ }
+  });
   // OYUN HOOK: öğrenme yolu (oyun.js) bu sayfanın gerçek ünite listesini okur (apUniteGrupla çıktısı + ücretsiz kuralı)
   window.APMEBERRA_UNITELER = {
     page, panel,
     uniteler: g.uniteler.map(u => ({ no: u.no, ad: apUniteGorunenAd(u.baslik), toplam: u.toplam, cevap: u.cevap, kilitli: kilitli(u),
-      kutular: [].concat.apply([], u.bloklar.map(i => Array.from(els[i].querySelectorAll("[id]")).filter(k => k._questionsData).map(k => k.id))) }))
+      kutular: kutularOf(u).map(k => k.id) }))
   };
   window.addEventListener("hashchange", () => {
     ciz.apply(null, coz());
@@ -1999,9 +1954,90 @@ function apAnnounce(containerId, message) {
   window.setTimeout(() => { live.textContent = message; }, 30);
 }
 
+// --- v1.5.0 Soru bankası istemcisi ---------------------------------------------------------------------------------
+// Sorular (doğru şık ve çözüm olmadan) sunucudan gelir; cevap sunucuda kontrol edilip kaydedilir, sonuç yerel depoya da yazılır
+// (apCevapKaydet; aynı zaman damgası → sunucuda yinelenen satır olmaz). Uçlar (server/API.md):
+//   GET  /api/sorular-bankasi/<sayfa>          kutu başına soru sayısı (özet)
+//   GET  /api/sorular-bankasi/<sayfa>/<kutu>   kutunun soruları (daha önce çözülenlerde cozum)
+//   POST /api/sorular-bankasi/cevap            { soruId, secim } → { dogru, dogruSecenek, aciklama, hataAciklamasi, cozum, t }
+function apSoruKutusuMu(el) { return !!(el && el.id && /-quiz-container$/.test(el.id)); }
+function apSbIstek(yol, govde) {
+  const o = { credentials: "same-origin", headers: { "Content-Type": "application/json", "X-Meberra": "1" } };
+  if (govde !== undefined) { o.method = "POST"; o.body = JSON.stringify(govde); }
+  return fetch(yol, o).then(r => r.json().catch(() => ({})).then(j => ({ durum: r.status, veri: j || {} })), () => ({ durum: 0, veri: {} }));
+}
+/** Sunucu çözümünü soru nesnesine işler (eski şema: options[].isCorrect/errorTag/remediation, stepByStepSolution, generalRemediation). */
+function apCozumUygula(q, c) {
+  if (!q || !c || !c.dogru) return q;
+  const h = c.hatalar || {};
+  (q.options || []).forEach(o => {
+    o.isCorrect = o.id === c.dogru;
+    if (h[o.id]) { o.errorTag = h[o.id].errorTag; o.remediation = h[o.id].remediation; }
+  });
+  q.stepByStepSolution = c.aciklama || "";
+  q.generalRemediation = c.genelHatirlatma || "";
+  return q;
+}
+const AP_SB_OZET = {};
+function apSbOzet(page) {
+  if (!MEBERRA_SUNUCU || apMisafirMi()) return Promise.resolve(null);
+  if (!AP_SB_OZET[page]) AP_SB_OZET[page] = apSbIstek("/api/sorular-bankasi/" + encodeURIComponent(page)).then(r => (r.durum === 200 && r.veri.ok ? r.veri : null));
+  return AP_SB_OZET[page];
+}
+/** Yükleme iskeleti: kart boyutunda yer tutucular (yerleşim kayması olmasın). */
+function apSbIskelet(kutu, n) {
+  let h = '<p class="visually-hidden" role="status">Sorular yükleniyor…</p><div class="sb-iskelet" aria-hidden="true">';
+  for (let i = 0; i < n; i++) h += '<div class="sb-isk-kart"><span class="sb-isk sb-isk-ust"></span><span class="sb-isk sb-isk-satir"></span><span class="sb-isk sb-isk-satir is-kisa"></span>' +
+    '<span class="sb-isk sb-isk-sik"></span><span class="sb-isk sb-isk-sik"></span><span class="sb-isk sb-isk-sik"></span><span class="sb-isk sb-isk-sik"></span></div>';
+  kutu.innerHTML = h + "</div>";
+  kutu.setAttribute("aria-busy", "true");
+}
+function apSbDurum(kutu, tur, baslik, metin, eylemHtml) {
+  kutu.removeAttribute("aria-busy");
+  kutu.innerHTML = '<div class="sb-durum is-' + tur + '" role="' + (tur === "hata" ? "alert" : "status") + '"><strong>' + apEsc(baslik) + "</strong><p>" + apEsc(metin) + "</p>" + (eylemHtml || "") + "</div>";
+}
+/** Bir soru kutusunun sorularını sunucudan yükler ve çizer (bir kez; hata olursa "Yeniden dene"). */
+function apSbKutuYukle(kutu, zorla) {
+  if (!kutu || (!zorla && kutu._sbDurum && kutu._sbDurum !== "hata")) return;
+  if (!MEBERRA_SUNUCU) { kutu._sbDurum = "yok"; apSbDurum(kutu, "bilgi", "Sorular çevrimiçi", "Soru istasyonu Meberra hesabınla, çevrimiçiyken açılır."); return; }
+  const page = apCurrentPage();
+  kutu._sbDurum = "yukleniyor";
+  apSbIskelet(kutu, Math.max(1, Math.min(3, +kutu.dataset.sbToplam || 3)));
+  apSbIstek("/api/sorular-bankasi/" + encodeURIComponent(page) + "/" + encodeURIComponent(kutu.id)).then(r => {
+    if (r.durum === 200 && r.veri.ok) {
+      const k = (r.veri.kutular || [])[0], sorular = k && Array.isArray(k.sorular) ? k.sorular : [];
+      kutu._sbDurum = "hazir";
+      kutu.removeAttribute("aria-busy");
+      kutu.dataset.sbToplam = sorular.length;
+      if (!sorular.length) { apSbDurum(kutu, "bilgi", "Henüz soru yok", "Bu istasyona yakında soru eklenecek."); return; }
+      initInteractiveQuiz(kutu.id, sorular);
+      try { window.dispatchEvent(new CustomEvent("meberra:sorular-hazir", { detail: { kutu: kutu.id } })); } catch (e) { /* eski tarayıcı */ }
+      return;
+    }
+    kutu._sbDurum = "hata";
+    if (r.durum === 402) apSbDurum(kutu, "premium", "Bu ünite Premium'da", "Ücretsiz planda her dersin ilk üniteleri açık. Premium ile tüm sorulara eriş.", '<a class="btn-energy" href="premium.html">Premium\'a geç</a>');
+    else if (r.durum === 401) apSbDurum(kutu, "bilgi", "Oturumun sona erdi", "Soruları görmek için yeniden giriş yap.", '<a class="btn-primary" href="giris.html?donus=' + encodeURIComponent((window.location.pathname.split("/").pop() || "index.html") + window.location.search + "#" + kutu.id) + '">Giriş yap</a>');
+    else if (r.durum === 404) apSbDurum(kutu, "bilgi", "Henüz soru yok", "Bu istasyona yakında soru eklenecek.");
+    else {
+      apSbDurum(kutu, "hata", "Sorular yüklenemedi", r.durum === 0 ? "Bağlantın kopmuş görünüyor. İnternete bağlanınca yeniden dene." : (r.veri.error || "Sunucu şu an yanıt vermiyor. Biraz sonra yeniden dene."),
+        '<button type="button" class="btn-primary btn-sm" data-sb-tekrar>Yeniden dene</button>');
+      const b = kutu.querySelector("[data-sb-tekrar]");
+      if (b) b.addEventListener("click", () => apSbKutuYukle(kutu, true));
+    }
+  });
+}
+function apSbKutulariYukle(kutular) { (kutular || []).forEach(k => apSbKutuYukle(k)); }
+/** Ünite görünümü olmayan sayfada (ya da ünite görünümü kurulamadıysa) sayfadaki tüm soru kutuları yüklenir. */
+function initSoruKutulari() {
+  if (document.body.classList.contains("has-unite")) return; // ünite görünümü yalnız açılan ünitenin kutularını yükler
+  apSbKutulariYukle(Array.from(document.querySelectorAll('[id$="-quiz-container"]')));
+}
+
 function initInteractiveQuiz(containerId, questionsData) {
   const container = document.getElementById(containerId);
   if (!container || !questionsData || !questionsData.length) return;
+  // Sunucunun eklediği çözüm (yalnızca daha önce çözülen sorularda) eski şemaya işlenir
+  questionsData.forEach(q => { if (q && q.cozum) { apCozumUygula(q, q.cozum); delete q.cozum; } });
 
   container._questionsData = questionsData;
   container._wrongOnly = false;
@@ -2072,7 +2108,7 @@ function initInteractiveQuiz(containerId, questionsData) {
   const answers = unit.answers || {};
   questionsData.forEach(q => {
     const a = answers[q.id];
-    if (a && a.s) apApplyAnswer(containerId, q, a.s, false);
+    if (a && a.s) apApplyAnswer(containerId, q, a.s, false, a);
   });
 
   // Klavye ile şık seçimi (tek dinleyici / konteyner)
@@ -2164,7 +2200,8 @@ function apCevapKaydet(page, containerId, q, selectedOptionId, meta) {
   const correctOpt = q.options.find(o => o.isCorrect);
   const isCorrect = !!(selectedOpt && selectedOpt.isCorrect);
   const questionId = q.id;
-  const now = new Date().toISOString();
+  // Sunucunun kaydettiği zaman damgası kullanılır: eşitlemede aynı cevap için ikinci satır oluşmaz
+  const now = meta.t || new Date().toISOString();
 
   // 1) Cevabı kaydet
   const progress = apLoadProgress();
@@ -2223,11 +2260,38 @@ function handleOptionClick(containerId, questionId, selectedOptionId) {
   if (!q) return;
 
   const optsContainer = document.getElementById(`opts-container-${questionId}`);
-  if (!optsContainer || optsContainer.dataset.answered === "true") return;
+  if (!optsContainer || optsContainer.dataset.answered === "true" || optsContainer.dataset.bekliyor === "true") return;
+  if (!MEBERRA_SUNUCU) return;
 
+  // Cevap sunucuda kontrol edilir; yanıt gelene kadar şıklar kilitli (çift tıklama tek kayıt)
+  optsContainer.dataset.bekliyor = "true";
+  optsContainer.setAttribute("aria-busy", "true");
+  const secBtn = document.getElementById(`opt-btn-${questionId}-${selectedOptionId}`);
+  if (secBtn) secBtn.classList.add("is-bekliyor");
+  const eskiHata = document.getElementById(`sb-hata-${questionId}`);
+  if (eskiHata) eskiHata.remove();
+  apSbIstek("/api/sorular-bankasi/cevap", { soruId: questionId, secim: selectedOptionId }).then(r => {
+    delete optsContainer.dataset.bekliyor;
+    optsContainer.removeAttribute("aria-busy");
+    if (secBtn) secBtn.classList.remove("is-bekliyor");
+    if (r.durum !== 200 || !r.veri.ok || !r.veri.cozum) {
+      const m = r.durum === 402 ? "Bu soru Premium'da." : r.durum === 401 ? "Oturumun sona erdi; yeniden giriş yap." : r.durum === 429 ? (r.veri.error || "Biraz yavaşla.")
+        : r.durum === 0 ? "Cevabın gönderilemedi: bağlantı yok. Bağlanınca şıkka yeniden dokun." : (r.veri.error || "Cevabın gönderilemedi. Yeniden dene.");
+      const p = document.createElement("p");
+      p.className = "sb-cevap-hata"; p.id = `sb-hata-${questionId}`; p.setAttribute("role", "alert"); p.textContent = m;
+      optsContainer.insertAdjacentElement("afterend", p);
+      return;
+    }
+    apCozumUygula(q, r.veri.cozum);
+    apCevapSonucu(container, containerId, q, selectedOptionId, r.veri.t);
+  });
+}
+
+/** Sunucu yanıtından sonra: yerel kayıt (ilerleme + Yanlışlarım + oyun olayları) ve arayüz. */
+function apCevapSonucu(container, containerId, q, selectedOptionId, t) {
   const correctOpt = q.options.find(o => o.isCorrect);
   const isCorrect = apCevapKaydet(apCurrentPage(), containerId, q, selectedOptionId,
-    { title: apUnitTitle(container, containerId), total: container._questionsData.length });
+    { title: apUnitTitle(container, containerId), total: container._questionsData.length, t });
 
   // 3) Arayüz
   const feedbackBox = apApplyAnswer(containerId, q, selectedOptionId, true);
@@ -2244,11 +2308,25 @@ function handleOptionClick(containerId, questionId, selectedOptionId) {
 }
 
 /** Bir sorunun cevaplanmış görünümünü uygular (yeni tıklama ya da geri yükleme). */
-function apApplyAnswer(containerId, q, selectedOptionId, isNew) {
+function apApplyAnswer(containerId, q, selectedOptionId, isNew, kayit) {
   const optsContainer = document.getElementById(`opts-container-${q.id}`);
   const feedbackBox = document.getElementById(`feedback-${q.id}`);
   const card = document.getElementById(`q-card-${q.id}`);
   if (!optsContainer || !feedbackBox) return null;
+  if (!q.options.some(o => o.isCorrect)) {
+    // Çözüm sunucudan gelmedi (ör. başka cihazda çevrimdışı verilmiş, henüz eşitlenmemiş cevap): yalnız kayıttaki sonuç
+    const c = !!(kayit && kayit.c);
+    optsContainer.dataset.answered = "true";
+    optsContainer.querySelectorAll(".option-btn").forEach(btn => { btn.classList.add("disabled"); btn.setAttribute("aria-disabled", "true"); });
+    const sb = document.getElementById(`opt-btn-${q.id}-${selectedOptionId}`);
+    if (sb) sb.classList.add(c ? "correct" : "wrong");
+    if (card) { card.classList.remove("state-correct", "state-wrong"); card.classList.add(c ? "state-correct" : "state-wrong"); }
+    feedbackBox.className = "feedback-box " + (c ? "correct-box" : "wrong-box");
+    feedbackBox.innerHTML = `<div class="feedback-head"><span class="feedback-verdict">${c ? APMEBERRA_ICONS.check + "Doğru cevaplamıştın" : APMEBERRA_ICONS.cross + "Yanlış cevaplamıştın"}</span></div>
+      <div class="feedback-text">Çözümü görmek için "Sadece yanlışlarımı tekrar çöz" ya da "Sıfırla" ile soruyu yeniden çöz.</div>`;
+    feedbackBox.style.display = "block";
+    return feedbackBox;
+  }
 
   optsContainer.dataset.answered = "true";
   const selectedOpt = q.options.find(o => o.id === selectedOptionId);
@@ -2497,6 +2575,15 @@ function initQuizHashFocus() {
     if (firstOpt) firstOpt.focus({ preventScroll: true });
     if (el.classList.contains("question-card") === false) el.classList.remove("is-flash");
   };
+  // v1.5.0: sorular sunucudan sonradan gelir; hedef kart çizilince bir kez daha hizala
+  let kartBulundu = false;
+  window.addEventListener("meberra:sorular-hazir", () => {
+    if (kartBulundu || !document.getElementById(hash.slice(1))) return;
+    kartBulundu = /^#q-card-/.test(hash);
+    window.setTimeout(go, 30);
+    const mj = window.MathJax;
+    if (mj && mj.startup && mj.startup.promise) mj.startup.promise.then(() => window.setTimeout(go, 80)).catch(() => {});
+  });
   window.addEventListener("load", () => {
     go();
     // MathJax dizgisi düzeni kaydırabilir: dizgi bitince yeniden hizala

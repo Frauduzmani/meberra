@@ -330,6 +330,7 @@
     { id: "duyuru", ad: "Duyuru", ikon: "duyuru" },
     { id: "lig", ad: "Lig", ikon: "lig" },
     { id: "sistem", ad: "Sistem", sayac: "adm-sistem-yeni", sayacTon: "bad", ikon: "sistem" },
+    { id: "soru-bankasi", ad: "Soru bankası", ikon: "soruBankasi" },
     { id: "veri", ad: "Veri", ikon: "veri" },
     { id: "denetim", ad: "Denetim kaydı", ikon: "denetim" }
   ];
@@ -375,6 +376,7 @@
     kuyruk: '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',
     kalkan: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4M12 16h.01"/>',
     arti: '<path d="M12 5v14M5 12h14"/>',
+    soruBankasi: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/><path d="M9.5 8.5a2.5 2.5 0 0 1 4.9.7c0 1.6-2.4 2-2.4 3.3M12 14.5h.01"/>',
     ara: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>'
   };
   function ikon(ad, sinif) {
@@ -475,6 +477,12 @@
     return { kapat: kapat };
   }
 
+  /** Ayrı dosyadaki sekmeler (admin-soru-bankasi.js) için ortak yardımcılar */
+  window.MEBERRA_ADMIN = {
+    api: function (y, m, g) { return api(y, m, g); }, esc: esc, sayi: sayi, tarih: tarih, yuzde: yuzde, kisalt: kisalt, ikon: ikon, rozet: rozet, bildir: function (m, t) { bildir(m, t); },
+    yukleniyor: yukleniyor, iskelet: iskelet, bos: bos, hataKutusu: hataKutusu, onayAc: onayAc, zamanHucre: zamanHucre,
+    sayfaBilgisi: sayfaBilgisi, sayfalamaHtml: function (b, e, br) { return sayfalamaHtml(b, e, br); }, dersAd: dersAd
+  };
   function sayfalamaHtml(b, etiket, birim) {
     if (b.toplam === 0) return "";
     return '<nav class="adm-sayfa" aria-label="' + esc(etiket) + '">' +
@@ -542,6 +550,8 @@
     });
 
     panelOzetKur(); panelTalepKur(); panelSoruKur(); panelKulKur(); panelDuyuruKur(); panelLigKur(); panelVeriKur(); panelDenKur(); panelSistemKur();
+    // Soru bankası sekmesi ayrı dosyada (assets/js/admin-soru-bankasi.js); ortak yardımcılar window.MEBERRA_ADMIN ile verilir
+    if (window.MEBERRA_ADMIN_SB) window.MEBERRA_ADMIN_SB.kur($("#panel-soru-bankasi"));
     // Canlı yenileme: sekme görünürken 30 sn'de bir (Sistem: loglar + sağlık; diğerleri: sayaçlar ve özet). Çekmece açıkken beklenir.
     setInterval(function () {
       if (document.visibilityState !== "visible" || cekmeceAcik()) return;
@@ -583,6 +593,7 @@
     else if (id === "duyuru") duyuruOnizle();
     else if (id === "lig") ligYukle();
     else if (id === "veri") { if (!S.veri.tablolar) veriTablolarYukle(); }
+    else if (id === "soru-bankasi") { if (window.MEBERRA_ADMIN_SB) window.MEBERRA_ADMIN_SB.ac(); }
     else if (id === "sistem") sistemYukle();
   }
 

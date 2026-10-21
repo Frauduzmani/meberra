@@ -9,6 +9,14 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.5.0] — 2026-10-21
+### Eklendi
+- Soru bankası veritabanında (1.131 soru: 977 ders + 153 seviye testi + 1 vitrin örneği); tohum dosyası `server/tohum/soru-bankasi.json`, aktarıcı `araclar/soru-aktar.js`.
+- Yönetici paneline "Soru bankası" sekmesi: istatistik, şüpheli soru vurgusu, önizleme, sürüm geçmişi ve geri yükleme, arşiv, JSON dışa aktarma.
+### Değişti
+- Cevap anahtarları artık herkese açık dosyalarda yok; cevap kontrolü, deneme ve seviye testi puanlaması sunucuda.
+- Kilitli ünite ve ücretsiz deneme hakkı sunucuda denetleniyor; ücretsiz ünite kuralı tek ortak dosyada (`assets/js/ucretsiz-kural.js`).
+
 ## [1.4.0] — 2026-10-21
 ### Eklendi
 - Maskot Tilo (6 ifade) ve hareket sistemi; tek seferde tek kutlama (kuyruk), ünite bitince paylaşılabilir hikâye kartı.

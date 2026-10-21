@@ -1,30 +1,31 @@
 // AP MEBERRA — PM Doğruluk Kapısı denetim aracı (AGENTS.md §2.1)
 // Kullanım (proje klasöründen): node araclar/pm-denetim.js
-// 1) Her ders sayfasındaki (ap-*.html) soru dizilerini, 2) seviye testi bankalarını (data/sorular/seviye/*.js)
-// çalıştırır ve şema/kalite kurallarını kontrol eder. Teslim şartı: 0 sorun.
+// v1.5.0: sorular sunucu veritabanında; kaynak = tohum dosyası server/tohum/soru-bankasi.json (araclar/soru-aktar.js üretir,
+// yönetici dışa aktarımı aynı biçimdedir). 1) Ders sayfası soru istasyonları (kutu başına), 2) seviye testi bankaları
+// (meta: data/sorular/seviye/*.js, sorular: tohum) şema/kalite kurallarıyla denetlenir. Arşivlenmiş sorular sayılmaz. Teslim şartı: 0 sorun.
+// İsteğe bağlı: --tohum <dosya.json> (ör. yönetici panelinden dışa aktarılan banka).
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
+const { eskiSema } = require("./soru-aktar.js");
 
 const ROOT = path.resolve(__dirname, "..");
-const PAGES = fs.readdirSync(ROOT).filter(f => /^(ap|sinav)-.*\.html$/.test(f));
+const TOHUM = (() => { const i = process.argv.indexOf("--tohum"); return i > 0 ? path.resolve(process.argv[i + 1]) : path.join(ROOT, "server", "tohum", "soru-bankasi.json"); })();
+const BANKA = JSON.parse(fs.readFileSync(TOHUM, "utf8")).sorular.filter(r => r.durum !== "arsiv");
+const PAGES = fs.readdirSync(ROOT).filter(f => /^(ap|sinav)-.*.html$/.test(f));
 const SEVIYE_DIR = path.join(ROOT, "data", "sorular", "seviye");
 const FORBIDDEN_SOURCE = /official|past exam|canonical|college board exam/i;
 const BANK_FIELDS = ["id", "topic", "difficulty", "source", "question", "options", "generalRemediation", "stepByStepSolution"];
 const SEVIYE_FIELDS = ["id", "unite", "beceri", "zorluk", "source", "question", "options", "generalRemediation", "stepByStepSolution"];
 const LETTER_REF = /(?:doğru\s+(?:cevap|yanıt|şık|seçenek)(?:\s+(?:budur|ise))?|cevap|answer|correct\s+(?:answer|choice|option)|sonuç)\s*(?:is|=|:|→|⇒|\\implies)?\s*\(?\s*([A-D])\s*\)?(?![\p{L}\d])|(?<![\p{L}\d])([A-D])\s*şıkkı\s*(?:doğru|doğrudur)/giu;
 
+/** Bir ders sayfasının soru istasyonları: [[kutu, eski şemada sorular]] (tohum sırasıyla). */
 function loadArrays(file) {
   const html = fs.readFileSync(path.join(ROOT, file), "utf8");
-  const ctx = { document: { addEventListener() {} }, window: {}, console: { log() {}, warn() {} } };
-  vm.createContext(ctx);
-  for (const m of html.matchAll(/<script>([\s\S]*?)<\/script>/g)) {
-    // `const X_QUESTIONS` is not visible on the context object; expose it as var.
-    vm.runInContext(m[1].replace(/\bconst (\w+_QUESTIONS\w*)/g, "var $1"), ctx, { filename: file });
-  }
-  const arrays = Object.keys(ctx).filter(k => /_QUESTIONS/.test(k)).map(k => [k, ctx[k]]);
-  const containers = [...html.matchAll(/initInteractiveQuiz\(\s*"([^"]+)"\s*,\s*(\w+)\s*\)/g)].map(m => [m[1], m[2]]);
-  return { html, arrays, containers };
+  const sayfa = file.replace(/.html$/, ""), by = new Map();
+  for (const r of BANKA) if (r.tur === "ders" && r.sayfa === sayfa) { if (!by.has(r.kutu)) by.set(r.kutu, []); by.get(r.kutu).push(eskiSema(r)); }
+  const arrays = Array.from(by.entries());
+  return { html, arrays, containers: arrays.map(([k]) => [k, k]) };
 }
 
 const textOf = o => String(o.text).replace(/<[^>]+>|\$/g, "");
@@ -80,10 +81,12 @@ for (const file of PAGES) {
   try { data = loadArrays(file); } catch (e) { console.log(`✗ ${file}: script hatası — ${e.message}`); problems++; continue; }
   const { html, arrays, containers } = data;
   const seen = new Set();
-  for (const [cid, arr] of containers) {
-    if (!html.includes(`id="${cid}"`)) { console.log(`✗ ${file}: container yok: ${cid}`); problems++; }
-    if (!arrays.some(([k]) => k === arr)) { console.log(`✗ ${file}: dizi yok: ${arr}`); problems++; }
+  for (const [cid] of containers) {
+    if (!html.includes(`id="${cid}"`)) { console.log(`✗ ${file}: soru istasyonu (container) sayfada yok: ${cid}`); problems++; }
   }
+  // Sayfadaki her soru istasyonunun bankada sorusu olmalı (boş istasyon öğrenciye "soru yok" gösterir)
+  for (const m of html.matchAll(/id="([^"]*-quiz-container)"/g)) if (!arrays.some(([k]) => k === m[1])) { console.log(`✗ ${file}: ${m[1]} için bankada aktif soru yok`); problems++; }
+  if (/_QUESTIONSs*=|isCorrect|stepByStepSolution/.test(html)) { console.log(`✗ ${file}: sayfada cevap anahtarı / soru dizisi izi var (sorular yalnız veritabanında olmalı)`); problems++; }
   for (const [name, qs] of arrays) {
     const issues = [];
     const { pos, longest } = checkQuestions(qs, BANK_FIELDS, seen, issues);
@@ -104,7 +107,8 @@ for (const f of seviyeFiles) {
   catch (e) { console.log(`✗ seviye/${f}: script hatası — ${e.message}`); problems++; continue; }
   for (const [key, c] of Object.entries(ctx.window.APMEBERRA_SEVIYE || {})) {
     const issues = [];
-    const qs = c.sorular || [];
+    if (c.sorular) issues.push("herkese açık seviye dosyasında sorular var (cevap anahtarı yalnız veritabanında olmalı)");
+    const qs = BANKA.filter(r => r.tur === "seviye" && r.ders === key).map(eskiSema);
     if (c.ders !== key) issues.push(`ders alanı (${c.ders}) anahtarla (${key}) aynı değil`);
     for (const k of ["ad", "portalSayfasi", "uniteler"]) if (!c[k]) issues.push(`eksik alan ${k}`);
     if (c.portalSayfasi && !fs.existsSync(path.join(ROOT, c.portalSayfasi))) issues.push(`portalSayfasi yok: ${c.portalSayfasi}`);

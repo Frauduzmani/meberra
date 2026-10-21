@@ -140,23 +140,23 @@
 
       <div class="vt-q surface" data-rv data-demo>
         <div class="vt-q-top">
-          <span class="vt-q-tag">AP Calculus AB · 1.6</span>
-          <span class="vt-q-diff">Orta</span>
+          <span class="vt-q-tag" data-demo-konu>AP Calculus AB</span>
+          <span class="vt-q-diff" data-demo-zorluk>Örnek soru</span>
         </div>
-        <p class="vt-q-text" id="vt-q-text">Evaluate the limit:</p>
-        <p class="vt-math" aria-label="limit, x 4'e giderken, karekök x eksi 2 bölü x eksi 4">
-          <span class="vt-lim" aria-hidden="true"><span>lim</span><small>x → 4</small></span>
-          <span class="vt-frac" aria-hidden="true"><span>√x − 2</span><span>x − 4</span></span>
-        </p>
-        <div class="vt-opts" role="group" aria-labelledby="vt-q-text">
-          <button type="button" class="vt-opt" data-opt="A" data-r="Dikkat: 0/0 bir belirsizliktir, sonucun 0 olduğu anlamına gelmez. Eşlenikle çarpıp sadeleştir."><span class="vt-opt-k">A</span><span>0</span></button>
-          <button type="button" class="vt-opt" data-opt="B" data-ok="1"><span class="vt-opt-k">B</span><span>1/4</span></button>
-          <button type="button" class="vt-opt" data-opt="C" data-r="Paydada 0 görmek limitin olmadığı anlamına gelmez; (x − 4) çarpanı sadeleşebilir."><span class="vt-opt-k">C</span><span>Does not exist</span></button>
-          <button type="button" class="vt-opt" data-opt="D" data-r="Neredeyse! Sadeleşince 1/(√x + 2) kalır; x = 4 için 1/(2 + 2) = 1/4."><span class="vt-opt-k">D</span><span>1/2</span></button>
+        <!-- Soru, şıklar ve cevap sunucudan gelir (GET /api/public/demo-soru; cevap POST /api/public/demo-soru/cevap). Cevap anahtarı sayfada yok. -->
+        <div class="vt-q-govde" data-demo-govde>
+          <p class="vt-q-text" id="vt-q-text">Örnek soru yükleniyor…</p>
+          <p class="vt-math" aria-hidden="true"></p>
+        </div>
+        <div class="vt-opts" role="group" aria-labelledby="vt-q-text" data-demo-opts>
+          <button type="button" class="vt-opt" disabled><span class="vt-opt-k">A</span><span>…</span></button>
+          <button type="button" class="vt-opt" disabled><span class="vt-opt-k">B</span><span>…</span></button>
+          <button type="button" class="vt-opt" disabled><span class="vt-opt-k">C</span><span>…</span></button>
+          <button type="button" class="vt-opt" disabled><span class="vt-opt-k">D</span><span>…</span></button>
         </div>
         <div class="vt-q-fb" data-demo-fb role="status" aria-live="polite"></div>
         <div class="vt-q-sol" data-demo-sol hidden>
-          <p><strong>Çözüm:</strong> Doğrudan koyunca 0/0 çıkar. Pay ve paydayı (√x + 2) ile çarp: (x − 4) / [(x − 4)(√x + 2)]. Sadeleştir, x = 4 koy: 1/(2 + 2) = <strong>1/4</strong>.</p>
+          <p><strong>Çözüm:</strong> <span data-demo-cozum></span></p>
           <div class="vt-q-actions">
             <a class="btn-energy" href="giris.html#kayit">Daha fazlası için ücretsiz başla</a>
             <button type="button" class="btn-ghost" data-demo-reset>Tekrar dene</button>
@@ -384,6 +384,7 @@
 
   <script src="assets/js/urun.js"></script>
   <script src="assets/js/vitrin.js?v=20261021d"></script>
+  <script src="assets/js/ucretsiz-kural.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>

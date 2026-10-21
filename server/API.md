@@ -323,6 +323,58 @@ bitis, olusturma, olusturan, etkin }] }` · `POST /api/admin/ip-engelleri` `{ ka
 **Android (TWA).** `GET /.well-known/assetlinks.json`: `.env` → `ANDROID_PAKET_ADI` + `ANDROID_SHA256` (virgülle birden çok SHA-256 parmak izi, `AA:BB:…`)
 varsa üretilen Digital Asset Links JSON'u; yoksa proje kökündeki `.well-known/assetlinks.json` dosyası; ikisi de yoksa 404. `Content-Type: application/json`.
 
+## Soru bankası (v1.5.0, `006_soru_bankasi.sql`)
+
+Sorular, doğru şıklar ve çözümler yalnız veritabanında (`questions_bank`; eski sürümler `questions_bank_history`). Herkese açık
+HTML/JS'te soru dizisi ya da cevap anahtarı yoktur. Tohum (tek doğruluk kaynağı): `server/tohum/soru-bankasi.json`
+(statik olarak sunulmaz; `node araclar/soru-aktar.js` üretir, yönetici dışa aktarımı aynı biçimdedir). Tablo boşsa sunucu açılışta
+tohumdan doldurur. Ücretsiz plan kuralı istemciyle aynı dosyadır: `assets/js/ucretsiz-kural.js` (`apKutuUcretsizMi`).
+Cevap/çözüm içeren yanıtlar `Cache-Control: private, no-store`.
+
+Soru (öğrenciye giden, cevapsız): `{ id, number, topic, difficulty, source, question, options: [{ id, text }] }` (seviye: `unite, beceri, zorluk, sureSn, hesapMakinesi`).
+Çözüm: `{ dogru, aciklama, genelHatirlatma, hatalar: { <harf>: { errorTag, remediation } } }`.
+
+- `GET /api/sorular-bankasi/:sayfa` — oturum. Kutu (soru istasyonu) başına `{ kutu, baslik, uniteNo, toplam, kilitli }` (soru içeriği yok).
+- `GET /api/sorular-bankasi/:sayfa/:unite` — oturum (misafir 401). `:unite` = ünite görünümü numarası (`?unite=N`) ya da kutu kimliği
+  (`calc-unit1-quiz-container`). Ücretsiz planda kilitli kutu → **402** `{ premiumGerekli: true }`. Yanıt `{ kutular: [{ kutu, baslik, uniteNo, sorular }] }`;
+  doğru şık/çözüm YOK — yalnız öğrencinin daha önce cevapladığı (answers tablosunda olan) soruda `cozum` alanı (yeniden açılışta geri bildirim için).
+- `POST /api/sorular-bankasi/cevap` `{ soruId, secim }` — oturum; kilitli → 402. Dönüş `{ dogru, dogruSecenek, aciklama, genelHatirlatma,
+  hataAciklamasi: { etiket, aciklama } | null, cozum, t }`. Kayıt mevcut birleştirmeyle: `apmeberra:quiz:v1` → `answers` (XP/lig/istatistik);
+  istemci aynı `t` ile yerel depoya yazar (eşitlemede ikinci satır oluşmaz). Hız sınırı: kullanıcı başına 600 / 10 dk.
+- `POST /api/sorular-bankasi/getir` `{ anahtarlar: ["sayfa|id"] }` — İlerleme › Bugünkü tekrar. Ücretsiz planda yalnız açık kutular ya da öğrencinin
+  daha önce çözdüğü/yanlış yaptığı sorular; diğerleri `eksik`.
+- `GET /api/public/demo-soru` — herkese açık TEK demo sorusu (`DEMO_SORU_ID`, varsayılan `vitrin_demo_1`), cevapsız; `public, max-age=300`.
+  `POST /api/public/demo-soru/cevap` `{ secim }` → sonuç + açıklama (kayıt yok; IP başına 60 / 10 dk).
+
+### Deneme (sunucuda kurulur ve puanlanır)
+- `GET /api/deneme/katalog` — oturum. `{ kodlar (canlı soru sayılarıyla), pasajlar, haklar: { <sayfa>: bool }, sorular: [{ sayfa, id, unite, denemeKodlari, pasaj, number, kap, kapBaslik, topic }] }` (kök/şık/cevap yok).
+- `POST /api/deneme/olustur` `{ kod, adet, sureModu, dersler?, uniteFiltre?, seed? }` ya da `{ mod: "yanlislar", sorular: [{ k, kod }], kaynakDeneme? }`.
+  Sunucu soruları eski istemciyle birebir aynı tohumlu algoritmayla seçer. Ücretsiz plan: ders sayfası başına 1 deneme — hak oluşturmada
+  `soru_oturumlari.ucretsiz_hak` + `apmeberra:deneme-hak:v1`'e yazılır; ikinci deneme (aynı sayfa, ör. calculus-ab sonra calculus-bc) ve genel deneme → **402**.
+  Yanlışlarım modunda ücretsiz plan yalnız kendi yanlışlarını/çözdüklerini ya da açık kutuları ekleyebilir. Dönüş `{ deneme: { id, kod, ad, seed, sorular }, icerik: { k: soru } }`.
+  Hız sınırı: kullanıcı başına 40 / saat. POST'tur (GET yan etkisiz olmalı: hak yazar ve siteler arası isteğe açık olmamalı).
+- `GET /api/deneme/:id` — kendi denemesi: içerik; teslim edildiyse `sonuc` + `cozumler`. v1.5.0 öncesi eşitlenmiş eski deneme (exams) için inceleme verisi.
+- `POST /api/deneme/teslim` `{ denemeId, cevaplar: { <index>: "A" }, isaretli, gecenSn, otomatik, sureLimitSn }` — sunucu puanlar (tahmini bant dahil),
+  `inceleme[i].st` (dogru/yanlis/bos), `exams` tablosuna ve `apmeberra:deneme:v1` geçmişine yazar; `{ sonuc, cozumler, icerik }`. Tekrar teslim aynı sonucu döner.
+
+### Seviye testi (oturum açmış herkese açık)
+- `GET /api/seviye/bankalar` — ünite meta verisi (`data/sorular/seviye/*.js`, soru içermez) + sorular (cevapsız).
+- `POST /api/seviye/teslim` `{ cevaplar: { "ders|id": "A" | null } }` → `{ sonuclar: { k: { secim, dogru, dogruSecenek } }, cozumler }`; `soru_oturumlari`'na yazılır.
+- `POST /api/seviye/cozumler` `{ anahtarlar }` — yalnız kullanıcının daha önce teslim ettiği sorular (rapor yeniden açılınca).
+
+### Yönetici: Soru bankası (rol: yonetici; hepsi denetim kaydına yazılır)
+- `GET /api/admin/soru-bankasi/meta` — kutular, durum sayıları, seviye üniteleri, şüpheli eşiği.
+- `GET /api/admin/soru-bankasi?tur&sayfa&ders&kutu&unite&durum&zorluk&q&supheli=1&sirala=(cevap|oran|guncelleme|id)&sayfaNo` — 50'lik sayfa;
+  her soruda `istatistik: { cevap, dogruSayi, dogruOran, supheli }` (answers tablosu; en az 5 cevapta <%25 ya da >%95 doğru = şüpheli).
+- `GET /api/admin/soru-bankasi/soru/:id` — tam satır + istatistik + şık seçim dağılımı + geçmiş. `GET .../soru/:id/gecmis`.
+- `PUT /api/admin/soru-bankasi/soru/:id` `{ surum, govde, secenekler: [{ text }], dogru, aciklama, genel_hatirlatma, hata_aciklamalari, konu, kaynak, zorluk, durum, not? }`
+  — doğrulama: 2–5 şık, boş/aynı şık yok, tam bir doğru şık, zorluk easy|medium|hard, tek sayıda `$` yok. `surum` güncel değilse **409**. Değişen alan
+  varsa eski hâl geçmişe yazılır, `surum + 1` (`fark`: değişen alanlar). Eylem: `soru-bankasi.duzenle`.
+- `POST /api/admin/soru-bankasi/soru` — yeni soru (`tur: ders` + `sayfa` + `kutu`, ya da `tur: seviye` + `ders` + `unite`; `id` isteğe bağlı). Varsayılan durum `taslak`.
+- `POST /api/admin/soru-bankasi/soru/:id/arsiv` `{ geriAl? }` — silme yok; arşiv öğrenciye ve denemelere gelmez.
+- `POST /api/admin/soru-bankasi/soru/:id/geri-yukle` `{ surum }` — o sürümün içeriği yeni sürüm olarak yazılır.
+- `GET /api/admin/soru-bankasi/disa-aktar?tur&sayfa` — JSON (tohumla aynı biçim, `Content-Disposition: attachment`).
+
 ## Sayfalar
 Sunucu proje kökündeki statik sayfaları da sunar. HTML yanıtlarına `<meta name="meberra-api" content="1">`
 eklenir; istemci bu etiketi görünce sunucu modunda çalışır (yoksa eski tarayıcı-içi mod).
