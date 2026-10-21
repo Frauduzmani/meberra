@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#5B3DF5">
+  <title>Sayfa bulunamadı | Meberra</title>
+  <meta name="robots" content="noindex">
+  <!-- 1.4.0: bilinmeyen adresler için 404 sayfası (sunucu bu dosyayı 404 durum koduyla sunmalı). Yollar köke göre: her derinlikte çalışır. -->
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/hareket.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/maskot.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/canli.css?v=20261021m">
+  <script>document.documentElement.setAttribute("data-apz-auth","acik");try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+  <style>
+    body { margin: 0; background: var(--bg); color: var(--text); }
+    .cn-404-kart { width: min(560px, 100%); display: grid; gap: 16px; justify-items: center; padding: clamp(28px, 6vw, 44px) clamp(20px, 5vw, 36px);
+      border-radius: var(--radius-xl); background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-lg); }
+    .cn-404-kod { margin: 0; font: 900 clamp(3rem, 12vw, 4.5rem)/1 var(--font-head); letter-spacing: -0.04em;
+      background: linear-gradient(120deg, var(--hero-a, #5B3DF5), var(--energy, #FF6B2C)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .cn-404 h1 { margin: 0; font: 900 clamp(1.4rem, 4.5vw, 1.8rem)/1.2 var(--font-head); }
+    .cn-404-metin { margin: 0; color: var(--text-muted); max-width: 42ch; line-height: 1.6; }
+    .cn-404-eylem { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .cn-404 .mk-konus__maskot { width: 120px; height: 120px; }
+  </style>
+</head>
+<body>
+  <main class="cn-404" id="main-content">
+    <div class="cn-404-kart">
+      <p class="cn-404-kod" aria-hidden="true">404</p>
+      <div class="mk-konus" id="cn-404-tilo">
+        <div class="mk-konus__maskot" aria-hidden="true"></div>
+        <div class="mk-balon"><p class="mk-balon__metin"><strong class="mk-balon__ad">Tilo:</strong> Bu sayfayı her yerde aradım ama bulamadım. Birlikte geri dönelim mi?</p></div>
+      </div>
+      <h1>Sayfa bulunamadı</h1>
+      <p class="cn-404-metin">Adres yanlış yazılmış ya da sayfa taşınmış olabilir. Çalışmana kaldığın yerden devam edebilirsin.</p>
+      <div class="cn-404-eylem">
+        <a class="btn-primary" href="/index.html">Bugün’e dön</a>
+        <a class="btn-ghost" href="/calis.html">Çalış</a>
+      </div>
+    </div>
+  </main>
+  <script src="/assets/js/maskot.js?v=20261021m"></script>
+  <script>
+    (function () {
+      var M = window.MeberraMaskot, yer = document.querySelector("#cn-404-tilo .mk-konus__maskot");
+      if (M && yer) yer.innerHTML = M.html("dusunen", { boyut: 120, etiket: false });
+    })();
+  </script>
+</body>
+</html>

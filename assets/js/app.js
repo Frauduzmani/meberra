@@ -670,6 +670,21 @@ function initGlobalNav() {
     t.addEventListener("click", toggleTheme);
     actions.insertBefore(t, actions.firstChild);
   }
+  // 1.4.0 maskot/hareket — navbar XP çipi ([data-xp-sayac]: "+10 XP" buraya uçar). Değeri assets/js/canli.js günceller;
+  // ilk değer kayıtlı XP (apmeberra:oyun:v1.xp) ile hemen çizilir ki menü sonradan kaymasın. Yüksek lisans modelinde yok.
+  if (me && !minimal && navModel !== "uni-mezun" && !actions.querySelector(".nav-xp")) {
+    let xp0 = 0;
+    try { xp0 = Number((JSON.parse(localStorage.getItem("apmeberra:oyun:v1") || "{}") || {}).xp) || 0; } catch (e) { xp0 = 0; }
+    const xa = document.createElement("a");
+    xa.className = "nav-xp";
+    xa.href = "ilerleme.html#rozetler";
+    xa.setAttribute("data-xp-sayac", "");
+    xa.setAttribute("aria-label", "Toplam " + xp0.toLocaleString("tr-TR") + " XP");
+    xa.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>' +
+      '<span data-xp-deger>' + xp0.toLocaleString("tr-TR") + '</span><span class="nav-xp__ek" aria-hidden="true">XP</span>';
+    actions.insertBefore(xa, actions.firstChild);
+  }
+  // 1.4.0 maskot/hareket — bitti
   if (me && !actions.querySelector(".account")) {
     const u = me.user, p = me.profile || {};
     const full = (u.ad + " " + u.soyad).trim();
@@ -3065,7 +3080,7 @@ window.APMEBERRA = {
 (function () {
   "use strict";
   if (typeof document === "undefined") return;
-  var SURUM = "20261021a";
+  var SURUM = "20261021m"; // 1.4.0 maskot/hareket: oyun.js + bildirim.js + oyun.css değişti (önbellek)
   var kok = (document.currentScript && document.currentScript.src) ? document.currentScript.src.replace(/assets\/js\/app\.js.*$/, "") : "";
   if (/admin\.html$/.test(location.pathname)) return;
   [["script", "assets/js/hata-izle.js"], ["link", "assets/css/oyun.css"], ["link", "assets/css/bildirim.css"], ["script", "assets/js/oyun.js"], ["script", "assets/js/bildirim.js"]].forEach(function (m) {
@@ -3077,3 +3092,22 @@ window.APMEBERRA = {
     document.head.appendChild(el);
   });
 })();
+
+// 1.4.0 maskot/hareket — maskot (Tilo), hareket sistemi ve canlı katman her sayfada (admin hariç).
+// Sıra: hareket.css + maskot.css + canli.css (styles.css'ten sonra), maskot.js → kutlama.js → canli.js (async=false: eklenme sırasıyla
+// çalışır). Bugün / Çalış / ders sayfaları / İlerleme / Profil / Sorularım bunları başlıkta statik yükler (kayma olmasın): ikinci kez eklenmez.
+(function () {
+  "use strict";
+  if (typeof document === "undefined" || /admin\.html$/.test(location.pathname)) return;
+  var V = "20261021m";
+  var kok = (document.currentScript && document.currentScript.src) ? document.currentScript.src.replace(/assets\/js\/app\.js.*$/, "") : "";
+  [["link", "assets/css/hareket.css"], ["link", "assets/css/maskot.css"], ["link", "assets/css/canli.css"],
+   ["script", "assets/js/maskot.js"], ["script", "assets/js/kutlama.js"], ["script", "assets/js/canli.js"]].forEach(function (m) {
+    if (document.querySelector(m[0] === "link" ? 'link[href*="' + m[1] + '"]' : 'script[src*="' + m[1] + '"]')) return;
+    var el = document.createElement(m[0]);
+    if (m[0] === "link") { el.rel = "stylesheet"; el.href = kok + m[1] + "?v=" + V; }
+    else { el.src = kok + m[1] + "?v=" + V; el.async = false; }
+    document.head.appendChild(el);
+  });
+})();
+// 1.4.0 maskot/hareket — bitti

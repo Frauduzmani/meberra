@@ -101,6 +101,16 @@
     indir: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>'
   };
   var TUR_AD = { "soru-yanit": "Soru yanıtı", seri: "Seri", premium: "Premium", duyuru: "Duyuru", rozet: "Rozet", lig: "Lig", tekrar: "Tekrar" };
+  // 1.4.0: oyun bildirimlerinde avatar maskot başıdır (Tilo, assets/js/maskot.js); soru yanıtı ve Premium kendi ikonunu korur.
+  var MASKOT_TUR = { seri: "uykulu", rozet: "kutlama", lig: "sevincli", tekrar: "dusunen", duyuru: "selam" };
+  function maskotBas(ifade, boyut) {
+    var M = window.MeberraMaskot;
+    return M && M.html ? M.html(ifade, { boyut: boyut || 36, sadeceBas: true, etiket: false, animasyon: false }) : "";
+  }
+  function maskotTam(ifade, boyut) {
+    var M = window.MeberraMaskot;
+    return M && M.html ? M.html(ifade, { boyut: boyut || 120, etiket: false }) : "";
+  }
 
   /* ------------------------------------------------------------------ PWA: service worker + yükleme isteği */
   var yuklemeIstegi = null;
@@ -230,8 +240,9 @@
 
     function ogeHtml(b) {
       var tur = IK[b.tur] ? b.tur : "duyuru";
+      var bas = MASKOT_TUR[tur] ? maskotBas(MASKOT_TUR[tur], 36) : "";
       var ic =
-        '<span class="bd-bil-ikon bd-tur-' + esc(tur) + '">' + IK[tur] + '</span>' +
+        (bas ? '<span class="bd-bil-ikon bd-bil-maskot bd-tur-' + esc(tur) + '">' + bas + '</span>' : '<span class="bd-bil-ikon bd-tur-' + esc(tur) + '">' + IK[tur] + '</span>') +
         '<span class="bd-bil-govde"><span class="bd-bil-baslik">' + esc(b.baslik || TUR_AD[tur] || "Bildirim") + '</span>' +
           (b.metin ? '<span class="bd-bil-metin">' + esc(kisalt(b.metin, 160)) + '</span>' : "") +
           '<span class="bd-bil-zaman"><span class="visually-hidden">' + esc(TUR_AD[tur] || "") + ' · </span><time datetime="' + esc(b.olusturma) + '">' + esc(zamanOnce(b.olusturma)) + '</time></span></span>' +
@@ -686,7 +697,7 @@
         hakYaz(j.hak);
         var l = j.sorular || [];
         if (!l.length) {
-          yerlestir('<div class="bd-bos-kutu">' + BOS_CIZIM + '<strong>Henüz soru sormadın</strong>' +
+          yerlestir('<div class="bd-bos-kutu">' + (maskotTam("dusunen", 120) || BOS_CIZIM) + '<strong>Henüz soru sormadın</strong>' +
             '<span>Takıldığın bir soru mu var? Ders sayfalarında sorunun altındaki <em>Bu soruyu anlamadım</em> düğmesine bas ya da hemen buradan sor.</span>' +
             '<button type="button" class="btn-energy bd-bos-sor">' + IK.soru + 'Soru sor</button></div>', yon);
           return;
@@ -882,6 +893,8 @@
       var g = govde();
       if (!j.katildi) {
         g.innerHTML =
+          // 1.4.0: Tilo el sallayarak lige davet eder (katılım isteğe bağlı)
+          (window.MeberraMaskot ? '<div class="mk-konus bd-lig-tilo"><div class="mk-konus__maskot">' + maskotTam("selam", 88) + '</div><div class="mk-balon"><p class="mk-balon__metin"><strong class="mk-balon__ad">' + esc(window.MeberraMaskot.MASKOT_ADI) + ':</strong> Ligde haftalık XP yarışı seni bekliyor. İstersen takma adınla katıl!</p></div></div>' : "") +
           '<p class="panel-lead">Her hafta en fazla 30 kişilik gruplarda XP topla, hafta sonunda üst kademeye çık. Katılım isteğe bağlı; diğerleri yalnızca <strong>takma adını</strong> ve XP\'ni görür.</p>' +
           '<div class="bd-lig-kademeler" aria-label="Kademeler">' + ((j.kurallar && j.kurallar.kademeler) || ["Bronz", "Gümüş", "Altın", "Elmas", "Şampiyon"]).map(function (k, i) {
             return '<span class="bd-kademe ' + KADEME_SINIF[i + 1] + '">' + IK.lig + esc(k) + '</span>';

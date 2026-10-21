@@ -10,10 +10,15 @@
   <title>Bugün | Meberra</title>
   <meta name="description" content="Bugün ekranı: bugünkü görevin, çalışma serin, Yanlışlarım ve derslerin.">
   <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/oyun.css?v=20261021a">
-  <link rel="stylesheet" href="assets/css/bildirim.css?v=20261021a">
-  <script src="assets/js/oyun.js?v=20261021a" defer></script>
-  <script src="assets/js/bildirim.js?v=20261021a" defer></script>
+  <link rel="stylesheet" href="assets/css/oyun.css?v=20261021m">
+  <link rel="stylesheet" href="assets/css/bildirim.css?v=20261021m">
+  <!-- 1.4.0 maskot/hareket: statik (kayma olmasın); app.js yükleyicisi ikinci kez eklemez -->
+  <link rel="stylesheet" href="assets/css/hareket.css?v=20261021m">
+  <link rel="stylesheet" href="assets/css/maskot.css?v=20261021m">
+  <link rel="stylesheet" href="assets/css/canli.css?v=20261021m">
+  <script src="assets/js/kutlama.js?v=20261021m" defer></script>
+  <script src="assets/js/oyun.js?v=20261021m" defer></script>
+  <script src="assets/js/bildirim.js?v=20261021m" defer></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -23,32 +28,36 @@
     <div class="nav-actions"></div>
   </nav>
 
-  <main class="main-container bugun bugun-v4" id="main-content">
+  <main class="main-container bugun bugun-v4 bugun-v5" id="main-content">
 
-    <!-- BUGÜN v4 (enerjik tema): selam → bugünkü görev + seri → yanlışlar · son deneme · yaklaşan → dersler.
-         Rota özeti, çalışma planı listesi, yol haritası ve rehberler Hedefim / Çalış sayfalarında. -->
-    <section class="bg-hello" aria-labelledby="today-title">
-      <div class="u-min0">
-        <h1 id="today-title">Merhaba</h1>
-        <p class="bg-hello-sub" id="hello-sub"></p>
-      </div>
-      <div class="bg-chips" id="hello-chips"></div>
-    </section>
+    <!-- BUGÜN v5 (1.4.0 "woow ama kaotik değil"): en çok 4 blok görünür —
+         (a) maskotlu karşılama + bugünkü görev, (b) seri + günlük hedef, (c) Günün görevleri, (d) TEK bağlamsal kart
+         (tekrar zamanı / son deneme / yaklaşan: en acil olan, MeberraCanli.baglamKartiSec). Gerisi "Daha fazla" altında.
+         Ekranın tek büyük anı karşılamadır; sayı sayaçları ve sonsuz döngüler yok. Rota, plan ve rehberler Hedefim ile Çalış sayfasında. -->
 
-    <!-- Model bilgi şeridi: lise mezunu duyuruları / yüksek lisans dosyası (ayrıntı Hedefim › Şartlar'da: #mezun-panel / #yl-panel) -->
+    <!-- Model bilgi şeridi: lise mezunu duyuruları / yüksek lisans dosyası (ayrıntı Hedefim › Şartlar: #mezun-panel / #yl-panel) -->
     <div class="bugun-serit" id="bugun-serit" role="note" hidden></div>
 
     <div class="bg-ust">
-      <!-- BUGÜNKÜ GÖREV: tek kart, tek birincil düğme (apSiradakiAdim) -->
-      <section class="bg-hero" id="siradaki" aria-labelledby="sa-title">
+      <!-- (a) KARŞILAMA + BUGÜNKÜ GÖREV: Tilo saate göre selamlar (günün ilk ziyaretinde el sallar; akşam seri tehlikedeyse uykulu, dostça hatırlatır) -->
+      <section class="bg-hero" id="siradaki" aria-labelledby="today-title">
         <span class="bg-hero-isik" aria-hidden="true"><i></i><i></i><i></i></span>
+        <div class="mk-konus bg-tilo" id="bg-hello">
+          <span class="mk-konus__maskot bg-tilo__maskot" id="bg-tilo" aria-hidden="true"></span>
+          <div class="mk-balon">
+            <div class="u-min0">
+              <h1 id="today-title">Merhaba</h1>
+              <p class="bg-hello-sub" id="hello-sub"></p>
+            </div>
+          </div>
+        </div>
         <div class="next-step" id="next-step" aria-live="polite">
           <span class="sa-kicker">Bugünkü görevin</span>
           <h2 id="sa-title">Yükleniyor…</h2>
         </div>
       </section>
 
-      <!-- ÇALIŞMA SERİSİ (apCalismaSerisi: cevap ve deneme günleri) -->
+      <!-- (b) SERİ + GÜNLÜK HEDEF (apCalismaSerisi; alev seri uzadıkça büyür: data-kademe; hedef halkası oyun.js) -->
       <section class="surface bg-seri" id="bg-seri" aria-labelledby="seri-title" data-ap-bolum>
         <div class="bg-seri-ust">
           <span class="bg-alev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c1 4 5 6 5 11a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-6 1-9.5z"/></svg></span>
@@ -56,57 +65,76 @@
         </div>
         <ol class="bg-hafta" id="bg-hafta" aria-label="Bu hafta çalıştığın günler"></ol>
         <p class="bg-seri-not" id="bg-seri-not"></p>
+        <!-- Günlük hedef (assets/js/oyun.js doldurur; yer önceden ayrılır) -->
+        <div class="bg-hedef" id="bg-hedef"></div>
+      </section>
+    </div>
+
+    <div class="bg-alt" id="bg-alt">
+      <!-- (c) GÜNÜN GÖREVLERİ (assets/js/oyun.js doldurur; iskelet aynı yükseklikte) -->
+      <section class="surface oy-kart oy-gorevler is-iskelet" id="bg-gorevler" aria-labelledby="oy-gorev-h" aria-busy="true">
+        <div class="oy-kart-h"><h2 id="oy-gorev-h">Günün görevleri</h2></div>
+      </section>
+      <!-- (d) TEK BAĞLAMSAL KART: aşağıdaki kartlardan en acili buraya taşınır -->
+      <div class="bg-baglam" id="bg-baglam"></div>
+    </div>
+
+    <details class="bg-dahafazla" id="bg-dahafazla">
+      <summary>Daha fazla <small>Yanlışlarım, tarihler, derslerin</small></summary>
+      <div class="bg-dahafazla__ic">
+        <div class="bg-uclu" id="bg-kartlar">
+          <!-- AKILLI TEKRAR: vadesi gelen soru (apmeberra:tekrar:v1) -->
+          <a class="surface bg-mini u-nodec u-c-inherit" id="bg-tekrar" href="ilerleme.html?mod=tekrar#tekrar">
+            <span class="bg-mini-h"><span class="bg-ico is-enerji" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></span><h3>Tekrar zamanı</h3></span>
+            <span class="bg-sayi"><span id="bg-tekrar-sayi">0</span> <small>soru</small></span>
+            <span class="bg-mini-alt" id="bg-tekrar-alt">Yanlışların 1, 3, 7, 14 gün arayla geri gelir.</span>
+            <span class="bg-mini-git">Tekrara başla →</span>
+          </a>
+
+          <!-- SON DENEME -->
+          <div class="surface bg-mini last-exam" id="last-exam" role="group" aria-labelledby="last-exam-title" data-ap-bolum>
+            <span class="bg-mini-h"><span class="bg-ico is-ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span><h3 id="last-exam-title">Son deneme</h3></span>
+            <div class="bg-mini-govde" id="last-exam-body"><p class="le-meta">Henüz deneme çözmedin.</p><p class="dv-git"><a href="deneme.html">Denemeye başla →</a></p></div>
+          </div>
+
+          <!-- YAKLAŞAN TARİHLER: rota adımları + kayıtlı sınavlar + duyuru bitişleri (apYaklasanTarihler; yalnızca veride olan tarih) -->
+          <section class="surface bg-mini bugun-yaklasan" id="yaklasan" aria-labelledby="yt-title">
+            <span class="bg-mini-h"><span class="bg-ico is-mor" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg></span><h2 id="yt-title">Yaklaşan</h2>
+              <a class="yt-tumu" id="yt-tumu" href="yazismalar.html#son-tarihler" aria-label="Tüm son tarihler: Başvurularım">Tümü →</a></span>
+            <ol class="yt-list" id="yt-list"></ol>
+            <div class="yt-gecmis" id="yt-gecmis" hidden></div>
+            <p class="yt-not" id="yt-not" hidden></p>
+          </section>
+
+          <!-- YANLIŞLARIM: açık hata sayısı -->
+          <a class="surface bg-mini u-nodec u-c-inherit" id="dv-yanlis" href="deneme.html?mod=yanlislar" data-ap-bolum>
+            <span class="bg-mini-h"><span class="bg-ico is-enerji" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></span><h3>Yanlışlarım</h3></span>
+            <span class="bg-sayi"><span id="dv-yanlis-sayi">0</span> <small>açık soru</small></span>
+            <span class="bg-mini-alt" id="dv-yanlis-alt">Yanlış yaptığın sorular burada.</span>
+            <span class="bg-mini-git">Tekrar et →</span>
+          </a>
+        </div>
+
         <!-- Seri koruma satırı (oyun.js doldurur) -->
         <p class="oy-koruma" id="bg-koruma" hidden></p>
-      </section>
-    </div>
 
-    <!-- OYUNLAŞTIRMA ALANI (assets/js/oyun.js doldurur): günlük hedef halkası + XP, günün görevleri, akıllı tekrar -->
-    <div id="bg-oyun" class="oy-alan is-iskelet" aria-busy="true">
-      <div class="oy-sol"><div class="surface oy-kart iskelet-kart is-hedef" aria-hidden="true"></div><div class="surface oy-kart iskelet-kart is-ince" aria-hidden="true"></div></div>
-      <div class="surface oy-kart iskelet-kart is-gorev" aria-hidden="true"></div>
-    </div>
-
-    <div class="bg-uclu">
-      <!-- YANLIŞLARIM: açık hata sayısı -->
-      <a class="surface bg-mini u-nodec u-c-inherit" id="dv-yanlis" href="deneme.html?mod=yanlislar" data-ap-bolum>
-        <span class="bg-mini-h"><span class="bg-ico is-enerji" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></span><h3>Yanlışlarım</h3></span>
-        <span class="bg-sayi"><span id="dv-yanlis-sayi">0</span> <small>açık soru</small></span>
-        <span class="bg-mini-alt" id="dv-yanlis-alt">Yanlış yaptığın sorular burada.</span>
-        <span class="bg-mini-git">Tekrar et →</span>
-      </a>
-
-      <!-- SON DENEME -->
-      <div class="surface bg-mini last-exam" id="last-exam" role="group" aria-labelledby="last-exam-title" data-ap-bolum>
-        <span class="bg-mini-h"><span class="bg-ico is-ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span><h3 id="last-exam-title">Son deneme</h3></span>
-        <div class="bg-mini-govde" id="last-exam-body"><p class="le-meta">Henüz deneme çözmedin.</p><p class="dv-git"><a href="deneme.html">Denemeye başla →</a></p></div>
+        <!-- DERSLER: halka = dersin soru bankasında çözülen oran (kart → ders sayfası paylaşılan öğe geçişi: canli.js) -->
+        <section class="bg-dersler" id="dersler" aria-labelledby="courses-title" data-ap-bolum>
+          <div class="bg-sec-h">
+            <h2 id="courses-title">Derslerin</h2>
+            <a href="calis.html">Tümü →</a>
+          </div>
+          <ul class="bg-ders-list" id="course-grid">
+            <li><a class="bg-ders" href="ap-calculus.html" data-course="ap-calculus" style="--cc:var(--c-calculus)"><span class="bg-halka" data-v="–"></span><span class="u-min0"><b>Calculus AB / BC</b><span class="course-progress">Henüz başlanmadı</span></span></a></li>
+            <li><a class="bg-ders" href="ap-physics.html" data-course="ap-physics" style="--cc:var(--c-physics)"><span class="bg-halka" data-v="–"></span><span class="u-min0"><b>Physics 1 / C</b><span class="course-progress">Henüz başlanmadı</span></span></a></li>
+            <li><a class="bg-ders" href="ap-chemistry.html" data-course="ap-chemistry" style="--cc:var(--c-chemistry)"><span class="bg-halka" data-v="–"></span><span class="u-min0"><b>Chemistry</b><span class="course-progress">Henüz başlanmadı</span></span></a></li>
+            <li><a class="bg-ders" href="ap-biology.html" data-course="ap-biology" style="--cc:var(--c-biology)"><span class="bg-halka" data-v="–"></span><span class="u-min0"><b>Biology</b><span class="course-progress">Henüz başlanmadı</span></span></a></li>
+            <li><a class="bg-ders" href="ap-english.html" data-course="ap-english" style="--cc:var(--c-english)"><span class="bg-halka" data-v="–"></span><span class="u-min0"><b>English Language</b><span class="course-progress">Henüz başlanmadı</span></span></a></li>
+            <li><a class="bg-ders" href="ap-electives.html" data-course="ap-electives" style="--cc:var(--c-electives)"><span class="bg-halka" data-v="–"></span><span class="u-min0"><b>Ekonomi &amp; CS A</b><span class="course-progress">Henüz başlanmadı</span></span></a></li>
+          </ul>
+        </section>
       </div>
-
-      <!-- YAKLAŞAN TARİHLER: rota adımları + kayıtlı sınavlar + duyuru bitişleri (apYaklasanTarihler; yalnızca veride olan tarih) -->
-      <section class="surface bg-mini bugun-yaklasan" id="yaklasan" aria-labelledby="yt-title">
-        <span class="bg-mini-h"><span class="bg-ico is-mor" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg></span><h2 id="yt-title">Yaklaşan</h2>
-          <a class="yt-tumu" id="yt-tumu" href="yazismalar.html#son-tarihler" aria-label="Tüm son tarihler: Başvurularım">Tümü →</a></span>
-        <ol class="yt-list" id="yt-list"></ol>
-        <div class="yt-gecmis" id="yt-gecmis" hidden></div>
-        <p class="yt-not" id="yt-not" hidden></p>
-      </section>
-    </div>
-
-    <!-- DERSLER: halka = dersin soru bankasında çözülen oran -->
-    <section class="surface bg-dersler" id="dersler" aria-labelledby="courses-title" data-ap-bolum>
-      <div class="bg-sec-h">
-        <h2 id="courses-title">Derslerin</h2>
-        <a href="calis.html">Tümü →</a>
-      </div>
-      <ul class="bg-ders-list" id="course-grid">
-        <li><a class="bg-ders" href="ap-calculus.html" data-course="ap-calculus" style="--cc:var(--c-calculus)"><span class="bg-halka" data-v="–"></span><span class="u-min0"><b>Calculus AB / BC</b><span class="course-progress">Henüz başlanmadı</span></span></a></li>
-        <li><a class="bg-ders" href="ap-physics.html" data-course="ap-physics" style="--cc:var(--c-physics)"><span class="bg-halka" data-v="–"></span><span class="u-min0"><b>Physics 1 / C</b><span class="course-progress">Henüz başlanmadı</span></span></a></li>
-        <li><a class="bg-ders" href="ap-chemistry.html" data-course="ap-chemistry" style="--cc:var(--c-chemistry)"><span class="bg-halka" data-v="–"></span><span class="u-min0"><b>Chemistry</b><span class="course-progress">Henüz başlanmadı</span></span></a></li>
-        <li><a class="bg-ders" href="ap-biology.html" data-course="ap-biology" style="--cc:var(--c-biology)"><span class="bg-halka" data-v="–"></span><span class="u-min0"><b>Biology</b><span class="course-progress">Henüz başlanmadı</span></span></a></li>
-        <li><a class="bg-ders" href="ap-english.html" data-course="ap-english" style="--cc:var(--c-english)"><span class="bg-halka" data-v="–"></span><span class="u-min0"><b>English Language</b><span class="course-progress">Henüz başlanmadı</span></span></a></li>
-        <li><a class="bg-ders" href="ap-electives.html" data-course="ap-electives" style="--cc:var(--c-electives)"><span class="bg-halka" data-v="–"></span><span class="u-min0"><b>Ekonomi &amp; CS A</b><span class="course-progress">Henüz başlanmadı</span></span></a></li>
-      </ul>
-    </section>
+    </details>
 
   </main>
 
@@ -128,6 +156,9 @@
   <script src="data/mevzuat/yl-genel.js"></script>
   <script src="data/mevzuat/ulke-dizini.js"></script>
   <script src="assets/js/sartlar-motor.js"></script>
+  <!-- 1.4.0 maskot/hareket: Bugün karşılaması ilk boyamada çizilsin diye eşzamanlı (satır içi betik kullanır) -->
+  <script src="assets/js/maskot.js?v=20261021m"></script>
+  <script src="assets/js/canli.js?v=20261021m"></script>
   <script src="assets/js/app.js"></script>
   <script>
   (function () {
@@ -236,7 +267,6 @@
           '<div style="min-width:0;"><strong>' + esc(d0.ders) + '</strong><div class="le-meta">' +
           [d0.dogru !== null && d0.toplam ? d0.dogru + " / " + d0.toplam + " doğru" : "", when].filter(Boolean).join(" · ") + '</div></div></div>' +
           '<p class="dv-git"><a href="deneme.html">Denemeler ve hata incelemesi →</a></p>';
-        if (d0.yuzde !== null) say(document.getElementById("le-score"), d0.yuzde, "%");
       }
     })();
 
@@ -386,7 +416,7 @@
       var k = window.apKaldiginYer ? apKaldiginYer(A.loadProgress(), A.courses) : null;
       B.kaldigin = k ? { href: k.page + ".html#" + encodeURIComponent(k.unitId), baslik: k.title } : null;
       var n = s.openErrors.length, yk = document.getElementById("dv-yanlis");
-      say(document.getElementById("dv-yanlis-sayi"), n);
+      document.getElementById("dv-yanlis-sayi").textContent = String(n); // 1.4.0: sayaç yok (sakin ekran)
       document.getElementById("dv-yanlis-alt").textContent = n ? "En son: " + (s.openErrors[0].topic || s.openErrors[0].id) : "Açık hatan yok. Harika!";
       yk.classList.add(n >= 5 ? "is-uyari" : n === 0 ? "is-iyi" : "is-orta");
     })();
@@ -411,11 +441,36 @@
         ? "Bugünü tamamladın. Yarın da çalışırsan serin <strong>" + (sr.seri + 1) + " gün</strong> olur."
         : sr.seri ? "Bugün bir soru çözersen serin <strong>" + (sr.seri + 1) + " gün</strong> olur."
         : "Bugün bir soru çöz, serini başlat.";
-      document.getElementById("hello-chips").innerHTML =
-        (sr.seri ? '<span class="bg-chip is-enerji">' + FLAME + sr.seri + ' gün seri</span>' : "") +
-        (s.answered ? '<span class="bg-chip is-mor">' + ZAP + s.answered + ' soru çözdün</span>' : "");
+      // 1.4.0: alev seri uzadıkça büyür (CSS ölçek basamağı; MeberraCanli.alevKademe). Selam rozetleri kaldırıldı (bilgi seri kartında).
+      var C = window.MeberraCanli;
+      document.getElementById("bg-seri").setAttribute("data-kademe", C ? C.alevKademe(sr.seri) : (sr.seri ? 2 : 0));
+      B.seri = sr;
     }
     seriCiz();
+
+    // 4c) 1.4.0 Tilo karşılaması: saate göre selam; günün ilk ziyaretinde el sallar, sonra sevinçli; akşam (18:00+) serisi olup
+    // bugün çalışmamışsa uykulu ve dostça hatırlatır (suçlamaz). İlk ziyaret işareti cihazda: meberra-canli:selam = gün.
+    function tiloCiz(saatZorla) {
+      var C = window.MeberraCanli, MK = window.MeberraMaskot, yer = document.getElementById("bg-tilo");
+      if (!C || !MK || !yer || !ME || !ME.user) return;
+      var simdi = BG ? new Date(BG + "T12:00:00") : new Date();
+      var gun = C.istGun(simdi.getTime()), ilk = false;
+      try { ilk = localStorage.getItem("meberra-canli:selam") !== gun; localStorage.setItem("meberra-canli:selam", gun); } catch (e) { ilk = false; }
+      if (typeof saatZorla === "number") ilk = false;
+      var sr = MODEL === "uni-mezun" ? null : B.seri;
+      var d = C.selamDurumu({ saat: typeof saatZorla === "number" ? saatZorla : simdi.getHours(), ilkZiyaret: ilk, seri: sr ? sr.seri : 0, bugunVar: sr ? sr.bugunVar : true });
+      yer.innerHTML = MK.html(d.ifade, { boyut: 88, etiket: false });
+      var h1 = document.getElementById("today-title");
+      h1.textContent = d.metin + ", ";
+      var adEl = document.createElement("span"); adEl.className = "bg-ad"; adEl.textContent = ME.user.ad;
+      h1.appendChild(adEl); h1.appendChild(document.createTextNode("!"));
+      var alt = document.getElementById("hello-sub");
+      if (!alt.getAttribute("data-profil")) alt.setAttribute("data-profil", alt.textContent);
+      alt.textContent = d.tehlike ? d.mesaj : alt.getAttribute("data-profil");
+      document.getElementById("bg-hello").classList.toggle("is-tehlike", d.tehlike);
+    }
+    tiloCiz();
+    window.MeberraBugunTilo = tiloCiz; // yalnızca doğrulama/test: tiloCiz(20) akşam görünümünü çizer
     window.addEventListener("meberra:oyun", function (e) { if (e.detail && e.detail.seri) seriCiz(); });
 
     // 5) Sıradaki adım + Yaklaşan tarihler (saf fonksiyonlar app.js: apSiradakiAdim, apYaklasanTarihler)
@@ -473,6 +528,7 @@
         duyurular: B.duyurular
       });
       var yt = ytHam.filter(function (x) { return !x.suresiDoldu; }), ytGecen = ytHam.filter(function (x) { return x.suresiDoldu; });
+      B.ytEnYakin = yt.length ? Math.min.apply(null, yt.map(function (x) { return +x.kalanGun || 0; })) : null;
       var yg = document.getElementById("yt-gecmis");
       yg.hidden = !ytGecen.length;
       yg.innerHTML = ytGecen.length ? '<p class="yt-gecmis-h">Süresi dolanlar</p><ul>' + ytGecen.map(function (x) {
@@ -502,13 +558,35 @@
     }
     bugunCiz();
 
+    // 5b) 1.4.0 TEK bağlamsal kart: tekrar zamanı / son deneme / yaklaşan arasından en acili (MeberraCanli.baglamKartiSec)
+    // "Daha fazla"dan (d) yerine taşınır; diğerleri orada kalır. İlk boyamadan önce eşzamanlı → kayma yok.
+    (function () {
+      var C = window.MeberraCanli, yer = document.getElementById("bg-baglam");
+      if (!yer) return;
+      var gun = C ? C.istGun((BG ? new Date(BG + "T12:00:00") : new Date()).getTime()) : null;
+      var vade = C && gun ? C.vadeSay(A.storeGet("apmeberra:tekrar:v1", null), gun) : 0;
+      var den = A.denemeler ? A.denemeler() : [];
+      var t0 = den[0] && Date.parse(den[0].tarih);
+      var denemeGun = isFinite(t0) ? Math.max(0, Math.floor(((BG ? Date.parse(BG + "T12:00:00") : Date.now()) - t0) / 864e5)) : null;
+      document.getElementById("bg-tekrar-sayi").textContent = String(vade);
+      document.getElementById("bg-tekrar-alt").textContent = vade
+        ? "Daha önce yanlış yaptığın sorular, unutmadan önce yeniden karşında."
+        : "Bugün tekrar edecek soru yok. Yanlışların 1, 3, 7, 14 gün arayla geri gelir.";
+      var tur = C ? C.baglamKartiSec({ tekrar: MODEL === "uni-mezun" ? 0 : vade, yaklasanGun: B.ytEnYakin, denemeGun: MODEL === "uni-mezun" ? null : denemeGun, cevap: s.answered })
+        : (vade ? "tekrar" : "deneme");
+      if (MODEL === "uni-mezun") tur = "yaklasan";
+      var el = document.getElementById(tur === "tekrar" ? "bg-tekrar" : tur === "yaklasan" ? "yaklasan" : "last-exam");
+      if (el) { yer.appendChild(el); yer.setAttribute("data-tur", tur); }
+      if (!vade) { var tk = document.getElementById("bg-tekrar"); if (tk && tk.parentNode !== yer) tk.hidden = true; }
+    })();
+
     // 6) İlk ziyaret: hoş geldin kipi (hero çizimi + üç adım), seri ve bugün tamam kutlaması
     (function () {
       var hero = document.getElementById("siradaki"), den = A.denemeler ? A.denemeler() : [];
-      var oyun = document.getElementById("bg-oyun");
-      // Oyun alanı yalnızca AP modellerinde (oyun.js bugunKur); diğerlerinde iskelet hiç kalmaz
-      if (oyun && (!ME || !ME.profile || MODEL === "uni-mezun")) oyun.remove();
-      else if (oyun) setTimeout(function () { if (oyun.classList.contains("is-iskelet") && oyun.querySelector(".iskelet-kart")) oyun.remove(); }, 6000);
+      // Günlük hedef + görevler yalnızca AP modellerinde (oyun.js bugunKur); diğerlerinde iskelet hiç kalmaz
+      var gorevEl = document.getElementById("bg-gorevler"), hedefEl = document.getElementById("bg-hedef");
+      if (gorevEl && (!ME || !ME.profile || MODEL === "uni-mezun")) { gorevEl.remove(); if (hedefEl) hedefEl.remove(); document.getElementById("bg-alt").classList.add("is-tek"); }
+      else if (gorevEl) setTimeout(function () { if (gorevEl.classList.contains("is-iskelet")) gorevEl.hidden = true; }, 6000);
       if (!hero || MODEL === "uni-mezun") return;
       if (!s.answered && !den.length) {
         document.body.classList.add("bg-ilk");
@@ -516,11 +594,7 @@
         ns.insertAdjacentHTML("afterbegin", '<span class="bg-ilk-rozet">Hoş geldin! İlk adımın hazır</span>');
         ns.querySelector(".sa-actions").insertAdjacentHTML("beforebegin",
           '<ol class="bg-ilk-adim" aria-label="Başlangıç adımları"><li class="is-simdi"><b>1</b>Seviye testi</li><li><b>2</b>İlk ünite</li><li><b>3</b>Seriyi başlat</li></ol>');
-        hero.insertAdjacentHTML("beforeend",
-          '<svg class="bg-hero-cizim" viewBox="0 0 200 200" aria-hidden="true">' +
-            '<circle cx="100" cy="100" r="78" class="c1"/><circle cx="100" cy="100" r="54" class="c2"/><circle cx="100" cy="100" r="30" class="c3"/><circle cx="100" cy="100" r="10" class="c4"/>' +
-            '<path d="M150 50 103 97" class="ok"/><path d="M150 50l-4 18 22-4z" class="ok-uc"/>' +
-            '<path d="M38 40l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" class="yildiz"/><path d="M168 140l2.5 6 6 2.5-6 2.5-2.5 6-2.5-6-6-2.5 6-2.5z" class="yildiz y2"/></svg>');
+        // 1.4.0: hero çizimi yerine Tilo karşılar (tek büyük an)
       } else if (window.apCalismaSerisi) {
         var seriV = A.storeGet("apmeberra:seri:v1", null);
         var sr = apCalismaSerisi(A.loadProgress(), den, BG || new Date(), seriV && Array.isArray(seriV.donmus) ? seriV.donmus : []);

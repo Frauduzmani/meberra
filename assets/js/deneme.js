@@ -859,6 +859,13 @@
     document.body.classList.remove("dn-exam-mode");
     try { history.replaceState(null, "", "deneme.html?sonuc=" + encodeURIComponent(rec.id)); } catch (e) { /* file:// bazı tarayıcılarda */ }
     renderResult(rec, auto);
+    // 1.4.0 maskot/hareket — sonuç ekranı çizildikten sonra canlı katmana (assets/js/canli.js) haber: bant sayacı + kutlama.
+    // Yalnızca yeni teslimde gider (?sonuc= ile yeniden açmada gitmez).
+    try {
+      window.dispatchEvent(new CustomEvent("meberra:deneme-bitti", { detail: { id: rec.id, kod: rec.kod, ad: rec.ad, mod: rec.mod || null,
+        yuzde: rec.yuzde, band: rec.tahminiBand, dogru: rec.dogru, yanlis: rec.yanlis, bos: rec.bos, toplam: rec.soruSayisi } }));
+    } catch (e) { /* eski tarayıcı */ }
+    // 1.4.0 maskot/hareket — bitti
   }
 
   /** app.js Yanlışlarım biçimi (handleOptionClick ile aynı alanlar). Doğru cevaplanan açık kayıt çözüldü sayılır. */

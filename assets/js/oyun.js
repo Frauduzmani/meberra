@@ -1,8 +1,10 @@
 /**
  * Meberra — oyunlaştırma katmanı (her sayfada app.js'in son bloğu yükler; ayrı derleme yok).
  *
- * Günlük hedef (halka), seri koruma, akıllı tekrar (aralıklı tekrar kutuları), günün görevleri, rozetler, kutlamalar
- * (konfeti + bildirim balonu), öğrenme yolu (ünite düğümleri), XP ve lig rozeti, ince geçiş efektleri.
+ * Günlük hedef (halka), seri koruma, akıllı tekrar (aralıklı tekrar kutuları), günün görevleri, rozetler, kutlamalar,
+ * öğrenme yolu (ünite düğümleri), XP ve lig rozeti, ince geçiş efektleri.
+ * 1.4.0: kutlamaların hepsi ortak kuyruktan geçer (assets/js/kutlama.js MeberraKutlama — aynı anda tek kutlama, maskotlu);
+ * buradaki eski balon + konfeti kaldırıldı. Yol çizimi assets/js/canli.js (MeberraCanli.yolCiz); yoksa eski düğüm sırası.
  * Can / kalp / sanal para YOK; dil suçlayıcı değil (veliler de görür).
  *
  * Depo anahtarları (şekiller sunucu birleştirmesiyle sabit — server/API.md "Senkron: yeni istemci anahtarları"):
@@ -400,75 +402,26 @@
   };
   function svg(ad, cls) { return '<svg class="' + (cls || "") + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (IK[ad] || IK.yildiz) + "</svg>"; }
 
-  // --- Bildirim balonu (toast) + konfeti ---------------------------------------------------
-  var toastKap = null;
-  function toast(baslik, metin, ikon) {
-    if (!document.body) return;
-    if (!toastKap) {
-      toastKap = document.createElement("div");
-      toastKap.className = "oy-toastlar";
-      toastKap.setAttribute("role", "status");
-      toastKap.setAttribute("aria-live", "polite");
-      document.body.appendChild(toastKap);
-    }
-    var t = document.createElement("div");
-    t.className = "oy-toast";
-    t.innerHTML = '<span class="oy-toast-ik">' + svg(ikon || "yildiz") + '</span><span class="oy-toast-metin"><strong>' + esc(baslik) + "</strong>" + (metin ? "<span>" + esc(metin) + "</span>" : "") + "</span>";
-    toastKap.appendChild(t);
-    while (toastKap.children.length > 3) toastKap.removeChild(toastKap.firstChild);
-    setTimeout(function () { t.classList.add("is-cikis"); setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 260); }, 3800);
+  // --- Kutlama: ortak kuyruk (assets/js/kutlama.js) -------------------------------------------
+  // 1.4.0: eski oy-toast balonu ve canvas konfetisi kaldırıldı; aynı anda tek kutlama, maskot başlı balon / büyük kart.
+  // Dinamik yükleyicide kutlama.js bu dosyadan sonra gelebilir: gelene kadar kısa aralıklarla bekler (en çok ~3 sn).
+  var kutlaBekleyen = [];
+  function kutla(o) {
+    if (window.MeberraKutlama) { window.MeberraKutlama.kutla(o); return; }
+    kutlaBekleyen.push(o);
+    if (kutlaBekleyen.length > 1) return;
+    var n = 0;
+    (function dene() {
+      if (window.MeberraKutlama) { var l = kutlaBekleyen; kutlaBekleyen = []; l.forEach(function (x) { window.MeberraKutlama.kutla(x); }); return; }
+      if (++n < 20) setTimeout(dene, 150); else kutlaBekleyen = [];
+    })();
   }
-  var konfetiSurer = false;
-  /** Hafif konfeti (canvas, kitaplıksız, ~1.3 sn). Azaltılmış harekette çizilmez (yalnızca balon). */
-  function konfeti() {
-    if (AZ_HAREKET || konfetiSurer || !document.body) return;
-    var c = document.createElement("canvas");
-    if (!c.getContext) return;
-    konfetiSurer = true;
-    c.className = "oy-konfeti";
-    c.setAttribute("aria-hidden", "true");
-    var W = c.width = window.innerWidth, H = c.height = window.innerHeight;
-    document.body.appendChild(c);
-    var ctx = c.getContext("2d");
-    var renk = ["#5B3DF5", "#FF6B2C", "#8B5CF6", "#22C55E", "#FACC15", "#38BDF8"];
-    var p = [];
-    for (var i = 0; i < 90; i++) {
-      var sol = i % 2 === 0;
-      p.push({ x: sol ? W * 0.2 : W * 0.8, y: H * 0.65, vx: (sol ? 1 : -1) * (2 + Math.random() * 6), vy: -(9 + Math.random() * 8),
-        r: Math.random() * Math.PI, vr: (Math.random() - 0.5) * 0.4, w: 6 + Math.random() * 6, h: 4 + Math.random() * 4, renk: renk[i % renk.length] });
-    }
-    var bas = null, SURE = 1300;
-    function kare(t) {
-      if (bas === null) bas = t;
-      var g = t - bas;
-      ctx.clearRect(0, 0, W, H);
-      ctx.globalAlpha = g > SURE - 300 ? Math.max(0, (SURE - g) / 300) : 1;
-      p.forEach(function (q) {
-        q.vy += 0.38; q.vx *= 0.985; q.x += q.vx; q.y += q.vy; q.r += q.vr;
-        ctx.save(); ctx.translate(q.x, q.y); ctx.rotate(q.r); ctx.fillStyle = q.renk; ctx.fillRect(-q.w / 2, -q.h / 2, q.w, q.h); ctx.restore();
-      });
-      if (g < SURE) requestAnimationFrame(kare);
-      else { if (c.parentNode) c.parentNode.removeChild(c); konfetiSurer = false; }
-    }
-    requestAnimationFrame(kare);
+  /** "Calculus’ta %40!" — ek uyumu canli.js'te (yoksa düz biçim) */
+  function dersYuzdeMetni(ad, yz) {
+    var C = window.MeberraCanli;
+    return C && C.dersYuzdeMetni ? C.dersYuzdeMetni(ad, yz) : ad + " · %" + yz + "!";
   }
-  function kutla(baslik, metin, ikon) { toast(baslik, metin, ikon); konfeti(); }
-
-  /** Sayı sayacı: 0'dan (ya da öncekinden) hedefe ~450 ms; azaltılmış harekette doğrudan */
-  function say(el, hedef, sonek) {
-    if (!el) return;
-    sonek = sonek || "";
-    var bas0 = Number(el.getAttribute("data-sayac")) || 0;
-    el.setAttribute("data-sayac", String(hedef));
-    if (AZ_HAREKET || bas0 === hedef || !window.requestAnimationFrame) { el.textContent = sayiTR(hedef) + sonek; return; }
-    var t0 = null, S = 450;
-    (function adim(t) {
-      if (t0 === null) t0 = t;
-      var k = Math.min(1, (t - t0) / S), e = 1 - Math.pow(1 - k, 3);
-      el.textContent = sayiTR(Math.round(bas0 + (hedef - bas0) * e)) + sonek;
-      if (k < 1) requestAnimationFrame(adim);
-    })(performance.now());
-  }
+  function ilkAd() { return ME && ME.user ? String(ME.user.ad || "").trim().split(/\s+/)[0] : ""; }
 
   /** Düğmelere dokunma dalgası (ripple). Azaltılmış harekette yok. */
   function dalgaKur() {
@@ -520,12 +473,13 @@
     var miktar = hedefMiktar(o);
     if (bg.soru >= miktar && !(g.hedef && g.hedef.tamam)) {
       g.hedef = { tamam: true, t: Date.now() }; degisti = true;
-      kut.push({ tur: "hedef", b: "Günlük hedef tamam!", m: miktar + " soruyu bitirdin. Harika gidiyorsun.", ik: "hedef" });
+      // Günlük hedef küçük kutlamadır (büyük an: ünite, deneme bandı, seri eşiği)
+      kut.push({ tur: "hedef", buyuk: false, ifade: "kutlama", baslik: "Günlük hedef tamam!", metin: miktar + " soruyu bitirdin. Harika gidiyorsun." });
     }
     gorevDurumlari(gunlukGorevler(gun, tekrarMevcut(v.hatalar, bg)), bg).forEach(function (d) {
       if (d.tamam && !(g[d.id] && g[d.id].tamam)) {
         g[d.id] = { tamam: true, t: Date.now() }; degisti = true;
-        kut.push({ tur: "gorev", b: "Görev tamam: " + d.ad, m: "+" + GOREV_XP + " XP", ik: "onay" });
+        kut.push({ tur: "gorev", metin: d.ad, xp: GOREV_XP }); // ardışık görevler kuyrukta tek balonda birleşir
       }
     });
     if (!Object.keys(g).length) delete o.gorevler[gun];
@@ -539,18 +493,20 @@
     yeniRozetler(o, rb).forEach(function (id) {
       o.rozetler[id] = { t: Date.now() }; degisti = true;
       var r = ROZETLER.filter(function (x) { return x.id === id; })[0];
-      kut.push({ tur: "rozet", b: "Yeni rozet: " + r.ad, m: r.acik, ik: r.ikon });
+      kut.push({ tur: "rozet", buyuk: false, baslik: "Yeni rozet: " + r.ad, metin: r.acik });
     });
     var xp = toplamXp(v.cevaplar, v.denemeler, o);
     if (xp !== o.xp) { o.xp = xp; degisti = true; }
     if (degisti) yaz(K.oyun, o);
     if (kut.length) {
+      // Bir sonraki görevde kuyruğa girer: aynı cevabın "meberra:unite-bitti" büyük kartı (eşzamanlı olay) önce gösterilir
+      var liste = kut;
       if (sessiz && kut.length > 2) {
         var rz = kut.filter(function (k) { return k.tur === "rozet"; }).length, gv = kut.length - rz;
-        kutla("Tebrikler!", [rz ? rz + " rozet" : "", gv ? gv + " kazanım" : ""].filter(Boolean).join(" ve ") + " seni bekliyor. Rozetlerini İlerleme sayfasında gör.", "kupa");
-      } else {
-        kut.forEach(function (k, i) { setTimeout(function () { if (i === 0) kutla(k.b, k.m, k.ik); else toast(k.b, k.m, k.ik); }, i * 450); });
+        liste = [{ tur: "rozet", buyuk: false, ifade: "sevincli", baslik: "Tebrikler!",
+          metin: [rz ? rz + " rozet" : "", gv ? gv + " kazanım" : ""].filter(Boolean).join(" ve ") + " seni bekliyor. Rozetlerini İlerleme sayfasında gör." }];
       }
+      setTimeout(function () { liste.forEach(kutla); }, 0);
     }
     duyur({ oyun: true });
     return { oyun: o, baglam: bg };
@@ -562,20 +518,29 @@
     if (!d.sayfa || !d.soruId) return;
     var r = tekrarCevap(oku(K.tekrar, null), d.sayfa + "|" + d.soruId, !!d.dogru, bugunGun(), Date.now());
     if (r.durum) yaz(K.tekrar, r.tekrar);
-    if (r.durum === "bitti") toast("Bu soruyu öğrendin", "Akıllı tekrar listesinden çıktı.", "onay");
+    if (r.durum === "bitti") setTimeout(function () { kutla({ tur: "rozet", buyuk: false, ifade: "sevincli", baslik: "Bu soruyu öğrendin", metin: "Akıllı tekrar listesinden çıktı." }); }, 0);
     degerlendir(false);
   });
   var KISA = { "ap-calculus": "Calculus", "ap-physics": "Physics", "ap-chemistry": "Chemistry", "ap-biology": "Biology", "ap-english": "English", "ap-electives": "Seçmeliler", "sinav-cents": "CEnT-S" };
+  // Ünite bitti: sayfanın TEK büyük anı — maskot kutlar, ders yüzdesi, ünitede kazanılan XP, paylaşım kartı (yalnız ilk ad)
   window.addEventListener("meberra:unite-bitti", function (e) {
     var d = e.detail || {};
     var pr = oku(K.quiz, null) || {};
     var yz = dersYuzdesi(pr.pages && pr.pages[d.sayfa]);
     var ad = KISA[d.sayfa] || "Bu ders";
-    kutla("Ünite tamam!", ad + "’ta %" + yz + "’tasın. " + (d.dogru != null ? d.dogru + " / " + d.toplam + " doğru." : ""), "kitap");
+    var cevap = +d.cevap || +d.toplam || 0, dogru = +d.dogru || 0;
+    kutla({
+      tur: "unite", ifade: "kutlama", baslik: dersYuzdeMetni(ad, yz),
+      metin: "Ünite tamam" + (d.toplam ? ": " + dogru + " / " + d.toplam + " doğru." : "!"),
+      xp: cevap * XP.soru + dogru * XP.dogru,
+      paylas: { baslik: "Ünite tamam!", alt: String(d.baslik || "").replace(/\s+/g, " ").trim().slice(0, 80), yuzde: yz, ders: KISA[d.sayfa] || "", ad: ilkAd() }
+    });
   });
 
   // =====================================================================================
-  // 4. BUGÜN EKRANI (#bg-oyun, #bg-koruma)
+  // 4. BUGÜN EKRANI (1.4.0: #bg-hedef seri kartında kompakt günlük hedef · #bg-gorevler Günün görevleri · #bg-koruma)
+  //    Bağlamsal tek kart (tekrar / son deneme / yaklaşan) index.html'de seçilir (MeberraCanli.baglamKartiSec).
+  //    Açılışta sayı sayacı yok (sakin ekran); yalnızca hedef halkası bir kez dolar.
   // =====================================================================================
   var ligBilgi = null;
   function ligCek(sonra) {
@@ -589,60 +554,50 @@
   }
   var hedefSeciliyor = false;
   function bugunCiz(ilk) {
-    var kok = document.getElementById("bg-oyun");
-    if (!kok) return;
+    var hedefEl = document.getElementById("bg-hedef"), gorevEl = document.getElementById("bg-gorevler");
+    if (!hedefEl && !gorevEl) return;
     var v = veri(), gun = bugunGun(), o = oyunOku();
     var bg = gunBaglami(v.cevaplar, v.progress, v.hatalar, v.denemeler, gun);
     var miktar = hedefMiktar(o), secili = isObj(o.hedef);
     var oran = Math.min(1, bg.soru / miktar), CEV = 2 * Math.PI * 42;
     var hx = haftaXp(v.cevaplar, v.denemeler, gun).xp;
     if (ligBilgi && ligBilgi.xp !== null) hx = ligBilgi.xp;
-    var toplam = toplamXp(v.cevaplar, v.denemeler, o);
     var gorevler = gorevDurumlari(gunlukGorevler(gun, tekrarMevcut(v.hatalar, bg)), bg);
-    var vade = tekrarZamani(oku(K.tekrar, null), gun), sonraki = vade.length ? null : tekrarSonraki(oku(K.tekrar, null), gun);
-    var tarihTR = function (iso) { try { return new Date(iso + "T12:00:00").toLocaleDateString("tr-TR", { day: "numeric", month: "long" }); } catch (e) { return iso; } };
 
-    var secici = '<div class="oy-hedef-sec" role="group" aria-label="Günlük hedef (soru)">' + HEDEFLER.map(function (n) {
-      return '<button type="button" data-hedef="' + n + '" aria-pressed="' + (n === miktar) + '">' + n + " soru</button>";
-    }).join("") + "</div>";
-    var hedefKart = '<section class="surface oy-kart oy-hedef" aria-labelledby="oy-hedef-h">' +
-      '<div class="oy-hedef-ust"><div class="oy-halka' + (oran >= 1 ? " is-tamam" : "") + '">' +
-        '<svg viewBox="0 0 100 100" aria-hidden="true"><circle class="oy-halka-iz" cx="50" cy="50" r="42"/><circle class="oy-halka-dolu" cx="50" cy="50" r="42" stroke-dasharray="' + CEV.toFixed(1) + '" stroke-dashoffset="' + (ilk ? CEV : CEV * (1 - oran)).toFixed(1) + '" data-hedef-ofset="' + (CEV * (1 - oran)).toFixed(1) + '"/></svg>' +
-        '<span class="oy-halka-sayi"><b data-sayi="' + bg.soru + '">' + bg.soru + "</b><small>/ " + miktar + "</small></span></div>" +
-        '<div class="u-min0"><h2 id="oy-hedef-h">Günlük hedef</h2>' +
-        '<p class="oy-alt">' + (oran >= 1 ? "Bugünkü hedefe ulaştın. Devam etmek serbest!" : bg.soru ? "Hedefe " + (miktar - bg.soru) + " soru kaldı." : "Bugün " + miktar + " soru çözmeyi hedefle.") + "</p>" +
-        (secili && !hedefSeciliyor ? '<button type="button" class="oy-link" data-hedef-degistir>Hedefi değiştir</button>' : "") + "</div></div>" +
-      (!secili || hedefSeciliyor ? '<div class="oy-hedef-secim"><p class="oy-alt">' + (secili ? "Yeni günlük hedefini seç:" : "Günlük hedefini seç (sonra değiştirebilirsin):") + "</p>" + secici + "</div>" : "") +
-      '<div class="oy-xp"><span class="oy-xp-ik">' + svg("simsek") + '</span><span><b data-sayi="' + toplam + '">' + sayiTR(toplam) + "</b> XP</span>" +
-        '<span class="oy-xp-hafta">Bu hafta <b data-sayi="' + hx + '">' + sayiTR(hx) + "</b> XP</span>" +
-        (ligBilgi && ligBilgi.sira ? '<a class="oy-lig" href="/profil.html#lig">' + svg("kupa") + "Ligde " + ligBilgi.sira + ". sıradasın" + (ligBilgi.kademe ? " · " + esc(ligBilgi.kademe) : "") + "</a>" : "") +
-      "</div></section>";
+    if (hedefEl) {
+      var secim = !secili || hedefSeciliyor;
+      var secici = '<div class="oy-hedef-sec" role="group" aria-label="Günlük hedef (soru)">' + HEDEFLER.map(function (n) {
+        return '<button type="button" data-hedef="' + n + '" aria-pressed="' + (n === miktar) + '">' + n + " soru</button>";
+      }).join("") + "</div>";
+      hedefEl.innerHTML = '<div class="oy-hedef oy-hedef--kompakt"><div class="oy-halka' + (oran >= 1 ? " is-tamam" : "") + '">' +
+          '<svg viewBox="0 0 100 100" aria-hidden="true"><circle class="oy-halka-iz" cx="50" cy="50" r="42"/><circle class="oy-halka-dolu" cx="50" cy="50" r="42" stroke-dasharray="' + CEV.toFixed(1) + '" stroke-dashoffset="' + (ilk && !AZ_HAREKET ? CEV : CEV * (1 - oran)).toFixed(1) + '" data-hedef-ofset="' + (CEV * (1 - oran)).toFixed(1) + '"/></svg>' +
+          '<span class="oy-halka-sayi"><b>' + bg.soru + "</b><small>/ " + miktar + "</small></span></div>" +
+        '<div class="u-min0"><h2 id="oy-hedef-h" tabindex="-1">Günlük hedef · ' + Math.min(bg.soru, miktar) + " / " + miktar + "</h2>" +
+          (secim
+            ? '<p class="oy-alt">' + (secili ? "Yeni günlük hedefini seç:" : "Günlük hedefini seç:") + "</p>" + secici
+            : '<p class="oy-alt">' + (oran >= 1 ? "Bugünkü hedefe ulaştın. Devam etmek serbest!" : bg.soru ? "Hedefe " + (miktar - bg.soru) + " soru kaldı." : "Bugün " + miktar + " soru çözmeyi hedefle.") +
+              ' <button type="button" class="oy-link" data-hedef-degistir>Değiştir</button></p>') +
+        "</div></div>";
+    }
 
-    var gorevKart = '<section class="surface oy-kart oy-gorevler" aria-labelledby="oy-gorev-h"><div class="oy-kart-h"><h2 id="oy-gorev-h">Günün görevleri</h2><span class="oy-rozetcik">Her biri +' + GOREV_XP + " XP</span></div>" +
-      '<ul class="oy-gorev-liste">' + gorevler.map(function (d) {
-        var y = Math.round(d.deger / d.hedef * 100);
-        return '<li class="oy-gorev' + (d.tamam ? " is-tamam" : "") + '"><span class="oy-gorev-ik">' + (d.tamam ? svg("onay") : svg(d.olcu === "tekrar" ? "tekrar" : d.olcu === "unite" ? "kitap" : d.olcu === "ustUste" ? "alev" : "hedef")) + "</span>" +
-          '<span class="oy-gorev-govde"><span class="oy-gorev-ad">' + esc(d.ad) + '<span class="oy-gorev-sayi">' + d.deger + " / " + d.hedef + "</span></span>" +
-          '<span class="oy-cubuk" role="progressbar" aria-label="' + esc(d.ad) + '" aria-valuemin="0" aria-valuemax="' + d.hedef + '" aria-valuenow="' + d.deger + '"><i style="--w:' + y + '%"></i></span></span></li>';
-      }).join("") + "</ul></section>";
-
-    var tekrarKart = vade.length
-      ? '<a class="surface oy-kart oy-tekrar-kart is-var u-nodec u-c-inherit" href="ilerleme.html?mod=tekrar#tekrar"><span class="oy-tekrar-ik">' + svg("tekrar") + "</span>" +
-          '<span class="u-min0"><span class="oy-kart-baslik">Tekrar zamanı: <b data-sayi="' + vade.length + '">' + vade.length + "</b> soru</span>" +
-          '<span class="oy-alt">Daha önce yanlış yaptığın sorular, unutmadan önce yeniden karşında.</span></span><span class="oy-git">Tekrara başla →</span></a>'
-      // Vadesi gelen yoksa tek satırlık sade kart (Bugün daha az kalabalık)
-      : '<div class="surface oy-kart oy-tekrar-kart is-kompakt"><span class="oy-tekrar-ik">' + svg("tekrar") + '</span><span class="u-min0"><b>Akıllı tekrar:</b> ' +
-          '<span class="oy-alt">' + (sonraki ? "bugün soru yok · sıradaki " + esc(tarihTR(sonraki)) : "yanlışların 1, 3, 7, 14 gün arayla geri gelir") + "</span></span></div>";
-
-    kok.innerHTML = '<div class="oy-sol">' + hedefKart + tekrarKart + "</div>" + gorevKart;
-    kok.hidden = false;
-    kok.classList.remove("is-iskelet"); kok.removeAttribute("aria-busy");
-    if (ilk) {
+    if (gorevEl) {
+      gorevEl.innerHTML = '<div class="oy-kart-h"><h2 id="oy-gorev-h">Günün görevleri</h2><span class="oy-rozetcik">Her biri +' + GOREV_XP + " XP</span></div>" +
+        '<ul class="oy-gorev-liste">' + gorevler.map(function (d) {
+          var y = Math.round(d.deger / d.hedef * 100);
+          return '<li class="oy-gorev' + (d.tamam ? " is-tamam" : "") + '"><span class="oy-gorev-ik">' + (d.tamam ? svg("onay") : svg(d.olcu === "tekrar" ? "tekrar" : d.olcu === "unite" ? "kitap" : d.olcu === "ustUste" ? "alev" : "hedef")) + "</span>" +
+            '<span class="oy-gorev-govde"><span class="oy-gorev-ad">' + esc(d.ad) + '<span class="oy-gorev-sayi">' + d.deger + " / " + d.hedef + "</span></span>" +
+            '<span class="oy-cubuk" role="progressbar" aria-label="' + esc(d.ad) + '" aria-valuemin="0" aria-valuemax="' + d.hedef + '" aria-valuenow="' + d.deger + '"><i style="--w:' + y + '%"></i></span></span></li>';
+        }).join("") + "</ul>" +
+        '<div class="oy-xp"><span class="oy-xp-ik">' + svg("simsek") + '</span><span class="oy-xp-hafta">Bu hafta <b>' + sayiTR(hx) + "</b> XP</span>" +
+          (ligBilgi && ligBilgi.sira ? '<a class="oy-lig" href="/profil.html#lig">' + svg("kupa") + "Ligde " + ligBilgi.sira + ". sıradasın" + (ligBilgi.kademe ? " · " + esc(ligBilgi.kademe) : "") + "</a>" : "") +
+        "</div>";
+      gorevEl.classList.remove("is-iskelet"); gorevEl.removeAttribute("aria-busy");
+    }
+    if (ilk && hedefEl && !AZ_HAREKET) {
       requestAnimationFrame(function () { requestAnimationFrame(function () {
-        var c = kok.querySelector(".oy-halka-dolu");
+        var c = hedefEl.querySelector(".oy-halka-dolu");
         if (c) c.setAttribute("stroke-dashoffset", c.getAttribute("data-hedef-ofset"));
       }); });
-      kok.querySelectorAll("[data-sayi]").forEach(function (el) { var n = Number(el.getAttribute("data-sayi")); el.textContent = "0"; say(el, n); });
     }
   }
   function korumaCiz() {
@@ -655,13 +610,11 @@
     el.hidden = false;
   }
   function bugunKur() {
-    var kok = document.getElementById("bg-oyun");
-    if (!kok || !oturumVar() || !apModeli()) return;
+    var hedefEl = document.getElementById("bg-hedef");
+    if (!(hedefEl || document.getElementById("bg-gorevler")) || !oturumVar() || !apModeli()) return;
     bugunCiz(true);
     korumaCiz();
-    var seriEl = document.getElementById("seri-title");
-    if (seriEl && !AZ_HAREKET) { var n = parseInt(seriEl.textContent, 10); if (n > 0) { seriEl.setAttribute("data-sayac", "0"); say(seriEl, n, " gün"); } }
-    kok.addEventListener("click", function (e) {
+    if (hedefEl) hedefEl.addEventListener("click", function (e) {
       var b = e.target.closest("[data-hedef]");
       if (b) {
         var o = oyunOku();
@@ -670,13 +623,13 @@
         hedefSeciliyor = false;
         degerlendir(false);
         bugunCiz(false);
-        var y = kok.querySelector("[data-hedef-degistir]") || kok.querySelector(".oy-hedef h2");
-        if (y && y.focus) { if (!y.hasAttribute("tabindex") && y.tagName === "H2") y.setAttribute("tabindex", "-1"); y.focus(); }
+        var y = hedefEl.querySelector("[data-hedef-degistir]") || hedefEl.querySelector("h2");
+        if (y && y.focus) y.focus();
         return;
       }
       if (e.target.closest("[data-hedef-degistir]")) {
         hedefSeciliyor = true; bugunCiz(false);
-        var ilkB = kok.querySelector("[data-hedef]"); if (ilkB) ilkB.focus();
+        var ilkB = hedefEl.querySelector("[data-hedef]"); if (ilkB) ilkB.focus();
       }
     });
     window.addEventListener("storage", function (e) { if (!e.key || /^apmeberra:(oyun|quiz|errors|tekrar|seri|deneme)/.test(e.key)) { bugunCiz(false); korumaCiz(); } });
@@ -686,6 +639,7 @@
   // =====================================================================================
   // 5. ÖĞRENME YOLU (calis.html kartları + ders sayfası ünite paneli)
   // =====================================================================================
+  /** Eski düğüm sırası (canli.js yoksa yedek) */
   function yolHtml(page, dugumler, adres) {
     var kilitVar = dugumler.some(function (d) { return d.durum === "kilitli"; });
     var DURUM = { bitti: "tamamlandı", simdi: "sıradaki", acik: "açık", kilitli: "Premium" };
@@ -694,6 +648,12 @@
       return '<li class="is-' + d.durum + '"><a class="oy-dugum" href="' + esc(adres + "?unite=" + d.no) + '" title="' + et + '" aria-label="' + et + '"' + (d.durum === "simdi" ? ' aria-current="step"' : "") +
         ' style="--y:' + d.yuzde + '%">' + (d.durum === "kilitli" ? svg("kilit") : d.durum === "bitti" ? svg("onay") : "<span>" + esc(d.etiket) + "</span>") + "</a></li>";
     }).join("") + "</ol>" + (kilitVar ? '<p class="oy-yol-not">' + svg("kilit") + 'Kilitli üniteler <a href="premium.html">Premium ile</a> açılır.</p>' : "") + "</nav>";
+  }
+  /** 1.4.0: kıvrımlı yol (canli.js yolCiz) — serit: Çalış kartları, dikey: ders sayfası ünite merkezi */
+  function yolYerlestir(el, page, dugumler, mod) {
+    var C = window.MeberraCanli;
+    if (C && C.yolCiz) C.yolCiz(el, dugumler, { mod: mod, adres: page + ".html", anahtar: location.pathname + "|" + page });
+    else el.innerHTML = yolHtml(page, dugumler, page + ".html");
   }
   function ucretsizNolar(page, liste) {
     if (typeof window.apUcretsizUniteNolari !== "function") return liste.map(function (u) { return u.no; });
@@ -708,7 +668,7 @@
       var page = el.getAttribute("data-yol"), liste = yolListesi(page);
       if (!liste.length) return;
       var acik = ucretsizNolar(page, liste);
-      el.innerHTML = yolHtml(page, yolDugumleri(liste, pr.pages && pr.pages[page], function (no) { return !prem && acik.indexOf(no) < 0; }), page + ".html");
+      yolYerlestir(el, page, yolDugumleri(liste, pr.pages && pr.pages[page], function (no) { return !prem && acik.indexOf(no) < 0; }), "serit");
     });
   }
   function dersYolu() {
@@ -724,7 +684,10 @@
       var h = U.panel.querySelector(".bg-sec-h");
       U.panel.insertBefore(yer, h ? h.nextSibling : U.panel.firstChild);
     }
-    yer.innerHTML = yolHtml(U.page, yolDugumleri(liste, pr.pages && pr.pages[U.page], function (no) { return !!kil[no]; }), U.page + ".html");
+    var C = window.MeberraCanli;
+    yolYerlestir(yer, U.page, yolDugumleri(liste, pr.pages && pr.pages[U.page], function (no) { return !!kil[no]; }), "dikey");
+    // Kıvrımlı yol ünite listesinin yerini alır (aynı bağlantılar; ek bölümler panelde kalır)
+    if (C && C.yolCiz) U.panel.classList.add("has-yol");
   }
 
   // =====================================================================================
@@ -846,7 +809,7 @@
         (oturum.eksik.length ? '<p class="oy-alt">' + oturum.eksik.length + " soru bu ekranda açılamadı; ders sayfasında çözebilirsin: " + oturum.eksik.map(function (k) {
           var p = k.split("|"); return '<a href="' + esc(p[0]) + ".html#q-card-" + encodeURIComponent(p[1]) + '">' + esc(KISA[p[0]] || p[0]) + " · " + esc(p[1]) + "</a>";
         }).join(", ") + "</p>" : "") + '<p><a href="index.html">Bugün’e dön →</a></p></div></div>';
-      if (n) kutla("Tekrar tamam!", oturum.dogru + " / " + n + " doğru. Bilgilerin pekişiyor.", "tekrar");
+      if (n) kutla({ tur: "rozet", buyuk: false, ifade: "kutlama", baslik: "Tekrar tamam!", metin: oturum.dogru + " / " + n + " doğru. Bilgilerin pekişiyor." });
       oturum = null;
     }
     govde.addEventListener("click", function (e) {
@@ -883,17 +846,20 @@
     tohumKontrol(v);
     degerlendir(true);
     if (eklenen.length) {
-      toast("Seri koruma serini korudu", (eklenen.length === 1 ? "Çalışamadığın gün" : eklenen.length + " gün") + " serini bozmadı. Bugün devam edebilirsin.", "kalkan");
+      kutla({ tur: "seri", ifade: "sevincli", baslik: "Seri koruma serini korudu", metin: (eklenen.length === 1 ? "Çalışamadığın gün" : eklenen.length + " gün") + " serini bozmadı. Bugün devam edebilirsin." });
       duyur({ seri: true });
     }
     if (sayfa === "index") bugunKur();
     if (sayfa === "calis") calisYolu();
     if (sayfa === "ilerleme") { rozetCiz(); tekrarKur(); window.addEventListener("meberra:oyun", rozetCiz); }
     if (/^ap-|^sinav-cents$/.test(sayfa)) {
-      dersYolu();
+      // 1.4.0: ders sayfasında oyun.js başlıkta (defer) yüklenir; ünite paneli app.js'in DOMContentLoaded işleyicisinde kurulur.
+      // Panel hazır değilse aynı olayda (app.js'ten sonra) çizilir: panel ve yol aynı karede → kayma yok.
+      if (window.APMEBERRA_UNITELER || document.readyState === "complete") dersYolu();
+      else document.addEventListener("DOMContentLoaded", dersYolu, { once: true });
       window.addEventListener("meberra:oyun", dersYolu);
     }
-    window.addEventListener("meberra:uyelik", function () { if (sayfa === "calis") calisYolu(); korumaCiz(); });
+    window.addEventListener("meberra:uyelik", function () { if (sayfa === "calis") calisYolu(); if (/^ap-|^sinav-cents$/.test(sayfa)) dersYolu(); korumaCiz(); });
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", ac);
   else ac();

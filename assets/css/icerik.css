@@ -86,8 +86,8 @@ body.page-course .question-card, .dn-wrap .question-card { animation: ic-yuksel 
 .option-btn:active:not(.disabled) { transform: scale(.992); }
 .option-btn:focus-visible { outline: 2px solid var(--focus-ring, var(--accent)); outline-offset: 2px; }
 .option-btn .option-letter { transition: background-color var(--ic-hizli) var(--ic-ease), color var(--ic-hizli) var(--ic-ease), border-color var(--ic-hizli) var(--ic-ease); }
-.option-btn.correct { animation: ic-dogru var(--ic-yavas) var(--ic-ease-out), ic-isik 700ms var(--ic-ease-out); }
-.option-btn.wrong { animation: ic-yanlis 360ms var(--ic-ease); }
+/* 1.4.0: doğru/yanlış şık hareketi yalnızca YENİ cevapta (canli.js: h-zipla / h-salla). Eskiden .correct/.wrong sınıfı
+   geri yüklemede de canlanıyordu (sayfa açılışında onlarca şık aynı anda); kaldırıldı. */
 .feedback-box { animation: ic-acil var(--ic-orta) var(--ic-ease-out) both; }
 .question-card.state-correct, .question-card.state-wrong { transition: border-color var(--ic-orta) var(--ic-ease); }
 

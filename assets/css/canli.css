@@ -1,0 +1,220 @@
+/* ==========================================================================
+   MEBERRA 1.4.0 — CANLI KATMAN (assets/js/canli.js). hareket.css + maskot.css'ten SONRA yüklenir.
+   Önek: cn-. Süreler/eğriler yalnızca hareket.css tokenları: --hiz-hizli/orta/yavas, --egri-cik/--egri-yay.
+   Kural: ekran başına tek büyük an; geri kalan sakin. Azaltılmış harekette tümü durağan (en alttaki blok).
+   ========================================================================== */
+
+/* --- Navbar XP çipi (app.js çizer, canli.js günceller) ------------------------------------ */
+.nav-xp {
+  display: inline-flex; align-items: center; gap: 4px; flex: none; min-height: 36px; padding: 0 12px 0 8px;
+  border-radius: var(--radius-full, 999px); background: var(--energy-soft, #fff0e8); color: var(--energy-text, #c2410c);
+  font: 800 var(--fs-14, .875rem)/1 var(--font-head, system-ui, sans-serif); text-decoration: none; white-space: nowrap;
+  transition: background-color var(--hiz-hizli) ease;
+}
+.nav-xp:hover { text-decoration: none; color: var(--energy-text, #c2410c); background: color-mix(in srgb, var(--energy, #ff6b2c) 22%, var(--surface, #fff)); }
+.nav-xp:focus-visible { outline: 2px solid var(--accent, #5b3df5); outline-offset: 2px; }
+.nav-xp svg { width: 18px; height: 18px; flex: none; }
+.nav-xp [data-xp-deger] { font-variant-numeric: tabular-nums; min-width: 2ch; text-align: right; display: inline-block; }
+@media (max-width: 420px) { .nav-xp { padding: 0 10px 0 6px; } .nav-xp__ek { display: none; } }
+
+/* --- Cevap geri bildirimi --------------------------------------------------------------------- */
+/* Yanlış cevapta açıklama yukarıdan kayarak açılır (doğruda sade solma: icerik.css) */
+@keyframes cn-kay { from { opacity: 0; transform: translateY(-8px); clip-path: inset(0 0 100% 0); } to { opacity: 1; transform: none; clip-path: inset(0 0 0 0); } }
+.feedback-box.cn-kay { animation: cn-kay var(--hiz-yavas) var(--egri-cik) both; }
+
+/* --- Öğrenme yolu ------------------------------------------------------------------------------ */
+.cn-yol { --yol-renk: var(--cc, var(--u-course, var(--accent))); margin: 6px 0 4px; }
+.cn-yol__alan { position: relative; margin: 0 auto; max-width: 100%; }
+.cn-yol__svg { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; }
+.cn-yol__iz, .cn-yol__dolu { fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 8; }
+.cn-yol__iz { stroke: color-mix(in srgb, var(--yol-renk) 12%, var(--surface-3, #ece8f7)); }
+.cn-yol__dolu { stroke: var(--yol-renk); opacity: .7; }
+.cn-yol__liste { list-style: none; margin: 0; padding: 0; }
+.cn-dugum { position: absolute; }
+.cn-dugum__git { position: absolute; display: block; text-decoration: none; color: var(--text); border-radius: 26px; }
+.cn-dugum__git:hover { text-decoration: none; color: var(--text); }
+.cn-dugum__git:focus-visible { outline: none; }
+.cn-dugum__git:focus-visible .cn-dugum__daire { outline: 3px solid var(--focus-ring, var(--accent)); outline-offset: 3px; }
+.cn-dugum__daire {
+  position: absolute; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
+  font: 900 1rem/1 var(--font-head, sans-serif); border: 3px solid var(--border-strong);
+  background: conic-gradient(color-mix(in srgb, var(--yol-renk) 22%, var(--surface)) var(--y, 0%), var(--surface) 0);
+  color: var(--text); box-shadow: 0 3px 0 var(--border-strong);
+  transition: transform var(--hiz-hizli) var(--egri-cik), box-shadow var(--hiz-hizli) ease;
+}
+.cn-dugum__git:hover .cn-dugum__daire { transform: translateY(-2px); }
+.cn-dugum__git:active .cn-dugum__daire { transform: translateY(2px); box-shadow: 0 1px 0 var(--border-strong); }
+.cn-dugum__daire svg { width: 20px; height: 20px; }
+.cn-dugum.is-bitti .cn-dugum__daire { border-color: var(--yol-renk); background: var(--yol-renk); color: #fff; box-shadow: 0 3px 0 color-mix(in srgb, var(--yol-renk) 60%, #1a1033); }
+.cn-dugum.is-simdi .cn-dugum__daire { border-color: var(--yol-renk); background: var(--surface); color: var(--yol-renk); box-shadow: 0 3px 0 color-mix(in srgb, var(--yol-renk) 60%, #1a1033), 0 0 0 5px color-mix(in srgb, var(--yol-renk) 20%, transparent); }
+.cn-dugum.is-kilitli .cn-dugum__daire { border-style: dashed; background: var(--surface-2); color: var(--text-muted); box-shadow: none; }
+.cn-tilo { position: absolute; z-index: 2; width: 34px; height: 34px; line-height: 0; pointer-events: none; }
+/* Premium ipucu (kilitli düğüm) */
+.cn-dugum__git[data-ipucu]::after {
+  content: attr(data-ipucu); position: absolute; z-index: 3; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%);
+  padding: 5px 10px; border-radius: 8px; background: var(--gray-900, #1a1033); color: #fff; font: 700 var(--fs-12, .75rem)/1.2 var(--font-sans, sans-serif);
+  white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity var(--hiz-hizli) ease;
+}
+.cn-dugum__git[data-ipucu]:hover::after, .cn-dugum__git[data-ipucu]:focus-visible::after { opacity: 1; }
+.cn-yol__not { display: flex; align-items: center; gap: 6px; margin: 8px 0 0; font-size: var(--fs-12, .75rem); color: var(--text-muted); }
+.cn-yol__not svg { width: 14px; height: 14px; flex: none; }
+
+/* Serit (Çalış kartları): düğüm noktası (left/top) merkezdir */
+.cn-yol--serit .cn-dugum { width: 0; height: 0; }
+.cn-yol--serit .cn-dugum__git { left: -22px; top: -22px; width: 44px; height: 44px; }
+.cn-yol--serit .cn-dugum__daire { left: 0; top: 0; }
+.cn-yol--serit .cn-tilo { left: -17px; top: -48px; }
+.cn-yol--serit .cn-dugum__git[data-ipucu]::after { bottom: calc(100% + 6px); }
+
+/* Dikey (ders sayfası ünite merkezi): satır 76 px; düğüm şeritte, ad sağda */
+.cn-yol--dikey .cn-yol__alan { width: 100%; }
+.cn-yol--dikey .cn-dugum { left: 0; right: 0; height: 76px; }
+.cn-yol--dikey .cn-dugum__git { inset: 0; display: flex; align-items: center; padding-left: calc(var(--yol-g, 112px) + 10px); border-radius: var(--radius-md, 12px); transition: background-color var(--hiz-hizli) ease; }
+.cn-yol--dikey .cn-dugum__git:hover { background: var(--surface-2); }
+.cn-yol--dikey .cn-dugum__daire { left: calc(var(--x) - 22px); top: 16px; }
+.cn-yol--dikey .cn-tilo { left: calc(var(--x) - 17px); top: -10px; }
+.cn-yol--dikey .cn-dugum__git[data-ipucu]::after { left: var(--x); bottom: auto; top: -18px; }
+.cn-dugum__ad { min-width: 0; display: grid; gap: 2px; }
+.cn-dugum__ad b { font-weight: 800; font-size: var(--fs-16, 1rem); line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cn-dugum__ad small { color: var(--text-muted); font-size: var(--fs-14, .875rem); font-variant-numeric: tabular-nums; }
+.cn-dugum.is-bitti .cn-dugum__ad small { color: var(--ok); }
+.cn-dugum.is-kilitli .cn-dugum__ad { color: var(--text-muted); }
+@media (max-width: 520px) {
+  .cn-yol--dikey .cn-dugum__ad b { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; font-size: var(--fs-14, .875rem); }
+}
+/* Ders sayfası ünite merkezi: yol listenin yerini alır (aynı bağlantılar, ek bölümler aşağıda kalır) */
+.ug-panel.has-yol .ug-liste { display: none; }
+.ug-panel .oy-yol-yer.oy-yol-ders { margin: 0 0 8px; }
+
+/* Çizim: oturumda ilk görüşte yol kendini çizer, düğümler sırayla belirir; şimdiki düğüm üç kez nabız atar */
+@keyframes cn-ciz { to { stroke-dashoffset: 0; } }
+@keyframes cn-nabiz { 0%, 100% { box-shadow: 0 3px 0 color-mix(in srgb, var(--yol-renk) 60%, #1a1033), 0 0 0 5px color-mix(in srgb, var(--yol-renk) 20%, transparent); } 50% { box-shadow: 0 3px 0 color-mix(in srgb, var(--yol-renk) 60%, #1a1033), 0 0 0 10px color-mix(in srgb, var(--yol-renk) 4%, transparent); } }
+.cn-yol.is-ciz .cn-yol__iz, .cn-yol.is-ciz .cn-yol__dolu { stroke-dasharray: 1; stroke-dashoffset: 1; animation: cn-ciz var(--hiz-yavas) var(--egri-cik) forwards; }
+.cn-yol.is-ciz .cn-yol__dolu { animation-delay: var(--hiz-orta); }
+.cn-yol.is-ciz .cn-dugum { animation: h-belir var(--hiz-orta) var(--egri-cik) both; animation-delay: calc(var(--sira, 0) * var(--sira-adim)); }
+.cn-dugum.is-simdi .cn-dugum__daire { animation: cn-nabiz 1.8s ease-in-out var(--hiz-yavas) 3; }
+
+/* --- Bugün v5: en çok 4 blok ------------------------------------------------------------------ */
+.bugun-v5 .bg-ust { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); align-items: stretch; }
+.bugun-v5 .bg-hero { flex-direction: column; align-items: stretch; }
+.bugun-v5 .bg-hero > .bg-hero-isik { position: absolute; }
+.bg-tilo { display: flex; align-items: flex-end; gap: 10px; margin-bottom: 18px; }
+.bg-tilo__maskot { flex: none; width: 88px; height: 88px; line-height: 0; }
+.bg-tilo .mk-balon { flex: 1 1 auto; min-width: 0; margin-bottom: 16px; display: block; border-color: transparent; box-shadow: 0 10px 24px -10px rgba(26, 16, 51, .45); }
+.bg-tilo .mk-balon::before { border-color: transparent; }
+.bg-tilo h1 { margin: 0; font: 900 clamp(1.25rem, 1rem + 1vw, 1.625rem)/1.2 var(--font-head); color: var(--text); letter-spacing: -0.02em; overflow-wrap: anywhere; }
+.bg-tilo h1 .bg-ad { color: var(--energy-text); }
+.bg-tilo .bg-hello-sub { margin: 4px 0 0; color: var(--text-muted); font-size: var(--fs-14); }
+.bg-tilo.is-tehlike .bg-hello-sub { color: var(--text); font-weight: 600; }
+.bugun-v5 .bg-hero h2 { font-size: clamp(1.375rem, 1.1rem + 1vw, 1.75rem); }
+@media (max-width: 640px) { .bg-tilo__maskot { width: 72px; height: 72px; } .bg-tilo__maskot .maskot { width: 72px; height: 72px; } }
+
+/* Seri + günlük hedef: tek kompakt kart */
+.bugun-v5 .bg-seri { gap: 12px; }
+.bg-seri .bg-alev { transition: transform var(--hiz-yavas) var(--egri-yay); transform-origin: 50% 85%; }
+.bg-seri[data-kademe="0"] .bg-alev { background: var(--surface-2); color: var(--text-muted); }
+.bg-seri[data-kademe="1"] .bg-alev svg { transform: scale(.82); }
+.bg-seri[data-kademe="2"] .bg-alev svg { transform: scale(.95); }
+.bg-seri[data-kademe="3"] .bg-alev svg { transform: scale(1.08); }
+.bg-seri[data-kademe="4"] .bg-alev svg { transform: scale(1.2); }
+.bg-seri[data-kademe="5"] .bg-alev svg { transform: scale(1.32); }
+.bg-seri[data-kademe="4"] .bg-alev, .bg-seri[data-kademe="5"] .bg-alev { background: linear-gradient(160deg, #ffc53d, var(--energy, #ff6b2c)); color: #fff; }
+.bg-seri .bg-alev svg { transition: transform var(--hiz-yavas) var(--egri-yay); }
+.bg-hedef { min-height: 64px; padding-top: 12px; border-top: 1px solid var(--border); }
+.bg-hedef:empty { display: none; }
+.oy-hedef--kompakt { display: flex; align-items: center; gap: 12px; }
+.oy-hedef--kompakt .oy-halka { width: 56px; height: 56px; }
+.oy-hedef--kompakt .oy-halka circle { stroke-width: 11; }
+.oy-hedef--kompakt .oy-halka-sayi b { font-size: 1.05rem; }
+.oy-hedef--kompakt .oy-halka-sayi small { display: none; }
+.oy-hedef--kompakt h2 { font-size: var(--fs-16); margin: 0; }
+.oy-hedef--kompakt .oy-alt { margin: 2px 0 0; }
+.oy-hedef--kompakt .oy-link { min-height: 28px; margin-top: 2px; }
+.oy-hedef--kompakt .oy-hedef-sec { margin-top: 6px; gap: 6px; }
+.oy-hedef--kompakt .oy-hedef-sec button { min-height: 32px; padding: 0 12px; }
+
+/* Alt sıra: Günün görevleri + tek bağlamsal kart */
+.bg-alt { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: var(--sp-5); align-items: start; }
+#bg-gorevler { min-height: 268px; border-radius: var(--radius-xl); }
+.bg-alt.is-tek { grid-template-columns: minmax(0, 1fr); }
+#bg-gorevler.is-iskelet { animation: none; }
+.bg-baglam { display: grid; min-width: 0; }
+.bg-baglam > * { height: 100%; }
+.oy-gorevler .oy-xp { margin-top: 14px; }
+@media (max-width: 900px) { .bugun-v5 .bg-ust, .bg-alt { grid-template-columns: minmax(0, 1fr); } #bg-gorevler { min-height: 0; } }
+
+/* Daha fazla (katlanır) */
+.bg-dahafazla { border-radius: var(--radius-xl); border: 1px solid var(--border); background: var(--surface); }
+.bg-dahafazla > summary {
+  list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  min-height: 52px; padding: 0 20px; font: 800 var(--fs-16)/1.2 var(--font-head); color: var(--text); border-radius: inherit;
+  justify-content: flex-start; flex-wrap: wrap; row-gap: 0;
+}
+.bg-dahafazla > summary::-webkit-details-marker { display: none; }
+.bg-dahafazla > summary small { font: 600 var(--fs-14)/1.3 var(--font-sans, sans-serif); color: var(--text-muted); margin-left: 8px; }
+.bg-dahafazla > summary::after { content: ""; flex: none; margin-left: auto; width: 9px; height: 9px; border-right: 2.5px solid currentColor; border-bottom: 2.5px solid currentColor; transform: rotate(45deg) translateY(-3px); transition: transform var(--hiz-orta) var(--egri-cik); }
+.bg-dahafazla[open] > summary::after { transform: rotate(-135deg) translateY(-1px); }
+.bg-dahafazla > summary:focus-visible { outline: 2px solid var(--focus-ring, var(--accent)); outline-offset: 2px; }
+.bg-dahafazla__ic { display: grid; gap: var(--sp-5); padding: 4px 20px 20px; }
+.bg-dahafazla[open] .bg-dahafazla__ic { animation: h-belir var(--hiz-orta) var(--egri-cik) both; }
+.bg-dahafazla .bg-uclu:empty { display: none; }
+.bg-dahafazla .bg-dersler { border: 0; box-shadow: none; padding: 0; background: none; }
+
+/* Bugün: sakin kal — tek büyük an maskotlu karşılama. Sonsuz döngüler kapalı; giriş bir kez. */
+.bugun-v5 .bg-hero-isik i { animation: none !important; }
+.bugun-v5 .bg-hero .btn-energy::after { animation-iteration-count: 1 !important; }
+.bugun-v5 .bg-seri .bg-alev svg { animation: none !important; }
+.bugun-v5 .bg-ilk-rozet::before { animation: none !important; }
+.bugun-v5 .bg-hero-cizim { display: none; }
+.bugun-v5 .bg-uclu > *, .bugun-v5 .bg-ders-list > li { animation: none !important; }
+
+/* --- Boş durumlar ve yer tutucular ------------------------------------------------------------ */
+[data-maskot] { display: inline-block; line-height: 0; }
+[data-maskot][data-boyut="64"] { width: 64px; height: 64px; }
+[data-maskot][data-boyut="88"] { width: 88px; height: 88px; }
+[data-maskot][data-boyut="96"] { width: 96px; height: 96px; }
+[data-maskot][data-boyut="120"] { width: 120px; height: 120px; }
+[data-maskot][data-boyut="150"] { width: 150px; height: 150px; }
+.cn-bos-maskot { display: block; width: fit-content; margin: 0 auto 6px; line-height: 0; }
+.dn-empty-ico.cn-bos-maskot { background: none; width: auto; height: auto; border-radius: 0; }
+.empty-state .cn-bos-maskot, .empty-state [data-maskot] { display: block; margin: 0 auto 8px; }
+.cn-umut { margin: 0 0 var(--sp-5); max-width: 640px; }
+.cn-umut .mk-balon a { font-weight: 800; white-space: nowrap; }
+
+/* --- Bildirimler (bildirim.js): maskot başı avatar, Sorularım boşken düşünen Tilo, lige davet --------- */
+.bd-bil-ikon.bd-bil-maskot { background: var(--energy-soft, #fff0e8); overflow: visible; line-height: 0; }
+.bd-bil-ikon.bd-bil-maskot svg { width: 36px; height: 36px; }
+.bd-bos-kutu > .maskot { margin-bottom: 2px; }
+.bd-lig-tilo { margin: 0 0 14px; }
+
+/* --- Kart → ders sayfası geçişi (belgeler arası View Transitions) ------------------------------ */
+body.page-course .hero-section { view-transition-name: cn-ders; }
+::view-transition-group(cn-ders) { animation-duration: var(--hiz-yavas); animation-timing-function: var(--egri-cik); }
+::view-transition-old(cn-ders), ::view-transition-new(cn-ders) { animation-duration: var(--hiz-orta); height: 100%; object-fit: cover; }
+
+/* --- Vitrin: Tilo (hero'da el sallar, son çağrıda kutlar) -------------------------------------- */
+.vx { position: relative; }
+.vt-tilo { position: absolute; z-index: 3; pointer-events: none; }
+.vt-tilo--hero { top: -62px; right: 14px; width: 96px; height: 96px; }
+.vt-final { position: relative; }
+.vt-tilo--final { display: block; width: 120px; height: 120px; margin: 0 auto 4px; position: relative; }
+/* Son çağrı kutlaması: sonsuz zıplama yerine iki kez (görünür olunca) */
+.vt-tilo--final .maskot--kutlama.maskot--anim .mk-hepsi,
+.vt-tilo--final .maskot--kutlama.maskot--anim .mk-kol-sol,
+.vt-tilo--final .maskot--kutlama.maskot--anim .mk-kol-sag,
+.vt-tilo--final .maskot--kutlama.maskot--anim .mk-konfeti > * { animation-iteration-count: 2; }
+@media (max-width: 760px) { .vt-tilo--hero { top: -50px; right: 8px; width: 76px; height: 76px; } .vt-tilo--hero .maskot { width: 76px; height: 76px; } }
+
+/* --- 404 --------------------------------------------------------------------------------------- */
+.cn-404 { min-height: 70vh; display: grid; place-items: center; text-align: center; padding: 32px 16px; }
+.cn-404 .mk-konus { margin: 0 auto 8px; text-align: left; }
+
+/* --- Azaltılmış hareket: hepsi durağan --------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .feedback-box.cn-kay, .cn-yol.is-ciz .cn-yol__iz, .cn-yol.is-ciz .cn-yol__dolu, .cn-yol.is-ciz .cn-dugum,
+  .cn-dugum.is-simdi .cn-dugum__daire, .bg-dahafazla[open] .bg-dahafazla__ic { animation: none !important; }
+  .cn-yol.is-ciz .cn-yol__iz, .cn-yol.is-ciz .cn-yol__dolu { stroke-dasharray: none; stroke-dashoffset: 0; }
+  .nav-xp, .cn-dugum__daire, .cn-dugum__git, .bg-seri .bg-alev, .bg-seri .bg-alev svg, .bg-dahafazla > summary::after { transition: none !important; }
+  .cn-dugum__git:hover .cn-dugum__daire, .cn-dugum__git:active .cn-dugum__daire { transform: none; }
+  ::view-transition-group(cn-ders), ::view-transition-old(cn-ders), ::view-transition-new(cn-ders) { animation: none !important; }
+}

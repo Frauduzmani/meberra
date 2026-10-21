@@ -58,6 +58,8 @@
 
         <!-- 3 adımlı anlatım: JS yoksa ya da hareket azaltılmışsa üç adım birlikte görünür -->
         <div class="vx" id="vx" role="region" aria-roledescription="anlatım" aria-label="AP'yi üç adımda anla">
+          <!-- 1.4.0: Tilo anlatımın köşesinden el sallar (konumu mutlak: sayfa kaymaz; canli.js doldurur) -->
+          <span class="vt-tilo vt-tilo--hero" data-maskot="selam" data-boyut="96"></span>
           <div class="vx-bar">
             <div class="vx-dots" role="group" aria-label="Adım seç">
               <button type="button" class="vx-dot" data-vx-go="0" aria-controls="vx-s1" aria-label="1. adım: AP nedir?"><span aria-hidden="true">1</span></button>
@@ -355,6 +357,7 @@
     <!-- 8. Son çağrı -->
     <section class="vt-final" aria-labelledby="vt-son" data-rv>
       <div class="vt-final-glow" aria-hidden="true"></div>
+      <span class="vt-tilo vt-tilo--final" data-maskot="kutlama" data-boyut="120"></span><!-- 1.4.0: yer ayrılmış (kayma yok) -->
       <h2 class="vt-h2" id="vt-son">Bugün ilk üniteni bitir</h2>
       <p class="vt-lead">Hesap açmak bir dakika. Seviye testini çöz, nereden başlayacağını gör.</p>
       <div class="vt-final-cta">

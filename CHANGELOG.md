@@ -9,6 +9,16 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.4.0] — 2026-10-21
+### Eklendi
+- Maskot Tilo (6 ifade) ve hareket sistemi; tek seferde tek kutlama (kuyruk), ünite bitince paylaşılabilir hikâye kartı.
+- Doğru cevapta "+10 XP" uçuşu ve gezinme çubuğunda XP sayacı; yanlışta açıklama kayarak açılır.
+- Kıvrımlı öğrenme yolu (Çalış ve ders sayfaları), deneme puanının sayarak belirmesi, 7/30/100 gün seri kartları.
+- Akşam seri tehlikedeyken uykulu Tilo hatırlatması; maskotlu boş ekranlar ve 404 sayfası.
+### Değişti
+- Bugün en fazla 4 blok; geri kalanı "Daha fazla" altında. Ders kartı → ders sayfası geçiş animasyonu.
+- Yinelenen konfeti/toast ve sonsuz döngü animasyonları kaldırıldı.
+
 ## [1.3.0] — 2026-10-21
 ### Eklendi
 - Yönetici paneli: kullanıcıların IP'si, son görülme, çevrimiçi durumu, günlük giriş sayısı, son giriş; oturum listesi.

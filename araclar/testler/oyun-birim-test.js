@@ -160,5 +160,23 @@ ok(O.dersYuzdesi({ units: { a: { total: 10, answers: { x: {}, y: {} } }, b: { to
   }
 }
 
+// 1.4.0 maskot/hareket: kutlamalar tek kuyruktan (kutlama.js); oyun.js'te kendi balon/konfeti kopyası kalmadı;
+// büyük anlar yalnızca ünite (ve seri eşiği/deneme bandı canli.js'te), günlük hedef ve rozet küçük balon.
+{
+  const src = fs.readFileSync(path.join(ROOT, "assets/js/oyun.js"), "utf8");
+  ok(!/function konfeti|function toast\(|requestAnimationFrame\(kare\)|getContext\("2d"\)/.test(src), "oyun.js: kendi konfeti/balon kodu yok");
+  ok(/window\.MeberraKutlama\.kutla\(/.test(src) && !/\bkutla\("[^"]/.test(src), "oyun.js: tüm kutlamalar nesneyle MeberraKutlama kuyruğuna gider");
+  const unite = /addEventListener\("meberra:unite-bitti"[\s\S]*?\n  \}\);/.exec(src);
+  ok(unite && /tur: "unite"/.test(unite[0]) && /paylas:/.test(unite[0]) && /ad: ilkAd\(\)/.test(unite[0]) && /xp:/.test(unite[0]), "ünite bitti: büyük kart + XP + paylaşım (yalnız ilk ad)");
+  ok(/tur: "hedef", buyuk: false/.test(src) && /tur: "rozet", buyuk: false/.test(src), "günlük hedef ve rozet küçük balon (ekranın tek büyük anı değil)");
+  ok(!/data-sayi/.test(src), "Bugün: açılışta sayı sayacı yok (sakin ekran)");
+  const css = fs.readFileSync(path.join(ROOT, "assets/css/oyun.css"), "utf8");
+  ok(!/\.oy-toast|\.oy-konfeti/.test(css), "oyun.css: eski balon/konfeti stilleri kaldırıldı");
+  const C = require(path.join(ROOT, "assets/js/canli.js"));
+  const dug = O.yolDugumleri(O.yolListesi("ap-physics"), null, no => no > 2);
+  const h = C.yolHtml(dug, { mod: "serit", sutun: 5, adres: "ap-physics.html" });
+  ok((h.match(/class="cn-dugum__git"/g) || []).length === dug.length && /\?unite=1"/.test(h), "öğrenme yolu düğümleri canli.js kıvrımlı yoluna birebir aktarılır");
+}
+
 console.log("SONUC: " + pass + " gecti, " + fail + " kaldi.");
 process.exit(fail ? 1 : 0);
