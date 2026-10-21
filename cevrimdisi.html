@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#5B3DF5">
+  <title>Bağlantı yok | Meberra</title>
+  <meta name="robots" content="noindex">
+  <!-- 1.15.0 Çevrimdışı sayfa: service worker (sw.js) bunu önbelleğe alır ve sayfa ağdan alınamazsa gösterir.
+       Yalnızca önbellekteki dosyaları kullanır (styles.css + yerel fontlar + uykulu maskot). -->
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script src="/assets/js/adresler.js"></script>
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+  <style>
+    body { min-height: 100vh; min-height: 100dvh; margin: 0; display: grid; place-items: center; padding: 24px 16px; background: var(--bg, #f7f6fb); color: var(--text, #1d1b2e); box-sizing: border-box; }
+    .cd-kart {
+      width: min(560px, 100%); box-sizing: border-box; display: grid; gap: 16px; text-align: center; justify-items: center;
+      padding: clamp(28px, 6vw, 48px) clamp(20px, 5vw, 40px); border-radius: var(--radius-xl, 24px); background: var(--surface, #fff);
+      border: 1px solid var(--border, #e4e1f0); box-shadow: var(--shadow-lg, 0 10px 30px rgba(0,0,0,.08)); position: relative; overflow: hidden;
+    }
+    .cd-kart::before { content: ""; position: absolute; inset: 0 0 auto; height: 6px; background: linear-gradient(90deg, var(--hero-a, #5B3DF5), var(--hero-b, #8E7BFF)); }
+    .cd-marka { display: inline-flex; padding: 6px 14px; border-radius: 999px; background: var(--accent-soft, #ece8ff); color: var(--accent, #5B3DF5); font: 900 0.95rem/1 var(--font-head, system-ui); letter-spacing: .02em; }
+    .cd-maskot { width: 140px; height: 140px; }
+    h1 { margin: 0; font: 900 clamp(1.5rem, 5vw, 2rem)/1.2 var(--font-head, system-ui); }
+    .cd-metin { margin: 0; color: var(--text-muted, #5b5870); font-size: 1.05rem; line-height: 1.6; max-width: 46ch; overflow-wrap: anywhere; }
+    .cd-liste { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; text-align: left; max-width: 46ch; }
+    .cd-liste li { display: flex; gap: 10px; align-items: flex-start; color: var(--text-muted, #5b5870); line-height: 1.5; }
+    .cd-liste li::before { content: "✓"; color: var(--accent, #5B3DF5); font-weight: 900; flex: none; }
+    .cd-dugme { min-height: 44px; }
+    .cd-durum { margin: 0; font-size: .9rem; color: var(--text-muted, #5b5870); min-height: 1.4em; }
+  </style>
+</head>
+<body>
+  <main class="cd-kart" id="main-content" aria-labelledby="cd-baslik">
+    <span class="cd-marka">Meberra</span>
+    <img class="cd-maskot" src="/assets/img/maskot/tilki-uykulu.svg" width="140" height="140" alt="Uykulu Tilo">
+    <h1 id="cd-baslik">İnternet bağlantın yok gibi</h1>
+    <p class="cd-metin">Tilo biraz kestiriyor. Bağlantın gelince kaldığın yerden devam edersin.</p>
+    <ul class="cd-liste">
+      <li>Çözdüğün sorular ve ilerlemen bu cihazda saklanır.</li>
+      <li>Yeniden bağlandığında hesabına kendiliğinden eşitlenir; bir şey kaybolmaz.</li>
+    </ul>
+    <button type="button" class="btn-primary cd-dugme" id="cd-dene">Yeniden dene</button>
+    <p class="cd-durum" id="cd-durum" role="status" aria-live="polite"></p>
+  </main>
+  <script>
+  (function () {
+    "use strict";
+    var durum = document.getElementById("cd-durum");
+    // Bu sayfa çoğunlukla başka bir adresin (ör. /bugun) yerine gösterilir: yeniden yükleme o adresi tekrar dener
+    function dene() {
+      durum.textContent = "Bağlantı denetleniyor…";
+      if (navigator.onLine === false) { durum.textContent = "Hâlâ çevrimdışısın. Bağlantın gelince sayfa kendiliğinden açılacak."; return; }
+      var hedef = /^\/cevrimdisi(?:\.html)?$/i.test(location.pathname) ? "/" : null;
+      if (hedef) location.replace(hedef); else location.reload();
+    }
+    document.getElementById("cd-dene").addEventListener("click", dene);
+    window.addEventListener("online", dene);
+  })();
+  </script>
+</body>
+</html>

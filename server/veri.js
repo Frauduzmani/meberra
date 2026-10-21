@@ -206,7 +206,59 @@ function oyunBirlestir(cur, inc) {
   out.gorevler = {};
   gunler.forEach(g => { out.gorevler[g] = gor[g]; });
   out.hedef = "hedef" in i ? clone(i.hedef) : (c.hedef === undefined ? null : clone(c.hedef));
+  // 1.16.0 oyun (assets/js/oyun-ek.js): ustalik / aylik / haftalik — yalnızca iki taraftan birinde varsa yazılır
+  if ("ustalik" in c || "ustalik" in i) out.ustalik = ustalikBirlestir(c.ustalik, i.ustalik);
+  if ("aylik" in c || "aylik" in i) out.aylik = aylikBirlestir(c.aylik, i.aylik);
+  if ("haftalik" in c || "haftalik" in i) out.haftalik = haftalikBirlestir(c.haftalik, i.haftalik);
   return out;
+}
+
+// 1.16.0 oyun — ünite ustalığı: { "<sayfa>|<unite>": { seviye: "bronz"|"gumus"|"altin", t } } → en yüksek seviye kalır;
+// aynı seviyede en erken t. Geçersiz seviye yok sayılır.
+const USTALIK_SIRA = { bronz: 1, gumus: 2, altin: 3 };
+function ustalikBirlestir(a, b) {
+  const out = {};
+  [a, b].forEach(m => { if (isObj(m)) Object.keys(m).forEach(k => {
+    const v = m[k];
+    if (!isObj(v) || !USTALIK_SIRA[v.seviye] || k.length > 120) return;
+    const o = out[k];
+    if (!o) { out[k] = clone(v); return; }
+    const sv = USTALIK_SIRA[v.seviye], so = USTALIK_SIRA[o.seviye];
+    const tv = Number(v.t), to = Number(o.t);
+    if (sv > so || (sv === so && isFinite(tv) && (!isFinite(to) || tv < to))) out[k] = clone(v);
+  }); });
+  return out;
+}
+// 1.16.0 oyun — aylık görev: { "YYYY-MM": { hedef, tamam, t } } → tamam:true kazanır; ikisi de tamamsa en erken t;
+// ikisi de tamam değilse gelen kazanır. En yeni 36 ay tutulur.
+const AY_RE = /^\d{4}-\d{2}$/;
+function aylikBirlestir(a, b) {
+  const out = {};
+  [a, b].forEach(m => { if (isObj(m)) Object.keys(m).forEach(k => {
+    const v = m[k];
+    if (!AY_RE.test(k) || !isObj(v)) return;
+    const o = out[k];
+    if (!o) { out[k] = clone(v); return; }
+    if (v.tamam === true && o.tamam !== true) out[k] = clone(v);
+    else if (v.tamam === true && o.tamam === true) { const tv = Number(v.t), to = Number(o.t); if (isFinite(tv) && (!isFinite(to) || tv < to)) out[k] = clone(v); }
+    else if (v.tamam !== true && o.tamam !== true) out[k] = clone(v);
+  }); });
+  const r = {};
+  Object.keys(out).sort().slice(-36).forEach(k => { r[k] = out[k]; });
+  return r;
+}
+// 1.16.0 oyun — haftalık özet gösterildi: { "YYYY-Www": t } → birleşim, en erken t; en yeni 12 hafta
+const HAFTA_RE = /^\d{4}-W\d{2}$/;
+function haftalikBirlestir(a, b) {
+  const out = {};
+  [a, b].forEach(m => { if (isObj(m)) Object.keys(m).forEach(k => {
+    const t = Number(m[k]);
+    if (!HAFTA_RE.test(k) || !isFinite(t)) return;
+    if (!(k in out) || t < out[k]) out[k] = t;
+  }); });
+  const r = {};
+  Object.keys(out).sort().slice(-12).forEach(k => { r[k] = out[k]; });
+  return r;
 }
 
 const BIRLESTIRICI = {
@@ -387,4 +439,5 @@ function veriServisi(db) {
   };
 }
 
-module.exports = { veriServisi, ilerlemeBirlestir, hatalarBirlestir, denemeBirlestir, seviyeBirlestir, hakBirlestir, seriBirlestir, tekrarBirlestir, oyunBirlestir, birlestir, ANAHTAR };
+module.exports = { veriServisi, ilerlemeBirlestir, hatalarBirlestir, denemeBirlestir, seviyeBirlestir, hakBirlestir, seriBirlestir, tekrarBirlestir, oyunBirlestir, birlestir, ANAHTAR,
+  ustalikBirlestir, aylikBirlestir, haftalikBirlestir };

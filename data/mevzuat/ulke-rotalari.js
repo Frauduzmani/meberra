@@ -27,6 +27,7 @@
   var ANABIN = "https://anabin.kmk.org";
   var DE_TEMSILCILIK_NOTU = "https://tuerkei.diplo.de/resource/blob/2705882/e2f501fcfae013d26f393ea8e6441bdf/studium-info-2025-tur-data.pdf"; // Almanya'nın Türkiye temsilcilikleri, "Almanya'da yüksek öğrenim görmek isteyenler için bilgi notu" (Mart 2025)
   var UA_TR = "https://www.uni-assist.de/en/tools/info-country-by-country/details-country/country/tr/";
+  var UA_TR_DE = "https://www.uni-assist.de/tools/laenderhinweise/laenderdetails/country/tr/"; // uni-assist ülke sayfası (Türkiye): Lise Diploması + yerleştirmeyi gösteren YKS sonucu
   var UA_VPD = "https://www.uni-assist.de/en/how-to-apply/plan-your-application/vpd/";
   var UA_SURE = "https://www.uni-assist.de/en/how-to-apply/plan-your-application/deadlines-processing-time/";
   var DAAD_SUREC = "https://www.daad.de/en/studying-in-germany/requirements/application-process/";
@@ -63,9 +64,9 @@
     de: {
       ad: "Almanya rotası",
       temelKural: {
-        baslik: "YKS'de lisans programına yerleşme → yerleşilen alanda doğrudan giriş (anabin TUR-BV05)",
-        detay: "Türk lise diplomasıyla Almanya'da lisansa doğrudan girişin resmi yolu tektir: YKS'de ilgili puan türünde 180'in üzerinde puan almak ve Türkiye'de en az 4 yıllık, örgün bir lisans programına yerleşmek. Bu yerleşme, yalnızca yerleşilen alan ve komşu alanlar için giriş hakkı verir (\"für das auf der Code-Karte genannte Fach und benachbarte Fächer\"). Mühendislik okumak istiyorsan YKS tercihinde mühendislik programı yazmalı ve birine yerleşmelisin. Türk diploması + AP için anabin'de kural yoktur; AP bu rotada giriş hakkı değil, profil gücüdür. Yerleşme yoksa Studienkolleg yolu da yoktur. Son kararı her zaman başvurduğun üniversite verir.",
-        kaynak: ANABIN,
+        baslik: "YKS'de lisans programına yerleşme → yerleşilen alanda doğrudan giriş (uni-assist)",
+        detay: "Türk lise diplomasıyla Almanya'da lisansa doğrudan girişin resmi yolu tektir: YKS'de ilgili puan türünde 180'in üzerinde puan almak ve Türkiye'de en az 4 yıllık, örgün bir lisans programına yerleşmek. Bu yerleşme, yalnızca yerleşilen alan ve komşu alanlar için giriş hakkı verir (\"für das auf der Code-Karte genannte Fach und benachbarte Fächer\"). Mühendislik okumak istiyorsan YKS tercihinde mühendislik programı yazmalı ve birine yerleşmelisin. Türk diploması + AP için anabin'de kural yoktur; AP bu rotada giriş hakkı değil, profil gücüdür. Yerleşme yoksa Studienkolleg yolu da yoktur. uni-assist Türk lise diploması için Lise Diploması ile birlikte, bir lisans programına yerleştirildiğini (üniversite, fakülte, puan türü) gösteren YKS sonucunu ister. Son kararı her zaman başvurduğun üniversite verir.",
+        kaynak: UA_TR_DE,
         kesinlik: "Doğrulandı"
       },
 
@@ -73,7 +74,7 @@
         {
           id: "de-k-alan",
           baslik: "Yerleştiğin alan, Almanya'da okuyacağın alanla uyumlu olmalı",
-          detay: "TUR-BV05 giriş hakkını ÖSYM belgesinde yazan alanla ve komşu alanlarla sınırlar. Örnek: Türkiye'de Makine Mühendisliği'ne yerleşen aday Almanya'da makine ve yakın mühendislik programlarına başvurabilir; İşletme'ye yerleşen aday mühendislik programına başvuramaz. Hangi alanların \"komşu\" sayıldığına üniversite karar verir; emin değilsen yazılı sor.",
+          detay: "anabin'deki Türkiye kuralı giriş hakkını ÖSYM belgesinde yazan alanla ve komşu alanlarla sınırlar. Örnek: Türkiye'de Makine Mühendisliği'ne yerleşen aday Almanya'da makine ve yakın mühendislik programlarına başvurabilir; İşletme'ye yerleşen aday mühendislik programına başvuramaz. Hangi alanların \"komşu\" sayıldığına üniversite karar verir; emin değilsen yazılı sor.",
           kaynak: ANABIN,
           kesinlik: "Doğrulandı"
         },
@@ -130,7 +131,7 @@
         {
           id: "de-mezun-yerlesme-kontrol",
           baslik: "Elindeki yerleşme belgesi hangi alanda?",
-          detay: "Önce elindeki ÖSYM \"Yerleştirme Sonuçları\" belgesinin alanını kontrol et. Hedef Alman programıyla aynı ya da komşu alandaysa YKS'ye yeniden girmen gerekmez: anabin TUR-BV05 eşikleri sınav yılına göre verir ve yerleşmenin hangi yılda olduğuna dair bir süre sınırı koymaz. Üniversitenin geçmiş yıl yerleşme belgesini kabul ettiğini yine de yazılı teyit et; bunu yalnızca üniversite söyleyebilir (teyit gerekir). Yerleşmen yoksa ya da alan uymuyorsa YKS'ye yeniden girmen gerekir. Önceki yıl bir programa yerleştiysen (kayıt yaptırmasan da) yeni yılın yerleştirmesinde OBP katsayın yarıya iner (ÖSYM 2026-YKS Kılavuzu §4.2). Yerleşme durumunu profilinde belirtirsen Takvimim yalnızca sana uyan adımları gösterir.",
+          detay: "Önce elindeki ÖSYM \"Yerleştirme Sonuçları\" belgesinin alanını kontrol et. Hedef Alman programıyla aynı ya da komşu alandaysa YKS'ye yeniden girmen gerekmez: anabin'deki Türkiye kuralı eşikleri sınav yılına göre verir ve yerleşmenin hangi yılda olduğuna dair bir süre sınırı koymaz. Üniversitenin geçmiş yıl yerleşme belgesini kabul ettiğini yine de yazılı teyit et; bunu yalnızca üniversite söyleyebilir (teyit gerekir). Yerleşmen yoksa ya da alan uymuyorsa YKS'ye yeniden girmen gerekir. Önceki yıl bir programa yerleştiysen (kayıt yaptırmasan da) yeni yılın yerleştirmesinde OBP katsayın yarıya iner (ÖSYM 2026-YKS Kılavuzu §4.2). Yerleşme durumunu profilinde belirtirsen Takvimim yalnızca sana uyan adımları gösterir.",
           kaynak: ANABIN,
           kesinlik: "Doğrulandı",
           zaman: { mezuniyetGore: -1, ay: 9, metin: "Hemen; YKS'ye yeniden girip girmeyeceğine karar vermeden önce" },
@@ -205,7 +206,7 @@
         {
           id: "de-teyit-universite",
           baslik: "Hedef üniversiteye yazılı teyit e-postası",
-          detay: "Her hedef üniversiteye şunu yazılı olarak sor: (1) Türk diploması + AP ile giriş mümkün mü, yoksa TUR-BV05 (YKS yerleşmesi) tek yol mu; (2) YKS yerleştirme sonucu son başvuru tarihinden sonra gelirse sonradan teslim edilebilir mi; (3) bu program uni-assist VPD istiyor mu. 11. sınıftaysan beklemeden şimdi gönderebilirsin; yanıtlar planını erken netleştirir. Mezunsan ayrıca sor: geçmiş yılın YKS yerleşme belgesini kabul ediyorlar mı (anabin bir süre sınırı koymuyor, ama üniversitenin kendi kuralı olabilir) ve mezuniyetten sonraki dönemi ayrıca belgelemen gerekiyor mu. Kendi durumuna özel bir belge sorusu varsa uni-assist için de hazır bir şablon var (Başvurularım).",
+          detay: "Her hedef üniversiteye şunu yazılı olarak sor: (1) Türk diploması + AP ile giriş mümkün mü, yoksa YKS yerleşmesi tek yol mu; (2) YKS yerleştirme sonucu son başvuru tarihinden sonra gelirse sonradan teslim edilebilir mi; (3) bu program uni-assist VPD istiyor mu. 11. sınıftaysan beklemeden şimdi gönderebilirsin; yanıtlar planını erken netleştirir. Mezunsan ayrıca sor: geçmiş yılın YKS yerleşme belgesini kabul ediyorlar mı (anabin bir süre sınırı koymuyor, ama üniversitenin kendi kuralı olabilir) ve mezuniyetten sonraki dönemi ayrıca belgelemen gerekiyor mu. Kendi durumuna özel bir belge sorusu varsa uni-assist için de hazır bir şablon var (Başvurularım).",
           kaynak: ANABIN,
           kesinlik: "Doğrulandı",
           zaman: { mezuniyetGore: -1, ay: 10, metin: "En geç son sınıfın güzünde (Ekim–Aralık)" },
@@ -292,7 +293,7 @@
         {
           id: "de-yks-tercih",
           baslik: "YKS tercihi: hedef alanda 4 yıllık örgün lisans programı yaz",
-          detay: "YKS sonuçları 2026'da 21 Temmuz'da açıklandı, tercihler 29 Temmuz–10 Ağustos arasında yapıldı " + TAKVIM_NOTU_OSYM + ". Almanya'da okumak istediğin alanla aynı ya da çok yakın mühendislik programlarını yaz. Önlisans (MYO), açıköğretim ve uzaktan öğretim programları TUR-BV05 şartını sağlamaz. Puanın SAY'da 180'i aşmıyorsa bu rota o yıl kapanır; seçenekleri Bilgi Merkezi'nde ve rota uyarılarında gör.",
+          detay: "YKS sonuçları 2026'da 21 Temmuz'da açıklandı, tercihler 29 Temmuz–10 Ağustos arasında yapıldı " + TAKVIM_NOTU_OSYM + ". Almanya'da okumak istediğin alanla aynı ya da çok yakın mühendislik programlarını yaz. Önlisans (MYO), açıköğretim ve uzaktan öğretim programları bu şartı sağlamaz. Puanın SAY'da 180'i aşmıyorsa bu rota o yıl kapanır; seçenekleri Bilgi Merkezi'nde ve rota uyarılarında gör.",
           kaynak: OSYM_SONUC,
           kesinlik: "Yayımlanmadı",
           zaman: { mezuniyetGore: 0, ay: 7, metin: "Temmuz sonu–Ağustos başı " + TAKVIM_NOTU_OSYM },

@@ -75,6 +75,11 @@ function yonetimRotalari(r, c) {
     const kosul = ["u.durum != 'silindi'"], arg = [];
     if (q) { kosul.push("(u.eposta LIKE ? OR u.ad LIKE ? OR u.soyad LIKE ? OR (u.ad || ' ' || u.soyad) LIKE ?)"); const l = "%" + q.replace(/[%_]/g, "") + "%"; arg.push(l, l, l, l); }
     if (req.sorgu.get("premium") === "1") { kosul.push("EXISTS (SELECT 1 FROM subscriptions s WHERE s.user_id = u.id AND s.durum = 'aktif' AND s.bitis > ?)"); arg.push(z); }
+    // 1.16.0: premiumDurum = aktif | bitiyor (≤ 7 gün) | deneme | bitti (premiumKosul ile aynı tanım)
+    const pd = req.sorgu.get("premiumDurum"), z7 = new Date(Date.parse(z) + 7 * 864e5).toISOString();
+    if (pd && pd !== "hepsi" && PREMIUM_DURUM.indexOf(pd) >= 0) {
+      const k = premiumKosul(pd); kosul.push(k.replace(/@z7/g, "'" + z7 + "'").replace(/@z/g, "'" + z + "'"));
+    }
     // Varlık / engel süzgeci: cevrimici (5 dk) | yakin (30 dk) | engelli (askıda)
     varlik.bosalt();
     const es = esikler(), v = req.sorgu.get("varlik");
@@ -82,13 +87,16 @@ function yonetimRotalari(r, c) {
     else if (v === "engelli") kosul.push("u.durum = 'askida'");
     const rol = req.sorgu.get("rol"); // 1.7.0: ogrenci | veli | yonetici
     if (rol === "ogrenci" || rol === "veli" || rol === "yonetici") { kosul.push("u.rol = ?"); arg.push(rol); }
-    const SIRA = { kayit: "u.olusturma DESC", gorulme: "u.son_gorulme IS NULL, u.son_gorulme DESC, u.olusturma DESC", giris: "u.son_giris IS NULL, u.son_giris DESC, u.olusturma DESC" };
+    const SIRA = { kayit: "u.olusturma DESC", gorulme: "u.son_gorulme IS NULL, u.son_gorulme DESC, u.olusturma DESC", giris: "u.son_giris IS NULL, u.son_giris DESC, u.olusturma DESC",
+      kalan: "(SELECT MAX(s.bitis) FROM subscriptions s WHERE s.user_id = u.id AND s.durum = 'aktif' AND s.bitis > '" + z + "') IS NULL, " +
+        "(SELECT MAX(s.bitis) FROM subscriptions s WHERE s.user_id = u.id AND s.durum = 'aktif' AND s.bitis > '" + z + "') ASC, u.olusturma DESC" }; // 1.16.0: en az kalan önce
     const sira = SIRA[req.sorgu.get("sirala")] || SIRA.kayit;
     const where = "WHERE " + kosul.join(" AND ");
     const toplam = db.prepare("SELECT COUNT(*) AS n FROM users u " + where).get(...arg).n;
     const satirlar = db.prepare(`SELECT u.*, (SELECT COUNT(*) FROM answers a WHERE a.user_id = u.id) AS cevap_sayisi,
         (SELECT adet FROM giris_sayilari g WHERE g.user_id = u.id AND g.gun = ?) AS bugun_giris,
-        (SELECT COUNT(*) FROM veli_baglantilari b WHERE b.durum = 'aktif' AND (b.ogrenci_id = u.id OR b.veli_id = u.id)) AS bagli_sayisi
+        (SELECT COUNT(*) FROM veli_baglantilari b WHERE b.durum = 'aktif' AND (b.ogrenci_id = u.id OR b.veli_id = u.id)) AS bagli_sayisi,
+        EXISTS (SELECT 1 FROM subscriptions s WHERE s.user_id = u.id) AS premium_gecmis
       FROM users u ${where} ORDER BY ${sira} LIMIT ? OFFSET ?`).all(bugun(), ...arg, SAYFA_BOYU, (sayfa - 1) * SAYFA_BOYU);
     return {
       ok: true, toplam, sayfa, sayfaBoyu: SAYFA_BOYU, sayfaBoyutu: SAYFA_BOYU,
@@ -96,6 +104,7 @@ function yonetimRotalari(r, c) {
         const y = hesap.uyelik(u.id);
         return { id: u.public_id, ad: u.ad, soyad: u.soyad, eposta: u.eposta, rol: u.rol, olusturma: u.olusturma, sonGiris: u.son_giris, durum: u.durum,
           premium: y.premium, plan: y.plan, bitis: y.bitis, bekleyenTalep: !!y.bekleyenTalep, cevapSayisi: u.cevap_sayisi,
+          kalanGun: hesap.kalanGun(y.bitis), deneme: y.deneme, premiumKaynak: y.kaynak, premiumGecmis: !!u.premium_gecmis, // 1.16.0
           sonGorulme: u.son_gorulme, sonIp: u.son_ip, sonGirisIp: u.son_giris_ip, varlik: varlikDurumu(u.son_gorulme), bugunGiris: u.bugun_giris || 0, engel: engelBilgisi(u), bagliSayisi: u.bagli_sayisi || 0 };
       })
     };
@@ -135,24 +144,196 @@ function yonetimRotalari(r, c) {
     };
   });
 
+  // --- 1.16.0 Premium yönetimi: liste, toplu ver / uzat / iptal, abonelik geçmişi -----------------------------
+  // Elle verilen dönemler kaynak 'elle', tutar NULL yazılır: gelir tahmini (yalnız kaynak 'talep' + tutar > 0) etkilenmez.
+  const PREMIUM_DURUM = ["aktif", "bitiyor", "bitti", "deneme", "hepsi"];
+  const BITIYOR_GUN = 7;
+  const AKTIF_BITIS_SQL = "(SELECT MAX(s.bitis) FROM subscriptions s WHERE s.user_id = u.id AND s.durum = 'aktif' AND s.bitis > @z)";
+  const AKTIF_KAYNAK_SQL = "(SELECT s.kaynak FROM subscriptions s WHERE s.user_id = u.id AND s.durum = 'aktif' AND s.bitis > @z ORDER BY s.bitis DESC LIMIT 1)";
+  /** Premium durum süzgeci (u takma adlı users için SQL koşulu; @z = şimdi, @z7 = şimdi + 7 gün) */
+  const premiumKosul = d => ({
+    aktif: AKTIF_BITIS_SQL + " IS NOT NULL AND COALESCE(" + AKTIF_KAYNAK_SQL + ", '') != 'deneme'",
+    deneme: AKTIF_KAYNAK_SQL + " = 'deneme'",
+    bitiyor: AKTIF_BITIS_SQL + " <= @z7",
+    bitti: AKTIF_BITIS_SQL + " IS NULL AND EXISTS (SELECT 1 FROM subscriptions s WHERE s.user_id = u.id)",
+    hepsi: "EXISTS (SELECT 1 FROM subscriptions s WHERE s.user_id = u.id)"
+  })[d] || null;
+  /** İptal edilen dönem iptal anında biter (ileri tarihli dönem hiç başlamamış sayılır) */
+  const etkinBitis = s => (s.durum === "iptal" && s.iptal_zamani && s.iptal_zamani < s.bitis ? (s.iptal_zamani < s.baslangic ? s.baslangic : s.iptal_zamani) : s.bitis);
+  const kisaTarih = iso => new Date(iso).toLocaleDateString("tr-TR", { timeZone: "Europe/Istanbul", day: "numeric", month: "long", year: "numeric" });
+  const premiumOzet = uid => {
+    const y = hesap.uyelik(uid);
+    return { premium: y.premium, plan: y.plan, bitis: y.bitis, bitisGun: y.bitis ? zaman.gun(Date.parse(y.bitis)) : null,
+      kalanGun: hesap.kalanGun(y.bitis), deneme: y.deneme, kaynak: y.kaynak };
+  };
+  const notAl = b => String((b && b.not) || "").trim().slice(0, 300) || null;
+  /** userIds: 1–200 public_id (yinelenen tekilleşir); bulunamayan / silinmiş hesaplar atlanır */
+  function hedefler(b) {
+    const l = Array.isArray(b.userIds) ? b.userIds : null;
+    if (l && l.length > 200) throw new HttpHata(400, "Tek seferde en çok 200 kullanıcı.", { userIds: "En çok 200." });
+    const ids = Array.from(new Set((l || []).map(x => String(x == null ? "" : x).trim().slice(0, 40)).filter(Boolean)));
+    if (!ids.length) throw new HttpHata(400, "En az bir kullanıcı seç.", { userIds: "Kullanıcı listesi boş." });
+    const bul = db.prepare("SELECT id, public_id, ad, soyad, durum FROM users WHERE public_id = ?");
+    const bulunan = [], atlanan = [];
+    ids.forEach(pid => {
+      const u = bul.get(pid);
+      if (!u) atlanan.push({ id: pid, neden: "Kullanıcı bulunamadı." });
+      else if (u.durum === "silindi") atlanan.push({ id: pid, neden: "Hesap silinmiş." });
+      else bulunan.push(u);
+    });
+    return { bulunan, atlanan };
+  }
+  function gunDogrula(g, zorunlu) {
+    if (g === undefined || g === null || g === "") {
+      if (zorunlu) throw new HttpHata(400, "Gün sayısı gerekli.", { gun: "1–3650 arası tam sayı yaz." });
+      return null;
+    }
+    if (!(Number.isInteger(+g) && +g >= 1 && +g <= 3650)) throw new HttpHata(400, "Gün sayısı 1 ile 3650 arasında tam sayı olmalı.", { gun: "1–3650 arası tam sayı yaz." });
+    return +g;
+  }
+  /** Öğrenciye uygulama içi bildirim (+ push); e-posta yalnız yeni açılışta. Hata işlemi geri almaz. */
+  function premiumHaber(uid, uzatma, s) {
+    try {
+      if (bildirim) {
+        bildirim.olustur(uid, uzatma
+          ? { tur: "premium", baslik: "Premium'un " + s.gun + " gün uzatıldı", metin: "Yeni bitiş tarihi: " + kisaTarih(s.bitis) + ".", link: "/calis" }
+          : { tur: "premium", baslik: "Premium açıldı", metin: "Tüm ünitelere, sınırsız denemeye ve sınırsız soru sormaya artık erişebilirsin. Bitiş: " + kisaTarih(s.bitis) + ".", link: "/calis" },
+        { push: true });
+      }
+      if (!uzatma) hesap.premiumBildir(uid, s.bitis, "elle");
+    } catch (e) { /* bildirim hatası işlemi bozmaz */ }
+  }
+  /** Tek kullanıcıya elle dönem ekler (aktifse mevcut bitişin sonuna); denetimde önceki/yeni bitiş */
+  function elleVer(u, plan, gun, not, req, eylem, topluMu) {
+    const once = hesap.uyelik(u.id);
+    const s = hesap.premiumVer(u.id, plan, gun, { kaynak: "elle", not, yapan: req.kullanici.id });
+    denetim({ eylem, kullanici: u.id, yapan: req.kullanici.id, istek: req, varlik: "subscriptions", varlikId: s.id,
+      ayrinti: { plan: plan || "ozel", gun: s.gun, not, oncekiBitis: once.bitis, yeniBitis: s.bitis, toplu: topluMu || undefined } });
+    return { s, uzatma: once.premium, oncekiBitis: once.bitis };
+  }
+  /** Aktif ve ileri tarihli dönemleri şimdi sonlandırır; denetimde önceki/yeni bitiş */
+  function elleIptal(u, not, req, topluMu) {
+    const once = hesap.uyelik(u.id);
+    const n = hesap.premiumIptal(u.id), z = simdi();
+    denetim({ eylem: "premium.iptal", kullanici: u.id, yapan: req.kullanici.id, istek: req, varlik: "subscriptions",
+      ayrinti: { donem: n, not, oncekiBitis: once.bitis, yeniBitis: n ? z : once.bitis, toplu: topluMu || undefined } });
+    return { n, oncekiBitis: once.bitis, bitis: n ? z : once.bitis };
+  }
+  /** Toplu işlem tek veritabanı işleminde; bildirimler işlem bittikten sonra */
+  function toplu(req, fn) {
+    const b = req.body || {}, h = hedefler(b), sonuc = [], haberler = [];
+    islem(db, () => {
+      h.bulunan.forEach(u => {
+        const r = fn(u, b);
+        if (r.atla) { h.atlanan.push({ id: u.public_id, neden: r.atla }); return; }
+        sonuc.push(Object.assign({ id: u.public_id, ad: u.ad, soyad: u.soyad }, r.cikti));
+        if (r.haber) haberler.push(r.haber);
+      });
+    });
+    haberler.forEach(f => f());
+    return { ok: true, islenen: sonuc.length, sonuc, atlanan: h.atlanan };
+  }
+
+  r.get("/api/admin/premium", req => {
+    yoneticiGerekli(req);
+    const d = PREMIUM_DURUM.indexOf(req.sorgu.get("durum")) >= 0 ? req.sorgu.get("durum") : "aktif";
+    const qq = String(req.sorgu.get("q") || "").trim().slice(0, 80), sayfa = sayfaNo(req.sorgu), simdiMs = Date.now();
+    const p = { z: new Date(simdiMs).toISOString(), z7: new Date(simdiMs + BITIYOR_GUN * 864e5).toISOString() };
+    const kosul = ["u.durum != 'silindi'"];
+    if (qq) { kosul.push("(u.eposta LIKE @l OR u.ad LIKE @l OR u.soyad LIKE @l OR (u.ad || ' ' || u.soyad) LIKE @l)"); p.l = "%" + qq.replace(/[%_]/g, "") + "%"; }
+    const ana = "FROM users u WHERE " + kosul.join(" AND ");
+    const sayac = {};
+    // node:sqlite SQL'de geçmeyen adlı parametreye hata verir: yalnız kullanılanlar geçirilir
+    const yalniz = (sql, o) => { const r = {}; Object.keys(o).forEach(k => { if (new RegExp("@" + k + "(?![A-Za-z0-9_])").test(sql)) r[k] = o[k]; }); return r; };
+    PREMIUM_DURUM.forEach(k => {
+      const sql = "SELECT COUNT(*) AS n " + ana + " AND " + premiumKosul(k);
+      sayac[k] = db.prepare(sql).get(yalniz(sql, p)).n;
+    });
+    const sira = d === "bitti" ? "son_bitis DESC" : d === "hepsi" ? "aktif_bitis IS NULL, aktif_bitis ASC, son_bitis DESC" : "aktif_bitis ASC";
+    const listeSql = `SELECT u.id, u.public_id, u.ad, u.soyad, u.eposta, u.durum, ${AKTIF_BITIS_SQL} AS aktif_bitis,
+        (SELECT MAX(CASE WHEN s.durum = 'iptal' AND s.iptal_zamani IS NOT NULL AND s.iptal_zamani < s.bitis THEN s.iptal_zamani ELSE s.bitis END) FROM subscriptions s WHERE s.user_id = u.id) AS son_bitis,
+        (SELECT COALESCE(SUM(s.tutar_tl), 0) FROM subscriptions s WHERE s.user_id = u.id AND s.kaynak = 'talep' AND s.tutar_tl > 0) AS odenen,
+        (SELECT COUNT(*) FROM subscriptions s WHERE s.user_id = u.id) AS donem
+      ${ana} AND ${premiumKosul(d)} ORDER BY ${sira}, u.id LIMIT @lim OFFSET @off`;
+    const satirlar = db.prepare(listeSql).all(yalniz(listeSql, Object.assign({ lim: SAYFA_BOYU, off: (sayfa - 1) * SAYFA_BOYU }, p)));
+    const son = db.prepare("SELECT plan, kaynak FROM subscriptions WHERE user_id = ? ORDER BY bitis DESC, id DESC LIMIT 1");
+    const aktifSatir = db.prepare("SELECT plan, kaynak FROM subscriptions WHERE user_id = ? AND durum = 'aktif' AND bitis > ? ORDER BY bitis DESC LIMIT 1");
+    return {
+      ok: true, durum: d, toplam: sayac[d], sayfa, sayfaBoyu: SAYFA_BOYU, sayfaBoyutu: SAYFA_BOYU, sayac, bitiyorGun: BITIYOR_GUN,
+      kullanicilar: satirlar.map(x => {
+        const a = x.aktif_bitis ? aktifSatir.get(x.id, p.z) : null, sn = a || son.get(x.id) || {};
+        const bitis = x.aktif_bitis || x.son_bitis, kalan = hesap.kalanGun(x.aktif_bitis, simdiMs);
+        return { id: x.public_id, ad: x.ad, soyad: x.soyad, eposta: x.eposta, hesapDurum: x.durum,
+          durum: !a ? "bitti" : sn.kaynak === "deneme" ? "deneme" : "aktif", bitiyor: !!a && kalan <= BITIYOR_GUN,
+          plan: sn.plan || null, kaynak: sn.kaynak || null, bitis: bitis || null, bitisGun: bitis ? zaman.gun(Date.parse(bitis)) : null,
+          kalanGun: kalan, toplamOdenen: Math.round(x.odenen * 100) / 100, donemSayisi: x.donem };
+      })
+    };
+  });
+
+  r.post("/api/admin/premium/ver", req => {
+    yoneticiGerekli(req);
+    const b = req.body || {}, gun = gunDogrula(b.gun, false), plan = config.plan(b.plan) ? b.plan : null, not = notAl(b);
+    if (!plan && gun == null) throw new HttpHata(400, "Plan (aylik/yillik) ya da gün sayısı gerekli.", { gun: "Plan seç ya da gün yaz." });
+    return toplu(req, u => {
+      const v = elleVer(u, plan, gun, not, req, "premium.ver", true);
+      return { cikti: { oncekiBitis: v.oncekiBitis, bitis: v.s.bitis, gun: v.s.gun, uzatildi: v.uzatma }, haber: () => premiumHaber(u.id, v.uzatma, v.s) };
+    });
+  });
+
+  r.post("/api/admin/premium/uzat", req => {
+    yoneticiGerekli(req);
+    const b = req.body || {}, gun = gunDogrula(b.gun, true), not = notAl(b);
+    return toplu(req, u => {
+      if (!hesap.uyelik(u.id).premium) return { atla: "Aktif Premium yok; uzatmak yerine Premium ver." };
+      const v = elleVer(u, null, gun, not, req, "premium.uzat", true);
+      return { cikti: { oncekiBitis: v.oncekiBitis, bitis: v.s.bitis, gun: v.s.gun, uzatildi: true }, haber: () => premiumHaber(u.id, true, v.s) };
+    });
+  });
+
+  r.post("/api/admin/premium/iptal", req => {
+    yoneticiGerekli(req);
+    const not = notAl(req.body);
+    return toplu(req, u => {
+      if (!hesap.uyelik(u.id).premium) return { atla: "Aktif Premium yok." };
+      const v = elleIptal(u, not, req, true);
+      return { cikti: { oncekiBitis: v.oncekiBitis, bitis: v.bitis, iptalEdilen: v.n } };
+    });
+  });
+
+  r.get("/api/admin/users/:id/abonelikler", req => {
+    yoneticiGerekli(req);
+    const u = kullaniciBul(req.params.id), z = simdi();
+    const l = db.prepare(`SELECT s.*, y.ad AS y_ad, y.soyad AS y_soyad FROM subscriptions s LEFT JOIN users y ON y.id = s.olusturan
+      WHERE s.user_id = ? ORDER BY s.baslangic DESC, s.id DESC`).all(u.id);
+    return {
+      ok: true, uyelik: premiumOzet(u.id),
+      toplamOdenen: Math.round(l.reduce((t, s) => t + (s.kaynak === "talep" && s.tutar_tl > 0 ? s.tutar_tl : 0), 0) * 100) / 100,
+      abonelikler: l.map(s => ({ id: s.id, plan: s.plan, kaynak: s.kaynak, baslangic: s.baslangic, bitis: s.bitis, etkinBitis: etkinBitis(s),
+        durum: s.durum === "iptal" ? "iptal" : s.bitis <= z ? "bitti" : s.baslangic > z ? "sirada" : "aktif",
+        gun: Math.round((Date.parse(s.bitis) - Date.parse(s.baslangic)) / 864e5), tutar: s.tutar_tl, not: s.not_, talepId: s.talep_id,
+        olusturan: s.olusturan ? { ad: s.y_ad, soyad: s.y_soyad } : null, olusturma: s.olusturma, iptalZamani: s.iptal_zamani }))
+    };
+  });
+
   r.post("/api/admin/users/:id/premium", req => {
     yoneticiGerekli(req);
     const u = kullaniciBul(req.params.id), b = req.body || {};
-    const gun = b.gun === undefined || b.gun === null || b.gun === "" ? null : b.gun;
-    if (!config.plan(b.plan) && gun == null) throw new HttpHata(400, "Plan (aylik/yillik) ya da gün sayısı gerekli.");
+    const gun = gunDogrula(b.gun, false), plan = config.plan(b.plan) ? b.plan : null;
+    if (!plan && gun == null) throw new HttpHata(400, "Plan (aylik/yillik) ya da gün sayısı gerekli.");
     if (u.durum === "silindi") throw new HttpHata(409, "Silinmiş hesaba Premium verilemez.");
-    const not = String(b.not || "").slice(0, 300) || null;
-    const s = hesap.premiumVer(u.id, b.plan, gun, { kaynak: "elle", not, yapan: req.kullanici.id });
-    denetim({ eylem: "premium.ver", kullanici: u.id, yapan: req.kullanici.id, istek: req, varlik: "subscriptions", varlikId: s.id, ayrinti: { plan: b.plan || "ozel", gun: s.gun, not } });
-    return { ok: true, abonelik: s, uyelik: hesap.uyelik(u.id) };
+    let v = null;
+    islem(db, () => { v = elleVer(u, plan, gun, notAl(b), req, "premium.ver"); });
+    premiumHaber(u.id, v.uzatma, v.s);
+    return { ok: true, abonelik: v.s, uyelik: hesap.uyelik(u.id) };
   });
 
   r.post("/api/admin/users/:id/premium/iptal", req => {
     yoneticiGerekli(req);
-    const u = kullaniciBul(req.params.id), z = simdi();
-    const n = Number(db.prepare("UPDATE subscriptions SET durum = 'iptal', iptal_zamani = ? WHERE user_id = ? AND durum = 'aktif' AND bitis > ?").run(z, u.id, z).changes);
-    denetim({ eylem: "premium.iptal", kullanici: u.id, yapan: req.kullanici.id, istek: req, ayrinti: { donem: n, not: String((req.body || {}).not || "").slice(0, 300) || null } });
-    return { ok: true, iptalEdilen: n, uyelik: hesap.uyelik(u.id) };
+    const u = kullaniciBul(req.params.id);
+    let v = null;
+    islem(db, () => { v = elleIptal(u, notAl(req.body), req); });
+    return { ok: true, iptalEdilen: v.n, uyelik: hesap.uyelik(u.id) };
   });
 
   r.post("/api/admin/users/:id/durum", req => {

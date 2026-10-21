@@ -1950,7 +1950,7 @@ function initKMKChecker() {
 
     const allScoresValid = (mathScore >= 3 && scienceScore >= 3 && langScore >= 3 && electiveScore >= 3);
 
-    const kuralNotu = `• <em>Önemli:</em> Bu kural (anabin USA-BV07) yalnızca <strong>ABD High School Diploma ile birlikte</strong> uygulanır ve <strong>Türk lise diplomasına giriş hakkı vermez</strong>; anabin'in notuna göre AP belgesi tek başına giriş hakkı açmaz. Türk diplomasıyla Almanya'da giriş hakkı: YKS'de ilgili puan türünde 180'in üzerinde puan ve en az 4 yıllık örgün bir lisans programına <strong>yerleşme</strong> (anabin TUR-BV05); bu yalnızca yerleşilen alan ve komşu alanlar için geçerlidir. Yerleşme yoksa Studienkolleg yolu da yoktur. Kaynak: <a href="https://anabin.kmk.org" target="_blank" rel="noopener">anabin.kmk.org</a>.<br/>`;
+    const kuralNotu = `• <em>Önemli:</em> Bu kural (anabin USA-BV07) yalnızca <strong>ABD High School Diploma ile birlikte</strong> uygulanır ve <strong>Türk lise diplomasına giriş hakkı vermez</strong>; anabin'in notuna göre AP belgesi tek başına giriş hakkı açmaz. Türk diplomasıyla Almanya'da giriş hakkı: YKS'de ilgili puan türünde 180'in üzerinde puan ve en az 4 yıllık örgün bir lisans programına <strong>yerleşme</strong>; uni-assist, Lise Diploması ile birlikte bir lisans programına yerleştirildiğini (üniversite, fakülte, puan türü) gösteren YKS sonucunu ister. Bu yalnızca yerleşilen alan ve komşu alanlar için geçerlidir. Yerleşme yoksa Studienkolleg yolu da yoktur. Kaynak: <a href="https://www.uni-assist.de/tools/laenderhinweise/laenderdetails/country/tr/" target="_blank" rel="noopener">uni-assist Türkiye ülke sayfası</a>; genel bilgi: <a href="https://anabin.kmk.org" target="_blank" rel="noopener">anabin.kmk.org</a>.<br/>`;
 
     if (hasMath && hasScience && hasLang && hasElective && allScoresValid) {
       statusBadge.textContent = "Ders kombinasyonu KMK AP kuralına uygun (yalnızca ABD diploması için; Türk diplomasına giriş hakkı vermez)";
@@ -2114,7 +2114,48 @@ function apCozumUygula(q, c) {
   q.stepByStepSolution = c.aciklama || "";
   q.generalRemediation = c.genelHatirlatma || "";
   q.ek = c.ek && typeof c.ek === "object" ? c.ek : null;
+  q.cozumSekiller = Array.isArray(c.sekiller) ? c.sekiller : []; // v1.13.0: konum "aciklama" şekilleri (yalnız çözümde)
   return q;
+}
+
+// --- v1.13.0 Şekilli sorular: ortak yardımcılar (çizim /assets/js/sekil.js → window.MeberraSekil) -------------------------------
+// Şablon dizgilerine YER TUTUCU yazılır (veri öznitelikte JSON, oran viewBox'tan → kayma yok); sekil.js yüklenince / sonradan
+// eklenen her yer tutucu DOM API'siyle (temizlenerek) gerçek <svg>'ye çevrilir. Modül gerektiğinde bir kez yüklenir.
+const AP_SEKIL_SURUM = "1130";
+function apSekilYukle() {
+  if (typeof document === "undefined" || window.MeberraSekil || apSekilYukle._b) return;
+  apSekilYukle._b = true;
+  if (!document.querySelector('link[href*="/assets/css/sekil.css"]')) {
+    const l = document.createElement("link"); l.rel = "stylesheet"; l.href = "/assets/css/sekil.css?v=" + AP_SEKIL_SURUM; document.head.appendChild(l);
+  }
+  if (!document.querySelector('script[src*="/assets/js/sekil.js"]')) {
+    const s = document.createElement("script"); s.src = "/assets/js/sekil.js?v=" + AP_SEKIL_SURUM; s.async = true; document.head.appendChild(s);
+  }
+}
+const apSekilKac = s => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+function apSekilListe(v) { return (Array.isArray(v) ? v : v ? [v] : []).filter(x => x && typeof x === "object" && typeof x.svg === "string"); }
+/** Şekil(ler) → yer tutucu HTML. sik: şık düğmesinin içinde (span, Büyüt düğmesi yok). Boş → "". */
+function apSekilHtml(v, sik) {
+  const l = apSekilListe(v);
+  if (!l.length) return "";
+  apSekilYukle();
+  const tag = sik ? "span" : "div";
+  return l.map(x => {
+    const m = /<svg\b[^>]*\sviewBox\s*=\s*["']\s*([-+.\deE]+)[\s,]+([-+.\deE]+)[\s,]+([\d.]+)[\s,]+([\d.]+)\s*["']/.exec(x.svg);
+    const oran = m && +m[3] > 0 && +m[4] > 0 ? (+m[3]) + " / " + (+m[4]) : "4 / 3";
+    return "<" + tag + ' class="sk-bekle sk' + (sik ? " sk-secenek" : "") + '" data-sk-veri="' + apSekilKac(JSON.stringify(x)) + '"' + (sik ? ' data-sk-sik="1"' : "") +
+      ' role="img" aria-label="' + apSekilKac(x.alt || "Şekil") + '"><span class="sk-tuval" style="display:block;aspect-ratio:' + oran + '"></span>' +
+      (x.baslik ? '<span class="sk-baslik">' + apSekilKac(x.baslik) + "</span>" : "") + "</" + tag + ">";
+  }).join("");
+}
+/** Şıklardan biri şekilliyse true (şık kutusuna "sk-secenekli" sınıfı: 2×2 şekil kartı ızgarası) */
+function apSekilSecenekli(opts) { return (opts || []).some(o => o && o.sekil && typeof o.sekil.svg === "string"); }
+/** Şekilli şıklar için "Şıkları büyüt" düğmesi (şık düğmelerinin DIŞINDA; tüm şık şekillerini pencerede gösterir) */
+function apSekilSiklarDugme(opts) {
+  if (!apSekilSecenekli(opts)) return "";
+  const l = opts.filter(o => o && o.sekil).map(o => ({ id: o.id, sekil: o.sekil }));
+  return '<button type="button" class="sk-buyut sk-buyut-siklar" data-sk-siklar="' + apSekilKac(JSON.stringify(l)) + '">' +
+    '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg><span>Şıkları büyüt</span></button>';
 }
 
 // --- 1.10.0 Zenginleştirme (ek) — yalnız cevaptan / teslimden SONRA gelen çözümde: { kavram?, ipucu?, sikHata?, hesapMakinesi? } ---
@@ -2336,8 +2377,9 @@ function apBuildQuestionCard(containerId, q, qIndex) {
       <button type="button" class="option-btn" id="opt-btn-${q.id}-${opt.id}" data-opt="${opt.id}" onclick="handleOptionClick('${containerId}', '${q.id}', '${opt.id}')">
         <span class="option-letter" aria-hidden="true">${opt.id}</span>
         <span class="visually-hidden">Şık ${opt.id}: </span>
-        <span>${opt.text}</span>
+        <span class="option-text">${opt.text || ""}${apSekilHtml(opt.sekil, true)}</span>
       </button>`).join("");
+  const sekilli = apSekilSecenekli(q.options);
 
   const diff = String(q.difficulty || "").toLowerCase();
   const diffLabel = { easy: "KOLAY", medium: "ORTA", hard: "ZOR" }[diff] || String(q.difficulty || "").toUpperCase();
@@ -2354,9 +2396,11 @@ function apBuildQuestionCard(containerId, q, qIndex) {
       </div>
     </div>
     <div class="question-body">${q.question}</div>
-    <div class="options-container" id="opts-container-${q.id}" role="group" aria-label="Soru ${q.number || qIndex + 1} seçenekleri">
+    ${apSekilHtml(q.sekiller)}
+    <div class="options-container${sekilli ? " sk-secenekli" : ""}" id="opts-container-${q.id}" role="group" aria-label="Soru ${q.number || qIndex + 1} seçenekleri">
       ${optionsHtml}
     </div>
+    ${apSekilSiklarDugme(q.options)}
     <div class="feedback-box" id="feedback-${q.id}" style="display:none;"></div>
   `;
   return card;
@@ -2567,6 +2611,7 @@ function apApplyAnswer(containerId, q, selectedOptionId, isNew, kayit) {
       <div class="solution-panel">
         <div class="solution-title">Adım adım tam çözüm (Explanatory Solution)</div>
         <div class="solution-steps">${q.stepByStepSolution || ""}</div>
+        ${apSekilHtml(q.cozumSekiller)}
       </div>
     `;
   } else {
@@ -2599,6 +2644,7 @@ function apApplyAnswer(containerId, q, selectedOptionId, isNew, kayit) {
         <div class="solution-steps">
           ${q.stepByStepSolution || ""}
         </div>
+        ${apSekilHtml(q.cozumSekiller)}
       </div>
     `;
   }

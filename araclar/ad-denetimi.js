@@ -33,7 +33,7 @@ const KOD_ADI = { ad: "eski kod adı (apazra/APAZRA)", re: /apazra/i };
 // Bilinçli istisnalar: { dosya, desen, neden } — desen satırdan silinir, sonra kural uygulanır.
 const KOD_ADI_IZIN = [
   { dosya: "assets/js/app.js", desen: /"apazra[^"\s]*"/gi, neden: "taşıma kodu ve eski yedek desteği: eski önek/format adları (APMEBERRA_TASIMA, ESKI_PREFIX, ESKI_FORMAT)" },
-  { dosya: "araclar/testler/tasima-test.js", desen: /apazra/gi, neden: "taşıma testi: tarayıcı eski anahtarlarla tohumlanır" },
+  { dosya: "araclar/testler/eski/tasima-test.js", desen: /apazra/gi, neden: "taşıma testi: tarayıcı eski anahtarlarla tohumlanır" },
   { dosya: "proje.md", desen: /apazra/gi, neden: "tarihsel tek kayıt (PM tutar; ajanlar dokunmaz): taşıma öncesi kod adlarını belgeler" },
   { dosya: "DEVAM-NOKTASI.md", desen: /apazra/gi, neden: "oturum özeti (PM tutar; ajanlar dokunmaz)" }
 ];

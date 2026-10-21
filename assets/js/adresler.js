@@ -20,6 +20,7 @@
     { yol: "/bugun", dosya: "index.html" },
     { yol: "/calis", dosya: "calis.html" },
     { yol: "/ilerleme", dosya: "ilerleme.html" },
+    { yol: "/plan", dosya: "plan.html" }, // 1.18.0 kişisel çalışma planı
     { yol: "/profil", dosya: "profil.html" },
     { yol: "/sorularim", dosya: "sorularim.html" },
     { yol: "/premium", dosya: "premium.html" },
@@ -37,6 +38,8 @@
     { yol: "/deneme", dosya: "deneme.html" },
     { yol: "/seviye-testi", dosya: "seviye-testi.html" },
     { yol: "/frq", dosya: "frq.html" }, // 1.11.0 FRQ pratiği (/frq?ders=calculus)
+    { yol: "/kartlar", dosya: "kartlar.html" }, // 1.18.0 kavram kartları (aralıklı tekrar)
+    { yol: "/hiz-turu", dosya: "hiz.html" }, // 1.17.0 Hız turu (60 sn)
     { yol: "/ulkem", dosya: "sartlar.html", herkese: true },
     { yol: "/universiteler", dosya: "universiteler.html", herkese: true },
     { yol: "/takvim", dosya: "rota.html" },
@@ -45,9 +48,19 @@
     { yol: "/rehber/almanya", dosya: "almanya-muhendislik.html", herkese: true },
     { yol: "/rehber/italya", dosya: "italya-muhendislik.html", herkese: true },
     { yol: "/rehber/istanbul-sinav", dosya: "istanbul-sinav-rehberi.html", herkese: true },
+    // 1.18.0 herkese açık SEO rehber makaleleri (app.js yüklemez; oturumsuz ziyaretçi tam görür)
+    { yol: "/rehber/ap-nedir", dosya: "rehber-ap-nedir.html", herkese: true },
+    { yol: "/rehber/turkiyede-ap", dosya: "rehber-turkiyede-ap.html", herkese: true },
+    { yol: "/rehber/ap-ile-avrupa", dosya: "rehber-ap-ile-avrupa.html", herkese: true },
+    { yol: "/rehber/ap-calculus-nasil-calisilir", dosya: "rehber-ap-calculus.html", herkese: true },
+    { yol: "/rehber/ap-fizik-kimya-biyoloji", dosya: "rehber-ap-fen.html", herkese: true },
+    { yol: "/rehber/ap-puan-tahmini", dosya: "rehber-ap-puan-tahmini.html", herkese: true },
     { yol: "/kaynaklar", dosya: "bilgi-merkezi.html" },
     { yol: "/veli", dosya: "veli.html" },
+    { yol: "/ogretmen", dosya: "ogretmen.html" }, // 1.19.0 okul: öğretmen paneli
+    { yol: "/sinif", dosya: "sinif.html" }, // 1.19.0 okul: öğrenci sınıfa katılım (/sinif?kod=XXXXXX)
     { yol: "/bakim", dosya: "bakim.html" },
+    { yol: "/cevrimdisi", dosya: "cevrimdisi.html" }, // 1.15.0 çevrimdışı sayfa (sw.js önbelleğe alır)
     { yol: "/mezun", dosya: "mezun.html" },
     { yol: "/kvkk", dosya: "kvkk.html", herkese: true },
     { yol: "/gizlilik", dosya: "gizlilik.html", herkese: true },

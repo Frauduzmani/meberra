@@ -17,7 +17,7 @@
     "metin": "Türk lise diplomasıyla doğrudan lisansa başlamak için YKS'de ilgili puan türünde 180'in üzerinde puan ve en az 4 yıllık örgün bir lisans programına yerleşme gerekir. Giriş hakkı yalnızca yerleşilen alan ve ona yakın alanlar için geçerlidir.",
     "kaynak": [
      {
-      "ad": "anabin (KMK) — Türkiye Lise Diploması, TUR-BV01–15",
+      "ad": "anabin (KMK) — Türkiye Lise Diploması",
       "url": "https://anabin.kmk.org/api/public/certificates/6729e86b4a3c434b0b3dea1f"
      },
      {
@@ -34,7 +34,7 @@
     "metin": "Türk diploması sahibi için AP, SAT ya da IB modülü giriş hakkı eklemez. Yerleşme yoksa Studienkolleg yolu da açılmaz; tek istisna MYO'da 1 yıl okumaktır ve bu yalnızca uygulamalı bilimler (FH) Studienkolleg'ine açılır. AP yalnızca başvuru dosyasını güçlendiren bir profil unsurudur.",
     "kaynak": [
      {
-      "ad": "anabin (KMK) — Türkiye Lise Diploması, TUR-BV01–15",
+      "ad": "anabin (KMK) — Türkiye Lise Diploması",
       "url": "https://anabin.kmk.org/api/public/certificates/6729e86b4a3c434b0b3dea1f"
      },
      {
@@ -160,7 +160,7 @@
     "metin": "anabin'deki Türk lise diploması kuralında programın dili geçmez. Almanca bir lisans programı için de YKS'de puan türünde 180'in üzerinde puan ve en az 4 yıllık örgün bir lisans programına yerleşme gerekir. Hak yalnızca yerleştiğin alan ve yakın alanlar için geçerlidir. İyi Almanca bilmek bu şartın yerine geçmez.",
     "kaynak": [
      {
-      "ad": "anabin (KMK) — Türkiye Lise Diploması, TUR-BV05/07",
+      "ad": "anabin (KMK) — Türkiye Lise Diploması",
       "url": "https://anabin.kmk.org/api/public/certificates/6729e86b4a3c434b0b3dea1f"
      },
      {
@@ -177,7 +177,7 @@
     "metin": "Yerleşmesi olmayan 12 yıllık lise mezunu için Studienkolleg yolu Almanca programlarda da açılmaz. Tek istisna bir Meslek Yüksekokulunda 1 yıl okumaktır; bu yol yalnızca uygulamalı bilimler üniversitelerinin Studienkolleg'ine açılır. Studienkolleg eğitimi Almancadır ve giriş için B1 düzeyinde bir belge (ör. DSD I) yeterli sayılır.",
     "kaynak": [
      {
-      "ad": "anabin (KMK) — Türkiye Lise Diploması, TUR-BV05/07",
+      "ad": "anabin (KMK) — Türkiye Lise Diploması",
       "url": "https://anabin.kmk.org/api/public/certificates/6729e86b4a3c434b0b3dea1f"
      },
      {
@@ -504,7 +504,7 @@
      "metin": "Yanlış. Almanca belge yalnızca dil şartını karşılar. Türk diplomasıyla giriş hakkı Almanca programlarda da YKS yerleşmesinden doğar.",
      "kaynak": [
       {
-       "ad": "anabin (KMK) — Türkiye Lise Diploması, TUR-BV05/07",
+       "ad": "anabin (KMK) — Türkiye Lise Diploması",
        "url": "https://anabin.kmk.org/api/public/certificates/6729e86b4a3c434b0b3dea1f"
       },
       {
@@ -521,7 +521,7 @@
      "metin": "YKS'de DİL puan türüyle bir dil programına yerleşmek yalnızca o alan ve yakın alanlar için hak verir. Mühendislik için SAY puanıyla bir mühendislik programına yerleşmen gerekir.",
      "kaynak": [
       {
-       "ad": "anabin (KMK) — Türkiye Lise Diploması, TUR-BV05/07",
+       "ad": "anabin (KMK) — Türkiye Lise Diploması",
        "url": "https://anabin.kmk.org/api/public/certificates/6729e86b4a3c434b0b3dea1f"
       }
      ],
@@ -659,7 +659,7 @@
       "metin": "Yanlış. Türk diploması sahibi için Almanya'da giriş hakkı YKS yerleşmesiyle doğar; AP bunun yerine geçmez.",
       "kaynak": [
        {
-        "ad": "anabin (KMK) — Türkiye Lise Diploması, TUR-BV01–15",
+        "ad": "anabin (KMK) — Türkiye Lise Diploması",
         "url": "https://anabin.kmk.org/api/public/certificates/6729e86b4a3c434b0b3dea1f"
        }
       ],
@@ -695,7 +695,7 @@
       "metin": "Okumak istediğin mühendislik alanını daralt. Almanya'daki giriş hakkı YKS'de yerleştiğin alana bağlıdır; ilgisiz bir alana yerleşmek mühendislikte hak vermez.",
       "kaynak": [
        {
-        "ad": "anabin (KMK) — Türkiye Lise Diploması, TUR-BV01–15",
+        "ad": "anabin (KMK) — Türkiye Lise Diploması",
         "url": "https://anabin.kmk.org/api/public/certificates/6729e86b4a3c434b0b3dea1f"
        }
       ],
@@ -747,7 +747,7 @@
         "url": "https://www.hrk.de/fileadmin/redaktion/hrk/02-Dokumente/02-03-Studium/02-03-01-Studium-Studienreform/HRK_Statistik_BA_MA_UEbrige_WiSe_2025_26.pdf"
        },
        {
-        "ad": "anabin (KMK) — Türkiye Lise Diploması, TUR-BV05/07",
+        "ad": "anabin (KMK) — Türkiye Lise Diploması",
         "url": "https://anabin.kmk.org/api/public/certificates/6729e86b4a3c434b0b3dea1f"
        }
       ],
@@ -782,7 +782,7 @@
       "metin": "Alan kararı YKS tercih günü verilirse Almanya'daki hedef programla uyumsuz bir yere yerleşme riski doğar.",
       "kaynak": [
        {
-        "ad": "anabin (KMK) — Türkiye Lise Diploması, TUR-BV01–15",
+        "ad": "anabin (KMK) — Türkiye Lise Diploması",
         "url": "https://anabin.kmk.org/api/public/certificates/6729e86b4a3c434b0b3dea1f"
        }
       ],
@@ -885,7 +885,7 @@
       "metin": "AP Türk diploması sahibine giriş hakkı vermez; giriş hakkını YKS yerleşmesi sağlar.",
       "kaynak": [
        {
-        "ad": "anabin (KMK) — Türkiye Lise Diploması, TUR-BV01–15",
+        "ad": "anabin (KMK) — Türkiye Lise Diploması",
         "url": "https://anabin.kmk.org/api/public/certificates/6729e86b4a3c434b0b3dea1f"
        },
        {
@@ -907,7 +907,7 @@
       "metin": "YKS'ye başvur ve gir. Tercihte en az 4 yıllık örgün bir mühendislik programı yaz; MYO ve açıköğretim programları şartı sağlamaz.",
       "kaynak": [
        {
-        "ad": "anabin (KMK) — Türkiye Lise Diploması, TUR-BV01–15",
+        "ad": "anabin (KMK) — Türkiye Lise Diploması",
         "url": "https://anabin.kmk.org/api/public/certificates/6729e86b4a3c434b0b3dea1f"
        },
        {
@@ -1039,7 +1039,7 @@
       "metin": "Yerleşme yalnızca o alan ve ona yakın alanlar için hak verir. İşletme gibi bir alana yerleşmek mühendislik için işe yaramaz.",
       "kaynak": [
        {
-        "ad": "anabin (KMK) — Türkiye Lise Diploması, TUR-BV01–15",
+        "ad": "anabin (KMK) — Türkiye Lise Diploması",
         "url": "https://anabin.kmk.org/api/public/certificates/6729e86b4a3c434b0b3dea1f"
        }
       ],
@@ -1060,7 +1060,7 @@
         "url": "https://anabin.kmk.org/api/public/certificates/"
        },
        {
-        "ad": "anabin (KMK) — Türkiye Lise Diploması, TUR-BV01–15",
+        "ad": "anabin (KMK) — Türkiye Lise Diploması",
         "url": "https://anabin.kmk.org/api/public/certificates/6729e86b4a3c434b0b3dea1f"
        },
        {
@@ -1077,7 +1077,7 @@
       "metin": "anabin, YKS eşiklerini sınav yılına göre verir ve süre sınırı koymaz. Uygun alanda yerleşmesi olan mezunun giriş belgesi zaten elindedir.",
       "kaynak": [
        {
-        "ad": "anabin (KMK) — Türkiye Lise Diploması, TUR-BV01–15",
+        "ad": "anabin (KMK) — Türkiye Lise Diploması",
         "url": "https://anabin.kmk.org/api/public/certificates/6729e86b4a3c434b0b3dea1f"
        }
       ],
@@ -1092,7 +1092,7 @@
       "metin": "Yerleştiğin alan hedef Alman programıyla aynı ya da yakınsa YKS'ye yeniden girmen gerekmez. Üniversitenin eski yıl belgesini kabul ettiğini yazılı olarak teyit et.",
       "kaynak": [
        {
-        "ad": "anabin (KMK) — Türkiye Lise Diploması, TUR-BV01–15",
+        "ad": "anabin (KMK) — Türkiye Lise Diploması",
         "url": "https://anabin.kmk.org/api/public/certificates/6729e86b4a3c434b0b3dea1f"
        },
        {
@@ -1160,7 +1160,7 @@
         "url": "https://www.goethe.de/ins/gb/de/m/sta/lon/prf/gzc1/w24.html"
        },
        {
-        "ad": "anabin (KMK) — Türkiye Lise Diploması, TUR-BV05/07",
+        "ad": "anabin (KMK) — Türkiye Lise Diploması",
         "url": "https://anabin.kmk.org/api/public/certificates/6729e86b4a3c434b0b3dea1f"
        }
       ],
@@ -1260,7 +1260,7 @@
     "metin": "Türk diploması sahibi için AP ne İngilizce ne Almanca yolda giriş hakkı ekler; AP kuralı yalnızca ABD lise diploması sahipleri için vardır.",
     "kaynak": [
      {
-      "ad": "anabin (KMK) — Türkiye Lise Diploması, TUR-BV05/07",
+      "ad": "anabin (KMK) — Türkiye Lise Diploması",
       "url": "https://anabin.kmk.org/api/public/certificates/6729e86b4a3c434b0b3dea1f"
      },
      {

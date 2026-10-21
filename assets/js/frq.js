@@ -20,6 +20,8 @@
   var S = { ders: "", liste: null, premium: false, haklar: {}, aktif: null, sure: null, zamanlayici: null };
 
   // ---------------- yardımcılar ----------------
+  // v1.13.0 şekiller (giriş f.sekiller, parça p.sekiller; çözüm şekilleri cozumSekiller yalnız teslimden sonra gelir)
+  function skHtml(v) { return typeof window.apSekilHtml === "function" ? window.apSekilHtml(v) : ""; }
   function esc(v) { return String(v == null ? "" : v).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function param(ad) { try { return new URLSearchParams(location.search).get(ad); } catch (e) { return null; } }
   function adresYaz(o) {
@@ -166,10 +168,10 @@
       '<header class="frq-coz-bas" style="--frq-renk:' + renk(f.kisa) + '"><p class="frq-eyebrow">' + esc(f.dersAd) + " · " + esc(f.tur) + "</p><h1>" + esc(f.baslik) + "</h1>" +
         '<p class="frq-kart-meta"><span>' + ikon("saat") + " Önerilen " + f.sure_dk + " dk</span><span>" + f.toplam_puan + " puan</span><span>" +
         (f.hesapMakinesi ? ikon("hesap") + " Hesap makinesi serbest" : "Hesap makinesi yok") + "</span><span>" + esc(ZORLUK[f.zorluk] || f.zorluk) + "</span></p></header>" +
-      '<div class="frq-giris icerik">' + f.giris + "</div>" +
+      '<div class="frq-giris icerik">' + f.giris + "</div>" + skHtml(f.sekiller) +
       '<form id="frq-form" novalidate>' + f.parcalar.map(function (p) {
         return '<section class="frq-parca" aria-labelledby="frq-p-' + p.harf + '"><div class="frq-parca-bas"><h2 id="frq-p-' + p.harf + '">(' + p.harf + ")</h2><span class=\"frq-puan-et\">" + p.puan + " puan</span></div>" +
-          '<div class="frq-soru icerik">' + p.soru + "</div>" +
+          '<div class="frq-soru icerik">' + p.soru + "</div>" + skHtml(p.sekiller) +
           '<label class="visually-hidden" for="frq-c-' + p.harf + '">(' + p.harf + ") cevabın</label>" +
           '<textarea id="frq-c-' + p.harf + '" class="text-input frq-cevap" data-harf="' + p.harf + '" rows="5" spellcheck="false" placeholder="Cevabını buraya yaz (kâğıtta çözdüysen boş bırakabilirsin)">' + esc(c[p.harf] || "") + "</textarea></section>";
       }).join("") +
@@ -236,12 +238,12 @@
         "<p class=\"frq-alt\">Her ölçütü cevabınla dürüstçe karşılaştır. AP okuyucuları ölçütte istenen ifade ya da gerekçe yoksa puan vermez.</p></header>" +
       '<div class="frq-skor" aria-live="polite"><div class="frq-skor-sayi"><span id="frq-toplam">0</span><span class="frq-skor-bolu">/ ' + f.toplam_puan + '</span></div>' +
         '<div class="frq-skor-bar" aria-hidden="true"><span id="frq-skor-dolgu"></span></div><p class="frq-soluk" id="frq-skor-not">Ölçütleri işaretledikçe toplam güncellenir.</p></div>' +
-      '<details class="frq-giris-ac"><summary>Soru metnini göster</summary><div class="frq-giris icerik">' + f.giris + "</div></details>" +
+      '<details class="frq-giris-ac"><summary>Soru metnini göster</summary><div class="frq-giris icerik">' + f.giris + "</div>" + skHtml(f.sekiller) + skHtml(f.cozumSekiller) + "</details>" +
       '<form id="frq-puan-form" novalidate>' + f.parcalar.map(function (p) {
         var cev = d.cevaplar && d.cevaplar[p.harf] ? String(d.cevaplar[p.harf]) : "";
         var pp = p0[p.harf] || [];
         return '<section class="frq-parca" aria-labelledby="frq-r-' + p.harf + '"><div class="frq-parca-bas"><h2 id="frq-r-' + p.harf + '">(' + p.harf + ")</h2><span class=\"frq-puan-et\"><span data-parca-top=\"" + p.harf + "\">0</span> / " + p.puan + " puan</span></div>" +
-          '<div class="frq-soru icerik">' + p.soru + "</div>" +
+          '<div class="frq-soru icerik">' + p.soru + "</div>" + skHtml(p.sekiller) +
           '<div class="frq-senin"><p class="frq-mini-baslik">Senin cevabın</p>' + (cev.trim() ? '<p class="frq-senin-metin">' + esc(cev) + "</p>" : '<p class="frq-soluk">Kutuya yazmadın — kâğıttaki cevabınla karşılaştır.</p>') + "</div>" +
           '<fieldset class="frq-olcutler"><legend class="frq-mini-baslik">Puanlama ölçütleri</legend>' + p.rubrik.map(function (rb, i) {
             var ad = "frq-o-" + p.harf + "-" + i, v = +pp[i] || 0;
@@ -255,7 +257,7 @@
               (rb.ornek_cevap ? '<span class="frq-ornek">Örnek: ' + rb.ornek_cevap + "</span>" : "") + "</span>" +
               (rb.puan === 1 ? "</label>" : giris + "</div>") + "</div>";
           }).join("") + "</fieldset>" +
-          '<details class="frq-cozum"><summary>Örnek çözüm</summary><div class="icerik">' + p.ornek_cozum + "</div></details>" +
+          '<details class="frq-cozum"><summary>Örnek çözüm</summary><div class="icerik">' + p.ornek_cozum + "</div>" + skHtml(p.cozumSekiller) + "</details>" +
           (p.sik_hatalar && p.sik_hatalar.length ? '<div class="frq-hatalar"><p class="frq-mini-baslik">Sık hatalar</p><ul>' + p.sik_hatalar.map(function (h) { return "<li>" + h + "</li>"; }).join("") + "</ul></div>" : "") +
           "</section>";
       }).join("") +

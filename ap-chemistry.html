@@ -16,11 +16,13 @@
   <link rel="stylesheet" href="/assets/css/hareket.css?v=20261021m">
   <link rel="stylesheet" href="/assets/css/maskot.css?v=20261021m">
   <link rel="stylesheet" href="/assets/css/canli.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/etkilesim-kbe.css?v=20261021kbe">
   <script src="/assets/js/adresler.js"></script>
   <script src="/assets/js/maskot.js?v=20261021m" defer></script>
   <script src="/assets/js/kutlama.js?v=20261021m" defer></script>
   <script src="/assets/js/canli.js?v=20261021m" defer></script>
   <script src="/assets/js/oyun.js?v=20261021m" defer></script>
+  <script src="/assets/js/etkilesim-kbe.js?v=20261021kbe" defer></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
   <script>
     window.MathJax = {
@@ -291,7 +293,7 @@
             (b) 12.5 mL NaOH eklendiğinde oluşan çözeltinin pH değerini gerekçesiyle belirtiniz.<br/>
             (c) Eşdeğerlik noktasına ulaşmak için kaç mL NaOH gerekir ve eşdeğerlik noktasındaki pH > 7 midir, = 7 midir, < 7 midir? Net iyonik denklemle açıklayınız.
           </p>
-          <div class="u-inset u-fs-14 u-c-muted">
+          <div data-kbe-adim class="u-inset u-fs-14 u-c-muted">
             <strong class="u-c-amber">Scoring Guidelines & Adım Adım Çözüm:</strong><br/>
             • <strong>(a) Başlangıç pH [2 Puan]:</strong> <code>HA ⇌ H⁺ + A⁻</code>. <code>Ka = [H⁺][A⁻] / [HA] = x² / 0.100 = 2.0 × 10⁻⁵</code>.<br/>
             <code>x² = 2.0 × 10⁻⁶</code> => <code>x = [H⁺] = 1.41 × 10⁻³ M</code>.<br/>
@@ -437,6 +439,7 @@
               <br/>2. <strong>Y-axis (Relative Intensity / Peak Height):</strong> Directly proportional to the number of electrons occupying that specific subshell ($1s^2 : 2s^2 : 2p^6 \implies \text{height ratio } 2 : 2 : 6$).
               <br/>3. <strong>Shifting of Peaks Across a Period:</strong> As atomic number $Z$ increases from left to right across a period, effective nuclear charge $Z_{\text{eff}}$ increases. Thus, all corresponding subshell peaks shift to <em>higher binding energies (further to the left)</em>.
             </div>
+            <div class="kbe-yuva" data-kbe="pes"></div>
           </div>
         </div>
 
@@ -468,6 +471,7 @@
         </div>
 
       </div>
+      <div class="kbe-yuva" data-kbe="birim" data-birim="chem-u1"></div>
     </section>
 
     <section class="interactive-panel" id="chem-unit1-quiz-section">
@@ -642,6 +646,7 @@
         </div>
 
       </div>
+      <div class="kbe-yuva" data-kbe="birim" data-birim="chem-u2"></div>
     </section>
 
     <section class="interactive-panel" id="chem-unit2-quiz-section">
@@ -710,6 +715,7 @@
               <br/>• <strong>Dalton's Law of Partial Pressures:</strong> $P_{\text{total}} = P_A + P_B + \dots$; $P_A = X_A \cdot P_{\text{total}}$, where mole fraction $X_A = \frac{n_A}{n_{\text{total}}}$.
               <br/>• <strong>Gas Collected Over Water:</strong> $P_{\text{dry gas}} = P_{\text{barometric}} - P_{\text{H}_2\text{O}(v)}$ (Must subtract equilibrium water vapor pressure at temperature $T$!).
             </p>
+            <div class="kbe-yuva" data-kbe="gaz"></div>
           </div>
         </div>
 
@@ -740,6 +746,7 @@
               1. <em>Attractive Forces (Parameter $a$):</em> Significant at <strong>low temperatures</strong> and moderate pressures. As particles move slowly, attractive IMFs pull particles together, softening their impacts against container walls. Hence, <strong>$P_{\text{real}} < P_{\text{ideal}}$</strong> and $\frac{PV}{nRT} < 1$. Gases with strong dipoles (e.g., $\text{NH}_3, \text{H}_2\text{O}, \text{SO}_2$) show severe negative deviations.
               <br/>2. <em>Particle Volume (Parameter $b$):</em> Dominant at <strong>extremely high pressures</strong>. Gas particles are compressed tightly; the physical volume of the molecules is no longer negligible relative to container volume. Available free space is reduced, leading to more frequent collisions: <strong>$V_{\text{real}} > V_{\text{ideal}}$</strong> and $\frac{PV}{nRT} > 1$.
             </div>
+            <div class="kbe-yuva" data-kbe="mb"></div>
           </div>
         </div>
 
@@ -795,6 +802,7 @@
         </div>
 
       </div>
+      <div class="kbe-yuva" data-kbe="birim" data-birim="chem-u3"></div>
     </section>
 
     <section class="interactive-panel" id="chem-unit3-quiz-section">
@@ -1007,6 +1015,7 @@
         </div>
 
       </div>
+      <div class="kbe-yuva" data-kbe="birim" data-birim="chem-u4"></div>
     </section>
 
     <section class="interactive-panel" id="chem-unit4-quiz-section">
@@ -1219,6 +1228,7 @@
         </div>
 
       </div>
+      <div class="kbe-yuva" data-kbe="birim" data-birim="chem-u5"></div>
     </section>
 
     <section class="interactive-panel" id="chem-unit5-quiz-section">
@@ -1478,6 +1488,7 @@
         </div>
 
       </div>
+      <div class="kbe-yuva" data-kbe="birim" data-birim="chem-u6"></div>
     </section>
 
     <section class="interactive-panel" id="chem-unit6-quiz-section">
@@ -1668,13 +1679,13 @@
               Take the square root of both sides: $\dfrac{2x}{0.20 - x} = 8 \implies x = 0.16\text{ M}$<br/>
               $[\text{HI}] = 0.32\text{ M}$, $[\text{H}_2] = [\text{I}_2] = 0.04\text{ M}$. Check: $(0.32)^2/(0.04)^2 = 64$.
             </div>
-            <div class="theory-callout">
+            <div data-kbe-adim class="theory-callout">
               <strong>Solved Example 2 (small K, small-x approximation):</strong> $\text{COCl}_2(g) \rightleftharpoons \text{CO}(g) + \text{Cl}_2(g)$, $K_c = 2.2 \times 10^{-10}$, $[\text{COCl}_2]_0 = 0.050\text{ M}$.<br/>
               $\dfrac{x^2}{0.050 - x} = 2.2 \times 10^{-10}$. Because $K$ is very small, assume $0.050 - x \approx 0.050$:<br/>
               $x = \sqrt{(2.2 \times 10^{-10})(0.050)} = 3.3 \times 10^{-6}\text{ M}$<br/>
               <strong>5% check:</strong> $\dfrac{3.3 \times 10^{-6}}{0.050} \times 100\% = 0.0066\% &lt; 5\%$ → the approximation is valid (the exact quadratic root agrees to three significant figures).
             </div>
-            <div class="theory-callout">
+            <div data-kbe-adim class="theory-callout">
               <strong>Solved Example 3 (when the approximation fails):</strong> $\text{X} \rightleftharpoons \text{Y} + \text{Z}$, $K_c = 4.0 \times 10^{-3}$, $[\text{X}]_0 = 0.10\text{ M}$.<br/>
               Approximation: $x = \sqrt{(4.0 \times 10^{-3})(0.10)} = 0.020\text{ M}$ → $0.020/0.10 = 20\% &gt; 5\%$ → NOT valid.<br/>
               Exact: $x^2 + (4.0 \times 10^{-3})x - 4.0 \times 10^{-4} = 0$<br/>
@@ -1739,6 +1750,7 @@
             <div class="pitfall-box">
               <strong>AP TRAP:</strong> Adding a pure solid or liquid does not shift the equilibrium (it is not in $Q$). Only a temperature change alters the value of $K$.
             </div>
+            <div class="kbe-yuva" data-kbe="denge"></div>
           </div>
         </div>
 
@@ -1867,6 +1879,7 @@
         </div>
 
       </div>
+      <div class="kbe-yuva" data-kbe="birim" data-birim="chem-u7"></div>
     </section>
 
     <section class="interactive-panel" id="chem-unit7-quiz-section">
@@ -2031,6 +2044,7 @@
             <div class="pitfall-box">
               <strong>AP TRAP — "The equivalence point is always at pH 7":</strong> Only for strong acid + strong base. Also, the equivalence VOLUME depends only on moles of acid, not on $K_a$: a weak acid and a strong acid with the same concentration and volume need the same volume of base.
             </div>
+            <div class="kbe-yuva" data-kbe="titrasyon"></div>
           </div>
         </div>
 
@@ -2195,6 +2209,7 @@
         </div>
 
       </div>
+      <div class="kbe-yuva" data-kbe="birim" data-birim="chem-u8"></div>
     </section>
 
     <section class="interactive-panel" id="chem-unit8-quiz-section">
@@ -2550,6 +2565,7 @@
         </div>
 
       </div>
+      <div class="kbe-yuva" data-kbe="birim" data-birim="chem-u9"></div>
     </section>
 
     <section class="interactive-panel" id="chem-unit9-quiz-section">

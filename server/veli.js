@@ -14,6 +14,7 @@ const { sifreOzetle, belirtec, ozet, publicId, hizSinirlayici } = require("./guv
 const { HttpHata } = require("./http");
 const zaman = require("./zaman");
 const AP = require("../assets/js/ap-hedef");
+const ILERLEME = require("./ilerleme"); // 1.16.0 grafikler: haftalık etkinlik + puan geçmişi (salt okunur)
 
 const EPOSTA_RE = /^[^\s@<>()",;:]+@[^\s@<>()",;:]+\.[A-Za-z]{2,}$/;
 const kirp = s => String(s == null ? "" : s).trim().replace(/\s+/g, " ");
@@ -140,7 +141,7 @@ function veliServisi(db, c) {
       // Tahmini puan: son ders denemesinin bandı; deneme yoksa en az 10 cevabın doğruluğu (aynı eşikler)
       const tahmini = sd && sd.tahmini_band != null ? +sd.tahmini_band : cev.length >= 10 ? AP.tahminiPuan(yuzde) : null;
       return { ders: x.ders, ad: "AP " + x.ad, hedef: x.hedef, cevap: cev.length, cozulen, bankada: banka, kapsam: banka ? Math.min(100, Math.round(cozulen / banka * 100)) : null,
-        dogruluk: yuzde, tahmini, tahminKaynagi: sd && sd.tahmini_band != null ? "deneme" : tahmini != null ? "sorular" : null };
+        dogruluk: yuzde, tahmini, tahminiInce: sd && sd.tahmini_band != null ? +sd.tahmini_band : tahmini != null ? ILERLEME.inceTahmin(yuzde) : null, tahminKaynagi: sd && sd.tahmini_band != null ? "deneme" : tahmini != null ? "sorular" : null };
     });
     // 1.12.0: tam deneme sınavları (istemci_id "ts-…") da listede; yuzde = bileşik puan, tahminiPuan = tahmini AP puanı (1–5)
     const denemeler = db.prepare("SELECT istemci_id, kod, ad, tarih, soru_sayisi, dogru, yuzde, tahmini_band, sure_sn FROM exams WHERE user_id = ? ORDER BY tarih DESC LIMIT 5").all(u.id)
@@ -163,6 +164,9 @@ function veliServisi(db, c) {
       toplam: { soru: toplam.n, dogruluk: toplam.n ? Math.round(toplam.d / toplam.n * 100) : null },
       seri: d.seri + (d.bugunAktif ? 1 : 0), sonAktif,
       dersler: dersOzet, denemeler, tarihler,
+      // 1.16.0: veli grafikleri (son 8 hafta soru/doğru/deneme; tahmini puan geçmişi, en çok 30 kayıt)
+      grafik: { haftalik: ILERLEME.haftalik(db, u.id, simdiMs, 8).map(h => ({ hafta: h.hafta, pazartesi: h.pazartesi, soru: h.soru, dogru: h.dogru, deneme: h.deneme })),
+        puanGecmisi: ILERLEME.puanGecmisi(db, u.id, 30) },
       uyelik: { premium: uy.premium, plan: uy.plan, bitis: uy.bitis, bekleyenTalep: uy.bekleyenTalep ? { plan: uy.bekleyenTalep.plan, olusturma: uy.bekleyenTalep.olusturma } : null }
     };
   }

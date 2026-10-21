@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="/assets/css/hareket.css?v=20261021m">
   <link rel="stylesheet" href="/assets/css/maskot.css?v=20261021m">
   <link rel="stylesheet" href="/assets/css/canli.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/etkilesim-mf.css?v=1170">
   <script src="/assets/js/adresler.js"></script>
   <script src="/assets/js/maskot.js?v=20261021m" defer></script>
   <script src="/assets/js/kutlama.js?v=20261021m" defer></script>
@@ -656,6 +657,7 @@
               <strong>Existence Criterion:</strong> The two-sided limit exists if and only if both one-sided limits exist and are equal:
               <br/><code>lim_{x → c} f(x) = L  ⟺  lim_{x → c^-} f(x) = lim_{x → c^+} f(x) = L</code>.
             </p>
+            <div class="emf-w" data-emf="limit"></div>
           </div>
         </div>
 
@@ -767,6 +769,17 @@
           </div>
         </div>
 
+        <aside class="emf-akilda" aria-label="Akılda kal">
+          <h3>Akılda kal</h3>
+          <ul>
+            <li>İki taraflı limit, ancak sol ve sağ limitler var ve birbirine eşitse vardır; limit f(c) değerinden bağımsızdır.</li>
+            <li>Önce doğrudan yerine koy: 0/0 belirsizdir (çarpanlara ayır, eşlenikle çarp, payda eşitle); k/0 (k ≠ 0) dikey asimptot işaretidir.</li>
+            <li>x → 0 (radyan): sin x / x → 1 ve (1 − cos x)/x → 0; sıkıştırma teoremi sınırlı çarpanlarda işe yarar.</li>
+            <li>Süreklilik üç koşuldur: f(c) tanımlı, lim f(x) var, lim f(x) = f(c). Süreksizlik türleri: kaldırılabilir, sıçrama, sonsuz.</li>
+            <li>IVT yalnız kapalı aralıkta sürekli fonksiyonda çalışır: f(a) ile f(b) arasındaki her değer en az bir kez alınır.</li>
+          </ul>
+        </aside>
+        <div class="emf-dene" data-emf-dene="calc-u1"></div>
       </div>
     </section>
 
@@ -811,6 +824,7 @@
               • <em>Tangent Line</em> at $(c, f(c))$: $y - f(c) = f'(c)(x - c)$<br/>
               • <em>Normal Line (Perpendicular)</em> at $(c, f(c))$: $y - f(c) = -\frac{1}{f'(c)}(x - c) \quad (f'(c) \ne 0)$.
             </p>
+            <div class="emf-w" data-emf="teget"></div>
           </div>
         </div>
 
@@ -938,6 +952,16 @@
           </div>
         </div>
 
+        <aside class="emf-akilda" aria-label="Akılda kal">
+          <h3>Akılda kal</h3>
+          <ul>
+            <li>f′(a) = lim(h→0) [f(a + h) − f(a)] / h: kesenlerin eğimi teğetin eğimine yaklaşır.</li>
+            <li>Türevlenebilir ⇒ sürekli; tersi doğru değildir (köşe, sivri uç, dikey teğet, süreksizlik).</li>
+            <li>Temel kurallar: (xⁿ)′ = nxⁿ⁻¹, (eˣ)′ = eˣ, (ln x)′ = 1/x, (sin x)′ = cos x, (cos x)′ = −sin x, (tan x)′ = sec²x.</li>
+            <li>Product: (fg)′ = f′g + fg′. Quotient: (f/g)′ = (f′g − fg′)/g² — paydaki sıra önemlidir.</li>
+          </ul>
+        </aside>
+        <div class="emf-dene" data-emf-dene="calc-u2"></div>
       </div>
     </section>
 
@@ -1028,6 +1052,16 @@
           </div>
         </div>
 
+        <aside class="emf-akilda" aria-label="Akılda kal">
+          <h3>Akılda kal</h3>
+          <ul>
+            <li>Chain rule: d/dx f(g(x)) = f′(g(x))·g′(x) — dış fonksiyonun türevi, iç fonksiyon olduğu gibi kalır.</li>
+            <li>Implicit differentiation: iki tarafın x'e göre türevini al; y içeren her terim dy/dx ile çarpılır.</li>
+            <li>Ters fonksiyon: f(a) = b ise (f⁻¹)′(b) = 1 / f′(a).</li>
+            <li>(arcsin x)′ = 1/√(1 − x²), (arctan x)′ = 1/(1 + x²).</li>
+          </ul>
+        </aside>
+        <div class="emf-dene" data-emf-dene="calc-u3"></div>
       </div>
     </section>
 
@@ -1158,6 +1192,17 @@
           </div>
         </div>
 
+        <aside class="emf-akilda" aria-label="Akılda kal">
+          <h3>Akılda kal</h3>
+          <ul>
+            <li>Türevin birimi: çıktı birimi / girdi birimi; yorumda zamanı, miktarı ve birimi bağlamıyla yaz.</li>
+            <li>Doğrusal hareket: v = x′, a = v′; v ve a aynı işaretliyse speed artar, zıtsa azalır.</li>
+            <li>Related rates: çiz, değişkenleri tanımla, ilişki denklemini kur, t'ye göre türev al, ancak sonra sayıları yerleştir.</li>
+            <li>Lineer yaklaşım L(x) = f(a) + f′(a)(x − a); f içbükey yukarıysa (f″ &gt; 0) teğet alt tahmin verir.</li>
+            <li>L'Hôpital yalnız 0/0 veya ∞/∞ için: pay ve paydanın türevleri ayrı ayrı alınır (bölüm kuralı değil).</li>
+          </ul>
+        </aside>
+        <div class="emf-dene" data-emf-dene="calc-u4"></div>
       </div>
     </section>
 
@@ -1308,6 +1353,17 @@
           </div>
         </div>
 
+        <aside class="emf-akilda" aria-label="Akılda kal">
+          <h3>Akılda kal</h3>
+          <ul>
+            <li>MVT: [a, b]'de sürekli ve (a, b)'de türevlenebilir ise f′(c) = [f(b) − f(a)]/(b − a) olan bir c vardır.</li>
+            <li>EVT: kapalı aralıkta sürekli f mutlak max ve min alır; adaylar kritik noktalar ve uç noktalardır.</li>
+            <li>İlk türev testi: f′ işareti + → − değişirse yerel max, − → + ise yerel min.</li>
+            <li>Dönüm noktası için f″ işaret değiştirmelidir; yalnız f″(c) = 0 yetmez.</li>
+            <li>İkinci türev testi: f′(c) = 0 ve f″(c) &lt; 0 ⇒ yerel max; f″(c) &gt; 0 ⇒ yerel min; f″(c) = 0 ⇒ sonuçsuz.</li>
+          </ul>
+        </aside>
+        <div class="emf-dene" data-emf-dene="calc-u5"></div>
       </div>
     </section>
 
@@ -1382,6 +1438,7 @@
             <div class="pitfall-box">
               <strong>Common Trap — Assuming Equal Widths:</strong> AP tables almost always use <em>unequal</em> subintervals. Never use $\Delta x = \frac{b - a}{n}$ on a table; compute every $\Delta x_i$ separately. Also, a table alone does not tell you whether $f$ is increasing or concave up — you may only classify an estimate if the problem states monotonicity or concavity.
             </div>
+            <div class="emf-w" data-emf="riemann"></div>
           </div>
         </div>
 
@@ -1431,6 +1488,7 @@
             <div class="pitfall-box">
               <strong>Common Traps:</strong> (1) Forgetting the chain-rule factor $u'(x)$. (2) Differentiating the integrand instead of evaluating it at the limit. (3) Confusing the maximum of $f$ with the maximum of $g$ — the extrema of $g$ are found where $f = 0$ and changes sign, not where $f$ is largest.
             </div>
+            <div class="emf-w" data-emf="birikim"></div>
           </div>
         </div>
 
@@ -1569,6 +1627,17 @@
           </div>
         </div>
 
+        <aside class="emf-akilda" aria-label="Akılda kal">
+          <h3>Akılda kal</h3>
+          <ul>
+            <li>Belirli integral işaretli alandır: eksenin altındaki alan negatif katkı yapar.</li>
+            <li>Artan f için Left Riemann alt, Right üst tahmindir; içbükey yukarı f için Trapezoid üst, Midpoint alt tahmin verir.</li>
+            <li>FTC 1: d/dx ∫ₐˣ f(t) dt = f(x); üst sınır u(x) ise sonuç f(u(x))·u′(x).</li>
+            <li>FTC 2: ∫ₐᵇ f(x) dx = F(b) − F(a), F herhangi bir antitürev.</li>
+            <li>u-substitution'da ya sınırları u'ya çevir ya da geri yerine koy; belirsiz integralde + C unutulmaz.</li>
+          </ul>
+        </aside>
+        <div class="emf-dene" data-emf-dene="calc-u6"></div>
       </div>
     </section>
 
@@ -1651,6 +1720,7 @@
             <div class="pitfall-box">
               <strong>Common Traps:</strong> (1) Swapping coordinates — the slope at $(2, 1)$ uses $x = 2$, $y = 1$. (2) Treating $y$ as a constant when computing $\frac{d^2y}{dx^2}$: $\frac{d}{dx}[y] = \frac{dy}{dx}$, not $0$. (3) Drawing a solution curve that crosses an equilibrium line — solutions of these AP-level equations never cross each other.
             </div>
+            <div class="emf-w" data-emf="egim"></div>
           </div>
         </div>
 
@@ -1660,7 +1730,7 @@
             <span class="concept-badge">Topic 7.5</span>
           </div>
           <div class="theory-body">
-            <div class="theory-callout">
+            <div class="theory-callout" data-emf-adim>
               <strong>Euler's Method:</strong> Starting from $(x_0, y_0)$ with step size $h = \Delta x$:
               $$x_{n+1} = x_n + h, \qquad y_{n+1} = y_n + h \cdot f(x_n, y_n)$$
               Each step follows the tangent line at the <em>current</em> point for a horizontal distance $h$.<br/>
@@ -1691,7 +1761,7 @@
               3. <em>Use the initial condition right away</em> to find $C$ (it is usually easiest before solving for $y$).<br/>
               4. <em>Solve for $y$</em> and state the domain: the largest open interval containing the initial $x$-value on which the solution is defined and differentiable.
             </div>
-            <div class="theory-callout">
+            <div class="theory-callout" data-emf-adim>
               <strong>Worked Example (Topic 7.7):</strong> Solve $\frac{dy}{dx} = 2xy$ with $y(0) = 3$.<br/>
               $\frac{dy}{y} = 2x\,dx$ ⟹ $\ln|y| = x^2 + C$.<br/>
               $x = 0, y = 3$: $\ln 3 = 0 + C$ ⟹ $C = \ln 3$.<br/>
@@ -1777,6 +1847,17 @@
           </div>
         </div>
 
+        <aside class="emf-akilda" aria-label="Akılda kal">
+          <h3>Akılda kal</h3>
+          <ul>
+            <li>Bir fonksiyonun diferansiyel denklemi sağladığı, türevi alınıp denklemde yerine konarak doğrulanır.</li>
+            <li>Eğim alanında her segmentin eğimi o noktadaki dy/dx'tir; çözüm eğrileri segmentlere teğet ilerler.</li>
+            <li>Euler (BC): yₙ₊₁ = yₙ + h·f(xₙ, yₙ); her adım mevcut noktadaki teğet boyunca gider.</li>
+            <li>Separation of variables: değişkenleri ayır, iki tarafı integralle, + C'yi hemen yaz, başlangıç koşulunu kullan, sonra y'yi çöz.</li>
+            <li>dy/dt = ky ⇒ y = y₀eᵏᵗ. Logistic (BC): dP/dt = kP(1 − P/L); taşıma kapasitesi L, en hızlı artış P = L/2'de.</li>
+          </ul>
+        </aside>
+        <div class="emf-dene" data-emf-dene="calc-u7"></div>
       </div>
     </section>
 
@@ -1839,7 +1920,7 @@
               • <strong>Total distance traveled</strong> on $[a, b]$: $\int_a^b |v(t)|\,dt$ (never negative).<br/>
               • Average velocity on $[a, b]$: $\frac{1}{b - a}\int_a^b v(t)\,dt$.
             </div>
-            <div class="theory-callout">
+            <div class="theory-callout" data-emf-adim>
               <strong>Worked Example:</strong> $v(t) = t^2 - 4t + 3 = (t - 1)(t - 3)$ on $[0, 4]$.<br/>
               Displacement: $\int_0^4 v(t)\,dt = \frac{4}{3}$.<br/>
               Distance: split at the sign changes $t = 1$ and $t = 3$: $\left|\frac{4}{3}\right| + \left|-\frac{4}{3}\right| + \left|\frac{4}{3}\right| = 4$.<br/>
@@ -1987,6 +2068,17 @@
           </div>
         </div>
 
+        <aside class="emf-akilda" aria-label="Akılda kal">
+          <h3>Akılda kal</h3>
+          <ul>
+            <li>Ortalama değer: [1/(b − a)]·∫ₐᵇ f(x) dx.</li>
+            <li>Yer değiştirme ∫v dt, toplam yol ∫|v| dt; konum = başlangıç konumu + ∫v dt.</li>
+            <li>Eğriler arası alan: ∫(üst − alt) dx ya da ∫(sağ − sol) dy; kesişimler sınırları verir.</li>
+            <li>Kesit hacmi V = ∫A(x) dx; washer: V = π∫(R² − r²) dx — R ve r dönme eksenine olan uzaklıklardır.</li>
+            <li>Yay uzunluğu (BC): ∫√(1 + (f′(x))²) dx.</li>
+          </ul>
+        </aside>
+        <div class="emf-dene" data-emf-dene="calc-u8"></div>
       </div>
     </section>
 
@@ -2214,6 +2306,16 @@
           </div>
         </div>
 
+        <aside class="emf-akilda" aria-label="Akılda kal">
+          <h3>Akılda kal</h3>
+          <ul>
+            <li>Parametrik: dy/dx = (dy/dt)/(dx/dt); d²y/dx² = [d/dt(dy/dx)] / (dx/dt).</li>
+            <li>Parametrik yay uzunluğu ∫√((dx/dt)² + (dy/dt)²) dt; speed = |v(t)| = √(x′² + y′²).</li>
+            <li>Vektör fonksiyonlar: v(t) = r′(t), a(t) = v′(t); konum = r(t₀) + ∫v dt (bileşen bileşen).</li>
+            <li>Polar: x = r cos θ, y = r sin θ; alan = ½∫r² dθ, iki eğri arası ½∫(R² − r²) dθ.</li>
+          </ul>
+        </aside>
+        <div class="emf-dene" data-emf-dene="calc-u9"></div>
       </div>
     </section>
 
@@ -2447,6 +2549,7 @@
             <div class="pitfall-box">
               <strong>Common Traps:</strong> (1) Forgetting to divide by $k!$. (2) Writing powers of $x$ instead of $(x - c)$ when $c \ne 0$. (3) Reading "the coefficient of $(x - c)^3$" as $f'''(c)$ — the coefficient is $\frac{f'''(c)}{3!}$; conversely, $f'''(c) = 3! \times$ coefficient.
             </div>
+            <div class="emf-w" data-emf="taylor"></div>
           </div>
         </div>
 
@@ -2580,6 +2683,17 @@
           </div>
         </div>
 
+        <aside class="emf-akilda" aria-label="Akılda kal">
+          <h3>Akılda kal</h3>
+          <ul>
+            <li>nth term test: lim aₙ ≠ 0 ise seri ıraksar; lim aₙ = 0 ise test sonuçsuzdur.</li>
+            <li>Geometrik seri |r| &lt; 1 iken yakınsar, toplam = ilk terim / (1 − r). p-serisi Σ1/nᵖ ancak p &gt; 1 iken yakınsar.</li>
+            <li>Alternating series hatası ilk atılan terimin mutlak değerinden büyük değildir; Lagrange: |hata| ≤ M|x − c|ⁿ⁺¹/(n + 1)!.</li>
+            <li>Taylor katsayısı f⁽ᵏ⁾(c)/k!; sin, cos, eˣ ve 1/(1 − x) serilerini ezbere bil.</li>
+            <li>Ratio test yarıçapı verir; aralığın uç noktaları her zaman ayrı ayrı denetlenir.</li>
+          </ul>
+        </aside>
+        <div class="emf-dene" data-emf-dene="calc-u10"></div>
       </div>
     </section>
 
@@ -3166,5 +3280,6 @@
 
   <script src="/assets/js/ucretsiz-kural.js"></script>
   <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/etkilesim-mf.js?v=1170" defer></script>
 </body>
 </html>

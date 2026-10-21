@@ -155,16 +155,21 @@
     var m = BY_KEY[k]; if (!m) return null;
     var ic = ICERIK[k];
     var q = Object.assign({}, m, ic ? { question: ic.question, source: ic.source, difficulty: ic.difficulty, number: ic.number != null ? ic.number : m.number,
-      options: (ic.options || []).map(function (o) { return { id: o.id, text: o.text }; }) } : { question: "", options: [] });
+      sekiller: ic.sekiller || null, options: (ic.options || []).map(function (o) { var x = { id: o.id, text: o.text }; if (o.sekil) x.sekil = o.sekil; return x; }) } : { question: "", options: [] });
     var c = COZUM[k];
     if (c) {
       var h = c.hatalar || {};
       q.options.forEach(function (o) { o.isCorrect = o.id === c.dogru; if (h[o.id]) { o.errorTag = h[o.id].errorTag; o.remediation = h[o.id].remediation; } });
       q.stepByStepSolution = c.aciklama || ""; q.generalRemediation = c.genelHatirlatma || "";
       q.ek = c.ek || null; // 1.10.0 zenginleştirme (yalnız teslimden sonra gelir)
+      q.cozumSekiller = c.sekiller || null; // 1.13.0 konum "aciklama" şekilleri (yalnız teslimden sonra)
     }
     return q;
   }
+  // v1.13.0 şekiller: app.js apSekilHtml yer tutucusu → sekil.js çizer
+  function skHtml(v, sik) { return typeof window.apSekilHtml === "function" ? window.apSekilHtml(v, sik) : ""; }
+  function skSecenekli(l) { return typeof window.apSekilSecenekli === "function" && window.apSekilSecenekli(l); }
+  function skSiklar(l) { return typeof window.apSekilSiklarDugme === "function" ? window.apSekilSiklarDugme(l) : ""; }
   function qKey(q) { return q.sayfa + "|" + q.id; }
   /** 1.8.0: bankadaki sayfa adı (ör. ap-calculus.html) → temiz adres (/ders/calculus); tablo assets/js/adresler.js */
   function adresOf(s) { var A = window.MEBERRA_ADRES; return A ? A.temiz(s) : s; }
@@ -714,7 +719,7 @@
     var optHtml = q.options.map(function (o) {
       var on = sel === o.id;
       return '<button type="button" class="option-btn dn-opt' + (on ? " is-selected" : "") + '" data-opt="' + esc(o.id) + '" aria-pressed="' + (on ? "true" : "false") + '">' +
-        '<span class="option-letter" aria-hidden="true">' + esc(o.id) + '</span><span class="visually-hidden">Şık ' + esc(o.id) + ': </span><span>' + o.text + '</span></button>';
+        '<span class="option-letter" aria-hidden="true">' + esc(o.id) + '</span><span class="visually-hidden">Şık ' + esc(o.id) + ': </span><span class="option-text">' + (o.text || "") + skHtml(o.sekil, true) + '</span></button>';
     }).join("");
     stage.className = "dn-stage" + (pas ? " has-passage" : "");
     stage.innerHTML =
@@ -723,8 +728,8 @@
       '<div class="dn-q-head"><span class="question-num-badge" id="dn-q-title">Soru ' + (i + 1) + ' / ' + A.sorular.length + '</span>' +
       (showKod ? '<span class="dn-q-course" style="--dn-c:' + colorVar(item.kod) + '">' + esc(BANK.kodlar[item.kod].ad) + '</span>' : '') +
       '<button type="button" class="btn-ghost dn-mini dn-mark" id="dn-mark" aria-pressed="' + (marked ? "true" : "false") + '">' + (marked ? "★ İşaretli" : "☆ İşaretle / sonra dön") + '</button></div>' +
-      '<div class="question-body">' + q.question + '</div>' +
-      '<div class="options-container" role="group" aria-label="Soru ' + (i + 1) + ' seçenekleri">' + optHtml + '</div>' +
+      '<div class="question-body">' + q.question + '</div>' + skHtml(q.sekiller) +
+      '<div class="options-container' + (skSecenekli(q.options) ? " sk-secenekli" : "") + '" role="group" aria-label="Soru ' + (i + 1) + ' seçenekleri">' + optHtml + '</div>' + skSiklar(q.options) +
       '<div class="dn-q-tools"><button type="button" class="btn-ghost dn-mini" id="dn-clear"' + (sel ? "" : " disabled") + '>Seçimi temizle</button></div>' +
       '</article>';
     stage.querySelectorAll(".dn-opt").forEach(function (b) { b.addEventListener("click", function () { choose(b.getAttribute("data-opt")); }); });
@@ -1142,10 +1147,10 @@
     var cor = q.options.filter(function (o) { return o.isCorrect; })[0];
     var selOpt = sel ? q.options.filter(function (o) { return o.id === sel; })[0] : null;
     var pas = q.pasaj && BANK.pasajlar[q.pasaj];
-    var opts = '<ol class="dn-rev-opts">' + q.options.map(function (o) {
+    var opts = '<ol class="dn-rev-opts' + (skSecenekli(q.options) ? " sk-secenekli" : "") + '">' + q.options.map(function (o) {
       var cls = o.isCorrect ? " is-correct" : (o.id === sel ? " is-chosen" : "");
       var mark = o.isCorrect && o.id === sel ? "Doğru — senin cevabın" : o.isCorrect ? "Doğru cevap" : o.id === sel ? "Senin cevabın" : "";
-      return '<li class="' + cls.trim() + '"><span class="option-letter" aria-hidden="true">' + esc(o.id) + '</span><span class="visually-hidden">Şık ' + esc(o.id) + ': </span><span class="dn-rev-otext">' + o.text + '</span>' + (mark ? '<span class="dn-rev-mark">' + mark + '</span>' : '') + '</li>';
+      return '<li class="' + cls.trim() + '"><span class="option-letter" aria-hidden="true">' + esc(o.id) + '</span><span class="visually-hidden">Şık ' + esc(o.id) + ': </span><span class="dn-rev-otext">' + (o.text || "") + skHtml(o.sekil, true) + '</span>' + (mark ? '<span class="dn-rev-mark">' + mark + '</span>' : '') + '</li>';
     }).join("") + '</ol>';
     var info = '<p class="dn-rev-meta"><span class="question-tag source">' + esc(q.source) + '</span> <span class="question-tag ' + esc(String(q.difficulty).toLowerCase()) + '">' + esc(q.difficulty) + '</span></p>';
     var answerLine = '<p class="dn-rev-ans">Seçtiğin: <strong>' + (sel || "boş") + '</strong> · Doğru: <strong>' + (cor ? cor.id : "?") + '</strong></p>';
@@ -1155,11 +1160,11 @@
     } else if (!sel && q.generalRemediation) {
       rem = '<div class="remediation-panel"><div class="remediation-title">Konu hatırlatması</div><div class="remediation-text">' + q.generalRemediation + '</div></div>';
     }
-    var sol = '<div class="solution-panel"><div class="solution-title">Adım adım çözüm (Step-by-step Solution)</div><div class="solution-steps">' + (q.stepByStepSolution || "") + '</div></div>';
+    var sol = '<div class="solution-panel"><div class="solution-title">Adım adım çözüm (Step-by-step Solution)</div><div class="solution-steps">' + (q.stepByStepSolution || "") + '</div>' + skHtml(q.cozumSekiller) + '</div>';
     var links = '<p class="dn-rev-links"><a href="' + esc(adresOf(q.sayfa)) + '#q-card-' + encodeURIComponent(q.id) + '">Ders sayfasında bu soru →</a>' +
       (q.kap ? ' <a href="' + esc(adresOf(q.sayfa)) + '#' + esc(q.kap) + '">' + esc(q.kapBaslik || "Ünite") + ' →</a>' : '') + '</p>';
     return info + (pas ? '<details class="dn-rev-pas"><summary>' + esc(pas.baslik) + '</summary><div class="dn-passage-body">' + pas.html + '</div></details>' : '') +
-      '<div class="question-body">' + q.question + '</div>' + opts + answerLine + (window.apEkHtml ? window.apEkHtml(q.ek) : "") + rem + sol + links;
+      '<div class="question-body">' + q.question + '</div>' + skHtml(q.sekiller) + opts + answerLine + (window.apEkHtml ? window.apEkHtml(q.ek) : "") + rem + sol + links;
   }
 
   // ======================================================================

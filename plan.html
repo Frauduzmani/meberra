@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#5B3DF5">
+  <link rel="apple-touch-icon" href="/assets/img/pwa/apple-touch-icon.png">
+  <title>Çalışma planım | Meberra</title>
+  <meta name="description" content="Sınav gününe kadar hafta hafta kişisel AP çalışma planı: bu haftanın görevleri, sınava giden yol ve plana göre durumun.">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/oyun.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/bildirim.css?v=20261021m">
+  <!-- 1.4.0 maskot/hareket: statik (kayma olmasın); app.js yükleyicisi ikinci kez eklemez -->
+  <link rel="stylesheet" href="/assets/css/hareket.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/maskot.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/plan.css?v=1180a">
+  <script src="/assets/js/adresler.js"></script>
+  <script src="/assets/js/maskot.js?v=20261021m" defer></script>
+  <script src="/assets/js/kutlama.js?v=20261021m" defer></script>
+  <script src="/assets/js/oyun.js?v=20261021m" defer></script>
+  <script src="/assets/js/bildirim.js?v=20261021m" defer></script>
+  <script src="/assets/js/plan-motor.js?v=1180a" defer></script>
+  <script src="/assets/js/plan.js?v=1180a" defer></script>
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/bugun" class="nav-brand"><div class="brand-badge">Meberra</div></a>
+    <div class="nav-actions"></div>
+  </nav>
+
+  <main class="main-container" id="main-content">
+
+    <header class="page-head">
+      <span class="eyebrow">Çalışma planım</span>
+      <h1>Sınav gününe hafta hafta</h1>
+      <p>Seçtiğin dersler, hedeflerin ve ilerlemen değiştikçe plan kendini yeniden kurar. Bitmeyen görev bir sonraki haftaya geçer.</p>
+    </header>
+
+    <!-- 1.18.0 PLAN (plan.js; veri GET /api/plan). Bölüm yükseklikleri CSS'te ayrılır (kayma olmasın). -->
+    <section class="pl-hero surface" id="pl-hero" aria-live="polite" aria-busy="true">
+      <div class="pl-hero-sayac"><span class="iskelet pl-isk-sayi" aria-hidden="true"></span></div>
+      <div class="pl-hero-metin"><span class="iskelet iskelet-satir" aria-hidden="true"></span><span class="iskelet iskelet-satir is-kisa" aria-hidden="true"></span></div>
+    </section>
+
+    <section class="section pl-bolum" aria-labelledby="pl-hafta-baslik">
+      <div class="pl-bolum-bas">
+        <h2 id="pl-hafta-baslik">Bu hafta</h2>
+        <span class="pl-bolum-alt" id="pl-hafta-alt"></span>
+      </div>
+      <ol class="pl-gorevler" id="pl-gorevler" aria-busy="true">
+        <li class="pl-gorev iskelet" aria-hidden="true"></li><li class="pl-gorev iskelet" aria-hidden="true"></li><li class="pl-gorev iskelet" aria-hidden="true"></li>
+      </ol>
+    </section>
+
+    <section class="section pl-bolum" aria-labelledby="pl-yol-baslik">
+      <div class="pl-bolum-bas">
+        <h2 id="pl-yol-baslik">Sınava giden yol</h2>
+        <ul class="pl-lejant" aria-label="Evreler">
+          <li><i class="pl-evre-im is-calisma" aria-hidden="true"></i>Konu çalışma</li>
+          <li><i class="pl-evre-im is-deneme" aria-hidden="true"></i>Tam sınav dönemi</li>
+          <li><i class="pl-evre-im is-tekrar" aria-hidden="true"></i>Yalnızca tekrar</li>
+          <li><i class="pl-im-tas" aria-hidden="true"></i>Önemli tarih</li>
+        </ul>
+      </div>
+      <div class="pl-yol surface" id="pl-yol"><div class="pl-yol-isk iskelet" aria-hidden="true"></div></div>
+      <p class="pl-not" id="pl-yol-not"></p>
+    </section>
+
+    <section class="section pl-bolum" aria-labelledby="pl-ayar-baslik">
+      <div class="pl-bolum-bas"><h2 id="pl-ayar-baslik">Ayarlar</h2></div>
+      <div class="surface pl-ayar">
+        <fieldset class="pl-saat" id="pl-saat">
+          <legend>Haftada kaç saat çalışabilirsin?</legend>
+          <div class="pl-saat-secenek" role="radiogroup" aria-describedby="pl-saat-yardim">
+            <label><input type="radio" name="pl-saat" value="3"><span>3 saat</span></label>
+            <label><input type="radio" name="pl-saat" value="5"><span>5 saat</span></label>
+            <label><input type="radio" name="pl-saat" value="8"><span>8 saat</span></label>
+            <label><input type="radio" name="pl-saat" value="12"><span>12 saat</span></label>
+          </div>
+          <p class="pl-yardim" id="pl-saat-yardim">Varsayılan 5 saat. Süre değişince bu haftanın başlamamış görevleri yeniden kurulur.</p>
+        </fieldset>
+        <div class="pl-ayar-ders">
+          <h3>Dersler ve hedefler</h3>
+          <ul class="pl-ders-liste" id="pl-dersler"></ul>
+          <a class="btn-ghost btn-sm" href="/profil">Derslerini ve hedeflerini düzenle</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom u-mt-0">
+      <div>© 2026 Meberra · Sınav tarihleri College Board takviminden gelir; açıklanmamış tarih tahmin edilmez.</div>
+      <div><a href="/bugun">← Bugün</a></div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/ucretsiz-kural.js"></script>
+  <script src="/assets/js/app.js"></script>
+</body>
+</html>

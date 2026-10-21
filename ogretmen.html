@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#5B3DF5">
+  <title>Öğretmen paneli | Meberra</title>
+  <meta name="description" content="Meberra öğretmen paneli: sınıf açın, katılım kodu paylaşın, öğrencilerin toplu ilerlemesini görün ve ödev verin.">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/veli.css?v=1190">
+  <link rel="stylesheet" href="/assets/css/ogretmen.css?v=1190">
+  <script src="/assets/js/adresler.js"></script>
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body class="veli-sayfa ogt-sayfa">
+  <a class="skip-link" href="#main-content">İçeriğe geç</a>
+  <header class="vp-ust">
+    <div class="vp-ust-ic ogt-ust-ic">
+      <a href="/ogretmen" class="nav-brand" aria-label="Meberra öğretmen paneli"><span class="brand-badge">Meberra</span><span class="vp-ust-etiket">Öğretmen paneli</span></a>
+      <div class="vp-ust-sag" id="og-hesap" hidden>
+        <span class="vp-ust-ad" id="og-ad"></span>
+        <button type="button" class="btn-ghost btn-sm" id="og-cikis">Çıkış</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="vp-main ogt-main" id="main-content" tabindex="-1">
+    <div class="vp-yukleniyor" id="og-yukleniyor" aria-live="polite"><span class="iskelet iskelet-satir"></span><span class="iskelet iskelet-blok"></span><span class="iskelet iskelet-blok"></span></div>
+
+    <!-- Davet / giriş / kayıt -->
+    <section class="vp-kart vp-giris" id="og-giris" hidden aria-labelledby="og-giris-baslik">
+      <h1 id="og-giris-baslik" tabindex="-1">Öğretmen paneli</h1>
+      <p class="vp-lead" id="og-giris-lead">Okulunuzun Meberra lisansıyla sınıflarınızı yönetmek için giriş yapın. Öğretmen hesabı, Meberra'nın gönderdiği davet bağlantısıyla açılır.</p>
+      <div class="form-alert" id="og-giris-alert" role="alert" tabindex="-1" hidden></div>
+      <form id="og-kayit" class="form-stack" novalidate hidden>
+        <div class="field-row">
+          <div class="field"><label for="ok-ad">Adınız</label><input class="text-input" id="ok-ad" autocomplete="given-name" maxlength="40" aria-describedby="ok-ad-err"><p class="field-error" id="ok-ad-err"></p></div>
+          <div class="field"><label for="ok-soyad">Soyadınız</label><input class="text-input" id="ok-soyad" autocomplete="family-name" maxlength="40" aria-describedby="ok-soyad-err"><p class="field-error" id="ok-soyad-err"></p></div>
+        </div>
+        <div class="field"><label for="ok-eposta">E-posta</label><input class="text-input" id="ok-eposta" type="email" readonly aria-describedby="ok-eposta-hint"><p class="field-hint" id="ok-eposta-hint">Davetin gönderildiği adres; giriş için bunu kullanacaksınız.</p></div>
+        <div class="field-row">
+          <div class="field"><label for="ok-sifre">Şifre</label><input class="text-input" id="ok-sifre" type="password" autocomplete="new-password" minlength="8" aria-describedby="ok-sifre-err"><p class="field-error" id="ok-sifre-err"></p></div>
+          <div class="field"><label for="ok-sifre2">Şifre (tekrar)</label><input class="text-input" id="ok-sifre2" type="password" autocomplete="new-password" aria-describedby="ok-sifre2-err"><p class="field-error" id="ok-sifre2-err"></p></div>
+        </div>
+        <label class="check-row"><input type="checkbox" id="ok-kvkk" aria-describedby="ok-kvkk-err"> <span><a href="/kvkk" target="_blank" rel="noopener">KVKK aydınlatma metnini</a> okudum. Öğrencilerin yalnızca toplu ilerleme özetini görebileceğimi, yazışmalarını ve notlarını göremeyeceğimi biliyorum.</span></label>
+        <p class="field-error" id="ok-kvkk-err"></p>
+        <label class="check-row"><input type="checkbox" id="ok-kosullar" aria-describedby="ok-kosullar-err"> <span><a href="/kosullar" target="_blank" rel="noopener">Kullanım koşullarını</a> kabul ediyorum.</span></label>
+        <p class="field-error" id="ok-kosullar-err"></p>
+        <button type="submit" class="btn-primary" id="ok-btn">Hesabımı aç</button>
+      </form>
+      <form id="og-login" class="form-stack" novalidate hidden>
+        <div class="field"><label for="ol-eposta">E-posta</label><input class="text-input" id="ol-eposta" type="email" autocomplete="username" inputmode="email" maxlength="120"></div>
+        <div class="field"><label for="ol-sifre">Şifre</label><input class="text-input" id="ol-sifre" type="password" autocomplete="current-password"></div>
+        <button type="submit" class="btn-primary" id="ol-btn">Giriş yap</button>
+        <p class="field-hint"><a href="/giris#unuttum">Şifremi unuttum</a></p>
+      </form>
+      <div id="og-kabul" hidden><button type="button" class="btn-primary" id="og-kabul-btn">Daveti kabul et</button></div>
+    </section>
+
+    <!-- Sınıflar -->
+    <div id="og-panel" hidden>
+      <header class="vp-bas ogt-bas">
+        <div>
+          <h1 tabindex="-1" id="og-baslik">Sınıflarım</h1>
+          <p class="vp-lead" id="og-okul"></p>
+        </div>
+        <dl class="ogt-koltuk" id="og-koltuk" aria-label="Lisans koltukları"></dl>
+      </header>
+      <div class="form-alert" id="og-panel-alert" role="alert" tabindex="-1" hidden></div>
+      <section class="vp-kart" aria-labelledby="og-yeni-baslik">
+        <h2 id="og-yeni-baslik">Yeni sınıf</h2>
+        <form id="og-yeni" class="ogt-satir-form" novalidate>
+          <div class="field"><label for="oy-ad">Sınıf adı</label><input class="text-input" id="oy-ad" maxlength="60" placeholder="ör. 11-A AP Calculus" aria-describedby="oy-ad-err"><p class="field-error" id="oy-ad-err"></p></div>
+          <div class="field"><label for="oy-ders">Ders</label><select class="text-input" id="oy-ders" aria-describedby="oy-ders-err"></select><p class="field-error" id="oy-ders-err"></p></div>
+          <div class="field ogt-form-btn"><button type="submit" class="btn-primary" id="oy-btn">Sınıf aç</button></div>
+        </form>
+      </section>
+      <div id="og-siniflar" class="ogt-sinif-liste"></div>
+      <p class="vp-alt-not">Öğrenciler yalnızca kendi onaylarıyla katılır ve istedikleri an ayrılabilir. Yazışmalar, notlar ve veli bağlantıları paylaşılmaz. · <a href="/kvkk">KVKK</a> · <a href="/gizlilik">Gizlilik</a></p>
+    </div>
+
+    <!-- Sınıf panosu -->
+    <div id="og-sinif" hidden>
+      <a href="/ogretmen" class="link-btn vp-geri" id="og-geri">← Sınıflarım</a>
+      <header class="vp-bas ogt-bas">
+        <div>
+          <h1 tabindex="-1" id="os-baslik">Sınıf</h1>
+          <p class="vp-lead" id="os-alt"></p>
+        </div>
+        <div class="ogt-arac">
+          <a class="btn-ghost btn-sm" id="os-csv" href="#" download>CSV indir</a>
+        </div>
+      </header>
+      <section class="vp-kart ogt-kod-kart" aria-labelledby="os-kod-baslik">
+        <h2 id="os-kod-baslik" class="vp-alt-baslik">Katılım</h2>
+        <div class="ogt-kod-satir">
+          <p class="ogt-kod" id="os-kod" aria-label="Katılım kodu"></p>
+          <div class="ogt-kod-bilgi">
+            <p class="vp-not">Öğrenciler <strong>meberra.com/sinif</strong> sayfasına bu kodu yazar ya da bağlantıyı açar.</p>
+            <div class="ogt-kopya"><input class="text-input" id="os-link" readonly aria-label="Katılım bağlantısı"><button type="button" class="btn-ghost btn-sm" id="os-kopya">Bağlantıyı kopyala</button></div>
+            <p class="ogt-kopya-durum" id="os-kopya-durum" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
+      <section class="vp-kart" aria-labelledby="os-liste-baslik">
+        <h2 id="os-liste-baslik">Öğrenciler</h2>
+        <div id="os-liste"></div>
+      </section>
+      <section class="vp-kart" aria-labelledby="os-isi-baslik">
+        <h2 id="os-isi-baslik">Ünite kapsamı</h2>
+        <p class="vp-not ogt-isi-not">Her hücre: o ünitenin sorularından çözülenlerin yüzdesi. Koyu = daha fazla kapsam; “—” henüz soru çözülmedi.</p>
+        <div id="os-isi"></div>
+      </section>
+      <section class="vp-kart" aria-labelledby="os-odev-baslik">
+        <h2 id="os-odev-baslik">Ödevler</h2>
+        <div id="os-odevler"></div>
+        <details class="ogt-odev-yeni" id="os-odev-ac">
+          <summary class="btn-ghost btn-sm">Yeni ödev ver</summary>
+          <form id="os-odev-form" class="form-stack" novalidate>
+            <div class="form-alert" id="os-odev-alert" role="alert" tabindex="-1" hidden></div>
+            <div class="field-row">
+              <div class="field"><label for="od-tur">Tür</label><select class="text-input" id="od-tur" aria-describedby="od-tur-err">
+                <option value="unite">Ünite soruları</option><option value="deneme">Deneme</option><option value="frq">FRQ</option><option value="tam_sinav">Tam deneme sınavı</option><option value="kart">Kavram kartları</option></select><p class="field-error" id="od-tur-err"></p></div>
+              <div class="field" id="od-hedef-alan"><label for="od-hedef">Hedef</label><select class="text-input" id="od-hedef" aria-describedby="od-hedef-err"></select><p class="field-error" id="od-hedef-err"></p></div>
+            </div>
+            <div class="field-row">
+              <div class="field" id="od-adet-alan"><label for="od-adet">Soru / kart sayısı</label><input class="text-input" id="od-adet" type="number" min="1" max="200" inputmode="numeric"></div>
+              <div class="field"><label for="od-son">Son gün <span class="opt-tag">isteğe bağlı</span></label><input class="text-input" id="od-son" type="date" aria-describedby="od-sonTarih-err"><p class="field-error" id="od-sonTarih-err"></p></div>
+            </div>
+            <div class="field"><label for="od-baslik">Başlık <span class="opt-tag">isteğe bağlı</span></label><input class="text-input" id="od-baslik" maxlength="100" aria-describedby="od-baslik-err"><p class="field-error" id="od-baslik-err"></p></div>
+            <button type="submit" class="btn-primary" id="od-btn">Ödevi ver</button>
+            <p class="field-hint">Öğrencilere uygulama içi bildirim gider. Durum, öğrencinin çözdüğü sorulardan ve tamamladığı sınavlardan kendiliğinden hesaplanır.</p>
+          </form>
+        </details>
+      </section>
+    </div>
+  </main>
+
+  <script src="/assets/js/ogretmen.js?v=1190"></script>
+</body>
+</html>

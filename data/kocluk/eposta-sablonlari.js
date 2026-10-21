@@ -36,7 +36,7 @@ window.APMEBERRA_EPOSTA_SABLONLARI = [
       "Dear Admissions Team,\n\n" +
       "My name is {{ogrenci.adSoyad}}. I will graduate in {{ogrenci.mezuniyetAyYil}} from {{ogrenci.okul}}, a 12-year general secondary school in {{ogrenci.okulSehir}}, Turkey, with a {{ogrenci.diploma}}. I do not hold a US High School Diploma. By graduation I will also hold College Board results in {{ogrenci.apSinavlari}} (scores of 3 or higher expected). I would like to apply to the {{program.ad}} programme at {{universite.ad}}, starting in the {{basvuru.donem}}.\n\n" +
       "Could you please confirm the following:\n\n" +
-      "1. Can AP results in combination with a {{ogrenci.diploma}} establish a direct (subject-restricted) higher education entrance qualification at your university, or is the anabin rule for Turkey (Lise Diplomasi plus a YKS score and placement in a four-year Lisans programme, case group TUR-BV05) the only route?\n" +
+      "1. Can AP results in combination with a {{ogrenci.diploma}} establish a direct (subject-restricted) higher education entrance qualification at your university, or is the anabin rule for Turkey (Lise Diplomasi plus a YKS result showing placement in a four-year Lisans programme, as listed on the uni-assist country page for Turkey) the only route?\n" +
       "2. If YKS placement is required: the YKS {{basvuru.yil}} placement results may be published after your application deadline. Can they be submitted after the deadline for the {{basvuru.donem}}?\n" +
       "3. Does your university require a uni-assist VPD for this programme?\n\n" +
       "Thank you very much for your help.\n\n" +
@@ -90,7 +90,7 @@ window.APMEBERRA_EPOSTA_SABLONLARI = [
   {
     id: "de-uni-yks-gec-teslim",
     baslik: "Alman üniversitesine: YKS yerleştirme sonucunu son tarihten sonra teslim",
-    amac: "anabin TUR-BV05'e göre giriş hakkı YKS yerleştirmesine bağlı. Yerleştirme sonuçları Alman başvuru son tarihinden sonra çıkabilir; üniversitenin sonucu sonradan kabul edip etmediğini ve başvuru kanalını (doğrudan / uni-assist / VPD) öğrenmek için.",
+    amac: "uni-assist Türkiye ülke sayfasına göre giriş hakkı YKS yerleştirmesine bağlı. Yerleştirme sonuçları Alman başvuru son tarihinden sonra çıkabilir; üniversitenin sonucu sonradan kabul edip etmediğini ve başvuru kanalını (doğrudan / uni-assist / VPD) öğrenmek için.",
     ulke: "de",
     kararNotu: null,
     alici: {
@@ -106,7 +106,7 @@ window.APMEBERRA_EPOSTA_SABLONLARI = [
     konu: "Late submission of YKS {{basvuru.yil}} placement results – {{program.ad}}, {{basvuru.donem}}",
     govde:
       "Dear Admissions Team,\n\n" +
-      "My name is {{ogrenci.adSoyad}}. I will graduate in {{ogrenci.mezuniyetAyYil}} from {{ogrenci.okul}}, a 12-year general secondary school in {{ogrenci.okulSehir}}, Turkey, with a {{ogrenci.diploma}}. According to anabin (case group TUR-BV05), my entrance qualification will depend on my YKS {{basvuru.yil}} score and on placement in a four-year Lisans programme. I would like to apply to the {{program.ad}} programme at {{universite.ad}} for the {{basvuru.donem}}.\n\n" +
+      "My name is {{ogrenci.adSoyad}}. I will graduate in {{ogrenci.mezuniyetAyYil}} from {{ogrenci.okul}}, a 12-year general secondary school in {{ogrenci.okulSehir}}, Turkey, with a {{ogrenci.diploma}}. According to the uni-assist country page for Turkey, my entrance qualification will depend on my YKS {{basvuru.yil}} score and on placement in a four-year Lisans programme. I would like to apply to the {{program.ad}} programme at {{universite.ad}} for the {{basvuru.donem}}.\n\n" +
       "The official YKS placement results (\"Yerleştirme Sonuçları\") may be published after your application deadline. Could you please tell me:\n\n" +
       "1. Can I apply by the deadline with my diploma and YKS score report and submit the placement result later? If so, what is the latest date for submitting it?\n" +
       "2. If late submission is not possible, can I apply for the next possible intake with the same documents?\n" +

@@ -11,6 +11,7 @@ const zaman = require("./zaman");
 const TURLER = ["soru-yanit", "seri", "premium", "duyuru", "rozet", "lig", "tekrar"];
 const EPOSTA_RE = /^[^\s@<>()",;:]+@[^\s@<>()",;:]+\.[A-Za-z]{2,}$/;
 const SAYFA = 30;
+const ONERI_EN_AZ = 10; // 1.16.0 oyun: önerilen saat için son 30 günde en az bu kadar cevap
 const kirp = s => String(s == null ? "" : s).trim().replace(/\s+/g, " ");
 
 /** Yalnızca site içi göreli bağlantı: "/calis#x" geçer; "//evil", "https://", "javascript:" geçmez. */
@@ -47,8 +48,32 @@ function bildirimServisi(db, eposta, push, denetim, sec) {
     aboneSil: db.prepare("DELETE FROM push_subscriptions WHERE id = ?"),
     aboneSilEndpoint: db.prepare("DELETE FROM push_subscriptions WHERE user_id = ? AND endpoint = ?"),
     aboneSilHepsi: db.prepare("DELETE FROM push_subscriptions WHERE user_id = ?"),
-    aboneBasari: db.prepare("UPDATE push_subscriptions SET son_basari = ? WHERE id = ?")
+    aboneBasari: db.prepare("UPDATE push_subscriptions SET son_basari = ? WHERE id = ?"),
+    // 1.16.0 oyun: akıllı hatırlatma saati
+    saatElle: db.prepare("UPDATE notification_prefs SET saat_elle = 1 WHERE user_id = ?"),
+    cevapSaatleri: db.prepare("SELECT substr(zaman, 1, 13) AS s, COUNT(*) AS n FROM answers WHERE user_id = ? AND zaman >= ? AND zaman <= ? GROUP BY s")
   };
+
+  // 1.16.0 oyun — önerilen hatırlatma saati: son 30 günde (≥ ONERI_EN_AZ cevap) en çok çalışılan İstanbul saati.
+  // Sessiz saatlere (22:00–08:00) denk gelirse en yakın izinli saate (8 ya da 21) çekilir. Eşitlikte erken saat.
+  function onerilenSaat(userId, simdiMs) {
+    const t = simdiMs == null ? saat() : simdiMs;
+    const satirlar = q.cevapSaatleri.all(userId, new Date(t - 30 * 864e5).toISOString(), new Date(t).toISOString());
+    const say = new Array(24).fill(0);
+    let top = 0;
+    satirlar.forEach(r => { const ms = Date.parse(r.s + ":00:00Z"); if (isNaN(ms)) return; say[zaman.parcalar(ms).saat] += r.n; top += r.n; });
+    if (top < ONERI_EN_AZ) return null;
+    let en = 0;
+    for (let h = 1; h < 24; h++) if (say[h] > say[en]) en = h;
+    return Math.min(21, Math.max(8, en));
+  }
+  /** Hatırlatmanın kullanılacağı saat: öğrenci saat seçmediyse (saat_elle = 0) önerilen saat, yoksa kayıtlı saat */
+  function etkinSaat(r, simdiMs) {
+    if (!r) return config.hatirlatmaSaati;
+    if (r.saat_elle) return r.hatirlatma_saati;
+    const o = onerilenSaat(r.user_id, simdiMs);
+    return o == null ? r.hatirlatma_saati : o;
+  }
 
   function genel(n) {
     return { id: n.id, tur: n.tur, baslik: n.baslik, metin: n.metin, link: n.link, okundu: !!n.okundu, olusturma: n.olusturma };
@@ -109,7 +134,12 @@ function bildirimServisi(db, eposta, push, denetim, sec) {
   }
 
   return {
-    TURLER, linkTemiz, olustur, pushGonder, ayarSatiri, ayarGenel, iptalLinki,
+    TURLER, linkTemiz, olustur, pushGonder, ayarSatiri, ayarGenel, iptalLinki, onerilenSaat, etkinSaat,
+    /** 1.16.0 oyun: GET /api/bildirim-ayarlari ek alanları { onerilenSaat, saatElle, etkinSaat } */
+    saatBilgisi(userId) {
+      const r = q.ayar.get(userId);
+      return { onerilenSaat: onerilenSaat(userId), saatElle: !!(r && r.saat_elle), etkinSaat: r ? etkinSaat(r) : (onerilenSaat(userId) || config.hatirlatmaSaati) };
+    },
     publicKey: push ? push.publicKey : null,
 
     liste(userId, once) {
@@ -168,6 +198,7 @@ function bildirimServisi(db, eposta, push, denetim, sec) {
       if (Object.keys(e).length) throw new HttpHata(400, "Lütfen işaretli alanları düzelt.", e);
       q.ayarYaz.run(yeni.eposta_hatirlatma, yeni.push, yeni.eposta_bildirim, yeni.hatirlatma_saati, yeni.veli_raporu, yeni.veli_eposta,
         yeni.veli_dogrulandi, yeni.veli_belirtec, simdi(), u.id);
+      if (f.hatirlatmaSaati !== undefined) q.saatElle.run(u.id); // 1.16.0 oyun: saati öğrenci seçti → önerilen saat kullanılmaz
       if (veliDegisti && yeni.veli_eposta) {
         const tab = config.baseUrl + "/api/public/veli?t=" + encodeURIComponent(yeni.veli_belirtec);
         eposta.gonder(yeni.veli_eposta, "Meberra: haftalık çalışma raporu onayı",

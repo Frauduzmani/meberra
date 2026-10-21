@@ -18,6 +18,7 @@
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
+const sekilM = require("../server/sekil.js");
 
 const ROOT = path.resolve(__dirname, "..");
 const TOHUM = path.join(ROOT, "server", "tohum", "soru-bankasi.json");
@@ -34,6 +35,8 @@ const YENI_KUTULAR = {
 };
 const ALANLAR = ["id", "tur", "sayfa", "ders", "unite_no", "unite", "kutu", "kutu_baslik", "dizi", "sira", "numara", "konu", "zorluk", "govde", "secenekler",
   "dogru", "aciklama", "genel_hatirlatma", "hata_aciklamalari", "kaynak", "deneme_kodlari", "pasaj", "ek", "durum"];
+// v1.13.0 isteğe bağlı alanlar: sekil (kök şekli; biçim yeni-sorular2/SEKIL-BICIMI.md). Şık şekli secenekler[i].sekil.
+const ISTEGE_BAGLI = ["sekil"];
 const ZORUNLU_METIN = ["id", "sayfa", "unite", "kutu", "kutu_baslik", "dizi", "konu", "govde", "dogru", "aciklama", "genel_hatirlatma", "kaynak"];
 const HARFLER = "ABCDE";
 const YASAK_KAYNAK = /official|past exam|canonical|college board exam/i;
@@ -108,7 +111,15 @@ function calistir() {
     const tag = q.id;
     // şema
     for (const k of ALANLAR) if (!(k in q)) hata(q, `eksik alan ${k}`);
-    for (const k of Object.keys(q)) if (!ALANLAR.includes(k)) hata(q, `bilinmeyen alan ${k}`);
+    for (const k of Object.keys(q)) if (!ALANLAR.includes(k) && !ISTEGE_BAGLI.includes(k)) hata(q, `bilinmeyen alan ${k}`);
+    // şekiller: beyaz liste temizleyicisinden DEĞİŞMEDEN geçmeli (atılan etiket/öznitelik yok), alt zorunlu, viewBox ≤ 480×360
+    {
+      const t = sekilM.satirSekilTemizle(q);
+      t.sorunlar.forEach(m => hata(q, m));
+      if (t.kaldirilan.length) hata(q, "şekil temizleyiciden değişerek geçiyor: " + t.kaldirilan.slice(0, 4).join(", "));
+      t.uyarilar.forEach(m => uyarilar.push(`${q.id}: ${m}`));
+      if (Array.isArray(q.secenekler)) q.secenekler.forEach(o => { if (o && o.sekil != null && Object.keys(o).some(k => !["id", "text", "sekil"].includes(k))) hata(q, `şık ${o.id}: bilinmeyen alan`); });
+    }
     for (const k of ZORUNLU_METIN) if (!String(q[k] == null ? "" : q[k]).trim()) hata(q, `boş alan ${k}`);
     if (!/^[a-z0-9_]{3,60}$/.test(String(q.id || ""))) hata(q, "kimlik biçimi (küçük harf, rakam, _; 3–60)");
     if (goruldu.has(tag)) hata(q, `girdi dosyalarında tekrar eden kimlik (${dosya})`);
@@ -130,8 +141,8 @@ function calistir() {
     const sec = Array.isArray(q.secenekler) ? q.secenekler : [];
     if (sec.length < 2 || sec.length > 5) hata(q, `${sec.length} şık (2–5 olmalı)`);
     if (sec.map(o => o && o.id).join("") !== HARFLER.slice(0, sec.length)) hata(q, "şık harfleri A.. sıralı değil");
-    if (sec.some(o => !o || !String(o.text || "").trim())) hata(q, "boş şık");
-    if (new Set(sec.map(o => norm(o && o.text))).size !== sec.length) hata(q, "aynı metinli şıklar");
+    if (sec.some(o => !o || (!String(o.text || "").trim() && !o.sekil))) hata(q, "boş şık");
+    if (new Set(sec.map(o => norm(o && o.text) + "\u0001" + (o && o.sekil ? o.sekil.svg : ""))).size !== sec.length) hata(q, "aynı metinli şıklar");
     const dogrular = sec.filter(o => o && o.id === q.dogru);
     if (dogrular.length !== 1) hata(q, `tek doğru şık olmalı (dogru = ${q.dogru})`);
     const yanlis = sec.map(o => o && o.id).filter(id => id !== q.dogru).sort();
@@ -204,7 +215,7 @@ function calistir() {
   if (KURU) { console.log(`--kuru: yazılmadı (tohum sürümü ${tohum.surum} → ${eklenecek.length ? (Number(tohum.surum) || 1) + 1 : tohum.surum} olurdu).`); return; }
 
   if (eklenecek.length) {
-    eklenecek.forEach(q => { const r = {}; ALANLAR.forEach(k => { r[k] = q[k]; }); tohum.sorular.push(r); });
+    eklenecek.forEach(q => { const r = {}; ALANLAR.forEach(k => { r[k] = q[k]; }); ISTEGE_BAGLI.forEach(k => { if (q[k] != null) r[k] = q[k]; }); tohum.sorular.push(r); });
     const eski = Number(tohum.surum) || 1;
     tohum.surum = eski + 1;
     tohum.yeniSoruEkleme = new Date().toISOString();

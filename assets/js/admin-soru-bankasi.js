@@ -16,7 +16,7 @@
   var DUR_TON = { aktif: "ok", taslak: "warn", arsiv: "notr" };
   var TUR = { ders: "Ders sayfası", seviye: "Seviye testi", vitrin: "Vitrin (herkese açık demo)" };
   var ALAN_AD = { govde: "Soru kökü", secenekler: "Şıklar", dogru: "Doğru şık", aciklama: "Çözüm", genel_hatirlatma: "Konu hatırlatması", hata_aciklamalari: "Hata açıklamaları",
-    konu: "Konu", kaynak: "Kaynak", zorluk: "Zorluk", durum: "Durum", unite: "Ünite", kutu: "İstasyon", sayfa: "Sayfa", numara: "Numara", sira: "Sıra", deneme_kodlari: "Deneme kodları", ek: "Ek" };
+    konu: "Konu", kaynak: "Kaynak", zorluk: "Zorluk", durum: "Durum", unite: "Ünite", kutu: "İstasyon", sayfa: "Sayfa", numara: "Numara", sira: "Sıra", deneme_kodlari: "Deneme kodları", ek: "Ek", sekil: "Şekil" };
   var S = { meta: null, f: { tur: "ders", sayfa: "", unite: "", durum: "", zorluk: "", q: "", supheli: false, sirala: "", sayfaNo: 1 }, istek: 0, secili: null, onizZaman: null };
 
   var $ = function (s, k) { return (k || P).querySelector(s); };
@@ -224,6 +224,48 @@
       }).join("") + "</ul>";
   }
 
+  // ---- v1.13.0 şekil alanları (SVG yapıştır + alt metni zorunlu + başlık + konum); canlı önizleme ve sunucu temizleyici uyarıları ----
+  function skListe(v) { return (Array.isArray(v) ? v : v ? [v] : []).filter(function (x) { return x && typeof x === "object"; }); }
+  function sekilAlaniHtml(on, sk, secenek) {
+    sk = sk || {};
+    return '<div class="adm-sk" data-sk-alan' + (secenek ? ' data-sk-secenek="1"' : "") + ">" +
+      '<div class="field"><label for="' + on + '-svg">SVG (yapıştır; izinli etiketler: svg, g, path, line, polyline, polygon, rect, circle, ellipse, text, tspan, defs, marker, title, desc)</label>' +
+      '<textarea id="' + on + '-svg" class="text-input adm-kod-alan" rows="5" spellcheck="false" data-sk-svg placeholder="&lt;svg viewBox=&quot;0 0 320 220&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;…&lt;/svg&gt;">' + esc(sk.svg || "") + "</textarea></div>" +
+      '<div class="adm-form-satir">' +
+        '<div class="field adm-field-esnek"><label for="' + on + '-alt">Alt metni (zorunlu; grafiği görmeyen biri soruyu çözebilmeli)</label><textarea id="' + on + '-alt" class="text-input" rows="2" maxlength="2000" data-sk-alt>' + esc(sk.alt || "") + "</textarea></div>" +
+        '<div class="field"><label for="' + on + '-baslik">Başlık (isteğe bağlı, ör. Graph of f)</label><input id="' + on + '-baslik" class="text-input" maxlength="200" data-sk-baslik value="' + esc(sk.baslik || "") + '"></div>' +
+        (secenek ? "" : '<div class="field adm-field-dar"><label for="' + on + '-konum">Konum</label><select id="' + on + '-konum" class="text-input" data-sk-konum>' +
+          '<option value="govde"' + (sk.konum !== "aciklama" ? " selected" : "") + '>Kökte (cevaptan önce)</option><option value="aciklama"' + (sk.konum === "aciklama" ? " selected" : "") + ">Yalnız çözümde</option></select></div>") +
+      "</div>" +
+      '<div class="adm-sk-durum" data-sk-durum aria-live="polite"></div></div>';
+  }
+  /** Alandan şekil nesnesi; SVG ve alt ikisi de boşsa null */
+  function sekilOku(alan) {
+    if (!alan) return null;
+    var svg = alan.querySelector("[data-sk-svg]").value.trim(), alt = alan.querySelector("[data-sk-alt]").value.trim();
+    if (!svg && !alt) return null;
+    var o = { tur: "svg", svg: svg, alt: alt }, b = alan.querySelector("[data-sk-baslik]").value.trim(), k = alan.querySelector("[data-sk-konum]");
+    if (b) o.baslik = b;
+    if (k) o.konum = k.value;
+    return o;
+  }
+  /** Sunucu temizleyicisi (POST /api/admin/sekil/onizle): hatalar / atılanlar / uyarılar alanın altında */
+  var skZaman = new WeakMap();
+  function sekilDenetle(alan) {
+    var durum = alan.querySelector("[data-sk-durum]"), sk = sekilOku(alan);
+    clearTimeout(skZaman.get(alan));
+    if (!sk) { durum.innerHTML = ""; return; }
+    skZaman.set(alan, setTimeout(function () {
+      var istek = sekilOku(alan);
+      if (!istek) { durum.innerHTML = ""; return; }
+      A.api("/api/admin/sekil/onizle", "POST", { sekil: istek, secenek: alan.hasAttribute("data-sk-secenek") }).then(function (v) {
+        var l = function (a, cls, bas) { return a && a.length ? '<div class="adm-sk-not ' + cls + '"><strong>' + bas + "</strong><ul>" + a.map(function (m) { return "<li>" + esc(m) + "</li>"; }).join("") + "</ul></div>" : ""; };
+        durum.innerHTML = v.gecerli && !v.kaldirilan.length && !v.uyarilar.length ? '<p class="adm-sk-not is-ok">✓ Temizleyiciden değişmeden geçiyor.</p>'
+          : l(v.hatalar, "is-hata", "Kaydedilemez:") + l(v.kaldirilan, "is-uyari", "Temizleyici bunları atacak:") + l(v.uyarilar, "is-bilgi", "Uyarı:");
+      }, function (e) { durum.innerHTML = '<p class="adm-sk-not is-hata">' + esc(e.message) + "</p>"; });
+    }, 600));
+  }
+
   function secenekSatiri(o, dogru, hata, i, n) {
     var h = hata[o.id] || {};
     return '<fieldset class="adm-sb-sik" data-sik="' + i + '"><legend class="visually-hidden">Şık ' + HARF[i] + "</legend>" +
@@ -231,13 +273,16 @@
       '<span class="adm-sb-harf" aria-hidden="true">' + HARF[i] + "</span>" +
       '<button type="button" class="btn-ghost btn-sm" data-sik-sil="' + i + '"' + (n <= 2 ? " disabled" : "") + ' aria-label="' + HARF[i] + ' şıkkını kaldır">Kaldır</button></div>' +
       '<div class="field"><label for="sb-sik-' + i + '">Şık ' + HARF[i] + " metni</label><textarea id=\"sb-sik-" + i + '" class="text-input" rows="2" data-sik-metin>' + esc(o.text) + "</textarea></div>" +
+      '<details class="adm-sk-sik"' + (o.sekil ? " open" : "") + '><summary>Şık şekli (SVG' + (o.sekil ? " · var" : ", isteğe bağlı") + ")</summary>" + sekilAlaniHtml("sb-sk-sik-" + i, o.sekil, true) +
+        '<p class="field-error" data-hata="sekil_' + HARF[i] + '" hidden></p></details>' +
       '<div class="adm-sb-hata"' + (dogru === HARF[i] ? " hidden" : "") + '><div class="field"><label for="sb-et-' + i + '">Hata etiketi (bu şıkkı seçene)</label><input id="sb-et-' + i + '" class="text-input" data-sik-etiket maxlength="1000" value="' + esc(h.etiket || "") + '"></div>' +
       '<div class="field"><label for="sb-ha-' + i + '">Hata açıklaması / konu hatırlatması</label><textarea id="sb-ha-' + i + '" class="text-input" rows="2" data-sik-aciklama>' + esc(h.aciklama || "") + "</textarea></div></div>" +
       "</fieldset>";
   }
 
   function editorCiz(d, s, yeni) {
-    var secenekler = (s.secenekler || []).map(function (o) { return { id: o.id, text: o.text }; });
+    var secenekler = (s.secenekler || []).map(function (o) { return { id: o.id, text: o.text, sekil: o.sekil || null }; });
+    var kokSekiller = skListe(s.sekil);
     var hata = JSON.parse(JSON.stringify(s.hata_aciklamalari || {}));
     var baslik = yeni ? "Yeni soru" : s.id + " · sürüm " + s.surum;
     var konum = yeni ? "" : (s.tur === "seviye" ? "Seviye testi · " + s.ders + " · Unit " + s.unite : s.tur === "vitrin" ? "Vitrin demo sorusu (herkese açık)" : s.sayfa + " · Ünite " + s.unite_no + " · " + s.kutu + (s.kutu_baslik ? " (" + s.kutu_baslik + ")" : ""));
@@ -263,6 +308,10 @@
       '<div class="adm-sb-duzen">' +
         '<form class="surface adm-sb-form" novalidate aria-labelledby="sb-form-b"><h3 id="sb-form-b">' + (yeni ? "İçerik" : "Düzenle") + "</h3>" +
           '<div class="field"><label for="sb-govde">Soru kökü (HTML + LaTeX: $…$)</label><textarea id="sb-govde" class="text-input adm-kod-alan" rows="6" data-alan="govde">' + esc(s.govde) + '</textarea><p class="field-error" data-hata="govde" hidden></p></div>' +
+          '<fieldset class="adm-sk-kok"><legend>Şekiller (SVG, en çok 4)</legend><div class="adm-sk-kok-liste"></div>' +
+            '<p class="field-hint">Renkler tema uyumlu olmalı: çizgiler currentColor; vurgu için class="sk-vurgu" (mor) / "sk-ikincil" (turuncu), ızgara "sk-izgara", eksen "sk-eksen". viewBox en çok 480×360; width/height verme; metin font-size 11–14.</p>' +
+            '<p class="field-error" data-hata="sekil" hidden></p>' +
+            '<div class="adm-eylem"><button type="button" class="btn-ghost btn-sm" data-sk-ekle>' + A.ikon("arti") + "Şekil ekle</button></div></fieldset>" +
           '<div class="adm-sb-siklar" aria-describedby="sb-sik-ipucu"></div>' +
           '<p class="field-hint" id="sb-sik-ipucu">2–5 şık; tam olarak bir doğru şık işaretle. Yanlış şıklar için hata etiketi ve açıklaması öğrenciye o şıkkı seçince gösterilir.</p>' +
           '<p class="field-error" data-hata="secenekler" hidden></p><p class="field-error" data-hata="dogru" hidden></p><p class="field-error" data-hata="hata_aciklamalari" hidden></p>' +
@@ -289,12 +338,35 @@
     function siklariCiz() {
       siklar.innerHTML = secenekler.map(function (o, i) { return secenekSatiri(o, form.dataset.dogru || "", hata, i, secenekler.length); }).join("");
       $("[data-sik-ekle]", d).disabled = secenekler.length >= 5;
+      siklar.querySelectorAll("[data-sk-alan]").forEach(sekilDenetle);
     }
+    // v1.13.0 kök şekilleri (liste; en çok 4)
+    var kokKap = $(".adm-sk-kok-liste", d);
+    function kokCiz() {
+      kokKap.innerHTML = kokSekiller.length ? kokSekiller.map(function (sk, i) {
+        return '<div class="adm-sk-kok-oge" data-sk-i="' + i + '"><div class="adm-sk-kok-ust"><strong>Şekil ' + (i + 1) + '</strong><button type="button" class="btn-ghost btn-sm" data-sk-sil="' + i + '">Kaldır</button></div>' +
+          sekilAlaniHtml("sb-sk-kok-" + i, sk, false) + "</div>";
+      }).join("") : '<p class="adm-alt">Bu soruda şekil yok.</p>';
+      $("[data-sk-ekle]", d).disabled = kokSekiller.length >= 4;
+      kokKap.querySelectorAll("[data-sk-alan]").forEach(sekilDenetle);
+    }
+    function kokOku() { kokSekiller = Array.prototype.map.call(kokKap.querySelectorAll(".adm-sk-kok-oge [data-sk-alan]"), function (al) { return sekilOku(al) || { tur: "svg", svg: "", alt: "" }; }); }
+    function kokAktif() { return Array.prototype.map.call(kokKap.querySelectorAll(".adm-sk-kok-oge [data-sk-alan]"), sekilOku).filter(Boolean); }
+    kokCiz();
+    kokKap.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-sk-sil]"); if (!b) return;
+      kokOku(); kokSekiller.splice(Number(b.getAttribute("data-sk-sil")), 1); kokCiz(); onizle();
+    });
+    $("[data-sk-ekle]", d).addEventListener("click", function () {
+      kokOku(); if (kokSekiller.length >= 4) return;
+      kokSekiller.push({ tur: "svg", svg: "", alt: "", konum: "govde" }); kokCiz();
+      var t = kokKap.querySelector('[data-sk-i="' + (kokSekiller.length - 1) + '"] [data-sk-svg]'); if (t) t.focus();
+    });
     form.dataset.dogru = s.dogru || "";
     function okuSiklar() {
       siklar.querySelectorAll("[data-sik]").forEach(function (fs) {
         var i = Number(fs.getAttribute("data-sik")), L = HARF[i];
-        secenekler[i] = { id: L, text: fs.querySelector("[data-sik-metin]").value };
+        secenekler[i] = { id: L, text: fs.querySelector("[data-sik-metin]").value, sekil: sekilOku(fs.querySelector("[data-sk-alan]")) };
         var et = fs.querySelector("[data-sik-etiket]").value.trim(), ac = fs.querySelector("[data-sik-aciklama]").value.trim();
         if (et || ac) hata[L] = { etiket: et, aciklama: ac }; else delete hata[L];
       });
@@ -318,7 +390,7 @@
     $("[data-sik-ekle]", d).addEventListener("click", function () {
       okuSiklar();
       if (secenekler.length >= 5) return;
-      secenekler.push({ id: HARF[secenekler.length], text: "" });
+      secenekler.push({ id: HARF[secenekler.length], text: "", sekil: null });
       siklariCiz();
       var t = siklar.querySelector('[data-sik="' + (secenekler.length - 1) + '"] [data-sik-metin]'); if (t) t.focus();
     });
@@ -329,14 +401,16 @@
       clearTimeout(S.onizZaman);
       S.onizZaman = setTimeout(function () {
         okuSiklar();
-        var dogru = form.dataset.dogru;
+        var dogru = form.dataset.dogru, sk = kokAktif(), skH = window.apSekilHtml || function () { return ""; };
+        var skGovde = sk.filter(function (x) { return x.konum !== "aciklama"; }), skCozum = sk.filter(function (x) { return x.konum === "aciklama"; });
+        var skSik = secenekler.some(function (o) { return o.sekil && o.sekil.svg; });
         oniz.innerHTML = '<article class="question-card adm-sb-kart"><div class="question-header"><div class="question-head-main"><span class="question-num-badge">Soru</span><span class="question-topic">' + esc($("#sb-konu", d).value) + "</span></div>" +
           '<div class="question-tags"><span class="question-tag ' + esc($("#sb-zor", d).value) + '">' + esc(ZOR[$("#sb-zor", d).value] || "") + "</span></div></div>" +
-          '<div class="question-body">' + $("#sb-govde", d).value + "</div>" +
-          '<div class="options-container">' + secenekler.map(function (o) {
-            return '<div class="option-btn' + (o.id === dogru ? " correct" : "") + '"><span class="option-letter">' + o.id + "</span><span>" + o.text + "</span>" + (o.id === dogru ? '<span class="option-mark">Doğru cevap</span>' : "") + "</div>";
+          '<div class="question-body">' + $("#sb-govde", d).value + "</div>" + skH(skGovde) +
+          '<div class="options-container' + (skSik ? " sk-secenekli" : "") + '">' + secenekler.map(function (o) {
+            return '<div class="option-btn' + (o.id === dogru ? " correct" : "") + '"><span class="option-letter">' + o.id + '</span><span class="option-text">' + o.text + (o.sekil && o.sekil.svg ? skH(o.sekil, true) : "") + "</span>" + (o.id === dogru ? '<span class="option-mark">Doğru cevap</span>' : "") + "</div>";
           }).join("") + "</div>" +
-          '<div class="feedback-box correct-box" style="display:block"><div class="solution-panel"><div class="solution-title">Adım adım çözüm</div><div class="solution-steps">' + $("#sb-aciklama", d).value + "</div></div>" +
+          '<div class="feedback-box correct-box" style="display:block"><div class="solution-panel"><div class="solution-title">Adım adım çözüm</div><div class="solution-steps">' + $("#sb-aciklama", d).value + "</div>" + skH(skCozum) + "</div>" +
           ($("#sb-genel", d).value ? '<div class="remediation-panel"><div class="remediation-title">Konu hatırlatması</div><div class="remediation-text">' + $("#sb-genel", d).value + "</div></div>" : "") +
           secenekler.filter(function (o) { return o.id !== dogru && hata[o.id]; }).map(function (o) {
             return '<div class="remediation-panel"><div class="remediation-title">' + o.id + " seçilirse: " + esc(hata[o.id].etiket || "") + '</div><div class="remediation-text">' + (hata[o.id].aciklama || "") + "</div></div>";
@@ -344,7 +418,7 @@
         dizgile(oniz);
       }, 400);
     }
-    form.addEventListener("input", onizle);
+    form.addEventListener("input", function (e) { onizle(); var al = e.target.closest && e.target.closest("[data-sk-alan]"); if (al) sekilDenetle(al); });
     form.addEventListener("change", function (e) { if (e.target.id === "sb-zor") onizle(); });
     onizle();
 
@@ -371,13 +445,19 @@
       var yerel = {};
       if (!$("#sb-govde", d).value.trim()) yerel.govde = "Soru kökünü yaz.";
       if (secenekler.length < 2 || secenekler.length > 5) yerel.secenekler = "2 ile 5 arasında şık olmalı.";
-      else if (secenekler.some(function (o) { return !String(o.text).trim(); })) yerel.secenekler = "Boş şık bırakma.";
+      else if (secenekler.some(function (o) { return !String(o.text).trim() && !o.sekil; })) yerel.secenekler = "Boş şık bırakma (metin ya da şekil).";
       // Büyük/küçük harfe duyarlı (sunucuyla aynı): yalnız harfle ayrılan şıklar (ör. t / T) bilinçli çeldirici olabilir
-      else if (new Set(secenekler.map(function (o) { return String(o.text).trim().replace(/\s+/g, " "); })).size !== secenekler.length) yerel.secenekler = "Aynı metinli iki şık olamaz.";
+      else if (new Set(secenekler.map(function (o) { return String(o.text).trim().replace(/\s+/g, " ") + "|" + (o.sekil ? o.sekil.svg : ""); })).size !== secenekler.length) yerel.secenekler = "Aynı metinli iki şık olamaz.";
+      // v1.13.0 şekiller: SVG ve alt metni birlikte zorunlu
+      var skEksik = function (x) { return !x.svg ? "SVG boş." : !x.alt ? "Alt metni zorunlu." : ""; };
+      var kokL = kokAktif();
+      kokL.forEach(function (x, i) { var m = skEksik(x); if (m && !yerel.sekil) yerel.sekil = "Şekil " + (i + 1) + ": " + m; });
+      secenekler.forEach(function (o) { var m = o.sekil && skEksik(o.sekil); if (m) yerel["sekil_" + o.id] = o.id + " şıkkının şekli: " + m; });
       if (!dogru || !secenekler.some(function (o) { return o.id === dogru; })) yerel.dogru = "Tam olarak bir doğru şık işaretle.";
       if (Object.keys(yerel).length) { hatalariGoster(yerel); return; }
       var hb = {}; secenekler.forEach(function (o) { if (o.id !== dogru && hata[o.id]) hb[o.id] = hata[o.id]; });
-      var govde = { govde: $("#sb-govde", d).value, secenekler: secenekler.map(function (o) { return { text: o.text }; }), dogru: dogru, aciklama: $("#sb-aciklama", d).value,
+      var govde = { govde: $("#sb-govde", d).value, secenekler: secenekler.map(function (o) { var x = { text: o.text }; if (o.sekil) x.sekil = o.sekil; return x; }), dogru: dogru,
+        sekil: kokL.length === 0 ? null : kokL.length === 1 ? kokL[0] : kokL, aciklama: $("#sb-aciklama", d).value,
         genel_hatirlatma: $("#sb-genel", d).value, hata_aciklamalari: hb, konu: $("#sb-konu", d).value, kaynak: $("#sb-kaynak", d).value, zorluk: $("#sb-zor", d).value, durum: $("#sb-dur", d).value };
       var dugme = form.querySelector('button[type="submit"]'); dugme.disabled = true;
       var istek;
@@ -404,7 +484,10 @@
       });
     });
     function hatalariGoster(e) {
-      Object.keys(e).forEach(function (k) { var el = form.querySelector('[data-hata="' + k + '"]'); if (el) { el.textContent = e[k]; el.hidden = false; } });
+      Object.keys(e).forEach(function (k) {
+        var el = form.querySelector('[data-hata="' + k + '"]');
+        if (el) { el.textContent = e[k]; el.hidden = false; var dt = el.closest("details"); if (dt) dt.open = true; }
+      });
       var ilk = form.querySelector("[data-hata]:not([hidden])");
       if (ilk) ilk.scrollIntoView({ block: "center" });
     }

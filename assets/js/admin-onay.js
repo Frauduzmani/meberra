@@ -217,8 +217,12 @@
       satir("Zorluk önerisi", ek.zorlukOnerisi ? esc(ek.zorlukOnerisi) : "", "is-ic") + satir("Üretim", ek.uretim ? esc(ek.uretim) : "", "is-ic");
     return h ? '<section class="adm-ok-blok adm-ok-ek-kap" aria-label="Zenginleştirme"><h4>Zenginleştirme <span class="adm-alt">(öğrenci cevaptan sonra görür; gri olanlar iç alan)</span></h4><dl class="adm-ok-ek">' + h + "</dl></section>" : "";
   }
+  // v1.13.0 şekiller (yer tutucu → sekil.js çizer); kök şekilleri konuma göre: kökte / yalnız çözümde
+  function skHtml(v, sik) { return typeof window.apSekilHtml === "function" ? window.apSekilHtml(v, sik) : ""; }
+  function skKonum(v, k) { return (Array.isArray(v) ? v : v ? [v] : []).filter(function (s) { return s && (s.konum || "govde") === k; }); }
   function kartHtml(x, i) {
     var z = ZOR[x.zorluk] || [x.zorluk || "—", "notr"];
+    var skSik = (x.secenekler || []).some(function (o) { return o && o.sekil; });
     var hata = x.hata_aciklamalari || {};
     var pas = x.pasaj && S.veri.pasajlar ? S.veri.pasajlar[x.pasaj] : null;
     var bid = "ok-k-" + i;
@@ -231,17 +235,17 @@
       "</header>" +
       (x.konu ? '<p class="adm-ok-konu">' + x.konu + "</p>" : "") +
       (pas ? '<details class="adm-ok-pasaj"><summary>' + esc(pas.baslik || x.pasaj) + '</summary><div class="adm-ok-pasaj-ic" lang="en">' + (pas.html || "") + "</div></details>" : "") +
-      '<div class="adm-ok-kok">' + (x.govde || "") + "</div>" +
-      '<ol class="adm-ok-siklar" aria-label="Şıklar">' + (x.secenekler || []).map(function (o) {
+      '<div class="adm-ok-kok">' + (x.govde || "") + "</div>" + skHtml(skKonum(x.sekil, "govde")) +
+      '<ol class="adm-ok-siklar' + (skSik ? " sk-secenekli" : "") + '" aria-label="Şıklar">' + (x.secenekler || []).map(function (o) {
         var d = o.id === x.dogru, h = hata[o.id];
         return '<li class="' + (d ? "is-dogru" : "") + '"><span class="adm-ok-harf" aria-hidden="true">' + esc(o.id) + '</span><div class="adm-ok-sik-ic"><span class="visually-hidden">Şık ' + esc(o.id) + (d ? " (doğru)" : "") + ": </span>" +
-          '<div class="adm-ok-sik-metin">' + (o.text || "") + "</div>" +
+          '<div class="adm-ok-sik-metin">' + (o.text || "") + skHtml(o.sekil, true) + "</div>" +
           (d ? '<span class="adm-ok-dogru-isaret">✓ Doğru cevap</span>'
             : h ? '<div class="adm-ok-hata"><strong>' + (h.etiket || "Hata") + "</strong>" + (h.aciklama ? " " + h.aciklama : "") + "</div>"
             : '<div class="adm-ok-hata is-eksik">Bu şık için hata açıklaması yok.</div>') +
           "</div></li>";
       }).join("") + "</ol>" +
-      '<section class="adm-ok-blok"><h4>Adım adım çözüm</h4><div class="adm-ok-metin">' + (x.aciklama || '<span class="adm-alt">—</span>') + "</div></section>" +
+      '<section class="adm-ok-blok"><h4>Adım adım çözüm</h4><div class="adm-ok-metin">' + (x.aciklama || '<span class="adm-alt">—</span>') + "</div>" + skHtml(skKonum(x.sekil, "aciklama")) + "</section>" +
       (x.genel_hatirlatma ? '<section class="adm-ok-blok"><h4>Konu hatırlatması</h4><div class="adm-ok-metin">' + x.genel_hatirlatma + "</div></section>" : "") +
       ekHtml(x.ek) +
       '<p class="adm-ok-kaynak adm-alt">' + esc(x.kaynak || "") + (x.surum ? " · v" + esc(x.surum) : "") + "</p>" +

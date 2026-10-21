@@ -15,6 +15,7 @@ const { islem, simdi } = require("./db");
 const { HttpHata } = require("./http");
 const { hizSinirlayici } = require("./guvenlik");
 const kural = require("../assets/js/ucretsiz-kural.js");
+const sekilM = require("./sekil");
 
 const TOHUM = path.join(__dirname, "tohum", "soru-bankasi.json");
 const DENEME_META = path.join(__dirname, "tohum", "deneme-meta.json");
@@ -22,10 +23,10 @@ const SEVIYE_DIR = path.join(config.ROOT, "data", "sorular", "seviye");
 const DEMO_ID = process.env.DEMO_SORU_ID || "vitrin_demo_1";
 const QUIZ_KEY = "apmeberra:quiz:v1", HAK_KEY = "apmeberra:deneme-hak:v1", DENEME_KEY = "apmeberra:deneme:v1";
 
-const JSON_ALAN = ["secenekler", "hata_aciklamalari", "deneme_kodlari", "ek"];
+const JSON_ALAN = ["secenekler", "hata_aciklamalari", "deneme_kodlari", "ek", "sekil"];
 // İçerik alanları (sürüm karşılaştırması ve geçmiş farkı bunlar üzerinden)
 const ICERIK = ["tur", "sayfa", "ders", "unite_no", "unite", "kutu", "kutu_baslik", "dizi", "sira", "numara", "konu", "zorluk", "govde", "secenekler",
-  "dogru", "aciklama", "genel_hatirlatma", "hata_aciklamalari", "kaynak", "deneme_kodlari", "pasaj", "ek", "durum"];
+  "dogru", "aciklama", "genel_hatirlatma", "hata_aciklamalari", "kaynak", "deneme_kodlari", "pasaj", "ek", "durum", "sekil"];
 const ZORLUKLAR = ["easy", "medium", "hard"];
 const DURUMLAR = ["aktif", "taslak", "arsiv"];
 const HARFLER = ["A", "B", "C", "D", "E"];
@@ -39,7 +40,7 @@ function jsonCoz(v, d) { if (v == null) return d; try { return JSON.parse(v); } 
 function satirCoz(r) {
   if (!r) return null;
   const o = Object.assign({}, r);
-  JSON_ALAN.forEach(k => { o[k] = jsonCoz(r[k], k === "secenekler" || k === "deneme_kodlari" ? [] : {}); });
+  JSON_ALAN.forEach(k => { o[k] = jsonCoz(r[k], k === "secenekler" || k === "deneme_kodlari" ? [] : k === "sekil" ? null : {}); });
   return o;
 }
 function icerik(r) { const o = {}; ICERIK.forEach(k => { o[k] = r[k] === undefined ? null : r[k]; }); return o; }
@@ -50,17 +51,17 @@ function hazirla(db) {
   return {
     tek: db.prepare("SELECT * FROM questions_bank WHERE id = ?"),
     ekle: db.prepare(`INSERT INTO questions_bank (id, tur, sayfa, ders, unite_no, unite, kutu, kutu_baslik, dizi, sira, numara, konu, zorluk, govde, secenekler, dogru,
-      aciklama, genel_hatirlatma, hata_aciklamalari, kaynak, deneme_kodlari, pasaj, ek, durum, surum, olusturma, guncelleme, guncelleyen)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`),
+      aciklama, genel_hatirlatma, hata_aciklamalari, kaynak, deneme_kodlari, pasaj, ek, durum, sekil, surum, olusturma, guncelleme, guncelleyen)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`),
     guncelle: db.prepare(`UPDATE questions_bank SET tur = ?, sayfa = ?, ders = ?, unite_no = ?, unite = ?, kutu = ?, kutu_baslik = ?, dizi = ?, sira = ?, numara = ?,
       konu = ?, zorluk = ?, govde = ?, secenekler = ?, dogru = ?, aciklama = ?, genel_hatirlatma = ?, hata_aciklamalari = ?, kaynak = ?, deneme_kodlari = ?, pasaj = ?,
-      ek = ?, durum = ?, surum = ?, guncelleme = ?, guncelleyen = ? WHERE id = ? AND surum = ?`),
+      ek = ?, durum = ?, sekil = ?, surum = ?, guncelleme = ?, guncelleyen = ? WHERE id = ? AND surum = ?`),
     gecmis: db.prepare("INSERT INTO questions_bank_history (soru_id, surum, veri, fark, not_, degistiren, zaman) VALUES (?, ?, ?, ?, ?, ?, ?)")
   };
 }
 const yaziDegerleri = r => [r.tur, r.sayfa, r.ders, r.unite_no, r.unite, r.kutu, r.kutu_baslik, r.dizi, r.sira | 0, r.numara, r.konu, r.zorluk, r.govde,
   JSON.stringify(r.secenekler || []), r.dogru, r.aciklama, r.genel_hatirlatma, JSON.stringify(r.hata_aciklamalari || {}), r.kaynak,
-  JSON.stringify(r.deneme_kodlari || []), r.pasaj, JSON.stringify(r.ek || {}), r.durum || "aktif"];
+  JSON.stringify(r.deneme_kodlari || []), r.pasaj, JSON.stringify(r.ek || {}), r.durum || "aktif", r.sekil == null ? null : JSON.stringify(r.sekil)];
 
 /** Yeni sürüm yazar: eski hâl geçmişe, satır surum+1. Dönüş: { surum, fark } (fark boşsa yazılmaz). */
 function surumYaz(db, st, eski, yeni, kim, not) {
@@ -74,7 +75,16 @@ function surumYaz(db, st, eski, yeni, kim, not) {
 }
 
 /** Tohum / aktarım upsert'i (idempotent). Aynı içerik atlanır; değişen soru yeni sürüm olur. */
+/** v1.13.0: tohum/aktarım satırlarının şekilleri temizlenir (kararlı çıktı → aynı içerik yeniden sürüm üretmez); geçersiz şekil atılır. */
+function tohumSekilleri(satirlar, gunluk) {
+  return satirlar.map(r => {
+    const t = sekilM.satirSekilTemizle(r);
+    if (t.sorunlar.length && gunluk) gunluk.uyari("sunucu", "Tohum sorusunda geçersiz şekil atıldı: " + r.id, { soruId: r.id, sorunlar: t.sorunlar.slice(0, 5).join("; ") });
+    return t.satir;
+  });
+}
 function tohumUpsert(db, satirlar, o) {
+  satirlar = tohumSekilleri(satirlar, o && o.gunluk);
   const st = hazirla(db), kim = (o && o.guncelleyen) || "tohum", z = simdi();
   const s = { eklenen: 0, guncellenen: 0, ayni: 0 };
   islem(db, () => {
@@ -123,7 +133,7 @@ function tohumEsitle(db, dosya, gunluk) {
   const f = dosya || TOHUM;
   if (!fs.existsSync(f)) return { mod: "yok" };
   const t = JSON.parse(fs.readFileSync(f, "utf8"));
-  const surum = Number(t.surum) || 1, satirlar = t.sorular || [];
+  const surum = Number(t.surum) || 1, satirlar = tohumSekilleri(t.sorular || [], gunluk);
   if (db.prepare("SELECT COUNT(*) AS n FROM questions_bank").get().n === 0) {
     let s;
     islem(db, () => { s = tohumUpsert(db, satirlar, { guncelleyen: "tohum" }); tohumSurumYaz(db, surum); });
@@ -154,13 +164,17 @@ function tohumEsitle(db, dosya, gunluk) {
 
 // --- öğrenciye giden biçimler (eski istemci şemasıyla aynı alan adları; doğru şık / çözüm YOK) -------------------
 function acikSoru(r) {
-  const options = (r.secenekler || []).map(o => ({ id: o.id, text: o.text }));
+  const options = (r.secenekler || []).map(sekilM.acikSecenek);
+  // v1.13.0: kök şekilleri (konum "govde") — konum "aciklama" olanlar yalnız çözümde (cozumOf)
+  const sk = sekilM.govdeSekilleri(r.sekil);
+  let o;
   if (r.tur === "seviye") {
     const ek = r.ek || {};
-    return { id: r.id, unite: r.unite, beceri: ek.beceri || r.konu, zorluk: r.zorluk, sureSn: ek.sureSn || 90, hesapMakinesi: !!ek.hesapMakinesi,
+    o = { id: r.id, unite: r.unite, beceri: ek.beceri || r.konu, zorluk: r.zorluk, sureSn: ek.sureSn || 90, hesapMakinesi: !!ek.hesapMakinesi,
       source: r.kaynak, question: r.govde, options };
-  }
-  return { id: r.id, number: r.numara, topic: r.konu, difficulty: r.zorluk, source: r.kaynak, question: r.govde, options };
+  } else o = { id: r.id, number: r.numara, topic: r.konu, difficulty: r.zorluk, source: r.kaynak, question: r.govde, options };
+  if (sk.length) o.sekiller = sk;
+  return o;
 }
 /**
  * v1.10.0 içerik zenginleştirmesi (yalnız CEVAPTAN SONRA gönderilir; liste yanıtlarında yoktur):
@@ -178,7 +192,10 @@ function ogrenciEk(r) {
 function cozumOf(r) {
   const hatalar = {};
   Object.keys(r.hata_aciklamalari || {}).forEach(k => { const h = r.hata_aciklamalari[k] || {}; hatalar[k] = { errorTag: h.etiket || "", remediation: h.aciklama || "" }; });
-  return { dogru: r.dogru, aciklama: r.aciklama || "", genelHatirlatma: r.genel_hatirlatma || "", hatalar, ek: ogrenciEk(r) };
+  const c = { dogru: r.dogru, aciklama: r.aciklama || "", genelHatirlatma: r.genel_hatirlatma || "", hatalar, ek: ogrenciEk(r) };
+  const sk = sekilM.cozumSekilleri(r.sekil);
+  if (sk.length) c.sekiller = sk; // v1.13.0: konum "aciklama" şekilleri yalnız cevaptan sonra
+  return c;
 }
 
 // --- deneme seçimi (istemcideki eski selectQuestions ile birebir: aynı tohum + aynı havuz → aynı deneme) ------------
@@ -376,7 +393,7 @@ function soruBankasiRotalari(r, bag) {
     if (!row.secenekler.some(o => o.id === secim)) throw new HttpHata(400, "Geçersiz seçenek.");
     const c = cozumOf(row), h = c.hatalar[secim], dogru = secim === row.dogru;
     return { ok: true, dogru, dogruSecenek: row.dogru, aciklama: c.aciklama, genelHatirlatma: c.genelHatirlatma,
-      hataAciklamasi: dogru ? null : { etiket: h ? h.errorTag : "", aciklama: h ? h.remediation : "" } };
+      hataAciklamasi: dogru ? null : { etiket: h ? h.errorTag : "", aciklama: h ? h.remediation : "" }, sekiller: c.sekiller || [] };
   });
 
   // ==== deneme ===================================================================================
@@ -681,11 +698,26 @@ function soruBankasiRotalari(r, bag) {
     if (!govde) e.govde = "Soru kökünü yaz."; else if (govde.length > 20000) e.govde = "Soru kökü en fazla 20000 karakter.";
     const sec = Array.isArray(b.secenekler) ? b.secenekler : [];
     if (sec.length < 2 || sec.length > 5) e.secenekler = "2 ile 5 arasında seçenek olmalı.";
-    const secenekler = sec.slice(0, 5).map((o, i) => ({ id: HARFLER[i], text: String(o && o.text != null ? o.text : o || "").trim() }));
-    if (!e.secenekler && secenekler.some(o => !o.text)) e.secenekler = "Boş seçenek bırakma.";
+    const secenekler = sec.slice(0, 5).map((o, i) => {
+      const x = { id: HARFLER[i], text: String(o && typeof o === "object" ? (o.text != null ? o.text : "") : o || "").trim() };
+      // v1.13.0 şık şekli (secenekler[i].sekil): beyaz liste temizleyicisinden geçer; şekilli şıkta metin boş olabilir
+      if (o && typeof o === "object" && o.sekil != null && o.sekil !== "") {
+        const k = sekilM.sekilDogrula(o.sekil, { secenek: true });
+        if (k.hatalar.length) e["sekil_" + x.id] = x.id + " şıkkının şekli: " + k.hatalar.join("; ");
+        else x.sekil = k.sekil;
+      }
+      return x;
+    });
+    if (!e.secenekler && secenekler.some(o => !o.text && !o.sekil)) e.secenekler = "Boş seçenek bırakma.";
     if (!e.secenekler && secenekler.some(o => o.text.length > 4000)) e.secenekler = "Seçenek metni en fazla 4000 karakter.";
     // Büyük/küçük harfe DUYARLI: bazı çeldiriciler bilinçli olarak yalnız harfle ayrılır (ör. calc_u7_q1: k(t − 20) / k(T − 20))
-    if (!e.secenekler && new Set(secenekler.map(o => o.text.replace(/\s+/g, " "))).size !== secenekler.length) e.secenekler = "Aynı metinli iki seçenek olamaz.";
+    if (!e.secenekler && new Set(secenekler.map(o => o.text.replace(/\s+/g, " ") + "\u0001" + (o.sekil ? o.sekil.svg : ""))).size !== secenekler.length) e.secenekler = "Aynı metinli iki seçenek olamaz.";
+    // Kök şekli (null | nesne | dizi). Alan gönderilmezse güncellemede mevcut şekil korunur.
+    let sekil = eski ? eski.sekil : null;
+    if (b.sekil !== undefined) {
+      const k = sekilM.sekilleriDogrula(b.sekil === "" ? null : b.sekil);
+      if (k.hatalar.length) e.sekil = k.hatalar.join("; "); else sekil = k.deger;
+    }
     const dogru = String(b.dogru || "").toUpperCase();
     // Tek doğru şık: dogru tek harf ve seçeneklerden biri olmalı (birden çok doğru işaretlenemez)
     if (!secenekler.some(o => o.id === dogru)) e.dogru = "Tam olarak bir doğru seçenek işaretle.";
@@ -710,8 +742,16 @@ function soruBankasiRotalari(r, bag) {
     // LaTeX ayırıcısı ($) tek sayıda kalırsa MathJax bozulur
     [["govde", govde], ["aciklama", aciklama], ["genel_hatirlatma", genel]].forEach(([k, v]) => { if (!e[k] && (v.replace(/\\\$/g, "").match(/\$/g) || []).length % 2) e[k] = "Tek sayıda $ var (LaTeX kapanmamış)."; });
     if (Object.keys(e).length) throw new HttpHata(400, "Lütfen işaretli alanları düzelt.", e);
-    return { govde, secenekler, dogru, zorluk, durum, aciklama, genel_hatirlatma: genel, hata_aciklamalari: hata, konu, kaynak };
+    return { govde, secenekler, dogru, zorluk, durum, aciklama, genel_hatirlatma: genel, hata_aciklamalari: hata, konu, kaynak, sekil };
   }
+
+  /** v1.13.0 şekil önizleme: temizlenmiş SVG + hatalar / uyarılar / atılanlar (kaydetmez). */
+  r.post("/api/admin/sekil/onizle", req => {
+    yoneticiGerekli(req);
+    const b = req.body || {};
+    const k = sekilM.sekilDogrula(b.sekil, { secenek: !!b.secenek });
+    return { ok: true, gecerli: !k.hatalar.length, sekil: k.sekil, hatalar: k.hatalar, uyarilar: k.uyarilar, kaldirilan: k.kaldirilan };
+  });
 
   r.put("/api/admin/soru-bankasi/soru/:id", req => {
     yoneticiGerekli(req);
@@ -878,5 +918,5 @@ function soruBankasiRotalari(r, bag) {
   return { sinir };
 }
 
-module.exports = { soruBankasiRotalari, tohumUpsert, tohumYukleGerekirse, tohumEsitle, tohumSurumOku, yoneticiDuzenledi, acikSoru, cozumOf, ogrenciEk, soruSec, satirCoz,
+module.exports = { soruBankasiRotalari, tohumUpsert, tohumSekilleri, tohumYukleGerekirse, tohumEsitle, tohumSurumOku, yoneticiDuzenledi, acikSoru, cozumOf, ogrenciEk, soruSec, satirCoz,
   TOHUM, TOHUM_AYAR, DEMO_ID };

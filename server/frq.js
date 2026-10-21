@@ -10,6 +10,7 @@ const path = require("path");
 const { islem, simdi } = require("./db");
 const { HttpHata } = require("./http");
 const { hizSinirlayici } = require("./guvenlik");
+const sekilM = require("./sekil");
 
 const TOHUM = path.join(__dirname, "tohum", "frq.json");
 const TOHUM_AYAR = "frq_tohum_surum";
@@ -76,9 +77,35 @@ function dogrula(f) {
     top += Number.isInteger(p.puan) ? p.puan : 0;
   });
   if (f.toplam_puan !== top) e("toplam_puan " + f.toplam_puan + " ≠ parça toplamı " + top);
-  const metin = JSON.stringify([f.giris, f.parcalar]);
+  // v1.13.0 şekiller (FRQ girişi f.sekil, parça p.sekil): beyaz liste temizleyicisinden DEĞİŞMEDEN geçmeli, alt zorunlu
+  const sekilDenet = (v, yer) => {
+    if (v == null) return;
+    const k = sekilM.sekilleriDogrula(v);
+    k.hatalar.forEach(m => e(yer + " şekli: " + m));
+    if (!k.hatalar.length && k.kaldirilan.length) e(yer + " şekli temizleyiciden değişerek geçiyor: " + k.kaldirilan.slice(0, 3).join(", "));
+  };
+  sekilDenet(f.sekil, "giriş");
+  f.parcalar.forEach(p => { if (p && typeof p === "object") sekilDenet(p.sekil, "(" + p.harf + ")"); });
+  const metin = JSON.stringify([f.giris, f.parcalar.map(p => p && typeof p === "object" ? Object.assign({}, p, { sekil: null }) : p)]);
   if (/(^|[^\\])\$/.test(metin)) e("'$' karakteri var (LaTeX için \\( \\) kullan; para için USD yaz)");
   return s;
+}
+
+/** v1.13.0: FRQ'daki şekilleri temizlenmiş (kararlı) biçime çevirir; geçersiz olanı olduğu gibi bırakır (dogrula yakalar). */
+function sekilTemizle(f) {
+  if (!f || typeof f !== "object") return f;
+  const t = v => { if (v == null) return v; const k = sekilM.sekilleriDogrula(v); return k.hatalar.length ? v : k.deger; };
+  const y = Object.assign({}, f);
+  if (f.sekil != null) y.sekil = t(f.sekil);
+  if (Array.isArray(f.parcalar)) y.parcalar = f.parcalar.map(p => p && typeof p === "object" && p.sekil != null ? Object.assign({}, p, { sekil: t(p.sekil) }) : p);
+  return y;
+}
+/** Öğrenciye giden şekil alanları: sekiller (her zaman), cozumSekiller (yalnız teslimden sonra; konum "aciklama") */
+function sekilAlanlari(hedef, kaynak, cozumde) {
+  const g = sekilM.govdeSekilleri(kaynak && kaynak.sekil), c = sekilM.cozumSekilleri(kaynak && kaynak.sekil);
+  if (g.length) hedef.sekiller = g;
+  if (cozumde && c.length) hedef.cozumSekiller = c;
+  return hedef;
 }
 
 // --- veri biçimleri ------------------------------------------------------------------------------
@@ -90,13 +117,13 @@ function ozet(f) {
 }
 /** Soru (çözmeye başlarken) — rubrik/çözüm yok */
 function acik(f) {
-  return Object.assign(ozet(f), { giris: f.giris, kaynak: f.kaynak, parcalar: (f.parcalar || []).map(p => ({ harf: p.harf, soru: p.soru, puan: p.puan })) });
+  return sekilAlanlari(Object.assign(ozet(f), { giris: f.giris, kaynak: f.kaynak, parcalar: (f.parcalar || []).map(p => sekilAlanlari({ harf: p.harf, soru: p.soru, puan: p.puan }, p, false)) }), f, false);
 }
 /** Teslimden sonra: rubrik + örnek çözüm + sık hatalar */
 function tam(f) {
-  return Object.assign(ozet(f), { giris: f.giris, kaynak: f.kaynak, parcalar: (f.parcalar || []).map(p => ({ harf: p.harf, soru: p.soru, puan: p.puan,
+  return sekilAlanlari(Object.assign(ozet(f), { giris: f.giris, kaynak: f.kaynak, parcalar: (f.parcalar || []).map(p => sekilAlanlari({ harf: p.harf, soru: p.soru, puan: p.puan,
     rubrik: (p.rubrik || []).map(r => { const o = { puan: r.puan, olcut: r.olcut }; if (r.ornek_cevap) o.ornek_cevap = r.ornek_cevap; return o; }),
-    ornek_cozum: p.ornek_cozum, sik_hatalar: p.sik_hatalar || [] })) });
+    ornek_cozum: p.ornek_cozum, sik_hatalar: p.sik_hatalar || [] }, p, true)) }), f, true);
 }
 const ICERIK_DISI = ["durum", "surum", "guncelleme", "elle"];
 function icerik(f) { const o = Object.assign({}, f); ICERIK_DISI.forEach(k => delete o[k]); return o; }
@@ -143,7 +170,8 @@ function tohumEsitle(db, dosya, gunluk) {
   const s = { mod: dbSurum ? "guncelleme" : "ilk", surum: t.surum, eklenen: 0, guncellenen: 0, korunan: [] };
   const tek = db.prepare("SELECT * FROM frq WHERE id = ?");
   islem(db, () => {
-    for (const f of t.frq) {
+    for (const f0 of t.frq) {
+      const f = sekilTemizle(f0);
       if (dogrula(f).length) continue; // bozuk tohum kaydı yüklenmez (pm-denetim yakalar)
       const r = tek.get(f.id), z = simdi();
       if (!r) {
@@ -337,6 +365,7 @@ function frqRotalari(r, bag) {
     const v = b.veri && typeof b.veri === "object" && !Array.isArray(b.veri) ? Object.assign({}, b.veri) : null;
     if (!v) throw new HttpHata(400, "veri nesnesi gerekli.");
     v.id = r0.id; v.durum = r0.durum; // kimlik ve durum düzenleyiciden değişmez (onay/arşiv ayrı)
+    Object.assign(v, sekilTemizle(v)); // v1.13.0: şekiller beyaz listeyle temizlenmiş hâliyle saklanır
     const sorun = dogrula(v);
     if (sorun.length) throw new HttpHata(400, "FRQ geçersiz: " + sorun.slice(0, 5).join("; "), null, { sorunlar: sorun });
     const yeni = icerik(v);
@@ -362,4 +391,4 @@ function frqRotalari(r, bag) {
   return { sinir };
 }
 
-module.exports = { frqRotalari, tohumEsitle, dogrula, DERSLER, TOHUM, UCRETSIZ_HAK };
+module.exports = { frqRotalari, tohumEsitle, dogrula, sekilTemizle, sekilAlanlari, DERSLER, TOHUM, UCRETSIZ_HAK };

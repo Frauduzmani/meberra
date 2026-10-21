@@ -138,6 +138,7 @@
         (v.sorunlar.length ? '<div class="adm-hata" role="alert"><p>' + v.sorunlar.map(esc).join("<br>") + "</p></div>" : "") +
         '<p class="adm-ipucu">Kurallar: her parçada rubrik puanları toplamı = parça puanı; toplam_puan = parça puanları toplamı; LaTeX için \\( \\) ve \\[ \\] (dolar işareti yok). Kimlik ve durum buradan değişmez.</p>' +
         '<label for="frq-a-json" class="field-hint">FRQ JSON</label><textarea id="frq-a-json" class="text-input" rows="22" spellcheck="false" style="width:100%;font-family:var(--font-mono);font-size:13px">' + esc(JSON.stringify(veri, null, 2)) + "</textarea>" +
+        '<div class="adm-sk-frq" aria-live="polite"><h4>Şekil önizlemesi <span class="adm-alt">(giriş: "sekil", parça: parcalar[i].sekil — {tur:"svg", svg, alt, baslik?, konum:"govde"|"aciklama"})</span></h4><div id="frq-a-sekil"></div></div>' +
         '<div class="field" style="margin-top:8px"><label for="frq-a-not" class="field-hint">Değişiklik notu</label><input id="frq-a-not" class="text-input" maxlength="200"></div>' +
         '<div class="adm-rozetler" style="margin-top:8px"><button type="button" class="btn-primary btn-sm" data-duzen-kaydet>Yeni sürüm olarak kaydet</button><button type="button" class="btn-ghost btn-sm" data-duzen-kapat>Kapat</button></div>' +
         '<p class="field-error" id="frq-a-hata" role="alert"></p>' +
@@ -145,8 +146,31 @@
           return "<li>v" + g.surum + " · " + esc((DURUM[g.durum] || [g.durum])[0]) + " · " + esc(A.tarih ? A.tarih(g.zaman) : g.zaman) + " · " + esc(g.not_ || "") +
             ' <button type="button" class="btn-ghost btn-sm" data-surum-yukle="' + g.surum + '">Düzenleyiciye yükle</button></li>';
         }).join("") + "</ul>" : "");
+      var ta = $("#frq-a-json"), zz = null;
+      ta.addEventListener("input", function () { clearTimeout(zz); zz = setTimeout(sekilOnizle, 600); });
+      sekilOnizle();
       k.scrollIntoView({ block: "start" });
     }).catch(function (x) { k.innerHTML = A.hataKutusu(x.message || "Yüklenemedi."); });
+  }
+  /** v1.13.0: JSON'daki şekilleri çizer (sekil.js) ve sunucu temizleyicisinin sonucunu altına yazar (POST /api/admin/sekil/onizle) */
+  function sekilOnizle() {
+    var kap = $("#frq-a-sekil"); if (!kap) return;
+    var f; try { f = JSON.parse($("#frq-a-json").value); } catch (e) { kap.innerHTML = '<p class="adm-alt">JSON geçersiz; şekiller çizilemedi.</p>'; return; }
+    var l = [], liste = function (v) { return Array.isArray(v) ? v : v ? [v] : []; };
+    liste(f && f.sekil).forEach(function (s, i) { l.push({ ad: "Giriş şekli " + (i + 1), s: s }); });
+    ((f && f.parcalar) || []).forEach(function (p) { liste(p && p.sekil).forEach(function (s, i) { l.push({ ad: "(" + (p.harf || "?") + ") şekli " + (i + 1), s: s }); }); });
+    if (!l.length) { kap.innerHTML = '<p class="adm-alt">Bu FRQ’da şekil yok.</p>'; return; }
+    kap.innerHTML = l.map(function (x, i) {
+      return '<div class="adm-sk-frq-oge"><p><strong>' + esc(x.ad) + "</strong> · " + esc((x.s && x.s.konum) === "aciklama" ? "yalnız çözümde" : "soruda") + "</p>" +
+        (typeof window.apSekilHtml === "function" ? window.apSekilHtml(x.s) : "") + '<div class="adm-sk-durum" data-frq-sk="' + i + '"></div></div>';
+    }).join("");
+    l.forEach(function (x, i) {
+      A.api("/api/admin/sekil/onizle", "POST", { sekil: x.s }).then(function (v) {
+        var d = kap.querySelector('[data-frq-sk="' + i + '"]'); if (!d) return;
+        var m = [].concat(v.hatalar.map(function (t) { return "✗ " + t; }), v.kaldirilan.map(function (t) { return "atılacak: " + t; }), v.uyarilar.map(function (t) { return "uyarı: " + t; }));
+        d.innerHTML = m.length ? '<ul class="adm-sk-not ' + (v.gecerli ? "is-uyari" : "is-hata") + '">' + m.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>" : '<p class="adm-sk-not is-ok">✓ Temizleyiciden değişmeden geçiyor.</p>';
+      }).catch(function () {});
+    });
   }
   function kaydetJson() {
     var h = $("#frq-a-hata"), veri;

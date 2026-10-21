@@ -12,10 +12,16 @@
     "dev": "node --watch server/index.js",
     "test": "node --test \"server/test/*.test.js\"",
     "yonetici": "node server/cli.js yonetici-olustur",
-    "yedek": "node server/cli.js yedek"
+    "yedek": "node server/cli.js yedek",
+    "test:birim": "node araclar/testler/birim-hepsi.js",
+    "test:e2e": "playwright test -c e2e",
+    "test:e2e:kur": "playwright install chromium"
   },
   "dependencies": {
     "nodemailer": "^6.9.16",
     "web-push": "^3.6.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1"
   }
 }

@@ -9,7 +9,7 @@ const SRC = "https://anabin.kmk.org/no_cache/filter/schulabschluesse-mit-hochsch
 const FIXTURE = {
   de: {
     ad: "Almanya rotası",
-    temelKural: { baslik: "SAHTE: YKS'de lisans programına yerleşme → alana bağlı giriş (TUR-BV05)", detay: "Sahte test detayı.", kaynak: SRC },
+    temelKural: { baslik: "SAHTE: YKS'de lisans programına yerleşme → alana bağlı giriş (uni-assist)", detay: "Sahte test detayı.", kaynak: SRC },
     kosullar: [
       { id: "de-k-yks", baslik: "YKS'de 180+ puan", detay: "Sahte", kaynak: SRC, kesinlik: "Doğrulandı" },
       { id: "de-k-alan", baslik: "Giriş hakkı yerleşilen alanla sınırlı", detay: "Sahte", kaynak: SRC, kesinlik: "Doğrulandı" },

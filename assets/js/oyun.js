@@ -793,15 +793,18 @@
         '<div class="question-header"><div class="question-head-main"><span class="question-num-badge" id="oy-tq-baslik">' + esc(KISA[sp] || sp) + "</span>" +
         '<span class="question-topic">' + (q.topic || "") + "</span></div></div>" +
         (pas ? '<details class="oy-pasaj"><summary>' + esc(pas.baslik || "Metni göster") + "</summary>" + (pas.html || "") + "</details>" : "") +
-        '<div class="question-body">' + q.question + "</div>" +
-        '<div class="options-container" role="group" aria-label="Seçenekler">' + q.options.map(function (o) {
-          return '<button type="button" class="option-btn" data-sec="' + esc(o.id) + '"><span class="option-letter" aria-hidden="true">' + esc(o.id) + '</span><span class="visually-hidden">Şık ' + esc(o.id) + ": </span><span>" + o.text + "</span></button>";
-        }).join("") + "</div>" +
+        '<div class="question-body">' + q.question + "</div>" + skHtml(q.sekiller) +
+        '<div class="options-container' + (skSecenekli(q.options) ? " sk-secenekli" : "") + '" role="group" aria-label="Seçenekler">' + q.options.map(function (o) {
+          return '<button type="button" class="option-btn" data-sec="' + esc(o.id) + '"><span class="option-letter" aria-hidden="true">' + esc(o.id) + '</span><span class="visually-hidden">Şık ' + esc(o.id) + ": </span><span class=\"option-text\">" + (o.text || "") + skHtml(o.sekil, true) + "</span></button>";
+        }).join("") + "</div>" + (typeof window.apSekilSiklarDugme === "function" ? window.apSekilSiklarDugme(q.options) : "") +
         '<div class="feedback-box" id="oy-tq-geri" hidden></div></article>';
       mathjax(govde);
       var ilk = govde.querySelector(".option-btn");
       if (ilk) ilk.focus({ preventScroll: true });
     }
+    // v1.13.0 şekiller (app.js apSekilHtml yer tutucusu → sekil.js çizer)
+    function skHtml(v, sik) { return typeof window.apSekilHtml === "function" ? window.apSekilHtml(v, sik) : ""; }
+    function skSecenekli(l) { return typeof window.apSekilSecenekli === "function" && window.apSekilSecenekli(l); }
     function cevapla(secim) {
       var x = oturum.sira[oturum.i], q = x.q, sp = x.k.split("|")[0];
       var kap = govde.querySelector(".options-container");
@@ -841,7 +844,7 @@
         (!dogruMu ? '<div class="feedback-text"><strong>Hata nedeni:</strong> ' + (sec.errorTag || "Kavramsal veya işlemsel eksiklik.") + "</div>" : "") +
         (typeof window.apEkHtml === "function" ? window.apEkHtml(q.ek || (yanit && yanit.ek)) : "") + // 1.10.0 zenginleştirme (cevaptan sonra)
         (!dogruMu ? '<div class="remediation-panel"><div class="remediation-title"><span>Konu hatırlatması</span></div><div class="remediation-text">' + (sec.remediation || q.generalRemediation || "") + "</div></div>" : "") +
-        '<div class="solution-panel"><div class="solution-title">Adım adım çözüm</div><div class="solution-steps">' + (q.stepByStepSolution || "") + "</div></div>" +
+        '<div class="solution-panel"><div class="solution-title">Adım adım çözüm</div><div class="solution-steps">' + (q.stepByStepSolution || "") + "</div>" + skHtml(q.cozumSekiller) + "</div>" +
         '<p class="oy-tekrar-eylem"><button type="button" class="btn-primary" data-tekrar-sonraki>' + (son ? "Tekrarı bitir" : "Sonraki soru →") + "</button></p>";
       fb.hidden = false;
       fb.style.display = "block";

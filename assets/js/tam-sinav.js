@@ -16,6 +16,10 @@
 
   // ---------------- yardımcılar ----------------
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (m) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[m]; }); }
+  // v1.13.0 şekiller: app.js apSekilHtml yer tutucusu → sekil.js çizer
+  function skHtml(v, sik) { return typeof window.apSekilHtml === "function" ? window.apSekilHtml(v, sik) : ""; }
+  function skSecenekli(l) { return typeof window.apSekilSecenekli === "function" && window.apSekilSecenekli(l); }
+  function skSiklar(l) { return typeof window.apSekilSiklarDugme === "function" ? window.apSekilSiklarDugme(l) : ""; }
   function duyur(m) { if (!canli) return; canli.textContent = ""; setTimeout(function () { canli.textContent = m; }, 30); }
   function api(yontem, yol, govde) {
     var o = { method: yontem, credentials: "same-origin", headers: { "Content-Type": "application/json", "X-Meberra": "1" } };
@@ -326,13 +330,13 @@
     st.innerHTML = (pas ? '<aside class="dn-passage" aria-label="Pasaj"><h3 class="dn-passage-title">' + esc(pas.baslik) + '</h3><div class="dn-passage-body">' + pas.html + "</div></aside>" : "") +
       '<article class="question-card dn-q" aria-labelledby="ts-q-baslik"><div class="dn-q-head"><span class="question-num-badge" id="ts-q-baslik" tabindex="-1">Soru ' + (i + 1) + " / " + m.sorular.length + "</span>" +
       '<button type="button" class="btn-ghost dn-mini dn-mark ts-isaret" id="ts-isaret" aria-pressed="' + (isr[i] ? "true" : "false") + '">' + IK.bayrak + (isr[i] ? " İşaretli" : " İşaretle") + "</button></div>" +
-      '<div class="question-body">' + q.question + "</div>" +
-      '<div class="options-container ts-siklar" role="group" aria-label="Soru ' + (i + 1) + ' seçenekleri">' + q.options.map(function (o) {
+      '<div class="question-body">' + q.question + "</div>" + skHtml(q.sekiller) +
+      '<div class="options-container ts-siklar' + (skSecenekli(q.options) ? " sk-secenekli" : "") + '" role="group" aria-label="Soru ' + (i + 1) + ' seçenekleri">' + q.options.map(function (o) {
         var on = sel === o.id, ele = elenen.indexOf(o.id) >= 0;
         return '<div class="ts-sik' + (ele ? " is-elendi" : "") + '"><button type="button" class="option-btn dn-opt' + (on ? " is-selected" : "") + '" data-opt="' + esc(o.id) + '" aria-pressed="' + (on ? "true" : "false") + '">' +
-          '<span class="option-letter" aria-hidden="true">' + esc(o.id) + '</span><span class="visually-hidden">Şık ' + esc(o.id) + (ele ? " (elendi)" : "") + ": </span><span class=\"ts-sik-metin\">" + o.text + "</span></button>" +
+          '<span class="option-letter" aria-hidden="true">' + esc(o.id) + '</span><span class="visually-hidden">Şık ' + esc(o.id) + (ele ? " (elendi)" : "") + ": </span><span class=\"ts-sik-metin\">" + (o.text || "") + skHtml(o.sekil, true) + "</span></button>" +
           '<button type="button" class="ts-ele-btn" data-ele="' + esc(o.id) + '" aria-pressed="' + (ele ? "true" : "false") + '" aria-label="' + (ele ? "Şık " + esc(o.id) + " elemesini geri al" : "Şık " + esc(o.id) + "'yi ele") + '">' + (ele ? "Geri al" : "Ele") + "</button></div>";
-      }).join("") + "</div>" +
+      }).join("") + "</div>" + skSiklar(q.options) +
       '<div class="dn-q-tools"><button type="button" class="btn-ghost dn-mini" id="ts-temizle"' + (sel ? "" : " disabled") + ">Seçimi temizle</button></div></article>";
     st.querySelectorAll(".dn-opt").forEach(function (b) { b.addEventListener("click", function () { sec(b.getAttribute("data-opt")); }); });
     st.querySelectorAll(".ts-ele-btn").forEach(function (b) { b.addEventListener("click", function () { ele(b.getAttribute("data-ele")); }); });
@@ -450,10 +454,10 @@
         if (!f) return "";
         var c = fc[i] || {};
         return '<article class="frq-giris ts-frq-soru" id="ts-frq-' + i + '" aria-labelledby="ts-frq-h-' + i + '"><h2 id="ts-frq-h-' + i + '">Soru ' + (i + 1) + " · " + esc(f.baslik) + ' <small>(' + f.toplam_puan + " puan)</small></h2>" +
-          '<div class="icerik">' + f.giris + "</div>" +
+          '<div class="icerik">' + f.giris + "</div>" + skHtml(f.sekiller) +
           f.parcalar.map(function (p) {
             var id = "ts-frq-" + i + "-" + p.harf;
-            return '<section class="frq-parca"><div class="frq-parca-bas"><h3>(' + esc(p.harf) + ')</h3><span class="frq-puan-et">' + p.puan + ' puan</span></div><div class="frq-soru icerik">' + p.soru + "</div>" +
+            return '<section class="frq-parca"><div class="frq-parca-bas"><h3>(' + esc(p.harf) + ')</h3><span class="frq-puan-et">' + p.puan + ' puan</span></div><div class="frq-soru icerik">' + p.soru + "</div>" + skHtml(p.sekiller) +
               '<label class="visually-hidden" for="' + id + '">Soru ' + (i + 1) + " (" + esc(p.harf) + ") cevabın</label>" +
               '<textarea class="ts-frq-kutu" id="' + id + '" data-i="' + i + '" data-harf="' + esc(p.harf) + '" rows="6" spellcheck="false" placeholder="Cevabını, gerekçeni ve hesaplarını yaz…">' + esc(c[p.harf] || "") + "</textarea></section>";
           }).join("") + "</article>";
@@ -518,11 +522,11 @@
     if (!f) return "";
     return '<form class="ts-rubrik frq-rubrik" data-j="' + j + '" novalidate><h2 class="ts-rubrik-h">FRQ ' + (j + 1) + " · " + esc(f.baslik) + "</h2>" +
       '<div class="frq-skor"><div class="frq-skor-sayi"><span data-toplam>0</span><span class="frq-skor-bolu">/ ' + f.toplam_puan + '</span></div><div class="frq-skor-bar" aria-hidden="true"><span data-dolgu></span></div></div>' +
-      '<details class="frq-giris-ac"><summary>Soru metnini göster</summary><div class="frq-giris icerik">' + f.giris + "</div></details>" +
+      '<details class="frq-giris-ac"><summary>Soru metnini göster</summary><div class="frq-giris icerik">' + f.giris + "</div>" + skHtml(f.sekiller) + skHtml(f.cozumSekiller) + "</details>" +
       f.parcalar.map(function (p) {
         var cev = String((x.cevaplar || {})[p.harf] || ""), pp = p0[p.harf] || [];
         return '<section class="frq-parca"><div class="frq-parca-bas"><h3>(' + esc(p.harf) + ')</h3><span class="frq-puan-et"><span data-parca="' + esc(p.harf) + '">0</span> / ' + p.puan + " puan</span></div>" +
-          '<div class="frq-soru icerik">' + p.soru + "</div>" +
+          '<div class="frq-soru icerik">' + p.soru + "</div>" + skHtml(p.sekiller) +
           '<div class="frq-senin"><p class="frq-mini-baslik">Senin cevabın</p>' + (cev.trim() ? '<p class="frq-senin-metin">' + esc(cev) + "</p>" : '<p class="frq-soluk">Kutuya yazmadın — kâğıttaki cevabınla karşılaştır.</p>') + "</div>" +
           '<fieldset class="frq-olcutler"><legend class="frq-mini-baslik">Puanlama ölçütleri</legend>' + p.rubrik.map(function (rb, i) {
             var ad = "ts-o-" + j + "-" + p.harf + "-" + i, v = +pp[i] || 0;
@@ -533,7 +537,7 @@
               '<span class="frq-olcut-metin"><span class="frq-olcut-puan">' + rb.puan + " puan</span> " + rb.olcut + (rb.ornek_cevap ? '<span class="frq-ornek">Örnek: ' + rb.ornek_cevap + "</span>" : "") + "</span>" +
               (rb.puan === 1 ? "</label>" : giris + "</div>") + "</div>";
           }).join("") + "</fieldset>" +
-          '<details class="frq-cozum"><summary>Örnek çözüm</summary><div class="icerik">' + p.ornek_cozum + "</div></details>" +
+          '<details class="frq-cozum"><summary>Örnek çözüm</summary><div class="icerik">' + p.ornek_cozum + "</div>" + skHtml(p.cozumSekiller) + "</details>" +
           (p.sik_hatalar && p.sik_hatalar.length ? '<div class="frq-hatalar"><p class="frq-mini-baslik">Sık hatalar</p><ul>' + p.sik_hatalar.map(function (h) { return "<li>" + h + "</li>"; }).join("") + "</ul></div>" : "") + "</section>";
       }).join("") +
       '<div class="frq-teslim"><button type="submit" class="btn-primary">' + (x.toplam != null ? "Puanımı güncelle" : "Puanımı kaydet") + '</button><span class="ts-kayit-durum" data-durum aria-live="polite">' + (x.toplam != null ? "Kaydedildi" : "") + "</span></div></form>";
@@ -747,13 +751,13 @@
     var h = (c.hatalar || {})[x.s] || {}, bolum = S.r.sinav.bolumler[x.b];
     return '<details class="ts-yanlis"' + (n < 2 ? " open" : "") + '><summary><span class="dn-rev-st is-' + (x.st === "bos" ? "bos" : "yanlis") + '">' + (x.st === "bos" ? "Boş" : "Yanlış") + "</span> Kısım " + esc(bolum ? bolum.kod : x.b) + " · Soru " + (x.i + 1) +
       ' <span class="dn-uname">' + esc(metin(q.topic)) + "</span></summary>" +
-      '<div class="dn-rev-body"><div class="question-body">' + q.question + "</div>" +
-      '<ul class="dn-rev-opts">' + q.options.map(function (o) {
+      '<div class="dn-rev-body"><div class="question-body">' + q.question + "</div>" + skHtml(q.sekiller) +
+      '<ul class="dn-rev-opts' + (skSecenekli(q.options) ? " sk-secenekli" : "") + '">' + q.options.map(function (o) {
         var dg = o.id === c.dogru, sn = o.id === x.s;
-        return '<li class="' + (dg ? "is-dogru" : sn ? "is-yanlis" : "") + '"><strong>' + esc(o.id) + ".</strong> " + o.text + (dg ? " <em>— doğru cevap</em>" : sn ? " <em>— senin cevabın</em>" : "") + "</li>";
+        return '<li class="' + (dg ? "is-dogru" : sn ? "is-yanlis" : "") + '"><strong>' + esc(o.id) + ".</strong> " + (o.text || "") + skHtml(o.sekil, true) + (dg ? " <em>— doğru cevap</em>" : sn ? " <em>— senin cevabın</em>" : "") + "</li>";
       }).join("") + "</ul>" +
       (x.s && h.errorTag ? '<p class="dn-rev-meta"><strong>Neden yanlış:</strong> ' + h.errorTag + (h.remediation ? " — " + h.remediation : "") + "</p>" : "") +
-      (c.aciklama ? '<div class="remediation-panel"><strong>Çözüm</strong>' + c.aciklama + "</div>" : "") +
+      (c.aciklama || c.sekiller ? '<div class="remediation-panel"><strong>Çözüm</strong>' + (c.aciklama || "") + skHtml(c.sekiller) + "</div>" : "") +
       (window.apEkHtml ? window.apEkHtml(c.ek) : "") +
       (c.genelHatirlatma ? '<p class="dn-rev-meta"><strong>Hatırlatma:</strong> ' + c.genelHatirlatma + "</p>" : "") +
       (q.sayfa ? '<p class="dn-rev-links"><a href="' + esc(sayfaAdres(q.sayfa)) + (q.kap ? "#" + esc(q.kap) : "") + '">Ders sayfasında konuya git</a></p>' : "") + "</div></details>";

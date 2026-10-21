@@ -27,7 +27,7 @@ Başarı: `{ "ok": true, ... }`.
 - `POST /api/account/delete` `{ sifre }` → hesap silinir: öğrenci verisi silinir; bekleyen ödeme bildirimi `iptal`, aktif Premium dönemi sona erer; ödeme/abonelik kayıtları, denetim kaydı (IP/tarayıcı/e-posta silinir) ve giden e-postalar anonimleştirilerek saklanır
 
 `user` = `{ id, ad, soyad, kullaniciAdi, eposta, rol: "ogrenci"|"yonetici"|"veli", olusturma }` (veli: bkz. Veli paneli)
-`uyelik` = `{ premium: bool, plan: "aylik"|"yillik"|"ozel"|null, bitis: ISO|null, bekleyenTalep: {id, plan, olusturma}|null }`
+`uyelik` = `{ premium: bool, plan: "aylik"|"yillik"|"ozel"|null, bitis: ISO|null, deneme: bool, kaynak: "talep"|"elle"|"deneme"|"davet"|null (1.16.0), bekleyenTalep: {id, plan, olusturma}|null }`
 
 ## Öğrenci verisi (tarayıcı deposu senkronu)
 - `GET /api/state` → `{ ok, keys: { "<anahtar>": { deger: "<ham JSON dizesi>", guncelleme: ISO } } }`
@@ -56,6 +56,24 @@ Başarı: `{ "ok": true, ... }`.
 - `GET /api/admin/users/:id` → `{ ok, user, profile, uyelik, abonelikler:[...], talepler:[...], istatistik:{cevap, dogru, yanlisAcik, deneme, sonEtkinlik}, dersler:[{sayfa, cevap, dogru}] }`
 - `POST /api/admin/users/:id/premium` `{ plan?, gun?, not? }` → Premium verir; plan ya da gun gerekli (gun: 1–3650 tam sayı; yoksa plana göre 30/365). Mevcut dönemin sonuna eklenir
 - `POST /api/admin/users/:id/premium/iptal` `{ not? }`
+- 1.16.0 Premium yönetimi (yalnız yönetici). Elle verilen dönemler `kaynak: "elle"`, `tutar_tl: NULL` yazılır; gelir tahmini yalnız
+  `kaynak: "talep"` + tutar > 0 dönemleri sayar. Her değişiklik denetime `oncekiBitis` / `yeniBitis` ile yazılır (`premium.ver`, `premium.uzat`, `premium.iptal`).
+  Tekil uçlar (`/users/:id/premium`, `/premium/iptal`) aynı kuralları ve bildirimi kullanır.
+  - `GET /api/admin/premium?durum=aktif|bitiyor|bitti|deneme|hepsi&q=&sayfa=` (varsayılan `aktif`; `aktif` denemeyi saymaz, `bitiyor` = aktif ya da deneme ve
+    bitişe ≤ 7 gün, `bitti` = dönemi olmuş ama şu an aktif olmayan) → `{ ok, durum, toplam, sayfa, sayfaBoyu, sayac:{aktif, bitiyor, bitti, deneme, hepsi}, bitiyorGun: 7,
+    kullanicilar:[{ id, ad, soyad, eposta, hesapDurum, durum: "aktif"|"deneme"|"bitti", bitiyor, plan, kaynak: "talep"|"elle"|"deneme"|"davet", bitis, bitisGun (İstanbul
+    "YYYY-MM-DD"), kalanGun, toplamOdenen, donemSayisi }] }`. Sıra: aktifte en yakın bitiş önce, bittide en son biten önce. `kalanGun` = bitişe kalan süre, gün olarak
+    yukarı yuvarlanır (2 saat → 1); bitmişse 0.
+  - `POST /api/admin/premium/ver` `{ userIds:[publicId] (1–200), gun? (1–3650) | plan?: "aylik"|"yillik", not? (≤300) }` → aktif olanlarda mevcut bitişin sonuna, olmayanlarda
+    şimdiden. Öğrenciye bildirim (+ push): yeni açılışta "Premium açıldı" (+ e-posta), uzatmada "Premium'un N gün uzatıldı".
+  - `POST /api/admin/premium/uzat` `{ userIds, gun (1–3650, zorunlu), not? }` → yalnız aktif Premium'u olanlar (diğerleri `atlanan`), bitişten itibaren; bildirim "Premium'un N gün uzatıldı".
+  - `POST /api/admin/premium/iptal` `{ userIds, not? }` → aktif ve sıradaki dönemler şimdi biter (`durum: "iptal"`, `iptal_zamani`). Bildirim gönderilmez.
+  - Toplu yanıt: `{ ok, islenen, sonuc:[{ id, ad, soyad, oncekiBitis, bitis, gun?, uzatildi?, iptalEdilen? }], atlanan:[{ id, neden }] }` (bulunamayan / silinmiş hesap atlanır;
+    tek veritabanı işlemi). 400: boş/200'den fazla `userIds`, geçersiz `gun`, plan da gün de yok.
+  - `GET /api/admin/users/:id/abonelikler` → `{ ok, uyelik:{premium, plan, bitis, bitisGun, kalanGun, deneme, kaynak}, toplamOdenen, abonelikler:[{ id, plan, kaynak, baslangic,
+    bitis, etkinBitis (iptalde iptal anı), durum: "aktif"|"sirada"|"bitti"|"iptal", gun, tutar, not, talepId, olusturan:{ad, soyad}|null, olusturma, iptalZamani }] }` (en yeni önce)
+  - `GET /api/admin/users` ek olarak `premiumDurum=aktif|bitiyor|deneme|bitti` süzgeci, `sirala=kalan` (en az kalan önce, Premium olmayanlar sonda) ve satırda
+    `kalanGun, deneme, premiumKaynak, premiumGecmis` alanları.
 - `POST /api/admin/users/:id/durum` `{ durum: "aktif"|"askida" }`
 - `GET /api/admin/talepler?durum=bekliyor` → `{ ok, talepler:[{id, kullanici:{id,ad,soyad,eposta}, plan, tutar, odeyenAd, aciklama, durum, olusturma, islemZamani, islemNotu}] }` (durum: bekliyor|onaylandi|reddedildi|iptal; başka değer: hepsi)
 - `POST /api/admin/talepler/:id` `{ islem: "onayla"|"reddet", not? }` → `{ ok, abonelik }` (409: talep bekliyor değil ya da onayda hesap aktif değil)
@@ -106,7 +124,12 @@ lig `"/profil.html#lig"`, Premium `"/calis.html"` (istemci bu adresleri karşıl
 - `epostaHatirlatma`: günlük çalışma hatırlatması e-postası · `epostaBildirim`: sorum yanıtlanınca e-posta ·
   `push`: tarayıcı bildirimi (push için ayrıca abonelik gerekir) · `hatirlatmaSaati`: İstanbul saati, varsayılan 19 (`HATIRLATMA_SAATI`)
 - `GET /api/bildirim-ayarlari` → `{ ok, ayarlar, sessizSaatler: { bas: 22, bit: 8 }, pushDestek: bool }`
-- `PUT /api/bildirim-ayarlari` `{ ...kısmi ayarlar }` (ya da `{ ayarlar: {...} }`) → aynı yanıt
+  - 1.16.0 ek alanlar (üst düzeyde; `ayarlar` değişmedi): `onerilenSaat: 8..21 | null` — son 30 günde en çok cevap verilen
+    İstanbul saati (en az 10 cevap; sessiz saate denk gelirse 8 ya da 21'e çekilir, eşitlikte erken saat) · `saatElle: bool` —
+    öğrenci saati kendisi seçti mi (`notification_prefs.saat_elle`, `012_hatirlatma_saat_elle.sql`) · `etkinSaat` — hatırlatmanın
+    gerçekten kullanacağı saat (`saatElle` ise `hatirlatmaSaati`, değilse varsa `onerilenSaat`)
+- `PUT /api/bildirim-ayarlari` `{ ...kısmi ayarlar }` (ya da `{ ayarlar: {...} }`) → aynı yanıt (ek alanlarla). `hatirlatmaSaati`
+  gönderilirse `saatElle=true` olur (önerilen saat artık kullanılmaz)
   - 400: saat 8–21 dışı (sessiz saatler seçilemez), bool olmayan değer, geçersiz/kendi e-postası olan `veliEposta`,
     `veliRaporu:true` iken veli e-postası yok
   - `veliEposta` değişince `veliDogrulandi=false` olur ve veliye **onay e-postası** gider; rapor yalnızca veli onaydan sonra gönderilir
@@ -134,6 +157,13 @@ lig `"/profil.html#lig"`, Premium `"/calis.html"` (istemci bu adresleri karşıl
 - Tek mesaj: uygulama içi bildirim (`tur: "seri"` ya da `"tekrar"`) + e-posta (`epostaHatirlatma` ise, tek tıkla iptal bağlantısıyla)
   + push (`push` açık ve abone ise). Metin örneği: "3 günlük serin harika gidiyor! Bugün birkaç soruyla devam etmek ister misin?
   Ayrıca tekrar zamanı gelen 4 soru var." (suçlayıcı dil yok; seri koptuysa hatırlatma da gelmez)
+- 1.16.0 akıllı saat: saat seçmemiş öğrencide (`saatElle=false`) aday saati `onerilenSaat` (yoksa `hatirlatmaSaati`).
+- 1.16.0 geri dönüş mesajı (iş `geriDonus`, günlük hatırlatmadan önce çalışır): aynı açık rıza, aynı saat ve sessiz saat kuralı.
+  Son çalışılan gün (`answers`/`exams`) bugünden 3, 7 ya da 14 gün önceyse o ara için **bir kez** dostça mesaj (`tur: "tekrar"`,
+  ör. "Kaldığın yerden 5 dakikalık bir tekrarla dönmeye ne dersin?") + e-posta (`epostaHatirlatma`) + push (abone ise). Aralar
+  arasındaki günlerde gönderilmez; 30 günden uzun aradan sonra hiç gönderilmez. Kayıt: `reminder_log` `tur='geri-donus-3|7|14'`,
+  `gun` = son çalışılan gün (aynı ara tekrar gönderilmez; öğrenci dönüp yeniden ara verirse yeni ara sayılır) + aynı gün için
+  `tur='hatirlatma'` satırı (**günlük tek mesaj** sınırına sayılır; o gün `hatirlatma` ya da `deneme` mesajı gittiyse ertesi güne kalır).
 - Veli raporu: pazar 18:00 sonrası (İstanbul), `veliRaporu` açık ve veli onaylı ise haftada bir e-posta: bu haftaki soru sayısı,
   doğruluk yüzdesi, seri, tamamlanan deneme sayısı; iptal bağlantısı içerir.
 
@@ -164,6 +194,12 @@ ve ayrılmış adlar (admin, meberra, yonetici…) reddedilir; büyük/küçük 
 - `apmeberra:oyun:v1` `{ xp, rozetler: { id: { t } }, gorevler: { "YYYY-MM-DD": { id: { tamam, t } } }, hedef: { tur: "soru", miktar: 10 } }`
   → `xp` en büyük; `rozetler` birleşim, aynı rozette en erken `t`; `gorevler` birleşim, `tamam:true` kazanır (ikisi de tamamsa en
   erken `t`), en yeni 120 gün tutulur; `hedef` son yazan (gelen değerde `hedef` alanı varsa).
+  1.16.0 ek alanlar (`assets/js/oyun-ek.js`; yalnızca iki taraftan birinde varsa yazılır):
+  - `ustalik: { "<sayfa>|<ünite no>": { seviye: "bronz"|"gumus"|"altin", t } }` → en yüksek seviye kalır, aynı seviyede en erken `t`
+    (geçersiz seviye atılır)
+  - `aylik: { "YYYY-MM": { hedef: { tur: "soru"|"gun", miktar }, tamam, t } }` → `tamam:true` kazanır (ikisi de tamamsa en erken `t`;
+    ikisi de değilse gelen); en yeni 36 ay. Aya özel rozet `rozetler["aylik-YYYY-MM"]` (normal rozet kuralı)
+  - `haftalik: { "YYYY-Www": t }` (haftalık özet gösterildi) → birleşim, en erken `t`; en yeni 12 hafta
 - Bu üç anahtar `null` ile silinirse silme izi tutulmaz (düz silinir).
 
 ## PWA
@@ -549,6 +585,112 @@ bölüm ağırlıkları (`agirlik.I/II`, toplam 100), CED ünite ağırlıkları
   XP, veli paneli (son denemeler, `tamSinav:true`) ve `/deneme?mod=yanlislar&deneme=<id>` çalışır.
 - `POST /api/tam-sinav/:id/birak` · `GET /api/tam-sinav/gecmis` → `{ ok, gecmis:[{ id, kod, ad, tarih, kompozit, tahminiPuan, mcqYuzde, frqYuzde, yalnizMcq }] }`
 - Denetim kaydı: `tam-sinav.olustur`, `tam-sinav.bolum-teslim`, `tam-sinav.bitir`, `tam-sinav.birak`. KVKK dışa aktarma `tamSinavlar` alanını içerir.
+
+## Şekilli sorular (v1.13.0, `011_sekil.sql`; `server/sekil.js`, istemci `assets/js/sekil.js` + `assets/css/sekil.css`)
+Biçim: `araclar/yeni-sorular2/SEKIL-BICIMI.md`. Kök şekli `questions_bank.sekil` (JSON: `null | {tur:"svg", svg, alt, baslik?, konum:"govde"|"aciklama"} | [en çok 4]`);
+şık şekli `secenekler[i].sekil` (`{tur, svg, alt, baslik?}`; şekilli şıkta metin boş olabilir). FRQ: `veri.sekil` (giriş) ve `parcalar[i].sekil`.
+- Temizleyici: bağımlılıksız belirteç; bozuk girdi (DOCTYPE/ENTITY/CDATA/PI, bilinmeyen `&varlık;`, tırnaksız/yinelenen öznitelik, kapanmamış etiket,
+  > 30 KB, viewBox yok ya da > 480×360, 32'den derin) **reddedilir**; ağaç yalnız beyaz liste (etiket + öznitelik + değer kalıbı; `class` yalnız `sk-…`,
+  renkte `url(#id)` dışı url yok; `<marker>` üzerinde `refX/refY/markerWidth/markerHeight/orient/markerUnits`) ile yeniden yazılır, gerisi atılır (`kaldirilan`).
+  Kökte `width/height` atılır. Uyarı (saklamayı engellemez): sabit renk, `font-size` 11–14 dışı.
+- Saklama yolları: tohum yükleme/yükseltme (`tohumEsitle`, `tohumUpsert` — kararlı çıktı, aynı tohum yeni sürüm üretmez; geçersiz şekil atılıp
+  `system_logs` uyarısı), yönetici `POST/PUT /api/admin/soru-bankasi/soru…` (`sekil` alanı gönderilmezse PUT'ta korunur, `null` kaldırır; hata → 400
+  `errors.sekil` / `errors.sekil_<harf>`), `PUT /api/admin/frq/:id` (temizlenmiş saklanır; `dogrula` değişerek geçen şekli sorun sayar).
+- Öğrenci yanıtları: soru nesnelerinde `sekiller: [{tur, svg, alt, baslik?}]` (yalnız konum "govde"), şıklarda `options[i].sekil`;
+  konum "aciklama" şekilleri yalnız çözümde: `cozum.sekiller` / `cozumler[k].sekiller` (cevaptan / teslimden sonra; demo cevabında `sekiller`).
+  FRQ: `frq.sekiller`, `parcalar[i].sekiller`; teslimden sonra ek olarak `cozumSekiller`. Tam sınav ve hız turu `acikSoru`/`cozumOf` üzerinden aynı.
+- `POST /api/admin/sekil/onizle` `{ sekil, secenek? }` → `{ ok, gecerli, sekil (temiz)|null, hatalar, uyarilar, kaldirilan }` (kaydetmez).
+- İstemci: `window.MeberraSekil.ciz(sekil, {secenek})` → `<figure class="sk">` (`role=img`, `aria-label=alt`, `<figcaption>` başlık, "Büyüt" penceresi);
+  DOMParser + aynı beyaz listeyle yeniden temizler, `createElementNS` ile kurar, kimlikleri örnek başına önekler. Çiziciler app.js `apSekilHtml`
+  yer tutucusunu (oran viewBox'tan; kayma yok) yazar, `sekil.js` (gerekince tembel yüklenir) yer tutucuları çizer. Sınıflar: `sk-vurgu` (mor),
+  `sk-ikincil` (turuncu), `sk-izgara`, `sk-eksen`, `sk-dolgu`, `sk-nokta`, `sk-bos`, `sk-soluk`.
+- Denetim: `node araclar/pm-denetim.js` (ŞEKİL satırı: temizleyiciden değişmeden geçmeli, alt, viewBox), `araclar/yeni-soru-ekle.js` ve `araclar/soru-aktar.js` aynı kural.
+
+## İlerleme grafikleri (v1.16.0; `server/ilerleme.js`, salt okunur)
+Öğrencinin kendi verisinden toplu özet; hiçbir tabloya yazmaz. Kaynak: `answers`, `exams` (ders denemeleri + tam sınavlar `ts-…`),
+`frq_denemeleri` (öz puanlanmış), `wrong_answers` (açık), `questions_bank` (ünite kapsamı). Günler Europe/Istanbul yerel günüdür.
+- `GET /api/ilerleme/ozet` (oturum gerekli; `Cache-Control: private, no-store`; veli hesabı erişemez) →
+  `{ ok, simdi, bugun, toplam:{ cevap, dogru, dogruluk|null, acikYanlis, deneme }, seri:{ simdi, enUzun },
+  gunler:[90 × { gun:"YYYY-MM-DD", cevap, dogru, deneme }] (eskiden yeniye),
+  haftalar:[12 × { hafta:"YYYY-Www", pazartesi, soru, dogru, deneme, xp }] (XP = lig kuralı: cevap 5, doğru +5, deneme 50),
+  dersler:[{ ders, ad, kisa, sayfa, link, hedef|null, cevap, dogru, dogruluk|null, cozulen, bankada, kapsam|null,
+    tahmini|null (1–5 tamsayı: son ders denemesi, yoksa ≥10 cevabın doğruluğu), tahminiInce|null (ondalıklı; eşikler arası doğrusal), tahminKaynagi:"deneme"|"sorular"|null,
+    uniteler:[{ kutu, no, ad, bankada, cevap, dogru, cozulen, dogruluk|null, kapsam|null, link:"/ders/<x>?unite=N", zayif }] }],
+  puanGecmisi:[{ tarih, kod, ders|null, ad, tur:"deneme"|"tam", yuzde, puan(1–5) }] (eskiden yeniye, en çok 60),
+  frq:[{ tarih, frq, ders, puan, toplamPuan, yuzde }] }`
+  Dersler: profildeki `apDersleri` (hedefle); seçim yoksa cevap verilmiş ders sayfaları. `zayif`: en az 3 cevaplı, doğruluğu %75 altı en zayıf 3 ünite.
+  Seri: zamanlayıcının çalışma serisi kuralı (dondurulmuş günler bozmaz; bugün aktifse +1).
+- Veli paneli `GET /api/veli/panel` → her çocukta ek `grafik:{ haftalik:[8 × { hafta, pazartesi, soru, dogru, deneme }], puanGecmisi:[… en çok 30] }`
+  ve `dersler[].tahminiInce` (aynı yardımcılar; yalnız toplu sayılar).
+
+## Hız turu ve Günün sorusu (v1.17.0, `013_hiz_gunun_sorusu.sql`; `server/hiz.js`)
+Hepsi oturum ister (401) ve `Cache-Control: private, no-store` döner. Cevaplar mevcut hatta yazılır (`apmeberra:quiz:v1` → `answers`;
+`POST /api/sorular-bankasi/cevap` ile aynı kayıt) → XP, lig, istatistik ve İlerleme normal sayılır.
+- **Hız turu (60 sn).** Kuyruk sunucuda: yalnız `durum='aktif'`, `zorluk` easy/medium, pasajsız, hesap makinesi `gerekmez` ders soruları;
+  Premium olmayana yalnız ücretsiz ünite kutuları (`apKutuUcretsizMi`). Son 3 günde cevaplananlar kuyruğun sonuna atılır.
+  Puan: doğru başına 10; önceki art arda doğru sayısı 3–5 → ×2, 6+ → ×3; yanlış/pas komboyu sıfırlar. Süre: başlangıç + 60 sn, 3 sn tolerans.
+  - `POST /api/hiz/basla` `{ ders: "calculus"|"physics"|"chemistry"|"biology"|"english"|"secmeli"|"karisik" }` →
+    `{ ok, oturum, ders, dersAd, sureMs, bitis, sunucuZamani, toplam, kural:{ taban, esik2, esik3 }, sira:0, soru }` (soruda doğru/çözüm yok).
+    `karisik`: profildeki `apDersleri` (seçim yoksa tüm dersler). Yarım kalan tur kapanır. 5'ten az uygun soru → 409 `{ yetersiz:true }`. 400 bilinmeyen ders.
+  - `POST /api/hiz/cevap` `{ oturum, soruId, secim }` ya da `{ oturum, soruId, pas:true }` →
+    `{ ok, soruId, secim, pas, dogru, dogruSecenek, kombo, carpan, kazanilan, puan, kalanMs, sira, sonraki|null, bitti, sonuc? }`.
+    Yalnız sıradaki soru kabul edilir (409 `{ sira }`); süre + tolerans sonrası 409 `{ bitti:true, sonuc }`; tolerans içindeki cevap sayılır, `sonraki:null` ve tur kapanır.
+  - `POST /api/hiz/bitir` `{ oturum }` → `{ ok, sonuc:{ puan, dogru, yanlis, pas, enKombo, ders, dersAd, oncekiRekor|null, yeniRekor } }`
+  - `GET /api/hiz/rekorlar` → `{ ok, rekorlar:{ <ders>:{ puan, tur } }, son:[10 × { id, ders, dersAd, puan, dogru, yanlis, enKombo, zaman }], premium, dersler:[{ ders, ad }], apDersleri:[ad] }`
+- **Günün sorusu.** Herkese aynı soru: aktif, `medium`, pasajsız, ücretsiz ünite ders soruları; ders gün numarasına göre sırayla döner, ders içinde
+  soru tarihin özetiyle seçilir (belirlenimli). O günün sorusu ilk istekte `gunun_sorusu` tablosuna sabitlenir. Gün: Europe/Istanbul.
+  - `GET /api/gunun-sorusu` → `{ ok, tarih, soru, cevaplandi, seri, sonuc? }` (cevaplanmadıysa doğru şık/çözüm yok)
+  - `POST /api/gunun-sorusu/cevap` `{ soruId?, secim }` → `{ ok, tarih, tekrar, seri, secim, dogru, dogruSecenek, aciklama, genelHatirlatma, hataAciklamasi, ek, cozum,
+    istatistik:{ toplam, dogruYuzde, dagilim:[{ secim, n, yuzde }] } }`. Günde bir kez sayılır (tekrar → `tekrar:true`, ilk cevap döner).
+    Soru değiştiyse 409 `{ yenile:true }`. Topluluk istatistiği yalnız şık başına sayıdır (`gunun_sorusu_dagilim`); katılım tablosunda şık tutulmaz.
+  - `seri`: art arda günlük katılım (bugün henüz cevaplanmadıysa dünden geriye sayılır).
+
+## Kavram kartları (v1.18.0, `014_kartlar.sql`; `server/kart.js`)
+İçerik `server/tohum/kartlar.json` (326 özgün kart; ders → deste/ünite → kart `{ id, ders, sayfa, unite, on, arka, etiket: tanim|formul|kural|yanilgi, kaynakKonu, bc? }`),
+veritabanına kopyalanmaz; `node araclar/kart-uret.js` doğrular (yapı, LaTeX dengesi, arka ≤ 60 sözcük, benzersizlik, soru bankası CED konularıyla çapraz denetim).
+Öğrenci durumu `kart_durumu (user_id, kart_id, aralik, sonraki, tekrar_sayisi, son_sonuc, son_gun)`; hesap silinince CASCADE. Hepsi oturum ister (401).
+Dersler: `calculus, physics, chemistry, biology, english, csa, micro, macro` (profil anahtarları da kabul edilir: `calculus-bc`, `microeconomics` …).
+- **Ücretsiz plan:** her dersin ilk 2 destesi (`assets/js/ucretsiz-kural.js` `apUcretsizUniteNolari` varsayılan kuralı). Premium ve yönetici hepsi.
+  Kilitli deste / kart → 402 `{ premiumGerekli:true }`.
+- **Zamanlama (SM-2-lite):** `tekrar` → 1 gün; `zor` → aralık × 1,2 (yuvarlanır, en az 1); `biliyorum` → 1, 3, 7, 14, 30 adımlarında mevcut aralıktan büyük ilk adım (30'da kalır).
+  Kart `sonraki` günü (Europe/Istanbul) geldiğinde vadelidir. Aralığı ≥ 7 gün olan kart "öğrenildi" sayılır.
+- `GET /api/kartlar[?ders=|sayfa=]` → `{ premium, bugun, bugunTekrar, ucretsizDeste, bugunSayi:{ vadesi, yeni, toplam }, dersler:[{ ders, ad, sayfa, secili,
+  desteler:[{ unite, ad, kart, gorulen, ogrenilen, vadesi, kilitli }] }] }`. `secili`: profildeki AP dersleri (seçim yoksa hepsi).
+- `GET /api/kartlar?ders=calculus&unite=1` (ya da `sayfa=ap-electives&unite=Micro 1`) → `{ ders, deste, kartlar:[{ …kart, durum:{ aralik, sonraki, tekrar, sonSonuc, sonGun } | null }] }`; yok → 404, kilitli → 402.
+- `GET /api/kartlar/bugun[?dersler=calculus,physics]` → `{ dersler, vadesi, yeni, bugunTekrar, kartlar }`: vadesi gelenler (en eski önce) + kalan yere yeni kartlar
+  (günde en çok 10 yeni, dersler arasında sırayla), toplam en çok 30; yalnız erişilebilir desteler. `dersler` verilmezse profil seçimi.
+- `POST /api/kartlar/:id/degerlendir` `{ sonuc: "biliyorum"|"zor"|"tekrar" }` → `{ kart, durum, bugunTekrar }`. Geçersiz sonuç 400, bilinmeyen kart 404,
+  hız sınırı 900/saat/kullanıcı (429).
+- **XP / günlük hedef:** kart tekrarları bu sürümde XP'ye ve günlük hedefe SAYILMAZ (XP `answers` tablosundan hesaplanır; ayrı hat eklemek kapsam dışı).
+  Yanıtlardaki `bugunTekrar` (bugün değerlendirilen farklı kart sayısı) arayüzde gösterilir.
+
+## Çalışma planı (1.18.0) — `server/plan.js`
+
+Kişisel uyarlanır plan. Saf motor `assets/js/plan-motor.js` (sunucu + istemci). Girdiler: profil `apDersleri` + `sinavYili`,
+`data/mevzuat/sinav-takvimi.js` (kesin tarih yoksa "Mayıs <yıl>", gün uydurulmaz; ufuk 1 Mayıs), `assets/js/oyun.js` YOL ünite
+listesi + soru bankası sayıları, `server/tohum/sinav-formatlari.json` `uniteAgirlik` (CED), `answers` / `exams` / `frq_denemeleri`.
+Tablolar: `plan_ayar`, `plan_gorevler` (migrations/015_calisma_plani.sql). Oturum gerekir (401); veli rolü 403.
+
+| Uç | Gövde | Yanıt |
+|---|---|---|
+| `GET /api/plan` | — | `{ ok, plan }` — bu hafta ilk istekte yazılır (sabit liste), gelecek haftalar her istekte yeniden hesaplanır |
+| `PUT /api/plan/ayar` | `{ saat: 3 \| 5 \| 8 \| 12 }` | `{ ok, plan }` — bu haftanın elle dokunulmamış, bitmemiş görevleri yeni süreye göre yeniden kurulur. Geçersiz: 400 |
+| `POST /api/plan/gorev/:id` | `{ tamam: true \| false }` | `{ ok, gorev: { id, tamam }, plan }` — elle işaret kalıcıdır (otomatik işaret üstüne yazmaz). Bilinmeyen/başkasının görevi: 404 |
+
+`plan`: `{ bugun, buHafta (pazartesi), saat, saatler, gorevSayisi, premium, bos: null | "ders-yok" | "sinav-gecti",
+durum: { durum: "onde" | "yolunda" | "geride", gun, metin }, enYakin: { ders, ad, gun | null, yil, kesin, etiket, kalanGun | null },
+sinavlar: [...], haftalar: [{ no, bas, bit, evre: "calisma" | "deneme" | "tekrar", kalanHafta, kilometre: [{ gun, ad, tur }],
+gorevler: [{ id, tur: "unite" | "tekrar" | "deneme" | "frq" | "tam", turAd, ders, dersAd, unite: { id, no, ad } | null, baslik, aciklama,
+link, dk, hedefSoru, kilitli, tamam, devir, ilkHafta }] }], dersler: [...] }`.
+
+Kurallar: haftalık görev 3/5/8/12 saat → 2/3/4/5; dersler dönüşümlü; ünite önceliği CED ağırlığı × (kapsam eksiği + zayıflık);
+sınava 6 ve 4 hafta kala o derste tam sınav, son 2 hafta yalnızca tekrar. Otomatik işaret: ünite 10 soru, tekrar 8 soru (görevin ilk
+haftasından beri), ders denemesi / tam sınav (`exams.istemci_id` `ts-…`) / FRQ denemesi. Bitmeyen görev sonraki haftaya devreder
+(haftada en çok 5). Durum: geçmiş haftaların görevleri + bu haftanınkiler orantılı beklenir; fark gün cinsinden (±2 gün eşik).
+Ücretsiz planda kilitli üniteler planda kalır, `kilitli: true` ("Premium ile").
+
+Veli paneli için salt okunur yardımcı (yazmaz): `require("./plan").veliPlanOzeti(db, hesap, ogrenciId)` →
+`{ durum, enYakin, bos, saat, buHafta: { bas, bit, evre, gorevler: [{ baslik, turAd, dersAd, tamam }] } }`.
 
 ## Sayfalar
 Sunucu proje kökündeki statik sayfaları da sunar. HTML yanıtlarına `<meta name="meberra-api" content="1">`

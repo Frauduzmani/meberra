@@ -1,5 +1,10 @@
 # Tarayıcı Regresyon Testleri
 
+> **1.15.0 notu:** Aşağıdaki Playwright betikleri (`*-test.js`, `interact.js`, `paket-test.js`, `sv-paket.js`,
+> `oturum-tohum.js`) güncelliğini yitirdi ve `eski/` klasörüne taşındı (bkz. `eski/README.md`). Güncel tarayıcı
+> testleri kökteki `e2e/` klasöründedir: `npm run test:e2e`. Bu klasörde kalan `*-birim-test.js` dosyaları
+> `npm run test:birim` ile hep birlikte çalışır. Aşağıdaki tablo tarihsel kayıttır.
+
 Bu testler portalı gerçek bir tarayıcıda (Playwright + Chromium) çalıştırır.
 
 ## Kurulum (bir kez)

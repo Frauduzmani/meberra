@@ -7,6 +7,11 @@
 //    gönderilmez. reminder_log (kullanıcı, tür, gün) birincil anahtarı tekrar gönderimi kesin olarak engeller.
 //  - Sistem günlüğü saklama: bilgi 7 gün, uyarı/hata 90 gün (gunluk.temizlik).
 //  - Haftalık veli raporu: pazar 18:00 (İstanbul) sonrası, veli e-postası onaylanmışsa.
+//  - 1.16.0 oyun: hatırlatma saati seçilmemişse (saat_elle = 0) önerilen saat kullanılır (bildirim.etkinSaat).
+//  - 1.16.0 oyun — geri dönüş mesajı: açık rızalı kullanıcı 3, 7 ya da 14 gündür çalışmadıysa, her ara için TEK dostça mesaj
+//    (uygulama içi + e-posta hatırlatması açıksa e-posta + abone ise push). Günlük tek mesaj sınırına sayılır (reminder_log
+//    'hatirlatma' satırı), 30 günden sonra gönderilmez, sessiz saatlerde gönderilmez. Kayıt: reminder_log tur 'geri-donus-N',
+//    gun = son çalışılan gün (aynı ara için ikinci kez gönderilmez).
 const config = require("./config");
 const { simdi } = require("./db");
 const zaman = require("./zaman");
@@ -17,7 +22,22 @@ const isObj = v => v !== null && typeof v === "object" && !Array.isArray(v);
 const coz = s => { try { return JSON.parse(s); } catch (e) { return null; } };
 const TARIH_RE = /^\d{4}-\d{2}-\d{2}$/;
 const IP_SAKLAMA_GUN = 90;
-const ISLER = { lig: "Lig devri", temizlik: "Log temizliği", erisim: "IP saklama / engel süresi", hatirlatma: "Günlük hatırlatma", veliRaporu: "Veli raporu" };
+const ISLER = { lig: "Lig devri", temizlik: "Log temizliği", erisim: "IP saklama / engel süresi", geriDonus: "Geri dönüş mesajı", hatirlatma: "Günlük hatırlatma", veliRaporu: "Veli raporu" };
+// 1.16.0 oyun: geri dönüş araları (gün) ve metinleri — suçlayıcı değil, kısa ve olumlu
+const GERI_DONUS = [3, 7, 14], GERI_DONUS_SON = 30;
+const GERI_DONUS_METIN = {
+  3: { baslik: "Kısa bir tekrara ne dersin?", metin: "Kaldığın yerden 5 dakikalık bir tekrarla dönmeye ne dersin? Birkaç soru yeter." },
+  7: { baslik: "Yeni bir başlangıç için harika bir gün", metin: "Kaldığın yerden 5 dakikalık bir tekrarla dönmeye ne dersin? Tilo seni bekliyor." },
+  14: { baslik: "Hazır olduğunda buradayız", metin: "Kaldığın yerden 5 dakikalık bir tekrarla dönmeye ne dersin? Küçük adımlar da sayılır." }
+};
+/** Saf: son çalışılan günden bugüne geçen gün → gönderilecek ara (3 | 7 | 14) ya da null (30 günden sonra yok) */
+function geriDonusAsamasi(fark) {
+  if (!Number.isInteger(fark) || fark > GERI_DONUS_SON) return null;
+  let a = null;
+  GERI_DONUS.forEach(g => { if (fark >= g) a = g; });
+  return a;
+}
+const gunFarki = (a, b) => Math.round((Date.parse(b + "T00:00:00Z") - Date.parse(a + "T00:00:00Z")) / 864e5);
 
 function zamanlayici(c) {
   const { db, bildirim, eposta, lig, gunluk } = c;
@@ -62,9 +82,11 @@ function zamanlayici(c) {
 
   async function hatirlatmalar(simdiMs) {
     const p = zaman.parcalar(simdiMs);
+    // 1.16.0 oyun: saat süzgeci JS'te (saat seçmemiş öğrencide önerilen saat)
     const adaylar = db.prepare(`SELECT n.*, u.ad FROM notification_prefs n JOIN users u ON u.id = n.user_id
-      WHERE u.durum = 'aktif' AND (n.eposta_hatirlatma = 1 OR n.push = 1) AND n.hatirlatma_saati <= ?
-        AND NOT EXISTS (SELECT 1 FROM reminder_log r WHERE r.user_id = n.user_id AND r.tur = 'hatirlatma' AND r.gun = ?)`).all(p.saat, p.tarih);
+      WHERE u.durum = 'aktif' AND (n.eposta_hatirlatma = 1 OR n.push = 1) AND (n.saat_elle = 0 OR n.hatirlatma_saati <= ?)
+        AND NOT EXISTS (SELECT 1 FROM reminder_log r WHERE r.user_id = n.user_id AND r.tur = 'hatirlatma' AND r.gun = ?)`).all(p.saat, p.tarih)
+      .filter(a => saatGeldi(a, simdiMs, p));
     let n = 0;
     for (const a of adaylar) {
       const d = calismaDurumu(a.user_id, simdiMs);
@@ -72,6 +94,55 @@ function zamanlayici(c) {
       if (Number(kaydet.run(a.user_id, "hatirlatma", p.tarih, simdi(), JSON.stringify({ seri: d.seri, tekrar: d.tekrar })).changes) !== 1) continue;
       const m = hatirlatmaMetni(d), link = "/calis";
       const b = bildirim.olustur(a.user_id, { tur: m.tur, baslik: m.baslik, metin: m.metin, link }, {
+        push: !!a.push, simdiMs,
+        eposta: a.eposta_hatirlatma ? {
+          konu: "Meberra: " + m.baslik,
+          metin: "Merhaba " + a.ad + ",\n\n" + m.metin + "\n\nKaldığın yerden devam et: " + config.baseUrl + link +
+            "\n\nBu hatırlatmayı sen açtın; günde en fazla bir kez gelir. Almak istemiyorsan tek tıkla durdur: " + bildirim.iptalLinki(a, "hatirlatma") +
+            "\n\nİyi çalışmalar,\nMeberra"
+        } : null
+      });
+      await b.push;
+      n++;
+    }
+    return n;
+  }
+
+  const saatGeldi = (a, simdiMs, p) => (bildirim.etkinSaat ? bildirim.etkinSaat(a, simdiMs) : a.hatirlatma_saati) <= p.saat;
+
+  /** 1.16.0 oyun: son çalışılan İstanbul günü (cevap ya da deneme) — hiç yoksa null */
+  function sonCalisilanGun(userId, simdiMs) {
+    const z = new Date(simdiMs).toISOString();
+    const r = db.prepare(`SELECT MAX(z) AS z FROM (SELECT MAX(zaman) AS z FROM answers WHERE user_id = ? AND zaman <= ?
+      UNION ALL SELECT MAX(tarih) FROM exams WHERE user_id = ? AND tarih <= ?)`).get(userId, z, userId, z);
+    const t = r && r.z ? Date.parse(r.z) : NaN;
+    return isNaN(t) ? null : zaman.gun(t);
+  }
+
+  /** 1.16.0 oyun — geri dönüş mesajları (3 / 7 / 14 gün; her ara için bir kez; günlük tek mesaj sınırı; 30 günden sonra yok) */
+  async function geriDonusler(simdiMs) {
+    if (zaman.sessizMi(simdiMs)) return 0;
+    const p = zaman.parcalar(simdiMs);
+    const adaylar = db.prepare(`SELECT n.*, u.ad FROM notification_prefs n JOIN users u ON u.id = n.user_id
+      WHERE u.durum = 'aktif' AND (n.eposta_hatirlatma = 1 OR n.push = 1)
+        AND NOT EXISTS (SELECT 1 FROM reminder_log r WHERE r.user_id = n.user_id AND r.gun = ? AND r.tur IN ('hatirlatma', 'deneme'))`).all(p.tarih);
+    const gonderildi = db.prepare("SELECT 1 FROM reminder_log WHERE user_id = ? AND gun = ? AND tur IN ('geri-donus-3', 'geri-donus-7', 'geri-donus-14') AND CAST(substr(tur, 12) AS INTEGER) >= ?");
+    let n = 0;
+    for (const a of adaylar) {
+      const son = sonCalisilanGun(a.user_id, simdiMs);
+      if (!son) continue;
+      const fark = gunFarki(son, p.tarih), asama = geriDonusAsamasi(fark);
+      if (!asama || gonderildi.get(a.user_id, son, asama) || !saatGeldi(a, simdiMs, p)) continue;
+      let yazildi = false;
+      db.exec("BEGIN");
+      try {
+        yazildi = Number(kaydet.run(a.user_id, "geri-donus-" + asama, son, simdi(), JSON.stringify({ fark })).changes) === 1 &&
+          Number(kaydet.run(a.user_id, "hatirlatma", p.tarih, simdi(), JSON.stringify({ geriDonus: asama, sonGun: son })).changes) === 1;
+        db.exec(yazildi ? "COMMIT" : "ROLLBACK");
+      } catch (e) { db.exec("ROLLBACK"); throw e; }
+      if (!yazildi) continue;
+      const m = GERI_DONUS_METIN[asama], link = "/calis";
+      const b = bildirim.olustur(a.user_id, { tur: "tekrar", baslik: m.baslik, metin: m.metin, link }, {
         push: !!a.push, simdiMs,
         eposta: a.eposta_hatirlatma ? {
           konu: "Meberra: " + m.baslik,
@@ -157,7 +228,7 @@ function zamanlayici(c) {
   async function tik(simdiMs) {
     simdiMs = simdiMs == null ? Date.now() : simdiMs;
     const bas = Date.now();
-    const sonuc = { lig: 0, hatirlatma: 0, veliRaporu: 0, gunlukSilinen: 0, erisim: null };
+    const sonuc = { lig: 0, geriDonus: 0, hatirlatma: 0, veliRaporu: 0, gunlukSilinen: 0, erisim: null };
     const bitir = () => { durumBilgi.sonCalisma = simdi(); durumBilgi.sonSure = Date.now() - bas; durumBilgi.sonSonuc = sonuc; return sonuc; };
     sonuc.lig = (await isCalistir("lig", () => lig.devir(simdiMs))) || 0;
     // Sistem günlüğü saklama: bilgi 7 gün, uyarı/hata 90 gün
@@ -165,6 +236,7 @@ function zamanlayici(c) {
     sonuc.erisim = await isCalistir("erisim", () => erisimTemizligi(simdiMs));
     for (const e of ekIsler) if (e.sessizde) sonuc[e.ad] = await isCalistir(e.ad, () => e.fn(simdiMs));
     if (zaman.sessizMi(simdiMs)) return bitir();
+    sonuc.geriDonus = (await isCalistir("geriDonus", () => geriDonusler(simdiMs))) || 0; // 1.16.0 oyun: günlük hatırlatmadan önce
     sonuc.hatirlatma = (await isCalistir("hatirlatma", () => hatirlatmalar(simdiMs))) || 0;
     sonuc.veliRaporu = (await isCalistir("veliRaporu", () => veliRaporlari(simdiMs))) || 0;
     for (const e of ekIsler) if (!e.sessizde) sonuc[e.ad] = await isCalistir(e.ad, () => e.fn(simdiMs));
@@ -174,9 +246,9 @@ function zamanlayici(c) {
   /** Yönetici "Şimdi çalıştır": tek iş. Hatırlatma/veli raporu kendi kurallarına uyar (sessiz saat, günde bir). */
   async function calistir(ad, simdiMs) {
     simdiMs = simdiMs == null ? Date.now() : simdiMs;
-    if (ad === "hatirlatma" || ad === "veliRaporu") {
+    if (ad === "hatirlatma" || ad === "veliRaporu" || ad === "geriDonus") {
       if (zaman.sessizMi(simdiMs)) return { calisti: false, neden: "Sessiz saatler (22:00–08:00): hatırlatma gönderilmez." };
-      return { calisti: true, sonuc: await isCalistir(ad, () => (ad === "hatirlatma" ? hatirlatmalar(simdiMs) : veliRaporlari(simdiMs))) };
+      return { calisti: true, sonuc: await isCalistir(ad, () => (ad === "hatirlatma" ? hatirlatmalar(simdiMs) : ad === "geriDonus" ? geriDonusler(simdiMs) : veliRaporlari(simdiMs))) };
     }
     if (ad === "lig") return { calisti: true, sonuc: await isCalistir("lig", () => lig.devir(simdiMs)) };
     if (ad === "temizlik") return { calisti: true, sonuc: await isCalistir("temizlik", () => (gunluk ? gunluk.temizlik(simdiMs) : 0)) };
@@ -191,7 +263,7 @@ function zamanlayici(c) {
 
   let zamanlayiciId = null, ilk = null;
   return {
-    tik, calismaDurumu, calistir, erisimTemizligi,
+    tik, calismaDurumu, calistir, erisimTemizligi, geriDonusler, sonCalisilanGun,
     /** Haftalık veli raporu işine ek gönderici (pazar 18:00 kuralını gönderici kendisi uygular) */
     raporEkle(f) { if (typeof f === "function") ekRaporlar.push(f); },
     durum: () => Object.assign({}, durumBilgi, { isler: Object.keys(ISLER).map(ad => Object.assign({ ad, baslik: ISLER[ad] }, isBilgi[ad] || {}))
@@ -209,4 +281,4 @@ function zamanlayici(c) {
   };
 }
 
-module.exports = { zamanlayici, IP_SAKLAMA_GUN, ISLER };
+module.exports = { zamanlayici, IP_SAKLAMA_GUN, ISLER, geriDonusAsamasi, GERI_DONUS, GERI_DONUS_METIN };

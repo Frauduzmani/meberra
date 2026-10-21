@@ -1,0 +1,54 @@
+/* Meberra 1.17.0 — Odak sayacı (assets/js/odak.js). Sol altta sakin bir hap; açılınca küçük panel. */
+.od-kutu {
+  position: fixed; left: 16px; bottom: 16px; z-index: 900;
+  display: flex; align-items: center; gap: 10px;
+  max-width: calc(100vw - 32px);
+  padding: 8px 10px 8px 8px; border-radius: var(--radius-full, 999px);
+  background: var(--surface, #fff); color: var(--text, #1a1033);
+  border: 1px solid var(--border, #e3def2); box-shadow: 0 8px 24px rgba(26, 16, 51, .14);
+  font: 600 .9375rem/1.3 var(--font-body, system-ui, sans-serif);
+}
+.od-kutu[hidden] { display: none; }
+.od-ic { display: flex; align-items: center; gap: 10px; position: relative; min-width: 0; }
+.od-canli { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: -1px; }
+.od-maskot { flex: none; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; background: var(--accent-soft, #f3f0ff); line-height: 0; overflow: hidden; }
+.od-maskot .maskot, .od-maskot svg { width: 44px; height: 44px; }
+.od-ozet { display: flex; flex-direction: column; align-items: flex-start; background: none; border: 0; padding: 2px 4px; color: inherit; cursor: pointer; border-radius: 8px; font: inherit; }
+.od-etiket { font-size: .75rem; color: var(--text-muted, #5e5873); font-weight: 700; letter-spacing: .02em; }
+.od-sure { font: 900 1.25rem/1.1 var(--font-head, system-ui, sans-serif); font-variant-numeric: tabular-nums; }
+.od-cubuk { position: absolute; left: 54px; right: 0; bottom: -6px; height: 3px; border-radius: 3px; background: var(--surface-3, #f1eefa); overflow: hidden; }
+.od-cubuk i { display: block; height: 100%; background: var(--accent, #5b3df5); transform-origin: left center; transition: transform 1s linear; }
+.od-kutu--mola .od-cubuk i { background: var(--energy, #ff6b2c); }
+.od-kutu.is-durdu .od-sure { color: var(--text-muted, #5e5873); }
+.od-eylem { display: flex; gap: 6px; }
+.od-eylem button, .od-baslat {
+  min-height: 36px; padding: 6px 12px; border-radius: var(--radius-full, 999px);
+  border: 1px solid var(--border-strong, #cec7e3); background: transparent; color: var(--accent, #5b3df5);
+  font: 700 .875rem/1 var(--font-body, system-ui, sans-serif); cursor: pointer;
+}
+.od-eylem button:hover, .od-baslat:hover { background: var(--accent-soft, #f3f0ff); }
+.od-baslat { display: inline-flex; align-items: center; gap: 6px; }
+.od-kutu button:focus-visible, .od-baslat:focus-visible { outline: 2px solid var(--accent, #5b3df5); outline-offset: 2px; }
+
+/* Panel (süre seçimi) */
+.od-kutu--panel { flex-direction: column; align-items: stretch; border-radius: var(--radius-lg, 18px); padding: 14px; width: 320px; }
+.od-kutu--panel .od-ic { flex-direction: column; align-items: stretch; gap: 12px; }
+.od-ust { display: flex; gap: 10px; align-items: center; }
+.od-ust > div { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.od-ust b { font: 800 1rem/1.2 var(--font-head, system-ui, sans-serif); }
+.od-ust span { font-size: .8125rem; color: var(--text-muted, #5e5873); font-weight: 500; }
+.od-x { width: 32px; height: 32px; border-radius: 50%; border: 0; background: transparent; color: var(--text-muted, #5e5873); font-size: 1.25rem; cursor: pointer; }
+.od-x:hover { background: var(--surface-3, #f1eefa); }
+.od-secim { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.od-sec { display: flex; flex-direction: column; gap: 2px; align-items: center; padding: 10px 6px; border-radius: var(--radius-md, 12px);
+  border: 1px solid var(--border, #e3def2); background: var(--surface-2, #fcfbff); color: var(--text, #1a1033); cursor: pointer; font: inherit; }
+.od-sec b { font: 900 1.125rem/1.1 var(--font-head, system-ui, sans-serif); }
+.od-sec span { font-size: .75rem; color: var(--text-muted, #5e5873); font-weight: 600; }
+.od-sec:hover { border-color: var(--accent, #5b3df5); }
+
+@media (max-width: 520px) {
+  .od-kutu { left: 8px; bottom: 8px; }
+  .od-kutu--panel { width: calc(100vw - 16px); }
+  .od-eylem button { padding: 6px 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .od-cubuk i { transition: none; } }

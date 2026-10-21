@@ -16,10 +16,12 @@
   <link rel="stylesheet" href="/assets/css/hareket.css?v=20261021m">
   <link rel="stylesheet" href="/assets/css/maskot.css?v=20261021m">
   <link rel="stylesheet" href="/assets/css/canli.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/grafik.css?v=1160a">
   <script src="/assets/js/adresler.js"></script>
   <script src="/assets/js/maskot.js?v=20261021m" defer></script>
   <script src="/assets/js/kutlama.js?v=20261021m" defer></script>
   <script src="/assets/js/canli.js?v=20261021m" defer></script>
+  <script src="/assets/js/grafik.js?v=1160a" defer></script>
   <script src="/assets/js/oyun.js?v=20261021m" defer></script>
   <script src="/assets/js/bildirim.js?v=20261021m" defer></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
@@ -36,64 +38,57 @@
     <header class="page-head">
       <span class="eyebrow" id="ilerleme-eyebrow">İlerleme</span>
       <h1>Nerede güçlüsün, neyi tekrar etmelisin?</h1>
-      <p>Ders ve ünite sonuçların, rozetlerin ve Yanlışlarım tek yerde.</p>
+      <p>Hedefine ne kadar yakınsın, hangi ünite seni bekliyor: grafiklerin, Yanlışlarım ve rozetlerin tek yerde.</p>
     </header>
 
-    <!-- GENEL ÖZET -->
-    <section class="section" aria-labelledby="ozet-title">
-      <h2 id="ozet-title" class="visually-hidden">Genel özet</h2>
-      <div class="surface">
-        <div class="ring-row">
-          <div class="ring" id="overall-ring" role="img" aria-label="Genel başarı oranı">
-            <span id="overall-rate">–</span>
-          </div>
-          <div class="u-min0" style="flex: 1 1 260px;">
-            <div class="u-flex u-center u-gap-2 u-wrap u-mb-2">
-              <strong class="u-fs-18">Genel başarı</strong>
-              <span class="zone zone-none" id="overall-zone">Veri yok</span>
-            </div>
-            <div class="kv-list">
-              <div class="kv"><div class="kv-num" id="k-answered">0</div><div class="kv-label">Çözülen soru</div></div>
-              <div class="kv is-ok"><div class="kv-num" id="k-correct">0</div><div class="kv-label">Doğru</div></div>
-              <div class="kv is-bad"><div class="kv-num" id="k-wrong">0</div><div class="kv-label">Yanlış</div></div>
-              <div class="kv"><div class="kv-num" id="k-open">0</div><div class="kv-label">Yanlışlarım (açık)</div></div>
-            </div>
-          </div>
+    <!-- 1.16.0 İLERLEME GRAFİKLERİ (/assets/js/grafik.js; veri GET /api/ilerleme/ozet). Boyutlar CSS'te ayrılır (kayma olmasın). -->
+    <section class="section il-bolum" id="il-hedef" aria-labelledby="il-hedef-baslik">
+      <div class="il-bolum-bas">
+        <h2 class="u-fs-22 u-fw-800" id="il-hedef-baslik">Hedefe yakınlık</h2>
+        <a class="btn-ghost btn-sm" href="/profil">Hedeflerini düzenle</a>
+      </div>
+      <div class="il-halkalar" id="il-halkalar" aria-busy="true"><div class="il-halka-kart iskelet" aria-hidden="true"></div><div class="il-halka-kart iskelet" aria-hidden="true"></div></div>
+    </section>
+
+    <div class="il-izgara">
+      <section class="surface il-kart" aria-labelledby="il-etkinlik-baslik">
+        <div class="il-kart-bas"><h2 id="il-etkinlik-baslik">Etkinlik</h2><span class="il-kart-alt" id="il-seri">–</span></div>
+        <div class="il-isi-yer" id="il-isi"></div>
+        <div class="il-xp">
+          <div class="il-xp-bas"><span>Haftalık XP</span><strong id="il-xp-son">–</strong></div>
+          <div class="il-kivilcim-yer" id="il-xp"></div>
         </div>
-        <p class="side-note u-mt-4 bolge-satir">
-          <span class="zone zone-red">Kırmızı %0–49</span> <span class="zone zone-yellow">Sarı %50–74</span> <span class="zone zone-green">Yeşil %75–100</span>
-          <span>Çözdüğün sorulardaki doğru oranı</span>
-        </p>
-      </div>
-    </section>
+        <div id="il-etkinlik-tablo"></div>
+      </section>
+      <section class="surface il-kart" aria-labelledby="il-dogru-baslik">
+        <div class="il-kart-bas"><h2 id="il-dogru-baslik">Doğruluk</h2><span class="il-kart-alt">7 günlük kayan ortalama · son 90 gün</span></div>
+        <p class="il-yorum" id="il-dogru-yorum"></p>
+        <div class="il-cizgi-yer" id="il-dogru"></div>
+        <div id="il-dogru-tablo"></div>
+      </section>
+    </div>
 
-    <!-- SEVİYE TESTİ RAPORU (özet) -->
-    <!-- ROZETLER (/assets/js/oyun.js çizer) -->
-    <section class="section oy-rozet-bolum" id="rozetler" aria-labelledby="rozet-title">
-      <div class="section-header u-mb-3">
-        <div class="section-title-wrap"><h2 class="u-fs-22 u-fw-800" id="rozet-title">Rozetler</h2></div>
-        <span class="oy-rozet-ozet" id="rozet-ozet"></span>
+    <section class="section il-bolum" id="il-dersler" aria-labelledby="il-ders-baslik">
+      <div class="il-bolum-bas">
+        <h2 class="u-fs-22 u-fw-800" id="il-ders-baslik">Derslerin</h2>
+        <div class="chip-group" id="il-ders-sec" role="group" aria-label="Ders seç"></div>
       </div>
-      <ul class="oy-rozetler" id="rozet-liste"><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li></ul>
-    </section>
-
-    <section class="section" id="seviye-section" aria-labelledby="seviye-title">
-      <div class="surface sv-mini">
-        <div class="sv-mini-head">
-          <div class="u-min0">
-            <h2 class="u-fs-22 u-fw-800" id="seviye-title">Seviye testi raporu</h2>
-            <p class="side-note" id="seviye-meta">Henüz seviye testi çözmedin.</p>
-          </div>
-          <a class="btn-ghost" id="seviye-link" href="/seviye-testi">Seviye testine git →</a>
-        </div>
-        <ul class="sv-mini-list" id="seviye-list"></ul>
+      <div class="il-izgara">
+        <section class="surface il-kart" aria-labelledby="il-puan-baslik">
+          <div class="il-kart-bas"><h2 id="il-puan-baslik">Tahmini AP puanı</h2><span class="il-kart-alt">Denemeler ve tam sınavlar</span></div>
+          <p class="il-yorum" id="il-puan-yorum"></p>
+          <div class="il-cizgi-yer" id="il-puan"></div>
+          <div id="il-puan-lejant"></div>
+          <div id="il-puan-tablo"></div>
+          <p class="side-note il-frq" id="il-frq" hidden></p>
+        </section>
+        <section class="surface il-kart" aria-labelledby="il-unite-baslik">
+          <div class="il-kart-bas"><h2 id="il-unite-baslik">Ünite ustalığı</h2></div>
+          <div id="il-unite-lejant"></div>
+          <div class="il-unite-yer" id="il-unite"></div>
+          <div id="il-unite-tablo"></div>
+        </section>
       </div>
-    </section>
-
-    <!-- DERS / ÜNİTE -->
-    <section class="section" aria-labelledby="ders-title">
-      <h2 id="ders-title">Ders ve ünite bazında</h2>
-      <div id="course-root"></div>
     </section>
 
     <!-- BUGÜNKÜ TEKRAR (akıllı tekrar: apmeberra:tekrar:v1; assets/js/oyun.js çizer — ilerleme.html?mod=tekrar doğrudan başlatır) -->
@@ -126,6 +121,76 @@
       </div>
     </section>
 
+    <!-- Daha az acil bölümler: katlanır (içerikleri yine çizilir) -->
+    <section class="section il-katlanir" aria-label="Diğer ayrıntılar">
+      <details class="surface il-detay" id="il-rozet-detay">
+        <summary><span class="u-fw-800">Rozetler</span><span class="il-detay-alt" id="il-rozet-ozet-kisa">Kazandığın rozetler ve toplam XP</span></summary>
+    <!-- SEVİYE TESTİ RAPORU (özet) -->
+    <!-- ROZETLER (/assets/js/oyun.js çizer) -->
+        <section class="oy-rozet-bolum" id="rozetler" aria-labelledby="rozet-title">
+      <div class="section-header u-mb-3">
+        <div class="section-title-wrap"><h2 class="u-fs-22 u-fw-800" id="rozet-title">Rozetler</h2></div>
+        <span class="oy-rozet-ozet" id="rozet-ozet"></span>
+      </div>
+      <ul class="oy-rozetler" id="rozet-liste"><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li><li class="oy-rozet iskelet-rozet" aria-hidden="true"></li></ul>
+    </section>
+
+      </details>
+      <details class="surface il-detay">
+        <summary><span class="u-fw-800">Sayılarla özet ve ünite listesi</span><span class="il-detay-alt">Bu cihazdaki tüm cevapların</span></summary>
+    <!-- GENEL ÖZET -->
+    <section class="section" aria-labelledby="ozet-title">
+      <h2 id="ozet-title" class="visually-hidden">Genel özet</h2>
+      <div class="surface">
+        <div class="ring-row">
+          <div class="ring" id="overall-ring" role="img" aria-label="Genel başarı oranı">
+            <span id="overall-rate">–</span>
+          </div>
+          <div class="u-min0" style="flex: 1 1 260px;">
+            <div class="u-flex u-center u-gap-2 u-wrap u-mb-2">
+              <strong class="u-fs-18">Genel başarı</strong>
+              <span class="zone zone-none" id="overall-zone">Veri yok</span>
+            </div>
+            <div class="kv-list">
+              <div class="kv"><div class="kv-num" id="k-answered">0</div><div class="kv-label">Çözülen soru</div></div>
+              <div class="kv is-ok"><div class="kv-num" id="k-correct">0</div><div class="kv-label">Doğru</div></div>
+              <div class="kv is-bad"><div class="kv-num" id="k-wrong">0</div><div class="kv-label">Yanlış</div></div>
+              <div class="kv"><div class="kv-num" id="k-open">0</div><div class="kv-label">Yanlışlarım (açık)</div></div>
+            </div>
+          </div>
+        </div>
+        <p class="side-note u-mt-4 bolge-satir">
+          <span class="zone zone-red">Kırmızı %0–49</span> <span class="zone zone-yellow">Sarı %50–74</span> <span class="zone zone-green">Yeşil %75–100</span>
+          <span>Çözdüğün sorulardaki doğru oranı</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- DERS / ÜNİTE -->
+    <section class="section" aria-labelledby="ders-title">
+      <h2 id="ders-title">Ders ve ünite bazında</h2>
+      <div id="course-root"></div>
+    </section>
+
+      </details>
+      <details class="surface il-detay">
+        <summary><span class="u-fw-800">Seviye testi raporu</span><span class="il-detay-alt">Son testin özeti</span></summary>
+    <section class="section" id="seviye-section" aria-labelledby="seviye-title">
+      <div class="surface sv-mini">
+        <div class="sv-mini-head">
+          <div class="u-min0">
+            <h2 class="u-fs-22 u-fw-800" id="seviye-title">Seviye testi raporu</h2>
+            <p class="side-note" id="seviye-meta">Henüz seviye testi çözmedin.</p>
+          </div>
+          <a class="btn-ghost" id="seviye-link" href="/seviye-testi">Seviye testine git →</a>
+        </div>
+        <ul class="sv-mini-list" id="seviye-list"></ul>
+      </div>
+    </section>
+
+      </details>
+      <details class="surface il-detay">
+        <summary><span class="u-fw-800">Verileri sıfırla</span><span class="il-detay-alt">Geri alınamaz</span></summary>
     <!-- SIFIRLAMA -->
     <section class="section" aria-labelledby="reset-title">
       <div class="surface u-flex u-center u-between u-gap-4 u-wrap">
@@ -136,6 +201,9 @@
         <button type="button" class="btn-ghost btn-danger" id="reset-all">Tüm ilerlemeyi sıfırla</button>
       </div>
       <p class="visually-hidden" aria-live="polite" id="reset-live"></p>
+    </section>
+
+      </details>
     </section>
 
   </main>
@@ -327,6 +395,167 @@
 
     render();
   })();
+  </script>
+  <!-- 1.16.0 İlerleme grafikleri: GET /api/ilerleme/ozet → /assets/js/grafik.js (ertelenmiş betikler yüklendikten sonra çizer) -->
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    "use strict";
+    var G = window.MeberraGrafik, M = window.MeberraMaskot;
+    if (!G) return;
+    var $ = function (id) { return document.getElementById(id); };
+    var esc = G.esc, sayi = G.sayi;
+    var SECILI = null;
+    try { SECILI = localStorage.getItem("apmeberra:ilerleme-ders") || null; } catch (e) { /* yok say */ }
+
+    // Katlanır bölüm bağlantıyla açılır (#rozetler)
+    function hashAc() { var h = location.hash && document.getElementById(location.hash.slice(1)); var d = h && h.closest && h.closest("details"); if (d) d.open = true; }
+    window.addEventListener("hashchange", hashAc); hashAc();
+
+    function bos(el, mesaj, ifade) {
+      el.innerHTML = '<div class="il-bos"></div>';
+      var k = el.firstChild;
+      if (M && M.konus) M.konus(k, { ifade: ifade || "selam", mesaj: mesaj, boyut: 72 });
+      else k.innerHTML = '<p class="side-note">' + esc(mesaj) + '</p>';
+    }
+    var tarihTR = function (iso) { return G.gunEtiket(String(iso).slice(0, 10), true); };
+
+    // 1) Hedefe yakınlık halkaları
+    function halkalar(d) {
+      var kap = $("il-halkalar"); kap.removeAttribute("aria-busy");
+      if (!d.dersler.length) { bos(kap, "İlk sorundan sonra grafiklerin burada belirecek."); return; }
+      kap.innerHTML = d.dersler.map(function (x, i) {
+        return '<article class="il-halka-kart" aria-labelledby="il-h-' + i + '"><div class="il-halka-yer" id="il-halka-' + i + '"></div><div class="u-min0">' +
+          '<h3 id="il-h-' + i + '">' + esc(x.ad) + '</h3>' +
+          '<p class="il-halka-sayi">' + (x.tahminiInce == null ? "Tahmin yok" : "Tahmini <b>" + sayi(x.tahminiInce, 1) + "</b>") + (x.hedef ? " · hedef <b>" + x.hedef + "</b>" : "") + '</p>' +
+          '<p class="il-yorum">' + esc(G.puanYorumu(x.tahminiInce, x.hedef)) + '</p>' +
+          '<p class="il-halka-kaynak">' + esc(x.tahminKaynagi === "deneme" ? "Son denemenden" : x.tahminKaynagi === "sorular" ? x.cevap + " sorunun doğruluğundan (%" + x.dogruluk + ")" : x.cevap + " cevap · en az 10 gerekli") + '</p>' +
+          '</div></article>';
+      }).join("");
+      d.dersler.forEach(function (x, i) {
+        var t = x.tahminiInce;
+        G.halka($("il-halka-" + i), { deger: t == null ? 0 : t, max: 5, hedef: x.hedef, merkez: t == null ? "–" : sayi(t, 1), alt: x.hedef ? "hedef " + x.hedef : "/ 5",
+          etiket: x.ad + ": tahmini puan " + (t == null ? "yok" : sayi(t, 1)) + (x.hedef ? ", hedef " + x.hedef : "") + " (1–5 ölçeği)", boyut: 112 });
+      });
+    }
+
+    // 2) Etkinlik: ısı takvimi + seri + haftalık XP
+    function etkinlik(d) {
+      var aktifGun = d.gunler.slice(-84).filter(function (g) { return g.cevap || g.deneme; }).length;
+      $("il-seri").textContent = d.seri.simdi ? d.seri.simdi + " günlük seri · en uzun " + d.seri.enUzun : aktifGun ? "Bugün bir soruyla seriyi başlat" : "Henüz etkinlik yok";
+      if (!d.toplam.cevap && !d.toplam.deneme) { bos($("il-isi"), "İlk sorundan sonra etkinlik takvimin burada belirecek."); $("il-xp").innerHTML = ""; $("il-xp-son").textContent = "0 XP"; $("il-etkinlik-tablo").innerHTML = ""; return; }
+      G.isiTakvimi($("il-isi"), d.gunler, { gun: 84, etiket: "Son 12 haftada çözdüğün soru sayısı, gün gün. Ok tuşlarıyla gezin." });
+      var xs = d.haftalar.map(function (h) { return h.xp; });
+      $("il-xp-son").textContent = sayi(xs[xs.length - 1]) + " XP bu hafta";
+      G.kivilcim($("il-xp"), xs, { etiket: "Son 12 haftanın XP'si; bu hafta " + xs[xs.length - 1],
+        ipuclari: d.haftalar.map(function (h) { return "<b>" + esc(G.gunEtiket(h.pazartesi)) + " haftası</b><br>" + sayi(h.xp) + " XP · " + h.soru + " soru"; }) });
+      $("il-etkinlik-tablo").innerHTML = G.tablo("Haftalık etkinlik", ["Hafta (Pzt)", "Soru", "Doğru", "Deneme", "XP"],
+        d.haftalar.slice().reverse().map(function (h) { return [G.gunEtiket(h.pazartesi, true), h.soru, h.dogru, h.deneme, h.xp]; }));
+    }
+
+    // 3) Doğruluk (7 günlük kayan)
+    function dogruluk(d) {
+      var k = G.kayanDogruluk(d.gunler, 7, 3);
+      var dolu = k.filter(function (x) { return x.deger !== null; });
+      if (dolu.length < 2) { $("il-dogru-yorum").textContent = ""; bos($("il-dogru"), "Birkaç gün soru çözünce doğruluk eğrin burada belirecek.", "dusunen"); $("il-dogru-tablo").innerHTML = ""; return; }
+      var ilk = dolu[0].deger, son = dolu[dolu.length - 1].deger, fark = son - ilk;
+      $("il-dogru-yorum").innerHTML = "Son 7 gün: <b>%" + son + "</b> · " + (Math.abs(fark) < 3 ? "dengeli gidiyor" : fark > 0 ? "başlangıca göre " + fark + " puan yukarıda" : "başlangıca göre " + (-fark) + " puan aşağıda; tekrar zamanı");
+      G.cizgi($("il-dogru"), {
+        noktalar: k.map(function (x) { return { x: Date.parse(x.gun + "T12:00:00Z"), y: x.deger, ipucu: "<b>" + esc(G.gunEtiket(x.gun)) + "</b><br>" + (x.deger == null ? "yeterli cevap yok" : "%" + x.deger + " · " + x.cevap + " cevap (7 gün)") }; }),
+        yMin: 0, yMax: 100, yTikler: [0, 25, 50, 75, 100], yBicim: function (v) { return "%" + v; }, alan: true, yukseklik: 200,
+        etiket: "Son 90 günde 7 günlük kayan doğruluk oranı; şu an yüzde " + son + ". Ok tuşlarıyla günleri gez."
+      });
+      $("il-dogru-tablo").innerHTML = G.tablo("Günlük doğruluk", ["Gün", "Cevap (gün)", "Doğru (gün)", "7 günlük %"],
+        d.gunler.map(function (g, i) { return [G.gunEtiket(g.gun, true), g.cevap, g.dogru, k[i].deger == null ? "–" : "%" + k[i].deger]; }).filter(function (r) { return r[1] > 0; }).reverse());
+    }
+
+    // 4–5) Ders seçimi (tek satır, grafiklerin üstünde): puan trendi + ünite ustalığı
+    function dersSec(d) {
+      var sec = $("il-ders-sec");
+      if (!d.dersler.length) { sec.innerHTML = ""; return; }
+      if (!d.dersler.some(function (x) { return x.ders === SECILI; })) SECILI = (d.dersler.filter(function (x) { return x.cevap > 0; })[0] || d.dersler[0]).ders;
+      sec.hidden = d.dersler.length < 2;
+      sec.innerHTML = d.dersler.map(function (x) { return '<button type="button" class="chip" data-ders="' + esc(x.ders) + '" aria-pressed="' + (x.ders === SECILI) + '">' + esc(x.kisa) + '</button>'; }).join("");
+      sec.querySelectorAll("[data-ders]").forEach(function (b) {
+        b.addEventListener("click", function () {
+          SECILI = b.getAttribute("data-ders");
+          try { localStorage.setItem("apmeberra:ilerleme-ders", SECILI); } catch (e) { /* yok say */ }
+          sec.querySelectorAll("[data-ders]").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+          $("il-puan").removeAttribute("data-gf-cizildi");
+          dersCiz(d);
+        });
+      });
+    }
+    function dersCiz(d) {
+      var x = d.dersler.filter(function (y) { return y.ders === SECILI; })[0];
+      if (!x) {
+        bos($("il-puan"), "Bir deneme çözünce tahmini puan eğrin burada belirecek.", "dusunen");
+        bos($("il-unite"), "İlk sorundan sonra ünite çubukların burada belirecek.");
+        return;
+      }
+      // Puan trendi (economics denemesi Mikro ve Makro için ortak)
+      var g = d.puanGecmisi.filter(function (p) { return p.ders === x.ders || (p.kod === "economics" && (x.ders === "microeconomics" || x.ders === "macroeconomics")); });
+      var lej = $("il-puan-lejant");
+      if (!g.length) {
+        $("il-puan-yorum").textContent = "";
+        bos($("il-puan"), "Bir " + x.kisa + " denemesi çözünce tahmini puan eğrin burada belirecek.", "dusunen");
+        lej.innerHTML = '<a class="btn-ghost btn-sm" href="/deneme">Deneme çöz →</a>'; $("il-puan-tablo").innerHTML = "";
+      } else {
+        var son = g[g.length - 1];
+        $("il-puan-yorum").innerHTML = "Son: <b>" + sayi(son.puan, 0) + "</b> (" + esc(tarihTR(son.tarih)) + ")" + (x.hedef ? " · hedef " + x.hedef + (son.puan >= x.hedef ? " · hedeftesin" : "") : "");
+        G.cizgi($("il-puan"), {
+          noktalar: g.map(function (p) { return { x: Date.parse(p.tarih), y: p.puan, ipucu: "<b>" + esc(tarihTR(p.tarih)) + "</b><br>" + esc(p.tur === "tam" ? "Tam sınav" : "Deneme") + " · tahmini " + p.puan + (p.yuzde != null ? " · %" + p.yuzde : "") }; }),
+          yMin: 1, yMax: 5, yTikler: [1, 2, 3, 4, 5], hedef: x.hedef ? { y: x.hedef, etiket: "Hedef " + x.hedef } : null, yukseklik: 200,
+          etiket: x.ad + " tahmini AP puanı, " + g.length + " deneme; son " + son.puan + (x.hedef ? ", hedef " + x.hedef : "") + ". Ok tuşlarıyla gez."
+        });
+        lej.innerHTML = G.lejant([{ ad: "Tahmini puan (1–5)", sinif: "is-cizgi" }].concat(x.hedef ? [{ ad: "Hedef", sinif: "is-hedef" }] : []));
+        $("il-puan-tablo").innerHTML = G.tablo("Tahmini puan geçmişi", ["Tarih", "Tür", "Yüzde", "Tahmini"],
+          g.slice().reverse().map(function (p) { return [tarihTR(p.tarih), p.tur === "tam" ? "Tam sınav" : "Deneme", p.yuzde == null ? "–" : "%" + p.yuzde, p.puan]; }));
+      }
+      // FRQ öz puan özeti
+      var f = d.frq.filter(function (z) { return z.ders === x.ders; }), fe = $("il-frq");
+      fe.hidden = !f.length;
+      if (f.length) {
+        var sf = f[f.length - 1];
+        fe.innerHTML = "FRQ öz puanın: son <b>" + sf.puan + "/" + sf.toplamPuan + "</b> (%" + sf.yuzde + ")" +
+          (f.length > 1 ? " · " + f.length + " FRQ, ortalama %" + Math.round(f.reduce(function (a, z) { return a + (z.yuzde || 0); }, 0) / f.length) : "") + ' · <a href="/frq">FRQ çöz</a>';
+      }
+      // Ünite ustalığı
+      var un = x.uniteler.filter(function (u) { return u.bankada || u.cevap; });
+      if (!x.cevap) {
+        bos($("il-unite"), "İlk " + x.kisa + " sorundan sonra ünite çubukların burada belirecek.");
+        $("il-unite-lejant").innerHTML = '<a class="btn-primary btn-sm" href="' + esc(x.link) + '">' + esc(x.kisa) + ' çalışmaya başla</a>'; $("il-unite-tablo").innerHTML = ""; return;
+      }
+      $("il-unite-lejant").innerHTML = G.lejant([{ ad: "Doğruluk", sinif: "" }, { ad: "Kapsam: bankadaki soruların çözdüğün kısmı", sinif: "is-kapsam" }]);
+      G.cubuklar($("il-unite"), un.map(function (u) {
+        return { ad: u.ad, link: u.link, vurgu: u.zayif,
+          eylem: u.zayif ? '<a class="btn-ghost btn-sm il-simdi" href="' + esc(u.link) + '"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Şimdi çalış<span class="visually-hidden">: ' + esc(u.ad) + ' (zayıf ünite)</span></a>' : null,
+          not: u.cevap ? u.cevap + " cevap" : "Başlanmadı",
+          olcumler: [{ ad: "Doğruluk", deger: u.dogruluk }, { ad: "Kapsam", deger: u.kapsam, sinif: "is-kapsam" }] };
+      }));
+      $("il-unite-tablo").innerHTML = G.tablo("Ünite ustalığı", ["Ünite", "Cevap", "Doğruluk", "Kapsam", "Durum"],
+        un.map(function (u) { return [u.ad, u.cevap, u.dogruluk == null ? "–" : "%" + u.dogruluk, u.kapsam == null ? "–" : "%" + u.kapsam, u.zayif ? "Zayıf: şimdi çalış" : ""]; }));
+    }
+
+    function hepsi(d) { halkalar(d); etkinlik(d); dogruluk(d); dersSec(d); dersCiz(d); }
+    function yukle() {
+      fetch("/api/ilerleme/ozet", { credentials: "same-origin", headers: { Accept: "application/json" } })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (j) {
+          if (!j || !j.ok) {
+            $("il-halkalar").removeAttribute("aria-busy");
+            bos($("il-halkalar"), "Grafiklerini görmek için giriş yap.");
+            ["il-isi", "il-dogru", "il-puan", "il-unite"].forEach(function (id) { $(id).innerHTML = ""; });
+            return;
+          }
+          hepsi(j);
+        })
+        .catch(function () { $("il-halkalar").removeAttribute("aria-busy"); bos($("il-halkalar"), "Bağlantı kurulamadı. Biraz sonra sayfayı yenile.", "uzgun"); });
+    }
+    yukle();
+    // Yeni cevap sunucuya eşitlenince grafikler bir kez tazelenir (canlanma yeniden oynamaz)
+    var tz = null;
+    window.addEventListener("meberra:cevap", function () { clearTimeout(tz); tz = setTimeout(yukle, 4000); });
+  });
   </script>
 </body>
 </html>

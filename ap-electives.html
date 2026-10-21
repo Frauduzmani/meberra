@@ -16,11 +16,13 @@
   <link rel="stylesheet" href="/assets/css/hareket.css?v=20261021m">
   <link rel="stylesheet" href="/assets/css/maskot.css?v=20261021m">
   <link rel="stylesheet" href="/assets/css/canli.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/etkilesim-kbe.css?v=20261021kbe">
   <script src="/assets/js/adresler.js"></script>
   <script src="/assets/js/maskot.js?v=20261021m" defer></script>
   <script src="/assets/js/kutlama.js?v=20261021m" defer></script>
   <script src="/assets/js/canli.js?v=20261021m" defer></script>
   <script src="/assets/js/oyun.js?v=20261021m" defer></script>
+  <script src="/assets/js/etkilesim-kbe.js?v=20261021kbe" defer></script>
   <script>
     window.MathJax = {
       tex: {
@@ -211,6 +213,7 @@
           <div class="theory-callout">
             <strong>Pigouvian Taxes & Negative Externalities:</strong> When production imposes external costs on society (e.g., pollution), $MSC > MPC$. The free market overproduces ($Q_{mkt} > Q_{opt}$). A per-unit Pigouvian tax equal to the Marginal External Cost ($t = MEC$) internalizes the externality and eliminates deadweight loss.
           </div>
+          <div class="kbe-yuva" data-kbe="maliyet"></div>
         </div>
       </div>
 
@@ -229,8 +232,10 @@
           <div class="theory-callout">
             <strong>Monetary Transmission Mechanism:</strong> When the Central Bank pursues contractionary monetary policy (raising reserve requirements, hiking the policy interest rate, or selling government securities), the money supply contracts $\implies$ nominal interest rates rise $\implies$ investment and interest-sensitive consumption fall $\implies$ Aggregate Demand shifts left, curbing demand-pull inflation.
           </div>
+          <div class="kbe-yuva" data-kbe="adas"></div><div class="kbe-yuva" data-kbe="para"></div>
         </div>
       </div>
+      <div class="kbe-yuva" data-kbe="birim" data-birim="eko-temel"></div>
     </section>
 
     <section class="interactive-panel" id="csa-quiz-section">
@@ -310,6 +315,7 @@
             <div class="pitfall-box">
               <strong>AP TRAP — Enhanced for loops:</strong> adding to or removing from an <code>ArrayList</code> inside a for-each loop throws a <code>ConcurrentModificationException</code>. For arrays of primitives, assigning to the for-each variable changes only a copy.
             </div>
+            <div class="kbe-yuva" data-kbe="kodiz"></div>
           </div>
         </div>
 
@@ -358,6 +364,7 @@
           </div>
         </div>
       </div>
+      <div class="kbe-yuva" data-kbe="birim" data-birim="csa"></div>
     </section>
 
     <section class="interactive-panel" id="csa-core-quiz-section">
@@ -467,6 +474,7 @@
           </div>
         </div>
       </div>
+      <div class="kbe-yuva" data-kbe="birim" data-birim="micro56"></div>
     </section>
 
     <section class="interactive-panel" id="micro34-quiz-section">
@@ -530,6 +538,7 @@
             <div class="pitfall-box">
               <strong>AP TRAP — Price controls:</strong> a price ceiling is binding only if it is <em>below</em> equilibrium, and it causes a shortage equal to Q<sub>d</sub> − Q<sub>s</sub> at the ceiling price. A price floor is binding only if it is <em>above</em> equilibrium, and it causes a surplus.
             </div>
+            <div class="kbe-yuva" data-kbe="arztalep"></div><div class="kbe-yuva" data-kbe="esneklik"></div>
           </div>
         </div>
 
@@ -566,6 +575,7 @@
           </div>
         </div>
       </div>
+      <div class="kbe-yuva" data-kbe="birim" data-birim="macro16"></div>
     </section>
 
     <section class="interactive-panel" id="macro14-quiz-section">
@@ -710,7 +720,7 @@ public void purgeZeroStockAndConsolidate(String targetCategory) {
             (b) Toplumsal olarak optimal üretim düzeyini (Q_opt) ve fiyatını (P_opt) bulunuz.<br/>
             (c) Hükümetin dışsallığı içselleştirmek için koyması gereken Pigouvian birim vergi miktarını ve oluşan ölü dara kaybını (Deadweight Loss) gösteriniz.
           </p>
-          <div class="u-inset u-fs-14 u-c-muted">
+          <div data-kbe-adim class="u-inset u-fs-14 u-c-muted">
             <strong class="u-c-emerald">Ekonomi Çözüm Adımları & Matematiksel İspat:</strong><br/>
             • <strong>(a) Serbest Piyasa Dengesi:</strong> <code>MPB = MPC</code> => <code>70 - Q = 10 + 2Q</code> => <code>3Q = 60</code> => <strong>Q_mkt = 20 birim</strong>.<br/>
             Fiyat: <code>P_mkt = 70 - 20 = 50 TL/€</code>.<br/>
@@ -735,7 +745,7 @@ public void purgeZeroStockAndConsolidate(String targetCategory) {
             Bir akıllı şehir otopark yönetim sistemi için ilişkisel veritabanı şemasını (E-R Diagram) tasarlayınız. Boş park yeri sayısını anlık sorgulayan ve araç plakası bazında ücret tarifesi hesaplayan SQL sorgusunu yazınız.<br/>
             İtalyan sınav kılavuzuna göre sistemin RESTful API üzerinden mobil cihazlarla JSON formatında haberleşme protokolünü tanımlayınız.
           </p>
-          <div class="u-inset u-fs-14 u-c-muted">
+          <div data-kbe-adim class="u-inset u-fs-14 u-c-muted">
             <strong class="u-c-violet">İtalyan Teknik Maturità Çözüm Standardı:</strong><br/>
             • <strong>E-R Şeması:</strong> Varlıklar (Sensore, Stallo, Veicolo, Sosta, Tariffa) arasında 1:N ve N:M ilişkiler. Üçüncü Normal Form (3NF) şartı.<br/>
             • <strong>SQL Optimizasyonu:</strong> <code>SELECT S.settore, COUNT(*) AS posti_liberi FROM Stallo S WHERE S.stato = 'LIBERO' GROUP BY S.settore;</code> (İndeksleme stratejisiyle B-Tree analizi).<br/>

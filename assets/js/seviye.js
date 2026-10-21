@@ -301,10 +301,15 @@
     if (!c) return q;
     var h = c.hatalar || {};
     return Object.assign({}, q, {
-      options: q.options.map(function (o) { return Object.assign({ id: o.id, text: o.text, isCorrect: o.id === c.dogru }, h[o.id] ? { errorTag: h[o.id].errorTag, remediation: h[o.id].remediation } : {}); }),
-      stepByStepSolution: c.aciklama || "", generalRemediation: c.genelHatirlatma || "", ek: c.ek || null // 1.10.0 zenginleştirme (teslimden sonra)
+      options: q.options.map(function (o) { return Object.assign({ id: o.id, text: o.text, isCorrect: o.id === c.dogru }, o.sekil ? { sekil: o.sekil } : {}, h[o.id] ? { errorTag: h[o.id].errorTag, remediation: h[o.id].remediation } : {}); }),
+      stepByStepSolution: c.aciklama || "", generalRemediation: c.genelHatirlatma || "", ek: c.ek || null, // 1.10.0 zenginleştirme (teslimden sonra)
+      cozumSekiller: c.sekiller || null // 1.13.0 konum "aciklama" şekilleri (teslimden sonra)
     });
   }
+  // v1.13.0 şekiller: app.js apSekilHtml yer tutucusu → sekil.js çizer
+  function skHtml(v, sik) { return typeof window.apSekilHtml === "function" ? window.apSekilHtml(v, sik) : ""; }
+  function skSecenekli(l) { return typeof window.apSekilSecenekli === "function" && window.apSekilSecenekli(l); }
+  function skSiklar(l) { return typeof window.apSekilSiklarDugme === "function" ? window.apSekilSiklarDugme(l) : ""; }
   function bankalariYukle(bitti) {
     var yuk = $("sv-loading");
     if (!document.querySelector('meta[name="meberra-api"]')) { LISTE.forEach(function (d) { dosyaDurum[d.dosya] = "yok"; }); bitti(); return; }
@@ -586,12 +591,12 @@
       (q.hesapMakinesi ? '<span class="question-tag sv-tag-calc">' + ICON.calc + 'Hesap makinesi</span>' : '') +
       '</div></div>' +
       '<h2 class="visually-hidden" id="sv-q-title" tabindex="-1">Soru ' + (dv.idx + 1) + ' / ' + dv.sira.length + ', ' + esc(b.ad || meta.ad) + '</h2>' +
-      '<div class="question-body" id="sv-q-text">' + q.question + '</div>' +
-      '<fieldset class="sv-options" aria-describedby="sv-q-text"><legend class="visually-hidden">Şıklar</legend>' +
+      '<div class="question-body" id="sv-q-text">' + q.question + '</div>' + skHtml(q.sekiller) +
+      '<fieldset class="sv-options' + (skSecenekli(q.options) ? " sk-secenekli" : "") + '" aria-describedby="sv-q-text"><legend class="visually-hidden">Şıklar</legend>' +
       q.options.map(function (o) {
         return '<label class="sv-option"><input type="radio" name="sv-opt" value="' + esc(o.id) + '"' + (sec === o.id ? " checked" : "") + '>' +
-          '<span class="option-letter" aria-hidden="true">' + esc(o.id) + '</span><span class="sv-option-text">' + o.text + '</span></label>';
-      }).join("") + '</fieldset>' +
+          '<span class="option-letter" aria-hidden="true">' + esc(o.id) + '</span><span class="sv-option-text">' + (o.text || "") + skHtml(o.sekil, true) + '</span></label>';
+      }).join("") + '</fieldset>' + skSiklar(q.options) +
       (sec === null ? '<p class="sv-skipped-note">Bu soruyu “Bilmiyorum” olarak işaretledin. İstersen şimdi bir şık seçebilirsin.</p>' : '');
     var card = $("sv-q-card");
     card.innerHTML = html;
@@ -1089,16 +1094,16 @@
         var sec = q.options.filter(function (o) { return o.id === secId; })[0];
         html += '<details class="sv-wrong" data-qid="' + esc(q.id) + '" data-tur="' + x.tur + '"><summary><span class="sv-wrong-tag ' + (x.tur === "yanlis" ? "is-bad" : "is-muted") + '">' + (x.tur === "yanlis" ? "Yanlış" : "Cevapsız") + '</span>' +
           '<span class="sv-wrong-title">Unit ' + esc(q.unite) + ' · ' + esc(q.beceri || "") + '</span></summary><div class="sv-wrong-body">' +
-          '<div class="question-body">' + q.question + '</div>' +
-          '<ul class="sv-wrong-opts">' + q.options.map(function (o) {
-            return '<li class="' + (o.isCorrect ? "is-correct" : o.id === secId ? "is-chosen" : "") + '"><span class="option-letter" aria-hidden="true">' + esc(o.id) + '</span><span class="sv-option-text">' + o.text + '</span>' +
+          '<div class="question-body">' + q.question + '</div>' + skHtml(q.sekiller) +
+          '<ul class="sv-wrong-opts' + (skSecenekli(q.options) ? " sk-secenekli" : "") + '">' + q.options.map(function (o) {
+            return '<li class="' + (o.isCorrect ? "is-correct" : o.id === secId ? "is-chosen" : "") + '"><span class="option-letter" aria-hidden="true">' + esc(o.id) + '</span><span class="sv-option-text">' + (o.text || "") + skHtml(o.sekil, true) + '</span>' +
               (o.isCorrect ? '<span class="sv-opt-mark is-ok">Doğru cevap</span>' : o.id === secId ? '<span class="sv-opt-mark is-bad">Senin cevabın</span>' : '') + '</li>';
           }).join("") + '</ul>' +
           (window.apEkHtml ? window.apEkHtml(q.ek) : '') +
           (sec && !sec.isCorrect ? '<div class="remediation-panel"><div class="remediation-title">Hata etiketi: ' + esc(sec.errorTag || "—") + '</div><div class="remediation-text">' + (sec.remediation || "") + '</div></div>' : '') +
           (x.tur === "cevapsiz" ? '<p class="side-note">Bu soruyu atladın ya da süre bitti. Doğru cevap: <strong>' + esc(dogru.id || "") + '</strong>.</p>' : '') +
           (q.generalRemediation ? '<div class="remediation-panel"><div class="remediation-title">Konu hatırlatması</div><div class="remediation-text">' + q.generalRemediation + '</div></div>' : '') +
-          (q.stepByStepSolution ? '<div class="solution-panel"><div class="solution-title">Adım adım çözüm</div><div class="solution-steps">' + q.stepByStepSolution + '</div></div>' : '') +
+          (q.stepByStepSolution ? '<div class="solution-panel"><div class="solution-title">Adım adım çözüm</div><div class="solution-steps">' + q.stepByStepSolution + '</div>' + skHtml(q.cozumSekiller) + '</div>' : '') +
           '<p class="side-note">Kaynak: ' + esc(q.source || "") + '</p></div></details>';
       });
       html += '</div></details>';

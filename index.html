@@ -16,10 +16,12 @@
   <link rel="stylesheet" href="/assets/css/hareket.css?v=20261021m">
   <link rel="stylesheet" href="/assets/css/maskot.css?v=20261021m">
   <link rel="stylesheet" href="/assets/css/canli.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/oyun-ek.css?v=1160">
   <script src="/assets/js/adresler.js"></script>
   <script src="/assets/js/kutlama.js?v=20261021m" defer></script>
   <script src="/assets/js/oyun.js?v=20261021m" defer></script>
   <script src="/assets/js/bildirim.js?v=20261021m" defer></script>
+  <script src="/assets/js/oyun-ek.js?v=1160" defer></script>
   <link rel="stylesheet" href="/assets/css/ap-hedef.css?v=170a">
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
@@ -75,6 +77,9 @@
     <!-- 1.7.0: AP dersleri seçilmemişse tek seferlik, engellemeyen kart (/assets/js/ap-hedef-ui.js bugunKarti) -->
     <section class="surface aph-kart" id="aph-kart" hidden></section>
 
+    <!-- 1.16.0 "Haftan nasıldı?" (pazartesi, haftada bir; assets/js/oyun-ek.js doldurur) -->
+    <div id="oe-haftalik"></div>
+
     <div class="bg-alt" id="bg-alt">
       <!-- (c) GÜNÜN GÖREVLERİ (/assets/js/oyun.js doldurur; iskelet aynı yükseklikte) -->
       <section class="surface oy-kart oy-gorevler is-iskelet" id="bg-gorevler" aria-labelledby="oy-gorev-h" aria-busy="true">
@@ -82,11 +87,15 @@
       </section>
       <!-- (d) TEK BAĞLAMSAL KART: aşağıdaki kartlardan en acili buraya taşınır -->
       <div class="bg-baglam" id="bg-baglam"></div>
+      <!-- 1.16.0 aylık görev: yalnızca hedefe yakınken / ay sonunda ve bağlamsal kart boşsa (oyun-ek.js) -->
+      <div id="oe-aylik-baglam" hidden></div>
     </div>
 
     <details class="bg-dahafazla" id="bg-dahafazla">
       <summary>Daha fazla <small>Yanlışlarım, tarihler, derslerin</small></summary>
       <div class="bg-dahafazla__ic">
+        <!-- 1.16.0 aylık görev (oyun-ek.js) -->
+        <div id="oe-aylik"></div>
         <div class="bg-uclu" id="bg-kartlar">
           <!-- AKILLI TEKRAR: vadesi gelen soru (apmeberra:tekrar:v1) -->
           <a class="surface bg-mini u-nodec u-c-inherit" id="bg-tekrar" href="/ilerleme?mod=tekrar#tekrar">

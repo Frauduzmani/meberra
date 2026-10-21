@@ -16,11 +16,13 @@
   <link rel="stylesheet" href="/assets/css/hareket.css?v=20261021m">
   <link rel="stylesheet" href="/assets/css/maskot.css?v=20261021m">
   <link rel="stylesheet" href="/assets/css/canli.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/etkilesim-kbe.css?v=20261021kbe">
   <script src="/assets/js/adresler.js"></script>
   <script src="/assets/js/maskot.js?v=20261021m" defer></script>
   <script src="/assets/js/kutlama.js?v=20261021m" defer></script>
   <script src="/assets/js/canli.js?v=20261021m" defer></script>
   <script src="/assets/js/oyun.js?v=20261021m" defer></script>
+  <script src="/assets/js/etkilesim-kbe.js?v=20261021kbe" defer></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
   <script>
     window.MathJax = {
@@ -469,6 +471,7 @@
         </div>
 
       </div>
+      <div class="kbe-yuva" data-kbe="birim" data-birim="bio-u1"></div>
     </section>
 
     <section class="interactive-panel" id="bio-unit1-quiz-section">
@@ -612,6 +615,7 @@
         </div>
 
       </div>
+      <div class="kbe-yuva" data-kbe="birim" data-birim="bio-u2"></div>
     </section>
 
     <section class="interactive-panel" id="bio-unit2-quiz-section">
@@ -682,6 +686,7 @@
               <br/>• ✗ "Denaturation breaks peptide bonds." ✓ Primary structure stays intact; only weak interactions are disrupted.
               <br/>• ✗ "Cold denatures enzymes like heat does." ✓ Cold mainly slows molecular motion; it is usually reversible.
             </div>
+            <div class="kbe-yuva" data-kbe="enzim"></div>
           </div>
         </div>
 
@@ -802,6 +807,7 @@
         </div>
 
       </div>
+      <div class="kbe-yuva" data-kbe="birim" data-birim="bio-u3"></div>
     </section>
 
     <section class="interactive-panel" id="bio-unit3-quiz-section">
@@ -1006,6 +1012,7 @@
         </div>
 
       </div>
+      <div class="kbe-yuva" data-kbe="birim" data-birim="bio-u4"></div>
     </section>
 
     <section class="interactive-panel" id="bio-unit4-quiz-section">
@@ -1193,7 +1200,7 @@
               <br/>• Compare with the critical value at $p = 0.05$: <strong>df = 1 → 3.84; df = 2 → 5.99; df = 3 → 7.81</strong>.
               <br/>• If $\chi^2 \le$ critical value: <strong>fail to reject</strong> $H_0$ — the deviation can be explained by chance. If $\chi^2 >$ critical value: <strong>reject</strong> $H_0$ — the data do not fit the predicted ratio (for example, the genes may be linked).
             </p>
-            <div class="theory-callout">
+            <div data-kbe-adim class="theory-callout">
               <strong>Worked Example (dihybrid F₂, n = 160):</strong><br/>
               Observed 98 : 28 : 26 : 8; expected (9 : 3 : 3 : 1) 90 : 30 : 30 : 10.
               <br/>$\chi^2 = \frac{8^2}{90} + \frac{(-2)^2}{30} + \frac{(-4)^2}{30} + \frac{(-2)^2}{10} = 0.711 + 0.133 + 0.533 + 0.400 \approx 1.78$.
@@ -1210,6 +1217,7 @@
         </div>
 
       </div>
+      <div class="kbe-yuva" data-kbe="birim" data-birim="bio-u5"></div>
     </section>
 
     <section class="interactive-panel" id="bio-unit5-quiz-section">
@@ -1472,6 +1480,7 @@
         </div>
 
       </div>
+      <div class="kbe-yuva" data-kbe="birim" data-birim="bio-u6"></div>
     </section>
 
     <section class="interactive-panel" id="bio-unit6-quiz-section">
@@ -1616,7 +1625,7 @@
               <br/>• Genotype frequencies at equilibrium: $p^2$ (homozygous dominant) $+\; 2pq$ (heterozygous) $+\; q^2$ (homozygous recessive) $= 1$.
               <br/><strong>Conditions</strong> (all five must hold for allele frequencies to stay constant): (1) a large population size, (2) no migration, (3) no new mutations, (4) random mating, (5) no natural selection. These conditions are never fully met, but they provide a valuable <strong>null hypothesis</strong>: if observed genotype frequencies differ significantly from $p^2 : 2pq : q^2$, at least one condition is being violated and the population may be evolving.
             </p>
-            <div class="theory-callout">
+            <div data-kbe-adim class="theory-callout">
               <strong>Worked Example 1 — Starting from the recessive phenotype:</strong><br/>
               In a large, randomly mating population, 16% of individuals show the recessive phenotype.
               <br/>1. $q^2 = 0.16 \implies q = \sqrt{0.16} = 0.40$.
@@ -1624,7 +1633,7 @@
               <br/>3. Heterozygotes: $2pq = 2(0.60)(0.40) = 0.48$ (48%); homozygous dominant: $p^2 = 0.36$ (36%).
               <br/>4. Check: $0.36 + 0.48 + 0.16 = 1.00$. The dominant <em>phenotype</em> is $0.36 + 0.48 = 84\%$.
             </div>
-            <div class="theory-callout">
+            <div data-kbe-adim class="theory-callout">
               <strong>Worked Example 2 — Starting from genotype counts (no equilibrium assumed):</strong><br/>
               A sample of 1000 individuals contains 360 AA, 240 Aa and 400 aa.
               <br/>1. Count alleles: total $= 2 \times 1000 = 2000$. Allele a $= 2(400) + 240 = 1040 \implies q = 1040/2000 = 0.52$; $p = 0.48$.
@@ -1637,6 +1646,7 @@
               <br/>• ✗ "Hardy–Weinberg means dominant alleles become more common." ✓ Dominance does not change allele frequency; only the five evolutionary forces do.
               <br/>• ✗ "Allele frequencies in nature are static." ✓ The model tells you what would happen if nothing acted on the gene; it does not claim that this is the usual case.
             </div>
+            <div class="kbe-yuva" data-kbe="hw"></div>
           </div>
         </div>
 
@@ -1849,6 +1859,7 @@
         </div>
 
       </div>
+      <div class="kbe-yuva" data-kbe="birim" data-birim="bio-u7"></div>
     </section>
 
     <section class="interactive-panel" id="bio-unit7-quiz-section">
@@ -1869,7 +1880,7 @@
       </div>
       <h2 class="panel-title" id="bio-unit8-soru-baslik">Unit 8 Ecology: İnteraktif Soru İstasyonu</h2>
       <p class="panel-sub icerik-not">Özgün AP tarzı sorular (geçmiş sınav sorusu değil). Şık seç; anında çözüm ve hata türü gelir.</p>
-
+      <div class="kbe-yuva" data-kbe="nufus"></div><div class="kbe-yuva" data-kbe="piramit"></div><div class="kbe-yuva" data-kbe="birim" data-birim="bio-u8"></div>
       <div class="u-mt-6" id="bio-unit8-quiz-container" data-sb-yeni-kutu>
       </div>
     </section>

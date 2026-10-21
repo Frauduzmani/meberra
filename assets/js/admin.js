@@ -308,7 +308,7 @@
     sekme: "ozet",
     yuklendi: {},
     talepDurum: "bekliyor",
-    kul: { q: "", premium: false, varlik: "", sirala: "", rol: "", sayfa: 1, boyut: 0, istek: 0, satirlar: [] },
+    kul: { q: "", premium: false, premiumDurum: "", varlik: "", sirala: "", rol: "", sayfa: 1, boyut: 0, istek: 0, satirlar: [] },
     surum: "",
     hazir: null,           // hazır yanıtlar (önbellek)
     yoneticiler: null,
@@ -331,6 +331,7 @@
     { id: "lig", ad: "Lig", ikon: "lig" },
     { id: "sistem", ad: "Sistem", sayac: "adm-sistem-yeni", sayacTon: "bad", ikon: "sistem" },
     { id: "soru-bankasi", ad: "Soru bankası", ikon: "soruBankasi" },
+    { id: "premium", ad: "Premium", ikon: "tac" }, // 1.16.0 (admin-premium.js)
     { id: "buyume", ad: "Büyüme", ikon: "buyume" }, // 1.6.0 (admin-buyume.js)
     { id: "veri", ad: "Veri", ikon: "veri" },
     { id: "denetim", ad: "Denetim kaydı", ikon: "denetim" }
@@ -483,7 +484,10 @@
   window.MEBERRA_ADMIN = {
     api: function (y, m, g) { return api(y, m, g); }, esc: esc, sayi: sayi, tarih: tarih, yuzde: yuzde, kisalt: kisalt, ikon: ikon, rozet: rozet, bildir: function (m, t) { bildir(m, t); },
     yukleniyor: yukleniyor, iskelet: iskelet, bos: bos, hataKutusu: hataKutusu, onayAc: onayAc, zamanHucre: zamanHucre,
-    sayfaBilgisi: sayfaBilgisi, sayfalamaHtml: function (b, e, br) { return sayfalamaHtml(b, e, br); }, dersAd: dersAd
+    sayfaBilgisi: sayfaBilgisi, sayfalamaHtml: function (b, e, br) { return sayfalamaHtml(b, e, br); }, dersAd: dersAd,
+    // 1.16.0 (admin-premium.js): kullanıcı listesi durumu, yeniden yükleme, ayrıntı aç/yenile, sekme aç
+    kul: function () { return S.kul; }, kulYukle: function () { return kulYukle(); }, detayAc: function (id) { sekmeAc("kullanicilar"); return detayAc(id); },
+    detayYukle: function () { return detayYukle(); }, sekmeAc: function (id) { sekmeAc(id); }, ozetYukle: function () { ozetYukle(true); }, planAd: planAd, gunTarih: gunTarih, tl: tl
   };
   function sayfalamaHtml(b, etiket, birim) {
     if (b.toplam === 0) return "";
@@ -555,6 +559,7 @@
     // Soru bankası sekmesi ayrı dosyada (/assets/js/admin-soru-bankasi.js); ortak yardımcılar window.MEBERRA_ADMIN ile verilir
     if (window.MEBERRA_ADMIN_SB) window.MEBERRA_ADMIN_SB.kur($("#panel-soru-bankasi"));
     if (window.MEBERRA_ADMIN_BUYUME) window.MEBERRA_ADMIN_BUYUME.kur($("#panel-buyume")); // 1.6.0
+    if (window.MEBERRA_ADMIN_PREMIUM) window.MEBERRA_ADMIN_PREMIUM.kur($("#panel-premium")); // 1.16.0
     // Canlı yenileme: sekme görünürken 30 sn'de bir (Sistem: loglar + sağlık; diğerleri: sayaçlar ve özet). Çekmece açıkken beklenir.
     setInterval(function () {
       if (document.visibilityState !== "visible" || cekmeceAcik()) return;
@@ -598,6 +603,7 @@
     else if (id === "veri") { if (!S.veri.tablolar) veriTablolarYukle(); }
     else if (id === "soru-bankasi") { if (window.MEBERRA_ADMIN_SB) window.MEBERRA_ADMIN_SB.ac(); }
     else if (id === "buyume") { if (window.MEBERRA_ADMIN_BUYUME) window.MEBERRA_ADMIN_BUYUME.ac(); }
+    else if (id === "premium") { if (window.MEBERRA_ADMIN_PREMIUM) window.MEBERRA_ADMIN_PREMIUM.ac(); }
     else if (id === "sistem") sistemYukle();
   }
 
@@ -862,7 +868,7 @@
     if (!kap.querySelector("table")) kap.innerHTML = iskelet("tablo", 8);
     else kap.classList.add("is-soluk");
     var vs = $("#kul-varlik"); if (vs && vs.value !== S.kul.varlik) vs.value = S.kul.varlik;
-    return api("/api/admin/users" + sorgu({ q: S.kul.q, sayfa: S.kul.sayfa, premium: S.kul.premium ? 1 : "", varlik: S.kul.varlik, sirala: S.kul.sirala, rol: S.kul.rol })).then(function (v) {
+    return api("/api/admin/users" + sorgu({ q: S.kul.q, sayfa: S.kul.sayfa, premium: S.kul.premium ? 1 : "", premiumDurum: S.kul.premiumDurum || "", varlik: S.kul.varlik, sirala: S.kul.sirala, rol: S.kul.rol })).then(function (v) {
       if (no !== S.kul.istek) return;
       var liste = Array.isArray(v.kullanicilar) ? v.kullanicilar : [];
       S.kul.satirlar = liste;
@@ -871,7 +877,7 @@
       oz.tabIndex = -1;
       oz.textContent = b.toplam ? sayi(b.toplam) + " kullanıcı bulundu" + (S.kul.q ? " (“" + S.kul.q + "”)" : "") + "." : "";
       if (!liste.length) {
-        kap.innerHTML = bos(S.kul.q || S.kul.premium || S.kul.varlik || S.kul.rol ? "Bu filtreye uyan kullanıcı yok." : "Henüz kayıtlı kullanıcı yok.");
+        kap.innerHTML = bos(S.kul.q || S.kul.premium || S.kul.premiumDurum || S.kul.varlik || S.kul.rol ? "Bu filtreye uyan kullanıcı yok." : "Henüz kayıtlı kullanıcı yok.");
         say.innerHTML = "";
         return;
       }
@@ -903,6 +909,7 @@
             "</tr>";
         }).join("") + "</tbody></table></div>";
       say.innerHTML = sayfalamaHtml(b, "Kullanıcı sayfaları", "kullanıcı");
+      if (window.MEBERRA_ADMIN_PREMIUM) window.MEBERRA_ADMIN_PREMIUM.liste(kap, liste); // 1.16.0: Premium çipi, seçim, hızlı işlemler
     }).catch(function (e) {
       if (no === S.kul.istek) { kap.innerHTML = hataKutusu(e.message); say.innerHTML = ""; }
     }).then(function () { kap.removeAttribute("aria-busy"); kap.classList.remove("is-soluk"); });
@@ -925,6 +932,7 @@
       if (!S.secili || S.secili.id !== id) return;
       S.secili.veri = v;
       d.innerHTML = detayHtml(v);
+      if (window.MEBERRA_ADMIN_PREMIUM) window.MEBERRA_ADMIN_PREMIUM.detay(d, v); // 1.16.0: abonelik geçmişi zaman çizelgesi
       var h = $("#kul-detay-baslik", d); if (h) h.focus();
     }).catch(function (e) {
       d.innerHTML = '<div class="adm-detay-ust"><button type="button" class="btn-ghost" data-geri>‹ Kullanıcı listesine dön</button></div>' + hataKutusu(e.message);

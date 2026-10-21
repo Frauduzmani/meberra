@@ -32,7 +32,7 @@ function loadArrays(file) {
   return { html, arrays, containers: arrays.map(([k]) => [k, k]) };
 }
 
-const textOf = o => String(o.text).replace(/<[^>]+>|\$/g, "");
+const textOf = o => String(o.text == null ? "" : o.text).replace(/<[^>]+>|\$/g, "");
 const norm = t => String(t).replace(/<[^>]+>|\$|\\\\?[a-z]+|\s+/gi, "").toLowerCase();
 
 // Shared per-question checks. Returns { pos, longest } and pushes into issues.
@@ -183,7 +183,7 @@ function tekrarNorm(t) {
     .replace(/\\[dt]frac/g, "\\frac").replace(BICIM, "").replace(/[$\s{}]/g, "")
     .replace(/[−–]/g, "-").replace(/[.?:;,]+$/g, "").toLowerCase();
 }
-const tekrarOzet = r => crypto.createHash("sha256").update(tekrarNorm(r.govde) + "\u0001" + (r.secenekler || []).map(o => tekrarNorm(o.text)).sort().join("\u0002")).digest("hex").slice(0, 16);
+const tekrarOzet = r => crypto.createHash("sha256").update(tekrarNorm(r.govde) + "\u0001" + (r.secenekler || []).map(o => tekrarNorm(o.text) + (o.sekil && o.sekil.svg ? "\u0003" + o.sekil.svg : "")).sort().join("\u0002")).digest("hex").slice(0, 16);
 const durumSay = {}, ozetler = new Map();
 let ekTam = 0;
 for (const r of TUM) {
@@ -248,6 +248,23 @@ for (const l of tekrarlar) { console.log(`✗ tekrar soru: ${l.join(", ")} (biri
     console.log(`TAM SINAV PLANI: ${Object.keys(t.sinavlar || {}).length} sınav, ${s.length} sorun`);
     problems += s.length;
   }
+}
+// v1.13.0 şekiller (sekil, secenekler[i].sekil): server/sekil.js temizleyicisinden DEĞİŞMEDEN geçmeli (atılan etiket/öznitelik yok),
+// alt zorunlu, viewBox ≤ 480×360, ≤ 30 KB. Sabit renk / font-size 11–14 dışı → uyarı. Arşivlenmiş sorular sayılmaz.
+{
+  const sekilM = require("../server/sekil.js");
+  let sekilli = 0, sekilSorun = 0, sekilUyari = 0;
+  for (const r of TUM) {
+    if (r.durum === "arsiv") continue;
+    if (r.sekil == null && !(r.secenekler || []).some(o => o && o.sekil != null)) continue;
+    sekilli++;
+    const t = sekilM.satirSekilTemizle(r);
+    t.sorunlar.forEach(m => { console.log(`✗ ${r.id}: ${m}`); sekilSorun++; });
+    t.kaldirilan.forEach(m => { console.log(`✗ ${r.id}: şekil temizleyiciden değişerek geçiyor — ${m}`); sekilSorun++; });
+    t.uyarilar.forEach(m => { console.log(`  uyarı: ${r.id}: ${m}`); sekilUyari++; });
+  }
+  console.log(`ŞEKİL: ${sekilli} şekilli soru, ${sekilSorun} sorun, ${sekilUyari} uyarı`);
+  problems += sekilSorun;
 }
 console.log(`TOPLAM: ${total} soru, ${problems} sorun`);
 process.exitCode = problems ? 1 : 0;

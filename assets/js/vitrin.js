@@ -225,6 +225,8 @@
     var secenekler = [], bekliyor = false;
     var ZOR = { easy: "Kolay", medium: "Orta", hard: "Zor" };
     function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (m) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]; }); }
+    // v1.13.0 şekiller (app.js apSekilHtml yer tutucusu → sekil.js çizer; app.js bu dosyadan sonra yüklenir, çağrı anında hazırdır)
+    function skHtml(v, sik) { return typeof window.apSekilHtml === "function" ? window.apSekilHtml(v, sik) : ""; }
     function istek(yol, govdeVeri) {
       var o = { credentials: "same-origin", headers: { "Content-Type": "application/json", "X-Meberra": "1" } };
       if (govdeVeri !== undefined) { o.method = "POST"; o.body = JSON.stringify(govdeVeri); }
@@ -243,10 +245,12 @@
         var konu = kok.querySelector("[data-demo-konu]"), zor = kok.querySelector("[data-demo-zorluk]");
         if (konu && q.konu) konu.textContent = q.konu;
         if (zor) zor.textContent = ZOR[q.difficulty] || "Örnek soru";
-        govde.innerHTML = q.question;
+        govde.innerHTML = q.question + skHtml(q.sekiller);
         if (!govde.querySelector("#vt-q-text")) { var p = govde.querySelector("p"); if (p) p.id = "vt-q-text"; }
+        var sekilli = typeof window.apSekilSecenekli === "function" && window.apSekilSecenekli(q.options);
+        kap.classList.toggle("sk-secenekli", !!sekilli);
         kap.innerHTML = q.options.map(function (o) {
-          return '<button type="button" class="vt-opt" data-opt="' + esc(o.id) + '" aria-pressed="false"><span class="vt-opt-k">' + esc(o.id) + "</span><span>" + o.text + "</span></button>";
+          return '<button type="button" class="vt-opt" data-opt="' + esc(o.id) + '" aria-pressed="false"><span class="vt-opt-k">' + esc(o.id) + "</span><span>" + (o.text || "") + skHtml(o.sekil, true) + "</span></button>";
         }).join("");
         secenekler = kap.querySelectorAll(".vt-opt");
         for (var i = 0; i < secenekler.length; i++) secenekler[i].addEventListener("click", sec);
@@ -276,7 +280,7 @@
         var gt = document.createElement("span"); gt.innerHTML = r.veri.genelHatirlatma || "";
         var ht = document.createElement("span"); ht.innerHTML = (r.veri.hataAciklamasi && r.veri.hataAciklamasi.aciklama) || "";
         fb.textContent = ok ? (gt.textContent || "Doğru!") : "Doğru cevap " + r.veri.dogruSecenek + ". " + ht.textContent;
-        cozumEl.innerHTML = r.veri.aciklama || "";
+        cozumEl.innerHTML = (r.veri.aciklama || "") + skHtml(r.veri.sekiller);
         sol.hidden = false;
         if (ok) { var rc = b.getBoundingClientRect(); konfeti(rc.left + rc.width / 2, rc.top + rc.height / 2); }
       });

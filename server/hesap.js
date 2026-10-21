@@ -68,7 +68,7 @@ function hesapServisi(db, denetim, eposta) {
     const a = q.aktifAbonelik.get(userId, simdi());
     const t = q.bekleyenTalep.get(userId);
     // deneme: 7 günlük ücretsiz deneme dönemi (1.6.0; kaynak = 'deneme')
-    return { premium: !!a, plan: a ? a.plan : null, bitis: a ? a.bitis : null, deneme: !!(a && a.kaynak === "deneme"), bekleyenTalep: t ? { id: t.id, plan: t.plan, olusturma: t.olusturma } : null };
+    return { premium: !!a, plan: a ? a.plan : null, bitis: a ? a.bitis : null, deneme: !!(a && a.kaynak === "deneme"), kaynak: a ? a.kaynak : null, bekleyenTalep: t ? { id: t.id, plan: t.plan, olusturma: t.olusturma } : null };
   }
 
   function oturumAc(userId, req) {
@@ -282,11 +282,26 @@ function hesapServisi(db, denetim, eposta) {
     },
 
     /** Premium açıldığında öğrenciye bilgi e-postası */
-    premiumBildir(userId, bitis) {
+    premiumBildir(userId, bitis, tur) {
       const u = q.kullaniciId.get(userId);
       if (!u || !u.eposta) return;
+      // 1.16.0: tur "elle" → yönetici elle açtı (ödeme cümlesi yok)
+      if (tur === "elle") return eposta.gonder(u.eposta, "Meberra Premium hesabın açıldı", "Merhaba " + u.ad + ",\n\nPremium hesabın açıldı. Bitiş tarihi: " +
+        new Date(bitis).toLocaleDateString("tr-TR", { timeZone: "Europe/Istanbul" }) + ".\n\nTüm ünitelere ve sınırsız denemeye şimdi erişebilirsin: " + config.baseUrl + "/calis\n\nİyi çalışmalar,\nMeberra");
       eposta.gonder(u.eposta, "Meberra Premium hesabın açıldı", "Merhaba " + u.ad + ",\n\nÖdemen onaylandı; Premium hesabın açıldı. Bitiş tarihi: " +
         new Date(bitis).toLocaleDateString("tr-TR", { timeZone: "Europe/Istanbul" }) + ".\n\nTüm ünitelere ve sınırsız denemeye şimdi erişebilirsin: " + config.baseUrl + "/calis\n\nİyi çalışmalar,\nMeberra");
+    },
+
+    /** 1.16.0: kalan gün = bitişe kalan süre, gün olarak yukarı yuvarlanır (2 saat kaldıysa 1); bitmişse 0 */
+    kalanGun(bitis, simdiMs) {
+      if (!bitis) return 0;
+      const f = Date.parse(bitis) - (simdiMs == null ? Date.now() : simdiMs);
+      return f > 0 ? Math.ceil(f / GUN) : 0;
+    },
+    /** 1.16.0: aktif (ve ileri tarihli) tüm dönemleri şimdi sonlandırır → iptal edilen dönem sayısı */
+    premiumIptal(userId) {
+      const z = simdi();
+      return Number(db.prepare("UPDATE subscriptions SET durum = 'iptal', iptal_zamani = ? WHERE user_id = ? AND durum = 'aktif' AND bitis > ?").run(z, userId, z).changes);
     },
 
     /** Premium dönemi ekler: mevcut aktif dönemin sonundan (yoksa şimdiden) itibaren. */

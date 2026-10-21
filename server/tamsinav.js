@@ -299,16 +299,16 @@ function tamSinavRotalari(r, bag) {
     const r0 = q.frqTek.get(fid);
     if (!r0) return null;
     const f = jsonCoz(r0.veri, {}), d = frqM.DERSLER[f.ders] || {};
-    return { id: f.id, ders: f.ders, dersAd: d.ad || f.ders, kisa: d.kisa || null, baslik: f.baslik, tur: f.tur, giris: f.giris, hesapMakinesi: !!f.hesapMakinesi, toplam_puan: f.toplam_puan,
-      parcalar: (f.parcalar || []).map(p => ({ harf: p.harf, soru: p.soru, puan: p.puan })) };
+    return frqM.sekilAlanlari({ id: f.id, ders: f.ders, dersAd: d.ad || f.ders, kisa: d.kisa || null, baslik: f.baslik, tur: f.tur, giris: f.giris, hesapMakinesi: !!f.hesapMakinesi, toplam_puan: f.toplam_puan,
+      parcalar: (f.parcalar || []).map(p => frqM.sekilAlanlari({ harf: p.harf, soru: p.soru, puan: p.puan }, p, false)) }, f, false);
   }
   function frqTam(fid) {
     const a = frqAcik(fid);
     if (!a) return null;
     const f = jsonCoz(q.frqTek.get(fid).veri, {});
-    a.parcalar = (f.parcalar || []).map(p => ({ harf: p.harf, soru: p.soru, puan: p.puan, ornek_cozum: p.ornek_cozum, sik_hatalar: p.sik_hatalar || [],
-      rubrik: (p.rubrik || []).map(rb => { const o = { puan: rb.puan, olcut: rb.olcut }; if (rb.ornek_cevap) o.ornek_cevap = rb.ornek_cevap; return o; }) }));
-    return a;
+    a.parcalar = (f.parcalar || []).map(p => frqM.sekilAlanlari({ harf: p.harf, soru: p.soru, puan: p.puan, ornek_cozum: p.ornek_cozum, sik_hatalar: p.sik_hatalar || [],
+      rubrik: (p.rubrik || []).map(rb => { const o = { puan: rb.puan, olcut: rb.olcut }; if (rb.ornek_cevap) o.ornek_cevap = rb.ornek_cevap; return o; }) }, p, true));
+    return frqM.sekilAlanlari(a, f, true);
   }
 
   /** İstemciye durum. Doğru cevap YOK. İçerik yalnız açık bölüm için; rubrik yalnız kapanmış FRQ kısmı için. */

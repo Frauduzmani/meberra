@@ -295,6 +295,12 @@ function main() {
       return;
     }
   }
+  // v1.13.0: şekiller (sekil, secenekler[i].sekil) beyaz liste temizleyicisinden değişmeden geçmeli
+  {
+    const sekilM = require("../server/sekil.js"), sorun = [];
+    satirlar.forEach(r => { const t = sekilM.satirSekilTemizle(r); t.sorunlar.concat(t.kaldirilan.map(m => "atılıyor: " + m)).forEach(m => sorun.push(r.id + ": " + m)); });
+    if (sorun.length) { console.error(`HATA: ${sorun.length} şekil sorunu:`); sorun.slice(0, 20).forEach(m => console.error("  - " + m)); process.exitCode = 1; return; }
+  }
   const tur = sayimYaz(satirlar);
   const tutar = (tur.ders || 0) === BEKLENEN.ders && (tur.seviye || 0) === BEKLENEN.seviye;
   console.log(tutar ? `Beklenen sayılarla aynı (ders ${BEKLENEN.ders}, seviye ${BEKLENEN.seviye}).` : `UYARI: beklenen ders ${BEKLENEN.ders} / seviye ${BEKLENEN.seviye}.`);

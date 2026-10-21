@@ -1,0 +1,54 @@
+/* Meberra 1.16.0 — oyunlaştırma ekleri (assets/js/oyun-ek.js): ustalık madalyası, aylık görev, "Haftan nasıldı?", önerilen saat */
+:root {
+  --oe-bronz: #a0522d; --oe-gumus: #6b7280; --oe-altin: #b7791f;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --oe-bronz: #d08a5c; --oe-gumus: #c3c8d0; --oe-altin: #f2c14e; } }
+:root[data-theme="dark"] { --oe-bronz: #d08a5c; --oe-gumus: #c3c8d0; --oe-altin: #f2c14e; }
+
+/* --- Ustalık madalyası (yol düğümü sağ üst) --- */
+.oy-yol a.oy-dugum[data-oe-ustalik] { position: relative; }
+.oe-ustalik {
+  position: absolute; top: -7px; right: -9px; width: 22px; height: 22px; border-radius: 50%;
+  display: grid; place-items: center; background: var(--surface); border: 2px solid currentColor;
+  box-shadow: 0 1px 0 var(--border-strong); pointer-events: none; line-height: 0;
+}
+.oe-ustalik svg { width: 14px !important; height: 14px !important; }
+.oe-ustalik--bronz { color: var(--oe-bronz); }
+.oe-ustalik--gumus { color: var(--oe-gumus); }
+.oe-ustalik--altin { color: var(--oe-altin); }
+
+/* --- Aylık görev kartı (Bugün › Daha fazla; hedefe yakınken bağlamsal alanda) --- */
+#oe-aylik:empty, #oe-aylik-baglam:empty, #oe-haftalik:empty { display: none; }
+#oe-aylik { margin: 0 0 12px; }
+.oe-aylik { display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: var(--radius-lg, 14px); }
+.oe-aylik-ik { flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--surface-3); color: var(--oe-altin); }
+.oe-aylik-ik svg { width: 24px; height: 24px; }
+.oe-aylik-govde { display: grid; gap: 4px; min-width: 0; flex: 1; }
+.oe-aylik-ust { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.oe-aylik-sayi { font-variant-numeric: tabular-nums; font-weight: 800; color: var(--text-muted); font-size: .875rem; }
+.oe-aylik-ad { font-size: .9375rem; }
+.oe-aylik-alt { color: var(--text-muted); }
+.oe-aylik.is-tamam .oy-cubuk > i { background: var(--ok); }
+
+/* --- Haftan nasıldı? --- */
+#oe-haftalik { margin: 0 0 16px; }
+.oe-hafta { display: flex; gap: 14px; align-items: flex-start; padding: 16px; border-radius: var(--radius-lg, 14px); }
+.oe-hafta-tilo { flex: 0 0 64px; width: 64px; min-height: 64px; }
+.oe-hafta-govde { min-width: 0; flex: 1; }
+.oe-hafta h2 { margin: 0 0 4px; font-size: 1.125rem; }
+.oe-hafta-alt, .oe-hafta-not { margin: 0 0 10px; color: var(--text-muted); }
+.oe-hafta-liste { list-style: none; margin: 0 0 10px; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.oe-hafta-liste li { display: grid; gap: 2px; padding: 8px; border-radius: var(--radius-md, 10px); background: var(--surface-2); text-align: center; }
+.oe-hafta-liste b { font-size: 1.125rem; font-variant-numeric: tabular-nums; }
+.oe-hafta-liste span { font-size: .8125rem; color: var(--text-muted); }
+.oe-hafta-eylem { display: flex; gap: 8px; flex-wrap: wrap; }
+@media (max-width: 480px) {
+  .oe-hafta { flex-direction: column; }
+  .oe-hafta-liste { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* --- Profil: önerilen hatırlatma saati --- */
+.oe-saat-oneri { margin: 4px 0 8px; }
+
+/* --- Aya özel rozet --- */
+.oe-ay-rozet .oy-rozet-ik { color: var(--oe-altin); }

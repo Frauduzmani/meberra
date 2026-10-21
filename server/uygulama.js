@@ -26,6 +26,7 @@ const { operasyonRotalari } = require("./operasyon");
 const { veliServisi, veliRotalari, veliYolIzinli } = require("./veli"); // 1.7.0
 const zaman = require("./zaman");
 const ADRES = require("./adresler"); // 1.8.0 temiz adresler
+const { swSun } = require("./servis-calisani"); // 1.15.0 sw.js sürüm yerleştirme
 // 1.6.0
 const { huniServisi, huniRotalari } = require("./huni");
 const { kampanyaServisi, kampanyaRotalari } = require("./kampanya");
@@ -33,7 +34,8 @@ const { kampanyaServisi, kampanyaRotalari } = require("./kampanya");
 // Bakım modunda yönetici olmayanlara da açık API yolları (giriş yapabilmek ve durumu görebilmek için)
 const BAKIM_ACIK_API = new Set(["/api/health", "/api/public/config", "/api/auth/login", "/api/auth/logout", "/api/me"]);
 // Bakım sayfası yerine normal sunulan sayfalar (yönetici girişi için; /yonetim yalnızca yöneticiye açılır, yönetici bakımı zaten atlar)
-const BAKIM_ACIK_SAYFA = new Set(["/bakim", "/giris"]);
+// 1.15.0: /cevrimdisi da açık (service worker kurulurken önbelleğe alır; bakımda kurulum bozulmasın)
+const BAKIM_ACIK_SAYFA = new Set(["/bakim", "/giris", "/cevrimdisi"]);
 // Engellenmiş kullanıcının eski çerezi bu yollarda 403'e çevrilmez
 const ENGEL_ACIK_API = new Set(["/api/health", "/api/public/config", "/api/auth/login", "/api/auth/logout", "/api/auth/register", "/api/log"]);
 
@@ -212,11 +214,13 @@ function olustur(secenek) {
   r.post("/api/bildirimler/okundu", req => { oturumGerekli(req); return { ok: true, okunmamis: bildirim.okundu(req.kullanici.id, req.body) }; });
   r.get("/api/bildirim-ayarlari", req => {
     oturumGerekli(req);
-    return { ok: true, ayarlar: bildirim.ayarlar(req.kullanici.id), sessizSaatler: zaman.SESSIZ, pushDestek: !!(push && push.publicKey) };
+    return Object.assign({ ok: true, ayarlar: bildirim.ayarlar(req.kullanici.id), sessizSaatler: zaman.SESSIZ, pushDestek: !!(push && push.publicKey) },
+      bildirim.saatBilgisi(req.kullanici.id)); // 1.16.0 oyun: onerilenSaat, saatElle, etkinSaat
   });
   r.put("/api/bildirim-ayarlari", req => {
     oturumGerekli(req);
-    return { ok: true, ayarlar: bildirim.ayarKaydet(req.kullanici, req.body && (req.body.ayarlar || req.body), req), sessizSaatler: zaman.SESSIZ, pushDestek: !!(push && push.publicKey) };
+    const ayarlar = bildirim.ayarKaydet(req.kullanici, req.body && (req.body.ayarlar || req.body), req);
+    return Object.assign({ ok: true, ayarlar, sessizSaatler: zaman.SESSIZ, pushDestek: !!(push && push.publicKey) }, bildirim.saatBilgisi(req.kullanici.id)); // 1.16.0 oyun
   });
   r.get("/api/push/anahtar", () => {
     if (!push || !push.publicKey) throw new HttpHata(503, "Tarayıcı bildirimleri şu an kullanılamıyor.");
@@ -295,6 +299,34 @@ function olustur(secenek) {
     sinirlar["tamSinav.olustur"] = tsS.sinir.olustur; sinirlar["tamSinav.cevap"] = tsS.sinir.cevap;
   }
 
+  // 1.16.0 İlerleme grafikleri (server/ilerleme.js; salt okunur toplu özet: GET /api/ilerleme/ozet)
+  require("./ilerleme").ilerlemeRotalari(r, { db, hesap, oturumGerekli, calismaDurumu: zamanlayiciS.calismaDurumu, saat: secenek.saat });
+  // 1.16.0 sonu
+
+  // 1.17.0 hız/günün sorusu (server/hiz.js; süre, kuyruk ve puan sunucuda)
+  {
+    const hzS = require("./hiz").hizRotalari(r, { db, hesap, veri, denetim, oturumGerekli, saat: secenek.hizSaat, basSiniri: secenek.hizBasSiniri, cevapSiniri: secenek.hizCevapSiniri });
+    sinirlar["hiz.basla"] = hzS.sinir.basla; sinirlar["hiz.cevap"] = hzS.sinir.cevap;
+  }
+  // 1.17.0 hız/günün sorusu sonu
+
+  // 1.18.0 kartlar — kavram kartları + aralıklı tekrar (server/kart.js; içerik server/tohum/kartlar.json)
+  {
+    const kartS = require("./kart").kartRotalari(r, { db, hesap, oturumGerekli, saat: secenek.kartSaat || secenek.saat, tohumDosyasi: secenek.kartTohumDosyasi, degerlendirSiniri: secenek.kartSiniri });
+    sinirlar["kart.degerlendir"] = kartS.sinir;
+  }
+  // 1.18.0 kartlar sonu
+
+  // 1.18.0 plan — kişisel uyarlanır çalışma planı (server/plan.js; motor assets/js/plan-motor.js; GET /api/plan)
+  require("./plan").planRotalari(r, { db, hesap, denetim, oturumGerekli, saat: secenek.planSaat || secenek.saat });
+  // 1.18.0 plan sonu
+
+  // 1.19.0 okul — okul lisansı, öğretmen paneli, sınıf/katılım kodu, ödevler (server/okul.js; öğretmen rolü yalnız izinli uçlar)
+  const okulS = require("./okul").okulServisi(db, { hesap, eposta, denetim, bildirim, calismaDurumu: zamanlayiciS.calismaDurumu, saat: secenek.saat });
+  require("./okul").okulRotalari(r, { okul: okulS, oturumGerekli, yoneticiGerekli, oturumYanit, kayitSiniri: secenek.kayitSiniri });
+  zamanlayiciS.isEkle("okulKoltuk", "Okul lisansı koltuk eşitleme", () => okulS.tumunuEsitle(), { sessizde: true });
+  // 1.19.0 okul sonu
+
   /** Bakım sayfası (503). Yönetici oturumu olan bu sayfayı görmez. */
   function bakimSayfasi(req, res) {
     const k = hesap.oturumKullanici(cerezleriOku(req)[CEREZ]);
@@ -352,7 +384,7 @@ function olustur(secenek) {
     // Kök: oturumu olan kullanıcı kendi ana ekranına, ziyaretçi tanıtım sayfasına
     if (p === "/") {
       const k = sayfaKullanici(req);
-      if (k) return yonlendir(res, 302, k.rol === "veli" ? "/veli" : "/bugun");
+      if (k) return yonlendir(res, 302, k.rol === "veli" ? "/veli" : k.rol === "ogretmen" ? "/ogretmen" : "/bugun"); // 1.19.0 okul: öğretmen
     }
     const g = ADRES.yoldan(p);
     if (g) {
@@ -366,6 +398,8 @@ function olustur(secenek) {
       if (statikSun(req, res, { yol: "/" + g.dosya, onbellek: true, kanonik, cacheControl: g.yonetici ? "private, no-cache" : null })) return;
       return bulunamadi(req, res, p);
     }
+    // 1.15.0: service worker sürüm yer tutucusu (__SURUM__) sunulurken doldurulur (server/servis-calisani.js)
+    if (p === "/sw.js" && swSun(req, res)) return;
     // Varlıklar (assets/, data/, sw.js, robots.txt, manifest...) bakımda da açık
     if (statikSun(req, res)) return;
     bulunamadi(req, res, p);
@@ -406,6 +440,7 @@ function olustur(secenek) {
         }
       }
       if (req.kullanici && req.kullanici.rol === "veli" && !veliYolIzinli(yol)) throw new HttpHata(403, "Veli hesabı bu işlemi yapamaz."); // 1.7.0
+      if (req.kullanici && req.kullanici.rol === "ogretmen" && !require("./okul").ogretmenYolIzinli(yol)) throw new HttpHata(403, "Öğretmen hesabı bu işlemi yapamaz."); // 1.19.0 okul
       if (req.kullanici) varlik.dokun(req.kullanici, req.ip);
       req.params = eslesme.params;
       req.sorgu = u.searchParams;

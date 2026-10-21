@@ -216,6 +216,70 @@
       '</span></div></div>';
   }
 
+  // 1.16.0 grafikler (assets/js/grafik.js): hedefe yakınlık halkaları, haftalık etkinlik, tahmini puan gelişimi
+  var HALKA_NO = 0;
+  function halkaKart(d) {
+    var G = window.MeberraGrafik, t = d.tahminiInce != null ? d.tahminiInce : d.tahmini, i = ++HALKA_NO;
+    return '<div class="vp-halka-kart"><div class="vp-halka-yer" data-halka="' + i + '" data-t="' + (t == null ? "" : t) + '" data-h="' + (d.hedef || "") + '" data-ad="' + esc(d.ad) + '"></div>' +
+      '<div class="u-min0"><strong>' + esc(d.ad) + '</strong><p class="vp-halka-yorum">' + esc(t != null && d.hedef && t >= d.hedef ? "Hedefte. Düzenli deneme bu düzeyi korur." : G.puanYorumu(t, d.hedef)) + '</p>' +
+      '<p class="vp-halka-alt">' + esc([d.dogruluk != null ? "Doğruluk %" + d.dogruluk : "", d.kapsam != null ? "Soru bankası %" + d.kapsam : "", d.cevap ? d.cevap + " cevap" : "Henüz başlanmadı"].filter(Boolean).join(" · ")) + '</p></div></div>';
+  }
+  var TREND_DERS = {};
+  function dersEslesir(p, d) { return p.ders === d.ders || (p.kod === "economics" && /economics$/.test(d.ders)); }
+  function grafikCiz(c) {
+    var G = window.MeberraGrafik;
+    if (!G) return;
+    document.querySelectorAll("#vp-cocuklar [data-halka]").forEach(function (el) {
+      var t = el.getAttribute("data-t") === "" ? null : +el.getAttribute("data-t"), h = +el.getAttribute("data-h") || null;
+      G.halka(el, { deger: t || 0, max: 5, hedef: h, merkez: t == null ? "–" : G.sayi(t, 1), alt: h ? "hedef " + h : "/ 5", boyut: 96,
+        etiket: el.getAttribute("data-ad") + ": tahmini puan " + (t == null ? "yok" : G.sayi(t, 1)) + (h ? ", hedef " + h : "") + " (1–5 ölçeği)" });
+    });
+    if (!c.grafik) return;
+    var hw = c.grafik.haftalik || [], yer = $("vc-yigin");
+    if (yer) {
+      if (!hw.some(function (x) { return x.soru; })) yer.innerHTML = '<p class="vp-not vp-bos">Son 8 haftada soru çözülmedi. Etkinlik olunca burada haftalık sütunlar belirir.</p>';
+      else {
+        G.yigin(yer, hw.map(function (x) {
+          return { etiket: G.gunEtiket(x.pazartesi), ipucu: G.gunEtiket(x.pazartesi) + " haftası: " + x.soru + " soru, " + x.dogru + " doğru" + (x.deneme ? ", " + x.deneme + " deneme" : ""),
+            parcalar: [{ deger: x.dogru, sinif: "", ad: "Doğru" }, { deger: x.soru - x.dogru, sinif: "is-yanlis", ad: "Yanlış" }] };
+        }), { yukseklik: 150, etiket: "Son 8 haftada haftalık çözülen soru; bu hafta " + hw[hw.length - 1].soru + " soru" });
+        $("vc-yigin-lejant").innerHTML = G.lejant([{ ad: "Doğru", sinif: "" }, { ad: "Yanlış", sinif: "is-yanlis" }]);
+      }
+      $("vc-yigin-tablo").innerHTML = G.tablo("Haftalık etkinlik", ["Hafta (Pzt)", "Soru", "Doğru", "Deneme"],
+        hw.slice().reverse().map(function (x) { return [G.gunEtiket(x.pazartesi, true), x.soru, x.dogru, x.deneme]; }));
+    }
+    var pg = c.grafik.puanGecmisi || [], cz = $("vc-cizgi"), sec = $("vc-trend-sec");
+    if (!cz) return;
+    var dersler = c.dersler.filter(function (d) { return pg.some(function (p) { return dersEslesir(p, d); }); });
+    if (!dersler.length) {
+      sec.hidden = true;
+      cz.innerHTML = '<p class="vp-not vp-bos">Henüz tahmini puan veren bir deneme yok. Öğrenci bir ders denemesi ya da tam sınav çözünce gelişim burada çizilir.</p>';
+      $("vc-cizgi-tablo").innerHTML = "";
+      return;
+    }
+    if (!dersler.some(function (d) { return d.ders === TREND_DERS[c.id]; })) TREND_DERS[c.id] = dersler[0].ders;
+    sec.hidden = dersler.length < 2;
+    sec.innerHTML = dersler.map(function (d) { return '<button type="button" class="chip" data-ders="' + esc(d.ders) + '" aria-pressed="' + (d.ders === TREND_DERS[c.id]) + '">' + esc(d.ad.replace(/^AP /, "")) + '</button>'; }).join("");
+    var trTarih = function (iso) { return G.gunEtiket(String(iso).slice(0, 10), true); };
+    function ciz() {
+      var d = dersler.filter(function (x) { return x.ders === TREND_DERS[c.id]; })[0];
+      var g = pg.filter(function (p) { return dersEslesir(p, d); });
+      G.cizgi(cz, { noktalar: g.map(function (p) { return { x: Date.parse(p.tarih), y: p.puan, ipucu: "<b>" + esc(trTarih(p.tarih)) + "</b><br>" + (p.tur === "tam" ? "Tam sınav" : "Deneme") + " · tahmini " + p.puan + (p.yuzde != null ? " · %" + p.yuzde : "") }; }),
+        yMin: 1, yMax: 5, yTikler: [1, 2, 3, 4, 5], hedef: d.hedef ? { y: d.hedef, etiket: "Hedef " + d.hedef } : null, yukseklik: 190,
+        etiket: d.ad + " tahmini AP puanı gelişimi, " + g.length + " deneme" + (d.hedef ? ", hedef " + d.hedef : "") + ". Ok tuşlarıyla gez." });
+      $("vc-cizgi-tablo").innerHTML = G.tablo("Tahmini puan geçmişi", ["Tarih", "Tür", "Yüzde", "Tahmini"],
+        g.slice().reverse().map(function (p) { return [trTarih(p.tarih), p.tur === "tam" ? "Tam sınav" : "Deneme", p.yuzde == null ? "–" : "%" + p.yuzde, p.puan]; }));
+    }
+    sec.querySelectorAll("[data-ders]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        TREND_DERS[c.id] = b.getAttribute("data-ders");
+        sec.querySelectorAll("[data-ders]").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+        cz.removeAttribute("data-gf-cizildi"); ciz();
+      });
+    });
+    ciz();
+  }
+
   function panelCiz(mesaj) {
     var c = (PANEL.cocuklar || []).filter(function (x) { return x.id === SECILI; })[0];
     var kap = $("vp-cocuklar");
@@ -250,9 +314,16 @@
         '</dl>' +
         '<p class="vp-not">Toplam ' + c.toplam.soru + ' soru' + (c.toplam.dogruluk != null ? ' · genel doğruluk %' + c.toplam.dogruluk : "") + (h.deneme ? ' · bu hafta ' + h.deneme + ' deneme' : "") + '. Süre, çözülen soru (soru başına ~1,5 dk) ve deneme sürelerinden tahmin edilir.</p>' +
       '</section>' +
+      // 1.16.0 grafikler: haftalık etkinlik (yığılmış sütun) + tahmini puan gelişimi (çizgi); her birinin tablo karşılığı var
+      (window.MeberraGrafik && c.grafik ? '<div class="vp-izgara">' +
+        '<section class="vp-kart" aria-labelledby="vc-hafta"><h2 id="vc-hafta">Haftalık etkinlik</h2><p class="vp-not vp-grafik-not">Son 8 hafta · çözülen soru</p>' +
+          '<div class="vp-yigin-yer" id="vc-yigin"></div><div id="vc-yigin-lejant"></div><div id="vc-yigin-tablo"></div></section>' +
+        '<section class="vp-kart" aria-labelledby="vc-trend"><h2 id="vc-trend">Tahmini puan gelişimi</h2><div class="chip-group vp-trend-sec" id="vc-trend-sec" role="group" aria-label="Ders seç"></div>' +
+          '<div class="vp-cizgi-yer" id="vc-cizgi"></div><div id="vc-cizgi-tablo"></div></section>' +
+      '</div>' : "") +
       '<div class="vp-izgara">' +
-        '<section class="vp-kart" aria-labelledby="vc-dersler"><h2 id="vc-dersler">Derslere göre hedef</h2>' +
-          (c.dersler.length ? c.dersler.map(puanCubugu).join("") : '<p class="vp-not">Öğrenci henüz ders seçmedi ve soru çözmedi.</p>') +
+        '<section class="vp-kart" aria-labelledby="vc-dersler"><h2 id="vc-dersler">Hedefe yakınlık</h2>' +
+          (c.dersler.length ? (window.MeberraGrafik ? '<div class="vp-halkalar">' + c.dersler.map(halkaKart).join("") + '</div>' : c.dersler.map(puanCubugu).join("")) : '<p class="vp-not">Öğrenci henüz ders seçmedi ve soru çözmedi.</p>') +
           '<p class="vp-not">Tahmini puan 1–5 ölçeğindedir: son ders denemesinden, deneme yoksa en az 10 sorunun doğruluğundan hesaplanır. Kesin sonuç değildir.</p></section>' +
         '<section class="vp-kart" aria-labelledby="vc-deneme"><h2 id="vc-deneme">Son denemeler</h2>' +
           (denemeler ? '<ul class="vp-denemeler">' + denemeler + '</ul>' : '<p class="vp-not">Henüz deneme çözülmedi.</p>') + '</section>' +
@@ -267,6 +338,7 @@
         '<p class="form-alert" id="vc-ayar-alert" role="status" hidden></p>' +
         '<details class="u-mt-2"><summary class="link-btn">Bu öğrenciyle bağlantımı kaldır</summary><p class="vp-not">Kaldırırsanız bu öğrencinin özetini göremezsiniz; yeniden bağlanmak için öğrencinin yeni davet göndermesi gerekir.</p>' +
         '<button type="button" class="btn-ghost btn-danger btn-sm" id="vc-ayril">Bağlantıyı kaldır</button></details></section>';
+    grafikCiz(c);
     var pb = $("vc-premium-btn");
     if (pb) pb.addEventListener("click", function () { odemeGoster(c); });
     $("vc-rapor").addEventListener("change", function () {
