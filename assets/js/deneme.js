@@ -161,6 +161,7 @@
       var h = c.hatalar || {};
       q.options.forEach(function (o) { o.isCorrect = o.id === c.dogru; if (h[o.id]) { o.errorTag = h[o.id].errorTag; o.remediation = h[o.id].remediation; } });
       q.stepByStepSolution = c.aciklama || ""; q.generalRemediation = c.genelHatirlatma || "";
+      q.ek = c.ek || null; // 1.10.0 zenginleştirme (yalnız teslimden sonra gelir)
     }
     return q;
   }
@@ -274,12 +275,12 @@
       '<h2 class="panel-title" id="dn-ders-title">Ders denemeleri</h2>' +
       '<div class="dn-grid">' + cards + '</div>' +
       '</section>' +
+      (ucretsiz ? genelKilitKarti() :
       '<section class="dn-section interactive-panel" aria-labelledby="dn-genel-title" id="genel">' +
       '<h2 class="panel-title" id="dn-genel-title">Genel deneme (karma)</h2>' +
       '<p class="panel-sub">Seçtiğin derslerden dengeli karışık deneme. Her ders kendi bloğunda gelir; süre her sorunun kendi dersinin temposuyla toplanır.</p>' +
-      (ucretsiz ? '<p class="dn-note dn-hak-bitti">Genel deneme Premium’da. <a href="/premium">Premium’a geç →</a></p>' : '') +
       setupForm("genel") +
-      '</section>' +
+      '</section>') +
       renderHistory(d);
     bindSetup("genel");
     bindHistory();
@@ -539,6 +540,17 @@
   var A = null;          // aktif deneme (state)
   var timerId = null, lastTick = 0, sinceSave = 0, warned = false;
   var navOpen = false;
+
+  /** 1.11.0: Genel deneme Premium — ücretsiz planda tam kurulum formu yerine kısa kilitli kart (form hiç çizilmez). */
+  function genelKilitKarti() {
+    return '<section class="dn-section surface dn-genel-kilit" aria-labelledby="dn-genel-title" id="genel">' +
+      '<span class="dn-genel-kilit-ik" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">' +
+      '<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>' +
+      '<div class="dn-genel-kilit-metin"><h2 id="dn-genel-title">Genel deneme <span class="dn-genel-kilit-rozet">Premium</span></h2>' +
+      '<p>Tüm derslerinden dengeli, karışık bir deneme; her soru kendi dersinin temposuyla. Premium ile genel deneme ve sınırsız ders denemesi.</p></div>' +
+      '<a class="btn-energy btn-sm dn-genel-kilit-cta" href="/premium">Premium’a geç</a>' +
+      '</section>';
+  }
 
   // Meberra ücretsiz plan: her ders sayfasından 1 deneme (hak başlarken yazılır); genel deneme Premium (sunucu modu dışında her şey açık)
   function ucretsizPlan() { return !!window.apPremiumMu && !window.apPremiumMu(); }
@@ -1138,7 +1150,7 @@
     var links = '<p class="dn-rev-links"><a href="' + esc(adresOf(q.sayfa)) + '#q-card-' + encodeURIComponent(q.id) + '">Ders sayfasında bu soru →</a>' +
       (q.kap ? ' <a href="' + esc(adresOf(q.sayfa)) + '#' + esc(q.kap) + '">' + esc(q.kapBaslik || "Ünite") + ' →</a>' : '') + '</p>';
     return info + (pas ? '<details class="dn-rev-pas"><summary>' + esc(pas.baslik) + '</summary><div class="dn-passage-body">' + pas.html + '</div></details>' : '') +
-      '<div class="question-body">' + q.question + '</div>' + opts + answerLine + rem + sol + links;
+      '<div class="question-body">' + q.question + '</div>' + opts + answerLine + (window.apEkHtml ? window.apEkHtml(q.ek) : "") + rem + sol + links;
   }
 
   // ======================================================================

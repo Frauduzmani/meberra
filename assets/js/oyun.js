@@ -307,7 +307,7 @@
   // --- Öğrenme yolu -----------------------------------------------------------------------
   // Ders sayfalarının ünite listesi (apUniteGrupla + ünite kimlikleri): [ad, num, ders, soru kutuları, bankadaki soru sayısı].
   // ?unite=N adresi sıradaki N'dir. araclar/testler/oyun-birim-test.js bu listeyi gerçek sayfalardan yeniden üretip karşılaştırır.
-  var YOL = {"ap-calculus":[["Ünite 1 · Limits and Continuity","1","",["calc-unit1-quiz-container"],22],["Ünite 2 · Differentiation","2","",["calc-unit2-quiz-container"],15],["Ünite 3 · Composite, Implicit, and Inverse Functions","3","",["calc-unit3-quiz-container"],15],["Ünite 4 · Contextual Applications of Differentiation","4","",["calc-unit4-quiz-container"],15],["Ünite 5 · Analytical Applications of Differentiation","5","",["calc-unit5-quiz-container"],17],["Ünite 6 · Integration and Accumulation of Change","6","AP Calculus AB/BC",["calc-unit6-quiz-container"],34],["Ünite 7 · Differential Equations","7","AP Calculus AB/BC",["calc-unit7-quiz-container"],31],["Ünite 8 · Applications of Integration","8","AP Calculus AB/BC",["calc-unit8-quiz-container"],28],["Ünite 9 · Parametric Equations, Polar Coordinates, and Vector-Valued…","9","AP Calculus BC",["calc-unit9-quiz-container"],25],["Ünite 10 · Infinite Sequences and Series","10","AP Calculus BC",["calc-unit10-quiz-container"],39]],"ap-physics":[["Ünite 1 · Kinematics (1D & 2D Motion)","1","",["phys-unit1-quiz-container"],14],["Ünite 2 · Force and Translational Dynamics (Newton's Laws)","2","",["phys-unit2-quiz-container"],14],["Ünite 2 · Circular Motion & Gravitation","2","",["phys-unit3-quiz-container"],14],["Ünite 3 · Work, Energy, and Power","3","",["phys-unit3-wep-quiz-container"],20],["Ünite 4 · Linear Momentum","4","AP Physics 1",["phys-unit4-momentum-quiz-container"],22],["Ünite 5 · Torque and Rotational Dynamics","5","AP Physics 1",["phys-unit5-rotation-quiz-container"],25],["Ünite 6 · Energy and Momentum of Rotating Systems","6","AP Physics 1",["phys-unit6-rotating-quiz-container"],22],["Ünite 7 · Oscillations","7","AP Physics 1",["phys-unit7-oscillations-quiz-container"],24]],"ap-chemistry":[["Ünite 1 · Atomic Structure and Properties","1","",["chem-unit1-quiz-container"],15],["Ünite 2 · Compound Structure and Properties (eski CED adı: Molecular &…","2","",["chem-unit2-quiz-container"],15],["Ünite 3 · Properties of Substances and Mixtures (eski CED adı:…","3","",["chem-unit3-quiz-container"],15],["Ünite 4 · Chemical Reactions","4","AP Chemistry",["chem-unit4-quiz-container"],24],["Ünite 5 · Kinetics","5","AP Chemistry",["chem-unit5-quiz-container"],25],["Ünite 6 · Thermochemistry","6","AP Chemistry",["chem-unit6-quiz-container"],25],["Ünite 7 · Equilibrium","7","AP Chemistry",["chem-unit7-quiz-container"],25],["Ünite 8 · Acids and Bases","8","AP Chemistry",["chem-unit8-quiz-container"],28],["Ünite 9 · Thermodynamics and Electrochemistry","9","AP Chemistry",["chem-unit9-quiz-container"],28]],"ap-biology":[["Ünite 1 · Chemistry of Life","1","",["bio-unit1-quiz-container"],15],["Ünite 2 · Cell Structure and Function","2","",["bio-unit2-quiz-container"],18],["Ünite 3 · Cellular Energetics","3","AP Biology",["bio-unit3-quiz-container"],24],["Ünite 4 · Cell Communication and Cell Cycle","4","AP Biology",["bio-unit4-quiz-container"],26],["Ünite 5 · Heredity","5","AP Biology",["bio-unit5-quiz-container"],25],["Ünite 6 · Gene Expression and Regulation","6","AP Biology",["bio-unit6-quiz-container"],26],["Ünite 7 · Natural Selection","7","AP Biology",["bio-unit7-quiz-container"],27]],"ap-english":[["Ünite A · Rhetorical Analysis & Reading MCQ","A","",["eng-reading-quiz-container"],17],["Ünite B · Writing MCQ (Revision & Composition)","B","",["eng-writing-quiz-container"],24]],"ap-electives":[["AP Computer Science A (Ünite 1–4)",null,"AP Computer Science A",["csa-quiz-container"],20],["Ünite 1–4 · Strings, Class Design, Collections, Recursion,…",null,"AP Computer Science A",["csa-core-quiz-container","csa-data-quiz-container"],28],["AP Microeconomics & Macroeconomics",null,"AP Microeconomics & Macroeconomics",["econ-quiz-container"],20],["Ünite 5 · Factor Markets and Ünite 6 · Market Failure and the Role of…","5","AP Microeconomics",["micro34-quiz-container","micro56-quiz-container"],22],["Ünite 1 · Basic Economic Concepts and Ünite 6 · Open Economy","1","AP Macroeconomics",["macro14-quiz-container","macro56-quiz-container"],23]],"sinav-cents":[["Bölüm 1 · Reading and comprehension","1","",["cents-reading-quiz-container"],10],["Bölüm 2 · Mathematics","2","",["cents-math-quiz-container"],10],["Bölüm 3 · Reasoning on texts and data","3","",["cents-reasoning-quiz-container"],10],["Bölüm 4 · Biology","4","",["cents-biology-quiz-container"],10],["Bölüm 5 · Chemistry","5","",["cents-chemistry-quiz-container"],10],["Bölüm 6 · Physics","6","",["cents-physics-quiz-container"],10]]};
+  var YOL = {"ap-calculus":[["Ünite 1 · Limits and Continuity","1","",["calc-unit1-quiz-container"],22],["Ünite 2 · Differentiation","2","",["calc-unit2-quiz-container"],15],["Ünite 3 · Composite, Implicit, and Inverse Functions","3","",["calc-unit3-quiz-container"],15],["Ünite 4 · Contextual Applications of Differentiation","4","",["calc-unit4-quiz-container"],15],["Ünite 5 · Analytical Applications of Differentiation","5","",["calc-unit5-quiz-container"],17],["Ünite 6 · Integration and Accumulation of Change","6","AP Calculus AB/BC",["calc-unit6-quiz-container"],34],["Ünite 7 · Differential Equations","7","AP Calculus AB/BC",["calc-unit7-quiz-container"],31],["Ünite 8 · Applications of Integration","8","AP Calculus AB/BC",["calc-unit8-quiz-container"],28],["Ünite 9 · Parametric Equations, Polar Coordinates, and Vector-Valued…","9","AP Calculus BC",["calc-unit9-quiz-container"],25],["Ünite 10 · Infinite Sequences and Series","10","AP Calculus BC",["calc-unit10-quiz-container"],39]],"ap-physics":[["Ünite 1 · Kinematics (1D & 2D Motion)","1","",["phys-unit1-quiz-container"],14],["Ünite 2 · Force and Translational Dynamics (Newton's Laws)","2","",["phys-unit2-quiz-container"],14],["Ünite 2 · Circular Motion & Gravitation","2","",["phys-unit3-quiz-container"],14],["Ünite 3 · Work, Energy, and Power","3","",["phys-unit3-wep-quiz-container"],20],["Ünite 4 · Linear Momentum","4","AP Physics 1",["phys-unit4-momentum-quiz-container"],22],["Ünite 5 · Torque and Rotational Dynamics","5","AP Physics 1",["phys-unit5-rotation-quiz-container"],25],["Ünite 6 · Energy and Momentum of Rotating Systems","6","AP Physics 1",["phys-unit6-rotating-quiz-container"],22],["Ünite 7 · Oscillations","7","AP Physics 1",["phys-unit7-oscillations-quiz-container"],24],["Ünite 8 · Fluids","8","",["phys-unit8-quiz-container"],0]],"ap-chemistry":[["Ünite 1 · Atomic Structure and Properties","1","",["chem-unit1-quiz-container"],15],["Ünite 2 · Compound Structure and Properties (eski CED adı: Molecular &…","2","",["chem-unit2-quiz-container"],15],["Ünite 3 · Properties of Substances and Mixtures (eski CED adı:…","3","",["chem-unit3-quiz-container"],15],["Ünite 4 · Chemical Reactions","4","AP Chemistry",["chem-unit4-quiz-container"],24],["Ünite 5 · Kinetics","5","AP Chemistry",["chem-unit5-quiz-container"],25],["Ünite 6 · Thermochemistry","6","AP Chemistry",["chem-unit6-quiz-container"],25],["Ünite 7 · Equilibrium","7","AP Chemistry",["chem-unit7-quiz-container"],25],["Ünite 8 · Acids and Bases","8","AP Chemistry",["chem-unit8-quiz-container"],28],["Ünite 9 · Thermodynamics and Electrochemistry","9","AP Chemistry",["chem-unit9-quiz-container"],28]],"ap-biology":[["Ünite 1 · Chemistry of Life","1","",["bio-unit1-quiz-container"],15],["Ünite 2 · Cell Structure and Function","2","",["bio-unit2-quiz-container"],18],["Ünite 3 · Cellular Energetics","3","AP Biology",["bio-unit3-quiz-container"],24],["Ünite 4 · Cell Communication and Cell Cycle","4","AP Biology",["bio-unit4-quiz-container"],26],["Ünite 5 · Heredity","5","AP Biology",["bio-unit5-quiz-container"],25],["Ünite 6 · Gene Expression and Regulation","6","AP Biology",["bio-unit6-quiz-container"],26],["Ünite 7 · Natural Selection","7","AP Biology",["bio-unit7-quiz-container"],27],["Ünite 8 · Ecology","8","",["bio-unit8-quiz-container"],0]],"ap-english":[["Ünite A · Rhetorical Analysis & Reading MCQ","A","",["eng-reading-quiz-container"],17],["Ünite B · Writing MCQ (Revision & Composition)","B","",["eng-writing-quiz-container"],24]],"ap-electives":[["AP Computer Science A (Ünite 1–4)",null,"AP Computer Science A",["csa-quiz-container"],20],["Ünite 1–4 · Strings, Class Design, Collections, Recursion,…",null,"AP Computer Science A",["csa-core-quiz-container","csa-data-quiz-container"],28],["AP Microeconomics & Macroeconomics",null,"AP Microeconomics & Macroeconomics",["econ-quiz-container"],20],["Ünite 5 · Factor Markets and Ünite 6 · Market Failure and the Role of…","5","AP Microeconomics",["micro34-quiz-container","micro56-quiz-container"],22],["Ünite 1 · Basic Economic Concepts and Ünite 6 · Open Economy","1","AP Macroeconomics",["macro14-quiz-container","macro56-quiz-container"],23]],"sinav-cents":[["Bölüm 1 · Reading and comprehension","1","",["cents-reading-quiz-container"],10],["Bölüm 2 · Mathematics","2","",["cents-math-quiz-container"],10],["Bölüm 3 · Reasoning on texts and data","3","",["cents-reasoning-quiz-container"],10],["Bölüm 4 · Biology","4","",["cents-biology-quiz-container"],10],["Bölüm 5 · Chemistry","5","",["cents-chemistry-quiz-container"],10],["Bölüm 6 · Physics","6","",["cents-physics-quiz-container"],10]]};
   function yolListesi(page) {
     return (YOL[page] || []).map(function (u, i) { return { no: i + 1, ad: u[0], num: u[1], ders: u[2], kutular: u[3], soru: u[4] }; });
   }
@@ -331,6 +331,20 @@
     dugumler.forEach(function (d) { if (d.kilitli && d.durum !== "bitti") d.durum = "kilitli"; });
     return dugumler;
   }
+  /**
+   * 1.11.0: YOL'da soru sayısı 0 olan ünite yeni istasyondur (sorular yönetici onayını bekler). Kayıtta ya da sunucu özetinde
+   * (GET /api/sorular-bankasi/<sayfa>, app.js apSbOzet) sorusu yoksa yolda gösterilmez ve ilerleme sayılarına girmez (saf; ozet: kutu → toplam).
+   */
+  function yolGorunen(liste, sayfaKaydi, ozet) {
+    var units = sayfaKaydi && isObj(sayfaKaydi.units) ? sayfaKaydi.units : {};
+    return liste.filter(function (u) {
+      if (+u.soru > 0) return true;
+      var t = 0;
+      (u.kutular || []).forEach(function (k) { t += (ozet && +ozet[k]) || +(units[k] || {}).total || 0; });
+      if (t > 0) { u.soru = t; return true; }
+      return false;
+    });
+  }
   /** Ders ilerlemesi yüzdesi (kayıtlı ünitelerin toplamı üzerinden): "Calculus'ta %40'tasın" */
   function dersYuzdesi(sayfaKaydi) {
     var units = sayfaKaydi && isObj(sayfaKaydi.units) ? sayfaKaydi.units : {}, top = 0, cev = 0;
@@ -339,7 +353,7 @@
   }
 
   var CEKIRDEK = {
-    K: K, XP: XP, GOREV_XP: GOREV_XP, ARALIK: ARALIK, HEDEFLER: HEDEFLER, ROZETLER: ROZETLER, YOL: YOL,
+    K: K, XP: XP, GOREV_XP: GOREV_XP, ARALIK: ARALIK, HEDEFLER: HEDEFLER, ROZETLER: ROZETLER, YOL: YOL, yolGorunen: yolGorunen,
     istGun: istGun, gunEkle: gunEkle, gunFark: gunFark, isoHafta: isoHafta, haftaPazartesi: haftaPazartesi,
     cevapListesi: cevapListesi, xpOzet: xpOzet, haftaXp: haftaXp, gorevSayisi: gorevSayisi, toplamXp: toplamXp,
     calismaGunleri: calismaGunleri, seriHesapla: seriHesapla, korumaHakki: korumaHakki, korumaUygula: korumaUygula, korumaKalan: korumaKalan,
@@ -662,13 +676,24 @@
     var n = (window.MEBERRA_URUN && window.MEBERRA_URUN.ucretsiz && window.MEBERRA_URUN.ucretsiz.uniteSayisi) || 2;
     return window.apUcretsizUniteNolari(page, liste, n);
   }
+  var YENI_OZET = {};
   function calisYolu() {
     var yerler = document.querySelectorAll("[data-yol]");
     if (!yerler.length) return;
     var pr = oku(K.quiz, null) || {}, prem = premiumMu();
     yerler.forEach(function (el) {
-      var page = el.getAttribute("data-yol"), liste = yolListesi(page);
-      if (!liste.length) return;
+      var page = el.getAttribute("data-yol"), tam = yolListesi(page);
+      if (!tam.length) return;
+      // Yeni istasyonlu ders: sunucu özeti bir kez istenir, gelince yol yeniden çizilir
+      if (!YENI_OZET[page] && tam.some(function (u) { return !(+u.soru > 0); }) && typeof window.apSbOzet === "function") {
+        YENI_OZET[page] = {};
+        window.apSbOzet(page).then(function (oz) {
+          if (!oz || !Array.isArray(oz.kutular)) return;
+          oz.kutular.forEach(function (k) { YENI_OZET[page][k.kutu] = k.toplam; });
+          if (tam.some(function (u) { return !(+u.soru > 0) && (u.kutular || []).some(function (k) { return YENI_OZET[page][k] > 0; }); })) calisYolu();
+        });
+      }
+      var liste = yolGorunen(tam, pr.pages && pr.pages[page], YENI_OZET[page]);
       var acik = ucretsizNolar(page, liste);
       yolYerlestir(el, page, yolDugumleri(liste, pr.pages && pr.pages[page], function (no) { return !prem && acik.indexOf(no) < 0; }), "serit");
     });
@@ -677,7 +702,8 @@
     var U = window.APMEBERRA_UNITELER;
     if (!U || !U.panel || !Array.isArray(U.uniteler)) return;
     var pr = oku(K.quiz, null) || {};
-    var liste = U.uniteler.map(function (u) { return { no: u.no, ad: u.ad, kutular: u.kutular, soru: u.toplam }; });
+    // 1.11.0: "Yakında" ünite (onaylı sorusu olmayan yeni istasyon) yolda gösterilmez
+    var liste = U.uniteler.filter(function (u) { return !u.yakinda; }).map(function (u) { return { no: u.no, ad: u.ad, kutular: u.kutular, soru: u.toplam }; });
     var kil = {}; U.uniteler.forEach(function (u) { kil[u.no] = u.kilitli; });
     var yer = U.panel.querySelector(".oy-yol-yer");
     if (!yer) {
@@ -812,13 +838,15 @@
       fb.className = "feedback-box " + (dogruMu ? "correct-box" : "wrong-box");
       fb.innerHTML = '<div class="feedback-head"><span class="feedback-verdict">' + (dogruMu ? "Doğru cevap" : "Yanlış cevap") + "</span>" +
         '<span class="feedback-chip">' + (dogruMu ? "Bir sonraki tekrar daha ileride" : "Doğru seçenek: " + esc(dg.id) + " · yarın yeniden") + "</span></div>" +
-        (!dogruMu ? '<div class="feedback-text"><strong>Hata nedeni:</strong> ' + (sec.errorTag || "Kavramsal veya işlemsel eksiklik.") + "</div>" +
-          '<div class="remediation-panel"><div class="remediation-title"><span>Konu hatırlatması</span></div><div class="remediation-text">' + (sec.remediation || q.generalRemediation || "") + "</div></div>" : "") +
+        (!dogruMu ? '<div class="feedback-text"><strong>Hata nedeni:</strong> ' + (sec.errorTag || "Kavramsal veya işlemsel eksiklik.") + "</div>" : "") +
+        (typeof window.apEkHtml === "function" ? window.apEkHtml(q.ek || (yanit && yanit.ek)) : "") + // 1.10.0 zenginleştirme (cevaptan sonra)
+        (!dogruMu ? '<div class="remediation-panel"><div class="remediation-title"><span>Konu hatırlatması</span></div><div class="remediation-text">' + (sec.remediation || q.generalRemediation || "") + "</div></div>" : "") +
         '<div class="solution-panel"><div class="solution-title">Adım adım çözüm</div><div class="solution-steps">' + (q.stepByStepSolution || "") + "</div></div>" +
         '<p class="oy-tekrar-eylem"><button type="button" class="btn-primary" data-tekrar-sonraki>' + (son ? "Tekrarı bitir" : "Sonraki soru →") + "</button></p>";
       fb.hidden = false;
       fb.style.display = "block";
       mathjax(fb);
+      if (typeof window.apYumusakAc === "function") window.apYumusakAc(fb);
       var b = fb.querySelector("[data-tekrar-sonraki]"); if (b) b.focus({ preventScroll: true });
     }
     function bitis() {

@@ -4533,3 +4533,41 @@ body:has(> main):has(> footer.footer) > footer.footer { flex-shrink: 0; }
 .ug-panel .bg-sec-h .ug-ozet { display: block; margin-top: 2px; }
 .ug-panel .bg-sec-h .ug-devam { color: var(--on-btn); flex: none; }
 @media (max-width: 520px) { .ug-panel .bg-sec-h .ug-devam { width: 100%; justify-content: center; } }
+
+/* 1.10.0 Zenginleştirme (ek): cevaptan sonra geri bildirim kutusunda sakin satırlar — Kavram + hesap makinesi işareti;
+   İpucu / Sık hata "Daha fazla" altında (grid 0fr → 1fr yükseklik animasyonu, yerleşim zıplamaz). Ortak: ders, Bugünkü tekrar, deneme, seviye. */
+.sb-ek { margin-top: var(--sp-3); padding-top: var(--sp-3); border-top: 1px solid var(--border); font-size: var(--fs-14); }
+.sb-ek-ust { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 6px var(--sp-3); }
+.sb-ek-ust:empty { display: none; }
+.sb-ek-liste { margin: 0; display: grid; gap: 6px; min-width: 0; flex: 1 1 240px; }
+.sb-ek-ust + .sb-ek-liste, .sb-ek-daha-ic > .sb-ek-liste { padding-top: 6px; }
+.sb-ek-satir { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: var(--sp-2); align-items: baseline; }
+.sb-ek-satir dt { font-size: var(--fs-12); font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--text-muted); }
+.sb-ek-satir dd { margin: 0; color: var(--text); line-height: 1.5; overflow-wrap: anywhere; }
+.sb-ek-satir.is-kavram dt { color: var(--accent); }
+.sb-ek-satir.is-hata dt { color: var(--warn); }
+.sb-ek-hm { display: inline-flex; align-items: center; gap: 6px; flex: none; min-height: 26px; padding: 2px 10px; border-radius: var(--radius-full); border: 1px solid var(--border);
+  background: var(--surface); color: var(--text-muted); font-size: var(--fs-12); font-weight: 700; white-space: nowrap; }
+.sb-ek-hm .sb-ek-ikon { flex: none; }
+.sb-ek-hm.is-gerekli { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, var(--border)); background: var(--accent-soft); }
+.sb-ek-hm.is-yardimci { color: var(--info); border-color: color-mix(in srgb, var(--info) 35%, var(--border)); }
+.sb-ek-daha { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--hiz-orta, 240ms) var(--egri-cik, ease); }
+.sb-ek-daha.is-acik { grid-template-rows: 1fr; }
+.sb-ek-daha-ic { min-height: 0; overflow: hidden; visibility: hidden; transition: visibility 0s linear var(--hiz-orta, 240ms); }
+.sb-ek-daha.is-acik .sb-ek-daha-ic { visibility: visible; transition-delay: 0s; }
+.sb-ek-btn { display: inline-flex; align-items: center; gap: 4px; min-height: 32px; margin-top: 2px; padding: 4px 2px; background: none; border: 0; border-radius: 6px;
+  color: var(--accent); font: inherit; font-size: var(--fs-12); font-weight: 700; cursor: pointer; }
+.sb-ek-btn:hover { text-decoration: underline; }
+.sb-ek-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sb-ek-btn svg { transition: transform var(--hiz-orta, 240ms) var(--egri-cik, ease); }
+.sb-ek-btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+.dn-rev-body > .sb-ek, .sv-wrong-body > .sb-ek { border-top: 0; padding: var(--sp-3) var(--sp-4); border-radius: var(--radius-sm); background: var(--surface-2); border: 1px solid var(--border); }
+@media (max-width: 480px) { .sb-ek-satir { grid-template-columns: minmax(0, 1fr); gap: 0; } }
+@media (prefers-reduced-motion: reduce) { .sb-ek-daha, .sb-ek-daha-ic, .sb-ek-btn svg { transition: none; } }
+
+/* 1.11.0 Yeni soru istasyonu, sorular onaylanana dek: hata değil sakin "Yakında" (kutu + ünite kartı) */
+.sb-durum.is-yakinda { border-style: dashed; background: var(--surface-2); }
+.sb-durum.is-yakinda strong { color: var(--text-muted); }
+.ug-kart.is-yakinda { border-style: dashed; color: var(--text-muted); }
+.ug-kart.is-yakinda .ug-no { background: var(--surface-3); color: var(--text-muted); }
+.ug-kart.is-yakinda .ug-git { color: var(--text-muted); font-weight: 600; }

@@ -56,6 +56,11 @@ ok(r.uniteler[2].sorular === 2 && JSON.stringify(r.uniteler[2].bloklar) === "[4,
 r = apUniteGrupla([B("AP Computer Science A — Units 1–4: Strings, Class Design — Foundations"), B("Unit 1–3 (AP CSA) Strings: İnteraktif Soru İstasyonu")]);
 ok(r.uniteler.length === 1 && r.uniteler[0].anlatim === true && r.ekler.length === 0, "çoğul Units anlatımı ünite", r);
 
+// 3c) 1.11.0: anlatımsız ve başka numaralı istasyon önceki anlatıma katılmaz (Unit 7 anlatımı → Unit 8 Fluids istasyonu)
+r = apUniteGrupla([B("AP Physics 1 — Unit 7: Oscillations — SHM"), B("Unit 7 Oscillations: İnteraktif Soru İstasyonu"), B("Unit 8 Fluids: İnteraktif Soru İstasyonu")]);
+ok(r.uniteler.length === 2 && r.uniteler[0].sorular === 1 && r.uniteler[1].anlatim === false && r.uniteler[1].num === "8" && r.uniteler[1].baslik === "Unit 8 Fluids",
+  "başka numaralı istasyon ayrı ünite", r.uniteler);
+
 // 4) "Unit Circle" geçen ek bölüm ünite sayılmaz
 r = apUniteGrupla([B("Reference Library: Formula Sheets, Unit Circle and Technique Charts"), B("Unit 1: Limits"), B("Unit 1: İnteraktif Soru İstasyonu")]);
 ok(r.uniteler.length === 1 && r.ekler.length === 1, "Unit Circle başlığı ek bölüm", r);

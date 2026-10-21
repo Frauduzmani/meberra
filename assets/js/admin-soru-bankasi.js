@@ -464,5 +464,6 @@
     });
   }
 
-  window.MEBERRA_ADMIN_SB = { kur: kur, ac: ac };
+  // 1.11.0: Onay kuyruğu (admin-onay.js) düzenleyiciyi ve MathJax dizgisini buradan kullanır
+  window.MEBERRA_ADMIN_SB = { kur: kur, ac: ac, duzenle: function (id) { return detayAc(id); }, dizgile: dizgile };
 })();

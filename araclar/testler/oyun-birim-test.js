@@ -140,6 +140,17 @@ d = O.yolDugumleri(liste.slice(0, 3), yp, () => false);
 ok(esit(d.map(x => x.durum), ["bitti", "simdi", "acik"]), "Premium: kilit yok");
 ok(O.dersYuzdesi({ units: { a: { total: 10, answers: { x: {}, y: {} } }, b: { total: 10, answers: { z: {}, w: {} } } } }) === 20, "ders yüzdesi (Calculus'ta %20'tesin)");
 
+// 7b) 1.11.0 yeni istasyon (YOL'da soru 0): kayıt ya da sunucu özeti yoksa yolda yok; özet/kayıt gelince görünür
+{
+  const L = () => O.yolListesi("ap-physics");
+  const yeniNo = L().length;
+  ok(L()[yeniNo - 1].kutular[0] === "phys-unit8-quiz-container" && L()[yeniNo - 1].soru === 0, "YOL: Physics Unit 8 Fluids yeni istasyon (soru 0)");
+  ok(O.yolGorunen(L(), null, null).length === yeniNo - 1, "yeni istasyon onaylı soru yokken yolda gösterilmez");
+  const oz = O.yolGorunen(L(), null, { "phys-unit8-quiz-container": 20 });
+  ok(oz.length === yeniNo && oz[yeniNo - 1].soru === 20 && oz[yeniNo - 1].no === yeniNo, "sunucu özetinde varsa görünür (soru sayısı özetten, ?unite=N korunur)");
+  ok(O.yolGorunen(L(), { units: { "phys-unit8-quiz-container": { total: 5, answers: {} } } }, null).length === yeniNo, "kayıtta sorusu varsa görünür");
+}
+
 // 8) YOL listesi gerçek ders sayfalarıyla aynı (unite-birim-test.js ile aynı ayrıştırma; app.js apUniteGrupla)
 {
   const src = fs.readFileSync(path.join(ROOT, "assets/js/app.js"), "utf8");

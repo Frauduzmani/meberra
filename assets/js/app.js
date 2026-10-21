@@ -1558,7 +1558,10 @@ function apUniteGrupla(bloklar) {
       // Anlatımlı ünite ardından gelen istasyonları toplar; anlatımsız (ya da başka derse ait) her istasyon ayrı ünitedir
       const qm = /^AP ([^:(—]+?)\s*(?:\(|:|—)/.exec(p.raw);
       const qDers = qm ? "AP " + qm[1] : "";
-      if (!acik || !acik.anlatim || (qDers && acik.ders && qDers !== acik.ders)) {
+      // 1.11.0: başka numaralı ünitenin istasyonu ("Unit 8 Fluids" Unit 7 anlatımının ardından, anlatımsız) kendi ünitesidir
+      const qNum = p.key && /^unit:\d+$/.test(p.key) ? p.key.split(":")[1] : null;
+      const baskaNo = !!(qNum && acik && acik.num && /^\d+$/.test(acik.num) && qNum !== acik.num);
+      if (!acik || !acik.anlatim || (qDers && acik.ders && qDers !== acik.ders) || baskaNo) {
         acik = { no: uniteler.length + 1, baslik: p.label, bloklar: [], anlatim: false, sorular: 0, ders: qDers, num: keyNum(p) };
         uniteler.push(acik);
       }
@@ -1596,9 +1599,17 @@ function initUniteGorunumu() {
   // Ünite ilerlemesi: ünitedeki soru kutuları (kimliği "-quiz-container" ile biten) + progress kaydı. v1.5.0: sorular sayfada
   // değil sunucuda; soru sayısı sunucu özetinden (data-sb-toplam, GET /api/sorular-bankasi/<sayfa>) ya da kayıttaki total'den.
   const kutularOf = u => [].concat.apply([], u.bloklar.map(i => Array.from(els[i].querySelectorAll("[id]")).filter(apSoruKutusuMu)));
+  // 1.11.0: yeni istasyon (data-sb-yeni-kutu): onaylı sorusu yokken sunucu listesinde yoktur → "Yakında"; öğrenme yolunda ve sayılarda yer almaz.
+  // Özet gelene dek kayıtta sorusu olmayan yeni kutu yakında sayılır (yol önce görünüp sonra kaybolmasın); özet gelince kesinleşir.
+  {
+    const kayit0 = ((apLoadProgress().pages || {})[page] || {}).units || {};
+    els.forEach(el => el.querySelectorAll("[data-sb-yeni-kutu]").forEach(k => { if (!(+(kayit0[k.id] || {}).total > 0)) k.dataset.sbYakinda = "1"; }));
+  }
   function istatistik() {
     const kayit = ((apLoadProgress().pages || {})[page] || {}).units || {};
     g.uniteler.forEach(u => {
+      const ks = kutularOf(u);
+      u.yakinda = ks.length > 0 && ks.every(k => k.dataset.sbYakinda === "1");
       let toplam = 0, cevap = 0, dogru = 0;
       kutularOf(u).forEach(k => {
         const r = kayit[k.id] || {}, ans = r.answers && typeof r.answers === "object" ? r.answers : {};
@@ -1628,20 +1639,20 @@ function initUniteGorunumu() {
   panel.className = "surface ug-panel";
   panel.setAttribute("aria-labelledby", "ug-baslik");
   const panelCiz = () => { const T = g.uniteler.reduce((a, u) => ({ t: a.t + u.toplam, c: a.c + u.cevap }), { t: 0, c: 0 }); // 1.9.0: hub'ın tek birincil eylemi — yarım kalan (yoksa ilk başlanmamış) açık ünite
-    const acik = g.uniteler.filter(u => !kilitli(u));
+    const acik = g.uniteler.filter(u => !kilitli(u) && !u.yakinda);
     const hedefU = acik.find(u => u.cevap && u.cevap < u.toplam) || acik.find(u => !u.cevap) || null;
     const devam = hedefU ? '<a class="btn-primary btn-sm ug-devam" href="' + base + "?unite=" + hedefU.no + '">' + (hedefU.cevap ? "Sürdür" : "Başla") +
       ": " + (bolumMu ? "Bölüm " : "Ünite ") + apEsc(String(hedefU.no)) + " →</a>" : "";
     panel.innerHTML = '<div class="bg-sec-h"><div class="u-min0"><h2 id="ug-baslik">' + (bolumMu ? "Bölümler" : "Üniteler") + '</h2><span class="ug-ozet">' + g.uniteler.length + " " + birim +
     (T.t ? " · " + T.c + " / " + T.t + " soru çözüldü" : "") + '</span></div>' + devam + '</div><ol class="ug-liste">' +
     g.uniteler.map(u => {
-      const durum = u.cevap ? u.cevap + " / " + u.toplam + " soru · %" + yuzde(u.dogru, u.cevap) + " doğru" : u.toplam ? u.toplam + " soru · başlanmadı" : "Konu anlatımı";
-      const git = kilitli(u) ? APMEBERRA_ICONS.crown + "Premium" : !u.cevap ? "Başla" : u.cevap >= u.toplam ? "Tekrar et" : "Sürdür";
-      return '<li><a class="ug-kart' + (u.cevap && u.cevap >= u.toplam ? " is-bitti" : "") + (kilitli(u) ? " is-kilitli" : "") + '" href="' + base + "?unite=" + u.no + '">' +
+      const durum = u.yakinda ? "Sorular hazırlanıyor" : u.cevap ? u.cevap + " / " + u.toplam + " soru · %" + yuzde(u.dogru, u.cevap) + " doğru" : u.toplam ? u.toplam + " soru · başlanmadı" : "Konu anlatımı";
+      const git = u.yakinda ? "Yakında" : kilitli(u) ? APMEBERRA_ICONS.crown + "Premium" : !u.cevap ? "Başla" : u.cevap >= u.toplam ? "Tekrar et" : "Sürdür";
+      return '<li><a class="ug-kart' + (u.cevap && u.cevap >= u.toplam ? " is-bitti" : "") + (u.yakinda ? " is-yakinda" : kilitli(u) ? " is-kilitli" : "") + '" href="' + base + "?unite=" + u.no + '">' +
         '<span class="ug-no" aria-hidden="true">' + u.no + '</span><span class="ug-govde">' +
         (dersFarkli && u.ders ? '<span class="ug-ders">' + apEsc(u.ders) + "</span>" : "") + "<b>" + apEsc(apUniteGorunenAd(u.baslik)) + "</b><small>" + apEsc(durum) + "</small>" +
         (u.toplam ? '<span class="ug-cubuk" aria-hidden="true"><i style="--w:' + yuzde(u.cevap, u.toplam) + '%"></i></span>' : "") +
-        '</span><span class="ug-git">' + git + " →</span></a></li>";
+        '</span><span class="ug-git">' + git + (u.yakinda ? "" : " →") + "</span></a></li>";
     }).join("") + "</ol>" +
     (g.ekler.length ? '<h3 class="ug-ek-h">Ek bölümler</h3><ul class="ug-ekler">' +
       g.ekler.map((e, k) => '<li><a class="ug-ek" href="' + base + "?bolum=" + (k + 1) + '">' + apEsc(apUniteGorunenAd(e.baslik)) + "</a></li>").join("") + "</ul>" : ""); };
@@ -1673,7 +1684,7 @@ function initUniteGorunumu() {
         (s ? '<a class="btn-energy ug-sonraki" href="' + base + "?unite=" + s.no + '">Sonraki ünite →</a>' : '<a class="btn-primary" href="' + base + '">Ünite listesine dön</a>');
       const ilk = els[u.bloklar[0]], son = els[u.bloklar[u.bloklar.length - 1]];
       ilk.parentNode.insertBefore(ust, ilk);
-      if (kilitli(u)) {
+      if (kilitli(u) && !u.yakinda) {
         // Premium ünitesi: içerik gösterilmez, tanıtım paneli çıkar
         duvar.innerHTML = '<span class="ug-duvar-ico" aria-hidden="true">' + APMEBERRA_ICONS.crown + '</span>' +
           "<h2>" + apEsc(apUniteGorunenAd(u.baslik)) + " Premium'da</h2>" +
@@ -1772,14 +1783,17 @@ function initUniteGorunumu() {
   apSbOzet(page).then(oz => {
     if (!oz || !Array.isArray(oz.kutular)) return;
     oz.kutular.forEach(k => { const el = document.getElementById(k.kutu); if (el) el.dataset.sbToplam = k.toplam; });
+    // Yeni istasyon: sunucu listesinde (onaylı sorusu) varsa açılır, yoksa "Yakında" kalır
+    const var_ = new Set(oz.kutular.map(k => k.kutu));
+    els.forEach(el => el.querySelectorAll("[data-sb-yeni-kutu]").forEach(k => { if (var_.has(k.id)) delete k.dataset.sbYakinda; else k.dataset.sbYakinda = "1"; }));
     istatistik(); panelCiz();
-    if (window.APMEBERRA_UNITELER) window.APMEBERRA_UNITELER.uniteler.forEach(x => { const u = g.uniteler.find(y => y.no === x.no); if (u) x.toplam = u.toplam; });
+    if (window.APMEBERRA_UNITELER) window.APMEBERRA_UNITELER.uniteler.forEach(x => { const u = g.uniteler.find(y => y.no === x.no); if (u) { x.toplam = u.toplam; x.yakinda = u.yakinda; } });
     try { window.dispatchEvent(new CustomEvent("meberra:unite-ozet", { detail: { page } })); } catch (e) { /* eski tarayıcı */ }
   });
   // OYUN HOOK: öğrenme yolu (oyun.js) bu sayfanın gerçek ünite listesini okur (apUniteGrupla çıktısı + ücretsiz kuralı)
   window.APMEBERRA_UNITELER = {
     page, panel,
-    uniteler: g.uniteler.map(u => ({ no: u.no, ad: apUniteGorunenAd(u.baslik), toplam: u.toplam, cevap: u.cevap, kilitli: kilitli(u),
+    uniteler: g.uniteler.map(u => ({ no: u.no, ad: apUniteGorunenAd(u.baslik), toplam: u.toplam, cevap: u.cevap, kilitli: kilitli(u), yakinda: !!u.yakinda,
       kutular: kutularOf(u).map(k => k.id) }))
   };
   window.addEventListener("hashchange", () => {
@@ -2096,7 +2110,66 @@ function apCozumUygula(q, c) {
   });
   q.stepByStepSolution = c.aciklama || "";
   q.generalRemediation = c.genelHatirlatma || "";
+  q.ek = c.ek && typeof c.ek === "object" ? c.ek : null;
   return q;
+}
+
+// --- 1.10.0 Zenginleştirme (ek) — yalnız cevaptan / teslimden SONRA gelen çözümde: { kavram?, ipucu?, sikHata?, hesapMakinesi? } ---
+// Geri bildirim kutusunda tek sakin satır grubu: Kavram + hesap makinesi işareti görünür; İpucu ve Sık hata "Daha fazla" altında
+// (yükseklik animasyonlu; kavram yoksa doğrudan görünür). Ders sayfası, Bugünkü tekrar (oyun.js), deneme incelemesi ve seviye çözümleri ortak.
+// Metinler soru bankasından gelir (çözüm gibi HTML/LaTeX içerebilir; MathJax çağıran taraf dizer).
+const AP_EK_HM_IKON = '<svg class="sb-ek-ikon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>';
+/** Hesap makinesi düzeyi: "gerekli" | "yardımcı" | "gerekmez" | "" (eski/serbest değerler: "gerekir" → gerekli, "basit hesap" → yardımcı). */
+function apEkHesapDuzey(v) {
+  const s = String(v == null ? "" : v).toLocaleLowerCase("tr-TR").trim();
+  if (!s) return "";
+  if (/gerekmez|gereksiz|yok/.test(s)) return "gerekmez";
+  if (/gerekli|gerekir|şart/.test(s)) return "gerekli";
+  if (/yardım|basit|faydal/.test(s)) return "yardımcı";
+  return "";
+}
+let apEkSayac = 0;
+/** ek → geri bildirim kutusu içindeki HTML (boş ek → ""). */
+function apEkHtml(ek) {
+  if (!ek || typeof ek !== "object") return "";
+  const metin = k => (ek[k] != null && String(ek[k]).trim() ? String(ek[k]).trim() : "");
+  const satir = (tur, ad, m) => '<div class="sb-ek-satir is-' + tur + '"><dt>' + ad + "</dt><dd>" + m + "</dd></div>";
+  const kavram = metin("kavram"), ipucu = metin("ipucu"), sikHata = metin("sikHata"), hm = apEkHesapDuzey(ek.hesapMakinesi);
+  if (!kavram && !ipucu && !sikHata && !hm) return "";
+  const hmHtml = hm ? '<span class="sb-ek-hm is-' + (hm === "yardımcı" ? "yardimci" : hm) + '">' + AP_EK_HM_IKON + "Hesap makinesi " + hm + "</span>" : "";
+  const daha = (ipucu ? satir("ipucu", "İpucu", ipucu) : "") + (sikHata ? satir("hata", "Sık hata", sikHata) : "");
+  const katla = !!(kavram && daha);
+  const id = "sb-ek-" + (++apEkSayac);
+  return '<div class="sb-ek" data-sb-ek>' +
+    '<div class="sb-ek-ust">' + (kavram ? '<dl class="sb-ek-liste">' + satir("kavram", "Kavram", kavram) + "</dl>" : "") + hmHtml + "</div>" +
+    (daha ? (katla ? '<div class="sb-ek-daha" id="' + id + '"><div class="sb-ek-daha-ic"><dl class="sb-ek-liste">' + daha + "</dl></div></div>" +
+      '<button type="button" class="sb-ek-btn" data-sb-ek-btn aria-expanded="false" aria-controls="' + id + '"><span>Daha fazla</span>' +
+      '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button>'
+      : '<dl class="sb-ek-liste">' + daha + "</dl>") : "") +
+    "</div>";
+}
+/** "Daha fazla" düğmesi (tek belge dinleyicisi; dinamik kutularda da çalışır). Yükseklik CSS grid ile animasyonlu, kayma yok. */
+if (typeof document !== "undefined" && document.addEventListener) {
+  document.addEventListener("click", e => {
+    const b = e.target && e.target.closest ? e.target.closest("[data-sb-ek-btn]") : null;
+    if (!b) return;
+    const k = document.getElementById(b.getAttribute("aria-controls"));
+    if (!k) return;
+    const ac = b.getAttribute("aria-expanded") !== "true";
+    b.setAttribute("aria-expanded", String(ac));
+    k.classList.toggle("is-acik", ac);
+    const t = b.querySelector("span"); if (t) t.textContent = ac ? "Daha az" : "Daha fazla";
+  });
+}
+/** Yeni açılan geri bildirim kutusu yüksekliği 0'dan yumuşakça açılır (altındaki içerik bir anda zıplamaz). Azaltılmış harekette anında. */
+function apYumusakAc(el) {
+  if (!el || !el.animate) return;
+  try { if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return; } catch (e) { return; }
+  const h = el.scrollHeight;
+  if (!h) return;
+  el.style.overflow = "hidden";
+  const a = el.animate([{ height: "0px", opacity: 0 }, { height: h + "px", opacity: 1 }], { duration: 240, easing: "cubic-bezier(.2,.8,.2,1)" });
+  a.onfinish = a.oncancel = () => { el.style.overflow = ""; };
 }
 const AP_SB_OZET = {};
 function apSbOzet(page) {
@@ -2116,6 +2189,11 @@ function apSbDurum(kutu, tur, baslik, metin, eylemHtml) {
   kutu.removeAttribute("aria-busy");
   kutu.innerHTML = '<div class="sb-durum is-' + tur + '" role="' + (tur === "hata" ? "alert" : "status") + '"><strong>' + apEsc(baslik) + "</strong><p>" + apEsc(metin) + "</p>" + (eylemHtml || "") + "</div>";
 }
+/** 1.11.0: onaylı sorusu olmayan istasyon (sunucu 404 / boş): hata değil, sakin "Yakında" durumu. */
+function apSbYakinda(kutu) {
+  kutu.dataset.sbYakinda = "1";
+  apSbDurum(kutu, "yakinda", "Yakında", "Bu istasyonun soruları son kontrolden geçiyor. Hazır olunca burada açılacak; diğer ünitelerle devam edebilirsin.");
+}
 /** Bir soru kutusunun sorularını sunucudan yükler ve çizer (bir kez; hata olursa "Yeniden dene"). */
 function apSbKutuYukle(kutu, zorla) {
   if (!kutu || (!zorla && kutu._sbDurum && kutu._sbDurum !== "hata")) return;
@@ -2129,7 +2207,7 @@ function apSbKutuYukle(kutu, zorla) {
       kutu._sbDurum = "hazir";
       kutu.removeAttribute("aria-busy");
       kutu.dataset.sbToplam = sorular.length;
-      if (!sorular.length) { apSbDurum(kutu, "bilgi", "Henüz soru yok", "Bu istasyona yakında soru eklenecek."); return; }
+      if (!sorular.length) { apSbYakinda(kutu); return; }
       initInteractiveQuiz(kutu.id, sorular);
       try { window.dispatchEvent(new CustomEvent("meberra:sorular-hazir", { detail: { kutu: kutu.id } })); } catch (e) { /* eski tarayıcı */ }
       return;
@@ -2137,7 +2215,7 @@ function apSbKutuYukle(kutu, zorla) {
     kutu._sbDurum = "hata";
     if (r.durum === 402) apSbDurum(kutu, "premium", "Bu ünite Premium'da", "Ücretsiz planda her dersin ilk üniteleri açık. Premium ile tüm sorulara eriş.", '<a class="btn-energy" href="/premium">Premium\'a geç</a>');
     else if (r.durum === 401) apSbDurum(kutu, "bilgi", "Oturumun sona erdi", "Soruları görmek için yeniden giriş yap.", '<a class="btn-primary" href="/giris?donus=' + encodeURIComponent(window.location.pathname + window.location.search + "#" + kutu.id) + '">Giriş yap</a>');
-    else if (r.durum === 404) apSbDurum(kutu, "bilgi", "Henüz soru yok", "Bu istasyona yakında soru eklenecek.");
+    else if (r.durum === 404) { kutu._sbDurum = "yakinda"; apSbYakinda(kutu); }
     else {
       apSbDurum(kutu, "hata", "Sorular yüklenemedi", r.durum === 0 ? "Bağlantın kopmuş görünüyor. İnternete bağlanınca yeniden dene." : (r.veri.error || "Sunucu şu an yanıt vermiyor. Biraz sonra yeniden dene."),
         '<button type="button" class="btn-primary btn-sm" data-sb-tekrar>Yeniden dene</button>');
@@ -2482,6 +2560,7 @@ function apApplyAnswer(containerId, q, selectedOptionId, isNew, kayit) {
         <span class="feedback-chip">+1 Puan</span>
       </div>
       <div class="feedback-text">Tebrikler${apStudentName() ? " " + escapeHtml(apStudentName()) : ""}! Kavramı ve işlem adımlarını doğru uyguladın.</div>
+      ${apEkHtml(q.ek)}
       <div class="solution-panel">
         <div class="solution-title">Adım adım tam çözüm (Explanatory Solution)</div>
         <div class="solution-steps">${q.stepByStepSolution || ""}</div>
@@ -2499,6 +2578,7 @@ function apApplyAnswer(containerId, q, selectedOptionId, isNew, kayit) {
       <div class="feedback-text">
         <strong>Düştüğün çeldirici / hata nedeni:</strong> ${selectedOpt && selectedOpt.errorTag ? selectedOpt.errorTag : "Kavramsal veya işlemsel eksiklik."}
       </div>
+      ${apEkHtml(q.ek)}
 
       <div class="remediation-panel">
         <div class="remediation-title">
@@ -2520,7 +2600,7 @@ function apApplyAnswer(containerId, q, selectedOptionId, isNew, kayit) {
     `;
   }
   feedbackBox.style.display = "block";
-  if (isNew) feedbackBox.setAttribute("tabindex", "-1");
+  if (isNew) { feedbackBox.setAttribute("tabindex", "-1"); apYumusakAc(feedbackBox); }
   return feedbackBox;
 }
 

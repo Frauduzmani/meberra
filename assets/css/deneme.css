@@ -320,3 +320,13 @@ body.dn-exam-mode.has-bottom-nav { padding-bottom: env(safe-area-inset-bottom, 0
 .dn-card .dn-card-cta + .dn-note { margin-top: 2px; }
 .dn-card .btn-energy.dn-card-cta { background: transparent; color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border)); box-shadow: none; }
 .dn-card .btn-energy.dn-card-cta:hover { background: var(--accent-soft); color: var(--accent); box-shadow: none; }
+
+/* 1.11.0 Genel deneme (Premium) — ücretsiz planda tam form yerine kısa kilitli kart */
+.dn-genel-kilit { display: flex; align-items: center; gap: var(--sp-4); padding: var(--sp-4) var(--sp-5); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+.dn-genel-kilit-ik { flex: none; width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; background: var(--energy-soft); color: var(--energy-text); }
+.dn-genel-kilit-metin { flex: 1 1 auto; min-width: 0; }
+.dn-genel-kilit h2 { margin: 0 0 2px; font-size: var(--fs-18); font-weight: 800; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.dn-genel-kilit p { margin: 0; color: var(--text-muted); font-size: var(--fs-14); max-width: 60ch; }
+.dn-genel-kilit-rozet { font-size: var(--fs-12); font-weight: 800; letter-spacing: .04em; padding: 2px 8px; border-radius: var(--radius-full); background: var(--energy-soft); color: var(--energy-text); }
+.dn-genel-kilit-cta { flex: none; }
+@media (max-width: 560px) { .dn-genel-kilit { flex-wrap: wrap; } .dn-genel-kilit-cta { width: 100%; justify-content: center; } }

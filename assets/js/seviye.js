@@ -302,7 +302,7 @@
     var h = c.hatalar || {};
     return Object.assign({}, q, {
       options: q.options.map(function (o) { return Object.assign({ id: o.id, text: o.text, isCorrect: o.id === c.dogru }, h[o.id] ? { errorTag: h[o.id].errorTag, remediation: h[o.id].remediation } : {}); }),
-      stepByStepSolution: c.aciklama || "", generalRemediation: c.genelHatirlatma || ""
+      stepByStepSolution: c.aciklama || "", generalRemediation: c.genelHatirlatma || "", ek: c.ek || null // 1.10.0 zenginleştirme (teslimden sonra)
     });
   }
   function bankalariYukle(bitti) {
@@ -1094,6 +1094,7 @@
             return '<li class="' + (o.isCorrect ? "is-correct" : o.id === secId ? "is-chosen" : "") + '"><span class="option-letter" aria-hidden="true">' + esc(o.id) + '</span><span class="sv-option-text">' + o.text + '</span>' +
               (o.isCorrect ? '<span class="sv-opt-mark is-ok">Doğru cevap</span>' : o.id === secId ? '<span class="sv-opt-mark is-bad">Senin cevabın</span>' : '') + '</li>';
           }).join("") + '</ul>' +
+          (window.apEkHtml ? window.apEkHtml(q.ek) : '') +
           (sec && !sec.isCorrect ? '<div class="remediation-panel"><div class="remediation-title">Hata etiketi: ' + esc(sec.errorTag || "—") + '</div><div class="remediation-text">' + (sec.remediation || "") + '</div></div>' : '') +
           (x.tur === "cevapsiz" ? '<p class="side-note">Bu soruyu atladın ya da süre bitti. Doğru cevap: <strong>' + esc(dogru.id || "") + '</strong>.</p>' : '') +
           (q.generalRemediation ? '<div class="remediation-panel"><div class="remediation-title">Konu hatırlatması</div><div class="remediation-text">' + q.generalRemediation + '</div></div>' : '') +
