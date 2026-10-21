@@ -98,10 +98,10 @@ test("taslak öğrenciye hiçbir uçta sunulmaz (Premium öğrenci bile)", async
   assert.equal((await o("GET", "/api/sorular-bankasi/ap-physics/9")).durum, 404);
   assert.equal((await o("GET", "/api/sorular-bankasi/ap-biology/bio-unit8-quiz-container")).durum, 404);
   r = await o("GET", "/api/sorular-bankasi/ap-calculus/1");
-  assert.equal(r.govde.kutular[0].sorular.length, 22);
+  assert.equal(r.govde.kutular[0].sorular.length, 27); // 1.14.1: +5 şekilli (aktif)
   assert.equal(icerir(r.govde, CALC1), false);
   r = await o("GET", "/api/sorular-bankasi/ap-calculus");
-  assert.equal(r.govde.kutular.find(k => k.kutu === "calc-unit1-quiz-container").toplam, 22, "sayılar taslağı içermez");
+  assert.equal(r.govde.kutular.find(k => k.kutu === "calc-unit1-quiz-container").toplam, 27, "sayılar taslağı içermez");
   // cevap ve getir (Bugünkü tekrar)
   assert.equal((await o("POST", "/api/sorular-bankasi/cevap", { soruId: CALC1[0], secim: "A" })).durum, 404);
   r = await o("POST", "/api/sorular-bankasi/getir", { anahtarlar: ["ap-calculus|" + CALC1[0], "ap-physics|" + FIZIK8[0]] });

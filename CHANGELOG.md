@@ -9,6 +9,47 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.19.0] — 2026-10-21
+### Eklendi
+- Okul ve öğretmen paneli: okul koltuk lisansı, öğretmen daveti, sınıf kodu (`/sinif?kod=`), ödevler, ilerleme ve ünite kapsamı ısı haritası, CSV. Öğrenci açık onayla katılır; boş koltuk varsa okul Premium'u. Öğretmen soru–cevap, not ve e-posta görmez.
+### Değişti (sadeleştirme — sahip kararı: bu dalgadan sonra yeni özellik yok)
+- Bugün tek yön: kişisel plandaki sıradaki görev; en fazla 4 blok; günün sorusu / ödev / yakın tarih tek "bağlamsal kart"ta.
+- Çalış 4 giriş: Ders çalış · Tekrar et (Yanlışlarım, Bugünkü tekrar, Kavram kartları) · Kendini dene (deneme, FRQ, tam sınav, seviye testi) · Hız turu. Gezinmeye yalnızca "Odak" düğmesi eklendi.
+- KVKK dışa aktarma ve silme 010–016 göçlerindeki tüm yeni tabloları kapsar. Okul koltukları Premium sayısına ve gelire girmez.
+
+## [1.18.0] — 2026-10-21
+### Eklendi
+- Kişisel çalışma planı (`/plan`): sınava kadar haftalık görevler (CED ağırlığı + zayıf ünite), dersler dönüşümlü, son 6 haftada tam sınav, son 2 hafta tekrar; "plana göre önde / yolunda / geride"; ücretsiz planda kilitli üniteler arkada.
+- Kavram kartları (`/kartlar`): 326 özgün kart, aralıklı tekrar (1/3/7/14/30), çevirme, klavye ve kaydırma.
+- 6 herkese açık AP rehberi (`/rehber/ap-nedir`, `turkiyede-ap`, `ap-ile-avrupa`, `ap-calculus-nasil-calisilir`, `ap-fizik-kimya-biyoloji`, `ap-puan-tahmini`): resmi kaynaklı, SSS + yapılandırılmış veri, site haritasında.
+
+## [1.17.0] — 2026-10-21
+### Eklendi
+- İnteraktif konu anlatımı: Calculus ve Physics 1'de 13 etkileşimli laboratuvar (limit, türev, Riemann, birikim, eğim alanı, Taylor; eğik atış, eğik düzlem, enerji çubukları, çarpışma, BHH, kaldırma kuvveti, Bernoulli); Chemistry, Biology, Ekonomi, CS A ve English araçları; her ünitede "Kendini dene", "Akılda kal", adım adım çözümlü örnekler.
+- Hız turu (`/hiz-turu`): 60 sn, sunucuda süre ve kombo puanı, kişisel rekor ve paylaşım kartı. Günün sorusu: herkese aynı soru, anonim şık dağılımı. Odak sayacı (15/25/45 dk; dakikalar günlük hedefe sayılır).
+
+## [1.16.0] — 2026-10-21
+### Eklendi
+- İlerleme grafikleri: hedefe yakınlık halkaları, 12 haftalık etkinlik takvimi, 7 günlük doğruluk eğrisi, tahmini AP puanı trendi, ünite ustalığı; veli panelinde aynı özet.
+- Yönetici Premium sekmesi: aktif / bitiyor / deneme / bitti, kalan gün, toplu ver / uzat / iptal, abonelik geçmişi.
+- Ünite ustalığı (Bronz/Gümüş/Altın), aylık görev ve rozeti, "Haftan nasıldı?" özeti, akıllı hatırlatma saati, dostça geri dönüş mesajı (3/7/14 gün).
+
+## [1.15.0] — 2026-10-21
+### Eklendi
+- GitHub Actions CI (npm test, birim, pm-denetim, Playwright uçtan uca; haftalık); `e2e/` paketi (masaüstü + 390×844), `npm run test:e2e`, `npm run test:birim`.
+- Çevrimdışı destek: sürümlü uygulama kabuğu önbelleği, maskotlu `/cevrimdisi` sayfası; API asla önbelleğe alınmaz. Eski Playwright betikleri `araclar/testler/eski/`.
+
+## [1.14.0] — 2026-10-21
+### Eklendi
+- 82 yeni soru (bağımsız onaylı): Micro 67, Macro 67, English 86 aktif — Micro/Macro/English tam sınavları eksiksiz kurulur.
+### Düzeltildi
+- Almanya kaynağı: doğrulanamayan "anabin TUR-BV05" kodu kaldırıldı; YKS yerleşmesi şartı resmi uni-assist ülke sayfasına dayandırıldı.
+
+## [1.13.0] — 2026-10-21
+### Eklendi
+- Şekilli sorular: gövdede, şıklarda (2×2 kart) ve çözümde (yalnız cevaptan sonra) SVG grafik; tema uyumlu, ekran okuyucu dostu, büyütme. Sunucu ve tarayıcıda katı SVG temizleyici; yönetici düzenleyicisinde canlı önizleme.
+- 50 grafikli soru (Calculus 20, Ekonomi 12, Chemistry 10, Physics 8; bağımsız onaylı). Aktif soru bankası: 1.481.
+
 ## [1.12.1] — 2026-10-21
 ### Düzeltildi
 - Bugün ve Çalış: AP kayıt son günü uyarısı yalnızca sınav yılı bu dönem olan öğrenciye gösterilir.

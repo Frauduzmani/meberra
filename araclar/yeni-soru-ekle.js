@@ -14,6 +14,9 @@
 // Kullanım (proje klasöründen):
 //   node araclar/yeni-soru-ekle.js --kuru     Doğrular ve özet yazar, dosyalara dokunmaz
 //   node araclar/yeni-soru-ekle.js            Doğrular ve tohum + deneme-meta.json'u yazar
+//   node araclar/yeni-soru-ekle.js --girdi araclar/yeni-sorular2/sekilli.json [--uretim 1.13.0] [--kuru]
+//                                             Tek bir girdi dosyası (v1.14.1); --uretim verilmezse dosyadaki ek.uretim kullanılır
+//   Program içinden: require("./yeni-soru-ekle.js").calistir({ girdi, uretim, kuru }) → { ok, eklenen: [id], atlanan: [id] }
 "use strict";
 const fs = require("fs");
 const path = require("path");
@@ -25,8 +28,8 @@ const TOHUM = path.join(ROOT, "server", "tohum", "soru-bankasi.json");
 const META = path.join(ROOT, "server", "tohum", "deneme-meta.json");
 const GIRDI_DIR = path.join(__dirname, "yeni-sorular");
 const GIRDILER = ["calculus.json", "physics.json", "chemistry.json", "biology-english-electives.json"];
-const KURU = process.argv.includes("--kuru");
-const URETIM = "1.11.0";
+const URETIM_VARSAYILAN = "1.11.0";
+const argDeger = ad => { const i = process.argv.indexOf(ad); return i > 1 && process.argv[i + 1] ? process.argv[i + 1] : null; };
 
 // Bu sürümde açılan yeni soru kutuları (ders sayfalarına arayüz tarafından eklenecek; bkz. yeni-sorular/BIRLESTIRME.md)
 const YENI_KUTULAR = {
@@ -66,10 +69,10 @@ function latexSorunu(s) {
 const PARA = /(?:^|[^\\])(?:\$\s?\d[\d.,]*\s*(?:billion|million|thousand|milyar|milyon|bin|per\b|each\b)|\(\$\s|\d\s\$(?:\s|'))/i;
 function paraSorunu(s) { return PARA.test(String(s == null ? "" : s)) ? "para birimi $ kaçışsız (\\$ yaz)" : null; }
 
-function oku() {
+function oku(dosyalar) {
   const sorular = [], pasajlar = {};
-  for (const f of GIRDILER) {
-    const p = path.join(GIRDI_DIR, f);
+  for (const p of dosyalar) {
+    const f = path.basename(p);
     if (!fs.existsSync(p)) continue;
     const j = JSON.parse(fs.readFileSync(p, "utf8"));
     (Array.isArray(j) ? j : j.sorular || []).forEach(q => sorular.push({ dosya: f, q }));
@@ -78,10 +81,15 @@ function oku() {
   return { sorular, pasajlar };
 }
 
-function calistir() {
+function calistir(secenek) {
+  const o = secenek || {};
+  const dosyalar = o.girdi ? [path.resolve(o.girdi)] : GIRDILER.map(f => path.join(GIRDI_DIR, f));
+  if (o.girdi && !fs.existsSync(dosyalar[0])) throw new Error("girdi dosyası yok: " + o.girdi);
+  const KURU = o.kuru != null ? !!o.kuru : process.argv.includes("--kuru");
   const tohum = JSON.parse(fs.readFileSync(TOHUM, "utf8"));
   const meta = JSON.parse(fs.readFileSync(META, "utf8"));
-  const { sorular: girdi, pasajlar: yeniPasajlar } = oku();
+  const { sorular: girdi, pasajlar: yeniPasajlar } = oku(dosyalar);
+  const URETIM = o.uretim || (o.girdi ? [...new Set(girdi.map(x => x.q.ek && x.q.ek.uretim))].join("|") : URETIM_VARSAYILAN);
   const mevcutId = new Map(tohum.sorular.map(r => [r.id, r]));
   const hatalar = [], uyarilar = [];
   const hata = (q, m) => hatalar.push(`${q && q.id || "?"}: ${m}`);
@@ -201,18 +209,19 @@ function calistir() {
     const k = `${q.sayfa} · ${q.kutu}${YENI_KUTULAR[q.sayfa + "|" + q.kutu] ? " (YENİ)" : ""}`;
     say[k] = (say[k] || 0) + 1;
   }
-  console.log(`Girdi: ${girdi.length} soru (${GIRDILER.length} dosya), yeni pasaj: ${Object.keys(pasajEkle).length}`);
+  console.log(`Girdi: ${girdi.length} soru (${dosyalar.length} dosya), yeni pasaj: ${Object.keys(pasajEkle).length}`);
   Object.keys(say).sort().forEach(k => console.log(`  ${String(say[k]).padStart(3)}  ${k}`));
   uyarilar.forEach(u => console.log("  uyarı: " + u));
   if (hatalar.length) {
     console.log(`\n✗ ${hatalar.length} doğrulama hatası — hiçbir şey yazılmadı:`);
     hatalar.forEach(h => console.log("  - " + h));
     process.exitCode = 1;
-    return;
+    return { ok: false, hatalar, eklenen: [], atlanan };
   }
   console.log(`✓ Doğrulama: 0 hata. Eklenecek: ${eklenecek.length}, zaten tohumda: ${atlanan.length}`);
-  if (!eklenecek.length && !Object.keys(pasajEkle).length) { console.log("Değişiklik yok (idempotent)."); return; }
-  if (KURU) { console.log(`--kuru: yazılmadı (tohum sürümü ${tohum.surum} → ${eklenecek.length ? (Number(tohum.surum) || 1) + 1 : tohum.surum} olurdu).`); return; }
+  const sonuc = { ok: true, hatalar: [], eklenen: eklenecek.map(q => q.id), atlanan };
+  if (!eklenecek.length && !Object.keys(pasajEkle).length) { console.log("Değişiklik yok (idempotent)."); return sonuc; }
+  if (KURU) { console.log(`--kuru: yazılmadı (tohum sürümü ${tohum.surum} → ${eklenecek.length ? (Number(tohum.surum) || 1) + 1 : tohum.surum} olurdu).`); return sonuc; }
 
   if (eklenecek.length) {
     eklenecek.forEach(q => { const r = {}; ALANLAR.forEach(k => { r[k] = q[k]; }); ISTEGE_BAGLI.forEach(k => { if (q[k] != null) r[k] = q[k]; }); tohum.sorular.push(r); });
@@ -227,7 +236,8 @@ function calistir() {
     fs.writeFileSync(META, JSON.stringify(meta, null, 1) + "\n", "utf8");
     console.log(`Yazıldı: server/tohum/deneme-meta.json (+${Object.keys(pasajEkle).length} pasaj: ${Object.keys(pasajEkle).join(", ")})`);
   }
+  return sonuc;
 }
 
-if (require.main === module) calistir();
-module.exports = { norm, kokOzet, tamOzet, latexSorunu, YENI_KUTULAR };
+if (require.main === module) calistir({ girdi: argDeger("--girdi"), uretim: argDeger("--uretim") });
+module.exports = { calistir, norm, kokOzet, tamOzet, latexSorunu, YENI_KUTULAR };

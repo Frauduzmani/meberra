@@ -10,17 +10,20 @@
 //   3. Eklenen sorular durum "aktif" yapılır ve ek.onay = { tarih, kaynak } yazılır.
 // İdempotent: ikinci çalıştırma değişiklik yapmaz.
 // Kullanım (proje klasöründen):  node araclar/onay2-uygula.js --kuru   |   node araclar/onay2-uygula.js
+//   Başka parti: node araclar/onay2-uygula.js --taslak araclar/yeni-sorular2/sekilli.json --karar araclar/onay2/sekilli.json [--kuru]
+//   (--uretim verilmezse taslaklardaki ortak ek.uretim kullanılır; duzeltme yolları "sekil" gibi isteğe bağlı alanları da kapsar)
 "use strict";
 const fs = require("fs");
 const os = require("os");
 const path = require("path");
-const Module = require("module");
 
 const ROOT = path.resolve(__dirname, "..");
-const TASLAK = path.join(__dirname, "yeni-sorular2", "ekonomi-english.json");
-const KARAR = path.join(__dirname, "onay2", "ekonomi-english.json");
+const argDeger = ad => { const i = process.argv.indexOf(ad); return i > 1 && process.argv[i + 1] ? process.argv[i + 1] : null; };
+// v1.14.1: --taslak / --karar / --uretim ile genelleştirildi (varsayılanlar 1.14.0 Ekonomi + English partisi)
+const TASLAK = path.resolve(argDeger("--taslak") || path.join(__dirname, "yeni-sorular2", "ekonomi-english.json"));
+const KARAR = path.resolve(argDeger("--karar") || path.join(__dirname, "onay2", "ekonomi-english.json"));
 const TOHUM = path.join(ROOT, "server", "tohum", "soru-bankasi.json");
-const URETIM = "1.14.0";
+let URETIM = argDeger("--uretim") || "1.14.0";
 const ONAY = { tarih: "2026-10-21", kaynak: "bağımsız denetim (sahip yetkisiyle)" };
 const KURU = process.argv.includes("--kuru");
 
@@ -33,7 +36,9 @@ function yolAta(o, yol, deger) {
 }
 
 function main() {
-  const t = JSON.parse(fs.readFileSync(TASLAK, "utf8"));
+  const t0 = JSON.parse(fs.readFileSync(TASLAK, "utf8"));
+  const t = Array.isArray(t0) ? { sorular: t0, pasajlar: {} } : t0; // girdi dizi ya da { sorular, pasajlar }
+  if (!argDeger("--uretim")) { const u = [...new Set(t.sorular.map(q => q.ek && q.ek.uretim))]; if (u.length === 1 && u[0]) URETIM = u[0]; }
   const kararlar = JSON.parse(fs.readFileSync(KARAR, "utf8"));
   const K = new Map(kararlar.map(k => [k.id, k]));
   const eksik = t.sorular.filter(q => !K.has(q.id)).map(q => q.id);
@@ -59,22 +64,14 @@ function main() {
   Object.keys(t.pasajlar || {}).forEach(p => { if (kullanilan.has(p)) pasajlar[p] = t.pasajlar[p]; });
   console.log(`Kararlar: ${kabul.length} eklenecek (${kararlar.filter(k => k.karar === "onay").length} onay + ${kararlar.filter(k => k.karar === "duzelt").length} düzelt), ${red.length} ret: ${red.join(", ")}`);
 
-  // 2. yeni-soru-ekle.js mantığı (bu girdi dosyası ve URETIM için)
+  // 2. yeni-soru-ekle.js doğrulama + ekleme mantığı (geçici girdi dosyası, bu üretim için)
   const gecici = fs.mkdtempSync(path.join(os.tmpdir(), "meberra-onay2-"));
-  fs.writeFileSync(path.join(gecici, "onaylanan.json"), JSON.stringify({ pasajlar, sorular: kabul }, null, 1), "utf8");
-  const kaynakYol = path.join(__dirname, "yeni-soru-ekle.js");
-  let src = fs.readFileSync(kaynakYol, "utf8");
-  const degistir = (re, yeni, ad) => { if (!re.test(src)) throw new Error("yeni-soru-ekle.js içinde bulunamadı: " + ad); src = src.replace(re, yeni); };
-  degistir(/const GIRDI_DIR = [^;]+;/, `const GIRDI_DIR = ${JSON.stringify(gecici)};`, "GIRDI_DIR");
-  degistir(/const GIRDILER = \[[^\]]*\];/, `const GIRDILER = ["onaylanan.json"];`, "GIRDILER");
-  degistir(/const URETIM = "[^"]+";/, `const URETIM = ${JSON.stringify(URETIM)};`, "URETIM");
-  degistir(/if \(require\.main === module\) calistir\(\);/, "calistir();", "calistir çağrısı");
-  const m = new Module(kaynakYol, module);
-  m.filename = kaynakYol; m.paths = Module._nodeModulePaths(__dirname);
-  const onceki = process.exitCode;
-  m._compile(src, kaynakYol);
-  fs.rmSync(gecici, { recursive: true, force: true });
-  if (process.exitCode && process.exitCode !== onceki) { console.log("✗ Doğrulama başarısız — durumlar değiştirilmedi."); return; }
+  const gDosya = path.join(gecici, "onaylanan.json");
+  fs.writeFileSync(gDosya, JSON.stringify({ pasajlar, sorular: kabul }, null, 1), "utf8");
+  let sonuc;
+  try { sonuc = require("./yeni-soru-ekle.js").calistir({ girdi: gDosya, uretim: URETIM, kuru: KURU }); }
+  finally { fs.rmSync(gecici, { recursive: true, force: true }); }
+  if (!sonuc || !sonuc.ok) { console.log("✗ Doğrulama başarısız — durumlar değiştirilmedi."); return; }
   if (KURU) { console.log("--kuru: durumlar değiştirilmedi."); return; }
 
   // 3. aktif + ek.onay
