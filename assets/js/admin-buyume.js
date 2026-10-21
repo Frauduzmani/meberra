@@ -114,7 +114,7 @@
         var w = ilk ? Math.max(0, a.kisi / ilk * 100) : 0;
         var ipucu = a.ad + ": " + sayi(a.kisi) + " kişi" + (i ? " · önceki adımdan %" + a.adimOrani : "") + " · yalnız bu adımı yapan: " + sayi(a.ham);
         return '<li tabindex="0" title="' + esc(ipucu) + '" aria-label="' + esc(ipucu) + '"><span class="bu-huni-ad">' + esc(a.ad) + "</span>" +
-          '<span class="bu-huni-iz" aria-hidden="true"><span class="bu-huni-cubuk" style="width:' + w.toFixed(2) + '%"></span></span>' +
+          '<span class="bu-huni-iz" aria-hidden="true"><span class="bu-huni-cubuk' + (a.kisi ? "" : " is-sifir") + '" style="width:' + w.toFixed(2) + '%"></span></span>' +
           '<span class="bu-huni-sayi">' + sayi(a.kisi) + '</span><span class="bu-huni-oran">' + (i ? "%" + Number(a.adimOrani).toLocaleString("tr-TR") : "—") + "</span></li>";
       }).join("") + "</ol></section>";
   }

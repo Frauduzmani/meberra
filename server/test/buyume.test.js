@@ -240,6 +240,7 @@ test("kupon: yönetici oluşturur; doğrulama (büyük/küçük harf, plan kıs�
   assert.equal((await y("POST", "/api/admin/kuponlar", { kod: "COK", tur: "yuzde", deger: 150 })).durum, 400);
   let r = await c("POST", "/api/kupon/dogrula", { kod: " ekim20 ", plan: "yillik" });
   assert.equal(r.durum, 200); assert.equal(r.govde.liste, 1490); assert.equal(r.govde.indirim, 298); assert.equal(r.govde.tutar, 1192);
+  assert.equal((await c("POST", "/api/kupon/dogrula", { kod: "EKİM20", plan: "yillik" })).govde.kod, "EKIM20", "Türkçe İ normalleşir");
   r = await c("POST", "/api/kupon/dogrula", { kod: "EKIM20", plan: "aylik" });
   assert.equal(r.durum, 400); assert.match(r.govde.errors.kupon, /Yıllık/);
   assert.equal((await c("POST", "/api/kupon/dogrula", { kod: "YOKBOYLE", plan: "aylik" })).durum, 400);

@@ -18,6 +18,8 @@ const KOD_RE = /^[A-Z0-9_-]{3,30}$/;
 const DAVET_RE = /^[A-Z2-9]{6,12}$/;
 const DAVET_ALFABE = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // karışan harfler (0/O, 1/I) yok
 const kirp = s => String(s == null ? "" : s).trim().replace(/\s+/g, " ");
+/** Kod normalleştirme: Türkçe klavyedeki İ/ı → I (ekim25 / EKİM25 / EKIM25 aynı kod) */
+const kodNorm = s => kirp(s).replace(/[İıi]/g, "I").toUpperCase();
 const tarihEkle = (iso, gun) => new Date(Date.parse(iso) + gun * GUN).toISOString();
 const yuvarla = n => Math.round(n * 100) / 100;
 const trTarih = iso => new Date(iso).toLocaleDateString("tr-TR", { timeZone: "Europe/Istanbul", day: "numeric", month: "long" });
@@ -165,7 +167,7 @@ function kampanyaServisi(c) {
   function kuponHata(m) { return new HttpHata(400, m, { kupon: m }); }
   /** Kodu doğrular ve fiyatı hesaplar. Geçersizse 400 { errors.kupon }. */
   function kuponHesapla(kod, planId, uid) {
-    const k = kirp(kod).toUpperCase();
+    const k = kodNorm(kod);
     if (!KOD_RE.test(k)) throw kuponHata("Bu indirim kodu geçerli değil.");
     const plan = config.plan(planId);
     if (!plan) throw new HttpHata(400, "Bir plan seç.", { plan: "Bir plan seç." });
@@ -188,7 +190,7 @@ function kampanyaServisi(c) {
   }
   function kuponAlanlari(b, eski) {
     const e = {}, o = {};
-    const kod = kirp(b.kod != null ? b.kod : eski && eski.kod).toUpperCase();
+    const kod = kodNorm(b.kod != null ? b.kod : eski && eski.kod);
     if (!KOD_RE.test(kod)) e.kod = "3–30 karakter: harf, rakam, - ya da _.";
     o.kod = kod;
     o.tur = b.tur != null ? b.tur : eski && eski.tur;
@@ -228,7 +230,7 @@ function kampanyaServisi(c) {
   }
   /** Kayıt sırasında davet kodu: kendi kodu, aynı e-posta karması (yeniden kayıt) ya da 24 saat içinde aynı IP → reddedildi. */
   function davetKaydet(yeni, kodHam, req) {
-    const kod = kirp(kodHam).toUpperCase();
+    const kod = kodNorm(kodHam);
     if (!DAVET_RE.test(kod)) return null;
     const eden = q.bkKod.get(kod);
     if (!eden || eden.durum !== "aktif") return null;
