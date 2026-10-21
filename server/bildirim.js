@@ -23,9 +23,10 @@ function linkTemiz(l) {
 const evetMi = v => v === true || v === 1 || v === "1" || v === "true";
 const boolMu = v => v === true || v === false || v === 0 || v === 1 || v === "0" || v === "1" || v === "true" || v === "false";
 
-/** sec.saat: () => ms (testlerde sahte saat; sessiz saat denetimi için) */
+/** sec.saat: () => ms (testlerde sahte saat; sessiz saat denetimi için) · sec.gunluk: sistem günlüğü (gunluk.js) */
 function bildirimServisi(db, eposta, push, denetim, sec) {
   const saat = (sec && sec.saat) || Date.now;
+  const gunluk = (sec && sec.gunluk) || null;
   const q = {
     ekle: db.prepare("INSERT INTO notifications (user_id, tur, baslik, metin, link, olusturma) VALUES (?, ?, ?, ?, ?, ?)"),
     liste: db.prepare("SELECT * FROM notifications WHERE user_id = ? AND id < ? ORDER BY id DESC LIMIT ?"),
@@ -84,6 +85,7 @@ function bildirimServisi(db, eposta, push, denetim, sec) {
       } catch (e) {
         const kod = e && (e.statusCode || e.status);
         if (kod === 404 || kod === 410) q.aboneSil.run(a.id);
+        else if (gunluk) gunluk.uyari("push", "Push gönderilemedi" + (kod ? " (HTTP " + kod + ")" : ""), { hata: String((e && e.message) || e).slice(0, 500), status: kod || undefined, aboneId: a.id });
         else console.error("[push] gönderilemedi:", (e && e.message) || e);
       }
     }
@@ -102,7 +104,7 @@ function bildirimServisi(db, eposta, push, denetim, sec) {
       const u = q.kullanici.get(userId);
       if (u && u.eposta && u.durum === "aktif") eposta.gonder(u.eposta, sec.eposta.konu, sec.eposta.metin);
     }
-    const p = sec.push ? pushGonder(userId, b, sec.simdiMs).catch(e => { console.error("[push]", e); return 0; }) : Promise.resolve(0);
+    const p = sec.push ? pushGonder(userId, b, sec.simdiMs).catch(e => { if (gunluk) gunluk.hata("push", "Push gönderimi başarısız", { stack: e && e.stack, hata: String((e && e.message) || e) }); else console.error("[push]", e); return 0; }) : Promise.resolve(0);
     return { id, push: p };
   }
 

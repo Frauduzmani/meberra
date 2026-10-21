@@ -5,6 +5,7 @@
 //    sessiz saatler (22:00–08:00) dışında, en fazla GÜNDE BİR mesaj. Serisi (≥1 gün) olup bugün henüz çalışmamışsa
 //    ve/veya tekrar zamanı gelmiş sorusu varsa tek bir dostça mesajda birleştirilir. Bugün donmuş (seri dondurma) gün ise
 //    gönderilmez. reminder_log (kullanıcı, tür, gün) birincil anahtarı tekrar gönderimi kesin olarak engeller.
+//  - Sistem günlüğü saklama: bilgi 7 gün, uyarı/hata 90 gün (gunluk.temizlik).
 //  - Haftalık veli raporu: pazar 18:00 (İstanbul) sonrası, veli e-postası onaylanmışsa.
 const config = require("./config");
 const { simdi } = require("./db");
@@ -17,7 +18,14 @@ const coz = s => { try { return JSON.parse(s); } catch (e) { return null; } };
 const TARIH_RE = /^\d{4}-\d{2}-\d{2}$/;
 
 function zamanlayici(c) {
-  const { db, bildirim, eposta, lig } = c;
+  const { db, bildirim, eposta, lig, gunluk } = c;
+  // Son çalışma bilgisi (yönetici "Sistem" sekmesi): bellekte; sunucu yeniden başlayınca sıfırlanır
+  const durumBilgi = { acik: false, aralikMs: null, sonCalisma: null, sonSure: null, sonSonuc: null, sonHata: null };
+  const isHatasi = (is, e) => {
+    durumBilgi.sonHata = { is, zaman: simdi(), mesaj: String((e && e.message) || e).slice(0, 300) };
+    if (gunluk) gunluk.hata("zamanlayici", "Zamanlayıcı işi başarısız: " + is, { stack: e && e.stack, hata: String((e && e.message) || e).slice(0, 500) });
+    else console.error("[zamanlayıcı] " + is + ":", e);
+  };
   const durumAl = db.prepare("SELECT deger FROM user_state WHERE user_id = ? AND anahtar = ?");
   const kaydet = db.prepare("INSERT OR IGNORE INTO reminder_log (user_id, tur, gun, zaman, ayrinti) VALUES (?, ?, ?, ?, ?)");
 
@@ -105,24 +113,30 @@ function zamanlayici(c) {
 
   async function tik(simdiMs) {
     simdiMs = simdiMs == null ? Date.now() : simdiMs;
-    const sonuc = { lig: 0, hatirlatma: 0, veliRaporu: 0 };
-    try { sonuc.lig = lig.devir(simdiMs); } catch (e) { console.error("[zamanlayıcı] lig:", e); }
-    if (zaman.sessizMi(simdiMs)) return sonuc;
-    try { sonuc.hatirlatma = await hatirlatmalar(simdiMs); } catch (e) { console.error("[zamanlayıcı] hatırlatma:", e); }
-    try { sonuc.veliRaporu = await veliRaporlari(simdiMs); } catch (e) { console.error("[zamanlayıcı] veli raporu:", e); }
-    return sonuc;
+    const bas = Date.now();
+    const sonuc = { lig: 0, hatirlatma: 0, veliRaporu: 0, gunlukSilinen: 0 };
+    const bitir = () => { durumBilgi.sonCalisma = simdi(); durumBilgi.sonSure = Date.now() - bas; durumBilgi.sonSonuc = sonuc; return sonuc; };
+    try { sonuc.lig = lig.devir(simdiMs); } catch (e) { isHatasi("lig", e); }
+    // Sistem günlüğü saklama: bilgi 7 gün, uyarı/hata 90 gün
+    if (gunluk) { try { sonuc.gunlukSilinen = gunluk.temizlik(simdiMs); } catch (e) { isHatasi("günlük temizliği", e); } }
+    if (zaman.sessizMi(simdiMs)) return bitir();
+    try { sonuc.hatirlatma = await hatirlatmalar(simdiMs); } catch (e) { isHatasi("hatırlatma", e); }
+    try { sonuc.veliRaporu = await veliRaporlari(simdiMs); } catch (e) { isHatasi("veli raporu", e); }
+    return bitir();
   }
 
   let zamanlayiciId = null, ilk = null;
   return {
     tik, calismaDurumu,
+    durum: () => Object.assign({}, durumBilgi),
     baslat(araligiMs) {
       if (zamanlayiciId) return;
-      const calis = () => { tik().catch(e => console.error("[zamanlayıcı]", e)); };
+      durumBilgi.acik = true; durumBilgi.aralikMs = araligiMs || 10 * 60e3;
+      const calis = () => { tik().catch(e => isHatasi("tik", e)); };
       ilk = setTimeout(calis, 30e3); ilk.unref();
       zamanlayiciId = setInterval(calis, araligiMs || 10 * 60e3); zamanlayiciId.unref();
     },
-    durdur() { clearInterval(zamanlayiciId); clearTimeout(ilk); zamanlayiciId = null; }
+    durdur() { clearInterval(zamanlayiciId); clearTimeout(ilk); zamanlayiciId = null; durumBilgi.acik = false; }
   };
 }
 

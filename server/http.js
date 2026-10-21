@@ -62,6 +62,8 @@ function json(res, kod, govde) {
 
 function govdeOku(req, sinir) {
   return new Promise((coz, red) => {
+    // Content-Length baştan sınırı aşıyorsa gövde okunmadan 413 (bağlantı yanıt yazıldıktan sonra kapanır)
+    if (+req.headers["content-length"] > sinir) { req.resume(); return red(new HttpHata(413, "İstek çok büyük.")); }
     let boy = 0; const parcalar = [];
     req.on("data", c => {
       boy += c.length;

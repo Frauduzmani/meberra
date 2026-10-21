@@ -17,6 +17,8 @@ const { soruRotalari } = require("./soru");
 const { ligServisi, ligRotalari } = require("./lig");
 const { veriRotalari } = require("./veriyonetim");
 const { zamanlayici } = require("./zamanlayici");
+const { gunlukServisi, hataAyrinti } = require("./gunluk");
+const { sistemRotalari, istekIzleyici } = require("./sistem");
 const zaman = require("./zaman");
 
 const CEREZ = "meberra_sid";
@@ -49,7 +51,10 @@ function olustur(secenek) {
   const dbDosya = secenek.dbDosya || path.join(config.dataDir, "meberra.db");
   const db = db_.ac(dbDosya);
   const denetim = denetimKaydi(db);
-  const eposta = epostaServisi(db);
+  // Sistem günlüğü (system_logs + konsol). secenek.gunlukKonsol === false: testlerde konsola yazılmaz
+  const gunluk = gunlukServisi(db, { konsol: secenek.gunlukKonsol !== false, saat: secenek.gunlukSaat });
+  const izle = istekIzleyici(gunluk, { yavasMs: secenek.yavasMs });
+  const eposta = epostaServisi(db, gunluk);
   const hesap = hesapServisi(db, denetim, eposta);
   const veri = veriServisi(db);
   // Web push: testler sahte gönderici verir (secenek.pushGonderici); VAPID anahtarı bellek içi veritabanında diske yazılmaz
@@ -57,10 +62,10 @@ function olustur(secenek) {
   try {
     const vapid = vapidAnahtarlari({ vapid: secenek.vapid, gecici: dbDosya === ":memory:" });
     push = { publicKey: vapid.publicKey, gonder: secenek.pushGonderici || pushGondericisi(vapid) };
-  } catch (e) { console.error("[push] devre dışı:", e.message); }
-  const bildirim = bildirimServisi(db, eposta, push, denetim, { saat: secenek.saat });
+  } catch (e) { gunluk.uyari("push", "Web push devre dışı: " + e.message, hataAyrinti(e)); }
+  const bildirim = bildirimServisi(db, eposta, push, denetim, { saat: secenek.saat, gunluk });
   const lig = ligServisi(db, bildirim, denetim);
-  const zamanlayiciS = zamanlayici({ db, bildirim, eposta, lig });
+  const zamanlayiciS = zamanlayici({ db, bildirim, eposta, lig, gunluk });
   const r = yonlendirici();
   const sinir = {
     giris: hizSinirlayici(secenek.girisSiniri || 10, 15 * 60e3),
@@ -73,7 +78,7 @@ function olustur(secenek) {
     try {
       const var_ = db.prepare("SELECT id FROM users WHERE eposta = ?").get(config.yonetici.eposta.trim().toLowerCase());
       hesap.yoneticiHazirla(config.yonetici.eposta, var_ ? null : config.yonetici.sifre);
-    } catch (e) { console.error("[yönetici] hazırlanamadı:", e.message); }
+    } catch (e) { gunluk.hata("sunucu", "Yönetici hesabı hazırlanamadı", hataAyrinti(e)); }
   }
 
   // --- ara katmanlar ---------------------------------------------------------
@@ -218,6 +223,8 @@ function olustur(secenek) {
   // --- yönetici ---------------------------------------------------------------
   yonetimRotalari(r, { db, hesap, denetim, yoneticiGerekli, bildirim });
   veriRotalari(r, { db, denetim, yoneticiGerekli, lig });
+  sistemRotalari(r, { db, denetim, gunluk, yoneticiGerekli, zamanlayici: zamanlayiciS, dbDosya, logSiniri: secenek.logSiniri,
+    testRotalari: secenek.testRotalari != null ? !!secenek.testRotalari : (process.env.NODE_ENV === "test" || process.env.MEBERRA_TEST_ROTALARI === "1") });
 
   // --- istek işleyici ---------------------------------------------------------
   async function isle(req, res) {
@@ -231,6 +238,8 @@ function olustur(secenek) {
       res.setHeader("Content-Type", "text/html; charset=utf-8");
       return res.end('<!doctype html><meta charset="utf-8"><title>Sayfa bulunamadı | Meberra</title><p style="font-family:sans-serif;padding:2rem">Sayfa bulunamadı. <a href="/">Ana sayfaya dön</a></p>');
     }
+    const bas = process.hrtime.bigint();
+    res.on("finish", () => { try { izle(req, res.statusCode, Number(process.hrtime.bigint() - bas) / 1e6); } catch (e) { /* izleme isteği bozmaz */ } });
     try {
       const eslesme = r.bul(req.method, u.pathname);
       if (!eslesme) throw new HttpHata(404, "Uç nokta bulunamadı.");
@@ -241,7 +250,8 @@ function olustur(secenek) {
       req.kullanici = hesap.oturumKullanici(req.cerezler[CEREZ]);
       req.params = eslesme.params;
       req.sorgu = u.searchParams;
-      req.body = req.method === "GET" ? {} : await govdeOku(req, 6 * 1024 * 1024);
+      // İstemci hata raporu küçük olmalı (16 KB); diğer istekler 6 MB
+      req.body = req.method === "GET" ? {} : await govdeOku(req, u.pathname === "/api/log" ? 16 * 1024 : 6 * 1024 * 1024);
       let sonuc;
       for (const f of eslesme.isleyiciler) sonuc = await f(req, res);
       // Kayan oturum: sunucuda süre uzadıysa çerez de yeni Max-Age ile yazılır (rota çerezi kendisi yazmadıysa)
@@ -250,14 +260,17 @@ function olustur(secenek) {
       if (!res.writableEnded) json(res, 200, sonuc === undefined ? { ok: true } : sonuc);
     } catch (e) {
       if (e instanceof HttpHata) return json(res, e.kod, Object.assign({ ok: false, error: e.message, errors: e.alanlar || undefined }, e.ek || {}));
-      console.error("[hata]", req.method, u.pathname, e);
+      // Beklenmeyen hata: günlüğe yöntem/yol/kullanıcı/IP özeti/tarayıcı ile yazılır (istek gövdesi asla yazılmaz)
+      const vt = e && (/^ERR_SQLITE/.test(String(e.code || "")) || /SQLITE|database is locked/i.test(String(e.message || "")));
+      gunluk.hata("sunucu", (vt ? "Veritabanı hatası: " : "") + String((e && e.message) || e), Object.assign(gunluk.istekBilgisi(req), hataAyrinti(e), { status: 500, tur: vt ? "veritabani" : undefined }));
+      if (res.headersSent) { try { res.end(); } catch (_) { /* */ } return; }
       json(res, 500, { ok: false, error: "Beklenmeyen bir hata oluştu. Lütfen tekrar dene." });
     }
   }
 
   const server = http.createServer((req, res) => { isle(req, res); });
   server.on("close", () => { try { db.close(); } catch (e) { /* zaten kapalı */ } });
-  return { server, db, hesap, veri, denetim, bildirim, lig, zamanlayici: zamanlayiciS, push };
+  return { server, db, hesap, veri, denetim, bildirim, lig, zamanlayici: zamanlayiciS, push, gunluk };
 }
 
 module.exports = { olustur };

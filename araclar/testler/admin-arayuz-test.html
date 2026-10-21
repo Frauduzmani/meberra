@@ -11,6 +11,7 @@
   /*
    * Sahte API ile admin.js arayüz testi (sunucu gerekmez; app.js yüklenmez).
    * Sorgu parametreleri: ?rol=ogrenci (yetkisiz görünüm) · ?bos=1 (boş listeler) · ?hata=1 (500 hataları)
+   *                      #sistem (Sistem sekmesi: sahte loglar, sağlık, çekmece, toplu işlem)
    *                      ?oturum=yok (401 → giriş yönlendirmesi) · ?tema=dark|light
    * window.__istekler: yapılan istekler (yöntem, yol, gövde, X-Meberra başlığı).
    */
@@ -67,6 +68,19 @@
       users: users.map(function (x) { return { _id: x.id, id: x.id, eposta: x.eposta, ad: x.ad, soyad: x.soyad, sifre_hash: "••••", rol: x.rol, durum: x.durum, olusturma: x.olusturma }; }),
       audit_log: audit.map(function (a) { return { _id: a.id, id: a.id, eylem: a.eylem, ayrinti: typeof a.ayrinti === "string" ? a.ayrinti : JSON.stringify(a.ayrinti) }; })
     };
+    // Sistem logları (sahte)
+    var KAYN = ["sunucu", "istemci", "zamanlayici", "eposta", "push", "guvenlik"];
+    var loglar = [];
+    for (var lg = 1; lg <= 23; lg++) {
+      var sv = lg % 5 === 0 ? "bilgi" : lg % 3 === 0 ? "uyari" : "hata";
+      loglar.push({ id: lg, zaman: gun(lg / 2 + 1), sonZaman: gun(lg / 9), seviye: sv, kaynak: KAYN[lg % KAYN.length],
+        mesaj: lg === 4 ? XSS : lg === 7 ? "Çok uzun bir hata mesajı: " + "TypeError: Cannot read properties of undefined (reading 'length') ".repeat(3) : (sv === "hata" ? "TypeError: x is not a function #" + lg : sv === "uyari" ? "Yavaş istek: GET /api/admin/users" : "Sunucu başladı"),
+        adet: lg % 4 === 1 ? 37 : 1, durum: lg % 7 === 0 ? "cozuldu" : lg % 6 === 0 ? "incelendi" : "yeni",
+        ozet: { method: "GET", path: "/api/admin/users/:id", status: sv === "hata" ? 500 : 200 },
+        ayrinti: { stack: "TypeError: x is not a function
+    at isle (/srv/server/uygulama.js:256:58)
+    at Server.<anonymous> (/srv/server/uygulama.js:271:52)", method: "GET", path: "/api/admin/users/u12", status: 500, ipOzet: "c0b9163ea188", ua: "Mozilla/5.0 (Windows NT 10.0) " + XSS, hata: XSS } });
+    }
     function json(status, body) { return Promise.resolve(new Response(JSON.stringify(body), { status: status, headers: { "Content-Type": "application/json" } })); }
     window.__istekler = [];
     window.__yonlendirme = null;
@@ -81,7 +95,32 @@
         if (yol === "/api/me") return json(200, { ok: true, user: { id: 1, ad: "Meberra", soyad: "Yönetici", kullaniciAdi: "admin", eposta: "admin@ornek.com", rol: ROL, olusturma: gun(100) }, profile: null, uyelik: { premium: false, plan: null, bitis: null, bekleyenTalep: null } });
         if (HATA) return json(500, { ok: false, error: "Sunucu hatası (sahte)." });
         var bekleyen = talepler.filter(function (t) { return t.durum === "bekliyor"; }).length;
-        if (yol === "/api/admin/stats") return json(200, { ok: true, kullanici: { toplam: BOS ? 0 : 1284, son7gun: 37, aktif7gun: 412 }, premium: { aktif: 96, aylik: 71, yillik: 25 }, talep: { bekleyen: BOS ? 0 : bekleyen }, soru: { bekleyen: BOS ? 0 : sorular.filter(function (q) { return q.durum === "bekliyor"; }).length, son7gun: 9 }, cevap: { toplam: 248913, son7gun: 18342 }, gelirTahmini: { aylikTL: 31072.4 } });
+        if (yol === "/api/admin/stats") return json(200, { ok: true, kullanici: { toplam: BOS ? 0 : 1284, son7gun: 37, aktif7gun: 412 }, premium: { aktif: 96, aylik: 71, yillik: 25 }, talep: { bekleyen: BOS ? 0 : bekleyen }, soru: { bekleyen: BOS ? 0 : sorular.filter(function (q) { return q.durum === "bekliyor"; }).length, son7gun: 9 }, cevap: { toplam: 248913, son7gun: 18342 }, gelirTahmini: { aylikTL: 31072.4 }, seri: { kayit: [3, 5, 2, 8, 6, 4, 9], cevap: [2100, 2600, 1800, 3100, 2900, 2500, 3342] }, sistem: { yeniHata: BOS ? 0 : loglar.filter(function (l) { return l.durum === "yeni" && l.seviye === "hata"; }).length, yeniUyari: 2 } });
+        if (yol === "/api/admin/loglar/ozet") return json(200, { ok: true, son24s: { hata: 12, uyari: 40, bilgi: 3 }, son7g: { hata: 31, uyari: 120, bilgi: 14 },
+          yeni: { hata: loglar.filter(function (l) { return l.durum === "yeni" && l.seviye === "hata"; }).length, uyari: 2, bilgi: 1 },
+          gunluk: [0, 1, 2, 3, 4, 5, 6].map(function (i) { return { gun: gun(6 - i).slice(0, 10), hata: [1, 0, 4, 2, 9, 3, 12][i], uyari: [5, 8, 3, 12, 6, 20, 14][i] }; }),
+          saglik: { baslangic: gun(3.2), calismaSn: 3.2 * 86400, bellek: { rss: 88e6, heapKullanilan: 41e6 }, dbBoyut: 25.4e6, node: "v24.10.0",
+            sonYedek: { dosya: "meberra-20261019-0300.db", zaman: gun(2), boyut: 24e6 }, eposta: { smtp: true, bekleyen: 3, hatali24s: 1 },
+            zamanlayici: { acik: true, aralikDk: 10, sonCalisma: gun(0.004), sonSureMs: 84, sonHata: null } } });
+        if (yol === "/api/admin/loglar") {
+          var ls = u.searchParams, lf = BOS ? [] : loglar.filter(function (l) {
+            var d = ls.get("durum"); return (!ls.get("seviye") || l.seviye === ls.get("seviye")) && (!ls.get("kaynak") || l.kaynak === ls.get("kaynak")) &&
+              (!d || (d === "acik" ? l.durum !== "cozuldu" : l.durum === d)) && (!ls.get("q") || l.mesaj.indexOf(ls.get("q")) >= 0);
+          });
+          var lsa = +ls.get("sayfa") || 1;
+          return json(200, { ok: true, toplam: lf.length, sayfa: lsa, sayfaBoyu: 10, loglar: lf.slice((lsa - 1) * 10, lsa * 10) });
+        }
+        if (yol === "/api/admin/loglar/toplu" && m === "POST") {
+          var tn = 0; loglar.forEach(function (l) { if (govde.ids.indexOf(l.id) >= 0) { l.durum = govde.durum; tn++; } });
+          return json(200, { ok: true, guncellenen: tn });
+        }
+        var mlog = yol.match(/^\/api\/admin\/loglar\/(\d+)(\/durum)?$/);
+        if (mlog) {
+          var lk = loglar.filter(function (l) { return l.id === +mlog[1]; })[0];
+          if (!lk) return json(404, { ok: false, error: "Kayıt bulunamadı." });
+          if (m === "POST") { if (govde.not === "hata") return json(400, { ok: false, error: "Sahte doğrulama hatası." }); lk.durum = govde.durum; lk.cozumNotu = govde.not; lk.isleyen = { ad: "Meberra", soyad: "Yönetici" }; lk.islemZamani = gun(0); }
+          return json(200, { ok: true, log: Object.assign({ cozumNotu: null, kullanici: { id: "u12", ad: "Ayşe", soyad: "Yılmaz" } }, lk) });
+        }
         if (yol === "/api/admin/talepler") {
           var d = u.searchParams.get("durum");
           var l = BOS ? [] : talepler.filter(function (t) { return !d || d === "tumu" || t.durum === d; });

@@ -258,6 +258,13 @@ Notlar:
       ve **bir kez geri yükleme denemesi** yapın (`deploy/geri-yukleme.md`).
 - [ ] **İzleme:** UptimeRobot (ücretsiz) → yeni "HTTP(s)" monitörü →
       `https://meberra.com/api/health`, 5 dakikada bir; e-posta uyarısı açın.
+- [ ] **Sistem logları:** Yönetici paneli → **Sistem** sekmesi. Sunucu/tarayıcı hataları, uyarılar
+      (yavaş istek, çok sayıda 401/403/429, e-posta ve push hataları) ve sağlık kartları (çalışma süresi,
+      veritabanı boyutu, son yedek — 36 saatten eskiyse uyarı, e-posta kuyruğu, zamanlayıcı) burada görünür.
+      Özet sekmesinde kırmızı "N yeni hata" kartı çıkarsa inceleyip "Çözüldü" ile kapatın (not yazılabilir,
+      denetim kaydına geçer). Saklama: bilgi 7 gün, uyarı/hata 90 gün (zamanlayıcı açık olmalı).
+      Loglar ayrıca konsola yazılır: `docker compose logs -f meberra` / `journalctl -u meberra -f`.
+      `MEBERRA_TEST_ROTALARI` değişkenini canlıda **tanımlamayın** (yalnızca test için 500 üreten uç nokta açar).
 - [ ] **Güncelleme yöntemi** (yeni sürüm geldiğinde):
       ```bash
       cd /opt/meberra

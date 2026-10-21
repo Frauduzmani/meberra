@@ -21,6 +21,9 @@ function yonetimRotalari(r, c) {
     yoneticiGerekli(req);
     const tek = (sql, ...a) => db.prepare(sql).get(...a);
     const z = simdi(), g7 = gunOnce(7);
+    const gunler7 = [];
+    for (let i = 6; i >= 0; i--) gunler7.push(new Date(Date.now() - i * 864e5).toISOString().slice(0, 10));
+    const seri7 = sql => { const m = new Map(db.prepare(sql).all(gunler7[0]).map(x => [x.g, x.n])); return gunler7.map(g => m.get(g) || 0); };
     const prem = db.prepare(`SELECT plan, COUNT(DISTINCT user_id) AS n FROM subscriptions WHERE durum = 'aktif' AND bitis > ? AND baslangic <= ? GROUP BY plan`).all(z, z);
     const say = p => (prem.find(x => x.plan === p) || { n: 0 }).n;
     const aylik = say("aylik"), yillik = say("yillik"), ozel = say("ozel");
@@ -43,7 +46,12 @@ function yonetimRotalari(r, c) {
       talep: { bekleyen: tek("SELECT COUNT(*) AS n FROM upgrade_requests WHERE durum = 'bekliyor'").n },
       soru: { bekleyen: tek("SELECT COUNT(*) AS n FROM questions WHERE durum = 'bekliyor'").n, son7gun: tek("SELECT COUNT(*) AS n FROM questions WHERE olusturma >= ?", g7).n },
       cevap: { toplam: tek("SELECT COUNT(*) AS n FROM answers").n, son7gun: tek("SELECT COUNT(*) AS n FROM answers WHERE zaman >= ?", g7).n },
-      gelirTahmini: { aylikTL: Math.round(aylikGelir) }
+      gelirTahmini: { aylikTL: Math.round(aylikGelir) },
+      // Son 7 günün günlük dağılımı (en eski → bugün, UTC günü): özet karolarındaki mini çubuklar
+      seri: { gunler: gunler7, kayit: seri7("SELECT substr(olusturma, 1, 10) AS g, COUNT(*) AS n FROM users WHERE durum != 'silindi' AND rol = 'ogrenci' AND olusturma >= ? GROUP BY g"),
+        cevap: seri7("SELECT substr(zaman, 1, 10) AS g, COUNT(*) AS n FROM answers WHERE zaman >= ? GROUP BY g") },
+      sistem: { yeniHata: tek("SELECT COUNT(*) AS n FROM system_logs WHERE durum = 'yeni' AND seviye = 'hata'").n,
+        yeniUyari: tek("SELECT COUNT(*) AS n FROM system_logs WHERE durum = 'yeni' AND seviye = 'uyari'").n }
     };
   });
 

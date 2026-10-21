@@ -49,6 +49,7 @@ const TABLOLAR = {
   password_resets: { aciklama: "Şifre sıfırlama istekleri (salt okunur)", gizli: ["token_hash"], kullanici: "user_id" },
   email_outbox: { aciklama: "Giden e-postalar (salt okunur; bağlantı belirteçleri gizlenir)", temizle: { metin: s => s == null ? s : String(s).replace(/([?&](?:t|token)=)[^\s&]+/g, "$1" + GIZLI) } },
   audit_log: { aciklama: "Denetim kaydı (salt okunur)", kullanici: "user_id" },
+  system_logs: { aciklama: "Sistem logları (salt okunur; durum için Sistem sekmesini kullan)" },
   schema_migrations: { aciklama: "Uygulanan şema geçişleri (salt okunur)" }
 };
 

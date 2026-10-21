@@ -231,6 +231,30 @@ lig_haftalik, lig_haftalar, schema_migrations.
   "Değişiklik yok" · 409: `onceki` uyuşmuyor (`guncel` satırı döner) ya da benzersizlik. Denetim: `veri.duzenle`,
   `varlik`=tablo, `varlikId`=id, `ayrinti: { once: {...}, sonra: {...} }` (yalnızca değişen alanlar).
 
+## Sistem logları ve izleme
+Tablo `system_logs` (`004_sistem_loglari.sql`): `seviye` hata|uyari|bilgi, `kaynak` sunucu|istemci|zamanlayici|eposta|push|guvenlik,
+`mesaj`, `ayrinti` (JSON: stack, method, path, status, user_id, ipOzet, ua, url, satir, sutun…), `parmak_izi` (kaynak + mesaj + yığının ilk çerçevesi),
+`adet` + `son_zaman` (aynı parmak izi 1 saat içinde tekrar ederse yeni satır açılmaz; çözüldü işaretli kayıt tekrar ederse yeni satır), `durum` yeni|incelendi|cozuldu, `cozum_notu`.
+Kayıtlar konsola da yazılır. Şifre/belirteç/çerez/Authorization alanları ve URL'deki `t=`, `token=`… değerleri `[gizli]` olur; IP yalnızca kısa özet; istek gövdesi asla yazılmaz.
+Saklama (zamanlayıcı): bilgi 7 gün, uyarı/hata 90 gün.
+Yakalananlar: 500 hataları (yöntem, yol, kullanıcı; veritabanı hataları "Veritabanı hatası:" önekiyle), 2 sn'den yavaş API istekleri (uyari),
+bir IP'den 10 dk'da ≥20 adet 401 (yalnızca değiştiren istekler) / 403 ya da ≥5 adet 429 (guvenlik uyarısı), `uncaughtException` (kayıt + çıkış),
+`unhandledRejection`, Node `warning` (node:sqlite ExperimentalWarning hariç), zamanlayıcı işi hataları, e-posta gönderim hataları (alıcı yerine yalnızca alan adı),
+404/410 dışındaki push hataları, açılış/kapanış (bilgi).
+
+- `POST /api/log` `{ seviye?: "hata"|"uyari", mesaj, stack?, url?, satir?, sutun? }` → `{ ok }` (oturum gerekmez; `X-Meberra: 1` gerekir; gövde ≤ 16 KB → 413;
+  mesaj 500, stack 4000 karaktere kırpılır; IP başına 10 dk'da 30 rapor → 429). `kaynak=istemci` olarak yazılır. İstemci tarafı: `assets/js/hata-izle.js`
+  (window error, unhandledrejection, `/api/*` 5xx; tekilleştirme, sayfa başına en fazla 10 rapor, eklenti ve ResizeObserver gürültüsü yok sayılır)
+- `GET /api/admin/loglar?seviye=&kaynak=&durum=yeni|incelendi|cozuldu|acik&q=&sayfa=` → `{ ok, toplam, sayfa, sayfaBoyu: 50, loglar:[{id, zaman, sonZaman, seviye, kaynak, mesaj, adet, durum, ozet:{method, path, status, url}}] }` (son görülmeye göre yeni → eski; `acik` = çözülmemiş)
+- `GET /api/admin/loglar/ozet` → `{ ok, son24s:{hata, uyari, bilgi}, son7g:{…}, yeni:{hata, uyari, bilgi}, gunluk:[{gun, hata, uyari}] (7 gün),
+  saglik:{ baslangic, calismaSn, bellek:{rss, heapKullanilan, heapToplam}, dbBoyut, node, platform, sonYedek:{dosya, zaman, boyut}|null (DATA_DIR/yedekler),
+  eposta:{smtp, bekleyen, hatali24s}, zamanlayici:{acik, aralikDk, sonCalisma, sonSureMs, sonHata}|null } }` (sayılar `adet` toplamıdır)
+- `GET /api/admin/loglar/:id` → `{ ok, log:{…, ayrinti, kullanici:{id, ad, soyad}|null, cozumNotu, isleyen, islemZamani, parmakIzi} }`
+- `POST /api/admin/loglar/:id/durum` `{ durum: "yeni"|"incelendi"|"cozuldu", not? }` → `{ ok, log }` (denetim: `log.durum`, önceki/sonraki durum + not)
+- `POST /api/admin/loglar/toplu` `{ ids:[1–200], durum, not? }` → `{ ok, guncellenen }` (denetim: `log.toplu-durum`)
+- `GET /api/admin/stats` ayrıca `sistem:{yeniHata, yeniUyari}` ve `seri:{gunler, kayit[7], cevap[7]}` döndürür.
+- Yalnızca test/hata ayıklama: `NODE_ENV=test` ya da `MEBERRA_TEST_ROTALARI=1` iken `GET|POST /api/test/hata` bilinçli 500 üretir (canlıda kapalı).
+
 ## Sayfalar
 Sunucu proje kökündeki statik sayfaları da sunar. HTML yanıtlarına `<meta name="meberra-api" content="1">`
 eklenir; istemci bu etiketi görünce sunucu modunda çalışır (yoksa eski tarayıcı-içi mod).
