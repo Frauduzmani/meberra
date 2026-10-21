@@ -3,7 +3,7 @@
  *
  * Veri:  data/sorular/seviye/<ders>.js  → window.APMEBERRA_SEVIYE[ders]   (salt okunur)
  *        data/mevzuat/sinav-takvimi.js → window.APMEBERRA_TAKVIM          (salt okunur)
- * Depo:  localStorage "apmeberra:seviye:v1" (yedekleme modülü bu anahtarı da taşır)
+ * Depo:  localStorage "apmeberra:seviye:v1" (apmeberra: önekli → sunucu senkronu kapsar)
  *        { v:1, devam:{...}|null, raporlar:[en yeni önce, en fazla 5], kontrol:{gereklilikId:{c,t}} }
  *
  * file:// altında fetch çalışmadığı için banka dosyaları <script src> ile yüklenir;
@@ -567,6 +567,7 @@
     var card = $("sv-q-card");
     card.innerHTML = html;
     card.className = "question-card sv-q-card " + (meta.cls || "");
+    void card.offsetWidth; card.classList.add("ic-gecis"); // soru geçişi animasyonu (icerik.css) her çizimde yeniden başlar
     $("sv-prev").disabled = dv.idx === 0;
     $("sv-next").textContent = dv.idx === dv.sira.length - 1 ? "Testi bitir ve raporu gör" : "İleri →";
     $("sv-q-msg").textContent = "";

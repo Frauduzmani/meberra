@@ -2,7 +2,7 @@
  * Meberra — Deneme Sınavı motoru (Tur 5 · Ajan 12 İçerik & Deneme Sorumlusu + Ajan 3 Canan Yılmaz)
  *
  * Veri: window.APMEBERRA_DENEME_BANKASI (data/sorular/deneme-bankasi.js, `node araclar/deneme-bankasi-olustur.js` üretir).
- * Depolama: localStorage "apmeberra:deneme:v1" (apmeberra: önekli → hesap takası ve Yedekle/Taşı otomatik kapsar)
+ * Depolama: localStorage "apmeberra:deneme:v1" (apmeberra: önekli → sunucu senkronu otomatik kapsar)
  *   {
  *     v: 1,
  *     aktif: null | {
@@ -275,7 +275,7 @@
       '<header class="page-head">' +
       '<span class="eyebrow">Deneme</span>' +
       '<h1 tabindex="-1" id="dn-h1">AP çoktan seçmeli deneme</h1>' +
-      '<p>Bluebook (AP’nin dijital sınav uygulaması) benzeri sade ekran: sınav sırasında doğru/yanlış gösterilmez, soruları işaretleyip sonra dönebilirsin. Bitirince ünite bazında sonuç, soru soru inceleme ve Yanlışlarım kaydı alırsın. Sorular ders sayfalarındaki AP-style özgün soru bankasından gelir.</p>' +
+      '<p>Bluebook benzeri odaklı ekran: cevaplar teslimde açılır, ünite bazında sonuç ve soru soru inceleme alırsın.</p>' +
       '</header>' +
       yanlisGirisKarti() +
       '<section class="dn-section" aria-labelledby="dn-ders-title">' +
@@ -606,13 +606,15 @@
       '<button type="button" class="btn-ghost dn-mini" id="dn-timer-hide" aria-pressed="false">Gizle</button></div>' +
       '<div class="dn-bar-actions"><button type="button" class="btn-primary" id="dn-review-open">Gözden geçir &amp; teslim et</button></div>' +
       '</div>' +
+      '<div class="dn-ilerleme" id="dn-ilerleme"><div class="dn-ilerleme-cubuk" role="progressbar" aria-label="Cevaplanan soru" aria-valuemin="0" aria-valuemax="' + A.sorular.length + '" id="dn-ilerleme-cubuk"><span id="dn-ilerleme-dolgu"></span></div><span class="dn-ilerleme-metin" id="dn-ilerleme-metin"></span></div>' +
+      '<nav class="dn-serit" id="dn-serit" aria-label="Sorular"></nav>' +
       '<div class="dn-stage" id="dn-stage"></div>' +
       '<div class="dn-foot">' +
       '<button type="button" class="btn-ghost" id="dn-prev">← Önceki</button>' +
       '<button type="button" class="btn-ghost dn-nav-toggle" id="dn-nav-toggle" aria-expanded="false" aria-controls="dn-nav">Soru <span id="dn-pos"></span> ▴</button>' +
       '<button type="button" class="btn-primary" id="dn-next">Sonraki →</button>' +
       '</div>' +
-      '<p class="kbd-hint dn-kbd"><kbd>A</kbd>–<kbd>D</kbd> / <kbd>1</kbd>–<kbd>4</kbd> şık seçer · <kbd>Del</kbd> seçimi siler · <kbd>←</kbd>/<kbd>→</kbd> önceki/sonraki · <kbd>M</kbd> işaretle · <kbd>G</kbd> soru listesi · <kbd>Esc</kbd> kapat. Cevapların her adımda bu cihaza kaydedilir; sayfa yenilenirse kaldığın yerden devam edersin (süre yalnızca sayfa açıkken işler).</p>' +
+      '<p class="kbd-hint dn-kbd"><kbd>A</kbd>–<kbd>D</kbd> / <kbd>1</kbd>–<kbd>4</kbd> şık seçer · <kbd>Del</kbd> seçimi siler · <kbd>←</kbd>/<kbd>→</kbd> önceki/sonraki · <kbd>M</kbd> işaretle · <kbd>G</kbd> soru listesi · <kbd>Esc</kbd> kapat. Cevapların otomatik kaydedilir; sayfa yenilenirse kaldığın yerden devam edersin (süre yalnızca sayfa açıkken işler).</p>' +
       '<div class="dn-nav" id="dn-nav" hidden role="dialog" aria-modal="false" aria-labelledby="dn-nav-title">' +
       '<div class="dn-nav-head"><h2 id="dn-nav-title">Soru listesi</h2><button type="button" class="btn-ghost dn-mini" id="dn-nav-close">Kapat</button></div>' +
       '<div class="dn-legend"><span><i class="dn-dot is-answered"></i>Cevaplandı</span><span><i class="dn-dot"></i>Boş</span><span><i class="dn-dot is-marked"></i>İşaretli</span><span><i class="dn-dot is-current"></i>Şu anki</span></div>' +
@@ -635,6 +637,9 @@
     document.getElementById("dn-timer-hide").addEventListener("click", function () {
       var t = document.getElementById("dn-timer"), hidden = t.classList.toggle("is-hidden");
       this.setAttribute("aria-pressed", hidden ? "true" : "false"); this.textContent = hidden ? "Göster" : "Gizle";
+    });
+    document.getElementById("dn-serit").addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-i]"); if (b) go(Number(b.getAttribute("data-i")));
     });
     document.getElementById("dn-grid-nav").addEventListener("click", function (e) {
       var b = e.target.closest("button[data-i]"); if (!b) return;
@@ -673,7 +678,23 @@
     document.getElementById("dn-prev").disabled = i === 0;
     document.getElementById("dn-next").textContent = i === A.sorular.length - 1 ? "Gözden geçir →" : "Sonraki →";
     if (navOpen) renderNavGrid(false);
+    renderSerit();
     typeset(stage);
+  }
+  /** Her zaman görünen soru şeridi + cevaplanan ilerleme çubuğu (Bluebook benzeri). */
+  function renderSerit() {
+    var g = document.getElementById("dn-serit"); if (!g || !A) return;
+    g.innerHTML = A.sorular.map(function (x, i) {
+      var cls = (A.cevaplar[i] ? " is-answered" : "") + (A.isaretli[i] ? " is-marked" : "") + (i === A.mevcut ? " is-current" : "");
+      var lab = "Soru " + (i + 1) + (A.cevaplar[i] ? ", cevaplandı" : ", boş") + (A.isaretli[i] ? ", işaretli" : "");
+      return '<button type="button" class="dn-cell dn-serit-hucre' + cls + '" data-i="' + i + '" aria-label="' + lab + '"' + (i === A.mevcut ? ' aria-current="true"' : "") + '>' + (i + 1) + '</button>';
+    }).join("");
+    var c = counts(), dol = document.getElementById("dn-ilerleme-dolgu"), cub = document.getElementById("dn-ilerleme-cubuk"), mt = document.getElementById("dn-ilerleme-metin");
+    if (dol) dol.style.transform = "scaleX(" + (c.n ? c.ans / c.n : 0) + ")";
+    if (cub) cub.setAttribute("aria-valuenow", String(c.ans));
+    if (mt) mt.textContent = c.ans + " / " + c.n + " cevaplandı" + (c.mk ? " · " + c.mk + " işaretli" : "");
+    var cur = g.querySelector(".is-current");
+    if (cur && g.scrollWidth > g.clientWidth) { var l = cur.offsetLeft - g.clientWidth / 2 + cur.offsetWidth / 2; g.scrollLeft = Math.max(0, l); }
   }
 
   function choose(opt) {
@@ -685,6 +706,7 @@
       b.classList.toggle("is-selected", on); b.setAttribute("aria-pressed", on ? "true" : "false");
     });
     var clr = document.getElementById("dn-clear"); if (clr) clr.disabled = !opt;
+    renderSerit();
     announce(opt ? "Seçenek " + opt + " seçildi." : "Seçim temizlendi.");
   }
   function toggleMark() {
@@ -694,10 +716,12 @@
     var b = document.getElementById("dn-mark"), on = !!A.isaretli[i];
     b.setAttribute("aria-pressed", on ? "true" : "false"); b.textContent = on ? "★ İşaretli" : "☆ İşaretle / sonra dön";
     if (navOpen) renderNavGrid(false);
+    renderSerit();
     announce(on ? "Soru işaretlendi." : "İşaret kaldırıldı.");
   }
   function go(i) {
     if (i < 0 || i >= A.sorular.length || i === A.mevcut) return;
+    var st = document.getElementById("dn-stage"); if (st) st.setAttribute("data-yon", i > A.mevcut ? "ileri" : "geri");
     A.mevcut = i; persist(); renderQuestion();
     var q = document.getElementById("dn-q-title"); if (q) { q.setAttribute("tabindex", "-1"); q.focus({ preventScroll: true }); }
     var ex = document.getElementById("dn-exam"); if (ex && ex.getBoundingClientRect().top < 0) ex.scrollIntoView({ block: "start" });
@@ -889,9 +913,8 @@
         '<p class="dn-band-title"><strong>' + rec.dogru + '</strong> hata kapandı · <strong>' + (rec.yanlis + rec.bos) + '</strong> hata açık kaldı</p>' +
         '<p class="dn-band-warn">Doğru çözdüğün sorular Yanlışlarım’da "çözüldü" olarak işaretlendi. Yine yanlış yaptıkların ve boş bıraktıkların açık kalır; konu hatırlatmasını okuyup tekrar dene.</p></div></div>';
     } else if (rec.kod !== "genel") {
-      bandHtml = '<div class="dn-band"><div class="dn-band-num" aria-hidden="true">' + rec.tahminiBand + '</div><div>' +
-        '<p class="dn-band-title">Tahmini AP bandı: <strong>' + rec.tahminiBand + '</strong> <span class="dn-tag">yaklaşık</span></p>' +
-        '<p class="dn-band-warn"><strong>Tahmini — resmi ölçekleme değildir; yalnız MCQ.</strong> Gerçek AP puanı FRQ bölümünü de içerir ve College Board her yıl farklı ölçek kullanır. Kullanılan yaklaşık MCQ eşikleri: %72+ → 5, %58+ → 4, %44+ → 3, %30+ → 2.</p></div></div>';
+      // Bant sayısı ve eşikler skorBandi() grafiğinde; burada yalnız kısa uyarı kalır
+      bandHtml = '<p class="dn-band-warn dn-skor-not"><strong>Tahmini — resmi ölçekleme değildir; yalnız MCQ.</strong> Gerçek AP puanı FRQ bölümünü de içerir ve ölçek her yıl değişir.</p>';
     } else {
       bandHtml = '<div class="dn-band"><div><p class="dn-band-title">Ders bazında tahmini bant <span class="dn-tag">yaklaşık</span></p><ul class="dn-band-list">' +
         Object.keys(perKod).map(function (k) { var p = perKod[k], y = Math.round(p.dogru / p.soru * 100); return '<li><span style="--dn-c:' + colorVar(k) + '" class="dn-kdot"></span>' + esc(BANK.kodlar[k] ? BANK.kodlar[k].ad : k) + ': %' + y + ' → ' + bandOf(y) + ' <small>(' + p.soru + ' soru)</small></li>'; }).join("") +
@@ -919,9 +942,11 @@
       stat("Doğru", rec.dogru, "is-ok") + stat("Yanlış", rec.yanlis, "is-bad") + stat("Boş", rec.bos, "") +
       stat("Başarı", "%" + rec.yuzde, "") + stat("Geçen süre", fmtSure(rec.sureSn) + (rec.sureLimitSn ? ' <small>/ ' + fmtSure(rec.sureLimitSn) + '</small>' : ''), "") +
       '</section>' +
+      (rec.kod !== YKOD && rec.kod !== "genel" ? skorBandi(rec.yuzde, rec.tahminiBand) : "") +
       sonucEylemleri(rec, units) +
       bandHtml +
       '<section class="dn-section" aria-labelledby="dn-ut-title"><h2 class="panel-title" id="dn-ut-title">Ünite bazında</h2>' +
+      uniteGrafik(units, rec) +
       '<div class="dn-table-wrap"><table class="dn-table"><thead><tr><th scope="col">Ünite</th><th scope="col">Soru</th><th scope="col">Doğru</th><th scope="col">Yanlış</th><th scope="col">Boş</th><th scope="col">%</th><th scope="col"><span class="visually-hidden">Bağlantı</span></th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
       (rec.kod === YKOD ? '<p class="dn-note">Doğru çözdüğün hatalar kapandı; yanlışlar ve boşlar Yanlışlarım’da açık kaldı (<a href="ilerleme.html#hata-title">İlerleme → Yanlışlarım</a>).</p>'
         : '<p class="dn-note">Yanlış cevapladığın sorular Yanlışlarım’a eklendi (<a href="ilerleme.html">İlerleme → Yanlışlarım</a>). Boş bıraktıkların eklenmez.</p>') +
@@ -967,6 +992,36 @@
       '<a class="btn-ghost" data-eylem="bugun" href="index.html">' + IC_Y.home + '<span>Bugün’e dön</span></a>' +
       '<button type="button" class="dn-se-incele" id="dn-se-incele">Soru soru incele ↓</button>' +
       '</section>';
+  }
+  /**
+   * Sonuç: animasyonlu skor bandı (tek dizi, sıralı tek ton: 1 açık → 5 koyu). Eşik çizgileri BAND_ESIK ile aynı;
+   * işaretçi başarı yüzdesinde. Metin etiketli (renk tek başına anlam taşımaz); tablo karşılığı aşağıdaki ünite tablosu.
+   */
+  function skorBandi(yuzde, band) {
+    var esik = BAND_ESIK.slice().reverse(); // 1..5
+    var seg = esik.map(function (e, i) {
+      var bas = e.min, son = i < esik.length - 1 ? esik[i + 1].min : 100;
+      return '<span class="dn-sb-seg' + (e.band === band ? " is-on" : "") + '" style="--sb-l:' + bas + '%;--sb-w:' + (son - bas) + '%;--sb-i:' + i + '" title="Bant ' + e.band + ': %' + bas + "–" + son + '"><b>' + e.band + '</b></span>';
+    }).join("");
+    var y = Math.max(0, Math.min(100, yuzde));
+    return '<section class="dn-skor" aria-label="Tahmini AP bandı ' + band + ', başarı yüzde ' + y + '">' +
+      '<div class="dn-skor-bas"><span class="dn-skor-band" aria-hidden="true">' + band + '</span><div><p class="dn-skor-baslik">Tahmini bant <strong>' + band + '</strong> <span class="dn-tag">yaklaşık</span></p><p class="dn-skor-alt">MCQ başarın %' + y + ' · eşikler %30 / %44 / %58 / %72</p></div></div>' +
+      '<div class="dn-sb" aria-hidden="true"><div class="dn-sb-ray">' + seg + '</div>' +
+      '<span class="dn-sb-isaret" style="--sb-x:' + y + '%"><span class="dn-sb-deger">%' + y + '</span></span>' +
+      '<div class="dn-sb-eksen"><span>0</span><span style="left:30%">30</span><span style="left:44%">44</span><span style="left:58%">58</span><span style="left:72%">72</span><span style="left:100%">100</span></div></div>' +
+      '</section>';
+  }
+  /** Sonuç: ünite başarı çubukları (yatay, tek dizi; değer doğrudan etiketli, ayrıntı tabloda). */
+  function uniteGrafik(units, rec) {
+    if (!units.length) return "";
+    return '<div class="dn-ug" role="img" aria-label="Ünite bazında başarı yüzdeleri: ' + esc(units.map(function (u) { return unitLabel(u.kod, u.unite) + " %" + (u.soru ? Math.round(u.dogru / u.soru * 100) : 0); }).join(", ")) + '">' +
+      units.map(function (u, i) {
+        var y = u.soru ? Math.round(u.dogru / u.soru * 100) : 0;
+        return '<div class="dn-ug-satir" title="' + esc(unitLabel(u.kod, u.unite) + ": " + u.dogru + "/" + u.soru + " doğru (%" + y + ")") + '">' +
+          '<span class="dn-ug-ad">' + (karma(rec) ? '<span class="dn-kdot" style="--dn-c:' + colorVar(u.kod) + '"></span>' : "") + esc(unitLabel(u.kod, u.unite)) + '</span>' +
+          '<span class="dn-ug-ray"><span class="dn-ug-dolgu' + (y >= 75 ? " is-ok" : y >= 50 ? " is-mid" : " is-bad") + '" style="--ug-w:' + y + '%;--ug-i:' + i + '"></span></span>' +
+          '<span class="dn-ug-deger">%' + y + '</span></div>';
+      }).join("") + '</div>';
   }
   function stat(label, val, cls) { return '<div class="dn-stat ' + cls + '"><span class="dn-stat-label">' + label + '</span><span class="dn-stat-val">' + val + '</span></div>'; }
 

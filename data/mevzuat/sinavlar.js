@@ -403,7 +403,7 @@ window.APMEBERRA_SINAVLAR = [
     format: "Bilgisayarda; üniversitede (@UNI) ya da evde (CEnT@HOME / @CASA; hangi biçimi kabul ettiğine her üniversite kendisi karar verir). 65 soru, 6 bölüm: Reading and comprehension 10 soru/30 dk, Mathematics 15/30 dk, Reasoning on texts and data 15/30 dk, Biology 10/20 dk, Chemistry 10/20 dk, Physics 5/10 dk. Her bölümün süresi ayrıdır; artan süre başka bölüme aktarılmaz ve önceki bölüme dönülmez.",
     sure: "140 dk",
     puanlama: "Doğru +1, yanlış −0,25, boş 0 (ham puan); resmi sonuç zorluk katsayısıyla normalize edilmiş puandır.",
-    tarih: "Her makro dönemde yalnızca 1 kez alınabilir. Tarihleri üniversiteler açar. 2025/26 tarihleri 27 Kasım 2025'ten 15 Ekim 2026'ya kadardı. 2026/27 tarihleri ve ücreti henüz yayımlanmadı: CISIA 2025/26 kurallarına göre değişiklikler her yıl 31 Ekim'e kadar duyurulur; CISIA takvimi 2026/27 ilk makro dönem için 26 Kasım ve 17 Aralık 2026 oturumlarını gösteriyor (Messina, @UNI; testcisia.it takvimi, 20 Ekim 2026); Padova sayfası da aynı tarihleri veriyor. 2025/26 ücreti 55 €'du ('All about CEnT' sayfası hâlâ 55 € yazıyor).",
+    tarih: "Her makro dönemde yalnızca 1 kez alınabilir. Tarihleri üniversiteler açar. 2025/26 tarihleri 27 Kasım 2025'ten 15 Ekim 2026'ya kadardı. 2026/27 tarihleri ve ücreti henüz yayımlanmadı: CISIA 2025/26 kurallarına göre değişiklikler her yıl 31 Ekim'e kadar duyurulur; Padova başvuru sayfası 2026/27 ilk makro dönem için 26 Kasım ve 17 Aralık 2026 oturumlarını veriyor; CISIA takviminde bu tarihler henüz açık değil (21 Ekim 2026). Tarihleri testcisia.it takviminden kontrol et. 2025/26 ücreti 55 €'du ('All about CEnT' sayfası hâlâ 55 € yazıyor).",
     dersSayfasi: "sinav-cents.html",
     denemeKodu: "cents",
     durum: "kismi",

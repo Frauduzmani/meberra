@@ -10,6 +10,7 @@
   <title>Başvurularım | Meberra</title>
   <meta name="description" content="Üniversiteye ilk başvuru e-postası profil bilgilerinle İngilizce hazırlanır; kurumlara teyit taslakları, yazışma geçmişi ve yaklaşan son tarihler. Meberra e-posta göndermez: kopyala ya da e-posta programında aç.">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/icerik.css">
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -253,7 +254,7 @@
 
   <footer class="footer">
     <div class="footer-bottom u-mt-0">
-      <div>Şablonlar resmi iletişim yönergelerine dayanır. <span class="yalniz-sunucu">Yazışma geçmişin hesabına kaydedilir, her cihazdan devam edersin.</span><span class="yalniz-dosya">Yazışma geçmişin bu tarayıcıda saklanır.</span></div>
+      <div>Şablonlar resmi iletişim yönergelerine dayanır. Yazışma geçmişin hesabına kaydedilir.</div>
       <div><a href="index.html">Sonraki adım: Bugün’ün görevi →</a></div>
     </div>
   </footer>
@@ -883,7 +884,7 @@
       if (s && E.universiteSecimi(s).gerekli) { k.universiteId = st.uniId || null; k.programAd = prog ? prog.ad : null; }
       k.konu = $("ol-konu").value; k.govde = $("ol-govde").value; k.guncelleme = simdi;
       if (yeniDurum === "gonderildi" && k.durum === "taslak") { k.durum = "gonderildi"; k.gonderim = simdi; }
-      if (!depoYaz(d)) { durum("Kaydedilemedi: tarayıcı depolaması dolu ya da kapalı.", "bad"); return null; }
+      if (!depoYaz(d)) { durum("Kaydedilemedi. Sayfayı yenileyip tekrar dene.", "bad"); return null; }
       st.kayitId = k.id;
       $("ol-kicker").textContent = "Kayıtlı yazışma · " + DURUM[k.durum];
       gecmisCiz();
@@ -1249,7 +1250,7 @@
       k.sablonId = ie.r.sablonId; k.universiteId = ie.kim; k.programAd = $("ie-prog").value.trim() || null;
       k.konu = $("ie-konu").value; k.govde = $("ie-govde").value; k.guncelleme = simdi;
       if (yeniDurum === "gonderildi" && k.durum === "taslak") { k.durum = "gonderildi"; k.gonderim = simdi; }
-      if (!depoYaz(d)) { ieDurum("Kaydedilemedi: tarayıcı depolaması dolu ya da kapalı.", "bad"); return null; }
+      if (!depoYaz(d)) { ieDurum("Kaydedilemedi. Sayfayı yenileyip tekrar dene.", "bad"); return null; }
       ie.kayitId = k.id;
       gecmisCiz();
       return k;

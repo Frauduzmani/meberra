@@ -10,6 +10,7 @@
   <title>CEnT-S hazırlığı | Meberra</title>
   <meta name="description" content="CISIA CEnT-S (CISIA English Test – Sciences) hazırlığı: resmi kaynaklarla doğrulanmış sınav yapısı ve puanlama, bölüm bölüm İngilizce konu anlatımı ve hata teşhisli interaktif soru istasyonları.">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/icerik.css">
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
   <script>
     window.MathJax = {
@@ -25,9 +26,7 @@
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async id="MathJax-script"></script>
   <style>
     /* Sayfaya özel küçük düzenler — yalnızca styles.css token'ları (var(--...)) kullanılır. */
-    .cents-toc { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-4); }
-    .cents-toc a { display: inline-flex; align-items: center; padding: 6px 12px; border: 1px solid var(--border); border-radius: var(--radius-full); background: var(--surface); color: var(--text); text-decoration: none; font-size: 0.88rem; font-weight: 600; }
-    .cents-toc a:hover, .cents-toc a:focus-visible { border-color: var(--accent); color: var(--accent); }
+
     .cents-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--sp-4); margin-top: var(--sp-4); }
     .cents-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--sp-4); min-width: 0; }
     .cents-box h3 { font-size: 1rem; font-weight: 700; margin-bottom: var(--sp-2); color: var(--text); }
@@ -49,7 +48,6 @@
 </head>
 <body>
 
-  <!-- NAVBAR (menü app.js tarafından doldurulur) -->
   <nav class="navbar">
     <a href="index.html" class="nav-brand"><div class="brand-badge">Meberra</div></a>
     <div class="nav-actions"></div>
@@ -57,7 +55,6 @@
 
   <div class="main-container">
 
-    <!-- HERO -->
     <header class="hero-section">
       <div class="hero-pill">
         <span class="pulse-dot"></span>
@@ -65,21 +62,10 @@
       </div>
       <h1 class="hero-title">CEnT-S hazırlığı</h1>
       <p class="hero-desc">
-        CISIA'nın İngilizce bilim sınavı CEnT-S için resmi müfredata göre bölüm bölüm konu anlatımı (English) ve hata teşhisli sorular. Sınav bilgileri yalnızca resmi CISIA ve Politecnico di Milano sayfalarından alınmıştır. Resmi belgesi henüz çıkmamış maddeler <span class="cents-unverified">Yayımlanmadı</span> (son yayımlanan yılın bilgisiyle), yalnızca kurumun cevaplayabileceği maddeler <span class="cents-unverified">Teyit gerekir</span> olarak işaretlidir.
+        CISIA'nın İngilizce bilim sınavı: bölüm bölüm konu anlatımı ve hata teşhisli sorular. Bilgiler resmi CISIA sayfalarından.
       </p>
-      <nav class="cents-toc" aria-label="Sayfa bölümleri">
-        <a href="#cents-ozet">Sınav özeti</a>
-        <a href="#cents-polimi">PoliMi kullanımı</a>
-        <a href="#cents-reading">1 · Reading</a>
-        <a href="#cents-math">2 · Mathematics</a>
-        <a href="#cents-reasoning">3 · Reasoning</a>
-        <a href="#cents-biology">4 · Biology</a>
-        <a href="#cents-chemistry">5 · Chemistry</a>
-        <a href="#cents-physics">6 · Physics</a>
-      </nav>
     </header>
 
-    <!-- ===================== SINAV ÖZETİ ===================== -->
     <section class="interactive-panel" id="cents-ozet">
       <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
         <span class="section-tag">SINAV ÖZETİ • KAYNAKLI</span>
@@ -159,10 +145,10 @@
           <h3>2026–27 oturum tarihleri <span class="cents-unverified">Yayımlanmadı</span></h3>
           <ul>
             <li>CISIA 2026–27 için tam takvim yayımlamadı; tarihleri üniversiteler açıyor.</li>
-            <li>CISIA CEnT-S takviminde (12.10.2026) 15.10.2026 sonrası yalnızca iki satır var: Università di Messina, 26.11.2026 ve 17.12.2026 (tabloda "TOLC@UNI" etiketiyle). Bunların CEnT-S oturumu olduğu teyit edilemedi.</li>
+            <li>Padova (Information Engineering) başvuru sayfası ilk 2026–27 CEnT-S tarihlerini <strong>26 Kasım</strong> ve <strong>17 Aralık 2026</strong> olarak veriyor. CISIA takviminde bu tarihler henüz açık görünmüyor (21.10.2026).</li>
             <li>Başvurmadan önce takvimi ve üniversitenin başvuru çağrısını (bando) kontrol et.</li>
           </ul>
-          <p class="cents-src">Kaynak: <a href="https://testcisia.it/calendario.php?tolc=cents&amp;lingua=inglese&amp;date=tutte" target="_blank" rel="noopener">CISIA CEnT-S takvimi (tüm tarihler)</a></p>
+          <p class="cents-src">Kaynak: <a href="https://testcisia.it/calendario.php?tolc=cents&amp;lingua=inglese&amp;date=tutte" target="_blank" rel="noopener">CISIA CEnT-S takvimi (tüm tarihler)</a> · <a href="https://apply.unipd.it/courses/course/182-information-engineering" target="_blank" rel="noopener">Padova — Information Engineering</a></p>
         </div>
         <div class="cents-box">
           <h3>Referans: 2025–26 tarihleri <span class="cents-verified">Doğrulandı</span></h3>
@@ -178,7 +164,6 @@
       </div>
     </section>
 
-    <!-- ===================== POLIMI ===================== -->
     <section class="interactive-panel" id="cents-polimi">
       <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
         <span class="section-tag">POLITECNICO DI MILANO • ELENA ROSSI</span>
@@ -220,7 +205,6 @@
       </div>
     </section>
 
-    <!-- ===================== SECTION 1 — READING ===================== -->
     <section class="interactive-panel" id="cents-reading">
       <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
         <span class="section-tag">SECTION 1 • 10 QUESTIONS • 30 MIN</span>
@@ -279,15 +263,14 @@
     </section>
     <section class="interactive-panel" id="cents-reading-quiz-section">
       <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
-        <span class="section-tag">SECTION 1 İNTERAKTİF SORU BANKASI</span>
+        <span class="section-tag">SECTION 1 SORULAR</span>
         <span class="card-badge badge-indigo">10 SORU</span>
       </div>
       <h2 class="panel-title">Section 1 — Reading and comprehension: İnteraktif Soru İstasyonu</h2>
-      <p class="panel-sub">Bu bölümdeki sorular CISIA syllabus'una göre <strong>özgün olarak hazırlanmış CEnT-S tarzı sorulardır</strong>; gerçek sınav soruları değildir. Gerçek sınavda 5 seçenek varken buradaki sorular 4 seçenek kullanır. Her soru kendi kısa metnini içerir.</p>
+      <p class="panel-sub icerik-not">Özgün CEnT-S tarzı sorular (resmi soru değil). Şık seç; anında çözüm ve hata türü gelir.</p>
       <div class="u-mt-6" id="cents-reading-quiz-container"></div>
     </section>
 
-    <!-- ===================== SECTION 2 — MATHEMATICS ===================== -->
     <section class="interactive-panel" id="cents-math">
       <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
         <span class="section-tag">SECTION 2 • 15 QUESTIONS • 30 MIN</span>
@@ -342,15 +325,14 @@
     </section>
     <section class="interactive-panel" id="cents-math-quiz-section">
       <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
-        <span class="section-tag">SECTION 2 İNTERAKTİF SORU BANKASI</span>
+        <span class="section-tag">SECTION 2 SORULAR</span>
         <span class="card-badge badge-indigo">10 SORU</span>
       </div>
       <h2 class="panel-title">Section 2 — Mathematics: İnteraktif Soru İstasyonu</h2>
-      <p class="panel-sub">CISIA syllabus'una göre <strong>özgün CEnT-S tarzı sorular</strong>; gerçek sınav soruları değildir. Hesap makinesi kullanmadan çöz. Tüm cevaplar sympy ile bağımsız olarak doğrulandı.</p>
+      <p class="panel-sub icerik-not">Özgün CEnT-S tarzı sorular (resmi soru değil). Şık seç; anında çözüm ve hata türü gelir.</p>
       <div class="u-mt-6" id="cents-math-quiz-container"></div>
     </section>
 
-    <!-- ===================== SECTION 3 — REASONING ===================== -->
     <section class="interactive-panel" id="cents-reasoning">
       <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
         <span class="section-tag">SECTION 3 • 15 QUESTIONS • 30 MIN</span>
@@ -403,15 +385,14 @@
     </section>
     <section class="interactive-panel" id="cents-reasoning-quiz-section">
       <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
-        <span class="section-tag">SECTION 3 İNTERAKTİF SORU BANKASI</span>
+        <span class="section-tag">SECTION 3 SORULAR</span>
         <span class="card-badge badge-indigo">10 SORU</span>
       </div>
       <h2 class="panel-title">Section 3 — Reasoning on texts and data: İnteraktif Soru İstasyonu</h2>
-      <p class="panel-sub">CISIA syllabus'una göre <strong>özgün CEnT-S tarzı sorular</strong>; gerçek sınav soruları değildir. Sayısal cevaplar Python ile bağımsız olarak doğrulandı.</p>
+      <p class="panel-sub icerik-not">Özgün CEnT-S tarzı sorular (resmi soru değil). Şık seç; anında çözüm ve hata türü gelir.</p>
       <div class="u-mt-6" id="cents-reasoning-quiz-container"></div>
     </section>
 
-    <!-- ===================== SECTION 4 — BIOLOGY ===================== -->
     <section class="interactive-panel" id="cents-biology">
       <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
         <span class="section-tag">SECTION 4 • 10 QUESTIONS • 20 MIN</span>
@@ -464,15 +445,14 @@
     </section>
     <section class="interactive-panel" id="cents-biology-quiz-section">
       <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
-        <span class="section-tag">SECTION 4 İNTERAKTİF SORU BANKASI</span>
+        <span class="section-tag">SECTION 4 SORULAR</span>
         <span class="card-badge badge-indigo">10 SORU</span>
       </div>
       <h2 class="panel-title">Section 4 — Biology: İnteraktif Soru İstasyonu</h2>
-      <p class="panel-sub">CISIA syllabus'una göre <strong>özgün CEnT-S tarzı sorular</strong>; gerçek sınav soruları değildir.</p>
+      <p class="panel-sub icerik-not">Özgün CEnT-S tarzı sorular (resmi soru değil). Şık seç; anında çözüm ve hata türü gelir.</p>
       <div class="u-mt-6" id="cents-biology-quiz-container"></div>
     </section>
 
-    <!-- ===================== SECTION 5 — CHEMISTRY ===================== -->
     <section class="interactive-panel" id="cents-chemistry">
       <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
         <span class="section-tag">SECTION 5 • 10 QUESTIONS • 20 MIN</span>
@@ -524,15 +504,14 @@
     </section>
     <section class="interactive-panel" id="cents-chemistry-quiz-section">
       <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
-        <span class="section-tag">SECTION 5 İNTERAKTİF SORU BANKASI</span>
+        <span class="section-tag">SECTION 5 SORULAR</span>
         <span class="card-badge badge-indigo">10 SORU</span>
       </div>
       <h2 class="panel-title">Section 5 — Chemistry: İnteraktif Soru İstasyonu</h2>
-      <p class="panel-sub">CISIA syllabus'una göre <strong>özgün CEnT-S tarzı sorular</strong>; gerçek sınav soruları değildir. Sayısal cevaplar Python ile bağımsız olarak doğrulandı.</p>
+      <p class="panel-sub icerik-not">Özgün CEnT-S tarzı sorular (resmi soru değil). Şık seç; anında çözüm ve hata türü gelir.</p>
       <div class="u-mt-6" id="cents-chemistry-quiz-container"></div>
     </section>
 
-    <!-- ===================== SECTION 6 — PHYSICS ===================== -->
     <section class="interactive-panel" id="cents-physics">
       <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
         <span class="section-tag">SECTION 6 • 5 QUESTIONS • 10 MIN</span>
@@ -587,11 +566,11 @@
     </section>
     <section class="interactive-panel" id="cents-physics-quiz-section">
       <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
-        <span class="section-tag">SECTION 6 İNTERAKTİF SORU BANKASI</span>
+        <span class="section-tag">SECTION 6 SORULAR</span>
         <span class="card-badge badge-indigo">10 SORU</span>
       </div>
       <h2 class="panel-title">Section 6 — Physics: İnteraktif Soru İstasyonu</h2>
-      <p class="panel-sub">CISIA syllabus'una göre <strong>özgün CEnT-S tarzı sorular</strong>; gerçek sınav soruları değildir. Sayısal cevaplar Python ile bağımsız olarak doğrulandı.</p>
+      <p class="panel-sub icerik-not">Özgün CEnT-S tarzı sorular (resmi soru değil). Şık seç; anında çözüm ve hata türü gelir.</p>
       <div class="u-mt-6" id="cents-physics-quiz-container"></div>
     </section>
 
@@ -1586,9 +1565,7 @@
 
   </div>
 
-  <!-- AGENT MODAL (Shared) -->
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-bottom u-mt-0">
       <div>© 2026 Meberra • CEnT-S</div>

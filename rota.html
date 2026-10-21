@@ -10,6 +10,7 @@
   <title>Takvimim | Meberra</title>
   <meta name="description" content="Seçtiğin ülkenin kabul kuralları, sınıfına göre tarihlenmiş adımlar, belge kontrol listesi ve rotanın sınavları.">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/icerik.css">
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -33,7 +34,7 @@
     <!-- Sınav bilgisi: Takvimim'in parçası (ayrıntılı katalog sinavlar.html'de) -->
     <section class="surface u-mt-6" aria-labelledby="rota-sinav-title" style="padding:20px;">
       <h2 id="rota-sinav-title" class="u-fs-18">Sınav tarihleri</h2>
-      <p class="u-c-muted">AP, üniversite giriş ve dil sınavlarının tarihleri, kayıt son günleri ve ücretleri. Girmen gerekenleri “Listeme ekle” ile işaretle; Bugün ekranında hatırlatılır.</p>
+      <p class="u-c-muted">Tarihler, kayıt son günleri ve ücretler. “Listeme ekle” ile işaretlediklerin Bugün ekranında hatırlatılır.</p>
       <div class="btn-row"><a class="btn-ghost" href="sinavlar.html">Tüm sınavlar ve tarihler →</a><a class="btn-ghost" href="istanbul-sinav-rehberi.html">AP sınavına İstanbul’da girmek →</a></div>
     </section>
 
@@ -47,7 +48,7 @@
 
   <footer class="footer">
     <div class="footer-bottom u-mt-0">
-      <div><span data-depo-metin>Her bilginin resmi kaynağı yanında. İşaretlerin hesabına kaydedilir, her cihazdan devam edersin.</span></div>
+      <div><span>Her bilginin resmi kaynağı yanında.</span></div>
       <div><a href="index.html">← Bugün</a></div>
     </div>
   </footer>
@@ -346,8 +347,9 @@
         '<div class="rota-rule-body">' +
           '<span class="uni-sub">Temel kural · Bu bilgi ' + esc(ULKE_AD[aktif]) + ' rotası içindir</span>' +
           '<h2 id="rr-h">' + esc(tk.baslik || v.ad) + '</h2>' +
-          (tk.detay ? '<p>' + esc(tk.detay) + '</p>' : "") +
-          '<div class="rs-foot">' + kes(tk.kesinlik) + src(tk.kaynak) + '</div>' +
+          // Uzun açıklama tek tıkla açılır (sayfa taranabilir kalsın)
+          (tk.detay ? '<details class="ic-ayrinti"><summary>Ayrıntı</summary><p>' + esc(tk.detay) + '</p><div class="rs-foot">' + kes(tk.kesinlik) + src(tk.kaynak) + '</div></details>'
+            : '<div class="rs-foot">' + kes(tk.kesinlik) + src(tk.kaynak) + '</div>') +
           (aktif === "de" ? '<p class="rota-alan">' + IC.flag + '<span>Hedef alanın: <strong>' + esc(alan) + '</strong>. Türk diplomasıyla Almanya’da giriş hakkı YKS’de yerleştiğin alan ve komşu alanlar için doğar; YKS tercihini bu alana göre yap. <a href="profil.html#pf-hedefAlan">Hedef alanı değiştir</a></span></p>' : "") +
         '</div>' +
       '</section>';
@@ -359,7 +361,7 @@
           (c.gizlenenSinif ? ' · ' + c.gizlenenSinif + ' adım ' + esc(sinifAd || "sınıfın") + ' için geçerli olmadığından gizlendi' : "") +
           (c.gizlenenKosul ? ' · ' + c.gizlenenKosul + ' adım yerleşme durumun nedeniyle gizlendi' : "") +
           (c.gizlenenDil ? ' · ' + c.gizlenenDil + ' adım ' + (c.egitimDili === "yerel" ? "İngilizce" : "yerel dil") + ' yoluna ait olduğundan gizlendi (eğitim dilin profilde)' : "") +
-          '. Yaptığın adımı işaretle; işaretler hesabına kaydedilir.</p></div>' +
+          '. Yaptığın adımı işaretle.</p></div>' +
         (c.adimlar.length ? "" : '<div class="empty-state"><h3>Bu sınıf için adım yok</h3><p>Profilindeki sınıf bilgisini kontrol et.</p></div>') +
         zamanBolumu("rg-past", "Geçmiş", c.sayac.gecikmis ? c.sayac.gecikmis + " zorunlu adımın tarihi geçti; yaptıysan işaretle." : "Tarihi geçen adımlar.", gecmis, c.sayac.gecikmis > 0 || (gecmis.length > 0 && !buay.length && !gelecek.length)) +
         zamanBolumu("rg-now", "Bu ay", "", buay, null) +
@@ -421,6 +423,7 @@
     // ---------------- Olaylar ----------------
     panel.addEventListener("change", function (e) {
       var t = e.target;
+      panel.classList.add("ic-sakin"); // işaretleyince yeniden çizimde giriş animasyonu tekrar oynamasın
       if (t.classList.contains("rs-check")) {
         var d = R.adimIsaretle(A.rota.durum(), t.dataset.anahtar || aktif, t.dataset.adim, t.checked);
         A.rota.durumYaz(d);
@@ -446,6 +449,7 @@
     function rotaSec(u, odak) {
       if (u === aktif || ulkeler.indexOf(u) < 0) return;
       aktif = u;
+      panel.classList.remove("ic-sakin");
       A.rota.sec(u);
       try { history.replaceState(null, "", "rota.html?ulke=" + u); } catch (e) { /* file:// */ }
       root.querySelectorAll('.rota-tabs [role="tab"]').forEach(function (t) {

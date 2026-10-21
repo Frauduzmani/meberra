@@ -1,0 +1,269 @@
+/* ============================================================================
+   icerik.css — içerik sayfaları (ders, deneme, seviye testi, Hedefim, rehberler)
+   styles.css'ten SONRA yüklenir; yalnız styles.css token'larını kullanır.
+   Kapsam: body.page-course (ders sayfaları), .dn-* (deneme/seviye), .ic-* (Hedefim)
+   ========================================================================== */
+
+:root {
+  --ic-ease: cubic-bezier(.2, .8, .2, 1);
+  --ic-ease-out: cubic-bezier(.16, 1, .3, 1);
+  --ic-hizli: 140ms;
+  --ic-orta: 240ms;
+  --ic-yavas: 420ms;
+}
+
+/* ---------- Ortak hareketler ---------- */
+@keyframes ic-yuksel { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes ic-belir { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ic-acil { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+@keyframes ic-dogru { 0% { transform: scale(1); } 40% { transform: scale(1.015); } 100% { transform: scale(1); } }
+@keyframes ic-yanlis { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-5px); } 40% { transform: translateX(4px); } 60% { transform: translateX(-3px); } 80% { transform: translateX(2px); } }
+@keyframes ic-isik { from { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ok) 45%, transparent); } to { box-shadow: 0 0 0 8px color-mix(in srgb, var(--ok) 0%, transparent); } }
+@keyframes ic-dolum { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* ============================================================================
+   1) DERS SAYFALARI
+   ========================================================================== */
+
+/* Hero: başlık, tek satır açıklama, en çok 3 istatistik */
+body.page-course .hero-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--u-course, var(--accent)) 12%, transparent) 0%, transparent 60%),
+    var(--surface);
+  animation: ic-yuksel var(--ic-yavas) var(--ic-ease-out) both;
+}
+body.page-course .hero-title { letter-spacing: -0.02em; line-height: 1.1; font-size: clamp(1.75rem, 1.2rem + 2.2vw, 2.6rem); }
+body.page-course .hero-desc { margin-bottom: var(--sp-5); max-width: 60ch; }
+.hero-stats.icerik-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 520px) {
+  .hero-stats.icerik-stats { grid-template-columns: 1fr 1fr; }
+  .hero-stats.icerik-stats .stat-item:last-child { grid-column: 1 / -1; }
+}
+.icerik-stats .stat-item {
+  border: 1px solid var(--border-subtle, var(--border));
+  transition: border-color var(--ic-orta) var(--ic-ease), transform var(--ic-orta) var(--ic-ease);
+}
+.icerik-stats .stat-item:hover { border-color: color-mix(in srgb, var(--u-course, var(--accent)) 45%, var(--border)); transform: translateY(-1px); }
+.icerik-stats .stat-num { font-variant-numeric: tabular-nums; color: var(--u-course, var(--accent)); }
+.icerik-stats .stat-label { color: var(--text-muted); }
+
+/* Bölüm etiketleri: sessiz, küçük */
+body.page-course .section-tag { letter-spacing: .06em; }
+body.page-course .panel-sub.icerik-not { font-size: var(--fs-14); color: var(--text-muted); margin-top: var(--sp-1); }
+
+/* Okuma deneyimi: rahat satır uzunluğu ve aralık */
+body.page-course .theory-body { font-size: 1.0625rem; line-height: 1.75; max-width: 72ch; }
+body.page-course .theory-body p + p { margin-top: var(--sp-1); }
+body.page-course .theory-body strong { color: var(--text); }
+body.page-course .theory-callout { line-height: 1.65; }
+body.page-course .pitfall-box { line-height: 1.6; }
+body.page-course .panel-title { text-wrap: balance; }
+body.page-course mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 2px 0; }
+
+/* Konu kartları: kapalıyken sıkı, açılınca yumuşak */
+body.page-course .lecture-card {
+  transition: border-color var(--ic-orta) var(--ic-ease), box-shadow var(--ic-orta) var(--ic-ease), background-color var(--ic-orta) var(--ic-ease);
+}
+body.page-course .lecture-card:hover { box-shadow: var(--shadow-sm); }
+body.page-course .lecture-card.ug-kapali { padding-top: var(--sp-4); padding-bottom: var(--sp-4); }
+body.page-course .lecture-card.ug-kapali .theory-title { margin-bottom: 0; }
+body.page-course .u-col.u-gap-6 > .lecture-card { margin-bottom: 0; }
+body.page-course .u-col.u-gap-6:has(> .lecture-card) { gap: var(--sp-3); }
+body.page-course .lecture-card:not(.ug-kapali) > :not(.theory-title) { animation: ic-acil var(--ic-orta) var(--ic-ease-out) both; }
+body.page-course .ug-konu-btn { cursor: pointer; border-radius: var(--radius-sm); }
+body.page-course .ug-konu-btn:focus-visible { outline: 2px solid var(--focus-ring, var(--accent)); outline-offset: 4px; }
+body.page-course .ug-konu-btn svg, body.page-course .ug-konu-btn .ug-ok { transition: transform var(--ic-orta) var(--ic-ease); }
+
+/* Soru kartları: net şık durumları, hızlı geri bildirim */
+/* Satır içi MathJax alt taşması dikey kaydırma çubuğu açmasın (yatay kaydırma geniş formüller için kalır) */
+.question-body { overflow-y: hidden; padding-bottom: 2px; }
+body.page-course .question-card, .dn-wrap .question-card { animation: ic-yuksel var(--ic-orta) var(--ic-ease-out) both; }
+.option-btn {
+  transition: background-color var(--ic-hizli) var(--ic-ease), border-color var(--ic-hizli) var(--ic-ease), box-shadow var(--ic-hizli) var(--ic-ease), transform 90ms var(--ic-ease);
+}
+.option-btn:active:not(.disabled) { transform: scale(.992); }
+.option-btn:focus-visible { outline: 2px solid var(--focus-ring, var(--accent)); outline-offset: 2px; }
+.option-btn .option-letter { transition: background-color var(--ic-hizli) var(--ic-ease), color var(--ic-hizli) var(--ic-ease), border-color var(--ic-hizli) var(--ic-ease); }
+.option-btn.correct { animation: ic-dogru var(--ic-yavas) var(--ic-ease-out), ic-isik 700ms var(--ic-ease-out); }
+.option-btn.wrong { animation: ic-yanlis 360ms var(--ic-ease); }
+.feedback-box { animation: ic-acil var(--ic-orta) var(--ic-ease-out) both; }
+.question-card.state-correct, .question-card.state-wrong { transition: border-color var(--ic-orta) var(--ic-ease); }
+
+/* Okuma ilerleme çubuğu (ünite görünümü; yalnız CSS, desteklenen tarayıcıda) */
+@supports (animation-timeline: scroll()) {
+  body.page-course.has-unite::after {
+    content: "";
+    position: fixed;
+    left: 0; right: 0;
+    top: var(--nav-h, 56px);
+    height: 3px;
+    z-index: 40;
+    pointer-events: none;
+    background: linear-gradient(90deg, var(--u-course, var(--accent)), var(--energy, #FF6B2C));
+    transform-origin: 0 50%;
+    transform: scaleX(0);
+    animation: ic-dolum linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+
+/* ============================================================================
+   2) DENEME (deneme.js) — odaklı sınav ekranı
+   ========================================================================== */
+.dn-bar { backdrop-filter: saturate(1.2) blur(6px); }
+.dn-timer { font-size: 1.35rem; letter-spacing: .02em; padding: 2px 10px; border-radius: var(--radius-sm); background: var(--surface-2); transition: color var(--ic-orta) var(--ic-ease), background-color var(--ic-orta) var(--ic-ease); }
+.dn-timer.is-low { background: color-mix(in srgb, var(--bad) 12%, transparent); animation: ic-nabiz 1.6s ease-in-out infinite; }
+@keyframes ic-nabiz { 50% { opacity: .62; } }
+
+.dn-ilerleme { display: flex; align-items: center; gap: var(--sp-3); min-height: 20px; }
+.dn-ilerleme-cubuk { flex: 1; height: 6px; border-radius: var(--radius-full); background: var(--surface-3, var(--border)); overflow: hidden; }
+.dn-ilerleme-cubuk > span { display: block; height: 100%; width: 100%; border-radius: inherit; background: var(--dn-c, var(--accent)); transform-origin: 0 50%; transform: scaleX(0); transition: transform var(--ic-yavas) var(--ic-ease-out); }
+.dn-ilerleme-metin { font-size: var(--fs-xs, .75rem); color: var(--text-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.dn-serit { display: flex; gap: 6px; overflow-x: auto; padding: 2px 2px 6px; scroll-behavior: smooth; scrollbar-width: thin; min-height: 46px; }
+.dn-serit .dn-serit-hucre { flex: 0 0 38px; min-height: 38px; height: 38px; font-size: var(--fs-14); transition: background-color var(--ic-hizli) var(--ic-ease), border-color var(--ic-hizli) var(--ic-ease), transform 90ms var(--ic-ease); }
+.dn-serit .dn-serit-hucre:active { transform: scale(.94); }
+@media (pointer: coarse) { .dn-serit .dn-serit-hucre { flex-basis: 44px; height: 44px; } }
+
+.dn-stage[data-yon="ileri"] .dn-q { animation: ic-ileri var(--ic-orta) var(--ic-ease-out) both; }
+.dn-stage[data-yon="geri"] .dn-q { animation: ic-geri var(--ic-orta) var(--ic-ease-out) both; }
+@keyframes ic-ileri { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+@keyframes ic-geri { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: none; } }
+.dn-opt.is-selected { animation: ic-dogru 260ms var(--ic-ease-out); }
+
+/* Sonuç: skor bandı */
+.dn-skor { margin: var(--sp-5) 0; padding: var(--sp-5); border: 1px solid var(--border); border-radius: var(--radius-lg, var(--radius-md)); background: var(--surface); animation: ic-yuksel var(--ic-yavas) var(--ic-ease-out) both; }
+.dn-skor-bas { display: flex; align-items: center; gap: var(--sp-4); margin-bottom: var(--sp-5); }
+.dn-skor-band { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 16px; font-family: var(--font-head, inherit); font-size: 1.9rem; font-weight: 800; color: var(--on-btn, #fff); background: linear-gradient(135deg, var(--accent), var(--energy, #FF6B2C)); flex: none; animation: ic-dogru 600ms 300ms var(--ic-ease-out) both; }
+.dn-skor-baslik { font-weight: 700; color: var(--text); margin: 0; }
+.dn-skor-alt { font-size: var(--fs-14); color: var(--text-muted); margin: 2px 0 0; font-variant-numeric: tabular-nums; }
+.dn-sb { position: relative; padding-top: 30px; }
+.dn-sb-ray { position: relative; height: 28px; }
+.dn-sb-seg {
+  position: absolute; top: 0; bottom: 0; left: var(--sb-l); width: calc(var(--sb-w) - 2px);
+  border-radius: 4px; display: grid; place-items: center;
+  background: color-mix(in srgb, var(--accent) calc(10% + var(--sb-i) * 10%), var(--surface));
+  transform-origin: 0 50%; animation: ic-dolum 420ms calc(var(--sb-i) * 70ms) var(--ic-ease-out) both;
+}
+.dn-sb-seg b { font-size: var(--fs-12, .75rem); font-weight: 800; color: var(--text); }
+.dn-sb-seg.is-on { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent); }
+.dn-sb-isaret { position: absolute; top: 0; bottom: 18px; left: 0; width: 2px; background: var(--text); border-radius: 2px; margin-left: -1px; left: var(--sb-x); animation: ic-isaret 900ms 200ms var(--ic-ease-out) both; }
+.dn-sb-deger { position: absolute; top: 0; left: 50%; transform: translateX(-50%); font-size: var(--fs-12, .75rem); font-weight: 800; color: var(--text); background: var(--surface); border: 1px solid var(--border-strong, var(--border)); border-radius: var(--radius-full); padding: 1px 8px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+@keyframes ic-isaret { from { left: 0; opacity: 0; } to { left: var(--sb-x); opacity: 1; } }
+.dn-sb-eksen { position: relative; height: 16px; margin-top: 4px; font-size: 11px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.dn-sb-eksen span { position: absolute; transform: translateX(-50%); }
+.dn-sb-eksen span:first-child { transform: none; }
+.dn-sb-eksen span:last-child { transform: translateX(-100%); }
+
+/* Sonuç: ünite çubukları */
+.dn-ug { display: flex; flex-direction: column; gap: 8px; margin: var(--sp-3) 0 var(--sp-5); }
+.dn-ug-satir { display: grid; grid-template-columns: minmax(84px, 140px) minmax(0, 1fr) 44px; align-items: center; gap: var(--sp-3); padding: 2px 0; border-radius: var(--radius-sm); }
+.dn-ug-satir:hover .dn-ug-ray { background: var(--surface-3, var(--border)); }
+.dn-ug-ad { font-size: var(--fs-14); font-weight: 600; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; }
+.dn-ug-ray { height: 12px; border-radius: 4px; background: var(--surface-2); overflow: hidden; transition: background-color var(--ic-hizli) var(--ic-ease); }
+.dn-ug-dolgu { display: block; height: 100%; width: var(--ug-w); min-width: 2px; border-radius: 0 4px 4px 0; background: var(--accent); transform-origin: 0 50%; animation: ic-dolum 600ms calc(var(--ug-i) * 50ms + 150ms) var(--ic-ease-out) both; }
+.dn-ug-dolgu.is-ok { background: var(--ok); }
+.dn-ug-dolgu.is-mid { background: var(--warn); }
+.dn-ug-dolgu.is-bad { background: var(--bad); }
+.dn-ug-deger { font-size: var(--fs-14); font-weight: 700; color: var(--text); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ============================================================================
+   3) KISA SAYFA BAŞLIKLARI (Hedefim, rehberler) — tek tip
+   ========================================================================== */
+.ic-baslik { animation: ic-yuksel var(--ic-yavas) var(--ic-ease-out) both; }
+.ic-ayrinti { margin-top: var(--sp-2); }
+.ic-ayrinti > summary {
+  cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 6px;
+  font-size: var(--fs-14); font-weight: 700; color: var(--accent); min-height: 32px;
+}
+.ic-ayrinti > summary::-webkit-details-marker { display: none; }
+.ic-ayrinti > summary::after { content: ""; width: 7px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform var(--ic-orta) var(--ic-ease); }
+.ic-ayrinti[open] > summary::after { transform: rotate(-135deg) translateY(-1px); }
+.ic-ayrinti[open] > :not(summary) { animation: ic-acil var(--ic-orta) var(--ic-ease-out) both; }
+
+/* ============================================================================
+   Hareket azaltma
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  body.page-course .hero-section, body.page-course .question-card, .dn-wrap .question-card,
+  .option-btn.correct, .option-btn.wrong, .feedback-box, .ic-baslik,
+  body.page-course .lecture-card:not(.ug-kapali) > :not(.theory-title),
+  .ic-ayrinti[open] > :not(summary) { animation: none !important; }
+  .option-btn, .lecture-card, .stat-item { transition: none !important; }
+  body.page-course.has-unite::after { display: none; }
+  .dn-timer.is-low, .dn-stage .dn-q, .dn-opt.is-selected, .dn-skor, .dn-skor-band, .dn-sb-seg, .dn-sb-isaret, .dn-ug-dolgu { animation: none !important; }
+  .dn-ilerleme-cubuk > span { transition: none; }
+}
+.dn-skor-not { margin: 0 0 var(--sp-5); }
+
+/* ============================================================================
+   4) SEVİYE TESTİ (seviye.js)
+   ========================================================================== */
+@property --p { syntax: "<number>"; inherits: true; initial-value: 0; }
+@keyframes ic-halka { from { --p: 0; } }
+.sv-q-card.ic-gecis { animation: ic-ileri var(--ic-orta) var(--ic-ease-out) both; }
+.sv-option { transition: background-color var(--ic-hizli) var(--ic-ease), border-color var(--ic-hizli) var(--ic-ease), transform 90ms var(--ic-ease); }
+.sv-option:active { transform: scale(.992); }
+.sv-option:has(input:checked) { animation: ic-dogru 260ms var(--ic-ease-out); }
+.sv-progress-fill { transition: width var(--ic-yavas) var(--ic-ease-out), transform var(--ic-yavas) var(--ic-ease-out); }
+.sv-report .ring { animation: ic-halka 900ms var(--ic-ease-out) both; }
+.sv-report .minibar > i { transform-origin: 0 50%; animation: ic-dolum 700ms 150ms var(--ic-ease-out) both; }
+.sv-report .sv-sec { animation: ic-yuksel var(--ic-yavas) var(--ic-ease-out) both; }
+@media (prefers-reduced-motion: reduce) {
+  .sv-q-card.ic-gecis, .sv-option:has(input:checked), .sv-report .ring, .sv-report .minibar > i, .sv-report .sv-sec { animation: none !important; }
+}
+
+/* ============================================================================
+   5) TAKVİMİM (rota.html) — görsel, hareketli zaman çizelgesi
+   ========================================================================== */
+.rota-main .rs-list { padding-left: 30px; }
+.rota-main .rs-list::before {
+  content: ""; position: absolute; left: 10px; top: 14px; bottom: 14px; width: 2px; border-radius: 2px;
+  background: linear-gradient(to bottom, var(--rota-c), color-mix(in srgb, var(--rota-c) 15%, var(--border)));
+  transform-origin: 50% 0; animation: ic-cizgi 700ms var(--ic-ease-out) both;
+}
+@keyframes ic-cizgi { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.rota-main .rs-step { overflow: visible; }
+.rota-main .rs-step::before {
+  content: ""; position: absolute; left: -26px; top: 22px; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--surface); border: 3px solid color-mix(in srgb, var(--rota-c) 55%, var(--border)); box-sizing: border-box;
+  transition: background-color var(--ic-orta) var(--ic-ease), border-color var(--ic-orta) var(--ic-ease), transform var(--ic-orta) var(--ic-ease);
+}
+.rota-main .rs-step.is-done::before { background: var(--ok); border-color: var(--ok); }
+.rota-main .rs-step.is-late::before { border-color: var(--bad); }
+.rota-main .rs-step.is-next::before { background: var(--rota-c); border-color: var(--rota-c); transform: scale(1.15); animation: ic-dalga 2.2s var(--ic-ease) infinite; }
+@keyframes ic-dalga { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--rota-c) 50%, transparent); } 70%, 100% { box-shadow: 0 0 0 10px color-mix(in srgb, var(--rota-c) 0%, transparent); } }
+.rota-main .rs-step { animation: ic-yuksel var(--ic-yavas) var(--ic-ease-out) both; }
+.rota-main .rs-step:nth-child(2) { animation-delay: 50ms; }
+.rota-main .rs-step:nth-child(3) { animation-delay: 100ms; }
+.rota-main .rs-step:nth-child(4) { animation-delay: 150ms; }
+.rota-main .rs-step:nth-child(5) { animation-delay: 200ms; }
+.rota-main .rs-step:nth-child(n+6) { animation-delay: 250ms; }
+.rota-main .rs-step:hover { transform: translateY(-1px); box-shadow: var(--shadow-card); }
+.rota-main .rs-check:checked { animation: ic-dogru 300ms var(--ic-ease-out); }
+.rota-summary .ring, .rota-genel-ozet .ring { animation: ic-halka 900ms var(--ic-ease-out) both; }
+.rota-rule .ic-ayrinti p { margin: var(--sp-2) 0; color: var(--text-muted); }
+.ic-sakin .rs-list::before, .ic-sakin .rs-step, .ic-sakin .ring { animation: none !important; }
+.ic-sakin .rs-step.is-next::before { animation: ic-dalga 2.2s var(--ic-ease) infinite !important; }
+@media (max-width: 520px) {
+  .rota-main .rs-list { padding-left: 22px; }
+  .rota-main .rs-list::before { left: 6px; }
+  .rota-main .rs-step::before { left: -22px; width: 12px; height: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rota-main .rs-list::before, .rota-main .rs-step, .rota-main .rs-step.is-next::before, .rota-main .rs-check:checked,
+  .rota-summary .ring, .rota-genel-ozet .ring { animation: none !important; }
+  .rota-main .rs-step:hover { transform: none; }
+}
+
+/* ============================================================================
+   6) HEDEFİM sayfaları — tutarlı başlık ve küçük düzeltmeler
+   ========================================================================== */
+.main-container > .page-head { animation: ic-yuksel var(--ic-yavas) var(--ic-ease-out) both; }
+.main-container > .page-head h1 { text-wrap: balance; letter-spacing: -0.015em; }
+.main-container > .page-head p { text-wrap: pretty; }
+.sr-top > .sr-cta { align-self: start; }
+.hero-section .ic-ayrinti { margin: var(--sp-2) 0 var(--sp-4); }
+@media (prefers-reduced-motion: reduce) { .main-container > .page-head { animation: none !important; } }
