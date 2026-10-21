@@ -331,6 +331,7 @@
     { id: "lig", ad: "Lig", ikon: "lig" },
     { id: "sistem", ad: "Sistem", sayac: "adm-sistem-yeni", sayacTon: "bad", ikon: "sistem" },
     { id: "soru-bankasi", ad: "Soru bankası", ikon: "soruBankasi" },
+    { id: "buyume", ad: "Büyüme", ikon: "buyume" }, // 1.6.0 (admin-buyume.js)
     { id: "veri", ad: "Veri", ikon: "veri" },
     { id: "denetim", ad: "Denetim kaydı", ikon: "denetim" }
   ];
@@ -376,6 +377,7 @@
     kuyruk: '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',
     kalkan: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4M12 16h.01"/>',
     arti: '<path d="M12 5v14M5 12h14"/>',
+    buyume: '<path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-7"/><path d="M16 7h4v4"/>',
     soruBankasi: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/><path d="M9.5 8.5a2.5 2.5 0 0 1 4.9.7c0 1.6-2.4 2-2.4 3.3M12 14.5h.01"/>',
     ara: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>'
   };
@@ -552,6 +554,7 @@
     panelOzetKur(); panelTalepKur(); panelSoruKur(); panelKulKur(); panelDuyuruKur(); panelLigKur(); panelVeriKur(); panelDenKur(); panelSistemKur();
     // Soru bankası sekmesi ayrı dosyada (assets/js/admin-soru-bankasi.js); ortak yardımcılar window.MEBERRA_ADMIN ile verilir
     if (window.MEBERRA_ADMIN_SB) window.MEBERRA_ADMIN_SB.kur($("#panel-soru-bankasi"));
+    if (window.MEBERRA_ADMIN_BUYUME) window.MEBERRA_ADMIN_BUYUME.kur($("#panel-buyume")); // 1.6.0
     // Canlı yenileme: sekme görünürken 30 sn'de bir (Sistem: loglar + sağlık; diğerleri: sayaçlar ve özet). Çekmece açıkken beklenir.
     setInterval(function () {
       if (document.visibilityState !== "visible" || cekmeceAcik()) return;
@@ -594,6 +597,7 @@
     else if (id === "lig") ligYukle();
     else if (id === "veri") { if (!S.veri.tablolar) veriTablolarYukle(); }
     else if (id === "soru-bankasi") { if (window.MEBERRA_ADMIN_SB) window.MEBERRA_ADMIN_SB.ac(); }
+    else if (id === "buyume") { if (window.MEBERRA_ADMIN_BUYUME) window.MEBERRA_ADMIN_BUYUME.ac(); }
     else if (id === "sistem") sistemYukle();
   }
 

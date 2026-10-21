@@ -46,7 +46,7 @@ Başarı: `{ "ok": true, ... }`.
 
 ## Premium (elle onay; havale/EFT)
 - `GET /api/premium` → `{ ok, uyelik, talepler:[...] }`
-- `POST /api/premium/talep` `{ plan: "aylik"|"yillik", odeyenAd, aciklama? }` → `{ ok, talep:{id, plan, tutar, durum}, uyelik }` (409: zaten bekleyen var)
+- `POST /api/premium/talep` `{ plan: "aylik"|"yillik", odeyenAd, aciklama?, kupon? }` (1.6.0: `kupon` verilirse sunucu yeniden doğrular; `tutar` indirimli tutardır; geçersiz kod → 400 `errors.kupon`) → `{ ok, talep:{id, plan, tutar, durum}, uyelik }` (409: zaten bekleyen var)
 - `POST /api/premium/talep/iptal` → öğrencinin bekleyen bildirimi `iptal` olur → `{ ok, talep:{id, plan, durum:"iptal"}, uyelik }` (409: bekleyen yok)
 
 ## Yönetici (rol: yonetici)
@@ -374,6 +374,45 @@ Soru (öğrenciye giden, cevapsız): `{ id, number, topic, difficulty, source, q
 - `POST /api/admin/soru-bankasi/soru/:id/arsiv` `{ geriAl? }` — silme yok; arşiv öğrenciye ve denemelere gelmez.
 - `POST /api/admin/soru-bankasi/soru/:id/geri-yukle` `{ surum }` — o sürümün içeriği yeni sürüm olarak yazılır.
 - `GET /api/admin/soru-bankasi/disa-aktar?tur&sayfa` — JSON (tohumla aynı biçim, `Content-Disposition: attachment`).
+
+## Büyüme (v1.6.0, `007_buyume.sql`; `server/huni.js`, `server/kampanya.js`)
+Ölçüm birinci taraftır (üçüncü taraf betik yok). Olay satırında IP, tarayıcı, e-posta yoktur; `anon_id` tarayıcının ürettiği rastgele
+kimliktir (`mb_anon` çerezi + localStorage, 400 gün). Do Not Track / GPC açık tarayıcı ya da ölçümü kapatan hesap olay göndermez/yazılmaz.
+Olaylar 400 gün saklanır; daha eskisi `olay_ozet` günlük toplamına çevrilip silinir (zamanlayıcı işi `olaySaklama`).
+
+### Ölçüm
+- `POST /api/olay` (oturum gerekmez; CSRF başlığı; gövde ≤ 16 KB; IP başına dakikada 120 istek) `{ anon, utm?:{source,medium,campaign}, izinYok?, olaylar:[{ ad, sayfa?, ozellikler?, t? }] }` (≤ 25 olay)
+  → `{ ok, alinan }`. İzinli istemci olayları: `page_view, vitrin_gorundu, kayit_baslat, seviye_basla, unite_bitti, paywall_gordu, premium_sayfa, plan_secti,
+  davet_paylasti, kupon_uygulandi`. Sunucunun yazdıkları (istemciden gelirse yok sayılır): `kayit_tamam, karsilama_tamam, odeme_bildirdi, premium_aktif, deneme_basla,
+  deneme_bitti`; rota sonrası kancayla: `seviye_bitti` (`POST /api/seviye/teslim`), `ilk_soru` (`POST /api/sorular-bankasi/cevap`, kişi başı bir),
+  `soru_sordu` (`POST /api/sorular`), `demo_soru_cevaplandi`. `sayfa` yalnız yol (sorgu atılır); `ozellikler` ≤ 10 düz alan, 500 karakter.
+- `GET /api/olcum-tercih` → `{ ok, kapali }` · `PUT /api/olcum-tercih` `{ kapali: bool }` (profil → "Kullanım ölçümü")
+
+### 7 gün ücretsiz Premium denemesi
+- `GET /api/premium/deneme` → `{ ok, uygun, neden: null|"kullanildi"|"premium"|"yonetici", gun: 7, aktif, bitis, kullanildi }`
+- `POST /api/premium/deneme` → `{ ok, bitis, uyelik }` (409 + `neden`). Kullanıcı ve e-posta karması (HMAC-SHA256, `BUYUME_TUZ`) başına bir kez;
+  karma hesap silinse de kalır. `subscriptions` satırı `plan='ozel', kaynak='deneme'`, +7 gün; `uyelik.deneme = true`. Gelir tahmininde ve
+  özet Premium sayısında sayılmaz. Zamanlayıcı (`denemeBildirim`, sessiz saatlerde çalışmaz, günde en çok bir mesaj — `reminder_log tur='deneme'`):
+  bitişe ≤ 2 gün kala bir kez "2 gün kaldı", bitişte bir kez "denemen bitti" (uygulama içi + e-posta + push tercihi açıksa); ücretliye geçen için yok.
+
+### İndirim kodu
+- `POST /api/kupon/dogrula` (oturum) `{ kod, plan }` → `{ ok, kod, plan, liste, indirim, tutar, aciklama }`; 400 `errors.kupon` (geçersiz, pasif, başlamadı,
+  süresi doldu, plan kısıtı, kullanım sınırı, kişi başı). Kullanıcı ve IP başına 10 dakikada 20 deneme. Bekleyen bildirimler de sınıra sayılır.
+- Ödeme bildirimi `kupon_id`, `liste_tutar_tl` ve indirimli `tutar_tl` tutar; yönetici onaylayınca `kupon_kullanimlari` satırı yazılır.
+
+### Davet programı
+- `GET /api/davet` → `{ ok, kod, link: BASE_URL/giris.html?davet=KOD#kayit, odulGun: 7, basarili, bekleyen, yillikSinir: 10, buYilOdul }`
+- `POST /api/auth/register` gövdesine `davet` (istemci `?davet=` parametresini saklayıp ekler). Kendi kodu, aynı e-posta karmasıyla yeniden kayıt ya da
+  davet edenin son 24 saatte görüldüğü IP'den kayıt → `reddedildi`. Davet edilen seviye testini (sunucuda puanlanan `soru_oturumlari tur='seviye'`) bitirince
+  iki tarafa `kaynak='davet'` +7 gün Premium; davet eden yılda en çok 10 ödül alır.
+
+### Yönetici
+- `GET /api/admin/buyume/analiz?gun=7|30|90&kaynak=` → `{ huni:[{anahtar, ad, olay, kisi, ham, adimOrani}], kaynaklar:[{ad, kisi}], kohort:[{hafta, kisi, oranlar[8]}],
+  gunluk:{gunler, etkin, kayit, premium, deneme}, paywall:[{yer, kisi, gosterim}] }`. Huni adımı = önceki tüm adımları da yapmış kişi (kümülatif kesişim).
+- `GET /api/admin/buyume/ozet` · `GET /api/admin/buyume/denemeler?durum=hepsi` · `POST /api/admin/buyume/denemeler/:kullaniciId/uzat` `{ gun: 1–30 }` · `.../iptal`
+- `GET /api/admin/kuponlar` (kullanım istatistiği + son 50 kullanım) · `POST /api/admin/kuponlar` `{ kod, tur:"yuzde"|"tutar", deger, plan:"aylik"|"yillik"|"hepsi",
+  baslangic?, bitis?, maxKullanim?, kisiBasi=1, aktif, aciklama? }` · `PUT /api/admin/kuponlar/:id` (kısmi; `aktif:false` pasifleştirir; silme yok)
+- `GET /api/admin/davetler?durum=` → bayraklar: `kendi-kodu`, `ayni-ip`, `tekrar-eposta`, `yogun-davet` (24 saatte 5+), `hesap-silindi`
 
 ## Sayfalar
 Sunucu proje kökündeki statik sayfaları da sunar. HTML yanıtlarına `<meta name="meberra-api" content="1">`

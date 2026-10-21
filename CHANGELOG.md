@@ -9,6 +9,14 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.6.0] — 2026-10-21
+### Eklendi
+- Birinci taraf dönüşüm hunisi ölçümü (üçüncü taraf betik yok; DNT/GPC ve profil tercihi; 400 gün saklama) ve yönetici "Büyüme" sekmesi: huni, kohort, günlük grafikler, paywall yerleri.
+- 7 gün ücretsiz Premium denemesi: kişi ve e-posta başına bir kez, ödeme bilgisi gerekmez; 2 gün kala ve bitişte bildirim; yönetici uzatır veya iptal eder; gelir tahminine girmez.
+- İndirim kodları (yüzde/tutar, plan, tarih, kullanım sınırı); ödeme bildirimi indirimli tutarla kaydedilir.
+- Davet programı: davet edilen seviye testini bitirince iki tarafa +7 gün Premium (davet edene yılda en çok 10); kötüye kullanım bayrakları.
+- `HUKUK-NOTLARI.md`: yasal metinlere eklenecek maddeler.
+
 ## [1.5.0] — 2026-10-21
 ### Eklendi
 - Soru bankası veritabanında (1.131 soru: 977 ders + 153 seviye testi + 1 vitrin örneği); tohum dosyası `server/tohum/soru-bankasi.json`, aktarıcı `araclar/soru-aktar.js`.
