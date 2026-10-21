@@ -502,6 +502,28 @@ Yönetici: `GET /api/admin/users?rol=ogrenci|veli|yonetici` (her satırda `bagli
 `{ ok, baglantilar: [{ id, durum, olusturma, kabul, iptal, rapor, ogrenci: { id, ad }, veli: { id?, ad?, eposta } }] }`.
 Hesap silinince (öğrenci ya da veli) bağlantılar `iptal` olur; davet adresi ve belirteçler silinir. Dışa aktarma `veliBaglantilari` içerir.
 
+## FRQ — serbest yanıt pratiği (v1.11.0, `009_frq.sql`; `server/frq.js`)
+Banka `frq` (sürümlü; eski hâller `frq_gecmis`), denemeler `frq_denemeleri`. Tohum `server/tohum/frq.json` (`{ surum, frq:[…] }`);
+açılışta tohum sürümü `ayarlar.frq_tohum_surum`'dan yeniyse yeni FRQ'lar eklenir, yönetici içerik düzenlemesi olmayanların içeriği
+güncellenir (durum korunur). Tohumdaki FRQ'lar `taslak` gelir; yönetici onaylayınca (`aktif`) öğrenciye görünür.
+**Rubrik, örnek çözüm ve sık hatalar yalnızca teslimden sonra** gönderilir. Ücretsiz plan: her ders anahtarında
+(`calculus-ab`, `calculus-bc`, `physics-1`, `chemistry`, `biology`, `english-language`, `macroeconomics`, `microeconomics`,
+`computer-science-a`) 1 FRQ — hak teslimde yazılır, aynı FRQ yeniden çözülebilir; Premium/yönetici sınırsız.
+Hak dolu: `402 { premiumGerekli:true, hakKullanildi:true, ders }`.
+- `GET /api/frq?sayfa=ap-calculus&ders=calculus` (ders: anahtar ya da kısa ad `calculus|physics|chemistry|biology|english|macro|micro|csa`) →
+  `{ ok, premium, haklar:{ders:{hak,kullanilan}}, dersler, frq:[{ id, sayfa, ders, dersAd, kisa, tur, baslik, sure_dk, hesapMakinesi, zorluk, toplam_puan, parcaSayisi, durum, kilitli, son:{adet, denemeId, toplam|null, toplam_puan, tarih}|null }] }` (taslak yalnız yöneticiye)
+- `GET /api/frq/:id` → `{ ok, premium, frq:{ …özet, giris, kaynak, parcalar:[{harf, soru, puan}] } }` (rubrik/çözüm yok; kilitliyse 402)
+- `POST /api/frq/:id/teslim` `{ cevaplar:{a:"…", b:"…"}, sure_sn? }` → `{ ok, denemeId, cevaplar, frq:{ …, parcalar:[{harf, soru, puan, rubrik:[{puan, olcut, ornek_cevap?}], ornek_cozum, sik_hatalar}] } }` (saatte 60 teslim)
+- `POST /api/frq/:id/puanla` `{ denemeId, puanlar:{a:[ölçüt başına 0..puan ya da true/false]} }` → `{ ok, denemeId, puanlar, toplam, toplam_puan, yuzde, katki:{ soruPayi, kazanilan, metin } }` (yeniden puanlanabilir)
+- `GET /api/frq/gecmis?adet=50` → `{ ok, gecmis:[{ id, frqId, ders, baslik, sayfa, toplam|null, toplam_puan, yuzde|null, sure_sn, tarih, puanlandi }] }`
+- `GET /api/frq/deneme/:id` (yalnız sahibi) → `{ ok, deneme:{ id, frqId, cevaplar, puanlar, toplam, toplam_puan, sure_sn, tarih }, frq:(rubrikli), katki|null }`
+
+Yönetici (hepsi denetim kaydına yazılır: `frq.duzenle`, `frq.onayla`, `frq.arsiv`, `frq.taslaga-al`; öğrenci: `frq.teslim`, `frq.puanla`):
+- `GET /api/admin/frq?durum=&ders=` → `{ ok, dersler, durumSay:{taslak,aktif,arsiv}, frq:[{ …özet, durum, surum, guncelleme, elle, deneme, ortalama, sorunlar }] }`
+- `GET /api/admin/frq/:id?surum=N` → `{ ok, frq (tam JSON + durum, surum), gecmis:[{surum, durum, not_, degistiren, zaman}], eskiSurum|null, sorunlar }`
+- `PUT /api/admin/frq/:id` `{ veri, surum, not? }` → yapı denetimi (rubrik toplamı = parça puanı, toplam_puan = parça toplamı, `$` yok) → yeni sürüm (`409` sürüm çakışması)
+- `POST /api/admin/frq/:id/durum` `{ durum:"aktif"|"arsiv"|"taslak" }` → onay / arşiv (silme yok)
+
 ## Sayfalar
 Sunucu proje kökündeki statik sayfaları da sunar. HTML yanıtlarına `<meta name="meberra-api" content="1">`
 eklenir; istemci bu etiketi görünce sunucu modunda çalışır (yoksa eski tarayıcı-içi mod).

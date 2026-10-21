@@ -215,5 +215,27 @@ console.log(`DURUM: ${Object.entries(durumSay).map(([k, v]) => k + " " + v).join
 console.log(`EK ZENGİNLEŞTİRME: ${ekTam}/${denetlenen} soru (%${denetlenen ? Math.round(ekTam / denetlenen * 1000) / 10 : 0}; kavram, ipucu, sikHata, cedKonu, hesapMakinesi; vitrin hariç)`);
 console.log(`TEKRAR (normalleştirilmiş kök + şık kümesi): ${tekrarlar.length} aktif tekrar grubu`);
 for (const l of tekrarlar) { console.log(`✗ tekrar soru: ${l.join(", ")} (birini arşivle ya da yeniden yaz)`); problems++; }
+// v1.11.0 FRQ tohumu (server/tohum/frq.json): yapı (server/frq.js dogrula — rubrik puanları toplamı = parça puanı,
+// toplam_puan = parça toplamı, $ yok, ders/sayfa tutarlı), benzersiz kimlik, özgün kaynak.
+{
+  const FRQ_DOSYA = path.join(ROOT, "server", "tohum", "frq.json");
+  if (fs.existsSync(FRQ_DOSYA)) {
+    const { dogrula: frqDogrula } = require("../server/frq.js");
+    const frqT = JSON.parse(fs.readFileSync(FRQ_DOSYA, "utf8")), frqL = Array.isArray(frqT.frq) ? frqT.frq : [];
+    const frqSay = {}, frqId = new Set();
+    let frqSorun = 0;
+    for (const f of frqL) {
+      const s = frqDogrula(f);
+      if (frqId.has(f.id)) s.push(f.id + ": kimlik tekrarı");
+      frqId.add(f.id);
+      if (FORBIDDEN_SOURCE.test(String(f.kaynak || ""))) s.push(f.id + ": kaynak resmî sınav gibi görünüyor");
+      frqSay[f.ders] = (frqSay[f.ders] || 0) + 1;
+      s.forEach(x => console.log(`✗ FRQ ${x}`));
+      frqSorun += s.length;
+    }
+    console.log(`FRQ: ${frqL.length} soru (${Object.entries(frqSay).map(([k, v]) => k + " " + v).join(" · ")}), ${frqSorun} sorun`);
+    problems += frqSorun;
+  }
+}
 console.log(`TOPLAM: ${total} soru, ${problems} sorun`);
 process.exitCode = problems ? 1 : 0;

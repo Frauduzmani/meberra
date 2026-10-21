@@ -1,0 +1,2922 @@
+{
+ "surum": 1,
+ "olusturma": "2026-10-21",
+ "aciklama": "AP-style original FRQs (Meberra 1.11.0). Owner approves: durum taslak -> aktif via admin panel.",
+ "frq": [
+  {
+   "id": "frq-calc-ab-1",
+   "sayfa": "ap-calculus",
+   "ders": "calculus-ab",
+   "tur": "Değişim oranı ve birikim (tablo)",
+   "baslik": "Rainwater Cistern",
+   "sure_dk": 15,
+   "hesapMakinesi": true,
+   "zorluk": "medium",
+   "giris": "<p>At time \\(t = 0\\), a cistern contains 50 liters of water. During a storm, rainwater flows into the cistern at a rate modeled by a differentiable function \\(R\\), where \\(R(t)\\) is measured in liters per minute and \\(t\\) is measured in minutes. Selected values of \\(R(t)\\) are given in the table below.</p><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">\\(t\\) (minutes)</th><th scope=\"col\">0</th><th scope=\"col\">3</th><th scope=\"col\">5</th><th scope=\"col\">9</th><th scope=\"col\">12</th></tr></thead><tbody><tr><th scope=\"row\">\\(R(t)\\) (liters per minute)</th><td>8.2</td><td>11.0</td><td>12.4</td><td>11.0</td><td>7.0</td></tr></tbody></table><p>At the same time, water leaks out of the cistern at a rate modeled by \\(L(t) = 1.5 + \\ln(1+t)\\) liters per minute for \\(0 \\le t \\le 12\\).</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "Use a trapezoidal sum with the four subintervals indicated by the data in the table to approximate \\(\\displaystyle\\int_0^{12} R(t)\\,dt\\). Using correct units, interpret the meaning of \\(\\displaystyle\\int_0^{12} R(t)\\,dt\\) in the context of the problem.",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Dört aralıklı yamuk toplamını doğru kurup 126 değerini bulmak.",
+       "ornek_cevap": "\\(\\tfrac{3}{2}(8.2+11.0)+\\tfrac{2}{2}(11.0+12.4)+\\tfrac{4}{2}(12.4+11.0)+\\tfrac{3}{2}(11.0+7.0)=126\\)"
+      },
+      {
+       "puan": 1,
+       "olcut": "Yorum: 0 ≤ t ≤ 12 dakikada sarnıca giren toplam yağmur suyu (litre) — birim ve zaman aralığıyla.",
+       "ornek_cevap": "Approximately 126 liters of rainwater flow into the cistern from t = 0 to t = 12 minutes."
+      }
+     ],
+     "ornek_cozum": "<p>Aralıklar eşit değil: genişlikler 3, 2, 4, 3. Her aralıkta \\(\\Delta t\\cdot\\frac{R_\\text{sol}+R_\\text{sağ}}{2}\\):</p>\\[28.8+23.4+46.8+27.0=126\\]<p><strong>Cevap:</strong> \\(\\int_0^{12}R(t)\\,dt\\approx 126\\) litre. Bu integral, ilk 12 dakikada sarnıca <em>giren</em> toplam yağmur suyu miktarıdır (litre).</p>",
+     "sik_hatalar": [
+      "Aralık genişliklerini eşit sanıp tek bir \\(\\Delta t\\) kullanmak.",
+      "Yorumda birimi (litre) ya da zaman aralığını yazmamak; ‘oran’ ile ‘miktar’ı karıştırmak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "Must there be a value of \\(t\\), for \\(3 < t < 9\\), at which \\(R'(t) = 0\\)? Justify your answer.",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "R(3) = R(9) = 11.0 olduğunu (ya da fark oranının 0 olduğunu) belirtmek."
+      },
+      {
+       "puan": 1,
+       "olcut": "R türevlenebilir ⇒ sürekli; Ortalama Değer (Rolle) Teoremi ile ‘Evet’ sonucuna varmak.",
+       "ornek_cevap": "Yes. R is differentiable, hence continuous, on [3, 9] and (R(9) − R(3))/(9 − 3) = 0, so by the Mean Value Theorem there is c in (3, 9) with R′(c) = 0."
+      }
+     ],
+     "ornek_cozum": "<p>\\(R\\) türevlenebilir olduğu için \\([3,9]\\) üzerinde süreklidir ve \\((3,9)\\) üzerinde türevlenebilirdir. \\(\\dfrac{R(9)-R(3)}{9-3}=\\dfrac{11.0-11.0}{6}=0\\).</p><p><strong>Cevap:</strong> Evet. Ortalama Değer Teoremi'ne göre \\(3<c<9\\) olan bir \\(c\\) için \\(R'(c)=0\\) olmalıdır.</p>",
+     "sik_hatalar": [
+      "Teoremin koşulunu (süreklilik/türevlenebilirlik) yazmamak.",
+      "Ara Değer Teoremi'ni \\(R'\\) için kullanmaya çalışmak (\\(R'\\) değerleri bilinmiyor)."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "Using your answer from part (a), approximate the amount of water in the cistern at time \\(t = 12\\). Show the work that leads to your answer.",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Sızıntı integrali \\(\\int_0^{12}L(t)\\,dt \\approx 39.344\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Doğru ifade: başlangıç + giren − çıkan.",
+       "ornek_cevap": "\\(50+126-\\int_0^{12}L(t)\\,dt\\)"
+      },
+      {
+       "puan": 1,
+       "olcut": "Cevap ≈ 136.656 litre (136.655 de kabul)."
+      }
+     ],
+     "ornek_cozum": "<p>Sarnıçtaki su = başlangıç + giren − çıkan:</p>\\[W(12)\\approx 50+126-\\int_0^{12}\\big(1.5+\\ln(1+t)\\big)\\,dt\\]<p>Hesap makinesiyle \\(\\int_0^{12}L(t)\\,dt\\approx 39.344\\) (tam değer \\(6+13\\ln 13\\)).</p><p><strong>Cevap:</strong> \\(W(12)\\approx 136.656\\) litre.</p>",
+     "sik_hatalar": [
+      "Başlangıçtaki 50 litreyi eklemeyi unutmak.",
+      "Sızıntıyı çıkarmak yerine eklemek ya da \\(12\\cdot L(12)\\) gibi sabit oran varsaymak."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "Find the average rate at which water leaks out of the cistern over the time interval \\(0 \\le t \\le 12\\). Indicate units of measure.",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Ortalama değer kurulumu: \\(\\frac{1}{12}\\int_0^{12}L(t)\\,dt\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Cevap ≈ 3.279 litre/dakika (birimle)."
+      }
+     ],
+     "ornek_cozum": "<p>Ortalama değer: \\[\\frac{1}{12-0}\\int_0^{12}L(t)\\,dt\\approx\\frac{39.344}{12}\\approx 3.279\\]</p><p><strong>Cevap:</strong> Ortalama sızıntı hızı yaklaşık \\(3.279\\) litre/dakika.</p>",
+     "sik_hatalar": [
+      "\\(\\frac{L(0)+L(12)}{2}\\) ile ortalama değeri karıştırmak.",
+      "Ortalama değişim oranı \\(\\frac{L(12)-L(0)}{12}\\) hesaplamak (bu, \\(L'\\)'nün ortalamasıdır)."
+     ]
+    }
+   ],
+   "toplam_puan": 9,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-calc-ab-2",
+   "sayfa": "ap-calculus",
+   "ders": "calculus-ab",
+   "tur": "Grafik analizi ve parçacık hareketi",
+   "baslik": "Velocity Graph of a Particle",
+   "sure_dk": 15,
+   "hesapMakinesi": false,
+   "zorluk": "medium",
+   "giris": "<p>A particle moves along the \\(x\\)-axis. Its velocity \\(v(t)\\), in meters per second, for \\(0 \\le t \\le 8\\) seconds is given by a piecewise-linear graph consisting of three line segments: the segment from \\((0, -2)\\) to \\((2, 2)\\), the segment from \\((2, 2)\\) to \\((6, -2)\\), and the segment from \\((6, -2)\\) to \\((8, 0)\\). Selected values of \\(v(t)\\) are shown in the table. At time \\(t = 0\\), the particle is at position \\(x = 3\\).</p><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">\\(t\\) (seconds)</th><th scope=\"col\">0</th><th scope=\"col\">1</th><th scope=\"col\">2</th><th scope=\"col\">4</th><th scope=\"col\">6</th><th scope=\"col\">8</th></tr></thead><tbody><tr><th scope=\"row\">\\(v(t)\\) (m/s)</th><td>−2</td><td>0</td><td>2</td><td>0</td><td>−2</td><td>0</td></tr></tbody></table>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "At what times \\(t\\), for \\(0 < t < 8\\), does the particle change direction? Give a reason for your answer.",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "t = 1: v negatiften pozitife işaret değiştirir."
+      },
+      {
+       "puan": 1,
+       "olcut": "t = 4: v pozitiften negatife işaret değiştirir (t = 8 uç noktadır, sayılmaz)."
+      }
+     ],
+     "ornek_cozum": "<p>Yön değişimi, \\(v\\) işaret değiştirdiğinde olur. \\(v\\) açık aralıkta yalnızca \\(t=1\\) ve \\(t=4\\)'te sıfırdır ve iki noktada da işaret değiştirir (\\(t=1\\): − → +, \\(t=4\\): + → −).</p><p><strong>Cevap:</strong> \\(t=1\\) ve \\(t=4\\).</p>",
+     "sik_hatalar": [
+      "\\(v=0\\) olan her anı (ör. \\(t=8\\) uç noktası) yön değişimi saymak.",
+      "İşaret değişimini gerekçe olarak yazmamak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "Is the speed of the particle increasing or decreasing at time \\(t = 5\\)? Give a reason for your answer.",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "v(5) = −1 ve a(5) = v′(5) = −1 değerleri."
+      },
+      {
+       "puan": 1,
+       "olcut": "Aynı işaret ⇒ sürat artıyor sonucu."
+      }
+     ],
+     "ornek_cozum": "<p>\\(v(5)=2-(5-2)=-1\\). İkinci parçanın eğimi \\(-1\\), yani \\(a(5)=v'(5)=-1\\).</p><p><strong>Cevap:</strong> \\(v(5)\\) ve \\(a(5)\\) aynı işaretli (ikisi de negatif) olduğundan sürat <em>artıyor</em>.</p>",
+     "sik_hatalar": [
+      "Yalnızca \\(a(5)<0\\) diye ‘azalıyor’ demek (sürat için iki işareti karşılaştırmak gerekir).",
+      "\\(v(5)\\) değerini grafikten yanlış okumak."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "Find the position of the particle at time \\(t = 8\\). Find the total distance the particle travels over the interval \\(0 \\le t \\le 8\\).",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Net değişim için \\(x(8)=3+\\int_0^8 v(t)\\,dt\\) kurulumu."
+      },
+      {
+       "puan": 1,
+       "olcut": "x(8) = 1."
+      },
+      {
+       "puan": 1,
+       "olcut": "Toplam yol \\(\\int_0^8|v(t)|\\,dt = 8\\) metre."
+      }
+     ],
+     "ornek_cozum": "<p>Alanlar (işaretli): \\([0,1]\\): \\(-1\\); \\([1,2]\\): \\(+1\\); \\([2,4]\\): \\(+2\\); \\([4,6]\\): \\(-2\\); \\([6,8]\\): \\(-2\\).</p>\\[x(8)=3+\\int_0^8 v(t)\\,dt=3+(-1+1+2-2-2)=1\\]\\[\\text{Toplam yol}=\\int_0^8|v(t)|\\,dt=1+1+2+2+2=8\\]<p><strong>Cevap:</strong> \\(x(8)=1\\); toplam yol 8 metre.</p>",
+     "sik_hatalar": [
+      "Başlangıç konumu \\(x(0)=3\\)'ü eklemeyi unutmak.",
+      "Toplam yol yerine net yer değiştirmeyi (|−2| = 2) yazmak."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "Find the greatest position (the maximum value of \\(x(t)\\)) of the particle over the interval \\(0 \\le t \\le 8\\). Justify your answer.",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Aday noktalar: uçlar ve kritik noktalar (t = 0, 1, 4, 8) ve konum değerleri."
+      },
+      {
+       "puan": 1,
+       "olcut": "En büyük konum 5 (t = 4'te), gerekçeyle."
+      }
+     ],
+     "ornek_cozum": "<p>\\(x'(t)=v(t)=0\\Rightarrow t=1,4\\). Adaylar: \\(x(0)=3\\), \\(x(1)=3-1=2\\), \\(x(4)=3-1+1+2=5\\), \\(x(8)=1\\).</p><p><strong>Cevap:</strong> En büyük konum \\(x=5\\), \\(t=4\\)'te (kapalı aralık yöntemi).</p>",
+     "sik_hatalar": [
+      "Yalnızca \\(v\\)'nin en büyük olduğu \\(t=2\\)'yi seçmek.",
+      "Uç noktaları adaylara katmamak."
+     ]
+    }
+   ],
+   "toplam_puan": 9,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-calc-ab-3",
+   "sayfa": "ap-calculus",
+   "ders": "calculus-ab",
+   "tur": "Diferansiyel denklem ve eğim alanı",
+   "baslik": "Separable Differential Equation",
+   "sure_dk": 15,
+   "hesapMakinesi": false,
+   "zorluk": "medium",
+   "giris": "<p>Consider the differential equation \\[\\frac{dy}{dx}=\\frac{x(6-y)}{3}.\\]</p><p>A slope field for this differential equation is to be drawn on the grid \\(-2 \\le x \\le 2\\), \\(0 \\le y \\le 6\\). (Sketch the indicated slope segments on paper.)</p><p>Let \\(y = f(x)\\) be the particular solution to the differential equation with initial condition \\(f(3) = 2\\).</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "Find \\(\\dfrac{dy}{dx}\\) at the points \\((2, 3)\\), \\((-2, 3)\\), \\((1, 6)\\), and \\((0, 4)\\). Describe the slope segments along the line \\(y = 6\\) and along the line \\(x = 0\\).",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Dört eğim doğru (2, −2, 0, 0) ve y = 6 ile x = 0 boyunca yatay doğru parçaları."
+      }
+     ],
+     "ornek_cozum": "<p>\\((2,3)\\): \\(\\frac{2\\cdot 3}{3}=2\\); \\((-2,3)\\): \\(-2\\); \\((1,6)\\): \\(0\\); \\((0,4)\\): \\(0\\).</p><p><strong>Cevap:</strong> \\(y=6\\) doğrusu boyunca ve \\(x=0\\) (y ekseni) boyunca tüm eğim doğru parçaları yataydır.</p>",
+     "sik_hatalar": [
+      "\\((x,y)\\) yerine koyarken \\(6-y\\) işaretini ters almak.",
+      "Eğim alanında eğimin yalnızca x'e bağlı olduğunu sanmak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "Write an equation for the line tangent to the graph of \\(y = f(x)\\) at \\(x = 3\\). Use the tangent line to approximate \\(f(3.1)\\).",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Eğim \\(f'(3) = 4\\) ve teğet doğrusu \\(y=2+4(x-3)\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "f(3.1) ≈ 2.4."
+      }
+     ],
+     "ornek_cozum": "<p>\\(f'(3)=\\dfrac{3(6-2)}{3}=4\\). Teğet: \\(y=2+4(x-3)\\).</p><p><strong>Cevap:</strong> \\(f(3.1)\\approx 2+4(0.1)=2.4\\).</p>",
+     "sik_hatalar": [
+      "Eğimi \\((3,2)\\) yerine başka bir noktada hesaplamak.",
+      "Teğet denkleminde noktayı yanlış yerleştirmek."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "Find \\(\\dfrac{d^2y}{dx^2}\\) in terms of \\(x\\) and \\(y\\). Is the approximation found in part (b) an overestimate or an underestimate of \\(f(3.1)\\)? Give a reason for your answer.",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(\\frac{d^2y}{dx^2}=\\frac{6-y}{3}-\\frac{x}{3}\\cdot\\frac{dy}{dx}=\\frac{6-y}{3}-\\frac{x^2(6-y)}{9}\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "(3, 2)'de ikinci türev −8/3 < 0 ⇒ konkav aşağı ⇒ üst tahmin (overestimate)."
+      }
+     ],
+     "ornek_cozum": "<p>Çarpım kuralı (\\(y\\), \\(x\\)'e bağlı):\\[\\frac{d^2y}{dx^2}=\\frac{6-y}{3}+\\frac{x}{3}\\Big(-\\frac{dy}{dx}\\Big)=\\frac{6-y}{3}-\\frac{x^2(6-y)}{9}.\\]</p><p>\\((3,2)\\): \\(\\frac{4}{3}-\\frac{9\\cdot 4}{9}=\\frac{4}{3}-4=-\\frac{8}{3}<0\\).</p><p><strong>Cevap:</strong> Grafik \\(x=3\\) civarında konkav aşağı; teğet doğrusu grafiğin üstünde kalır, yani 2.4 bir <em>üst tahmindir</em> (gerçek değer ≈ 2.387).</p>",
+     "sik_hatalar": [
+      "\\(y\\)'yi sabit sayıp \\(\\frac{d}{dx}(6-y)=0\\) almak.",
+      "İkinci türevi \\((3,2)\\) noktasında değerlendirmeden sonuç yazmak."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "Find \\(y = f(x)\\), the particular solution to the differential equation with the initial condition \\(f(3) = 2\\).",
+     "puan": 4,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Değişkenleri ayırmak: \\(\\frac{dy}{6-y}=\\frac{x}{3}\\,dx\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "İki tarafın ters türevi: \\(-\\ln|6-y|=\\frac{x^2}{6}+C\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Başlangıç koşuluyla C'yi bulmak: \\(C=-\\ln 4-\\frac{3}{2}\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "y'yi çözmek: \\(y=6-4e^{(9-x^2)/6}\\)."
+      }
+     ],
+     "ornek_cozum": "<p>\\[\\int\\frac{dy}{6-y}=\\int\\frac{x}{3}\\,dx\\;\\Rightarrow\\;-\\ln|6-y|=\\frac{x^2}{6}+C.\\]</p><p>\\(x=3,\\ y=2\\): \\(-\\ln 4=\\frac{3}{2}+C\\Rightarrow C=-\\ln 4-\\frac{3}{2}\\).</p><p>\\(\\ln|6-y|=\\ln 4+\\frac{9-x^2}{6}\\Rightarrow 6-y=4e^{(9-x^2)/6}\\) (\\(6-y>0\\), çünkü başlangıçta \\(y=2<6\\)).</p><p><strong>Cevap:</strong> \\[f(x)=6-4e^{(9-x^2)/6}.\\] Kontrol: \\(f(3)=6-4=2\\).</p>",
+     "sik_hatalar": [
+      "\\(\\int\\frac{dy}{6-y}=\\ln|6-y|\\) yazıp eksi işaretini kaybetmek.",
+      "\\(+C\\)'yi üstel ifadeyi aldıktan sonra eklemek (C bir katsayıya dönüşmeli)."
+     ]
+    }
+   ],
+   "toplam_puan": 9,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-calc-ab-4",
+   "sayfa": "ap-calculus",
+   "ders": "calculus-ab",
+   "tur": "Alan ve hacim",
+   "baslik": "Region Between Two Curves",
+   "sure_dk": 15,
+   "hesapMakinesi": true,
+   "zorluk": "hard",
+   "giris": "<p>Let \\(f(x) = 3 - x^2\\) and \\(g(x) = e^{x} - 1\\). Let \\(R\\) be the region in the first quadrant bounded by the graph of \\(f\\), the graph of \\(g\\), and the \\(y\\)-axis. The graphs of \\(f\\) and \\(g\\) intersect at \\(x = a\\), where \\(a > 0\\).</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "Find the area of \\(R\\).",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Kesişim \\(a \\approx 1.058\\) ve integral \\(\\int_0^a (f(x)-g(x))\\,dx\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Alan ≈ 1.957."
+      }
+     ],
+     "ornek_cozum": "<p>Hesap makinesiyle \\(3-x^2=e^x-1\\Rightarrow a\\approx 1.058006\\). \\(0\\le x\\le a\\) aralığında \\(f\\ge g\\).</p>\\[\\text{Alan}=\\int_0^{a}\\big[(3-x^2)-(e^x-1)\\big]\\,dx\\approx 1.957\\]<p><strong>Cevap:</strong> ≈ 1.957.</p>",
+     "sik_hatalar": [
+      "Kesişimi yuvarlayıp (ör. 1.06) erken kullanmak; ara değerleri hesap makinesinde saklayın.",
+      "Üst ve alt fonksiyonu ters yazmak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "Region \\(R\\) is rotated about the horizontal line \\(y = -1\\). Find the volume of the resulting solid.",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Sabit π ve doğru sınırlar (0'dan a'ya)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Doğru pul (washer) integrandı: \\((f(x)+1)^2-(g(x)+1)^2\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Hacim ≈ 32.629."
+      }
+     ],
+     "ornek_cozum": "<p>Dış yarıçap \\(f(x)-(-1)=4-x^2\\), iç yarıçap \\(g(x)-(-1)=e^x\\).</p>\\[V=\\pi\\int_0^{a}\\big[(4-x^2)^2-(e^x)^2\\big]\\,dx\\approx 32.629\\]<p><strong>Cevap:</strong> ≈ 32.629 (32.628 de kabul).</p>",
+     "sik_hatalar": [
+      "Yarıçapları \\(f(x)-1\\) ve \\(g(x)-1\\) almak (eksen \\(y=-1\\) olduğu için +1 gerekir).",
+      "\\((R-r)^2\\) yazmak; doğrusu \\(R^2-r^2\\)."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "Region \\(R\\) is the base of a solid. For this solid, each cross section perpendicular to the \\(x\\)-axis is a square. Find the volume of the solid.",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "İntegral \\(\\int_0^a (f(x)-g(x))^2\\,dx\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Hacim ≈ 4.420."
+      }
+     ],
+     "ornek_cozum": "<p>Kenar \\(=f(x)-g(x)\\), alan \\(=(f(x)-g(x))^2\\).</p>\\[V=\\int_0^{a}\\big(4-x^2-e^x\\big)^2\\,dx\\approx 4.420\\]<p><strong>Cevap:</strong> ≈ 4.420.</p>",
+     "sik_hatalar": [
+      "Kesit alanına π eklemek.",
+      "Kenarı yalnızca \\(f(x)\\) almak (\\(g\\)'yi çıkarmamak)."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "The vertical line \\(x = k\\) divides \\(R\\) into two regions with equal areas. Write, but do not solve, an equation involving one or more integrals whose solution gives the value of \\(k\\).",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Bir integral \\(\\int_0^k (f(x)-g(x))\\,dx\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Doğru denklem: yarı alana eşitlemek.",
+       "ornek_cevap": "\\(\\int_0^k\\big(f(x)-g(x)\\big)dx=\\tfrac12\\int_0^a\\big(f(x)-g(x)\\big)dx\\)"
+      }
+     ],
+     "ornek_cozum": "<p>Sol parçanın alanı tüm alanın yarısı olmalı:</p>\\[\\int_0^{k}\\big[(3-x^2)-(e^x-1)\\big]dx=\\frac12\\int_0^{a}\\big[(3-x^2)-(e^x-1)\\big]dx\\]<p>(Eşdeğeri: \\(\\int_0^k=\\int_k^a\\).) Bilgi için: çözüm \\(k\\approx 0.355\\).</p>",
+     "sik_hatalar": [
+      "Denklemi çözmeye çalışıp zaman kaybetmek (soru yalnızca kurulum istiyor).",
+      "Sağ tarafa ½ katsayısını yazmayı unutmak."
+     ]
+    }
+   ],
+   "toplam_puan": 9,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-calc-bc-1",
+   "sayfa": "ap-calculus",
+   "ders": "calculus-bc",
+   "tur": "Seriler (Taylor ve yakınsaklık)",
+   "baslik": "A Power Series Centered at x = 2",
+   "sure_dk": 15,
+   "hesapMakinesi": false,
+   "zorluk": "hard",
+   "giris": "<p>The function \\(f\\) is defined by the power series \\[f(x)=\\sum_{n=1}^{\\infty}\\frac{(-1)^{n+1}(x-2)^n}{n\\cdot 3^n}=\\frac{x-2}{3}-\\frac{(x-2)^2}{2\\cdot 9}+\\frac{(x-2)^3}{3\\cdot 27}-\\cdots\\] for all \\(x\\) for which the series converges.</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "Find the interval of convergence of the power series for \\(f\\). Show the work that leads to your answer.",
+     "puan": 4,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Oran testi kurulumu: \\(\\left|\\frac{a_{n+1}}{a_n}\\right|=\\frac{n}{n+1}\\cdot\\frac{|x-2|}{3}\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Limit \\(\\frac{|x-2|}{3}<1\\) ⇒ yarıçap 3, açık aralık (−1, 5)."
+      },
+      {
+       "puan": 1,
+       "olcut": "x = 5: alternatif harmonik seri, yakınsak (gerekçeyle)."
+      },
+      {
+       "puan": 1,
+       "olcut": "x = −1: \\(-\\sum 1/n\\), ıraksak; aralık (−1, 5]."
+      }
+     ],
+     "ornek_cozum": "<p>\\[\\lim_{n\\to\\infty}\\left|\\frac{(x-2)^{n+1}}{(n+1)3^{n+1}}\\cdot\\frac{n\\,3^n}{(x-2)^n}\\right|=\\frac{|x-2|}{3}<1\\iff -1<x<5.\\]</p><p>\\(x=5\\): \\(\\sum\\frac{(-1)^{n+1}}{n}\\) — terimler azalarak 0'a gider; Alternatif Seri Testi ile yakınsak.</p><p>\\(x=-1\\): \\(\\sum\\frac{(-1)^{n+1}(-3)^n}{n3^n}=\\sum\\frac{-1}{n}\\) — harmonik serinin katı, ıraksak.</p><p><strong>Cevap:</strong> \\(-1<x\\le 5\\).</p>",
+     "sik_hatalar": [
+      "Uç noktaları test etmeyi unutmak.",
+      "\\(x=-1\\)'de işaretleri yanlış birleştirip alternatif seri sanmak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "Write the first three nonzero terms and the general term of the Taylor series for \\(f'\\) about \\(x = 2\\).",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "İlk üç sıfırdan farklı terim: \\(\\frac13-\\frac{x-2}{9}+\\frac{(x-2)^2}{27}\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Genel terim: \\(\\frac{(-1)^{n+1}(x-2)^{n-1}}{3^n}\\)."
+      }
+     ],
+     "ornek_cozum": "<p>Terim terim türev: \\(\\frac{d}{dx}\\frac{(-1)^{n+1}(x-2)^n}{n3^n}=\\frac{(-1)^{n+1}(x-2)^{n-1}}{3^n}\\).</p><p><strong>Cevap:</strong> \\[f'(x)=\\frac13-\\frac{x-2}{9}+\\frac{(x-2)^2}{27}-\\cdots+\\frac{(-1)^{n+1}(x-2)^{n-1}}{3^n}+\\cdots\\]</p>",
+     "sik_hatalar": [
+      "Türevde \\(n\\)'yi sadeleştirmeyi unutmak.",
+      "Genel terimin üssünü \\(n\\) bırakmak (doğrusu \\(n-1\\))."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "Use the second-degree Taylor polynomial for \\(f\\) about \\(x = 2\\) to approximate \\(f(3)\\). Using the alternating series error bound, show that this approximation differs from \\(f(3)\\) by less than \\(\\tfrac{1}{50}\\).",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(P_2(3)=\\frac13-\\frac1{18}=\\frac5{18}\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Hata sınırı: ilk atlanan terimin mutlak değeri \\(\\frac{1}{3\\cdot 27}=\\frac1{81}\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(\\frac1{81}<\\frac1{50}\\) sonucu (terimlerin azalarak 0'a gittiği belirtilerek)."
+      }
+     ],
+     "ornek_cozum": "<p>\\(x=3\\)'te seri \\(\\frac13-\\frac1{18}+\\frac1{81}-\\cdots\\) — alternatif; terimler \\(\\frac{1}{n3^n}\\) azalarak 0'a gider.</p><p>\\(P_2(3)=\\frac13-\\frac1{18}=\\frac5{18}\\approx 0.278\\).</p><p>Hata \\(\\le\\) ilk atlanan terim: \\(\\left|f(3)-\\frac5{18}\\right|\\le\\frac1{81}<\\frac1{50}\\).</p><p><strong>Cevap:</strong> \\(f(3)\\approx\\frac{5}{18}\\); hata \\(<\\frac1{81}<\\frac1{50}\\).</p>",
+     "sik_hatalar": [
+      "Hata sınırı için gereksiz yere Lagrange formülüne gidip türevi yanlış hesaplamak; alternatif seri sınırı yeterli.",
+      "İlk atlanan terim yerine son kullanılan terimi sınır almak."
+     ]
+    }
+   ],
+   "toplam_puan": 9,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-calc-bc-2",
+   "sayfa": "ap-calculus",
+   "ders": "calculus-bc",
+   "tur": "Parametrik / vektör hareket",
+   "baslik": "Particle in the Plane",
+   "sure_dk": 15,
+   "hesapMakinesi": true,
+   "zorluk": "medium",
+   "giris": "<p>A particle moves in the \\(xy\\)-plane so that its velocity vector at time \\(t\\) is \\[\\langle x'(t),\\,y'(t)\\rangle=\\big\\langle \\ln(1+t^2),\\;2\\cos(1.5t)\\big\\rangle\\] for \\(0 \\le t \\le 3\\). At time \\(t = 1\\), the particle is at the point \\((2, -1)\\).</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "Find the speed of the particle at time \\(t = 3\\). Find the acceleration vector of the particle at time \\(t = 3\\).",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Sürat \\(\\sqrt{x'(3)^2+y'(3)^2}\\approx 2.341\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "İvme vektörü ≈ ⟨0.6, 2.933⟩."
+      }
+     ],
+     "ornek_cozum": "<p>\\(x'(3)=\\ln 10\\approx 2.303\\), \\(y'(3)=2\\cos 4.5\\approx -0.421\\). Sürat \\(=\\sqrt{(\\ln 10)^2+(2\\cos 4.5)^2}\\approx 2.341\\).</p><p>\\(x''(t)=\\frac{2t}{1+t^2}\\Rightarrow x''(3)=0.6\\); \\(y''(t)=-3\\sin(1.5t)\\Rightarrow y''(3)\\approx 2.933\\).</p><p><strong>Cevap:</strong> sürat ≈ 2.341; \\(a(3)\\approx\\langle 0.6,\\ 2.933\\rangle\\).</p>",
+     "sik_hatalar": [
+      "Hesap makinesini derece modunda bırakmak (radyan olmalı).",
+      "Sürat yerine \\(x'(3)+y'(3)\\) toplamını yazmak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "Find the \\(y\\)-coordinate of the position of the particle at time \\(t = 3\\).",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(y(3)=-1+\\int_1^3 2\\cos(1.5t)\\,dt\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "y(3) ≈ −3.633."
+      }
+     ],
+     "ornek_cozum": "\\[y(3)=-1+\\int_1^3 2\\cos(1.5t)\\,dt=-1+\\tfrac43(\\sin 4.5-\\sin 1.5)\\approx -3.633\\]<p><strong>Cevap:</strong> ≈ −3.633.</p>",
+     "sik_hatalar": [
+      "Başlangıç anını \\(t=0\\) sanıp \\(\\int_0^3\\) almak.",
+      "Başlangıç değeri −1'i eklememek."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "Find the total distance traveled by the particle over the time interval \\(0 \\le t \\le 3\\).",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Yol integrali \\(\\int_0^3\\sqrt{(x'(t))^2+(y'(t))^2}\\,dt\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "≈ 5.614."
+      }
+     ],
+     "ornek_cozum": "\\[\\int_0^3\\sqrt{\\big(\\ln(1+t^2)\\big)^2+\\big(2\\cos(1.5t)\\big)^2}\\,dt\\approx 5.614\\]<p><strong>Cevap:</strong> ≈ 5.614.</p>",
+     "sik_hatalar": [
+      "Konumlar arası düz çizgi mesafesini (yer değiştirme) hesaplamak.",
+      "Karekök içinde karelerden birini unutmak."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "Find the first time \\(t > 0\\) at which the line tangent to the path of the particle is horizontal. Find the \\(x\\)-coordinate of the particle at that time. Is the particle moving up or down immediately after that time? Give a reason for your answer.",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(y'(t)=0\\) ve \\(x'(t)\\ne 0\\) ⇒ \\(t=\\pi/3\\approx 1.047\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(x(\\pi/3)=2+\\int_1^{\\pi/3}\\ln(1+t^2)\\,dt\\approx 2.034\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Hemen sonrasında \\(y'(t)<0\\) ⇒ aşağı hareket."
+      }
+     ],
+     "ornek_cozum": "<p>Yatay teğet: \\(y'(t)=0,\\ x'(t)\\ne 0\\). \\(2\\cos(1.5t)=0\\Rightarrow t=\\frac{\\pi}{3}\\approx 1.047\\) ve \\(x'(\\pi/3)>0\\).</p>\\[x(\\pi/3)=2+\\int_1^{\\pi/3}\\ln(1+t^2)\\,dt\\approx 2.034\\]<p>\\(\\frac{\\pi}{3}<t<\\pi\\) için \\(1.5t\\in(\\frac{\\pi}{2},\\frac{3\\pi}{2})\\), yani \\(\\cos(1.5t)<0\\Rightarrow y'(t)<0\\).</p><p><strong>Cevap:</strong> \\(t=\\pi/3\\approx 1.047\\), \\(x\\approx 2.034\\); parçacık <em>aşağı</em> hareket ediyor.</p>",
+     "sik_hatalar": [
+      "Yatay teğet için \\(x'(t)=0\\) koşulunu kullanmak.",
+      "\\(x\\) için integrali \\(t=0\\)'dan başlatmak."
+     ]
+    }
+   ],
+   "toplam_puan": 9,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-phys1-1",
+   "sayfa": "ap-physics",
+   "ders": "physics-1",
+   "tur": "Matematiksel işlemler",
+   "baslik": "Block on a Rough Ramp and a Spring",
+   "sure_dk": 22,
+   "hesapMakinesi": true,
+   "zorluk": "medium",
+   "giris": "<p>A block of mass \\(m = 2.0\\ \\text{kg}\\) is released from rest at the top of a ramp of length \\(L = 3.0\\ \\text{m}\\) inclined at \\(\\theta = 30^\\circ\\) above the horizontal. The coefficient of kinetic friction between the block and the ramp is \\(\\mu_k = 0.20\\). At the bottom, the block moves onto a horizontal, frictionless surface and compresses an ideal spring of spring constant \\(k = 400\\ \\text{N/m}\\). Assume the transition from the ramp to the horizontal surface does not change the block's speed. Use \\(g = 9.8\\ \\text{m/s}^2\\).</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Draw (on paper) or describe a free-body diagram showing all forces exerted on the block as it slides down the ramp. Each force should be represented by a distinct arrow starting on, and pointing away from, the block, and labeled.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Yalnızca üç kuvvet var: aşağı doğru yerçekimi (\\(F_g\\) / \\(mg\\)), rampaya dik normal kuvvet (\\(F_N\\)); fazladan kuvvet (ör. \"hareket kuvveti\") yok."
+      },
+      {
+       "puan": 1,
+       "olcut": "Sürtünme kuvveti rampaya paralel ve rampa YUKARI yönde çizilmiş; tüm oklar etiketli."
+      }
+     ],
+     "ornek_cozum": "<p>Blok rampadan aşağı kayarken üzerine üç kuvvet etki eder: dikey aşağı \\(F_g = mg\\), rampa yüzeyine dik \\(F_N\\) ve harekete zıt yönde (rampa boyunca yukarı) kinetik sürtünme \\(f_k\\).</p><p><strong>Model cevap:</strong> \\(F_g\\) aşağı; \\(F_N\\) yüzeye dik, dışa doğru; \\(f_k\\) rampa boyunca yukarı.</p>",
+     "sik_hatalar": [
+      "Rampa boyunca aşağı yönde ayrı bir \"\\(mg\\sin\\theta\\)\" kuvveti çizmek (bu, yerçekiminin bileşenidir; ayrı kuvvet değildir).",
+      "Sürtünmeyi hareket yönünde çizmek."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Derive an expression for the magnitude of the acceleration \\(a\\) of the block as it slides down the ramp, in terms of \\(g\\), \\(\\theta\\), and \\(\\mu_k\\). Begin your derivation by writing Newton's second law in a form that applies to the block.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Rampaya paralel eksende Newton'un 2. yasası doğru kurulmuş: \\(mg\\sin\\theta - f_k = ma\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(F_N = mg\\cos\\theta\\) ve \\(f_k = \\mu_k F_N\\) kullanılarak \\(a = g(\\sin\\theta - \\mu_k\\cos\\theta)\\) sonucuna ulaşılmış.",
+       "ornek_cevap": "\\(a = g(\\sin\\theta - \\mu_k\\cos\\theta)\\)"
+      }
+     ],
+     "ornek_cozum": "<p>Rampaya paralel eksen (aşağı pozitif): \\(\\sum F = mg\\sin\\theta - f_k = ma\\). Dik eksende ivme yok: \\(F_N = mg\\cos\\theta\\), dolayısıyla \\(f_k = \\mu_k mg\\cos\\theta\\).</p>\\[a = g(\\sin\\theta - \\mu_k\\cos\\theta)\\]<p>Kütle sadeleşir; ivme kütleden bağımsızdır.</p>",
+     "sik_hatalar": [
+      "Normal kuvveti \\(mg\\) almak (eğik düzlemde \\(mg\\cos\\theta\\)'dır).",
+      "sin ve cos'u karıştırmak."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>Calculate the speed of the block when it reaches the bottom of the ramp.</p>",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "İvme sayısal olarak doğru: \\(a \\approx 3.2\\ \\text{m/s}^2\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Uygun bir kinematik denklem (\\(v^2 = v_0^2 + 2aL\\)) ya da enerji ilkesi (\\(mgL\\sin\\theta - f_kL = \\tfrac12 mv^2\\)) doğru kurulmuş."
+      },
+      {
+       "puan": 1,
+       "olcut": "Sonuç \\(v \\approx 4.4\\ \\text{m/s}\\) (birimle).",
+       "ornek_cevap": "\\(v \\approx 4.4\\ \\text{m/s}\\)"
+      }
+     ],
+     "ornek_cozum": "<p>\\(a = 9.8(\\sin 30^\\circ - 0.20\\cos 30^\\circ) = 9.8(0.500 - 0.173) \\approx 3.20\\ \\text{m/s}^2\\).</p>\\[v = \\sqrt{2aL} = \\sqrt{2(3.20)(3.0)} \\approx 4.38\\ \\text{m/s}\\]<p><strong>Model cevap:</strong> yaklaşık \\(4.4\\ \\text{m/s}\\).</p>",
+     "sik_hatalar": [
+      "Sürtünmeyi unutup \\(a = g\\sin\\theta = 4.9\\ \\text{m/s}^2\\) kullanmak (\\(v \\approx 5.4\\) m/s çıkar).",
+      "Rampa uzunluğu yerine yüksekliği (1.5 m) kinematik denklemde mesafe olarak kullanmak."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "<p>Calculate the maximum compression of the spring.</p>",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Sürtünmesiz yatay yüzeyde mekanik enerjinin korunduğu belirtilmiş: \\(\\tfrac12 mv^2 = \\tfrac12 kx^2\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "(c)'deki hız doğru yerine konmuş (tutarlı hata kabul edilir)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Sonuç \\(x \\approx 0.31\\ \\text{m}\\).",
+       "ornek_cevap": "\\(x \\approx 0.31\\ \\text{m}\\)"
+      }
+     ],
+     "ornek_cozum": "<p>Yatay yüzeyde sürtünme yok; bloğun kinetik enerjisi tamamen yayın esneklik potansiyel enerjisine dönüşür:</p>\\[\\tfrac12 mv^2 = \\tfrac12 kx^2 \\Rightarrow x = v\\sqrt{\\frac{m}{k}} = 4.38\\sqrt{\\frac{2.0}{400}} \\approx 0.31\\ \\text{m}\\]",
+     "sik_hatalar": [
+      "Yay enerjisini \\(kx^2\\) (½ olmadan) yazmak.",
+      "\\(kx = mg\\) gibi denge koşulunu kullanmak — bu, hareketli bloğun en büyük sıkışması değildir."
+     ]
+    }
+   ],
+   "toplam_puan": 10,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-phys1-2",
+   "sayfa": "ap-physics",
+   "ders": "physics-1",
+   "tur": "Gösterimler arası çeviri",
+   "baslik": "Skater in a Half-Pipe",
+   "sure_dk": 25,
+   "hesapMakinesi": true,
+   "zorluk": "medium",
+   "giris": "<p>A skater of mass \\(M\\) starts from rest at point A on one side of a half-pipe, at height \\(H = 3.0\\ \\text{m}\\) above the lowest point B. The skater passes through B and rises to point C on the other side, at height \\(h_C = 1.2\\ \\text{m}\\) above B, where the skater is still moving. Friction and air resistance are negligible. The system consists of the skater and Earth. Take the gravitational potential energy to be zero at point B. Use \\(g = 9.8\\ \\text{m/s}^2\\).</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Draw (on paper) or describe energy bar charts for the system at points A, B, and C. Each chart should show kinetic energy \\(K\\) and gravitational potential energy \\(U_g\\). Relative bar heights should be consistent across the three charts.</p>",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "A: yalnızca \\(U_g\\) (K = 0)."
+      },
+      {
+       "puan": 1,
+       "olcut": "B: yalnızca \\(K\\) (\\(U_g = 0\\)) ve K çubuğu A'daki \\(U_g\\) çubuğuyla aynı yükseklikte."
+      },
+      {
+       "puan": 1,
+       "olcut": "C: hem K hem \\(U_g\\) var; \\(U_g\\) toplamın \\(1.2/3.0 = 0.4\\)'ü, K ise \\(0.6\\)'sı; her grafikte toplam aynı."
+      }
+     ],
+     "ornek_cozum": "<p>Sistem kapalı ve sürtünme yok, toplam mekanik enerji sabittir. A'da tüm enerji \\(U_g\\) (5 birim diyelim). B'de tümü \\(K\\) (5 birim). C'de \\(U_g = Mgh_C\\), yani toplamın \\(1.2/3.0 = 2/5\\)'i (2 birim), \\(K\\) ise 3 birim.</p><p><strong>Model cevap:</strong> A: \\(U_g = 5,\\ K = 0\\); B: \\(K = 5,\\ U_g = 0\\); C: \\(U_g = 2,\\ K = 3\\).</p>",
+     "sik_hatalar": [
+      "C noktasında K'yı sıfır çizmek (kaykaycı C'de hâlâ hareket ediyor).",
+      "Grafikler arasında toplam enerjiyi farklı yükseklikte göstermek."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>On axes with height \\(h\\) above B on the horizontal axis (from 0 to \\(H\\)) and energy on the vertical axis, sketch (on paper) or describe graphs of the skater–Earth system's kinetic energy \\(K\\) and gravitational potential energy \\(U_g\\) as functions of \\(h\\). Label each graph.</p>",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(U_g\\): orijinden başlayan, artan doğrusal grafik (\\(U_g = Mgh\\))."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(K\\): \\(h = 0\\)'da en büyük değerden başlayıp \\(h = H\\)'de sıfıra inen azalan doğru (\\(K = Mg(H - h)\\))."
+      },
+      {
+       "puan": 1,
+       "olcut": "İki doğru \\(h = H/2\\)'de kesişir ve her \\(h\\) için toplamları sabittir."
+      }
+     ],
+     "ornek_cozum": "<p>\\(U_g = Mgh\\) (doğrusal, artan). Enerji korunumundan \\(K = MgH - Mgh = Mg(H-h)\\) (doğrusal, azalan, eğim \\(-Mg\\)). İki doğrunun eğimleri zıt işaretli, büyüklükleri eşittir; \\(h = 1.5\\ \\text{m}\\)'de kesişirler.</p>",
+     "sik_hatalar": [
+      "K'yı parabol gibi eğri çizmek: K, yüksekliğe göre doğrusaldır (hıza göre kareseldir).",
+      "Yatay ekseni zaman sanmak."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>Derive an expression for the speed \\(v_C\\) of the skater at point C in terms of \\(H\\), \\(h_C\\), and physical constants as appropriate. Then calculate \\(v_C\\).</p>",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Enerji korunumu doğru yazılmış: \\(MgH = Mgh_C + \\tfrac12 Mv_C^2\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(v_C = \\sqrt{2g(H - h_C)}\\) elde edilmiş (kütle sadeleşmiş).",
+       "ornek_cevap": "\\(v_C = \\sqrt{2g(H-h_C)}\\)"
+      },
+      {
+       "puan": 1,
+       "olcut": "Sayısal sonuç \\(v_C \\approx 5.9\\ \\text{m/s}\\).",
+       "ornek_cevap": "\\(\\approx 5.9\\ \\text{m/s}\\)"
+      }
+     ],
+     "ornek_cozum": "\\[MgH = Mgh_C + \\tfrac12 Mv_C^2 \\Rightarrow v_C = \\sqrt{2g(H - h_C)}\\]\\[v_C = \\sqrt{2(9.8)(3.0 - 1.2)} = \\sqrt{35.3} \\approx 5.9\\ \\text{m/s}\\]",
+     "sik_hatalar": [
+      "\\(\\sqrt{2gh_C}\\) kullanmak (yükseklik farkı yerine C'nin yüksekliği).",
+      "Kütleyi sadeleştirmeden bilinmeyen M ile sonuç vermek."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "<p>A second skater of mass \\(2M\\) starts from rest at a height of \\(2H\\). A student claims that the second skater's speed at point B will be twice the first skater's speed at B. Do you agree or disagree with the student? Support your answer by referring to your expression from part (c) and to your energy bar charts from part (a).</p>",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Katılmama: hız \\(\\sqrt{2}\\) katına çıkar, 2 katına değil."
+      },
+      {
+       "puan": 1,
+       "olcut": "(c)'deki ifadeye dayanılmış: \\(v_B = \\sqrt{2gH}\\) ⇒ \\(H\\) iki katına çıkınca \\(v\\) \\(\\sqrt2\\) katı; kütle ifadede yok."
+      },
+      {
+       "puan": 1,
+       "olcut": "Bar grafiklerle tutarlılık: başlangıç \\(U_g\\) (ve dolayısıyla B'deki K) 4 katına çıkar (kütle 2×, yükseklik 2×), ama kütle de 2 kat olduğundan \\(v^2\\) yalnızca 2 kat artar."
+      }
+     ],
+     "ornek_cozum": "<p>Öğrenciye katılmıyoruz. (c)'deki ifadeden \\(v_B = \\sqrt{2gH}\\); kütle yoktur. Yükseklik \\(2H\\) olunca \\(v_B' = \\sqrt{2g(2H)} = \\sqrt{2}\\,v_B \\approx 1.41\\,v_B\\).</p><p>Bar grafiklerle: ikinci sistemde A'daki \\(U_g = (2M)g(2H)\\) dört kat büyüktür, B'deki K da 4 kat olur. Ancak \\(K = \\tfrac12 (2M)v^2\\) olduğundan \\(v^2\\) yalnızca 2 kat artar ⇒ \\(v\\) \\(\\sqrt2\\) kat.</p>",
+     "sik_hatalar": [
+      "Enerji iki katına çıktı diye hızın da iki katına çıktığını söylemek (hız enerjinin karekökü ile orantılı).",
+      "Kütle iki katına çıktığı için hızın değiştiğini savunmak."
+     ]
+    }
+   ],
+   "toplam_puan": 12,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-phys1-3",
+   "sayfa": "ap-physics",
+   "ders": "physics-1",
+   "tur": "Deney tasarımı ve analiz",
+   "baslik": "Measuring a Spring Constant from Oscillations",
+   "sure_dk": 25,
+   "hesapMakinesi": true,
+   "zorluk": "medium",
+   "giris": "<p>Students want to determine the spring constant \\(k\\) of a spring by using oscillations. They hang the spring vertically from a rod and attach different masses \\(m\\) to its lower end. For each mass, they displace the mass slightly downward, release it, and use a stopwatch to measure the time for 10 complete oscillations. Their data are shown below.</p><table class=\"frq-tablo\"><thead><tr><th>Mass \\(m\\) (kg)</th><th>Time for 10 oscillations (s)</th></tr></thead><tbody><tr><td>0.10</td><td>4.17</td></tr><tr><td>0.20</td><td>5.76</td></tr><tr><td>0.30</td><td>7.00</td></tr><tr><td>0.40</td><td>8.05</td></tr><tr><td>0.50</td><td>8.97</td></tr></tbody></table><p>The period of an ideal spring–mass oscillator is \\(T = 2\\pi\\sqrt{m/k}\\).</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Explain why the students timed 10 oscillations instead of a single oscillation, and describe one additional step they could take to reduce uncertainty in their measured periods.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "10 salınım ölçmek, insan tepki süresinden kaynaklı sabit belirsizliği 10 periyoda yayar, böylece tek periyottaki göreli belirsizlik ~10 kat azalır."
+      },
+      {
+       "puan": 1,
+       "olcut": "Geçerli ek adım: her kütle için ölçümü birkaç kez tekrarlayıp ortalamak; denge noktasından geçişte saymaya başlamak; küçük genlik kullanmak vb."
+      }
+     ],
+     "ornek_cozum": "<p>Kronometre ile tek periyodu (~0.4 s) ölçmek, ~0.2 s'lik tepki süresi yüzünden çok büyük göreli hata verir. 10 salınım süresi ölçülüp 10'a bölününce bu hata periyot başına 10'a bölünür.</p><p><strong>Ek adım:</strong> Her kütle için 3 deneme yapıp ortalama almak ve zamanlamaya kütle denge noktasından geçerken başlamak.</p>",
+     "sik_hatalar": [
+      "\"Daha doğru olur\" deyip nedenini (tepki süresi / göreli belirsizlik) açıklamamak.",
+      "Ek adım olarak ölçülen değişkeni değiştirmeyen alakasız şeyler önermek."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Indicate what quantities could be graphed to yield a straight line whose slope could be used to determine \\(k\\). Express the slope in terms of \\(k\\).</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Dikey eksende \\(T^2\\), yatay eksende \\(m\\) (ya da eşdeğeri)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Eğim \\(= 4\\pi^2/k\\) (seçilen eksenlerle tutarlı).",
+       "ornek_cevap": "eğim \\(= 4\\pi^2/k\\)"
+      }
+     ],
+     "ornek_cozum": "<p>\\(T = 2\\pi\\sqrt{m/k}\\) ⇒ \\(T^2 = \\dfrac{4\\pi^2}{k}\\,m\\). Dolayısıyla \\(T^2\\)–\\(m\\) grafiği doğrusaldır ve eğimi \\(4\\pi^2/k\\)'dir.</p>",
+     "sik_hatalar": [
+      "\\(T\\)–\\(m\\) grafiği çizmek (doğrusal değil, karekök eğrisi).",
+      "Eğimi \\(k/4\\pi^2\\) olarak ters yazmak."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>Using the data, calculate the values needed for your graph in part (b), plot them (on paper), draw a best-fit line, and use the slope of the line to calculate \\(k\\).</p>",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Periyotlar (süre ÷ 10) ve \\(T^2\\) değerleri doğru: yaklaşık 0.174, 0.332, 0.490, 0.648, 0.805 s²."
+      },
+      {
+       "puan": 1,
+       "olcut": "Eğim en uygun doğrudan (veri noktalarından değil, doğru üzerindeki noktalardan) hesaplanmış: \\(\\approx 1.58\\ \\text{s}^2/\\text{kg}\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(k = 4\\pi^2/\\text{eğim} \\approx 25\\ \\text{N/m}\\) (23–27 N/m kabul).",
+       "ornek_cevap": "\\(k \\approx 25\\ \\text{N/m}\\)"
+      }
+     ],
+     "ornek_cozum": "<p>\\(T\\) = 0.417, 0.576, 0.700, 0.805, 0.897 s ⇒ \\(T^2\\) = 0.174, 0.332, 0.490, 0.648, 0.805 s².</p><p>En uygun doğrunun eğimi \\(\\approx \\dfrac{0.805 - 0.174}{0.50 - 0.10} \\approx 1.58\\ \\text{s}^2/\\text{kg}\\).</p>\\[k = \\frac{4\\pi^2}{1.58} \\approx 25\\ \\text{N/m}\\]",
+     "sik_hatalar": [
+      "10 salınım süresini periyot sanıp 10'a bölmemek (k 100 kat küçük çıkar).",
+      "Eğimi tek bir veri noktasından (\\(T^2/m\\)) hesaplamak."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "<p>The best-fit line in part (c) does not pass exactly through the origin; it has a small positive vertical intercept. (i) State the physical meaning of the slope. (ii) Suggest a physical reason for the positive intercept, and explain whether it affects the value of \\(k\\) determined from the slope.</p>",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "(i) Eğim, eklenen birim kütle başına \\(T^2\\)'deki artıştır ve \\(4\\pi^2/k\\)'ye eşittir — yay ne kadar sertse eğim o kadar küçük."
+      },
+      {
+       "puan": 1,
+       "olcut": "(ii) Pozitif kesişim için makul fiziksel neden: yayın kendi kütlesi de salınır (etkin kütle \\(m + m_{\\text{yay}}/3\\))."
+      },
+      {
+       "puan": 1,
+       "olcut": "Bu sabit ek kütle yalnızca kesişimi kaydırır; eğimi, dolayısıyla \\(k\\)'yi etkilemez — eğim kullanmanın avantajı budur."
+      }
+     ],
+     "ornek_cozum": "<p>(i) Eğim, kütle her 1 kg arttığında \\(T^2\\)'nin kaç s² arttığını gösterir; \\(4\\pi^2/k\\)'ye eşittir.</p><p>(ii) Yayın kendi kütlesi de hareket eder; gerçek salınan kütle \\(m + m_e\\) olur: \\(T^2 = \\frac{4\\pi^2}{k}m + \\frac{4\\pi^2}{k}m_e\\). Ek terim sabittir; doğruyu yukarı kaydırır ama eğimi değiştirmez. Bu nedenle eğimden bulunan \\(k\\) güvenilirdir.</p>",
+     "sik_hatalar": [
+      "Kesişimi \"ölçüm hatası\" diye geçiştirip fiziksel nedeni vermemek.",
+      "Kesişim nedeniyle \\(k\\)'nin yanlış çıktığını iddia etmek."
+     ]
+    }
+   ],
+   "toplam_puan": 10,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-phys1-4",
+   "sayfa": "ap-physics",
+   "ders": "physics-1",
+   "tur": "Nitel/nicel çeviri",
+   "baslik": "Cart Pulled by a Hanging Block",
+   "sure_dk": 20,
+   "hesapMakinesi": true,
+   "zorluk": "medium",
+   "giris": "<p>Block A of mass \\(M\\) rests on a horizontal, frictionless table. It is connected by a light string that passes over an ideal pulley at the edge of the table to block B of mass \\(m\\), which hangs vertically. The blocks are released from rest.</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Suppose the mass \\(M\\) of block A is increased while the mass \\(m\\) of block B stays the same. Without writing or manipulating equations, explain whether the magnitude of the acceleration of the blocks increases, decreases, or stays the same.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Doğru iddia: ivme AZALIR."
+      },
+      {
+       "puan": 1,
+       "olcut": "Gerekçe: sistemi hızlandıran net dış kuvvet (B'nin ağırlığı) değişmez, ama hızlandırılması gereken toplam kütle artar."
+      }
+     ],
+     "ornek_cozum": "<p>İvme azalır. Sistemi (A + B) harekete geçiren tek dengelenmemiş kuvvet B'ye etki eden yerçekimidir ve bu değişmez. A'nın kütlesi artınca aynı kuvvet daha büyük toplam kütleyi hızlandırmak zorundadır, bu yüzden ivme küçülür.</p>",
+     "sik_hatalar": [
+      "Ip gerilmesini sisteme etki eden dış kuvvet saymak (iç kuvvettir).",
+      "Denklem kullanarak cevap vermek — bu kısım nitel gerekçe ister."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Derive an expression for the magnitude of the acceleration \\(a\\) of the blocks in terms of \\(M\\), \\(m\\), and physical constants as appropriate. Begin your derivation by writing Newton's second law for each block or for the system.</p>",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Her blok için doğru denklemler: A: \\(F_T = Ma\\); B: \\(mg - F_T = ma\\) (ya da sistem için \\(mg = (M+m)a\\))."
+      },
+      {
+       "puan": 1,
+       "olcut": "Gerilme yok edilerek denklemler doğru birleştirilmiş."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(a = \\dfrac{mg}{M+m}\\).",
+       "ornek_cevap": "\\(a = \\dfrac{mg}{M+m}\\)"
+      }
+     ],
+     "ornek_cozum": "<p>A: \\(F_T = Ma\\). B (aşağı pozitif): \\(mg - F_T = ma\\). Toplarsak:</p>\\[mg = (M+m)a \\Rightarrow a = \\frac{mg}{M+m}\\]",
+     "sik_hatalar": [
+      "B için gerilmeyi \\(mg\\)'ye eşit almak (B ivmeli olduğundan \\(F_T < mg\\)).",
+      "Paydada yalnızca \\(M\\) kullanmak."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>(i) Explain how your expression from part (b) is consistent with your reasoning in part (a). (ii) Explain how the expression behaves in the limiting case where \\(M\\) becomes very small compared with \\(m\\), and whether that behavior is physically reasonable.</p>",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "(i) \\(M\\) paydada; \\(M\\) artınca payda büyür, pay (\\(mg\\)) sabit ⇒ \\(a\\) azalır — (a) ile tutarlı."
+      },
+      {
+       "puan": 1,
+       "olcut": "(ii) \\(M \\to 0\\) iken \\(a \\to g\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Bu fiziksel olarak makul: kütlesiz A neredeyse hiç direnç göstermez, B serbest düşmedeki gibi \\(g\\) ile hızlanır; ivme \\(g\\)'yi asla aşamaz."
+      }
+     ],
+     "ornek_cozum": "<p>(i) \\(a = mg/(M+m)\\): pay sabit, \\(M\\) arttıkça payda artar ⇒ \\(a\\) azalır; (a)'daki \"aynı kuvvet, daha çok kütle\" akıl yürütmesinin matematiksel karşılığıdır.</p><p>(ii) \\(M \\ll m\\) ise \\(a \\approx mg/m = g\\). A neredeyse kütlesiz olduğundan ip B'yi tutmaz; B serbest düşer. Bu makuldür; çünkü ivme hiçbir zaman \\(g\\)'den büyük olamaz.</p>",
+     "sik_hatalar": [
+      "Sınır durumunda \\(a \\to 0\\) ya da \\(a \\to \\infty\\) demek.",
+      "Tutarlılığı göstermeden yalnızca \"tutarlı\" yazmak."
+     ]
+    }
+   ],
+   "toplam_puan": 8,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-phys1-5",
+   "sayfa": "ap-physics",
+   "ders": "physics-1",
+   "tur": "Matematiksel işlemler (dönme)",
+   "baslik": "Clay Dropped on a Spinning Disk",
+   "sure_dk": 22,
+   "hesapMakinesi": true,
+   "zorluk": "hard",
+   "giris": "<p>A uniform solid disk of mass \\(M = 2.0\\ \\text{kg}\\) and radius \\(R = 0.30\\ \\text{m}\\) rotates freely in a horizontal plane about a frictionless vertical axle through its center with angular speed \\(\\omega_0 = 4.0\\ \\text{rad/s}\\). A small lump of clay of mass \\(m = 0.50\\ \\text{kg}\\) is dropped from rest from just above the disk and sticks to the disk at its rim. The rotational inertia of a uniform disk about its center is \\(\\tfrac12 MR^2\\). Treat the clay as a point object.</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Identify a quantity of the disk–clay system that is conserved during the collision, and justify your answer.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Eksene göre açısal momentum korunur."
+      },
+      {
+       "puan": 1,
+       "olcut": "Gerekçe: eksene göre net dış tork yok (aks sürtünmesiz; yerçekimi ve normal kuvvet dikey ve eksene paralel, tork üretmez). Kinetik enerji korunmaz (esnek olmayan çarpışma)."
+      }
+     ],
+     "ornek_cozum": "<p>Disk–kil sisteminin dönme eksenine göre açısal momentumu korunur; çünkü aks sürtünmesizdir ve dikey kuvvetler eksene göre tork oluşturmaz. Kil yapıştığı için çarpışma esnek değildir; dönme kinetik enerjisi korunmaz.</p>",
+     "sik_hatalar": [
+      "Kinetik enerjinin korunduğunu söylemek.",
+      "Doğrusal momentumu korunan nicelik olarak göstermek (aks dış kuvvet uygular)."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Calculate the angular speed \\(\\omega_f\\) of the disk–clay system after the clay sticks.</p>",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(I_{\\text{disk}} = 0.090\\ \\text{kg·m}^2\\) ve \\(I_{\\text{kil}} = mR^2 = 0.045\\ \\text{kg·m}^2\\) doğru."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(I_{\\text{disk}}\\,\\omega_0 = (I_{\\text{disk}} + mR^2)\\,\\omega_f\\) kurulmuş (kilin ilk açısal momentumu sıfır)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(\\omega_f \\approx 2.7\\ \\text{rad/s}\\).",
+       "ornek_cevap": "\\(\\omega_f \\approx 2.67\\ \\text{rad/s}\\)"
+      }
+     ],
+     "ornek_cozum": "<p>\\(I_d = \\tfrac12(2.0)(0.30)^2 = 0.090\\ \\text{kg·m}^2\\), \\(I_k = (0.50)(0.30)^2 = 0.045\\ \\text{kg·m}^2\\).</p>\\[\\omega_f = \\frac{I_d\\,\\omega_0}{I_d + I_k} = \\frac{0.090(4.0)}{0.135} \\approx 2.67\\ \\text{rad/s}\\]",
+     "sik_hatalar": [
+      "Kili de \\(\\tfrac12 mR^2\\) ile hesaplamak (noktasal kütle: \\(mR^2\\)).",
+      "Kilin dikey düşüşünden gelen momentumu açısal momentuma eklemek."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>Calculate the change in the rotational kinetic energy of the system as a result of the collision.</p>",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(K_i = \\tfrac12 I_d\\omega_0^2 = 0.72\\ \\text{J}\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(K_f = \\tfrac12 (I_d+I_k)\\omega_f^2 \\approx 0.48\\ \\text{J}\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(\\Delta K \\approx -0.24\\ \\text{J}\\) (işaretle ya da \"0.24 J azalır\").",
+       "ornek_cevap": "\\(\\Delta K \\approx -0.24\\ \\text{J}\\)"
+      }
+     ],
+     "ornek_cozum": "<p>\\(K_i = \\tfrac12(0.090)(4.0)^2 = 0.72\\ \\text{J}\\); \\(K_f = \\tfrac12(0.135)(2.67)^2 \\approx 0.48\\ \\text{J}\\).</p><p>\\(\\Delta K = 0.48 - 0.72 = -0.24\\ \\text{J}\\): enerjinin üçte biri ısı/deformasyona gider.</p>",
+     "sik_hatalar": [
+      "İşareti vermemek ya da artış demek.",
+      "\\(\\omega\\) yerine devir/saniye kullanmak."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "<p>The experiment is repeated with the disk again at \\(\\omega_0\\), but the clay now sticks at a distance \\(R/2\\) from the axle. Will the final angular speed be greater than, less than, or equal to the value from part (b)? Justify your answer.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Daha BÜYÜK."
+      },
+      {
+       "puan": 1,
+       "olcut": "Gerekçe: kilin eylemsizlik momenti \\(m(R/2)^2\\), dörtte birine düşer; açısal momentum aynı olduğundan daha küçük toplam \\(I\\) daha büyük \\(\\omega_f\\) verir (\\(\\approx 3.6\\) rad/s)."
+      }
+     ],
+     "ornek_cozum": "<p>Açısal momentum yine \\(I_d\\omega_0\\)'dır. Kil \\(R/2\\)'de: \\(I_k' = m(R/2)^2 = 0.01125\\ \\text{kg·m}^2\\); toplam \\(I = 0.101\\ \\text{kg·m}^2\\) daha küçüktür. \\(\\omega_f' = 0.36/0.101 \\approx 3.6\\ \\text{rad/s} > 2.67\\ \\text{rad/s}\\).</p>",
+     "sik_hatalar": [
+      "Kütle aynı olduğu için sonucun değişmeyeceğini söylemek.",
+      "Gerekçe vermeden yalnızca \"büyük\" yazmak."
+     ]
+    }
+   ],
+   "toplam_puan": 10,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-chem-1",
+   "sayfa": "ap-chemistry",
+   "ders": "chemistry",
+   "tur": "Uzun soru (stokiyometri + termokimya)",
+   "baslik": "Magnesium and Hydrochloric Acid in a Calorimeter",
+   "sure_dk": 23,
+   "hesapMakinesi": true,
+   "zorluk": "medium",
+   "giris": "<p>A student adds a strip of magnesium metal of mass 0.122 g to 50.0 mL of 1.00 <i>M</i> HCl(<i>aq</i>) in an insulated coffee-cup calorimeter. The reaction is represented by the equation below.</p><p style=\"text-align:center\">Mg(<i>s</i>) + 2 HCl(<i>aq</i>) → MgCl<sub>2</sub>(<i>aq</i>) + H<sub>2</sub>(<i>g</i>)</p><p>The temperature of the solution rises from 21.5 °C to 32.6 °C. Assume the solution has a mass of 50.0 g and a specific heat capacity of 4.18 J/(g·°C), and that the calorimeter absorbs negligible heat. (Molar mass of Mg = 24.31 g/mol; \\(R = 0.08206\\ \\text{L·atm/(mol·K)}\\).)</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Identify the limiting reactant. Justify your answer with calculations.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Mol hesapları doğru: Mg \\(\\approx 5.02\\times10^{-3}\\) mol; HCl 0.0500 mol."
+      },
+      {
+       "puan": 1,
+       "olcut": "Mg sınırlayıcıdır; Mg için gereken HCl yalnızca \\(1.00\\times10^{-2}\\) mol (stokiyometri 1:2 kullanılmış)."
+      }
+     ],
+     "ornek_cozum": "<p>\\(n_{\\text{Mg}} = 0.122/24.31 = 5.02\\times10^{-3}\\) mol. \\(n_{\\text{HCl}} = 0.0500\\ \\text{L}\\times1.00\\ M = 0.0500\\) mol.</p><p>Mg'nin tamamı için \\(2\\times5.02\\times10^{-3} = 1.00\\times10^{-2}\\) mol HCl gerekir; 0.0500 mol vardır ⇒ HCl fazlada, <strong>Mg sınırlayıcı</strong>.</p>",
+     "sik_hatalar": [
+      "1:2 oranını unutup yalnızca mol sayılarını karşılaştırmak.",
+      "Kütleleri doğrudan karşılaştırmak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Calculate the magnitude of the heat, in J, absorbed by the solution.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(q = mc\\Delta T = (50.0)(4.18)(11.1) \\approx 2.32\\times10^{3}\\ \\text{J}\\).",
+       "ornek_cevap": "\\(\\approx 2320\\ \\text{J}\\)"
+      }
+     ],
+     "ornek_cozum": "\\[q = mc\\Delta T = (50.0\\ \\text{g})(4.18\\ \\tfrac{\\text{J}}{\\text{g·°C}})(32.6 - 21.5\\ \\text{°C}) \\approx 2.32\\times10^3\\ \\text{J}\\]",
+     "sik_hatalar": [
+      "Kütle olarak Mg kütlesini (0.122 g) kullanmak.",
+      "\\(\\Delta T\\) yerine son sıcaklığı kullanmak."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>Calculate the value of \\(\\Delta H_{\\text{rxn}}\\), in kJ/mol of Mg, for the reaction. Include the correct sign.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "(b)'deki ısı Mg mol sayısına bölünmüş (sınırlayıcı reaktif)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(\\Delta H \\approx -462\\ \\text{kJ/mol}\\) ve negatif işaret (ekzotermik).",
+       "ornek_cevap": "\\(-462\\ \\text{kJ/mol}\\)"
+      }
+     ],
+     "ornek_cozum": "<p>Çözelti ısı aldıysa tepkime ısı vermiştir: \\(q_{\\text{rxn}} = -2.32\\ \\text{kJ}\\).</p>\\[\\Delta H = \\frac{-2.32\\ \\text{kJ}}{5.02\\times10^{-3}\\ \\text{mol}} \\approx -462\\ \\text{kJ/mol}\\]",
+     "sik_hatalar": [
+      "İşareti pozitif yazmak (sıcaklık arttı ⇒ ekzotermik).",
+      "HCl mol sayısına bölmek."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "<p>Calculate the volume, in L, of H<sub>2</sub>(<i>g</i>) produced, measured at 298 K and 1.00 atm.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(n_{\\text{H}_2} = n_{\\text{Mg}} = 5.02\\times10^{-3}\\) mol."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(V = nRT/P \\approx 0.123\\ \\text{L}\\).",
+       "ornek_cevap": "\\(\\approx 0.123\\ \\text{L}\\)"
+      }
+     ],
+     "ornek_cozum": "<p>1 mol Mg → 1 mol H<sub>2</sub>.</p>\\[V = \\frac{nRT}{P} = \\frac{(5.02\\times10^{-3})(0.08206)(298)}{1.00} \\approx 0.123\\ \\text{L}\\]",
+     "sik_hatalar": [
+      "Sıcaklığı °C cinsinden (25) kullanmak.",
+      "HCl mol sayısından H<sub>2</sub> hesaplamak."
+     ]
+    },
+    {
+     "harf": "e",
+     "soru": "<p>The calorimeter was not perfectly insulated, and some heat was lost to the surroundings. Would the magnitude of the calculated \\(\\Delta H_{\\text{rxn}}\\) be greater than, less than, or equal to the true value? Justify your answer.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Daha KÜÇÜK; çünkü kaybolan ısı yüzünden ölçülen \\(\\Delta T\\), dolayısıyla hesaplanan \\(q\\) gerçekten küçüktür."
+      }
+     ],
+     "ornek_cozum": "<p>Isının bir kısmı çevreye kaçtığından çözelti daha az ısınır; ölçülen \\(\\Delta T\\) ve \\(q\\) küçük çıkar. Mol sayısı doğru olduğundan hesaplanan \\(|\\Delta H|\\) gerçek değerden küçük olur.</p>",
+     "sik_hatalar": [
+      "\"Daha büyük\" demek ya da gerekçede \\(\\Delta T\\)/\\(q\\)'ya değinmemek."
+     ]
+    },
+    {
+     "harf": "f",
+     "soru": "<p>Calculate the pH of the solution after the reaction is complete. Assume the volume remains 50.0 mL.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Kalan HCl: \\(0.0500 - 0.0100 = 0.0400\\) mol; \\([\\text{H}^+] \\approx 0.80\\ M\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "pH \\(\\approx 0.10\\).",
+       "ornek_cevap": "pH \\(\\approx 0.10\\)"
+      }
+     ],
+     "ornek_cozum": "<p>Harcanan HCl \\(1.00\\times10^{-2}\\) mol; kalan \\(0.0400\\) mol (güçlü asit, tam iyonlaşır).</p>\\[[\\text{H}^+] = \\frac{0.0400}{0.0500} = 0.800\\ M \\Rightarrow \\text{pH} = -\\log(0.800) \\approx 0.10\\]",
+     "sik_hatalar": [
+      "Harcanan HCl'yi 1:1 oranla (0.00502 mol) çıkarmak.",
+      "Başlangıç pH'ını (0.00) vermek."
+     ]
+    }
+   ],
+   "toplam_puan": 10,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-chem-2",
+   "sayfa": "ap-chemistry",
+   "ders": "chemistry",
+   "tur": "Uzun soru (kinetik + denge)",
+   "baslik": "Formation and Decomposition of Nitrosyl Chloride",
+   "sure_dk": 23,
+   "hesapMakinesi": true,
+   "zorluk": "hard",
+   "giris": "<p>Nitrosyl chloride, NOCl, forms according to the equation below.</p><p style=\"text-align:center\">2 NO(<i>g</i>) + Cl<sub>2</sub>(<i>g</i>) → 2 NOCl(<i>g</i>)</p><p>The initial rate of formation of NOCl was measured at a constant temperature in three trials.</p><table class=\"frq-tablo\"><thead><tr><th>Trial</th><th>[NO]<sub>0</sub> (<i>M</i>)</th><th>[Cl<sub>2</sub>]<sub>0</sub> (<i>M</i>)</th><th>Initial rate (<i>M</i>/s)</th></tr></thead><tbody><tr><td>1</td><td>0.010</td><td>0.010</td><td>\\(1.2\\times10^{-4}\\)</td></tr><tr><td>2</td><td>0.020</td><td>0.010</td><td>\\(4.8\\times10^{-4}\\)</td></tr><tr><td>3</td><td>0.010</td><td>0.020</td><td>\\(2.4\\times10^{-4}\\)</td></tr></tbody></table>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Determine the order of the reaction with respect to NO. Justify your answer using data from the table.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "İkinci derece."
+      },
+      {
+       "puan": 1,
+       "olcut": "Gerekçe: 1. ve 2. deneyde [Cl<sub>2</sub>] sabitken [NO] 2 katına çıkınca hız 4 katına çıkıyor (\\(2^n = 4\\))."
+      }
+     ],
+     "ornek_cozum": "<p>Deney 1 → 2: [Cl<sub>2</sub>] sabit, [NO] ×2, hız \\(4.8/1.2 = 4\\) kat ⇒ \\(2^n = 4\\), \\(n = 2\\).</p>",
+     "sik_hatalar": [
+      "Hızın 4 kat arttığını görüp derecenin 4 olduğunu söylemek.",
+      "[Cl<sub>2</sub>]'nin de değiştiği deneyleri karşılaştırmak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Determine the order of the reaction with respect to Cl<sub>2</sub>.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Birinci derece (1. ve 3. deney: [Cl<sub>2</sub>] ×2 → hız ×2)."
+      }
+     ],
+     "ornek_cozum": "<p>Deney 1 → 3: [NO] sabit, [Cl<sub>2</sub>] ×2, hız ×2 ⇒ birinci derece.</p>",
+     "sik_hatalar": [
+      "Katsayıdan (1) yola çıkıp veri kullanmadan cevap vermek — bu sefer doğru çıksa da gerekçe veriye dayanmalı."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>Write the rate law for the reaction, and calculate the value of the rate constant \\(k\\). Include units.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Hız \\(= k[\\text{NO}]^2[\\text{Cl}_2]\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(k = 1.2\\times10^{2}\\ M^{-2}\\,\\text{s}^{-1}\\) (birimle).",
+       "ornek_cevap": "\\(120\\ M^{-2}\\text{s}^{-1}\\)"
+      }
+     ],
+     "ornek_cozum": "\\[k = \\frac{1.2\\times10^{-4}}{(0.010)^2(0.010)} = 1.2\\times10^{2}\\ M^{-2}\\,\\text{s}^{-1}\\]",
+     "sik_hatalar": [
+      "Birimi \\(\\text{s}^{-1}\\) yazmak (üçüncü derece toplam için \\(M^{-2}\\text{s}^{-1}\\)).",
+      "Üsleri katsayılardan almak ama farklı deney seçip yuvarlama hatası yapmak."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "<p>A proposed mechanism is shown below.</p><p style=\"text-align:center\">Step 1: NO + Cl<sub>2</sub> ⇌ NOCl<sub>2</sub> (fast equilibrium)<br>Step 2: NOCl<sub>2</sub> + NO → 2 NOCl (slow)</p><p>Is the mechanism consistent with the rate law in part (c)? Justify your answer.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Evet, tutarlı; adımların toplamı genel tepkimeyi verir."
+      },
+      {
+       "puan": 1,
+       "olcut": "Yavaş adım hızı \\(k_2[\\text{NOCl}_2][\\text{NO}]\\); hızlı denge \\([\\text{NOCl}_2] = K[\\text{NO}][\\text{Cl}_2]\\) ⇒ hız \\(= k_2K[\\text{NO}]^2[\\text{Cl}_2]\\)."
+      }
+     ],
+     "ornek_cozum": "<p>Adımlar toplanınca NOCl<sub>2</sub> sadeleşir: 2 NO + Cl<sub>2</sub> → 2 NOCl. Yavaş adım: hız \\(= k_2[\\text{NOCl}_2][\\text{NO}]\\). Ara ürün hızlı dengeden: \\([\\text{NOCl}_2] = K_1[\\text{NO}][\\text{Cl}_2]\\). Yerine konunca hız \\(= k_2K_1[\\text{NO}]^2[\\text{Cl}_2]\\) — deneysel hız yasasıyla aynı.</p>",
+     "sik_hatalar": [
+      "Hız yasasında ara ürünü (NOCl<sub>2</sub>) bırakmak.",
+      "Yalnızca adımların toplandığını kontrol edip hız yasasını türetmemek."
+     ]
+    },
+    {
+     "harf": "e",
+     "soru": "<p>At a much higher temperature, NOCl decomposes: 2 NOCl(<i>g</i>) ⇌ 2 NO(<i>g</i>) + Cl<sub>2</sub>(<i>g</i>), \\(K_c = 1.6\\times10^{-5}\\). A sample of pure NOCl with an initial concentration of 0.50 <i>M</i> is placed in a sealed rigid container at this temperature. (i) Write the expression for \\(K_c\\). (ii) Calculate [Cl<sub>2</sub>] at equilibrium.</p>",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(K_c = \\dfrac{[\\text{NO}]^2[\\text{Cl}_2]}{[\\text{NOCl}]^2}\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "ICE tablosu doğru: \\([\\text{Cl}_2] = x\\), \\([\\text{NO}] = 2x\\), \\([\\text{NOCl}] = 0.50 - 2x\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\([\\text{Cl}_2] \\approx 0.010\\ M\\) (yaklaşıklıkla; tam çözüm 0.0097 M de kabul).",
+       "ornek_cevap": "\\(\\approx 0.010\\ M\\)"
+      }
+     ],
+     "ornek_cozum": "<p>(i) \\(K_c = [\\text{NO}]^2[\\text{Cl}_2]/[\\text{NOCl}]^2\\).</p><p>(ii) \\(K_c\\) küçük ⇒ \\(0.50 - 2x \\approx 0.50\\):</p>\\[\\frac{(2x)^2 x}{(0.50)^2} = 1.6\\times10^{-5} \\Rightarrow 16x^3 = 1.6\\times10^{-5} \\Rightarrow x = 0.010\\ M\\]<p>Kontrol: \\(2x/0.50 = 4\\%\\) (< %5), yaklaşıklık geçerli. Tam çözüm \\(x \\approx 0.0097\\ M\\).</p>",
+     "sik_hatalar": [
+      "NO'yu \\(x\\) almak (stokiyometri 2:1).",
+      "\\((2x)^2\\) yerine \\(2x^2\\) yazmak."
+     ]
+    }
+   ],
+   "toplam_puan": 10,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-chem-3",
+   "sayfa": "ap-chemistry",
+   "ders": "chemistry",
+   "tur": "Uzun soru (asit-baz titrasyonu)",
+   "baslik": "Titration of Acetic Acid",
+   "sure_dk": 23,
+   "hesapMakinesi": true,
+   "zorluk": "medium",
+   "giris": "<p>A 25.00 mL sample of 0.100 <i>M</i> acetic acid, HC<sub>2</sub>H<sub>3</sub>O<sub>2</sub>(<i>aq</i>), is titrated with 0.125 <i>M</i> NaOH(<i>aq</i>) at 25 °C. For acetic acid, \\(K_a = 1.8\\times10^{-5}\\).</p><p>Three acid–base indicators are available.</p><table class=\"frq-tablo\"><thead><tr><th>Indicator</th><th>pH range of color change</th></tr></thead><tbody><tr><td>Methyl orange</td><td>3.1 – 4.4</td></tr><tr><td>Bromothymol blue</td><td>6.0 – 7.6</td></tr><tr><td>Phenolphthalein</td><td>8.2 – 10.0</td></tr></tbody></table>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Write the balanced net ionic equation for the reaction that occurs during the titration.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "HC<sub>2</sub>H<sub>3</sub>O<sub>2</sub> + OH<sup>−</sup> → C<sub>2</sub>H<sub>3</sub>O<sub>2</sub><sup>−</sup> + H<sub>2</sub>O (zayıf asit molekül hâlinde yazılmış; Na<sup>+</sup> yok)."
+      }
+     ],
+     "ornek_cozum": "<p>Zayıf asit büyük ölçüde iyonlaşmadığı için molekül olarak yazılır; Na<sup>+</sup> seyirci iyondur.</p><p><strong>Model cevap:</strong> HC<sub>2</sub>H<sub>3</sub>O<sub>2</sub>(<i>aq</i>) + OH<sup>−</sup>(<i>aq</i>) → C<sub>2</sub>H<sub>3</sub>O<sub>2</sub><sup>−</sup>(<i>aq</i>) + H<sub>2</sub>O(<i>l</i>)</p>",
+     "sik_hatalar": [
+      "H<sup>+</sup> + OH<sup>−</sup> → H<sub>2</sub>O yazmak (güçlü asit varsayımı).",
+      "Na<sup>+</sup>'yı denklemde bırakmak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Calculate the pH of the acetic acid solution before any NaOH is added.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(K_a = x^2/(0.100 - x) \\approx x^2/0.100\\) kurulmuş."
+      },
+      {
+       "puan": 1,
+       "olcut": "pH \\(\\approx 2.87\\).",
+       "ornek_cevap": "2.87"
+      }
+     ],
+     "ornek_cozum": "\\[x = [\\text{H}^+] = \\sqrt{(1.8\\times10^{-5})(0.100)} = 1.34\\times10^{-3}\\ M \\Rightarrow \\text{pH} = 2.87\\]",
+     "sik_hatalar": [
+      "Asidi güçlü sayıp pH = 1.00 bulmak.",
+      "\\(K_a\\)'yı doğrudan [H<sup>+</sup>] olarak almak."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>Calculate the volume of NaOH(<i>aq</i>), in mL, required to reach the equivalence point.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(n = 2.50\\times10^{-3}\\) mol; \\(V = 20.0\\ \\text{mL}\\).",
+       "ornek_cevap": "20.0 mL"
+      }
+     ],
+     "ornek_cozum": "<p>\\(n_{\\text{asit}} = 0.02500\\ \\text{L}\\times0.100\\ M = 2.50\\times10^{-3}\\) mol ⇒ \\(V = 2.50\\times10^{-3}/0.125 = 0.0200\\ \\text{L} = 20.0\\ \\text{mL}\\).</p>",
+     "sik_hatalar": [
+      "Konsantrasyonları ters kullanıp 31.3 mL bulmak."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "<p>Determine the pH of the solution after 10.0 mL of NaOH(<i>aq</i>) has been added. Justify your answer.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "10.0 mL'nin yarı-eşdeğerlik noktası olduğu, [HA] = [A<sup>−</sup>] olduğu belirtilmiş."
+      },
+      {
+       "puan": 1,
+       "olcut": "pH = p\\(K_a\\) \\(\\approx 4.74\\).",
+       "ornek_cevap": "4.74"
+      }
+     ],
+     "ornek_cozum": "<p>10.0 mL, eşdeğerlik hacminin yarısıdır: asidin yarısı asetata dönüşür, [HA] = [A<sup>−</sup>]. Henderson–Hasselbalch: pH = p\\(K_a\\) + log(1) = \\(-\\log(1.8\\times10^{-5}) = 4.74\\).</p>",
+     "sik_hatalar": [
+      "Toplam hacmi hesaba katarak gereksiz uzun yoldan gidip oranı yanlış kurmak.",
+      "pH = 7 demek."
+     ]
+    },
+    {
+     "harf": "e",
+     "soru": "<p>Calculate the pH at the equivalence point.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "[C<sub>2</sub>H<sub>3</sub>O<sub>2</sub><sup>−</sup>] = 2.50×10<sup>−3</sup> mol / 0.0450 L ≈ 0.0556 <i>M</i> ve \\(K_b = K_w/K_a = 5.6\\times10^{-10}\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "pH \\(\\approx 8.74\\).",
+       "ornek_cevap": "8.74"
+      }
+     ],
+     "ornek_cozum": "<p>Eşdeğerlikte yalnızca asetat bulunur (toplam hacim 45.0 mL): \\([\\text{A}^-] = 0.0556\\ M\\). \\(K_b = 1.0\\times10^{-14}/1.8\\times10^{-5} = 5.6\\times10^{-10}\\).</p>\\[[\\text{OH}^-] = \\sqrt{(5.6\\times10^{-10})(0.0556)} = 5.6\\times10^{-6}\\ M \\Rightarrow \\text{pOH} = 5.26,\\ \\text{pH} = 8.74\\]",
+     "sik_hatalar": [
+      "Eşdeğerlikte pH = 7 demek (zayıf asit–güçlü baz ⇒ bazik).",
+      "Toplam hacmi 25.00 mL almak."
+     ]
+    },
+    {
+     "harf": "f",
+     "soru": "<p>Which indicator from the table is most appropriate for this titration? Justify your answer.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Fenolftalein."
+      },
+      {
+       "puan": 1,
+       "olcut": "Gerekçe: renk değişim aralığı (8.2–10.0) eşdeğerlik pH'ını (~8.7) içeriyor."
+      }
+     ],
+     "ornek_cozum": "<p>Fenolftalein; dönüm aralığı 8.2–10.0, eşdeğerlik pH'ı 8.74'ü kapsar. Diğerleri eşdeğerlikten çok önce renk değiştirir.</p>",
+     "sik_hatalar": [
+      "Bromtimol mavisi seçmek (nötr pH'ı eşdeğerlik sanmak)."
+     ]
+    }
+   ],
+   "toplam_puan": 10,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-chem-4",
+   "sayfa": "ap-chemistry",
+   "ders": "chemistry",
+   "tur": "Kısa soru (elektrokimya)",
+   "baslik": "A Nickel–Silver Galvanic Cell",
+   "sure_dk": 9,
+   "hesapMakinesi": true,
+   "zorluk": "medium",
+   "giris": "<p>A galvanic cell is constructed with a Ni electrode in 1.0 <i>M</i> Ni(NO<sub>3</sub>)<sub>2</sub>(<i>aq</i>) and a Ag electrode in 1.0 <i>M</i> AgNO<sub>3</sub>(<i>aq</i>), connected by a salt bridge. Standard reduction potentials at 25 °C:</p><table class=\"frq-tablo\"><thead><tr><th>Half-reaction</th><th>\\(E^\\circ\\) (V)</th></tr></thead><tbody><tr><td>Ag<sup>+</sup> + e<sup>−</sup> → Ag</td><td>+0.80</td></tr><tr><td>Ni<sup>2+</sup> + 2e<sup>−</sup> → Ni</td><td>−0.23</td></tr></tbody></table><p>(Faraday constant \\(F = 96{,}485\\ \\text{C/mol}\\).)</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Calculate the standard cell potential \\(E^\\circ_{\\text{cell}}\\).</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(E^\\circ = 0.80 - (-0.23) = +1.03\\ \\text{V}\\) (Ag yarı-potansiyeli 2 ile çarpılmamış).",
+       "ornek_cevap": "+1.03 V"
+      }
+     ],
+     "ornek_cozum": "\\[E^\\circ_{\\text{cell}} = E^\\circ_{\\text{katot}} - E^\\circ_{\\text{anot}} = 0.80 - (-0.23) = +1.03\\ \\text{V}\\]",
+     "sik_hatalar": [
+      "Ag potansiyelini katsayı 2 yüzünden 1.60 V yapmak (potansiyel şiddet özelliğidir).",
+      "Çıkarma sırasını ters yapıp negatif bulmak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Identify the anode, and state the direction of electron flow in the external circuit.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Anot Ni; elektronlar dış devrede Ni elektrottan Ag elektroda akar."
+      }
+     ],
+     "ornek_cozum": "<p>Ni yükseltgenir (Ni → Ni<sup>2+</sup> + 2e<sup>−</sup>), bu yüzden anottur. Elektronlar telden Ni'den Ag'ye gider.</p>",
+     "sik_hatalar": [
+      "Elektronların tuz köprüsünden aktığını söylemek."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>Calculate \\(\\Delta G^\\circ\\), in kJ/mol<sub>rxn</sub>, for the cell reaction Ni(<i>s</i>) + 2 Ag<sup>+</sup>(<i>aq</i>) → Ni<sup>2+</sup>(<i>aq</i>) + 2 Ag(<i>s</i>).</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(\\Delta G^\\circ = -nFE^\\circ = -(2)(96{,}485)(1.03) \\approx -199\\ \\text{kJ/mol}\\) (\\(n = 2\\)).",
+       "ornek_cevap": "\\(-199\\ \\text{kJ/mol}\\)"
+      }
+     ],
+     "ornek_cozum": "\\[\\Delta G^\\circ = -nFE^\\circ = -(2)(96{,}485)(1.03) = -1.99\\times10^{5}\\ \\text{J/mol} \\approx -199\\ \\text{kJ/mol}\\]",
+     "sik_hatalar": [
+      "\\(n = 1\\) almak.",
+      "J'den kJ'ye çevirmemek."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "<p>The concentration of Ni<sup>2+</sup>(<i>aq</i>) is increased to 2.0 <i>M</i> while [Ag<sup>+</sup>] remains 1.0 <i>M</i>. Will the cell potential increase, decrease, or remain the same? Justify your answer.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "AZALIR; çünkü \\(Q = [\\text{Ni}^{2+}]/[\\text{Ag}^+]^2\\) artar (ürün derişimi artar), \\(E = E^\\circ - \\frac{RT}{nF}\\ln Q\\) küçülür / tepkime ileri yönde daha az eğilimli olur."
+      }
+     ],
+     "ornek_cozum": "<p>Ni<sup>2+</sup> bir üründür. Ürün derişimi artınca \\(Q > 1\\) olur ve Nernst denklemine göre \\(E < E^\\circ\\). Le Châtelier açısından da ileri tepkimenin itici gücü azalır.</p>",
+     "sik_hatalar": [
+      "Elektrot yüzeyi/kütle değişimiyle açıklamak.",
+      "Q'yu ters (reaktif/ürün) kurmak."
+     ]
+    }
+   ],
+   "toplam_puan": 4,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-chem-5",
+   "sayfa": "ap-chemistry",
+   "ders": "chemistry",
+   "tur": "Kısa soru (yapı ve moleküller arası kuvvetler)",
+   "baslik": "Ethanol versus Dimethyl Ether",
+   "sure_dk": 9,
+   "hesapMakinesi": true,
+   "zorluk": "easy",
+   "giris": "<p>Ethanol, CH<sub>3</sub>CH<sub>2</sub>OH, and dimethyl ether, CH<sub>3</sub>OCH<sub>3</sub>, have the same molecular formula, C<sub>2</sub>H<sub>6</sub>O. Their normal boiling points are given below.</p><table class=\"frq-tablo\"><thead><tr><th>Compound</th><th>Normal boiling point (°C)</th></tr></thead><tbody><tr><td>CH<sub>3</sub>CH<sub>2</sub>OH</td><td>78</td></tr><tr><td>CH<sub>3</sub>OCH<sub>3</sub></td><td>−24</td></tr></tbody></table>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Draw (on paper) or describe a complete Lewis electron-dot diagram for ethanol. Show all bonding and nonbonding electron pairs.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "C–C–O iskeleti; ilk C'de 3 H, ikinci C'de 2 H, O'da 1 H; tüm bağlar tekli; O üzerinde iki ortaklanmamış elektron çifti."
+      }
+     ],
+     "ornek_cozum": "<p>H<sub>3</sub>C–CH<sub>2</sub>–O–H: tüm bağlar tekli (toplam 20 değerlik elektronu: 8 bağ = 16 e<sup>−</sup> + O üzerinde 2 ortaklanmamış çift = 4 e<sup>−</sup>).</p>",
+     "sik_hatalar": [
+      "O üzerindeki ortaklanmamış çiftleri unutmak.",
+      "H'yi karbona bağlayıp O–H bağını göstermemek."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Identify the hybridization of the oxygen atom in ethanol.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "sp<sup>3</sup> (2 bağ + 2 ortaklanmamış çift = 4 elektron bölgesi)."
+      }
+     ],
+     "ornek_cozum": "<p>O atomunun çevresinde dört elektron bölgesi vardır (2 bağ, 2 ortaklanmamış çift) ⇒ sp<sup>3</sup>; bükük geometri, ~104–109°.</p>",
+     "sik_hatalar": [
+      "Yalnızca bağ sayısına bakıp sp demek."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>Explain the large difference in boiling points of the two compounds in terms of the types and relative strengths of intermolecular forces.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Etanol molekülleri arasında hidrojen bağı vardır (O'ya bağlı H); dimetil eterde O–H yoktur, moleküller arasında H bağı oluşmaz."
+      },
+      {
+       "puan": 1,
+       "olcut": "İkisinde de London ve dipol–dipol benzer büyüklükte (aynı molar kütle, benzer elektron sayısı); H bağı daha güçlü olduğundan etanolün kaynamak için daha fazla enerji gerekir."
+      }
+     ],
+     "ornek_cozum": "<p>İki bileşiğin elektron sayısı ve kutuplanabilirliği benzer, bu nedenle London kuvvetleri kabaca eşittir. Etanolde O–H bağı olduğundan moleküller arası güçlü hidrojen bağları oluşur. Dimetil eterde H atomları yalnızca C'ye bağlıdır; yalnızca dipol–dipol ve London kuvvetleri vardır. Daha güçlü moleküller arası kuvvetleri yenmek için daha fazla enerji gerekir ⇒ etanolün kaynama noktası çok daha yüksektir.</p>",
+     "sik_hatalar": [
+      "Kaynamayı kovalent bağların kırılması olarak açıklamak.",
+      "Dimetil eterin de H bağı yaptığını söylemek (O var ama O–H yok)."
+     ]
+    }
+   ],
+   "toplam_puan": 4,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-bio-1",
+   "sayfa": "ap-biology",
+   "ders": "biology",
+   "tur": "Deneysel sonuçları yorumlama (veri tablosu)",
+   "baslik": "Temperature and a Fungal Catalase",
+   "sure_dk": 25,
+   "hesapMakinesi": true,
+   "zorluk": "medium",
+   "giris": "<p>Catalase is an enzyme that catalyzes the breakdown of hydrogen peroxide into water and oxygen gas: \\(2\\,\\mathrm{H_2O_2} \\rightarrow 2\\,\\mathrm{H_2O} + \\mathrm{O_2}\\). Researchers isolated catalase from a soil fungus that grows in temperate forests. For each temperature, they mixed equal volumes of enzyme extract and 3% hydrogen peroxide that had both been equilibrated to that temperature, and they measured the volume of oxygen gas released during the first 2 minutes. Each temperature was tested in five replicate trials. The results are shown in Table 1.</p><table class=\"frq-tablo\"><caption>Table 1. Mean volume of O<sub>2</sub> released in 2 minutes (± 2 SE<sub>x̄</sub>)</caption><thead><tr><th>Temperature (°C)</th><th>Mean O<sub>2</sub> released (mL)</th><th>± 2 SE<sub>x̄</sub> (mL)</th></tr></thead><tbody><tr><td>10</td><td>4.0</td><td>0.6</td></tr><tr><td>20</td><td>7.2</td><td>0.8</td></tr><tr><td>30</td><td>11.6</td><td>0.9</td></tr><tr><td>40</td><td>14.8</td><td>1.0</td></tr><tr><td>50</td><td>9.0</td><td>1.2</td></tr><tr><td>60</td><td>1.6</td><td>0.5</td></tr></tbody></table>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<b>Describe</b> how the structure of an enzyme's active site allows the enzyme to increase the rate of a specific reaction.",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Aktif bölgenin şeklinin/kimyasal özelliklerinin substrata tamamlayıcı olduğunu VE enzimin aktivasyon enerjisini düşürerek tepkimeyi hızlandırdığını belirtir.",
+       "ornek_cevap": "The active site has a shape and charge distribution complementary to H₂O₂, so the substrate binds and the enzyme lowers the activation energy of the reaction."
+      }
+     ],
+     "ornek_cozum": "<p><b>Çözüm:</b> Aktif bölgedeki amino asitlerin oluşturduğu üç boyutlu şekil ve yük dağılımı yalnızca belirli bir substrata uyar (özgüllük). Substrat bağlanınca enzim, geçiş hâlini kararlı kılarak <b>aktivasyon enerjisini düşürür</b>; tepkimenin \\(\\Delta G\\) değeri değişmez.</p><p><i>Model cevap:</i> The active site's shape and chemical properties are complementary to hydrogen peroxide, so only that substrate binds; binding stabilizes the transition state and lowers the activation energy.</p>",
+     "sik_hatalar": [
+      "Enzimin tepkimenin enerjisini (ΔG) değiştirdiğini ya da tepkimeye 'enerji verdiğini' söylemek.",
+      "Yalnızca 'anahtar-kilit' demek; aktivasyon enerjisinin düşmesini belirtmemek."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<b>Identify</b> the independent variable in this experiment, and <b>identify</b> an appropriate negative control the researchers could include.",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Bağımsız değişkeni sıcaklık olarak belirtir."
+      },
+      {
+       "puan": 1,
+       "olcut": "Uygun bir negatif kontrol önerir: enzimsiz (yalnızca tampon + H₂O₂) ya da kaynatılmış/denatüre enzim ekstresi.",
+       "ornek_cevap": "Hydrogen peroxide mixed with boiled (denatured) enzyme extract at each temperature."
+      }
+     ],
+     "ornek_cozum": "<p><b>Çözüm:</b> Araştırmacıların değiştirdiği değişken <b>sıcaklıktır</b> (bağımlı değişken: 2 dakikada açığa çıkan O<sub>2</sub> hacmi). Negatif kontrol, enzim olmadan da O<sub>2</sub> oluşup oluşmadığını gösterir: her sıcaklıkta H₂O₂ + kaynatılmış enzim ekstresi (ya da yalnızca tampon). Böylece H₂O₂'nin kendiliğinden (özellikle yüksek sıcaklıkta) bozunması ölçülür.</p>",
+     "sik_hatalar": [
+      "Bağımlı değişkeni (O₂ hacmi) bağımsız değişken olarak yazmak.",
+      "Kontrol olarak 'oda sıcaklığı' önermek — bu bir deney koşuludur, negatif kontrol değildir."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<b>Calculate</b> the mean rate of oxygen production, in mL/min, at 40°C. Then <b>calculate</b> the percent change in mean O<sub>2</sub> released when the temperature increases from 40°C to 50°C.",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "40 °C'de ortalama hız: \\(14.8 \\div 2 = 7.4\\ \\text{mL/min}\\) (birimle).",
+       "ornek_cevap": "7.4 mL/min"
+      },
+      {
+       "puan": 1,
+       "olcut": "Yüzde değişim: \\(\\frac{9.0-14.8}{14.8}\\times 100 \\approx -39\\%\\) (yaklaşık %39 azalma; işaret ya da 'azalma' ifadesi gerekli).",
+       "ornek_cevap": "≈ −39.2%"
+      }
+     ],
+     "ornek_cozum": "<p><b>Çözüm:</b></p><p>Hız = hacim / süre = \\(\\dfrac{14.8\\ \\text{mL}}{2\\ \\text{min}} = 7.4\\ \\text{mL/min}\\).</p><p>Yüzde değişim = \\(\\dfrac{\\text{yeni}-\\text{eski}}{\\text{eski}}\\times 100 = \\dfrac{9.0-14.8}{14.8}\\times 100 = -39.2\\%\\). Yani 40 °C'den 50 °C'ye çıkınca açığa çıkan O<sub>2</sub> yaklaşık <b>%39 azalır</b>.</p>",
+     "sik_hatalar": [
+      "Paydada yeni değeri (9.0) kullanmak: (14.8−9.0)/9.0 ≈ %64 yanlıştır.",
+      "Hızı hesaplarken 2 dakikaya bölmeyi unutmak ya da birimi yazmamak."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "On paper, <b>construct</b> an appropriately labeled graph of the data in Table 1, including the ± 2 SE<sub>x̄</sub> values. In your answer box, describe the type of graph you drew, what you plotted on each axis (with units), and how you represented the uncertainty.",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Uygun grafik türü ve eksenler: x ekseninde sıcaklık (°C), y ekseninde ortalama O₂ hacmi (mL); eksenler etiketli ve ölçekli (çizgi/nokta grafiği; sürekli bağımsız değişken).",
+       "ornek_cevap": "Line/scatter graph: x = temperature (°C), y = mean O₂ released (mL)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Altı ortalama doğru çizilir VE her noktaya ± 2 SE hata çubuğu eklenir."
+      }
+     ],
+     "ornek_cozum": "<p><b>Çözüm:</b> Sıcaklık sürekli bir bağımsız değişken olduğundan <b>nokta (dağılım) ya da çizgi grafiği</b> uygundur; çubuk grafik puan almaz. x ekseni: Temperature (°C), 0–60 eşit aralıklı; y ekseni: Mean O₂ released (mL), 0–16. Altı nokta işaretlenir, her birinin üstüne ve altına tablodaki ± 2 SE kadar <b>hata çubuğu</b> çizilir. Grafiğin başlığı ve birimleri unutulmamalı.</p>",
+     "sik_hatalar": [
+      "Sürekli veri için çubuk grafik çizmek.",
+      "Hata çubuklarını eklememek ya da eksen birimlerini yazmamak.",
+      "Eksenleri eşit olmayan aralıklarla ölçeklemek."
+     ]
+    },
+    {
+     "harf": "e",
+     "soru": "A sample of the enzyme extract is held at 60°C for 10 minutes, then cooled to 40°C and tested again. <b>Predict</b> the volume of O<sub>2</sub> released compared with the original 40°C trials, and <b>justify</b> your prediction.",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Tahmin: açığa çıkan O₂ 40 °C'deki ilk değerden (14.8 mL) belirgin biçimde düşük olur (yaklaşık 60 °C düzeyine yakın).",
+       "ornek_cevap": "Much less than 14.8 mL."
+      },
+      {
+       "puan": 1,
+       "olcut": "Gerekçe: 60 °C'de enzimin üçüncül yapısını tutan zayıf bağlar bozulur (denatürasyon), aktif bölgenin şekli değişir ve bu değişim soğutunca geri dönmez; bu yüzden substrat bağlanamaz."
+      }
+     ],
+     "ornek_cozum": "<p><b>Çözüm:</b> 60 °C'de O<sub>2</sub> miktarının 1.6 mL'ye düşmesi enzimin <b>denatüre</b> olduğunu gösterir. Hidrojen bağları ve diğer zayıf etkileşimler bozulunca aktif bölgenin şekli değişir. Denatürasyon genellikle <b>geri dönüşsüzdür</b>; enzim 40 °C'ye soğutulsa bile şekli geri gelmez. Bu nedenle O<sub>2</sub> hacmi 14.8 mL'den çok daha az olur.</p><p><i>Model cevap:</i> Much less O₂ than 14.8 mL, because heating to 60°C disrupted the hydrogen bonds maintaining the tertiary structure, permanently changing the active site so H₂O₂ can no longer bind.</p>",
+     "sik_hatalar": [
+      "Soğutunca enzimin 'tekrar çalışacağını' söylemek (düşük sıcaklıktaki yavaşlama ile denatürasyonu karıştırmak).",
+      "Enzimin 'öldüğünü' söylemek; enzim canlı değildir — yapısı bozulur."
+     ]
+    }
+   ],
+   "toplam_puan": 9,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-bio-2",
+   "sayfa": "ap-biology",
+   "ders": "biology",
+   "tur": "Bilimsel araştırma ve deney tasarımı",
+   "baslik": "Soil Bacteria and Drought Tolerance",
+   "sure_dk": 25,
+   "hesapMakinesi": true,
+   "zorluk": "medium",
+   "giris": "<p>Researchers hypothesized that a soil bacterium, <i>Rhizobacter viridis</i> (a fictional species), helps tomato seedlings tolerate drought. Forty genetically identical seedlings were grown in sterilized soil in a growth chamber. Half of the seedlings were inoculated with a live culture of <i>R. viridis</i>; the other half received the same volume of heat-killed culture. After two weeks, half of each group continued to be watered daily (well-watered) and the other half received no water for 7 days (drought). The researchers then measured the relative water content (RWC) of the leaves, a measure of how hydrated the leaf tissue is. The results are shown in Table 1.</p><table class=\"frq-tablo\"><caption>Table 1. Mean leaf relative water content (RWC) after 7 days (n = 10 plants per group)</caption><thead><tr><th>Treatment</th><th>Watering</th><th>Mean RWC (%)</th><th>± 2 SE<sub>x̄</sub> (%)</th></tr></thead><tbody><tr><td>Heat-killed culture</td><td>Well-watered</td><td>83</td><td>3</td></tr><tr><td>Live <i>R. viridis</i></td><td>Well-watered</td><td>84</td><td>3</td></tr><tr><td>Heat-killed culture</td><td>Drought</td><td>52</td><td>4</td></tr><tr><td>Live <i>R. viridis</i></td><td>Drought</td><td>68</td><td>3</td></tr></tbody></table>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<b>Describe</b> how water is lost from the leaves of a plant and the role of stomata in that process.",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Suyun yapraklardan transpirasyonla (buharlaşma) ve esas olarak stomalardan kaybedildiğini VE stomaların bekçi hücrelerince açılıp kapanarak su kaybını/gaz alışverişini düzenlediğini belirtir."
+      }
+     ],
+     "ornek_cozum": "<p><b>Çözüm:</b> Yapraktaki su, mezofil hücre yüzeylerinden buharlaşır ve su buharı <b>stomalardan</b> dışarı difüzyonla çıkar (transpirasyon). Stomaların açıklığını <b>bekçi hücreleri</b> belirler: açık stoma CO<sub>2</sub> alımına izin verir ama su kaybını artırır; kapalı stoma su kaybını azaltır.</p>",
+     "sik_hatalar": [
+      "Su kaybının kökten olduğunu söylemek.",
+      "Stomaların yalnızca CO₂/O₂ alışverişi yaptığını söyleyip su kaybıyla ilişkisini kurmamak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<b>Identify</b> the independent variable(s) and the dependent variable in this experiment, and <b>state</b> the null hypothesis the researchers tested.",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Bağımsız değişken: bakteri muamelesi (canlı R. viridis vs ısıyla öldürülmüş) — sulama rejimi de ikinci bağımsız değişken olarak kabul edilir."
+      },
+      {
+       "puan": 1,
+       "olcut": "Bağımlı değişken: yaprak bağıl su içeriği (RWC, %)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Uygun sıfır hipotezi: Canlı R. viridis ile aşılama, kuraklık altında (ya da hiçbir koşulda) yaprak RWC'sini değiştirmez.",
+       "ornek_cevap": "Inoculation with live R. viridis has no effect on leaf RWC under drought."
+      }
+     ],
+     "ornek_cozum": "<p><b>Çözüm:</b> Araştırmacılar iki faktörü değiştirmiştir: <b>bakteri muamelesi</b> (asıl test edilen) ve <b>sulama</b>. Ölçülen değişken <b>RWC</b>'dir. Sıfır hipotezi 'fark yoktur' biçiminde kurulur: <i>Live R. viridis has no effect on the leaf RWC of tomato seedlings under drought conditions.</i></p>",
+     "sik_hatalar": [
+      "Sıfır hipotezini 'bakteri kuraklık toleransını artırır' diye yazmak — bu alternatif hipotezdir.",
+      "Bitki sayısını ya da süreyi değişken olarak göstermek."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<b>Justify</b> the researchers' decision to give the control plants a heat-killed culture rather than no culture at all.",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Isıyla öldürülmüş kültürün, kültür sıvısındaki besinler/kimyasallar ve eklenen hacim gibi etkenleri iki grupta eşit tuttuğunu; böylece farkın yalnızca CANLI bakteriden kaynaklanacağını açıklar."
+      }
+     ],
+     "ornek_cozum": "<p><b>Çözüm:</b> Kültür sıvısı besin, tuz ve bakteri kalıntıları içerir; bunlar da bitkiyi etkileyebilir. Kontrol grubuna aynı hacimde <b>ısıyla öldürülmüş</b> kültür vermek bu etkenleri sabit tutar; tek fark <b>canlı, aktif bakterinin</b> varlığı olur.</p>",
+     "sik_hatalar": [
+      "Kontrolün 'karşılaştırma için' olduğunu söyleyip hangi değişkeni sabit tuttuğunu açıklamamak."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "Using the ± 2 SE<sub>x̄</sub> values, <b>determine</b> whether there is a statistically significant difference in RWC between live-inoculated and heat-killed–treated plants (i) under drought and (ii) when well-watered. <b>Support</b> each answer with the data.",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Kuraklık: aralıklar 65–71 ve 48–56 örtüşmez → fark anlamlıdır (aralıklarla birlikte).",
+       "ornek_cevap": "65–71% vs 48–56%: no overlap → significant."
+      },
+      {
+       "puan": 1,
+       "olcut": "İyi sulanmış: aralıklar 81–87 ve 80–86 örtüşür → anlamlı fark yoktur.",
+       "ornek_cevap": "80–86% vs 81–87%: overlap → not significant."
+      }
+     ],
+     "ornek_cozum": "<p><b>Çözüm:</b> ± 2 SE aralıkları (~%95 güven):</p><ul><li>Kuraklık, canlı: \\(68 \\pm 3 \\Rightarrow 65\\text{–}71\\%\\); ısıyla öldürülmüş: \\(52 \\pm 4 \\Rightarrow 48\\text{–}56\\%\\). Örtüşme yok → <b>anlamlı fark</b>.</li><li>İyi sulanmış, canlı: \\(84 \\pm 3 \\Rightarrow 81\\text{–}87\\%\\); ısıyla öldürülmüş: \\(83 \\pm 3 \\Rightarrow 80\\text{–}86\\%\\). Örtüşüyor → <b>anlamlı fark yok</b>.</li></ul><p>Yani bakteri yalnızca kuraklık koşulunda etkilidir.</p>",
+     "sik_hatalar": [
+      "Yalnızca ortalamaları karşılaştırıp (68 > 52) belirsizliği dikkate almamak.",
+      "Hata çubukları örtüşmüyorsa 'hipotez kanıtlandı' demek; doğru ifade 'sıfır hipotezi reddedilir / fark anlamlıdır'."
+     ]
+    },
+    {
+     "harf": "e",
+     "soru": "Further analysis shows that inoculated plants under drought have higher leaf concentrations of abscisic acid (ABA). <b>Predict</b> how the stomatal aperture of inoculated drought-stressed plants compares with that of non-inoculated drought-stressed plants, and <b>justify</b> your prediction.",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Tahmin: aşılanmış bitkilerde stoma açıklığı daha küçük olur (stomalar daha kapalı)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Gerekçe: ABA bekçi hücrelerinden iyon/su çıkışını tetikleyerek turgoru düşürür, stomalar kapanır; transpirasyonla su kaybı azalır ve bu da daha yüksek RWC ile tutarlıdır."
+      }
+     ],
+     "ornek_cozum": "<p><b>Çözüm:</b> ABA bir stres hormonudur. Bekçi hücrelerinde K<sup>+</sup> ve su çıkışını tetikler; hücreler turgorunu kaybeder ve <b>stoma kapanır</b>. Daha az transpirasyon → yaprakta daha fazla su kalır → Tablo 1'deki daha yüksek RWC (%68 vs %52) açıklanır.</p>",
+     "sik_hatalar": [
+      "ABA'nın stomaları açtığını söylemek.",
+      "Tahmini veriyle (yüksek RWC) ilişkilendirmeden yalnızca 'ABA etkiler' demek."
+     ]
+    }
+   ],
+   "toplam_puan": 9,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-bio-3",
+   "sayfa": "ap-biology",
+   "ders": "biology",
+   "tur": "Kavramsal analiz (kısa)",
+   "baslik": "A Receptor Tyrosine Kinase Mutation",
+   "sure_dk": 10,
+   "hesapMakinesi": true,
+   "zorluk": "medium",
+   "giris": "<p>Insulin is a peptide hormone released by the pancreas when blood glucose levels rise. Insulin binds to a receptor tyrosine kinase on the surface of liver and muscle cells. Binding causes the receptor subunits to phosphorylate each other, which activates a cascade of intracellular proteins and ultimately causes vesicles containing glucose transporter proteins to fuse with the plasma membrane.</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<b>Describe</b> why insulin binds to a receptor on the cell surface rather than to a receptor inside the cytoplasm.",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "İnsülinin büyük/polar (hidrofilik) bir peptit olduğu için zarın hidrofobik iç kısmından geçemediğini belirtir."
+      }
+     ],
+     "ornek_cozum": "<p><b>Çözüm:</b> İnsülin bir <b>peptit</b> hormondur: büyük ve polardır. Fosfolipit çift katmanının hidrofobik iç bölgesinden geçemez; bu yüzden reseptörü hücre yüzeyindedir. (Steroid hormonlar ise hidrofobik olduğu için hücre içi reseptöre bağlanır.)</p>",
+     "sik_hatalar": [
+      "İnsülinin 'çok büyük olduğu için kanala sığmadığını' söylemek; asıl neden polarlık/hidrofilik olmasıdır."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<b>Explain</b> how a phosphorylation cascade allows a small number of insulin molecules to produce a large cellular response.",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Her aktif kinazın birçok hedef proteini fosforile ettiğini, böylece her basamakta sinyalin çoğaldığını (amplifikasyon) açıklar."
+      }
+     ],
+     "ornek_cozum": "<p><b>Çözüm:</b> Aktifleşen her kinaz, bir sonraki basamaktaki <b>birçok</b> molekülü fosforile ederek aktifleştirir. Bu çarpımsal artış (sinyal amplifikasyonu) sayesinde az sayıda hormon molekülü binlerce taşıyıcının zara taşınmasını sağlar.</p>",
+     "sik_hatalar": [
+      "Amplifikasyonu 'daha fazla insülin üretilmesi' olarak açıklamak."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "A mutation changes the receptor so that its subunits can no longer phosphorylate each other, although insulin still binds normally. <b>Predict</b> the effect of this mutation on blood glucose levels after a meal, and <b>justify</b> your prediction.",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Tahmin: yemekten sonra kan glukozu normalden yüksek kalır (yavaş düşer)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Gerekçe: otofosforilasyon olmadan kaskad başlamaz, glukoz taşıyıcıları zara eklenmez; karaciğer/kas hücreleri kandan glukoz alamaz."
+      }
+     ],
+     "ornek_cozum": "<p><b>Çözüm:</b> Bağlanma tek başına yeterli değildir; sinyalin iletimi <b>reseptörün kendi kendini fosforile etmesine</b> bağlıdır. Fosforilasyon olmazsa kaskad durur, glukoz taşıyıcılı veziküller zara kaynaşmaz, hücreler glukozu almaz ve <b>kan glukozu yüksek kalır</b> (tip 2 diyabete benzeyen insülin direnci).</p>",
+     "sik_hatalar": [
+      "İnsülin bağlandığı için yanıtın normal olacağını söylemek.",
+      "Pankreasın daha az insülin salgılayacağını söylemek — mutasyon reseptörde, salgıda değil."
+     ]
+    }
+   ],
+   "toplam_puan": 4,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-bio-4",
+   "sayfa": "ap-biology",
+   "ders": "biology",
+   "tur": "Model / görsel temsil analizi (kısa)",
+   "baslik": "A Model of the Inner Mitochondrial Membrane",
+   "sure_dk": 10,
+   "hesapMakinesi": true,
+   "zorluk": "medium",
+   "giris": "<p>A model of the inner mitochondrial membrane shows the following: NADH and FADH<sub>2</sub> deliver electrons to a series of protein complexes (I–IV) embedded in the membrane. As electrons pass from complex to complex, complexes I, III, and IV move H<sup>+</sup> ions from the matrix into the intermembrane space. At complex IV, electrons combine with O<sub>2</sub> and H<sup>+</sup> to form water. A separate protein, ATP synthase, spans the membrane; arrows show H<sup>+</sup> flowing through it from the intermembrane space back into the matrix while ADP and P<sub>i</sub> are joined to form ATP.</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "Based on the model, <b>describe</b> the role of O<sub>2</sub> in the electron transport chain.",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "O₂'nin son elektron alıcısı olduğunu (elektronları ve H⁺'yı alıp su oluşturduğunu) belirtir; böylece zincir akmaya devam eder."
+      }
+     ],
+     "ornek_cozum": "<p><b>Çözüm:</b> O<sub>2</sub> <b>son elektron alıcısıdır</b>. Kompleks IV'teki elektronları alıp H<sup>+</sup> ile birleşerek su oluşturur; elektronlar zincirden çekilmezse zincir durur.</p>",
+     "sik_hatalar": [
+      "O₂'nin ATP sentazı doğrudan çalıştırdığını söylemek."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<b>Explain</b> how the movement of H<sup>+</sup> shown in the model results in the synthesis of ATP.",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Elektron taşınmasının H⁺'yı zarlar arası boşluğa pompalayarak elektrokimyasal gradyan oluşturduğunu VE H⁺'nın bu gradyan boyunca ATP sentazdan geri akışının ADP + Pi'den ATP üretimini sağladığını (kemiozmoz) açıklar."
+      }
+     ],
+     "ornek_cozum": "<p><b>Çözüm:</b> Elektron taşınmasından gelen enerji, H<sup>+</sup>'yı matristen zarlar arası boşluğa pompalamak için kullanılır → <b>proton gradyanı</b> (proton itici güç). H<sup>+</sup> iyonları gradyan yönünde yalnızca ATP sentazdan geçebilir; bu akış enzimi döndürür ve ADP + P<sub>i</sub> → ATP tepkimesini yürütür (<b>kemiozmoz</b>).</p>",
+     "sik_hatalar": [
+      "H⁺'nın ATP sentazdan aktif taşımayla geçtiğini söylemek — geçiş gradyan yönündedir (pasif).",
+      "Gradyanın elektronlardan oluştuğunu söylemek."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "A chemical (compound X) makes the inner mitochondrial membrane freely permeable to H<sup>+</sup>. <b>Predict</b> the effect of compound X on the rate of ATP synthesis and on the rate of O<sub>2</sub> consumption, and <b>justify</b> your prediction.",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Tahmin: ATP sentezi azalır; O₂ tüketimi azalmaz (aynı kalır ya da artar)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Gerekçe: H⁺ zardan sızdığı için gradyan ATP sentazdan geçmeden dağılır (ATP üretimi düşer), ama elektron taşınması gradyana karşı çalışmak zorunda kalmadığından devam eder/hızlanır ve O₂ son alıcı olarak tüketilir; enerji ısı olarak açığa çıkar."
+      }
+     ],
+     "ornek_cozum": "<p><b>Çözüm:</b> X bir <b>ayrıştırıcıdır (uncoupler)</b>. H<sup>+</sup> ATP sentazı atlayarak matrise döner → gradyan korunamaz → <b>ATP sentezi düşer</b>. Elektron taşıma zinciri ise gradyandan bağımsız çalışmaya devam eder; hatta karşı basınç kalmadığı için hızlanır → <b>O<sub>2</sub> tüketimi artar</b>, enerji ısı olarak kaybolur.</p>",
+     "sik_hatalar": [
+      "O₂ tüketiminin de azalacağını söylemek (zincirin durduğunu varsaymak).",
+      "X'in ATP sentazı doğrudan bloke ettiğini düşünmek."
+     ]
+    }
+   ],
+   "toplam_puan": 4,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-bio-5",
+   "sayfa": "ap-biology",
+   "ders": "biology",
+   "tur": "Veri analizi — ki-kare (kısa)",
+   "baslik": "A Dihybrid Cross in Beetles",
+   "sure_dk": 10,
+   "hesapMakinesi": true,
+   "zorluk": "medium",
+   "giris": "<p>In a species of beetle, shiny shell (S) is dominant to matte shell (s), and long antennae (L) are dominant to short antennae (l). A researcher crossed two beetles that were heterozygous for both genes (SsLl × SsLl) and recorded the phenotypes of 320 offspring (Table 1). A table of chi-square critical values is provided (Table 2).</p><table class=\"frq-tablo\"><caption>Table 1. Offspring phenotypes</caption><thead><tr><th>Phenotype</th><th>Number observed</th></tr></thead><tbody><tr><td>Shiny, long</td><td>188</td></tr><tr><td>Shiny, short</td><td>62</td></tr><tr><td>Matte, long</td><td>54</td></tr><tr><td>Matte, short</td><td>16</td></tr><tr><td>Total</td><td>320</td></tr></tbody></table><table class=\"frq-tablo\"><caption>Table 2. Chi-square critical values (p = 0.05)</caption><thead><tr><th>Degrees of freedom</th><th>1</th><th>2</th><th>3</th><th>4</th></tr></thead><tbody><tr><td>Critical value</td><td>3.84</td><td>5.99</td><td>7.81</td><td>9.49</td></tr></tbody></table>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<b>State</b> a null hypothesis for this cross, including the expected number of offspring in each phenotypic class.",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Sıfır hipotezi: iki gen bağımsız açılır, oran 9:3:3:1'dir; beklenen sayılar 180, 60, 60, 20.",
+       "ornek_cevap": "Independent assortment; expected 180 : 60 : 60 : 20."
+      }
+     ],
+     "ornek_cozum": "<p><b>Çözüm:</b> İki gen farklı kromozomlarda ve bağımsız açılıyorsa SsLl × SsLl çaprazından <b>9:3:3:1</b> beklenir. 320 yavru için: \\(320\\times\\tfrac{9}{16}=180\\), \\(320\\times\\tfrac{3}{16}=60\\), \\(60\\), \\(320\\times\\tfrac{1}{16}=20\\).</p>",
+     "sik_hatalar": [
+      "Oranı 3:1 ya da 1:1:1:1 almak.",
+      "Sıfır hipotezini beklenen sayılar olmadan yazmak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<b>Calculate</b> the chi-square value for these data. Show your work.",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Ki-kare değeri doğru: \\(\\chi^2 \\approx 1.82\\) (çalışma gösterilmiş).",
+       "ornek_cevap": "χ² ≈ 1.82"
+      }
+     ],
+     "ornek_cozum": "<p><b>Çözüm:</b> \\(\\chi^2 = \\sum \\dfrac{(o-e)^2}{e}\\)</p><p>\\(\\dfrac{(188-180)^2}{180} + \\dfrac{(62-60)^2}{60} + \\dfrac{(54-60)^2}{60} + \\dfrac{(16-20)^2}{20} = 0.356 + 0.067 + 0.600 + 0.800 \\approx 1.82\\)</p>",
+     "sik_hatalar": [
+      "(o − e) farkının karesini almayı ya da e'ye bölmeyi unutmak.",
+      "Gözlenen değere bölmek."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<b>Determine</b> the degrees of freedom and whether the null hypothesis should be rejected at p = 0.05. <b>Justify</b> your answer.",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "df = 4 − 1 = 3; kritik değer 7.81; 1.82 < 7.81 olduğu için sıfır hipotezi REDDEDİLEMEZ."
+      }
+     ],
+     "ornek_cozum": "<p><b>Çözüm:</b> 4 fenotip sınıfı → \\(df = 4-1 = 3\\). Kritik değer 7.81. \\(1.82 < 7.81\\) → gözlenen sapma şansla açıklanabilir; <b>sıfır hipotezi reddedilemez</b>.</p>",
+     "sik_hatalar": [
+      "df'yi 4 almak (sınıf sayısı).",
+      "'Sıfır hipotezi kanıtlandı/kabul edildi' demek; doğru ifade 'reddedilemez'dir."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "Based on your conclusion, <b>explain</b> what the data suggest about the locations of the S and L genes.",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Verilerin bağımsız açılımla tutarlı olduğunu; dolayısıyla genlerin büyük olasılıkla farklı kromozomlarda (ya da aynı kromozomda çok uzak) olduğunu ve bağlı olmadığını açıklar."
+      }
+     ],
+     "ornek_cozum": "<p><b>Çözüm:</b> Sonuçlar 9:3:3:1 ile uyumlu olduğundan genler <b>bağımsız açılıyor</b> görünür: büyük olasılıkla <b>farklı kromozomlardadır</b> (ya da aynı kromozomda, aralarında çok sık krossing-over olacak kadar uzaktır). Yakın bağlı olsalardı ebeveyn tipleri fazla, rekombinant tipler az görülürdü.</p>",
+     "sik_hatalar": [
+      "Genlerin bağlı olduğunu söylemek.",
+      "Sonucu mutasyon ya da doğal seçilimle açıklamak."
+     ]
+    }
+   ],
+   "toplam_puan": 4,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-eng-1",
+   "sayfa": "ap-english",
+   "ders": "english-language",
+   "tur": "Sentez (kaynak kullanımı)",
+   "baslik": "The Four-Day School Week",
+   "sure_dk": 55,
+   "hesapMakinesi": false,
+   "zorluk": "medium",
+   "giris": "<p><i>Suggested time: 15 minutes for reading the sources and 40 minutes for writing.</i></p><p>In recent years, a number of school districts have shortened the school week from five days to four, usually by lengthening each remaining school day. Supporters point to savings and teacher recruitment; critics worry about learning time and families who need childcare.</p><p>Carefully read the following four sources, which are original texts written for this practice question (the authors and publications are fictional). Then synthesize material from at least three of the sources into a well-developed essay.</p><blockquote class=\"frq-kaynak\"><p class=\"frq-kaynak-etiket\">Source A — Dana Reyes, \"What We Saved, and What We Didn't,\" <i>Plains County Ledger</i> (newspaper column)</p><p>When our district moved to a four-day week, the board promised savings, and we got them: roughly four percent of the operating budget, mostly in transportation, heating, and substitute pay. Four percent is not nothing in a rural district. But it is also not the windfall some people imagined. The bigger change was cultural. Fridays became the day for dentist appointments, part-time jobs, and, for some students, nothing at all.</p></blockquote><blockquote class=\"frq-kaynak\"><p class=\"frq-kaynak-etiket\">Source B — Summary of a survey by the fictional Center for Rural Education Policy</p><p>In a survey of 600 teachers in four-day districts, 71 percent said the schedule made their district more attractive to job applicants, and 64 percent said they were less likely to leave in the next three years. However, 58 percent reported that the longer school days left younger students visibly fatigued in the final period.</p></blockquote><blockquote class=\"frq-kaynak\"><p class=\"frq-kaynak-etiket\">Source C — Marcus Bell, parent, letter to the editor, <i>Valley Courier</i></p><p>I work Fridays. So does my wife. The district calls the fifth day \"family time,\" but for us it is a bill: eighty dollars a week for a sitter, or my nine-year-old alone in front of a screen. A schedule that works beautifully for adults with flexible jobs quietly shifts its costs onto the families least able to pay them.</p></blockquote><blockquote class=\"frq-kaynak\"><p class=\"frq-kaynak-etiket\">Source D — Excerpt from a fictional research brief, \"Time and Achievement in Shortened Weeks\"</p><p>Across the districts studied, average achievement in mathematics grew slightly more slowly after the switch, with the largest gaps appearing in districts that cut total instructional hours. Districts that preserved total annual hours, and used the fifth day for optional tutoring, showed no measurable decline.</p></blockquote>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "Write an essay that develops your position on whether school districts should adopt a four-day school week. <ul><li>Respond to the prompt with a thesis that presents a defensible position.</li><li>Select and use evidence from at least three of the provided sources to support your line of reasoning. Indicate clearly the sources used through direct quotation, paraphrase, or summary. Sources may be cited as Source A, Source B, etc., or by using the description in parentheses.</li><li>Explain how the evidence supports your line of reasoning.</li><li>Use appropriate grammar and punctuation in communicating your argument.</li></ul>",
+     "puan": 6,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Tez (0–1): Soruya yanıt veren, savunulabilir bir tez (ör. dört günlük haftanın yalnızca toplam ders saati ve cuma desteği korunursa benimsenmesi gerektiği) yazar. Tez girişte ya da sonuçta olabilir; yalnızca konuyu özetlemek ya da soruyu tekrar etmek puan almaz."
+      },
+      {
+       "puan": 4,
+       "olcut": "Kanıt ve yorum (0–4): 1 puan — kanıt genel ya da ilgisiz, yorum yok denecek kadar az. 2 puan — bazı kanıtlar ilgili ama yorum çoğunlukla kanıtı özetliyor/tekrarlıyor. 3 puan — en az ÜÇ kaynaktan belirli kanıtlar sunar ve yorumun en az bir kısmı kanıtın tezi nasıl desteklediğini açıklar. 4 puan — tüm iddiaları destekleyen belirli kanıtlar sunar ve yorum, kanıtın tezi nasıl ve neden desteklediğini tutarlı biçimde açıklar."
+      },
+      {
+       "puan": 1,
+       "olcut": "Sofistike düşünme (0–1): Konunun karmaşıklığını kavrar: örneğin koşullu bir pozisyon kurar (Source D'deki 'toplam saat korunursa' ayrımı), kaynaklar arasındaki gerilimi (öğretmen tutma vs. aile maliyeti) açıklar ya da tartışmanın kimin bedel ödediği sorusuna dayandığını gösterir. Üç kaynaktan az kullanan yanıt kanıt satırında en çok 2 puan alır. Tek bir cümleyle 'gösterilen' değil, yanıt boyunca sürdürülen bir tutum olmalıdır."
+      }
+     ],
+     "ornek_cozum": "<p><b>Nasıl yaklaşmalı?</b> Önce kaynakları iki gruba ayır: <b>yararlar</b> (A: %4 tasarruf; B: öğretmen çekme/tutma) ve <b>maliyetler</b> (B: yorgunluk; C: çalışan ailelerin bakım maliyeti; D: ders saati düşerse matematikte yavaşlama). En güçlü tezler 'evet/hayır' yerine <b>koşullu</b> olur; D'deki ayrım bunun anahtarıdır.</p><p><b>Model tez:</b> <i>A four-day week can strengthen struggling rural districts, but only when it protects total learning time and replaces the lost day with supervised support; otherwise it shifts its costs onto the youngest students and the least flexible families.</i></p><p><b>Taslak plan:</b></p><ol><li>Gerçek kazanım tasarruftan çok personeldir: A'nın 'mütevazı %4'ü ile B'deki %71 / %64 verisini karşılaştır → çekicilik, kaynaktan daha değerli.</li><li>Ama maliyet görünmez biçimde ailelere kayar: C'deki 'haftada 80 dolar' ve 'quietly shifts its costs' ifadesi; A'daki 'nothing at all'.</li><li>Çözüm tasarımda: D — toplam saat korunup cuma isteğe bağlı destek günü olursa düşüş yok; B'deki yorgunluk verisi gün uzatmanın sınırını gösterir.</li></ol><p><b>Sofistike düşünme için:</b> Sorunun 'kaç gün' değil 'okulun yükünü kimin taşıdığı' olduğunu savun ve bunu tüm deneme boyunca sürdür.</p>",
+     "sik_hatalar": [
+      "Kaynakları sırayla özetlemek; her kanıttan sonra tezle bağlantıyı açıklayan yorum yazmamak.",
+      "Üçten az kaynak kullanmak (kanıt satırı en çok 2 puan).",
+      "Tezi girişte soruyu tekrar eden belirsiz bir cümleyle ('There are pros and cons') kurmak."
+     ]
+    }
+   ],
+   "toplam_puan": 6,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-eng-2",
+   "sayfa": "ap-english",
+   "ders": "english-language",
+   "tur": "Retorik analiz",
+   "baslik": "The Lighthouse Keeper's Address",
+   "sure_dk": 40,
+   "hesapMakinesi": false,
+   "zorluk": "medium",
+   "giris": "<p><i>Suggested time: 40 minutes.</i></p><p>The following is an original passage written for this practice question. Marta Ilyen, a fictional retired lighthouse keeper, delivered this speech at the opening of a public library built in the converted keeper's cottage of a decommissioned lighthouse in a small coastal town. Read the passage carefully. Write an essay that analyzes the rhetorical choices Ilyen makes to convey her message about the purpose of the library.</p><blockquote class=\"frq-kaynak\"><p>For thirty-one years I climbed one hundred and twelve steps every evening to light a lamp for people I would never meet. I did not know their names. I did not know whether they were fishermen or smugglers, wise or foolish, coming home or running away. It was not my job to know. It was my job to make sure that, whoever they were, they could see the rocks before the rocks could find them.</p><p>When the coast guard replaced my lamp with a satellite, I was told, kindly, that nobody needed a lighthouse anymore. Ships carry their own lights now. Every captain has a screen that tells him exactly where he is. And that is true. But I have noticed that a man can know exactly where he is and still have no idea where he is going.</p><p>So I am glad, more glad than I can say politely, that this cottage will not become a souvenir shop. I am glad it will hold books. Because a library is a lighthouse that does not care who you are. It does not ask whether you can pay, or whether you deserve it, or what you plan to do once you have read. It simply stays lit.</p><p>Some of you are thinking that nobody needs libraries anymore, either. Everyone has a screen. I would only ask you to remember the nights I climbed those steps in weather that would have kept any sensible person indoors. I did not climb them for the ships that were safe. I climbed them for the one that was lost.</p><p>Keep the light on. Somebody out there has not reached the shore yet.</p></blockquote>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "Write an essay that analyzes the rhetorical choices Ilyen makes to convey her message about the purpose of the library. <ul><li>Respond to the prompt with a thesis that analyzes the writer's rhetorical choices.</li><li>Select and use evidence to support your line of reasoning.</li><li>Explain how the evidence supports your line of reasoning.</li><li>Demonstrate an understanding of the rhetorical situation.</li><li>Use appropriate grammar and punctuation in communicating your argument.</li></ul>",
+     "puan": 6,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Tez (0–1): Soruya yanıt veren, savunulabilir bir tez (ör. Ilyen'in kişisel deneyimi genişletilmiş bir benzetmeye dönüştürerek kütüphanenin herkese koşulsuz hizmet etmesi gerektiğini savunduğu) yazar. Tez girişte ya da sonuçta olabilir; yalnızca konuyu özetlemek ya da soruyu tekrar etmek puan almaz."
+      },
+      {
+       "puan": 4,
+       "olcut": "Kanıt ve yorum (0–4): 1 puan — kanıt genel ya da ilgisiz, yorum yok denecek kadar az. 2 puan — bazı kanıtlar ilgili ama yorum çoğunlukla kanıtı özetliyor/tekrarlıyor. 3 puan — metinden belirli kanıtlar sunar ve yorumun en az bir kısmı kanıtın tezi nasıl desteklediğini açıklar. 4 puan — tüm iddiaları destekleyen belirli kanıtlar sunar ve yorum, kanıtın tezi nasıl ve neden desteklediğini tutarlı biçimde açıklar."
+      },
+      {
+       "puan": 1,
+       "olcut": "Sofistike düşünme (0–1): Retorik durumu derinlemesine kavrar: örneğin konuşmacının şüpheci dinleyiciyi ('Some of you are thinking…') nasıl önceden yanıtladığını, seçimlerin dinleyici ve ortamla (açılış töreni, küçük kıyı kasabası) ilişkisini ya da metnin içindeki gerilimi (teknoloji vs. insanî ihtiyaç) açıklar; üslubu canlı ve etkili. Tek bir cümleyle 'gösterilen' değil, yanıt boyunca sürdürülen bir tutum olmalıdır."
+      }
+     ],
+     "ornek_cozum": "<p><b>Nasıl yaklaşmalı?</b> Teknik adı saymak yerine <b>seçim → etki → amaç</b> zinciri kur. Retorik durum: emekli bir fener bekçisi, kütüphane açılışında, bir kısmı kütüphaneyi gereksiz bulan kasaba halkına konuşuyor.</p><p><b>Ana seçimler:</b></p><ul><li><b>Kişisel anlatı ve somut ayrıntı</b> ('thirty-one years', 'one hundred and twelve steps'): güvenilirlik (ethos) ve özveriyi görünür kılar.</li><li><b>Genişletilmiş metafor</b> ('a library is a lighthouse that does not care who you are'): kütüphanenin amacını koşulsuz, ayrım yapmayan bir hizmet olarak tanımlar.</li><li><b>Karşı görüşü önceden yanıtlama</b> ('Every captain has a screen… a man can know exactly where he is and still have no idea where he is going'; 'Some of you are thinking…'): teknoloji argümanını kabul edip yön/amaç ayrımıyla çürütür.</li><li><b>Yineleme ve tümcecik yapısı</b> ('I did not know… I did not know…'; 'It does not ask whether…'): ritmik vurgu, koşulsuzluğu pekiştirir.</li><li><b>Kısa, emir kipli kapanış</b> ('Keep the light on.'): dinleyiciyi sorumluluk almaya çağırır; 'the one that was lost' ile en kırılgan okura vurgu.</li></ul><p><b>Model tez:</b> <i>Ilyen transforms three decades of lighting a lamp for strangers into an extended metaphor, and by anticipating her audience's belief that screens have made both lighthouses and libraries obsolete, she argues that a library's purpose is to serve, without conditions, the people who are still lost.</i></p>",
+     "sik_hatalar": [
+      "Yalnızca teknik adlar sıralamak ('she uses ethos, pathos, logos') ve etkisini açıklamamak.",
+      "Metni özetlemek; seçimlerin amaçla ilişkisini kurmamak.",
+      "Konuşmacının dinleyicisini ve durumunu göz ardı etmek."
+     ]
+    }
+   ],
+   "toplam_puan": 6,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-eng-3",
+   "sayfa": "ap-english",
+   "ders": "english-language",
+   "tur": "Argüman",
+   "baslik": "The Value of Boredom",
+   "sure_dk": 40,
+   "hesapMakinesi": false,
+   "zorluk": "medium",
+   "giris": "<p><i>Suggested time: 40 minutes.</i></p><p>In an essay about modern life, the fictional critic Ilse Varga writes: \"We have engineered boredom out of our days, and in doing so we have quietly removed the room in which most original thoughts used to be born.\"</p><p>Write an essay that argues your position on the extent to which Varga's claim about boredom is valid.</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "Write an essay that argues your position on the extent to which Varga's claim about boredom is valid. <ul><li>Respond to the prompt with a thesis that presents a defensible position.</li><li>Provide evidence to support your line of reasoning.</li><li>Explain how the evidence supports your line of reasoning.</li><li>Use appropriate grammar and punctuation in communicating your argument.</li></ul>",
+     "puan": 6,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Tez (0–1): Soruya yanıt veren, savunulabilir bir tez (ör. Varga'nın iddiasının kısmen geçerli olduğu: can sıkıntısını yok etmek düşünme alanını daraltır ama özgün düşünce boş zamandan çok dikkatli düşünme alışkanlığına bağlıdır) yazar. Tez girişte ya da sonuçta olabilir; yalnızca konuyu özetlemek ya da soruyu tekrar etmek puan almaz."
+      },
+      {
+       "puan": 4,
+       "olcut": "Kanıt ve yorum (0–4): 1 puan — kanıt genel ya da ilgisiz, yorum yok denecek kadar az. 2 puan — bazı kanıtlar ilgili ama yorum çoğunlukla kanıtı özetliyor/tekrarlıyor. 3 puan — kişisel deneyim, gözlem, okuma ya da tarih/bilimden belirli kanıtlar sunar ve yorumun en az bir kısmı kanıtın tezi nasıl desteklediğini açıklar. 4 puan — tüm iddiaları destekleyen belirli kanıtlar sunar ve yorum, kanıtın tezi nasıl ve neden desteklediğini tutarlı biçimde açıklar."
+      },
+      {
+       "puan": 1,
+       "olcut": "Sofistike düşünme (0–1): İddianın sınırlarını tartışan nüanslı bir pozisyon kurar (ör. 'ne ölçüde'), karşı görüşü ciddiye alıp yanıtlar, kavramları (can sıkıntısı, dikkat, yaratıcılık) ayırır ya da tartışmayı daha geniş bir bağlama (teknoloji tasarımı, eğitim) taşır. Tek bir cümleyle 'gösterilen' değil, yanıt boyunca sürdürülen bir tutum olmalıdır."
+      }
+     ],
+     "ornek_cozum": "<p><b>Nasıl yaklaşmalı?</b> 'To what extent' soruları nüans ister: tamamen katılmak da olur ama en güçlü yanıtlar iddianın <b>hangi durumda</b> doğru olduğunu ayırır. Kanıt olarak kişisel deneyim, okul hayatı, bilim/tarih örnekleri, iyi bilinen gözlemler kullanılabilir — uydurma istatistik vermek yerine <b>somut ve açıklanmış</b> örnekler seç.</p><p><b>Model tez:</b> <i>Varga is right that constant stimulation crowds out the idle hours in which the mind wanders toward new connections, but she overstates the case: boredom only produces original thought when it is paired with curiosity, so the real loss is not empty time but the habit of staying with a question.</i></p><p><b>Taslak plan:</b></p><ol><li>Katıl: telefonun her bekleme anını doldurması → zihin gezinmesi (mind-wandering) azalır; kişisel örnek: otobüste bildirimsiz düşünme ile proje fikri.</li><li>Sınırla: herkes sıkılınca yaratıcı olmaz; sıkıntı merak olmadan yalnızca huzursuzluk üretir — örnek: boş ders saatlerinin çoğu zaman 'hiçbir şey'e dönüşmesi.</li><li>Yeniden çerçevele: çözüm can sıkıntısını romantize etmek değil, dikkat alanı yaratmak (bildirimsiz zaman, defter, yürüyüş).</li></ol>",
+     "sik_hatalar": [
+      "Can sıkıntısını yalnızca tanımlayıp tez kurmamak.",
+      "Kanıt olarak genel ifadeler ('many people say…') kullanmak ve yorumla bağlamamak.",
+      "Alıntıdaki 'original thoughts' kısmını göz ardı edip yalnızca teknoloji eleştirisi yazmak."
+     ]
+    }
+   ],
+   "toplam_puan": 6,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-macro-1",
+   "sayfa": "ap-electives",
+   "ders": "macroeconomics",
+   "tur": "Uzun soru: AD-AS, para piyasası ve politika zinciri",
+   "baslik": "Recession in Corvania",
+   "sure_dk": 25,
+   "hesapMakinesi": false,
+   "zorluk": "medium",
+   "giris": "<p>The economy of Corvania is currently in a short-run equilibrium in which real output is below the full-employment level and the unemployment rate is above the natural rate of unemployment. Corvania has a fractional reserve banking system, and its central bank uses open-market operations.</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Draw a correctly labeled graph of aggregate demand, short-run aggregate supply, and long-run aggregate supply (on paper). Show each of the following.</p><ol type=\"i\"><li>The current equilibrium price level and real output, labeled PL<sub>1</sub> and Y<sub>1</sub>.</li><li>The full-employment output, labeled Y<sub>F</sub>.</li></ol>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Doğru etiketlenmiş AD-AS grafiği: eksenler (Price level / Real GDP), aşağı eğimli AD, yukarı eğimli SRAS ve dikey LRAS; PL1 ve Y1 kesişimden eksenlere işaretli."
+      },
+      {
+       "puan": 1,
+       "olcut": "Y1, LRAS'taki YF'nin SOLUNDA (resesyon açığı) gösterilmiş."
+      }
+     ],
+     "ornek_cozum": "<p><strong>Çözüm.</strong> İşsizlik doğal oranın üstündeyse ekonomi resesyon açığındadır: AD ile SRAS'ın kesişimi dikey LRAS'ın solunda kalır. Model cevap: dikey LRAS Y<sub>F</sub>'de; AD ve SRAS, Y<sub>1</sub> &lt; Y<sub>F</sub> olan bir noktada kesişir, fiyat düzeyi PL<sub>1</sub>.</p>",
+     "sik_hatalar": [
+      "Eksenleri 'Price' ve 'Quantity' diye etiketlemek (makroda 'Price level' ve 'Real GDP' olmalı).",
+      "LRAS'ı çizmeyi unutmak ya da kesişimi LRAS'ın sağına koymak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Identify an open-market operation the central bank of Corvania could use to close the output gap.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Merkez bankası devlet tahvili SATIN ALIR (buy government bonds/securities).",
+       "ornek_cevap": "Buy government bonds."
+      }
+     ],
+     "ornek_cozum": "<p>Genişletici para politikası gerekir: merkez bankası açık piyasada <strong>tahvil satın alır</strong>; bankaların rezervleri ve para arzı artar.</p>",
+     "sik_hatalar": [
+      "'Tahvil satmak' demek (bu daraltıcı politikadır).",
+      "Açık piyasa işlemi yerine zorunlu karşılık oranı ya da vergi indirimi yazmak (soru açık piyasa işlemi soruyor)."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>Draw a correctly labeled graph of the money market (on paper). Show the effect of the open-market operation you identified in part (b) on the nominal interest rate.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Doğru etiketlenmiş para piyasası grafiği: dikey eksen Nominal interest rate, yatay eksen Quantity of money; aşağı eğimli MD, dikey MS; başlangıç faizi işaretli."
+      },
+      {
+       "puan": 1,
+       "olcut": "MS sağa kayar ve nominal faiz oranı DÜŞER (yeni faiz işaretli)."
+      }
+     ],
+     "ornek_cozum": "<p>Tahvil alımı para arzını artırır: dikey MS eğrisi sağa kayar (MS<sub>1</sub> → MS<sub>2</sub>), MD ile yeni kesişimde nominal faiz i<sub>1</sub>'den i<sub>2</sub>'ye düşer.</p>",
+     "sik_hatalar": [
+      "MS'i yukarı eğimli çizmek (AP para piyasasında dikeydir).",
+      "Para piyasası yerine ödünç verilebilir fonlar grafiği çizmek."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "<p>Based on the change in the interest rate in part (c), explain how each of the following will change in the short run.</p><ol type=\"i\"><li>Real GDP</li><li>The price level</li></ol>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Faizin düşmesi yatırım (ve faize duyarlı tüketim) harcamalarını artırır, bu yüzden AD artar — açıklama zinciri var."
+      },
+      {
+       "puan": 1,
+       "olcut": "Hem reel GSYH hem fiyat düzeyi ARTAR."
+      }
+     ],
+     "ornek_cozum": "<p>Daha düşük faiz → borçlanma maliyeti düşer → <strong>yatırım artar</strong> → AD sağa kayar → kısa dönemde <strong>reel GSYH artar</strong> ve <strong>fiyat düzeyi artar</strong>.</p>",
+     "sik_hatalar": [
+      "Yalnızca 'GDP artar' yazıp yatırım üzerinden açıklamamak ('explain' açıklama ister).",
+      "AD yerine SRAS'ı kaydırmak."
+     ]
+    },
+    {
+     "harf": "e",
+     "soru": "<p>Assume the required reserve ratio is 20 percent and that the central bank buys 50 million dollars of government bonds from commercial banks. Calculate the maximum possible change in the money supply. Show your work.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Doğru hesap ve gösterilen işlem: para çarpanı \\(1/0.20 = 5\\); \\(50 \\times 5 = 250\\) milyon dolar artış.",
+       "ornek_cevap": "\\(\\frac{1}{0.20}\\times 50 = 250\\) million dollars"
+      }
+     ],
+     "ornek_cozum": "<p>Bankalardan alınan tahvil karşılığında 50 milyon dolar tamamen <em>fazla rezerv</em> olur (mevduat değişmez). Para çarpanı \\(\\frac{1}{rr} = \\frac{1}{0.20} = 5\\). Para arzındaki en büyük artış \\(50 \\times 5 = 250\\) milyon dolar.</p>",
+     "sik_hatalar": [
+      "Bankalardan alımda 50'nin %20'sini ayırıp \\(40 \\times 5 = 200\\) bulmak (o hesap halktan alımda yeni kredi içindir; orada da toplam para arzı artışı 50 + 200 = 250'dir).",
+      "İşlem göstermemek ('show your work' puanı kaybettirir)."
+     ]
+    },
+    {
+     "harf": "f",
+     "soru": "<p>Suppose instead that the government of Corvania increases government spending by 40 million dollars and the marginal propensity to consume is 0.75. Calculate the maximum possible change in aggregate demand. Show your work.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Harcama çarpanı \\(1/(1-0.75) = 4\\); \\(40 \\times 4 = 160\\) milyon dolar artış (işlem gösterilmiş).",
+       "ornek_cevap": "\\(\\frac{1}{1-0.75}\\times 40 = 160\\) million dollars"
+      }
+     ],
+     "ornek_cozum": "<p>Harcama çarpanı \\(\\frac{1}{1-MPC} = \\frac{1}{0.25} = 4\\). AD'deki en büyük değişim \\(40 \\times 4 = 160\\) milyon dolar artış.</p>",
+     "sik_hatalar": [
+      "Vergi çarpanını (\\(-MPC/MPS = -3\\)) kullanmak.",
+      "Çarpanı \\(1/MPC\\) olarak hesaplamak."
+     ]
+    },
+    {
+     "harf": "g",
+     "soru": "<p>If the government spending increase in part (f) is financed by borrowing, what will happen to the real interest rate in the loanable funds market? Explain.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Reel faiz ARTAR; çünkü devlet borçlanması ödünç verilebilir fonlara talebi artırır (ya da kamu tasarrufunu/arzı azaltır)."
+      }
+     ],
+     "ornek_cozum": "<p>Bütçe açığı borçla finanse edilirse devlet fon talep eder: ödünç verilebilir fonlara <strong>talep sağa kayar</strong> (ya da arz sola kayar) ve <strong>reel faiz yükselir</strong> — bu, özel yatırımı dışlayabilir (crowding out).</p>",
+     "sik_hatalar": [
+      "Para piyasasıyla karıştırıp 'nominal faiz düşer' demek.",
+      "Yönü doğru verip neden (fon talebinin artması) yazmamak."
+     ]
+    }
+   ],
+   "toplam_puan": 10,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-macro-2",
+   "sayfa": "ap-electives",
+   "ders": "macroeconomics",
+   "tur": "Kısa soru: döviz piyasası",
+   "baslik": "The Arv and the Bel",
+   "sure_dk": 10,
+   "hesapMakinesi": false,
+   "zorluk": "easy",
+   "giris": "<p>Arvia and Belmont are trading partners with flexible exchange rates. Arvia's currency is the arv, and Belmont's currency is the bel. Assume the real interest rate in Arvia increases relative to the real interest rate in Belmont.</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Draw a correctly labeled graph of the foreign exchange market for the arv (on paper). Show the effect of the change in Arvia's real interest rate on the demand for the arv and on the international value of the arv.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Doğru etiketlenmiş döviz piyasası: yatay eksen Quantity of arv, dikey eksen Price of arv (bel per arv); aşağı eğimli D, yukarı eğimli S."
+      },
+      {
+       "puan": 1,
+       "olcut": "Arv talebi sağa kayar ve arv'ın değeri ARTAR (appreciates)."
+      }
+     ],
+     "ornek_cozum": "<p>Arvia'daki daha yüksek reel faiz, Belmontlu yatırımcılar için Arvia varlıklarını çekici kılar; bu varlıkları almak için arv gerekir → <strong>arv talebi artar</strong>, arv <strong>değer kazanır</strong>.</p>",
+     "sik_hatalar": [
+      "Dikey ekseni yalnızca 'Price' yazmak (hangi parayla ölçüldüğü: bel per arv).",
+      "Arz eğrisini kaydırmak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Based on your answer in part (a), will Arvia's exports to Belmont increase, decrease, or remain the same? Explain.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "AZALIR; çünkü arv değer kazandığı için Arvia malları Belmontlular için (bel cinsinden) pahalılaşır."
+      }
+     ],
+     "ornek_cozum": "<p>Arv değerlenince Belmontlu bir alıcı aynı Arvia malı için daha çok bel öder → Arvia'nın <strong>ihracatı azalır</strong>.</p>",
+     "sik_hatalar": [
+      "Değerlenmenin ihracatı artırdığını düşünmek.",
+      "Açıklama vermemek."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>What will happen to Arvia's net exports and aggregate demand?</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Net ihracat AZALIR ve AD AZALIR (ikisi de doğru olmalı)."
+      }
+     ],
+     "ornek_cozum": "<p>İhracat düşer, ithalat (Belmont malları ucuzladığı için) artar → <strong>net ihracat azalır</strong> → \\(AD = C + I + G + X_n\\) olduğundan <strong>AD azalır</strong>.</p>",
+     "sik_hatalar": [
+      "Net ihracatı doğru bulup AD'yi değiştirmemek."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "<p>Suppose the exchange rate is 1 arv = 4 bel. A good produced in Belmont sells for 60 bel. Calculate the price of the good in arv. Show your work.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(60 / 4 = 15\\) arv (işlem gösterilmiş).",
+       "ornek_cevap": "\\(60 \\div 4 = 15\\) arv"
+      }
+     ],
+     "ornek_cozum": "<p>1 arv 4 bel ettiğine göre 60 bel \\(= 60/4 = 15\\) arv eder.</p>",
+     "sik_hatalar": [
+      "\\(60 \\times 4 = 240\\) arv bulmak (oranı ters kullanmak)."
+     ]
+    }
+   ],
+   "toplam_puan": 5,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-micro-1",
+   "sayfa": "ap-electives",
+   "ders": "microeconomics",
+   "tur": "Uzun soru: tekel, kâr ve ölü ağırlık kaybı",
+   "baslik": "A Single Ferry Company",
+   "sure_dk": 25,
+   "hesapMakinesi": false,
+   "zorluk": "medium",
+   "giris": "<p>Isla Ferries is the only ferry company serving a small island and is an unregulated, profit-maximizing monopoly. The demand for crossings is \\(P = 100 - 2Q\\), and the marginal revenue is \\(MR = 100 - 4Q\\), where \\(P\\) is the price in dollars and \\(Q\\) is the number of crossings per day. The firm's marginal cost is constant at 20 dollars and equals its average total cost (there are no fixed costs).</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Draw a correctly labeled graph for Isla Ferries (on paper) showing demand, marginal revenue, and marginal cost. Label the profit-maximizing quantity Q<sub>M</sub> and price P<sub>M</sub>.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Doğru etiketlenmiş grafik: aşağı eğimli D, D'nin altında ve daha dik MR, yatay MC = ATC."
+      },
+      {
+       "puan": 1,
+       "olcut": "QM, MR = MC kesişiminden; PM, QM'nin üstünde talep eğrisinden okunmuş."
+      }
+     ],
+     "ornek_cozum": "<p>Tekel MR = MC'de üretir, fiyatı ise o miktarda <strong>talep eğrisinden</strong> okur. MR talebin iki katı eğimle iner (dikey kesişimleri ortak, 100).</p>",
+     "sik_hatalar": [
+      "Fiyatı MR = MC noktasının hizasından (20) okumak.",
+      "MR'ı talep eğrisiyle aynı çizmek."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Calculate the profit-maximizing quantity and price. Show your work.</p>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(100 - 4Q = 20 \\Rightarrow Q_M = 20\\).",
+       "ornek_cevap": "Q = 20"
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(P_M = 100 - 2(20) = 60\\) dolar.",
+       "ornek_cevap": "P = 60"
+      }
+     ],
+     "ornek_cozum": "<p>\\(MR = MC\\): \\(100 - 4Q = 20 \\Rightarrow Q = 20\\). Talepten \\(P = 100 - 40 = 60\\) dolar.</p>",
+     "sik_hatalar": [
+      "P = MC koşulunu kullanıp Q = 40 bulmak (bu etkin miktardır).",
+      "P'yi MR denkleminden hesaplamak."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>Calculate the firm's daily profit. Show your work.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\((60 - 20) \\times 20 = 800\\) dolar.",
+       "ornek_cevap": "800 dollars"
+      }
+     ],
+     "ornek_cozum": "<p>Kâr \\(= (P - ATC) \\times Q = (60 - 20) \\times 20 = 800\\) dolar/gün.</p>",
+     "sik_hatalar": [
+      "Toplam geliri (1200) kâr diye yazmak."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "<p>What is the allocatively efficient quantity of crossings?</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "P = MC: \\(100 - 2Q = 20 \\Rightarrow Q = 40\\).",
+       "ornek_cevap": "40"
+      }
+     ],
+     "ornek_cozum": "<p>Tahsis etkinliği \\(P = MC\\) ister: \\(100 - 2Q = 20 \\Rightarrow Q = 40\\).</p>",
+     "sik_hatalar": [
+      "MR = MC kullanmak (20 bulmak)."
+     ]
+    },
+    {
+     "harf": "e",
+     "soru": "<p>Calculate the deadweight loss that results from the monopoly. Show your work.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(\\tfrac{1}{2}(40 - 20)(60 - 20) = 400\\) dolar.",
+       "ornek_cevap": "400 dollars"
+      }
+     ],
+     "ornek_cozum": "<p>Ölü ağırlık kaybı, Q = 20 ile Q = 40 arasında talep ile MC arasındaki üçgendir: \\(\\tfrac{1}{2} \\times (40-20) \\times (60-20) = 400\\) dolar.</p>",
+     "sik_hatalar": [
+      "Üçgen yerine dikdörtgen alanı (800) hesaplamak.",
+      "1/2'yi unutmak."
+     ]
+    },
+    {
+     "harf": "f",
+     "soru": "<p>Suppose the government imposes a per-unit tax of 8 dollars on each crossing. Calculate the new profit-maximizing quantity.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Yeni MC = 28: \\(100 - 4Q = 28 \\Rightarrow Q = 18\\).",
+       "ornek_cevap": "18"
+      }
+     ],
+     "ornek_cozum": "<p>Birim vergi marjinal maliyeti 28'e çıkarır: \\(100 - 4Q = 28 \\Rightarrow Q = 18\\) (fiyat \\(100 - 36 = 64\\) dolara yükselir).</p>",
+     "sik_hatalar": [
+      "Birim verginin miktarı değiştirmediğini sanmak (bu götürü vergide geçerli)."
+     ]
+    },
+    {
+     "harf": "g",
+     "soru": "<p>Suppose instead the government imposes a lump-sum tax of 300 dollars per day. Will the profit-maximizing quantity increase, decrease, or remain the same? Explain.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "AYNI KALIR (20); götürü vergi sabit maliyettir, MR ve MC'yi değiştirmez."
+      }
+     ],
+     "ornek_cozum": "<p>Götürü vergi yalnızca sabit maliyeti (ve ATC'yi) artırır; <strong>MC değişmez</strong>, dolayısıyla MR = MC hâlâ Q = 20'de. Kâr \\(800 - 300 = 500\\) dolara düşer ama pozitif kalır.</p>",
+     "sik_hatalar": [
+      "Miktarın azalacağını söylemek.",
+      "Açıklamada ATC'nin kaydığını söyleyip MC'den söz etmemek."
+     ]
+    },
+    {
+     "harf": "h",
+     "soru": "<p>At the profit-maximizing quantity found in part (b), is demand price elastic, price inelastic, or unit elastic? Explain using marginal revenue.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "ESNEK; çünkü Q = 20'de MR = 20 > 0 (MR pozitifken talep esnektir)."
+      }
+     ],
+     "ornek_cozum": "<p>Q = 20'de \\(MR = 100 - 80 = 20 &gt; 0\\). MR pozitifse fiyat düşüşü toplam geliri artırır → talep <strong>esnektir</strong>. Tekel hiçbir zaman talebin esnek olmayan bölgesinde üretmez.</p>",
+     "sik_hatalar": [
+      "MR'ın işaretini kullanmadan yalnızca 'esnek' yazmak.",
+      "Talep eğrisinin eğimiyle esnekliği karıştırmak."
+     ]
+    }
+   ],
+   "toplam_puan": 10,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-micro-2",
+   "sayfa": "ap-electives",
+   "ders": "microeconomics",
+   "tur": "Kısa soru: oyun teorisi (ödeme matrisi)",
+   "baslik": "Delta and Kappa Pricing",
+   "sure_dk": 10,
+   "hesapMakinesi": false,
+   "zorluk": "medium",
+   "giris": "<p>Delta and Kappa are the only two sellers of solar chargers in a town. Each firm must choose either a high price or a low price, and they make their decisions simultaneously and independently. The payoff matrix below shows weekly profits, with Delta's profit listed first. Both firms know all the information in the matrix.</p><table class=\"frq-tablo\"><caption>Weekly profits (Delta, Kappa), in thousands of dollars</caption><thead><tr><th scope=\"col\"></th><th scope=\"col\">Kappa: High price</th><th scope=\"col\">Kappa: Low price</th></tr></thead><tbody><tr><th scope=\"row\">Delta: High price</th><td>(50, 40)</td><td>(20, 60)</td></tr><tr><th scope=\"row\">Delta: Low price</th><td>(70, 35)</td><td>(30, 25)</td></tr></tbody></table>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Does Delta have a dominant strategy? Explain using numbers from the matrix.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Evet, Low price; çünkü Kappa High seçerse 70 > 50, Low seçerse 30 > 20."
+      }
+     ],
+     "ornek_cozum": "<p>Kappa High seçerse Delta için Low = 70 &gt; High = 50; Kappa Low seçerse Low = 30 &gt; High = 20. Her iki durumda Low daha iyi → <strong>baskın strateji: Low price</strong>.</p>",
+     "sik_hatalar": [
+      "Kappa'nın kâr değerlerini (ikinci sayıları) karşılaştırmak.",
+      "Sayılarla açıklamamak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Does Kappa have a dominant strategy? Explain using numbers from the matrix.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Hayır; Delta High seçerse Kappa Low'u (60 > 40), Delta Low seçerse High'ı (35 > 25) tercih eder."
+      }
+     ],
+     "ornek_cozum": "<p>Delta High → Kappa için Low (60) &gt; High (40). Delta Low → Kappa için High (35) &gt; Low (25). En iyi tepki Delta'nın seçimine göre değiştiğinden Kappa'nın <strong>baskın stratejisi yoktur</strong>.</p>",
+     "sik_hatalar": [
+      "Tek bir satırı inceleyip 'Low baskın' demek."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>Identify the Nash equilibrium, if one exists.</p>",
+     "puan": 1,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Delta Low price, Kappa High price (70, 35).",
+       "ornek_cevap": "(Delta Low, Kappa High)"
+      }
+     ],
+     "ornek_cozum": "<p>Delta baskın stratejisi Low'u oynar; Kappa'nın Low'a en iyi tepkisi High (35 &gt; 25). Delta da High'a karşı Low'dan sapmak istemez (70 &gt; 50). Nash dengesi: <strong>(Low, High)</strong>, kârlar (70, 35).</p>",
+     "sik_hatalar": [
+      "Ortak kârı en büyük yapan hücreyi (High, High) Nash dengesi sanmak."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "<p>Suppose the town gives Kappa a subsidy of 20 thousand dollars per week whenever Kappa chooses the low price. All other payoffs are unchanged.</p><ol type=\"i\"><li>Does Kappa now have a dominant strategy? Explain.</li><li>Identify the new Nash equilibrium.</li></ol>",
+     "puan": 2,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Evet, Low: Kappa'nın Low ödemeleri 80 ve 45 olur; 80 > 40 ve 45 > 35."
+      },
+      {
+       "puan": 1,
+       "olcut": "Yeni Nash dengesi: Delta Low, Kappa Low; kârlar (30, 45).",
+       "ornek_cevap": "(Low, Low)"
+      }
+     ],
+     "ornek_cozum": "<p>Sübvansiyonla Kappa'nın Low sütunu 60 → 80 ve 25 → 45 olur. Delta High iken 80 &gt; 40, Delta Low iken 45 &gt; 35 → Kappa için <strong>Low baskın</strong>. Delta hâlâ Low baskın (sübvansiyon Delta'nın ödemelerini değiştirmez): yeni denge <strong>(Low, Low) = (30, 45)</strong>.</p>",
+     "sik_hatalar": [
+      "Sübvansiyonu Delta'nın ödemelerine de eklemek.",
+      "Yeni dengede eski kârları (30, 25) yazmak."
+     ]
+    }
+   ],
+   "toplam_puan": 5,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-csa-1",
+   "sayfa": "ap-electives",
+   "ders": "computer-science-a",
+   "tur": "Metotlar ve kontrol yapıları",
+   "baslik": "SignalTools",
+   "sure_dk": 22,
+   "hesapMakinesi": false,
+   "zorluk": "medium",
+   "giris": "<p>This question involves the <code>SignalTools</code> class, which contains two static utility methods. You will write both methods.</p><pre><code class=\"language-java\">public class SignalTools\n{\n    /** Returns the length of the longest run of strictly increasing\n     *  consecutive values in readings.\n     *  Precondition: readings.length &gt;= 1\n     */\n    public static int longestRising(int[] readings)\n    { /* to be implemented in part (a) */ }\n\n    /** Returns a compressed version of s, as described in part (b).\n     *  Precondition: s contains only lowercase letters.\n     */\n    public static String compress(String s)\n    { /* to be implemented in part (b) */ }\n}</code></pre>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Write the static method <code>longestRising</code>, which returns the length of the longest run of <em>strictly increasing</em> consecutive values in <code>readings</code>. A single value counts as a run of length 1.</p><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">readings</th><th scope=\"col\">Return value</th></tr></thead><tbody><tr><td><code>{3, 5, 7, 2, 4, 9, 11, 1}</code></td><td>4 (2, 4, 9, 11)</td></tr><tr><td><code>{1, 2, 2, 3, 4}</code></td><td>3 (2, 3, 4)</td></tr><tr><td><code>{9, 8, 8, 7}</code></td><td>1</td></tr></tbody></table><p>Complete method <code>longestRising</code>.</p>",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Ardışık eleman çiftlerini dizi sınırları dışına çıkmadan karşılaştırır (ör. i = 1'den başlayıp readings[i] ile readings[i - 1])."
+      },
+      {
+       "puan": 1,
+       "olcut": "Artış varsa mevcut seri uzunluğunu artırır; artmıyorsa (eşitlik dahil) 1'e sıfırlar."
+      },
+      {
+       "puan": 1,
+       "olcut": "En uzun seriyi saklar ve doğru değeri döndürür (tek elemanlı dizi için 1)."
+      }
+     ],
+     "ornek_cozum": "<p><strong>Fikir:</strong> <code>current</code> o anda biten artan serinin uzunluğu, <code>longest</code> en iyisi. Eşit değerler 'kesin artış' değildir, seriyi bozar. Döngü 1'den başladığı için <code>readings[i - 1]</code> her zaman geçerlidir.</p><pre><code class=\"language-java\">public static int longestRising(int[] readings)\n{\n    int longest = 1;\n    int current = 1;\n    for (int i = 1; i &lt; readings.length; i++)\n    {\n        if (readings[i] &gt; readings[i - 1])\n        {\n            current++;\n        }\n        else\n        {\n            current = 1;\n        }\n        if (current &gt; longest)\n        {\n            longest = current;\n        }\n    }\n    return longest;\n}</code></pre><p>İz: {3,5,7,2,4,9,11,1} → current: 2,3,1,2,3,4,1 → longest = 4.</p>",
+     "sik_hatalar": [
+      "Döngüyü i = 0'dan başlatıp readings[i - 1] ile ArrayIndexOutOfBoundsException almak.",
+      "Eşit değerleri (>=) artış saymak.",
+      "longest'ı yalnızca seri bozulunca güncelleyip dizinin sonunda biten seriyi kaçırmak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Write the static method <code>compress</code>, which returns a string in which each maximal group of identical adjacent letters in <code>s</code> is replaced by the letter followed by the number of letters in the group. If a group contains only one letter, the number is omitted.</p><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">s</th><th scope=\"col\">Return value</th></tr></thead><tbody><tr><td><code>\"aaabcc\"</code></td><td><code>\"a3bc2\"</code></td></tr><tr><td><code>\"zzzz\"</code></td><td><code>\"z4\"</code></td></tr><tr><td><code>\"abca\"</code></td><td><code>\"abca\"</code></td></tr><tr><td><code>\"\"</code></td><td><code>\"\"</code></td></tr></tbody></table><p>Complete method <code>compress</code>.</p>",
+     "puan": 4,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Karakterlere sınır dışına çıkmadan erişir (substring(i, i + 1) ya da charAt)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Aynı harflerden oluşan bitişik grupları doğru tespit eder ve sayar."
+      },
+      {
+       "puan": 1,
+       "olcut": "Harfi her zaman, sayıyı yalnızca grup uzunluğu 1'den büyükse ekler."
+      },
+      {
+       "puan": 1,
+       "olcut": "Son grup dahil doğru dizeyi döndürür (boş dize için \"\")."
+      }
+     ],
+     "ornek_cozum": "<p><strong>Fikir:</strong> i bir grubun başını gösterir; iç döngü aynı harf devam ettikçe <code>count</code>'u artırır. Sonra harf (ve gerekiyorsa sayı) eklenir, i grubun sonrasına atlar. Böylece son grup da döngü içinde işlenir.</p><pre><code class=\"language-java\">public static String compress(String s)\n{\n    String result = \"\";\n    int i = 0;\n    while (i &lt; s.length())\n    {\n        String ch = s.substring(i, i + 1);\n        int count = 1;\n        while (i + count &lt; s.length()\n               &amp;&amp; s.substring(i + count, i + count + 1).equals(ch))\n        {\n            count++;\n        }\n        result += ch;\n        if (count &gt; 1)\n        {\n            result += count;\n        }\n        i += count;\n    }\n    return result;\n}</code></pre><p>İz: \"aaabcc\" → (a,3) → \"a3\", (b,1) → \"a3b\", (c,2) → \"a3bc2\".</p>",
+     "sik_hatalar": [
+      "Dizeleri == ile karşılaştırmak (equals kullanılmalı).",
+      "Döngü bittikten sonra son grubu eklemeyi unutmak.",
+      "Tek harfli gruplara da \"1\" eklemek."
+     ]
+    }
+   ],
+   "toplam_puan": 7,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-csa-2",
+   "sayfa": "ap-electives",
+   "ders": "computer-science-a",
+   "tur": "Sınıf tasarımı",
+   "baslik": "GymPass",
+   "sure_dk": 22,
+   "hesapMakinesi": false,
+   "zorluk": "medium",
+   "giris": "<p>A gym sells prepaid passes. A <code>GymPass</code> object stores the owner's name, the number of visits remaining, and the number of visits that have been used.</p><ul><li>The constructor takes the owner's name and the initial number of prepaid visits.</li><li><code>checkIn</code> returns <code>true</code> and uses one visit if at least one visit remains; otherwise it returns <code>false</code> and nothing changes.</li><li><code>addVisits(int n)</code> adds <code>n</code> visits plus one bonus visit for every complete group of 10 visits purchased in that call. Precondition: <code>n &gt; 0</code>.</li><li><code>getStatus</code> returns a string in the format shown below.</li></ul><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">Statement</th><th scope=\"col\">Value returned</th><th scope=\"col\">Explanation</th></tr></thead><tbody><tr><td><code>GymPass p = new GymPass(\"Lena\", 2);</code></td><td></td><td>2 visits remaining</td></tr><tr><td><code>p.checkIn();</code></td><td><code>true</code></td><td>1 remaining, 1 used</td></tr><tr><td><code>p.checkIn();</code></td><td><code>true</code></td><td>0 remaining, 2 used</td></tr><tr><td><code>p.checkIn();</code></td><td><code>false</code></td><td>no visits remain; nothing changes</td></tr><tr><td><code>p.getStatus();</code></td><td><code>\"Lena: 0 left, 2 used\"</code></td><td></td></tr><tr><td><code>p.addVisits(25);</code></td><td></td><td>25 visits + 2 bonus visits</td></tr><tr><td><code>p.getStatus();</code></td><td><code>\"Lena: 27 left, 2 used\"</code></td><td></td></tr></tbody></table>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Write the complete <code>GymPass</code> class. Your implementation must meet all specifications and conform to the examples shown in the table.</p>",
+     "puan": 7,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Sınıf başlığı public class GymPass ve private örnek değişkenler (isim, kalan, kullanılan)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Kurucu (String, int) imzasıyla tüm örnek değişkenleri doğru başlatır (kullanılan = 0)."
+      },
+      {
+       "puan": 1,
+       "olcut": "checkIn başlığı doğru: public boolean checkIn() (parametresiz)."
+      },
+      {
+       "puan": 1,
+       "olcut": "checkIn yalnızca kalan > 0 iken kalanı 1 azaltır ve true döndürür; aksi hâlde false döndürür ve değişiklik yapmaz."
+      },
+      {
+       "puan": 1,
+       "olcut": "checkIn başarılı olduğunda kullanılan sayısını artırır (getStatus'ta doğru görünür)."
+      },
+      {
+       "puan": 1,
+       "olcut": "addVisits: n + n / 10 ekler (tam sayı bölmesiyle bonus)."
+      },
+      {
+       "puan": 1,
+       "olcut": "getStatus örnekteki biçimi birebir döndürür: isim + \": \" + kalan + \" left, \" + kullanılan + \" used\"."
+      }
+     ],
+     "ornek_cozum": "<p><strong>Tasarım:</strong> Üç private alan yeterli. Bonus için tam sayı bölmesi işi görür: 25 / 10 = 2, 9 / 10 = 0. getStatus ekrana yazmaz, dizeyi <em>döndürür</em>.</p><pre><code class=\"language-java\">public class GymPass\n{\n    private String owner;\n    private int remaining;\n    private int used;\n\n    public GymPass(String name, int visits)\n    {\n        owner = name;\n        remaining = visits;\n        used = 0;\n    }\n\n    public boolean checkIn()\n    {\n        if (remaining &gt; 0)\n        {\n            remaining--;\n            used++;\n            return true;\n        }\n        return false;\n    }\n\n    public void addVisits(int n)\n    {\n        remaining += n + n / 10;\n    }\n\n    public String getStatus()\n    {\n        return owner + \": \" + remaining + \" left, \" + used + \" used\";\n    }\n}</code></pre><p>Doğrulama: tablodaki çağrılar sırasıyla true, true, false, \"Lena: 0 left, 2 used\", \"Lena: 27 left, 2 used\" üretir.</p>",
+     "sik_hatalar": [
+      "Örnek değişkenleri public yapmak ya da kurucuda yerel değişken tanımlayıp alanları gölgelemek (int remaining = visits;).",
+      "getStatus içinde System.out.println kullanıp return etmemek.",
+      "Bonusu yalnızca n == 10 iken vermek ya da n / 10'u double ile hesaplamak."
+     ]
+    }
+   ],
+   "toplam_puan": 7,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-csa-3",
+   "sayfa": "ap-electives",
+   "ders": "computer-science-a",
+   "tur": "ArrayList ile veri analizi",
+   "baslik": "Playlist Cleanup",
+   "sure_dk": 22,
+   "hesapMakinesi": false,
+   "zorluk": "medium",
+   "giris": "<p>A <code>Playlist</code> stores <code>Song</code> objects in an <code>ArrayList</code>. The declarations are shown below.</p><pre><code class=\"language-java\">public class Song\n{\n    /** Returns the title of the song */\n    public String getTitle()\n    { /* implementation not shown */ }\n\n    /** Returns the length of the song, in seconds */\n    public int getSeconds()\n    { /* implementation not shown */ }\n\n    // There may be instance variables, constructors, and methods not shown.\n}\n\npublic class Playlist\n{\n    /** The songs in this playlist; guaranteed not to be null */\n    private ArrayList&lt;Song&gt; songs;\n\n    /** Removes from songs every song whose length is greater than limit\n     *  seconds and returns the total length, in seconds, of the removed\n     *  songs. The remaining songs keep their original relative order.\n     */\n    public int removeLongerThan(int limit)\n    { /* to be implemented */ }\n\n    // There may be instance variables, constructors, and methods not shown.\n}</code></pre><p>For example, if the songs have lengths <code>[200, 340, 410, 180, 305]</code>, the call <code>removeLongerThan(300)</code> returns <code>1055</code> and the list then contains the songs with lengths <code>[200, 180]</code>. If no song is longer than <code>limit</code>, the method returns 0 and the list is unchanged.</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Write the <code>Playlist</code> method <code>removeLongerThan</code>.</p>",
+     "puan": 5,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "songs listesindeki her elemanı inceler; silme sonrası eleman atlanmaz (sondan başa döngü ya da silmede indeksi artırmama)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Song nesnesinde getSeconds() metodunu doğru çağırır."
+      },
+      {
+       "puan": 1,
+       "olcut": "Uzunluğu limit'ten BÜYÜK olan şarkıları (eşit olanları değil) remove ile siler."
+      },
+      {
+       "puan": 1,
+       "olcut": "Silinen şarkıların uzunluklarını toplar."
+      },
+      {
+       "puan": 1,
+       "olcut": "Toplamı döndürür; kalan şarkıların sırası korunur."
+      }
+     ],
+     "ornek_cozum": "<p><strong>Kilit nokta:</strong> ArrayList'te baştan sona giderken silmek, sonraki elemanı bir sola kaydırır; i++ ile o eleman atlanır. Sondan başa gitmek bu sorunu ortadan kaldırır ve sıra bozulmaz.</p><pre><code class=\"language-java\">public int removeLongerThan(int limit)\n{\n    int total = 0;\n    for (int i = songs.size() - 1; i &gt;= 0; i--)\n    {\n        int len = songs.get(i).getSeconds();\n        if (len &gt; limit)\n        {\n            total += len;\n            songs.remove(i);\n        }\n    }\n    return total;\n}</code></pre><p>İz: [200, 340, 410, 180, 305], limit 300 → i=4: 305 silinir (305), i=2: 410 (715), i=1: 340 (1055) → kalan [200, 180], dönüş 1055.</p>",
+     "sik_hatalar": [
+      "Baştan sona for döngüsünde silip i'yi azaltmamak: bitişik uzun şarkılardan biri atlanır.",
+      "Gelişmiş for (for-each) içinde remove çağırmak (ConcurrentModificationException).",
+      "Silinen değil kalan şarkıların uzunluğunu toplamak ya da >= kullanmak."
+     ]
+    }
+   ],
+   "toplam_puan": 5,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  },
+  {
+   "id": "frq-csa-4",
+   "sayfa": "ap-electives",
+   "ders": "computer-science-a",
+   "tur": "2B dizi",
+   "baslik": "Theater SeatMap",
+   "sure_dk": 22,
+   "hesapMakinesi": false,
+   "zorluk": "hard",
+   "giris": "<p>A theater's seating chart is represented by the <code>SeatMap</code> class below.</p><pre><code class=\"language-java\">public class SeatMap\n{\n    /** seats[r][c] is 1 if the seat in row r, column c is taken,\n     *  and 0 if it is empty. seats is rectangular with at least\n     *  one row and one column.\n     */\n    private int[][] seats;\n\n    /** Part (a) */\n    public boolean reserveBlock(int row, int n)\n    { /* to be implemented in part (a) */ }\n\n    /** Part (b) */\n    public int fullColumns()\n    { /* to be implemented in part (b) */ }\n\n    // There may be instance variables, constructors, and methods not shown.\n}</code></pre><p>The examples in this question use the following <code>seats</code> array.</p><table class=\"frq-tablo\"><caption>seats</caption><thead><tr><th scope=\"col\"></th><th scope=\"col\">0</th><th scope=\"col\">1</th><th scope=\"col\">2</th><th scope=\"col\">3</th><th scope=\"col\">4</th><th scope=\"col\">5</th><th scope=\"col\">6</th></tr></thead><tbody><tr><th scope=\"row\">0</th><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><th scope=\"row\">1</th><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr><tr><th scope=\"row\">2</th><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td></tr></tbody></table>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Write the method <code>reserveBlock</code>. The method looks in row <code>row</code> for the <em>leftmost</em> block of <code>n</code> consecutive empty seats. If such a block exists, every seat in the block is marked as taken and the method returns <code>true</code>. Otherwise, the method returns <code>false</code> and <code>seats</code> is unchanged. Precondition: <code>0 &lt;= row &lt; seats.length</code>, <code>n &gt;= 1</code>.</p><p>Using the example array, <code>reserveBlock(0, 3)</code> marks columns 4, 5, and 6 of row 0 and returns <code>true</code>. A second call <code>reserveBlock(0, 3)</code> then returns <code>false</code> and changes nothing. <code>reserveBlock(2, 1)</code> marks row 2, column 1 and returns <code>true</code>.</p>",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Verilen satırın tüm sütunlarını sınır içinde dolaşır (seats[row].length)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Ardışık boş koltuk sayısını tutar; dolu koltukta sayacı sıfırlar."
+      },
+      {
+       "puan": 1,
+       "olcut": "Yalnızca EN SOLDAKİ n'lik bloğu 1 yapar ve true döndürür; blok yoksa diziyi değiştirmeden false döndürür."
+      }
+     ],
+     "ornek_cozum": "<p><strong>Fikir:</strong> <code>run</code>, c sütununda biten boş koltuk serisinin uzunluğu. İlk kez n'ye ulaştığında blok c - n + 1 ile c arasındadır; bunlar işaretlenir. Blok bulunana kadar hiçbir koltuğa yazılmadığı için başarısızlıkta dizi değişmez.</p><pre><code class=\"language-java\">public boolean reserveBlock(int row, int n)\n{\n    int run = 0;\n    for (int c = 0; c &lt; seats[row].length; c++)\n    {\n        if (seats[row][c] == 0)\n        {\n            run++;\n            if (run == n)\n            {\n                for (int k = c - n + 1; k &lt;= c; k++)\n                {\n                    seats[row][k] = 1;\n                }\n                return true;\n            }\n        }\n        else\n        {\n            run = 0;\n        }\n    }\n    return false;\n}</code></pre>",
+     "sik_hatalar": [
+      "Koltukları blok tamamlanmadan işaretlemeye başlamak (başarısızlıkta dizi bozulur).",
+      "Dolu koltukta sayacı sıfırlamamak.",
+      "Toplam boş koltuk sayısını n ile karşılaştırmak (bitişiklik şartını kaçırmak)."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Write the method <code>fullColumns</code>, which returns the number of columns in which every seat is taken. Using the example array, <code>fullColumns()</code> returns 2 (columns 0 and 3).</p>",
+     "puan": 3,
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Sütun öncelikli (column-major) dolaşım: dış döngü sütunlar, iç döngü satırlar; tüm elemanlar sınır içinde."
+      },
+      {
+       "puan": 1,
+       "olcut": "Bir sütunun tamamen dolu olup olmadığını doğru belirler (tek bir 0 yeterli)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Dolu sütunları sayar ve sayıyı döndürür."
+      }
+     ],
+     "ornek_cozum": "<p><strong>Fikir:</strong> Her sütun için bir bayrak <code>full</code> başlatılır; satırlardan herhangi biri 0 ise false olur. Dizi dikdörtgen olduğundan sütun sayısı <code>seats[0].length</code>.</p><pre><code class=\"language-java\">public int fullColumns()\n{\n    int count = 0;\n    for (int c = 0; c &lt; seats[0].length; c++)\n    {\n        boolean full = true;\n        for (int r = 0; r &lt; seats.length; r++)\n        {\n            if (seats[r][c] == 0)\n            {\n                full = false;\n            }\n        }\n        if (full)\n        {\n            count++;\n        }\n    }\n    return count;\n}</code></pre><p>Örnek: sütun 0 = {1,1,1} ve sütun 3 = {1,1,1} dolu, diğerlerinde en az bir 0 var → 2.</p>",
+     "sik_hatalar": [
+      "Satır ve sütun indekslerini karıştırmak (seats[c][r]) ya da sütun sayısı için seats.length kullanmak.",
+      "Bayrağı her sütun için yeniden başlatmamak.",
+      "Herhangi bir 1 gördüğünde sütunu dolu saymak."
+     ]
+    }
+   ],
+   "toplam_puan": 6,
+   "kaynak": "AP-style original",
+   "durum": "taslak"
+  }
+ ]
+}

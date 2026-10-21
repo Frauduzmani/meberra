@@ -276,6 +276,18 @@ function olustur(secenek) {
   sinirlar.olay = huni.sinir; sinirlar.kupon = kampanya.kuponSinir;
   // ==== /1.6.0 ====
 
+  // 1.11.0 FRQ — serbest yanıt pratiği (server/frq.js; tohum server/tohum/frq.json; rubrik yalnızca teslimden sonra)
+  {
+    const frq = require("./frq");
+    if (secenek.frqTohum !== false) {
+      try { const t = frq.tohumEsitle(db, secenek.frqTohumDosyasi, gunluk); if (t.mod === "ilk") gunluk.bilgi("sunucu", "FRQ bankası tohumdan yüklendi: " + t.eklenen + " FRQ"); }
+      catch (e) { gunluk.hata("sunucu", "FRQ tohumu yüklenemedi", hataAyrinti(e)); }
+    }
+    const frqS = frq.frqRotalari(r, { db, hesap, denetim, oturumGerekli, yoneticiGerekli, teslimSiniri: secenek.frqTeslimSiniri });
+    sinirlar["frq.teslim"] = frqS.sinir.teslim;
+  }
+  // 1.11.0 FRQ sonu
+
   /** Bakım sayfası (503). Yönetici oturumu olan bu sayfayı görmez. */
   function bakimSayfasi(req, res) {
     const k = hesap.oturumKullanici(cerezleriOku(req)[CEREZ]);

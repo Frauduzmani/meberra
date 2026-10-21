@@ -36,6 +36,7 @@
     { yol: "/ders/cent-s", dosya: "sinav-cents.html" },
     { yol: "/deneme", dosya: "deneme.html" },
     { yol: "/seviye-testi", dosya: "seviye-testi.html" },
+    { yol: "/frq", dosya: "frq.html" }, // 1.11.0 FRQ pratiği (/frq?ders=calculus)
     { yol: "/ulkem", dosya: "sartlar.html", herkese: true },
     { yol: "/universiteler", dosya: "universiteler.html", herkese: true },
     { yol: "/takvim", dosya: "rota.html" },
