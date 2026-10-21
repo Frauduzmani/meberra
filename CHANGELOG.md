@@ -9,6 +9,18 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.9.0] — 2026-10-21
+### Değişti
+- Tasarım taraması (her sayfa masaüstü/telefon, açık/koyu ekran görüntüsüyle; notlar `araclar/tasarim-1.9/`):
+  - Sınavlar: "sıradaki tarih" sayacı ve zaman şeridi, sade sınav kartları, "Benim sınavlarım" süzgeci.
+  - Ülkem: bayraklı ülke seçici, "AP burada ne işe yarar?" bandı, şart listesi, katlanır bölümler (sayfa boyu ~4 kat kısaldı).
+  - Takvim, Başvurular, Üniversiteler ve rehberler ortak başlık düzeninde; rehberlerde içindekiler.
+  - Profil 4 bölüm (yan menü / sekmeler); sınav sırasında odak modu; tek kutulu cevap geri bildirimi; Çalış'ta tek maskot.
+  - Yasal sayfalarda tablo düzeni, Premium'da tek odak, şifre sıfırlamada geçersiz bağlantı ekranı.
+- JS ve CSS her açılışta doğrulanır (ETag); yeni sürüme geçişte eski stil/betik kalmaz.
+### Düzeltildi
+- Sayfa kaymaları: deneme 0,134 → 0,003; Premium 0,090 → 0,008; tüm ana sayfalar ≤ 0,011.
+
 ## [1.8.0] — 2026-10-21
 ### Değişti
 - Temiz adresler: `/bugun`, `/calis`, `/ders/calculus`, `/ulkem`, `/takvim`, `/basvurular`, `/rehber/almanya`…; URL'lerde .html yok. Eski `/x.html` adresleri 301 ile yönlenir (sorgu korunur).

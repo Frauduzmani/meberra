@@ -180,8 +180,9 @@ function statikSun(req, res, ozel) {
     Object.keys(ozel.basliklar || {}).forEach(k => res.setHeader(k, ozel.basliklar[k]));
   } else {
     res.setHeader("ETag", etag);
-    // HTML, service worker ve manifest her açılışta doğrulanır; diğer varlıklar 1 saat önbellekte
-    const tazele = uzanti === ".html" || uzanti === ".webmanifest" || path.basename(tam) === "sw.js";
+    // HTML, JS, CSS, service worker ve manifest her açılışta ETag ile doğrulanır (sürüm geçişinde eski stil/betik kalmaz);
+    // görsel ve fontlar 1 saat önbellekte
+    const tazele = [".html", ".webmanifest", ".js", ".css"].indexOf(uzanti) >= 0;
     res.setHeader("Cache-Control", (ozel && ozel.cacheControl) || (tazele ? "no-cache" : "public, max-age=3600"));
     if (req.headers["if-none-match"] === etag) { res.statusCode = 304; res.end(); return true; }
   }
