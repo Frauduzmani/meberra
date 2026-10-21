@@ -87,12 +87,69 @@ function tohumUpsert(db, satirlar, o) {
   });
   return s;
 }
-/** Tablo boşsa tohumdan doldurur. Dönüş: eklenen sayı (dolu tabloda 0). */
+/** Tablo boşsa tohumdan doldurur. Dönüş: eklenen sayı (dolu tabloda 0). Tohum sürümü de ayarlara yazılır. */
 function tohumYukleGerekirse(db, dosya) {
   if (db.prepare("SELECT COUNT(*) AS n FROM questions_bank").get().n > 0) return 0;
+  const r = tohumEsitle(db, dosya);
+  return r.mod === "ilk" ? r.eklenen : 0;
+}
+
+// --- v1.10.0 tohum sürümü: mevcut veritabanlarına içerik güncellemesi ---------------------------------------------
+// Tohum dosyasının "surum" alanı ayarlar.soru_tohum_surum ile karşılaştırılır (anahtar yoksa veritabanı 1.10.0 öncesi
+// tohumla, yani sürüm 1 ile kurulmuştur). Tohum daha yeniyse: yeni sorular eklenir; yönetici panelinde HİÇ düzenlenmemiş
+// sorular yeni sürüme geçer (eski hâl questions_bank_history'ye, guncelleyen = 'tohum'); yönetici düzenlemesi olan sorulara
+// dokunulmaz ve system_logs'a "bilgi" olarak yazılır. Tohumda olmayan sorular (yöneticinin eklediği) olduğu gibi kalır.
+const TOHUM_AYAR = "soru_tohum_surum";
+const SISTEM_YAZAR = new Set(["tohum", "aktarim"]);
+const yoneticiKimligi = v => v != null && !SISTEM_YAZAR.has(String(v)) && /^\d+$/.test(String(v));
+/** Soru yönetici panelinde düzenlendi mi (son yazan ya da geçmişteki herhangi bir sürümü yazan bir kullanıcı)? */
+function yoneticiDuzenledi(db, satir) {
+  if (yoneticiKimligi(satir.guncelleyen)) return true;
+  return db.prepare("SELECT degistiren FROM questions_bank_history WHERE soru_id = ?").all(satir.id).some(h => yoneticiKimligi(h.degistiren));
+}
+function tohumSurumOku(db) {
+  const r = db.prepare("SELECT deger FROM ayarlar WHERE anahtar = ?").get(TOHUM_AYAR);
+  return r ? Number(r.deger) || 1 : null;
+}
+function tohumSurumYaz(db, surum) {
+  db.prepare(`INSERT INTO ayarlar (anahtar, deger, guncelleme, guncelleyen) VALUES (?, ?, ?, NULL)
+    ON CONFLICT(anahtar) DO UPDATE SET deger = excluded.deger, guncelleme = excluded.guncelleme, guncelleyen = NULL`).run(TOHUM_AYAR, String(surum), simdi());
+}
+/**
+ * Açılışta çağrılır. gunluk (isteğe bağlı): server/gunluk.js servisi; korunan yönetici düzenlemeleri "bilgi" olarak yazılır.
+ * Dönüş: { mod: "yok" | "ilk" | "guncel" | "guncelleme", surum, eklenen, guncellenen, ayni, korunan: [id] }
+ */
+function tohumEsitle(db, dosya, gunluk) {
   const f = dosya || TOHUM;
-  if (!fs.existsSync(f)) return 0;
-  return tohumUpsert(db, JSON.parse(fs.readFileSync(f, "utf8")).sorular || [], { guncelleyen: "tohum" }).eklenen;
+  if (!fs.existsSync(f)) return { mod: "yok" };
+  const t = JSON.parse(fs.readFileSync(f, "utf8"));
+  const surum = Number(t.surum) || 1, satirlar = t.sorular || [];
+  if (db.prepare("SELECT COUNT(*) AS n FROM questions_bank").get().n === 0) {
+    let s;
+    islem(db, () => { s = tohumUpsert(db, satirlar, { guncelleyen: "tohum" }); tohumSurumYaz(db, surum); });
+    return { mod: "ilk", surum, eklenen: s.eklenen, guncellenen: 0, ayni: 0, korunan: [] };
+  }
+  const dbSurum = tohumSurumOku(db) || 1;
+  if (surum <= dbSurum) return { mod: "guncel", surum: dbSurum, eklenen: 0, guncellenen: 0, ayni: 0, korunan: [] };
+  const st = hazirla(db), z = simdi(), s = { mod: "guncelleme", oncekiSurum: dbSurum, surum, eklenen: 0, guncellenen: 0, ayni: 0, korunan: [] };
+  islem(db, () => {
+    for (const r of satirlar) {
+      const eski = satirCoz(st.tek.get(r.id));
+      if (!eski) { st.ekle.run(r.id, ...yaziDegerleri(r), 1, z, z, "tohum"); s.eklenen++; continue; }
+      if (esit(icerik(eski), icerik(r))) { s.ayni++; continue; }
+      if (yoneticiDuzenledi(db, eski)) { s.korunan.push(r.id); continue; }
+      surumYaz(db, st, eski, Object.assign({}, eski, icerik(r)), "tohum", "tohum sürümü " + surum);
+      s.guncellenen++;
+    }
+    tohumSurumYaz(db, surum);
+  });
+  if (gunluk) {
+    gunluk.bilgi("sunucu", `Soru bankası tohum sürümü ${dbSurum} → ${surum}: ${s.guncellenen} soru güncellendi, ${s.eklenen} eklendi, ${s.korunan.length} yönetici düzenlemesi korundu`,
+      { oncekiSurum: dbSurum, surum, guncellenen: s.guncellenen, eklenen: s.eklenen, ayni: s.ayni, korunan: s.korunan.slice(0, 200).join(", ") || null });
+    s.korunan.slice(0, 100).forEach(id => gunluk.bilgi("sunucu", "Soru bankası tohum güncellemesi atlandı, yönetici düzenlemesi korundu: " + id,
+      { soruId: id, tohumSurum: surum, cozum: "Panelde soruyu tohumdaki hâliyle karşılaştırıp gerekirse elle güncelle (araclar/icerik-denetim/UYGULAMA.md)." }));
+  }
+  return s;
 }
 
 // --- öğrenciye giden biçimler (eski istemci şemasıyla aynı alan adları; doğru şık / çözüm YOK) -------------------
@@ -105,11 +162,23 @@ function acikSoru(r) {
   }
   return { id: r.id, number: r.numara, topic: r.konu, difficulty: r.zorluk, source: r.kaynak, question: r.govde, options };
 }
-/** Çözüm: { dogru, aciklama, genelHatirlatma, hatalar: { harf: { errorTag, remediation } } } (istemci apCozumUygula ile birleştirir) */
+/**
+ * v1.10.0 içerik zenginleştirmesi (yalnız CEVAPTAN SONRA gönderilir; liste yanıtlarında yoktur):
+ * { kavram, ipucu, sikHata, hesapMakinesi: "gerekmez" | "yardımcı" | "gerekli" } — boş alanlar yazılmaz.
+ * Seviye sorularında ek.hesapMakinesi boolean'dır (seviye arayüzü); üç düzeyli değer ek.hesapMakinesiDurum'dadır.
+ */
+function ogrenciEk(r) {
+  const e = r.ek || {}, o = {};
+  ["kavram", "ipucu", "sikHata"].forEach(k => { if (e[k] != null && String(e[k]).trim()) o[k] = String(e[k]); });
+  const hm = e.hesapMakinesiDurum || (typeof e.hesapMakinesi === "string" ? e.hesapMakinesi : null);
+  if (hm) o.hesapMakinesi = String(hm);
+  return o;
+}
+/** Çözüm: { dogru, aciklama, genelHatirlatma, hatalar: { harf: { errorTag, remediation } }, ek } (istemci apCozumUygula ile birleştirir) */
 function cozumOf(r) {
   const hatalar = {};
   Object.keys(r.hata_aciklamalari || {}).forEach(k => { const h = r.hata_aciklamalari[k] || {}; hatalar[k] = { errorTag: h.etiket || "", remediation: h.aciklama || "" }; });
-  return { dogru: r.dogru, aciklama: r.aciklama || "", genelHatirlatma: r.genel_hatirlatma || "", hatalar };
+  return { dogru: r.dogru, aciklama: r.aciklama || "", genelHatirlatma: r.genel_hatirlatma || "", hatalar, ek: ogrenciEk(r) };
 }
 
 // --- deneme seçimi (istemcideki eski selectQuestions ile birebir: aynı tohum + aynı havuz → aynı deneme) ------------
@@ -269,7 +338,7 @@ function soruBankasiRotalari(r, bag) {
     veri.uygula(req.kullanici.id, { [QUIZ_KEY]: JSON.stringify(kayit) });
     const c = cozumOf(row), h = c.hatalar[secim];
     return { ok: true, soruId: row.id, secim, dogru, dogruSecenek: row.dogru, aciklama: c.aciklama, genelHatirlatma: c.genelHatirlatma,
-      hataAciklamasi: dogru ? null : { etiket: h ? h.errorTag : "", aciklama: h ? h.remediation : "" }, cozum: c, t };
+      hataAciklamasi: dogru ? null : { etiket: h ? h.errorTag : "", aciklama: h ? h.remediation : "" }, ek: c.ek, cozum: c, t };
   });
 
   /** Anahtarla soru getir (İlerleme › Bugünkü tekrar). Ücretsiz planda: açık kutu ya da öğrencinin daha önce çözdüğü soru. */
@@ -729,4 +798,5 @@ function soruBankasiRotalari(r, bag) {
   return { sinir };
 }
 
-module.exports = { soruBankasiRotalari, tohumUpsert, tohumYukleGerekirse, acikSoru, cozumOf, soruSec, satirCoz, TOHUM, DEMO_ID };
+module.exports = { soruBankasiRotalari, tohumUpsert, tohumYukleGerekirse, tohumEsitle, tohumSurumOku, yoneticiDuzenledi, acikSoru, cozumOf, ogrenciEk, soruSec, satirCoz,
+  TOHUM, TOHUM_AYAR, DEMO_ID };

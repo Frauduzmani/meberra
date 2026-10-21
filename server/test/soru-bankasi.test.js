@@ -175,7 +175,7 @@ test("deneme: ücretsiz hak sunucuda — aynı ders sayfasında ikinci deneme 40
   let r = await o("GET", "/api/deneme/katalog");
   assert.equal(r.durum, 200);
   assert.equal(r.govde.kodlar["calculus-ab"].soruSayisi, 157);
-  assert.equal(r.govde.sorular.length, 971);
+  assert.equal(r.govde.sorular.length, 969); // v1.10.0: 2 birebir tekrar arşivlendi (calc_u6_q33, chem_u8_q11); arşiv deneme havuzunda yok
   assert.equal(cevapAlaniVar(r.govde.sorular), false);
   assert.equal(r.govde.sorular.some(x => "question" in x || "options" in x), false, "katalogda soru kökü/şık yok");
   assert.equal(r.govde.haklar["ap-calculus"], false);

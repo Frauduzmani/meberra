@@ -308,10 +308,18 @@ function main() {
     console.log(`Veritabanı ${dosya}: ${s.eklenen} eklendi, ${s.guncellenen} güncellendi (yeni sürüm), ${s.ayni} aynı.`);
     return;
   }
-  const govde = { surum: 1, olusturma: new Date().toISOString(), aciklama: "Meberra soru bankası tohumu — tek doğruluk kaynağı. Statik olarak SUNULMAZ. Üretici: node araclar/soru-aktar.js", sorular: satirlar };
+  // v1.10.0: tohum sürümü geri gitmez. Sunucu, tohum sürümü veritabanındakinden (ayarlar.soru_tohum_surum) büyükse yönetici
+  // düzenlemesi olmayan soruları günceller; içerik değiştiyse sürüm +1. Not: eski kaynaklardan yeniden üretim ek
+  // zenginleştirmesini ve denetim düzeltmelerini içermez → ardından `node araclar/icerik-uygula.js` çalıştırılmalı.
+  let surum = 1;
+  try {
+    const onceki = JSON.parse(fs.readFileSync(TOHUM, "utf8"));
+    surum = (Number(onceki.surum) || 1) + (JSON.stringify(onceki.sorular) === JSON.stringify(satirlar) ? 0 : 1);
+  } catch (e) { /* ilk üretim */ }
+  const govde = { surum, olusturma: new Date().toISOString(), aciklama: "Meberra soru bankası tohumu — tek doğruluk kaynağı. Statik olarak SUNULMAZ. Üretici: node araclar/soru-aktar.js", sorular: satirlar };
   fs.mkdirSync(path.dirname(TOHUM), { recursive: true });
   fs.writeFileSync(TOHUM, JSON.stringify(govde, null, 1) + "\n", "utf8");
-  console.log(`Yazıldı: ${path.relative(ROOT, TOHUM)} (${(fs.statSync(TOHUM).size / 1024).toFixed(0)} KB)`);
+  console.log(`Yazıldı: ${path.relative(ROOT, TOHUM)} (${(fs.statSync(TOHUM).size / 1024).toFixed(0)} KB, tohum sürümü ${surum}). Denetim düzeltmeleri için: node araclar/icerik-uygula.js`);
 }
 
 module.exports = { kaynaklariOku, eskiSema, satirAlanlari, sayfaTemizle, seviyeTemizle, VITRIN_DEMO };

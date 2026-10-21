@@ -11,7 +11,8 @@ const { eskiSema } = require("./soru-aktar.js");
 
 const ROOT = path.resolve(__dirname, "..");
 const TOHUM = (() => { const i = process.argv.indexOf("--tohum"); return i > 0 ? path.resolve(process.argv[i + 1]) : path.join(ROOT, "server", "tohum", "soru-bankasi.json"); })();
-const BANKA = JSON.parse(fs.readFileSync(TOHUM, "utf8")).sorular.filter(r => r.durum !== "arsiv");
+const TUM = JSON.parse(fs.readFileSync(TOHUM, "utf8")).sorular;
+const BANKA = TUM.filter(r => r.durum !== "arsiv");
 const PAGES = fs.readdirSync(ROOT).filter(f => /^(ap|sinav)-.*.html$/.test(f));
 const SEVIYE_DIR = path.join(ROOT, "data", "sorular", "seviye");
 const FORBIDDEN_SOURCE = /official|past exam|canonical|college board exam/i;
@@ -138,11 +139,42 @@ for (const f of seviyeFiles) {
   }
 }
 
+// 3) v1.10.0 içerik sağlığı: durum sayıları, ek zenginleştirme kapsamı, tekrar sorular (normalleştirilmiş kök + şık kümesi özeti).
+//    Tekrar özeti: HTML/$/biçim komutları (\displaystyle, \left, \text, \dfrac…) ve BC etiketleri atılır, şıklar sıralanır.
+//    Aktif (arşivlenmemiş) iki soru aynı özeti taşıyorsa sorun sayılır; arşivlenmiş kopya sayılmaz.
+const crypto = require("crypto");
+const BICIM = /\\(?:displaystyle|textstyle|left|right|big|Big|bigg|Bigg|mathrm|text|mathbf|operatorname|,|;|!|:|quad|qquad)(?![a-zA-Z])/g;
+function tekrarNorm(t) {
+  return String(t == null ? "" : t)
+    .replace(/<span class='card-badge[^>]*>[^<]*<\/span>/g, " ").replace(/\[BC ONLY\]/gi, " ")
+    .replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&")
+    .replace(/\\[dt]frac/g, "\\frac").replace(BICIM, "").replace(/[$\s{}]/g, "")
+    .replace(/[−–]/g, "-").replace(/[.?:;,]+$/g, "").toLowerCase();
+}
+const tekrarOzet = r => crypto.createHash("sha256").update(tekrarNorm(r.govde) + "\u0001" + (r.secenekler || []).map(o => tekrarNorm(o.text)).sort().join("\u0002")).digest("hex").slice(0, 16);
+const durumSay = {}, ozetler = new Map();
+let ekTam = 0;
+for (const r of TUM) {
+  durumSay[r.durum || "aktif"] = (durumSay[r.durum || "aktif"] || 0) + 1;
+  const ek = r.ek || {};
+  if (r.tur !== "vitrin" && ek.kavram && ek.ipucu && ek.sikHata && ek.cedKonu && ek.hesapMakinesi != null) ekTam++;
+  if (r.durum === "arsiv") continue;
+  const h = tekrarOzet(r);
+  if (!ozetler.has(h)) ozetler.set(h, []);
+  ozetler.get(h).push(r.id);
+}
+const tekrarlar = Array.from(ozetler.values()).filter(l => l.length > 1);
+const denetlenen = TUM.filter(r => r.tur !== "vitrin").length;
+
 for (const r of rows) {
   const mark = r.issues.length ? "✗" : "✓";
   console.log(`${mark} ${r.file.padEnd(18)} ${r.name.padEnd(26)} ${String(r.n).padStart(3)} soru  A${r.pos.A} B${r.pos.B} C${r.pos.C} D${r.pos.D}  en-uzun-doğru:${r.longest}`);
   for (const i of r.issues) console.log(`    - ${i}`);
 }
 console.log(`\nSEVİYE TESTİ: ${seviyeTotal} soru (${seviyeFiles.length} dosya)`);
+console.log(`DURUM: ${Object.entries(durumSay).map(([k, v]) => k + " " + v).join(" · ")} (toplam ${TUM.length})`);
+console.log(`EK ZENGİNLEŞTİRME: ${ekTam}/${denetlenen} soru (%${denetlenen ? Math.round(ekTam / denetlenen * 1000) / 10 : 0}; kavram, ipucu, sikHata, cedKonu, hesapMakinesi; vitrin hariç)`);
+console.log(`TEKRAR (normalleştirilmiş kök + şık kümesi): ${tekrarlar.length} aktif tekrar grubu`);
+for (const l of tekrarlar) { console.log(`✗ tekrar soru: ${l.join(", ")} (birini arşivle ya da yeniden yaz)`); problems++; }
 console.log(`TOPLAM: ${total} soru, ${problems} sorun`);
 process.exitCode = problems ? 1 : 0;

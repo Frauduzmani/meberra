@@ -14,7 +14,7 @@ const { yonetimRotalari } = require("./yonetim");
 const { bildirimServisi } = require("./bildirim");
 const { vapidAnahtarlari, pushGondericisi } = require("./push");
 const { soruRotalari } = require("./soru");
-const { soruBankasiRotalari, tohumYukleGerekirse } = require("./sorubankasi");
+const { soruBankasiRotalari, tohumEsitle } = require("./sorubankasi");
 const { ligServisi, ligRotalari } = require("./lig");
 const { veriRotalari } = require("./veriyonetim");
 const { zamanlayici } = require("./zamanlayici");
@@ -85,9 +85,10 @@ function olustur(secenek) {
   const ayar = ayarServisi(db);
   const bakim = bakimServisi(ayar);
   const ipEngel = ipEngelServisi(db);
-  // Soru bankası: tablo boşsa tohumdan (server/tohum/soru-bankasi.json) doldurulur
+  // Soru bankası: tablo boşsa tohumdan (server/tohum/soru-bankasi.json) doldurulur; v1.10.0: tohum sürümü veritabanındakinden
+  // yeniyse yönetici düzenlemesi olmayan sorular güncellenir (sorubankasi.tohumEsitle; korunan düzenlemeler system_logs'a "bilgi")
   if (secenek.soruTohum !== false) {
-    try { const n = tohumYukleGerekirse(db, secenek.soruTohumDosyasi); if (n) gunluk.bilgi("sunucu", "Soru bankası tohumdan yüklendi: " + n + " soru"); }
+    try { const t = tohumEsitle(db, secenek.soruTohumDosyasi, gunluk); if (t.mod === "ilk") gunluk.bilgi("sunucu", "Soru bankası tohumdan yüklendi: " + t.eklenen + " soru (tohum sürümü " + t.surum + ")"); }
     catch (e) { gunluk.hata("sunucu", "Soru bankası tohumu yüklenemedi", hataAyrinti(e)); }
   }
   const zamanlayiciS = zamanlayici({ db, bildirim, eposta, lig, gunluk, denetim, ipEngel });

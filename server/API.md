@@ -332,14 +332,21 @@ tohumdan doldurur. Ücretsiz plan kuralı istemciyle aynı dosyadır: `assets/js
 Cevap/çözüm içeren yanıtlar `Cache-Control: private, no-store`.
 
 Soru (öğrenciye giden, cevapsız): `{ id, number, topic, difficulty, source, question, options: [{ id, text }] }` (seviye: `unite, beceri, zorluk, sureSn, hesapMakinesi`).
-Çözüm: `{ dogru, aciklama, genelHatirlatma, hatalar: { <harf>: { errorTag, remediation } } }`.
+Çözüm: `{ dogru, aciklama, genelHatirlatma, hatalar: { <harf>: { errorTag, remediation } }, ek }`.
+
+**Zenginleştirme `ek` (v1.10.0)** — yalnız çözümle birlikte, yani öğrenci cevapladıktan / teslim ettikten SONRA gelir; soru listelerinde,
+deneme içeriğinde ve seviye bankasında YOKTUR: `{ kavram?, ipucu?, sikHata?, hesapMakinesi?: "gerekmez" | "yardımcı" | "gerekli" }` (boş alan yazılmaz).
+Kaynak `questions_bank.ek` (`kavram, ipucu, sikHata, cedKonu, hesapMakinesi`; seviye sorularında `hesapMakinesi` seviye arayüzünün boolean bayrağıdır ve
+üç düzeyli değer `hesapMakinesiDurum`'dadır). `cedKonu` ve `zorlukOnerisi` iç alanlardır, öğrenciye gönderilmez.
+Yer aldığı yanıtlar: `POST /api/sorular-bankasi/cevap` (`ek` ve `cozum.ek`), `GET /api/sorular-bankasi/:sayfa/:unite` ve `getir` içindeki `cozum`,
+`POST /api/deneme/teslim` ve teslim edilmiş `GET /api/deneme/:id` → `cozumler[k].ek`, `POST /api/seviye/teslim` ve `POST /api/seviye/cozumler` → `cozumler[k].ek`.
 
 - `GET /api/sorular-bankasi/:sayfa` — oturum. Kutu (soru istasyonu) başına `{ kutu, baslik, uniteNo, toplam, kilitli }` (soru içeriği yok).
 - `GET /api/sorular-bankasi/:sayfa/:unite` — oturum (misafir 401). `:unite` = ünite görünümü numarası (`?unite=N`) ya da kutu kimliği
   (`calc-unit1-quiz-container`). Ücretsiz planda kilitli kutu → **402** `{ premiumGerekli: true }`. Yanıt `{ kutular: [{ kutu, baslik, uniteNo, sorular }] }`;
   doğru şık/çözüm YOK — yalnız öğrencinin daha önce cevapladığı (answers tablosunda olan) soruda `cozum` alanı (yeniden açılışta geri bildirim için).
 - `POST /api/sorular-bankasi/cevap` `{ soruId, secim }` — oturum; kilitli → 402. Dönüş `{ dogru, dogruSecenek, aciklama, genelHatirlatma,
-  hataAciklamasi: { etiket, aciklama } | null, cozum, t }`. Kayıt mevcut birleştirmeyle: `apmeberra:quiz:v1` → `answers` (XP/lig/istatistik);
+  hataAciklamasi: { etiket, aciklama } | null, ek, cozum, t }` (`ek`: yukarıdaki zenginleştirme, `cozum.ek` ile aynı). Kayıt mevcut birleştirmeyle: `apmeberra:quiz:v1` → `answers` (XP/lig/istatistik);
   istemci aynı `t` ile yerel depoya yazar (eşitlemede ikinci satır oluşmaz). Hız sınırı: kullanıcı başına 600 / 10 dk.
 - `POST /api/sorular-bankasi/getir` `{ anahtarlar: ["sayfa|id"] }` — İlerleme › Bugünkü tekrar. Ücretsiz planda yalnız açık kutular ya da öğrencinin
   daha önce çözdüğü/yanlış yaptığı sorular; diğerleri `eksik`.
@@ -374,6 +381,20 @@ Soru (öğrenciye giden, cevapsız): `{ id, number, topic, difficulty, source, q
 - `POST /api/admin/soru-bankasi/soru/:id/arsiv` `{ geriAl? }` — silme yok; arşiv öğrenciye ve denemelere gelmez.
 - `POST /api/admin/soru-bankasi/soru/:id/geri-yukle` `{ surum }` — o sürümün içeriği yeni sürüm olarak yazılır.
 - `GET /api/admin/soru-bankasi/disa-aktar?tur&sayfa` — JSON (tohumla aynı biçim, `Content-Disposition: attachment`).
+
+### Soru bankası tohum güncellemesi (v1.10.0)
+Tohumun üst düzey `surum` alanı (içerik sürümü) `ayarlar` tablosunda `soru_tohum_surum` anahtarıyla saklanır (yeni geçiş gerekmez).
+Açılışta (`sorubankasi.tohumEsitle`):
+- Tablo boş → tohumun tamamı yüklenir, `soru_tohum_surum` = tohum sürümü.
+- Anahtar yok → veritabanı 1.10.0 öncesi tohumla kurulmuştur, sürüm **1** sayılır.
+- Tohum sürümü daha büyük → tek işlemde: tohumda olup tabloda olmayan soru eklenir; içeriği farklı olan soru, yönetici panelinde **hiç düzenlenmediyse**
+  (`guncelleyen` ve `questions_bank_history.degistiren` içinde kullanıcı kimliği yok) yeni sürüme geçer: eski hâl geçmişe, `guncelleyen = 'tohum'`,
+  not `tohum sürümü N`. Yönetici düzenlemesi olan soruya dokunulmaz; her biri `system_logs`'a **bilgi** olarak yazılır (`kaynak: sunucu`,
+  "…yönetici düzenlemesi korundu: <id>") ve özet satırı (`Soru bankası tohum sürümü A → B: …`). Tohumda olmayan (yöneticinin eklediği) sorular kalır.
+- Eşit ya da küçük → hiçbir şey yapılmaz (idempotent).
+Arşiv: `durum = 'arsiv'` satırlar silinmez; ünite/kutu listeleri, deneme havuzu/katalog, seviye bankası ve `getir` göstermez, `cevap` 404 döner;
+önceden kurulmuş deneme/seviye oturumları ve `answers` / `wrong_answers` geçmişi bu kimliklerle çözülmeye devam eder.
+İçerik düzeltmeleri tohuma `node araclar/icerik-uygula.js` ile uygulanır (`--kuru` önizleme; günlük: `araclar/icerik-denetim/UYGULAMA.md`).
 
 ## Büyüme (v1.6.0, `007_buyume.sql`; `server/huni.js`, `server/kampanya.js`)
 Ölçüm birinci taraftır (üçüncü taraf betik yok). Olay satırında IP, tarayıcı, e-posta yoktur; `anon_id` tarayıcının ürettiği rastgele
