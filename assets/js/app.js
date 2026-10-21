@@ -3067,7 +3067,7 @@ window.APMEBERRA = {
   var SURUM = "20261021a";
   var kok = (document.currentScript && document.currentScript.src) ? document.currentScript.src.replace(/assets\/js\/app\.js.*$/, "") : "";
   if (/admin\.html$/.test(location.pathname)) return;
-  [["link", "assets/css/oyun.css"], ["link", "assets/css/bildirim.css"], ["script", "assets/js/oyun.js"], ["script", "assets/js/bildirim.js"]].forEach(function (m) {
+  [["script", "assets/js/hata-izle.js"], ["link", "assets/css/oyun.css"], ["link", "assets/css/bildirim.css"], ["script", "assets/js/oyun.js"], ["script", "assets/js/bildirim.js"]].forEach(function (m) {
     var el = document.createElement(m[0]);
     if (m[0] === "link") { el.rel = "stylesheet"; el.href = kok + m[1] + "?v=" + SURUM; }
     else { el.src = kok + m[1] + "?v=" + SURUM; el.defer = true; }
