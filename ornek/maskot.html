@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="tr" data-apz-auth="ornek">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maskot ve kutlamalar — örnek</title>
+<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/hareket.css">
+<link rel="stylesheet" href="../assets/css/maskot.css">
+<style>
+  body { background: var(--bg); color: var(--text); margin: 0; }
+  .ox { max-width: 1120px; margin: 0 auto; padding: 24px 16px 96px; }
+  .ox-ust { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+  .ox h1 { font: 900 var(--fs-28)/1.2 var(--font-head); margin: 0; }
+  .ox h2 { font: 800 var(--fs-22)/1.25 var(--font-head); margin: 40px 0 6px; }
+  .ox p.ox-not { color: var(--text-muted); margin: 0 0 16px; max-width: 70ch; }
+  .ox-izgara { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .ox-kart { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 16px; box-shadow: var(--shadow-card); }
+  .ox-ifade { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .ox-ifade code { font-size: var(--fs-14); color: var(--text-muted); }
+  .ox-kucuk { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
+  .ox-kucuk figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 12px; color: var(--text-muted); }
+  .ox-dugmeler { display: flex; flex-wrap: wrap; gap: 10px; }
+  .ox-dugmeler button, .ox-tema { min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1.5px solid var(--border-strong); background: var(--surface); color: var(--text); font: 700 15px/1 var(--font-sans); cursor: pointer; }
+  .ox-dugmeler button:hover, .ox-tema:hover { border-color: var(--accent); color: var(--accent); }
+  .ox-dugmeler button.ox-ana { background: var(--btn-bg); color: var(--on-btn); border-color: transparent; }
+  .ox-xp { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: var(--energy-soft); color: var(--energy-text); font: 900 18px/1 var(--font-head); }
+  .ox-seri { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .ox-onizleme { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
+  .ox-onizleme canvas { width: 270px; height: 480px; border-radius: 18px; box-shadow: var(--shadow-lg); background: var(--surface-3); }
+  .ox-liste { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  .ox-liste li { padding: 12px 14px; border-radius: 14px; background: var(--surface); border: 1px solid var(--border); }
+  .ox-rozet { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 14px; background: var(--btn-bg); color: #fff; font: 800 15px/1 var(--font-head); }
+  .ox-modal { position: fixed; inset: 0; display: grid; place-items: center; background: rgba(26,16,51,.4); z-index: 50; }
+  .ox-modal[hidden] { display: none; }
+  .ox-modal > div { background: var(--surface); padding: 24px; border-radius: 20px; max-width: 360px; }
+  label.ox-sec { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; min-height: 44px; }
+</style>
+</head>
+<body>
+<main class="ox">
+  <div class="ox-ust">
+    <h1>Maskot <span id="ad"></span> ve kutlama sistemi</h1>
+    <div class="ox-dugmeler">
+      <label class="ox-sec"><input type="checkbox" id="anim" checked> Canlandırma</label>
+      <button type="button" class="ox-tema" id="tema">Koyu / açık tema</button>
+    </div>
+  </div>
+  <p class="ox-not">v1.4.0 · <code>assets/js/maskot.js</code>, <code>assets/js/kutlama.js</code>, <code>assets/css/maskot.css</code>, <code>assets/css/hareket.css</code>. Bu sayfa yalnızca geliştirme önizlemesidir.</p>
+
+  <h2>İfadeler (200 px)</h2>
+  <p class="ox-not">Boştayken göz kırpar ve nefes alır; üzerine gelince kuyruk sallanır. Azaltılmış harekette durağan poz.</p>
+  <div class="ox-izgara" id="ifadeler"></div>
+
+  <h2>Küçük boyutlar</h2>
+  <div class="ox-kart ox-kucuk" id="kucukler"></div>
+
+  <h2>Konuşma balonu (<code>konus</code>)</h2>
+  <div class="ox-izgara" style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));">
+    <div class="ox-kart" id="bos"></div>
+    <div class="ox-kart" id="seriRisk"></div>
+  </div>
+
+  <h2>Kutlamalar</h2>
+  <p class="ox-not">Küçükler köşede balon (2,5 sn), büyükler ortada kart + konfeti. Aynı anda tek kutlama; kuyruk en çok 5.</p>
+  <div class="ox-dugmeler">
+    <button type="button" data-k="xp">+10 XP (balon)</button>
+    <button type="button" data-k="gorev">Görev tamam (balon)</button>
+    <button type="button" data-k="rozet">Rozet (balon)</button>
+    <button type="button" data-k="unite" class="ox-ana">Ünite bitti (kart + paylaş)</button>
+    <button type="button" data-k="seri">7 günlük seri (kart)</button>
+    <button type="button" data-k="deneme">Deneme bitti (kart)</button>
+    <button type="button" data-k="kuyruk" class="ox-ana">Kuyruk: 6 olay birden</button>
+    <button type="button" data-k="modal">Modal açıkken kutla</button>
+  </div>
+  <p class="ox-not" id="durum" aria-live="off" style="margin-top:10px"></p>
+
+  <h2>XP uçuşu ve sayaç</h2>
+  <div class="ox-seri">
+    <button type="button" id="ucurBtn" style="display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;border:0;background:var(--energy);color:var(--on-energy);font:800 15px/1 var(--font-head);cursor:pointer">Doğru cevap! (+10 XP)</button>
+    <span class="ox-xp" data-xp-sayac><span class="h-sayac" id="xpSayi">120</span> XP</span>
+  </div>
+
+  <h2>Hareket yardımcıları</h2>
+  <div class="ox-izgara">
+    <div class="ox-kart"><ul class="ox-liste" id="belirListe"></ul><div class="ox-dugmeler" style="margin-top:10px"><button type="button" id="belirBtn">.h-belir (sıralı)</button></div></div>
+    <div class="ox-kart"><div class="ox-dugmeler"><button type="button" id="sallaBtn">.h-salla</button><button type="button" id="ziplaBtn">.h-zipla</button></div>
+      <p style="margin:14px 0 0"><span class="ox-rozet" id="parlaRozet">Rozet: 7 gün</span></p>
+      <div class="ox-dugmeler" style="margin-top:10px"><button type="button" id="parlaBtn">.h-parla</button></div></div>
+  </div>
+
+  <h2>Paylaşım kartı (1080×1920)</h2>
+  <div class="ox-onizleme"><canvas id="onizleme" width="1080" height="1920" aria-label="Paylaşım kartı önizlemesi" role="img"></canvas>
+    <canvas id="onizleme2" width="1080" height="1920" aria-label="Uzun başlıklı paylaşım kartı önizlemesi" role="img"></canvas></div>
+</main>
+
+<div class="ox-modal" id="modal" hidden><div role="dialog" aria-modal="true" aria-labelledby="mb"><h3 id="mb" style="margin-top:0">Bir pencere açık</h3>
+  <p>Kutlama bu pencere kapanana kadar kuyrukta bekler.</p><button type="button" class="kt-dugme kt-dugme--ana" id="modalKapat">Kapat</button></div></div>
+
+<script src="../assets/js/maskot.js"></script>
+<script src="../assets/js/kutlama.js"></script>
+<script>
+(function () {
+  var M = window.MeberraMaskot, K = window.MeberraKutlama;
+  var $ = function (s) { return document.querySelector(s); };
+  $("#ad").textContent = "“" + M.MASKOT_ADI + "”";
+  var ADLAR = { sevincli: "Sevinçli", kutlama: "Kutlama", dusunen: "Düşünen", uykulu: "Uykulu", uzgun: "Üzgün (umutlu)", selam: "Selam" };
+
+  function ciz() {
+    var anim = $("#anim").checked;
+    $("#ifadeler").innerHTML = M.IFADELER.map(function (f) {
+      return '<div class="ox-kart ox-ifade">' + M.html(f, { boyut: 200, animasyon: anim }) + "<strong>" + ADLAR[f] + "</strong><code>" + f + "</code></div>";
+    }).join("");
+    var k = M.IFADELER.map(function (f) { return "<figure>" + M.html(f, { boyut: 32, animasyon: anim }) + "<figcaption>" + f + " 32</figcaption></figure>"; }).join("");
+    k += "<figure>" + M.html("sevincli", { boyut: 24, sadeceBas: true, animasyon: anim }) + "<figcaption>baş 24</figcaption></figure>";
+    k += "<figure>" + M.html("kutlama", { boyut: 48, sadeceBas: true, animasyon: anim }) + "<figcaption>baş 48</figcaption></figure>";
+    k += "<figure>" + M.html("uykulu", { boyut: 48, sadeceBas: true, animasyon: anim }) + "<figcaption>uykulu baş</figcaption></figure>";
+    k += '<figure style="color:var(--accent)">' + M.tekRenk({ boyut: 16 }) + "<figcaption>tek renk 16</figcaption></figure>";
+    k += '<figure style="color:var(--accent)">' + M.tekRenk({ boyut: 32 }) + "<figcaption>tek renk 32</figcaption></figure>";
+    k += '<figure style="color:var(--text)">' + M.tekRenk({ boyut: 64 }) + "<figcaption>tek renk 64</figcaption></figure>";
+    $("#kucukler").innerHTML = k;
+    $("#bos").innerHTML = ""; $("#seriRisk").innerHTML = "";
+    M.konus($("#bos"), { ifade: "dusunen", mesaj: "Henüz yanlışın yok. İlk soruyu çözünce burada birlikte tekrar ederiz!", boyut: 96 });
+    M.konus($("#seriRisk"), { ifade: "uykulu", mesaj: "Serin bu gece bitiyor. Tek bir soru bile onu korur. Hadi 2 dakika?", kapanabilir: true, boyut: 96 });
+  }
+  ciz();
+  $("#anim").addEventListener("change", ciz);
+
+  $("#tema").addEventListener("click", function () {
+    var r = document.documentElement, koyu = r.getAttribute("data-theme") === "dark" ||
+      (!r.getAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
+    r.setAttribute("data-theme", koyu ? "light" : "dark");
+  });
+
+  var UNITE = { tur: "unite", baslik: "Ünite 3 tamam!", metin: "Calculus'ta %40'a ulaştın. Türev kuralları artık senin.", xp: 50,
+    paylas: { baslik: "Calculus'ta %40!", alt: "Ünite 3: Türev kuralları tamam", yuzde: 40, ders: "AP Calculus AB", ad: "Elif Yılmaz" } };
+  var ORNEK = {
+    xp: { tur: "xp", xp: 10, metin: "Doğru cevap" },
+    gorev: { tur: "gorev", metin: "10 soru çöz" },
+    rozet: { tur: "rozet", baslik: "Yeni rozet: Erkenci", metin: "Sabah 9'dan önce çalıştın.", xp: 20 },
+    unite: UNITE,
+    seri: { tur: "seri", gun: 7, baslik: "7 günlük seri!", metin: "Bir haftadır her gün buradasın. Böyle devam!", xp: 30,
+      paylas: { baslik: "7 gün üst üste!", alt: "Meberra'da bir haftalık çalışma serisi" } },
+    deneme: { tur: "deneme", baslik: "Deneme bitti!", metin: "45 sorudan 31 doğru. Tahmini puan: 4.", xp: 50 }
+  };
+  function durum() { $("#durum").textContent = "Kuyrukta bekleyen: " + K.bekleyen() + (K.gosteriliyor() ? " · biri görünüyor" : ""); }
+  setInterval(durum, 300);
+
+  document.querySelectorAll("[data-k]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var k = b.getAttribute("data-k");
+      if (k === "kuyruk") {
+        K.kutla(ORNEK.xp); K.kutla({ tur: "gorev", metin: "10 soru çöz" }); K.kutla({ tur: "gorev", metin: "Günlük hedef" });
+        K.kutla(ORNEK.unite); K.kutla({ tur: "gorev", metin: "Bir tekrar yap" }); K.kutla(ORNEK.rozet);
+        return;
+      }
+      if (k === "modal") {
+        $("#modal").hidden = false; $("#modalKapat").focus();
+        K.kutla(ORNEK.seri);
+        return;
+      }
+      K.kutla(ORNEK[k]).then(function (r) { console.log("kutlama kapandı", r); });
+    });
+  });
+  $("#modalKapat").addEventListener("click", function () { $("#modal").hidden = true; });
+
+  $("#ucurBtn").addEventListener("click", function (e) {
+    var sayi = $("#xpSayi"), hedef = (parseInt(sayi.textContent.replace(/\D/g, ""), 10) || 0) + 10;
+    K.xpUcur(e.currentTarget, "[data-xp-sayac]", 10).then(function () { K.sayiSay(sayi, hedef, { sure: 600 }); });
+  });
+
+  $("#belirBtn").addEventListener("click", function () {
+    $("#belirListe").innerHTML = ["Türev tanımı", "Zincir kuralı", "Örtük türev", "İlişkili oranlar"].map(function (t, i) {
+      return '<li class="h-belir" style="--sira:' + i + '">' + t + "</li>"; }).join("");
+  });
+  $("#belirBtn").click();
+  function yeniden(el, s) { el.classList.remove(s); void el.offsetWidth; el.classList.add(s); }
+  $("#sallaBtn").addEventListener("click", function (e) { yeniden(e.currentTarget, "h-salla"); });
+  $("#ziplaBtn").addEventListener("click", function (e) { yeniden(e.currentTarget, "h-zipla"); });
+  $("#parlaBtn").addEventListener("click", function () { yeniden($("#parlaRozet"), "h-parla"); });
+
+  function onizle(id, p) {
+    K.paylasKarti(p).then(function (c) { var h = document.getElementById(id); h.getContext("2d").drawImage(c, 0, 0); });
+  }
+  onizle("onizleme", UNITE.paylas);
+  onizle("onizleme2", { baslik: "AP Physics 1'de 30 günlük çalışma serisi tamamlandı!", alt: "Her gün en az bir soru. Disiplin kazanır.", ders: "AP Physics 1", yuzde: 100 });
+})();
+</script>
+</body>
+</html>
