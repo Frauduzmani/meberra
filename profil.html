@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#5B3DF5">
+  <link rel="apple-touch-icon" href="assets/img/pwa/apple-touch-icon.png">
   <title>Profil ve hesap | Meberra</title>
   <meta name="description" content="Durumunu, hedef ülkelerini ve eğitim dilini belirle; şifreni değiştir, ilerlemeni yedekle.">
   <link rel="stylesheet" href="assets/css/styles.css">
@@ -349,6 +352,9 @@
             <div class="form-alert u-mt-3" id="bk-msg" role="status" aria-live="polite" tabindex="-1" hidden></div>
           </div>
 
+          <!-- Meberra sunucu modu: bildirim ayarları, telefon bildirimleri, veli raporu (assets/js/bildirim.js doldurur) -->
+          <div class="sub-block yalniz-sunucu bd-ayarlar" id="bildirim-ayarlari"></div>
+
           <!-- Meberra sunucu modu: KVKK hakları (veri indirme, hesap silme) -->
           <div class="sub-block" id="kvkk-block" hidden>
             <h3 class="panel-h u-fs-16">Verilerin ve hesabın</h3>
@@ -384,6 +390,12 @@
             <a class="btn-ghost btn-danger u-mt-3" href="giris.html?cikis=1">Çıkış yap</a>
           </div>
         </section>
+      </div>
+
+      <!-- Meberra sunucu modu: Sorularım ve Haftalık lig (assets/js/bildirim.js doldurur) -->
+      <div class="profile-layout bd-profil-ek yalniz-sunucu">
+        <section class="surface bd-sorularim" id="sorularim" aria-labelledby="sorularim-baslik"></section>
+        <section class="surface bd-lig" id="lig" aria-labelledby="lig-baslik"></section>
       </div>
     </div>
 
