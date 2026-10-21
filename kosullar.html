@@ -176,7 +176,7 @@
   </main>
 
   <script src="assets/js/urun.js"></script>
-  <script>(function(){var u=window.MEBERRA_URUN;if(!u)return;function f(n){try{return Number(n).toLocaleString("tr-TR")}catch(e){return String(n)}}var m={eposta:u.destekEposta,marka:u.marka,unite:u.ucretsiz&&u.ucretsiz.uniteSayisi,deneme:u.ucretsiz&&u.ucretsiz.dersDenemesi};(u.planlar||[]).forEach(function(p){m["fiyat:"+p.id]=f(p.fiyat);m["aciklama:"+p.id]=p.aciklama;m["donem:"+p.id]=p.donem;m["ad:"+p.id]=p.ad});var l=document.querySelectorAll("[data-urun]");for(var i=0;i<l.length;i++){var k=l[i].getAttribute("data-urun"),v=m[k];if(v==null||v==="")continue;l[i].textContent=String(v);if(k==="eposta"&&l[i].tagName==="A")l[i].href="mailto:"+v}})();</script>
+  <script>(function(){if(!window.MEBERRA_URUN_AL)return;window.MEBERRA_URUN_AL(function(u){function f(n){try{return Number(n).toLocaleString("tr-TR")}catch(e){return String(n)}}var m={eposta:u.destekEposta,marka:u.marka,unite:u.ucretsiz&&u.ucretsiz.uniteSayisi,deneme:u.ucretsiz&&u.ucretsiz.dersDenemesi};(u.planlar||[]).forEach(function(p){m["fiyat:"+p.id]=f(p.fiyat);m["aciklama:"+p.id]=p.aciklama;m["donem:"+p.id]=p.donem;m["ad:"+p.id]=p.ad});var l=document.querySelectorAll("[data-urun]");for(var i=0;i<l.length;i++){var k=l[i].getAttribute("data-urun"),v=m[k];if(v==null||v==="")continue;l[i].textContent=String(v);if(k==="eposta"&&l[i].tagName==="A")l[i].href="mailto:"+v}});})();</script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>

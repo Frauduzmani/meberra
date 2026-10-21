@@ -263,6 +263,7 @@ const MEBERRA_SYNC = (function () {
         bekleme = 2000;
         // Sunucuda birleşen değer (başka cihazın cevaplarıyla) depoya yazılır; bu arada yerelde yeniden değişmediyse
         const b = j.birlesen || {};
+        if (!oturumVar()) return; // bu arada çıkış yapıldıysa temizlenen depoyu yeniden doldurma
         sessiz(() => Object.keys(b).forEach(k => { if (!(k in kuyruk) && typeof b[k] === "string") setO.call(ls, k, b[k]); }));
       }))
       .catch(() => {
@@ -278,13 +279,17 @@ const MEBERRA_SYNC = (function () {
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") gonder(true); });
   window.addEventListener("online", () => gonder());
 
-  // Açılış: oturumu doğrula, üyeliği tazele, başka cihazdan gelen veriyi çek, bekleyen kuyruğu gönder
-  if (oturumVar()) {
+  // Açılış: oturumu doğrula, üyeliği tazele, başka cihazdan gelen veriyi çek, bekleyen kuyruğu gönder.
+  // Çıkış sayfasında (giris.html?cikis=1) ve oturumsuz açılışta atlanır: çıkış önbelleği temizlerken bu zincir onu
+  // yeniden doldurmasın. Async yazımlar da yazmadan hemen önce oturumVar() ile korunur.
+  const cikisSayfasi = apCurrentPage() === "giris" && /[?&]cikis=1(?:&|#|$)/.test(window.location.search);
+  if (oturumVar() && APMEBERRA_ME && !cikisSayfasi) {
     fetch("/api/me", { credentials: "same-origin" }).then(r => {
       if (r.status === 401) { oturumBitti(); return null; }
       return r.ok ? r.json() : null;
     }).then(j => {
-      if (!j || !j.ok) return null;
+      if (!j || !j.ok || !oturumVar()) return null;
+      const oncePremium = apPremiumMu();
       sessiz(() => {
         try {
           const users = JSON.parse(ls.getItem(P + "kullanicilar") || "[]");
@@ -293,9 +298,15 @@ const MEBERRA_SYNC = (function () {
           if (j.profile) setO.call(ls, P + "profil:" + j.user.id, JSON.stringify(j.profile));
         } catch (e) { /* önbellek bozuksa bir sonraki girişte düzelir */ }
       });
+      // Bellekteki üyeliği de tazele; premium durumu değiştiyse kilitli görünümler yeniden çizilir (sayfa yenilemeden)
+      if (APMEBERRA_ME && APMEBERRA_ME.user && APMEBERRA_ME.user.id === j.user.id) {
+        APMEBERRA_ME.user.rol = j.user.rol;
+        APMEBERRA_ME.uyelik = Object.assign({}, j.uyelik || { premium: false }, j.user.rol === "yonetici" ? { premium: true, yonetici: true } : {});
+        if (apPremiumMu() !== oncePremium) apUyelikDegisti();
+      }
       return fetch("/api/state", { credentials: "same-origin" }).then(r => (r.ok ? r.json() : null));
     }).then(s => {
-      if (!s || !s.ok) return;
+      if (!s || !s.ok || !oturumVar()) return;
       const son = ls.getItem(SON_CEKME) || "";
       sessiz(() => Object.keys(s.keys || {}).forEach(k => {
         const v = s.keys[k];
@@ -310,12 +321,25 @@ const MEBERRA_SYNC = (function () {
   return { gonder, sessiz, bekleyen: () => Object.keys(kuyruk).length };
 })();
 window.MEBERRA_SYNC = MEBERRA_SYNC;
-/** Premium mu? Sunucu modu dışında (tarayıcı modu) her şey açıktır. */
+/**
+ * Premium mu? Sunucu modu dışında (tarayıcı modu) her şey açıktır. Yönetici her zaman premium.
+ * Önbellekteki üyelik süresi dolmuşsa (bitis < şimdi) premium sayılmaz; /api/me tazelemesi beklenmez.
+ */
 function apPremiumMu() {
   if (!MEBERRA_SUNUCU) return true;
-  return !!(APMEBERRA_ME && APMEBERRA_ME.uyelik && APMEBERRA_ME.uyelik.premium);
+  const u = APMEBERRA_ME && APMEBERRA_ME.uyelik;
+  if (!u) return false;
+  if (u.yonetici) return true;
+  if (!u.premium) return false;
+  const b = u.bitis ? Date.parse(u.bitis) : NaN;
+  return isNaN(b) || b >= Date.now();
 }
 window.apPremiumMu = apPremiumMu;
+/** Üyelik değişti: ünite görünümünü yeniden çiz ve diğer modüllere (deneme.js) "meberra:uyelik" olayıyla haber ver. */
+function apUyelikDegisti() {
+  try { if (typeof apUniteGorunumuYenile === "function") apUniteGorunumuYenile(); } catch (e) { /* görünüm yoksa yok say */ }
+  try { window.dispatchEvent(new CustomEvent("meberra:uyelik", { detail: { premium: apPremiumMu() } })); } catch (e) { /* eski tarayıcı */ }
+}
 
 /** Oturumdaki öğrencinin adı (yoksa boş). */
 function apStudentName() { return APMEBERRA_ME && APMEBERRA_ME.user ? APMEBERRA_ME.user.ad : ""; }
@@ -1185,7 +1209,9 @@ function apKaldiginYer(progress, dersler) {
  * index.html'deki satır içi hesaptan taşındı; sıra ve metinler aynıdır. Saf: DOM ve depolama okumaz.
  * g = { summary: APMEBERRA.summary() çıktısı ({courses:[{page,name,units:[{id,title,total,answered,correct}]}], openErrors, answered}),
  *       mezun: bool (K5-b: mezunda AP kayıt hatırlatması yok), kayitSon: "YYYY-MM-DD" | null (AP sipariş son günü),
- *       seviye: apmeberra:seviye:v1 ({devam, raporlar}) | null, bugun: "YYYY-MM-DD" | Date }
+ *       seviye: apmeberra:seviye:v1 ({devam, raporlar}) | null, bugun: "YYYY-MM-DD" | Date,
+ *       premium: bool (false: ücretsiz plan → kilitli ünitelere yönlendirme yok; verilmezse kısıt yok),
+ *       kutuUcretsiz: (sayfa, kutuId) => bool (isteğe bağlı; yoksa apKutuUcretsizMi) }
  * Dönüş: [{ ikon: "redo"|"target"|"play"|"book", title, desc, href, linkText }]
  */
 function apCalismaPlani(g) {
@@ -1194,13 +1220,16 @@ function apCalismaPlani(g) {
   const courses = apDiz(s.courses), acik = apDiz(s.openErrors);
   const out = [];
   const gorev = (ikon, title, desc, href, linkText) => ({ ikon, title, desc, href, linkText });
+  // Ücretsiz planda kilitli ünite (AP_UCRETSIZ_KUTULAR) önerilmez
+  const kutuAcik = typeof g.kutuUcretsiz === "function" ? g.kutuUcretsiz : (typeof apKutuUcretsizMi === "function" ? apKutuUcretsizMi : () => true);
+  const kilitli = (c, u) => g.premium === false && !kutuAcik(c.page, u.id);
   if (acik.length) {
     const e0 = acik[0];
     out.push(gorev("redo", "Hata Defterindeki " + acik.length + " soruyu tekrar çöz", "En son yanlışın: " + (e0.topic || e0.id), "deneme.html?mod=yanlislar", "Yanlışlarımı çöz"));
   }
   let weakest = null;
   courses.forEach(c => apDiz(c.units).forEach(u => {
-    if (!(u.answered >= 1)) return;
+    if (!(u.answered >= 1) || kilitli(c, u)) return;
     const r = u.correct / u.answered;
     if (r < 0.75 && (!weakest || r < weakest.r)) weakest = { r, c, u };
   }));
@@ -1210,12 +1239,17 @@ function apCalismaPlani(g) {
       weakest.c.page + ".html#" + weakest.u.id, "Üniteye git"));
   }
   let next = null;
-  courses.some(c => apDiz(c.units).some(u => { if (u.answered < u.total) { next = { c, u }; return true; } return false; }));
+  courses.some(c => apDiz(c.units).some(u => { if (u.answered < u.total && !kilitli(c, u)) { next = { c, u }; return true; } return false; }));
   if (next) {
     out.push(gorev("play", (s.answered ? "Kaldığın yerden devam et: " : "Buradan başla: ") + next.u.title,
       next.c.name + " · " + next.u.answered + " / " + next.u.total + " soru çözüldü", next.c.page + ".html#" + next.u.id, "Devam et"));
   } else if (!s.answered) {
     out.push(gorev("play", "İlk soru bankanı çöz", "AP Calculus ile başla: her yanlışta konu hatırlatması ve adım adım çözüm görürsün.", "ap-calculus.html", "Calculus’u aç"));
+  } else if (g.premium === false) {
+    // Ücretsiz plan: açılmış derslerin ücretsiz üniteleri bitti → henüz açılmamış bir ders, o da yoksa Premium önerisi
+    const yeni = courses.find(c => c && c.page && c.visited === false);
+    if (yeni) out.push(gorev("play", "Yeni bir derse başla: " + yeni.name, "Her dersin ilk üniteleri ücretsiz: konu anlatımı ve AP tarzı sorular.", yeni.page + ".html", "Dersi aç"));
+    else out.push(gorev("play", "Ücretsiz ünitelerin bitti, tebrikler!", "Açık ünitelerin hepsini çözdün. Premium ile kalan ünitelere, sınırsız ders denemesine ve genel denemeye geç.", "premium.html", "Premium’u incele"));
   }
   // Seviye testi: AP kayıt son gününe kalan güne göre öneri (≤ 60 gün kala listenin başına)
   const sonNo = apGunNo(g.kayitSon), bugunNo = apGunNo(g.bugun) != null ? apGunNo(g.bugun) : apGunNo(new Date());
@@ -1330,11 +1364,15 @@ function apTocHtml(items) {
  * bloklar: [{ baslik: apTocParse çıktısı | null }] (null: başlıksız blok, ör. eğitmen notu).
  * Kural: konu anlatımı yeni ünite açar; ardından gelen soru istasyonları o üniteye katılır; önünde anlatım olmayan
  * istasyon kendi ünitesidir; başlıklı diğer bloklar "ek bölüm"dür ve zinciri keser; başlıksız bloklar zinciri kesmez.
- * Dönüş: { uniteler: [{ no, baslik, bloklar, anlatim, sorular }], ekler: [{ blok, baslik }], genel: [blok] }
+ * Ders adıyla başlayan istasyon ("AP Microeconomics & Macroeconomics: İnteraktif Soru İstasyonu") açık ünitenin dersinden
+ * farklı bir derse aitse anlatımın ardından gelse bile kendi ünitesidir (Seçmeliler: CS A anlatımından sonra Ekonomi istasyonu).
+ * Dönüş: { uniteler: [{ no, baslik, bloklar, anlatim, sorular, ders, num }], ekler: [{ blok, baslik }], genel: [blok] }
+ * num: başlıktaki ünite/bölüm numarası ("Unit 2 (cont.)" → "2", "Unit A" → "A"; çoğul/numarasız başlıkta null).
  */
 function apUniteGrupla(bloklar) {
   const uniteler = [], ekler = [], genel = [];
   let acik = null;
+  const keyNum = p => (p.num ? String(p.num) : p.key && /^[0-9A-Z]+$/.test(p.key.split(":")[1]) ? p.key.split(":")[1] : null);
   (Array.isArray(bloklar) ? bloklar : []).forEach((b, i) => {
     const p = b && b.baslik;
     if (!p) { if (acik) acik.bloklar.push(i); else genel.push(i); return; }
@@ -1342,11 +1380,16 @@ function apUniteGrupla(bloklar) {
     if (anlatim) {
       const ad = String(p.label).split(" — ")[0];
       const dm = /^AP ([^—]+?)\s*—/.exec(p.raw);
-      acik = { no: uniteler.length + 1, baslik: p.num ? (p.kind === "section" ? "Section " : "Unit ") + p.num + ": " + ad : ad, bloklar: [i], anlatim: true, sorular: 0, ders: dm ? "AP " + dm[1] : "" };
+      acik = { no: uniteler.length + 1, baslik: p.num ? (p.kind === "section" ? "Section " : "Unit ") + p.num + ": " + ad : ad, bloklar: [i], anlatim: true, sorular: 0, ders: dm ? "AP " + dm[1] : "", num: keyNum(p) };
       uniteler.push(acik);
     } else if (p.quiz) {
-      // Anlatımlı ünite ardından gelen istasyonları toplar; anlatımsız her istasyon ayrı ünitedir
-      if (!acik || !acik.anlatim) { acik = { no: uniteler.length + 1, baslik: p.label, bloklar: [], anlatim: false, sorular: 0, ders: "" }; uniteler.push(acik); }
+      // Anlatımlı ünite ardından gelen istasyonları toplar; anlatımsız (ya da başka derse ait) her istasyon ayrı ünitedir
+      const qm = /^AP ([^:(—]+?)\s*(?:\(|:|—)/.exec(p.raw);
+      const qDers = qm ? "AP " + qm[1] : "";
+      if (!acik || !acik.anlatim || (qDers && acik.ders && qDers !== acik.ders)) {
+        acik = { no: uniteler.length + 1, baslik: p.label, bloklar: [], anlatim: false, sorular: 0, ders: qDers, num: keyNum(p) };
+        uniteler.push(acik);
+      }
       acik.bloklar.push(i); acik.sorular++;
     } else {
       acik = null;
@@ -1356,12 +1399,74 @@ function apUniteGrupla(bloklar) {
   return { uniteler, ekler, genel };
 }
 
+/**
+ * Meberra ücretsiz ünite kuralı (açık ve belgeli; sıra numarasına göre DEĞİL).
+ * Varsayılan: sayfadaki ilk N farklı ünite numarası açık (N = MEBERRA_URUN.ucretsiz.uniteSayisi, yoksa 2). Aynı numaralı
+ * devam üniteleri ("Unit 2 (cont.): Circular Motion") o ünitenin parçasıdır → Physics'te Unit 1, Unit 2 ve Unit 2 (cont.) açık.
+ * Numarasız ünite kendi sırasıyla sayılır. Sayfa istisnaları AP_UCRETSIZ_KURALI'nda:
+ *   - ap-electives: tek sayfada birden çok ders var → her dersin (CS A, Ekonomi istasyonu, Micro, Macro) ilk ünitesi açık
+ *   - ap-english: yalnızca 2 ünite (A, B) → ilki açık
+ *   - sinav-cents: ilk 2 bölüm (Section 1–2) açık (ap- dışındaki tek ünite görünümlü sayfa)
+ * Sayfa dışı kullanım (Bugün/Çalış görevleri, seviye testi önerileri) için ücretsiz soru kutuları AP_UCRETSIZ_KUTULAR'da;
+ * araclar/testler/unite-birim-test.js bu listenin gerçek sayfalardaki kurala birebir uyduğunu denetler.
+ */
+const AP_UCRETSIZ_KURALI = {
+  "ap-electives": { dersBasina: true },
+  "ap-english": { n: 1 },
+  "sinav-cents": { n: 2 }
+};
+/** Ücretsiz ünitelerin `no` değerleri (apUniteGrupla çıktısının uniteler dizisi üzerinde; saf). */
+function apUcretsizUniteNolari(page, uniteler, n) {
+  const k = AP_UCRETSIZ_KURALI[page] || {};
+  const list = Array.isArray(uniteler) ? uniteler : [];
+  if (k.dersBasina) {
+    const gor = {};
+    return list.filter(u => { const d = u.ders || ""; if (gor[d]) return false; gor[d] = 1; return true; }).map(u => u.no);
+  }
+  const sinir = k.n || n || 2, nolar = [], out = [];
+  list.forEach(u => {
+    const a = u.num != null ? "n:" + u.num : "#" + u.no;
+    if (nolar.indexOf(a) < 0) nolar.push(a);
+    if (nolar.indexOf(a) < sinir) out.push(u.no);
+  });
+  return out;
+}
+/** Ücretsiz ünitelerdeki soru kutuları (sayfa → kutu kimlikleri). Listede olmayan sayfa = kural yok (hepsi açık). */
+const AP_UCRETSIZ_KUTULAR = {
+  "ap-calculus": ["calc-unit1-quiz-container", "calc-unit2-quiz-container"],
+  "ap-physics": ["phys-unit1-quiz-container", "phys-unit2-quiz-container", "phys-unit3-quiz-container"], // unit3 kutusu = Unit 2 (cont.)
+  "ap-chemistry": ["chem-unit1-quiz-container", "chem-unit2-quiz-container"],
+  "ap-biology": ["bio-unit1-quiz-container", "bio-unit2-quiz-container"],
+  "ap-english": ["eng-reading-quiz-container"],
+  "ap-electives": ["csa-quiz-container", "econ-quiz-container", "micro34-quiz-container", "micro56-quiz-container", "macro14-quiz-container", "macro56-quiz-container"],
+  "sinav-cents": ["cents-reading-quiz-container", "cents-math-quiz-container"]
+};
+/** Bu soru kutusu ücretsiz planda açık mı? (saf; premium kontrolü çağırana aittir) */
+function apKutuUcretsizMi(page, kutuId) {
+  const l = AP_UCRETSIZ_KUTULAR[String(page || "").replace(/\.html?$/i, "")];
+  return !l || l.indexOf(kutuId) >= 0;
+}
+/**
+ * Sayfa içi çapa (ör. seviye testi portalCapa: "phys-unit3-wep-lecture", "unit1-quiz-section", "bio-unit3-lecture-section")
+ * ücretsiz bir üniteye mi düşer? Çapa kökü ("…-quiz-section", "…-lecture(-section)" ekleri atılır) ile kutu kökü eşleşir.
+ * Saf. Kuralı olmayan sayfada (ya da çapa yoksa) true; kurallı sayfada ücretsiz kutuyla eşleşmeyen çapa kilitli (false).
+ */
+function apCapaUcretsizMi(page, capa) {
+  const l = AP_UCRETSIZ_KUTULAR[String(page || "").replace(/\.html?$/i, "")];
+  if (!l || !capa) return true;
+  const kok = String(capa).replace(/-(quiz-section|quiz-container|lecture-section|lecture|section)$/, "");
+  const es = id => id === kok + "-quiz-container" || id.slice(-(kok.length + 16)) === "-" + kok + "-quiz-container";
+  return l.some(es);
+}
+
 // --- v4 ünite görünümü (ders sayfaları): özet (?) · tek ünite (?unite=N) · tek ek bölüm (?bolum=K) ---
 // İçerik tek dosyada kalır; bloklar yalnızca gizlenir/gösterilir. Eski #bağlantılar hedefin ünitesini açar.
 // İlerleme kaydı değişmez (ünite kimliği = soru kutusu kimliği).
+// Üyelik değişince (/api/me tazelemesi) ünite görünümünü yeniden çizer; initUniteGorunumu kurar.
+let apUniteGorunumuYenile = null;
 function initUniteGorunumu() {
   const page = apCurrentPage();
-  if (!/^ap-/.test(page)) return;
+  if (!/^ap-|^sinav-cents$/.test(page)) return;
   const main = document.querySelector(".main-container");
   if (!main || document.body.classList.contains("has-unite")) return;
   const hero = main.querySelector(":scope > .hero-section, :scope > .page-head");
@@ -1391,16 +1496,20 @@ function initUniteGorunumu() {
   const anlatimlar = g.uniteler.filter(u => u.anlatim);
   const dersFarkli = anlatimlar.every(u => u.ders) && new Set(anlatimlar.map(u => u.ders)).size > 1;
   const yuzde = (a, b) => (b ? Math.round(a / b * 100) : 0);
-  // Meberra: ücretsiz kullanıcıya her derste ilk N ünite açık (urun.js; yoksa 2). Tarayıcı modunda hepsi açık.
+  // Meberra: ücretsiz kullanıcıya açık üniteler AP_UCRETSIZ_KURALI ile (varsayılan ilk N ünite numarası; urun.js, yoksa 2).
+  // Tarayıcı modunda hepsi açık. kilitli() her çağrıda üyeliği okur: üyelik tazelenince yeniden çizim doğru sonucu verir.
   const ucretsizN = (window.MEBERRA_URUN && window.MEBERRA_URUN.ucretsiz && window.MEBERRA_URUN.ucretsiz.uniteSayisi) || 2;
-  const kilitli = u => !apPremiumMu() && u.no > ucretsizN;
+  const ucretsizNolar = apUcretsizUniteNolari(page, g.uniteler, ucretsizN);
+  const kilitli = u => !apPremiumMu() && ucretsizNolar.indexOf(u.no) < 0;
+  const bolumMu = g.uniteler.every(u => /^Section /.test(u.baslik));
+  const birim = bolumMu ? "bölüm" : "ünite";
 
   // Özet paneli: ünite kartları + ek bölümler
   const panel = document.createElement("section");
   panel.className = "surface ug-panel";
   panel.setAttribute("aria-labelledby", "ug-baslik");
   const T = g.uniteler.reduce((a, u) => ({ t: a.t + u.toplam, c: a.c + u.cevap }), { t: 0, c: 0 });
-  panel.innerHTML = '<div class="bg-sec-h"><h2 id="ug-baslik">Üniteler</h2><span class="ug-ozet">' + g.uniteler.length + " ünite" +
+  const panelCiz = () => { panel.innerHTML = '<div class="bg-sec-h"><h2 id="ug-baslik">' + (bolumMu ? "Bölümler" : "Üniteler") + '</h2><span class="ug-ozet">' + g.uniteler.length + " " + birim +
     (T.t ? " · " + T.c + " / " + T.t + " soru çözüldü" : "") + '</span></div><ol class="ug-liste">' +
     g.uniteler.map(u => {
       const durum = u.cevap ? u.cevap + " / " + u.toplam + " soru · %" + yuzde(u.dogru, u.cevap) + " doğru" : u.toplam ? u.toplam + " soru · başlanmadı" : "Konu anlatımı";
@@ -1412,7 +1521,8 @@ function initUniteGorunumu() {
         '</span><span class="ug-git">' + git + " →</span></a></li>";
     }).join("") + "</ol>" +
     (g.ekler.length ? '<h3 class="ug-ek-h">Ek bölümler</h3><ul class="ug-ekler">' +
-      g.ekler.map((e, k) => '<li><a class="ug-ek" href="' + base + "?bolum=" + (k + 1) + '">' + apEsc(e.baslik) + "</a></li>").join("") + "</ul>" : "");
+      g.ekler.map((e, k) => '<li><a class="ug-ek" href="' + base + "?bolum=" + (k + 1) + '">' + apEsc(e.baslik) + "</a></li>").join("") + "</ul>" : ""); };
+  panelCiz();
   main.insertBefore(panel, hero ? hero.nextSibling : main.firstChild);
 
   // Ünite / ek bölüm üst ve alt şeritleri
@@ -1436,7 +1546,7 @@ function initUniteGorunumu() {
       u.bloklar.some(i => (kutu = Array.from(els[i].querySelectorAll("[id]")).find(k => k._questionsData)));
       ust.innerHTML = '<a class="ug-geri" href="' + base + '">← ' + apEsc(ders) + " üniteleri</a>" +
         '<span class="ug-sag">' + (u.anlatim && kutu && !kilitli(u) ? '<a class="ug-sorular" href="#' + apEsc(kutu.id) + '">Sorulara geç ↓</a>' : "") +
-        '<span class="ug-sayac">Ünite ' + n + " / " + g.uniteler.length + "</span></span>";
+        '<span class="ug-sayac">' + (bolumMu ? "Bölüm " : "Ünite ") + n + " / " + g.uniteler.length + "</span></span>";
       alt.innerHTML = (o ? '<a class="btn-ghost ug-onceki" href="' + base + "?unite=" + o.no + '">← Önceki: ' + apEsc(o.baslik) + "</a>" : "<span></span>") +
         (s ? '<a class="btn-energy ug-sonraki" href="' + base + "?unite=" + s.no + '">Sonraki ünite →</a>' : '<a class="btn-primary" href="' + base + '">Ünite listesine dön</a>');
       const ilk = els[u.bloklar[0]], son = els[u.bloklar[u.bloklar.length - 1]];
@@ -1445,7 +1555,7 @@ function initUniteGorunumu() {
         // Premium ünitesi: içerik gösterilmez, tanıtım paneli çıkar
         duvar.innerHTML = '<span class="ug-duvar-ico" aria-hidden="true">' + APMEBERRA_ICONS.crown + '</span>' +
           "<h2>" + apEsc(u.baslik) + " Premium'da</h2>" +
-          "<p>Ücretsiz planda her dersin ilk " + ucretsizN + " ünitesi açık. Premium ile bu dersin tüm ünitelerine, sınırsız denemeye ve tahmini puan bandına eriş.</p>" +
+          "<p>Ücretsiz planda bu sayfada " + ucretsizNolar.length + " " + birim + " açık. Premium ile tüm " + (bolumMu ? "bölümlere" : "ünitelere") + ", sınırsız ders denemesine ve genel denemeye eriş.</p>" +
           '<ul class="ug-duvar-liste"><li>Tüm üniteler: konu anlatımı + AP tarzı sorular</li><li>Sınırsız ders denemesi ve genel deneme</li><li>Yanlışlarını tekrar et, ilerlemeni takip et</li></ul>' +
           '<div class="ug-duvar-eylem"><a class="btn-energy" href="premium.html">Premium' + "'" + 'a geç</a><a class="btn-ghost" href="fiyatlar.html">Planları karşılaştır</a></div>' +
           '<p class="ug-duvar-not">Ücretsiz üniteler: ' + g.uniteler.filter(x => !kilitli(x)).map(x => '<a href="' + base + "?unite=" + x.no + '">' + apEsc(x.baslik) + "</a>").join(" · ") + "</p>";
@@ -1456,6 +1566,7 @@ function initUniteGorunumu() {
         return;
       }
       son.parentNode.insertBefore(alt, son.nextSibling);
+      if (duvar.parentNode) duvar.parentNode.removeChild(duvar);
       goster([ust, alt].concat(u.bloklar.map(i => els[i])));
       konulariKatla(u);
       document.title = u.baslik + " — " + baslik0;
@@ -1533,6 +1644,7 @@ function initUniteGorunumu() {
     return ["ozet", 0];
   }
   ciz.apply(null, coz());
+  apUniteGorunumuYenile = () => { panelCiz(); ciz.apply(null, coz()); };
   window.addEventListener("hashchange", () => {
     ciz.apply(null, coz());
     const h = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));

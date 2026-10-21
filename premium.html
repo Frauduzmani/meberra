@@ -106,11 +106,15 @@
 
     function durumCiz(j) {
       var u = j.uyelik || {}, d = $("pr-durum");
+      $("pr-akis").hidden = false;
       if (u.premium) {
         d.innerHTML = '<div class="notice is-ok"><strong>Premium hesabın aktif.</strong> Bitiş: ' + esc(tarih(u.bitis)) + '. Süre bitmeden yeni ödeme bildirirsen süren uzatılır.</div>';
       } else if (u.bekleyenTalep) {
-        d.innerHTML = '<div class="notice is-warn"><strong>Ödeme bildirimin alındı.</strong> ' + esc(tarih(u.bekleyenTalep.olusturma)) + ' tarihli bildirimin kontrol ediliyor; onaylanınca Premium otomatik açılır.</div>';
+        d.innerHTML = '<div class="notice is-warn"><strong>Ödeme bildirimin alındı.</strong> ' + esc(tarih(u.bekleyenTalep.olusturma)) + ' tarihli bildirimin kontrol ediliyor; onaylanınca Premium otomatik açılır.' +
+          '<p class="u-mt-2">Yanlış plan seçtiysen ya da ödemeyi yapmadıysan bildirimini geri çekebilirsin. <button type="button" class="btn-ghost btn-sm" id="pr-talep-iptal">Talebimi iptal et</button></p>' +
+          '<p class="field-error" id="pr-talep-iptal-err" role="alert"></p></div>';
         $("pr-akis").hidden = true;
+        $("pr-talep-iptal").addEventListener("click", talepIptal);
       } else d.innerHTML = "";
       var t = j.talepler || [];
       $("pr-gecmis").hidden = !t.length;
@@ -118,6 +122,20 @@
         return '<li><span class="pr-rozet pr-' + esc(x.durum) + '">' + esc(DURUM[x.durum] || x.durum) + '</span> ' + esc(x.plan === "yillik" ? "Yıllık" : "Aylık") + ' · ' + tl(x.tutar_tl) + ' · ' + esc(tarih(x.olusturma)) +
           (x.islem_notu ? ' <small>— ' + esc(x.islem_notu) + '</small>' : "") + '</li>';
       }).join("");
+    }
+
+    /** Bekleyen ödeme bildirimini geri çeker (POST /api/premium/talep/iptal; CSRF başlığı X-Meberra zorunlu). */
+    function talepIptal() {
+      var btn = $("pr-talep-iptal"), err = $("pr-talep-iptal-err");
+      if (!window.confirm("Ödeme bildirimin iptal edilsin mi? Ödemeyi yaptıysan iptal etme; onay için bekle.")) return;
+      UI.busy(btn, true, "İptal ediliyor…");
+      fetch("/api/premium/talep/iptal", { method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json", "X-Meberra": "1" }, body: "{}" })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { j.ok = r.ok && j.ok !== false; return j; }); },
+          function () { return { ok: false, error: "Sunucuya ulaşılamadı. İnternet bağlantını kontrol edip tekrar dene." }; })
+        .then(function (j) {
+          if (!j.ok) { UI.busy(btn, false); err.textContent = j.error || "Bildirim iptal edilemedi."; return; }
+          AUTH.premiumDurum().then(durumCiz); // üyelik önbelleği de tazelenir
+        });
     }
 
     planCiz();

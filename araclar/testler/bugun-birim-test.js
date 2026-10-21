@@ -140,6 +140,18 @@ ok(apKaldiginYer({ pages: {} }, []) === null && apKaldiginYer(null) === null, "k
     pl[2].title === "Kaldığın yerden devam et: Unit 2" && pl[2].href === "ap-calculus.html#u2", "çalışma planı (dolu): hata, en zayıf ünite (%25), ilk eksik ünite, son tarihler", pl);
   const sa = apSiradakiAdim({ bugun: BUGUN, acikHata: 2, plan: pl.map(t => ({ baslik: t.title, aciklama: t.desc, href: t.href, etiket: t.linkText })) });
   ok(sa.tur === "plan" && sa.baslik === pl[0].title, "Sıradaki adım (< 5 hata): çalışma planının ilk görevi", sa);
+  // Ücretsiz plan: kilitli üniteler (kutuUcretsiz → false) önerilmez; ücretsizler bitince açılmamış ders, o da yoksa Premium önerisi
+  const acikKutu = (p, id) => id === "u1" || id === "p1";
+  const ucretsiz = { answered: 30, openErrors: [], courses: [
+    { page: "ap-calculus", name: "AP Calculus AB / BC", visited: true, units: [{ id: "u1", title: "Unit 1", total: 10, answered: 10, correct: 10 }, { id: "u3", title: "Unit 3", total: 10, answered: 2, correct: 0 }] },
+    { page: "ap-physics", name: "AP Physics 1 / C", visited: true, units: [{ id: "p1", title: "Unit 1 Kinematics", total: 20, answered: 20, correct: 19 }] }] };
+  pl = apCalismaPlani({ summary: ucretsiz, kayitSon: null, bugun: BUGUN, premium: false, kutuUcretsiz: acikKutu });
+  ok(!pl.some(x => /#u3/.test(x.href)) && pl.some(x => x.href === "premium.html" && x.ikon === "play"), "çalışma planı (ücretsiz): kilitli Unit 3 önerilmez, ücretsizler bitti → Premium önerisi", pl);
+  ucretsiz.courses.push({ page: "ap-biology", name: "AP Biology", visited: false, units: [] });
+  pl = apCalismaPlani({ summary: ucretsiz, kayitSon: null, bugun: BUGUN, premium: false, kutuUcretsiz: acikKutu });
+  ok(pl.some(x => x.href === "ap-biology.html") && !pl.some(x => x.href === "premium.html"), "çalışma planı (ücretsiz): açılmamış ders varsa önce o", pl);
+  pl = apCalismaPlani({ summary: ucretsiz, kayitSon: null, bugun: BUGUN, premium: true, kutuUcretsiz: acikKutu });
+  ok(pl.some(x => x.href === "ap-calculus.html#u3"), "çalışma planı (premium): kilit yok", pl);
 }
 // ---------------------------------------------------------------- 5) Gerçek veriyle uçtan uca (uydurma tarih yok)
 global.window = {};

@@ -81,11 +81,11 @@
       kategori: "Bilim Sınavı",
       alan: "Bilgisayar & Yazılım",
       ozet: "Java Nesne Yönelimli Programlama (OOP), Sınıflar, Diziler, Veri Yapıları ve Algoritma Analizi.",
-      konuUrl: "ap-electives.html#cs-a",
+      konuUrl: "ap-electives.html?unite=2",
       denemeler: [
         { ad: "Computer Science A Denemesi", kod: "cs-a", url: "deneme.html?ders=cs-a" }
       ],
-      sinavUrl: "sinavlar.html#ap-cs-a"
+      sinavUrl: "sinavlar.html#ap-computer-science-a"
     },
     "ap-economics": {
       kod: "ap-economics",
@@ -93,11 +93,11 @@
       kategori: "Sosyal & İdari Bilim",
       alan: "Ekonomi",
       ozet: "Arz-Talep Dengesi, Piyasa Yapıları, Maliye Politikaları, Enflasyon ve Büyüme Modelleri.",
-      konuUrl: "ap-electives.html#micro",
+      konuUrl: "ap-electives.html?unite=4",
       denemeler: [
         { ad: "Ekonomi Denemesi", kod: "economics", url: "deneme.html?ders=economics" }
       ],
-      sinavUrl: "sinavlar.html#ap-macro"
+      sinavUrl: "sinavlar.html#ap-macroeconomics"
     },
     "english-language": {
       kod: "english-language",
@@ -123,7 +123,7 @@
         { ad: "Matematik Temelli Deneme (Calculus)", kod: "calculus-ab", url: "deneme.html?ders=calculus-ab" },
         { ad: "Fizik Temelli Deneme (Physics 1)", kod: "physics-1", url: "deneme.html?ders=physics-1" }
       ],
-      sinavUrl: "sinavlar.html#tolc-i"
+      sinavUrl: "sinavlar.html#cent-s"
     },
     "testas": {
       kod: "testas",
@@ -229,7 +229,7 @@
         if (dil === "yerel" || dil === "hepsi") {
           dilSinavlari.push({ ad: "TestDaF", esik: "TDN 4x4", url: "sinavlar.html#testdaf" });
           dilSinavlari.push({ ad: "DSH", esik: "DSH-2", url: "sinavlar.html#dsh" });
-          dilSinavlari.push({ ad: "telc C1 Hochschule", esik: "C1 Geçer", url: "sinavlar.html#telc-c1" });
+          dilSinavlari.push({ ad: "telc C1 Hochschule", esik: "C1 Geçer", url: "sinavlar.html#telc-c1-hochschule" });
         }
         bilimSinavlari.push(DERSLER["ap-calculus"]);
         bilimSinavlari.push(DERSLER["ap-physics"]);

@@ -511,7 +511,11 @@
     if (!prof.okulSehir) prof.okulSehir = "İstanbul";
     if (!prof.okul) delete prof.okul;
     return store.saveProfile(id, prof).then(function () { return { ok: true, profile: prof }; })
-      .catch(function () { return { ok: false, errors: { genel: "Profil kaydedilemedi (depolama dolu ya da kapalı)." } }; });
+      .catch(function (err) {
+        // Sunucu modu: sunucunun alan hataları (err.errors) formda gösterilir; tarayıcı modunda depolama hatasıdır
+        if (err && err.errors) return { ok: false, errors: err.errors };
+        return { ok: false, errors: { genel: "Profil kaydedilemedi (depolama dolu ya da kapalı)." } };
+      });
   }
 
   var api = {
@@ -883,7 +887,13 @@
     store.available = function () { return Promise.resolve(true); };
     store.saveProfile = function (id, p) {
       return istek("PUT", "/api/profile", { profile: p }).then(function (j) {
-        if (!j.ok) throw new Error(j.error || AG_HATA);
+        if (!j.ok) {
+          var hata = new Error(j.error || AG_HATA);
+          // durum 0 = ağ hatası (istek yakalar); diğerleri sunucu yanıtı: alan hataları korunur
+          hata.errors = j.durum === 0 ? { genel: "Bağlantı sorunu, tekrar dene." }
+            : (j.errors && typeof j.errors === "object" && Object.keys(j.errors).length ? j.errors : { genel: j.error || AG_HATA });
+          throw hata;
+        }
         sessiz(function () { lsSet(KEYS.profile(id), j.profile || p); });
         return j.profile || p;
       });

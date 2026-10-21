@@ -29,6 +29,19 @@
 .vt-hero::after { left: -120px; bottom: -160px; width: 360px; height: 360px; background: radial-gradient(circle, rgba(255, 255, 255, .14), transparent 70%); }
 .vt-hero > * { position: relative; z-index: 1; }
 .vt-hero-in { max-width: 760px; }
+.vt-hero-grid {
+  display: grid; gap: var(--sp-6); grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "text" "vx" "cta";
+}
+.vt-hero-text { grid-area: text; min-width: 0; }
+.vt-hero-grid > .vx { grid-area: vx; }
+.vt-hero-cta-wrap { grid-area: cta; min-width: 0; }
+.vt-hero-text .vt-hero-sub { margin-bottom: 0; }
+.vt-hero-text h1 { font-size: clamp(1.75rem, 1.2rem + 2.3vw, 2.75rem); line-height: 1.12; }
+@media (min-width: 1000px) {
+  .vt-hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); grid-template-areas: "text vx" "cta vx"; column-gap: var(--sp-10); align-items: start; }
+  .vt-hero-cta-wrap { align-self: start; }
+}
 .vt-hero-tag { display: inline-flex; align-items: center; gap: 8px; min-height: 32px; padding: 4px 14px; border-radius: var(--radius-full); background: rgba(255, 255, 255, .16); font-weight: 700; font-size: var(--fs-14); margin: 0 0 var(--sp-5); }
 .vt-hero h1 { color: #fff; font-size: clamp(2rem, 1.35rem + 3vw, 3.5rem); line-height: 1.08; margin: 0 0 var(--sp-5); overflow-wrap: anywhere; }
 .vt-hero h1 em { font-style: normal; color: #fff; text-decoration: underline; text-decoration-color: var(--energy); text-decoration-thickness: .12em; text-underline-offset: .12em; }
@@ -44,6 +57,120 @@
 .vt-hero-notes { display: flex; flex-wrap: wrap; gap: 8px 22px; list-style: none; margin: var(--sp-6) 0 0; padding: 0; color: rgba(255, 255, 255, .94); font-size: var(--fs-14); font-weight: 600; }
 .vt-hero-notes li { display: inline-flex; align-items: center; gap: 8px; }
 .vt-hero-notes svg { width: 18px; height: 18px; flex: none; }
+
+/* --- 3 adımlı anlatım (.vx) --------------------------------------------
+   Varsayılan (JS yok / hareket azaltılmış / "Geç"): üç adım alt alta, son halleriyle.
+   .is-anim: adımlar üst üste, yalnızca .is-active görünür.                     */
+.vx {
+  position: relative; min-width: 0; color: var(--text); background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);
+  padding: var(--sp-5); display: grid; gap: var(--sp-4);
+}
+.vx .vx-h { color: var(--text); }
+.vx-bar { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); flex-wrap: wrap; }
+.vx-bar[hidden] { display: none; }
+.vx-dots, .vx-ctrl { display: flex; gap: var(--sp-2); }
+.vx-dot {
+  width: 44px; height: 44px; border-radius: var(--radius-full); display: grid; place-items: center;
+  border: 2px solid var(--border-strong); background: var(--surface-2); color: var(--text);
+  font: 900 var(--fs-16)/1 var(--font-head); cursor: pointer; transition: var(--transition);
+}
+.vx-dot:hover { border-color: var(--accent); }
+.vx-dot[aria-current="step"] { background: var(--btn-bg); border-color: var(--btn-bg); color: var(--on-btn); }
+.vx-btn {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 44px; min-width: 44px; padding: 0 14px;
+  border-radius: var(--radius-md); border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  font: 700 var(--fs-14)/1 var(--font-sans); cursor: pointer; transition: var(--transition);
+}
+.vx-btn[hidden] { display: none; }
+.vx-btn:hover { background: var(--surface-2); border-color: var(--border-strong); }
+.vx-btn svg { width: 16px; height: 16px; }
+.vx-btn .vx-i-play { display: none; }
+.vx-btn[aria-pressed="true"] .vx-i-play { display: block; }
+.vx-btn[aria-pressed="true"] .vx-i-pause { display: none; }
+.vx-dot:focus-visible, .vx-btn:focus-visible, .vx .vx-h:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; box-shadow: var(--focus-ring); }
+
+.vx-stage { display: grid; gap: var(--sp-6); min-width: 0; }
+.vx-slide { min-width: 0; display: grid; gap: var(--sp-3); align-content: start; }
+.vx-slide + .vx-slide { border-top: 1px solid var(--border); padding-top: var(--sp-6); }
+.vx-no { margin: 0; font: 900 var(--fs-14)/1 var(--font-head); letter-spacing: .06em; text-transform: uppercase; color: var(--energy-text); }
+.vx-h { margin: 0; font-size: var(--fs-22); font-weight: 900; line-height: var(--lh-tight); }
+.vx-text { margin: 0; color: var(--text-muted); line-height: var(--lh-body); }
+.vx-text strong { color: var(--text); }
+.vx-caption { margin: 0; }
+
+/* Adım 1: sınav kartı + puan çubuğu */
+.vx-exam { border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface-2); padding: var(--sp-4); display: grid; gap: var(--sp-3); }
+.vx-exam-top { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); flex-wrap: wrap; }
+.vx-exam-name { font: 800 var(--fs-16)/1.2 var(--font-head); }
+.vx-exam-tag { padding: 4px 10px; border-radius: var(--radius-full); background: var(--energy-soft); color: var(--energy-text); font-weight: 700; font-size: var(--fs-14); }
+.vx-scale { display: grid; grid-template-columns: repeat(5, 1fr); text-align: center; font: 800 var(--fs-14)/1 var(--font-head); color: var(--text-muted); }
+.vx-scale .is-hi { color: var(--ok); }
+.vx-track { height: 14px; border-radius: var(--radius-full); background: var(--surface-3); overflow: hidden; }
+.vx-fill { height: 100%; width: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--btn-bg), var(--energy)); transform-origin: left center; transform: scaleX(.8); }
+.vx-exam-foot { display: flex; justify-content: space-between; align-items: baseline; color: var(--text-muted); font-size: var(--fs-14); font-weight: 600; }
+.vx-exam-foot b { font: 900 var(--fs-22)/1 var(--font-head); color: var(--text); }
+
+/* Adım 2: harita + rozetler */
+.vx-map { max-width: 260px; width: 100%; justify-self: center; }
+.vx-map svg { display: block; width: 100%; height: auto; }
+.vx-land { fill: var(--accent-soft); stroke: var(--border-strong); stroke-width: 1.5; }
+.vx-pin circle { fill: var(--border-strong); transition: fill .3s ease; }
+.vx-pin .vx-pin-c { fill: var(--surface); }
+.vx-pin-nl circle:first-child { fill: var(--ok); }
+.vx-pin-de circle:first-child { fill: var(--warn); }
+.vx-pin-it circle:first-child { fill: var(--accent); }
+.vx-pin-x circle { fill: var(--text-dim); }
+.vx-badges { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-2); }
+.vx-badge {
+  display: grid; gap: 2px; padding: 10px 12px; border-radius: var(--radius-md);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border)); background: var(--accent-soft);
+  line-height: var(--lh-snug); font-size: var(--fs-14); color: var(--text);
+}
+.vx-badge b { font: 800 var(--fs-16)/1.2 var(--font-head); color: var(--accent); }
+.vx-badge.is-ok { background: var(--ok-bg); border-color: var(--ok-border); }
+.vx-badge.is-ok b { color: var(--ok); }
+.vx-badge.is-warn { background: var(--warn-bg); border-color: var(--warn-border); }
+.vx-badge.is-warn b { color: var(--warn); }
+.vx-badge.is-more { background: var(--surface-2); border-style: dashed; border-color: var(--border-strong); }
+.vx-badge.is-more b { color: var(--text); }
+
+/* Adım 3: akış çipleri */
+.vx-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-5); }
+.vx-chip {
+  position: relative; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 6px 14px 6px 6px;
+  border-radius: var(--radius-full); background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
+  font: 800 var(--fs-16)/1.2 var(--font-head); color: var(--text);
+}
+.vx-chip:not(:last-child)::after {
+  content: ""; position: absolute; right: -15px; top: 50%; width: 8px; height: 8px;
+  border-right: 2.5px solid var(--text-dim); border-top: 2.5px solid var(--text-dim); transform: translateY(-50%) rotate(45deg);
+}
+.vx-chip-n { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--btn-bg); color: var(--on-btn); font-size: var(--fs-14); }
+.vx-chip.is-goal { background: var(--energy-soft); border-color: color-mix(in srgb, var(--energy) 45%, transparent); }
+.vx-chip.is-goal .vx-chip-n { background: var(--energy); color: var(--on-energy); }
+
+/* Canlandırmalı mod */
+.vx.is-anim .vx-stage { grid-template-areas: "s"; gap: 0; }
+.vx.is-anim .vx-slide { grid-area: s; border-top: 0; padding-top: 0; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .35s ease, transform .35s ease, visibility 0s linear .35s; }
+.vx.is-anim .vx-slide.is-active { opacity: 1; visibility: visible; transform: none; transition: opacity .35s ease, transform .35s ease, visibility 0s; }
+.vx.is-anim .vx-caption { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.vx.is-anim .is-active .vx-fill { animation: vx-fill 1.6s cubic-bezier(.2, .8, .2, 1) .2s both; }
+.vx.is-anim .is-active .vx-pin, .vx.is-anim .is-active .vx-badge, .vx.is-anim .is-active .vx-chip { animation: vx-in .45s ease both; }
+.vx.is-anim .is-active .vx-pin-nl, .vx.is-anim .is-active .vx-badge:nth-child(1), .vx.is-anim .is-active .vx-chip:nth-child(1) { animation-delay: .15s; }
+.vx.is-anim .is-active .vx-pin-de, .vx.is-anim .is-active .vx-badge:nth-child(2), .vx.is-anim .is-active .vx-chip:nth-child(2) { animation-delay: .7s; }
+.vx.is-anim .is-active .vx-pin-it, .vx.is-anim .is-active .vx-badge:nth-child(3), .vx.is-anim .is-active .vx-chip:nth-child(3) { animation-delay: 1.25s; }
+.vx.is-anim .is-active .vx-pin-x, .vx.is-anim .is-active .vx-badge:nth-child(4), .vx.is-anim .is-active .vx-chip:nth-child(4) { animation-delay: 1.8s; }
+.vx.is-anim .vx-pin { transform-box: fill-box; transform-origin: center; }
+@keyframes vx-fill { from { transform: scaleX(0); } to { transform: scaleX(.8); } }
+@keyframes vx-in { from { opacity: 0; transform: translateY(6px) scale(.96); } to { opacity: 1; transform: none; } }
+@media (min-width: 560px) {
+  .vx { padding: var(--sp-6); }
+  .vx-badges { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vx .vx-slide, .vx .vx-fill, .vx .vx-pin, .vx .vx-badge, .vx .vx-chip { animation: none !important; transition: none !important; }
+}
 
 /* --- İkon kutusu -------------------------------------------------------- */
 .vt-ico { flex: none; width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
@@ -63,11 +190,14 @@
 .vt-feature { display: flex; flex-direction: column; gap: var(--sp-3); border-radius: var(--radius-xl); }
 .vt-feature h3 { font-size: var(--fs-18); font-weight: 800; margin: 0; line-height: var(--lh-snug); }
 .vt-feature p { margin: 0; color: var(--text-muted); line-height: var(--lh-body); }
+.page-vitrin .vt-features { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
 /* --- Veliler için ------------------------------------------------------- */
 .vt-veli { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: var(--sp-8); align-items: center; border-radius: var(--radius-xl); background: var(--surface-2); }
 .vt-veli-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-4); }
-.vt-veli-list li { display: flex; gap: var(--sp-4); align-items: flex-start; }
+.vt-veli-list li, .vt-veli-list > div { display: flex; gap: var(--sp-4); align-items: flex-start; }
+.vt-veli-list dt { font-family: var(--font-head); font-weight: 800; margin-bottom: 2px; }
+.vt-veli-list dd { margin: 0; color: var(--text-muted); line-height: var(--lh-body); }
 .vt-veli-list .vt-ico { width: 40px; height: 40px; border-radius: 12px; }
 .vt-veli-list .vt-ico svg { width: 20px; height: 20px; }
 .vt-veli-list strong { display: block; font-family: var(--font-head); font-weight: 800; margin-bottom: 2px; }
@@ -178,14 +308,14 @@
 
 /* --- Duyarlı düzen ------------------------------------------------------ */
 @media (max-width: 960px) {
-  .vt-features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vt-features, .page-vitrin .vt-features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .vt-plans { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin-inline: auto; }
   .vt-plans.is-two { grid-template-columns: minmax(0, 1fr); max-width: 520px; }
   .vt-veli { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 760px) {
   .vt-page { gap: var(--sp-12); }
-  .vt-steps, .vt-features { grid-template-columns: minmax(0, 1fr); }
+  .vt-steps, .vt-features, .page-vitrin .vt-features { grid-template-columns: minmax(0, 1fr); }
   .vt-plan.is-featured { margin-top: var(--sp-2); }
 }
 @media (max-width: 640px) {

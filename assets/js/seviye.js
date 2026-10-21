@@ -918,12 +918,30 @@
     var html = '<section class="section sv-sec" aria-labelledby="sv-e"><h2 id="sv-e"><span class="sv-sec-letter" aria-hidden="true">e</span>Öncelikli çalışma listesi</h2>' +
       '<p class="section-lead">Kırmızı ve Sarı üniteler, <strong>sınav ağırlığı × açık oranı</strong> (açık = 1 − skor) değerine göre sıralandı. Ağırlık aralığının orta noktası kullanılır; ağırlığı bilinmeyen ünitelerde dersin üniteleri arasında eşit pay varsayılır.</p>';
     if (!L.length) return html + '<div class="empty-state">' + ICON.check.replace('stroke-width="2.5"', 'stroke-width="1.8"') + '<strong>Kırmızı ya da Sarı ünite yok</strong><span>Tüm ünitelerin Yeşil bantta. Deneme sınavlarıyla formunu koru.</span></div></section>';
+    // Meberra ücretsiz plan: hedef ünite kilitliyse bağlantıda "Premium" rozeti + aynı dersten ücretsiz bir ünite önerisi
+    var ucretsizPlan = typeof window.apPremiumMu === "function" && !window.apPremiumMu();
+    var capaAcik = function (sayfa, capa) { return !ucretsizPlan || typeof window.apCapaUcretsizMi !== "function" || window.apCapaUcretsizMi(sayfa, capa); };
+    function ucretsizAlternatif(x) {
+      var adaylar = L.filter(function (y) { return y !== x && y.ders === x.ders; }).map(function (y) { return { no: y.unite.no, ad: y.unite.ad, capa: portalCapasi(y), var: y.unite.portaldaVar }; });
+      var b = (window.APMEBERRA_SEVIYE || {})[x.ders];
+      (b && b.uniteler || []).forEach(function (u) { adaylar.push({ no: String(u.no), ad: u.ad, capa: u.portalCapa || null, var: !!u.portaldaVar }); });
+      for (var i = 0; i < adaylar.length; i++) {
+        var a = adaylar[i];
+        if (a.var && a.capa && String(a.no) !== String(x.unite.no) && capaAcik(x.portalSayfasi, a.capa)) return a;
+      }
+      return null;
+    }
     html += '<ol class="sv-priority" id="sv-priority">';
     L.forEach(function (x, i) {
       var capa = portalCapasi(x);
-      var link = x.unite.portaldaVar && x.portalSayfasi
-        ? '<a class="btn-ghost sv-go" href="' + esc(x.portalSayfasi + (capa ? "#" + capa : "")) + '">Portalda çalış →</a>'
-        : '<span class="sv-pill is-warn">Portalda yok — ek kaynak gerekir</span>';
+      var link;
+      if (!(x.unite.portaldaVar && x.portalSayfasi)) link = '<span class="sv-pill is-warn">Portalda yok — ek kaynak gerekir</span>';
+      else if (capaAcik(x.portalSayfasi, capa)) link = '<a class="btn-ghost sv-go" href="' + esc(x.portalSayfasi + (capa ? "#" + capa : "")) + '">Portalda çalış →</a>';
+      else {
+        var alt = ucretsizAlternatif(x);
+        link = '<span class="sv-go-kilit"><a class="btn-ghost sv-go" href="' + esc(x.portalSayfasi + (capa ? "#" + capa : "")) + '">Portalda çalış <span class="sv-pill is-warn">Premium</span> →</a>' +
+          (alt ? ' <a class="sv-go-alt" href="' + esc(x.portalSayfasi + "#" + alt.capa) + '">Ücretsiz: Unit ' + esc(alt.no) + ' — ' + esc(alt.ad) + '</a>' : '') + '</span>';
+      }
       html += '<li class="sv-prio-item ' + esc(dersMeta(x.ders).cls || "") + '" data-ders="' + esc(x.ders) + '" data-unite="' + esc(x.unite.no) + '">' +
         '<span class="sv-prio-rank" aria-hidden="true">' + (i + 1) + '</span>' +
         '<div class="sv-prio-body"><strong>' + esc(x.dersAd) + ' · Unit ' + esc(x.unite.no) + ' — ' + esc(x.unite.ad) + '</strong>' +

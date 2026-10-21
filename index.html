@@ -363,7 +363,8 @@
     var T0 = window.APMEBERRA_TAKVIM;
     var todos = (window.apCalismaPlani ? apCalismaPlani({
       summary: s, mezun: !!(ME && ME.profile && ME.profile.sinif === "mezun"),
-      kayitSon: T0 && T0.kayit ? T0.kayit.sonGun : null, seviye: A.storeGet("apmeberra:seviye:v1", null), bugun: BG || new Date()
+      kayitSon: T0 && T0.kayit ? T0.kayit.sonGun : null, seviye: A.storeGet("apmeberra:seviye:v1", null), bugun: BG || new Date(),
+      premium: window.apPremiumMu ? apPremiumMu() : true
     }) : []).map(function (t) { return gorev(ICON[t.ikon] || ICON.book, t.title, t.desc, t.href, t.linkText); });
     var todoList = document.getElementById("todo-list");
     if (todoList) todoList.innerHTML = todos.slice(0, 4).map(gorevHtml).join("");

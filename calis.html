@@ -151,7 +151,8 @@
     var T = window.APMEBERRA_TAKVIM;
     var plan = apCalismaPlani({
       summary: s, mezun: ME.profile.sinif === "mezun",
-      kayitSon: T && T.kayit ? T.kayit.sonGun : null, seviye: sv, bugun: BG || new Date()
+      kayitSon: T && T.kayit ? T.kayit.sonGun : null, seviye: sv, bugun: BG || new Date(),
+      premium: window.apPremiumMu ? apPremiumMu() : true
     });
     var sa = apSiradakiAdim({
       bugun: BG || new Date(),

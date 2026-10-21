@@ -19,6 +19,10 @@
  *   aktif/gecmis kaydına kod:"yanlislar", mod:"yanlislar", kaynakDeneme:<id>|null eklenir (ek alanlar; mevcut alanlar aynı),
  *   her sorunun kendi ders kodu sorular[i].kod'da durur. Teslimde mevcut writeErrors: doğru → hata kapanır (resolved),
  *   yanlış → açık kalır (count+1), boş → değişmez. Soru nesnesi ve banka değişmez.
+ * Ücretsiz deneme hakkı (Meberra): "apmeberra:deneme-hak:v1" = { "<sayfa>": { t: <ms>, kod: "<banka kodu>" } } — ders SAYFASI
+ *   başına bir ücretsiz deneme (calculus-ab/bc → ap-calculus, cs-a/economics → ap-electives). Kullanım deneme BAŞLARKEN yazılır
+ *   ve hiç silinmez (iptal, 50 kayıtlık geçmiş sınırı hakkı geri getirmez; sunucu anahtarı yalnız ekleyerek birleştirir).
+ *   Geriye uyum: o sayfaya ait tamamlanmış bir geçmiş kaydı da hakkı kullanılmış sayar. Başlamış deneme her zaman sürdürülebilir.
  * Sınav sırasında doğru/yanlış gösterilmez. Süre yalnızca sayfa açıkken işler (gecenSn birikir);
  * yenilemede deneme kaldığı yerden sürer. Yanlışlar app.js Hata Defterine ("apmeberra:errors:v1") aynı
  * biçimde yazılır.
@@ -27,6 +31,7 @@
   "use strict";
 
   var KEY = "apmeberra:deneme:v1";
+  var HAK_KEY = "apmeberra:deneme-hak:v1";
   var ERR_KEY = "apmeberra:errors:v1";
   var MAX_GECMIS = 50;
   var BANK = window.APMEBERRA_DENEME_BANKASI;
@@ -243,9 +248,16 @@
   function renderLanding() {
     var d = load();
     document.title = "Deneme Sınavı | Meberra";
+    var ucretsiz = ucretsizPlan();
     var cards = KODLAR.map(function (kod) {
       var k = BANK.kodlar[kod], n = onerilen(kod), last = lastFor(kod, d);
       var t = TEMPO[kod] || {};
+      var yarim = d.aktif && d.aktif.kod === kod;
+      var kilit = ucretsiz && !yarim && hakKullanildi(kod, d);
+      var cta = yarim ? '<a class="btn-primary dn-card-cta" href="deneme.html">Yarım denemene devam et →</a>'
+        : kilit ? '<p class="dn-note dn-hak-bitti">Ücretsiz denemeni kullandın — Premium ile sınırsız.</p><a class="btn-energy dn-card-cta" href="premium.html">Premium’a geç →</a>'
+        : '<a class="btn-primary dn-card-cta" href="deneme.html?ders=' + encodeURIComponent(kod) + '">Denemeyi kur →</a>' +
+          (ucretsiz ? '<p class="dn-note">Ücretsiz planda bu ders için 1 deneme hakkın var' + (sayfaOf(kod) === "ap-calculus" || sayfaOf(kod) === "ap-electives" ? ' (aynı ders sayfasındaki denemeyle ortak)' : '') + '.</p>' : '');
       return '<article class="dn-card" style="--dn-c:' + colorVar(kod) + '">' +
         '<h3 class="dn-card-title">' + esc(k.ad) + '</h3>' +
         '<dl class="dn-facts">' +
@@ -255,7 +267,7 @@
         (last ? '<div><dt>Son deneme</dt><dd>%' + last.yuzde + ' · ' + esc(fmtTarih(last.tarih)) + '</dd></div>' : '') +
         '</dl>' +
         (k.soruSayisi < 40 ? '<p class="dn-note">Havuz küçük: tam bir AP Section I (' + (t.soru || "?") + ' soru) kurulamaz; deneme kısa tutulur.</p>' : '') +
-        '<a class="btn-primary dn-card-cta" href="deneme.html?ders=' + encodeURIComponent(kod) + '">Denemeyi kur →</a>' +
+        cta +
         '</article>';
     }).join("");
 
@@ -273,6 +285,7 @@
       '<section class="dn-section interactive-panel" aria-labelledby="dn-genel-title" id="genel">' +
       '<h2 class="panel-title" id="dn-genel-title">Genel deneme (karma)</h2>' +
       '<p class="panel-sub">Seçtiğin derslerden dengeli karışık deneme. Her ders kendi bloğunda gelir; süre her sorunun kendi dersinin temposuyla toplanır.</p>' +
+      (ucretsiz ? '<p class="dn-note dn-hak-bitti">Genel deneme Premium’da. <a href="premium.html">Premium’a geç →</a></p>' : '') +
       setupForm("genel") +
       '</section>' +
       renderHistory(d);
@@ -497,6 +510,7 @@
   }
 
   function renderSetup(kod) {
+    if (premiumGerekli({ kod: kod })) { renderPremiumDuvar({ kod: kod }); return; }
     var isGenel = kod === "genel";
     var k = isGenel ? null : BANK.kodlar[kod];
     document.title = (isGenel ? "Genel deneme" : k.ad + " denemesi") + " | Meberra";
@@ -521,17 +535,31 @@
   var timerId = null, lastTick = 0, sinceSave = 0, warned = false;
   var navOpen = false;
 
-  // Meberra ücretsiz plan: her dersten 1 deneme; genel deneme Premium (sunucu modu dışında her şey açık)
+  // Meberra ücretsiz plan: her ders sayfasından 1 deneme (hak başlarken yazılır); genel deneme Premium (sunucu modu dışında her şey açık)
+  function ucretsizPlan() { return !!window.apPremiumMu && !window.apPremiumMu(); }
+  function sayfaOf(kod) { var k = BANK.kodlar[kod]; return k && k.sayfa ? String(k.sayfa).replace(/\.html?$/i, "") : kod; }
+  function hakKayitlari() { var h = sget(HAK_KEY, null); return h && typeof h === "object" && !Array.isArray(h) ? h : {}; }
+  /** Bu dersin (sayfasının) ücretsiz denemesi kullanıldı mı? Hak kaydı ya da (geriye uyum) tamamlanmış bir geçmiş kaydı. */
+  function hakKullanildi(kod, d) {
+    var sayfa = sayfaOf(kod);
+    if (hakKayitlari()[sayfa]) return true;
+    return (d || load()).gecmis.some(function (r) { return r && r.mod !== YKOD && r.kod !== "genel" && r.kod !== YKOD && BANK.kodlar[r.kod] && sayfaOf(r.kod) === sayfa; });
+  }
+  function hakYaz(kod) {
+    var h = hakKayitlari(), sayfa = sayfaOf(kod);
+    if (h[sayfa]) return;
+    h[sayfa] = { t: Date.now(), kod: kod };
+    sset(HAK_KEY, h);
+  }
   function premiumGerekli(cfg) {
-    if (!window.apPremiumMu || window.apPremiumMu()) return false;
+    if (!ucretsizPlan()) return false;
     if (cfg.kod === "genel") return true;
-    var hak = (window.MEBERRA_URUN && window.MEBERRA_URUN.ucretsiz && window.MEBERRA_URUN.ucretsiz.dersDenemesi) || 1;
-    return load().gecmis.filter(function (r) { return r.kod === cfg.kod && r.mod !== "yanlislar"; }).length >= hak;
+    return hakKullanildi(cfg.kod);
   }
   function renderPremiumDuvar(cfg) {
     view.innerHTML = '<section class="surface ug-duvar" aria-labelledby="dn-duvar-h">' +
       '<h2 id="dn-duvar-h" tabindex="-1">' + (cfg.kod === "genel" ? "Genel deneme Premium'da" : "Bu dersin ücretsiz denemesini kullandın") + '</h2>' +
-      '<p>Ücretsiz planda her dersten 1 deneme çözebilirsin. Premium ile sınırsız ders denemesi ve genel deneme çöz, tahmini puan bandını takip et.</p>' +
+      '<p>Ücretsiz planda her dersten 1 deneme çözebilirsin (tahmini puan bandı dahil). Premium ile sınırsız ders denemesi ve genel deneme çöz.</p>' +
       '<div class="ug-duvar-eylem"><a class="btn-energy" href="premium.html">Premium\'a geç</a><button type="button" class="btn-ghost" id="dn-duvar-geri">Denemelere dön</button></div>' +
       '<p class="ug-duvar-not">Yanlışlarını tekrar çözmek ücretsiz: <a href="deneme.html?mod=yanlislar">Yanlışlarım</a></p></section>';
     document.getElementById("dn-duvar-geri").addEventListener("click", function () { renderLanding(); });
@@ -546,6 +574,8 @@
     var ad = cfg.kod === "genel" ? "Genel deneme (" + cfg.dersler.map(function (k) { return BANK.kodlar[k].ad.replace(/^AP /, ""); }).join(", ") + ")" : BANK.kodlar[cfg.kod].ad;
     var limit = null;
     if (cfg.sureModu === "tempo") limit = Math.round(list.reduce(function (s, x) { return s + tempoSn(x.kod); }, 0));
+    // Ücretsiz deneme hakkı başlarken kullanılır (iptal ya da geçmiş sınırı geri getirmez)
+    if (cfg.kod !== "genel" && cfg.kod !== YKOD) hakYaz(cfg.kod);
     var d = load();
     d.aktif = {
       id: "dn-" + Date.now().toString(36) + "-" + seed.toString(36),
@@ -1076,6 +1106,8 @@
     if (ders) announce("Bilinmeyen deneme kodu: " + ders);
   }
   window.addEventListener("popstate", function () { if (!A) boot(); });
+  // Üyelik /api/me ile tazelenip premium durumu değişince (app.js apUyelikDegisti) sınav dışındaki ekran yeniden çizilir
+  window.addEventListener("meberra:uyelik", function () { if (!A && !param("sonuc")) boot(); });
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot); else boot();
 
   // Test/diğer sayfalar için salt-okunur API
