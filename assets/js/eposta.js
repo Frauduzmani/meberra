@@ -10,7 +10,7 @@
  *   olustur(sablon, degiskenler)          -> {konu, govde, eksikler[], bilinmeyenler[]}
  *   mailto(alici, konu, govde)            -> {url, uzunluk, uzun}
  *
- * Tur 12 (plan .agents/rules/tur12-ekran-plani.md Y1–Y6): hazır teyit taslakları (data/kocluk/teyit-taslaklari.js)
+ * Tur 12 (plan .agents/rules/tur12-ekran-plani.md Y1–Y6): hazır teyit taslakları (/data/kocluk/teyit-taslaklari.js)
  *   taslakDogrula(t) · taslaklariSuz(liste, {model, ulke}) · taslakAlicisi(t) · yerTutucuKalan(metin) · sablonUlkeSuz(...)
  *
  * Tur 14 / Ajan 14 Faz 1 (plan .agents/rules/tur14-ilk-basvuru-eposta-plani.md): üniversiteye ilk başvuru e-postası

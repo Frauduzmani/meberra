@@ -13,8 +13,8 @@
  *   konus(hedefEl, { ifade, mesaj, kapanabilir, boyut, kapaninca }) → hedefEl içine maskot + konuşma balonu çizer
  *      (boş durumlar, ipuçları, "serin tehlikede" kartı). Mesaj en çok ~90 karakter; uzunsa kelime sınırında kısaltılır.
  *
- * Statik dosyalar (assets/img/maskot/tilki-<ifade>.svg, tilki-bas.svg, tilki-tek-renk.svg) bu dosyadan üretilir:
- *   node -e "require('./assets/js/maskot.js').dosyalariYaz('assets/img/maskot')"
+ * Statik dosyalar (/assets/img/maskot/tilki-<ifade>.svg, tilki-bas.svg, tilki-tek-renk.svg) bu dosyadan üretilir:
+ *   node -e "require('/assets/js/maskot.js').dosyalariYaz('/assets/img/maskot')"
  */
 (function (kok) {
   "use strict";
@@ -252,7 +252,7 @@
   var CEKIRDEK = {
     MASKOT_ADI: MASKOT_ADI, IFADELER: IFADELER, RENK: R,
     html: html, tekRenk: tekRenk, kisalt: kisalt,
-    /** Node: statik SVG dosyalarını yazar (assets/img/maskot). Tarayıcıda kullanılmaz. */
+    /** Node: statik SVG dosyalarını yazar (/assets/img/maskot). Tarayıcıda kullanılmaz. */
     dosyalariYaz: function (klasor) {
       var fs = require("fs"), path = require("path");
       fs.mkdirSync(klasor, { recursive: true });

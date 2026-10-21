@@ -10,7 +10,8 @@ const ROOT = path.resolve(__dirname, "../..");
 const src = fs.readFileSync(path.join(ROOT, "assets/js/app.js"), "utf8");
 const bas = src.indexOf("// --- Bugün ekranı (Tur 14 A3"), son = src.indexOf("// --- Bugün ekranı sonu");
 if (bas < 0 || son < bas) { console.error("FAIL Bugün ekranı bölümü app.js içinde bulunamadı"); process.exit(1); }
-const ctx = {};
+// 1.8.0: temiz adres tablosu (tarayıcıda window.MEBERRA_ADRES) — app.js apAdres() bununla "/ders/calculus" üretir
+const ctx = { MEBERRA_ADRES: require(path.join(ROOT, "assets/js/adresler.js")) };
 vm.createContext(ctx);
 vm.runInContext(src.slice(bas, son) + "\nthis.F = { apSiradakiAdim, apYaklasanTarihler, apKaldiginYer, apTrTarihCoz, apGunNo, apAySonuNo, apCalismaPlani };", ctx);
 const { apSiradakiAdim, apYaklasanTarihler, apKaldiginYer, apTrTarihCoz, apGunNo, apAySonuNo, apCalismaPlani } = ctx.F;
@@ -39,17 +40,17 @@ const tam = {
   profilEksik: ["okul"]
 };
 let r = apSiradakiAdim(tam);
-ok(r.tur === "deneme" && r.href === "deneme.html" && /12\/30/.test(r.baslik) && r.neden, "1. öncelik: yarım deneme (12/30)", r);
+ok(r.tur === "deneme" && r.href === "/deneme" && /12\/30/.test(r.baslik) && r.neden, "1. öncelik: yarım deneme (12/30)", r);
 r = apSiradakiAdim(Object.assign({}, tam, { yarimDeneme: null }));
 ok(r.tur === "rota" && r.baslik === "Adım ekim" && r.kalanGun === 11 && /Almanya rotası/.test(r.aciklama) && /11 gün/.test(r.aciklama), "2. öncelik: ayı 14 gün içinde biten rota adımı (Ekim → 11 gün)", r);
 r = apSiradakiAdim(Object.assign({}, tam, { yarimDeneme: { ad: "X", cevaplanan: 0, toplam: 0 } }));
 ok(r.tur === "rota", "toplamı 0 olan deneme yarım sayılmaz", r);
 r = apSiradakiAdim(Object.assign({}, tam, { yarimDeneme: null, rotaAdimlari: [adim("ekim", 2026, 10, { yapildi: true }), adim("kasim", 2026, 11)] }));
-ok(r.tur === "hata" && r.baslik === "9 yanlış soruyu tekrar çöz" && /Limits/.test(r.aciklama) && r.href === "deneme.html?mod=yanlislar", "yapılmış rota adımı atlanır; 3. öncelik: açık hata ≥ 5", r);
+ok(r.tur === "hata" && r.baslik === "9 yanlış soruyu tekrar çöz" && /Limits/.test(r.aciklama) && r.href === "/deneme?mod=yanlislar", "yapılmış rota adımı atlanır; 3. öncelik: açık hata ≥ 5", r);
 r = apSiradakiAdim(Object.assign({}, tam, { yarimDeneme: null, rotaAdimlari: [], acikHata: 4 }));
 ok(r.tur === "plan" && r.href === "ap-physics.html#u1" && r.etiket === "Üniteye git", "4 açık hata eşiğin altında; 4. öncelik: plan görevi", r);
 r = apSiradakiAdim(Object.assign({}, tam, { yarimDeneme: null, rotaAdimlari: [], acikHata: 0, plan: [] }));
-ok(r.tur === "profil" && /okul/.test(r.aciklama) && r.href === "profil.html", "5. öncelik: profil eksiği", r);
+ok(r.tur === "profil" && /okul/.test(r.aciklama) && r.href === "/profil", "5. öncelik: profil eksiği", r);
 r = apSiradakiAdim({ bugun: BUGUN, bosHref: "rota.html?ulke=nl" });
 ok(r.tur === "bos" && r.href === "rota.html?ulke=nl", "6. boş durum: rota bağlantısı", r);
 // Sınır: 14 gün dahil, 15 gün hariç; geçmiş ay hariç
@@ -92,10 +93,10 @@ y = apYaklasanTarihler({ bugun: BUGUN, sinavlar: [
   { id: "testas", ad: "TestAS", tarih: "26 Kasım 2026, 25 Şubat 2027, 18 Mart 2027." },
   { id: "eski", ad: "Eski", tarih: "3 Ekim 2026 Cumartesi" }
 ] });
-ok(y.filter(x => !x.suresiDoldu).map(x => x.anahtar).join() === "sinav-testas,sinav-ap-physics-1" && y[1].href === "sinavlar.html#ap-physics-1", "kayıtlı sınavlar: tarihle başlayanlar sıralı; SAT (tarihle başlamıyor) yok", y);
+ok(y.filter(x => !x.suresiDoldu).map(x => x.anahtar).join() === "sinav-testas,sinav-ap-physics-1" && y[1].href === "/sinavlar#ap-physics-1", "kayıtlı sınavlar: tarihle başlayanlar sıralı; SAT (tarihle başlamıyor) yok", y);
 ok(y.length === 3 && y[2].anahtar === "sinav-eski" && y[2].suresiDoldu && /henüz açıklanmadı/.test(y[2].sonrakiMetni), "K14-5: geçmiş sınav tarihi (3 Ekim) 'Süresi doldu' olarak sonda", y[2]);
 y = apYaklasanTarihler({ bugun: BUGUN, duyurular: [{ id: "bme", baslik: "BME Şubat 2027", bitis: "2026-11-15" }, { id: "eski", baslik: "E", bitis: "2026-10-19" }] });
-ok(y[0].tur === "duyuru" && y[0].gun === "2026-11-15" && /^Son gün: BME/.test(y[0].baslik) && y[0].href === "sartlar.html#mezun-panel", "duyuru bitişi; bağlantı Hedefim › Şartlar duyuru paneli (A4)", y);
+ok(y[0].tur === "duyuru" && y[0].gun === "2026-11-15" && /^Son gün: BME/.test(y[0].baslik) && y[0].href === "/ulkem#mezun-panel", "duyuru bitişi; bağlantı Hedefim › Şartlar duyuru paneli (A4)", y);
 ok(y.length === 2 && y[1].anahtar === "duyuru-eski" && y[1].suresiDoldu, "K14-5: bitişi geçen duyuru sonda 'Süresi doldu'", y[1]);
 ok(apYaklasanTarihler({ bugun: BUGUN, duyuruHref: "sartlar.html?model=lise-mezun&ulke=it&dil=en#mezun-panel", duyurular: [{ id: "bme", baslik: "B", bitis: "2026-11-15" }] })[0].href === "sartlar.html?model=lise-mezun&ulke=it&dil=en#mezun-panel", "duyuru bağlantısı çağırandan (kendi seçimiyle şartlar)");
 y = apYaklasanTarihler({ bugun: BUGUN, n: 2, apTakvim: AP, rotaAdimlari: [adim("a", 2026, 12), adim("b", 2027, 1), adim("c", 2026, 9)] });
@@ -120,13 +121,13 @@ ok(apKaldiginYer({ pages: {} }, []) === null && apKaldiginYer(null) === null, "k
 {
   const bosOzet = { courses: [{ page: "ap-calculus", name: "AP Calculus AB / BC", units: [] }], openErrors: [], answered: 0 };
   let pl = apCalismaPlani({ summary: bosOzet, kayitSon: "2026-11-13", seviye: null, bugun: BUGUN });
-  ok(pl.length === 3 && pl[0].title === "Seviye testini çöz" && pl[0].desc.includes("(13 Kasım) 24 gün kaldı") && pl[0].href === "seviye-testi.html" && pl[1].title === "İlk soru bankanı çöz" && pl[2].ikon === "book", "çalışma planı (boş): ≤ 60 gün → seviye testi başta (24 gün), ilk soru bankası, son tarihler", pl);
+  ok(pl.length === 3 && pl[0].title === "Seviye testini çöz" && pl[0].desc.includes("(13 Kasım) 24 gün kaldı") && pl[0].href === "/seviye-testi" && pl[1].title === "İlk soru bankanı çöz" && pl[2].ikon === "book", "çalışma planı (boş): ≤ 60 gün → seviye testi başta (24 gün), ilk soru bankası, son tarihler", pl);
   pl = apCalismaPlani({ summary: bosOzet, mezun: true, kayitSon: "2026-11-13", bugun: BUGUN });
   ok(!pl.some(x => /seviye/.test(x.href)), "çalışma planı: mezunda AP kayıt / seviye hatırlatması yok (K5-b)", pl);
   pl = apCalismaPlani({ summary: bosOzet, kayitSon: "2026-11-13", seviye: { raporlar: [{ id: "r" }] }, bugun: BUGUN });
   ok(!pl.some(x => /seviye/.test(x.href)), "çalışma planı: rapor var ve > 21 gün → seviye görevi yok", pl);
   pl = apCalismaPlani({ summary: bosOzet, kayitSon: "2026-11-13", seviye: { raporlar: [{ id: "r" }] }, bugun: "2026-11-01" });
-  ok(pl[0].href === "seviye-testi.html#rapor" && /12 gün/.test(pl[0].desc), "çalışma planı: rapor var ve ≤ 21 gün → kayıt kararı (12 gün)", pl[0]);
+  ok(pl[0].href === "/seviye-testi#rapor" && /12 gün/.test(pl[0].desc), "çalışma planı: rapor var ve ≤ 21 gün → kayıt kararı (12 gün)", pl[0]);
   pl = apCalismaPlani({ summary: bosOzet, kayitSon: "2026-11-13", seviye: { devam: { sira: [1] } }, bugun: "2026-08-01" });
   ok(pl[0].title === "Yarım kalan seviye testini bitir" && pl[1].title === "İlk soru bankanı çöz", "çalışma planı: rapor yoksa (> 60 gün de) yarım seviye testi başta", pl);
   pl = apCalismaPlani({ summary: bosOzet, kayitSon: "2026-10-01", bugun: BUGUN });
@@ -143,9 +144,9 @@ ok(apKaldiginYer({ pages: {} }, []) === null && apKaldiginYer(null) === null, "k
     { page: "ap-calculus", name: "AP Calculus AB / BC", units: [{ id: "u1", title: "Unit 1", total: 10, answered: 10, correct: 9 }, { id: "u2", title: "Unit 2", total: 10, answered: 2, correct: 1 }] },
     { page: "ap-physics", name: "AP Physics 1 / C", units: [{ id: "p1", title: "Unit 1 Kinematics", total: 20, answered: 4, correct: 1 }] }] };
   pl = apCalismaPlani({ summary: dolu, kayitSon: null, seviye: { raporlar: [{ id: "r" }] }, bugun: BUGUN });
-  ok(pl.map(x => x.ikon).join() === "redo,target,play,book" && pl[0].title === "Yanlışlarım’daki 2 soruyu tekrar çöz" && pl[0].href === "deneme.html?mod=yanlislar" && /Limits/.test(pl[0].desc) &&
-    pl[1].title === "Zayıf üniteni güçlendir: Unit 1 Kinematics" && pl[1].href === "ap-physics.html#p1" && /%25 doğru/.test(pl[1].desc) &&
-    pl[2].title === "Kaldığın yerden devam et: Unit 2" && pl[2].href === "ap-calculus.html#u2", "çalışma planı (dolu): hata, en zayıf ünite (%25), ilk eksik ünite, son tarihler", pl);
+  ok(pl.map(x => x.ikon).join() === "redo,target,play,book" && pl[0].title === "Yanlışlarım’daki 2 soruyu tekrar çöz" && pl[0].href === "/deneme?mod=yanlislar" && /Limits/.test(pl[0].desc) &&
+    pl[1].title === "Zayıf üniteni güçlendir: Unit 1 Kinematics" && pl[1].href === "/ders/physics#p1" && /%25 doğru/.test(pl[1].desc) &&
+    pl[2].title === "Kaldığın yerden devam et: Unit 2" && pl[2].href === "/ders/calculus#u2", "çalışma planı (dolu): hata, en zayıf ünite (%25), ilk eksik ünite, son tarihler", pl);
   const sa = apSiradakiAdim({ bugun: BUGUN, acikHata: 2, plan: pl.map(t => ({ baslik: t.title, aciklama: t.desc, href: t.href, etiket: t.linkText })) });
   ok(sa.tur === "plan" && sa.baslik === pl[0].title, "Sıradaki adım (< 5 hata): çalışma planının ilk görevi", sa);
   // Ücretsiz plan: kilitli üniteler (kutuUcretsiz → false) önerilmez; ücretsizler bitince açılmamış ders, o da yoksa Premium önerisi
@@ -154,12 +155,12 @@ ok(apKaldiginYer({ pages: {} }, []) === null && apKaldiginYer(null) === null, "k
     { page: "ap-calculus", name: "AP Calculus AB / BC", visited: true, units: [{ id: "u1", title: "Unit 1", total: 10, answered: 10, correct: 10 }, { id: "u3", title: "Unit 3", total: 10, answered: 2, correct: 0 }] },
     { page: "ap-physics", name: "AP Physics 1 / C", visited: true, units: [{ id: "p1", title: "Unit 1 Kinematics", total: 20, answered: 20, correct: 19 }] }] };
   pl = apCalismaPlani({ summary: ucretsiz, kayitSon: null, bugun: BUGUN, premium: false, kutuUcretsiz: acikKutu });
-  ok(!pl.some(x => /#u3/.test(x.href)) && pl.some(x => x.href === "premium.html" && x.ikon === "play"), "çalışma planı (ücretsiz): kilitli Unit 3 önerilmez, ücretsizler bitti → Premium önerisi", pl);
+  ok(!pl.some(x => /#u3/.test(x.href)) && pl.some(x => x.href === "/premium" && x.ikon === "play"), "çalışma planı (ücretsiz): kilitli Unit 3 önerilmez, ücretsizler bitti → Premium önerisi", pl);
   ucretsiz.courses.push({ page: "ap-biology", name: "AP Biology", visited: false, units: [] });
   pl = apCalismaPlani({ summary: ucretsiz, kayitSon: null, bugun: BUGUN, premium: false, kutuUcretsiz: acikKutu });
-  ok(pl.some(x => x.href === "ap-biology.html") && !pl.some(x => x.href === "premium.html"), "çalışma planı (ücretsiz): açılmamış ders varsa önce o", pl);
+  ok(pl.some(x => x.href === "/ders/biology") && !pl.some(x => x.href === "/premium"), "çalışma planı (ücretsiz): açılmamış ders varsa önce o", pl);
   pl = apCalismaPlani({ summary: ucretsiz, kayitSon: null, bugun: BUGUN, premium: true, kutuUcretsiz: acikKutu });
-  ok(pl.some(x => x.href === "ap-calculus.html#u3"), "çalışma planı (premium): kilit yok", pl);
+  ok(pl.some(x => x.href === "/ders/calculus#u3"), "çalışma planı (premium): kilit yok", pl);
 }
 // ---------------------------------------------------------------- 4c) 1.7.0: AP ders seçimi (assets/js/ap-hedef.js filtre → apCalismaPlani secim)
 {
@@ -172,14 +173,14 @@ ok(apKaldiginYer({ pages: {} }, []) === null && apKaldiginYer(null) === null, "k
   ok(secim.var && secim.sayfalar.join() === "ap-electives,ap-biology" && secim.uniteUygun("ap-electives", "macro14-quiz-container") && !secim.uniteUygun("ap-electives", "micro34-quiz-container") &&
     !secim.uniteUygun("ap-calculus", "calc-unit1-quiz-container") && secim.denemeKodlari.join() === "economics,biology", "ap-hedef filtre: Macro seçiliyse Micro kutusu ve Calculus dışarıda", secim);
   let pl = apCalismaPlani({ summary: ozet, kayitSon: null, seviye: { raporlar: [{ id: "r" }] }, bugun: BUGUN, secim });
-  ok(!pl.some(x => /ap-calculus|micro34/.test(x.href)) && pl.some(x => x.href === "ap-electives.html#macro14-quiz-container"), "seçim: zayıf/sıradaki ünite yalnızca seçilen derslerden (Calculus %25 ve Micro %0 önerilmez; sıradaki Macro)", pl);
+  ok(!pl.some(x => /\/ders\/calculus|micro34/.test(x.href)) && pl.some(x => x.href === "/ders/secmeli#macro14-quiz-container"), "seçim: zayıf/sıradaki ünite yalnızca seçilen derslerden (Calculus %25 ve Micro %0 önerilmez; sıradaki Macro)", pl);
   pl = apCalismaPlani({ summary: ozet, kayitSon: null, seviye: { raporlar: [{ id: "r" }] }, bugun: BUGUN });
   ok(pl.some(x => /micro34/.test(x.href)), "seçim yoksa davranış eskisi gibi (en zayıf Micro önerilir)", pl);
   const yalnizBio = APH.filtre({ apDersleri: [{ ders: "biology", hedef: 4 }] });
   pl = apCalismaPlani({ summary: ozet, kayitSon: null, seviye: { raporlar: [{ id: "r" }] }, bugun: BUGUN, secim: yalnizBio });
-  ok(pl.some(x => x.href === "ap-biology.html" && /Seçtiğin derse başla/.test(x.title)), "seçim: hiç açılmamış seçili ders → 'Seçtiğin derse başla'", pl);
+  ok(pl.some(x => x.href === "/ders/biology" && /Seçtiğin derse başla/.test(x.title)), "seçim: hiç açılmamış seçili ders → 'Seçtiğin derse başla'", pl);
   pl = apCalismaPlani({ summary: { courses: [{ page: "ap-calculus", units: [] }, { page: "ap-biology", name: "AP Biology", units: [] }], openErrors: [], answered: 0 }, kayitSon: null, seviye: { raporlar: [{ id: "r" }] }, bugun: BUGUN, secim: yalnizBio });
-  ok(pl.some(x => x.title === "İlk soru bankanı çöz" && x.href === "ap-biology.html"), "seçim (yeni öğrenci): ilk soru bankası seçilen dersten", pl);
+  ok(pl.some(x => x.title === "İlk soru bankanı çöz" && x.href === "/ders/biology"), "seçim (yeni öğrenci): ilk soru bankası seçilen dersten", pl);
   // Geri sayım ve sınav tarihleri: 2027 takvimden kesin, 2028 yalnızca ay (uydurma tarih yok)
   const tkCtx = { window: {} };
   vm.runInNewContext(fs.readFileSync(path.join(ROOT, "data/mevzuat/sinav-takvimi.js"), "utf8"), tkCtx); // require önbelleğine girmesin (5. bölüm aynı dosyayı yükler)

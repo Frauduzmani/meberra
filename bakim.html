@@ -8,6 +8,7 @@
   <title>Kısa bir bakımdayız | Meberra</title>
   <meta name="robots" content="noindex">
   <link rel="stylesheet" href="/assets/css/styles.css">
+  <script src="/assets/js/adresler.js"></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
   <style>
     body { min-height: 100vh; min-height: 100dvh; margin: 0; display: grid; place-items: center; padding: 24px 16px; background: var(--bg); color: var(--text); }
@@ -54,7 +55,7 @@
     "use strict";
     var ARALIK = 60, kalan = ARALIK;
     var durumEl = document.getElementById("bk-durum");
-    var buSayfa = /\/bakim\.html$/i.test(location.pathname);
+    var buSayfa = /\/bakim(?:\.html)?$/i.test(location.pathname);
     function bitti() {
       // Bakım bittiyse aynı adres yeniden yüklenir (kullanıcı istediği sayfaya döner)
       durumEl.textContent = "Bakım tamamlandı, sayfa açılıyor…";

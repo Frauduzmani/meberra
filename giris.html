@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#5B3DF5">
-  <link rel="apple-touch-icon" href="assets/img/pwa/apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="/assets/img/pwa/apple-touch-icon.png">
   <title>Giriş yap / Kayıt ol | Meberra</title>
   <meta name="description" content="Meberra'ya giriş yap ya da ücretsiz öğrenci hesabı oluştur.">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/giris.css?v=20261021c">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/giris.css?v=20261021c">
+  <script src="/assets/js/adresler.js"></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body class="page-giris">
 
   <nav class="navbar">
-    <a href="giris.html" class="nav-brand"><div class="brand-badge">Meberra</div></a>
+    <a href="/giris" class="nav-brand"><div class="brand-badge">Meberra</div></a>
     <div class="nav-actions"></div>
   </nav>
 
@@ -114,9 +115,9 @@
               </div>
               <fieldset class="gr-consent">
                 <legend class="visually-hidden">Onaylar</legend>
-                <label class="gr-check"><input type="checkbox" id="kayit-kosullar" aria-describedby="kayit-kosullar-err"> <span><a href="kosullar.html" target="_blank" rel="noopener">Kullanım koşullarını</a> okudum ve kabul ediyorum.</span></label>
+                <label class="gr-check"><input type="checkbox" id="kayit-kosullar" aria-describedby="kayit-kosullar-err"> <span><a href="/kosullar" target="_blank" rel="noopener">Kullanım koşullarını</a> okudum ve kabul ediyorum.</span></label>
                 <p class="field-error" id="kayit-kosullar-err"></p>
-                <label class="gr-check"><input type="checkbox" id="kayit-kvkk" aria-describedby="kayit-kvkk-err"> <span><a href="kvkk.html" target="_blank" rel="noopener">KVKK aydınlatma metnini</a> okudum.</span></label>
+                <label class="gr-check"><input type="checkbox" id="kayit-kvkk" aria-describedby="kayit-kvkk-err"> <span><a href="/kvkk" target="_blank" rel="noopener">KVKK aydınlatma metnini</a> okudum.</span></label>
                 <p class="field-error" id="kayit-kvkk-err"></p>
                 <label class="gr-check"><input type="checkbox" id="kayit-veliOnay"> <span>18 yaşından küçüğüm ve velim onay verdi. <small>(18 yaşından küçüksen işaretle)</small></span></label>
               </fieldset>
@@ -167,7 +168,7 @@
             <div><strong>Hedef pusulası</strong><span>15 ülkenin şartları, resmi kaynaklarıyla.</span></div>
           </li>
         </ul>
-        <a class="gr-open" id="acik-link" href="sartlar.html">
+        <a class="gr-open" id="acik-link" href="/ulkem">
           <span><strong>Giriş yapmadan şartlara bak</strong><small>Hesap gerekmez</small></span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
@@ -175,9 +176,9 @@
     </div>
   </main>
 
-  <script src="assets/js/auth.js"></script>
-  <script src="assets/js/ucretsiz-kural.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/ucretsiz-kural.js"></script>
+  <script src="/assets/js/app.js"></script>
   <script>
   (function () {
     "use strict";
@@ -228,14 +229,15 @@
     document.querySelectorAll("[data-go-tab]").forEach(function (b) {
       b.addEventListener("click", function () { selectTab(b.getAttribute("data-go-tab") === "kayit" ? tabs[1] : tabs[0], true); });
     });
-    if (location.hash === "#kayit") selectTab(tabs[1]);
+    // Kayıt sekmesi: temiz adres /kayit (1.8.0) ya da eski #kayit
+    if (location.hash === "#kayit" || /^\/kayit\/?$/.test(location.pathname)) selectTab(tabs[1]);
 
     // --- Şartlar sayfasından gelen seçim (ülke, sınıf) ve kilitli sayfa bağlamı ---
     var SECIM = (window.APMEBERRA && APMEBERRA.erisim) ? APMEBERRA.erisim.secimSorgusu(location.search) : "";
-    $("acik-link").setAttribute("href", "sartlar.html" + SECIM);
+    $("acik-link").setAttribute("href", "/ulkem" + SECIM);
     (function baglam() {
       var secimMetni = SECIM && window.APMEBERRA && APMEBERRA.erisim.secimMetni ? APMEBERRA.erisim.secimMetni(SECIM) : "";
-      var sayfa = donus ? donus.split(/[?#]/)[0].replace(/\.html$/i, "") : "";
+      var sayfa = donus ? (window.MEBERRA_ADRES ? MEBERRA_ADRES.sayfa(donus) : donus.split(/[?#]/)[0].replace(/^.*\//, "").replace(/\.html$/i, "")) : "";
       var acik = window.APMEBERRA && APMEBERRA.erisim ? APMEBERRA.erisim.acik(sayfa) : false;
       var AD = { index: "Bugün", calis: "Çalış", rota: "Takvimim", yazismalar: "Başvurularım", deneme: "Denemeler", ilerleme: "İlerleme", "seviye-testi": "Seviye testi", "sinav-cents": "CEnT-S hazırlığı", premium: "Premium" };
       (typeof APMEBERRA_COURSES !== "undefined" ? APMEBERRA_COURSES : []).forEach(function (c) { AD[c.page] = c.name; });
@@ -256,8 +258,8 @@
     })();
 
     function go() {
-      if (yeniHesap) location.replace("profil.html" + SECIM);
-      else location.replace(donus || "index.html");
+      if (yeniHesap) location.replace("/profil" + SECIM);
+      else location.replace(donus || "/bugun");
     }
 
     // --- Satır içi doğrulama (alandan çıkınca; hata varsa yazarken güncellenir) ---
@@ -384,7 +386,7 @@
       whenReady(function () { AUTH.logout().then(function (r) {
         params.delete("cikis");
         var q = params.toString();
-        history.replaceState(null, "", "giris.html" + (q ? "?" + q : ""));
+        history.replaceState(null, "", "/giris" + (q ? "?" + q : ""));
         UI.alert(statusEl, r.ok ? "Çıkış yaptın. İlerlemen hesabına kaydedildi." : r.error, r.ok ? "ok" : null);
         var acc = document.querySelector(".navbar .account"); if (acc) acc.remove();
         $("giris-kullaniciAdi").focus();
@@ -393,7 +395,7 @@
       AUTH.resume().then(function (cur) {
         if (cur && cur.user) {
           UI.alert(statusEl, "Zaten giriş yaptın (" + cur.user.ad + "). Yönlendiriliyorsun…", "ok");
-          location.replace(donus || "index.html");
+          location.replace(donus || "/bugun");
         }
       });
     }

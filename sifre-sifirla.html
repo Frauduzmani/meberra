@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#5B3DF5">
-  <link rel="apple-touch-icon" href="assets/img/pwa/apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="/assets/img/pwa/apple-touch-icon.png">
   <title>Şifre sıfırla | Meberra</title>
   <meta name="robots" content="noindex">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/giris.css?v=20261021c">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/giris.css?v=20261021c">
+  <script src="/assets/js/adresler.js"></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body class="page-giris">
-  <nav class="navbar"><a href="index.html" class="nav-brand"><div class="brand-badge">Meberra</div></a></nav>
+  <nav class="navbar"><a href="/bugun" class="nav-brand"><div class="brand-badge">Meberra</div></a></nav>
   <main class="gr-main" id="main-content">
     <div class="gr-shell is-narrow">
       <div class="gr-card">
@@ -49,14 +50,14 @@
             </div>
             <button type="submit" class="btn-primary btn-block gr-submit" id="ss-btn">Şifremi kaydet</button>
           </form>
-          <p class="gr-switch"><a class="gr-link" href="giris.html">← Girişe dön</a></p>
+          <p class="gr-switch"><a class="gr-link" href="/giris">← Girişe dön</a></p>
         </div>
       </div>
     </div>
   </main>
-  <script src="assets/js/auth.js"></script>
-  <script src="assets/js/ucretsiz-kural.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/ucretsiz-kural.js"></script>
+  <script src="/assets/js/app.js"></script>
   <script>
   (function () {
     "use strict";
@@ -103,7 +104,7 @@
         }
         $("ss-form").hidden = true;
         $("ss-baslik").textContent = "Şifren değişti";
-        $("ss-lead").innerHTML = 'Yeni şifrenle giriş yapabilirsin. <a href="giris.html">Giriş yap →</a>';
+        $("ss-lead").innerHTML = 'Yeni şifrenle giriş yapabilirsin. <a href="/giris">Giriş yap →</a>';
         $("ss-baslik").focus();
       });
     });

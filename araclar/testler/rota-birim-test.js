@@ -133,7 +133,7 @@ ok(!ids(i12).includes("it-cents-prova") && ids(i12).includes("it-polito-tili") &
 const SB = [{ id: "it-a", ulke: "it" }, { id: "g", ulke: "genel" }, { id: "de-x", ulke: "de" }, { id: "de-uniassist-ap-yks", ulke: "de" }, { id: "de-uni-ap-yks-teyit", ulke: "de" }];
 ok(R.sablonSirala(SB, "de", FIXTURE.de).map(s => s.id).join() === "de-uniassist-ap-yks,de-uni-ap-yks-teyit,de-x,g,it-a", "sablonSirala: rota şablonları > ülke > genel > diğer");
 ok(R.sablonSirala(SB, "it", null).map(s => s.id).join() === "it-a,g,de-x,de-uniassist-ap-yks,de-uni-ap-yks-teyit", "sablonSirala: rota verisi yokken ülkeye göre");
-ok(R.bagliHedef({ sablon: "de-uni-ap-yks-teyit" }).href === "yazismalar.html?sablon=de-uni-ap-yks-teyit" && R.bagliHedef({ sinav: "ielts-academic" }).href === "sinavlar.html#ielts-academic" && R.bagliHedef({ sayfa: "universiteler.html#de" }).href === "universiteler.html#de", "bagliHedef: şablon/sınav/sayfa");
+ok(R.bagliHedef({ sablon: "de-uni-ap-yks-teyit" }).href === "/basvurular?sablon=de-uni-ap-yks-teyit" && R.bagliHedef({ sinav: "ielts-academic" }).href === "/sinavlar#ielts-academic" && R.bagliHedef({ sayfa: "universiteler.html#de" }).href === "/universiteler#de", "bagliHedef: şablon/sınav/sayfa");
 ok(R.bagliHedef({ sayfa: "javascript:alert(1)" }) === null && R.bagliHedef({ sayfa: "https://x.de" }) === null && R.bagliHedef(null) === null, "bagliHedef: güvensiz yol reddedilir");
 
 // 12. Gerçek veri (varsa)

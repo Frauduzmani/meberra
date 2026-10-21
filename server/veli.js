@@ -66,7 +66,7 @@ function veliServisi(db, c) {
     ad: b.durum === "aktif" && b.v_ad ? (b.v_ad + " " + b.v_soyad).trim() : null,
     olusturma: b.olusturma, kabul: b.kabul || null, davetBitis: b.durum === "davet" ? b.davet_bitis : null
   });
-  const davetLinki = tok => config.baseUrl + "/veli.html?t=" + encodeURIComponent(tok);
+  const davetLinki = tok => config.baseUrl + "/veli?t=" + encodeURIComponent(tok);
   const raporIptalLinki = tok => config.baseUrl + "/api/public/veli-rapor-iptal?t=" + encodeURIComponent(tok);
   function davetBul(tok) {
     if (!tok || typeof tok !== "string" || tok.length > 100) return null;
@@ -98,7 +98,7 @@ function veliServisi(db, c) {
       try {
         bildirim.olustur(davet.ogrenci_id, { tur: "duyuru", baslik: "Velin hesabına bağlandı",
           metin: (veli.ad + " " + veli.soyad).trim() + " artık haftalık çalışma özetini ve deneme sonuçlarını görebilir. Sorularını ve notlarını göremez. Profil › Veli bölümünden istediğin an kaldırabilirsin.",
-          link: "/profil.html#veli" });
+          link: "/profil#veli" });
       } catch (e) { /* bildirim bağlamayı bozmaz */ }
     }
     return sonuc;
@@ -184,7 +184,7 @@ function veliServisi(db, c) {
       o.tarihler.slice(0, 4).forEach(t => s.push("• " + t.baslik + ": " + (t.gun ? new Date(t.gun + "T12:00:00Z").toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" }) : t.ay + " (tarih henüz açıklanmadı)")));
     }
     s.push("", "Premium: " + (o.uyelik.premium ? "açık (bitiş " + new Date(o.uyelik.bitis).toLocaleDateString("tr-TR", { timeZone: "Europe/Istanbul" }) + ")" : "kapalı"));
-    return "Merhaba " + veli.ad + ",\n\n" + s.join("\n") + "\n\nAyrıntılar veli panelinizde: " + config.baseUrl + "/veli.html\n\n" +
+    return "Merhaba " + veli.ad + ",\n\n" + s.join("\n") + "\n\nAyrıntılar veli panelinizde: " + config.baseUrl + "/veli\n\n" +
       "Bu özet, " + o.ad + " sizi veli olarak bağladığı için gönderiliyor. Soru-cevap yazışmaları ve notlar paylaşılmaz.\n" +
       "Haftalık özeti almak istemiyorsanız tek tıkla durdurun: " + raporIptalLinki(b.rapor_belirtec) + "\n\nMeberra";
   }

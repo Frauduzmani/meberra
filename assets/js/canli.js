@@ -195,7 +195,7 @@
 
   /**
    * Yol HTML'i (saf). dugumler: oyun.js yolDugumleri çıktısı [{ no, ad, etiket, cevap, toplam, yuzde, durum }].
-   * o = { mod, sutun, adres ("ap-calculus.html"), ciz (ilk görüş çizimi), basHtml (şimdiki düğümdeki maskot başı) }
+   * o = { mod, sutun, adres ("/ders/calculus"), ciz (ilk görüş çizimi), basHtml (şimdiki düğümdeki maskot başı) }
    */
   function yolHtml(dugumler, o) {
     o = o || {};
@@ -229,7 +229,7 @@
     return '<nav class="cn-yol cn-yol--' + L.mod + (o.ciz ? " is-ciz" : "") + '" aria-label="Öğrenme yolu">' +
       '<div class="cn-yol__alan" style="height:' + L.yukseklik + "px;" + (dikey ? "--yol-g:" + L.genislik + "px" : "width:" + L.genislik + "px") + '">' + svg +
       '<ol class="cn-yol__liste">' + lis + "</ol></div>" +
-      (kilitVar ? '<p class="cn-yol__not">' + yIk("kilit") + 'Kilitli üniteler <a href="premium.html">Premium ile</a> açılır.</p>' : "") + "</nav>";
+      (kilitVar ? '<p class="cn-yol__not">' + yIk("kilit") + 'Kilitli üniteler <a href="/premium">Premium ile</a> açılır.</p>' : "") + "</nav>";
   }
 
   var CEKIRDEK = {
@@ -403,7 +403,7 @@
         kap.className = "mk-konus cn-umut";
         kap.innerHTML = '<div class="mk-konus__maskot">' + M().html("uzgun", { boyut: 84, etiket: false }) + "</div>" +
           '<div class="mk-balon"><p class="mk-balon__metin"><strong class="mk-balon__ad">' + kacis(M().MASKOT_ADI) + ":</strong> Her deneme bir adım ileri. Sıradaki adım: " +
-          '<a href="' + kacis(git ? git.getAttribute("href") : "deneme.html?mod=yanlislar") + '">Yanlışlarını tekrar et →</a></p></div>';
+          '<a href="' + kacis(git ? git.getAttribute("href") : "/deneme?mod=yanlislar") + '">Yanlışlarını tekrar et →</a></p></div>';
         skor.parentNode.insertBefore(kap, skor.nextSibling);
       }
     }
@@ -504,7 +504,8 @@
   }
 
   // --- Kart → ders sayfası paylaşılan öğe geçişi -------------------------------------------------
-  var DERS_RE = /^(?:\.?\/)?(ap-[a-z]+|sinav-cents)\.html(?:#.*)?$/;
+  // Ders sayfası bağlantısı: temiz adres (/ders/calculus, ?unite= ve #capa olabilir) ya da eski ap-x.html
+  var DERS_RE = /^(?:\/ders\/[a-z-]+|(?:\.?\/)?(?:ap-[a-z]+|sinav-cents)\.html)(?:[?#].*)?$/;
   function vtTemizle() {
     Array.prototype.forEach.call(document.querySelectorAll("[data-cn-vt]"), function (x) { x.style.viewTransitionName = ""; x.removeAttribute("data-cn-vt"); });
   }

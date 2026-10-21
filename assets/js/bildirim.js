@@ -7,7 +7,7 @@
   if (window.__meberraBildirim) return;
   window.__meberraBildirim = true;
   if (!document.querySelector('meta[name="meberra-api"]')) return; // dosya modu: sessizce çık
-  if (/admin\.html$/.test(location.pathname)) return;
+  if (window.MEBERRA_ADRES && window.MEBERRA_ADRES.sayfa() === "admin") return;
 
   /* ------------------------------------------------------------------ ortak yardımcılar */
   var D = document;
@@ -30,10 +30,20 @@
   function me() { return window.APMEBERRA_ME || null; }
   function girisli() { var m = me(); return !!(m && m.user); }
   function premiumMu() { try { return typeof window.apPremiumMu === "function" ? !!window.apPremiumMu() : false; } catch (e) { return false; } }
+  /** Mantıksal sayfa kimliği ("ap-calculus", "index"...). 1.8.0: temiz adres tablosundan (/assets/js/adresler.js) */
   function sayfaAdi() {
-    var f = (location.pathname.split("/").pop() || "index.html").split("?")[0];
+    if (window.MEBERRA_ADRES) return window.MEBERRA_ADRES.sayfa();
+    var f = (location.pathname.split("/").pop() || "index").split("?")[0];
     try { f = decodeURIComponent(f); } catch (e) { /* yok say */ }
     return f.replace(/\.html?$/i, "") || "index";
+  }
+  /** Sayfa kimliği → temiz adres ("ap-calculus" → "/ders/calculus") */
+  var sayfaAdres = function (p) { var A = window.MEBERRA_ADRES; return (A && A.sayfaAdres(p)) || p + ".html"; };
+  /** Bağlantıdan sayfa kimliği: "/ders/calculus#q-card-x" ya da eski "/ders/calculus#q-card-x" */
+  function bagSayfa(href) {
+    var yol = String(href || "").split("#")[0].split("?")[0];
+    if (/\.html?$/i.test(yol)) return yol.replace(/^.*\//, "").replace(/\.html?$/i, "");
+    return window.MEBERRA_ADRES ? window.MEBERRA_ADRES.sayfa(yol) : yol.replace(/^.*\//, "");
   }
   function dersAdi(sayfa) {
     var c = window.APMEBERRA && Array.isArray(window.APMEBERRA.courses) ? window.APMEBERRA.courses : [];
@@ -165,7 +175,7 @@
           '<button type="button" class="bd-link-btn bd-daha" hidden>Daha eski bildirimler</button>' +
           '<div class="bd-panel-alt">' +
             '<button type="button" class="btn-primary btn-sm bd-soru-sor">' + IK.soru + 'Soru sor</button>' +
-            '<a class="btn-ghost btn-sm" href="profil.html#bildirim-ayarlari">' + IK.ayar + 'Ayarlar</a>' +
+            '<a class="btn-ghost btn-sm" href="/profil#bildirim-ayarlari">' + IK.ayar + 'Ayarlar</a>' +
           '</div>' +
         '</div>';
       var acc = actions.querySelector(".account");
@@ -450,7 +460,7 @@
       a.className = "form-alert is-info bd-upsell";
       a.innerHTML = '<span class="bd-upsell-ikon">' + IK.premium + '</span><span><strong>Bu ayki 3 ücretsiz soru hakkını kullandın.</strong> ' +
         esc(mesaj && !/ücretsiz soru hakkını kullandın/.test(mesaj) ? mesaj : "Hakların ayın başında yenilenir. Premium ile istediğin kadar soru sorabilirsin.") +
-        '<br><a class="btn-primary btn-sm bd-upsell-btn" href="premium.html">' + IK.premium + 'Premium\'u incele</a></span>';
+        '<br><a class="btn-primary btn-sm bd-upsell-btn" href="/premium">' + IK.premium + 'Premium\'u incele</a></span>';
       form.querySelector(".bd-m-gonder").disabled = true;
     }
 
@@ -489,7 +499,7 @@
           '<p>Meberra ekibi en kısa sürede yanıtlayacak. Cevap gelince zil simgesinde bildirim görürsün.</p>' +
           (j.hak && !j.hak.sinirsiz ? '<p class="field-hint">' + esc(hakMetni(j.hak)) + '</p>' : "") +
           '<div class="bd-m-dugmeler">' +
-            (id ? '<a class="btn-ghost" href="sorularim.html?soru=' + encodeURIComponent(id) + '">Sorularıma git</a>' : "") +
+            (id ? '<a class="btn-ghost" href="/sorularim?soru=' + encodeURIComponent(id) + '">Sorularıma git</a>' : "") +
             '<button type="button" class="btn-primary bd-m-tamam">Çalışmaya dön</button></div></div>';
       govde.querySelector(".bd-m-tamam").addEventListener("click", kapat);
       govde.querySelector("h3").focus();
@@ -554,9 +564,9 @@
   function hataBaglami(li) {
     var a = li.querySelector('a[href*="#q-card-"]');
     if (!a) return null;
-    var m = /([^/]+)\.html#q-card-(.+)$/.exec(a.getAttribute("href") || "");
+    var m = /#q-card-(.+)$/.exec(a.getAttribute("href") || "");
     if (!m) return null;
-    var sayfa = m[1], qid = decodeURIComponent(m[2]);
+    var sayfa = bagSayfa(a.getAttribute("href")), qid = decodeURIComponent(m[1]);
     var er = depoOku("apmeberra:errors:v1");
     var e = er && er.items ? er.items[sayfa + "|" + qid] : null;
     var b = { soru: "", ogrenciCevabi: e && e.selected ? e.selected : null };
@@ -752,7 +762,7 @@
       var b = s.baglam && typeof s.baglam === "object" ? s.baglam : null;
       var h = '<div class="bd-konusma-bas"><button type="button" class="bd-link-btn bd-geri">← Tüm sorularım</button>' +
         '<div class="bd-konusma-ust">' + cip(s.durum) + '<span class="bd-soru-ders">' + esc(dersAdi(s.sayfa)) + '</span>' +
-          (s.sayfa && /^ap-/.test(s.sayfa) ? '<a class="bd-link" href="' + esc(s.sayfa) + '.html' + (s.soruRef && s.soruRef.indexOf("|") > 0 ? "#q-card-" + encodeURIComponent(s.soruRef.split("|")[1]) : "") + '">Soruya git</a>' : "") +
+          (s.sayfa && /^ap-/.test(s.sayfa) ? '<a class="bd-link" href="' + esc(sayfaAdres(s.sayfa)) + (s.soruRef && s.soruRef.indexOf("|") > 0 ? "#q-card-" + encodeURIComponent(s.soruRef.split("|")[1]) : "") + '">Soruya git</a>' : "") +
         '</div></div>';
       if (b && (b.soru || b.ogrenciCevabi)) {
         h += '<details class="bd-konusma-baglam"><summary>Sorduğun soru</summary>' +

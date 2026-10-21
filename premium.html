@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#5B3DF5">
-  <link rel="apple-touch-icon" href="assets/img/pwa/apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="/assets/img/pwa/apple-touch-icon.png">
   <title>Premium | Meberra</title>
   <meta name="description" content="Meberra Premium: tüm üniteler, sınırsız deneme ve genel deneme. Havale/EFT ile öde, onaylanınca hesabına tanımlansın.">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/vitrin.css?v=20261021d">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/vitrin.css?v=20261021d">
+  <script src="/assets/js/adresler.js"></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body class="page-premium">
-  <nav class="navbar"><a href="index.html" class="nav-brand"><div class="brand-badge">Meberra</div></a></nav>
+  <nav class="navbar"><a href="/bugun" class="nav-brand"><div class="brand-badge">Meberra</div></a></nav>
   <main class="main-container pm-page" id="main-content">
     <header class="pm-head">
       <p class="vt-kicker">Premium</p>
@@ -59,7 +60,7 @@
         <button type="button" class="btn-primary" data-pm-go="2">Devam et
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </button>
-        <a class="gr-link vt-link" href="fiyatlar.html">Planları karşılaştır</a>
+        <a class="gr-link vt-link" href="/fiyatlar">Planları karşılaştır</a>
       </div>
     </section>
 
@@ -101,7 +102,7 @@
           <label for="pr-aciklama">Not <span class="field-hint">(isteğe bağlı)</span></label>
           <input class="text-input" id="pr-aciklama" maxlength="300" placeholder="ör. Ziraat Bankası, 21 Ekim 14:30">
         </div>
-        <label class="check-row"><input type="checkbox" id="pr-sozlesme" aria-describedby="pr-sozlesme-err"> <span><a href="mesafeli-satis.html" target="_blank" rel="noopener">Ön bilgilendirme formunu ve mesafeli satış sözleşmesini</a> okudum, kabul ediyorum.</span></label>
+        <label class="check-row"><input type="checkbox" id="pr-sozlesme" aria-describedby="pr-sozlesme-err"> <span><a href="/mesafeli-satis" target="_blank" rel="noopener">Ön bilgilendirme formunu ve mesafeli satış sözleşmesini</a> okudum, kabul ediyorum.</span></label>
         <p class="field-error" id="pr-sozlesme-err"></p>
         <div class="pm-actions">
           <button type="submit" class="btn-energy" id="pr-btn">Ödememi bildir</button>
@@ -126,10 +127,10 @@
     </section>
   </main>
 
-  <script src="assets/js/urun.js"></script>
-  <script src="assets/js/auth.js"></script>
-  <script src="assets/js/ucretsiz-kural.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="/assets/js/urun.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/ucretsiz-kural.js"></script>
+  <script src="/assets/js/app.js"></script>
   <script>
   (function () {
     "use strict";
@@ -237,7 +238,7 @@
           try { localStorage.setItem("apmeberra-hesap:v1:uyelik", JSON.stringify(j.uyelik)); } catch (e) { /* önbellek */ }
           $("bu-deneme-h").textContent = "Premium denemen başladı";
           $("bu-deneme-t").textContent = "Bitiş: " + tarih(j.bitis) + ". Bu sürede tüm ünitelere, sınırsız denemeye ve sınırsız soru-cevaba erişebilirsin.";
-          btn.outerHTML = '<a class="btn-energy" href="calis.html">Çalışmaya başla</a>';
+          btn.outerHTML = '<a class="btn-energy" href="/calis">Çalışmaya başla</a>';
           AUTH.premiumDurum().then(durumCiz);
         });
     });

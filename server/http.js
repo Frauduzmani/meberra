@@ -124,7 +124,7 @@ function onbellekTemizle() {
 function statikYol(urlYol) {
   let yol;
   try { yol = decodeURIComponent(urlYol); } catch (e) { return null; }
-  if (yol === "/" || yol === "") yol = "/index.html";
+  if (yol === "/" || yol === "") return null; // 1.8.0: kök sayfayı yönlendirici (temiz adres tablosu) sunar
   if (yol.includes("\0") || yol.includes("..")) return null;
   const parcalar = yol.split("/").filter(Boolean);
   if (!parcalar.length) return null;
@@ -149,7 +149,8 @@ function assetlinksGovde() {
 
 /**
  * Statik dosya sunar. ozel: { yol: "/bakim.html", kod: 503, basliklar: {} } verilirse istek yolu yerine o dosya, o durum
- * koduyla (önbelleksiz, ETag'siz) sunulur. Dönüş: sunulduysa true.
+ * koduyla (önbelleksiz, ETag'siz) sunulur. 1.8.0: ozel.onbellek === true ise (temiz adresle sunulan sayfa) normal ETag /
+ * önbellek kuralları geçerlidir; ozel.kanonik verilirse HTML'e <link rel="canonical"> eklenir. Dönüş: sunulduysa true.
  */
 function statikSun(req, res, ozel) {
   const u = new URL(req.url, "http://x");
@@ -169,9 +170,11 @@ function statikSun(req, res, ozel) {
   const uzanti = path.extname(tam).toLowerCase();
   const tur = TURLER[uzanti];
   if (!tur) return false;
+  // 1.8.0: sayfalar yalnızca temiz adresleriyle (ozel.yol) sunulur; /x.html isteğini çağıran 301/404'e çevirir
+  if (!ozel && uzanti === ".html") return false;
   res.setHeader("Content-Type", tur);
   const etag = 'W/"' + bilgi.size.toString(16) + "-" + Math.floor(bilgi.mtimeMs).toString(16) + '"';
-  if (ozel) {
+  if (ozel && !ozel.onbellek) {
     res.statusCode = ozel.kod || 200;
     res.setHeader("Cache-Control", "no-store");
     Object.keys(ozel.basliklar || {}).forEach(k => res.setHeader(k, ozel.basliklar[k]));
@@ -179,19 +182,23 @@ function statikSun(req, res, ozel) {
     res.setHeader("ETag", etag);
     // HTML, service worker ve manifest her açılışta doğrulanır; diğer varlıklar 1 saat önbellekte
     const tazele = uzanti === ".html" || uzanti === ".webmanifest" || path.basename(tam) === "sw.js";
-    res.setHeader("Cache-Control", tazele ? "no-cache" : "public, max-age=3600");
+    res.setHeader("Cache-Control", (ozel && ozel.cacheControl) || (tazele ? "no-cache" : "public, max-age=3600"));
     if (req.headers["if-none-match"] === etag) { res.statusCode = 304; res.end(); return true; }
   }
   const sikistir = /\bgzip\b/.test(String(req.headers["accept-encoding"] || "")) && /^(text\/|application\/(json|javascript)|image\/svg)/.test(tur) && bilgi.size > 1024;
   if (uzanti === ".html") {
     // Sunucu modu işareti: istemci bu etiketi görünce API ile çalışır
-    const anahtar = tam + ":" + etag;
+    const kanonik = ozel && ozel.kanonik ? String(ozel.kanonik) : "";
+    const anahtar = tam + ":" + etag + ":" + kanonik;
     let govde = htmlOnbellek.get(anahtar);
     if (govde) onbellekSayac.isabet++;
     else {
       onbellekSayac.iska++;
       const ham = fs.readFileSync(tam, "utf8");
-      const ek = '<meta name="meberra-api" content="1">';
+      // 1.8.0: sayfa kimliği (dosya adı) — istemci hangi sayfada olduğunu adres satırından değil buradan okur
+      const kac = v => v.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+      const ek = '<meta name="meberra-api" content="1">\n  <meta name="meberra-sayfa" content="' + kac(path.basename(tam, ".html")) + '">' +
+        (kanonik ? '\n  <link rel="canonical" href="' + kac(kanonik) + '">' : "");
       const metin = /<head[^>]*>/i.test(ham) ? ham.replace(/<head([^>]*)>/i, m => m + "\n  " + ek) : ek + ham;
       govde = { duz: Buffer.from(metin, "utf8") };
       govde.gz = zlib.gzipSync(govde.duz);

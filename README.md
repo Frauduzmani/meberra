@@ -43,4 +43,6 @@ Sayfalar kayıtları tarayıcı deposuna yazar (`apmeberra:*` anahtarları). Sun
 `<meta name="meberra-api">` ekler; bunu gören `assets/js/app.js` (MEBERRA_SYNC) her yazımı yakalayıp
 `PUT /api/state` ile sunucuya gönderir. Sunucu ilerlemeyi birleştirir (cevap başına en yeni kazanır) ve
 `answers`, `wrong_answers`, `exams`, `level_tests` tablolarına ayrıştırır. Hesap ve şifre yalnızca sunucudadır
-(`assets/js/auth.js` sunucu modu). Dosyadan (`file://`) açıldığında eski tarayıcı içi mod çalışır.
+(`assets/js/auth.js` sunucu modu). 1.8.0'dan beri sayfalar temiz adreslerle sunulur (`/bugun`, `/ders/calculus`, `/ulkem`…;
+tablo `assets/js/adresler.js`, eski `/x.html` adresleri 301 ile yönlenir) ve bağlantılar kök-mutlaktır; bu yüzden siteyi
+dosyadan (`file://`) açmak artık desteklenmez — `npm start` ile açın.

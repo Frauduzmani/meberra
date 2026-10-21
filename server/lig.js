@@ -121,7 +121,7 @@ function ligServisi(db, bildirim, denetim) {
         : b.so === "dustu"
           ? { baslik: "Yeni hafta, yeni fırsat", metin: "Bu hafta " + ad + " liginde devam ediyorsun. Çözdüğün her soru seni yeniden yukarı taşır." }
           : { baslik: "Haftalık lig sonuçlandı", metin: "Geçen hafta " + b.xp + " XP topladın. " + ad + " liginde yeni hafta başladı!" };
-      bildirim.olustur(b.userId, { tur: "lig", baslik: metin.baslik, metin: metin.metin, link: "/profil.html#lig" });
+      bildirim.olustur(b.userId, { tur: "lig", baslik: metin.baslik, metin: metin.metin, link: "/profil#lig" });
     });
     return bildirimler.length;
   }

@@ -4,7 +4,7 @@ const http = require("http");
 const path = require("path");
 const config = require("./config");
 const db_ = require("./db");
-const { HttpHata, cerezleriOku, cerezYaz, guvenlikBasliklari, json, govdeOku, yonlendirici, statikSun, statikYol } = require("./http");
+const { HttpHata, cerezleriOku, cerezYaz, guvenlikBasliklari, json, govdeOku, yonlendirici, statikSun } = require("./http");
 const { hizSinirlayici } = require("./guvenlik");
 const { denetimKaydi } = require("./denetim");
 const { epostaServisi } = require("./eposta");
@@ -25,14 +25,15 @@ const { ayarServisi, bakimServisi, ipEngelServisi } = require("./erisim");
 const { operasyonRotalari } = require("./operasyon");
 const { veliServisi, veliRotalari, veliYolIzinli } = require("./veli"); // 1.7.0
 const zaman = require("./zaman");
+const ADRES = require("./adresler"); // 1.8.0 temiz adresler
 // 1.6.0
 const { huniServisi, huniRotalari } = require("./huni");
 const { kampanyaServisi, kampanyaRotalari } = require("./kampanya");
 
 // Bakım modunda yönetici olmayanlara da açık API yolları (giriş yapabilmek ve durumu görebilmek için)
 const BAKIM_ACIK_API = new Set(["/api/health", "/api/public/config", "/api/auth/login", "/api/auth/logout", "/api/me"]);
-// Bakım sayfası yerine normal sunulan sayfalar (yönetici girişi için)
-const BAKIM_ACIK_SAYFA = new Set(["/bakim.html", "/giris.html", "/admin.html"]);
+// Bakım sayfası yerine normal sunulan sayfalar (yönetici girişi için; /yonetim yalnızca yöneticiye açılır, yönetici bakımı zaten atlar)
+const BAKIM_ACIK_SAYFA = new Set(["/bakim", "/giris"]);
 // Engellenmiş kullanıcının eski çerezi bu yollarda 403'e çevrilmez
 const ENGEL_ACIK_API = new Set(["/api/health", "/api/public/config", "/api/auth/login", "/api/auth/logout", "/api/auth/register", "/api/log"]);
 
@@ -284,6 +285,72 @@ function olustur(secenek) {
     return true;
   }
 
+  // --- 1.8.0 temiz adresler (tablo: assets/js/adresler.js + server/adresler.js) ---------------------------------
+  /** Bulunamadı: sayfa istekleri için maskotlu 404.html (durum 404), uzantılı varlık istekleri için kısa metin.
+   *  Yönetim adresi yetkisiz istekte de birebir aynı yanıtı alır (yolun varlığı belli olmaz). */
+  function bulunamadi(req, res, p) {
+    if (!/\.[a-z0-9]+$/i.test(p) || /\.html?$/i.test(p)) {
+      if (statikSun(req, res, { yol: "/404.html", kod: 404 })) return;
+      res.statusCode = 404;
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      return res.end('<!doctype html><meta charset="utf-8"><title>Sayfa bulunamadı | Meberra</title><p style="font-family:sans-serif;padding:2rem">Sayfa bulunamadı. <a href="/">Ana sayfaya dön</a></p>');
+    }
+    res.statusCode = 404;
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.setHeader("Cache-Control", "no-store");
+    res.end(req.method === "HEAD" ? undefined : "Bulunamadı.");
+  }
+  function yonlendir(res, kod, hedef, ozelYanit) {
+    res.statusCode = kod;
+    res.setHeader("Location", hedef);
+    res.setHeader("Cache-Control", kod === 301 && !ozelYanit ? "public, max-age=86400" : "private, no-store");
+    res.end();
+  }
+  const sayfaKullanici = req => hesap.oturumKullanici(cerezleriOku(req)[CEREZ]);
+
+  function sayfaIsle(req, res, u) {
+    const p = u.pathname;
+    // Sondaki eğik çizgi: /bugun/ → /bugun
+    if (p.length > 1 && /\/+$/.test(p)) return yonlendir(res, 301, p.replace(/\/+$/, "") + u.search);
+    // Eski adresler: /x.html → temiz yol (sorgu korunur; # parçasını tarayıcı kendisi taşır). Ders/rehber altında kalmış
+    // göreli bağlantılar (/ders/x.html, eski önbellekteki JS) da aynı yere gider.
+    const eski = /^\/(?:(?:ders|rehber)\/)?([A-Za-z0-9_-]+)\.html?$/.exec(p);
+    if (eski) {
+      const dosya = eski[1].toLowerCase() + ".html";
+      if (dosya === ADRES.YONETIM.dosya) {
+        const k = sayfaKullanici(req);
+        // Yönlendirme yalnızca yöneticiye: paylaşılan önbellek saklamasın (yol başkasına görünmesin)
+        if (k && k.rol === "yonetici") return yonlendir(res, 301, ADRES.YONETIM.yol + u.search, true);
+        return bulunamadi(req, res, p);
+      }
+      const hedef = ADRES.dosyadan(dosya);
+      return hedef ? yonlendir(res, 301, hedef + u.search) : bulunamadi(req, res, p);
+    }
+    // Ders/rehber sayfasına göre çözülmüş göreli varlık yolu (eski önbellekteki sayfa): /ders/assets/x → /assets/x
+    const derin = /^\/(?:ders|rehber)\/((?:assets|data)\/.+)$/.exec(p);
+    if (derin) return yonlendir(res, 301, "/" + derin[1] + u.search);
+    // Kök: oturumu olan kullanıcı kendi ana ekranına, ziyaretçi tanıtım sayfasına
+    if (p === "/") {
+      const k = sayfaKullanici(req);
+      if (k) return yonlendir(res, 302, k.rol === "veli" ? "/veli" : "/bugun");
+    }
+    const g = ADRES.yoldan(p);
+    if (g) {
+      if (g.yonetici) {
+        const k = sayfaKullanici(req);
+        if (!k || k.rol !== "yonetici") return bulunamadi(req, res, p);
+      }
+      // Bakım modu: sayfalar yönetici olmayanlara bakim.html (503 + Retry-After); giriş ve bakım sayfası açık
+      if (bakim.acikMi() && !BAKIM_ACIK_SAYFA.has(p) && bakimSayfasi(req, res)) return;
+      const kanonik = g.herkese ? config.baseUrl + g.yol : null;
+      if (statikSun(req, res, { yol: "/" + g.dosya, onbellek: true, kanonik, cacheControl: g.yonetici ? "private, no-cache" : null })) return;
+      return bulunamadi(req, res, p);
+    }
+    // Varlıklar (assets/, data/, sw.js, robots.txt, manifest...) bakımda da açık
+    if (statikSun(req, res)) return;
+    bulunamadi(req, res, p);
+  }
+
   // --- istek işleyici ---------------------------------------------------------
   async function isle(req, res) {
     guvenlikBasliklari(res);
@@ -291,13 +358,7 @@ function olustur(secenek) {
     const u = new URL(req.url, "http://x");
     if (!u.pathname.startsWith("/api/")) {
       if (req.method !== "GET" && req.method !== "HEAD") { res.statusCode = 405; return res.end(); }
-      // Bakım modu: HTML sayfaları (kök "/" dahil) yönetici olmayanlara bakim.html (503 + Retry-After); varlıklar (css/js/font/görsel) açık
-      const p = u.pathname;
-      if (bakim.acikMi() && (p === "/" || /^\/[^/]+\.html$/i.test(p)) && !BAKIM_ACIK_SAYFA.has(p) && statikYol(p) && bakimSayfasi(req, res)) return;
-      if (statikSun(req, res)) return;
-      res.statusCode = 404;
-      res.setHeader("Content-Type", "text/html; charset=utf-8");
-      return res.end('<!doctype html><meta charset="utf-8"><title>Sayfa bulunamadı | Meberra</title><p style="font-family:sans-serif;padding:2rem">Sayfa bulunamadı. <a href="/">Ana sayfaya dön</a></p>');
+      return sayfaIsle(req, res, u);
     }
     const bas = process.hrtime.bigint();
     res.on("finish", () => { try { izle(req, res.statusCode, Number(process.hrtime.bigint() - bas) / 1e6); } catch (e) { /* izleme isteği bozmaz */ } });

@@ -234,7 +234,7 @@ try {
   } finally { fs.rmSync(TMP2, { recursive: true, force: true }); }
 }
 
-["sinavlar.html", "sartlar.html"].forEach(f => ok(fs.readFileSync(path.join(ROOT, f), "utf8").includes('src="assets/js/sinav-motor.js"'), f + " sinav-motor.js'i yükler"));
+["sinavlar.html", "sartlar.html"].forEach(f => ok(fs.readFileSync(path.join(ROOT, f), "utf8").includes('src="/assets/js/sinav-motor.js"'), f + " sinav-motor.js'i yükler"));
 
 console.log(`\nsinav-birim-test: ${pass} geçti, ${fail} kaldı`);
 process.exit(fail ? 1 : 0);

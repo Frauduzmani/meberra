@@ -75,7 +75,7 @@ test("tohum dosyası ve eski deneme bankası HTTP ile alınamaz; ders sayfasınd
   const c = istemci();
   assert.equal((await c("GET", "/server/tohum/soru-bankasi.json")).durum, 404);
   assert.equal((await c("GET", "/data/sorular/deneme-bankasi.js")).durum, 404);
-  const sayfa = await c("GET", "/ap-calculus.html");
+  const sayfa = await c("GET", "/ders/calculus");
   assert.equal(sayfa.durum, 200);
   assert.doesNotMatch(sayfa.govde, /isCorrect|_QUESTIONS\s*=|stepByStepSolution/);
   const sv = await c("GET", "/data/sorular/seviye/calculus.js");

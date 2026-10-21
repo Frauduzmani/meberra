@@ -24,7 +24,7 @@
     A = window.MEBERRA_ADMIN; P = panel;
     if (!A || !P) return;
     if (!document.querySelector('link[href*="admin-buyume.css"]')) {
-      var l = document.createElement("link"); l.rel = "stylesheet"; l.href = "assets/css/admin-buyume.css?v=20261021b"; document.head.appendChild(l);
+      var l = document.createElement("link"); l.rel = "stylesheet"; l.href = "/assets/css/admin-buyume.css?v=20261021b"; document.head.appendChild(l);
     }
     P.innerHTML =
       '<div class="adm-panel-ust"><h2>Büyüme</h2></div>' +

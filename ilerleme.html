@@ -3,30 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#5B3DF5">
-  <link rel="apple-touch-icon" href="assets/img/pwa/apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="/assets/img/pwa/apple-touch-icon.png">
   <title>İlerleme & Yanlışlarım | Meberra</title>
   <meta name="description" content="Öğrencinin AP soru bankası ilerlemesi: ders ve ünite bazında çözülen, doğru, yanlış sayıları, Kırmızı/Sarı/Yeşil bölge rozetleri ve Yanlışlarım.">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/oyun.css?v=20261021m">
-  <link rel="stylesheet" href="assets/css/bildirim.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/oyun.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/bildirim.css?v=20261021m">
   <!-- 1.4.0 maskot/hareket: statik (kayma olmasın); app.js yükleyicisi ikinci kez eklemez -->
-  <link rel="stylesheet" href="assets/css/hareket.css?v=20261021m">
-  <link rel="stylesheet" href="assets/css/maskot.css?v=20261021m">
-  <link rel="stylesheet" href="assets/css/canli.css?v=20261021m">
-  <script src="assets/js/maskot.js?v=20261021m" defer></script>
-  <script src="assets/js/kutlama.js?v=20261021m" defer></script>
-  <script src="assets/js/canli.js?v=20261021m" defer></script>
-  <script src="assets/js/oyun.js?v=20261021m" defer></script>
-  <script src="assets/js/bildirim.js?v=20261021m" defer></script>
+  <link rel="stylesheet" href="/assets/css/hareket.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/maskot.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/canli.css?v=20261021m">
+  <script src="/assets/js/adresler.js"></script>
+  <script src="/assets/js/maskot.js?v=20261021m" defer></script>
+  <script src="/assets/js/kutlama.js?v=20261021m" defer></script>
+  <script src="/assets/js/canli.js?v=20261021m" defer></script>
+  <script src="/assets/js/oyun.js?v=20261021m" defer></script>
+  <script src="/assets/js/bildirim.js?v=20261021m" defer></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
 
   <nav class="navbar">
-    <a href="index.html" class="nav-brand"><div class="brand-badge">Meberra</div></a>
+    <a href="/bugun" class="nav-brand"><div class="brand-badge">Meberra</div></a>
     <div class="nav-actions"></div>
   </nav>
 
@@ -67,7 +68,7 @@
     </section>
 
     <!-- SEVİYE TESTİ RAPORU (özet) -->
-    <!-- ROZETLER (assets/js/oyun.js çizer) -->
+    <!-- ROZETLER (/assets/js/oyun.js çizer) -->
     <section class="section oy-rozet-bolum" id="rozetler" aria-labelledby="rozet-title">
       <div class="section-header u-mb-3">
         <div class="section-title-wrap"><h2 class="u-fs-22 u-fw-800" id="rozet-title">Rozetler</h2></div>
@@ -83,7 +84,7 @@
             <h2 class="u-fs-22 u-fw-800" id="seviye-title">Seviye testi raporu</h2>
             <p class="side-note" id="seviye-meta">Henüz seviye testi çözmedin.</p>
           </div>
-          <a class="btn-ghost" id="seviye-link" href="seviye-testi.html">Seviye testine git →</a>
+          <a class="btn-ghost" id="seviye-link" href="/seviye-testi">Seviye testine git →</a>
         </div>
         <ul class="sv-mini-list" id="seviye-list"></ul>
       </div>
@@ -113,7 +114,7 @@
             <option value="all">Tüm dersler</option>
           </select>
           <button type="button" class="btn-ghost" id="toggle-resolved" aria-pressed="false">Düzeltilenleri de göster</button>
-          <a class="btn-primary" id="err-oturum" href="deneme.html?mod=yanlislar">Tek oturumda çöz</a>
+          <a class="btn-primary" id="err-oturum" href="/deneme?mod=yanlislar">Tek oturumda çöz</a>
         </div>
       </div>
       <p class="section-lead">Aynı soruyu sonra doğru çözersen “düzeltildi” olarak işaretlenir.</p>
@@ -142,12 +143,12 @@
   <footer class="footer">
     <div class="footer-bottom u-mt-0">
       <div>© 2026 Meberra · İlerlemen hesabına kaydedilir, her cihazdan devam edersin.</div>
-      <div><a href="index.html">← Bugün</a></div>
+      <div><a href="/bugun">← Bugün</a></div>
     </div>
   </footer>
 
-  <script src="assets/js/ucretsiz-kural.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="/assets/js/ucretsiz-kural.js"></script>
+  <script src="/assets/js/app.js"></script>
   <script>
   (function () {
     "use strict";
@@ -191,14 +192,14 @@
       if (!R.length) {
         meta.textContent = "Henüz seviye testi çözmedin. AP kaydından önce test, hangi derste ne kadar hazır olduğunu ve kayıt kararını gösterir." + devam;
         list.innerHTML = ""; list.hidden = true;
-        link.textContent = devam ? "Teste devam et →" : "Seviye testine git →"; link.href = "seviye-testi.html";
+        link.textContent = devam ? "Teste devam et →" : "Seviye testine git →"; link.href = "/seviye-testi";
         return;
       }
       var r = R[0];
       var oz = r.ozet && Array.isArray(r.ozet.dersler) ? r.ozet.dersler : null;
       meta.textContent = "Son test: " + fmtDate(r.tarih) + " · " + r.dersler.length + " ders" + (R.length > 1 ? " · " + R.length + " rapor kayıtlı" : "") + devam +
         (oz && r.ozet.hesap ? " · kayıt önerisi " + fmtDate(r.ozet.hesap) + " itibarıyla" : "");
-      link.textContent = "Raporu aç →"; link.href = "seviye-testi.html#rapor";
+      link.textContent = "Raporu aç →"; link.href = "/seviye-testi#rapor";
       list.hidden = false;
       list.innerHTML = r.dersler.map(function (k) {
         var s = r.sonuclar && r.sonuclar[k]; if (!s) return "";
@@ -240,7 +241,7 @@
             '<h3><span class="nav-dot" style="--dot:var(--cc, var(--accent))"></span>' + esc(c.name) + '</h3>' +
             '<div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">' +
               (c.answered ? zoneHtml(cr) : "") +
-              '<a class="btn-ghost" href="' + esc(c.page) + '.html">Derse git</a>' +
+              '<a class="btn-ghost" href="' + esc(apAdres(c.page)) + '">Derse git</a>' +
             '</div>' +
           '</div>';
         if (!c.visited) {
@@ -252,7 +253,7 @@
           html += '<ul class="unit-list">' + c.units.map(function (u) {
             var ur = pct(u.correct, u.answered);
             return '<li class="unit-row">' +
-              '<div style="min-width:0;"><div class="unit-name"><a href="' + esc(c.page) + '.html#' + esc(u.id) + '" style="color:inherit; text-decoration:none;">' + esc(u.title) + '</a></div>' +
+              '<div style="min-width:0;"><div class="unit-name"><a href="' + esc(apAdres(c.page)) + '#' + esc(u.id) + '" style="color:inherit; text-decoration:none;">' + esc(u.title) + '</a></div>' +
               '<div class="unit-nums">' + u.answered + ' / ' + u.total + ' çözüldü · ' + u.correct + ' doğru · ' + u.wrong + ' yanlış</div></div>' +
               (u.answered ? zoneHtml(ur) : '<span class="zone zone-none">Başlanmadı</span>') +
               bar(u) +
@@ -284,7 +285,7 @@
       ul.innerHTML = list.map(function (e) {
         return '<li class="err-item' + (e.resolved ? " is-resolved" : "") + '">' +
           '<div class="err-topic">' + esc(e.topic || e.id) + '</div>' +
-          '<a href="' + esc(e.page) + '.html#q-card-' + encodeURIComponent(e.id) + '">Soruya git →</a>' +
+          '<a href="' + esc(apAdres(e.page)) + '#q-card-' + encodeURIComponent(e.id) + '">Soruya git →</a>' +
           '<div class="err-tag">' + esc(e.errorTag) + '</div>' +
           '<div class="err-meta">' +
             '<span>' + esc(courseName(e.page, s)) + (e.unitTitle ? " · " + esc(e.unitTitle) : "") + '</span>' +

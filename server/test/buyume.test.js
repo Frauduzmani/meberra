@@ -304,7 +304,7 @@ test("davet: kayıt kodu bağlar; ödül yalnızca seviye testi bitince, iki tar
   db().prepare("UPDATE sessions SET ip = '198.51.100.7', son_ip = NULL WHERE user_id = ?").run(eden.uid);
   db().prepare("UPDATE users SET son_ip = NULL WHERE id = ?").run(eden.uid);
   const bilgi = (await eden("GET", "/api/davet")).govde;
-  assert.match(bilgi.kod, /^[A-Z2-9]{8}$/); assert.match(bilgi.link, /giris\.html\?davet=[A-Z2-9]{8}#kayit$/);
+  assert.match(bilgi.kod, /^[A-Z2-9]{8}$/); assert.match(bilgi.link, /\/kayit\?davet=[A-Z2-9]{8}$/);
   const yeni = await ogrenci({ govde: { davet: bilgi.kod.toLowerCase() } });
   assert.equal(db().prepare("SELECT durum FROM davetler WHERE davet_edilen = ?").get(yeni.uid).durum, "bekliyor");
   assert.equal(premiumGun(yeni.uid), 0, "kayıt tek başına ödül vermez");

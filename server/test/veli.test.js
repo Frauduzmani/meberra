@@ -37,7 +37,7 @@ async function ogrenci(ep, ad) {
 function davetBelirteci(ep) {
   const m = db().prepare("SELECT metin FROM email_outbox WHERE alici = ? AND konu LIKE 'Meberra veli paneli daveti%' ORDER BY id DESC LIMIT 1").get(ep);
   assert.ok(m, "davet e-postası gitti: " + ep);
-  return decodeURIComponent(/\/veli\.html\?t=([^\s]+)/.exec(m.metin)[1]);
+  return decodeURIComponent(/\/veli\?t=([^\s]+)/.exec(m.metin)[1]);
 }
 const veliKayit = (t, ek) => Object.assign({ t, ad: "Fatma", soyad: "Yılmaz", sifre: SIFRE, sifre2: SIFRE, kosullar: true, kvkk: true, veliRiza: true }, ek || {});
 async function veliBagla(o, ep) {

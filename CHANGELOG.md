@@ -9,6 +9,16 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.8.0] — 2026-10-21
+### Değişti
+- Temiz adresler: `/bugun`, `/calis`, `/ders/calculus`, `/ulkem`, `/takvim`, `/basvurular`, `/rehber/almanya`…; URL'lerde .html yok. Eski `/x.html` adresleri 301 ile yönlenir (sorgu korunur).
+- Yönetim paneli `/yonetim`: yalnızca yönetici oturumunda açılır, diğerlerine 404; adres herkese açık dosyalarda geçmez.
+- E-posta ve bildirim bağlantıları temiz adreslerle; giriş yapmış kullanıcı `/` adresinde Bugün'e (veli kendi paneline) gider.
+### Eklendi
+- Bilinmeyen adreslerde maskotlu 404 sayfası; tanıtım sayfalarına `<link rel="canonical">`; site haritası, robots.txt ve PWA manifest (`start_url /bugun`) güncellendi.
+### Not
+- Site artık dosyadan (`file://`) açılmaz; `npm start` / `baslat.bat` ile açın.
+
 ## [1.7.0] — 2026-10-21
 ### Eklendi
 - Veli paneli (`veli.html`): öğrenci davetiyle veli hesabı; haftalık özet, ders hedef ilerlemesi, son denemeler, AP tarihleri, Premium durumu; veli çocuğu için ödeme bildirimi verir.

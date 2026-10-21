@@ -231,7 +231,7 @@ function yonetimRotalari(r, c) {
     });
     if (abonelik) {
       hesap.premiumBildir(t.user_id, abonelik.bitis);
-      if (bildirim) await bildirim.olustur(t.user_id, { tur: "premium", baslik: "Premium hesabın açıldı", link: "/calis.html",
+      if (bildirim) await bildirim.olustur(t.user_id, { tur: "premium", baslik: "Premium hesabın açıldı", link: "/calis",
         metin: "Ödemen onaylandı. Tüm ünitelere, sınırsız denemeye ve sınırsız soru sormaya artık erişebilirsin. Bitiş: " +
           new Date(abonelik.bitis).toLocaleDateString("tr-TR", { timeZone: "Europe/Istanbul" }) + "." }, { push: true }).push;
     }

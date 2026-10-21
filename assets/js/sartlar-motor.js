@@ -8,7 +8,7 @@
  * sartlar-motor.js'ten ÖNCE yüklenmelidir; Node'da require edilir.
  *
  *   secimOku(search)                  -> {ulke: "de"|"it"|null, sinif: "9".."12"|"mezun"|null}
- *   secimUrl(sayfa, ulke, sinif)      -> "sartlar.html?ulke=de&sinif=11"
+ *   secimUrl(sayfa, ulke, sinif)      -> "/ulkem?ulke=de&sinif=11"
  *   maddeDogrula(m) / veriDogrula(v)  -> sorun listesi (boşsa geçerli)
  *   bolumler(veri, ulke, sinif)       -> {gerekenler, buYil, tarihler, hatalar} (yalnızca geçerli maddeler)
  *   goreliZaman(zaman)                -> {etiket, donem} ör. "11. sınıf · Kasım"
@@ -16,7 +16,7 @@
  *
  * Tur 11 (D1–D8; .agents/rules/tur11-ekran-plani.md §5.5) — model × 15 ülke × dil:
  *   secimCoz(search)                  -> {model, sinif, ulke, dil, duzey, notlar[]} (eski ?sinif=mezun uyumlu)
- *   secimAdres(sayfa, secim)          -> "sartlar.html?model=lise&sinif=11&ulke=nl&dil=en"
+ *   secimAdres(sayfa, secim)          -> "/ulkem?model=lise&sinif=11&ulke=nl&dil=en"
  *   programDurumu(dizinKaydi, duzey, dil) / programDurumuTuret(ilk20, duzey, dil)
  *   ulkeBolumleri(ulkeVeri, secim, ylGenel) -> bölümler (ortak + dil bloğu + sınıf notları, madde.dil süzgeci)
  *   universiteSuz(liste, filtre) · duyuruSuz(liste, secim, bugun) · genelYol(veri, sablon, secim, opts, bugun)
@@ -89,13 +89,13 @@
     var q = [];
     if (ulkeNorm(ulke)) q.push("ulke=" + ulkeNorm(ulke));
     if (sinifNorm(sinif)) q.push("sinif=" + sinifNorm(sinif));
-    return (sayfa || "sartlar.html") + (q.length ? "?" + q.join("&") : "");
+    return (sayfa || "/ulkem") + (q.length ? "?" + q.join("&") : "");
   }
 
   function sinifAd(s) { return s === "mezun" ? "Mezun" : (sinifNorm(s) ? s + ". sınıf" : ""); }
 
   // ------------------------------------------------------------------------
-  // Şema denetimi (data/mevzuat/sartlar.js başındaki ŞEMA notu)
+  // Şema denetimi (/data/mevzuat/sartlar.js başındaki ŞEMA notu)
   // ------------------------------------------------------------------------
   function maddeDogrula(m, yer) {
     var p = [], y = yer || "madde";
@@ -447,7 +447,7 @@
     if (model === "lise" && LISE_SINIFLARI.indexOf(str(s.sinif)) >= 0) q.push("sinif=" + str(s.sinif));
     if (ulke) q.push("ulke=" + ulke);
     if (ulke) q.push("dil=" + (s.dil === "yerel" && !yalnizIngilizce(ulke) ? "yerel" : "en"));
-    return (sayfa || "sartlar.html") + (q.length ? "?" + q.join("&") : "");
+    return (sayfa || "/ulkem") + (q.length ? "?" + q.join("&") : "");
   }
 
   function modelAd(m) { return MODEL_AD[m] || ""; }

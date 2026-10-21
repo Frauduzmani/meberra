@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#5B3DF5">
-  <link rel="apple-touch-icon" href="assets/img/pwa/apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="/assets/img/pwa/apple-touch-icon.png">
   <title>Lise mezunları | Meberra</title>
   <meta name="description" content="Lise mezunları için şartlar artık Ülke şartları sayfasında: Durum = Lise mezunu. Giriş gerekmez.">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script src="/assets/js/adresler.js"></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
   <script>
     // Tur 11 (karar D2): Mezun Menüsü, Ülke şartları sayfasındaki "Lise mezunu" modeline taşındı.
@@ -18,7 +19,7 @@
       var m = /[?&]ulke=([a-z]{2})(?:&|#|$)/i.exec(location.search);
       var u = m ? m[1].toLowerCase() : "";
       var ok = ["de", "it", "at", "ch", "nl", "be", "fr", "es", "se", "fi", "dk", "ie", "hu", "pl", "cz"].indexOf(u) >= 0;
-      var hedef = "sartlar.html?model=lise-mezun" + (ok ? "&ulke=" + u + "&dil=en" : "") + (/^#m-[\w-]+$/.test(location.hash) ? location.hash : "");
+      var hedef = "/ulkem?model=lise-mezun" + (ok ? "&ulke=" + u + "&dil=en" : "") + (/^#m-[\w-]+$/.test(location.hash) ? location.hash : "");
       window.APMEBERRA_MEZUN_HEDEF = hedef;
       if (!window.APMEBERRA_YONLENDIRME_YOK) location.replace(hedef);
     })();
@@ -26,18 +27,18 @@
 </head>
 <body class="page-sartlar page-mezun">
   <nav class="navbar">
-    <a href="sartlar.html" class="nav-brand"><div class="brand-badge">Meberra</div></a>
+    <a href="/ulkem" class="nav-brand"><div class="brand-badge">Meberra</div></a>
     <div class="nav-actions"></div>
   </nav>
   <main class="main-container" id="main-content">
     <section class="sr-hazir surface u-mt-6" aria-labelledby="mz-tasindi">
       <h1 id="mz-tasindi">Lise mezunları sayfası taşındı</h1>
       <p>Şartlar artık tek sayfada: Ülke şartları sayfasında durum olarak “Lise mezunu”nu seç. 15 ülke, İngilizce ya da yerel dil seçeneği ve güncel duyurular orada.</p>
-      <div class="btn-row u-jcenter"><a class="btn-primary" id="mz-git" href="sartlar.html?model=lise-mezun">Lise mezunu şartlarına git →</a></div>
+      <div class="btn-row u-jcenter"><a class="btn-primary" id="mz-git" href="/ulkem?model=lise-mezun">Lise mezunu şartlarına git →</a></div>
     </section>
   </main>
-  <script>document.getElementById("mz-git").setAttribute("href", window.APMEBERRA_MEZUN_HEDEF || "sartlar.html?model=lise-mezun");</script>
-  <script src="assets/js/ucretsiz-kural.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script>document.getElementById("mz-git").setAttribute("href", window.APMEBERRA_MEZUN_HEDEF || "/ulkem?model=lise-mezun");</script>
+  <script src="/assets/js/ucretsiz-kural.js"></script>
+  <script src="/assets/js/app.js"></script>
 </body>
 </html>

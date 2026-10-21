@@ -267,7 +267,7 @@
   /* ------------------------------------------------------------------------
      2. API
      ------------------------------------------------------------------------ */
-  var GIRIS = "giris.html?donus=admin.html";
+  var GIRIS = "/giris?donus=%2Fadmin.html"; // sunucu yöneticiyi yönetim adresine yönlendirir
   yardimci.yonlendir = function (url) { window.location.href = url; };
 
   function ApiHata(mesaj, durum, veri) {
@@ -552,7 +552,7 @@
     });
 
     panelOzetKur(); panelTalepKur(); panelSoruKur(); panelKulKur(); panelDuyuruKur(); panelLigKur(); panelVeriKur(); panelDenKur(); panelSistemKur();
-    // Soru bankası sekmesi ayrı dosyada (assets/js/admin-soru-bankasi.js); ortak yardımcılar window.MEBERRA_ADMIN ile verilir
+    // Soru bankası sekmesi ayrı dosyada (/assets/js/admin-soru-bankasi.js); ortak yardımcılar window.MEBERRA_ADMIN ile verilir
     if (window.MEBERRA_ADMIN_SB) window.MEBERRA_ADMIN_SB.kur($("#panel-soru-bankasi"));
     if (window.MEBERRA_ADMIN_BUYUME) window.MEBERRA_ADMIN_BUYUME.kur($("#panel-buyume")); // 1.6.0
     // Canlı yenileme: sekme görünürken 30 sn'de bir (Sistem: loglar + sağlık; diğerleri: sayaçlar ve özet). Çekmece açıkken beklenir.
@@ -1868,7 +1868,7 @@
           '<div class="field"><label for="duy-baslik">Başlık</label><input id="duy-baslik" class="text-input" maxlength="120" autocomplete="off" placeholder="ör. Yeni AP Physics denemeleri eklendi"></div>' +
           '<div class="field"><label for="duy-metin">Metin</label><textarea id="duy-metin" class="text-input adm-not" rows="5" maxlength="1000"></textarea>' +
             '<p class="field-hint" id="duy-sayac">0 / 1.000</p></div>' +
-          '<div class="field"><label for="duy-link">Bağlantı (isteğe bağlı, site içi)</label><input id="duy-link" class="text-input" maxlength="300" autocomplete="off" placeholder="/sinavlar.html" aria-describedby="duy-link-hata"></div>' +
+          '<div class="field"><label for="duy-link">Bağlantı (isteğe bağlı, site içi)</label><input id="duy-link" class="text-input" maxlength="300" autocomplete="off" placeholder="/sinavlar" aria-describedby="duy-link-hata"></div>' +
           '<p class="field-error" id="duy-hata" role="alert" hidden></p>' +
           '<div class="adm-eylem"><button type="submit" class="btn-primary" aria-expanded="false">Gönder…</button></div>' +
           '<div class="adm-onay" hidden></div>' +
@@ -1888,7 +1888,7 @@
     f.addEventListener("submit", function (e) {
       e.preventDefault();
       var g = duyuruGovde(), h = $("#duy-hata");
-      var hata = !g.baslik ? "Başlık yaz." : !g.metin ? "Metin yaz." : !linkGecerli(g.link) ? "Bağlantı / ile başlayan site içi bir yol olmalı (ör. /sinavlar.html)." : "";
+      var hata = !g.baslik ? "Başlık yaz." : !g.metin ? "Metin yaz." : !linkGecerli(g.link) ? "Bağlantı / ile başlayan site içi bir yol olmalı (ör. /sinavlar)." : "";
       if (hata) { h.textContent = hata; h.hidden = false; return; }
       h.hidden = true;
       var tetik = f.querySelector("[type=submit]");
@@ -2875,7 +2875,7 @@
       "<h1>" + esc(metin) + "</h1>" +
       "<p>" + (girisLinki
         ? 'Devam etmek için <a href="' + GIRIS + '">yönetici hesabınla giriş yap</a>.'
-        : 'Ana sayfaya dönmek için <a href="index.html">buraya tıkla</a>.') + "</p>" +
+        : 'Ana sayfaya dönmek için <a href="/bugun">buraya tıkla</a>.') + "</p>" +
       "</section>";
   }
   function baslat() {

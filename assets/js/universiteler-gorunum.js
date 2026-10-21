@@ -26,7 +26,7 @@
   (Array.isArray(window.APMEBERRA_ULKELER) ? window.APMEBERRA_ULKELER : []).forEach(function (c) { if (c && c.id) SECILMIS[c.id] = c; });
   var SINAV = {};
   (Array.isArray(window.APMEBERRA_SINAVLAR) ? window.APMEBERRA_SINAVLAR : []).forEach(function (s) { if (s && s.id) SINAV[s.id] = s; });
-  var GUIDE = { de: "almanya-muhendislik.html", it: "italya-muhendislik.html" };
+  var GUIDE = { de: "/rehber/almanya", it: "/rehber/italya" };
   function ulkeAd(cc) { return (DZK[cc] && DZK[cc].ad) || (MO && MO.ULKE_ADLARI && MO.ULKE_ADLARI[cc]) || cc.toUpperCase(); }
 
   /*
@@ -122,9 +122,9 @@
 
   if (GUEST) {
     var eb = document.querySelector(".page-head .eyebrow"); if (eb) eb.textContent = "Üniversiteler · Giriş gerekmez";
-    document.querySelectorAll('.footer a[href="rota.html"]').forEach(function (a) { a.setAttribute("href", "giris.html#kayit"); a.textContent = "Kayıt ol →"; });
+    document.querySelectorAll('.footer a[href="/takvim"]').forEach(function (a) { a.setAttribute("href", "/giris#kayit"); a.textContent = "Kayıt ol →"; });
     var back = document.querySelector(".footer a.uni-geri");
-    if (back && A && A.erisim && A.erisim.secimSorgusu) { back.setAttribute("href", "sartlar.html" + A.erisim.secimSorgusu()); back.textContent = "← Ülke şartları"; }
+    if (back && A && A.erisim && A.erisim.secimSorgusu) { back.setAttribute("href", "/ulkem" + A.erisim.secimSorgusu()); back.textContent = "← Ülke şartları"; }
   }
 
   function listemOku() { var L = !GUEST && A && A.panel ? A.panel.get().universitelerim : null; return Array.isArray(L) ? L : []; }
@@ -132,7 +132,7 @@
   function yerelAd(cc) { return MO ? MO.dilAd("yerel", DZK[cc], (window.APMEBERRA_ULKE_DIZINI || {}).dilAd) : "Yerel dil"; }
   function adresYaz(hashKoru) {
     var h = hashKoru && /^#c-[a-z]{2}-/.test(location.hash) ? location.hash : "";
-    try { history.replaceState(null, "", "universiteler.html?ulke=" + ulke + "&duzey=" + F.duzey + "&dil=" + F.dil + h); } catch (e) { /* file:// */ }
+    try { history.replaceState(null, "", "/universiteler?ulke=" + ulke + "&duzey=" + F.duzey + "&dil=" + F.dil + h); } catch (e) { /* file:// */ }
   }
 
   // ---------- Ülke seçici ----------
@@ -267,16 +267,16 @@
     var rotaVar = hedefler.indexOf(cc) >= 0 && DZK[cc] && DZK[cc].tarihliRota && DZK[cc].tarihliRota[F.duzey === "yl" ? "yl" : "lisans"];
     var ey = '';
     if (GUEST) {
-      ey += '<a class="btn-ghost btn-sm uk-eylem" href="giris.html?donus=' + encodeURIComponent("rota.html?ulke=" + cc) + '">' + IC.kilit + '<span>Takvimime ekle</span>' + adGizli + '<span class="visually-hidden"> (giriş gerekir)</span></a>';
-      if (kim) ey += '<a class="btn-ghost btn-sm uk-eylem" data-ilk-eposta="' + esc(kim) + '" href="giris.html?donus=' + encodeURIComponent("yazismalar.html?uni=" + kim + "&amac=ilk-iletisim") + '">' + IC.kilit + '<span>E-posta taslağı</span>' + adGizli + '<span class="visually-hidden"> (giriş gerekir)</span></a>';
+      ey += '<a class="btn-ghost btn-sm uk-eylem" href="/giris?donus=' + encodeURIComponent("/takvim?ulke=" + cc) + '">' + IC.kilit + '<span>Takvimime ekle</span>' + adGizli + '<span class="visually-hidden"> (giriş gerekir)</span></a>';
+      if (kim) ey += '<a class="btn-ghost btn-sm uk-eylem" data-ilk-eposta="' + esc(kim) + '" href="/giris?donus=' + encodeURIComponent("/basvurular?uni=" + kim + "&amac=ilk-iletisim") + '">' + IC.kilit + '<span>E-posta taslağı</span>' + adGizli + '<span class="visually-hidden"> (giriş gerekir)</span></a>';
       ey += '<span class="uk-eylem-not">Giriş gerekir</span>';
     } else {
       ey += (rotaVar
-        ? '<a class="btn-ghost btn-sm uk-eylem" href="rota.html?ulke=' + cc + '">' + IC.takvim + '<span>Takvimime ekle</span>' + adGizli + '</a>'
-        : '<a class="btn-ghost btn-sm uk-eylem" href="' + (hedefler.indexOf(cc) >= 0 ? "rota.html?ulke=" + cc : "profil.html") + '">' + IC.takvim + '<span>' + (hedefler.indexOf(cc) >= 0 ? "Takvimime ekle" : "Ülkeyi rotama ekle") + '</span>' + adGizli + '</a>');
+        ? '<a class="btn-ghost btn-sm uk-eylem" href="/takvim?ulke=' + cc + '">' + IC.takvim + '<span>Takvimime ekle</span>' + adGizli + '</a>'
+        : '<a class="btn-ghost btn-sm uk-eylem" href="' + (hedefler.indexOf(cc) >= 0 ? "/takvim?ulke=" + cc : "/profil") + '">' + IC.takvim + '<span>' + (hedefler.indexOf(cc) >= 0 ? "Takvimime ekle" : "Ülkeyi rotama ekle") + '</span>' + adGizli + '</a>');
       if (kim) {
         var on = listemOku().indexOf(kim) >= 0;
-        ey += '<a class="btn-ghost btn-sm uk-eylem" data-ilk-eposta="' + esc(kim) + '" href="yazismalar.html?uni=' + encodeURIComponent(kim) + '&amp;amac=ilk-iletisim">' + IC.mail + '<span>E-posta taslağı</span>' + adGizli + '</a>' +
+        ey += '<a class="btn-ghost btn-sm uk-eylem" data-ilk-eposta="' + esc(kim) + '" href="/basvurular?uni=' + encodeURIComponent(kim) + '&amp;amac=ilk-iletisim">' + IC.mail + '<span>E-posta taslağı</span>' + adGizli + '</a>' +
           '<button type="button" class="btn-ghost btn-sm uk-eylem uni-listem" data-listem="' + esc(kim) + '" aria-pressed="' + on + '">' + IC.yildiz + '<span class="uni-listem-t">' + (on ? "Listemde" : "Listeme ekle") + '</span>' + adGizli + '</button>';
       }
     }
@@ -330,8 +330,8 @@
           '<span class="uv-c-ad">' + esc(x.ad) + '</span><span class="uv-c-m"><span class="visually-hidden">' + D.etiket + ': </span>' + esc(x.metin) + '</span></li>';
       }).join("") + '</ul>' +
       '<p class="uv-lejant" aria-hidden="true"><span class="uv-c-ok">✓ tamam</span><span class="uv-c-eksik">! eksik</span><span class="uv-c-bilinmiyor">? bilinmiyor</span></p>' +
-      (GUEST ? '<p class="uv-ipucu"><a href="giris.html' + esc(A && A.erisim && A.erisim.secimSorgusu ? A.erisim.secimSorgusu() : "") + '">Giriş yap</a>, profiline göre işaretleyelim.</p>'
-        : '<p class="uv-ipucu"><a href="' + esc(MO ? MO.secimAdres("sartlar.html", { model: PROF.ogrenciModeli, sinif: PROF.sinif, ulke: cc, dil: F.dil === "yerel" ? "yerel" : "en" }) : "sartlar.html?ulke=" + cc) + '">Tüm şartlar ve tarihler →</a></p>') +
+      (GUEST ? '<p class="uv-ipucu"><a href="/giris' + esc(A && A.erisim && A.erisim.secimSorgusu ? A.erisim.secimSorgusu() : "") + '">Giriş yap</a>, profiline göre işaretleyelim.</p>'
+        : '<p class="uv-ipucu"><a href="' + esc(MO ? MO.secimAdres("/ulkem", { model: PROF.ogrenciModeli, sinif: PROF.sinif, ulke: cc, dil: F.dil === "yerel" ? "yerel" : "en" }) : "/ulkem?ulke=" + cc) + '">Tüm şartlar ve tarihler →</a></p>') +
     '</section>';
   }
 
@@ -383,7 +383,7 @@
         return '<li><h4>' + esc(x.baslik) + '</h4><p>' + esc(temiz(x.detay)) + '</p>' + SUI.src(x.kaynak) + '</li>';
       }).join("") + '</ul></details>');
       if (sn.length) parcalar.push('<details class="uv-alt" id="' + p + 'sinavlar"><summary>İlgili sınavlar (' + sn.length + ')</summary><div class="uk-dersler">' + sn.map(function (id) {
-        var s = SINAV[id]; return '<a class="uk-ders" href="sinavlar.html#' + encodeURIComponent(id) + '">' + esc(s ? s.ad : id) + '</a>';
+        var s = SINAV[id]; return '<a class="uk-ders" href="/sinavlar#' + encodeURIComponent(id) + '">' + esc(s ? s.ad : id) + '</a>';
       }).join("") + '</div></details>');
       if (tk.length) parcalar.push('<details class="uv-alt" id="' + p + 'takvim"><summary>Takvim (' + tk.length + ')</summary><ul class="uv-takvim">' + tk.map(function (t) {
         return '<li><b>' + esc(SUI.gunYaz(String(t.tarih).slice(0, 10)) || t.tarih) + '</b> ' + esc(temiz(t.olay)) + ' ' + SUI.src(t.kaynak, "Kaynak") + '</li>';
@@ -392,9 +392,9 @@
       if (kl.length) parcalar.push('<details class="uv-alt" id="' + p + 'kaynaklar"><summary>Resmi kaynaklar (' + kl.length + ')</summary><ul class="uv-takvim">' + kl.map(function (u) { return '<li>' + SUI.src(u, u) + '</li>'; }).join("") + '</ul></details>');
     }
     var bag = [];
-    bag.push('<a href="' + esc(MO ? MO.secimAdres("sartlar.html", { model: PROF && PROF.ogrenciModeli, sinif: PROF && PROF.sinif, ulke: cc, dil: F.dil === "yerel" ? "yerel" : "en" }) : "sartlar.html?ulke=" + cc) + '">' + esc(ulkeAd(cc)) + ': tüm şartlar →</a>');
+    bag.push('<a href="' + esc(MO ? MO.secimAdres("/ulkem", { model: PROF && PROF.ogrenciModeli, sinif: PROF && PROF.sinif, ulke: cc, dil: F.dil === "yerel" ? "yerel" : "en" }) : "/ulkem?ulke=" + cc) + '">' + esc(ulkeAd(cc)) + ': tüm şartlar →</a>');
     if (GUIDE[cc]) bag.push('<a href="' + GUIDE[cc] + '">Ayrıntılı ' + esc(ulkeAd(cc)) + ' rehberi →</a>');
-    if (!GUEST && hedefler.indexOf(cc) >= 0) bag.push('<a href="rota.html?ulke=' + cc + '">' + esc(ulkeAd(cc)) + ' takvimim →</a>');
+    if (!GUEST && hedefler.indexOf(cc) >= 0) bag.push('<a href="/takvim?ulke=' + cc + '">' + esc(ulkeAd(cc)) + ' takvimim →</a>');
     parcalar.push('<p class="uv-baglar">' + bag.join("") + '</p>');
     return '<details class="uv-kaynaklar" id="' + p + 'notlar"><summary><span>Kaynaklar ve notlar</span></summary><div class="uv-kaynaklar-ic">' + parcalar.join("") + '</div></details>';
   }
@@ -437,7 +437,7 @@
 
     var bolum = '<section class="uv-liste" aria-labelledby="uv-liste-h">' +
       '<div class="uv-liste-ust"><h2 id="uv-liste-h">' + esc(ulkeAd(cc)) + ': en iyi ' + (liste.length || "") + ' üniversite</h2>' +
-        (F.duzey === "yl" ? '<span class="uv-duzey">' + zAd + ' <a href="universiteler.html?ulke=' + cc + '&amp;duzey=lisans&amp;dil=' + F.dil + '">Lisansa geç</a></span>' : "") + '</div>' +
+        (F.duzey === "yl" ? '<span class="uv-duzey">' + zAd + ' <a href="/universiteler?ulke=' + cc + '&amp;duzey=lisans&amp;dil=' + F.dil + '">Lisansa geç</a></span>' : "") + '</div>' +
       (liste.length ? filtreler + '<p class="uv-say" id="uv-say" aria-live="polite"></p>' +
         '<div class="uk-grid" id="uk-grid">' + liste.map(function (u, i) { return kartHtml(cc, u, i, es.es[i]); }).join("") + '</div>' +
         '<div class="uv-bos" id="uv-bos" hidden><p><strong>Bu filtrelerle üniversite yok.</strong></p><button type="button" class="btn-ghost btn-sm" data-temizle>Filtreleri temizle</button></div>'
@@ -563,7 +563,7 @@
 
   seciciCiz();
   if (!DZ.length) {
-    root.innerHTML = '<div class="uv-bos"><p><strong>Üniversite verisi hazırlanıyor.</strong></p><a class="btn-primary" href="sinavlar.html">Sınavlara geç</a></div>';
+    root.innerHTML = '<div class="uv-bos"><p><strong>Üniversite verisi hazırlanıyor.</strong></p><a class="btn-primary" href="/sinavlar">Sınavlara geç</a></div>';
     return;
   }
   adresYaz(true);

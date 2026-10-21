@@ -70,7 +70,7 @@ function zamanlayici(c) {
       const d = calismaDurumu(a.user_id, simdiMs);
       if (d.bugunAktif || d.donmusBugun || (d.seri < 1 && d.tekrar < 1)) continue;
       if (Number(kaydet.run(a.user_id, "hatirlatma", p.tarih, simdi(), JSON.stringify({ seri: d.seri, tekrar: d.tekrar })).changes) !== 1) continue;
-      const m = hatirlatmaMetni(d), link = "/calis.html";
+      const m = hatirlatmaMetni(d), link = "/calis";
       const b = bildirim.olustur(a.user_id, { tur: m.tur, baslik: m.baslik, metin: m.metin, link }, {
         push: !!a.push, simdiMs,
         eposta: a.eposta_hatirlatma ? {

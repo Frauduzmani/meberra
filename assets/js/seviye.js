@@ -175,6 +175,11 @@
   // ------------------------------------------------------------------------
   // 3. YARDIMCILAR
   // ------------------------------------------------------------------------
+  /** 1.8.0: banka verisindeki ap-calculus.html → temiz adres /ders/calculus (tablo assets/js/adresler.js) */
+  function portalAdres(s) {
+    var A = typeof window !== "undefined" ? window.MEBERRA_ADRES : null;
+    return A ? A.temiz(s) : s;
+  }
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, function (m) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m];
@@ -376,7 +381,7 @@
     var html = "";
     // Kayıt şeridi
     if (kb.kalan === null) {
-      html += '<div class="notice">' + ICON.info + '<div>Kayıt son günü henüz doğrulanmadı. <a href="sinavlar.html">Sınavlar</a> sayfasını kontrol et.</div></div>';
+      html += '<div class="notice">' + ICON.info + '<div>Kayıt son günü henüz doğrulanmadı. <a href="/sinavlar">Sınavlar</a> sayfasını kontrol et.</div></div>';
     } else if (kb.kalan >= 0) {
       html += '<div class="sv-deadline' + (kb.kalan <= 14 ? " is-urgent" : "") + '"><span class="sv-deadline-num">' + kb.kalan + '</span><span class="sv-deadline-txt"><strong>gün kaldı</strong> — AP sınav kaydının son günü ' + esc(fmtIsoGun(kb.k.sonGun)) + '. Kayıttan önce testi çöz, raporla birlikte karar ver.</span></div>';
     } else {
@@ -442,7 +447,7 @@
 
   function gecKayitMetni(kb) {
     var k = kb.k;
-    if (!k.gecKayitSon) return "Geç kayıt penceresi doğrulanmadı; <a href=\"sinavlar.html\">Sınavlar</a> sayfasına bak ve okul koordinatörüne sor.";
+    if (!k.gecKayitSon) return "Geç kayıt penceresi doğrulanmadı; <a href=\"/sinavlar\">Sınavlar</a> sayfasına bak ve okul koordinatörüne sor.";
     if (kb.gecKalan !== null && kb.gecKalan < 0) return "Geç kayıt penceresi de " + esc(fmtIsoGun(k.gecKayitSon)) + " tarihinde kapandı.";
     return "Geç kayıt penceresi: <strong>" + esc(fmtIsoGun(k.gecKayitBas)) + " – " + esc(fmtIsoGun(k.gecKayitSon)) + "</strong>" +
       (k.gecUcretUSD != null ? "; sınav başına <strong>+" + esc(k.gecUcretUSD) + " USD</strong> geç sipariş ücreti" + (k.sinavUcretiUSD != null ? " (sınav ücreti " + esc(k.sinavUcretiUSD) + " USD + " + esc(k.gecUcretUSD) + " USD)" : "") : "; geç ücret doğrulanmadı") + ".";
@@ -1008,11 +1013,11 @@
       var capa = portalCapasi(x);
       var link;
       if (!(x.unite.portaldaVar && x.portalSayfasi)) link = '<span class="sv-pill is-warn">Portalda yok — ek kaynak gerekir</span>';
-      else if (capaAcik(x.portalSayfasi, capa)) link = '<a class="btn-ghost sv-go" href="' + esc(x.portalSayfasi + (capa ? "#" + capa : "")) + '">Portalda çalış →</a>';
+      else if (capaAcik(x.portalSayfasi, capa)) link = '<a class="btn-ghost sv-go" href="' + esc(portalAdres(x.portalSayfasi) + (capa ? "#" + capa : "")) + '">Portalda çalış →</a>';
       else {
         var alt = ucretsizAlternatif(x);
-        link = '<span class="sv-go-kilit"><a class="btn-ghost sv-go" href="' + esc(x.portalSayfasi + (capa ? "#" + capa : "")) + '">Portalda çalış <span class="sv-pill is-warn">Premium</span> →</a>' +
-          (alt ? ' <a class="sv-go-alt" href="' + esc(x.portalSayfasi + "#" + alt.capa) + '">Ücretsiz: Unit ' + esc(alt.no) + ' — ' + esc(alt.ad) + '</a>' : '') + '</span>';
+        link = '<span class="sv-go-kilit"><a class="btn-ghost sv-go" href="' + esc(portalAdres(x.portalSayfasi) + (capa ? "#" + capa : "")) + '">Portalda çalış <span class="sv-pill is-warn">Premium</span> →</a>' +
+          (alt ? ' <a class="sv-go-alt" href="' + esc(portalAdres(x.portalSayfasi) + "#" + alt.capa) + '">Ücretsiz: Unit ' + esc(alt.no) + ' — ' + esc(alt.ad) + '</a>' : '') + '</span>';
       }
       html += '<li class="sv-prio-item ' + esc(dersMeta(x.ders).cls || "") + '" data-ders="' + esc(x.ders) + '" data-unite="' + esc(x.unite.no) + '">' +
         '<span class="sv-prio-rank" aria-hidden="true">' + (i + 1) + '</span>' +
@@ -1026,7 +1031,7 @@
   function kontrolBolumu() {
     var G = Array.isArray(takvim().gereklilikler) ? takvim().gereklilikler : [];
     var html = '<section class="section sv-sec" aria-labelledby="sv-f"><h2 id="sv-f"><span class="sv-sec-letter" aria-hidden="true">f</span>Kayıt ve sınav günü kontrol listesi</h2>';
-    if (!G.length) return html + '<div class="empty-state" id="sv-check-empty">' + ICON.clock + '<strong>Gereklilik listesi doğrulanıyor</strong><span>Kayıt ve sınav günü adımları resmi kaynaklarla doğrulandıkça burada görünecek. Bu arada <a href="istanbul-sinav-rehberi.html">İstanbul Sınav Rehberi</a>’ne bak.</span></div></section>';
+    if (!G.length) return html + '<div class="empty-state" id="sv-check-empty">' + ICON.clock + '<strong>Gereklilik listesi doğrulanıyor</strong><span>Kayıt ve sınav günü adımları resmi kaynaklarla doğrulandıkça burada görünecek. Bu arada <a href="/rehber/istanbul-sinav">İstanbul Sınav Rehberi</a>’ne bak.</span></div></section>';
     var gruplar = [], byG = {};
     G.forEach(function (g) {
       var k = g.ne_zaman || "diger";

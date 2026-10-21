@@ -85,7 +85,7 @@ test("Veri: izin listesi, gizli sütunlar, salt okunur tablolar, denetimde önce
   // Şifre sıfırlama e-postasındaki belirteç giden kutusu görünümünde gizlenir
   await istemci()("POST", "/api/auth/forgot", { eposta: "veri@ornek.com" });
   r = await yon("GET", "/api/admin/veri/email_outbox?q=veri@ornek.com");
-  assert.match(r.govde.satirlar[0].metin, /sifre-sifirla\.html\?t=••••/);
+  assert.match(r.govde.satirlar[0].metin, /sifre-sifirla\?t=••••/);
 
   // Düzenleme: yalnızca izinli alanlar; tür/enum doğrulaması; önce/sonra denetimde
   assert.equal((await yon("PUT", "/api/admin/veri/users/" + o.uid, { degisiklikler: { sifre_hash: "x" } })).durum, 403);
@@ -179,7 +179,7 @@ test("Soru-cevap: ücretsiz ayda 3 soru, Premium sınırsız; yönetici yanıtı
   const bl = (await o.c("GET", "/api/bildirimler")).govde;
   assert.equal(bl.okunmamis, 1);
   assert.equal(bl.bildirimler[0].tur, "soru-yanit");
-  assert.match(bl.bildirimler[0].link, /^\/profil\.html\?soru=\d+/);
+  assert.match(bl.bildirimler[0].link, /^\/sorularim\?soru=\d+/);
   const ileti = db().prepare("SELECT * FROM email_outbox WHERE alici = 'soru@ornek.com' ORDER BY id DESC").get();
   assert.equal(ileti.konu, "Meberra: sorun yanıtlandı");
   assert.match(ileti.metin, /bildirim-iptal\?tur=yanit&t=/, "tek tıkla iptal bağlantısı");

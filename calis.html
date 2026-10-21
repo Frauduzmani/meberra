@@ -3,30 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#5B3DF5">
-  <link rel="apple-touch-icon" href="assets/img/pwa/apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="/assets/img/pwa/apple-touch-icon.png">
   <title>Çalış | Meberra</title>
   <meta name="description" content="Çalış merkezi: sıradaki çalışma, kaldığın yer, 6 AP dersi ve CEnT-S (ilerleme, konu anlatımı, deneme), denemeler, yanlışlarım ve seviye testi tek sayfada.">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/oyun.css?v=20261021m">
-  <link rel="stylesheet" href="assets/css/bildirim.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/oyun.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/bildirim.css?v=20261021m">
   <!-- 1.4.0 maskot/hareket: statik (kayma olmasın); app.js yükleyicisi ikinci kez eklemez -->
-  <link rel="stylesheet" href="assets/css/hareket.css?v=20261021m">
-  <link rel="stylesheet" href="assets/css/maskot.css?v=20261021m">
-  <link rel="stylesheet" href="assets/css/canli.css?v=20261021m">
-  <script src="assets/js/maskot.js?v=20261021m" defer></script>
-  <script src="assets/js/kutlama.js?v=20261021m" defer></script>
-  <script src="assets/js/canli.js?v=20261021m" defer></script>
-  <script src="assets/js/oyun.js?v=20261021m" defer></script>
-  <script src="assets/js/bildirim.js?v=20261021m" defer></script>
+  <link rel="stylesheet" href="/assets/css/hareket.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/maskot.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/canli.css?v=20261021m">
+  <script src="/assets/js/adresler.js"></script>
+  <script src="/assets/js/maskot.js?v=20261021m" defer></script>
+  <script src="/assets/js/kutlama.js?v=20261021m" defer></script>
+  <script src="/assets/js/canli.js?v=20261021m" defer></script>
+  <script src="/assets/js/oyun.js?v=20261021m" defer></script>
+  <script src="/assets/js/bildirim.js?v=20261021m" defer></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
 
   <nav class="navbar">
-    <a href="index.html" class="nav-brand"><div class="brand-badge">Meberra</div></a>
+    <a href="/bugun" class="nav-brand"><div class="brand-badge">Meberra</div></a>
     <div class="nav-actions"></div>
   </nav>
 
@@ -43,7 +44,7 @@
     <section class="surface calis-yl" id="calis-yl" aria-labelledby="cyl-title" hidden>
       <h2 id="cyl-title">Çalış alanı lise öğrencileri ve lise mezunları içindir</h2>
       <p>Yüksek lisans başvurusunda AP dersleri ve CEnT-S gerekmez. Dil sınavları ile GRE / GMAT bilgileri Sınavlar sayfasında.</p>
-      <p class="calis-yl-eylem"><a class="btn-primary" href="sinavlar.html?model=uni-mezun">Sınavlara git →</a> <a class="btn-ghost" href="index.html">Bugün'e dön</a></p>
+      <p class="calis-yl-eylem"><a class="btn-primary" href="/sinavlar?model=uni-mezun">Sınavlara git →</a> <a class="btn-ghost" href="/bugun">Bugün'e dön</a></p>
     </section>
 
     <div class="calis-icerik" id="calis-icerik">
@@ -76,26 +77,26 @@
       <section class="calis-bolum" id="calis-olc" aria-labelledby="co-title">
         <div class="calis-bolum-h"><h2 id="co-title">Ölç ve tekrar et</h2></div>
         <div class="calis-olc-grid">
-          <a class="surface dv-kart u-nodec u-c-inherit" id="co-deneme" href="deneme.html">
+          <a class="surface dv-kart u-nodec u-c-inherit" id="co-deneme" href="/deneme">
             <h3>Denemeler</h3>
             <span class="dv-ana" id="co-deneme-ana">Ders denemesi ya da genel deneme</span>
             <span class="dv-alt" id="co-deneme-alt">Bluebook (AP’nin dijital sınav uygulaması) benzeri ekran; sonunda ünite bazında sonuç.</span>
             <span class="dv-git" id="co-deneme-git">Denemelere git →</span>
           </a>
-          <a class="surface dv-kart u-nodec u-c-inherit" id="co-yanlis" href="deneme.html?mod=yanlislar">
+          <a class="surface dv-kart u-nodec u-c-inherit" id="co-yanlis" href="/deneme?mod=yanlislar">
             <h3>Yanlışlarım</h3>
             <span class="dv-sayi" id="co-yanlis-sayi">0</span>
             <span class="dv-alt" id="co-yanlis-alt">açık soru</span>
             <span class="dv-git" id="co-yanlis-git">Yanlışlarımı çöz →</span>
           </a>
-          <a class="surface dv-kart u-nodec u-c-inherit" id="co-seviye" href="seviye-testi.html">
+          <a class="surface dv-kart u-nodec u-c-inherit" id="co-seviye" href="/seviye-testi">
             <h3>Seviye testi</h3>
             <span class="dv-ana" id="co-seviye-ana">Hangi derste ne kadar hazırsın?</span>
             <span class="dv-alt" id="co-seviye-alt">Rapor, AP kayıt kararına yardım eder.</span>
             <span class="dv-git" id="co-seviye-git">Teste başla →</span>
           </a>
         </div>
-        <p class="calis-ek"><a href="istanbul-sinav-rehberi.html">İstanbul sınav rehberi →</a><a href="ilerleme.html">İlerleme ve Yanlışlarım →</a></p>
+        <p class="calis-ek"><a href="/rehber/istanbul-sinav">İstanbul sınav rehberi →</a><a href="/ilerleme">İlerleme ve Yanlışlarım →</a></p>
       </section>
     </div>
   </main>
@@ -103,14 +104,14 @@
   <footer class="footer">
     <div class="footer-bottom u-mt-0">
       <div>© 2026 Meberra · İlerlemen hesabına kaydedilir, her cihazdan devam edersin.</div>
-      <div><a href="index.html">← Bugün</a></div>
+      <div><a href="/bugun">← Bugün</a></div>
     </div>
   </footer>
 
-  <script src="data/mevzuat/sinav-takvimi.js"></script>
-  <script src="assets/js/ucretsiz-kural.js"></script>
-  <script src="assets/js/ap-hedef.js?v=170a"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="/data/mevzuat/sinav-takvimi.js"></script>
+  <script src="/assets/js/ucretsiz-kural.js"></script>
+  <script src="/assets/js/ap-hedef.js?v=170a"></script>
+  <script src="/assets/js/app.js"></script>
   <script>
   (function () {
     "use strict";
@@ -177,7 +178,7 @@
       yarimDeneme: ak ? { ad: ak.ad, cevaplanan: Object.keys(ak.cevaplar || {}).length, toplam: ak.sorular.length } : null,
       acikHata: s.openErrors.length, sonHata: s.openErrors[0] ? (s.openErrors[0].topic || s.openErrors[0].id) : null,
       plan: plan.map(function (t) { return { baslik: t.title, aciklama: t.desc, href: t.href, etiket: t.linkText }; }),
-      profilEksik: [], bosHref: "deneme.html"
+      profilEksik: [], bosHref: "/deneme"
     });
     var TUR_AD = { deneme: "Yarım deneme", hata: "Yanlışlarım", plan: "Çalışma planı", bos: "Durum" };
     var ns = document.getElementById("cs-next");
@@ -191,16 +192,16 @@
     var ck = [];
     var k = apKaldiginYer(progress, dersler);
     if (k) {
-      ck.push({ id: "ck-unite", ic: IC.book, href: k.page + ".html#" + encodeURIComponent(k.unitId), ana: k.title,
+      ck.push({ id: "ck-unite", ic: IC.book, href: apAdres(k.page) + "#" + encodeURIComponent(k.unitId), ana: k.title,
         alt: k.ders + " · " + k.answered + (k.total ? " / " + k.total : "") + " soru · %" + pct(k.correct, k.answered) + " doğru", git: "Sürdür" });
     }
     if (ak) {
       var n = Object.keys(ak.cevaplar || {}).length;
-      ck.push({ id: "ck-deneme", ic: IC.clock, href: "deneme.html", ana: (ak.ad || "Deneme") + " yarım kaldı", alt: n + " / " + ak.sorular.length + " soru cevaplandı", git: "Devam et", vurgu: true });
+      ck.push({ id: "ck-deneme", ic: IC.clock, href: "/deneme", ana: (ak.ad || "Deneme") + " yarım kaldı", alt: n + " / " + ak.sorular.length + " soru cevaplandı", git: "Devam et", vurgu: true });
     }
     if (gecmis[0] && gecmis[0].id) {
       var g0 = gecmis[0];
-      ck.push({ id: "ck-son", ic: IC.chart, href: "deneme.html?sonuc=" + encodeURIComponent(g0.id), ana: "Son deneme: %" + g0.yuzde + " · " + (g0.ad || g0.kod),
+      ck.push({ id: "ck-son", ic: IC.chart, href: "/deneme?sonuc=" + encodeURIComponent(g0.id), ana: "Son deneme: %" + g0.yuzde + " · " + (g0.ad || g0.kod),
         alt: g0.dogru + " / " + g0.soruSayisi + " doğru · " + tarihKisa(g0.tarih), git: "İncele" });
     }
     document.getElementById("ck-list").innerHTML = ck.length ? ck.map(function (x) {
@@ -227,13 +228,13 @@
         '<div class="cd-ust"><div class="u-min0"><span class="cd-etiket">' + esc(e.etiket) + (HEDEF[d.page] ? ' · Hedefin: ' + esc(HEDEF[d.page]) : "") + '</span><h3 id="cd-' + esc(d.page) + '">' + esc(d.name) + '</h3></div>' +
         '<div class="ring ring-sm cd-ring" role="img" aria-label="' + esc(ringAd) + '" style="--p:' + kapsam + '"><span>' + (c.total ? "%" + kapsam : "–") + '</span></div></div>' +
         '<p class="cd-d">' + esc(e.d) + '</p>' +
-        '<p class="cd-durum">' + esc(durum) + (hs ? ' · <a class="cd-hata" href="deneme.html?mod=yanlislar' + (e.deneme.length === 1 ? "&amp;ders=" + encodeURIComponent(e.deneme[0][0]) : "") + '">' + hs + ' açık hata</a>' : "") + '</p>' +
-        // Öğrenme yolu: ünite düğümleri (assets/js/oyun.js doldurur; ücretsiz ünite kuralı app.js apUcretsizUniteNolari)
+        '<p class="cd-durum">' + esc(durum) + (hs ? ' · <a class="cd-hata" href="/deneme?mod=yanlislar' + (e.deneme.length === 1 ? "&amp;ders=" + encodeURIComponent(e.deneme[0][0]) : "") + '">' + hs + ' açık hata</a>' : "") + '</p>' +
+        // Öğrenme yolu: ünite düğümleri (/assets/js/oyun.js doldurur; ücretsiz ünite kuralı app.js apUcretsizUniteNolari)
         '<div class="oy-yol-yer" data-yol="' + esc(d.page) + '"></div>' +
-        (kd ? '<p class="cd-kaldigin"><span>Kaldığın yer</span><a href="' + esc(d.page) + '.html#' + encodeURIComponent(kd.unitId) + '">' + esc(kd.title) + ' →</a></p>' : "") +
-        (son ? '<p class="cd-son">Son deneme: <a href="deneme.html?sonuc=' + encodeURIComponent(son.id) + '">%' + esc(son.yuzde) + ' · ' + esc(tarihKisa(son.tarih)) + '</a></p>' : "") +
-        '<div class="cd-eylem"><a class="btn-ghost btn-sm" href="' + esc(d.page) + '.html" data-konu>' + IC.book + '<span>Konu anlatımı</span></a>' +
-        e.deneme.map(function (x) { return '<a class="btn-secondary btn-sm" href="deneme.html?ders=' + encodeURIComponent(x[0]) + '" data-deneme="' + esc(x[0]) + '">' + IC.play + '<span>' + esc(x[1]) + '</span></a>'; }).join("") +
+        (kd ? '<p class="cd-kaldigin"><span>Kaldığın yer</span><a href="' + esc(apAdres(d.page)) + '#' + encodeURIComponent(kd.unitId) + '">' + esc(kd.title) + ' →</a></p>' : "") +
+        (son ? '<p class="cd-son">Son deneme: <a href="/deneme?sonuc=' + encodeURIComponent(son.id) + '">%' + esc(son.yuzde) + ' · ' + esc(tarihKisa(son.tarih)) + '</a></p>' : "") +
+        '<div class="cd-eylem"><a class="btn-ghost btn-sm" href="' + esc(apAdres(d.page)) + '" data-konu>' + IC.book + '<span>Konu anlatımı</span></a>' +
+        e.deneme.map(function (x) { return '<a class="btn-secondary btn-sm" href="/deneme?ders=' + encodeURIComponent(x[0]) + '" data-deneme="' + esc(x[0]) + '">' + IC.play + '<span>' + esc(x[1]) + '</span></a>'; }).join("") +
         '</div></article>';
     }).join("");
 
@@ -258,7 +259,7 @@
       document.getElementById("co-seviye-alt").textContent = "Kaldığın yerden devam edebilirsin.";
       document.getElementById("co-seviye-git").textContent = "Devam et →";
     } else if (rap.length) {
-      sl.setAttribute("href", "seviye-testi.html#rapor");
+      sl.setAttribute("href", "/seviye-testi#rapor");
       document.getElementById("co-seviye-ana").textContent = "Son rapor: " + tarihKisa(rap[0].tarih);
       document.getElementById("co-seviye-alt").textContent = rap.length + " rapor kayıtlı; yeniden çözüp karşılaştırabilirsin.";
       document.getElementById("co-seviye-git").textContent = "Raporu aç →";

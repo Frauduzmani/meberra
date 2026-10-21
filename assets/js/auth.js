@@ -478,7 +478,7 @@
     return { aktifRota: aktif, hedefAlan: alan || VARSAYILAN_ALAN };
   }
 
-  /** 1.7.0: AP dersleri / hedef puan / sınav yılı (assets/js/ap-hedef.js varsa onunla doğrulanır; yoksa olduğu gibi —
+  /** 1.7.0: AP dersleri / hedef puan / sınav yılı (/assets/js/ap-hedef.js varsa onunla doğrulanır; yoksa olduğu gibi —
    *  sunucu yine doğrular). Yalnızca p'de olan alanlar döner; null → alan silinir. */
   var AP_ALANLARI = ["apDersleri", "sinavYili", "apHedefSoruldu"];
   function apAlanlari(p, e) {
@@ -756,11 +756,19 @@
       });
     },
 
-    /** ?donus= değerini yalnızca aynı klasördeki bir .html sayfasına izin verecek şekilde temizler. */
+    /** ?donus= değerini yalnızca site içi bir sayfa yoluna izin verecek şekilde temizler (1.8.0: temiz adres döner). */
     safeReturn: function (v) {
       v = String(v || "");
-      if (!/^[A-Za-z0-9._-]+\.html(?:[?#][^\s<>"']*)?$/.test(v)) return null;
-      if (/^(giris|profil)\.html/i.test(v)) return null;
+      // 1.8.0: temiz kök yolu ("/ders/calculus?unite=1#x") ya da eski "sayfa.html" (temiz yola çevrilir).
+      // "//alan" ve "/\" ile başlayan (başka siteye giden) yollar reddedilir.
+      if (/^[A-Za-z0-9._-]+\.html(?:[?#][^\s<>"']*)?$/.test(v)) v = "/" + v;
+      if (!/^\/(?![/\\])[A-Za-z0-9._\/-]*(?:[?#][^\s<>"'\\]*)?$/.test(v)) return null;
+      var A = typeof window !== "undefined" ? window.MEBERRA_ADRES : null;
+      if (A) {
+        v = A.temiz(v);
+        var s = A.sayfa(v);
+        if (s === "giris" || s === "profil") return null;
+      } else if (/^\/(giris|kayit|profil)(?:\.html)?(?:[?#/]|$)/i.test(v)) return null;
       return v;
     },
     sinifLabel: function (s) { return s === "mezun" ? "Mezun" : s === "lisans-mezun" ? "Üniversite mezunu" : (s ? s + ". sınıf" : ""); },

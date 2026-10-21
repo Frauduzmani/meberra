@@ -41,7 +41,7 @@ test("statik sunum: korumalı dosyalar açılmaz, HTML'e sunucu etiketi eklenir"
   for (const y of ["/server/config.js", "/server/data/meberra.db", "/.env", "/TASKS.md", "/package.json", "/_devre-disi/AGENTS.md", "/assets/../server/db.js", "/%2e%2e/server/db.js"]) {
     assert.equal((await c("GET", y)).durum, 404, y);
   }
-  const s = await c("GET", "/giris.html");
+  const s = await c("GET", "/giris");
   assert.equal(s.durum, 200);
   assert.match(s.govde, /<meta name="meberra-api" content="1">/);
   assert.equal((await c("GET", "/assets/css/styles.css")).durum, 200);
@@ -187,7 +187,7 @@ test("şifre sıfırlama e-postası ve tek kullanımlık bağlantı", async () =
   assert.equal((await istemci()("POST", "/api/auth/forgot", { eposta: "yok@ornek.com" })).govde.ok, true, "bilinmeyen e-posta da aynı yanıtı alır");
   await istemci()("POST", "/api/auth/forgot", { eposta: "unuttum@ornek.com" });
   const ileti = db().prepare("SELECT metin FROM email_outbox WHERE alici = 'unuttum@ornek.com' ORDER BY id DESC").get();
-  const tok = decodeURIComponent(/sifre-sifirla\.html\?t=([^\s]+)/.exec(ileti.metin)[1]);
+  const tok = decodeURIComponent(/sifre-sifirla\?t=([^\s]+)/.exec(ileti.metin)[1]);
   assert.equal((await istemci()("POST", "/api/auth/reset", { token: tok, yeni: "Yeni-sifre-99", yeni2: "Yeni-sifre-99" })).durum, 200);
   assert.equal((await istemci()("POST", "/api/auth/reset", { token: tok, yeni: "Baska-sifre-99", yeni2: "Baska-sifre-99" })).durum, 400, "bağlantı ikinci kez kullanılamaz");
   assert.equal((await c("GET", "/api/me")).durum, 401, "sıfırlama tüm oturumları kapatır");
@@ -251,7 +251,7 @@ test("şifre değiştirme diğer oturumları ve açık sıfırlama bağlantılar
   await b("POST", "/api/auth/login", { kimlik: "sifredegis@ornek.com", sifre: "Deneme-12345" });
   await istemci()("POST", "/api/auth/forgot", { eposta: "sifredegis@ornek.com" });
   const ileti = db().prepare("SELECT metin FROM email_outbox WHERE alici = 'sifredegis@ornek.com' ORDER BY id DESC").get();
-  const tok = decodeURIComponent(/sifre-sifirla\.html\?t=([^\s]+)/.exec(ileti.metin)[1]);
+  const tok = decodeURIComponent(/sifre-sifirla\?t=([^\s]+)/.exec(ileti.metin)[1]);
   assert.equal((await a("POST", "/api/auth/password", { eski: "Deneme-12345", yeni: "Yeni-sifre-77", yeni2: "Yeni-sifre-77" })).durum, 200);
   assert.equal((await a("GET", "/api/me")).durum, 200, "şifreyi değiştiren oturum açık kalır");
   assert.equal((await b("GET", "/api/me")).durum, 401, "diğer cihazın oturumu kapanır");

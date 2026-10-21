@@ -60,7 +60,7 @@
     if (ME) $("vp-ad").textContent = ME.ad + " " + ME.soyad;
   }
   $("vp-cikis").addEventListener("click", function () {
-    istek("POST", "/api/auth/logout").then(function () { location.replace("veli.html"); });
+    istek("POST", "/api/auth/logout").then(function () { location.replace("/veli"); });
   });
 
   // --- Başlangıç -------------------------------------------------------------------------------
@@ -77,7 +77,7 @@
   function ogrenciUyarisi() {
     goster("vp-giris");
     $("vp-giris-baslik").textContent = "Bu sayfa veliler içindir";
-    $("vp-giris-lead").innerHTML = "Şu an bir öğrenci hesabıyla giriş yapılmış. Veli panelini kullanmak için önce çıkış yapın. Öğrenciysen: velini <a href=\"profil.html#veli\">Profil › Velin</a> bölümünden davet edebilirsin.";
+    $("vp-giris-lead").innerHTML = "Şu an bir öğrenci hesabıyla giriş yapılmış. Veli panelini kullanmak için önce çıkış yapın. Öğrenciysen: velini <a href=\"/profil#veli\">Profil › Velin</a> bölümünden davet edebilirsin.";
     $("vp-kabul").hidden = false;
     $("vp-kabul-btn").textContent = "Çıkış yap";
     $("vp-kabul-btn").onclick = function () { istek("POST", "/api/auth/logout").then(function () { location.reload(); }); };
@@ -110,7 +110,7 @@
       if (!j.ok) {
         $("vp-giris-baslik").textContent = "Davet bağlantısı geçersiz";
         $("vp-giris-lead").textContent = j.error || "Bu bağlantının süresi dolmuş ya da daha önce kullanılmış. Öğrenciden yeni bir davet isteyin.";
-        if (ME && ME.rol === "veli") { $("vp-kabul").hidden = false; $("vp-kabul-btn").textContent = "Panelime git"; $("vp-kabul-btn").onclick = function () { location.replace("veli.html"); }; }
+        if (ME && ME.rol === "veli") { $("vp-kabul").hidden = false; $("vp-kabul-btn").textContent = "Panelime git"; $("vp-kabul-btn").onclick = function () { location.replace("/veli"); }; }
         else if (!ME) $("vp-login").hidden = false;
         return;
       }
@@ -139,7 +139,7 @@
     istek("POST", "/api/veli/kabul", { t: DAVET }).then(function (j) {
       btn.disabled = false;
       if (!j.ok) { $("vp-login").hidden = true; uyari($("vp-giris-alert"), j.error || "Davet kabul edilemedi."); $("vp-giris-alert").focus(); return; }
-      history.replaceState(null, "", "veli.html");
+      history.replaceState(null, "", "/veli");
       DAVET = null;
       panelYukle("Bağlantı kuruldu.");
     });
@@ -169,7 +169,7 @@
         return;
       }
       ME = j.user; hesapCubugu();
-      history.replaceState(null, "", "veli.html");
+      history.replaceState(null, "", "/veli");
       DAVET = null;
       panelYukle("Hoş geldiniz! Veli hesabınız açıldı ve bağlantı kuruldu.");
     });

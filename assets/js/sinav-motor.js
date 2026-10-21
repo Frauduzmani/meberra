@@ -10,7 +10,7 @@
  *   sonKontrol "YYYY-AA-GG" · ucret metin
  *
  *   secimCoz(search, profil)            -> {model, sinif, ulke, dil, duzey, filtre, kaynak:{model,ulke,dil}}
- *   secimAdres(sayfa, secim)            -> "sinavlar.html?model=lise&sinif=11&ulke=de&dil=yerel"
+ *   secimAdres(sayfa, secim)            -> "/sinavlar?model=lise&sinif=11&ulke=de&dil=yerel"
  *   sinavDilleri(s) / dilTuru(s, ulke, yerelDil) / dilUygun(s, dil, ulke, yerelDil)
  *   duzeyleri(s) / modelUygun(s, model) / ulkeUygun(s, ulke)
  *   suz(liste, secim, baglam)           -> süzülmüş liste (sıra korunur)
@@ -226,7 +226,7 @@
     if (ulke) q.push("ulke=" + ulke);
     if (SINAV_DILLERI.indexOf(s.dil) >= 0 && (s.dil !== "hepsi" || ulke)) q.push("dil=" + (ulke === "ie" && s.dil === "yerel" ? "en" : s.dil));
     if (FILTRELER.indexOf(s.filtre) >= 0 && s.filtre !== "profil") q.push("filtre=" + s.filtre);
-    return (sayfa || "sinavlar.html") + (q.length ? "?" + q.join("&") : "");
+    return (sayfa || "/sinavlar") + (q.length ? "?" + q.join("&") : "");
   }
 
   // ------------------------------------------------------------------------

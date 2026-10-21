@@ -3,7 +3,7 @@
  *
  * Günlük hedef (halka), seri koruma, akıllı tekrar (aralıklı tekrar kutuları), günün görevleri, rozetler, kutlamalar,
  * öğrenme yolu (ünite düğümleri), XP ve lig rozeti, ince geçiş efektleri.
- * 1.4.0: kutlamaların hepsi ortak kuyruktan geçer (assets/js/kutlama.js MeberraKutlama — aynı anda tek kutlama, maskotlu);
+ * 1.4.0: kutlamaların hepsi ortak kuyruktan geçer (/assets/js/kutlama.js MeberraKutlama — aynı anda tek kutlama, maskotlu);
  * buradaki eski balon + konfeti kaldırıldı. Yol çizimi assets/js/canli.js (MeberraCanli.yolCiz); yoksa eski düğüm sırası.
  * Can / kalp / sanal para YOK; dil suçlayıcı değil (veliler de görür).
  *
@@ -358,8 +358,10 @@
   window.MEBERRA_OYUN = CEKIRDEK;
   var AZ_HAREKET = false;
   try { AZ_HAREKET = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) { /* eski tarayıcı */ }
-  var sayfa = (location.pathname.split("/").pop() || "index.html").replace(/\.html?$/i, "") || "index";
+  var sayfa = (window.MEBERRA_ADRES ? window.MEBERRA_ADRES.sayfa() : ((location.pathname.split("/").pop() || "index").replace(/\.html?$/i, "") || "index"));
   try { sayfa = decodeURIComponent(sayfa); } catch (e) { /* yok say */ }
+  /** 1.8.0: sayfa kimliği → temiz adres ("ap-calculus" → "/ders/calculus"; tablo assets/js/adresler.js) */
+  var sayfaAdres = function (p) { var A = window.MEBERRA_ADRES; return (A && A.sayfaAdres(p)) || p + ".html"; };
 
   function oku(k, v) { try { var r = localStorage.getItem(k); return r == null ? v : JSON.parse(r); } catch (e) { return v; } }
   function yaz(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* depo dolu / kapalı */ } }
@@ -402,7 +404,7 @@
   };
   function svg(ad, cls) { return '<svg class="' + (cls || "") + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (IK[ad] || IK.yildiz) + "</svg>"; }
 
-  // --- Kutlama: ortak kuyruk (assets/js/kutlama.js) -------------------------------------------
+  // --- Kutlama: ortak kuyruk (/assets/js/kutlama.js) -------------------------------------------
   // 1.4.0: eski oy-toast balonu ve canvas konfetisi kaldırıldı; aynı anda tek kutlama, maskot başlı balon / büyük kart.
   // Dinamik yükleyicide kutlama.js bu dosyadan sonra gelebilir: gelene kadar kısa aralıklarla bekler (en çok ~3 sn).
   var kutlaBekleyen = [];
@@ -589,7 +591,7 @@
             '<span class="oy-cubuk" role="progressbar" aria-label="' + esc(d.ad) + '" aria-valuemin="0" aria-valuemax="' + d.hedef + '" aria-valuenow="' + d.deger + '"><i style="--w:' + y + '%"></i></span></span></li>';
         }).join("") + "</ul>" +
         '<div class="oy-xp"><span class="oy-xp-ik">' + svg("simsek") + '</span><span class="oy-xp-hafta">Bu hafta <b>' + sayiTR(hx) + "</b> XP</span>" +
-          (ligBilgi && ligBilgi.sira ? '<a class="oy-lig" href="/profil.html#lig">' + svg("kupa") + "Ligde " + ligBilgi.sira + ". sıradasın" + (ligBilgi.kademe ? " · " + esc(ligBilgi.kademe) : "") + "</a>" : "") +
+          (ligBilgi && ligBilgi.sira ? '<a class="oy-lig" href="/profil#lig">' + svg("kupa") + "Ligde " + ligBilgi.sira + ". sıradasın" + (ligBilgi.kademe ? " · " + esc(ligBilgi.kademe) : "") + "</a>" : "") +
         "</div>";
       gorevEl.classList.remove("is-iskelet"); gorevEl.removeAttribute("aria-busy");
     }
@@ -647,13 +649,13 @@
       var et = esc(d.ad) + " — " + DURUM[d.durum] + (d.toplam && d.durum !== "kilitli" ? " (" + d.cevap + " / " + d.toplam + " soru)" : "");
       return '<li class="is-' + d.durum + '"><a class="oy-dugum" href="' + esc(adres + "?unite=" + d.no) + '" title="' + et + '" aria-label="' + et + '"' + (d.durum === "simdi" ? ' aria-current="step"' : "") +
         ' style="--y:' + d.yuzde + '%">' + (d.durum === "kilitli" ? svg("kilit") : d.durum === "bitti" ? svg("onay") : "<span>" + esc(d.etiket) + "</span>") + "</a></li>";
-    }).join("") + "</ol>" + (kilitVar ? '<p class="oy-yol-not">' + svg("kilit") + 'Kilitli üniteler <a href="premium.html">Premium ile</a> açılır.</p>' : "") + "</nav>";
+    }).join("") + "</ol>" + (kilitVar ? '<p class="oy-yol-not">' + svg("kilit") + 'Kilitli üniteler <a href="/premium">Premium ile</a> açılır.</p>' : "") + "</nav>";
   }
   /** 1.4.0: kıvrımlı yol (canli.js yolCiz) — serit: Çalış kartları, dikey: ders sayfası ünite merkezi */
   function yolYerlestir(el, page, dugumler, mod) {
     var C = window.MeberraCanli;
-    if (C && C.yolCiz) C.yolCiz(el, dugumler, { mod: mod, adres: page + ".html", anahtar: location.pathname + "|" + page });
-    else el.innerHTML = yolHtml(page, dugumler, page + ".html");
+    if (C && C.yolCiz) C.yolCiz(el, dugumler, { mod: mod, adres: sayfaAdres(page), anahtar: location.pathname + "|" + page });
+    else el.innerHTML = yolHtml(page, dugumler, sayfaAdres(page));
   }
   function ucretsizNolar(page, liste) {
     if (typeof window.apUcretsizUniteNolari !== "function") return liste.map(function (u) { return u.no; });
@@ -824,8 +826,8 @@
       govde.innerHTML = '<div class="surface oy-tekrar-giris is-bitti"><span class="oy-tekrar-ik">' + svg("kupa") + '</span><div class="u-min0">' +
         (n ? "<p><strong>Bugünkü tekrar bitti!</strong> " + oturum.dogru + " / " + n + " soruyu doğru çözdün. Doğru çözdüklerin daha ileri bir güne, yanlışlar yarına taşındı.</p>" : "") +
         (oturum.eksik.length ? '<p class="oy-alt">' + oturum.eksik.length + " soru bu ekranda açılamadı; ders sayfasında çözebilirsin: " + oturum.eksik.map(function (k) {
-          var p = k.split("|"); return '<a href="' + esc(p[0]) + ".html#q-card-" + encodeURIComponent(p[1]) + '">' + esc(KISA[p[0]] || p[0]) + " · " + esc(p[1]) + "</a>";
-        }).join(", ") + "</p>" : "") + '<p><a href="index.html">Bugün’e dön →</a></p></div></div>';
+          var p = k.split("|"); return '<a href="' + esc(sayfaAdres(p[0])) + "#q-card-" + encodeURIComponent(p[1]) + '">' + esc(KISA[p[0]] || p[0]) + " · " + esc(p[1]) + "</a>";
+        }).join(", ") + "</p>" : "") + '<p><a href="/bugun">Bugün’e dön →</a></p></div></div>';
       if (n) kutla({ tur: "rozet", buyuk: false, ifade: "kutlama", baslik: "Tekrar tamam!", metin: oturum.dogru + " / " + n + " doğru. Bilgilerin pekişiyor." });
       oturum = null;
     }

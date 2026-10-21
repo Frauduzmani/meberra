@@ -221,14 +221,18 @@ test("bakım modu: yönetici dışındakilere HTML 503 + Retry-After, API 503; i
   assert.equal(r.durum, 200);
   assert.equal(r.govde.bakim.acik, true);
   // Sayfalar
-  for (const yol of ["/", "/index.html", "/calis.html"]) {
+  for (const yol of ["/", "/bugun", "/calis", "/ders/calculus", "/index.html"]) {
     const s = await anon("GET", yol);
     assert.equal(s.durum, 503, yol);
     assert.match(s.govde, /Kısa bir bakımdayız/);
     assert.ok(+s.basliklar.get("retry-after") >= 60);
   }
-  assert.equal((await o("GET", "/index.html")).durum, 503, "öğrenci de bakım sayfasını görür");
-  for (const yol of ["/assets/css/styles.css", "/assets/js/app.js", "/favicon.svg", "/bakim.html", "/giris.html", "/admin.html"]) assert.equal((await anon("GET", yol)).durum, 200, yol);
+  assert.equal((await o("GET", "/bugun")).durum, 503, "öğrenci de bakım sayfasını görür");
+  for (const yol of ["/assets/css/styles.css", "/assets/js/app.js", "/assets/js/adresler.js", "/favicon.svg", "/bakim", "/giris", "/giris.html"]) assert.equal((await anon("GET", yol)).durum, 200, yol);
+  // 1.8.0: yönetim adresi bakımda da yalnızca yöneticiye açık; diğerlerine 404
+  assert.equal((await anon("GET", "/yonetim")).durum, 404);
+  assert.equal((await o("GET", "/yonetim")).durum, 404);
+  assert.equal((await yon("GET", "/yonetim")).durum, 200);
   // API
   const a = await o("GET", "/api/state");
   assert.equal(a.durum, 503);
@@ -244,7 +248,7 @@ test("bakım modu: yönetici dışındakilere HTML 503 + Retry-After, API 503; i
   assert.equal((await anon("POST", "/api/auth/register", { ad: "A" })).durum, 503);
   assert.equal((await anon("GET", "/api/admin/stats")).durum, 401, "yönetici uç noktası bakımda da kendi yetki denetimini yapar");
   // Yönetici her şeyi kullanır
-  assert.equal((await yon("GET", "/index.html")).durum, 200);
+  assert.equal((await yon("GET", "/bugun")).durum, 200);
   assert.equal((await yon("GET", "/api/state")).durum, 200);
   // Yönetici bakımda giriş yapabilir
   assert.equal((await istemci("10.0.0.1")("POST", "/api/auth/login", { kimlik: "yon2@ornek.com", sifre: "Yonetici-12345" })).durum, 200);
@@ -252,7 +256,7 @@ test("bakım modu: yönetici dışındakilere HTML 503 + Retry-After, API 503; i
   assert.equal(bakimServisi(ayarServisi(db())).acikMi(), true);
   // Kapat
   assert.equal((await yon("POST", "/api/admin/bakim", { acik: false })).govde.bakim.acik, false);
-  assert.equal((await anon("GET", "/index.html")).durum, 200);
+  assert.equal((await anon("GET", "/bugun")).durum, 200);
   assert.equal((await o("GET", "/api/state")).durum, 200);
   assert.equal(bakimServisi(ayarServisi(db())).acikMi(), false);
   assert.ok(denetimVar("bakim.ac") && denetimVar("bakim.kapat"));
@@ -309,7 +313,7 @@ test("sistem: metrikler yalnızca yöneticiye; önbellek temizleme yönetici iş
   const o = await ogrenci("sistem@ornek.com");
   assert.equal((await istemci()("GET", "/api/admin/sistem")).durum, 401);
   assert.equal((await o("GET", "/api/admin/sistem")).durum, 403);
-  await istemci()("GET", "/kvkk.html"); // HTML önbelleğine en az bir girdi
+  await istemci()("GET", "/kvkk"); // HTML önbelleğine en az bir girdi
   const s = (await yon("GET", "/api/admin/sistem")).govde;
   assert.equal(s.surum, require("../../package.json").version);
   assert.ok(s.calismaSn >= 0 && s.bellek.rss > 0 && s.bellek.heapKullanilan > 0);

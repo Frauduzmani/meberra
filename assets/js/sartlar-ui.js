@@ -24,7 +24,7 @@
   };
 
   /**
-   * Tur 11 (D6): ülke dosyasını gerektiğinde yükler (data/mevzuat/ulke/<cc>.js). file:// altında da çalışır
+   * Tur 11 (D6): ülke dosyasını gerektiğinde yükler (/data/mevzuat/ulke/<cc>.js). file:// altında da çalışır
    * (seviye.js ile aynı yöntem: dinamik <script>). Dönüş: Promise<{veri|null, hata: bool}>. Zaman aşımı 8 sn.
    */
   var yuklemeler = {};
@@ -43,7 +43,7 @@
         res({ veri: v, hata: !!hata && !v });
       }
       var t = setTimeout(function () { son(true); }, 8000);
-      s.src = "data/mevzuat/ulke/" + cc + ".js";
+      s.src = "/data/mevzuat/ulke/" + cc + ".js";
       s.async = true;
       s.onload = function () { son(false); };
       s.onerror = function () { son(true); };

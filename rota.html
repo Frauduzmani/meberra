@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#5B3DF5">
-  <link rel="apple-touch-icon" href="assets/img/pwa/apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="/assets/img/pwa/apple-touch-icon.png">
   <title>Takvimim | Meberra</title>
   <meta name="description" content="Seçtiğin ülkenin kabul kuralları, sınıfına göre tarihlenmiş adımlar, belge kontrol listesi ve rotanın sınavları.">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/icerik.css">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/icerik.css">
+  <script src="/assets/js/adresler.js"></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
 
   <nav class="navbar">
-    <a href="index.html" class="nav-brand"><div class="brand-badge">Meberra</div></a>
+    <a href="/bugun" class="nav-brand"><div class="brand-badge">Meberra</div></a>
     <div class="nav-actions"></div>
   </nav>
 
@@ -35,33 +36,33 @@
     <section class="surface u-mt-6" aria-labelledby="rota-sinav-title" style="padding:20px;">
       <h2 id="rota-sinav-title" class="u-fs-18">Sınav tarihleri</h2>
       <p class="u-c-muted">Tarihler, kayıt son günleri ve ücretler. “Listeme ekle” ile işaretlediklerin Bugün ekranında hatırlatılır.</p>
-      <div class="btn-row"><a class="btn-ghost" href="sinavlar.html">Tüm sınavlar ve tarihler →</a><a class="btn-ghost" href="istanbul-sinav-rehberi.html">AP sınavına İstanbul’da girmek →</a></div>
+      <div class="btn-row"><a class="btn-ghost" href="/sinavlar">Tüm sınavlar ve tarihler →</a><a class="btn-ghost" href="/rehber/istanbul-sinav">AP sınavına İstanbul’da girmek →</a></div>
     </section>
 
     <!-- Sonraki adım -->
     <section class="next-step-card u-mt-6" aria-labelledby="rota-sonraki" style="padding:20px;">
       <h2 id="rota-sonraki" class="u-fs-18">Sonraki adım: üniversitelere yaz</h2>
       <p class="u-c-muted">Takvimindeki e-posta adımları için hazır taslaklar Başvurularım’da.</p>
-      <div class="btn-row"><a class="btn-primary" href="yazismalar.html">Başvurularım →</a></div>
+      <div class="btn-row"><a class="btn-primary" href="/basvurular">Başvurularım →</a></div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="footer-bottom u-mt-0">
       <div><span>Her bilginin resmi kaynağı yanında.</span></div>
-      <div><a href="index.html">← Bugün</a></div>
+      <div><a href="/bugun">← Bugün</a></div>
     </div>
   </footer>
 
-  <script src="data/mevzuat/ulke-rotalari.js"></script>
-  <script src="data/mevzuat/sinavlar.js"></script>
-  <script src="assets/js/eposta.js"></script>
-  <script src="assets/js/rota.js"></script>
-  <script src="data/mevzuat/ulke-dizini.js"></script>
-  <script src="assets/js/sartlar-motor.js"></script>
-  <script src="assets/js/sartlar-ui.js"></script>
-  <script src="assets/js/ucretsiz-kural.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="/data/mevzuat/ulke-rotalari.js"></script>
+  <script src="/data/mevzuat/sinavlar.js"></script>
+  <script src="/assets/js/eposta.js"></script>
+  <script src="/assets/js/rota.js"></script>
+  <script src="/data/mevzuat/ulke-dizini.js"></script>
+  <script src="/assets/js/sartlar-motor.js"></script>
+  <script src="/assets/js/sartlar-ui.js"></script>
+  <script src="/assets/js/ucretsiz-kural.js"></script>
+  <script src="/assets/js/app.js"></script>
   <script>
   (function () {
     "use strict";
@@ -72,7 +73,7 @@
     var ULKE_AD = R.ULKE_AD;
     var SINAV = {};
     (Array.isArray(window.APMEBERRA_SINAVLAR) ? window.APMEBERRA_SINAVLAR : []).forEach(function (s) { if (s && s.id) SINAV[s.id] = s; });
-    var GUIDE = { de: "almanya-muhendislik.html", it: "italya-muhendislik.html" };
+    var GUIDE = { de: "/rehber/almanya", it: "/rehber/italya" };
     var TUR = { sinav: "Sınav", belge: "Belge", basvuru: "Başvuru", karar: "Karar", hazirlik: "Hazırlık", bilgi: "Bilgi notu" };
     // K5-a etiketleri (profil.html / auth.js ile aynı metin)
     var YERLESME_AD = { "uygun": "Hedef alanla uyumlu bir lisans programına yerleştim", "yok": "Yerleşmem yok", "alan-uyumsuz": "Yerleştim ama alan farklı" };
@@ -121,7 +122,7 @@
           return '<button type="button" class="tab" role="tab" id="rtab-' + u + '" data-ulke="' + u + '" aria-controls="rota-panel" aria-selected="' + on + '"' + (on ? "" : ' tabindex="-1"') + '>' +
             '<span class="rota-dot rota-dot-' + u + '" aria-hidden="true"></span>' + esc(ULKE_AD[u]) + ' rotası <span class="tab-count" data-say="' + u + '"></span></button>';
         }).join("") + '</div>'
-      : '<p class="rota-single">' + IC.flag + '<span>Profilinde tek hedef ülke var: <strong>' + esc(ULKE_AD[aktif] || "") + '</strong>. Diğer ülkenin rotasını açmak için <a href="profil.html#pf-ulkeler-group">hedef ülkelerini düzenle</a>.</span></p>';
+      : '<p class="rota-single">' + IC.flag + '<span>Profilinde tek hedef ülke var: <strong>' + esc(ULKE_AD[aktif] || "") + '</strong>. Diğer ülkenin rotasını açmak için <a href="/profil#pf-ulkeler-group">hedef ülkelerini düzenle</a>.</span></p>';
     root.innerHTML = selector + '<div id="rota-panel"' + (ulkeler.length > 1 ? ' role="tabpanel" aria-labelledby="rtab-' + aktif + '" tabindex="-1"' : "") + '></div>';
     var panel = $("rota-panel");
 
@@ -182,7 +183,7 @@
       return gr.map(function (g) {
         var adlar = g.map(function (id) {
           var s = SINAV[id];
-          return '<a class="exam-chip rs-exam" href="sinavlar.html#' + encodeURIComponent(id) + '"><span>' + esc(s ? s.ad : id) + (s ? '<small>' + esc(s.kategori || "") + (s.kurum ? " · " + esc(s.kurum) : "") + '</small>' : "") + '</span><span class="go" aria-hidden="true">→</span></a>';
+          return '<a class="exam-chip rs-exam" href="/sinavlar#' + encodeURIComponent(id) + '"><span>' + esc(s ? s.ad : id) + (s ? '<small>' + esc(s.kategori || "") + (s.kurum ? " · " + esc(s.kurum) : "") + '</small>' : "") + '</span><span class="go" aria-hidden="true">→</span></a>';
         });
         var not = g.map(function (id) { return notlar[id]; }).filter(Boolean);
         return '<li class="rs-exam-group">' +
@@ -193,7 +194,7 @@
       }).join("");
     }
 
-    /** K4-a: profile özel ortak uyarılar (data/mevzuat/ulke-rotalari.js -> APMEBERRA_ROTA_UYARILARI). */
+    /** K4-a: profile özel ortak uyarılar (/data/mevzuat/ulke-rotalari.js -> APMEBERRA_ROTA_UYARILARI). */
     function profilUyariHtml() {
       var list = R.profilUyarilari ? R.profilUyarilari(window.APMEBERRA_ROTA_UYARILARI, prof) : [];
       return list.map(function (u) {
@@ -208,7 +209,7 @@
       if (!c.mezun) return "";
       var yd = c.yerlesmeDurumu;
       var not = !yd
-        ? '<p class="rota-mezun-note is-warn">' + IC.warn + '<span>YKS yerleşme durumunu henüz belirtmedin. Şimdilik YKS adımları gösteriliyor. <a href="profil.html#pf-yerlesme">Profilinde belirt</a></span></p>'
+        ? '<p class="rota-mezun-note is-warn">' + IC.warn + '<span>YKS yerleşme durumunu henüz belirtmedin. Şimdilik YKS adımları gösteriliyor. <a href="/profil#pf-yerlesme">Profilinde belirt</a></span></p>'
         : yd === "uygun"
           ? '<p class="rota-mezun-note">' + IC.check + '<span>Hedef alanla uyumlu yerleşmen olduğu için YKS’ye yeniden girmen gerekmiyor' + (c.gizlenenKosul ? "; " + c.gizlenenKosul + " YKS adımı gizlendi" : "") + '. Üniversitenin geçmiş yıl belgesini kabul ettiğini yazılı teyit et.</span></p>'
           : '<p class="rota-mezun-note is-info">' + IC.flag + '<span>YKS adımları ' + akademikYil(c.hedefYil) + ' hedefine göre gösteriliyor. Önceki yıl bir programa yerleştiysen yeni yılda OBP katsayın yarıya iner.</span></p>';
@@ -222,7 +223,7 @@
           '<div><dt>Lise mezuniyeti</dt><dd>' + (c.mezuniyetYili ? "Haziran " + c.mezuniyetYili : '<span class="unverified">Girilmedi</span>') + '</dd></div>' +
           '<div><dt>YKS yerleşmesi</dt><dd>' + (yd ? esc(YERLESME_AD[yd]) : '<span class="unverified">Belirtilmedi</span>') + '</dd></div>' +
         '</dl>' + not +
-        '<p class="rota-mezun-edit"><a href="profil.html#pf-yerlesme">Mezun bilgilerini değiştir</a></p>' +
+        '<p class="rota-mezun-edit"><a href="/profil#pf-yerlesme">Mezun bilgilerini değiştir</a></p>' +
       '</section>';
     }
 
@@ -245,12 +246,12 @@
         $("rota-lead").textContent = "Bu sayfa yalnızca " + (ULKE_AD[aktif] || "") + " için geçerli. " +
           (yl ? "Yüksek lisans için tarihli kişisel rota henüz yok" : "Tarihli kişisel rota yalnızca Almanya ve İtalya lisans için hazır") +
           "; aşağıdaki genel yol haritasının ayları " + (g.baslangicYili ? akademikYil(g.baslangicYili) + " akademik yılı başlangıcına göre tahminidir." : "göreli verilmiştir.");
-        var sartlar = "sartlar.html?model=" + secim.model + (secim.sinif ? "&sinif=" + secim.sinif : "") + "&ulke=" + aktif + "&dil=" + secim.dil;
+        var sartlar = "/ulkem?model=" + secim.model + (secim.sinif ? "&sinif=" + secim.sinif : "") + "&ulke=" + aktif + "&dil=" + secim.dil;
         panel.innerHTML =
           '<section class="surface rota-genel-ozet" aria-labelledby="rg-h"><div class="u-min0"><span class="uni-sub">Genel yol haritası · ' + esc(yl ? "Yüksek lisans" : "Lisans") + '</span>' +
             '<h2 id="rg-h">' + esc((ULKE_AD[aktif] || "") + ": " + yapildi + " / " + g.adimlar.length + " adım yapıldı") + '</h2>' +
             '<p>“Genel öneri” adımları mevzuat bilgisi değildir; ülkenin kaynaklı tarihleri kesinlik etiketiyle gösterilir. Şartların tamamı ülke şartları sayfasında.</p>' +
-            '<div class="btn-row"><a class="btn-primary" href="' + esc(sartlar) + '">' + esc(ULKE_AD[aktif] || "") + ' şartları</a><a class="btn-ghost" href="universiteler.html?ulke=' + esc(aktif) + '">Üniversiteler</a></div></div></section>' +
+            '<div class="btn-row"><a class="btn-primary" href="' + esc(sartlar) + '">' + esc(ULKE_AD[aktif] || "") + ' şartları</a><a class="btn-ghost" href="/universiteler?ulke=' + esc(aktif) + '">Üniversiteler</a></div></div></section>' +
           (r.veri ? "" : '<p class="rota-mezun-note is-info">' + IC.wait + '<span>' + esc((ULKE_AD[aktif] || "") + " için şartlar hazırlanıyor; şimdilik yalnızca genel öneri adımları gösteriliyor.") + '</span></p>') +
           '<ol class="rs-list rs-genel">' + g.adimlar.map(function (a) {
             var cid = "rs-c-" + a.id, on = !!(dur[a.id] && dur[a.id].durum === "yapildi");
@@ -289,9 +290,9 @@
         panel.innerHTML = '<div class="empty-state"><div class="empty-ico" aria-hidden="true">' + IC.wait + '</div>' +
           '<h2>Rota kuralları hazırlanıyor</h2>' +
           '<p>' + esc(ULKE_AD[aktif] || "") + ' takviminin adımları, belge listesi ve sınavları resmi kaynaklardan doğrulanıyor. Hazır olunca adımların sınıfına göre tarihlenmiş olarak burada görünecek.</p>' +
-          '<div class="btn-row"><a class="btn-ghost" href="universiteler.html#' + esc(aktif || "") + '">Üniversitelerim</a>' +
+          '<div class="btn-row"><a class="btn-ghost" href="/universiteler#' + esc(aktif || "") + '">Üniversitelerim</a>' +
           (GUIDE[aktif] ? '<a class="btn-ghost" href="' + GUIDE[aktif] + '">' + esc(ULKE_AD[aktif]) + ' rehberi</a>' : "") +
-          '<a class="btn-primary" href="sinavlar.html">Sınavlarım</a></div></div>';
+          '<a class="btn-primary" href="/sinavlar">Sınavlarım</a></div></div>';
         sayaclar();
         return;
       }
@@ -351,7 +352,7 @@
           // Uzun açıklama tek tıkla açılır (sayfa taranabilir kalsın)
           (tk.detay ? '<details class="ic-ayrinti"><summary>Ayrıntı</summary><p>' + esc(tk.detay) + '</p><div class="rs-foot">' + kes(tk.kesinlik) + src(tk.kaynak) + '</div></details>'
             : '<div class="rs-foot">' + kes(tk.kesinlik) + src(tk.kaynak) + '</div>') +
-          (aktif === "de" ? '<p class="rota-alan">' + IC.flag + '<span>Hedef alanın: <strong>' + esc(alan) + '</strong>. Türk diplomasıyla Almanya’da giriş hakkı YKS’de yerleştiğin alan ve komşu alanlar için doğar; YKS tercihini bu alana göre yap. <a href="profil.html#pf-hedefAlan">Hedef alanı değiştir</a></span></p>' : "") +
+          (aktif === "de" ? '<p class="rota-alan">' + IC.flag + '<span>Hedef alanın: <strong>' + esc(alan) + '</strong>. Türk diplomasıyla Almanya’da giriş hakkı YKS’de yerleştiğin alan ve komşu alanlar için doğar; YKS tercihini bu alana göre yap. <a href="/profil#pf-hedefAlan">Hedef alanı değiştir</a></span></p>' : "") +
         '</div>' +
       '</section>';
 
@@ -383,7 +384,7 @@
         html += '<section class="surface rota-card" aria-labelledby="rx-h"><h2 class="panel-h" id="rx-h">' + IC.exam + 'Rotanın sınavları</h2>' +
           (g.zorunlu.length ? '<h3 class="rs-sub-h">Zorunlu</h3><ul class="rs-exams">' + sinavGrupHtml(g.zorunlu, "zorunlu", g.notlar) + '</ul>' : "") +
           (g.secmeli.length ? '<h3 class="rs-sub-h">Seçmeli</h3><ul class="rs-exams">' + sinavGrupHtml(g.secmeli, "secmeli", g.notlar) + '</ul>' : "") +
-          '<p class="field-hint" style="margin-top:10px;"><a href="sinavlar.html?filtre=rota">Sınavlar</a> sayfasında “Takvimimdeki sınavlar” filtresiyle de görebilirsin.</p>' +
+          '<p class="field-hint" style="margin-top:10px;"><a href="/sinavlar?filtre=rota">Sınavlar</a> sayfasında “Takvimimdeki sınavlar” filtresiyle de görebilirsin.</p>' +
         '</section>';
       }
       // Belgeler
@@ -452,7 +453,7 @@
       aktif = u;
       panel.classList.remove("ic-sakin");
       A.rota.sec(u);
-      try { history.replaceState(null, "", "rota.html?ulke=" + u); } catch (e) { /* file:// */ }
+      try { history.replaceState(null, "", "/takvim?ulke=" + u); } catch (e) { /* file:// */ }
       root.querySelectorAll('.rota-tabs [role="tab"]').forEach(function (t) {
         var on = t.dataset.ulke === u;
         t.setAttribute("aria-selected", String(on)); t.tabIndex = on ? 0 : -1;

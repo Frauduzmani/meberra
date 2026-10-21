@@ -307,7 +307,7 @@ Meberra, Google Play'e **Trusted Web Activity (TWA)** olarak, yani siteyi tam ek
 olarak konabilir. Uygulama içeriği her zaman canlı siteden gelir; mağazaya yeni sürüm göndermeden site güncellenir.
 
 - [ ] **Gereksinimler:** geçerli sertifikalı **HTTPS alan adı** (ör. `https://meberra.com`), `manifest.webmanifest`
-      (ad, `start_url`, `display: standalone`, 192/512 ve maskable ikonlar — hazır), kökte `sw.js` (hazır), Lighthouse
+      (ad, `start_url: /bugun`, `id: /bugun`, `display: standalone`, 192/512 ve maskable ikonlar — hazır), kökte `sw.js` (hazır), Lighthouse
       PWA denetiminin geçmesi. Google Play geliştirici hesabı (tek seferlik ücret) ve Java 17 + Android SDK
       (Bubblewrap ilk çalıştırmada indirmeyi önerir).
 - [ ] **Bubblewrap CLI** (bilgisayarınızda, sunucuda değil):
@@ -332,11 +332,16 @@ olarak konabilir. Uygulama içeriği her zaman canlı siteden gelir; mağazaya y
 - [ ] **Bildirimler:** Mevcut **web push** TWA içinde de çalışır (Chrome'un bildirim izni Android uygulamasına
       devredilir; Android 13+ cihazda uygulama bildirim izni ister). Ek sunucu ayarı gerekmez; VAPID anahtarlarını
       koruyun (E2).
-- [ ] **Mağaza metinleri:** Gizlilik politikası adresi (`/gizlilik.html`), veri güvenliği formu (toplanan veriler:
+- [ ] **Mağaza metinleri:** Gizlilik politikası adresi (`/gizlilik`), veri güvenliği formu (toplanan veriler:
       e-posta, ad, çalışma ilerlemesi, IP adresi — 90 gün), hedef yaş grubu (13–18 yaş öğrenciler varsa **Aileler
       politikası** gereklerini avukatınızla gözden geçirin).
 - [ ] **Bakım modu:** Yönetici paneli → Sistem → Bakım modu ile site (ve TWA uygulaması) geçici olarak bakım sayfasına
-      alınabilir; yönetici girişi ve paneli açık kalır.
+      alınabilir; yönetici girişi (`/giris`) ve paneli açık kalır.
+- [ ] **1.8.0 temiz adresler:** 1.8.0'dan önce Bubblewrap ile paket oluşturduysanız `twa-manifest.json` içindeki
+      `startUrl` değerini `/bugun` yapıp yeniden derleyin (eski `/index.html` de 301 ile `/bugun`'a gider, yani acil değil).
+      Yönetici paneli adresi **`/yonetim`**'dir (yalnızca yönetici oturumunda açılır; diğer herkes 404 görür, robots.txt'te
+      bilerek yazılmaz). Eski `/x.html` adresleri ve yer imleri 301 ile yeni adreslerine gider. Adres tablosu:
+      `assets/js/adresler.js` (yönetim adresi yalnızca `server/adresler.js`).
 
 ---
 

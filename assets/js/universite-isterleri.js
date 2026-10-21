@@ -32,12 +32,12 @@
       kategori: "Bilim Sınavı",
       alan: "Matematik",
       ozet: "Limit, Türev, İntegral, Diferansiyel Denklemler, Kutupsal Eğriler ve Taylor Serileri. Mühendislik ve fen programlarının temel şartıdır.",
-      konuUrl: "ap-calculus.html",
+      konuUrl: "/ders/calculus",
       denemeler: [
-        { ad: "Calculus AB Denemesi", kod: "calculus-ab", url: "deneme.html?ders=calculus-ab" },
-        { ad: "Calculus BC Denemesi", kod: "calculus-bc", url: "deneme.html?ders=calculus-bc" }
+        { ad: "Calculus AB Denemesi", kod: "calculus-ab", url: "/deneme?ders=calculus-ab" },
+        { ad: "Calculus BC Denemesi", kod: "calculus-bc", url: "/deneme?ders=calculus-bc" }
       ],
-      sinavUrl: "sinavlar.html#ap-calculus-ab"
+      sinavUrl: "/sinavlar#ap-calculus-ab"
     },
     "ap-physics": {
       kod: "ap-physics",
@@ -45,11 +45,11 @@
       kategori: "Bilim Sınavı",
       alan: "Fizik",
       ozet: "Newton Mekaniği, Enerji ve Momentum Korunumu, Basit Harmonik Hareket, Rotasyonel Dinamik.",
-      konuUrl: "ap-physics.html",
+      konuUrl: "/ders/physics",
       denemeler: [
-        { ad: "Physics 1 Denemesi", kod: "physics-1", url: "deneme.html?ders=physics-1" }
+        { ad: "Physics 1 Denemesi", kod: "physics-1", url: "/deneme?ders=physics-1" }
       ],
-      sinavUrl: "sinavlar.html#ap-physics-1"
+      sinavUrl: "/sinavlar#ap-physics-1"
     },
     "ap-chemistry": {
       kod: "ap-chemistry",
@@ -57,11 +57,11 @@
       kategori: "Bilim Sınavı",
       alan: "Kimya",
       ozet: "Moleküler Yapı, Termodinamik, Kimyasal Denge, Kinetik Hız Yasaları ve Elektrokimya.",
-      konuUrl: "ap-chemistry.html",
+      konuUrl: "/ders/chemistry",
       denemeler: [
-        { ad: "Chemistry Denemesi", kod: "chemistry", url: "deneme.html?ders=chemistry" }
+        { ad: "Chemistry Denemesi", kod: "chemistry", url: "/deneme?ders=chemistry" }
       ],
-      sinavUrl: "sinavlar.html#ap-chemistry"
+      sinavUrl: "/sinavlar#ap-chemistry"
     },
     "ap-biology": {
       kod: "ap-biology",
@@ -69,11 +69,11 @@
       kategori: "Bilim Sınavı",
       alan: "Biyoloji",
       ozet: "Biyokimya, Hücresel Enerji (Solunum & Fotosentez), Moleküler Genetik ve Biyoistatistik.",
-      konuUrl: "ap-biology.html",
+      konuUrl: "/ders/biology",
       denemeler: [
-        { ad: "Biology Denemesi", kod: "biology", url: "deneme.html?ders=biology" }
+        { ad: "Biology Denemesi", kod: "biology", url: "/deneme?ders=biology" }
       ],
-      sinavUrl: "sinavlar.html#ap-biology"
+      sinavUrl: "/sinavlar#ap-biology"
     },
     "ap-cs-a": {
       kod: "ap-cs-a",
@@ -81,11 +81,11 @@
       kategori: "Bilim Sınavı",
       alan: "Bilgisayar & Yazılım",
       ozet: "Java Nesne Yönelimli Programlama (OOP), Sınıflar, Diziler, Veri Yapıları ve Algoritma Analizi.",
-      konuUrl: "ap-electives.html?unite=2",
+      konuUrl: "/ders/secmeli?unite=2",
       denemeler: [
-        { ad: "Computer Science A Denemesi", kod: "cs-a", url: "deneme.html?ders=cs-a" }
+        { ad: "Computer Science A Denemesi", kod: "cs-a", url: "/deneme?ders=cs-a" }
       ],
-      sinavUrl: "sinavlar.html#ap-computer-science-a"
+      sinavUrl: "/sinavlar#ap-computer-science-a"
     },
     "ap-economics": {
       kod: "ap-economics",
@@ -93,11 +93,11 @@
       kategori: "Sosyal & İdari Bilim",
       alan: "Ekonomi",
       ozet: "Arz-Talep Dengesi, Piyasa Yapıları, Maliye Politikaları, Enflasyon ve Büyüme Modelleri.",
-      konuUrl: "ap-electives.html?unite=4",
+      konuUrl: "/ders/secmeli?unite=4",
       denemeler: [
-        { ad: "Ekonomi Denemesi", kod: "economics", url: "deneme.html?ders=economics" }
+        { ad: "Ekonomi Denemesi", kod: "economics", url: "/deneme?ders=economics" }
       ],
-      sinavUrl: "sinavlar.html#ap-macroeconomics"
+      sinavUrl: "/sinavlar#ap-macroeconomics"
     },
     "english-language": {
       kod: "english-language",
@@ -105,11 +105,11 @@
       kategori: "Dil Sınavı",
       alan: "İngilizce",
       ozet: "CEFR C1 Seviyesi Akademik Okuma & Makale Analizi, Retorik Sentez, Writing & Speaking Teknikleri.",
-      konuUrl: "ap-english.html",
+      konuUrl: "/ders/english",
       denemeler: [
-        { ad: "Akademik İngilizce Denemesi", kod: "english-language", url: "deneme.html?ders=english-language" }
+        { ad: "Akademik İngilizce Denemesi", kod: "english-language", url: "/deneme?ders=english-language" }
       ],
-      sinavUrl: "sinavlar.html#ielts-academic"
+      sinavUrl: "/sinavlar#ielts-academic"
     },
     "tolc-i": {
       kod: "tolc-i",
@@ -117,13 +117,13 @@
       kategori: "Bilim Sınavı",
       alan: "Mühendislik Sınavı",
       ozet: "CISIA İngilizce Mühendislik Sınavı: Matematik (20 soru), Mantık (10 soru), Fen/Fizik (10 soru) ve İngilizce.",
-      konuUrl: "ap-calculus.html",
-      ekKonuUrl: "ap-physics.html",
+      konuUrl: "/ders/calculus",
+      ekKonuUrl: "/ders/physics",
       denemeler: [
-        { ad: "Matematik Temelli Deneme (Calculus)", kod: "calculus-ab", url: "deneme.html?ders=calculus-ab" },
-        { ad: "Fizik Temelli Deneme (Physics 1)", kod: "physics-1", url: "deneme.html?ders=physics-1" }
+        { ad: "Matematik Temelli Deneme (Calculus)", kod: "calculus-ab", url: "/deneme?ders=calculus-ab" },
+        { ad: "Fizik Temelli Deneme (Physics 1)", kod: "physics-1", url: "/deneme?ders=physics-1" }
       ],
-      sinavUrl: "sinavlar.html#cent-s"
+      sinavUrl: "/sinavlar#cent-s"
     },
     "testas": {
       kod: "testas",
@@ -131,13 +131,13 @@
       kategori: "Bilim Sınavı",
       alan: "Almanya Yetenek Testi",
       ozet: "Almanya üniversiteleri için alana özgü yetenek testi: Genel Çekirdek Test + Mühendislik / Doğa Bilimleri modülü.",
-      konuUrl: "ap-calculus.html",
-      ekKonuUrl: "ap-physics.html",
+      konuUrl: "/ders/calculus",
+      ekKonuUrl: "/ders/physics",
       denemeler: [
-        { ad: "Sayısal Akıl Yürütme (Calculus)", kod: "calculus-ab", url: "deneme.html?ders=calculus-ab" },
-        { ad: "Fiziksel Sistemler (Physics 1)", kod: "physics-1", url: "deneme.html?ders=physics-1" }
+        { ad: "Sayısal Akıl Yürütme (Calculus)", kod: "calculus-ab", url: "/deneme?ders=calculus-ab" },
+        { ad: "Fiziksel Sistemler (Physics 1)", kod: "physics-1", url: "/deneme?ders=physics-1" }
       ],
-      sinavUrl: "sinavlar.html#testas"
+      sinavUrl: "/sinavlar#testas"
     }
   };
 
@@ -169,8 +169,8 @@
         dilSinavlari.push({ ad: "TOEFL iBT", esik: "90+", kod: "english-language" });
       }
       if (dil === "yerel" || dil === "hepsi") {
-        dilSinavlari.push({ ad: "TestDaF", esik: "TDN 4x4", url: "sinavlar.html#testdaf" });
-        dilSinavlari.push({ ad: "DSH", esik: "DSH-2", url: "sinavlar.html#dsh" });
+        dilSinavlari.push({ ad: "TestDaF", esik: "TDN 4x4", url: "/sinavlar#testdaf" });
+        dilSinavlari.push({ ad: "DSH", esik: "DSH-2", url: "/sinavlar#dsh" });
       }
       bilimSinavlari.push(DERSLER["ap-calculus"]);
       bilimSinavlari.push(DERSLER["ap-physics"]);
@@ -227,9 +227,9 @@
           dilSinavlari.push({ ad: "TOEFL iBT", esik: "85 - 90+", kod: "english-language" });
         }
         if (dil === "yerel" || dil === "hepsi") {
-          dilSinavlari.push({ ad: "TestDaF", esik: "TDN 4x4", url: "sinavlar.html#testdaf" });
-          dilSinavlari.push({ ad: "DSH", esik: "DSH-2", url: "sinavlar.html#dsh" });
-          dilSinavlari.push({ ad: "telc C1 Hochschule", esik: "C1 Geçer", url: "sinavlar.html#telc-c1-hochschule" });
+          dilSinavlari.push({ ad: "TestDaF", esik: "TDN 4x4", url: "/sinavlar#testdaf" });
+          dilSinavlari.push({ ad: "DSH", esik: "DSH-2", url: "/sinavlar#dsh" });
+          dilSinavlari.push({ ad: "telc C1 Hochschule", esik: "C1 Geçer", url: "/sinavlar#telc-c1-hochschule" });
         }
         bilimSinavlari.push(DERSLER["ap-calculus"]);
         bilimSinavlari.push(DERSLER["ap-physics"]);
@@ -312,9 +312,9 @@
                     (d.esik ? '<span class="sr-esik-pill">' + esc(d.esik) + '</span>' : '') + '</div>' +
                     '<p class="sr-lesson-desc">Akademik okuma, dinleme, kompozisyon ve konuşma yetkinliği.</p>' +
                     '<div class="sr-lesson-actions">' +
-                      '<a class="btn-primary btn-sm" href="ap-english.html">📖 Konu Anlatımı</a>' +
-                      '<a class="btn-ghost btn-sm" href="deneme.html?ders=english-language">🎯 Deneme Sınavı</a>' +
-                      (d.url ? '<a class="btn-ghost btn-sm" href="' + esc(d.url) + '">Sınav Bilgisi</a>' : '<a class="btn-ghost btn-sm" href="sinavlar.html#ielts-academic">Format</a>') +
+                      '<a class="btn-primary btn-sm" href="/ders/english">📖 Konu Anlatımı</a>' +
+                      '<a class="btn-ghost btn-sm" href="/deneme?ders=english-language">🎯 Deneme Sınavı</a>' +
+                      (d.url ? '<a class="btn-ghost btn-sm" href="' + esc(d.url) + '">Sınav Bilgisi</a>' : '<a class="btn-ghost btn-sm" href="/sinavlar#ielts-academic">Format</a>') +
                     '</div>' +
                   '</li>';
                 }).join("") +

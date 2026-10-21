@@ -87,7 +87,7 @@ ok(E.sablonUlkeSuz(SB, "hepsi").liste.length === 9, "hepsi: 9");
 
 // 7) Sayfa bağlantısı
 const H = fs.readFileSync(path.join(ROOT, "yazismalar.html"), "utf8");
-ok(H.includes('src="data/kocluk/teyit-taslaklari.js"') && H.indexOf("teyit-taslaklari.js") < H.indexOf("assets/js/app.js"), "yazismalar.html taslak dosyasını yükler");
+ok(H.includes('src="/data/kocluk/teyit-taslaklari.js"') && H.indexOf("teyit-taslaklari.js") < H.indexOf("assets/js/app.js"), "yazismalar.html taslak dosyasını yükler");
 
 console.log(`\ntaslak-birim-test: ${pass} geçti, ${fail} kaldı`);
 process.exit(fail ? 1 : 0);

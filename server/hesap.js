@@ -232,7 +232,7 @@ function hesapServisi(db, denetim, eposta) {
       if (!u || u.durum !== "aktif") { denetim({ eylem: "auth.sifre-sifirlama-istek-bilinmeyen", istek: req, ayrinti: { eposta: ep.slice(0, 120) } }); return; }
       const tok = belirtec(32), z = simdi();
       q.resetEkle.run(u.id, ozet(tok), z, tarihEkle(z, 1 / 24), req ? req.ip : null);
-      const link = config.baseUrl + "/sifre-sifirla.html?t=" + encodeURIComponent(tok);
+      const link = config.baseUrl + "/sifre-sifirla?t=" + encodeURIComponent(tok);
       eposta.gonder(u.eposta, "Meberra şifre sıfırlama", "Merhaba " + u.ad + ",\n\nŞifreni sıfırlamak için bu bağlantıyı aç (1 saat geçerli):\n" + link +
         "\n\nBu isteği sen yapmadıysan bu e-postayı yok sayabilirsin; şifren değişmez.\n\nMeberra");
       denetim({ eylem: "auth.sifre-sifirlama-istek", kullanici: u.id, istek: req });
@@ -269,7 +269,7 @@ function hesapServisi(db, denetim, eposta) {
       // Yöneticiye bildirim (ADMIN_EPOSTA tanımlıysa)
       if (config.yonetici.eposta) eposta.gonder(config.yonetici.eposta, "Yeni ödeme bildirimi: " + u.ad + " " + u.soyad + " · " + plan.ad,
         "Yeni Premium ödeme bildirimi\n\nÖğrenci: " + u.ad + " " + u.soyad + " <" + u.eposta + ">\nPlan: " + plan.ad + " · " + tutar + " TL" + (ek && ek.kuponKod ? " (indirim kodu " + ek.kuponKod + ", liste fiyatı " + plan.fiyat + " TL)" : "") + "\nÖdeyen: " + odeyen +
-        (aciklama ? "\nNot: " + aciklama : "") + "\n\nDekontu kontrol edip onaylamak için: " + config.baseUrl + "/admin.html#talepler");
+        (aciklama ? "\nNot: " + aciklama : "") + "\n\nDekontu kontrol edip onaylamak için: " + config.baseUrl + "/yonetim#talepler");
       return { id, plan: plan.id, tutar, durum: "bekliyor" };
     },
     /** Öğrenci kendi bekleyen ödeme bildirimini geri çeker (ör. yanlış plan seçtiyse). */
@@ -286,7 +286,7 @@ function hesapServisi(db, denetim, eposta) {
       const u = q.kullaniciId.get(userId);
       if (!u || !u.eposta) return;
       eposta.gonder(u.eposta, "Meberra Premium hesabın açıldı", "Merhaba " + u.ad + ",\n\nÖdemen onaylandı; Premium hesabın açıldı. Bitiş tarihi: " +
-        new Date(bitis).toLocaleDateString("tr-TR", { timeZone: "Europe/Istanbul" }) + ".\n\nTüm ünitelere ve sınırsız denemeye şimdi erişebilirsin: " + config.baseUrl + "/calis.html\n\nİyi çalışmalar,\nMeberra");
+        new Date(bitis).toLocaleDateString("tr-TR", { timeZone: "Europe/Istanbul" }) + ".\n\nTüm ünitelere ve sınırsız denemeye şimdi erişebilirsin: " + config.baseUrl + "/calis\n\nİyi çalışmalar,\nMeberra");
     },
 
     /** Premium dönemi ekler: mevcut aktif dönemin sonundan (yoksa şimdiden) itibaren. */

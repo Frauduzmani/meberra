@@ -36,6 +36,12 @@
 
   var SURUM = "1.0.0";
   var DEPO_ANAHTARI = "apmeberra:rota:v1";
+  /** 1.8.0: eski "x.html" bağlantısı → temiz adres (tablo assets/js/adresler.js; bulunamazsa olduğu gibi) */
+  function temizAdres(h) {
+    var A = (typeof globalThis !== "undefined" && globalThis.MEBERRA_ADRES) || null;
+    if (!A && typeof module === "object" && module && module.exports && typeof require === "function") { try { A = require("./adresler.js"); } catch (e) { A = null; } }
+    return A ? A.temiz(h) : h;
+  }
   // Tur 11 (D7): 15 ülke profilde seçilebilir; tarihli rota verisi (ulke-rotalari.js) yalnızca TARIHLI_ROTA ülkelerinde var.
   var ULKELER = ["de", "it", "at", "ch", "nl", "be", "fr", "es", "se", "fi", "dk", "ie", "hu", "pl", "cz"];
   var TARIHLI_ROTA = ["de", "it"];
@@ -318,7 +324,7 @@
   /** "ielts-academic|toefl-ibt" -> ["ielts-academic", "toefl-ibt"] */
   function secenekler(giris) { return str(giris).split("|").map(str).filter(Boolean); }
 
-  /** AP sınavı mı? (data/mevzuat/sinavlar.js id kuralı: "ap-...") */
+  /** AP sınavı mı? (/data/mevzuat/sinavlar.js id kuralı: "ap-...") */
   function apMi(id) { return /^ap-/.test(str(id)); }
 
   /**
@@ -431,7 +437,7 @@
   }
 
   // ------------------------------------------------------------------------
-  // Profile özel uyarılar (data/mevzuat/ulke-rotalari.js -> window.APMEBERRA_ROTA_UYARILARI)
+  // Profile özel uyarılar (/data/mevzuat/ulke-rotalari.js -> window.APMEBERRA_ROTA_UYARILARI)
   // ------------------------------------------------------------------------
   /**
    * kosul: "mezun-de-it" -> profil mezun ve hedef ülkelerinde hem Almanya hem İtalya var (K4-a).
@@ -447,22 +453,24 @@
   }
 
   var SAYFA_AD = {
-    "universiteler.html": "Üniversitelerim", "almanya-muhendislik.html": "Almanya rehberi", "italya-muhendislik.html": "İtalya rehberi",
-    "sinavlar.html": "Sınavlar", "yazismalar.html": "Başvurularım", "bilgi-merkezi.html": "Kaynaklar",
-    "istanbul-sinav-rehberi.html": "İstanbul sınav rehberi", "profil.html": "Profilim", "rota.html": "Takvimim",
-    "seviye-testi.html": "Seviye testi", "deneme.html": "Denemeler", "sinav-cents.html": "CEnT-S hazırlığı"
+    "/universiteler": "Üniversitelerim", "/rehber/almanya": "Almanya rehberi", "/rehber/italya": "İtalya rehberi",
+    "/sinavlar": "Sınavlar", "/basvurular": "Başvurularım", "/kaynaklar": "Kaynaklar",
+    "/rehber/istanbul-sinav": "İstanbul sınav rehberi", "/profil": "Profilim", "/takvim": "Takvimim",
+    "/seviye-testi": "Seviye testi", "/deneme": "Denemeler", "/ders/cent-s": "CEnT-S hazırlığı"
   };
   /** Bağlı öğe -> {tur, id, href, etiket}. Yalnızca yerel ve güvenli yollar. */
   function bagliHedef(bagli) {
     if (!isObj(bagli)) return null;
     if (str(bagli.sablon) && /^[A-Za-z0-9._-]+$/.test(bagli.sablon)) {
-      return { tur: "sablon", id: bagli.sablon, href: "yazismalar.html?sablon=" + encodeURIComponent(bagli.sablon), etiket: "E-postayı hazırla" };
+      return { tur: "sablon", id: bagli.sablon, href: "/basvurular?sablon=" + encodeURIComponent(bagli.sablon), etiket: "E-postayı hazırla" };
     }
     if (str(bagli.sinav) && /^[A-Za-z0-9._-]+$/.test(bagli.sinav)) {
-      return { tur: "sinav", id: bagli.sinav, href: "sinavlar.html#" + encodeURIComponent(bagli.sinav), etiket: "Sınava git" };
+      return { tur: "sinav", id: bagli.sinav, href: "/sinavlar#" + encodeURIComponent(bagli.sinav), etiket: "Sınava git" };
     }
     if (str(bagli.sayfa) && /^[A-Za-z0-9._-]+\.html([?#][A-Za-z0-9._=&#-]*)?$/.test(bagli.sayfa)) {
-      return { tur: "sayfa", id: bagli.sayfa, href: bagli.sayfa, etiket: SAYFA_AD[bagli.sayfa.split(/[?#]/)[0]] || "Sayfayı aç" };
+      // Veride eski dosya adı (ör. universiteler.html#de); bağlantı temiz adrese çevrilir (1.8.0, assets/js/adresler.js)
+      var href = temizAdres(bagli.sayfa);
+      return { tur: "sayfa", id: bagli.sayfa, href: href, etiket: SAYFA_AD[href.split(/[?#]/)[0]] || "Sayfayı aç" };
     }
     return null;
   }

@@ -165,6 +165,8 @@
     return q;
   }
   function qKey(q) { return q.sayfa + "|" + q.id; }
+  /** 1.8.0: bankadaki sayfa adı (ör. ap-calculus.html) → temiz adres (/ders/calculus); tablo assets/js/adresler.js */
+  function adresOf(s) { var A = window.MEBERRA_ADRES; return A ? A.temiz(s) : s; }
   function poolFor(kod, units) {
     return BANK.sorular.filter(function (q) { return q.denemeKodlari.indexOf(kod) >= 0 && (!units || units.indexOf(q.unite) >= 0); });
   }
@@ -243,9 +245,9 @@
       var t = TEMPO[kod] || {};
       var yarim = d.aktif && d.aktif.kod === kod;
       var kilit = ucretsiz && !yarim && hakKullanildi(kod, d);
-      var cta = yarim ? '<a class="btn-primary dn-card-cta" href="deneme.html">Yarım denemene devam et →</a>'
-        : kilit ? '<p class="dn-note dn-hak-bitti">Ücretsiz denemeni kullandın — Premium ile sınırsız.</p><a class="btn-energy dn-card-cta" href="premium.html">Premium’a geç →</a>'
-        : '<a class="btn-primary dn-card-cta" href="deneme.html?ders=' + encodeURIComponent(kod) + '">Denemeyi kur →</a>' +
+      var cta = yarim ? '<a class="btn-primary dn-card-cta" href="/deneme">Yarım denemene devam et →</a>'
+        : kilit ? '<p class="dn-note dn-hak-bitti">Ücretsiz denemeni kullandın — Premium ile sınırsız.</p><a class="btn-energy dn-card-cta" href="/premium">Premium’a geç →</a>'
+        : '<a class="btn-primary dn-card-cta" href="/deneme?ders=' + encodeURIComponent(kod) + '">Denemeyi kur →</a>' +
           (ucretsiz ? '<p class="dn-note">Ücretsiz planda bu ders için 1 deneme hakkın var' + (sayfaOf(kod) === "ap-calculus" || sayfaOf(kod) === "ap-electives" ? ' (aynı ders sayfasındaki denemeyle ortak)' : '') + '.</p>' : '');
       return '<article class="dn-card" style="--dn-c:' + colorVar(kod) + '">' +
         (oneri.secili.indexOf(kod) >= 0 ? '<p class="dn-note dn-oneri">Seçtiğin ders · önerilen</p>' : '') +
@@ -275,7 +277,7 @@
       '<section class="dn-section interactive-panel" aria-labelledby="dn-genel-title" id="genel">' +
       '<h2 class="panel-title" id="dn-genel-title">Genel deneme (karma)</h2>' +
       '<p class="panel-sub">Seçtiğin derslerden dengeli karışık deneme. Her ders kendi bloğunda gelir; süre her sorunun kendi dersinin temposuyla toplanır.</p>' +
-      (ucretsiz ? '<p class="dn-note dn-hak-bitti">Genel deneme Premium’da. <a href="premium.html">Premium’a geç →</a></p>' : '') +
+      (ucretsiz ? '<p class="dn-note dn-hak-bitti">Genel deneme Premium’da. <a href="/premium">Premium’a geç →</a></p>' : '') +
       setupForm("genel") +
       '</section>' +
       renderHistory(d);
@@ -301,7 +303,7 @@
     return '<section class="dn-yk' + (n ? "" : " is-bos") + '" id="dn-yanlis-kart" aria-labelledby="dn-yk-title">' +
       '<span class="dn-yk-ico">' + (n ? IC_Y.redo : IC_Y.ok) + '</span>' +
       '<div class="dn-yk-body"><h2 id="dn-yk-title">Yanlışlarım</h2><p>' + metin + '</p></div>' +
-      (n ? '<a class="btn-primary" href="deneme.html?mod=yanlislar">Yanlışlarımı çöz →</a>' : (h.acik.length ? '<a class="btn-ghost" href="ilerleme.html#hata-title">Yanlışlarım →</a>' : '')) +
+      (n ? '<a class="btn-primary" href="/deneme?mod=yanlislar">Yanlışlarımı çöz →</a>' : (h.acik.length ? '<a class="btn-ghost" href="/ilerleme#hata-title">Yanlışlarım →</a>' : '')) +
       '</section>';
   }
 
@@ -312,7 +314,7 @@
     var kaynak = opt.deneme ? d.gecmis.filter(function (r) { return r.id === opt.deneme; })[0] || null : null;
     var havuz = h.havuz;
     if (kaynak) { var yk = yanlisAnahtarlari(kaynak); havuz = havuz.filter(function (x) { return yk[qKey(x.q)]; }); }
-    var bas = '<p class="dn-back"><a href="deneme.html">← Tüm denemeler</a></p>' +
+    var bas = '<p class="dn-back"><a href="/deneme">← Tüm denemeler</a></p>' +
       '<header class="page-head dn-y-head">' +
       '<span class="eyebrow">Yanlışlarım</span>' +
       '<h1 tabindex="-1" id="dn-h1">' + (kaynak ? "Bu denemenin yanlışlarını çöz" : "Yanlışlarını tek oturumda çöz") + '</h1>' +
@@ -327,9 +329,9 @@
         '<section class="dn-empty" id="dn-yanlis-bos" role="status" aria-labelledby="dn-yb-title">' +
         '<span class="dn-empty-ico">' + IC_Y.ok + '</span><h2 id="dn-yb-title">' + baslik + '</h2><p>' + aciklama + '</p>' +
         '<div class="dn-actions">' +
-        (tumu ? '<a class="btn-primary" href="deneme.html?mod=yanlislar">Tüm yanlışlarım (' + h.havuz.length + ')</a>' :
-          (h.acik.length ? '<a class="btn-primary" href="ilerleme.html#hata-title">Yanlışlarım’a git</a>' : '<a class="btn-primary" href="deneme.html">Deneme çöz</a>')) +
-        '<a class="btn-ghost" href="calis.html">Çalış</a><a class="btn-ghost" href="index.html">Bugün’e dön</a></div></section>';
+        (tumu ? '<a class="btn-primary" href="/deneme?mod=yanlislar">Tüm yanlışlarım (' + h.havuz.length + ')</a>' :
+          (h.acik.length ? '<a class="btn-primary" href="/ilerleme#hata-title">Yanlışlarım’a git</a>' : '<a class="btn-primary" href="/deneme">Deneme çöz</a>')) +
+        '<a class="btn-ghost" href="/calis">Çalış</a><a class="btn-ghost" href="/bugun">Bugün’e dön</a></div></section>';
       focusH1();
       return;
     }
@@ -359,7 +361,7 @@
       '<div class="dn-actions"><button type="submit" class="btn-primary" id="dn-ystart">Yanlışlarımı çözmeye başla</button></div>' +
       '</form>' +
       '<p class="dn-note">Süre tutulmaz; geçen süre kayda yazılır. Boş bıraktığın hata açık kalır.' +
-      (h.disarida.length ? ' ' + h.disarida.length + ' açık hata ders sayfalarındaki sorularda: <a href="ilerleme.html#hata-title">Yanlışlarım</a>.' : '') + '</p>' +
+      (h.disarida.length ? ' ' + h.disarida.length + ' açık hata ders sayfalarındaki sorularda: <a href="/ilerleme#hata-title">Yanlışlarım</a>.' : '') + '</p>' +
       '</section>';
     var form = document.getElementById("dn-yform");
     function secim() {
@@ -407,7 +409,7 @@
         baslangic: new Date().toISOString(), uniteFiltre: null, kaynakDeneme: kaynak ? kaynak.id : null
       };
       save(d);
-      try { history.replaceState(null, "", "deneme.html?mod=yanlislar"); } catch (e) { /* yok say */ }
+      try { history.replaceState(null, "", "/deneme?mod=yanlislar"); } catch (e) { /* yok say */ }
       renderExam(d.aktif);
     });
   }
@@ -518,7 +520,7 @@
     var k = isGenel ? null : BANK.kodlar[kod];
     document.title = (isGenel ? "Genel deneme" : k.ad + " denemesi") + " | Meberra";
     view.innerHTML =
-      '<p class="dn-back"><a href="deneme.html">← Tüm denemeler</a></p>' +
+      '<p class="dn-back"><a href="/deneme">← Tüm denemeler</a></p>' +
       '<header class="page-head" style="--dn-c:' + colorVar(kod) + '">' +
       '<span class="eyebrow">Deneme kurulumu</span>' +
       '<h1 tabindex="-1" id="dn-h1">' + (isGenel ? "Genel deneme (karma)" : esc(k.ad)) + '</h1>' +
@@ -563,8 +565,8 @@
     view.innerHTML = '<section class="surface ug-duvar" aria-labelledby="dn-duvar-h">' +
       '<h2 id="dn-duvar-h" tabindex="-1">' + (cfg.kod === "genel" ? "Genel deneme Premium'da" : "Bu dersin ücretsiz denemesini kullandın") + '</h2>' +
       '<p>Ücretsiz planda her dersten 1 deneme çözebilirsin (tahmini puan bandı dahil). Premium ile sınırsız ders denemesi ve genel deneme çöz.</p>' +
-      '<div class="ug-duvar-eylem"><a class="btn-energy" href="premium.html">Premium\'a geç</a><button type="button" class="btn-ghost" id="dn-duvar-geri">Denemelere dön</button></div>' +
-      '<p class="ug-duvar-not">Yanlışlarını tekrar çözmek ücretsiz: <a href="deneme.html?mod=yanlislar">Yanlışlarım</a></p></section>';
+      '<div class="ug-duvar-eylem"><a class="btn-energy" href="/premium">Premium\'a geç</a><button type="button" class="btn-ghost" id="dn-duvar-geri">Denemelere dön</button></div>' +
+      '<p class="ug-duvar-not">Yanlışlarını tekrar çözmek ücretsiz: <a href="/deneme?mod=yanlislar">Yanlışlarım</a></p></section>';
     document.getElementById("dn-duvar-geri").addEventListener("click", function () { renderLanding(); });
     var h = document.getElementById("dn-duvar-h"); if (h) h.focus();
   }
@@ -897,9 +899,9 @@
     save(d);
     A = null;
     document.body.classList.remove("dn-exam-mode");
-    try { history.replaceState(null, "", "deneme.html?sonuc=" + encodeURIComponent(rec.id)); } catch (e) { /* file:// bazı tarayıcılarda */ }
+    try { history.replaceState(null, "", "/deneme?sonuc=" + encodeURIComponent(rec.id)); } catch (e) { /* file:// bazı tarayıcılarda */ }
     renderResult(rec, auto);
-    // 1.4.0 maskot/hareket — sonuç ekranı çizildikten sonra canlı katmana (assets/js/canli.js) haber: bant sayacı + kutlama.
+    // 1.4.0 maskot/hareket — sonuç ekranı çizildikten sonra canlı katmana (/assets/js/canli.js) haber: bant sayacı + kutlama.
     // Yalnızca yeni teslimde gider (?sonuc= ile yeniden açmada gitmez).
     try {
       window.dispatchEvent(new CustomEvent("meberra:deneme-bitti", { detail: { id: rec.id, kod: rec.kod, ad: rec.ad, mod: rec.mod || null,
@@ -982,14 +984,14 @@
       var y = u.soru ? Math.round(u.dogru / u.soru * 100) : 0;
       var q0 = null;
       for (var i = 0; i < rec.inceleme.length; i++) { var qq = BY_KEY[rec.inceleme[i].k]; if (qq && rec.inceleme[i].kod === u.kod && qq.unite === u.unite) { q0 = qq; break; } }
-      var link = q0 && q0.kap ? '<a href="' + esc(q0.sayfa) + '#' + esc(q0.kap) + '">Ders sayfası</a>' : (q0 ? '<a href="' + esc(q0.sayfa) + '">Ders sayfası</a>' : '');
+      var link = q0 && q0.kap ? '<a href="' + esc(adresOf(q0.sayfa)) + '#' + esc(q0.kap) + '">Ders sayfası</a>' : (q0 ? '<a href="' + esc(adresOf(q0.sayfa)) + '">Ders sayfası</a>' : '');
       return '<tr><th scope="row">' + (karma(rec) ? '<span class="dn-kdot" style="--dn-c:' + colorVar(u.kod) + '"></span>' : '') + esc(unitLabel(u.kod, u.unite)) + ' <span class="dn-uname">' + esc(String(u.ad).replace(/^Micro · |^Macro · |^Skill Cat\. \d — /, "")) + '</span></th>' +
         '<td>' + u.soru + '</td><td>' + u.dogru + '</td><td>' + u.yanlis + '</td><td>' + u.bos + '</td>' +
         '<td><span class="dn-pct ' + (y >= 75 ? "is-ok" : y >= 50 ? "is-mid" : "is-bad") + '">%' + y + '</span></td><td>' + link + '</td></tr>';
     }).join("");
 
     view.innerHTML =
-      '<p class="dn-back"><a href="deneme.html">← Tüm denemeler</a></p>' +
+      '<p class="dn-back"><a href="/deneme">← Tüm denemeler</a></p>' +
       '<header class="page-head" style="--dn-c:' + colorVar(rec.kod) + '">' +
       '<span class="eyebrow">Deneme sonucu</span>' +
       '<h1 tabindex="-1" id="dn-h1">' + esc(rec.ad) + '</h1>' +
@@ -1006,15 +1008,15 @@
       '<section class="dn-section" aria-labelledby="dn-ut-title"><h2 class="panel-title" id="dn-ut-title">Ünite bazında</h2>' +
       uniteGrafik(units, rec) +
       '<div class="dn-table-wrap"><table class="dn-table"><thead><tr><th scope="col">Ünite</th><th scope="col">Soru</th><th scope="col">Doğru</th><th scope="col">Yanlış</th><th scope="col">Boş</th><th scope="col">%</th><th scope="col"><span class="visually-hidden">Bağlantı</span></th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
-      (rec.kod === YKOD ? '<p class="dn-note">Doğru çözdüğün hatalar kapandı; yanlışlar ve boşlar Yanlışlarım’da açık kaldı (<a href="ilerleme.html#hata-title">İlerleme → Yanlışlarım</a>).</p>'
-        : '<p class="dn-note">Yanlış cevapladığın sorular Yanlışlarım’a eklendi (<a href="ilerleme.html">İlerleme → Yanlışlarım</a>). Boş bıraktıkların eklenmez.</p>') +
+      (rec.kod === YKOD ? '<p class="dn-note">Doğru çözdüğün hatalar kapandı; yanlışlar ve boşlar Yanlışlarım’da açık kaldı (<a href="/ilerleme#hata-title">İlerleme → Yanlışlarım</a>).</p>'
+        : '<p class="dn-note">Yanlış cevapladığın sorular Yanlışlarım’a eklendi (<a href="/ilerleme">İlerleme → Yanlışlarım</a>). Boş bıraktıkların eklenmez.</p>') +
       '</section>' +
       '<section class="dn-section" aria-labelledby="dn-rev-title"><h2 class="panel-title" id="dn-rev-title">Soru soru inceleme</h2>' +
       '<div class="dn-filter" role="group" aria-label="İnceleme filtresi">' +
       ['tumu:Tümü', 'yanlis:Yanlış', 'bos:Boş', 'isaretli:İşaretli', 'dogru:Doğru'].map(function (s, i) { var p = s.split(":"); return '<button type="button" class="chip" data-f="' + p[0] + '" aria-pressed="' + (i === 0 ? "true" : "false") + '">' + p[1] + '</button>'; }).join("") +
       '</div><div class="dn-review" id="dn-review"></div></section>' +
-      '<div class="dn-actions dn-result-actions">' + (rec.kod === YKOD ? '<a class="btn-secondary" href="deneme.html?mod=yanlislar">Yanlışlarıma dön</a>'
-        : '<a class="btn-secondary" href="deneme.html?ders=' + encodeURIComponent(rec.kod) + '">Yeni deneme kur</a>') + '<a class="btn-ghost" href="deneme.html">Tüm denemeler</a></div>';
+      '<div class="dn-actions dn-result-actions">' + (rec.kod === YKOD ? '<a class="btn-secondary" href="/deneme?mod=yanlislar">Yanlışlarıma dön</a>'
+        : '<a class="btn-secondary" href="/deneme?ders=' + encodeURIComponent(rec.kod) + '">Yeni deneme kur</a>') + '<a class="btn-ghost" href="/deneme">Tüm denemeler</a></div>';
 
     renderReview(rec, "tumu");
     var inc = document.getElementById("dn-se-incele");
@@ -1035,19 +1037,19 @@
   function sonucEylemleri(rec, units) {
     var h = yanlisHavuzu(), bu = yanlisAnahtarlari(rec);
     var buAcik = rec.kod === YKOD ? 0 : h.havuz.filter(function (x) { return bu[qKey(x.q)]; }).length;
-    var yl = buAcik ? { href: "deneme.html?mod=yanlislar&deneme=" + encodeURIComponent(rec.id), t: "Yanlış " + buAcik + " soruyu şimdi çöz" }
-      : (h.havuz.length ? { href: "deneme.html?mod=yanlislar", t: "Yanlışlarımı tekrar çöz (" + h.havuz.length + ")" } : null);
+    var yl = buAcik ? { href: "/deneme?mod=yanlislar&deneme=" + encodeURIComponent(rec.id), t: "Yanlış " + buAcik + " soruyu şimdi çöz" }
+      : (h.havuz.length ? { href: "/deneme?mod=yanlislar", t: "Yanlışlarımı tekrar çöz (" + h.havuz.length + ")" } : null);
     // En zayıf ünite: yanlış ya da boşu olan, doğru oranı en düşük ünite (eşitlikte tablo sırası); hepsi doğruysa ilk ünite
     var zayif = null;
     units.forEach(function (u) { if (u.yanlis + u.bos > 0 && (!zayif || u.dogru / u.soru < zayif.dogru / zayif.soru)) zayif = u; });
     var hedef = zayif || units[0], q0 = null;
     if (hedef) for (var i = 0; i < rec.inceleme.length; i++) { var qq = BY_KEY[rec.inceleme[i].k]; if (qq && rec.inceleme[i].kod === hedef.kod && qq.unite === hedef.unite) { q0 = qq; break; } }
-    var konu = q0 ? { href: q0.sayfa + (q0.kap ? "#konu-" + q0.kap : ""), t: zayif ? "Konu anlatımı: " + unitLabel(hedef.kod, hedef.unite) + " " + String(hedef.ad).replace(/^Micro · |^Macro · |^Skill Cat. d — /, "") : "Konu anlatımına dön" } : null;
+    var konu = q0 ? { href: adresOf(q0.sayfa) + (q0.kap ? "#konu-" + q0.kap : ""), t: zayif ? "Konu anlatımı: " + unitLabel(hedef.kod, hedef.unite) + " " + String(hedef.ad).replace(/^Micro · |^Macro · |^Skill Cat. d — /, "") : "Konu anlatımına dön" } : null;
     return '<section class="dn-sonuc-eylem" aria-label="Sonraki adım">' +
       (yl ? '<a class="btn-primary" data-eylem="yanlislar" href="' + esc(yl.href) + '">' + IC_Y.redo + '<span>' + esc(yl.t) + '</span></a>'
         : '<p class="dn-se-not" data-eylem="yanlislar-yok">' + IC_Y.ok + '<span>Açık hatan kalmadı.</span></p>') +
       (konu ? '<a class="btn-secondary" data-eylem="konu" href="' + esc(konu.href) + '"' + (zayif ? ' title="Bu denemede en düşük oranlı ünite"' : '') + '>' + IC_Y.book + '<span>' + esc(konu.t) + '</span></a>' : '') +
-      '<a class="btn-ghost" data-eylem="bugun" href="index.html">' + IC_Y.home + '<span>Bugün’e dön</span></a>' +
+      '<a class="btn-ghost" data-eylem="bugun" href="/bugun">' + IC_Y.home + '<span>Bugün’e dön</span></a>' +
       '<button type="button" class="dn-se-incele" id="dn-se-incele">Soru soru incele ↓</button>' +
       '</section>';
   }
@@ -1133,8 +1135,8 @@
       rem = '<div class="remediation-panel"><div class="remediation-title">Konu hatırlatması</div><div class="remediation-text">' + q.generalRemediation + '</div></div>';
     }
     var sol = '<div class="solution-panel"><div class="solution-title">Adım adım çözüm (Step-by-step Solution)</div><div class="solution-steps">' + (q.stepByStepSolution || "") + '</div></div>';
-    var links = '<p class="dn-rev-links"><a href="' + esc(q.sayfa) + '#q-card-' + encodeURIComponent(q.id) + '">Ders sayfasında bu soru →</a>' +
-      (q.kap ? ' <a href="' + esc(q.sayfa) + '#' + esc(q.kap) + '">' + esc(q.kapBaslik || "Ünite") + ' →</a>' : '') + '</p>';
+    var links = '<p class="dn-rev-links"><a href="' + esc(adresOf(q.sayfa)) + '#q-card-' + encodeURIComponent(q.id) + '">Ders sayfasında bu soru →</a>' +
+      (q.kap ? ' <a href="' + esc(adresOf(q.sayfa)) + '#' + esc(q.kap) + '">' + esc(q.kapBaslik || "Ünite") + ' →</a>' : '') + '</p>';
     return info + (pas ? '<details class="dn-rev-pas"><summary>' + esc(pas.baslik) + '</summary><div class="dn-passage-body">' + pas.html + '</div></details>' : '') +
       '<div class="question-body">' + q.question + '</div>' + opts + answerLine + rem + sol + links;
   }
@@ -1169,7 +1171,7 @@
       b.addEventListener("click", function () {
         var id = b.getAttribute("data-open"), rec = load().gecmis.filter(function (r) { return r.id === id; })[0];
         if (!rec) return;
-        try { history.pushState(null, "", "deneme.html?sonuc=" + encodeURIComponent(id)); } catch (e) { /* yok say */ }
+        try { history.pushState(null, "", "/deneme?sonuc=" + encodeURIComponent(id)); } catch (e) { /* yok say */ }
         renderResult(rec, false); window.scrollTo(0, 0);
       });
     });

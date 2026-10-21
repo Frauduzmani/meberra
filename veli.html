@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <meta name="theme-color" content="#5B3DF5">
   <title>Veli paneli | Meberra</title>
   <meta name="description" content="Meberra veli paneli: çocuğunuzun haftalık çalışma özeti, ders ilerlemesi, deneme sonuçları, yaklaşan AP tarihleri ve Premium durumu.">
   <meta name="robots" content="noindex">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/veli.css?v=170a">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/veli.css?v=170a">
+  <script src="/assets/js/adresler.js"></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body class="veli-sayfa">
   <a class="skip-link" href="#main-content">İçeriğe geç</a>
   <header class="vp-ust">
     <div class="vp-ust-ic">
-      <a href="veli.html" class="nav-brand" aria-label="Meberra veli paneli"><span class="brand-badge">Meberra</span><span class="vp-ust-etiket">Veli paneli</span></a>
+      <a href="/veli" class="nav-brand" aria-label="Meberra veli paneli"><span class="brand-badge">Meberra</span><span class="vp-ust-etiket">Veli paneli</span></a>
       <div class="vp-ust-sag" id="vp-hesap" hidden>
         <span class="vp-ust-ad" id="vp-ad"></span>
         <button type="button" class="btn-ghost btn-sm" id="vp-cikis">Çıkış</button>
@@ -46,9 +47,9 @@
         </div>
         <label class="check-row"><input type="checkbox" id="vk-veliRiza" aria-describedby="vk-veliRiza-err"> <span><strong id="vk-ogrenci-ad">Öğrencinin</strong> velisi olduğumu; çalışma özeti, deneme sonuçları ve üyelik durumunun bana gösterilmesini onaylıyorum. Soru-cevap yazışmaları ve notlar paylaşılmaz.</span></label>
         <p class="field-error" id="vk-veliRiza-err"></p>
-        <label class="check-row"><input type="checkbox" id="vk-kvkk" aria-describedby="vk-kvkk-err"> <span><a href="kvkk.html" target="_blank" rel="noopener">KVKK aydınlatma metnini</a> okudum.</span></label>
+        <label class="check-row"><input type="checkbox" id="vk-kvkk" aria-describedby="vk-kvkk-err"> <span><a href="/kvkk" target="_blank" rel="noopener">KVKK aydınlatma metnini</a> okudum.</span></label>
         <p class="field-error" id="vk-kvkk-err"></p>
-        <label class="check-row"><input type="checkbox" id="vk-kosullar" aria-describedby="vk-kosullar-err"> <span><a href="kosullar.html" target="_blank" rel="noopener">Kullanım koşullarını</a> kabul ediyorum.</span></label>
+        <label class="check-row"><input type="checkbox" id="vk-kosullar" aria-describedby="vk-kosullar-err"> <span><a href="/kosullar" target="_blank" rel="noopener">Kullanım koşullarını</a> kabul ediyorum.</span></label>
         <p class="field-error" id="vk-kosullar-err"></p>
         <button type="submit" class="btn-primary" id="vk-btn">Veli hesabımı aç ve bağlan</button>
       </form>
@@ -57,7 +58,7 @@
         <div class="field"><label for="vl-eposta">E-posta</label><input class="text-input" id="vl-eposta" type="email" autocomplete="username" inputmode="email" maxlength="120"></div>
         <div class="field"><label for="vl-sifre">Şifre</label><input class="text-input" id="vl-sifre" type="password" autocomplete="current-password"></div>
         <button type="submit" class="btn-primary" id="vl-btn">Giriş yap</button>
-        <p class="field-hint"><a href="giris.html#unuttum" id="vl-unuttum">Şifremi unuttum</a></p>
+        <p class="field-hint"><a href="/giris#unuttum" id="vl-unuttum">Şifremi unuttum</a></p>
       </form>
 
       <div id="vp-kabul" hidden>
@@ -77,7 +78,7 @@
         <h2>Henüz bağlı bir öğrenci yok</h2>
         <p>Öğrenci, Meberra'da <strong>Profil › Velin</strong> bölümünden e-posta adresinize davet gönderdiğinde ve bağlantıyı açtığınızda burada görünür.</p>
       </section>
-      <p class="vp-alt-not">Sorularınız için: <a id="vp-destek" href="mailto:destek@meberra.com">destek@meberra.com</a> · <a href="kvkk.html">KVKK</a> · <a href="gizlilik.html">Gizlilik</a></p>
+      <p class="vp-alt-not">Sorularınız için: <a id="vp-destek" href="mailto:destek@meberra.com">destek@meberra.com</a> · <a href="/kvkk">KVKK</a> · <a href="/gizlilik">Gizlilik</a></p>
     </div>
 
     <!-- Premium ödeme (çocuğun hesabı için) -->
@@ -99,7 +100,7 @@
         </div>
         <div class="field"><label for="vo-odeyenAd">Ödemeyi yapan kişinin adı soyadı</label><input class="text-input" id="vo-odeyenAd" autocomplete="name" maxlength="100" aria-describedby="vo-odeyenAd-err"><p class="field-error" id="vo-odeyenAd-err"></p></div>
         <div class="field"><label for="vo-aciklama">Not <span class="opt-tag">isteğe bağlı</span></label><input class="text-input" id="vo-aciklama" maxlength="300" placeholder="ör. Ziraat Bankası, 21 Ekim 14:30"></div>
-        <label class="check-row"><input type="checkbox" id="vo-sozlesme" aria-describedby="vo-sozlesme-err"> <span><a href="mesafeli-satis.html" target="_blank" rel="noopener">Ön bilgilendirme formunu ve mesafeli satış sözleşmesini</a> okudum, kabul ediyorum.</span></label>
+        <label class="check-row"><input type="checkbox" id="vo-sozlesme" aria-describedby="vo-sozlesme-err"> <span><a href="/mesafeli-satis" target="_blank" rel="noopener">Ön bilgilendirme formunu ve mesafeli satış sözleşmesini</a> okudum, kabul ediyorum.</span></label>
         <p class="field-error" id="vo-sozlesme-err"></p>
         <button type="submit" class="btn-primary" id="vo-btn">Ödemeyi yaptım, bildir</button>
         <p class="field-hint">Ödeme kontrol edilip onaylanınca Premium öğrencinin hesabında otomatik açılır (genelde 1 iş günü).</p>
@@ -107,6 +108,6 @@
     </section>
   </main>
 
-  <script src="assets/js/veli.js?v=170a"></script>
+  <script src="/assets/js/veli.js?v=170a"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@
 
   var DAVET_RE = /^[A-Za-z2-9]{6,12}$/;
   var ME = window.APMEBERRA_ME || null, girisli = !!(ME && ME.user);
-  var sayfa = (location.pathname.split("/").pop() || "index.html").replace(/\.html$/, "") || "index";
+  var sayfa = (window.MEBERRA_ADRES ? window.MEBERRA_ADRES.sayfa() : ((location.pathname.split("/").pop() || "index").replace(/\.html?$/i, "") || "index"));
   function esc(x) { return String(x == null ? "" : x).replace(/[&<>"']/g, function (m) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]; }); }
   function olc(ad, oz) { if (window.MeberraOlcum) window.MeberraOlcum.olay(ad, oz); }
   function istek(yontem, yol, govde) {
@@ -60,7 +60,7 @@
     var b = document.createElement(girisli ? "button" : "a");
     b.className = (sinif || "btn-ghost") + " bu-deneme-cta";
     b.textContent = "7 gün ücretsiz Premium dene";
-    if (!girisli) { b.href = "giris.html?donus=" + encodeURIComponent("premium.html?deneme=1") + "#kayit"; return b; }
+    if (!girisli) { b.href = "/giris?donus=" + encodeURIComponent("/premium?deneme=1") + "#kayit"; return b; }
     b.type = "button";
     b.addEventListener("click", function () {
       b.disabled = true; b.textContent = "Başlatılıyor…";

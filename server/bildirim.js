@@ -13,7 +13,7 @@ const EPOSTA_RE = /^[^\s@<>()",;:]+@[^\s@<>()",;:]+\.[A-Za-z]{2,}$/;
 const SAYFA = 30;
 const kirp = s => String(s == null ? "" : s).trim().replace(/\s+/g, " ");
 
-/** Yalnızca site içi göreli bağlantı: "/calis.html#x" geçer; "//evil", "https://", "javascript:" geçmez. */
+/** Yalnızca site içi göreli bağlantı: "/calis#x" geçer; "//evil", "https://", "javascript:" geçmez. */
 function linkTemiz(l) {
   const s = String(l == null ? "" : l).trim();
   if (!s) return null;

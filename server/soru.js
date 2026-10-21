@@ -217,7 +217,7 @@ function soruRotalari(r, c) {
         .run(kapat ? "kapandi" : "cevaplandi", z, z, req.kullanici.id, s.id);
     });
     const ayar = bildirim.ayarSatiri(s.user_id);
-    const link = "/profil.html?soru=" + s.id + "#sorularim";
+    const link = "/sorularim?soru=" + s.id;
     const ozet = metin.length > 140 ? metin.slice(0, 137) + "…" : metin;
     const b = bildirim.olustur(s.user_id, { tur: "soru-yanit", baslik: "Sorun yanıtlandı", metin: ozet, link }, {
       push: true,

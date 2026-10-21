@@ -118,7 +118,7 @@ function kampanyaServisi(c) {
     });
     denetim({ eylem: "premium.deneme-basla", kullanici: u.id, istek: req, varlik: "subscriptions", varlikId: s.id, ayrinti: { bitis: s.bitis } });
     olay("deneme_basla", u.id, req);
-    bildir(u.id, { baslik: "Premium denemen başladı", link: "/calis.html",
+    bildir(u.id, { baslik: "Premium denemen başladı", link: "/calis",
       metin: DENEME_GUN + " gün boyunca tüm ünitelere, sınırsız denemeye ve sınırsız soru sormaya erişebilirsin. Bitiş: " + trTarih(s.bitis) + ". Otomatik ücret alınmaz." });
     return { bitis: s.bitis, uyelik: hesap.uyelik(u.id) };
   }
@@ -142,10 +142,10 @@ function kampanyaServisi(c) {
         if (d.hatirlatma || Date.parse(bitis) - simdiMs > 2 * GUN || ucretli) continue;
         if (bugunMesajVar(d.user_id) || !isaretle(d.user_id)) continue;
         db.prepare("UPDATE premium_denemeleri SET hatirlatma = ? WHERE eposta_hash = ?").run(simdi(), d.eposta_hash);
-        await bildir(d.user_id, { baslik: "Premium denemende 2 gün kaldı", link: "/premium.html",
+        await bildir(d.user_id, { baslik: "Premium denemende 2 gün kaldı", link: "/premium",
           metin: "Denemen " + trTarih(bitis) + " tarihinde bitiyor. Kaldığın yerden kesintisiz devam etmek için Premium'a geçebilirsin." },
           "Premium denemende 2 gün kaldı (bitiş: " + trTarih(bitis) + "). Bu sürede tüm ünitelere ve sınırsız denemeye erişebilirsin.\n\n" +
-          "Kesintisiz devam etmek istersen Premium'a geçebilirsin: " + config.baseUrl + "/premium.html\nOtomatik ücret alınmaz; deneme bitince hesabın ücretsiz plana döner.");
+          "Kesintisiz devam etmek istersen Premium'a geçebilirsin: " + config.baseUrl + "/premium\nOtomatik ücret alınmaz; deneme bitince hesabın ücretsiz plana döner.");
         n++;
       } else {
         // Bitti (ya da yönetici iptal etti): bir kez, ücretli Premium'a geçtiyse sessizce kapatılır
@@ -153,10 +153,10 @@ function kampanyaServisi(c) {
         if (bugunMesajVar(d.user_id) || !isaretle(d.user_id)) continue;
         db.prepare("UPDATE premium_denemeleri SET bitti_bildirim = ? WHERE eposta_hash = ?").run(simdi(), d.eposta_hash);
         olay("deneme_bitti", d.user_id, null);
-        await bildir(d.user_id, { baslik: "Premium denemen bitti", link: "/premium.html",
+        await bildir(d.user_id, { baslik: "Premium denemen bitti", link: "/premium",
           metin: "Denediğin için teşekkürler! Ücretsiz plandaki ünitelerin açık kalıyor. Tüm ünitelere dönmek için Premium'a geçebilirsin." },
           "Premium denemen sona erdi. Ücretsiz plandaki ünitelerin ve ilerlemen yerinde duruyor.\n\nTüm ünitelere, sınırsız denemeye ve sınırsız soru sormaya dönmek istersen: " +
-          config.baseUrl + "/premium.html");
+          config.baseUrl + "/premium");
         n++;
       }
     }
@@ -225,7 +225,7 @@ function kampanyaServisi(c) {
     const b = bkSatiri(u.id);
     const say = durum => db.prepare("SELECT COUNT(*) AS n FROM davetler WHERE davet_eden = ? AND durum = ?").get(u.id, durum).n;
     const yil = db.prepare("SELECT COUNT(*) AS n FROM davetler WHERE davet_eden = ? AND eden_odul = 1 AND odul_zamani >= ?").get(u.id, new Date(Date.now() - 365 * GUN).toISOString()).n;
-    return { kod: b.davet_kodu, link: config.baseUrl + "/giris.html?davet=" + b.davet_kodu + "#kayit", odulGun: DAVET_ODUL_GUN,
+    return { kod: b.davet_kodu, link: config.baseUrl + "/kayit?davet=" + b.davet_kodu, odulGun: DAVET_ODUL_GUN,
       basarili: say("odullendi"), bekleyen: say("bekliyor"), yillikSinir: DAVET_YILLIK_SINIR, buYilOdul: yil };
   }
   /** Kayıt sırasında davet kodu: kendi kodu, aynı e-posta karması (yeniden kayıt) ya da 24 saat içinde aynı IP → reddedildi. */
@@ -270,8 +270,8 @@ function kampanyaServisi(c) {
     });
     if (!tamam) return false;
     denetim({ eylem: "davet.odul", kullanici: uid, ayrinti: { davetEden: d.davet_eden, edenOdul } });
-    await bildir(uid, { baslik: DAVET_ODUL_GUN + " gün Premium hediye", link: "/calis.html", metin: "Seviye testini bitirdin; davet hediyen olan " + DAVET_ODUL_GUN + " gün Premium hesabına tanımlandı." });
-    if (edenOdul) await bildir(d.davet_eden, { baslik: "Davetin işe yaradı", link: "/profil.html#davet", metin: "Davet ettiğin arkadaşın seviye testini bitirdi. Hesabına " + DAVET_ODUL_GUN + " gün Premium eklendi." });
+    await bildir(uid, { baslik: DAVET_ODUL_GUN + " gün Premium hediye", link: "/calis", metin: "Seviye testini bitirdin; davet hediyen olan " + DAVET_ODUL_GUN + " gün Premium hesabına tanımlandı." });
+    if (edenOdul) await bildir(d.davet_eden, { baslik: "Davetin işe yaradı", link: "/profil#davet", metin: "Davet ettiğin arkadaşın seviye testini bitirdi. Hesabına " + DAVET_ODUL_GUN + " gün Premium eklendi." });
     return true;
   }
   async function davetTarama() {

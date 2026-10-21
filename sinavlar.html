@@ -3,26 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#5B3DF5">
-  <link rel="apple-touch-icon" href="assets/img/pwa/apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="/assets/img/pwa/apple-touch-icon.png">
   <title>Sınavlar | Meberra</title>
   <meta name="description" content="AP, giriş, dil ve yüksek lisans sınavları: durumuna, hedef ülkene ve eğitim diline göre süz. Format, süre, puanlama, tarih ve resmi kaynak.">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/icerik.css">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/icerik.css">
+  <script src="/assets/js/adresler.js"></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body class="page-sinavlar">
 
   <nav class="navbar">
-    <a href="index.html" class="nav-brand"><div class="brand-badge">Meberra</div></a>
+    <a href="/bugun" class="nav-brand"><div class="brand-badge">Meberra</div></a>
     <div class="nav-actions"></div>
   </nav>
 
   <main class="main-container" id="main-content">
     <header class="page-head">
-      <span class="eyebrow"><a href="rota.html" id="sv-takvim">← Takvimim</a> · Sınavlar</span>
+      <span class="eyebrow"><a href="/takvim" id="sv-takvim">← Takvimim</a> · Sınavlar</span>
       <h1>Girmen gereken sınavlar, tek tek</h1>
       <p>Durumunu, hedef ülkeni ve sınav dilini seç; sana uyan sınavlar format, süre ve tarihleriyle gelir.</p>
     </header>
@@ -32,7 +33,7 @@
         <h2>Genel deneme</h2>
         <p>Tüm derslerden karışık sorularla gerçek sınav temposunda kendini dene. Sonucun ve hataların kaydedilir.</p>
       </div>
-      <a class="btn-primary" href="deneme.html?ders=genel">Genel denemeye başla</a>
+      <a class="btn-primary" href="/deneme?ders=genel">Genel denemeye başla</a>
     </div>
 
     <div id="exam-root" aria-live="polite">
@@ -42,18 +43,18 @@
 
   <footer class="footer">
     <div class="footer-bottom u-mt-0">
-      <div>Tarih ve ücretleri kayıttan önce resmi kaynaktan teyit et. <span class="sv-sonraki">Sonraki adım: <a href="yazismalar.html">Başvurularım →</a></span></div>
-      <div><a href="rota.html" class="sv-geri">← Takvimim</a></div>
+      <div>Tarih ve ücretleri kayıttan önce resmi kaynaktan teyit et. <span class="sv-sonraki">Sonraki adım: <a href="/basvurular">Başvurularım →</a></span></div>
+      <div><a href="/takvim" class="sv-geri">← Takvimim</a></div>
     </div>
   </footer>
 
-  <script src="data/mevzuat/ulke-dizini.js"></script>
-  <script src="data/mevzuat/sinavlar.js"></script>
-  <script src="data/mevzuat/ulke-rotalari.js"></script>
-  <script src="assets/js/rota.js"></script>
-  <script src="assets/js/sinav-motor.js"></script>
-  <script src="assets/js/ucretsiz-kural.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="/data/mevzuat/ulke-dizini.js"></script>
+  <script src="/data/mevzuat/sinavlar.js"></script>
+  <script src="/data/mevzuat/ulke-rotalari.js"></script>
+  <script src="/assets/js/rota.js"></script>
+  <script src="/assets/js/sinav-motor.js"></script>
+  <script src="/assets/js/ucretsiz-kural.js"></script>
+  <script src="/assets/js/app.js"></script>
   <script>
   (function () {
     "use strict";
@@ -77,7 +78,7 @@
     if (!DATA.length || !SM) {
       root.innerHTML = '<div class="empty-state"><div class="empty-ico" aria-hidden="true">' + ICON.wait + '</div><h2>Sınav listesi hazırlanıyor</h2>' +
         '<p>Sınav stratejistimiz her sınavın formatını ve tarihlerini resmi kaynaklardan doğruluyor. Bu sırada AP ders sayfalarından çalışmaya devam edebilirsin.</p>' +
-        '<div class="btn-row"><a class="btn-ghost" href="ap-calculus.html">AP Calculus</a><a class="btn-ghost" href="istanbul-sinav-rehberi.html">İstanbul sınav rehberi</a></div></div>';
+        '<div class="btn-row"><a class="btn-ghost" href="/ders/calculus">AP Calculus</a><a class="btn-ghost" href="/rehber/istanbul-sinav">İstanbul sınav rehberi</a></div></div>';
       return;
     }
 
@@ -136,10 +137,10 @@
       var pinned = mine.indexOf(s.id) >= 0;
       var duz = SM.duzeyleri(s), dilAd = SM.dilEtiketi(s);
       var ders = safeLocal(s.dersSayfasi)
-        ? '<a class="btn-ghost" href="' + esc(s.dersSayfasi) + '">' + ICON.book + 'Ders anlatımı (English)' + LOCK + LOCK_TXT + '</a>'
+        ? '<a class="btn-ghost" href="' + esc(window.MEBERRA_ADRES ? MEBERRA_ADRES.temiz(s.dersSayfasi) : s.dersSayfasi) + '">' + ICON.book + 'Ders anlatımı (English)' + LOCK + LOCK_TXT + '</a>'
         : '<span class="btn-ghost" aria-disabled="true" role="link">' + ICON.book + 'Ders anlatımı: Yakında</span>';
       var den = s.denemeKodu
-        ? '<a class="btn-primary" href="deneme.html?ders=' + encodeURIComponent(s.denemeKodu) + '">' + ICON.play + 'Deneme sınavına başla' + LOCK + LOCK_TXT + '</a>'
+        ? '<a class="btn-primary" href="/deneme?ders=' + encodeURIComponent(s.denemeKodu) + '">' + ICON.play + 'Deneme sınavına başla' + LOCK + LOCK_TXT + '</a>'
         : '<span class="btn-primary" aria-disabled="true" role="link">' + ICON.play + 'Deneme: Yakında</span>';
       // AP dışı ve portalda içerik yoksa iki pasif düğme yerine tek satır (Tur 12: dil sınavları çoğaldı)
       var eylem = s.kategori !== "AP" && !safeLocal(s.dersSayfasi) && !s.denemeKodu
@@ -266,7 +267,7 @@
       var box = document.getElementById("exam-empty"), u = tekUlke();
       box.hidden = n > 0;
       if (n > 0) return;
-      var sartlar = "sartlar.html" + apSecimSorgusu("?" + (st.model ? "model=" + st.model + "&" : "") + (st.sinif ? "sinif=" + st.sinif + "&" : "") + (u ? "ulke=" + u + "&dil=" + (st.dil === "yerel" ? "yerel" : "en") : ""));
+      var sartlar = "/ulkem" + apSecimSorgusu("?" + (st.model ? "model=" + st.model + "&" : "") + (st.sinif ? "sinif=" + st.sinif + "&" : "") + (u ? "ulke=" + u + "&dil=" + (st.dil === "yerel" ? "yerel" : "en") : ""));
       var h, p, b = [];
       if (sel.value === "listem") { h = "Listende sınav yok"; p = "Kartlardaki “Listeme ekle” düğmesiyle sınavlarını işaretle."; b.push('<button type="button" class="btn-ghost" data-sn="hepsi">Tüm ülkeler</button>'); }
       else if (kat === "Dil Sınavı" && st.dil === "yerel" && u) {
@@ -276,7 +277,7 @@
       } else if (kat === "Giriş Sınavı" && st.model === "uni-mezun") {
         h = "Yüksek lisans giriş sınavı (GRE/GMAT) kaydı henüz yok";
         p = "GRE ve GMAT şartı programa özeldir. Ücret, geçerlilik ve hangi programların istediği yüksek lisans ortak notlarında.";
-        b.push('<a class="btn-ghost" href="' + esc("sartlar.html" + apSecimSorgusu("?model=uni-mezun" + (u ? "&ulke=" + u + "&dil=en" : "")) + (u ? "#sr-ylortak" : "")) + '">GRE / GMAT notları</a>');
+        b.push('<a class="btn-ghost" href="' + esc("/ulkem" + apSecimSorgusu("?model=uni-mezun" + (u ? "&ulke=" + u + "&dil=en" : "")) + (u ? "#sr-ylortak" : "")) + '">GRE / GMAT notları</a>');
       } else {
         h = "Bu seçimde sınav yok";
         p = "Sınav dilini “Hepsi” yap, başka bir ülke seç ya da başka bir kategoriye geç.";
@@ -294,16 +295,16 @@
       document.getElementById("sn-ozet-metin").innerHTML = '<strong>' + parca.map(esc).join(" · ") + '</strong> — ' + toplam + ' sınav';
       var link = document.getElementById("sn-sartlar");
       link.hidden = !u;
-      if (u) link.innerHTML = '<a href="' + esc("sartlar.html" + apSecimSorgusu("?" + (st.model ? "model=" + st.model + "&" : "") + (st.sinif ? "sinif=" + st.sinif + "&" : "") + "ulke=" + u + "&dil=" + (st.dil === "yerel" ? "yerel" : "en"))) + '">' + esc(ULKE[u]) + ' için başvuru şartları ve tarihler' + ICON.arrow + '</a>';
+      if (u) link.innerHTML = '<a href="' + esc("/ulkem" + apSecimSorgusu("?" + (st.model ? "model=" + st.model + "&" : "") + (st.sinif ? "sinif=" + st.sinif + "&" : "") + "ulke=" + u + "&dil=" + (st.dil === "yerel" ? "yerel" : "en"))) + '">' + esc(ULKE[u]) + ' için başvuru şartları ve tarihler' + ICON.arrow + '</a>';
     }
 
     function urlYaz() {
       var v = sel.value;
-      var adres = SM.secimAdres("sinavlar.html", { model: st.model, sinif: st.sinif, ulke: ULKE[v] ? v : (v === "hepsi" && !GUEST && profUlke.length ? "hepsi" : null), dil: st.dil, filtre: listeModu() ? v : null });
+      var adres = SM.secimAdres("/sinavlar", { model: st.model, sinif: st.sinif, ulke: ULKE[v] ? v : (v === "hepsi" && !GUEST && profUlke.length ? "hepsi" : null), dil: st.dil, filtre: listeModu() ? v : null });
       // Oturumluda dil profilden farklı "hepsi" ise adrese yazılır (yoksa yeniden yüklemede profil dili gelir)
       if (!GUEST && st.dil === "hepsi" && !/[?&]dil=/.test(adres)) adres += (adres.indexOf("?") < 0 ? "?" : "&") + "dil=hepsi";
       try { history.replaceState(null, "", adres + location.hash); } catch (e) {}
-      if (GUEST) { var back = document.querySelector('.footer a[data-geri]'); if (back) back.setAttribute("href", "sartlar.html" + A.erisim.secimSorgusu()); }
+      if (GUEST) { var back = document.querySelector('.footer a[data-geri]'); if (back) back.setAttribute("href", "/ulkem" + A.erisim.secimSorgusu()); }
     }
 
     var sonVurgu = null;
@@ -408,9 +409,9 @@
       if (o) o.textContent = "Takvimimdeki sınavlar (" + ad + ")";
       var n = cards.filter(function (el) { return el.dataset.rol; }).length;
       document.getElementById("rota-ctx").innerHTML = rotaU
-        ? (rotaVeri ? '<strong>' + esc(ad) + ' rotası</strong>: ' + n + ' sınav bu rotada zorunlu ya da seçmeli olarak işaretli. Ayrıntılar ve tarihler <a href="rota.html?ulke=' + rotaU + '">Takvimim</a> sayfasında.'
+        ? (rotaVeri ? '<strong>' + esc(ad) + ' rotası</strong>: ' + n + ' sınav bu rotada zorunlu ya da seçmeli olarak işaretli. Ayrıntılar ve tarihler <a href="/takvim?ulke=' + rotaU + '">Takvimim</a> sayfasında.'
                     : (rotaU === 'de' || rotaU === 'it') ? '<strong>' + esc(ad) + ' rotası</strong>: rota kuralları hazırlanıyor; şimdilik bu ülkenin sınavları gösteriliyor.'
-                    : '<strong>' + esc(ad) + '</strong>: tarihli rota Almanya ve İtalya lisans için hazır; bu ülkenin dil sınavları ve şartları <a href="sartlar.html?model=' + esc((ME.profile && ME.profile.ogrenciModeli) || "lise") + '&amp;ulke=' + rotaU + '&amp;dil=' + (ME.profile && ME.profile.egitimDili === "yerel" ? "yerel" : "en") + '">Ülke şartları</a> sayfasında.')
+                    : '<strong>' + esc(ad) + '</strong>: tarihli rota Almanya ve İtalya lisans için hazır; bu ülkenin dil sınavları ve şartları <a href="/ulkem?model=' + esc((ME.profile && ME.profile.ogrenciModeli) || "lise") + '&amp;ulke=' + rotaU + '&amp;dil=' + (ME.profile && ME.profile.egitimDili === "yerel" ? "yerel" : "en") + '">Ülke şartları</a> sayfasında.')
         : "";
       if (kat !== null) apply();
     }
@@ -422,13 +423,13 @@
       if (gb) {
         gb.querySelector("p").textContent = "Ders anlatımları, ders denemeleri ve genel deneme kişisel hesabınla açılır. Sonuçların ve yanlışların hesabında saklanır.";
         var ga = gb.querySelector("a");
-        ga.setAttribute("href", "giris.html?donus=" + encodeURIComponent("deneme.html?ders=genel"));
+        ga.setAttribute("href", "/giris?donus=" + encodeURIComponent("/deneme?ders=genel"));
         ga.innerHTML = LOCK + "Giriş yap ve denemeye başla";
       }
       var sn = document.querySelector(".footer .sv-sonraki"); if (sn) sn.remove();
       var tk = document.getElementById("sv-takvim"); if (tk) tk.remove();
       var back = document.querySelector('.footer a.sv-geri');
-      if (back) { back.setAttribute("data-geri", ""); back.setAttribute("href", "sartlar.html" + A.erisim.secimSorgusu()); back.textContent = "← Ülke şartlarına dön"; }
+      if (back) { back.setAttribute("data-geri", ""); back.setAttribute("href", "/ulkem" + A.erisim.secimSorgusu()); back.textContent = "← Ülke şartlarına dön"; }
     }
     if (rotaU) rotaGuncelle();
 

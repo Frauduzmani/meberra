@@ -85,7 +85,7 @@
   function bir(anahtar, ad, oz) { if (tekSefer[anahtar]) return; tekSefer[anahtar] = 1; olay(ad, oz); }
   root.MeberraOlcum = { olay: olay, kapat: kapat, izinYok: izinYok, bir: bir, gonder: gonder };
 
-  var sayfa = (location.pathname.split("/").pop() || "index.html").replace(/\.html$/, "") || "index";
+  var sayfa = (window.MEBERRA_ADRES ? window.MEBERRA_ADRES.sayfa() : ((location.pathname.split("/").pop() || "index").replace(/\.html?$/i, "") || "index"));
   olay("page_view", document.referrer && document.referrer.indexOf(location.origin) !== 0 ? { dis: true } : undefined);
   if (sayfa === "vitrin") olay("vitrin_gorundu");
   if (sayfa === "seviye-testi") bir("seviye", "seviye_basla");
@@ -98,7 +98,7 @@
     if (t && t.name === "plan" && t.closest && t.closest("#pr-planlar")) olay("plan_secti", { plan: t.value });
   });
   document.addEventListener("click", function (e) {
-    var a = e.target && e.target.closest && e.target.closest('a[href*="premium.html?plan="]');
+    var a = e.target && e.target.closest && e.target.closest('a[href*="/premium?plan="]');
     if (a) { var m = /plan=(\w+)/.exec(a.getAttribute("href")); olay("plan_secti", { plan: m ? m[1] : "", yer: sayfa }); }
   });
 
