@@ -373,6 +373,11 @@
 
     var ilk = (location.hash || "").replace(/^#/, "");
     sekmeAc(SEKMELER.some(function (s) { return s.id === ilk; }) ? ilk : "ozet");
+    // Sayfa açıkken admin.html#veri gibi bir adrese gidilirse eşleşen sekme açılır
+    window.addEventListener("hashchange", function () {
+      var h = (location.hash || "").replace(/^#/, "");
+      if (h !== S.sekme && SEKMELER.some(function (s) { return s.id === h; })) sekmeAc(h);
+    });
     // Bekleyen talep sayısı her sekmede görünsün
     if (S.sekme !== "ozet") ozetYukle(true);
   }
@@ -1030,10 +1035,40 @@
       if (!S.soru.secili || S.soru.secili.id !== id) return;
       S.soru.secili.veri = v.soru;
       d.innerHTML = soruDetayHtml(v.soru);
+      mathDiz(d);
       var h = $(odakla || "#soru-detay-baslik", d); if (h) h.focus();
     }).catch(function (e) {
       d.innerHTML = '<div class="adm-detay-ust"><button type="button" class="btn-ghost" data-geri>‹ Soru listesine dön</button></div>' + hataKutusu(e.message);
     }).then(function () { d.removeAttribute("aria-busy"); });
+  }
+  /**
+   * Soru bağlamındaki LaTeX'i dizer. admin.html MathJax yüklemez: yalnızca "$" ya da "\(" içeren bir konuşma
+   * açılınca ders sayfalarıyla aynı yapılandırmayla (tex-svg, cdn.jsdelivr.net — CSP izinli) tembel yüklenir.
+   */
+  var mathBekleyen = null;
+  function mathDiz(el) {
+    if (!el || !/\$|\\\(/.test(el.textContent || "")) return;
+    var M = window.MathJax;
+    if (M && typeof M.typesetPromise === "function") { M.typesetPromise([el]).catch(function () {}); return; }
+    mathBekleyen = el;
+    if (document.getElementById("MathJax-script")) return; // yükleniyor; bitince bekleyen dizilir
+    window.MathJax = {
+      tex: { inlineMath: [["$", "$"], ["\\(", "\\)"]], displayMath: [["$$", "$$"], ["\\[", "\\]"]] },
+      svg: { fontCache: "global" },
+      startup: {
+        typeset: false,
+        ready: function () {
+          window.MathJax.startup.defaultReady();
+          window.MathJax.startup.promise.then(function () {
+            if (mathBekleyen && document.contains(mathBekleyen)) return window.MathJax.typesetPromise([mathBekleyen]);
+          }).catch(function () {});
+        }
+      }
+    };
+    var sc = document.createElement("script");
+    sc.id = "MathJax-script"; sc.async = true;
+    sc.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js";
+    document.head.appendChild(sc);
   }
   function soruKapat() {
     var p = $("#panel-sorular");

@@ -128,13 +128,21 @@ ok(apKaldiginYer({ pages: {} }, []) === null && apKaldiginYer(null) === null, "k
   pl = apCalismaPlani({ summary: bosOzet, kayitSon: "2026-11-13", seviye: { raporlar: [{ id: "r" }] }, bugun: "2026-11-01" });
   ok(pl[0].href === "seviye-testi.html#rapor" && /12 gün/.test(pl[0].desc), "çalışma planı: rapor var ve ≤ 21 gün → kayıt kararı (12 gün)", pl[0]);
   pl = apCalismaPlani({ summary: bosOzet, kayitSon: "2026-11-13", seviye: { devam: { sira: [1] } }, bugun: "2026-08-01" });
-  ok(pl[pl.length - 2].title === "Yarım kalan seviye testini bitir" && pl[0].title === "İlk soru bankanı çöz", "çalışma planı: > 60 gün → yarım seviye testi sona (başa değil)", pl);
+  ok(pl[0].title === "Yarım kalan seviye testini bitir" && pl[1].title === "İlk soru bankanı çöz", "çalışma planı: rapor yoksa (> 60 gün de) yarım seviye testi başta", pl);
   pl = apCalismaPlani({ summary: bosOzet, kayitSon: "2026-10-01", bugun: BUGUN });
-  ok(!pl.some(x => /seviye/.test(x.href)), "çalışma planı: kayıt son günü geçtiyse seviye hatırlatması yok", pl);
+  ok(pl[0].title === "Seviye testini çöz" && !/kayıt/.test(pl[0].desc), "çalışma planı: kayıt son günü geçse de rapor yoksa seviye testi başta (kayıt metni yok)", pl);
+  pl = apCalismaPlani({ summary: bosOzet, kayitSon: "2026-10-01", seviye: { raporlar: [{ id: "r" }] }, bugun: BUGUN });
+  ok(!pl.some(x => /seviye/.test(x.href)), "çalışma planı: rapor var ve kayıt son günü geçti → seviye hatırlatması yok", pl);
+  // Yeni AP öğrencisi (lise, rapor yok, takvim yok): ana görev seviye testi, sonra ders; üniversite incelemesi ikincil (sonda)
+  pl = apCalismaPlani({ summary: bosOzet, kayitSon: null, seviye: null, bugun: BUGUN });
+  ok(pl[0].title === "Seviye testini çöz" && pl[1].title === "İlk soru bankanı çöz", "çalışma planı (yeni öğrenci): seviye testi, ilk soru bankası", pl);
+  const yeniPlan = pl.map(t => ({ baslik: t.title, aciklama: t.desc, href: t.href, etiket: t.linkText })).concat([{ baslik: "Üniversiteleri incele", href: "universiteler.html" }]);
+  const yeniSa = apSiradakiAdim({ bugun: BUGUN, acikHata: 0, plan: yeniPlan });
+  ok(yeniSa.tur === "plan" && yeniSa.baslik === "Seviye testini çöz", "Sıradaki adım (yeni AP öğrencisi): 'Seviye testini çöz', üniversite incelemesi değil", yeniSa);
   const dolu = { answered: 12, openErrors: [{ id: "q9", topic: "Limits", page: "ap-calculus" }, { id: "q8", page: "ap-calculus" }], courses: [
     { page: "ap-calculus", name: "AP Calculus AB / BC", units: [{ id: "u1", title: "Unit 1", total: 10, answered: 10, correct: 9 }, { id: "u2", title: "Unit 2", total: 10, answered: 2, correct: 1 }] },
     { page: "ap-physics", name: "AP Physics 1 / C", units: [{ id: "p1", title: "Unit 1 Kinematics", total: 20, answered: 4, correct: 1 }] }] };
-  pl = apCalismaPlani({ summary: dolu, kayitSon: null, bugun: BUGUN });
+  pl = apCalismaPlani({ summary: dolu, kayitSon: null, seviye: { raporlar: [{ id: "r" }] }, bugun: BUGUN });
   ok(pl.map(x => x.ikon).join() === "redo,target,play,book" && pl[0].title === "Yanlışlarım’daki 2 soruyu tekrar çöz" && pl[0].href === "deneme.html?mod=yanlislar" && /Limits/.test(pl[0].desc) &&
     pl[1].title === "Zayıf üniteni güçlendir: Unit 1 Kinematics" && pl[1].href === "ap-physics.html#p1" && /%25 doğru/.test(pl[1].desc) &&
     pl[2].title === "Kaldığın yerden devam et: Unit 2" && pl[2].href === "ap-calculus.html#u2", "çalışma planı (dolu): hata, en zayıf ünite (%25), ilk eksik ünite, son tarihler", pl);

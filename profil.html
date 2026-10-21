@@ -118,8 +118,8 @@
             <p class="field-error u-mt-2" id="wz-ulkeler-err"></p>
           </fieldset>
           <fieldset class="first-route" id="wz-rota-wrap" aria-describedby="wz-rota-hint" hidden>
-            <legend class="field-label">Önce hangi rotayla başlamak istersin?</legend>
-            <p class="field-hint" id="wz-rota-hint">Her ülke ayrı izlenir; her rota kendi ülkesinin kurallarıyla ilerler. Seçimini Takvimim sayfasından ya da profilinden istediğin zaman değiştirebilirsin.</p>
+            <legend class="field-label">Önce hangi ülkeye odaklanmak istersin?</legend>
+            <p class="field-hint" id="wz-rota-hint">Her hedef ülke ayrı izlenir ve kendi kurallarıyla ilerler. Seçimini Takvimim sayfasından ya da profilinden istediğin zaman değiştirebilirsin.</p>
             <div class="choice-grid route-grid" id="wz-rota-group" data-choice-group></div>
           </fieldset>
         </section>
@@ -218,9 +218,9 @@
               <p class="field-error u-mt-1" id="pf-ulkeler-err"></p>
             </fieldset>
             <fieldset class="first-route u-min0" id="pf-rota-wrap" aria-describedby="pf-rota-hint" style="border: 0;" hidden>
-              <legend class="field-label u-mb-1">Aktif rota</legend>
+              <legend class="field-label u-mb-1">Odaklandığın ülke</legend>
               <div class="choice-grid route-grid" id="pf-rota-group" data-choice-group></div>
-              <p class="field-hint u-mt-1" id="pf-rota-hint">Bugün, Takvimim, Sınavlar ve Başvurularım bu rotanın kurallarını öne alır.</p>
+              <p class="field-hint u-mt-1" id="pf-rota-hint">Bugün, Takvimim, Sınavlar ve Başvurularım bu ülkenin kurallarını öne alır.</p>
             </fieldset>
             <fieldset class="u-min0" aria-describedby="pf-egitimDili-err" style="border: 0;">
               <legend class="field-label u-mb-1">Eğitim dili</legend>
@@ -466,9 +466,9 @@
     var EN_FAZLA = AUTH.EN_FAZLA_ULKE || 5;
     UI.wirePasswordToggles();
     var ROTALAR = ULKELER.map(function (u) {
-      return [u[0], u[1] + " rotası", "", u[0] === "de" ? "uni-assist, YKS yerleşmesi ve alana bağlı giriş." : u[0] === "it" ? "Giriş sınavı (CEnT-S / TIL-I / TOL / SAT), YKS sonuç belgesi, DoV." : "Genel yol haritası (göreli zamanlı adımlar)."];
+      return [u[0], u[1], "", u[0] === "de" ? "uni-assist, YKS yerleşmesi ve alana bağlı giriş." : u[0] === "it" ? "Giriş sınavı (CEnT-S / TIL-I / TOL / SAT), YKS sonuç belgesi, DoV." : "Genel yol haritası (göreli zamanlı adımlar)."];
     });
-    /** Birden fazla ülke seçiliyse "önce hangi rota" sorusunu gösterir; seçimi korur. Dönüş: seçili rota | null */
+    /** Birden fazla ülke seçiliyse "önce hangi ülke" sorusunu gösterir; seçimi korur. Dönüş: seçili rota | null */
     function rotaGrubu(prefix, onceki) {
       var ul = values($(prefix + "-ulkeler-group"));
       var wrap = $(prefix + "-rota-wrap"), g = $(prefix + "-rota-group");

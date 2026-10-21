@@ -10,7 +10,7 @@ if errorlevel 1 (
   exit /b 1
 )
 
-if not exist "node_modules\nodemailer" (
+if not exist "node_modules\web-push" (
   echo Ilk calistirma: paketler kuruluyor...
   call npm install --omit=dev
   if errorlevel 1 (

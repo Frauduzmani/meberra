@@ -102,6 +102,14 @@ const farkli = new Set(Array.from({ length: 30 }, (_, i) => O.gunlukGorevler(O.g
 ok(farkli.size >= 6, "30 günde görev seti değişir (" + farkli.size + " farklı)");
 const tumIdler = new Set(); Array.from({ length: 60 }, (_, i) => O.gunlukGorevler(O.gunEkle("2026-10-01", i)).forEach(x => tumIdler.add(x.id)));
 ok(["dogru-8", "ust-uste-5", "tekrar-2", "unite-1"].every(id => tumIdler.has(id)), "havuzdaki her görev zamanla çıkar", [...tumIdler]);
+// Açık yanlış görevin hedefinden azsa "2 yanlışını tekrar çöz" çıkmaz; yerine belirlenimli başka görev gelir
+const tekrarGunleri = Array.from({ length: 60 }, (_, i) => O.gunEkle("2026-10-01", i)).filter(d => O.gunlukGorevler(d).some(x => x.id === "tekrar-2"));
+ok(tekrarGunleri.length > 0 && tekrarGunleri.every(d => {
+  const y0 = O.gunlukGorevler(d, 0), y1 = O.gunlukGorevler(d, 1), y2 = O.gunlukGorevler(d, 2);
+  return y0.length === 3 && !y0.some(x => x.olcu === "tekrar") && new Set(y0.map(x => x.id)).size === 3 && esit(y0, O.gunlukGorevler(d, 0)) &&
+    esit(y0, y1) && esit(y2, O.gunlukGorevler(d));
+}), "açık yanlış < 2 → tekrar görevi yerine farklı, belirlenimli görev; ≥ 2 → değişmez (" + tekrarGunleri.length + " gün)");
+ok(O.tekrarMevcut({ a: { resolved: false }, b: { resolved: true }, c: {} }, { tekrar: 1 }) === 3 && O.tekrarMevcut(null, null) === 0, "tekrarMevcut: açık hata + bugün düzeltilen");
 const prG = { pages: { p: { units: {
   u1: { total: 2, answers: { a: { c: true, t: "2026-10-21T07:00:00Z" }, b: { c: true, t: "2026-10-21T07:01:00Z" } } },
   u2: { total: 5, answers: { a: { c: false, t: "2026-10-21T07:02:00Z" }, b: { c: true, t: "2026-10-21T07:03:00Z" } } },

@@ -21,6 +21,11 @@
     d.innerHTML = String(html || "");
     return (d.textContent || "").replace(/\s+/g, " ").trim();
   }
+  /** Soru bağlamındaki LaTeX'i ($$…$$, \(…\)) dizer: MathJax yüklü sayfalarda (ders sayfaları); yoksa metin olduğu gibi kalır */
+  function mathDiz(el) {
+    var M = window.MathJax;
+    if (el && M && typeof M.typesetPromise === "function") { try { M.typesetPromise([el]).catch(function () {}); } catch (e) { /* yok sayılır */ } }
+  }
   function kisalt(s, n) { s = String(s || ""); return s.length > n ? s.slice(0, n - 1) + "…" : s; }
   function me() { return window.APMEBERRA_ME || null; }
   function girisli() { var m = me(); return !!(m && m.user); }
@@ -410,6 +415,7 @@
           '<div class="bd-m-alt-bilgi"><p class="field-hint" id="bd-m-aciklama">Meberra ekibi yanıtlar; cevap gelince zilde görürsün.</p><span class="bd-sayac" id="bd-m-sayac">0 / 2000</span></div>' +
           '<div class="bd-m-dugmeler"><button type="button" class="btn-ghost bd-m-vazgec">Vazgeç</button><button type="submit" class="btn-primary bd-m-gonder">Gönder</button></div>' +
         '</form>';
+      mathDiz(govde.querySelector(".bd-baglam") || null);
       var form = govde.querySelector("form"), ta = form.querySelector("textarea"), sayac = form.querySelector(".bd-sayac");
       ta.addEventListener("input", function () { sayac.textContent = ta.value.length + " / 2000"; });
       form.querySelector(".bd-m-vazgec").addEventListener("click", kapat);
@@ -727,6 +733,7 @@
           '<p class="field-hint">Ek mesajlar soru hakkından düşmez.</p></form>';
       }
       govde().innerHTML = '<div class="bd-konusma">' + h + '</div>';
+      mathDiz(govde());
       govde().querySelector(".bd-geri").addEventListener("click", function () {
         adresYaz(null);
         listele().then(function () { var x = kok.querySelector("#sorularim-baslik"); if (x) x.focus(); });

@@ -227,14 +227,14 @@ const BASE_PROFIL = { okul: 'Test Lisesi', sinif: '11', ulkeler: ['de', 'it'], t
   await p.click('#wz-ulkeler-group label:has-text("Almanya")');
   ok(!(await p.isVisible('#wz-rota-wrap')), 'sihirbaz: tek ülkede rota sorusu yok');
   await p.click('#wz-ulkeler-group input[value="it"] >> xpath=..');
-  ok(await p.isVisible('#wz-rota-wrap') && (await p.textContent('#wz-rota-wrap legend')).includes('Önce hangi rotayla başlamak istersin?'), 'sihirbaz: iki ülkede "Önce hangi rotayla..." sorusu');
-  await p.click('#wz-rota-group label:has-text("İtalya rotası")');
+  ok(await p.isVisible('#wz-rota-wrap') && (await p.textContent('#wz-rota-wrap legend')).includes('Önce hangi ülkeye odaklanmak istersin?'), 'sihirbaz: iki ülkede "Önce hangi ülkeye odaklanmak..." sorusu');
+  await p.click('#wz-rota-group label:has-text("İtalya")');
   await p.click('#wz-next'); await p.click('#wz-next'); await p.waitForURL(/universiteler\.html/);
   let pf = await getProfil(p);
   ok(pf.aktifRota === 'it' && pf.hedefAlan === 'Mühendislik' && pf.ozelAlan === 'korunmali', 'sihirbaz: aktifRota=it, hedefAlan varsayılan, diğer alan korundu', pf);
   await p.goto(URL('profil.html')); await p.waitForSelector('#profile:not([hidden])');
   ok(await p.isVisible('#pf-rota-wrap') && await p.isChecked('#pf-rota-group input[value="it"]') && (await p.inputValue('#pf-hedefAlan')) === 'Mühendislik', 'profil: aktif rota ve hedef alan düzenlenebilir');
-  await p.click('#pf-rota-group label:has-text("Almanya rotası")');
+  await p.click('#pf-rota-group label:has-text("Almanya")');
   await p.fill('#pf-hedefAlan', 'Bilgisayar Bilimi / Yapay Zekâ');
   await p.click('#pf-save'); await p.waitForSelector('#pf-alert:not([hidden])');
   pf = await getProfil(p);

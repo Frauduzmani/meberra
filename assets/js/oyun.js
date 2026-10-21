@@ -215,12 +215,19 @@
     { id: "tekrar-2", ad: "2 yanlışını tekrar çöz", olcu: "tekrar", hedef: 2 },
     { id: "unite-1", ad: "1 üniteyi bitir", olcu: "unite", hedef: 1 }
   ];
-  /** Günün 3 görevi: her gün bir "N soru çöz" + havuzdan 2 farklı görev; aynı tarih her cihazda aynı sonucu verir */
-  function gunlukGorevler(gun) {
+  /**
+   * Günün 3 görevi: her gün bir "N soru çöz" + havuzdan 2 farklı görev; aynı tarih her cihazda aynı sonucu verir.
+   * mevcutTekrar (isteğe bağlı): bugün tekrar edilebilecek yanlış sayısı (açık + bugün düzeltilen). Görevin hedefinden azsa
+   * "tekrar" görevi havuzda kalan görevlerden biriyle (yine tarihe göre belirlenimli) değiştirilir.
+   */
+  function gunlukGorevler(gun, mevcutTekrar) {
     var h = ozet32("meberra|" + gun), n = [10, 15, 20][h % 3];
     var havuz = GOREV_HAVUZU.slice(), h2 = ozet32(gun + "|gorev");
     var a = havuz.splice(h2 % havuz.length, 1)[0];
     var b = havuz.splice((h2 >>> 8) % havuz.length, 1)[0];
+    var yetersiz = function (g) { return g.olcu === "tekrar" && typeof mevcutTekrar === "number" && mevcutTekrar < g.hedef; };
+    if (yetersiz(a)) a = havuz[(h2 >>> 16) % havuz.length];
+    else if (yetersiz(b)) b = havuz[(h2 >>> 16) % havuz.length];
     return [{ id: "soru-" + n, ad: n + " soru çöz", olcu: "soru", hedef: n }, a, b].map(function (g) { return Object.assign({}, g); });
   }
   /** Günün ölçüleri (İstanbul günü): soru, dogru, ustUste (en uzun doğru dizisi), tekrar (bugün düzeltilen yanlış), unite, deneme */
@@ -241,6 +248,12 @@
     });
     (denemeler || []).forEach(function (d) { if (d && istGun(d.tarih) === gun) c.deneme++; });
     return c;
+  }
+  /** Bugün tekrar edilebilecek yanlış sayısı: açık hatalar + bugün düzeltilenler (gün içinde görev kaybolmasın) */
+  function tekrarMevcut(hataItems, baglam) {
+    var n = 0;
+    Object.keys(isObj(hataItems) ? hataItems : {}).forEach(function (k) { var x = hataItems[k]; if (x && !x.resolved) n++; });
+    return n + ((baglam && baglam.tekrar) || 0);
   }
   function gorevDurumlari(gorevler, baglam) {
     return gorevler.map(function (g) { var v = Math.min(g.hedef, baglam[g.olcu] || 0); return Object.assign({}, g, { deger: v, tamam: v >= g.hedef }); });
@@ -329,7 +342,7 @@
     cevapListesi: cevapListesi, xpOzet: xpOzet, haftaXp: haftaXp, gorevSayisi: gorevSayisi, toplamXp: toplamXp,
     calismaGunleri: calismaGunleri, seriHesapla: seriHesapla, korumaHakki: korumaHakki, korumaUygula: korumaUygula, korumaKalan: korumaKalan,
     tekrarCevap: tekrarCevap, tekrarZamani: tekrarZamani, tekrarSonraki: tekrarSonraki, tekrarTohumla: tekrarTohumla, tekrarBasari: tekrarBasari,
-    gunlukGorevler: gunlukGorevler, gunBaglami: gunBaglami, gorevDurumlari: gorevDurumlari,
+    gunlukGorevler: gunlukGorevler, tekrarMevcut: tekrarMevcut, gunBaglami: gunBaglami, gorevDurumlari: gorevDurumlari,
     hedefSerisi: hedefSerisi, uniteSayilari: uniteSayilari, yeniRozetler: yeniRozetler,
     yolListesi: yolListesi, yolDugumleri: yolDugumleri, dersYuzdesi: dersYuzdesi
   };
@@ -509,7 +522,7 @@
       g.hedef = { tamam: true, t: Date.now() }; degisti = true;
       kut.push({ tur: "hedef", b: "Günlük hedef tamam!", m: miktar + " soruyu bitirdin. Harika gidiyorsun.", ik: "hedef" });
     }
-    gorevDurumlari(gunlukGorevler(gun), bg).forEach(function (d) {
+    gorevDurumlari(gunlukGorevler(gun, tekrarMevcut(v.hatalar, bg)), bg).forEach(function (d) {
       if (d.tamam && !(g[d.id] && g[d.id].tamam)) {
         g[d.id] = { tamam: true, t: Date.now() }; degisti = true;
         kut.push({ tur: "gorev", b: "Görev tamam: " + d.ad, m: "+" + GOREV_XP + " XP", ik: "onay" });
@@ -585,7 +598,7 @@
     var hx = haftaXp(v.cevaplar, v.denemeler, gun).xp;
     if (ligBilgi && ligBilgi.xp !== null) hx = ligBilgi.xp;
     var toplam = toplamXp(v.cevaplar, v.denemeler, o);
-    var gorevler = gorevDurumlari(gunlukGorevler(gun), bg);
+    var gorevler = gorevDurumlari(gunlukGorevler(gun, tekrarMevcut(v.hatalar, bg)), bg);
     var vade = tekrarZamani(oku(K.tekrar, null), gun), sonraki = vade.length ? null : tekrarSonraki(oku(K.tekrar, null), gun);
     var tarihTR = function (iso) { try { return new Date(iso + "T12:00:00").toLocaleDateString("tr-TR", { day: "numeric", month: "long" }); } catch (e) { return iso; } };
 
@@ -617,8 +630,9 @@
       ? '<a class="surface oy-kart oy-tekrar-kart is-var u-nodec u-c-inherit" href="ilerleme.html?mod=tekrar#tekrar"><span class="oy-tekrar-ik">' + svg("tekrar") + "</span>" +
           '<span class="u-min0"><span class="oy-kart-baslik">Tekrar zamanı: <b data-sayi="' + vade.length + '">' + vade.length + "</b> soru</span>" +
           '<span class="oy-alt">Daha önce yanlış yaptığın sorular, unutmadan önce yeniden karşında.</span></span><span class="oy-git">Tekrara başla →</span></a>'
-      : '<div class="surface oy-kart oy-tekrar-kart"><span class="oy-tekrar-ik">' + svg("tekrar") + '</span><span class="u-min0"><span class="oy-kart-baslik">Akıllı tekrar</span>' +
-          '<span class="oy-alt">' + (sonraki ? "Bugün tekrar edecek soru yok. Sıradaki tekrar: " + esc(tarihTR(sonraki)) + "." : "Yanlış yaptığın sorular 1, 3, 7 ve 14 gün arayla yeniden karşına çıkar.") + "</span></span></div>";
+      // Vadesi gelen yoksa tek satırlık sade kart (Bugün daha az kalabalık)
+      : '<div class="surface oy-kart oy-tekrar-kart is-kompakt"><span class="oy-tekrar-ik">' + svg("tekrar") + '</span><span class="u-min0"><b>Akıllı tekrar:</b> ' +
+          '<span class="oy-alt">' + (sonraki ? "bugün soru yok · sıradaki " + esc(tarihTR(sonraki)) : "yanlışların 1, 3, 7, 14 gün arayla geri gelir") + "</span></span></div>";
 
     kok.innerHTML = '<div class="oy-sol">' + hedefKart + tekrarKart + "</div>" + gorevKart;
     kok.hidden = false;

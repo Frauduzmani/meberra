@@ -427,7 +427,9 @@
         plan = B.ylKalan && B.ylKalan.ilk ? [{ baslik: "Belgeni hazırla: " + B.ylKalan.ilk, aciklama: "Başvuru dosyan: " + B.ylKalan.hazir + " / " + B.ylKalan.toplam + " belge hazır.", href: SARTLAR_KENDI + "#yl-panel", etiket: "Belge listesini aç" }] : [];
         if (B.baslangic && B.baslangic.href === "universiteler.html") plan.push(B.baslangic);
       } else {
-        plan = (B.baslangic && B.baslangic.href === "universiteler.html" ? [B.baslangic] : []).concat(todos.map(function (g) { return { baslik: g.title, aciklama: g.desc, href: g.href, etiket: g.linkText }; }));
+        // AP odaklı: önce seviye testi ve ders çalışması; üniversite incelemesi yalnızca ikincil görev (sona)
+        plan = todos.map(function (g) { return { baslik: g.title, aciklama: g.desc, href: g.href, etiket: g.linkText }; })
+          .concat(B.baslangic && B.baslangic.href === "universiteler.html" ? [B.baslangic] : []);
       }
       var dn = A.storeGet(A.keys.deneme, null);
       var ak = dn && dn.aktif && Array.isArray(dn.aktif.sorular) && dn.aktif.sorular.length ? dn.aktif : null;

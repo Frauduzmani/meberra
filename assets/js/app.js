@@ -1250,20 +1250,23 @@ function apCalismaPlani(g) {
     if (yeni) out.push(gorev("play", "Yeni bir derse başla: " + yeni.name, "Her dersin ilk üniteleri ücretsiz: konu anlatımı ve AP tarzı sorular.", yeni.page + ".html", "Dersi aç"));
     else out.push(gorev("play", "Ücretsiz ünitelerin bitti, tebrikler!", "Açık ünitelerin hepsini çözdün. Premium ile kalan ünitelere, sınırsız ders denemesine ve genel denemeye geç.", "premium.html", "Premium’u incele"));
   }
-  // Seviye testi: AP kayıt son gününe kalan güne göre öneri (≤ 60 gün kala listenin başına)
+  // Seviye testi: henüz rapor yoksa (AP odaklı ürün) her zaman listenin başında; rapor varsa AP kayıt son gününe ≤ 21 gün kala kayıt kararı
   const sonNo = apGunNo(g.kayitSon), bugunNo = apGunNo(g.bugun) != null ? apGunNo(g.bugun) : apGunNo(new Date());
-  if (!g.mezun && sonNo != null && sonNo - bugunNo >= 0) {
-    const kalan = sonNo - bugunNo;
+  if (!g.mezun) {
+    const kalan = sonNo != null && sonNo - bugunNo >= 0 ? sonNo - bugunNo : null;
     const sv = g.seviye && typeof g.seviye === "object" ? g.seviye : {};
     const raporlar = apDiz(sv.raporlar);
-    const iso = String(g.kayitSon);
-    const tarihTR = +iso.slice(8, 10) + " " + AP_AYLAR[+iso.slice(5, 7) - 1];
-    const gunMetni = kalan === 0 ? "AP kaydının son günü bugün" : "AP kaydının son gününe (" + tarihTR + ") " + kalan + " gün kaldı";
+    let gunMetni = "";
+    if (kalan != null) {
+      const iso = String(g.kayitSon);
+      const tarihTR = +iso.slice(8, 10) + " " + AP_AYLAR[+iso.slice(5, 7) - 1];
+      gunMetni = (kalan === 0 ? "AP kaydının son günü bugün" : "AP kaydının son gününe (" + tarihTR + ") " + kalan + " gün kaldı") + ". ";
+    }
     let it = null;
-    if (sv.devam && apDiz(sv.devam.sira).length) it = gorev("target", "Yarım kalan seviye testini bitir", gunMetni + ". Kaldığın yerden devam edebilirsin.", "seviye-testi.html", "Devam et");
-    else if (!raporlar.length) it = gorev("target", "Seviye testini çöz", gunMetni + ". Rapor, hangi derste ne kadar hazır olduğunu ve kayıt kararını gösterir.", "seviye-testi.html", "Teste başla");
-    else if (kalan <= 21) it = gorev("target", "Seviye raporuna göre kayıt kararını ver", gunMetni + ". Son raporunu öğretmeninle gözden geçir.", "seviye-testi.html#rapor", "Raporu aç");
-    if (it) { if (kalan <= 60) out.unshift(it); else out.push(it); }
+    if (sv.devam && apDiz(sv.devam.sira).length) it = gorev("target", "Yarım kalan seviye testini bitir", gunMetni + "Kaldığın yerden devam edebilirsin.", "seviye-testi.html", "Devam et");
+    else if (!raporlar.length) it = gorev("target", "Seviye testini çöz", gunMetni + "Rapor, hangi derste ne kadar hazır olduğunu" + (kalan != null ? " ve kayıt kararını" : "") + " gösterir.", "seviye-testi.html", "Teste başla");
+    else if (kalan != null && kalan <= 21) it = gorev("target", "Seviye raporuna göre kayıt kararını ver", gunMetni + "Son raporunu öğretmeninle gözden geçir.", "seviye-testi.html#rapor", "Raporu aç");
+    if (it) out.unshift(it);
   }
   out.push(gorev("book", "Son tarihleri kontrol et", "Kayıt ve sınav tarihleri Takvimim’de kaynaklarıyla birlikte tutulur.", "rota.html", "Takvimim"));
   return out;
@@ -2641,8 +2644,8 @@ window.APMEBERRA = {
       const AD = APMEBERRA_ULKE_ADLARI;
       const ciz = () => {
         const akt = window.APMEBERRA.rota.aktif();
-        container.innerHTML = '<div class="rota-switch" role="group" aria-label="Aktif rota">' +
-          '<span class="rota-switch-label">Rota:</span>' +
+        container.innerHTML = '<div class="rota-switch" role="group" aria-label="Odaklandığın hedef ülke">' +
+          '<span class="rota-switch-label">Hedef ülke:</span>' +
           (ul.length > 1
             ? ul.map(u => '<button type="button" data-rota-sec="' + u + '" aria-pressed="' + (u === akt) + '"><span class="rota-dot rota-dot-' + u + '" aria-hidden="true"></span>' + AD[u] + '</button>').join("")
             : '<span class="rota-static"><span class="rota-dot rota-dot-' + akt + '" aria-hidden="true"></span>' + (AD[akt] || "—") + '</span>') +

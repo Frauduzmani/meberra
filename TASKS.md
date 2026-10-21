@@ -14,6 +14,10 @@
   - Bir hukukçuya kontrol ettir; sonra sayfa üstündeki sarı "taslak" kutusunu kaldır
 - [ ] **İlk gerçek satış provası** - kayıt → Premium bildirimi → yönetici panelinden onay → Premium açıldı e-postası
 
+- [ ] **Telefon bildirimini gerçek telefonda dene** - Android Chrome + iPhone (Ana Ekrana Ekle, iOS 16.4+); canlıda HTTPS şart
+- [ ] **Üniversite AP rozetlerini içerik olarak kontrol et** - `assets/js/universiteler-gorunum.js` içindeki elle yazılmış tablo
+- [ ] **İYS / ticari ileti** - hatırlatma e-postaları ve bildirimler için hukukçuya sor
+
 ## Waiting On
 
 - [ ] **Ödeme sağlayıcısı (iyzico / PayTR)** - şimdilik havale/EFT + elle onay; şirket hesabı açılınca otomatik ödeme eklenir
@@ -29,6 +33,12 @@
 - [ ] **`sunum/` klasöründeki eski çevrimdışı kopya** - hâlâ eski marka ve ajan bağlantıları içeriyor (canlıya gitmiyor)
 
 ## Done
+
+- [x] ~~Denetim: sunucu (oturum, şifre, hesap silme, gelir, eşitleme, hız sınırı) ve istemci (ücretsiz ünite kuralı, deneme hakkı, bayat Premium) hataları~~ (21 Eki 2026)
+- [x] ~~Sadeleştirme: terim sözlüğü, Hedefim = Ülkem/Takvimim/Başvurularım, yüksek lisans gizli; yeni vitrin (3 adımlı animasyon); üniversiteler sayfası yeniden tasarım~~ (21 Eki 2026)
+- [x] ~~Yönetici paneli: Veri (tablo görüntüle/düzenle/CSV), Sorular, Duyuru, Lig sekmeleri~~ (21 Eki 2026)
+- [x] ~~Soru-cevap (ücretsiz 3/ay), bildirim zili, e-posta hatırlatma, veli haftalık raporu, web push (PWA), haftalık lig~~ (21 Eki 2026)
+- [x] ~~Oyunlaştırma: günlük hedef, seri koruma, akıllı tekrar, görevler, rozetler, kutlama, öğrenme yolu; enerjik geçişler~~ (21 Eki 2026)
 
 - [x] ~~Öğrenciye görünen iç notları, sahte danışmanları ve Ajanlar sayfasını kaldır~~ (20 Eki 2026)
 - [x] ~~Okul adı isteğe bağlı; karşılama seviye testinde bitiyor~~ (20 Eki 2026)
