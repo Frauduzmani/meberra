@@ -9,6 +9,16 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.11.0] — 2026-10-21
+### Eklendi
+- 220 yeni soru yayında (yazan ekipten bağımsız denetçiler her birini yeniden çözerek onayladı; 9 tekrar/benzer soru arşivde).
+  Aktif soru bankası: Calculus 351 · Physics 225 · Chemistry 270 · Biology 207 · English 80 · Seçmeliler 141 · CEnT-S 74 (toplam 1.349).
+- 32 FRQ yayında. Physics Unit 8 Fluids ve Biology Unit 8 Ecology üniteleri açıldı.
+### Değişti
+- Sahip adına içerik kararları (`araclar/icerik-denetim/KARARLAR.md`): Physics C vaadi kaldırıldı ("AP Physics 1"); 5 ileri soru "Physics C · ileri" etiketiyle derste kalır, Physics 1 denemesine girmez.
+- 17 soru yeniden yazıldı (seviye testindeki 9 tekrar dâhil; kimlikler ve cevap geçmişi korunur); 121 zorluk etiketi kalibre edildi; 21 kimya konu numarası güncel CED'e çekildi.
+- Yönetici formunda şık karşılaştırması büyük/küçük harfe duyarlı. FRQ tohumu da mevcut veritabanlarına sürümle aktarılır.
+
 ## [1.10.0] — 2026-10-21
 ### Eklendi
 - İçerik denetimi: 1.130 sorunun her biri bağımsız olarak yeniden çözüldü — **hatalı cevap anahtarı yok**. Raporlar `araclar/icerik-denetim/`.

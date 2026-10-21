@@ -41,7 +41,7 @@
     },
     "ap-physics": {
       kod: "ap-physics",
-      ad: "AP Physics (Physics 1 / C)",
+      ad: "AP Physics 1",
       kategori: "Bilim Sınavı",
       alan: "Fizik",
       ozet: "Newton Mekaniği, Enerji ve Momentum Korunumu, Basit Harmonik Hareket, Rotasyonel Dinamik.",

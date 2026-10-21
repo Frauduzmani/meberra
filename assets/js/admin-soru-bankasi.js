@@ -372,6 +372,8 @@
       if (!$("#sb-govde", d).value.trim()) yerel.govde = "Soru kökünü yaz.";
       if (secenekler.length < 2 || secenekler.length > 5) yerel.secenekler = "2 ile 5 arasında şık olmalı.";
       else if (secenekler.some(function (o) { return !String(o.text).trim(); })) yerel.secenekler = "Boş şık bırakma.";
+      // Büyük/küçük harfe duyarlı (sunucuyla aynı): yalnız harfle ayrılan şıklar (ör. t / T) bilinçli çeldirici olabilir
+      else if (new Set(secenekler.map(function (o) { return String(o.text).trim().replace(/\s+/g, " "); })).size !== secenekler.length) yerel.secenekler = "Aynı metinli iki şık olamaz.";
       if (!dogru || !secenekler.some(function (o) { return o.id === dogru; })) yerel.dogru = "Tam olarak bir doğru şık işaretle.";
       if (Object.keys(yerel).length) { hatalariGoster(yerel); return; }
       var hb = {}; secenekler.forEach(function (o) { if (o.id !== dogru && hata[o.id]) hb[o.id] = hata[o.id]; });

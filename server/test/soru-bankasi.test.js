@@ -56,18 +56,18 @@ function cevapAlaniVar(o) {
 const dogruOf = id => db().prepare("SELECT dogru FROM questions_bank WHERE id = ?").get(id).dogru;
 const yanlisOf = id => ["A", "B", "C", "D"].find(x => x !== dogruOf(id));
 
-test("tohum: sayılar pm-denetim ile aynı (977 ders [975 aktif + 2 arşiv] + 153 seviye + 1 vitrin; taslaklar ayrı), veritabanı dolu, upsert idempotent", () => {
+test("tohum: sayılar pm-denetim ile aynı (1206 ders [1195 aktif + 11 arşiv] + 153 seviye + 1 vitrin; 1.11.0 onayından sonra taslak yok), veritabanı dolu, upsert idempotent", () => {
   const t = JSON.parse(fs.readFileSync(TOHUM, "utf8"));
   const say = (tur, durum) => t.sorular.filter(x => x.tur === tur && (durum ? x.durum === durum : x.durum !== "taslak")).length;
-  assert.equal(say("ders", "aktif"), 975);
-  assert.equal(say("ders", "arsiv"), 2);
-  assert.equal(say("ders", "taslak"), 229, "1.11.0 onay kuyruğu");
-  assert.equal(say("ders"), 977);
+  assert.equal(say("ders", "aktif"), 1195);
+  assert.equal(say("ders", "arsiv"), 11); // 1.10.0: 2 birebir tekrar; 1.11.0: bağımsız denetimin reddettiği 9 taslak
+  assert.equal(say("ders", "taslak"), 0, "1.11.0 onayı: tohumda taslak kalmadı (araclar/onay/UYGULANAN.md)");
+  assert.equal(say("ders"), 1206);
   assert.equal(say("seviye"), 153);
   assert.equal(say("vitrin"), 1);
   assert.equal(new Set(t.sorular.map(x => x.id)).size, t.sorular.length, "kimlikler benzersiz");
   const n = db().prepare("SELECT tur, COUNT(*) AS n FROM questions_bank WHERE durum != 'taslak' GROUP BY tur").all().reduce((a, x) => (a[x.tur] = x.n, a), {});
-  assert.deepEqual(n, { ders: 977, seviye: 153, vitrin: 1 });
+  assert.deepEqual(n, { ders: 1206, seviye: 153, vitrin: 1 });
   const s = tohumUpsert(db(), t.sorular, { guncelleyen: "test" });
   assert.equal(s.eklenen, 0); assert.equal(s.guncellenen, 0); assert.equal(s.ayni, t.sorular.length);
   // Tohum statik olarak sunulmaz (server/ klasörü açık değil)
@@ -110,10 +110,10 @@ test("ücretsiz kullanıcı: açık ünite listesinde cevap yok; kilitli ünite 
   let r = await o("GET", "/api/sorular-bankasi/ap-calculus");
   assert.equal(r.durum, 200);
   const k1 = r.govde.kutular.find(k => k.kutu === "calc-unit1-quiz-container"), k3 = r.govde.kutular.find(k => k.kutu === "calc-unit3-quiz-container");
-  assert.equal(k1.kilitli, false); assert.equal(k3.kilitli, true); assert.equal(k1.toplam, 22);
+  assert.equal(k1.kilitli, false); assert.equal(k3.kilitli, true); assert.equal(k1.toplam, 32); // 1.11.0: +10 onaylı yeni soru
   r = await o("GET", "/api/sorular-bankasi/ap-calculus/1");
   assert.equal(r.durum, 200);
-  assert.equal(r.govde.kutular[0].sorular.length, 22);
+  assert.equal(r.govde.kutular[0].sorular.length, 32);
   assert.equal(cevapAlaniVar(r.govde), false, "liste yanıtında doğru şık / çözüm yok");
   assert.match(r.basliklar.get("cache-control"), /private/); assert.match(r.basliklar.get("cache-control"), /no-store/);
   r = await o("GET", "/api/sorular-bankasi/ap-calculus/calc-unit1-quiz-container");
@@ -152,7 +152,7 @@ test("cevap kontrolü sunucuda: sonuç + açıklama döner, answers tablosuna ve
   assert.equal(rows[0].zaman, t, "istemci aynı zaman damgasını yazınca tekrar satır oluşmaz");
   const st = JSON.parse(db().prepare("SELECT deger FROM user_state WHERE user_id = ? AND anahtar = 'apmeberra:quiz:v1'").get(o.uid).deger);
   assert.equal(st.pages["ap-calculus"].units["calc-unit1-quiz-container"].answers[id].c, false);
-  assert.equal(st.pages["ap-calculus"].units["calc-unit1-quiz-container"].total, 22);
+  assert.equal(st.pages["ap-calculus"].units["calc-unit1-quiz-container"].total, 32);
   // İstemci aynı kaydı eşitlerse (aynı t) yinelenen cevap satırı oluşmaz
   await o("PUT", "/api/state", { degisiklikler: { "apmeberra:quiz:v1": JSON.stringify(st) } });
   assert.equal(db().prepare("SELECT COUNT(*) AS n FROM answers WHERE user_id = ?").get(o.uid).n, 2);
@@ -177,8 +177,8 @@ test("deneme: ücretsiz hak sunucuda — aynı ders sayfasında ikinci deneme 40
   const o = await ogrenci(false);
   let r = await o("GET", "/api/deneme/katalog");
   assert.equal(r.durum, 200);
-  assert.equal(r.govde.kodlar["calculus-ab"].soruSayisi, 157);
-  assert.equal(r.govde.sorular.length, 969); // v1.10.0: 2 birebir tekrar arşivlendi (calc_u6_q33, chem_u8_q11); arşiv deneme havuzunda yok
+  assert.equal(r.govde.kodlar["calculus-ab"].soruSayisi, 215);
+  assert.equal(r.govde.sorular.length, 1189); // v1.10.0: 2 birebir tekrar arşivlendi; v1.11.0: 220 onaylı yeni soru (arşiv deneme havuzunda yok)
   assert.equal(cevapAlaniVar(r.govde.sorular), false);
   assert.equal(r.govde.sorular.some(x => "question" in x || "options" in x), false, "katalogda soru kökü/şık yok");
   assert.equal(r.govde.haklar["ap-calculus"], false);
@@ -285,7 +285,7 @@ test("yönetici: liste + istatistik (şüpheli), düzenleme yeni sürüm, doğru
   for (let i = 0; i < 5; i++) { const o = await ogrenci(false); await o("POST", "/api/sorular-bankasi/cevap", { soruId: id, secim: dogruOf(id) }); }
   let r = await y("GET", "/api/admin/soru-bankasi?sayfa=ap-calculus&unite=1&durum=aktif");
   assert.equal(r.durum, 200);
-  assert.equal(r.govde.toplam, 22);
+  assert.equal(r.govde.toplam, 32);
   const satir = r.govde.sorular.find(x => x.id === id);
   assert.equal(satir.istatistik.cevap >= 5, true); assert.equal(satir.istatistik.supheli, true);
   r = await y("GET", "/api/admin/soru-bankasi?supheli=1");
@@ -349,4 +349,17 @@ test("yönetici: liste + istatistik (şüpheli), düzenleme yeni sürüm, doğru
   // Denetim kaydı
   const eylemler = db().prepare("SELECT eylem FROM audit_log WHERE eylem LIKE 'soru-bankasi.%'").all().map(x => x.eylem);
   for (const e of ["soru-bankasi.duzenle", "soru-bankasi.geri-yukle", "soru-bankasi.arsiv", "soru-bankasi.ekle", "soru-bankasi.disa-aktar"]) assert.ok(eylemler.includes(e), e);
+});
+
+test("yönetici formu: aynı şık kontrolü büyük/küçük harfe duyarlı (calc_u7_q1 t / T kaydedilir; birebir aynı şık 400)", async () => {
+  const y = await yonetici();
+  const s = (await y("GET", "/api/admin/soru-bankasi/soru/calc_u7_q1")).govde.soru;
+  assert.ok(s.secenekler.some(o => o.text.includes("k(t - 20)")) && s.secenekler.some(o => o.text.includes("k(T - 20)")));
+  const form = { surum: s.surum, govde: s.govde, secenekler: s.secenekler, dogru: s.dogru, zorluk: s.zorluk, durum: s.durum, aciklama: s.aciklama,
+    genel_hatirlatma: s.genel_hatirlatma + " ", hata_aciklamalari: s.hata_aciklamalari, konu: s.konu, kaynak: s.kaynak, not: "t/T şıkları" };
+  const ok = await y("PUT", "/api/admin/soru-bankasi/soru/calc_u7_q1", form);
+  assert.equal(ok.durum, 200, JSON.stringify(ok.govde));
+  const ayni = await y("PUT", "/api/admin/soru-bankasi/soru/calc_u7_q1", Object.assign({}, form, { surum: ok.govde.surum,
+    secenekler: s.secenekler.map((o, i) => i === 3 ? { id: o.id, text: s.secenekler[2].text } : o) }));
+  assert.equal(ayni.durum, 400); assert.match(JSON.stringify(ayni.govde), /Aynı metinli/);
 });

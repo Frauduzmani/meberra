@@ -4,16 +4,29 @@
 const { test, before, after } = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("fs");
+const os = require("os");
+const path = require("path");
 const { olustur } = require("../uygulama");
 const { dogrula, TOHUM, DERSLER } = require("../frq");
 
+// 1.11.0: gerçek tohumdaki 32 FRQ bağımsız denetimle onaylandı (aktif). Taslak/onay akışı, onay öncesi hâli (hepsi taslak)
+// olan bir sınama tohumuyla sınanır.
+const klasor = fs.mkdtempSync(path.join(os.tmpdir(), "meberra-frq-"));
+const GERCEK = JSON.parse(fs.readFileSync(TOHUM, "utf8"));
+const taslakTohum = surum => { const t = JSON.parse(JSON.stringify(GERCEK)); t.surum = surum; t.frq.forEach(f => { f.durum = "taslak"; delete f.ek; }); return t; };
+const TASLAK_TOHUM = path.join(klasor, "frq-taslak.json");
+fs.writeFileSync(TASLAK_TOHUM, JSON.stringify(taslakTohum(1)));
+
 let app, base;
 before(async () => {
-  app = olustur({ dbDosya: ":memory:", yoneticiAtla: true, girisSiniri: 1000, kayitSiniri: 1000, gunlukKonsol: false, varlikOtomatik: false, soruTohum: false });
+  app = olustur({ dbDosya: ":memory:", yoneticiAtla: true, girisSiniri: 1000, kayitSiniri: 1000, gunlukKonsol: false, varlikOtomatik: false, soruTohum: false, frqTohumDosyasi: TASLAK_TOHUM });
   await new Promise(r => app.server.listen(0, "127.0.0.1", r));
   base = "http://127.0.0.1:" + app.server.address().port;
 });
-after(() => new Promise(r => app.server.close(r)));
+after(async () => {
+  await new Promise(r => app.server.close(r));
+  try { fs.rmSync(klasor, { recursive: true, force: true }); } catch (e) { /* Windows: WAL kilidi */ }
+});
 
 function istemci() {
   let cerez = "";
@@ -53,10 +66,12 @@ function gizliVar(o) {
 }
 const onayla = async (id) => { const y = await yonetici(); const r = await y("POST", "/api/admin/frq/" + id + "/durum", { durum: "aktif" }); assert.equal(r.durum, 200, JSON.stringify(r.govde)); return r; };
 
-test("tohum: yapı geçerli, sayılar (calc AB 4 + BC 2, phys 5, chem 5, bio 5, eng 3, macro 2, micro 2, csa 4), hepsi taslak ve özgün", () => {
+test("tohum: yapı geçerli, sayılar (calc AB 4 + BC 2, phys 5, chem 5, bio 5, eng 3, macro 2, micro 2, csa 4), hepsi onaylı (aktif) ve özgün", () => {
   const t = JSON.parse(fs.readFileSync(TOHUM, "utf8"));
   const say = {};
-  t.frq.forEach(f => { say[f.ders] = (say[f.ders] || 0) + 1; assert.deepEqual(dogrula(f), [], f.id); assert.equal(f.durum, "taslak"); assert.equal(f.kaynak, "AP-style original"); });
+  assert.ok(t.surum >= 2, "1.11.0 onayı için FRQ tohum sürümü artırıldı");
+  t.frq.forEach(f => { say[f.ders] = (say[f.ders] || 0) + 1; assert.deepEqual(dogrula(f), [], f.id); assert.equal(f.durum, "aktif"); assert.equal(f.kaynak, "AP-style original");
+    assert.ok(f.ek && f.ek.onay && /bağımsız denetim/.test(f.ek.onay.kaynak), f.id + " onay izi"); });
   assert.deepEqual(say, { "calculus-ab": 4, "calculus-bc": 2, "physics-1": 5, chemistry: 5, biology: 5, "english-language": 3, macroeconomics: 2, microeconomics: 2, "computer-science-a": 4 });
   assert.equal(new Set(t.frq.map(f => f.id)).size, t.frq.length);
   t.frq.filter(f => f.ders === "english-language").forEach(f => assert.deepEqual(f.parcalar[0].rubrik.map(r => r.puan), [1, 4, 1], f.id + " 6 puanlık rubrik"));
@@ -199,6 +214,28 @@ test("yönetici: arşiv öğrenciden gizler; JSON düzenleme sürümlü + doğru
   assert.equal(liste.durum, 200); assert.ok(liste.govde.frq.every(f => f.durum === "taslak")); assert.ok(liste.govde.durumSay.arsiv >= 1);
   assert.equal((await o("GET", "/api/admin/frq")).durum, 403);
   assert.equal((await o("POST", "/api/admin/frq/frq-bio-1/durum", { durum: "aktif" })).durum, 403);
+});
+
+test("tohum sürümü 1 → 2: yöneticinin dokunmadığı taslak FRQ tohumdaki onayı alır; yönetici kararı ve düzenlemesi korunur", () => {
+  const { tohumEsitle } = require("../frq");
+  const db = app.db;
+  // Bu noktada sınama veritabanı sürüm 1 (hepsi taslak) tohumuyla kurulu; önceki testlerde yönetici bazılarını onayladı/arşivledi/düzenledi.
+  const dokunulan = new Set(db.prepare("SELECT DISTINCT frq_id FROM frq_gecmis WHERE degistiren GLOB '[0-9]*'").all().map(x => x.frq_id));
+  assert.ok(dokunulan.has("frq-phys1-1") && dokunulan.has("frq-calc-ab-1"));
+  const once = Object.fromEntries(db.prepare("SELECT id, durum, veri FROM frq").all().map(r => [r.id, r]));
+  const f2 = path.join(klasor, "frq-v2.json");
+  fs.writeFileSync(f2, JSON.stringify(GERCEK));
+  const s = tohumEsitle(db, f2);
+  assert.equal(s.mod, "guncelleme");
+  const sonra = Object.fromEntries(db.prepare("SELECT id, durum, veri, guncelleyen FROM frq").all().map(r => [r.id, r]));
+  for (const f of GERCEK.frq) {
+    if (dokunulan.has(f.id)) assert.equal(sonra[f.id].durum, once[f.id].durum, f.id + " yönetici kararı korunur");
+    else { assert.equal(sonra[f.id].durum, "aktif", f.id); assert.equal(sonra[f.id].guncelleyen, "tohum"); assert.ok(JSON.parse(sonra[f.id].veri).ek.onay, f.id); }
+  }
+  assert.equal(sonra["frq-phys1-1"].durum, "arsiv", "yönetici arşivi korunur");
+  assert.match(JSON.parse(sonra["frq-phys1-1"].veri).baslik, /revised/, "yönetici düzenlemesi korunur");
+  // ikinci çalıştırma: güncel
+  assert.equal(tohumEsitle(db, f2).mod, "guncel");
 });
 
 test("tohum yeniden eşitleme: yeni sürümde yönetici düzenlemesi korunur, durum korunur", () => {

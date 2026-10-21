@@ -378,7 +378,7 @@ window.addEventListener("storage", e => {
 // --- Ders kayıt defteri (ilerleme ve gezinme için ortak) ---
 const APMEBERRA_COURSES = [
   { page: "ap-calculus",  name: "AP Calculus AB / BC", short: "Calculus",   cls: "c-calculus" },
-  { page: "ap-physics",   name: "AP Physics 1 / C",    short: "Physics",    cls: "c-physics" },
+  { page: "ap-physics",   name: "AP Physics 1",        short: "Physics",    cls: "c-physics" },
   { page: "ap-chemistry", name: "AP Chemistry",        short: "Chemistry",  cls: "c-chemistry" },
   { page: "ap-biology",   name: "AP Biology",          short: "Biology",    cls: "c-biology" },
   { page: "ap-english",   name: "AP English Language", short: "English",    cls: "c-english" },

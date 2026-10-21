@@ -684,7 +684,8 @@ function soruBankasiRotalari(r, bag) {
     const secenekler = sec.slice(0, 5).map((o, i) => ({ id: HARFLER[i], text: String(o && o.text != null ? o.text : o || "").trim() }));
     if (!e.secenekler && secenekler.some(o => !o.text)) e.secenekler = "Boş seçenek bırakma.";
     if (!e.secenekler && secenekler.some(o => o.text.length > 4000)) e.secenekler = "Seçenek metni en fazla 4000 karakter.";
-    if (!e.secenekler && new Set(secenekler.map(o => o.text.replace(/\s+/g, " ").toLowerCase())).size !== secenekler.length) e.secenekler = "Aynı metinli iki seçenek olamaz.";
+    // Büyük/küçük harfe DUYARLI: bazı çeldiriciler bilinçli olarak yalnız harfle ayrılır (ör. calc_u7_q1: k(t − 20) / k(T − 20))
+    if (!e.secenekler && new Set(secenekler.map(o => o.text.replace(/\s+/g, " "))).size !== secenekler.length) e.secenekler = "Aynı metinli iki seçenek olamaz.";
     const dogru = String(b.dogru || "").toUpperCase();
     // Tek doğru şık: dogru tek harf ve seçeneklerden biri olmalı (birden çok doğru işaretlenemez)
     if (!secenekler.some(o => o.id === dogru)) e.dogru = "Tam olarak bir doğru seçenek işaretle.";

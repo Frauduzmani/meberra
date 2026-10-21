@@ -119,6 +119,12 @@ function tohumOku(dosya) {
   const t = JSON.parse(fs.readFileSync(f, "utf8"));
   return { surum: Number(t.surum) || 1, frq: Array.isArray(t.frq) ? t.frq : [] };
 }
+const yoneticiKimligi = v => v != null && /^\d+$/.test(String(v));
+/** FRQ yönetici tarafından düzenlendi/onaylandı/arşivlendi mi (son yazan ya da geçmişte herhangi bir sürümü yazan kullanıcı)? */
+function yoneticiDokundu(db, r) {
+  if (yoneticiKimligi(r.guncelleyen)) return true;
+  return db.prepare("SELECT degistiren FROM frq_gecmis WHERE frq_id = ?").all(r.id).some(h => yoneticiKimligi(h.degistiren));
+}
 function ayarOku(db) { const r = db.prepare("SELECT deger FROM ayarlar WHERE anahtar = ?").get(TOHUM_AYAR); return r ? Number(r.deger) || 0 : 0; }
 function ayarYaz(db, v) {
   db.prepare(`INSERT INTO ayarlar (anahtar, deger, guncelleme, guncelleyen) VALUES (?, ?, ?, NULL)
@@ -126,7 +132,8 @@ function ayarYaz(db, v) {
 }
 /**
  * Tohum sürümü veritabanındakinden yeniyse: yeni FRQ'lar eklenir (tohumdaki durumla); yönetici içerik düzenlemesi olmayanların
- * içeriği güncellenir (durum — onay/arşiv — korunur). Dönüş: { mod, eklenen, guncellenen, korunan }
+ * içeriği güncellenir. Durum (onay/arşiv) yönetici FRQ'ya hiç dokunmadıysa tohumdan gelir, dokunduysa korunur.
+ * Dönüş: { mod, eklenen, guncellenen, korunan }
  */
 function tohumEsitle(db, dosya, gunluk) {
   const t = tohumOku(dosya);
@@ -144,9 +151,13 @@ function tohumEsitle(db, dosya, gunluk) {
           .run(f.id, f.sayfa, f.ders, f.baslik, f.toplam_puan, JSON.stringify(icerik(f)), f.durum, z, z);
         s.eklenen++; continue;
       }
-      if (esit(jsonCoz(r.veri, {}), icerik(f))) continue;
+      // 1.11.0: durum da tohumdan gelir (onay/ret kararları) — ama yalnız yönetici bu FRQ'ya hiç dokunmadıysa
+      // (içerik düzenlemesi, onay ya da arşiv). Dokunduysa içerik düzenlemesi yoksa içerik güncellenir, durum korunur.
+      const dokundu = yoneticiDokundu(db, r);
+      const durum = dokundu ? r.durum : f.durum;
+      if (esit(jsonCoz(r.veri, {}), icerik(f)) && durum === r.durum) continue;
       if (r.elle) { s.korunan.push(f.id); continue; }
-      surumYaz(db, r, icerik(f), r.durum, "tohum", "tohum sürümü " + t.surum, false);
+      surumYaz(db, r, icerik(f), durum, "tohum", "tohum sürümü " + t.surum, false);
       s.guncellenen++;
     }
     ayarYaz(db, t.surum);

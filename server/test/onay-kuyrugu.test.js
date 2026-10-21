@@ -10,16 +10,22 @@ const path = require("path");
 const { olustur } = require("../uygulama");
 const { TOHUM, TOHUM_AYAR, tohumSurumOku } = require("../sorubankasi");
 
-const GUNCEL = JSON.parse(fs.readFileSync(TOHUM, "utf8"));
+// 1.11.0: gerçek tohumda taslak kalmadı (bağımsız denetim kararları uygulandı: araclar/onay/UYGULANAN.md). Onay kuyruğu
+// davranışı, 1.11.0 üretimlerinin onay öncesi hâli (hepsi taslak) olan bir sınama tohumuyla sınanır.
+const GERCEK = JSON.parse(fs.readFileSync(TOHUM, "utf8"));
+const GUNCEL = JSON.parse(JSON.stringify(GERCEK));
+GUNCEL.sorular.forEach(r => { if (r.ek && r.ek.uretim === "1.11.0") { r.durum = "taslak"; delete r.ek.onay; delete r.ek.redNedeni; } });
 const TASLAK = GUNCEL.sorular.filter(r => r.durum === "taslak");
 const FIZIK8 = TASLAK.filter(r => r.kutu === "phys-unit8-quiz-container").map(r => r.id);
 const BIYO8 = TASLAK.filter(r => r.kutu === "bio-unit8-quiz-container").map(r => r.id);
 const CALC1 = TASLAK.filter(r => r.kutu === "calc-unit1-quiz-container").map(r => r.id);
 const ENG = TASLAK.filter(r => r.pasaj).map(r => r.id);
 const klasor = fs.mkdtempSync(path.join(os.tmpdir(), "meberra-onay-"));
+const TASLAK_TOHUM = path.join(klasor, "tohum-taslak.json");
+fs.writeFileSync(TASLAK_TOHUM, JSON.stringify(GUNCEL));
 
 let app, base;
-before(async () => { app = await ac(":memory:"); base = app.base; });
+before(async () => { app = await ac(":memory:", TASLAK_TOHUM); base = app.base; });
 after(async () => {
   await kapat(app);
   try { fs.rmSync(klasor, { recursive: true, force: true }); } catch (e) { /* Windows: WAL kilidi */ }
@@ -66,6 +72,14 @@ const icerir = (o, ids) => { const s = JSON.stringify(o); return ids.some(id => 
 
 test("tohum: 229 taslak, hepsi 1.11.0 üretimi; yeni kutular ücretsiz kurala göre Premium", () => {
   assert.equal(TASLAK.length, 229);
+  // gerçek tohum: 1.11.0 üretimlerinin hepsi karara bağlandı (220 aktif + 9 arşiv), taslak yok, her kararın izi ek.onay'da
+  const uretim = GERCEK.sorular.filter(r => r.ek && r.ek.uretim === "1.11.0");
+  assert.equal(uretim.length, 229);
+  assert.equal(GERCEK.sorular.filter(r => r.durum === "taslak").length, 0);
+  assert.equal(uretim.filter(r => r.durum === "aktif").length, 220);
+  assert.equal(uretim.filter(r => r.durum === "arsiv").length, 9);
+  assert.ok(uretim.every(r => r.ek.onay && r.ek.onay.tarih && /bağımsız denetim/.test(r.ek.onay.kaynak)));
+  assert.ok(uretim.filter(r => r.durum === "arsiv").every(r => r.ek.redNedeni));
   assert.ok(TASLAK.every(r => r.ek && r.ek.uretim === "1.11.0"));
   assert.equal(FIZIK8.length, 20); assert.equal(BIYO8.length, 20);
   const kural = require("../../assets/js/ucretsiz-kural.js");
@@ -228,7 +242,7 @@ test("ret: taslak → arsiv, neden kaydedilir (ek.red + geçmiş notu), denetiml
   assert.equal((await o("POST", "/api/sorular-bankasi/cevap", { soruId: ids[0], secim: "A" })).durum, 404);
 });
 
-test("tohum güncellemesi (sürüm 2 → 3): yeni taslaklar eklenir ve taslak kalır; onaylanan sonraki tohumda korunur", async () => {
+test("tohum güncellemesi (sürüm N−1 → N): yeni taslaklar eklenir ve taslak kalır; onaylanan sonraki tohumda korunur", async () => {
   const v2 = JSON.parse(JSON.stringify(GUNCEL));
   v2.surum = GUNCEL.surum - 1;
   v2.sorular = v2.sorular.filter(r => r.durum !== "taslak");
@@ -239,7 +253,7 @@ test("tohum güncellemesi (sürüm 2 → 3): yeni taslaklar eklenir ve taslak ka
   try {
     assert.equal(a.db.prepare("SELECT COUNT(*) AS n FROM questions_bank WHERE durum = 'taslak'").get().n, 0);
   } finally { await kapat(a); }
-  a = await ac(dbDosya, TOHUM);
+  a = await ac(dbDosya, TASLAK_TOHUM);
   let yid;
   try {
     assert.equal(tohumSurumOku(a.db), GUNCEL.surum);
@@ -257,5 +271,35 @@ test("tohum güncellemesi (sürüm 2 → 3): yeni taslaklar eklenir ve taslak ka
     assert.equal(satir(CALC1[0], a).durum, "aktif");
     assert.equal(satir(CALC1[0], a).guncelleyen, String(yid));
     assert.equal(a.db.prepare("SELECT deger FROM ayarlar WHERE anahtar = ?").get(TOHUM_AYAR).deger, String(GUNCEL.surum + 1));
+  } finally { await kapat(a); }
+});
+
+test("1.11.0 onay tohumu: taslak veritabanı açılışta güncellenir (onay → aktif, red → arşiv); yönetici kararı korunur", async () => {
+  // Önce onay öncesi tohum (taslaklar) — gerçek tohumdan bir eksik sürümle
+  const once = JSON.parse(JSON.stringify(Object.assign({}, GUNCEL, { surum: GERCEK.surum - 1 })));
+  once.sorular.find(r => r.id === "calc_u4_q14").govde = String.raw`Evaluate $$\lim_{x \to 0} \frac{1 - \cos x}{x^2}$$`; // yeniden yazım öncesi kök
+  const f = path.join(klasor, "tohum-onay-oncesi.json");
+  fs.writeFileSync(f, JSON.stringify(once));
+  const dbDosya = path.join(klasor, "onay-yukselt.db");
+  let a = await ac(dbDosya, f), yid;
+  const reddedilen = GERCEK.sorular.find(r => r.ek && r.ek.uretim === "1.11.0" && r.durum === "aktif" && r.kutu === "phys-unit8-quiz-container").id;
+  try {
+    assert.equal(a.db.prepare("SELECT COUNT(*) AS n FROM questions_bank WHERE durum = 'taslak'").get().n, 229);
+    const y = await yonetici(a, "okyon3@ornek.com"); yid = y.uid;
+    // yönetici bir soruyu (tohumda onaylanan) kendisi reddeder: tohum güncellemesi bu kararı ezmemeli
+    assert.equal((await y("POST", "/api/admin/soru-bankasi/reddet", { ids: [reddedilen], neden: "Yönetici kararı" })).govde.reddedilen, 1);
+  } finally { await kapat(a); }
+  a = await ac(dbDosya, TOHUM);
+  try {
+    assert.equal(tohumSurumOku(a.db), GERCEK.surum);
+    assert.equal(a.db.prepare("SELECT COUNT(*) AS n FROM questions_bank WHERE durum = 'taslak'").get().n, 0);
+    assert.equal(a.db.prepare("SELECT COUNT(*) AS n FROM questions_bank WHERE durum = 'aktif'").get().n, GERCEK.sorular.filter(r => r.durum === "aktif").length - 1);
+    assert.equal(satir(reddedilen, a).durum, "arsiv"); assert.equal(satir(reddedilen, a).guncelleyen, String(yid));
+    const red = GERCEK.sorular.find(r => r.ek && r.ek.redNedeni);
+    assert.equal(satir(red.id, a).durum, "arsiv"); assert.equal(JSON.parse(satir(red.id, a).ek).redNedeni, red.ek.redNedeni);
+    const yeni = GERCEK.sorular.find(r => r.id === "calc_u4_q14");
+    assert.equal(satir("calc_u4_q14", a).govde, yeni.govde, "yeniden yazım veritabanına geldi");
+    assert.equal(satir("calc_u4_q14", a).dogru, "C");
+    assert.ok(a.db.prepare("SELECT 1 FROM questions_bank_history WHERE soru_id = 'calc_u4_q14' AND degistiren = 'tohum'").get(), "eski hâl geçmişte");
   } finally { await kapat(a); }
 });

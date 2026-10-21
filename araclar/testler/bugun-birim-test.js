@@ -112,8 +112,8 @@ const PR = { pages: {
   "ap-calculus": { units: { u1: { title: "Unit 1", total: 20, seen: "2026-10-19T10:00:00Z", answers: { a: { c: 1, t: "2026-10-10T09:00:00Z" }, b: { c: 0, t: "2026-10-10T09:05:00Z" } } } } },
   "ap-physics": { units: { u3: { title: "Unit 3", total: 25, seen: "2026-10-01T10:00:00Z", answers: { a: { c: 1, t: "2026-10-18T12:00:00Z" } } }, u4: { title: "Unit 4", total: 10, seen: "2026-10-19T11:00:00Z", answers: {} } } }
 } };
-const k = apKaldiginYer(PR, [{ page: "ap-physics", name: "AP Physics 1 / C" }]);
-ok(k && k.page === "ap-physics" && k.unitId === "u3" && k.ders === "AP Physics 1 / C" && k.answered === 1 && k.correct === 1 && k.total === 25, "kaldığın yer: en yeni CEVAP damgası (seen değil)", k);
+const k = apKaldiginYer(PR, [{ page: "ap-physics", name: "AP Physics 1" }]);
+ok(k && k.page === "ap-physics" && k.unitId === "u3" && k.ders === "AP Physics 1" && k.answered === 1 && k.correct === 1 && k.total === 25, "kaldığın yer: en yeni CEVAP damgası (seen değil)", k);
 ok(apKaldiginYer({ pages: {} }, []) === null && apKaldiginYer(null) === null, "kaldığın yer: veri yoksa null");
 
 
@@ -142,7 +142,7 @@ ok(apKaldiginYer({ pages: {} }, []) === null && apKaldiginYer(null) === null, "k
   ok(yeniSa.tur === "plan" && yeniSa.baslik === "Seviye testini çöz", "Sıradaki adım (yeni AP öğrencisi): 'Seviye testini çöz', üniversite incelemesi değil", yeniSa);
   const dolu = { answered: 12, openErrors: [{ id: "q9", topic: "Limits", page: "ap-calculus" }, { id: "q8", page: "ap-calculus" }], courses: [
     { page: "ap-calculus", name: "AP Calculus AB / BC", units: [{ id: "u1", title: "Unit 1", total: 10, answered: 10, correct: 9 }, { id: "u2", title: "Unit 2", total: 10, answered: 2, correct: 1 }] },
-    { page: "ap-physics", name: "AP Physics 1 / C", units: [{ id: "p1", title: "Unit 1 Kinematics", total: 20, answered: 4, correct: 1 }] }] };
+    { page: "ap-physics", name: "AP Physics 1", units: [{ id: "p1", title: "Unit 1 Kinematics", total: 20, answered: 4, correct: 1 }] }] };
   pl = apCalismaPlani({ summary: dolu, kayitSon: null, seviye: { raporlar: [{ id: "r" }] }, bugun: BUGUN });
   ok(pl.map(x => x.ikon).join() === "redo,target,play,book" && pl[0].title === "Yanlışlarım’daki 2 soruyu tekrar çöz" && pl[0].href === "/deneme?mod=yanlislar" && /Limits/.test(pl[0].desc) &&
     pl[1].title === "Zayıf üniteni güçlendir: Unit 1 Kinematics" && pl[1].href === "/ders/physics#p1" && /%25 doğru/.test(pl[1].desc) &&
@@ -153,7 +153,7 @@ ok(apKaldiginYer({ pages: {} }, []) === null && apKaldiginYer(null) === null, "k
   const acikKutu = (p, id) => id === "u1" || id === "p1";
   const ucretsiz = { answered: 30, openErrors: [], courses: [
     { page: "ap-calculus", name: "AP Calculus AB / BC", visited: true, units: [{ id: "u1", title: "Unit 1", total: 10, answered: 10, correct: 10 }, { id: "u3", title: "Unit 3", total: 10, answered: 2, correct: 0 }] },
-    { page: "ap-physics", name: "AP Physics 1 / C", visited: true, units: [{ id: "p1", title: "Unit 1 Kinematics", total: 20, answered: 20, correct: 19 }] }] };
+    { page: "ap-physics", name: "AP Physics 1", visited: true, units: [{ id: "p1", title: "Unit 1 Kinematics", total: 20, answered: 20, correct: 19 }] }] };
   pl = apCalismaPlani({ summary: ucretsiz, kayitSon: null, bugun: BUGUN, premium: false, kutuUcretsiz: acikKutu });
   ok(!pl.some(x => /#u3/.test(x.href)) && pl.some(x => x.href === "/premium" && x.ikon === "play"), "çalışma planı (ücretsiz): kilitli Unit 3 önerilmez, ücretsizler bitti → Premium önerisi", pl);
   ucretsiz.courses.push({ page: "ap-biology", name: "AP Biology", visited: false, units: [] });
