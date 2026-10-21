@@ -12,7 +12,7 @@ const TURLER = {
   ".woff": "font/woff", ".pdf": "application/pdf", ".xml": "application/xml; charset=utf-8", ".txt": "text/plain; charset=utf-8", ".webmanifest": "application/manifest+json"
 };
 // Yalnızca bu klasörler, kökteki .html/.txt/.ico/.webmanifest dosyaları ve service worker (sw.js) sunulur
-const ACIK_KLASORLER = ["assets", "data", "kaynaklar"];
+const ACIK_KLASORLER = ["assets", "data"]; // kaynaklar/ (PDF ve iç notlar) sunulmaz
 const KOK_DOSYA_RE = /^[a-z0-9._-]+\.(html|txt|ico|webmanifest|png|svg|xml)$/i;
 const KOK_JS = ["sw.js"];
 
@@ -105,7 +105,21 @@ function yonlendirici() {
 }
 
 // --- Statik dosyalar --------------------------------------------------------
+// HTML önbelleği (meta etiketi eklenmiş + gzip'li gövde). Sayaçlar yönetici "Sistem" sekmesinde görünür.
 const htmlOnbellek = new Map();
+const onbellekSayac = { isabet: 0, iska: 0, temizleme: 0, sonTemizleme: null };
+function onbellekDurum() {
+  let bayt = 0;
+  for (const g of htmlOnbellek.values()) bayt += g.duz.length + g.gz.length;
+  return { girdi: htmlOnbellek.size, bayt, isabet: onbellekSayac.isabet, iska: onbellekSayac.iska, temizleme: onbellekSayac.temizleme, sonTemizleme: onbellekSayac.sonTemizleme };
+}
+function onbellekTemizle() {
+  const n = htmlOnbellek.size;
+  htmlOnbellek.clear();
+  onbellekSayac.temizleme++; onbellekSayac.sonTemizleme = new Date().toISOString();
+  return n;
+}
+
 function statikYol(urlYol) {
   let yol;
   try { yol = decodeURIComponent(urlYol); } catch (e) { return null; }
@@ -121,9 +135,32 @@ function statikYol(urlYol) {
   return tam;
 }
 
-function statikSun(req, res) {
+/** Android TWA için Digital Asset Links. Önce .env (ANDROID_PAKET_ADI + ANDROID_SHA256), yoksa proje kökündeki
+ *  .well-known/assetlinks.json dosyası; ikisi de yoksa null (→ 404). */
+function assetlinksGovde() {
+  const a = config.android || {};
+  if (a.paket && a.sha256 && a.sha256.length) {
+    return JSON.stringify([{ relation: ["delegate_permission/common.handle_all_urls"],
+      target: { namespace: "android_app", package_name: a.paket, sha256_cert_fingerprints: a.sha256 } }], null, 2);
+  }
+  try { return fs.readFileSync(path.join(config.ROOT, ".well-known", "assetlinks.json"), "utf8"); } catch (e) { return null; }
+}
+
+/**
+ * Statik dosya sunar. ozel: { yol: "/bakim.html", kod: 503, basliklar: {} } verilirse istek yolu yerine o dosya, o durum
+ * koduyla (önbelleksiz, ETag'siz) sunulur. Dönüş: sunulduysa true.
+ */
+function statikSun(req, res, ozel) {
   const u = new URL(req.url, "http://x");
-  const tam = statikYol(u.pathname);
+  if (!ozel && u.pathname === "/.well-known/assetlinks.json") {
+    const g = assetlinksGovde();
+    if (g == null) return false;
+    res.setHeader("Content-Type", "application/json");
+    res.setHeader("Cache-Control", "public, max-age=3600");
+    res.end(req.method === "HEAD" ? undefined : g);
+    return true;
+  }
+  const tam = statikYol(ozel ? ozel.yol : u.pathname);
   if (!tam) return false;
   let bilgi;
   try { bilgi = fs.statSync(tam); } catch (e) { return false; }
@@ -133,17 +170,25 @@ function statikSun(req, res) {
   if (!tur) return false;
   res.setHeader("Content-Type", tur);
   const etag = 'W/"' + bilgi.size.toString(16) + "-" + Math.floor(bilgi.mtimeMs).toString(16) + '"';
-  res.setHeader("ETag", etag);
-  // HTML, service worker ve manifest her açılışta doğrulanır; diğer varlıklar 1 saat önbellekte
-  const tazele = uzanti === ".html" || uzanti === ".webmanifest" || path.basename(tam) === "sw.js";
-  res.setHeader("Cache-Control", tazele ? "no-cache" : "public, max-age=3600");
-  if (req.headers["if-none-match"] === etag) { res.statusCode = 304; res.end(); return true; }
+  if (ozel) {
+    res.statusCode = ozel.kod || 200;
+    res.setHeader("Cache-Control", "no-store");
+    Object.keys(ozel.basliklar || {}).forEach(k => res.setHeader(k, ozel.basliklar[k]));
+  } else {
+    res.setHeader("ETag", etag);
+    // HTML, service worker ve manifest her açılışta doğrulanır; diğer varlıklar 1 saat önbellekte
+    const tazele = uzanti === ".html" || uzanti === ".webmanifest" || path.basename(tam) === "sw.js";
+    res.setHeader("Cache-Control", tazele ? "no-cache" : "public, max-age=3600");
+    if (req.headers["if-none-match"] === etag) { res.statusCode = 304; res.end(); return true; }
+  }
   const sikistir = /\bgzip\b/.test(String(req.headers["accept-encoding"] || "")) && /^(text\/|application\/(json|javascript)|image\/svg)/.test(tur) && bilgi.size > 1024;
   if (uzanti === ".html") {
     // Sunucu modu işareti: istemci bu etiketi görünce API ile çalışır
     const anahtar = tam + ":" + etag;
     let govde = htmlOnbellek.get(anahtar);
-    if (!govde) {
+    if (govde) onbellekSayac.isabet++;
+    else {
+      onbellekSayac.iska++;
       const ham = fs.readFileSync(tam, "utf8");
       const ek = '<meta name="meberra-api" content="1">';
       const metin = /<head[^>]*>/i.test(ham) ? ham.replace(/<head([^>]*)>/i, m => m + "\n  " + ek) : ek + ham;
@@ -167,4 +212,4 @@ function statikSun(req, res) {
   return true;
 }
 
-module.exports = { HttpHata, cerezleriOku, cerezYaz, guvenlikBasliklari, json, govdeOku, yonlendirici, statikSun, statikYol };
+module.exports = { HttpHata, cerezleriOku, cerezYaz, guvenlikBasliklari, json, govdeOku, yonlendirici, statikSun, statikYol, onbellekDurum, onbellekTemizle };

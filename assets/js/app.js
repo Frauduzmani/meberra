@@ -288,7 +288,8 @@ const MEBERRA_SYNC = (function () {
   const cikisSayfasi = apCurrentPage() === "giris" && /[?&]cikis=1(?:&|#|$)/.test(window.location.search);
   if (oturumVar() && APMEBERRA_ME && !cikisSayfasi) {
     fetch("/api/me", { credentials: "same-origin" }).then(r => {
-      if (r.status === 401) { oturumBitti(); return null; }
+      // 401: oturum yok; 403: hesap yönetici tarafından engellendi (oturumlar kapatıldı)
+      if (r.status === 401 || r.status === 403) { oturumBitti(); return null; }
       return r.ok ? r.json() : null;
     }).then(j => {
       if (!j || !j.ok || !oturumVar()) return null;

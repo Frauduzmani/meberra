@@ -54,6 +54,11 @@ const config = {
   hatirlatmaSaati: Math.min(21, Math.max(8, Math.floor(sayi(env.HATIRLATMA_SAATI, 19)))),
   // Ücretsiz planda takvim ayı başına soru hakkı (Premium ve yöneticiler sınırsız)
   soruHakki: Math.max(0, Math.floor(sayi(env.UCRETSIZ_SORU_HAKKI, 3))),
+  // Google Play (Trusted Web Activity): /.well-known/assetlinks.json bu iki değerden üretilir (SHA-256 parmak izleri virgülle)
+  android: {
+    paket: (env.ANDROID_PAKET_ADI || "").trim(),
+    sha256: String(env.ANDROID_SHA256 || "").split(",").map(s => s.trim().toUpperCase()).filter(s => /^([0-9A-F]{2}:){31}[0-9A-F]{2}$/.test(s))
+  },
   urun: {
     marka: "Meberra",
     para: "₺",

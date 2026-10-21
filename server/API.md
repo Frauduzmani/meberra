@@ -10,7 +10,7 @@ Bazı hatalar ek alan taşır (ör. 402: `kalan`, `premiumGerekli`, `hak`).
 Başarı: `{ "ok": true, ... }`.
 
 ## Genel
-- `GET /api/health` → `{ ok, surum, zaman }`
+- `GET /api/health` → `{ ok, surum (package.json), zaman, bakim: bool }`
 - `GET /api/public/config` → `{ ok, marka, planlar:[{id,ad,fiyat,donem,aciklama,oneCikan}], para, ucretsiz:{uniteSayisi,dersDenemesi}, banka:{banka,iban,hesapSahibi,aciklamaNotu}, destekEposta }`
 
 ## Hesap
@@ -254,6 +254,74 @@ bir IP'den 10 dk'da ≥20 adet 401 (yalnızca değiştiren istekler) / 403 ya da
 - `POST /api/admin/loglar/toplu` `{ ids:[1–200], durum, not? }` → `{ ok, guncellenen }` (denetim: `log.toplu-durum`)
 - `GET /api/admin/stats` ayrıca `sistem:{yeniHata, yeniUyari}` ve `seri:{gunler, kayit[7], cevap[7]}` döndürür.
 - Yalnızca test/hata ayıklama: `NODE_ENV=test` ya da `MEBERRA_TEST_ROTALARI=1` iken `GET|POST /api/test/hata` bilinçli 500 üretir (canlıda kapalı).
+
+## Yönetici v2: varlık, engel, destek merkezi, operasyon, bakım (`005_yonetim_operasyon.sql`)
+**Varlık (presence).** Kimliği doğrulanmış her API isteği `users.son_gorulme` / `son_ip` (ve oturumun `sessions.son_gorulme` / `son_ip`)
+değerini günceller; kullanıcı başına **en fazla 60 sn'de bir** bellekteki kuyruğa alınır, kuyruk 30 sn'de bir ve kapanışta veritabanına
+yazılır (yönetici uç noktaları okumadan önce boşaltır). IP, `TRUST_PROXY` kuralıyla (`X-Forwarded-For`'un son adresi) alınır.
+`varlik`: `cevrimici` (son 5 dk) | `yakin` (son 30 dk, "az önce aktif") | `cevrimdisi`. Başarılı girişte `son_giris` + `son_giris_ip`
+yazılır; `giris_sayilari (user_id, gun YYYY-MM-DD İstanbul, adet, basarisiz)` başarılı ve (hesap bulunduysa) hatalı şifre girişlerini sayar.
+
+**KVKK / saklama.** IP adresleri kişisel veridir: zamanlayıcı (`erisim` işi) **90 günden eski** `users.son_ip`, `users.son_giris_ip`,
+`sessions.ip/son_ip` değerlerini siler; 400 günden eski giriş sayaçlarını ve süresi dolan IP engellerini kaldırır. Hesap silmede
+`giris_sayilari` silinir, `son_ip`/`son_giris_ip`/`son_gorulme`/`engel_nedeni` boşaltılır; veri indirme (`/api/account/export`) `erisim`
+(sonGiris, sonGirisIp, sonGorulme, sonIp) ve `girisSayilari` alanlarını içerir.
+
+- `GET /api/admin/users?...&varlik=cevrimici|yakin|engelli&sirala=kayit|gorulme|giris` → her kullanıcıya ek: `{ sonGorulme, sonIp, sonGirisIp,
+  varlik, bugunGiris, engel: { zaman, bitis|null, neden, dolmus }|null }`
+- `GET /api/admin/users/:id` → ek: `user.{ sonGorulme, sonIp, sonGirisIp, varlik, engel }`, `girisler: { gunler[14], adet[14], basarisiz[14] }`,
+  `oturumlar: [{ id, olusturma, sonGorulme, ip, ilkIp, tarayici, bitis }]` (açık oturumlar)
+- `POST /api/admin/users/:id/oturumlar/:sid/kapat` · `POST /api/admin/users/:id/oturumlar/kapat` → `{ ok, kapanan, oturumlar }` (denetim: `oturum.kapat`, `oturum.tumunu-kapat`)
+- `GET /api/admin/stats` → `kullanici` ek: `{ cevrimici, yakin, engelli, bugunGiris }`
+
+**Engelleme.** `POST /api/admin/users/:id/engel` `{ neden (zorunlu, ≤300, yalnızca yöneticiler görür), sure: "suresiz"|"1g"|"7g"|"30g" }` →
+`durum = 'askida'` + `engel_zamani`, `engel_bitis` (süresizde null), `engel_nedeni`; tüm oturumlar kapanır (denetim `hesap.engellendi`).
+Engelli kullanıcının girişi **403** `{ error: "Hesabın engellendi. Engel <tarih> tarihinde kalkacak. …", engelli: true, engelBitis }`; eski çereziyle gelen
+API istekleri **403** `{ engelli: true }` (giriş/çıkış/kayıt/sağlık/public hariç). Süreli engel süresi dolunca girişte ya da zamanlayıcıda kalkar
+(`hesap.engel-sona-erdi`). `POST /api/admin/users/:id/engel-kaldir` → `{ ok, durum: "aktif" }` (409: engelli değil). Eski `POST …/durum` aynen çalışır
+(`askida` → eski tip askı: 401; `aktif` engel alanlarını da temizler). Kendini engelleyemezsin (400).
+
+**IP engel listesi.** `ip_engelleri (kapsam: tek IPv4/IPv6 adresi ya da IPv4 /24, neden, bitis)`. Eşleşen istemci giriş, kayıt ve tüm API'de
+**403** `{ ipEngeli: true }` alır (`/api/health` ve yönetici oturumu hariç). `GET /api/admin/ip-engelleri` → `{ ok, sizinIp, engeller:[{ id, kapsam, neden,
+bitis, olusturma, olusturan, etkin }] }` · `POST /api/admin/ip-engelleri` `{ kapsam, neden, sure: "suresiz"|"1g"|"7g"|"30g" }` (400: geçersiz ya da kendi IP'n;
+409: zaten var) · `DELETE /api/admin/ip-engelleri/:id`. Denetim: `ip-engel.ekle`, `ip-engel.kaldir`.
+
+**Destek merkezi** (öğrenci tarafı `/api/sorular*` değişmedi; iç notlar öğrenci yanıtlarında hiç yoktur).
+- `GET /api/admin/sorular?durum=&q=&sirala=eski|yeni&atanan=ben&sayfa=` → ek alanlar: `sayilar: { bekliyor, cevaplandi, kapandi, okunmamis }`; her soruda
+  `beklemeBaslangic` (bekliyorsa: son yönetici mesajından sonraki ilk öğrenci mesajı — SLA), `okunmamis`, `atanan: {id, ad, soyad}|null`, `notSayisi`,
+  `kullanici.{ plan, bitis, sonGorulme, varlik }`. Varsayılan sıra: bekleyenlerde en uzun bekleyen önce.
+- `GET /api/admin/sorular/:id` → yönetici okundu işaretlenir; ek: `notlar: [{ id, metin, tarih, yazan }]`, `atanan`, `beklemeBaslangic`
+- `POST /api/admin/sorular/:id/yanit` `{ metin, kapat?: true }` → `kapat` ise durum `kapandi` ("Cevapla & kapat"); atanmamışsa yanıtlayana atanır
+- `POST /api/admin/sorular/:id/not` `{ metin ≤2000 }` → iç not (bildirim yok; denetim `soru.not`)
+- `POST /api/admin/sorular/:id/ata` `{ atanan: "<yönetici id>"|"ben"|null }` (denetim `soru.ata`) · `GET /api/admin/yoneticiler` → `{ ok, ben, yoneticiler:[{id, ad, soyad}] }`
+- Hazır yanıtlar (yöneticiler arasında ortak, en fazla 200): `GET /api/admin/hazir-yanitlar` → `{ ok, yanitlar:[{ id, baslik, metin, guncelleme }] }` ·
+  `POST` `{ baslik ≤80, metin ≤2000 }` · `PUT /api/admin/hazir-yanitlar/:id` · `DELETE /api/admin/hazir-yanitlar/:id`. Denetim: `hazir-yanit.ekle|duzenle|sil`.
+
+**Sistem / operasyon.**
+- `GET /api/admin/sistem` → `{ ok, surum, node, platform, pid, baslangic, calismaSn, bellek: { rss, heapKullanilan, heapToplam, harici, sistemToplam, sistemBos },
+  olayDongusu: { ortalamaMs, p99Ms, enCokMs, pencereSn }|null (perf_hooks, 5 dk pencere), cpu: { cekirdek, yuk: [1,5,15]|null (Windows'ta null) },
+  veritabani: { boyut, walBoyut, dosya }, disk: { bos, toplam }|null (fs.statfs, DATA_DIR), yedek: { son, adet, sakla: 14 },
+  onbellek: { girdi, bayt, isabet, iska, temizleme, sonTemizleme } (HTML sayfa önbelleği), hizSinirlari: { giris, kayit, sifre, soru, hataRaporu } (izlenen anahtar),
+  kuyruk: { eposta: { smtp, bekleyen, hata, gonderilen24s }, push: { abonelik, kullanici } }, zamanlayici: { acik, aralikDk, sonCalisma, sonSureMs, sonHata,
+  isler: [{ ad, baslik, sonCalisma, sureMs, sonuc, hata }] }, oturum: { aktif, cevrimici, yakin }, istek: { dakikada, ortSureMs, son5dk, hata5xx5dk,
+  hataOrani5dk, seri: [15 × { dakika, istek, hata5xx }] } (yalnızca /api/*), bakim, ipEngeli }`
+- `POST /api/admin/sistem/onbellek-temizle` → `{ ok, temizlenen, onbellek }` (denetim `sistem.onbellek-temizle`)
+- `POST /api/admin/sistem/yedek` → çalışan veritabanından yedek (`node:sqlite` backup), `DATA_DIR/yedekler`, en yeni 14 tutulur → `{ ok, yedek: { dosya, boyut, sureMs, silinen }, son }`
+  (409: bellek içi veritabanı ya da süren yedek; denetim `sistem.yedek`)
+- `GET /api/admin/sistem/eposta?durum=bekleyen|hata|gonderilen` → en yeni 100 `{ id, alici, konu, olusturma, gonderim, hata }` (metin gösterilmez) ·
+  `POST /api/admin/sistem/eposta/isle` (en eski 50 gönderilmemiş; 409: SMTP yok) · `POST /api/admin/sistem/eposta/:id/tekrar`
+- `POST /api/admin/sistem/zamanlayici/:is` (`lig`|`temizlik`|`erisim`|`hatirlatma`|`veliRaporu`) → `{ ok, calisti, sonuc|neden }`. Hatırlatma/veli raporu kendi
+  kurallarına uyar (sessiz saatte çalışmaz; `reminder_log` ile kişi başına günde bir).
+
+**Bakım modu** (`ayarlar` tablosunda `bakim` anahtarı; yeniden başlatmada korunur).
+- `GET /api/admin/bakim` → `{ ok, bakim: { acik, mesaj, bitis, baslangic, baslatan } }` · `POST /api/admin/bakim` `{ acik: bool, mesaj? ≤500, bitis?: ISO }` (denetim `bakim.ac|guncelle|kapat`)
+- Açıkken yönetici oturumu olmayan isteklerde: HTML sayfaları (`/` dahil; `bakim.html`, `giris.html`, `admin.html` hariç) **503** + `Retry-After` ile `bakim.html`;
+  API **503** `{ ok:false, bakim:true, error, mesaj, bitis }` + `Retry-After` — açık kalanlar: `/api/health`, `/api/public/config` (`bakim: { acik, mesaj, bitis }`),
+  `/api/auth/login`, `/api/auth/logout`, `/api/me`, `/api/admin/*` (kendi yetki denetimiyle). Statik varlıklar (css/js/font/görsel) açık. `bakim.html` 60 sn'de bir
+  `/api/public/config` ile yeniden dener; bakım bitince sayfayı yeniler.
+
+**Android (TWA).** `GET /.well-known/assetlinks.json`: `.env` → `ANDROID_PAKET_ADI` + `ANDROID_SHA256` (virgülle birden çok SHA-256 parmak izi, `AA:BB:…`)
+varsa üretilen Digital Asset Links JSON'u; yoksa proje kökündeki `.well-known/assetlinks.json` dosyası; ikisi de yoksa 404. `Content-Type: application/json`.
 
 ## Sayfalar
 Sunucu proje kökündeki statik sayfaları da sunar. HTML yanıtlarına `<meta name="meberra-api" content="1">`

@@ -6,7 +6,7 @@ const config = require("./config");
 const { olustur } = require("./uygulama");
 
 fs.mkdirSync(path.join(config.dataDir, "yedekler"), { recursive: true });
-const { server, db, zamanlayici, gunluk } = olustur();
+const { server, db, zamanlayici, gunluk, varlik } = olustur();
 const { hataAyrinti } = require("./gunluk");
 
 // Süreç düzeyi hatalar sistem günlüğüne (yönetici paneli → Sistem). Yakalanmamış istisnadan sonra süreç güvenli
@@ -40,6 +40,7 @@ function kapat(sinyal) {
   kapaniyor = true;
   gunluk.bilgi("sunucu", "Sunucu kapanıyor (" + sinyal + ")", { calismaSn: Math.round(process.uptime()) });
   zamanlayici.durdur();
+  try { varlik.bosalt(); } catch (e) { /* son görülme yazılamadıysa yok say */ }
   server.close(() => process.exit(0));
   try { db.exec("PRAGMA wal_checkpoint(TRUNCATE)"); } catch (e) { /* yok say */ }
   setTimeout(() => process.exit(0), 5000).unref();

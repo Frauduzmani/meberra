@@ -222,7 +222,34 @@
     return s == null || s > 36 ? "eski" : "ok";
   }
 
+  /* --- Varlık, SLA, engel ------------------------------------------------ */
+  var VARLIK = { cevrimici: "Çevrimiçi", yakin: "Son 30 dk", cevrimdisi: "Çevrimdışı" };
+  /** Son görülmeden varlık durumu (sunucuyla aynı eşikler: 5 dk / 30 dk) */
+  function varlikHesapla(iso, simdiMs) {
+    var t = iso ? Date.parse(iso) : NaN;
+    if (isNaN(t)) return "cevrimdisi";
+    var f = (simdiMs == null ? Date.now() : simdiMs) - t;
+    return f <= 5 * 60e3 ? "cevrimici" : f <= 30 * 60e3 ? "yakin" : "cevrimdisi";
+  }
+  function varlikAd(v) { return VARLIK[v] || VARLIK.cevrimdisi; }
+  /** Bekleme süresi rozeti: < 24 sa ok, 24–48 sa warn (amber), > 48 sa bad (kırmızı) */
+  function slaDurumu(iso, simdiMs) {
+    var s = saatFarki(iso, simdiMs);
+    if (s == null) return null;
+    var ton = s > 48 ? "bad" : s > 24 ? "warn" : "ok";
+    var metin = s < 1 ? Math.max(1, Math.round(s * 60)) + " dk" : s < 48 ? Math.floor(s) + " sa" : Math.floor(s / 24) + " gün";
+    return { ton: ton, metin: metin, saat: s };
+  }
+  var ENGEL_SURE = { suresiz: "Süresiz", "1g": "1 gün", "7g": "7 gün", "30g": "30 gün" };
+  function engelSureAd(s) { return ENGEL_SURE[s] || "Süresiz"; }
+  /** Yüzde (0–1) → "%1,5" */
+  function oranMetni(x) {
+    if (!sayiMi(x)) return "—";
+    return "%" + (Number(x) * 100).toLocaleString("tr-TR", { maximumFractionDigits: 1 });
+  }
+
   var yardimci = {
+    varlikHesapla: varlikHesapla, varlikAd: varlikAd, slaDurumu: slaDurumu, engelSureAd: engelSureAd, oranMetni: oranMetni,
     seviyeAd: seviyeAd, kaynakAd: kaynakAd, logDurumAd: logDurumAd, sureMetni: sureMetni, boyutMetni: boyutMetni,
     goreceZaman: goreceZaman, saatFarki: saatFarki, cubukOranlari: cubukOranlari, yedekDurumu: yedekDurumu,
     soruDurumAd: soruDurumAd, soruDurumTon: soruDurumTon, hedefAd: hedefAd, kademeAd: kademeAd, kisalt: kisalt, hucreMetni: hucreMetni,
@@ -281,12 +308,16 @@
     sekme: "ozet",
     yuklendi: {},
     talepDurum: "bekliyor",
-    kul: { q: "", premium: false, sayfa: 1, boyut: 0, istek: 0, satirlar: [] },
+    kul: { q: "", premium: false, varlik: "", sirala: "", sayfa: 1, boyut: 0, istek: 0, satirlar: [] },
+    surum: "",
+    hazir: null,           // hazır yanıtlar (önbellek)
+    yoneticiler: null,
     secili: null,          // { id, veri }
     den: { kullanici: "", eylem: "", sayfa: 1, boyut: 0, istek: 0 },
     talepIstek: 0,
     durumBilinen: {},      // detay yanıtında user.durum yoksa son başarılı /durum işleminin sonucu
-    soru: { durum: "bekliyor", sayfa: 1, istek: 0, secili: null },
+    soru: { durum: "bekliyor", q: "", sirala: "", atanan: "", sayfa: 1, istek: 0, secili: null, liste: [] },
+    ops: { istek: 0, son: null },
     veri: { tablolar: null, tablo: "", q: "", alan: "", deger: "", sirala: "", yon: "desc", sayfa: 1, istek: 0, sonuc: null, secili: null },
     lig: { hafta: "", istek: 0 },
     sis: { seviye: "", kaynak: "", durum: "yeni", q: "", sayfa: 1, boyut: 0, istek: 0, ozetIstek: 0, secili: {}, satirlar: [], sonGuncelleme: null, acikLog: null }
@@ -294,7 +325,7 @@
   var SEKMELER = [
     { id: "ozet", ad: "Özet", ikon: "ozet" },
     { id: "talepler", ad: "Ödeme talepleri", sayac: "adm-bekleyen", ikon: "talepler" },
-    { id: "sorular", ad: "Sorular", sayac: "adm-soru-bekleyen", ikon: "sorular" },
+    { id: "sorular", ad: "Destek merkezi", sayac: "adm-soru-bekleyen", ikon: "sorular" },
     { id: "kullanicilar", ad: "Kullanıcılar", ikon: "kullanicilar" },
     { id: "duyuru", ad: "Duyuru", ikon: "duyuru" },
     { id: "lig", ad: "Lig", ikon: "lig" },
@@ -332,7 +363,19 @@
     tac: '<path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7z"/><path d="M5 20h14"/>',
     cevap: '<path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>',
     nabiz: '<path d="M3 12h4l2-5 4 10 2-5h6"/>',
-    ok_sag: '<path d="M5 12h14M13 6l6 6-6 6"/>'
+    ok_sag: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+    engel: '<circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/>',
+    bakim: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+    cpu: '<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/>',
+    hiz: '<path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>',
+    sil: '<path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>',
+    not: '<path d="M15.5 3H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3Z"/><path d="M15 3v6h6"/>',
+    cihaz: '<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>',
+    cikis: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>',
+    kuyruk: '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',
+    kalkan: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4M12 16h.01"/>',
+    arti: '<path d="M12 5v14M5 12h14"/>',
+    ara: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>'
   };
   function ikon(ad, sinif) {
     return '<svg class="adm-ikon' + (sinif ? " " + sinif : "") + '" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' + (IKON[ad] || "") + "</svg>";
@@ -358,6 +401,20 @@
     return '<div class="adm-hata" role="alert"><p>' + esc(metin) + '</p><button type="button" class="btn-ghost btn-sm" data-tekrar>Yeniden dene</button></div>';
   }
   function rozet(metin, ton) { return '<span class="adm-rozet is-' + esc(ton || "notr") + '">' + esc(metin) + "</span>"; }
+  /** Varlık çipi: nokta + metin (renk tek başına anlam taşımaz) */
+  function varlikCip(v, sonGorulme) {
+    v = VARLIK[v] ? v : varlikHesapla(sonGorulme);
+    var baslik = sonGorulme ? "Son görülme: " + tarih(sonGorulme) : "Hiç görülmedi";
+    return '<span class="adm-varlik is-' + esc(v) + '" title="' + esc(baslik) + '"><span class="adm-varlik-nokta" aria-hidden="true"></span>' + esc(varlikAd(v)) + "</span>";
+  }
+  function slaRozet(iso) {
+    var s = slaDurumu(iso);
+    if (!s) return "";
+    return '<span class="adm-sla is-' + s.ton + '" title="' + esc("Bekliyor: " + tarih(iso)) + '">' + ikon("saat") + "<span>" + esc(s.metin) + "</span></span>";
+  }
+  function zamanHucre(iso) {
+    return iso ? '<time datetime="' + esc(iso) + '" title="' + esc(tarih(iso)) + '">' + esc(goreceZaman(iso)) + "</time>" : '<span class="adm-alt">—</span>';
+  }
 
   /** Görünür, aria-live bildirim şeridi. ton: ok | bad | info */
   function bildir(metin, ton) {
@@ -435,13 +492,14 @@
     main.innerHTML =
       '<header class="adm-ust">' +
         '<div class="adm-ust-metin">' +
-          '<span class="adm-ust-eyebrow">' + ikon("nabiz") + "Yönetim</span>" +
+          '<span class="adm-ust-eyebrow">' + ikon("nabiz") + 'Yönetim <span class="adm-ust-surum" id="adm-surum" hidden></span></span>' +
           "<h1>Yönetici paneli</h1>" +
           "<p>Talepler, kullanıcılar, içerik ve sistem sağlığı tek yerde. " +
           '<span class="adm-ust-kim">Oturum: ' + esc(adSoyad(me.user)) + "</span></p>" +
         "</div>" +
         '<button type="button" class="adm-durum-pill" id="adm-durum-pill" data-git="sistem" hidden></button>' +
       "</header>" +
+      '<div class="adm-bakim-serit" id="adm-bakim-serit" role="status" hidden></div>' +
       '<div class="adm-bildirim" role="status" aria-live="polite" hidden></div>' +
       '<div class="adm-kabuk">' +
         '<div class="adm-yan"><div class="adm-sekme-kap"><div class="adm-sekmeler" role="tablist" aria-label="Yönetici bölümleri">' +
@@ -456,9 +514,14 @@
             return '<section class="adm-panel" role="tabpanel" id="panel-' + s.id + '" aria-labelledby="sekme-' + s.id + '" tabindex="0" hidden></section>';
           }).join("") +
         "</div>" +
-      "</div>";
+      "</div>" +
+      '<footer class="adm-alt-bilgi"><span>Meberra yönetici paneli</span><span id="adm-alt-surum"></span></footer>';
     bildirimEl = $(".adm-bildirim", main);
     $("#adm-durum-pill").addEventListener("click", function () { sekmeAc("sistem"); $("#sekme-sistem").focus(); });
+    $("#adm-bakim-serit").addEventListener("click", function (e) {
+      if (e.target.closest("[data-bakim-git]")) { sekmeAc("sistem"); var k = $("#ops-bakim"); if (k) k.scrollIntoView({ block: "start" }); }
+    });
+    surumYukle();
 
     var liste = $(".adm-sekmeler", main);
     liste.addEventListener("click", function (e) {
@@ -483,6 +546,7 @@
     setInterval(function () {
       if (document.visibilityState !== "visible" || cekmeceAcik()) return;
       if (S.sekme === "sistem") sistemYukle(true); else ozetYukle(true);
+      if (S.sekme !== "sistem") bakimSeridi();
     }, 30000);
     document.addEventListener("visibilitychange", function () {
       if (document.visibilityState === "visible" && S.sekme === "sistem" && !cekmeceAcik()) sistemYukle(true);
@@ -515,11 +579,33 @@
     else if (id === "talepler") talepYukle();
     else if (id === "kullanicilar") { if (!S.yuklendi.kullanicilar) kulYukle(); }
     else if (id === "denetim") denYukle();
-    else if (id === "sorular") { if (!S.soru.secili) soruYukle(); }
+    else if (id === "sorular") soruYukle(!!S.soru.secili);
     else if (id === "duyuru") duyuruOnizle();
     else if (id === "lig") ligYukle();
     else if (id === "veri") { if (!S.veri.tablolar) veriTablolarYukle(); }
     else if (id === "sistem") sistemYukle();
+  }
+
+  /** Sürüm (başlık + alt bilgi) ve bakım şeridi: /api/health (sürüm package.json'dan) */
+  function surumYukle() {
+    fetch("/api/health", { credentials: "same-origin" }).then(function (r) { return r.json(); }).then(function (v) {
+      if (!v || !v.surum) return;
+      S.surum = v.surum;
+      var a = $("#adm-surum"); if (a) { a.textContent = "v" + v.surum; a.hidden = false; }
+      var b = $("#adm-alt-surum"); if (b) b.textContent = "Sürüm " + v.surum;
+      if (v.bakim) bakimSeridi(); else bakimSeridiCiz(null);
+    }).catch(function () { /* sürüm gösterilmezse panel yine çalışır */ });
+  }
+  function bakimSeridi() {
+    return api("/api/admin/bakim").then(function (v) { bakimSeridiCiz(v.bakim); }).catch(function () {});
+  }
+  function bakimSeridiCiz(b) {
+    var s = $("#adm-bakim-serit"); if (!s) return;
+    if (!b || !b.acik) { s.hidden = true; s.innerHTML = ""; return; }
+    s.hidden = false;
+    s.innerHTML = ikon("bakim") + '<span class="adm-bakim-metin"><strong>Bakım modu açık</strong> · Ziyaretçiler bakım sayfasını görüyor' +
+      (b.bitis ? ", planlanan bitiş " + esc(tarih(b.bitis)) : "") + ". Sen yönetici olarak siteyi normal kullanıyorsun.</span>" +
+      '<button type="button" class="btn-ghost btn-sm" data-bakim-git>Yönet</button>';
   }
 
   /* ------------------------------------------------------------------------
@@ -530,7 +616,12 @@
     p.innerHTML = '<div class="adm-panel-ust"><h2>Özet</h2><button type="button" class="btn-ghost" data-yenile>Yenile</button></div><div class="adm-ozet-icerik"></div>';
     p.addEventListener("click", function (e) {
       if (e.target.closest("[data-yenile],[data-tekrar]")) ozetYukle();
-      var git = e.target.closest("[data-git]"); if (git) { sekmeAc(git.getAttribute("data-git")); $("#sekme-" + git.getAttribute("data-git")).focus(); }
+      var git = e.target.closest("[data-git]");
+      if (git) {
+        var gv = git.getAttribute("data-git-varlik");
+        if (gv) { S.kul.varlik = gv; S.kul.sayfa = 1; S.yuklendi.kullanicilar = false; var sel = $("#kul-varlik"); if (sel) sel.value = gv; }
+        sekmeAc(git.getAttribute("data-git")); $("#sekme-" + git.getAttribute("data-git")).focus();
+      }
     });
   }
   /** Mini çubuklar (son 7 gün). Veri yoksa ya da hepsi 0 ise çizilmez. */
@@ -575,7 +666,7 @@
           '<span class="adm-tile-deger">' + o.deger + "</span>" +
           (o.alt ? '<span class="adm-tile-alt">' + o.alt + "</span>" : "") + miniCubuklar(o.seri, o.etiket + ", son 7 gün");
         return o.git
-          ? '<li><button type="button" class="adm-tile is-' + (o.ton || "notr") + ' is-tik" data-git="' + o.git + '">' + ic + "</button></li>"
+          ? '<li><button type="button" class="adm-tile is-' + (o.ton || "notr") + ' is-tik" data-git="' + o.git + '"' + (o.gitVarlik ? ' data-git-varlik="' + o.gitVarlik + '"' : "") + ">" + ic + "</button></li>"
           : '<li><div class="adm-tile is-' + (o.ton || "notr") + '">' + ic + "</div></li>";
       };
       var yeniHata = sis ? Number(sis.yeniHata) || 0 : 0;
@@ -589,6 +680,8 @@
         kart({ etiket: "Bekleyen soru", ikon: "sorular", deger: esc(sayi(sq.bekleyen)), alt: Number(sq.bekleyen) > 0 ? "Yanıtlamak için tıkla" : "Bekleyen soru yok", ton: Number(sq.bekleyen) > 0 ? "enerji" : "notr", git: "sorular" }) +
         kart({ etiket: "Aktif Premium", ikon: "tac", deger: esc(sayi(pr.aktif)), alt: "Aylık " + esc(sayi(pr.aylik)) + " · Yıllık " + esc(sayi(pr.yillik)), ton: "mor" }) +
         kart({ etiket: "Tahmini aylık gelir", ikon: "grafik", deger: esc(tl(g.aylikTL)), alt: "Aktif aboneliklere göre", ton: "ok" }) +
+        (sayiMi(k.cevrimici) ? kart({ etiket: "Şu an çevrimiçi", ikon: "nabiz", deger: esc(sayi(k.cevrimici)),
+          alt: "Son 30 dk: " + esc(sayi(k.yakin)) + " · Bugün giriş: " + esc(sayi(k.bugunGiris)), ton: Number(k.cevrimici) > 0 ? "ok" : "notr", git: "kullanicilar", gitVarlik: "cevrimici" }) : "") +
         kart({ etiket: "Toplam kullanıcı", ikon: "kullanicilar", deger: esc(sayi(k.toplam)), alt: "Listeyi açmak için tıkla", git: "kullanicilar" }) +
         kart({ etiket: "Son 7 gün yeni kayıt", ikon: "kayit", deger: esc(sayi(k.son7gun)), seri: seri.kayit }) +
         kart({ etiket: "Son 7 gün aktif", ikon: "nabiz", deger: esc(sayi(k.aktif7gun)) }) +
@@ -705,6 +798,10 @@
         '<form class="adm-arac adm-arac-genis" role="search" aria-label="Kullanıcı ara" novalidate>' +
           '<div class="field adm-field-esnek"><label for="kul-q">Ara</label>' +
             '<input type="search" id="kul-q" class="text-input" placeholder="Ad, soyad ya da e-posta" autocomplete="off" maxlength="100"></div>' +
+          '<div class="field adm-field-dar"><label for="kul-varlik">Durum</label><select id="kul-varlik" class="text-input">' +
+            '<option value="">Tümü</option><option value="cevrimici">Çevrimiçi (5 dk)</option><option value="yakin">Son 30 dk aktif</option><option value="engelli">Engelli / askıda</option></select></div>' +
+          '<div class="field adm-field-dar"><label for="kul-sirala">Sırala</label><select id="kul-sirala" class="text-input">' +
+            '<option value="">Kayıt (yeni önce)</option><option value="gorulme">Son görülme</option><option value="giris">Son giriş</option></select></div>' +
           '<label class="adm-check"><input type="checkbox" id="kul-premium"> <span>Yalnızca Premium</span></label>' +
         "</form>" +
         '<p class="adm-sonuc" id="kul-ozet" aria-live="polite"></p>' +
@@ -724,6 +821,8 @@
       S.kul.q = $("#kul-q").value.trim(); S.kul.sayfa = 1; kulYukle();
     });
     $("#kul-premium").addEventListener("change", function (e) { S.kul.premium = e.target.checked; S.kul.sayfa = 1; kulYukle(); });
+    $("#kul-varlik").addEventListener("change", function (e) { S.kul.varlik = e.target.value; S.kul.sayfa = 1; kulYukle(); });
+    $("#kul-sirala").addEventListener("change", function (e) { S.kul.sirala = e.target.value; S.kul.sayfa = 1; kulYukle(); });
 
     $(".adm-kul-liste-gorunum", p).addEventListener("click", function (e) {
       if (e.target.closest("[data-tekrar]")) { kulYukle(); return; }
@@ -744,7 +843,8 @@
     kap.setAttribute("aria-busy", "true");
     if (!kap.querySelector("table")) kap.innerHTML = iskelet("tablo", 8);
     else kap.classList.add("is-soluk");
-    return api("/api/admin/users" + sorgu({ q: S.kul.q, sayfa: S.kul.sayfa, premium: S.kul.premium ? 1 : "" })).then(function (v) {
+    var vs = $("#kul-varlik"); if (vs && vs.value !== S.kul.varlik) vs.value = S.kul.varlik;
+    return api("/api/admin/users" + sorgu({ q: S.kul.q, sayfa: S.kul.sayfa, premium: S.kul.premium ? 1 : "", varlik: S.kul.varlik, sirala: S.kul.sirala })).then(function (v) {
       if (no !== S.kul.istek) return;
       var liste = Array.isArray(v.kullanicilar) ? v.kullanicilar : [];
       S.kul.satirlar = liste;
@@ -753,26 +853,34 @@
       oz.tabIndex = -1;
       oz.textContent = b.toplam ? sayi(b.toplam) + " kullanıcı bulundu" + (S.kul.q ? " (“" + S.kul.q + "”)" : "") + "." : "";
       if (!liste.length) {
-        kap.innerHTML = bos(S.kul.q || S.kul.premium ? "Aramaya uyan kullanıcı yok." : "Henüz kayıtlı kullanıcı yok.");
+        kap.innerHTML = bos(S.kul.q || S.kul.premium || S.kul.varlik ? "Bu filtreye uyan kullanıcı yok." : "Henüz kayıtlı kullanıcı yok.");
         say.innerHTML = "";
         return;
       }
-      kap.innerHTML = '<div class="adm-tablo-kap"><table class="adm-tablo adm-kartlas">' +
+      var ipVar = liste.some(function (u) { return "sonIp" in u || "sonGorulme" in u; });
+      kap.innerHTML = '<div class="adm-tablo-kap adm-kul-kap"><table class="adm-tablo adm-kartlas adm-kul-tablo">' +
         '<caption class="visually-hidden">Kullanıcılar, sayfa ' + esc(sayi(b.sayfa)) + "</caption>" +
-        '<thead><tr><th scope="col">Kullanıcı</th><th scope="col">Kayıt</th><th scope="col">Son giriş</th>' +
-        '<th scope="col">Hesap</th><th scope="col">Premium</th><th scope="col" class="adm-sag">Cevap</th></tr></thead><tbody>' +
+        '<thead><tr><th scope="col">Kullanıcı</th>' + (ipVar ? '<th scope="col">Durum</th><th scope="col">Son görülme</th><th scope="col">IP</th><th scope="col" class="adm-sag">Bugün giriş</th>' : "") +
+        '<th scope="col">Son giriş</th><th scope="col">Hesap</th><th scope="col">Premium</th><th scope="col" class="adm-sag">Cevap</th><th scope="col">Kayıt</th></tr></thead><tbody>' +
         liste.map(function (u) {
           var pr = u.premium
             ? rozet(planAd(u.plan), "mor") + (u.bitis ? ' <span class="adm-alt">' + esc(gunTarih(u.bitis)) + " bitiş</span>" : "")
             : '<span class="adm-alt">Yok</span>';
+          var hesapR = u.engel ? rozet(u.engel.dolmus ? "Engel süresi doldu" : "Engelli", u.engel.dolmus ? "warn" : "bad") : rozet(hesapDurumAd(u.durum), u.durum === "askida" ? "bad" : "ok");
           return '<tr data-satir="' + esc(u.id) + '">' +
             '<td data-label="Kullanıcı" class="adm-hucre-kisi"><button type="button" class="adm-link" data-kul="' + esc(u.id) + '">' + esc(adSoyad(u)) + "</button>" +
               '<span class="adm-alt adm-kir">' + esc(u.eposta || "") + "</span></td>" +
-            '<td data-label="Kayıt">' + esc(gunTarih(u.olusturma)) + "</td>" +
-            '<td data-label="Son giriş">' + esc(tarih(u.sonGiris)) + "</td>" +
-            '<td data-label="Hesap">' + rozet(hesapDurumAd(u.durum), u.durum === "askida" ? "bad" : "ok") + "</td>" +
+            (ipVar
+              ? '<td data-label="Durum">' + varlikCip(u.varlik, u.sonGorulme) + "</td>" +
+                '<td data-label="Son görülme" class="adm-nowrap">' + zamanHucre(u.sonGorulme) + "</td>" +
+                '<td data-label="IP"><code class="adm-kod adm-ip">' + esc(u.sonIp || u.sonGirisIp || "—") + "</code></td>" +
+                '<td data-label="Bugün giriş" class="adm-sag">' + (Number(u.bugunGiris) ? "<strong>" + esc(sayi(u.bugunGiris)) + "</strong>" : '<span class="adm-alt">0</span>') + "</td>"
+              : "") +
+            '<td data-label="Son giriş" class="adm-nowrap">' + zamanHucre(u.sonGiris) + "</td>" +
+            '<td data-label="Hesap">' + hesapR + "</td>" +
             '<td data-label="Premium">' + pr + "</td>" +
             '<td data-label="Cevap" class="adm-sag">' + esc(sayi(u.cevapSayisi)) + "</td>" +
+            '<td data-label="Kayıt" class="adm-nowrap">' + esc(gunTarih(u.olusturma)) + "</td>" +
             "</tr>";
         }).join("") + "</tbody></table></div>";
       say.innerHTML = sayfalamaHtml(b, "Kullanıcı sayfaları", "kullanıcı");
@@ -838,6 +946,90 @@
       }).join("") + "</tbody></table></div>";
   }
 
+  /** İşlemler → engelle / engeli kaldır (eski "askıya al" da desteklenir) */
+  function engelIslemHtml(u, askida) {
+    if (u.engel) {
+      var e = u.engel;
+      return '<div class="adm-islem adm-islem-engel"><h4>' + ikon("engel") + " Hesap engelli</h4>" +
+        '<dl class="adm-dl adm-dl-sik"><div class="adm-dl-genis"><dt>Neden</dt><dd>' + esc(e.neden || "—") + "</dd></div>" +
+          "<div><dt>Başlangıç</dt><dd>" + esc(tarih(e.zaman)) + "</dd></div>" +
+          "<div><dt>Bitiş</dt><dd>" + (e.bitis ? esc(tarih(e.bitis)) + (e.dolmus ? " " + rozet("süresi doldu", "warn") : "") : "Süresiz") + "</dd></div></dl>" +
+        '<div class="adm-eylem"><button type="button" class="btn-primary" data-eylem="engel-kaldir" aria-expanded="false">Engeli kaldır</button></div><div class="adm-onay" hidden></div></div>';
+    }
+    if (askida) {
+      return '<div class="adm-islem"><h4>Hesap durumu</h4><p class="adm-alt">Hesap askıda: kullanıcı giriş yapamaz.</p>' +
+        '<div class="adm-eylem"><button type="button" class="btn-primary" data-eylem="durum" data-hedef="aktif" aria-expanded="false">Hesabı etkinleştir</button></div><div class="adm-onay" hidden></div></div>';
+    }
+    if (u.rol === "yonetici") return '<div class="adm-islem"><h4>Engelle</h4><p class="adm-alt">Yönetici hesapları buradan engellenmez; önce rolünü Veri sekmesinden değiştir.</p></div>';
+    return '<form class="adm-islem" data-form="engel" novalidate><h4>Engelle</h4>' +
+      '<p class="adm-alt">Tüm oturumları kapanır, giriş yapamaz; eski oturumla gelen istekler 403 alır.</p>' +
+      '<div class="field"><label for="en-neden">Neden <span class="adm-alt">(yalnızca yöneticiler görür)</span></label>' +
+        '<input id="en-neden" name="neden" class="text-input" maxlength="300" placeholder="Örn. spam mesaj, hesap paylaşımı" aria-describedby="en-hata"></div>' +
+      '<div class="field"><label for="en-sure">Süre</label><select id="en-sure" name="sure" class="text-input">' +
+        '<option value="suresiz">Süresiz</option><option value="1g">1 gün</option><option value="7g">7 gün</option><option value="30g">30 gün</option></select></div>' +
+      '<p class="field-error" id="en-hata" hidden></p>' +
+      '<div class="adm-eylem"><button type="submit" class="btn-ghost adm-ghost-tehlike" aria-expanded="false">' + ikon("engel") + "Engelle…</button></div>" +
+      '<div class="adm-onay" hidden></div></form>';
+  }
+
+  /** Erişim: varlık, IP, girişler (14 gün), oturumlar */
+  function erisimHtml(v) {
+    var u = v.user || {};
+    if (!("sonGorulme" in u) && !v.oturumlar) return "";
+    var g = v.girisler || { gunler: [], adet: [], basarisiz: [] };
+    var top = function (l) { return (l || []).reduce(function (t, x) { return t + (Number(x) || 0); }, 0); };
+    var bugun = g.adet && g.adet.length ? g.adet[g.adet.length - 1] : 0;
+    var oran = cubukOranlari(g.adet || []);
+    var son = (g.adet || []).length - 1;
+    var grafik = (g.gunler || []).length
+      ? '<figure class="adm-giris-grafik"><figcaption>Son 14 gün giriş <span class="adm-alt">· toplam ' + esc(sayi(top(g.adet))) + (top(g.basarisiz) ? " · " + esc(sayi(top(g.basarisiz))) + " hatalı şifre" : "") + "</span></figcaption>" +
+        '<div class="adm-giris-cubuklar" role="img" aria-label="' + esc("Son 14 gün giriş: " + g.gunler.map(function (d, i) { return gunTarih(d + "T12:00:00Z") + " " + sayi(g.adet[i]) + (g.basarisiz[i] ? " (+" + g.basarisiz[i] + " hatalı)" : ""); }).join("; ")) + '">' +
+        g.gunler.map(function (d, i) {
+          var h = Number(g.basarisiz[i]) || 0;
+          return '<span class="adm-giris-sutun' + (i === son ? " is-son" : "") + '" title="' + esc(gunTarih(d + "T12:00:00Z") + ": " + sayi(g.adet[i]) + " giriş" + (h ? ", " + h + " hatalı şifre" : "")) + '">' +
+            '<span class="adm-giris-cubuk" style="height:' + oran[i] + '%"></span>' + (h ? '<span class="adm-giris-hata" aria-hidden="true"></span>' : "") + "</span>";
+        }).join("") + "</div>" +
+        '<div class="adm-lejant"><span><i class="is-giris"></i>Başarılı giriş</span><span><i class="is-hata"></i>Hatalı şifre olan gün</span></div></figure>'
+      : "";
+    var ot = Array.isArray(v.oturumlar) ? v.oturumlar : [];
+    return '<section class="surface" aria-labelledby="d-erisim"><div class="adm-bolum-ust"><h3 id="d-erisim">Erişim ve oturumlar</h3>' +
+        (ot.length ? '<button type="button" class="btn-ghost btn-sm adm-ghost-tehlike adm-ikonlu" data-oturum-hepsi aria-expanded="false">' + ikon("cikis") + "<span>Tüm oturumları kapat</span></button>" : "") + "</div>" +
+      '<div class="adm-onay adm-onay-oturum" hidden></div>' +
+      '<div class="adm-erisim">' +
+        '<dl class="adm-dl">' +
+          "<div><dt>Durum</dt><dd>" + varlikCip(u.varlik, u.sonGorulme) + "</dd></div>" +
+          "<div><dt>Son görülme</dt><dd>" + zamanHucre(u.sonGorulme) + "</dd></div>" +
+          '<div><dt>Son IP</dt><dd><code class="adm-kod adm-ip">' + esc(u.sonIp || "—") + "</code></dd></div>" +
+          "<div><dt>Son giriş</dt><dd>" + zamanHucre(u.sonGiris) + (u.sonGirisIp ? ' <code class="adm-kod adm-ip">' + esc(u.sonGirisIp) + "</code>" : "") + "</dd></div>" +
+          "<div><dt>Bugünkü giriş</dt><dd>" + esc(sayi(bugun)) + "</dd></div>" +
+        "</dl>" + grafik +
+      "</div>" +
+      (ot.length
+        ? '<div class="adm-tablo-kap"><table class="adm-tablo adm-kartlas adm-oturum-tablo"><caption class="visually-hidden">Açık oturumlar</caption>' +
+          '<thead><tr><th scope="col">Cihaz / tarayıcı</th><th scope="col">IP</th><th scope="col">Açılış</th><th scope="col">Son görülme</th><th scope="col"><span class="visually-hidden">İşlem</span></th></tr></thead><tbody>' +
+          ot.map(function (s) {
+            return "<tr>" +
+              '<td data-label="Cihaz" class="adm-oturum-ua"><span class="adm-ikonlu">' + ikon("cihaz") + '<span class="adm-kir">' + esc(tarayiciOzet(s.tarayici)) + "</span></span></td>" +
+              '<td data-label="IP"><code class="adm-kod adm-ip">' + esc(s.ip || "—") + "</code></td>" +
+              '<td data-label="Açılış" class="adm-nowrap">' + zamanHucre(s.olusturma) + "</td>" +
+              '<td data-label="Son görülme" class="adm-nowrap">' + zamanHucre(s.sonGorulme) + "</td>" +
+              '<td data-label="İşlem"><button type="button" class="btn-ghost btn-sm" data-oturum-kapat="' + esc(s.id) + '">Oturumu kapat</button></td>' +
+              "</tr>";
+          }).join("") + "</tbody></table></div>"
+        : bos("Açık oturum yok.")) +
+      '<p class="adm-alt adm-kvkk-not">IP adresleri kişisel veridir: 90 günden eski olanlar otomatik silinir.</p>' +
+      "</section>";
+  }
+  /** User-Agent → "Chrome · Android" gibi kısa özet */
+  function tarayiciOzet(ua) {
+    var s = String(ua || "");
+    if (!s) return "Bilinmeyen tarayıcı";
+    var t = /Edg\//.test(s) ? "Edge" : /OPR\//.test(s) ? "Opera" : /SamsungBrowser/.test(s) ? "Samsung Internet" : /Chrome\//.test(s) ? "Chrome" : /Firefox\//.test(s) ? "Firefox" : /Safari\//.test(s) ? "Safari" : /node|undici/i.test(s) ? "Sunucu / betik" : "Tarayıcı";
+    var i = /Android/.test(s) ? "Android" : /iPhone|iPad/.test(s) ? "iOS" : /Windows/.test(s) ? "Windows" : /Mac OS X/.test(s) ? "macOS" : /Linux/.test(s) ? "Linux" : "";
+    if (/; wv\)/.test(s)) t += " (uygulama)";
+    return t + (i ? " · " + i : "");
+  }
+
   function detayHtml(v) {
     var u = v.user || {}, pr = v.profile || {}, uy = v.uyelik || {}, ist = v.istatistik || {};
     var durum = hesapDurumu(v), askida = durum === "askida";
@@ -855,7 +1047,8 @@
         '<button type="button" class="btn-ghost" data-den="' + esc(u.id) + '">Bu kullanıcının kayıtları</button></div>' +
       '<header class="surface adm-kisi">' +
         '<div class="adm-kisi-ust"><h2 id="kul-detay-baslik" tabindex="-1">' + esc(adSoyad(u)) + "</h2>" +
-          '<div class="adm-rozetler">' + rozet(hesapDurumAd(durum), askida ? "bad" : "ok") + uyelikDurum +
+          '<div class="adm-rozetler">' + ("varlik" in u || "sonGorulme" in u ? varlikCip(u.varlik, u.sonGorulme) : "") +
+            (u.engel ? rozet("Engelli", "bad") : rozet(hesapDurumAd(durum), askida ? "bad" : "ok")) + uyelikDurum +
             (u.rol === "yonetici" ? rozet("Yönetici", "info") : "") + "</div></div>" +
         '<p class="adm-alt adm-kir">' + esc(u.eposta || "—") + (u.kullaniciAdi ? " · @" + esc(u.kullaniciAdi) : "") +
           " · Kayıt: " + esc(tarih(u.olusturma)) + " · Kimlik #" + esc(u.id) + "</p>" +
@@ -901,12 +1094,10 @@
             ? '<div class="adm-islem"><h4>Premium\'u iptal et</h4><p class="adm-alt">Üyelik hemen sona erer; ücret iadesi bu panelden yapılmaz.</p>' +
               '<div class="adm-eylem"><button type="button" class="btn-ghost adm-ghost-tehlike" data-eylem="iptal" aria-expanded="false">Premium\'u iptal et</button></div><div class="adm-onay" hidden></div></div>'
             : "") +
-          '<div class="adm-islem"><h4>Hesap durumu</h4><p class="adm-alt">' +
-            (askida ? "Hesap askıda: kullanıcı giriş yapamaz." : "Hesap etkin. Askıya alınırsa kullanıcı giriş yapamaz.") + "</p>" +
-            '<div class="adm-eylem"><button type="button" class="' + (askida ? "btn-primary" : "btn-ghost adm-ghost-tehlike") + '" data-eylem="durum" data-hedef="' + (askida ? "aktif" : "askida") + '" aria-expanded="false">' +
-              (askida ? "Hesabı etkinleştir" : "Hesabı askıya al") + "</button></div><div class=\"adm-onay\" hidden></div></div>" +
+          engelIslemHtml(u, askida) +
         "</div>" +
       "</section>" +
+      erisimHtml(v) +
 
       '<section class="surface" aria-labelledby="d-ist"><h3 id="d-ist">İstatistik</h3>' +
         '<ul class="adm-tiles adm-tiles-kucuk">' +
@@ -969,9 +1160,42 @@
     }
     var v = S.secili && S.secili.veri; if (!v) return;
     var u = v.user || {}, ad = adSoyad(u), uid = encodeURIComponent(u.id);
+    var ok_ = e.target.closest("[data-oturum-kapat]");
+    if (ok_) {
+      ok_.disabled = true;
+      api("/api/admin/users/" + uid + "/oturumlar/" + encodeURIComponent(ok_.getAttribute("data-oturum-kapat")) + "/kapat", "POST", {}).then(function () {
+        bildir("Oturum kapatıldı. Kullanıcı o cihazda yeniden giriş yapmalı.", "ok"); detayYukle();
+      }).catch(function (er) { ok_.disabled = false; bildir(er.message, "bad"); });
+      return;
+    }
+    var oh = e.target.closest("[data-oturum-hepsi]");
+    if (oh) {
+      onayAc($(".adm-onay-oturum", d), oh, {
+        baslik: ad + " için tüm oturumlar kapatılsın mı?", metin: "Kullanıcı tüm cihazlarda çıkış yapmış olur; hesabı açık kalır.",
+        onayMetni: "Evet, hepsini kapat", tehlike: true,
+        onayla: function () {
+          return api("/api/admin/users/" + uid + "/oturumlar/kapat", "POST", {}).then(function (r) {
+            bildir(sayi(r.kapanan) + " oturum kapatıldı.", "ok"); detayYukle();
+          });
+        }
+      });
+      return;
+    }
     var b = e.target.closest("[data-eylem]");
     if (!b) return;
     var kap = b.closest(".adm-islem").querySelector(".adm-onay");
+    if (b.getAttribute("data-eylem") === "engel-kaldir") {
+      onayAc(kap, b, {
+        baslik: ad + " için engel kaldırılsın mı?", metin: "Kullanıcı yeniden giriş yapabilir.", onayMetni: "Evet, engeli kaldır",
+        onayla: function () {
+          return api("/api/admin/users/" + uid + "/engel-kaldir", "POST", {}).then(function () {
+            S.durumBilinen[String(u.id)] = "aktif";
+            bildir(ad + " için engel kaldırıldı.", "ok"); islemSonrasi();
+          });
+        }
+      });
+      return;
+    }
     if (b.getAttribute("data-eylem") === "iptal") {
       onayAc(kap, b, {
         baslik: ad + " için Premium iptal edilsin mi?",
@@ -998,6 +1222,28 @@
       });
     }
   }
+  // Engelle formu
+  document.addEventListener("submit", function (e) {
+    var f = e.target.closest && e.target.closest('[data-form="engel"]');
+    if (!f) return;
+    e.preventDefault();
+    var v = S.secili && S.secili.veri; if (!v) return;
+    var u = v.user || {}, ad = adSoyad(u);
+    var neden = f.neden.value.trim(), sure = f.sure.value, hataEl = $("#en-hata", f);
+    if (!neden) { hataEl.textContent = "Engelleme nedenini yaz."; hataEl.hidden = false; f.neden.setAttribute("aria-invalid", "true"); f.neden.focus(); return; }
+    hataEl.hidden = true; f.neden.removeAttribute("aria-invalid");
+    onayAc($(".adm-onay", f), f.querySelector("[type=submit]"), {
+      baslik: ad + " " + (sure === "suresiz" ? "süresiz" : engelSureAd(sure).toLocaleLowerCase("tr-TR") + " süreyle") + " engellensin mi?",
+      metin: "Tüm oturumları hemen kapanır ve giriş yapamaz" + (sure === "suresiz" ? "." : "; süre dolunca engel kendiliğinden kalkar.") + " Neden: " + neden,
+      onayMetni: "Evet, engelle", tehlike: true,
+      onayla: function () {
+        return api("/api/admin/users/" + encodeURIComponent(u.id) + "/engel", "POST", { neden: neden, sure: sure }).then(function (r) {
+          S.durumBilinen[String(u.id)] = "askida";
+          bildir(ad + " engellendi" + (r.kapananOturum ? "; " + sayi(r.kapananOturum) + " oturum kapandı." : "."), "ok"); islemSonrasi();
+        });
+      }
+    });
+  });
   // Premium ver formu (submit ayrı dinlenir: Enter tuşu da çalışsın)
   document.addEventListener("submit", function (e) {
     var f = e.target.closest && e.target.closest('[data-form="premium"]');
@@ -1105,91 +1351,171 @@
   }
 
   /* ------------------------------------------------------------------------
-     9. SORULAR (öğrenci soruları: gelen kutusu, yazışma, yanıt, SSS)
+     9. DESTEK MERKEZİ (öğrenci soruları: gelen kutusu + konuşma, hazır yanıtlar, iç not, atama, SLA)
      ------------------------------------------------------------------------ */
+  var SORU_FILTRE = [["bekliyor", "Bekleyen"], ["cevaplandi", "Cevaplandı"], ["kapandi", "Kapandı"], ["hepsi", "Tümü"]];
   function panelSoruKur() {
     var p = $("#panel-sorular");
     p.innerHTML =
-      '<div class="adm-soru-liste-gorunum">' +
-        '<div class="adm-panel-ust"><h2>Sorular</h2>' +
-          '<div class="adm-arac">' +
-            '<div class="field adm-field-dar"><label for="soru-durum">Durum</label>' +
-              '<select id="soru-durum" class="text-input">' +
-                '<option value="bekliyor">Yanıt bekleyenler</option><option value="cevaplandi">Yanıtlananlar</option>' +
-                '<option value="kapandi">Kapananlar</option><option value="hepsi">Tümü</option>' +
-              "</select></div>" +
-            '<button type="button" class="btn-ghost" data-yenile>Yenile</button>' +
-          "</div></div>" +
-        '<p class="adm-ipucu">Öğrencilerin sorularını yanıtla. Yanıt, öğrenciye uygulama içi bildirim (ve tercih ettiyse e-posta) olarak gider. Bekleyenler en eski önce listelenir.</p>' +
-        '<p class="adm-sonuc" id="soru-ozet" aria-live="polite"></p>' +
-        '<div class="adm-soru-liste"></div><div class="adm-soru-sayfa"></div>' +
-      "</div>" +
-      '<div class="adm-detay adm-soru-detay" hidden></div>';
-    $("#soru-durum").addEventListener("change", function (e) { S.soru.durum = e.target.value; S.soru.sayfa = 1; soruYukle(); });
-    $(".adm-soru-liste-gorunum", p).addEventListener("click", function (e) {
-      if (e.target.closest("[data-yenile],[data-tekrar]")) { soruYukle(); return; }
+      '<div class="adm-panel-ust"><div class="adm-min0"><h2>Destek merkezi</h2>' +
+        '<p class="adm-ipucu">Öğrenci sorularını yanıtla. Yanıt öğrenciye "Meberra ekibi" imzasıyla, uygulama içi bildirim (ve tercih ettiyse e-posta) olarak gider. İç notları yalnızca yöneticiler görür.</p></div>' +
+        '<div class="adm-eylem"><button type="button" class="btn-ghost adm-ikonlu" data-hazir-yonet>' + ikon("not") + "<span>Hazır yanıtlar</span></button>" +
+          '<button type="button" class="btn-ghost adm-ikonlu" data-yenile>' + ikon("yenile") + "<span>Yenile</span></button></div></div>" +
+      '<div class="adm-destek">' +
+        '<div class="adm-destek-liste" role="region" aria-label="Konuşmalar">' +
+          '<div class="adm-cip-grup adm-destek-cipler" role="group" aria-label="Durum">' + SORU_FILTRE.map(function (f) {
+            return '<button type="button" class="adm-cip" data-soru-filtre="' + f[0] + '" aria-pressed="' + (S.soru.durum === f[0] ? "true" : "false") + '"><span>' + esc(f[1]) +
+              '</span><span class="adm-cip-sayi" data-soru-sayi="' + f[0] + '"></span></button>';
+          }).join("") + "</div>" +
+          '<form class="adm-destek-arac" role="search" aria-label="Konuşma ara" novalidate>' +
+            '<div class="field adm-field-esnek"><label for="soru-q" class="visually-hidden">Ara</label>' +
+              '<input type="search" id="soru-q" class="text-input" placeholder="Öğrenci, e-posta, ders ya da metin" autocomplete="off" maxlength="80"></div>' +
+            '<div class="field adm-field-dar"><label for="soru-sirala" class="visually-hidden">Sırala</label><select id="soru-sirala" class="text-input">' +
+              '<option value="">Varsayılan sıra</option><option value="eski">En uzun bekleyen önce</option><option value="yeni">En yeni önce</option></select></div>' +
+            '<label class="adm-check"><input type="checkbox" id="soru-bana"> <span>Bana atananlar</span></label>' +
+          "</form>" +
+          '<p class="adm-sonuc" id="soru-ozet" aria-live="polite"></p>' +
+          '<div class="adm-soru-liste"></div><div class="adm-soru-sayfa"></div>' +
+        "</div>" +
+        '<div class="adm-destek-konu adm-soru-detay" role="region" aria-label="Konuşma">' + konuBosHtml() + "</div>" +
+      "</div>";
+    var zaman = null;
+    $("#soru-q").addEventListener("input", function (e) {
+      clearTimeout(zaman);
+      var v = e.target.value.trim();
+      zaman = setTimeout(function () { if (v !== S.soru.q) { S.soru.q = v; S.soru.sayfa = 1; soruYukle(); } }, 350);
+    });
+    $("form", p).addEventListener("submit", function (e) { e.preventDefault(); clearTimeout(zaman); S.soru.q = $("#soru-q").value.trim(); S.soru.sayfa = 1; soruYukle(); });
+    $("#soru-sirala").addEventListener("change", function (e) { S.soru.sirala = e.target.value; S.soru.sayfa = 1; soruYukle(); });
+    $("#soru-bana").addEventListener("change", function (e) { S.soru.atanan = e.target.checked ? "ben" : ""; S.soru.sayfa = 1; soruYukle(); });
+    p.addEventListener("click", function (e) {
+      if (e.target.closest("[data-hazir-yonet]")) { hazirYonet(e.target.closest("[data-hazir-yonet]")); return; }
+      if (e.target.closest(".adm-panel-ust [data-yenile]")) { soruYukle(); if (S.soru.secili) soruDetayYukle(); return; }
+    });
+    $(".adm-destek-liste", p).addEventListener("click", function (e) {
+      if (e.target.closest("[data-tekrar]")) { soruYukle(); return; }
+      var fb = e.target.closest("[data-soru-filtre]");
+      if (fb) {
+        S.soru.durum = fb.getAttribute("data-soru-filtre"); S.soru.sayfa = 1;
+        p.querySelectorAll("[data-soru-filtre]").forEach(function (x) { x.setAttribute("aria-pressed", x === fb ? "true" : "false"); });
+        soruYukle(); return;
+      }
       var sb = e.target.closest("[data-sayfa]");
       if (sb && !sb.disabled) { S.soru.sayfa = Number(sb.getAttribute("data-sayfa")); soruYukle().then(function () { $("#soru-ozet").focus(); }); return; }
       var a = e.target.closest("[data-soru]"); if (a) soruAc(a.getAttribute("data-soru"));
     });
-    $(".adm-soru-detay", p).addEventListener("click", soruDetayTik);
-    $(".adm-soru-detay", p).addEventListener("submit", soruDetayGonder);
-    $(".adm-soru-detay", p).addEventListener("input", function (e) {
+    var d = $(".adm-soru-detay", p);
+    d.addEventListener("click", soruDetayTik);
+    d.addEventListener("submit", soruDetayGonder);
+    d.addEventListener("change", function (e) {
+      var h = e.target.closest("#soru-hazir");
+      if (h && h.value) { hazirEkle(h.value); h.value = ""; return; }
+      var at = e.target.closest("#soru-atanan");
+      if (at) soruAta(at.value, at);
+    });
+    d.addEventListener("input", function (e) {
       var t = e.target.closest("[data-sayac-icin]"); if (!t) return;
       var c = $("#" + t.getAttribute("data-sayac-icin")); if (c) c.textContent = sayi(t.value.length) + " / " + sayi(t.maxLength);
     });
+    d.addEventListener("keydown", function (e) {
+      // Ctrl/Cmd + Enter: yanıtı gönder
+      if ((e.ctrlKey || e.metaKey) && e.key === "Enter" && e.target.id === "soru-yanit") { e.preventDefault(); var f = e.target.closest("form"); if (f) f.requestSubmit ? f.requestSubmit() : f.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true })); }
+    });
   }
-  function soruYukle() {
+  function konuBosHtml() {
+    return '<div class="adm-destek-bos">' + ikon("sorular", "adm-bos-ikon") + '<p class="adm-bos-baslik">Bir konuşma seç</p><p class="adm-alt">Soldaki listeden bir soruyu açınca yazışma, öğrenci bilgisi ve yanıt kutusu burada görünür.</p></div>';
+  }
+  function soruSayilari(s) {
+    if (!s) return;
+    var tum = (Number(s.bekliyor) || 0) + (Number(s.cevaplandi) || 0) + (Number(s.kapandi) || 0);
+    var deg = { bekliyor: s.bekliyor, cevaplandi: s.cevaplandi, kapandi: s.kapandi, hepsi: tum };
+    Object.keys(deg).forEach(function (k) { var el = $('[data-soru-sayi="' + k + '"]'); if (el) el.textContent = Number(deg[k]) ? sayi(deg[k]) : ""; });
+    bekleyenRozet(s.bekliyor, "adm-soru-bekleyen");
+    var r = $("#adm-soru-bekleyen");
+    if (r && Number(s.okunmamis)) r.setAttribute("aria-label", sayi(s.bekliyor) + " bekleyen, " + sayi(s.okunmamis) + " okunmamış");
+  }
+  function soruYukle(sessiz) {
     var kap = $("#panel-sorular .adm-soru-liste"), say = $("#panel-sorular .adm-soru-sayfa"), oz = $("#soru-ozet");
+    if (!kap) return Promise.resolve();
     var no = ++S.soru.istek;
     kap.setAttribute("aria-busy", "true");
-    kap.innerHTML = yukleniyor("Sorular yükleniyor…");
-    return api("/api/admin/sorular" + sorgu({ durum: S.soru.durum, sayfa: S.soru.sayfa > 1 ? S.soru.sayfa : "" })).then(function (v) {
+    if (!sessiz) { if (!kap.querySelector("ul")) kap.innerHTML = iskelet("tablo", 5); else kap.classList.add("is-soluk"); }
+    return api("/api/admin/sorular" + sorgu({ durum: S.soru.durum, q: S.soru.q, sirala: S.soru.sirala, atanan: S.soru.atanan, sayfa: S.soru.sayfa > 1 ? S.soru.sayfa : "" })).then(function (v) {
       if (no !== S.soru.istek) return;
       var liste = Array.isArray(v.sorular) ? v.sorular : [];
-      if (S.soru.durum === "bekliyor") bekleyenRozet(v.toplam, "adm-soru-bekleyen");
+      S.soru.liste = liste;
+      if (v.sayilar) soruSayilari(v.sayilar);
+      else if (S.soru.durum === "bekliyor") bekleyenRozet(v.toplam, "adm-soru-bekleyen");
       var b = sayfaBilgisi(v.toplam, v.sayfa || S.soru.sayfa, v.sayfaBoyu || 25, liste.length);
       oz.tabIndex = -1;
-      oz.textContent = b.toplam ? sayi(b.toplam) + " soru." : "";
-      if (!liste.length) { kap.innerHTML = bos(S.soru.durum === "bekliyor" ? "Yanıt bekleyen soru yok." : "Bu filtreye uyan soru yok."); say.innerHTML = ""; return; }
-      kap.innerHTML = '<ul class="adm-sorular">' + liste.map(function (q) {
+      oz.textContent = b.toplam ? sayi(b.toplam) + " konuşma" + (S.soru.q ? " (“" + S.soru.q + "”)" : "") + "." : "";
+      if (!liste.length) {
+        kap.innerHTML = S.soru.durum === "bekliyor" && !S.soru.q && !S.soru.atanan
+          ? bos("Yanıt bekleyen soru yok. Harika iş!", "Gelen kutusu boş", "ok")
+          : bos("Bu filtreye uyan konuşma yok.");
+        say.innerHTML = ""; return;
+      }
+      var secili = S.soru.secili && String(S.soru.secili.id);
+      kap.innerHTML = '<ul class="adm-destek-ogeler">' + liste.map(function (q) {
         var u = q.kullanici || {};
-        return '<li class="adm-soru surface is-' + esc(soruDurumTon(q.durum)) + '">' +
-          '<div class="adm-talep-ust"><div class="adm-min0"><h3 class="adm-talep-ad">' + esc(adSoyad(u)) + "</h3>" +
-            '<p class="adm-alt adm-kir">' + esc(u.eposta || "—") + " · " + esc(dersAd(q.sayfa)) + (q.soruRef ? " · " + esc(q.soruRef) : "") + "</p></div>" +
-            '<div class="adm-rozetler">' + rozet(soruDurumAd(q.durum), soruDurumTon(q.durum)) + (u.premium ? rozet("Premium", "mor") : "") + "</div></div>" +
-          '<p class="adm-soru-metin adm-kir">' + esc(kisalt(q.metin, 280)) + "</p>" +
-          '<div class="adm-soru-alt"><span class="adm-alt">' + esc(tarih(q.guncelleme)) + " · " + esc(sayi(q.mesajSayisi)) + " mesaj" +
-            (q.sonMesajRol === "ogrenci" && q.durum !== "bekliyor" ? " · son mesaj öğrenciden" : "") + "</span>" +
-            '<button type="button" class="btn-primary btn-sm" data-soru="' + esc(q.id) + '">Aç ve yanıtla</button></div>' +
-          "</li>";
+        var aktif = secili === String(q.id);
+        return '<li><button type="button" class="adm-destek-oge is-' + esc(soruDurumTon(q.durum)) + (aktif ? " is-secili" : "") + (q.okunmamis ? " is-okunmamis" : "") + '" data-soru="' + esc(q.id) + '"' + (aktif ? ' aria-current="true"' : "") + ">" +
+          '<span class="adm-destek-oge-ust">' +
+            '<span class="adm-destek-ad">' + (u.varlik ? '<span class="adm-varlik-nokta is-' + esc(u.varlik) + '" title="' + esc(varlikAd(u.varlik)) + '"></span>' : "") +
+              '<span class="adm-kir">' + esc(adSoyad(u)) + "</span>" + (u.premium ? ' <span class="adm-mini-rozet">Premium</span>' : "") + "</span>" +
+            '<span class="adm-destek-zaman">' + esc(goreceZaman(q.guncelleme)) + "</span></span>" +
+          '<span class="adm-destek-ozet adm-kir">' + (q.okunmamis ? '<span class="adm-yeni-nokta" aria-hidden="true"></span><span class="visually-hidden">Okunmamış. </span>' : "") + esc(kisalt(q.metin, 140)) + "</span>" +
+          '<span class="adm-destek-oge-alt">' +
+            '<span class="adm-alt">' + esc(dersAd(q.sayfa)) + " · #" + esc(q.id) + " · " + esc(sayi(q.mesajSayisi)) + " mesaj" + (Number(q.notSayisi) ? " · " + esc(sayi(q.notSayisi)) + " not" : "") + "</span>" +
+            (q.durum === "bekliyor" && q.beklemeBaslangic ? slaRozet(q.beklemeBaslangic) : rozet(soruDurumAd(q.durum), soruDurumTon(q.durum))) +
+          "</span>" +
+          (q.atanan ? '<span class="adm-destek-atanan adm-alt">' + ikon("kullanicilar") + esc(adSoyad(q.atanan)) + "</span>" : "") +
+        "</button></li>";
       }).join("") + "</ul>";
-      say.innerHTML = sayfalamaHtml(b, "Soru sayfaları", "soru");
+      say.innerHTML = b.sayfaSayisi > 1 ? sayfalamaHtml(b, "Konuşma sayfaları", "konuşma") : "";
     }).catch(function (e) {
-      if (no === S.soru.istek) { kap.innerHTML = hataKutusu(e.message); say.innerHTML = ""; }
-    }).then(function () { kap.removeAttribute("aria-busy"); });
+      if (no === S.soru.istek && !sessiz) { kap.innerHTML = hataKutusu(e.message); say.innerHTML = ""; }
+    }).then(function () { kap.removeAttribute("aria-busy"); kap.classList.remove("is-soluk"); });
   }
   function soruAc(id) {
     var p = $("#panel-sorular"), d = $(".adm-soru-detay", p);
-    $(".adm-soru-liste-gorunum", p).hidden = true; d.hidden = false;
     S.soru.secili = { id: id, veri: null };
-    d.innerHTML = '<div class="adm-detay-ust"><button type="button" class="btn-ghost" data-geri>‹ Soru listesine dön</button></div>' + yukleniyor("Soru yükleniyor…");
-    $("[data-geri]", d).focus();
-    return soruDetayYukle();
+    $(".adm-destek", p).classList.add("is-konu-acik");
+    p.querySelectorAll("[data-soru]").forEach(function (x) {
+      var a = x.getAttribute("data-soru") === String(id);
+      x.classList.toggle("is-secili", a);
+      if (a) { x.setAttribute("aria-current", "true"); x.classList.remove("is-okunmamis"); } else x.removeAttribute("aria-current");
+    });
+    d.innerHTML = '<div class="adm-destek-geri"><button type="button" class="btn-ghost btn-sm" data-geri>‹ Konuşmalar</button></div>' + iskelet("cekmece");
+    return soruDetayYukle(null, true);
   }
-  function soruDetayYukle(odakla) {
+  function soruDetayYukle(odakla, ilk) {
     var d = $("#panel-sorular .adm-soru-detay"), id = S.soru.secili && S.soru.secili.id;
     if (!id) return Promise.resolve();
     d.setAttribute("aria-busy", "true");
-    return api("/api/admin/sorular/" + encodeURIComponent(id)).then(function (v) {
+    return Promise.all([
+      api("/api/admin/sorular/" + encodeURIComponent(id)),
+      hazirlar().catch(function () { return []; }),
+      yoneticilerAl().catch(function () { return null; })
+    ]).then(function (r) {
+      var v = r[0];
       if (!S.soru.secili || S.soru.secili.id !== id) return;
       S.soru.secili.veri = v.soru;
-      d.innerHTML = soruDetayHtml(v.soru);
-      mathDiz(d);
-      var h = $(odakla || "#soru-detay-baslik", d); if (h) h.focus();
+      soruDetayCiz(v.soru, !ilk);
+      var h = $(odakla || "#soru-detay-baslik", d); if (h) h.focus({ preventScroll: !ilk && !odakla });
+      if (ilk) soruYukle(true); // okunmamış işareti ve sayaçlar tazelensin
     }).catch(function (e) {
-      d.innerHTML = '<div class="adm-detay-ust"><button type="button" class="btn-ghost" data-geri>‹ Soru listesine dön</button></div>' + hataKutusu(e.message);
+      d.innerHTML = '<div class="adm-destek-geri"><button type="button" class="btn-ghost btn-sm" data-geri>‹ Konuşmalar</button></div>' + hataKutusu(e.message);
     }).then(function () { d.removeAttribute("aria-busy"); });
+  }
+  /** Konuşmayı çizer; taslakKoru: yanıt/not kutusundaki yazılmamış metin korunur */
+  function soruDetayCiz(q, taslakKoru) {
+    var d = $("#panel-sorular .adm-soru-detay");
+    var ty = taslakKoru && $("#soru-yanit", d) ? $("#soru-yanit", d).value : "", tn = taslakKoru && $("#soru-not", d) ? $("#soru-not", d).value : "";
+    d.innerHTML = soruDetayHtml(q);
+    if (ty) { $("#soru-yanit", d).value = ty; $("#soru-yanit", d).dispatchEvent(new Event("input", { bubbles: true })); }
+    if (tn) $("#soru-not", d).value = tn;
+    mathDiz(d);
   }
   /**
    * Soru bağlamındaki LaTeX'i dizer. admin.html MathJax yüklemez: yalnızca "$" ya da "\(" içeren bir konuşma
@@ -1222,10 +1548,14 @@
   }
   function soruKapat() {
     var p = $("#panel-sorular");
+    var id = S.soru.secili && S.soru.secili.id;
     S.soru.secili = null;
-    $(".adm-soru-detay", p).hidden = true; $(".adm-soru-detay", p).innerHTML = "";
-    $(".adm-soru-liste-gorunum", p).hidden = false;
-    soruYukle().then(function () { var h = $("#panel-sorular h2"); if (h) { h.tabIndex = -1; h.focus(); } });
+    $(".adm-destek", p).classList.remove("is-konu-acik");
+    $(".adm-soru-detay", p).innerHTML = konuBosHtml();
+    soruYukle(true).then(function () {
+      var b = id != null ? p.querySelector('[data-soru="' + String(id).replace(/[^0-9]/g, "") + '"]') : null;
+      if (b) { b.classList.remove("is-secili"); b.removeAttribute("aria-current"); b.focus(); }
+    });
   }
   /** Soru bağlamı: bilinen alanlar okunur biçimde, gerisi JSON */
   function baglamHtml(b) {
@@ -1242,44 +1572,82 @@
       delete kalan[k[0]];
     });
     var ek = Object.keys(kalan).length ? '<details class="adm-ayrinti"><summary>Diğer bağlam alanları</summary><pre>' + esc(ayrintiMetni(kalan)) + "</pre></details>" : "";
-    return '<section class="surface adm-baglam" aria-labelledby="soru-baglam-b"><h3 id="soru-baglam-b">Soru bağlamı</h3>' +
-      (satir.length ? '<dl class="adm-dl">' + satir.join("") + "</dl>" : "") + ek + "</section>";
+    return '<details class="adm-baglam adm-destek-kutu" open><summary><span class="adm-ikonlu">' + ikon("bilgi") + "<span>Soru bağlamı</span></span></summary>" +
+      (satir.length ? '<dl class="adm-dl">' + satir.join("") + "</dl>" : "") + ek + "</details>";
   }
   function soruDetayHtml(q) {
-    var u = q.kullanici || {}, msj = Array.isArray(q.mesajlar) ? q.mesajlar : [];
+    var u = q.kullanici || {}, msj = Array.isArray(q.mesajlar) ? q.mesajlar : [], notlar = Array.isArray(q.notlar) ? q.notlar : [];
     var sonYanit = msj.filter(function (m) { return m.rol === "yonetici"; }).pop();
     var sssVar = Array.isArray(q.sss) ? q.sss : [];
-    return '<div class="adm-detay-ust"><button type="button" class="btn-ghost" data-geri>‹ Soru listesine dön</button>' +
-        (u.id ? '<button type="button" class="btn-ghost" data-kul-git="' + esc(u.id) + '">Öğrenci profili</button>' : "") + "</div>" +
-      '<header class="surface adm-kisi">' +
-        '<div class="adm-kisi-ust"><h2 id="soru-detay-baslik" tabindex="-1">Soru #' + esc(q.id) + " · " + esc(adSoyad(u)) + "</h2>" +
-          '<div class="adm-rozetler">' + rozet(soruDurumAd(q.durum), soruDurumTon(q.durum)) + (u.premium ? rozet("Premium", "mor") : rozet("Ücretsiz", "notr")) + "</div></div>" +
-        '<p class="adm-alt adm-kir">' + esc(u.eposta || "—") + " · " + esc(dersAd(q.sayfa)) + (q.soruRef ? " · " + esc(q.soruRef) : "") + " · " + esc(tarih(q.olusturma)) + "</p>" +
+    // Mesajlar ve iç notlar tek zaman çizelgesinde
+    var akis = msj.map(function (m) { return { t: m.tarih, m: m }; }).concat(notlar.map(function (n) { return { t: n.tarih, n: n }; }))
+      .sort(function (a, b) { return String(a.t).localeCompare(String(b.t)); });
+    var yon = S.yoneticiler;
+    var atananSec = yon && yon.yoneticiler && yon.yoneticiler.length
+      ? '<div class="field adm-atanan"><label for="soru-atanan">Atanan</label><select id="soru-atanan" class="text-input">' +
+          '<option value=""' + (!q.atanan ? " selected" : "") + ">Atanmadı</option>" +
+          yon.yoneticiler.map(function (y) { return '<option value="' + esc(y.id) + '"' + (q.atanan && q.atanan.id === y.id ? " selected" : "") + ">" + esc(adSoyad(y)) + (y.id === yon.ben ? " (sen)" : "") + "</option>"; }).join("") +
+        "</select></div>"
+      : (q.atanan ? '<p class="adm-alt">Atanan: ' + esc(adSoyad(q.atanan)) + "</p>" : "");
+    var hz = S.hazir || [];
+    return '<div class="adm-destek-geri"><button type="button" class="btn-ghost btn-sm" data-geri>‹ Konuşmalar</button></div>' +
+      '<header class="adm-destek-kart">' +
+        '<div class="adm-destek-kart-ust"><div class="adm-min0">' +
+          '<h3 id="soru-detay-baslik" tabindex="-1">' + esc(adSoyad(u)) + ' <span class="adm-alt">· Soru #' + esc(q.id) + "</span></h3>" +
+          '<p class="adm-alt adm-kir">' + esc(u.eposta || "—") + "</p></div>" +
+          '<div class="adm-rozetler">' + (q.durum === "bekliyor" && q.beklemeBaslangic ? slaRozet(q.beklemeBaslangic) : "") + rozet(soruDurumAd(q.durum), soruDurumTon(q.durum)) + "</div></div>" +
+        '<dl class="adm-dl adm-dl-sik">' +
+          "<div><dt>Plan</dt><dd>" + (u.premium ? rozet("Premium · " + planAd(u.plan), "mor") : rozet("Ücretsiz", "notr")) + "</dd></div>" +
+          "<div><dt>Durum</dt><dd>" + varlikCip(u.varlik, u.sonGorulme) + "</dd></div>" +
+          "<div><dt>Ders</dt><dd>" + esc(dersAd(q.sayfa)) + (q.soruRef ? ' <span class="adm-alt adm-kir">' + esc(q.soruRef) + "</span>" : "") + "</dd></div>" +
+          "<div><dt>Açılış</dt><dd>" + zamanHucre(q.olusturma) + "</dd></div>" +
+        "</dl>" +
+        '<div class="adm-destek-kart-alt">' + atananSec +
+          (u.id ? '<button type="button" class="btn-ghost btn-sm adm-ikonlu" data-kul-git="' + esc(u.id) + '">' + ikon("kullanicilar") + "<span>Öğrenci profili</span></button>" : "") + "</div>" +
       "</header>" +
       baglamHtml(q.baglam) +
-      '<section class="surface" aria-labelledby="soru-yazisma-b"><h3 id="soru-yazisma-b">Yazışma</h3>' +
-        '<ol class="adm-mesajlar">' + msj.map(function (m) {
-          var yon = m.rol === "yonetici";
-          return '<li class="adm-mesaj ' + (yon ? "is-yonetici" : "is-ogrenci") + '">' +
-            '<p class="adm-mesaj-ust"><strong>' + esc(yon ? "Meberra ekibi" + (m.yazan ? " (" + adSoyad(m.yazan) + ")" : "") : adSoyad(u)) + "</strong> · " + esc(tarih(m.tarih)) +
-              (yon ? " · " + (m.okundu ? "okundu" : "henüz okunmadı") : "") + "</p>" +
+      '<section class="adm-destek-akis" aria-labelledby="soru-yazisma-b"><h3 id="soru-yazisma-b" class="visually-hidden" tabindex="-1">Yazışma</h3>' +
+        '<ol class="adm-mesajlar">' + akis.map(function (a) {
+          if (a.n) {
+            return '<li class="adm-mesaj is-not"><p class="adm-mesaj-ust">' + ikon("not") + "<strong>İç not</strong> · " + esc(a.n.yazan ? adSoyad(a.n.yazan) : "Yönetici") + " · " + esc(tarih(a.n.tarih)) +
+              ' · <span class="adm-alt">öğrenci görmez</span></p><p class="adm-mesaj-metin adm-kir">' + esc(a.n.metin) + "</p></li>";
+          }
+          var m = a.m, y = m.rol === "yonetici";
+          return '<li class="adm-mesaj ' + (y ? "is-yonetici" : "is-ogrenci") + '">' +
+            '<p class="adm-mesaj-ust"><strong>' + esc(y ? "Meberra ekibi" + (m.yazan ? " (" + adSoyad(m.yazan) + ")" : "") : adSoyad(u)) + "</strong> · " + esc(tarih(m.tarih)) +
+              (y ? " · " + (m.okundu ? "okundu" : "henüz okunmadı") : "") + "</p>" +
             '<p class="adm-mesaj-metin adm-kir">' + esc(m.metin) + "</p></li>";
         }).join("") + "</ol>" +
       "</section>" +
-      '<section class="surface" aria-labelledby="soru-yanit-b"><h3 id="soru-yanit-b">Yanıtla</h3>' +
-        '<form class="adm-islem adm-yanit-form" data-form="yanit" novalidate>' +
-          '<div class="field"><label for="soru-yanit">Yanıtın (öğrenci "Meberra ekibi" imzasıyla görür)</label>' +
-            '<textarea id="soru-yanit" class="text-input adm-not" rows="6" maxlength="2000" data-sayac-icin="soru-yanit-sayac" required></textarea>' +
+      '<section class="adm-destek-yanit" aria-labelledby="soru-yanit-b"><h3 id="soru-yanit-b" class="visually-hidden">Yanıtla</h3>' +
+        '<div class="adm-segment" role="group" aria-label="Yazma türü">' +
+          '<button type="button" class="adm-segment-dugme" data-mod="yanit" aria-pressed="true">Yanıt</button>' +
+          '<button type="button" class="adm-segment-dugme" data-mod="not" aria-pressed="false">' + ikon("not") + "İç not</button></div>" +
+        '<form class="adm-yanit-form" data-form="yanit" novalidate>' +
+          (hz.length
+            ? '<div class="field adm-hazir-sec"><label for="soru-hazir">Hazır yanıt ekle</label><select id="soru-hazir" class="text-input"><option value="">Seç…</option>' +
+              hz.map(function (h) { return '<option value="' + esc(h.id) + '">' + esc(h.baslik) + "</option>"; }).join("") + "</select></div>"
+            : '<p class="adm-alt">Sık kullandığın yanıtları <button type="button" class="adm-link" data-hazir-yonet>hazır yanıt</button> olarak kaydedebilirsin.</p>') +
+          '<div class="field"><label for="soru-yanit">Yanıtın <span class="adm-alt">(öğrenci "Meberra ekibi" imzasıyla görür · Ctrl+Enter gönderir)</span></label>' +
+            '<textarea id="soru-yanit" class="text-input adm-not" rows="5" maxlength="2000" data-sayac-icin="soru-yanit-sayac" required></textarea>' +
             '<p class="field-hint" id="soru-yanit-sayac" aria-live="polite">0 / 2.000</p></div>' +
           '<p class="field-error" id="soru-yanit-hata" role="alert" hidden></p>' +
-          '<div class="adm-eylem"><button type="submit" class="btn-primary">Yanıtı gönder</button>' +
-            (q.durum !== "kapandi"
-              ? '<button type="button" class="btn-ghost" data-soru-durum="kapandi" aria-expanded="false">Soruyu kapat</button>'
-              : '<button type="button" class="btn-ghost" data-soru-durum="bekliyor" aria-expanded="false">Yeniden aç</button>') +
+          '<div class="adm-eylem"><button type="submit" class="btn-primary" data-gonder="yanit">Yanıtla</button>' +
+            '<button type="submit" class="btn-ghost" data-gonder="kapat">Cevapla &amp; kapat</button>' +
+            '<span class="adm-eylem-ayrac" aria-hidden="true"></span>' +
+            (q.durum !== "bekliyor" ? '<button type="button" class="btn-ghost" data-soru-durum="bekliyor" aria-expanded="false">Bekliyor\'a al</button>' : "") +
+            (q.durum !== "kapandi" ? '<button type="button" class="btn-ghost" data-soru-durum="kapandi" aria-expanded="false">Kapat</button>' : "") +
           "</div><div class=\"adm-onay\" hidden></div>" +
         "</form>" +
+        '<form class="adm-yanit-form is-not" data-form="not" novalidate hidden>' +
+          '<div class="field"><label for="soru-not">İç not <span class="adm-alt">(yalnızca yöneticiler görür; öğrenciye bildirim gitmez)</span></label>' +
+            '<textarea id="soru-not" class="text-input adm-not" rows="3" maxlength="2000"></textarea></div>' +
+          '<p class="field-error" id="soru-not-hata" role="alert" hidden></p>' +
+          '<div class="adm-eylem"><button type="submit" class="btn-primary">Not ekle</button></div>' +
+        "</form>" +
       "</section>" +
-      '<section class="surface" aria-labelledby="soru-sss-b"><h3 id="soru-sss-b">SSS\'ye ekle</h3>' +
+      '<details class="adm-destek-kutu" id="soru-sss-kutu"><summary><span class="adm-ikonlu">' + ikon("cevap") + "<span>SSS'ye ekle</span></span>" +
+          (sssVar.length ? ' <span class="adm-alt">· ' + esc(sayi(sssVar.length)) + " yayın</span>" : "") + "</summary>" +
         (sssVar.length ? '<p class="adm-alt">Bu sorudan yayınlanan: ' + sssVar.map(function (f) { return esc(kisalt(f.soru, 60)) + " (" + esc(f.durum === "gizli" ? "gizli" : "yayında") + ")"; }).join(", ") + "</p>" : "") +
         '<form class="adm-islem" data-form="sss" novalidate>' +
           '<p class="adm-alt">Öğrencinin adı ve kişisel bilgisi SSS\'ye girmesin; soruyu genel bir dille yaz.</p>' +
@@ -1289,24 +1657,35 @@
           '<p class="field-error" id="sss-hata" role="alert" hidden></p>' +
           '<div class="adm-eylem"><button type="submit" class="btn-primary">SSS\'de yayınla</button></div>' +
         "</form>" +
-      "</section>";
+      "</details>";
   }
   function soruDetayTik(e) {
     if (e.target.closest("[data-geri]")) { soruKapat(); return; }
     if (e.target.closest("[data-tekrar]")) { soruDetayYukle(); return; }
+    if (e.target.closest("[data-hazir-yonet]")) { hazirYonet(e.target.closest("[data-hazir-yonet]")); return; }
     var kg = e.target.closest("[data-kul-git]");
     if (kg) { sekmeAc("kullanicilar"); detayAc(kg.getAttribute("data-kul-git")); return; }
+    var md = e.target.closest("[data-mod]");
+    if (md) {
+      var d = e.currentTarget, not = md.getAttribute("data-mod") === "not";
+      d.querySelectorAll("[data-mod]").forEach(function (x) { x.setAttribute("aria-pressed", x === md ? "true" : "false"); });
+      $('[data-form="yanit"]', d).hidden = not; $('[data-form="not"]', d).hidden = !not;
+      $(not ? "#soru-not" : "#soru-yanit", d).focus();
+      return;
+    }
+    var gb = e.target.closest("[data-gonder]");
+    if (gb) { var f = gb.closest("form"); if (f) f.setAttribute("data-kapat", gb.getAttribute("data-gonder") === "kapat" ? "1" : ""); return; }
     var b = e.target.closest("[data-soru-durum]");
     if (!b || !S.soru.secili) return;
     var hedef = b.getAttribute("data-soru-durum"), id = S.soru.secili.id;
     onayAc(b.closest("form").querySelector(".adm-onay"), b, {
-      baslik: hedef === "kapandi" ? "Soru kapatılsın mı?" : "Soru yeniden açılsın mı?",
-      metin: hedef === "kapandi" ? "Öğrenci bu soruya artık yazamaz; gerekirse yeni soru açar." : "Soru yeniden yanıt bekleyenlere döner.",
-      onayMetni: hedef === "kapandi" ? "Evet, kapat" : "Evet, yeniden aç",
+      baslik: hedef === "kapandi" ? "Konuşma kapatılsın mı?" : "Konuşma \"Bekliyor\" durumuna alınsın mı?",
+      metin: hedef === "kapandi" ? "Öğrenci bu soruya artık yazamaz; gerekirse yeni soru açar." : "Konuşma yeniden yanıt bekleyenler listesine döner.",
+      onayMetni: hedef === "kapandi" ? "Evet, kapat" : "Evet, bekliyor'a al",
       onayla: function () {
         return api("/api/admin/sorular/" + encodeURIComponent(id) + "/durum", "POST", { durum: hedef }).then(function () {
-          bildir(hedef === "kapandi" ? "Soru kapatıldı." : "Soru yeniden açıldı.", "ok");
-          soruDetayYukle(); ozetYukle(true);
+          bildir(hedef === "kapandi" ? "Konuşma kapatıldı." : "Konuşma bekliyor'a alındı.", "ok");
+          soruDetayYukle(); soruYukle(true); ozetYukle(true);
         });
       }
     });
@@ -1315,33 +1694,144 @@
     var f = e.target.closest("form"); if (!f) return;
     e.preventDefault();
     var q = S.soru.secili && S.soru.secili.veri; if (!q) return;
-    var dugme = f.querySelector("[type=submit]");
-    if (f.getAttribute("data-form") === "yanit") {
+    var tur = f.getAttribute("data-form");
+    if (tur === "yanit") {
+      var kapat = f.getAttribute("data-kapat") === "1"; f.setAttribute("data-kapat", "");
       var t = $("#soru-yanit", f), h = $("#soru-yanit-hata", f), metin = t.value.trim();
       if (!metin) { h.textContent = "Yanıtı yaz."; h.hidden = false; t.setAttribute("aria-invalid", "true"); t.focus(); return; }
       h.hidden = true; t.removeAttribute("aria-invalid");
-      dugme.disabled = true; dugme.textContent = "Gönderiliyor…";
-      api("/api/admin/sorular/" + encodeURIComponent(q.id) + "/yanit", "POST", { metin: metin }).then(function () {
-        bildir("Yanıt gönderildi; öğrenciye bildirim gitti.", "ok");
-        ozetYukle(true);
+      var dugmeler = f.querySelectorAll("[data-gonder]");
+      dugmeler.forEach(function (x) { x.disabled = true; });
+      var asil = f.querySelector(kapat ? '[data-gonder="kapat"]' : '[data-gonder="yanit"]'), eski = asil.textContent;
+      asil.textContent = "Gönderiliyor…";
+      api("/api/admin/sorular/" + encodeURIComponent(q.id) + "/yanit", "POST", { metin: metin, kapat: kapat }).then(function () {
+        bildir(kapat ? "Yanıt gönderildi ve konuşma kapatıldı." : "Yanıt gönderildi; öğrenciye bildirim gitti.", "ok");
+        t.value = "";
+        ozetYukle(true); soruYukle(true);
         return soruDetayYukle("#soru-yazisma-b");
       }).catch(function (err) {
-        dugme.disabled = false; dugme.textContent = "Yanıtı gönder";
+        dugmeler.forEach(function (x) { x.disabled = false; }); asil.textContent = eski;
         h.textContent = err.message; h.hidden = false;
       });
-    } else if (f.getAttribute("data-form") === "sss") {
+    } else if (tur === "not") {
+      var nt = $("#soru-not", f), nh = $("#soru-not-hata", f), nm = nt.value.trim(), nd = f.querySelector("[type=submit]");
+      if (!nm) { nh.textContent = "Notu yaz."; nh.hidden = false; nt.focus(); return; }
+      nh.hidden = true; nd.disabled = true; nd.textContent = "Ekleniyor…";
+      api("/api/admin/sorular/" + encodeURIComponent(q.id) + "/not", "POST", { metin: nm }).then(function () {
+        bildir("İç not eklendi.", "ok"); soruYukle(true); nt.value = "";
+        return soruDetayYukle("#soru-yazisma-b");
+      }).catch(function (err) { nd.disabled = false; nd.textContent = "Not ekle"; nh.textContent = err.message; nh.hidden = false; });
+    } else if (tur === "sss") {
+      var dugme = f.querySelector("[type=submit]");
       var hs = $("#sss-hata", f), govde = { soru: $("#sss-soru", f).value.trim(), cevap: $("#sss-cevap", f).value.trim(), sayfa: $("#sss-sayfa", f).value.trim(), kaynakSoruId: q.id };
       if (!govde.soru || !govde.cevap) { hs.textContent = "Soru ve cevap gerekli."; hs.hidden = false; return; }
       hs.hidden = true;
       dugme.disabled = true; dugme.textContent = "Yayınlanıyor…";
       api("/api/admin/sss", "POST", govde).then(function () {
         bildir("SSS'de yayınlandı.", "ok");
-        return soruDetayYukle("#soru-sss-b");
+        return soruDetayYukle("#soru-sss-kutu summary");
       }).catch(function (err) {
         dugme.disabled = false; dugme.textContent = "SSS'de yayınla";
         hs.textContent = err.message; hs.hidden = false;
       });
     }
+  }
+  function soruAta(deger, el) {
+    var q = S.soru.secili && S.soru.secili.veri; if (!q) return;
+    el.disabled = true;
+    api("/api/admin/sorular/" + encodeURIComponent(q.id) + "/ata", "POST", { atanan: deger || null }).then(function (v) {
+      S.soru.secili.veri = v.soru;
+      bildir(v.soru.atanan ? "Konuşma " + adSoyad(v.soru.atanan) + " kişisine atandı." : "Atama kaldırıldı.", "ok");
+      soruYukle(true);
+    }).catch(function (e) { bildir(e.message, "bad"); }).then(function () { el.disabled = false; });
+  }
+  function yoneticilerAl() {
+    if (S.yoneticiler) return Promise.resolve(S.yoneticiler);
+    return api("/api/admin/yoneticiler").then(function (v) { S.yoneticiler = v; return v; });
+  }
+
+  /* --- Hazır yanıtlar ------------------------------------------------------ */
+  function hazirlar(tazele) {
+    if (S.hazir && !tazele) return Promise.resolve(S.hazir);
+    return api("/api/admin/hazir-yanitlar").then(function (v) { S.hazir = Array.isArray(v.yanitlar) ? v.yanitlar : []; return S.hazir; });
+  }
+  /** Seçilen hazır yanıtı imleç konumuna ekler (boş kutuda doğrudan yazar) */
+  function hazirEkle(id) {
+    var h = (S.hazir || []).filter(function (x) { return String(x.id) === String(id); })[0];
+    var t = $("#soru-yanit"); if (!h || !t) return;
+    var a = t.selectionStart != null ? t.selectionStart : t.value.length, b = t.selectionEnd != null ? t.selectionEnd : t.value.length;
+    var once = t.value.slice(0, a), sonra = t.value.slice(b);
+    var ek = (once && !/\n$/.test(once) ? "\n" : "") + h.metin;
+    t.value = (once + ek + sonra).slice(0, t.maxLength || 2000);
+    t.focus();
+    var konum = Math.min(t.value.length, (once + ek).length);
+    try { t.setSelectionRange(konum, konum); } catch (e) { /* eski tarayıcı */ }
+    t.dispatchEvent(new Event("input", { bubbles: true }));
+  }
+  function hazirListeHtml(l) {
+    return (l.length
+      ? '<ul class="adm-hazir-liste">' + l.map(function (h) {
+          return '<li class="adm-hazir-oge"><div class="adm-min0"><p class="adm-hazir-baslik">' + esc(h.baslik) + '</p><p class="adm-alt adm-kir adm-hazir-metin">' + esc(kisalt(h.metin, 160)) + "</p></div>" +
+            '<div class="adm-eylem"><button type="button" class="btn-ghost btn-sm" data-hazir-duzen="' + esc(h.id) + '">Düzenle</button>' +
+            '<button type="button" class="btn-ghost btn-sm adm-ghost-tehlike" data-hazir-sil="' + esc(h.id) + '" aria-label="Sil: ' + esc(h.baslik) + '">' + ikon("sil") + "</button></div></li>";
+        }).join("") + "</ul>"
+      : bos("Henüz hazır yanıt yok. Aşağıdan ilkini ekle.")) +
+      '<form class="adm-cek-form" data-hazir-form novalidate><h3 class="adm-hazir-form-baslik">Yeni hazır yanıt</h3>' +
+        '<input type="hidden" name="id" value="">' +
+        '<div class="field"><label for="hz-baslik">Başlık</label><input id="hz-baslik" name="baslik" class="text-input" maxlength="80" placeholder="ör. Teşekkür + kaynak önerisi"></div>' +
+        '<div class="field"><label for="hz-metin">Metin</label><textarea id="hz-metin" name="metin" class="text-input adm-not" rows="6" maxlength="2000"></textarea></div>' +
+        '<p class="adm-onay-hata" role="alert" hidden></p>' +
+        '<div class="adm-eylem"><button type="submit" class="btn-primary">Kaydet</button><button type="button" class="btn-ghost" data-hazir-vazgec hidden>Vazgeç</button></div>' +
+      "</form>";
+  }
+  function hazirYonet(tetik) {
+    var c = cekmeceAc("Hazır yanıtlar", iskelet("cekmece"), tetik, function () {
+      // Konuşma açıksa seçim listesi tazelensin
+      if (S.soru.secili && S.soru.secili.veri) soruDetayCiz(S.soru.secili.veri, true);
+    });
+    c.mod = "hazir";
+    if (!c.hazirBagli) {
+      c.hazirBagli = true;
+      c.govde.addEventListener("click", function (e) {
+        if (c.mod !== "hazir") return;
+        var f = $("[data-hazir-form]", c.govde); if (!f) return;
+        var du = e.target.closest("[data-hazir-duzen]");
+        if (du) {
+          var h = (S.hazir || []).filter(function (x) { return String(x.id) === du.getAttribute("data-hazir-duzen"); })[0]; if (!h) return;
+          f.id.value = h.id; f.baslik.value = h.baslik; f.metin.value = h.metin;
+          $(".adm-hazir-form-baslik", f).textContent = "Düzenle: " + h.baslik; $("[data-hazir-vazgec]", f).hidden = false;
+          f.baslik.focus(); return;
+        }
+        if (e.target.closest("[data-hazir-vazgec]")) { hazirCiz(c); return; }
+        var sl = e.target.closest("[data-hazir-sil]");
+        if (sl) {
+          sl.disabled = true;
+          api("/api/admin/hazir-yanitlar/" + encodeURIComponent(sl.getAttribute("data-hazir-sil")), "DELETE").then(function () {
+            bildir("Hazır yanıt silindi.", "ok"); return hazirlar(true).then(function () { hazirCiz(c); });
+          }).catch(function (er) { sl.disabled = false; bildir(er.message, "bad"); });
+        }
+      });
+      c.govde.addEventListener("submit", function (e) {
+        if (c.mod !== "hazir") return;
+        var f = e.target.closest("[data-hazir-form]"); if (!f) return;
+        e.preventDefault();
+        var hata = $(".adm-onay-hata", f), dg = f.querySelector("[type=submit]");
+        var govde = { baslik: f.baslik.value.trim(), metin: f.metin.value.trim() };
+        if (!govde.baslik || !govde.metin) { hata.textContent = "Başlık ve metin gerekli."; hata.hidden = false; (govde.baslik ? f.metin : f.baslik).focus(); return; }
+        hata.hidden = true; dg.disabled = true;
+        var id = f.id.value;
+        api("/api/admin/hazir-yanitlar" + (id ? "/" + encodeURIComponent(id) : ""), id ? "PUT" : "POST", govde).then(function () {
+          bildir(id ? "Hazır yanıt güncellendi." : "Hazır yanıt kaydedildi.", "ok");
+          return hazirlar(true).then(function () { hazirCiz(c); });
+        }).catch(function (er) { dg.disabled = false; hata.textContent = er.message; hata.hidden = false; });
+      });
+    }
+    hazirlar(true).then(function () { if (cekmeceAcik() && c.mod === "hazir") hazirCiz(c); }).catch(function (e) {
+      c.govde.innerHTML = '<div class="adm-hata" role="alert"><p>' + esc(e.message) + "</p></div>";
+    });
+  }
+  function hazirCiz(c) {
+    c.govde.innerHTML = '<p class="adm-alt">Hazır yanıtlar tüm yöneticiler arasında ortaktır. Yanıt kutusundaki "Hazır yanıt ekle" listesinden seçince metin imlecin olduğu yere eklenir.</p>' + hazirListeHtml(S.hazir || []);
   }
 
   /* ------------------------------------------------------------------------
@@ -1791,10 +2281,12 @@
     };
     p.innerHTML =
       '<div class="adm-panel-ust"><div class="adm-min0"><h2>Sistem</h2>' +
-        '<p class="adm-ipucu">Sunucu ve tarayıcı hataları, uyarılar ve sağlık durumu. Bu sekme açıkken 30 saniyede bir kendiliğinden yenilenir.</p></div>' +
+        '<p class="adm-ipucu">Sunucu sağlığı, kuyruklar, bakım modu, IP engelleri ve hata logları. Bu sekme açıkken 30 saniyede bir kendiliğinden yenilenir.</p></div>' +
         '<div class="adm-eylem"><span class="adm-canli" id="sis-guncel"></span>' +
           '<button type="button" class="btn-ghost adm-ikonlu" data-yenile>' + ikon("yenile") + "<span>Yenile</span></button></div></div>" +
-      '<div id="sis-saglik">' + iskelet("saglik") + "</div>" +
+      '<div id="sis-saglik">' + iskelet("saglik", 8) + "</div>" +
+      '<div id="sis-ops" class="adm-ops"></div>' +
+      '<h3 class="adm-sis-alt-baslik">Loglar</h3>' +
       '<div id="sis-ozet"></div>' +
       '<form class="adm-arac adm-arac-genis adm-log-filtre" role="search" aria-label="Log filtreleri" novalidate>' +
         '<div class="adm-cip-grup" role="group" aria-label="Seviye">' + cip("", "Tümü") + cip("hata", "Hata") + cip("uyari", "Uyarı") + cip("bilgi", "Bilgi") + "</div>" +
@@ -1812,6 +2304,8 @@
       '<p class="adm-sonuc" id="sis-sonuc" aria-live="polite"></p>' +
       '<div class="adm-log-liste"></div><div class="adm-log-sayfa"></div>';
 
+    $("#sis-ops").addEventListener("click", function (e) { e.stopPropagation(); opsTik(e); });
+    $("#sis-ops").addEventListener("submit", opsGonder);
     var zaman = null;
     $("#sis-q").addEventListener("input", function (e) {
       clearTimeout(zaman);
@@ -1884,10 +2378,12 @@
   }
   function saglikYukle(sessiz) {
     var kap = $("#sis-saglik"), oz = $("#sis-ozet"), no = ++S.sis.ozetIstek;
-    if (!sessiz && !kap.querySelector(".adm-saglik-kart:not(.adm-isk-kart)")) kap.innerHTML = iskelet("saglik");
-    return api("/api/admin/loglar/ozet").then(function (v) {
+    if (!sessiz && !kap.querySelector(".adm-saglik-kart:not(.adm-isk-kart)")) kap.innerHTML = iskelet("saglik", 8);
+    return Promise.all([api("/api/admin/loglar/ozet"), api("/api/admin/sistem").catch(function () { return null; })]).then(function (r) {
       if (no !== S.sis.ozetIstek) return;
+      var v = r[0], sys = r[1];
       var sg = v.saglik || {}, ep = sg.eposta || {}, z = sg.zamanlayici, y = sg.sonYedek, b = sg.bellek || {};
+      if (sys) { S.ops.son = sys; y = sys.yedek && sys.yedek.son; }
       var yd = yedekDurumu(y);
       var zTon = "ok", zDeger, zAlt;
       if (!z || !z.acik) { zTon = "warn"; zDeger = "Kapalı"; zAlt = "ZAMANLAYICI=0: hatırlatmalar ve log temizliği çalışmaz."; }
@@ -1899,17 +2395,48 @@
         zAlt = esc(tarih(z.sonCalisma)) + " · " + esc(sayi(z.sonSureMs)) + " ms" + (gec ? " · gecikti" : "");
       }
       if (z && z.sonHata) { zTon = "bad"; zAlt = (zAlt ? zAlt + "<br>" : "") + "Son hata: " + esc(z.sonHata.is) + " · " + esc(goreceZaman(z.sonHata.zaman)); }
-      kap.innerHTML = '<ul class="adm-saglik">' +
-        saglikKart({ etiket: "Çalışma süresi", ikon: "saat", deger: sureMetni(sg.calismaSn), alt: "Başlangıç: " + esc(tarih(sg.baslangic)) + " · Node " + esc(sg.node || "—"), ton: "ok" }) +
-        saglikKart({ etiket: "Veritabanı", ikon: "disk", deger: boyutMetni(sg.dbBoyut), alt: "Bellek (RSS): " + esc(boyutMetni(b.rss)) + " · heap " + esc(boyutMetni(b.heapKullanilan)), ton: "notr" }) +
-        saglikKart({ etiket: "Son yedek", ikon: "yedek", deger: yd === "yok" ? "Bulunamadı" : goreceZaman(y.zaman),
-          alt: yd === "yok" ? "DATA_DIR/yedekler boş. <code class=\"adm-kod\">npm run yedek</code> ile alın." : esc(tarih(y.zaman)) + " · " + esc(boyutMetni(y.boyut)) + (yd === "eski" ? " · 36 saatten eski" : ""),
-          ton: yd === "ok" ? "ok" : "warn" }) +
-        saglikKart({ etiket: "E-posta kuyruğu", ikon: "posta", deger: sayi(ep.bekleyen) + " bekleyen",
-          alt: (ep.smtp ? "SMTP açık" : "SMTP ayarlı değil (yalnızca kuyruk)") + (Number(ep.hatali24s) ? " · son 24 sa " + esc(sayi(ep.hatali24s)) + " gönderilemedi" : ""),
-          ton: Number(ep.hatali24s) ? "bad" : !ep.smtp ? "warn" : Number(ep.bekleyen) > 20 ? "warn" : "ok" }) +
-        saglikKart({ etiket: "Zamanlayıcı", ikon: "nabiz", deger: zDeger, alt: zAlt, ton: zTon }) +
-        "</ul>";
+      var kartlar = "";
+      if (sys) {
+        var bl = sys.bellek || {}, od = sys.olayDongusu, dk = sys.disk, ist = sys.istek || {}, ot = sys.oturum || {}, vt = sys.veritabani || {}, kq = (sys.kuyruk || {}).eposta || {};
+        var heapOran = bl.heapToplam ? bl.heapKullanilan / bl.heapToplam : 0;
+        var odTon = !od ? "notr" : od.p99Ms > 500 ? "bad" : od.p99Ms > 100 ? "warn" : "ok";
+        var diskOran = dk && dk.toplam ? dk.bos / dk.toplam : null;
+        var hataOran = Number(ist.hataOrani5dk) || 0;
+        kartlar =
+          saglikKart({ etiket: "Çalışma süresi", ikon: "saat", deger: sureMetni(sys.calismaSn), alt: "Sürüm " + esc(sys.surum || "—") + " · Node " + esc(sys.node || "—") + "<br>Başlangıç: " + esc(tarih(sys.baslangic)), ton: "ok" }) +
+          saglikKart({ etiket: "Bellek", ikon: "cpu", deger: boyutMetni(bl.rss), alt: "Heap " + esc(boyutMetni(bl.heapKullanilan)) + " / " + esc(boyutMetni(bl.heapToplam)) + cubukHtml(heapOran, "Heap kullanımı"), ton: heapOran > 0.9 ? "warn" : "ok" }) +
+          saglikKart({ etiket: "Olay döngüsü", ikon: "hiz", deger: od ? sayi(od.p99Ms) + " ms" : "—", alt: od ? "p99 gecikme · ort. " + esc(sayi(od.ortalamaMs)) + " ms · en çok " + esc(sayi(od.enCokMs)) + " ms" : "Ölçüm başlıyor", ton: odTon }) +
+          saglikKart({ etiket: "CPU yükü", ikon: "nabiz", deger: sys.cpu && sys.cpu.yuk ? sys.cpu.yuk.map(function (x) { return x.toLocaleString("tr-TR"); }).join(" · ") : "—",
+            alt: sys.cpu && sys.cpu.yuk ? "1 / 5 / 15 dk ortalama · " + esc(sayi(sys.cpu.cekirdek)) + " çekirdek" : "Bu işletim sisteminde yük ortalaması yok · " + esc(sayi(sys.cpu && sys.cpu.cekirdek)) + " çekirdek",
+            ton: sys.cpu && sys.cpu.yuk && sys.cpu.cekirdek && sys.cpu.yuk[0] > sys.cpu.cekirdek ? "warn" : "notr" }) +
+          saglikKart({ etiket: "Veritabanı", ikon: "disk", deger: boyutMetni(vt.boyut), alt: "WAL: " + esc(vt.walBoyut == null ? "—" : boyutMetni(vt.walBoyut)) + " · " + esc(vt.dosya || ""), ton: vt.walBoyut > 64 * 1048576 ? "warn" : "notr" }) +
+          saglikKart({ etiket: "Disk (veri klasörü)", ikon: "disk", deger: dk ? boyutMetni(dk.bos) + " boş" : "—", alt: dk ? "Toplam " + esc(boyutMetni(dk.toplam)) + cubukHtml(1 - diskOran, "Disk doluluğu") : "Ölçülemedi", ton: diskOran == null ? "notr" : diskOran < 0.05 ? "bad" : diskOran < 0.1 ? "warn" : "ok" }) +
+          saglikKart({ etiket: "API istek / dk", ikon: "grafik", deger: sayi(ist.dakikada), alt: "5xx oranı (5 dk): " + esc(oranMetni(hataOran)) + (ist.ortSureMs != null ? " · ort. " + esc(sayi(ist.ortSureMs)) + " ms" : "") +
+            miniCubuklar((ist.seri || []).map(function (x) { return x.istek; }), "Son 15 dakika istek sayısı"), ton: hataOran > 0.05 ? "bad" : hataOran > 0.01 ? "warn" : "ok" }) +
+          saglikKart({ etiket: "Kullanıcılar şu an", ikon: "kullanicilar", deger: sayi(ot.cevrimici) + " çevrimiçi", alt: "Son 30 dk: " + esc(sayi(ot.yakin)) + " · açık oturum: " + esc(sayi(ot.aktif)), ton: "notr" }) +
+          saglikKart({ etiket: "Son yedek", ikon: "yedek", deger: yd === "yok" ? "Bulunamadı" : goreceZaman(y.zaman),
+            alt: yd === "yok" ? "Henüz yedek yok. Aşağıdan \"Yedek al\"." : esc(tarih(y.zaman)) + " · " + esc(boyutMetni(y.boyut)) + (yd === "eski" ? " · 36 saatten eski" : ""), ton: yd === "ok" ? "ok" : "warn" }) +
+          saglikKart({ etiket: "E-posta kuyruğu", ikon: "posta", deger: sayi(kq.bekleyen) + " bekleyen",
+            alt: (kq.smtp ? "SMTP açık" : "SMTP ayarlı değil (yalnızca kuyruk)") + " · " + esc(sayi(kq.hata)) + " hatalı · 24 sa gönderilen " + esc(sayi(kq.gonderilen24s)),
+            ton: Number(kq.hata) ? "bad" : !kq.smtp ? "warn" : Number(kq.bekleyen) > 20 ? "warn" : "ok" }) +
+          saglikKart({ etiket: "Zamanlayıcı", ikon: "nabiz", deger: zDeger, alt: zAlt, ton: zTon });
+        bakimSeridiCiz(sys.bakim);
+      } else {
+        kartlar =
+          saglikKart({ etiket: "Çalışma süresi", ikon: "saat", deger: sureMetni(sg.calismaSn), alt: "Başlangıç: " + esc(tarih(sg.baslangic)) + " · Node " + esc(sg.node || "—"), ton: "ok" }) +
+          saglikKart({ etiket: "Veritabanı", ikon: "disk", deger: boyutMetni(sg.dbBoyut), alt: "Bellek (RSS): " + esc(boyutMetni(b.rss)) + " · heap " + esc(boyutMetni(b.heapKullanilan)), ton: "notr" }) +
+          saglikKart({ etiket: "Son yedek", ikon: "yedek", deger: yd === "yok" ? "Bulunamadı" : goreceZaman(y.zaman),
+            alt: yd === "yok" ? "DATA_DIR/yedekler boş. <code class=\"adm-kod\">npm run yedek</code> ile alın." : esc(tarih(y.zaman)) + " · " + esc(boyutMetni(y.boyut)) + (yd === "eski" ? " · 36 saatten eski" : ""),
+            ton: yd === "ok" ? "ok" : "warn" }) +
+          saglikKart({ etiket: "E-posta kuyruğu", ikon: "posta", deger: sayi(ep.bekleyen) + " bekleyen",
+            alt: (ep.smtp ? "SMTP açık" : "SMTP ayarlı değil (yalnızca kuyruk)") + (Number(ep.hatali24s) ? " · son 24 sa " + esc(sayi(ep.hatali24s)) + " gönderilemedi" : ""),
+            ton: Number(ep.hatali24s) ? "bad" : !ep.smtp ? "warn" : Number(ep.bekleyen) > 20 ? "warn" : "ok" }) +
+          saglikKart({ etiket: "Zamanlayıcı", ikon: "nabiz", deger: zDeger, alt: zAlt, ton: zTon });
+      }
+      kap.innerHTML = '<ul class="adm-saglik">' + kartlar + "</ul>";
+      // Operasyon kartları: ilk yüklemede ve elle yenilemede çizilir; sessiz yenilemede formlar bozulmasın diye yalnızca odak dışındayken
+      var ops = $("#sis-ops");
+      if (ops && sys && (!sessiz || !ops.contains(document.activeElement))) opsCiz(sys);
       // Son 24 saat / 7 gün sayıları + 7 günlük hata/uyarı çubukları
       var s24 = v.son24s || {}, s7 = v.son7g || {}, gun = Array.isArray(v.gunluk) ? v.gunluk : [];
       var enCok = Math.max.apply(null, [1].concat(gun.map(function (d) { return (Number(d.hata) || 0) + (Number(d.uyari) || 0); })));
@@ -1938,6 +2465,221 @@
     }).catch(function (e) {
       if (no === S.sis.ozetIstek && !sessiz) kap.innerHTML = hataKutusu(e.message);
     });
+  }
+  /** İnce doluluk çubuğu (0–1) */
+  function cubukHtml(oran, etiket) {
+    var o = Math.max(0, Math.min(1, Number(oran) || 0));
+    return '<span class="adm-doluluk" role="img" aria-label="' + esc(etiket + ": %" + Math.round(o * 100)) + '"><span style="width:' + Math.round(o * 100) + '%"' + (o > 0.9 ? ' class="is-dolu"' : "") + "></span></span>";
+  }
+
+  /* --- Operasyon kartları: bakım, önbellek, kuyruk, zamanlayıcı, yedek, IP engelleri ---------- */
+  function opsCiz(sys) {
+    var ops = $("#sis-ops"); if (!ops) return;
+    var bk = sys.bakim || {}, ob = sys.onbellek || {}, kq = (sys.kuyruk || {}).eposta || {}, pu = (sys.kuyruk || {}).push || {}, zm = sys.zamanlayici || {}, yd = sys.yedek || {};
+    var isabetOran = (ob.isabet + ob.iska) ? ob.isabet / (ob.isabet + ob.iska) : null;
+    var yerel = function (iso) { if (!iso) return ""; var d = new Date(iso); if (isNaN(d)) return ""; var p = function (n) { return String(n).padStart(2, "0"); }; return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate()) + "T" + p(d.getHours()) + ":" + p(d.getMinutes()); };
+    var hiz = sys.hizSinirlari || {}, HIZ_AD = { giris: "Giriş", kayit: "Kayıt", sifre: "Şifre sıfırlama", soru: "Soru", hataRaporu: "Hata raporu" };
+    ops.innerHTML =
+      '<section class="surface adm-ops-kart adm-ops-bakim' + (bk.acik ? " is-acik" : "") + '" id="ops-bakim" aria-labelledby="ops-bakim-b">' +
+        '<div class="adm-bolum-ust"><h3 id="ops-bakim-b" class="adm-ikonlu">' + ikon("bakim") + "<span>Bakım modu</span></h3>" + rozet(bk.acik ? "Açık" : "Kapalı", bk.acik ? "warn" : "ok") + "</div>" +
+        '<p class="adm-alt">' + (bk.acik ? "Ziyaretçiler ve öğrenciler bakım sayfasını görüyor (HTTP 503); yöneticiler siteyi normal kullanır. Başlangıç: " + esc(tarih(bk.baslangic)) + "."
+          : "Açınca yönetici olmayan herkes bakım sayfasını görür; API 503 döner. Giriş ve yönetici paneli açık kalır.") + "</p>" +
+        '<form class="adm-ops-form" data-ops-form="bakim" novalidate>' +
+          '<div class="field"><label for="bk-mesaj">Mesaj <span class="adm-alt">(isteğe bağlı, bakım sayfasında görünür)</span></label>' +
+            '<textarea id="bk-mesaj" name="mesaj" class="text-input adm-not" rows="2" maxlength="500" placeholder="Ör. Yeni özellikler ekliyoruz, 30 dakika içinde döneceğiz.">' + esc(bk.mesaj || "") + "</textarea></div>" +
+          '<div class="field"><label for="bk-bitis">Planlanan bitiş <span class="adm-alt">(isteğe bağlı)</span></label><input id="bk-bitis" name="bitis" type="datetime-local" class="text-input" value="' + esc(yerel(bk.bitis)) + '"></div>' +
+          '<p class="adm-onay-hata" role="alert" hidden></p>' +
+          '<div class="adm-eylem">' + (bk.acik
+            ? '<button type="submit" class="btn-ghost" data-bakim="guncelle">Mesajı güncelle</button><button type="submit" class="btn-primary" data-bakim="kapat">Bakımı kapat</button>'
+            : '<button type="submit" class="btn-primary adm-tehlike" data-bakim="ac" aria-expanded="false">' + ikon("bakim") + "Bakıma al…</button>") + "</div>" +
+          '<div class="adm-onay" hidden></div>' +
+        "</form></section>" +
+
+      '<section class="surface adm-ops-kart" aria-labelledby="ops-kuyruk-b"><div class="adm-bolum-ust"><h3 id="ops-kuyruk-b" class="adm-ikonlu">' + ikon("kuyruk") + "<span>Kuyruklar</span></h3></div>" +
+        '<dl class="adm-dl adm-dl-sik">' +
+          "<div><dt>E-posta bekleyen</dt><dd>" + esc(sayi(kq.bekleyen)) + "</dd></div>" +
+          "<div><dt>Hatalı</dt><dd>" + (Number(kq.hata) ? rozet(sayi(kq.hata), "bad") : "0") + "</dd></div>" +
+          "<div><dt>Gönderilen (24 sa)</dt><dd>" + esc(sayi(kq.gonderilen24s)) + "</dd></div>" +
+          "<div><dt>SMTP</dt><dd>" + (kq.smtp ? rozet("Açık", "ok") : rozet("Ayarlı değil", "warn")) + "</dd></div>" +
+          "<div><dt>Push aboneliği</dt><dd>" + esc(sayi(pu.abonelik)) + ' <span class="adm-alt">(' + esc(sayi(pu.kullanici)) + " kişi)</span></dd></div>" +
+        "</dl>" +
+        '<div class="adm-eylem"><button type="button" class="btn-primary btn-sm" data-ops="eposta-isle"' + (kq.smtp ? "" : ' disabled title="SMTP ayarlı değil"') + ">Kuyruğu şimdi işle</button>" +
+          '<button type="button" class="btn-ghost btn-sm" data-ops="eposta-liste" data-durum="' + (Number(kq.hata) ? "hata" : "bekleyen") + '">Kuyruğu görüntüle</button></div>' +
+      "</section>" +
+
+      '<section class="surface adm-ops-kart" aria-labelledby="ops-onbellek-b"><div class="adm-bolum-ust"><h3 id="ops-onbellek-b" class="adm-ikonlu">' + ikon("hiz") + "<span>Önbellek ve hız sınırları</span></h3></div>" +
+        '<dl class="adm-dl adm-dl-sik">' +
+          "<div><dt>Sayfa önbelleği</dt><dd>" + esc(sayi(ob.girdi)) + " sayfa · " + esc(boyutMetni(ob.bayt)) + "</dd></div>" +
+          "<div><dt>İsabet oranı</dt><dd>" + esc(isabetOran == null ? "—" : oranMetni(isabetOran)) + ' <span class="adm-alt">(' + esc(sayi(ob.isabet)) + " / " + esc(sayi(ob.iska)) + " ıska)</span></dd></div>" +
+          "<div><dt>Son temizleme</dt><dd>" + (ob.sonTemizleme ? zamanHucre(ob.sonTemizleme) : '<span class="adm-alt">Hiç</span>') + "</dd></div>" +
+          '<div class="adm-dl-genis"><dt>Hız sınırlayıcılar (izlenen anahtar)</dt><dd class="adm-rozetler">' + Object.keys(hiz).map(function (k) { return rozet((HIZ_AD[k] || k) + ": " + sayi(hiz[k]), "notr"); }).join("") + "</dd></div>" +
+        "</dl>" +
+        '<div class="adm-eylem"><button type="button" class="btn-ghost btn-sm" data-ops="onbellek" aria-expanded="false">Önbelleği temizle</button></div><div class="adm-onay" hidden></div>' +
+      "</section>" +
+
+      '<section class="surface adm-ops-kart" aria-labelledby="ops-yedek-b"><div class="adm-bolum-ust"><h3 id="ops-yedek-b" class="adm-ikonlu">' + ikon("yedek") + "<span>Yedek</span></h3></div>" +
+        '<dl class="adm-dl adm-dl-sik">' +
+          "<div><dt>Son yedek</dt><dd>" + (yd.son ? zamanHucre(yd.son.zaman) + ' <span class="adm-alt">' + esc(boyutMetni(yd.son.boyut)) + "</span>" : '<span class="adm-alt">Yok</span>') + "</dd></div>" +
+          "<div><dt>Saklanan</dt><dd>" + esc(sayi(yd.adet)) + " / " + esc(sayi(yd.sakla || 14)) + "</dd></div>" +
+        "</dl>" +
+        '<p class="adm-alt">Çalışan sunucuyu durdurmadan DATA_DIR/yedekler klasörüne alınır; en yeni 14 yedek tutulur. Sunucu dışına kopyalamayı unutma.</p>' +
+        '<div class="adm-eylem"><button type="button" class="btn-primary btn-sm" data-ops="yedek">Yedek al</button></div>' +
+      "</section>" +
+
+      '<section class="surface adm-ops-kart adm-ops-genis" aria-labelledby="ops-zm-b"><div class="adm-bolum-ust"><h3 id="ops-zm-b" class="adm-ikonlu">' + ikon("saat") + "<span>Zamanlayıcı işleri</span></h3>" +
+        rozet(zm.acik ? "Açık · " + sayi(zm.aralikDk) + " dk" : "Kapalı", zm.acik ? "ok" : "warn") + "</div>" +
+        '<div class="adm-tablo-kap"><table class="adm-tablo adm-kartlas"><caption class="visually-hidden">Zamanlayıcı işleri</caption>' +
+          '<thead><tr><th scope="col">İş</th><th scope="col">Son çalışma</th><th scope="col" class="adm-sag">Süre</th><th scope="col">Sonuç</th><th scope="col"><span class="visually-hidden">İşlem</span></th></tr></thead><tbody>' +
+          (zm.isler || []).map(function (i) {
+            var sonuc = i.hata ? '<span class="adm-seviye is-hata">' + ikon("hata") + "<span>" + esc(kisalt(i.hata, 80)) + "</span></span>"
+              : i.sonuc == null ? '<span class="adm-alt">—</span>' : '<code class="adm-kod">' + esc(kisalt(typeof i.sonuc === "object" ? JSON.stringify(i.sonuc) : String(i.sonuc), 80)) + "</code>";
+            return "<tr><td data-label=\"İş\"><strong>" + esc(i.baslik) + "</strong></td>" +
+              '<td data-label="Son çalışma" class="adm-nowrap">' + zamanHucre(i.sonCalisma) + "</td>" +
+              '<td data-label="Süre" class="adm-sag">' + (sayiMi(i.sureMs) ? esc(sayi(i.sureMs)) + " ms" : "—") + "</td>" +
+              '<td data-label="Sonuç">' + sonuc + "</td>" +
+              '<td data-label="İşlem"><button type="button" class="btn-ghost btn-sm" data-ops="zamanlayici" data-is="' + esc(i.ad) + '">Şimdi çalıştır</button></td></tr>';
+          }).join("") + "</tbody></table></div>" +
+        '<p class="adm-alt">Hatırlatma ve veli raporu kendi kurallarına uyar: sessiz saatlerde (22:00–08:00) gönderilmez, kişi başına günde en fazla bir kez.</p>' +
+      "</section>" +
+
+      '<section class="surface adm-ops-kart adm-ops-genis" id="ops-ip" aria-labelledby="ops-ip-b"><div class="adm-bolum-ust"><h3 id="ops-ip-b" class="adm-ikonlu">' + ikon("kalkan") + "<span>IP engel listesi</span></h3></div>" +
+        '<div id="ops-ip-liste">' + iskelet("tablo", 2) + "</div>" +
+        '<form class="adm-ops-form adm-ip-form" data-ops-form="ip" novalidate>' +
+          '<div class="field"><label for="ip-kapsam">IP ya da /24 aralığı</label><input id="ip-kapsam" name="kapsam" class="text-input" maxlength="45" placeholder="203.0.113.7 ya da 203.0.113.0/24" autocomplete="off" spellcheck="false"></div>' +
+          '<div class="field"><label for="ip-neden">Neden</label><input id="ip-neden" name="neden" class="text-input" maxlength="300" placeholder="Ör. kaba kuvvet giriş denemesi"></div>' +
+          '<div class="field"><label for="ip-sure">Süre</label><select id="ip-sure" name="sure" class="text-input"><option value="1g">1 gün</option><option value="7g">7 gün</option><option value="30g">30 gün</option><option value="suresiz">Süresiz</option></select></div>' +
+          '<div class="adm-eylem adm-eylem-alt"><button type="submit" class="btn-primary">Engelle</button></div>' +
+          '<p class="adm-onay-hata" role="alert" hidden></p>' +
+        "</form>" +
+        '<p class="adm-alt">Engellenen adres giriş, kayıt ve tüm API isteklerinde 403 alır (yönetici oturumları etkilenmez). Kendi IP\'ni engelleyemezsin.</p>' +
+      "</section>";
+    ipEngelYukle();
+  }
+  function ipEngelYukle() {
+    var kap = $("#ops-ip-liste"); if (!kap) return Promise.resolve();
+    return api("/api/admin/ip-engelleri").then(function (v) {
+      var l = Array.isArray(v.engeller) ? v.engeller : [];
+      kap.innerHTML = (v.sizinIp ? '<p class="adm-alt">Senin IP adresin: <code class="adm-kod adm-ip">' + esc(v.sizinIp) + "</code></p>" : "") + (l.length
+        ? '<div class="adm-tablo-kap"><table class="adm-tablo adm-kartlas"><caption class="visually-hidden">Engellenen IP adresleri</caption>' +
+          '<thead><tr><th scope="col">Kapsam</th><th scope="col">Neden</th><th scope="col">Bitiş</th><th scope="col">Ekleyen</th><th scope="col"><span class="visually-hidden">İşlem</span></th></tr></thead><tbody>' +
+          l.map(function (x) {
+            return "<tr><td data-label=\"Kapsam\"><code class=\"adm-kod adm-ip\">" + esc(x.kapsam) + "</code>" + (x.etkin ? "" : " " + rozet("süresi doldu", "notr")) + "</td>" +
+              '<td data-label="Neden" class="adm-kir">' + esc(x.neden || "—") + "</td>" +
+              '<td data-label="Bitiş" class="adm-nowrap">' + (x.bitis ? esc(tarih(x.bitis)) : "Süresiz") + "</td>" +
+              '<td data-label="Ekleyen">' + esc(x.olusturan ? adSoyad(x.olusturan) : "—") + ' <span class="adm-alt">' + esc(gunTarih(x.olusturma)) + "</span></td>" +
+              '<td data-label="İşlem"><button type="button" class="btn-ghost btn-sm" data-ip-kaldir="' + esc(x.id) + '">Engeli kaldır</button></td></tr>';
+          }).join("") + "</tbody></table></div>"
+        : bos("Engellenen IP adresi yok."));
+    }).catch(function (e) { kap.innerHTML = hataKutusu(e.message); });
+  }
+  function opsTik(e) {
+    var ops = e.currentTarget;
+    if (e.target.closest("[data-tekrar]")) { ipEngelYukle(); return; }
+    var bk = e.target.closest("[data-bakim]");
+    if (bk) { var f0 = bk.closest("form"); if (f0) f0.setAttribute("data-islem", bk.getAttribute("data-bakim")); return; }
+    var ik = e.target.closest("[data-ip-kaldir]");
+    if (ik) {
+      ik.disabled = true;
+      api("/api/admin/ip-engelleri/" + encodeURIComponent(ik.getAttribute("data-ip-kaldir")), "DELETE").then(function () {
+        bildir("IP engeli kaldırıldı.", "ok"); ipEngelYukle();
+      }).catch(function (er) { ik.disabled = false; bildir(er.message, "bad"); });
+      return;
+    }
+    var b = e.target.closest("[data-ops]"); if (!b) return;
+    var t = b.getAttribute("data-ops");
+    if (t === "onbellek") {
+      onayAc(b.closest(".adm-ops-kart").querySelector(".adm-onay"), b, {
+        baslik: "Sayfa önbelleği temizlensin mi?", metin: "Sayfalar bir sonraki istekte diskten yeniden okunur. Güvenli bir işlemdir; içerik güncellemesi görünmüyorsa kullanılır.",
+        onayMetni: "Evet, temizle",
+        onayla: function () { return api("/api/admin/sistem/onbellek-temizle", "POST", {}).then(function (r) { bildir(sayi(r.temizlenen) + " sayfa önbellekten çıkarıldı.", "ok"); saglikYukle(); }); }
+      });
+      return;
+    }
+    if (t === "eposta-liste") { epostaKuyrukAc(b.getAttribute("data-durum") || "bekleyen", b); return; }
+    var eski = b.textContent;
+    b.disabled = true; b.textContent = "Çalışıyor…";
+    var is = null;
+    if (t === "eposta-isle") is = api("/api/admin/sistem/eposta/isle", "POST", {}).then(function (r) { bildir(sayi(r.denenen) + " e-posta denendi: " + sayi(r.gonderilen) + " gönderildi" + (r.hatali ? ", " + sayi(r.hatali) + " hatalı." : "."), r.hatali ? "bad" : "ok"); });
+    else if (t === "yedek") is = api("/api/admin/sistem/yedek", "POST", {}).then(function (r) { bildir("Yedek alındı: " + r.yedek.dosya + " (" + boyutMetni(r.yedek.boyut) + ", " + sayi(r.yedek.sureMs) + " ms).", "ok"); });
+    else if (t === "zamanlayici") is = api("/api/admin/sistem/zamanlayici/" + encodeURIComponent(b.getAttribute("data-is")), "POST", {}).then(function (r) {
+      bildir(r.calisti ? "İş çalıştırıldı" + (r.sonuc != null ? ": " + (typeof r.sonuc === "object" ? JSON.stringify(r.sonuc) : r.sonuc) : ".") : (r.neden || "İş çalıştırılmadı."), r.calisti ? "ok" : "info");
+    });
+    if (!is) { b.disabled = false; b.textContent = eski; return; }
+    is.catch(function (er) { bildir(er.message, "bad"); }).then(function () { b.disabled = false; b.textContent = eski; saglikYukle(); });
+    void ops;
+  }
+  function opsGonder(e) {
+    var f = e.target.closest("[data-ops-form]"); if (!f) return;
+    e.preventDefault();
+    var hata = $(".adm-onay-hata", f), tur = f.getAttribute("data-ops-form");
+    hata.hidden = true;
+    if (tur === "ip") {
+      var govde = { kapsam: f.kapsam.value.trim(), neden: f.neden.value.trim(), sure: f.sure.value };
+      if (!govde.kapsam || !govde.neden) { hata.textContent = "IP adresi ve neden gerekli."; hata.hidden = false; (govde.kapsam ? f.neden : f.kapsam).focus(); return; }
+      var d = f.querySelector("[type=submit]"); d.disabled = true;
+      api("/api/admin/ip-engelleri", "POST", govde).then(function (r) {
+        bildir(r.engel.kapsam + " engellendi.", "ok"); f.reset(); ipEngelYukle();
+      }).catch(function (er) { hata.textContent = er.message; hata.hidden = false; }).then(function () { d.disabled = false; });
+      return;
+    }
+    if (tur === "bakim") {
+      var islem = f.getAttribute("data-islem") || "ac";
+      var bitisV = f.bitis.value ? new Date(f.bitis.value) : null;
+      if (bitisV && isNaN(bitisV.getTime())) { hata.textContent = "Geçerli bir bitiş zamanı seç."; hata.hidden = false; return; }
+      var g = { acik: islem !== "kapat", mesaj: f.mesaj.value.trim(), bitis: bitisV ? bitisV.toISOString() : null };
+      var gonder = function () {
+        return api("/api/admin/bakim", "POST", g).then(function (r) {
+          bildir(r.bakim.acik ? (islem === "ac" ? "Bakım modu açıldı. Ziyaretçiler bakım sayfasını görüyor." : "Bakım mesajı güncellendi.") : "Bakım modu kapatıldı; site herkese açık.", "ok");
+          bakimSeridiCiz(r.bakim); saglikYukle();
+        });
+      };
+      if (islem === "ac") {
+        onayAc($(".adm-onay", f), f.querySelector('[data-bakim="ac"]'), {
+          baslik: "Site bakıma alınsın mı?", metin: "Yönetici olmayan herkes (öğrenciler dahil) bakım sayfasını görür ve API istekleri 503 alır. Açık sayfalar bir sonraki istekte bakım uyarısı alır.",
+          onayMetni: "Evet, bakıma al", tehlike: true, onayla: gonder
+        });
+      } else {
+        var dg = f.querySelectorAll("button"); dg.forEach(function (x) { x.disabled = true; });
+        gonder().catch(function (er) { hata.textContent = er.message; hata.hidden = false; dg.forEach(function (x) { x.disabled = false; }); });
+      }
+    }
+  }
+  function epostaKuyrukAc(durum, tetik) {
+    var c = cekmeceAc("E-posta kuyruğu", iskelet("cekmece"), tetik);
+    c.mod = "eposta";
+    var ciz = function (d) {
+      c.govde.innerHTML = '<div class="adm-cip-grup" role="group" aria-label="Kuyruk durumu">' +
+        [["bekleyen", "Bekleyen"], ["hata", "Hatalı"], ["gonderilen", "Gönderilen"]].map(function (x) {
+          return '<button type="button" class="adm-cip" data-ep-durum="' + x[0] + '" aria-pressed="' + (x[0] === d ? "true" : "false") + '">' + esc(x[1]) + "</button>";
+        }).join("") + "</div>" + iskelet("tablo", 4);
+      api("/api/admin/sistem/eposta?durum=" + encodeURIComponent(d)).then(function (v) {
+        if (!cekmeceAcik() || c.mod !== "eposta") return;
+        var l = Array.isArray(v.epostalar) ? v.epostalar : [];
+        var liste = l.length ? '<ul class="adm-ep-liste">' + l.map(function (m) {
+          return '<li class="adm-ep-oge"><div class="adm-min0"><p class="adm-ep-konu adm-kir">' + esc(m.konu) + '</p><p class="adm-alt adm-kir">' + esc(m.alici) + " · " + esc(tarih(m.olusturma)) +
+            (m.gonderim ? " · gönderildi " + esc(goreceZaman(m.gonderim)) : "") + "</p>" + (m.hata ? '<p class="adm-ep-hata adm-kir">' + esc(kisalt(m.hata, 200)) + "</p>" : "") + "</div>" +
+            (!m.gonderim ? '<button type="button" class="btn-ghost btn-sm" data-ep-tekrar="' + esc(m.id) + '"' + (v.smtp ? "" : " disabled") + ">Yeniden dene</button>" : "") + "</li>";
+        }).join("") + "</ul>" : bos(d === "gonderilen" ? "Gönderilmiş e-posta yok." : "Bu durumda e-posta yok.");
+        c.govde.innerHTML = c.govde.querySelector(".adm-cip-grup").outerHTML + (v.smtp ? "" : '<p class="adm-alt">SMTP ayarlı değil: e-postalar yalnızca kuyrukta tutulur, gönderilemez.</p>') + liste +
+          '<p class="adm-alt">En yeni 100 kayıt. E-posta metinleri burada gösterilmez (içlerinde tek kullanımlık bağlantılar olabilir).</p>';
+      }).catch(function (e) { c.govde.innerHTML = '<div class="adm-hata" role="alert"><p>' + esc(e.message) + "</p></div>"; });
+    };
+    if (!c.epBagli) {
+      c.epBagli = true;
+      c.govde.addEventListener("click", function (e) {
+        if (c.mod !== "eposta") return;
+        var dc = e.target.closest("[data-ep-durum]"); if (dc) { ciz(dc.getAttribute("data-ep-durum")); return; }
+        var tk = e.target.closest("[data-ep-tekrar]");
+        if (tk) {
+          tk.disabled = true; tk.textContent = "Gönderiliyor…";
+          api("/api/admin/sistem/eposta/" + encodeURIComponent(tk.getAttribute("data-ep-tekrar")) + "/tekrar", "POST", {}).then(function (r) {
+            bildir(r.gonderildi ? "E-posta gönderildi." : "Gönderilemedi; hata kaydedildi.", r.gonderildi ? "ok" : "bad");
+            var aktif = c.govde.querySelector('[data-ep-durum][aria-pressed="true"]'); ciz(aktif ? aktif.getAttribute("data-ep-durum") : "bekleyen");
+          }).catch(function (er) { tk.disabled = false; tk.textContent = "Yeniden dene"; bildir(er.message, "bad"); });
+        }
+      });
+    }
+    ciz(durum);
   }
 
   function logYukle(sessiz) {
@@ -2062,7 +2804,7 @@
         if (d && c.logId) logDurumDegistir(c.logId, d.getAttribute("data-log-durum"), d);
       });
     }
-    c.logId = id;
+    c.logId = id; c.mod = "log";
     return api("/api/admin/loglar/" + encodeURIComponent(id)).then(function (v) {
       if (!cekmeceAcik() || c.logId !== id) return;
       c.baslik.textContent = seviyeAd(v.log.seviye) + " · " + kaynakAd(v.log.kaynak) + " #" + v.log.id;

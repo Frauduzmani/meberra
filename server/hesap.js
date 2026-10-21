@@ -4,6 +4,7 @@ const config = require("./config");
 const { islem, simdi } = require("./db");
 const { sifreOzetle, sifreDogrula, belirtec, ozet, publicId } = require("./guvenlik");
 const { HttpHata } = require("./http");
+const zaman = require("./zaman");
 
 const EPOSTA_RE = /^[^\s@<>()",;:]+@[^\s@<>()",;:]+\.[A-Za-z]{2,}$/;
 const GUN = 864e5;
@@ -23,7 +24,13 @@ function hesapServisi(db, denetim, eposta) {
     kullaniciEposta: db.prepare("SELECT * FROM users WHERE eposta = ?"),
     kullaniciEkle: db.prepare(`INSERT INTO users (public_id, eposta, kullanici_adi, ad, soyad, sifre_hash, rol, kvkk_onay, kosul_onay, veli_onay, olusturma, guncelleme)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`),
-    sonGiris: db.prepare("UPDATE users SET son_giris = ? WHERE id = ?"),
+    sonGiris: db.prepare("UPDATE users SET son_giris = ?, son_giris_ip = ? WHERE id = ?"),
+    girisSay: db.prepare(`INSERT INTO giris_sayilari (user_id, gun, adet, basarisiz) VALUES (?, ?, ?, ?)
+      ON CONFLICT(user_id, gun) DO UPDATE SET adet = adet + excluded.adet, basarisiz = basarisiz + excluded.basarisiz`),
+    oturumEngel: db.prepare(`SELECT u.id, u.durum, u.engel_zamani, u.engel_bitis FROM sessions s JOIN users u ON u.id = s.user_id
+      WHERE s.token_hash = ? AND u.durum = 'askida' AND u.engel_zamani IS NOT NULL`),
+    engelKaldir: db.prepare(`UPDATE users SET durum = 'aktif', engel_zamani = NULL, engel_bitis = NULL, engel_nedeni = NULL, engelleyen = NULL, guncelleme = ?
+      WHERE id = ? AND durum = 'askida'`),
     sifreGuncelle: db.prepare("UPDATE users SET sifre_hash = ?, guncelleme = ? WHERE id = ?"),
     profil: db.prepare("SELECT veri FROM profiles WHERE user_id = ?"),
     profilYaz: db.prepare(`INSERT INTO profiles (user_id, ogrenci_modeli, sinif, ulkeler, okul, tamamlandi, veri, guncelleme) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
@@ -65,12 +72,62 @@ function hesapServisi(db, denetim, eposta) {
   function oturumAc(userId, req) {
     const tok = belirtec(32), z = simdi();
     q.oturumEkle.run(userId, ozet(tok), z, z, tarihEkle(z, config.oturumGun), req ? req.ip : null, req ? String(req.headers["user-agent"] || "").slice(0, 300) : null);
-    q.sonGiris.run(z, userId);
+    q.sonGiris.run(z, req ? req.ip || null : null, userId);
     return { belirtec: tok, sureSn: config.oturumGun * 86400 };
+  }
+  /** Günlük giriş sayacı (İstanbul günü). basarili: true → adet, false → basarisiz */
+  function girisSay(userId, basarili) {
+    try { q.girisSay.run(userId, zaman.gun(Date.now()), basarili ? 1 : 0, basarili ? 0 : 1); } catch (e) { /* sayaç girişi bozmaz */ }
+  }
+  /** Engel etkin mi? Süreli engelin süresi dolmuşsa engeli kaldırır (denetim kaydıyla) ve false döner. */
+  function engelEtkin(u) {
+    if (!u || u.durum !== "askida" || !u.engel_zamani) return false;
+    if (u.engel_bitis && u.engel_bitis <= simdi()) {
+      if (Number(q.engelKaldir.run(simdi(), u.id).changes)) denetim({ eylem: "hesap.engel-sona-erdi", kullanici: u.id, ayrinti: { bitis: u.engel_bitis } });
+      return false;
+    }
+    return true;
+  }
+  function engelMesaji(bitis) {
+    return "Hesabın engellendi." + (bitis ? " Engel " + new Date(bitis).toLocaleString("tr-TR", { timeZone: "Europe/Istanbul", dateStyle: "long", timeStyle: "short" }) +
+      " tarihinde kalkacak." : "") + " Bir yanlışlık olduğunu düşünüyorsan bize yaz: " + config.urun.destekEposta;
   }
 
   return {
-    genel, profilAl, uyelik,
+    genel, profilAl, uyelik, engelMesaji,
+    /** Engellenmiş kullanıcının (oturumları kapatılmış) çerezi: { bitis } ya da null. API bunu 403'e çevirir. */
+    oturumEngeli(tok) {
+      if (!tok) return null;
+      const u = q.oturumEngel.get(ozet(tok));
+      if (!u) return null;
+      const tam = q.kullaniciId.get(u.id);
+      return engelEtkin(tam) ? { bitis: tam.engel_bitis || null } : null;
+    },
+    /** sure: "suresiz" | "1g" | "7g" | "30g". Tüm oturumlar kapanır. */
+    engelle(u, b, yapan, req) {
+      const SURE = { suresiz: null, "1g": 1, "7g": 7, "30g": 30 };
+      b = b || {};
+      const neden = kirp(b.neden).slice(0, 300);
+      if (!neden) throw new HttpHata(400, "Engelleme nedenini yaz.", { neden: "Neden gerekli (yalnızca yöneticiler görür)." });
+      if (!Object.prototype.hasOwnProperty.call(SURE, b.sure || "suresiz")) throw new HttpHata(400, "Süre suresiz, 1g, 7g ya da 30g olmalı.", { sure: "Geçersiz süre." });
+      if (u.durum === "silindi") throw new HttpHata(409, "Silinmiş hesap engellenemez.");
+      if (yapan && u.id === yapan.id) throw new HttpHata(400, "Kendi hesabını engelleyemezsin.");
+      const gun = SURE[b.sure || "suresiz"], z = simdi(), bitis = gun ? tarihEkle(z, gun) : null;
+      let kapanan = 0;
+      islem(db, () => {
+        db.prepare("UPDATE users SET durum = 'askida', engel_zamani = ?, engel_bitis = ?, engel_nedeni = ?, engelleyen = ?, guncelleme = ? WHERE id = ?")
+          .run(z, bitis, neden, yapan ? yapan.id : null, z, u.id);
+        kapanan = Number(q.oturumlariIptal.run(z, u.id).changes);
+      });
+      denetim({ eylem: "hesap.engellendi", kullanici: u.id, yapan: yapan ? yapan.id : null, istek: req, ayrinti: { neden, sure: b.sure || "suresiz", bitis, kapananOturum: kapanan } });
+      return { durum: "askida", engel: { zaman: z, bitis, neden }, kapananOturum: kapanan };
+    },
+    engelKaldir(u, yapan, req) {
+      const n = Number(q.engelKaldir.run(simdi(), u.id).changes);
+      if (!n) throw new HttpHata(409, "Bu hesap engelli değil.");
+      denetim({ eylem: "hesap.engel-kaldirildi", kullanici: u.id, yapan: yapan ? yapan.id : null, istek: req, ayrinti: { onceki: { neden: u.engel_nedeni, bitis: u.engel_bitis } } });
+      return { durum: "aktif" };
+    },
 
     kayit(f, req) {
       f = f || {};
@@ -95,13 +152,23 @@ function hesapServisi(db, denetim, eposta) {
       const dogru = sifreDogrula(String(sifre || ""), u ? u.sifre_hash : null);
       if (!u || !dogru) {
         denetim({ eylem: "auth.giris-basarisiz", kullanici: u ? u.id : null, istek: req, ayrinti: { kimlik: k.slice(0, 120) } });
+        if (u) girisSay(u.id, false);
         throw new HttpHata(401, "E-posta veya şifre hatalı.");
+      }
+      // Yönetici engeli (süreliyse ve süresi dolduysa burada kalkar)
+      if (u.durum === "askida" && u.engel_zamani) {
+        if (engelEtkin(u)) {
+          denetim({ eylem: "auth.giris-engellendi", kullanici: u.id, istek: req, ayrinti: { engel: true } });
+          throw new HttpHata(403, engelMesaji(u.engel_bitis), null, { engelli: true, engelBitis: u.engel_bitis || null });
+        }
+        u.durum = "aktif";
       }
       if (u.durum !== "aktif") {
         denetim({ eylem: "auth.giris-engellendi", kullanici: u.id, istek: req });
         throw new HttpHata(403, "Hesabın askıya alınmış. Destek için bize yaz: " + config.urun.destekEposta);
       }
       denetim({ eylem: "auth.giris", kullanici: u.id, istek: req });
+      girisSay(u.id, true);
       return { kullanici: u, oturum: oturumAc(u.id, req) };
     },
 
@@ -236,6 +303,8 @@ function hesapServisi(db, denetim, eposta) {
         olusturma: simdi(),
         kullanici: genel(u),
         onaylar: { kvkk: u.kvkk_onay, kosullar: u.kosul_onay, veli: !!u.veli_onay },
+        erisim: { sonGiris: u.son_giris, sonGirisIp: u.son_giris_ip, sonGorulme: u.son_gorulme, sonIp: u.son_ip },
+        girisSayilari: tablo("SELECT gun, adet, basarisiz FROM giris_sayilari WHERE user_id = ? ORDER BY gun"),
         profil: profilAl(u.id),
         uyelik: uyelik(u.id),
         abonelikler: tablo("SELECT plan, baslangic, bitis, durum, kaynak, tutar_tl FROM subscriptions WHERE user_id = ?"),
@@ -245,7 +314,7 @@ function hesapServisi(db, denetim, eposta) {
         denemeler: tablo("SELECT kod, ad, tarih, soru_sayisi, dogru, yanlis, bos, yuzde, sure_sn FROM exams WHERE user_id = ?"),
         seviyeTestleri: tablo("SELECT tarih, veri FROM level_tests WHERE user_id = ?"),
         tarayiciVerisi: tablo("SELECT anahtar, guncelleme FROM user_state WHERE user_id = ?"),
-        oturumlar: tablo("SELECT olusturma, son_kullanim, ip, tarayici FROM sessions WHERE user_id = ?"),
+        oturumlar: tablo("SELECT olusturma, son_kullanim, son_gorulme, ip, son_ip, tarayici FROM sessions WHERE user_id = ?"),
         denetimKaydi: tablo("SELECT zaman, eylem, ip FROM audit_log WHERE user_id = ? ORDER BY zaman"),
         sorular: tablo("SELECT id, sayfa, soru_ref, metin, durum, olusturma FROM questions WHERE user_id = ? ORDER BY id"),
         soruMesajlari: tablo("SELECT m.question_id, m.rol, m.metin, m.tarih FROM question_messages m JOIN questions q ON q.id = m.question_id WHERE q.user_id = ? ORDER BY m.id"),
@@ -261,7 +330,7 @@ function hesapServisi(db, denetim, eposta) {
       const z = simdi(), ep = String(u.eposta || "").toLowerCase();
       islem(db, () => {
         ["profiles", "user_state", "state_tombstones", "answers", "wrong_answers", "exams", "level_tests", "sessions", "password_resets",
-          "questions", "notifications", "notification_prefs", "push_subscriptions", "reminder_log", "lig_uyeleri", "lig_haftalik"].forEach(t => db.prepare("DELETE FROM " + t + " WHERE user_id = ?").run(u.id));
+          "questions", "notifications", "notification_prefs", "push_subscriptions", "reminder_log", "lig_uyeleri", "lig_haftalik", "giris_sayilari"].forEach(t => db.prepare("DELETE FROM " + t + " WHERE user_id = ?").run(u.id));
         // Muhasebe kayıtları (abonelik, ödeme bildirimi) yasal saklama için kalır; kişisel alanlar anonimleştirilir.
         // Bekleyen bildirim iptal edilir (silinmiş hesaba Premium açılmasın), aktif dönem sonlandırılır.
         db.prepare("UPDATE upgrade_requests SET durum = 'iptal', islem_zamani = ?, islem_notu = 'Hesap silindi' WHERE user_id = ? AND durum = 'bekliyor'").run(z, u.id);
@@ -276,7 +345,8 @@ function hesapServisi(db, denetim, eposta) {
           db.prepare("UPDATE email_outbox SET alici = 'silindi', konu = '[silinmiş kullanıcı]', metin = '[silindi]', html = NULL WHERE lower(alici) = ? OR instr(lower(metin), ?) > 0")
             .run(ep, "<" + ep + ">");
         }
-        db.prepare(`UPDATE users SET eposta = NULL, kullanici_adi = ?, ad = 'Silinmiş', soyad = 'Kullanıcı', sifre_hash = '!', durum = 'silindi', guncelleme = ? WHERE id = ?`)
+        db.prepare(`UPDATE users SET eposta = NULL, kullanici_adi = ?, ad = 'Silinmiş', soyad = 'Kullanıcı', sifre_hash = '!', durum = 'silindi', guncelleme = ?,
+          son_ip = NULL, son_giris_ip = NULL, son_gorulme = NULL, engel_nedeni = NULL WHERE id = ?`)
           .run("silindi-" + u.id, z, u.id);
       });
       denetim({ eylem: "hesap.silindi", kullanici: u.id }); // istek verilmez: IP/tarayıcı yazılmaz

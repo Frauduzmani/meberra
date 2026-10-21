@@ -301,6 +301,43 @@ Notlar:
       reklam için kullanmadan önce ve hatırlatma metinlerinin hizmet iletisi sayılıp sayılmadığı konusunda
       **hukuki görüş alın**. Kullanıcıların çoğu reşit olmadığından veli onayı süreçlerini de avukatınızla gözden geçirin.
 
+## E3) Google Play (TWA) için
+
+Meberra, Google Play'e **Trusted Web Activity (TWA)** olarak, yani siteyi tam ekran açan ince bir Android kabuğu
+olarak konabilir. Uygulama içeriği her zaman canlı siteden gelir; mağazaya yeni sürüm göndermeden site güncellenir.
+
+- [ ] **Gereksinimler:** geçerli sertifikalı **HTTPS alan adı** (ör. `https://meberra.com`), `manifest.webmanifest`
+      (ad, `start_url`, `display: standalone`, 192/512 ve maskable ikonlar — hazır), kökte `sw.js` (hazır), Lighthouse
+      PWA denetiminin geçmesi. Google Play geliştirici hesabı (tek seferlik ücret) ve Java 17 + Android SDK
+      (Bubblewrap ilk çalıştırmada indirmeyi önerir).
+- [ ] **Bubblewrap CLI** (bilgisayarınızda, sunucuda değil):
+      ```bash
+      npm i -g @bubblewrap/cli
+      bubblewrap init --manifest https://meberra.com/manifest.webmanifest   # paket adı ör. com.meberra.app
+      bubblewrap build                                                      # app-release-bundle.aab + imzalı apk
+      ```
+      `init` sırasında oluşturulan **imzalama anahtarını (keystore) ve şifresini kaybetmeyin**; güncellemeler aynı
+      anahtarla imzalanmalıdır. Play Console'a `.aab` dosyasını yükleyin; Play App Signing açıksa Google ayrıca
+      kendi anahtarıyla imzalar.
+- [ ] **Digital Asset Links (adres çubuğunu gizlemek için zorunlu):** `.env` dosyasına ekleyin ve yeniden başlatın:
+      ```
+      ANDROID_PAKET_ADI=com.meberra.app
+      ANDROID_SHA256=AA:BB:...:FF          # birden çok parmak izi virgülle (yükleme anahtarı + Play App Signing anahtarı)
+      ```
+      Parmak izleri: `keytool -list -v -keystore android.keystore` ve Play Console → *Kurulum → Uygulama bütünlüğü →
+      Uygulama imzalama*. Sunucu `https://alanadiniz/.well-known/assetlinks.json` adresini `application/json` olarak
+      sunar (tanımlı değilse 404). Alternatif: proje köküne `.well-known/assetlinks.json` dosyası koymak. Doğrulama:
+      `https://digitalassetlinks.googleapis.com/v1/statements:list?source.web.site=https://meberra.com&relation=delegate_permission/common.handle_all_urls`.
+      Eşleşme yoksa uygulama üstte adres çubuğuyla (Custom Tab) açılır.
+- [ ] **Bildirimler:** Mevcut **web push** TWA içinde de çalışır (Chrome'un bildirim izni Android uygulamasına
+      devredilir; Android 13+ cihazda uygulama bildirim izni ister). Ek sunucu ayarı gerekmez; VAPID anahtarlarını
+      koruyun (E2).
+- [ ] **Mağaza metinleri:** Gizlilik politikası adresi (`/gizlilik.html`), veri güvenliği formu (toplanan veriler:
+      e-posta, ad, çalışma ilerlemesi, IP adresi — 90 gün), hedef yaş grubu (13–18 yaş öğrenciler varsa **Aileler
+      politikası** gereklerini avukatınızla gözden geçirin).
+- [ ] **Bakım modu:** Yönetici paneli → Sistem → Bakım modu ile site (ve TWA uygulaması) geçici olarak bakım sayfasına
+      alınabilir; yönetici girişi ve paneli açık kalır.
+
 ---
 
 ## F) Sorun giderme

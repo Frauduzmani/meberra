@@ -28,7 +28,27 @@ function istekIzleyici(gunluk, sec) {
     const t = Date.now();
     for (const [k, v] of sayac) if (v.every(x => t - x > YOGUNLUK.pencereMs)) sayac.delete(k);
   }, YOGUNLUK.pencereMs).unref();
-  return function bitti(req, kod, sure) {
+  // Dakika kovaları (son 15 dk): istek/dk ve 5xx oranı
+  const kova = new Map(); // dakika (ms/60000) → { n, s5, sure }
+  function say(kod, sure) {
+    const d = Math.floor(Date.now() / 60e3);
+    const k = kova.get(d) || { n: 0, s5: 0, sure: 0 };
+    k.n++; if (kod >= 500) k.s5++; k.sure += sure || 0;
+    kova.set(d, k);
+    if (kova.size > 16) for (const x of kova.keys()) if (x < d - 15) kova.delete(x);
+  }
+  bitti.istatistik = function () {
+    const d = Math.floor(Date.now() / 60e3), seri = [];
+    for (let i = 14; i >= 0; i--) { const k = kova.get(d - i) || { n: 0, s5: 0 }; seri.push({ dakika: new Date((d - i) * 60e3).toISOString(), istek: k.n, hata5xx: k.s5 }); }
+    // "Dakikada": tamamlanmış son dakika ile içinde bulunulan dakikanın büyüğü (yeni açılmış dakika 0 göstermesin)
+    const son5 = seri.slice(-5), top5 = son5.reduce((t, x) => t + x.istek, 0), h5 = son5.reduce((t, x) => t + x.hata5xx, 0);
+    const simdiki = kova.get(d) || { n: 0, sure: 0 }, onceki = kova.get(d - 1) || { n: 0, sure: 0 };
+    const ref = simdiki.n >= onceki.n ? simdiki : onceki;
+    return { dakikada: ref.n, ortSureMs: ref.n ? Math.round(ref.sure / ref.n) : null, son5dk: top5, hata5xx5dk: h5, hataOrani5dk: top5 ? h5 / top5 : 0, seri };
+  };
+  return bitti;
+  function bitti(req, kod, sure) {
+    say(kod, sure);
     const bilgi = gunluk.istekBilgisi(req);
     if (sure > yavasMs) gunluk.uyari("sunucu", "Yavaş istek: " + req.method + " " + yolNormal(bilgi.path), Object.assign(bilgi, { status: kod, sureMs: Math.round(sure) }));
     // 401 yalnızca değiştiren isteklerde sayılır (misafirin GET /api/me yanıtı olağandır)
@@ -42,7 +62,7 @@ function istekIzleyici(gunluk, sec) {
       gunluk.uyari("guvenlik", "Bir IP'den kısa sürede çok sayıda " + kod + " yanıtı (IP özeti " + ipOzet(req.ip) + ")",
         { ip: req.ip, status: kod, adet: l.length, pencereDk: YOGUNLUK.pencereMs / 60e3, sonYol: req.method + " " + yolNormal(bilgi.path), ua: bilgi.ua });
     } else sayac.set(k, l);
-  };
+  }
 }
 
 /** DATA_DIR/yedekler içindeki en yeni yedek dosyası: { dosya, zaman, boyut } | null */
@@ -61,6 +81,7 @@ function sonYedek(klasor) {
 function sistemRotalari(r, c) {
   const { db, denetim, gunluk, yoneticiGerekli, zamanlayici, dbDosya } = c;
   const istemciSinir = hizSinirlayici(c.logSiniri || 30, 10 * 60e3);
+  if (c.sinirlar) c.sinirlar.hataRaporu = istemciSinir;
   const json = s => { try { return s ? JSON.parse(s) : null; } catch (e) { return s; } };
   const kirp = (v, n) => String(v == null ? "" : v).replace(/\r\n?/g, "\n").slice(0, n);
   const tamsayi = v => (Number.isFinite(+v) && v !== null && v !== "" ? Math.max(0, Math.min(1e7, Math.floor(+v))) : undefined);

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#5B3DF5">
+  <title>Kısa bir bakımdayız | Meberra</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+  <style>
+    body { min-height: 100vh; min-height: 100dvh; margin: 0; display: grid; place-items: center; padding: 24px 16px; background: var(--bg); color: var(--text); }
+    .bk-kart {
+      width: min(560px, 100%); display: grid; gap: 18px; text-align: center; justify-items: center;
+      padding: clamp(28px, 6vw, 48px) clamp(20px, 5vw, 40px); border-radius: var(--radius-xl); background: var(--surface);
+      border: 1px solid var(--border); box-shadow: var(--shadow-lg); position: relative; overflow: hidden;
+    }
+    .bk-kart::before { content: ""; position: absolute; inset: 0 0 auto; height: 6px; background: linear-gradient(90deg, var(--hero-a), var(--hero-b)); }
+    .bk-marka { display: inline-flex; padding: 6px 14px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font: 900 0.95rem/1 var(--font-head); letter-spacing: .02em; }
+    .bk-ikon { width: 88px; height: 88px; border-radius: 24px; display: grid; place-items: center; background: linear-gradient(135deg, var(--hero-a), var(--hero-b)); color: #fff; box-shadow: var(--shadow-lg); }
+    .bk-ikon svg { width: 44px; height: 44px; animation: bk-don 6s linear infinite; }
+    @keyframes bk-don { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) { .bk-ikon svg { animation: none; } }
+    h1 { margin: 0; font: 900 clamp(1.5rem, 5vw, 2rem)/1.2 var(--font-head); }
+    .bk-metin { margin: 0; color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; white-space: pre-line; overflow-wrap: anywhere; max-width: 46ch; }
+    .bk-bitis { margin: 0; display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--border); font-weight: 700; }
+    .bk-bitis[hidden] { display: none; }
+    .bk-bitis svg { width: 18px; height: 18px; color: var(--accent); flex: none; }
+    .bk-durum { margin: 0; font-size: .9rem; color: var(--text-muted); min-height: 1.4em; }
+    .bk-dugme { min-height: 44px; }
+    .bk-alt { margin: 0; font-size: .85rem; color: var(--text-dim, var(--text-muted)); }
+    .bk-alt a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main class="bk-kart" id="main-content" aria-labelledby="bk-baslik">
+    <span class="bk-marka">Meberra</span>
+    <div class="bk-ikon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+    </div>
+    <h1 id="bk-baslik">Kısa bir bakımdayız</h1>
+    <p class="bk-metin" id="bk-mesaj">Meberra'yı senin için daha iyi hale getiriyoruz. Çalışmaların ve ilerlemen güvende; birazdan geri döneceğiz.</p>
+    <p class="bk-bitis" id="bk-bitis" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <span>Tahmini dönüş: <time id="bk-bitis-zaman"></time></span>
+    </p>
+    <button type="button" class="btn-primary bk-dugme" id="bk-dene">Şimdi yeniden dene</button>
+    <p class="bk-durum"><span id="bk-durum" role="status" aria-live="polite"></span> <span id="bk-sayac"></span></p>
+    <p class="bk-alt">Acil bir konu için: <a href="mailto:destek@meberra.com" id="bk-eposta">destek@meberra.com</a></p>
+  </main>
+  <script>
+  (function () {
+    "use strict";
+    var ARALIK = 60, kalan = ARALIK;
+    var durumEl = document.getElementById("bk-durum");
+    var buSayfa = /\/bakim\.html$/i.test(location.pathname);
+    function bitti() {
+      // Bakım bittiyse aynı adres yeniden yüklenir (kullanıcı istediği sayfaya döner)
+      durumEl.textContent = "Bakım tamamlandı, sayfa açılıyor…";
+      if (buSayfa) location.replace("/"); else location.reload();
+    }
+    function goster(b, destek) {
+      if (destek) { var a = document.getElementById("bk-eposta"); a.textContent = destek; a.href = "mailto:" + destek; }
+      if (!b) return;
+      if (b.mesaj) document.getElementById("bk-mesaj").textContent = b.mesaj;
+      var t = b.bitis ? new Date(b.bitis) : null;
+      if (t && !isNaN(t.getTime())) {
+        var z = document.getElementById("bk-bitis-zaman");
+        z.dateTime = t.toISOString();
+        z.textContent = t.toLocaleString("tr-TR", { dateStyle: "long", timeStyle: "short" });
+        document.getElementById("bk-bitis").hidden = false;
+      }
+    }
+    function dene() {
+      durumEl.textContent = "Denetleniyor…";
+      return fetch("/api/public/config", { cache: "no-store", credentials: "same-origin" }).then(function (r) { return r.json(); }).then(function (v) {
+        var b = v && v.bakim;
+        if (b && !b.acik) return bitti();
+        durumEl.textContent = "";
+        goster(b, v && v.destekEposta);
+        kalan = ARALIK; say();
+      }).catch(function () { kalan = ARALIK; say(); });
+    }
+    var sayacEl = document.getElementById("bk-sayac");
+    function say() { sayacEl.textContent = "Sayfa " + kalan + " sn sonra kendiliğinden yeniden denenecek."; }
+    document.getElementById("bk-dene").addEventListener("click", dene);
+    setInterval(function () {
+      if (document.visibilityState !== "visible") return;
+      kalan -= 1;
+      if (kalan <= 0) dene(); else say();
+    }, 1000);
+    dene();
+  })();
+  </script>
+</body>
+</html>

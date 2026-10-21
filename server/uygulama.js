@@ -4,7 +4,7 @@ const http = require("http");
 const path = require("path");
 const config = require("./config");
 const db_ = require("./db");
-const { HttpHata, cerezleriOku, cerezYaz, guvenlikBasliklari, json, govdeOku, yonlendirici, statikSun } = require("./http");
+const { HttpHata, cerezleriOku, cerezYaz, guvenlikBasliklari, json, govdeOku, yonlendirici, statikSun, statikYol } = require("./http");
 const { hizSinirlayici } = require("./guvenlik");
 const { denetimKaydi } = require("./denetim");
 const { epostaServisi } = require("./eposta");
@@ -19,7 +19,17 @@ const { veriRotalari } = require("./veriyonetim");
 const { zamanlayici } = require("./zamanlayici");
 const { gunlukServisi, hataAyrinti } = require("./gunluk");
 const { sistemRotalari, istekIzleyici } = require("./sistem");
+const { varlikServisi } = require("./varlik");
+const { ayarServisi, bakimServisi, ipEngelServisi } = require("./erisim");
+const { operasyonRotalari } = require("./operasyon");
 const zaman = require("./zaman");
+
+// Bakım modunda yönetici olmayanlara da açık API yolları (giriş yapabilmek ve durumu görebilmek için)
+const BAKIM_ACIK_API = new Set(["/api/health", "/api/public/config", "/api/auth/login", "/api/auth/logout", "/api/me"]);
+// Bakım sayfası yerine normal sunulan sayfalar (yönetici girişi için)
+const BAKIM_ACIK_SAYFA = new Set(["/bakim.html", "/giris.html", "/admin.html"]);
+// Engellenmiş kullanıcının eski çerezi bu yollarda 403'e çevrilmez
+const ENGEL_ACIK_API = new Set(["/api/health", "/api/public/config", "/api/auth/login", "/api/auth/logout", "/api/auth/register", "/api/log"]);
 
 const CEREZ = "meberra_sid";
 const kirp = s => String(s == null ? "" : s).trim().replace(/\s+/g, " ");
@@ -65,13 +75,18 @@ function olustur(secenek) {
   } catch (e) { gunluk.uyari("push", "Web push devre dışı: " + e.message, hataAyrinti(e)); }
   const bildirim = bildirimServisi(db, eposta, push, denetim, { saat: secenek.saat, gunluk });
   const lig = ligServisi(db, bildirim, denetim);
-  const zamanlayiciS = zamanlayici({ db, bildirim, eposta, lig, gunluk });
+  const varlik = varlikServisi(db, { otomatik: secenek.varlikOtomatik !== false });
+  const ayar = ayarServisi(db);
+  const bakim = bakimServisi(ayar);
+  const ipEngel = ipEngelServisi(db);
+  const zamanlayiciS = zamanlayici({ db, bildirim, eposta, lig, gunluk, denetim, ipEngel });
   const r = yonlendirici();
   const sinir = {
     giris: hizSinirlayici(secenek.girisSiniri || 10, 15 * 60e3),
     kayit: hizSinirlayici(secenek.kayitSiniri || 10, 60 * 60e3),
     sifre: hizSinirlayici(5, 60 * 60e3)
   };
+  const sinirlar = Object.assign({}, sinir); // Sistem sekmesi: hız sınırlayıcı boyutları
 
   // İlk çalıştırma: ADMIN_EPOSTA + ADMIN_SIFRE ile yönetici. Hesap zaten varsa yalnızca yetki verilir, şifre değişmez.
   if (config.yonetici.eposta && config.yonetici.sifre && !secenek.yoneticiAtla) {
@@ -90,10 +105,11 @@ function olustur(secenek) {
   };
 
   // --- genel -----------------------------------------------------------------
-  r.get("/api/health", () => ({ ok: true, surum: SURUM, zaman: db_.simdi() }));
+  r.get("/api/health", () => ({ ok: true, surum: SURUM, zaman: db_.simdi(), bakim: bakim.acikMi() }));
   r.get("/api/public/config", () => {
-    const u = config.urun;
+    const u = config.urun, b = bakim.durum();
     return { ok: true, marka: u.marka, para: u.para, destekEposta: u.destekEposta, ucretsiz: u.ucretsiz, banka: u.banka,
+      bakim: { acik: !!b.acik, mesaj: b.acik ? b.mesaj || null : null, bitis: b.acik ? b.bitis || null : null },
       planlar: u.planlar.map(p => ({ id: p.id, ad: p.ad, fiyat: p.fiyat, donem: p.donem, aciklama: p.aciklama, oneCikan: !!p.oneCikan })) };
   });
 
@@ -149,6 +165,7 @@ function olustur(secenek) {
   r.post("/api/account/delete", (req, res) => {
     oturumGerekli(req);
     hesap.hesapSil(req.kullanici, req.body && req.body.sifre, req);
+    varlik.unut(req.kullanici.id); // bekleyen son görülme/IP yazımı silinmiş hesaba geri yazılmasın
     cerezYaz(res, CEREZ, "", 0);
     return { ok: true };
   });
@@ -217,14 +234,26 @@ function olustur(secenek) {
   });
 
   // --- soru-cevap, lig ---------------------------------------------------------------
-  soruRotalari(r, { db, hesap, denetim, bildirim, eposta, oturumGerekli, yoneticiGerekli, soruSiniri: secenek.soruSiniri });
+  const soruS = soruRotalari(r, { db, hesap, denetim, bildirim, eposta, oturumGerekli, yoneticiGerekli, varlik, soruSiniri: secenek.soruSiniri });
+  sinirlar.soru = soruS.sinir;
   ligRotalari(r, { lig, oturumGerekli, yoneticiGerekli });
 
   // --- yönetici ---------------------------------------------------------------
-  yonetimRotalari(r, { db, hesap, denetim, yoneticiGerekli, bildirim });
+  yonetimRotalari(r, { db, hesap, denetim, yoneticiGerekli, bildirim, varlik });
   veriRotalari(r, { db, denetim, yoneticiGerekli, lig });
-  sistemRotalari(r, { db, denetim, gunluk, yoneticiGerekli, zamanlayici: zamanlayiciS, dbDosya, logSiniri: secenek.logSiniri,
+  sistemRotalari(r, { db, denetim, gunluk, yoneticiGerekli, zamanlayici: zamanlayiciS, dbDosya, logSiniri: secenek.logSiniri, sinirlar,
     testRotalari: secenek.testRotalari != null ? !!secenek.testRotalari : (process.env.NODE_ENV === "test" || process.env.MEBERRA_TEST_ROTALARI === "1") });
+  operasyonRotalari(r, { db, denetim, yoneticiGerekli, zamanlayici: zamanlayiciS, eposta, varlik, bakim, ipEngel, sinirlar, izle, dbDosya });
+
+  /** Bakım sayfası (503). Yönetici oturumu olan bu sayfayı görmez. */
+  function bakimSayfasi(req, res) {
+    const k = hesap.oturumKullanici(cerezleriOku(req)[CEREZ]);
+    if (k && k.rol === "yonetici") return false;
+    if (statikSun(req, res, { yol: "/bakim.html", kod: 503, basliklar: { "Retry-After": String(bakim.tekrarSn()) } })) return true;
+    res.statusCode = 503; res.setHeader("Retry-After", String(bakim.tekrarSn())); res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.end("Meberra şu an bakımda. Lütfen biraz sonra tekrar dene.");
+    return true;
+  }
 
   // --- istek işleyici ---------------------------------------------------------
   async function isle(req, res) {
@@ -233,6 +262,9 @@ function olustur(secenek) {
     const u = new URL(req.url, "http://x");
     if (!u.pathname.startsWith("/api/")) {
       if (req.method !== "GET" && req.method !== "HEAD") { res.statusCode = 405; return res.end(); }
+      // Bakım modu: HTML sayfaları (kök "/" dahil) yönetici olmayanlara bakim.html (503 + Retry-After); varlıklar (css/js/font/görsel) açık
+      const p = u.pathname;
+      if (bakim.acikMi() && (p === "/" || /^\/[^/]+\.html$/i.test(p)) && !BAKIM_ACIK_SAYFA.has(p) && statikYol(p) && bakimSayfasi(req, res)) return;
       if (statikSun(req, res)) return;
       res.statusCode = 404;
       res.setHeader("Content-Type", "text/html; charset=utf-8");
@@ -248,6 +280,22 @@ function olustur(secenek) {
       if (req.method !== "GET" && req.headers["x-meberra"] !== "1") throw new HttpHata(403, "Geçersiz istek kaynağı.");
       req.cerezler = cerezleriOku(req);
       req.kullanici = hesap.oturumKullanici(req.cerezler[CEREZ]);
+      const yol = u.pathname;
+      // Yönetici oturumu IP engelini, bakım modunu atlar
+      if (!req.kullanici || req.kullanici.rol !== "yonetici") {
+        if (yol !== "/api/health") ipEngel.denetle(req.ip);
+        if (bakim.acikMi() && !BAKIM_ACIK_API.has(yol) && !yol.startsWith("/api/admin/")) {
+          const b = bakim.durum();
+          res.setHeader("Retry-After", String(bakim.tekrarSn()));
+          throw new HttpHata(503, b.mesaj || "Meberra şu an bakımda. Lütfen biraz sonra tekrar dene.", null, { bakim: true, mesaj: b.mesaj || null, bitis: b.bitis || null });
+        }
+        // Engellenmiş kullanıcının (oturumları kapatılmış) çerezi: 401 yerine açıklayıcı 403
+        if (!req.kullanici && req.cerezler[CEREZ] && !ENGEL_ACIK_API.has(yol) && !yol.startsWith("/api/public/")) {
+          const e = hesap.oturumEngeli(req.cerezler[CEREZ]);
+          if (e) throw new HttpHata(403, hesap.engelMesaji(e.bitis), null, { engelli: true, engelBitis: e.bitis });
+        }
+      }
+      if (req.kullanici) varlik.dokun(req.kullanici, req.ip);
       req.params = eslesme.params;
       req.sorgu = u.searchParams;
       // İstemci hata raporu küçük olmalı (16 KB); diğer istekler 6 MB
@@ -269,8 +317,8 @@ function olustur(secenek) {
   }
 
   const server = http.createServer((req, res) => { isle(req, res); });
-  server.on("close", () => { try { db.close(); } catch (e) { /* zaten kapalı */ } });
-  return { server, db, hesap, veri, denetim, bildirim, lig, zamanlayici: zamanlayiciS, push, gunluk };
+  server.on("close", () => { varlik.durdur(); try { db.close(); } catch (e) { /* zaten kapalı */ } });
+  return { server, db, hesap, veri, denetim, bildirim, lig, zamanlayici: zamanlayiciS, push, gunluk, varlik, bakim, ipEngel, izle };
 }
 
 module.exports = { olustur };

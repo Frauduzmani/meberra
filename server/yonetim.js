@@ -3,12 +3,20 @@
 const config = require("./config");
 const { islem, simdi } = require("./db");
 const { HttpHata } = require("./http");
+const zaman = require("./zaman");
+const { varlikDurumu, esikler } = require("./varlik");
 
 const SAYFA_BOYU = 25;
 const sayfaNo = q => Math.max(1, Math.floor(+q.get("sayfa") || 1));
 
 function yonetimRotalari(r, c) {
   const { db, hesap, denetim, yoneticiGerekli, bildirim } = c;
+  const varlik = c.varlik || { bosalt() {} };
+  const bugun = () => zaman.gun(Date.now());
+  /** Son n İstanbul günü (en eski → bugün) */
+  const sonGunler = n => { const b = bugun(), l = []; for (let i = n - 1; i >= 0; i--) l.push(zaman.gunEkle(b, -i)); return l; };
+  const engelBilgisi = u => (u.durum === "askida" && u.engel_zamani
+    ? { zaman: u.engel_zamani, bitis: u.engel_bitis, neden: u.engel_nedeni, dolmus: !!(u.engel_bitis && u.engel_bitis <= simdi()) } : null);
   const kullaniciBul = pid => {
     const u = db.prepare("SELECT * FROM users WHERE public_id = ?").get(pid);
     if (!u) throw new HttpHata(404, "Kullanıcı bulunamadı.");
@@ -19,7 +27,9 @@ function yonetimRotalari(r, c) {
 
   r.get("/api/admin/stats", req => {
     yoneticiGerekli(req);
+    varlik.bosalt();
     const tek = (sql, ...a) => db.prepare(sql).get(...a);
+    const es = esikler();
     const z = simdi(), g7 = gunOnce(7);
     const gunler7 = [];
     for (let i = 6; i >= 0; i--) gunler7.push(new Date(Date.now() - i * 864e5).toISOString().slice(0, 10));
@@ -40,7 +50,11 @@ function yonetimRotalari(r, c) {
       kullanici: {
         toplam: tek("SELECT COUNT(*) AS n FROM users WHERE durum != 'silindi' AND rol = 'ogrenci'").n,
         son7gun: tek("SELECT COUNT(*) AS n FROM users WHERE durum != 'silindi' AND rol = 'ogrenci' AND olusturma >= ?", g7).n,
-        aktif7gun: tek("SELECT COUNT(DISTINCT user_id) AS n FROM (SELECT user_id FROM answers WHERE zaman >= ? UNION SELECT id FROM users WHERE son_giris >= ? AND rol = 'ogrenci')", g7, g7).n
+        aktif7gun: tek("SELECT COUNT(DISTINCT user_id) AS n FROM (SELECT user_id FROM answers WHERE zaman >= ? UNION SELECT id FROM users WHERE son_giris >= ? AND rol = 'ogrenci')", g7, g7).n,
+        cevrimici: tek("SELECT COUNT(*) AS n FROM users WHERE durum != 'silindi' AND son_gorulme >= ?", es.cevrimici).n,
+        yakin: tek("SELECT COUNT(*) AS n FROM users WHERE durum != 'silindi' AND son_gorulme >= ?", es.yakin).n,
+        engelli: tek("SELECT COUNT(*) AS n FROM users WHERE durum = 'askida'").n,
+        bugunGiris: tek("SELECT COALESCE(SUM(adet), 0) AS n FROM giris_sayilari WHERE gun = ?", bugun()).n
       },
       premium: { aktif: aylik + yillik + ozel, aylik, yillik, ozel },
       talep: { bekleyen: tek("SELECT COUNT(*) AS n FROM upgrade_requests WHERE durum = 'bekliyor'").n },
@@ -61,28 +75,49 @@ function yonetimRotalari(r, c) {
     const kosul = ["u.durum != 'silindi'"], arg = [];
     if (q) { kosul.push("(u.eposta LIKE ? OR u.ad LIKE ? OR u.soyad LIKE ? OR (u.ad || ' ' || u.soyad) LIKE ?)"); const l = "%" + q.replace(/[%_]/g, "") + "%"; arg.push(l, l, l, l); }
     if (req.sorgu.get("premium") === "1") { kosul.push("EXISTS (SELECT 1 FROM subscriptions s WHERE s.user_id = u.id AND s.durum = 'aktif' AND s.bitis > ?)"); arg.push(z); }
+    // Varlık / engel süzgeci: cevrimici (5 dk) | yakin (30 dk) | engelli (askıda)
+    varlik.bosalt();
+    const es = esikler(), v = req.sorgu.get("varlik");
+    if (v === "cevrimici" || v === "yakin") { kosul.push("u.son_gorulme >= ?"); arg.push(es[v]); }
+    else if (v === "engelli") kosul.push("u.durum = 'askida'");
+    const SIRA = { kayit: "u.olusturma DESC", gorulme: "u.son_gorulme IS NULL, u.son_gorulme DESC, u.olusturma DESC", giris: "u.son_giris IS NULL, u.son_giris DESC, u.olusturma DESC" };
+    const sira = SIRA[req.sorgu.get("sirala")] || SIRA.kayit;
     const where = "WHERE " + kosul.join(" AND ");
     const toplam = db.prepare("SELECT COUNT(*) AS n FROM users u " + where).get(...arg).n;
-    const satirlar = db.prepare(`SELECT u.*, (SELECT COUNT(*) FROM answers a WHERE a.user_id = u.id) AS cevap_sayisi
-      FROM users u ${where} ORDER BY u.olusturma DESC LIMIT ? OFFSET ?`).all(...arg, SAYFA_BOYU, (sayfa - 1) * SAYFA_BOYU);
+    const satirlar = db.prepare(`SELECT u.*, (SELECT COUNT(*) FROM answers a WHERE a.user_id = u.id) AS cevap_sayisi,
+        (SELECT adet FROM giris_sayilari g WHERE g.user_id = u.id AND g.gun = ?) AS bugun_giris
+      FROM users u ${where} ORDER BY ${sira} LIMIT ? OFFSET ?`).all(bugun(), ...arg, SAYFA_BOYU, (sayfa - 1) * SAYFA_BOYU);
     return {
       ok: true, toplam, sayfa, sayfaBoyu: SAYFA_BOYU, sayfaBoyutu: SAYFA_BOYU,
       kullanicilar: satirlar.map(u => {
         const y = hesap.uyelik(u.id);
         return { id: u.public_id, ad: u.ad, soyad: u.soyad, eposta: u.eposta, rol: u.rol, olusturma: u.olusturma, sonGiris: u.son_giris, durum: u.durum,
-          premium: y.premium, plan: y.plan, bitis: y.bitis, bekleyenTalep: !!y.bekleyenTalep, cevapSayisi: u.cevap_sayisi };
+          premium: y.premium, plan: y.plan, bitis: y.bitis, bekleyenTalep: !!y.bekleyenTalep, cevapSayisi: u.cevap_sayisi,
+          sonGorulme: u.son_gorulme, sonIp: u.son_ip, sonGirisIp: u.son_giris_ip, varlik: varlikDurumu(u.son_gorulme), bugunGiris: u.bugun_giris || 0, engel: engelBilgisi(u) };
       })
     };
   });
+
+  /** Kullanıcının etkin oturumları (en son görülen önce) */
+  const oturumlar = uid => db.prepare(`SELECT id, olusturma, son_kullanim, son_gorulme, ip, son_ip, tarayici, bitis FROM sessions
+    WHERE user_id = ? AND iptal IS NULL AND bitis > ? ORDER BY COALESCE(son_gorulme, son_kullanim) DESC LIMIT 50`).all(uid, simdi())
+    .map(s => ({ id: s.id, olusturma: s.olusturma, sonGorulme: s.son_gorulme || s.son_kullanim, ip: s.son_ip || s.ip, ilkIp: s.ip, tarayici: s.tarayici, bitis: s.bitis }));
 
   r.get("/api/admin/users/:id", req => {
     yoneticiGerekli(req);
     const u = kullaniciBul(req.params.id);
     const tek = (sql) => db.prepare(sql).get(u.id);
     const ist = tek("SELECT COUNT(*) AS cevap, COALESCE(SUM(dogru), 0) AS dogru, MAX(zaman) AS son FROM answers WHERE user_id = ?");
+    varlik.bosalt();
+    const taze = db.prepare("SELECT son_gorulme, son_ip FROM users WHERE id = ?").get(u.id);
+    const gunler = sonGunler(14);
+    const gs = new Map(db.prepare("SELECT gun, adet, basarisiz FROM giris_sayilari WHERE user_id = ? AND gun >= ?").all(u.id, gunler[0]).map(x => [x.gun, x]));
     return {
       ok: true,
-      user: Object.assign(hesap.genel(u), { durum: u.durum, sonGiris: u.son_giris, veliOnay: !!u.veli_onay, kvkkOnay: u.kvkk_onay }),
+      user: Object.assign(hesap.genel(u), { durum: u.durum, sonGiris: u.son_giris, sonGirisIp: u.son_giris_ip, veliOnay: !!u.veli_onay, kvkkOnay: u.kvkk_onay,
+        sonGorulme: taze.son_gorulme, sonIp: taze.son_ip, varlik: varlikDurumu(taze.son_gorulme), engel: engelBilgisi(u) }),
+      girisler: { gunler, adet: gunler.map(g => (gs.get(g) || {}).adet || 0), basarisiz: gunler.map(g => (gs.get(g) || {}).basarisiz || 0) },
+      oturumlar: oturumlar(u.id),
       profile: hesap.profilAl(u.id),
       uyelik: hesap.uyelik(u.id),
       abonelikler: db.prepare("SELECT id, plan, baslangic, bitis, durum, kaynak, tutar_tl AS tutar, not_ AS 'not', olusturma FROM subscriptions WHERE user_id = ? ORDER BY id DESC").all(u.id),
@@ -124,10 +159,42 @@ function yonetimRotalari(r, c) {
     if (u.id === req.kullanici.id) throw new HttpHata(400, "Kendi hesabını askıya alamazsın.");
     islem(db, () => {
       db.prepare("UPDATE users SET durum = ?, guncelleme = ? WHERE id = ?").run(d, simdi(), u.id);
+      // Etkinleştirme yönetici engelini de temizler
+      if (d === "aktif") db.prepare("UPDATE users SET engel_zamani = NULL, engel_bitis = NULL, engel_nedeni = NULL, engelleyen = NULL WHERE id = ?").run(u.id);
       if (d === "askida") db.prepare("UPDATE sessions SET iptal = ? WHERE user_id = ? AND iptal IS NULL").run(simdi(), u.id);
     });
     denetim({ eylem: d === "askida" ? "hesap.askiya-alindi" : "hesap.etkinlestirildi", kullanici: u.id, yapan: req.kullanici.id, istek: req });
     return { ok: true, durum: d };
+  });
+
+  // Engelle: neden (zorunlu, yalnızca yöneticiler görür) + süre (suresiz | 1g | 7g | 30g). Tüm oturumlar kapanır.
+  r.post("/api/admin/users/:id/engel", req => {
+    yoneticiGerekli(req);
+    const u = kullaniciBul(req.params.id);
+    const s = hesap.engelle(u, req.body || {}, req.kullanici, req);
+    varlik.unut && varlik.unut(u.id);
+    return Object.assign({ ok: true }, s);
+  });
+  r.post("/api/admin/users/:id/engel-kaldir", req => {
+    yoneticiGerekli(req);
+    return Object.assign({ ok: true }, hesap.engelKaldir(kullaniciBul(req.params.id), req.kullanici, req));
+  });
+
+  // Oturumlar: tek oturumu ya da tümünü kapat
+  r.post("/api/admin/users/:id/oturumlar/kapat", req => {
+    yoneticiGerekli(req);
+    const u = kullaniciBul(req.params.id);
+    const n = Number(db.prepare("UPDATE sessions SET iptal = ? WHERE user_id = ? AND iptal IS NULL").run(simdi(), u.id).changes);
+    denetim({ eylem: "oturum.tumunu-kapat", kullanici: u.id, yapan: req.kullanici.id, istek: req, ayrinti: { adet: n } });
+    return { ok: true, kapanan: n, oturumlar: oturumlar(u.id) };
+  });
+  r.post("/api/admin/users/:id/oturumlar/:sid/kapat", req => {
+    yoneticiGerekli(req);
+    const u = kullaniciBul(req.params.id);
+    const n = Number(db.prepare("UPDATE sessions SET iptal = ? WHERE id = ? AND user_id = ? AND iptal IS NULL").run(simdi(), +req.params.sid || 0, u.id).changes);
+    if (!n) throw new HttpHata(404, "Açık oturum bulunamadı.");
+    denetim({ eylem: "oturum.kapat", kullanici: u.id, yapan: req.kullanici.id, istek: req, varlik: "sessions", varlikId: +req.params.sid });
+    return { ok: true, kapanan: n, oturumlar: oturumlar(u.id) };
   });
 
   r.get("/api/admin/talepler", req => {

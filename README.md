@@ -18,6 +18,11 @@ npm test                       # API testleri
 
 Veritabanı dosyası: `server/data/meberra.db` (git'e girmez). Yedek: `npm run yedek`.
 
+## Sürümler
+
+Anlamsal sürümleme (`ANA.ARA.YAMA`); her geliştirmede sürüm yükseltilir. Kurallar ve notlar: `CHANGELOG.md`.
+Kod deposu: `https://github.com/Frauduzmani/meberra` (gizli).
+
 ## Yapı
 
 | Klasör / dosya | İçerik |

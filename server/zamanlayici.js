@@ -16,6 +16,8 @@ const GERI_GUN = 120;
 const isObj = v => v !== null && typeof v === "object" && !Array.isArray(v);
 const coz = s => { try { return JSON.parse(s); } catch (e) { return null; } };
 const TARIH_RE = /^\d{4}-\d{2}-\d{2}$/;
+const IP_SAKLAMA_GUN = 90;
+const ISLER = { lig: "Lig devri", temizlik: "Log temizliği", erisim: "IP saklama / engel süresi", hatirlatma: "Günlük hatırlatma", veliRaporu: "Veli raporu" };
 
 function zamanlayici(c) {
   const { db, bildirim, eposta, lig, gunluk } = c;
@@ -111,24 +113,73 @@ function zamanlayici(c) {
     return n;
   }
 
+  /** KVKK saklama: 90 günden eski IP'ler silinir (users.son_ip / son_giris_ip, sessions.ip / son_ip); süresi dolan
+   *  yönetici engelleri kalkar; 400 günden eski giriş sayaçları ve süresi dolan IP engelleri silinir. */
+  function erisimTemizligi(simdiMs) {
+    const sinir = new Date(simdiMs - IP_SAKLAMA_GUN * 864e5).toISOString(), z = simdi();
+    const s = { ip: 0, oturumIp: 0, engel: 0, ipEngeli: 0, girisSayaci: 0 };
+    s.ip += Number(db.prepare("UPDATE users SET son_ip = NULL WHERE son_ip IS NOT NULL AND (son_gorulme IS NULL OR son_gorulme < ?)").run(sinir).changes);
+    s.ip += Number(db.prepare("UPDATE users SET son_giris_ip = NULL WHERE son_giris_ip IS NOT NULL AND (son_giris IS NULL OR son_giris < ?)").run(sinir).changes);
+    s.oturumIp = Number(db.prepare("UPDATE sessions SET ip = NULL, son_ip = NULL WHERE (ip IS NOT NULL OR son_ip IS NOT NULL) AND COALESCE(son_gorulme, son_kullanim) < ?").run(sinir).changes);
+    const bitenler = db.prepare("SELECT id, engel_bitis FROM users WHERE durum = 'askida' AND engel_zamani IS NOT NULL AND engel_bitis IS NOT NULL AND engel_bitis <= ?").all(z);
+    bitenler.forEach(u => {
+      if (Number(db.prepare("UPDATE users SET durum = 'aktif', engel_zamani = NULL, engel_bitis = NULL, engel_nedeni = NULL, engelleyen = NULL, guncelleme = ? WHERE id = ? AND durum = 'askida'").run(z, u.id).changes)) {
+        s.engel++;
+        if (c.denetim) c.denetim({ eylem: "hesap.engel-sona-erdi", kullanici: u.id, ayrinti: { bitis: u.engel_bitis } });
+      }
+    });
+    s.ipEngeli = c.ipEngel ? c.ipEngel.temizle() : 0;
+    s.girisSayaci = Number(db.prepare("DELETE FROM giris_sayilari WHERE gun < ?").run(zaman.gunEkle(zaman.gun(simdiMs), -400)).changes);
+    return s;
+  }
+
+  // İş başına son çalışma (yönetici "Sistem" sekmesi)
+  const isBilgi = {};
+  async function isCalistir(ad, fn) {
+    const bas = Date.now();
+    try {
+      const sonuc = await fn();
+      isBilgi[ad] = { sonCalisma: simdi(), sureMs: Date.now() - bas, sonuc, hata: null };
+      return sonuc;
+    } catch (e) {
+      isBilgi[ad] = { sonCalisma: simdi(), sureMs: Date.now() - bas, sonuc: null, hata: String((e && e.message) || e).slice(0, 300) };
+      isHatasi(ISLER[ad] || ad, e);
+      return null;
+    }
+  }
+
   async function tik(simdiMs) {
     simdiMs = simdiMs == null ? Date.now() : simdiMs;
     const bas = Date.now();
-    const sonuc = { lig: 0, hatirlatma: 0, veliRaporu: 0, gunlukSilinen: 0 };
+    const sonuc = { lig: 0, hatirlatma: 0, veliRaporu: 0, gunlukSilinen: 0, erisim: null };
     const bitir = () => { durumBilgi.sonCalisma = simdi(); durumBilgi.sonSure = Date.now() - bas; durumBilgi.sonSonuc = sonuc; return sonuc; };
-    try { sonuc.lig = lig.devir(simdiMs); } catch (e) { isHatasi("lig", e); }
+    sonuc.lig = (await isCalistir("lig", () => lig.devir(simdiMs))) || 0;
     // Sistem günlüğü saklama: bilgi 7 gün, uyarı/hata 90 gün
-    if (gunluk) { try { sonuc.gunlukSilinen = gunluk.temizlik(simdiMs); } catch (e) { isHatasi("günlük temizliği", e); } }
+    if (gunluk) sonuc.gunlukSilinen = (await isCalistir("temizlik", () => gunluk.temizlik(simdiMs))) || 0;
+    sonuc.erisim = await isCalistir("erisim", () => erisimTemizligi(simdiMs));
     if (zaman.sessizMi(simdiMs)) return bitir();
-    try { sonuc.hatirlatma = await hatirlatmalar(simdiMs); } catch (e) { isHatasi("hatırlatma", e); }
-    try { sonuc.veliRaporu = await veliRaporlari(simdiMs); } catch (e) { isHatasi("veli raporu", e); }
+    sonuc.hatirlatma = (await isCalistir("hatirlatma", () => hatirlatmalar(simdiMs))) || 0;
+    sonuc.veliRaporu = (await isCalistir("veliRaporu", () => veliRaporlari(simdiMs))) || 0;
     return bitir();
+  }
+
+  /** Yönetici "Şimdi çalıştır": tek iş. Hatırlatma/veli raporu kendi kurallarına uyar (sessiz saat, günde bir). */
+  async function calistir(ad, simdiMs) {
+    simdiMs = simdiMs == null ? Date.now() : simdiMs;
+    if (ad === "hatirlatma" || ad === "veliRaporu") {
+      if (zaman.sessizMi(simdiMs)) return { calisti: false, neden: "Sessiz saatler (22:00–08:00): hatırlatma gönderilmez." };
+      return { calisti: true, sonuc: await isCalistir(ad, () => (ad === "hatirlatma" ? hatirlatmalar(simdiMs) : veliRaporlari(simdiMs))) };
+    }
+    if (ad === "lig") return { calisti: true, sonuc: await isCalistir("lig", () => lig.devir(simdiMs)) };
+    if (ad === "temizlik") return { calisti: true, sonuc: await isCalistir("temizlik", () => (gunluk ? gunluk.temizlik(simdiMs) : 0)) };
+    if (ad === "erisim") return { calisti: true, sonuc: await isCalistir("erisim", () => erisimTemizligi(simdiMs)) };
+    return null;
   }
 
   let zamanlayiciId = null, ilk = null;
   return {
-    tik, calismaDurumu,
-    durum: () => Object.assign({}, durumBilgi),
+    tik, calismaDurumu, calistir, erisimTemizligi,
+    durum: () => Object.assign({}, durumBilgi, { isler: Object.keys(ISLER).map(ad => Object.assign({ ad, baslik: ISLER[ad] }, isBilgi[ad] || {})) }),
     baslat(araligiMs) {
       if (zamanlayiciId) return;
       durumBilgi.acik = true; durumBilgi.aralikMs = araligiMs || 10 * 60e3;
@@ -140,4 +191,4 @@ function zamanlayici(c) {
   };
 }
 
-module.exports = { zamanlayici };
+module.exports = { zamanlayici, IP_SAKLAMA_GUN, ISLER };

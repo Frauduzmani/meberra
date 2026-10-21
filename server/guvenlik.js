@@ -40,7 +40,9 @@ function hizSinirlayici(sinir, pencereMs) {
       if (l.length >= sinir) { kayit.set(anahtar, l); return false; }
       l.push(t); kayit.set(anahtar, l); return true;
     },
-    sifirla(anahtar) { kayit.delete(anahtar); }
+    sifirla(anahtar) { kayit.delete(anahtar); },
+    /** İzlenen anahtar sayısı (yönetici "Sistem" sekmesi) */
+    boyut() { return kayit.size; }
   };
 }
 
