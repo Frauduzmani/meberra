@@ -47,5 +47,16 @@ ok(r.seri === 0, "bozuk / eksik zaman damgaları yok sayılır", r);
 r = apCalismaSerisi(ilerleme("2026-11-01T09:00:00", "2026-10-31T09:00:00"), [], "2026-11-01");
 ok(r.seri === 2 && r.hafta[6].gun === "2026-11-01" && r.hafta[6].bugun, "ay geçişi ve Pazar günü", r);
 
+// Seri koruma (apmeberra:seri:v1.donmus): korunan gün zinciri kesmez ama sayılmaz
+r = apCalismaSerisi(ilerleme("2026-10-20T09:00:00", "2026-10-18T10:00:00", "2026-10-17T10:00:00"), [], "2026-10-20", ["2026-10-19"]);
+ok(r.seri === 3, "korunan gün (19 Ekim) seriyi bozmaz, sayılmaz: 3", r);
+ok(r.hafta[0].donmus === true && r.hafta[0].var === false && r.hafta[1].donmus === false, "haftada korunan gün işaretli", r.hafta);
+r = apCalismaSerisi(ilerleme("2026-10-17T10:00:00"), [], "2026-10-20", ["2026-10-19", "2026-10-18"]);
+ok(r.seri === 1 && r.bugunVar === false, "bugün henüz yok, dün ve önceki gün korunmuş: seri 1", r);
+r = apCalismaSerisi(ilerleme(), [], "2026-10-20", ["2026-10-19"]);
+ok(r.seri === 0, "yalnızca korunan gün: seri 0", r);
+r = apCalismaSerisi(ilerleme("2026-10-18T10:00:00"), [], "2026-10-20", null);
+ok(r.seri === 0, "donmus verilmezse eski davranış (boş gün kırar)", r);
+
 console.log("SONUC: " + pass + " gecti, " + fail + " kaldi.");
 process.exit(fail ? 1 : 0);

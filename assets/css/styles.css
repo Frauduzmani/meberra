@@ -4183,3 +4183,39 @@ a.bg-mini:hover { border-color: var(--accent); transform: translateY(-2px); colo
 /* Depolama kipi (app.js html.mod-sunucu / html.mod-dosya): eski yerel özellikler sunucu kipinde hiç görünmez */
 html.mod-sunucu .yalniz-dosya, html.mod-dosya .yalniz-sunucu { display: none !important; }
 #bg-oyun:empty { display: none; }
+
+/* ==========================================================================
+   ENERJİK GEÇİŞLER (oyunlaştırma turu, Ekim 2026) — yalnızca hareket; hepsi 150–350 ms, azaltılmış harekette kapalı.
+   Bileşen stilleri assets/css/oyun.css'te.
+   ========================================================================== */
+/* Sayfalar arası geçiş: aynı kökenli gezinmede hızlı soluklaşma + hafif kayma (destekleyen tarayıcılarda) */
+@view-transition { navigation: auto; }
+.navbar { view-transition-name: oy-ust; }
+.bottom-nav { view-transition-name: oy-alt; }
+::view-transition-old(root) { animation: 150ms ease-in both oy-vt-cik; }
+::view-transition-new(root) { animation: 240ms cubic-bezier(.2, .8, .2, 1) both oy-vt-gir; }
+@keyframes oy-vt-cik { to { opacity: 0; transform: translateY(-6px); } }
+@keyframes oy-vt-gir { from { opacity: 0; transform: translateY(10px); } }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Kart basma geri bildirimi */
+  a.bg-mini, .bg-ders, .ug-kart, .cd-kart, .dv-kart, .ck-item > a, .yt-item > a, .bg-hero .btn-energy { transition: transform .15s ease, border-color .2s, box-shadow .2s; }
+  a.bg-mini:active, .bg-ders:active, .ug-kart:active, a.dv-kart:active, .ck-item > a:active, .yt-item > a:active { transform: scale(.98); }
+  .btn-primary, .btn-secondary, .btn-ghost { transition: transform .15s ease, background-color .2s, border-color .2s, box-shadow .2s, color .2s; }
+  .btn-primary:active, .btn-secondary:active, .btn-ghost:active { transform: scale(.98); }
+  /* İlerleme çubukları görünür olurken dolar */
+  .ug-cubuk i, .oy-cubuk > i, .quiz-progress-ok, .quiz-progress-bad { transform-origin: left center; animation: oy-dol .6s cubic-bezier(.2, .8, .2, 1) both; }
+  @keyframes oy-dol { from { transform: scaleX(0); } }
+  /* Kart ızgaralarında sıralı giriş: Bugün (oyun alanı, dersler) ve Çalış (ders kartları) */
+  .oy-alan > *, .oy-sol > *, .bg-ders-list > li, .calis-grid > *, .bg-uclu > *, .calis-olc-grid > * { animation: oy-giris .35s cubic-bezier(.2, .8, .2, 1.1) both; }
+  .oy-sol > :nth-child(2), .oy-alan > :nth-child(2), .bg-ders-list > li:nth-child(2), .calis-grid > :nth-child(2), .bg-uclu > :nth-child(2), .calis-olc-grid > :nth-child(2) { animation-delay: 50ms; }
+  .bg-ders-list > li:nth-child(3), .calis-grid > :nth-child(3), .bg-uclu > :nth-child(3), .calis-olc-grid > :nth-child(3) { animation-delay: 100ms; }
+  .bg-ders-list > li:nth-child(4), .calis-grid > :nth-child(4) { animation-delay: 150ms; }
+  .bg-ders-list > li:nth-child(5), .calis-grid > :nth-child(5) { animation-delay: 200ms; }
+  .bg-ders-list > li:nth-child(n+6), .calis-grid > :nth-child(n+6) { animation-delay: 250ms; }
+  @keyframes oy-giris { from { opacity: 0; transform: translateY(10px); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}

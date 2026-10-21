@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#5B3DF5">
+  <link rel="apple-touch-icon" href="assets/img/pwa/apple-touch-icon.png">
   <title>Çalış | Meberra</title>
   <meta name="description" content="Çalış merkezi: sıradaki çalışma, kaldığın yer, 6 AP dersi ve CEnT-S (ilerleme, konu anlatımı, deneme), denemeler, yanlışlarım ve seviye testi tek sayfada.">
   <link rel="stylesheet" href="assets/css/styles.css">
@@ -207,6 +210,8 @@
         '<div class="ring ring-sm cd-ring" role="img" aria-label="' + esc(ringAd) + '" style="--p:' + kapsam + '"><span>' + (c.total ? "%" + kapsam : "–") + '</span></div></div>' +
         '<p class="cd-d">' + esc(e.d) + '</p>' +
         '<p class="cd-durum">' + esc(durum) + (hs ? ' · <a class="cd-hata" href="deneme.html?mod=yanlislar' + (e.deneme.length === 1 ? "&amp;ders=" + encodeURIComponent(e.deneme[0][0]) : "") + '">' + hs + ' açık hata</a>' : "") + '</p>' +
+        // Öğrenme yolu: ünite düğümleri (assets/js/oyun.js doldurur; ücretsiz ünite kuralı app.js apUcretsizUniteNolari)
+        '<div class="oy-yol-yer" data-yol="' + esc(d.page) + '"></div>' +
         (kd ? '<p class="cd-kaldigin"><span>Kaldığın yer</span><a href="' + esc(d.page) + '.html#' + encodeURIComponent(kd.unitId) + '">' + esc(kd.title) + ' →</a></p>' : "") +
         (son ? '<p class="cd-son">Son deneme: <a href="deneme.html?sonuc=' + encodeURIComponent(son.id) + '">%' + esc(son.yuzde) + ' · ' + esc(tarihKisa(son.tarih)) + '</a></p>' : "") +
         '<div class="cd-eylem"><a class="btn-ghost btn-sm" href="' + esc(d.page) + '.html" data-konu>' + IC.book + '<span>Konu anlatımı</span></a>' +

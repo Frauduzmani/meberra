@@ -1272,9 +1272,11 @@ function apCalismaPlani(g) {
 /**
  * v4: çalışma serisi (saf). Çalışma günü = en az bir soru cevabı (progress cevap zamanı `t`) ya da deneme (`tarih`)
  * olan yerel takvim günü. Bugün henüz çalışılmadıysa seri dünden geriye sayılır (gün bitene kadar kırılmaz).
- * bugun: Date | "YYYY-MM-DD". Dönüş: { seri, bugunVar, hafta: [{ etiket, gun, var, bugun, gelecek }] (Pzt–Paz) }
+ * bugun: Date | "YYYY-MM-DD". Dönüş: { seri, bugunVar, hafta: [{ etiket, gun, var, bugun, gelecek, donmus }] (Pzt–Paz) }
+ * OYUN HOOK (seri koruma): donmus = apmeberra:seri:v1.donmus ["YYYY-MM-DD"] (isteğe bağlı). Bu günler seriyi bozmaz
+ * ama sayılmaz da (sunucu hatırlatma kuralıyla aynı: server/API.md). oyun.js boş günlere korumayı otomatik uygular.
  */
-function apCalismaSerisi(progress, denemeler, bugun) {
+function apCalismaSerisi(progress, denemeler, bugun, donmus) {
   const pad = n => String(n).padStart(2, "0");
   const anahtar = d => d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
   const gunler = new Set();
@@ -1293,13 +1295,19 @@ function apCalismaSerisi(progress, denemeler, bugun) {
   const gun = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
   const bugunK = anahtar(b0);
   const bugunVar = gunler.has(bugunK);
+  const korunan = new Set(apDiz(donmus).filter(x => typeof x === "string"));
   let seri = 0;
-  for (let d = bugunVar ? b0 : gun(b0, -1); gunler.has(anahtar(d)); d = gun(d, -1)) seri++;
+  // Korunan (dondurulmuş) gün zinciri kesmez; en eski korunan günden geriye de çalışılmış gün yoksa seri orada biter
+  for (let d = bugunVar ? b0 : gun(b0, -1), i = 0; i < 4000; d = gun(d, -1), i++) {
+    const k = anahtar(d);
+    if (gunler.has(k)) seri++;
+    else if (!korunan.has(k)) break;
+  }
   const pzt = gun(b0, -((b0.getDay() + 6) % 7));
   const ETIKET = ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"];
   const hafta = ETIKET.map((etiket, i) => {
     const k = anahtar(gun(pzt, i));
-    return { etiket, gun: k, var: gunler.has(k), bugun: k === bugunK, gelecek: k > bugunK };
+    return { etiket, gun: k, var: gunler.has(k), bugun: k === bugunK, gelecek: k > bugunK, donmus: !gunler.has(k) && korunan.has(k) };
   });
   return { seri, bugunVar, hafta };
 }
@@ -1674,6 +1682,12 @@ function initUniteGorunumu() {
   }
   ciz.apply(null, coz());
   apUniteGorunumuYenile = () => { panelCiz(); ciz.apply(null, coz()); };
+  // OYUN HOOK: öğrenme yolu (oyun.js) bu sayfanın gerçek ünite listesini okur (apUniteGrupla çıktısı + ücretsiz kuralı)
+  window.APMEBERRA_UNITELER = {
+    page, panel,
+    uniteler: g.uniteler.map(u => ({ no: u.no, ad: apUniteGorunenAd(u.baslik), toplam: u.toplam, cevap: u.cevap, kilitli: kilitli(u),
+      kutular: [].concat.apply([], u.bloklar.map(i => Array.from(els[i].querySelectorAll("[id]")).filter(k => k._questionsData).map(k => k.id))) }))
+  };
   window.addEventListener("hashchange", () => {
     ciz.apply(null, coz());
     const h = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
@@ -2120,30 +2134,27 @@ function apQuizKeydown(containerId, e) {
   handleOptionClick(containerId, qid, btn.dataset.opt);
 }
 
-function handleOptionClick(containerId, questionId, selectedOptionId) {
-  const container = document.getElementById(containerId);
-  if (!container || !container._questionsData) return;
-
-  const q = container._questionsData.find(item => item.id === questionId);
-  if (!q) return;
-
-  const optsContainer = document.getElementById(`opts-container-${questionId}`);
-  if (!optsContainer || optsContainer.dataset.answered === "true") return;
-
+/**
+ * Bir soru cevabını kaydeder: quiz ilerlemesi (apmeberra:quiz:v1) + Yanlışlarım (apmeberra:errors:v1).
+ * Ders sayfası (handleOptionClick) ve İlerleme › Bugünkü tekrar (oyun.js) aynı kaydı kullanır.
+ * meta: { title, total } — total verilmezse kayıtlı değer korunur. Dönüş: doğru mu (bool).
+ */
+function apCevapKaydet(page, containerId, q, selectedOptionId, meta) {
+  meta = meta || {};
   const selectedOpt = q.options.find(o => o.id === selectedOptionId);
   const correctOpt = q.options.find(o => o.isCorrect);
   const isCorrect = !!(selectedOpt && selectedOpt.isCorrect);
-  const page = apCurrentPage();
+  const questionId = q.id;
   const now = new Date().toISOString();
 
   // 1) Cevabı kaydet
   const progress = apLoadProgress();
   const unit = apUnitRecord(progress, page, containerId);
-  if (!unit.title) unit.title = apUnitTitle(container, containerId);
-  unit.total = container._questionsData.length;
+  if (!unit.title && meta.title) unit.title = meta.title;
+  if (meta.total) unit.total = meta.total;
+  const yeniCevap = !unit.answers[questionId];
   unit.answers[questionId] = { s: selectedOptionId, c: isCorrect, t: now };
   apStoreSet(APMEBERRA_KEYS.progress, progress);
-
   // 2) Yanlışlarım
   const errors = apLoadErrors();
   const key = page + "|" + questionId;
@@ -2170,6 +2181,34 @@ function handleOptionClick(containerId, questionId, selectedOptionId) {
     errors.items[key].resolvedDate = now;
     apStoreSet(APMEBERRA_KEYS.errors, errors);
   }
+
+  // OYUN HOOK: oyunlaştırma katmanı (assets/js/oyun.js) cevapları bu olaylarla izler (XP, hedef, görev, akıllı tekrar).
+  // "meberra:unite-bitti" yalnızca ünitenin son cevapsız sorusu cevaplandığında bir kez gider.
+  try {
+    window.dispatchEvent(new CustomEvent("meberra:cevap", { detail: { sayfa: page, soruId: questionId, dogru: isCorrect, kap: containerId, yeni: yeniCevap } }));
+    const cevapSay = Object.keys(unit.answers).length;
+    if (yeniCevap && unit.total > 0 && cevapSay >= unit.total) {
+      let dogruSay = 0;
+      Object.keys(unit.answers).forEach(k => { if (unit.answers[k] && unit.answers[k].c) dogruSay++; });
+      window.dispatchEvent(new CustomEvent("meberra:unite-bitti", { detail: { sayfa: page, kap: containerId, baslik: unit.title || containerId, cevap: cevapSay, dogru: dogruSay, toplam: unit.total } }));
+    }
+  } catch (e) { /* eski tarayıcı: olay yok, kayıt yine yapıldı */ }
+  return isCorrect;
+}
+
+function handleOptionClick(containerId, questionId, selectedOptionId) {
+  const container = document.getElementById(containerId);
+  if (!container || !container._questionsData) return;
+
+  const q = container._questionsData.find(item => item.id === questionId);
+  if (!q) return;
+
+  const optsContainer = document.getElementById(`opts-container-${questionId}`);
+  if (!optsContainer || optsContainer.dataset.answered === "true") return;
+
+  const correctOpt = q.options.find(o => o.isCorrect);
+  const isCorrect = apCevapKaydet(apCurrentPage(), containerId, q, selectedOptionId,
+    { title: apUnitTitle(container, containerId), total: container._questionsData.length });
 
   // 3) Arayüz
   const feedbackBox = apApplyAnswer(containerId, q, selectedOptionId, true);
@@ -3013,4 +3052,22 @@ window.APMEBERRA = {
     build, exportFile, fileName, parse, plan, apply, summarize, mergeSeviye, mergeRota, mergeFrq, mergeCalcFrq,
     lastBackup, needsReminder
   };
+})();
+
+/* ===================================================================
+   EK MODÜLLER: bildirimler / soru–cevap / lig (bildirim.js) ve oyunlaştırma (oyun.js).
+   Her sayfada app.js'den sonra yüklenir; dosya modunda modüller kendi içlerinde neyin çalışacağına karar verir.
+   =================================================================== */
+(function () {
+  "use strict";
+  if (typeof document === "undefined") return;
+  var SURUM = "20261021a";
+  var kok = (document.currentScript && document.currentScript.src) ? document.currentScript.src.replace(/assets\/js\/app\.js.*$/, "") : "";
+  if (/admin\.html$/.test(location.pathname)) return;
+  [["link", "assets/css/oyun.css"], ["link", "assets/css/bildirim.css"], ["script", "assets/js/oyun.js"], ["script", "assets/js/bildirim.js"]].forEach(function (m) {
+    var el = document.createElement(m[0]);
+    if (m[0] === "link") { el.rel = "stylesheet"; el.href = kok + m[1] + "?v=" + SURUM; }
+    else { el.src = kok + m[1] + "?v=" + SURUM; el.defer = true; }
+    document.head.appendChild(el);
+  });
 })();
