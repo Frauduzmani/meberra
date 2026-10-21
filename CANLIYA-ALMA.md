@@ -301,6 +301,15 @@ Notlar:
       reklam için kullanmadan önce ve hatırlatma metinlerinin hizmet iletisi sayılıp sayılmadığı konusunda
       **hukuki görüş alın**. Kullanıcıların çoğu reşit olmadığından veli onayı süreçlerini de avukatınızla gözden geçirin.
 
+- [ ] **Çevrimdışı (1.15.0):** `sw.js` uygulama kabuğunu (stiller, temel betikler, fontlar, ikonlar, maskot,
+      `/cevrimdisi`) `meberra-kabuk-<sürüm>` önbelleğine alır; bağlantı yokken sayfalar yerine uykulu maskotlu
+      çevrimdışı sayfası görünür. Sürüm, sunucu `sw.js`yi sunarken `__SURUM__` yerine `package.json` sürümüyle yazılır;
+      **her sürümde `package.json` sürümünü yükseltin** ki eski önbellekler silinsin. `/api/*` hiçbir zaman önbelleğe alınmaz.
+- [ ] **CI rozeti:** GitHub Actions iş akışı `.github/workflows/ci.yml` (`master`a push/PR + haftalık). README başına
+      rozet eklemek için: `![CI](https://github.com/Frauduzmani/meberra/actions/workflows/ci.yml/badge.svg)` (depo gizli
+      olduğundan rozet yalnızca depoya erişimi olanlara görünür). Canlıya almadan önce son çalıştırmanın yeşil olduğunu
+      kontrol edin; kırmızıysa "playwright-report" yapıtını indirip `npx playwright show-report` ile inceleyin.
+
 ## E3) Google Play (TWA) için
 
 Meberra, Google Play'e **Trusted Web Activity (TWA)** olarak, yani siteyi tam ekran açan ince bir Android kabuğu

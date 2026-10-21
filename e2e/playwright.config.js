@@ -35,6 +35,7 @@ module.exports = defineConfig({
   },
   projects: [
     { name: "chromium", use: masaustu, testIgnore: /mobil\.spec\.js$/ },
-    { name: "mobil", use: mobil, testMatch: /(mobil|cevrimdisi)\.spec\.js$/ }
+    // Mobil öykünme belirgin biçimde yavaş (yüksek DPR + dokunma): daha uzun süre sınırı
+    { name: "mobil", use: mobil, testMatch: /(mobil|cevrimdisi)\.spec\.js$/, timeout: 120e3 }
   ]
 });

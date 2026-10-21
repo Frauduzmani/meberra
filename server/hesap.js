@@ -19,6 +19,8 @@ function sifreKurali(sifre, sifre2, e, alan, alan2) {
 }
 
 function hesapServisi(db, denetim, eposta) {
+  // KVKK: sonraki göçlerle gelen tablolar (göç çalışmamış eski/deneme veritabanında hata vermesin)
+  const tabloVar = t => !!db.prepare("SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = ?").get(t);
   const q = {
     kullaniciId: db.prepare("SELECT * FROM users WHERE id = ?"),
     kullaniciKimlik: db.prepare("SELECT * FROM users WHERE (eposta = ? OR kullanici_adi = ?) AND durum != 'silindi'"),
@@ -322,6 +324,7 @@ function hesapServisi(db, denetim, eposta) {
     // --- KVKK ---------------------------------------------------------------
     disaAktar(u) {
       const tablo = (sql) => db.prepare(sql).all(u.id);
+      const varsa = (t, sql) => (tabloVar(t) ? tablo(sql) : []);
       return {
         olusturma: simdi(),
         kullanici: genel(u),
@@ -339,6 +342,14 @@ function hesapServisi(db, denetim, eposta) {
         soruOturumlari: tablo("SELECT id, tur, kod, sayfa, ucretsiz_hak, olusturma, teslim FROM soru_oturumlari WHERE user_id = ? ORDER BY olusturma"),
         frqDenemeleri: tablo("SELECT * FROM frq_denemeleri WHERE user_id = ? ORDER BY id"), // 1.11.0
         tamSinavlar: tablo("SELECT id, kod, durum, plan, veri, sonuc, olusturma, bitis FROM tam_sinavlar WHERE user_id = ? ORDER BY olusturma"), // 1.12.0
+        // 1.17.0–1.19.0 (göçler 013–016): hız turu, günün sorusu katılımı (şık tutulmaz), kavram kartları, çalışma planı, sınıf üyeliği
+        hizTurlari: varsa("hiz_turlari", "SELECT id, ders, puan, en_kombo, dogru, yanlis, pas, durum, baslangic, bitis, olusturma FROM hiz_turlari WHERE user_id = ? ORDER BY baslangic"),
+        gununSorusu: varsa("gunun_sorusu_katilim", "SELECT tarih FROM gunun_sorusu_katilim WHERE user_id = ? ORDER BY tarih"),
+        kavramKartlari: varsa("kart_durumu", "SELECT kart_id, aralik, sonraki, tekrar_sayisi, son_sonuc, son_gun, guncelleme FROM kart_durumu WHERE user_id = ? ORDER BY kart_id"),
+        planAyari: varsa("plan_ayar", "SELECT saat, hafta, created, updated FROM plan_ayar WHERE user_id = ?"),
+        planGorevleri: varsa("plan_gorevler", "SELECT id, hafta, ilk_hafta, veri, tamam, manuel, tamam_zaman, created FROM plan_gorevler WHERE user_id = ? ORDER BY hafta, id"),
+        sinifUyelikleri: varsa("sinif_uyeleri", "SELECT s.ad AS sinif, s.ders, m.katilma, m.durum, m.ayrilma FROM sinif_uyeleri m JOIN siniflar s ON s.id = m.sinif_id WHERE m.ogrenci_id = ? ORDER BY m.id"),
+        ogretmenlik: varsa("ogretmenler", "SELECT o.okul_id, k.ad AS okul, o.durum, o.olusturma, o.kabul, o.iptal_zamani FROM ogretmenler o JOIN okullar k ON k.id = o.okul_id WHERE o.user_id = ? ORDER BY o.id"),
         tarayiciVerisi: tablo("SELECT anahtar, guncelleme FROM user_state WHERE user_id = ?"),
         oturumlar: tablo("SELECT olusturma, son_kullanim, son_gorulme, ip, son_ip, tarayici FROM sessions WHERE user_id = ?"),
         denetimKaydi: tablo("SELECT zaman, eylem, ip FROM audit_log WHERE user_id = ? ORDER BY zaman"),
@@ -359,6 +370,12 @@ function hesapServisi(db, denetim, eposta) {
       islem(db, () => {
         ["profiles", "user_state", "state_tombstones", "answers", "wrong_answers", "exams", "level_tests", "sessions", "password_resets",
           "questions", "notifications", "notification_prefs", "push_subscriptions", "reminder_log", "lig_uyeleri", "lig_haftalik", "giris_sayilari", "soru_oturumlari", "frq_denemeleri", "tam_sinavlar"].forEach(t => db.prepare("DELETE FROM " + t + " WHERE user_id = ?").run(u.id));
+        // 1.17.0–1.19.0: hız turu, günün sorusu katılımı, kavram kartları, çalışma planı (göç yoksa atlanır)
+        ["hiz_turlari", "gunun_sorusu_katilim", "kart_durumu", "plan_ayar", "plan_gorevler"].forEach(t => { if (tabloVar(t)) db.prepare("DELETE FROM " + t + " WHERE user_id = ?").run(u.id); });
+        // 1.19.0 okul/sınıf: öğrencinin üyelik satırları silinir; öğretmenin oluşturduğu sınıf ve ödevler okulun verisidir, kalır
+        // (öğretmen kaydı kapanır, davet adresi ve belirteci silinir).
+        if (tabloVar("sinif_uyeleri")) db.prepare("DELETE FROM sinif_uyeleri WHERE ogrenci_id = ?").run(u.id);
+        if (tabloVar("ogretmenler")) db.prepare("UPDATE ogretmenler SET durum = 'iptal', iptal_zamani = COALESCE(iptal_zamani, ?), eposta = NULL, belirtec_hash = NULL WHERE user_id = ?").run(z, u.id);
         // Muhasebe kayıtları (abonelik, ödeme bildirimi) yasal saklama için kalır; kişisel alanlar anonimleştirilir.
         // Bekleyen bildirim iptal edilir (silinmiş hesaba Premium açılmasın), aktif dönem sonlandırılır.
         db.prepare("UPDATE upgrade_requests SET durum = 'iptal', islem_zamani = ?, islem_notu = 'Hesap silindi' WHERE user_id = ? AND durum = 'bekliyor'").run(z, u.id);

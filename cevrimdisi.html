@@ -48,15 +48,33 @@
   (function () {
     "use strict";
     var durum = document.getElementById("cd-durum");
-    // Bu sayfa çoğunlukla başka bir adresin (ör. /bugun) yerine gösterilir: yeniden yükleme o adresi tekrar dener
-    function dene() {
-      durum.textContent = "Bağlantı denetleniyor…";
-      if (navigator.onLine === false) { durum.textContent = "Hâlâ çevrimdışısın. Bağlantın gelince sayfa kendiliğinden açılacak."; return; }
-      var hedef = /^\/cevrimdisi(?:\.html)?$/i.test(location.pathname) ? "/" : null;
-      if (hedef) location.replace(hedef); else location.reload();
+    var CEVRIMDISI_MESAJ = "Hâlâ çevrimdışısın. Bağlantın gelince sayfa kendiliğinden açılacak.";
+    var bekleyen = null, deneniyor = false;
+    // Bu sayfa çoğunlukla başka bir adresin (ör. /bugun) yerine gösterilir: yeniden yükleme o adresi tekrar dener.
+    // Yüklemeden önce sunucu yoklanır (/api/* service worker'dan geçmez): "online" olayı ağ gerçekten açılmadan gelebilir.
+    function ac() {
+      durum.textContent = "Bağlantı geldi, sayfa açılıyor…";
+      if (/^\/cevrimdisi(?:\.html)?$/i.test(location.pathname)) location.replace("/"); else location.reload();
     }
-    document.getElementById("cd-dene").addEventListener("click", dene);
-    window.addEventListener("online", dene);
+    function dene(otomatik) {
+      if (deneniyor) return;
+      clearTimeout(bekleyen);
+      if (navigator.onLine === false) { durum.textContent = CEVRIMDISI_MESAJ; return; }
+      deneniyor = true;
+      durum.textContent = "Bağlantı denetleniyor…";
+      fetch("/api/health", { cache: "no-store", credentials: "same-origin" })
+        .then(function (r) { if (!r.ok && r.status !== 503) throw new Error("yok"); ac(); })
+        .catch(function () {
+          deneniyor = false;
+          durum.textContent = CEVRIMDISI_MESAJ;
+          // "online" sonrası ağ birkaç saniye gecikebilir: kısa aralıklarla yeniden yokla
+          if (otomatik > 0) bekleyen = setTimeout(function () { dene(otomatik - 1); }, 1500);
+        });
+    }
+    document.getElementById("cd-dene").addEventListener("click", function () { dene(0); });
+    window.addEventListener("online", function () { dene(10); });
+    // Arka planda arada bir yokla (sekme görünürken)
+    setInterval(function () { if (document.visibilityState === "visible" && navigator.onLine !== false) dene(0); }, 15000);
   })();
   </script>
 </body>

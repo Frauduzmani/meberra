@@ -210,6 +210,8 @@ function oyunBirlestir(cur, inc) {
   if ("ustalik" in c || "ustalik" in i) out.ustalik = ustalikBirlestir(c.ustalik, i.ustalik);
   if ("aylik" in c || "aylik" in i) out.aylik = aylikBirlestir(c.aylik, i.aylik);
   if ("haftalik" in c || "haftalik" in i) out.haftalik = haftalikBirlestir(c.haftalik, i.haftalik);
+  // 1.17.0 odak sayacı (assets/js/odak.js): odakDk { "YYYY-MM-DD": dakika } → gün başına büyük olan
+  if ("odakDk" in c || "odakDk" in i) out.odakDk = odakDkBirlestir(c.odakDk, i.odakDk);
   return out;
 }
 
@@ -258,6 +260,21 @@ function haftalikBirlestir(a, b) {
   }); });
   const r = {};
   Object.keys(out).sort().slice(-12).forEach(k => { r[k] = out[k]; });
+  return r;
+}
+
+// 1.17.0 odak dakikaları: gün başına en büyük değer (iki cihaz aynı günü ayrı sayarsa çift sayılmaz); en yeni 120 gün
+const GUN_RE_ODAK = /^\d{4}-\d{2}-\d{2}$/;
+function odakDkBirlestir(a, b) {
+  const out = {};
+  [a, b].forEach(m => { if (isObj(m)) Object.keys(m).forEach(k => {
+    const v = Number(m[k]);
+    if (!GUN_RE_ODAK.test(k) || !isFinite(v) || v < 0) return;
+    const n = Math.min(Math.floor(v), 1440);
+    if (!(k in out) || n > out[k]) out[k] = n;
+  }); });
+  const r = {};
+  Object.keys(out).sort().slice(-120).forEach(k => { r[k] = out[k]; });
   return r;
 }
 
@@ -439,5 +456,5 @@ function veriServisi(db) {
   };
 }
 
-module.exports = { veriServisi, ilerlemeBirlestir, hatalarBirlestir, denemeBirlestir, seviyeBirlestir, hakBirlestir, seriBirlestir, tekrarBirlestir, oyunBirlestir, birlestir, ANAHTAR,
+module.exports = { veriServisi, odakDkBirlestir, ilerlemeBirlestir, hatalarBirlestir, denemeBirlestir, seviyeBirlestir, hakBirlestir, seriBirlestir, tekrarBirlestir, oyunBirlestir, birlestir, ANAHTAR,
   ustalikBirlestir, aylikBirlestir, haftalikBirlestir };

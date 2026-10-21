@@ -396,7 +396,8 @@ const APMEBERRA_NAV = [
   // Tur 14 A6: Çalış merkezi (calis.html) — A1'deki geçici açılır menü kalktı; dersler, denemeler, yanlışlarım ve seviye testi
   // merkez sayfada. Ders/deneme/seviye sayfalarında da Çalış etkin görünür (etkinSayfalar).
   { id: "calis", href: "/calis", label: "Çalış", modeller: AP_MODELLER,
-    etkinSayfalar: APMEBERRA_COURSES.map(c => apAdres(c.page)).concat(["/ders/cent-s", "/deneme", "/seviye-testi", "/rehber/istanbul-sinav"]) },
+    etkinSayfalar: APMEBERRA_COURSES.map(c => apAdres(c.page)).concat(["/ders/cent-s", "/deneme", "/seviye-testi", "/rehber/istanbul-sinav",
+      "/kartlar", "/frq", "/hiz-turu", "/plan"]) }, // 1.15–1.18: Çalış içindeki bölümler (ayrı menü öğesi yok)
   // Sade Hedefim (3 görünüm): Ülkem (sartlar + üniversiteler + ülke rehberleri) · Takvimim (rota + sınavlar) · Başvurularım
   { id: "hedefim", href: "/ulkem", label: "Hedefim", mobilBaglanti: true,
     etkinSayfalar: ["/universiteler", "/sinavlar", "/rehber/almanya", "/rehber/italya", "/kaynaklar"], children: [
@@ -538,7 +539,9 @@ function initGlobalNav() {
   // Profil sihirbazı bitmediyse sade başlık: yalnızca logo + tema + hesap.
   // Oturumsuz ziyaretçi (K4): yalnızca açık sayfalar + "Giriş yap / Kayıt ol".
   const minimal = !guest && !(me.profile && me.profile.tamamlandi);
-  const NAV = guest ? APMEBERRA_NAV_ACIK : APMEBERRA_NAV;
+  // 1.19.0: Ben › "Sınıfım" yalnızca sınıfa kayıtlı öğrencide (bayrak: Bugün /api/sinif/benim yanıtından, apSinifBayrak)
+  const NAV = guest ? APMEBERRA_NAV_ACIK : apSinifBayrak() ? APMEBERRA_NAV.map(it => it.id === "ben" && it.children
+    ? Object.assign({}, it, { children: it.children.concat([{ href: "/sinif", label: "Sınıfım", desc: "Öğretmeninin verdiği ödevler" }]) }) : it) : APMEBERRA_NAV;
   let nav = document.querySelector("nav.navbar");
   if (!nav) {
     nav = document.createElement("nav");
@@ -689,6 +692,12 @@ function initGlobalNav() {
     xa.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>' +
       '<span data-xp-deger>' + xp0.toLocaleString("tr-TR") + '</span><span class="nav-xp__ek" aria-hidden="true">XP</span>';
     actions.insertBefore(xa, actions.firstChild);
+    // 1.17.0 Odak sayacı: XP çipinin yanında küçük başlatıcı (assets/js/odak.js içine "Odak" düğmesini yerleştirir; yer önceden ayrılır)
+    if (!document.getElementById("odak-baslat")) {
+      const od = document.createElement("span");
+      od.id = "odak-baslat"; od.className = "nav-odak";
+      xa.insertAdjacentElement("afterend", od);
+    }
   }
   // 1.4.0 maskot/hareket — bitti
   if (me && !actions.querySelector(".account")) {
@@ -715,6 +724,7 @@ function initGlobalNav() {
           (MEBERRA_SUNUCU ? (me.uyelik && me.uyelik.premium && !me.uyelik.yonetici
             ? '<li><a href="/premium">' + APMEBERRA_ICONS.crown + '<span>Premium · aktif</span></a></li>'
             : me.uyelik && me.uyelik.yonetici ? "" : '<li><a href="/premium" class="account-premium">' + APMEBERRA_ICONS.crown + '<span>Premium' + "'" + 'a geç</span></a></li>') : "") +
+          (me.user.rol === "ogretmen" ? '<li><a href="/ogretmen">' + APMEBERRA_ICONS.user + '<span>Öğretmen paneli</span></a></li>' : "") +
           (me.user.rol === "yonetici" ? '<li><a href="/admin.html">' + APMEBERRA_ICONS.crown + '<span>Yönetici paneli</span></a></li>' : "")) +
           '<li><a href="/giris?cikis=1" class="account-logout">' + APMEBERRA_ICONS.logout + '<span>Çıkış yap</span></a></li>' +
         '</ul>' +
@@ -975,6 +985,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const rotaAktif = window.APMEBERRA.rota.aktif();
   if (rotaAktif) document.documentElement.setAttribute("data-rota", rotaAktif);
   initGlobalNav();
+  apEkModuller();
   initFooterRehber();
   initHedefimSekmeler();
   initPageChrome();
@@ -2131,6 +2142,56 @@ function apSekilYukle() {
   if (!document.querySelector('script[src*="/assets/js/sekil.js"]')) {
     const s = document.createElement("script"); s.src = "/assets/js/sekil.js?v=" + AP_SEKIL_SURUM; s.async = true; document.head.appendChild(s);
   }
+}
+// --- 1.16–1.19 ek modüller: tek yükleyici (yinelenmez; sayfada statik etiketi olan modül yeniden yüklenmez) --------------------
+// apModulYukle("plan.js", { css: "plan.css", v: "1180", once: ["plan-motor.js"] }) → Promise (script yüklendi/zaten vardı).
+const AP_MODUL_SURUM = "1190";
+const _apModul = {};
+function apModulYukle(ad, o) {
+  o = o || {};
+  if (typeof document === "undefined") return Promise.resolve(false);
+  if (_apModul[ad]) return _apModul[ad];
+  const v = o.v || AP_MODUL_SURUM;
+  if (o.css && !document.querySelector('link[href*="/assets/css/' + o.css + '"]')) {
+    const l = document.createElement("link"); l.rel = "stylesheet"; l.href = "/assets/css/" + o.css + "?v=" + v; document.head.appendChild(l);
+  }
+  const once = (o.once || []).reduce((p, x) => p.then(() => apModulYukle(x, { v })), Promise.resolve());
+  _apModul[ad] = once.then(() => new Promise(coz => {
+    const var0 = document.querySelector('script[src*="/assets/js/' + ad + '"]');
+    // Statik etiket (defer dahil) DOMContentLoaded'dan önce çalışmış olur
+    if (var0) { if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", () => coz(true), { once: true }); else coz(true); return; }
+    const sc = document.createElement("script"); sc.src = "/assets/js/" + ad + "?v=" + v; sc.async = false;
+    sc.onload = () => coz(true); sc.onerror = () => coz(false);
+    document.head.appendChild(sc);
+  }));
+  return _apModul[ad];
+}
+/** Oturumdaki öğrencinin ek modülleri (sayfaya göre). Bugün sayfası kendi kartlarını (plan, sınıf, günün sorusu) ayrıca bağlar. */
+function apEkModuller() {
+  const me = window.APMEBERRA_ME, sayfa = apCurrentPage();
+  if (!me || !me.user || me.user.rol === "veli" || sayfa === "admin") return;
+  const model = me.profile ? me.profile.ogrenciModeli : null;
+  if (model === "uni-mezun") return;
+  apModulYukle("oyun-ek.js", { css: "oyun-ek.css", v: "1160" });
+  const od = document.getElementById("odak-baslat");
+  if (od) apModulYukle("odak.js", { css: "odak.css", v: "1170" }).then(() => {
+    // odak.js sayfada statik (defer) yüklüyse başlatıcıyı menüden önce aramıştır: aynı düğme burada eklenir ([data-odak-ac] odak.js'te dinlenir)
+    if (window.MeberraOdak && !od.querySelector(".od-baslat")) {
+      od.innerHTML = '<button type="button" class="od-baslat" data-odak-ac=""><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg><span>Odak</span></button>';
+    }
+  });
+  if (sayfa === "index") {
+    apModulYukle("gunun-sorusu.js", { css: "gunun-sorusu.css", v: "1170" });
+    apSekilYukle(); // günün sorusu şekilli olabilir
+  }
+}
+/** 1.19.0: öğrenci bir sınıfa kayıtlı mı (yalnız menüde "Sınıfım" için; bu cihazda) */
+function apSinifBayrak(deger) {
+  try {
+    if (deger === undefined) return localStorage.getItem("meberra:sinif:var") === "1";
+    if (deger) localStorage.setItem("meberra:sinif:var", "1"); else localStorage.removeItem("meberra:sinif:var");
+  } catch (e) { /* kapalı depo */ }
+  return !!deger;
 }
 const apSekilKac = s => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 function apSekilListe(v) { return (Array.isArray(v) ? v : v ? [v] : []).filter(x => x && typeof x === "object" && typeof x.svg === "string"); }

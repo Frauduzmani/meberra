@@ -32,6 +32,8 @@
   var ARALIK = [1, 3, 7, 14];                    // kutu 1..4 → sonraki tekrar kaç gün sonra
   var HEDEFLER = [5, 10, 20];
   var VARSAYILAN_HEDEF = 10;
+  // 1.19.0: "dakika" türündeki günlük hedef odak sayacının dakikalarını sayar (odak.js → oyun.odakDk["YYYY-MM-DD"])
+  var DAKIKA_HEDEFLER = [15, 25, 45, 60], VARSAYILAN_DAKIKA = 25;
   var KORUMA_GERIYE = 7;                         // seri koruma en fazla 7 gün geriye uygulanır
 
   var isObj = function (v) { return v !== null && typeof v === "object" && !Array.isArray(v); };
@@ -352,7 +354,22 @@
     return top ? Math.min(100, Math.round(cev / top * 100)) : 0;
   }
 
+  /**
+   * Günlük hedefin türü, ölçüsü ve bugünkü değeri (saf). tur "dakika" ise değer odakDk[gun] (odak sayacı), değilse soru sayısı.
+   * Dönüş: { tur: "soru"|"dakika", miktar, deger, birim }
+   */
+  function hedefIlerleme(oyun, soru, gun) {
+    var h = oyun && isObj(oyun.hedef) ? oyun.hedef : null;
+    if (h && h.tur === "dakika") {
+      var m = Number(h.miktar), od = oyun && isObj(oyun.odakDk) ? Number(oyun.odakDk[gun]) : 0;
+      return { tur: "dakika", miktar: DAKIKA_HEDEFLER.indexOf(m) >= 0 ? m : VARSAYILAN_DAKIKA, deger: isFinite(od) && od > 0 ? Math.floor(od) : 0, birim: "dakika" };
+    }
+    var ms = h ? Number(h.miktar) : NaN;
+    return { tur: "soru", miktar: HEDEFLER.indexOf(ms) >= 0 ? ms : VARSAYILAN_HEDEF, deger: +soru || 0, birim: "soru" };
+  }
+
   var CEKIRDEK = {
+    hedefIlerleme: hedefIlerleme,
     K: K, XP: XP, GOREV_XP: GOREV_XP, ARALIK: ARALIK, HEDEFLER: HEDEFLER, ROZETLER: ROZETLER, YOL: YOL, yolGorunen: yolGorunen,
     istGun: istGun, gunEkle: gunEkle, gunFark: gunFark, isoHafta: isoHafta, haftaPazartesi: haftaPazartesi,
     cevapListesi: cevapListesi, xpOzet: xpOzet, haftaXp: haftaXp, gorevSayisi: gorevSayisi, toplamXp: toplamXp,
@@ -390,7 +407,6 @@
     if (!isObj(o.gorevler)) o.gorevler = {};
     return o;
   }
-  function hedefMiktar(o) { var m = o && isObj(o.hedef) ? Number(o.hedef.miktar) : NaN; return HEDEFLER.indexOf(m) >= 0 ? m : VARSAYILAN_HEDEF; }
   function denemeler() { try { return A && A.denemeler ? A.denemeler() : []; } catch (e) { return []; } }
   function veri() {
     var progress = oku(K.quiz, null) || {};
@@ -486,11 +502,11 @@
     var v = veri(), gun = bugunGun(), o = oyunOku(), degisti = false, kut = [];
     var bg = gunBaglami(v.cevaplar, v.progress, v.hatalar, v.denemeler, gun);
     var g = isObj(o.gorevler[gun]) ? o.gorevler[gun] : (o.gorevler[gun] = {});
-    var miktar = hedefMiktar(o);
-    if (bg.soru >= miktar && !(g.hedef && g.hedef.tamam)) {
+    var hi = hedefIlerleme(o, bg.soru, gun), miktar = hi.miktar;
+    if (hi.deger >= miktar && !(g.hedef && g.hedef.tamam)) {
       g.hedef = { tamam: true, t: Date.now() }; degisti = true;
       // Günlük hedef küçük kutlamadır (büyük an: ünite, deneme bandı, seri eşiği)
-      kut.push({ tur: "hedef", buyuk: false, ifade: "kutlama", baslik: "Günlük hedef tamam!", metin: miktar + " soruyu bitirdin. Harika gidiyorsun." });
+      kut.push({ tur: "hedef", buyuk: false, ifade: "kutlama", baslik: "Günlük hedef tamam!", metin: hi.tur === "dakika" ? miktar + " dakika odaklandın. Harika gidiyorsun." : miktar + " soruyu bitirdin. Harika gidiyorsun." });
     }
     gorevDurumlari(gunlukGorevler(gun, tekrarMevcut(v.hatalar, bg)), bg).forEach(function (d) {
       if (d.tamam && !(g[d.id] && g[d.id].tamam)) {
@@ -574,8 +590,8 @@
     if (!hedefEl && !gorevEl) return;
     var v = veri(), gun = bugunGun(), o = oyunOku();
     var bg = gunBaglami(v.cevaplar, v.progress, v.hatalar, v.denemeler, gun);
-    var miktar = hedefMiktar(o), secili = isObj(o.hedef);
-    var oran = Math.min(1, bg.soru / miktar), CEV = 2 * Math.PI * 42;
+    var hi = hedefIlerleme(o, bg.soru, gun), miktar = hi.miktar, secili = isObj(o.hedef), dg = hi.deger, dk = hi.tur === "dakika";
+    var oran = Math.min(1, dg / miktar), CEV = 2 * Math.PI * 42;
     var hx = haftaXp(v.cevaplar, v.denemeler, gun).xp;
     if (ligBilgi && ligBilgi.xp !== null) hx = ligBilgi.xp;
     var gorevler = gorevDurumlari(gunlukGorevler(gun, tekrarMevcut(v.hatalar, bg)), bg);
@@ -587,11 +603,11 @@
       }).join("") + "</div>";
       hedefEl.innerHTML = '<div class="oy-hedef oy-hedef--kompakt"><div class="oy-halka' + (oran >= 1 ? " is-tamam" : "") + '">' +
           '<svg viewBox="0 0 100 100" aria-hidden="true"><circle class="oy-halka-iz" cx="50" cy="50" r="42"/><circle class="oy-halka-dolu" cx="50" cy="50" r="42" stroke-dasharray="' + CEV.toFixed(1) + '" stroke-dashoffset="' + (ilk && !AZ_HAREKET ? CEV : CEV * (1 - oran)).toFixed(1) + '" data-hedef-ofset="' + (CEV * (1 - oran)).toFixed(1) + '"/></svg>' +
-          '<span class="oy-halka-sayi"><b>' + bg.soru + "</b><small>/ " + miktar + "</small></span></div>" +
-        '<div class="u-min0"><h2 id="oy-hedef-h" tabindex="-1">Günlük hedef · ' + Math.min(bg.soru, miktar) + " / " + miktar + "</h2>" +
+          '<span class="oy-halka-sayi"><b>' + dg + "</b><small>/ " + miktar + "</small></span></div>" +
+        '<div class="u-min0"><h2 id="oy-hedef-h" tabindex="-1">Günlük hedef · ' + Math.min(dg, miktar) + " / " + miktar + (dk ? " dk" : "") + "</h2>" +
           (secim
             ? '<p class="oy-alt">' + (secili ? "Yeni günlük hedefini seç:" : "Günlük hedefini seç:") + "</p>" + secici
-            : '<p class="oy-alt">' + (oran >= 1 ? "Bugünkü hedefe ulaştın. Devam etmek serbest!" : bg.soru ? "Hedefe " + (miktar - bg.soru) + " soru kaldı." : "Bugün " + miktar + " soru çözmeyi hedefle.") +
+            : '<p class="oy-alt">' + (oran >= 1 ? "Bugünkü hedefe ulaştın. Devam etmek serbest!" : dg ? "Hedefe " + (miktar - dg) + " " + hi.birim + " kaldı." : dk ? "Bugün " + miktar + " dakika odaklanmayı hedefle." : "Bugün " + miktar + " soru çözmeyi hedefle.") +
               ' <button type="button" class="oy-link" data-hedef-degistir>Değiştir</button></p>') +
         "</div></div>";
     }
@@ -649,6 +665,8 @@
       }
     });
     window.addEventListener("storage", function (e) { if (!e.key || /^apmeberra:(oyun|quiz|errors|tekrar|seri|deneme)/.test(e.key)) { bugunCiz(false); korumaCiz(); } });
+    // 1.19.0: odak sayacı dakika yazınca ("dakika" hedefi) halka güncellenir
+    document.addEventListener("meberra:odak-dakika", function () { degerlendir(false); bugunCiz(false); });
     ligCek(function () { bugunCiz(false); });
   }
 

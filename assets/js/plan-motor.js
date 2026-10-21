@@ -71,8 +71,10 @@
   }
   function zayifMi(u) { return u.dogruluk != null && u.cevap >= ZAYIF_EN_AZ_CEVAP && u.dogruluk < ZAYIF_ESIK; }
   /** Yeni ünite çalışması önceliği: CED ağırlığı × kalan kapsam (hafif sıra tercihi: önce baştaki üniteler) */
-  function uniteSkoru(u, i) { return (u.agirlik || 1) * ((100 - Math.min(100, u.kapsam || 0)) / 100 + zayiflik(u)) / (1 + 0.06 * i) / (1 + 0.5 * (u._son || 0)); }
-  function tekrarSkoru(u) { return (u.agirlik || 1) * (0.25 + zayiflik(u) * 3 + (u.kapsam > 0 ? 0.2 : 0)) / (1 + (u._tekrar || 0)); }
+  // Ücretsiz planda kilitli üniteler planda kalır ama açık ünitelerin arkasına düşer (ilk görev kilit duvarı olmasın)
+  function kilitCarpani(u) { return u.kilitli ? 0.15 : 1; }
+  function uniteSkoru(u, i) { return kilitCarpani(u) * (u.agirlik || 1) * ((100 - Math.min(100, u.kapsam || 0)) / 100 + zayiflik(u)) / (1 + 0.2 * i) / (1 + 0.5 * (u._son || 0)); } // sıra tercihi: ders baştan ilerlesin
+  function tekrarSkoru(u) { return kilitCarpani(u) * (u.agirlik || 1) * (0.25 + zayiflik(u) * 3 + (u.kapsam > 0 ? 0.2 : 0)) / (1 + (u._tekrar || 0)); }
   function enIyi(l, f) { var b = null, bs = -1; l.forEach(function (u, i) { var s = f(u, i); if (s > bs + 1e-9) { bs = s; b = u; } }); return b; }
 
   /** Görevin benzetimli etkisi (sonraki haftaların seçimi için; girdiyi değiştirmez — ders.uniteler kopyadır) */
@@ -102,8 +104,10 @@
   }
 
   /** Bir ders için bu haftanın bir görevi (sayac: dersin plandaki görev sırası) */
-  function dersGorevi(d, kalan, sayac, haftaBas, buHaftaTurler) {
-    var uniteler = d.uniteler;
+  function dersGorevi(d, kalan, sayac, haftaBas, buHaftaTurler, kullanilan) {
+    // aynı hafta içinde aynı ünite ikinci kez seçilmez (başka ünite kalmadıysa seçilebilir)
+    var kul = kullanilan || [], tum = d.uniteler, bosta = tum.filter(function (u) { return kul.indexOf(u.id) < 0; });
+    var uniteler = bosta.length ? bosta : tum;
     if (kalan <= TEKRAR_HAFTA) return gorevYap("tekrar", d, uniteler.length ? enIyi(uniteler, tekrarSkoru) : null, haftaBas);
     if (TAM_HAFTALAR.indexOf(kalan) >= 0 && d.tamLink && buHaftaTurler.indexOf("tam") < 0) return gorevYap("tam", d, null, haftaBas);
     var yeniKalan = uniteler.filter(function (u) { return (u.kapsam || 0) < 100; });
@@ -167,7 +171,8 @@
         while (gorevler.length < hedefSayi && m) {
           var d = buHaftaki[(h + yeniSayisi) % m];
           var turler = gorevler.filter(function (x) { return x.ders === d.ders; }).map(function (x) { return x.tur; });
-          var gv = dersGorevi(d, kalanlar[d.ders], sayac[d.ders], bas, turler);
+          var kul = gorevler.filter(function (x) { return x.unite; }).map(function (x) { return x.unite.id; });
+          var gv = dersGorevi(d, kalanlar[d.ders], sayac[d.ders], bas, turler, kul);
           var ayni = gorevler.filter(function (x) { return x.id === gv.id || (x.id.indexOf(gv.id + "#") === 0); }).length;
           if (ayni) gv.id += "#" + (ayni + 1);
           gorevler.push(gv); sayac[d.ders]++; yeniSayisi++;

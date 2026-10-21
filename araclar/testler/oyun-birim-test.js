@@ -189,5 +189,14 @@ ok(O.dersYuzdesi({ units: { a: { total: 10, answers: { x: {}, y: {} } }, b: { to
   ok((h.match(/class="cn-dugum__git"/g) || []).length === dug.length && /\?unite=1"/.test(h), "öğrenme yolu düğümleri canli.js kıvrımlı yoluna birebir aktarılır");
 }
 
+// 1.19.0 günlük hedef türü: "dakika" odak sayacı dakikalarını (odakDk) sayar; varsayılan/soru türü soru sayısını
+{
+  const g = "2026-10-21";
+  ok(esit(O.hedefIlerleme({ hedef: { tur: "dakika", miktar: 25 }, odakDk: { [g]: 30, "2026-10-20": 99 } }, 4, g), { tur: "dakika", miktar: 25, deger: 30, birim: "dakika" }), "dakika hedefi: bugünkü odakDk");
+  ok(O.hedefIlerleme({ hedef: { tur: "dakika", miktar: 7 } }, 4, g).miktar === 25 && O.hedefIlerleme({ hedef: { tur: "dakika" } }, 4, g).deger === 0, "dakika hedefi: geçersiz miktar 25, odak yoksa 0");
+  ok(esit(O.hedefIlerleme({ hedef: { tur: "soru", miktar: 20 }, odakDk: { [g]: 30 } }, 4, g), { tur: "soru", miktar: 20, deger: 4, birim: "soru" }), "soru hedefi odakDk saymaz");
+  ok(O.hedefIlerleme({}, 3, g).miktar === 10, "hedef seçilmemiş: 10 soru");
+}
+
 console.log("SONUC: " + pass + " gecti, " + fail + " kaldi.");
 process.exit(fail ? 1 : 0);

@@ -18,6 +18,24 @@ npm test                       # API testleri
 
 Veritabanı dosyası: `server/data/meberra.db` (git'e girmez). Yedek: `npm run yedek`.
 
+## Testler
+
+CI: `.github/workflows/ci.yml` (GitHub Actions; `master`a push/PR ve her pazartesi). Gizli anahtar gerekmez.
+
+```bash
+npm test                       # sunucu/API testleri (server/test/*.test.js)
+npm run test:birim             # tüm araclar/testler/*-birim-test.js
+node araclar/pm-denetim.js     # içerik denetimi (0 sorun olmalı)
+npx playwright install chromium   # bir kez: e2e tarayıcısı
+npm run test:e2e               # tarayıcı uçtan uca testleri (e2e/)
+```
+
+`e2e/` (@playwright/test): sunucu boş bir portta, geçici `DATA_DIR`, `ZAMANLAYICI=0`, `NODE_ENV=test` ve her
+çalıştırmada rastgele üretilen yönetici kimliğiyle kendiliğinden başlar (`e2e/kurulum.js`). Projeler: `chromium`
+(masaüstü) ve `mobil` (390×844). Her test konsol hatası olmadığını denetler. Chromium indirilemiyorsa kurulu
+tarayıcı: `E2E_KANAL=chrome npm run test:e2e` (ya da `msedge`). Rapor: `playwright-report/` (`npx playwright show-report`).
+Eski Playwright betikleri `araclar/testler/eski/` altında arşivdir (çalıştırılmaz).
+
 ## Sürümler
 
 Anlamsal sürümleme (`ANA.ARA.YAMA`); her geliştirmede sürüm yükseltilir. Kurallar ve notlar: `CHANGELOG.md`.

@@ -34,7 +34,7 @@ function yonetimRotalari(r, c) {
     const gunler7 = [];
     for (let i = 6; i >= 0; i--) gunler7.push(new Date(Date.now() - i * 864e5).toISOString().slice(0, 10));
     const seri7 = sql => { const m = new Map(db.prepare(sql).all(gunler7[0]).map(x => [x.g, x.n])); return gunler7.map(g => m.get(g) || 0); };
-    const prem = db.prepare(`SELECT plan, COUNT(DISTINCT user_id) AS n FROM subscriptions WHERE durum = 'aktif' AND bitis > ? AND baslangic <= ? AND kaynak != 'deneme' GROUP BY plan`).all(z, z); // 1.6.0: denemeler sayılmaz
+    const prem = db.prepare(`SELECT plan, COUNT(DISTINCT user_id) AS n FROM subscriptions WHERE durum = 'aktif' AND bitis > ? AND baslangic <= ? AND kaynak NOT IN ('deneme', 'okul') GROUP BY plan`).all(z, z); // 1.6.0: denemeler, 1.19.0: okul koltukları sayılmaz
     const say = p => (prem.find(x => x.plan === p) || { n: 0 }).n;
     const aylik = say("aylik"), yillik = say("yillik"), ozel = say("ozel");
     // Gelir tahmini: yalnızca ödemesi onaylanmış (talep kaynaklı, tutarlı) ve hesabı aktif kullanıcıların şu an geçerli

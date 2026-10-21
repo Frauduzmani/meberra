@@ -1,6 +1,6 @@
 "use strict";
 // Öğrenci akışları: kayıt + 5 adımlı sihirbaz, ders sayfasında soru, ücretsiz plan sınırları, FRQ, Sorularım → zil, çıkış.
-const { test, expect, SIFRE, yeniEposta, ogrenciGiris, girisYap, apiOgrenci, yoneticiApi, xpOku, yatayKaydirmaYok } = require("./yardimci");
+const { test, expect, SIFRE, yeniEposta, ogrenciGiris, yoneticiApi, xpOku, yatayKaydirmaYok } = require("./yardimci");
 
 test("kayıt → 5 adımlı sihirbaz → Bugün ekranında bugünkü görev", async ({ page }) => {
   await page.goto("/kayit");
@@ -46,7 +46,7 @@ test("kayıt → 5 adımlı sihirbaz → Bugün ekranında bugünkü görev", as
   await page.goto("/bugun");
   const karsilama = page.getByRole("region", { name: /Ece!/ });
   await expect(karsilama.getByText("Bugünkü görevin")).toBeVisible();
-  await expect(karsilama.getByRole("heading", { level: 2 })).not.toBeEmpty();
+  await expect(karsilama.getByRole("heading", { level: 2 }).first()).not.toBeEmpty();
   await expect(page.getByRole("region", { name: "Günün görevleri" })).toBeVisible();
   await yatayKaydirmaYok(page);
 });
@@ -141,5 +141,7 @@ test("çıkış: oturum ve yerel hesap verisi temizlenir, korumalı sayfa giriş
   expect((await page.context().cookies()).filter(c => c.name === "meberra_sid" && c.value)).toEqual([]);
   expect((await page.request.get("/api/me")).status()).toBe(401);
   await page.goto("/bugun");
-  await page.waitForURL(/\/giris/);
+  // Korumalı sayfa ziyaretçiyi girişe (ya da tanıtım sayfasına) gönderir; hesap menüsü yok
+  await expect(page).toHaveURL(/\/(giris\b.*)?$/);
+  await expect(page.getByRole("button", { name: /Hesap menüsü/ })).toHaveCount(0);
 });

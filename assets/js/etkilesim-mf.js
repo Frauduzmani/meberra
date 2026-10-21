@@ -368,9 +368,10 @@
     var sx = opt.xAdim || adimSec(D.xr[1] - D.xr[0]), sy = opt.yAdim || adimSec(D.yr[1] - D.yr[0]);
     c.strokeStyle = R.cizgi; c.fillStyle = R.sonuk;
     c.textAlign = "center"; c.textBaseline = "top";
+    var atla = Math.max(1, Math.ceil(30 / Math.max(1, D.X(sx) - D.X(0)))), sira = 0; // dar ekranda etiketler çakışmasın
     for (var x = Math.ceil(D.xr[0] / sx) * sx; x <= D.xr[1] + 1e-9; x += sx) {
       var px = Math.round(D.X(x)) + 0.5; c.beginPath(); c.moveTo(px, D.pad.t); c.lineTo(px, t.h - D.pad.b); c.stroke();
-      if (!opt.xEtiketYok) c.fillText(opt.xBicim ? opt.xBicim(x) : sayi(x, sx < 1 ? 1 : 0), px, t.h - D.pad.b + 4);
+      if (!opt.xEtiketYok && (sira++ % atla === 0)) c.fillText(opt.xBicim ? opt.xBicim(x) : sayi(x, sx < 1 ? 1 : 0), px, t.h - D.pad.b + 4);
     }
     c.textAlign = "right"; c.textBaseline = "middle";
     for (var y = Math.ceil(D.yr[0] / sy) * sy; y <= D.yr[1] + 1e-9; y += sy) {
@@ -515,11 +516,11 @@
       });
       c.save(); c.font = "600 12px " + R.font; c.textAlign = "center"; c.textBaseline = "top"; yazi(c, "a = " + L.a, D.X(L.a), D.pad.t + 2, R); c.restore();
       // Tablo
-      var hs = [h, 0.1, 0.01, 0.001].filter(function (v, i, d) { return d.indexOf(v) === i; }).sort(function (a, b) { return b - a; });
+      var hs = [h, 0.1, 0.01, 0.001]; // ilk satır: seçili h (satır sayısı sabit → yükseklik değişmez)
       var html = "<caption class=\"emf-gorsel-gizli\">a'nın iki yanındaki değerler</caption><thead><tr><th scope=\"col\">h</th><th scope=\"col\">x = a − h</th><th scope=\"col\">f(x)</th><th scope=\"col\">x = a + h</th><th scope=\"col\">f(x)</th></tr></thead><tbody>";
-      hs.forEach(function (hh) {
+      hs.forEach(function (hh, hi) {
         var q = H.limitTablo(S.k, hh);
-        html += "<tr" + (hh === h ? " class=\"emf-secili\"" : "") + "><td>" + sayi(hh, 4) + "</td><td>" + sayi(q.solX, 4) + "</td><td>" + sayi(q.sol, 5) + "</td><td>" + sayi(q.sagX, 4) + "</td><td>" + sayi(q.sag, 5) + "</td></tr>";
+        html += "<tr" + (hi === 0 ? " class=\"emf-secili\"" : "") + "><td>" + sayi(hh, 4) + "</td><td>" + sayi(q.solX, 4) + "</td><td>" + sayi(q.sol, 5) + "</td><td>" + sayi(q.sagX, 4) + "</td><td>" + sayi(q.sag, 5) + "</td></tr>";
       });
       tb.innerHTML = html + "</tbody>";
       var m = "h = " + sayi(h, 4) + ": soldan f ≈ " + sayi(r.sol, 4) + ", sağdan f ≈ " + sayi(r.sag, 4) + ". ";
@@ -774,7 +775,8 @@
       if (!t.boyutla()) return;
       var R = renkler(), D = Duzlem(t, [0, 95], [0, 48], { l: 34, r: 12, t: 10, b: 22 }), c = t.x, A = H.atis(S.v, S.ac);
       lj.children[2].querySelector("i").style.color = R.vurgu; lj.children[3].querySelector("i").style.color = R.ikinci;
-      eksenCiz(t, D, R, { xAdim: 10, yAdim: 10, xBicim: function (x) { return x + " m"; } });
+      eksenCiz(t, D, R, { xAdim: 10, yAdim: 10 });
+      c.save(); c.font = "11px " + R.font; c.fillStyle = R.sonuk; c.textAlign = "right"; c.textBaseline = "bottom"; c.fillText("x (m)", t.w - 14, t.h - 24); c.textAlign = "left"; c.textBaseline = "top"; c.fillText("y (m)", 38, 12); c.restore();
       function yorunge(v, ac, renk, kesik) {
         var B = H.atis(v, ac); c.save(); c.strokeStyle = renk; c.lineWidth = kesik ? 1.5 : 2.25; if (kesik) c.setLineDash([5, 5]);
         c.beginPath(); for (var i = 0; i <= 120; i++) { var q = H.atisKonum(v, ac, B.T * i / 120); i ? c.lineTo(D.X(q.x), D.Y(Math.max(0, q.y))) : c.moveTo(D.X(q.x), D.Y(q.y)); } c.stroke(); c.restore();
@@ -845,7 +847,7 @@
   W.enerji = function (host) {
     kabuk(host, "Enerji çubuk grafiği (LOL)", "Blok 2.0 m yükseklikten 35°'lik rampadan durgun bırakılıyor, sonra yatay zemine geçiyor. Sürtünme katsayısı tüm yolda μₖ. Konum kaydırıcısıyla bloğu ilerlet: Ug → K dönüşümünü ve sürtünmenin ürettiği ısıl enerjiyi izle. Toplam sabit kalır. (m = 1.0 kg)");
     var S = { mu: 0.2, s: 1.5 };
-    var t = Tuval(host, "16 / 7", "Rampa, zemin ve blok");
+    var t = Tuval(host, "16 / 5", "Rampa, zemin ve blok");
     var t2 = Tuval(host, "16 / 7", "Kinetik, kütle çekim potansiyel, ısıl ve toplam enerji çubukları");
     var R0 = renkler();
     var lj = lejant(host, [[R0.vurgu, "K", "emf-alan"], [R0.ucuncu, "Ug", "emf-alan"], [R0.ikinci, "E_ısıl", "emf-alan"], [R0.soluk, "Toplam", "emf-alan"]]);
@@ -1042,7 +1044,7 @@
       ok(c, cx + 10, cy, cx + 10, cy - r.Fb * olc, R.vurgu, 2.75, "F_b", R);
       if (!r.yuzer && r.N > 0.01) ok(c, cx + 30, by + bs, cx + 30, by + bs - r.N * olc, R.ikinci, 2.5, "N", R, [10, 0]);
       o.W.textContent = sayi(r.W, 2) + " N"; o.F.textContent = sayi(r.Fb, 2) + " N"; o.o.textContent = "%" + Math.round(r.oran * 100); o.N.textContent = sayi(r.N, 2) + " N";
-      duy(r.yuzer ? "ρ_cisim < ρ_sıvı: cisim yüzer; hacminin %" + Math.round(r.oran * 100) + "'i batık, F_b = W = " + sayi(r.W, 2) + " N." : "ρ_cisim ≥ ρ_sıvı: cisim batar; F_b = " + sayi(r.Fb, 2) + " N < W = " + sayi(r.W, 2) + " N" + (r.N > 0.005 ? ", taban " + sayi(r.N, 2) + " N normal kuvvet uygular." : " (eşit yoğunlukta askıda kalır)."));
+      duy(r.yuzer ? "ρ_cisim < ρ_sıvı: cisim yüzer; batık hacim oranı %" + Math.round(r.oran * 100) + ", F_b = W = " + sayi(r.W, 2) + " N." : "ρ_cisim ≥ ρ_sıvı: cisim batar; F_b = " + sayi(r.Fb, 2) + " N < W = " + sayi(r.W, 2) + " N" + (r.N > 0.005 ? ", taban " + sayi(r.N, 2) + " N normal kuvvet uygular." : " (eşit yoğunlukta askıda kalır)."));
     }
     return { ciz: ciz, t: [t] };
   };

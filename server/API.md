@@ -25,6 +25,8 @@ Başarı: `{ "ok": true, ... }`.
 - `POST /api/auth/reset` `{ token, yeni, yeni2 }` → tüm oturumlar ve diğer sıfırlama bağlantıları kapanır
 - `GET /api/account/export` → kullanıcının tüm verisi (KVKK veri taşınabilirliği)
 - `POST /api/account/delete` `{ sifre }` → hesap silinir: öğrenci verisi silinir; bekleyen ödeme bildirimi `iptal`, aktif Premium dönemi sona erer; ödeme/abonelik kayıtları, denetim kaydı (IP/tarayıcı/e-posta silinir) ve giden e-postalar anonimleştirilerek saklanır
+  - 1.19.0 kapsam (göç 010–016): dışa aktarma ayrıca `tamSinavlar`, `hizTurlari`, `gununSorusu` (yalnız katılım günleri; şık tutulmaz), `kavramKartlari`, `planAyari`, `planGorevleri`, `sinifUyelikleri`, `ogretmenlik` alanlarını içerir. Silmede `tam_sinavlar`, `hiz_turlari`, `gunun_sorusu_katilim`, `kart_durumu`, `plan_ayar`, `plan_gorevler` satırları ve öğrencinin `sinif_uyeleri` üyelikleri silinir; öğretmenin açtığı sınıf ve ödevler okulun verisi olarak kalır (öğretmen kaydı `iptal`, davet e-postası/belirteci silinir). Hatırlatma saati (`notification_prefs`) ve ünite ustalığı (`user_state`) zaten kapsamdadır.
+  - Oyun durumu birleştirme (`apmeberra:oyun:v1`): `odakDk { "YYYY-MM-DD": dakika }` gün başına büyük değer (en yeni 120 gün); günlük hedef `{ tur: "dakika" }` ise ilerleme bu değerdir.
 
 `user` = `{ id, ad, soyad, kullaniciAdi, eposta, rol: "ogrenci"|"yonetici"|"veli", olusturma }` (veli: bkz. Veli paneli)
 `uyelik` = `{ premium: bool, plan: "aylik"|"yillik"|"ozel"|null, bitis: ISO|null, deneme: bool, kaynak: "talep"|"elle"|"deneme"|"davet"|null (1.16.0), bekleyenTalep: {id, plan, olusturma}|null }`
@@ -691,6 +693,53 @@ haftasından beri), ders denemesi / tam sınav (`exams.istemci_id` `ts-…`) / F
 
 Veli paneli için salt okunur yardımcı (yazmaz): `require("./plan").veliPlanOzeti(db, hesap, ogrenciId)` →
 `{ durum, enYakin, bos, saat, buHafta: { bas, bit, evre, gorevler: [{ baslik, turAd, dersAd, tamam }] } }`.
+
+## Okul ve öğretmen paneli (1.19.0, server/okul.js)
+Okul koltuk lisansı → yönetici öğretmeni e-postayla davet eder → öğretmen sınıf açar (6 karakter katılım kodu; alfabe A–Z + 2–9,
+0/O/1/I/L yok) → öğrenci `/sinif?kod=…` sayfasında öğretmenin göreceklerini (açık liste) onaylayıp katılır, istediği an ayrılır.
+Tablolar: `okullar`, `lisanslar`, `ogretmenler`, `siniflar`, `sinif_uyeleri`, `odevler`, `subscriptions.okul_id` (migrations/016_okul_ogretmen.js;
+`users.rol` CHECK'ine `ogretmen` eklenir: canlı tanım kopyalanarak, FK kapalı, sonunda foreign_key_check).
+
+Koltuk: okulun geçerli lisansı + boş koltuğu varsa öğrenciye `subscriptions` satırı (`kaynak = 'okul'`, `plan = 'ozel'`, `tutar_tl = NULL`,
+`bitis` = lisans bitişi). Koltuk doluysa öğrenci Premium'suz katılır (`koltukYok: true`, bilgilendirilir). Ayrılma / çıkarılma / lisans
+iptali / okul pasif → okul Premium'u biter; öğrencinin kendi ödediği dönem etkilenmez. Zamanlayıcı işi `okulKoltuk` başlayan/biten
+lisansları eşitler. Gelir tahmini yalnız `kaynak = 'talep'` sayar → okul satırları girmez.
+
+Öğretmen rolü yalnızca `/api/ogretmen/*`, `/api/auth/*`, `/api/public/*`, `/api/me`, `/api/log`, `/api/account/export|delete` kullanır (diğerleri 403).
+Öğretmene giden: ad + soyadın baş harfi, son etkinlik, haftalık soru + doğruluk, doğruluk, seri, tahmini AP puanı (son deneme / tam sınav
+bandı), ünite kapsamı, ödev durumu. ASLA gitmez: soru-cevap yazışmaları, notlar, cevap ayrıntısı, veli bağlantıları; e-posta yalnızca
+okulda `eposta_gorunur = 1` ise (yönetici açar). Öğrenci kimliği olarak üyelik kimliği (`sinif_uyeleri.id`) verilir. Başka öğretmenin sınıfı: 404.
+
+Ödev durumu ayrı tabloda tutulmaz; `odevler.olusturma`dan sonraki etkinlikten hesaplanır: `unite` → `answers` (kutu, farklı soru ≥ adet),
+`deneme` → `exams` (kod, `ts-` olmayan), `tam_sinav` → `tam_sinavlar` (`bitti`), `frq` → `frq_denemeleri` (ders), `kart` → `kart_durumu`
+(güncellenen kart ≥ adet). Durum: `tamam | devam | baslamadi | gecikti`. Yeni ödevde sınıftaki öğrencilere uygulama içi bildirim
+(`tur: duyuru`, `link: /sinif`).
+
+| Uç | Rol | Gövde / yanıt |
+|---|---|---|
+| `GET /api/public/ogretmen-davet?t=` | — | `{ davet: { okul, eposta, hesapVar, hesapOgretmen, bitis } }`; geçersiz 404 |
+| `POST /api/ogretmen/kayit` | — | `{ t, ad, soyad, sifre, sifre2, kvkk, kosullar }` → oturum açılır (rol `ogretmen`) |
+| `POST /api/ogretmen/kabul` | öğretmen | `{ t }` (davet bu adrese gönderilmiş olmalı) |
+| `GET /api/ogretmen/panel` | öğretmen | `{ ogretmen, okul: { ad, koltuk, kullanilan, bitis, gecerli } \| null, siniflar, dersler }` |
+| `POST /api/ogretmen/siniflar` | öğretmen | `{ ad, ders }` (ap-hedef anahtarı ya da `karisik`) → `{ sinif: { id, kod, link, … } }` |
+| `GET /api/ogretmen/siniflar/:id` | öğretmen | `{ sinif, okul, birimler, ogrenciler: [{ id, ad, sonAktif, haftaSoru, haftaDogruluk, dogruluk, seri, tahminiPuan, kapsam[], odevler[] }], odevler: [{ …, tamam, toplam, yuzde }], secenekler }` |
+| `POST /api/ogretmen/siniflar/:id/arsiv` | öğretmen | sınıfı kapatır (koltuklar eşitlenir) |
+| `POST /api/ogretmen/siniflar/:id/odevler` | öğretmen | `{ tur, hedef: { sayfa, kutu, adet } \| { kod } \| { ders } \| { adet, onek }, sonTarih: YYYY-MM-DD, baslik }` |
+| `POST /api/ogretmen/odevler/:id/iptal` | öğretmen | ödevi kaldırır |
+| `POST /api/ogretmen/siniflar/:id/uyeler/:uye/cikar` | öğretmen | öğrenciyi çıkarır (okul Premium'u biter; öğrenciye bildirim) |
+| `GET /api/ogretmen/siniflar/:id/csv` | öğretmen | `text/csv` (UTF-8 BOM, `;`, formül enjeksiyonuna karşı kaçış) |
+| `GET /api/sinif/kod/:kod` | öğrenci | `{ sinif, uye, premium: { lisans, koltukVar, bitis }, paylasilan[], paylasilmayan[] }` (30 deneme / 15 dk) |
+| `POST /api/sinif/katil` | öğrenci | `{ kod, onay: true }` → `{ premium, koltukYok, mesaj }`; onaysız 400 |
+| `GET /api/sinif/benim` | öğrenci | `{ siniflar: [{ …, okulPremium, odevler: [{ …, durum, ilerleme, hedef, link }] }], uyelik }` |
+| `POST /api/sinif/:id/ayril` | öğrenci | sınıftan ayrılır |
+| `GET/POST /api/admin/okullar`, `GET/PUT /api/admin/okullar/:id` | yönetici | liste (koltuk kullanımı) / `{ ad, sehir, iletisimEposta }` / detay / `{ …, durum, epostaGorunur }` |
+| `POST /api/admin/okullar/:id/lisans` | yönetici | `{ koltuk, baslangic, bitis, tutarTl?, planNotu? }` (öncekiler `yenilendi`; koltuklar eşitlenir) |
+| `POST /api/admin/okullar/:id/lisans/iptal` | yönetici | okulun tüm okul Premium'ları biter |
+| `POST /api/admin/okullar/:id/ogretmen-davet` | yönetici | `{ eposta }` → e-posta kuyruğuna davet (7 gün); öğrenci/veli/yönetici adresi 400 |
+| `POST /api/admin/ogretmenler/:id/iptal` | yönetici | öğretmenin okul erişimini kaldırır |
+
+Hepsi denetim kaydında (`okul.*`). İstemci: `/ogretmen` (assets/js/ogretmen.js), `/sinif` (assets/js/sinif.js;
+`window.MeberraSinif.odevKarti(el)` Bugün kartı için), yönetici `#okullar` sekmesi (assets/js/admin-okul.js).
 
 ## Sayfalar
 Sunucu proje kökündeki statik sayfaları da sunar. HTML yanıtlarına `<meta name="meberra-api" content="1">`

@@ -14,16 +14,16 @@ function usersYenidenKur(db) {
   const re = /CHECK\s*\(\s*rol\s+IN\s*\(([^)]*)\)\s*\)/i;
   if (!re.test(t.sql)) throw new Error("users.rol CHECK kısıtı bulunamadı");
   const yeniSql = t.sql.replace(re, (m, l) => "CHECK (rol IN (" + l.trim() + ", 'ogretmen'))")
-    .replace(/^CREATE TABLE\s+"?users"?\s*\(/i, "CREATE TABLE users_015 (");
+    .replace(/^CREATE TABLE\s+"?users"?\s*\(/i, "CREATE TABLE users_016 (");
   const indeksler = db.prepare("SELECT sql FROM sqlite_schema WHERE type = 'index' AND tbl_name = 'users' AND sql IS NOT NULL").all().map(r => r.sql);
   const tetikler = db.prepare("SELECT sql FROM sqlite_schema WHERE type = 'trigger' AND tbl_name = 'users' AND sql IS NOT NULL").all().map(r => r.sql);
   const sutunlar = db.prepare("PRAGMA table_info(users)").all().map(c => '"' + c.name + '"').join(", ");
   const once = db.prepare("SELECT COUNT(*) AS n FROM users").get().n;
   db.exec(yeniSql);
-  db.exec("INSERT INTO users_015 (" + sutunlar + ") SELECT " + sutunlar + " FROM users");
-  if (db.prepare("SELECT COUNT(*) AS n FROM users_015").get().n !== once) throw new Error("users kopyası eksik");
+  db.exec("INSERT INTO users_016 (" + sutunlar + ") SELECT " + sutunlar + " FROM users");
+  if (db.prepare("SELECT COUNT(*) AS n FROM users_016").get().n !== once) throw new Error("users kopyası eksik");
   db.exec("DROP TABLE users");
-  db.exec("ALTER TABLE users_015 RENAME TO users");
+  db.exec("ALTER TABLE users_016 RENAME TO users");
   indeksler.concat(tetikler).forEach(s => db.exec(s));
 }
 

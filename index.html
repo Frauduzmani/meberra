@@ -59,6 +59,8 @@
           <span class="sa-kicker">Bugünkü görevin</span>
           <h2 id="sa-title">Yükleniyor…</h2>
         </div>
+        <!-- 1.18.0 "Bu haftanın planı" (plan modülü: MeberraPlan.buHafta; modül yoksa gizli kalır) — kahramanın parçası, ayrı blok değil -->
+        <div class="bg-plan" id="bg-plan" hidden></div>
       </section>
 
       <!-- (b) SERİ + GÜNLÜK HEDEF (apCalismaSerisi; alev seri uzadıkça büyür: data-kademe; hedef halkası oyun.js) -->
@@ -94,6 +96,10 @@
     <details class="bg-dahafazla" id="bg-dahafazla">
       <summary>Daha fazla <small>Yanlışlarım, tarihler, derslerin</small></summary>
       <div class="bg-dahafazla__ic">
+        <!-- 1.17.0 Günün sorusu (gunun-sorusu.js) ve 1.19.0 Ödevlerim (sinif.js odevKarti): evleri burası; bugün cevaplanmamışsa /
+             son günü yakınsa TEK bağlamsal karta (bg-baglam) taşınır (aşağıdaki baglamYerlestir). Ayrı blok olmazlar. -->
+        <section id="gunun-sorusu" hidden></section>
+        <section class="surface bg-odev" id="bg-odev" aria-label="Ödevlerim" hidden></section>
         <!-- 1.16.0 aylık görev (oyun-ek.js) -->
         <div id="oe-aylik"></div>
         <div class="bg-uclu" id="bg-kartlar">
@@ -612,7 +618,85 @@
       if (MODEL === "uni-mezun") tur = "yaklasan";
       var el = document.getElementById(tur === "tekrar" ? "bg-tekrar" : tur === "yaklasan" ? "yaklasan" : "last-exam");
       if (el) { yer.appendChild(el); yer.setAttribute("data-tur", tur); }
+      B.baglamTur = tur; B.baglamEl = el;
       if (!vade) { var tk = document.getElementById("bg-tekrar"); if (tk && tk.parentNode !== yer) tk.hidden = true; }
+    })();
+
+    // 5c) 1.17–1.19 tek bağlamsal kart sırası (yine EN ÇOK 1 kart): son günü yakın ödev (100) > 3 gün içinde tarih (90) >
+    // bugün cevaplanmamış Günün sorusu (50) > bekleyen ödev (30) > yukarıda seçilen kart (10). Kazanmayan "Daha fazla"da kalır.
+    (function () {
+      var yer = document.getElementById("bg-baglam"), kartlar = document.getElementById("bg-kartlar"), df = document.querySelector("#bg-dahafazla .bg-dahafazla__ic");
+      if (!yer || !df || !ME || !ME.user || MODEL === "uni-mezun") return;
+      var aday = {};
+      if (B.baglamEl) aday.mevcut = { el: B.baglamEl, puan: B.baglamTur === "yaklasan" && B.ytEnYakin != null && B.ytEnYakin <= 3 ? 90 : 10, ev: function (el) { kartlar.insertBefore(el, kartlar.firstChild); } };
+      function yerlestir() {
+        var en = null;
+        Object.keys(aday).forEach(function (k) { if (!en || aday[k].puan > aday[en].puan) en = k; });
+        Object.keys(aday).forEach(function (k) {
+          var a = aday[k];
+          if (k === en) { if (a.el.parentNode !== yer) { yer.appendChild(a.el); yer.setAttribute("data-tur", k === "mevcut" ? B.baglamTur : k); } }
+          else if (a.el.parentNode === yer) a.ev(a.el);
+        });
+      }
+      var evUst = function (el) { df.insertBefore(el, df.firstChild); };
+      var gsEl = document.getElementById("gunun-sorusu");
+      if (window.apModulYukle && gsEl) apModulYukle("gunun-sorusu.js", { css: "gunun-sorusu.css", v: "1170" }).then(function () {
+        // Kart kendini doldurur (hidden kalkar); bugün cevaplanmamışsa bağlamsal alana geçer, cevaplandıktan sonra yerinde kalır
+        var bak = function () {
+          if (gsEl.hidden || !gsEl.children.length || aday.gs) return;
+          aday.gs = { el: gsEl, puan: gsEl.classList.contains("is-cevap") ? 0 : 50, ev: evUst };
+          if (aday.gs.puan) yerlestir();
+          if (gsMo) gsMo.disconnect();
+        };
+        var gsMo = window.MutationObserver ? new MutationObserver(bak) : null;
+        if (gsMo) gsMo.observe(gsEl, { attributes: true, childList: true, attributeFilter: ["hidden", "class"] });
+        bak();
+      });
+      // Ödevler: yalnızca bir sınıfa kayıtlı öğrencide (menüde "Sınıfım" bayrağı da buradan)
+      var odEl = document.getElementById("bg-odev");
+      if (odEl && ME.user.rol === "ogrenci" && window.fetch) fetch("/api/sinif/benim", { credentials: "same-origin", headers: { Accept: "application/json" } })
+        .then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+          var sn = j && Array.isArray(j.siniflar) ? j.siniflar : [];
+          if (window.apSinifBayrak) apSinifBayrak(sn.length > 0);
+          var bek = [];
+          sn.forEach(function (x) { (x.odevler || []).forEach(function (o) { if (o.durum !== "tamam") bek.push(o); }); });
+          if (!bek.length || !window.apModulYukle) return;
+          var simdi = BG ? Date.parse(BG + "T12:00:00") : Date.now();
+          var yakin = bek.some(function (o) { var t = o.sonTarih ? Date.parse(o.sonTarih) : NaN; return o.durum === "gecikti" || (isFinite(t) && t - simdi <= 2 * 864e5); });
+          return apModulYukle("sinif.js", { v: "1190" }).then(function () {
+            if (!window.MeberraSinif || !MeberraSinif.odevKarti) return;
+            return MeberraSinif.odevKarti(odEl).then(function (var1) {
+              if (!var1) return;
+              aday.odev = { el: odEl, puan: yakin ? 100 : 30, ev: evUst };
+              yerlestir();
+            });
+          });
+        }).catch(function () { /* ödev kartı isteğe bağlı */ });
+    })();
+
+    // 5d) 1.18.0 Planım: kişisel planın sıradaki görevi kahramanın görevi olur; altında kompakt "Bu haftanın planı"
+    (function () {
+      var el = document.getElementById("bg-plan");
+      if (!el || !ME || !ME.profile || MODEL === "uni-mezun" || !window.apModulYukle) return;
+      apModulYukle("plan.js", { css: "plan.css", v: "1180", once: ["plan-motor.js"] }).then(function () {
+        var P = window.MeberraPlan;
+        if (!P || typeof P.buHafta !== "function") return; // plan modülü yoksa mevcut görev mantığı kalır
+        el.hidden = false;
+        return P.buHafta(el).then(function (p) {
+          if (!p || p.__oturum) { el.hidden = true; return; }
+          var ns = document.getElementById("next-step");
+          var h = p.haftalar && p.haftalar[0], g = h && (h.gorevler || []).filter(function (x) { return !x.tamam && !x.kilitli && x.link; })[0];
+          if (!g || !ns || ns.getAttribute("data-tur") === "deneme") return; // yarım deneme önce biter
+          ns.setAttribute("data-tur", "plan");
+          var t = ns.querySelector("#sa-title"), m = ns.querySelector(".sa-meta"), git = ns.querySelector("#sa-git"), k = ns.querySelector(".sa-tur");
+          if (t) t.textContent = g.baslik;
+          var meta = [g.dersAd, g.aciklama, g.dk ? "~" + g.dk + " dk" : ""].filter(Boolean).join(" · ");
+          if (m) m.textContent = meta; else if (t && meta) t.insertAdjacentHTML("afterend", '<p class="sa-meta">' + esc(meta) + "</p>");
+          if (k) k.textContent = "Planım";
+          if (git) { git.setAttribute("href", g.link); git.innerHTML = ICON.play + "Başla"; }
+          var nd = ns.querySelector(".sa-neden p"); if (nd) nd.textContent = "Kişisel çalışma planında bu haftanın sıradaki görevi bu. Planı Planım sayfasında değiştirebilirsin.";
+        });
+      }).catch(function () { el.hidden = true; });
     })();
 
     // 6) İlk ziyaret: hoş geldin kipi (hero çizimi + üç adım), seri ve bugün tamam kutlaması

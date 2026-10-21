@@ -4571,3 +4571,44 @@ body:has(> main):has(> footer.footer) > footer.footer { flex-shrink: 0; }
 .ug-kart.is-yakinda { border-style: dashed; color: var(--text-muted); }
 .ug-kart.is-yakinda .ug-no { background: var(--surface-3); color: var(--text-muted); }
 .ug-kart.is-yakinda .ug-git { color: var(--text-muted); font-weight: 600; }
+
+/* ===== 1.19.0 Çalış merkezi: 4 giriş (sakin, tek satır + sayı rozeti) ===== */
+.calis-hub { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-3); margin: 0 0 var(--sp-6); }
+.calis-hub__kart { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-4); min-height: 76px; color: inherit; text-decoration: none; position: relative; }
+.calis-hub__kart:hover { text-decoration: none; border-color: var(--border-strong); box-shadow: var(--shadow-card); }
+.calis-hub__kart:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.calis-hub__ik { flex: none; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
+.calis-hub__ik svg { width: 22px; height: 22px; }
+.calis-hub__ik.is-tekrar { background: var(--energy-soft, #fff0e8); color: var(--energy-text, #c2410c); }
+.calis-hub__ik.is-dene { background: var(--success-soft, #e8f7ef); color: var(--success, #15803d); }
+.calis-hub__ik.is-hiz { background: var(--warning-soft, #fff7e0); color: var(--warning-text, #a16207); }
+.calis-hub__govde { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+.calis-hub__govde strong { font-size: var(--fs-16, 1rem); font-weight: 800; }
+.calis-hub__govde span { font-size: var(--fs-13, .8125rem); color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.calis-hub__rozet { position: absolute; top: 8px; right: 10px; font-size: var(--fs-12, .75rem); font-weight: 700; color: var(--text-muted);
+  background: var(--surface-2, var(--bg-subtle, #f4f2fa)); border-radius: var(--radius-full, 999px); padding: 2px 8px; white-space: nowrap; }
+.calis-bolum-h--satir { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-3); flex-wrap: wrap; }
+.calis-plan-link { font-weight: 700; font-size: var(--fs-14); }
+.calis-not { margin: var(--sp-4) 0 var(--sp-3); color: var(--text-muted); font-size: var(--fs-14); max-width: var(--measure); }
+#calis-olc { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+#calis-olc > :last-child { grid-column: auto; }
+@media (max-width: 1100px) { #calis-olc { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 900px) { .calis-hub { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .calis-hub { grid-template-columns: minmax(0, 1fr); gap: var(--sp-2); } .calis-hub__kart { min-height: 64px; padding: var(--sp-3) var(--sp-4); }
+  #calis-olc { grid-template-columns: minmax(0, 1fr); } }
+.calis-bolum { scroll-margin-top: 80px; }
+
+/* ===== 1.19.0 Navbar: Odak başlatıcısı (odak.js düğmeyi yerleştirir; yer önceden ayrılır → kayma yok) ===== */
+.nav-odak { display: inline-flex; flex: none; min-width: 36px; min-height: 36px; align-items: center; }
+.nav-odak .od-baslat { min-height: 36px; padding: 6px 10px; }
+@media (max-width: 520px) {
+  .nav-odak .od-baslat span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .nav-odak .od-baslat { padding: 6px 9px; }
+}
+/* Bugün: plan kartı kahramanın içinde (ayrı blok değil) */
+.bg-plan { margin-top: var(--sp-4); position: relative; z-index: 1; }
+.bg-plan .pl-kart { box-shadow: none; }
+.bg-baglam > #gunun-sorusu, .bg-baglam > .bg-odev { margin: 0; }
+.bg-odev { padding: var(--sp-4); }
+.bg-plan .pl-kart, .bg-plan .pl-kart h2, .bg-plan .pl-kart h3 { color: var(--text); text-shadow: none; }
+.calis-hub__kart:has(.calis-hub__rozet:not([hidden])) .calis-hub__govde { padding-top: 10px; }

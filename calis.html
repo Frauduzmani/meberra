@@ -39,7 +39,7 @@
     <header class="page-head calis-head">
       <span class="eyebrow">Çalış</span>
       <h1 id="calis-title">Ne çalışayım?</h1>
-      <p>Derslerin, denemelerin ve yanlışların tek yerde.</p>
+      <p>Ders çalış, tekrar et, kendini dene ya da kısa bir hız turu at.</p>
     </header>
 
     <!-- Üniversite mezunu: AP çalışma alanı yok (menüde Çalış yerine Sınavlar) -->
@@ -50,46 +50,103 @@
     </section>
 
     <div class="calis-icerik" id="calis-icerik">
-      <div class="bugun-ust calis-ust">
-        <!-- SIRADAKİ ÇALIŞMA: tek kart, tek birincil düğme -->
-        <section class="surface bugun-siradaki" id="calis-siradaki" aria-labelledby="cs-title">
-          <div class="next-step" id="cs-next" aria-live="polite">
-            <span class="sa-kicker">Sıradaki çalışma</span>
-            <h2 id="cs-title">Yükleniyor…</h2>
-          </div>
-        </section>
+      <!-- 1.19.0 Çalış merkezi: 4 giriş (tek satır + sayı rozeti). Yeni bölümler (Kavram kartları, FRQ, Tam sınav, Hız turu)
+           burada durur; üst menüde ayrı öğe değildir. -->
+      <nav class="calis-hub" id="calis-hub" aria-label="Çalış bölümleri">
+        <a class="surface calis-hub__kart" href="#ders-calis" data-hub="ders">
+          <span class="calis-hub__ik is-ders" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/></svg></span>
+          <span class="calis-hub__govde"><strong>Ders çalış</strong><span>Konu anlatımı, etkileşimli dersler, sorular</span></span>
+          <span class="calis-hub__rozet" id="hub-ders-rozet" hidden></span>
+        </a>
+        <a class="surface calis-hub__kart" href="#tekrar-et" data-hub="tekrar">
+          <span class="calis-hub__ik is-tekrar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></span>
+          <span class="calis-hub__govde"><strong>Tekrar et</strong><span>Yanlışlarım, bugünkü tekrar, kavram kartları</span></span>
+          <span class="calis-hub__rozet" id="hub-tekrar-rozet" hidden></span>
+        </a>
+        <a class="surface calis-hub__kart" href="#kendini-dene" data-hub="dene">
+          <span class="calis-hub__ik is-dene" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span>
+          <span class="calis-hub__govde"><strong>Kendini dene</strong><span>Ders denemesi, FRQ pratiği, tam sınav</span></span>
+          <span class="calis-hub__rozet" id="hub-dene-rozet" hidden></span>
+        </a>
+        <a class="surface calis-hub__kart" href="/hiz-turu" data-hub="hiz">
+          <span class="calis-hub__ik is-hiz" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>
+          <span class="calis-hub__govde"><strong>Hız turu</strong><span>60 saniyede kaç soru? Kısa bir mola turu</span></span>
+          <span class="calis-hub__rozet">60 sn</span>
+        </a>
+      </nav>
 
-        <!-- KALDIĞIN YER: son ünite · yarım deneme · son deneme -->
-        <section class="surface calis-kaldigin" id="calis-kaldigin" aria-labelledby="ck-title">
-          <div class="bugun-kart-h"><h2 id="ck-title">Kaldığın yer</h2></div>
-          <ul class="ck-list" id="ck-list"></ul>
-        </section>
-      </div>
-
-      <!-- DERSLER: 6 AP dersi + CEnT-S -->
-      <section class="calis-bolum" id="calis-dersler" aria-labelledby="cd-title">
-        <div class="calis-bolum-h">
-          <h2 id="cd-title">Derslerin</h2>
-          <p>Konu anlatımı ve sorular İngilizce. Halka, soru bankasında çözdüğün oranı gösterir.</p>
+      <!-- 1) DERS ÇALIŞ: sıradaki çalışma + kaldığın yer + dersler (6 AP + CEnT-S; etkileşimli dersler ders sayfalarında) -->
+      <section class="calis-bolum" id="ders-calis" aria-labelledby="cd-title">
+        <div class="calis-bolum-h calis-bolum-h--satir">
+          <h2 id="cd-title">Ders çalış</h2>
+          <a class="calis-plan-link" href="/plan">Planım →</a>
         </div>
-        <div class="calis-grid" id="calis-grid"></div>
+        <div class="bugun-ust calis-ust">
+          <!-- SIRADAKİ ÇALIŞMA: tek kart, tek birincil düğme -->
+          <section class="surface bugun-siradaki" id="calis-siradaki" aria-labelledby="cs-title">
+            <div class="next-step" id="cs-next" aria-live="polite">
+              <span class="sa-kicker">Sıradaki çalışma</span>
+              <h2 id="cs-title">Yükleniyor…</h2>
+            </div>
+          </section>
+          <!-- KALDIĞIN YER: son ünite · yarım deneme · son deneme -->
+          <section class="surface calis-kaldigin" id="calis-kaldigin" aria-labelledby="ck-title">
+            <div class="bugun-kart-h"><h2 id="ck-title">Kaldığın yer</h2></div>
+            <ul class="ck-list" id="ck-list"></ul>
+          </section>
+        </div>
+        <div id="calis-dersler">
+          <p class="calis-not">Konu anlatımı ve sorular İngilizce. Halka, soru bankasında çözdüğün oranı gösterir.</p>
+          <div class="calis-grid" id="calis-grid"></div>
+        </div>
       </section>
 
-      <!-- ÖLÇ VE TEKRAR ET -->
-      <section class="calis-bolum" id="calis-olc" aria-labelledby="co-title">
-        <div class="calis-bolum-h"><h2 id="co-title">Ölç ve tekrar et</h2></div>
+      <!-- 2) TEKRAR ET -->
+      <section class="calis-bolum" id="tekrar-et" aria-labelledby="ct-title">
+        <div class="calis-bolum-h"><h2 id="ct-title">Tekrar et</h2></div>
         <div class="calis-olc-grid">
-          <a class="surface dv-kart u-nodec u-c-inherit" id="co-deneme" href="/deneme">
-            <h3>Denemeler</h3>
-            <span class="dv-ana" id="co-deneme-ana">Ders denemesi ya da genel deneme</span>
-            <span class="dv-alt" id="co-deneme-alt">Bluebook (AP’nin dijital sınav uygulaması) benzeri ekran; sonunda ünite bazında sonuç.</span>
-            <span class="dv-git" id="co-deneme-git">Denemelere git →</span>
-          </a>
           <a class="surface dv-kart u-nodec u-c-inherit" id="co-yanlis" href="/deneme?mod=yanlislar">
             <h3>Yanlışlarım</h3>
             <span class="dv-sayi" id="co-yanlis-sayi">0</span>
             <span class="dv-alt" id="co-yanlis-alt">açık soru</span>
             <span class="dv-git" id="co-yanlis-git">Yanlışlarımı çöz →</span>
+          </a>
+          <a class="surface dv-kart u-nodec u-c-inherit" id="co-tekrar" href="/ilerleme?mod=tekrar#tekrar">
+            <h3>Bugünkü tekrar</h3>
+            <span class="dv-sayi" id="co-tekrar-sayi">0</span>
+            <span class="dv-alt" id="co-tekrar-alt">soru bugün yeniden karşında</span>
+            <span class="dv-git">Tekrara başla →</span>
+          </a>
+          <a class="surface dv-kart u-nodec u-c-inherit" id="co-kart" href="/kartlar">
+            <h3>Kavram kartları</h3>
+            <span class="dv-sayi" id="co-kart-sayi">–</span>
+            <span class="dv-alt" id="co-kart-alt">kart bugün</span>
+            <span class="dv-git">Kartlara git →</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- 3) KENDİNİ DENE -->
+      <section class="calis-bolum" id="kendini-dene" aria-labelledby="co-title">
+        <div class="calis-bolum-h"><h2 id="co-title">Kendini dene</h2></div>
+        <div class="calis-olc-grid" id="calis-olc">
+          <a class="surface dv-kart u-nodec u-c-inherit" id="co-deneme" href="/deneme">
+            <h3>Ders denemesi</h3>
+            <span class="dv-ana" id="co-deneme-ana">Ders denemesi ya da genel deneme</span>
+            <span class="dv-alt" id="co-deneme-alt">Bluebook (AP’nin dijital sınav uygulaması) benzeri ekran; sonunda ünite bazında sonuç.</span>
+            <span class="dv-git" id="co-deneme-git">Denemelere git →</span>
+          </a>
+          <a class="surface dv-kart u-nodec u-c-inherit" id="co-frq" href="/frq">
+            <h3>FRQ pratiği</h3>
+            <span class="dv-ana">Açık uçlu sorular</span>
+            <span class="dv-alt">Cevabını yaz, puanlama ölçütüyle karşılaştır.</span>
+            <span class="dv-git">FRQ çöz →</span>
+          </a>
+          <a class="surface dv-kart u-nodec u-c-inherit" id="co-tam" href="/deneme?tam=1">
+            <h3>Tam sınav</h3>
+            <span class="dv-ana">Gerçek sınav süresi ve bölümleri</span>
+            <span class="dv-alt">Çoktan seçmeli ve FRQ bölümleri, sonunda tahmini puan.</span>
+            <span class="dv-git">Tam sınava başla →</span>
           </a>
           <a class="surface dv-kart u-nodec u-c-inherit" id="co-seviye" href="/seviye-testi">
             <h3>Seviye testi</h3>
@@ -268,6 +325,39 @@
       document.getElementById("co-seviye-alt").textContent = rap.length + " rapor kayıtlı; yeniden çözüp karşılaştırabilirsin.";
       document.getElementById("co-seviye-git").textContent = "Raporu aç →";
     }
+
+    // 5) 1.19.0 Merkez rozetleri (tek satır sayılar): yanlış, bugünkü tekrar (canli.js ertelenmiş → DOMContentLoaded), kart (sunucu)
+    function rozet(id, metin) { var el = document.getElementById(id); if (!el) return; el.textContent = metin || ""; el.hidden = !metin; }
+    var tekrarRozet = { yanlis: nh, tekrar: 0, kart: 0 };
+    function tekrarYaz() {
+      var p = [];
+      if (tekrarRozet.kart) p.push(tekrarRozet.kart + " kart bugün");
+      if (tekrarRozet.tekrar) p.push(tekrarRozet.tekrar + " tekrar");
+      else if (tekrarRozet.yanlis) p.push(tekrarRozet.yanlis + " yanlış");
+      rozet("hub-tekrar-rozet", p.join(" · "));
+    }
+    tekrarYaz();
+    rozet("hub-dene-rozet", ak ? "Yarım deneme" : gecmis.length ? gecmis.length + " deneme" : "");
+    var kdSay = dersler.filter(function (d) { var c = ozet[d.page]; return c && c.answered; }).length;
+    rozet("hub-ders-rozet", kdSay ? kdSay + " ders başladı" : "");
+    function tekrarSay() {
+      var C = window.MeberraCanli;
+      if (!C || !C.vadeSay) return;
+      var n = C.vadeSay(A.storeGet("apmeberra:tekrar:v1", null), C.istGun((BG ? new Date(BG + "T12:00:00") : new Date()).getTime()));
+      tekrarRozet.tekrar = n;
+      document.getElementById("co-tekrar-sayi").textContent = String(n);
+      document.getElementById("co-tekrar-alt").textContent = n ? "soru bugün yeniden karşında" : "Bugün tekrar edecek soru yok.";
+      tekrarYaz();
+    }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", tekrarSay); else tekrarSay();
+    if (window.fetch && typeof MEBERRA_SUNUCU !== "undefined" && MEBERRA_SUNUCU) fetch("/api/kartlar", { credentials: "same-origin", headers: { Accept: "application/json" } })
+      .then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+        var n = j && j.bugunSayi ? +j.bugunSayi.toplam || 0 : null;
+        if (n === null) return;
+        document.getElementById("co-kart-sayi").textContent = String(n);
+        document.getElementById("co-kart-alt").textContent = n ? "kart bugün seni bekliyor" : "Bugünkü kartlar tamam.";
+        tekrarRozet.kart = n; tekrarYaz();
+      }).catch(function () { /* rozet isteğe bağlı */ });
   })();
   </script>
 </body>

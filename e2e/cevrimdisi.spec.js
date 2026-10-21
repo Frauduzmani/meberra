@@ -44,9 +44,9 @@ test("çevrimdışı: SW kabuğu önbellekler, gezinmede uykulu maskotlu çevrim
   } finally {
     await context.setOffline(false);
   }
-  // Bağlantı geldi: "online" olayı ya da düğme asıl sayfayı yükler
-  await page.getByRole("button", { name: "Yeniden dene" }).click().catch(() => { /* online olayı zaten yeniledi */ });
-  await expect(page.getByRole("heading", { name: "İnternet bağlantın yok gibi" })).toHaveCount(0);
+  // Bağlantı geldi: sayfanın "online" dinleyicisi asıl sayfayı kendiliğinden yeniden yükler
+  // (önce /api/health yoklanır; ağ gecikirse 1,5 sn arayla yeniden dener)
+  await expect(page.locator('meta[name="meberra-sayfa"]')).toHaveAttribute("content", "ilerleme", { timeout: 30e3 });
   await expect(page).toHaveURL(/\/ilerleme$/);
-  await expect(page.locator('meta[name="meberra-sayfa"]')).toHaveAttribute("content", "ilerleme");
+  await expect(page.getByRole("heading", { name: "İnternet bağlantın yok gibi" })).toHaveCount(0);
 });

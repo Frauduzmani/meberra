@@ -84,7 +84,7 @@ test("geçiş: mevcut rollerle dolu veritabanında users korunur, 'ogretmen' ekl
   const d = new DatabaseSync(dosya);
   d.exec("PRAGMA foreign_keys = ON; CREATE TABLE schema_migrations (surum TEXT PRIMARY KEY, uygulama TEXT NOT NULL)");
   for (const f of fs.readdirSync(klasor).filter(f => /^\d+_.*\.(sql|js)$/.test(f)).sort()) {
-    if (f >= "015") break;
+    if (/okul_ogretmen/.test(f)) continue; // yalnız bu geçiş sonradan uygulanır
     const js = /\.js$/.test(f) ? require(path.join(klasor, f)) : null;
     if (js && js.fkKapali) d.exec("PRAGMA foreign_keys = OFF");
     if (js) js.calistir(d); else d.exec(fs.readFileSync(path.join(klasor, f), "utf8"));
@@ -104,7 +104,7 @@ test("geçiş: mevcut rollerle dolu veritabanında users korunur, 'ogretmen' ekl
   assert.equal(g.prepare("SELECT COUNT(*) AS n FROM subscriptions").get().n, 1);
   assert.equal(g.prepare("SELECT COUNT(*) AS n FROM veli_baglantilari").get().n, 1);
   assert.equal(g.prepare("PRAGMA foreign_key_check").all().length, 0);
-  assert.ok(g.prepare("SELECT 1 FROM schema_migrations WHERE surum = '015_okul_ogretmen.js'").get());
+  assert.ok(g.prepare("SELECT 1 FROM schema_migrations WHERE surum LIKE '%_okul_ogretmen.js'").get());
   g.prepare("INSERT INTO users (public_id, eposta, kullanici_adi, ad, soyad, sifre_hash, rol, olusturma, guncelleme) VALUES ('u9', 'o@x.com', 'ox', 'A', 'B', 'h', 'ogretmen', ?, ?)").run(z, z);
   assert.throws(() => g.prepare("INSERT INTO users (public_id, eposta, kullanici_adi, ad, soyad, sifre_hash, rol, olusturma, guncelleme) VALUES ('u8', 'k@x.com', 'kx', 'A', 'B', 'h', 'kral', ?, ?)").run(z, z));
   assert.ok(g.prepare("SELECT sql FROM sqlite_schema WHERE name = 'users'").get().sql.includes("'veli', 'ogretmen'"));

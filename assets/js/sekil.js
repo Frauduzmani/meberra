@@ -85,6 +85,10 @@
     if (typeof metin !== "string" || !metin || metin.length > EN_COK) return null;
     if (/<!(?:DOCTYPE|ENTITY)|<!\[CDATA\[|&(?!(?:lt|gt|amp|quot|apos|#\d{1,7}|#x[0-9a-fA-F]{1,6});)/i.test(metin)) return null;
     if (typeof DOMParser === "undefined") return null;
+    // xmlns verilmemişse (sunucu zorunlu tutmaz) XML ayrıştırıcısı için kök öğeye eklenir; yoksa öğeler SVG ad alanında olmaz
+    var kokEt = /^\s*<svg\b[^>]*>/.exec(metin);
+    if (!kokEt) return null;
+    if (!/\sxmlns\s*=/.test(kokEt[0])) metin = metin.replace(/^(\s*<svg\b)/, '$1 xmlns="' + SVG_NS + '"');
     var doc;
     try { doc = new DOMParser().parseFromString(metin, "image/svg+xml"); } catch (e) { return null; }
     var k = doc && doc.documentElement;

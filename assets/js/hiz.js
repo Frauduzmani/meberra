@@ -27,7 +27,15 @@
     var run = function () { if (mj.typesetPromise) mj.typesetPromise([el]).catch(function () {}); };
     if (mj.startup && mj.startup.promise) mj.startup.promise.then(run).catch(function () {}); else run();
   }
-  function sekil(v, sik) { return typeof window.apSekilHtml === "function" && v ? window.apSekilHtml(v, sik) : ""; }
+  // Şekiller (soru: sekiller [], şık: sekil {}): app.js yer tutucusu (oran viewBox'tan → kayma yok); app.js yoksa doğrudan MeberraSekil.ciz
+  function sekil(v, sik) {
+    if (!v) return "";
+    if (typeof window.apSekilHtml === "function") return window.apSekilHtml(v, sik);
+    var S = window.MeberraSekil;
+    if (!S || typeof S.ciz !== "function") return "";
+    return (Array.isArray(v) ? v : [v]).map(function (x) { try { return S.ciz(x, { secenek: !!sik }).outerHTML; } catch (e) { return ""; } }).join("");
+  }
+  function sekilDoldur(el) { var S = window.MeberraSekil; if (S && typeof S.doldur === "function") try { S.doldur(el); } catch (e) { /* şekil çizilemedi: metin yeter */ } }
   function pop(el, sinif) { if (!el || azHareket()) return; el.classList.remove(sinif); void el.offsetWidth; el.classList.add(sinif); el.addEventListener("animationend", function () { el.classList.remove(sinif); }, { once: true }); }
   function hata(r, v) { return r.durum === 0 ? "Bağlantın kopmuş görünüyor. İnternete bağlanınca yeniden dene." : (r.veri && r.veri.error) || v; }
   function sayiTR(n) { try { return Number(n).toLocaleString("tr-TR"); } catch (e) { return String(n); } }
@@ -126,6 +134,7 @@
       '<div class="hz-soru__govde">' + (q.question || "") + sekil(q.sekiller) + '</div><ol class="hz-siklar">' + secenekler + '</ol>';
     el.classList.remove("is-gir"); void el.offsetWidth; el.classList.add("is-gir");
     el.querySelectorAll(".hz-sik").forEach(function (b) { b.addEventListener("click", function () { cevapla(b.getAttribute("data-sik"), false); }); });
+    sekilDoldur(el);
     typeset(el);
     S.kilit = false;
   }

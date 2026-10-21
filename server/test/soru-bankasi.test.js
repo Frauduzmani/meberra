@@ -56,18 +56,18 @@ function cevapAlaniVar(o) {
 const dogruOf = id => db().prepare("SELECT dogru FROM questions_bank WHERE id = ?").get(id).dogru;
 const yanlisOf = id => ["A", "B", "C", "D"].find(x => x !== dogruOf(id));
 
-test("tohum: sayılar pm-denetim ile aynı (1206 ders [1195 aktif + 11 arşiv] + 153 seviye + 1 vitrin; 1.11.0 onayından sonra taslak yok), veritabanı dolu, upsert idempotent", () => {
+test("tohum: sayılar pm-denetim ile aynı (1288 ders [1277 aktif + 11 arşiv; 1.14.0 Ekonomi + English: +82 aktif] + 153 seviye + 1 vitrin; onaylardan sonra taslak yok), veritabanı dolu, upsert idempotent", () => {
   const t = JSON.parse(fs.readFileSync(TOHUM, "utf8"));
   const say = (tur, durum) => t.sorular.filter(x => x.tur === tur && (durum ? x.durum === durum : x.durum !== "taslak")).length;
-  assert.equal(say("ders", "aktif"), 1195);
+  assert.equal(say("ders", "aktif"), 1277);
   assert.equal(say("ders", "arsiv"), 11); // 1.10.0: 2 birebir tekrar; 1.11.0: bağımsız denetimin reddettiği 9 taslak
   assert.equal(say("ders", "taslak"), 0, "1.11.0 onayı: tohumda taslak kalmadı (araclar/onay/UYGULANAN.md)");
-  assert.equal(say("ders"), 1206);
+  assert.equal(say("ders"), 1288);
   assert.equal(say("seviye"), 153);
   assert.equal(say("vitrin"), 1);
   assert.equal(new Set(t.sorular.map(x => x.id)).size, t.sorular.length, "kimlikler benzersiz");
   const n = db().prepare("SELECT tur, COUNT(*) AS n FROM questions_bank WHERE durum != 'taslak' GROUP BY tur").all().reduce((a, x) => (a[x.tur] = x.n, a), {});
-  assert.deepEqual(n, { ders: 1206, seviye: 153, vitrin: 1 });
+  assert.deepEqual(n, { ders: 1288, seviye: 153, vitrin: 1 });
   const s = tohumUpsert(db(), t.sorular, { guncelleyen: "test" });
   assert.equal(s.eklenen, 0); assert.equal(s.guncellenen, 0); assert.equal(s.ayni, t.sorular.length);
   // Tohum statik olarak sunulmaz (server/ klasörü açık değil)
@@ -178,7 +178,7 @@ test("deneme: ücretsiz hak sunucuda — aynı ders sayfasında ikinci deneme 40
   let r = await o("GET", "/api/deneme/katalog");
   assert.equal(r.durum, 200);
   assert.equal(r.govde.kodlar["calculus-ab"].soruSayisi, 215);
-  assert.equal(r.govde.sorular.length, 1189); // v1.10.0: 2 birebir tekrar arşivlendi; v1.11.0: 220 onaylı yeni soru (arşiv deneme havuzunda yok)
+  assert.equal(r.govde.sorular.length, 1271); // v1.10.0: 2 birebir tekrar arşivlendi; v1.11.0: 220 onaylı yeni soru; v1.14.0: 82 onaylı Ekonomi + English (arşiv deneme havuzunda yok)
   assert.equal(cevapAlaniVar(r.govde.sorular), false);
   assert.equal(r.govde.sorular.some(x => "question" in x || "options" in x), false, "katalogda soru kökü/şık yok");
   assert.equal(r.govde.haklar["ap-calculus"], false);

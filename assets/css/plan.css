@@ -39,6 +39,7 @@
 .pl-ikon { width: 18px; height: 18px; flex: none; }
 
 /* ---- bölümler ------------------------------------------------------------ */
+.pl-hero + .pl-bolum { margin-top: 28px; }
 .pl-bolum-bas { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; margin-bottom: 12px; }
 .pl-bolum-bas h2 { margin: 0; font: 800 1.375rem/1.25 var(--font-head); }
 .pl-bolum-alt { color: var(--text-muted); font-size: .9375rem; }
@@ -154,7 +155,7 @@
 
 /* ---- dar ekran: zaman çizelgesi dikey liste ----------------------------- */
 @media (max-width: 640px) {
-  .pl-hero { grid-template-columns: 1fr; padding: 18px 16px; gap: 12px; min-height: 0; }
+  .pl-hero { grid-template-columns: 1fr; padding: 18px 16px; gap: 12px; min-height: 268px; align-content: start; }
   .pl-sayi { font-size: 2.75rem; }
   .pl-gorev { grid-template-columns: 44px minmax(0, 1fr); padding-right: 12px; }
   .pl-git { grid-column: 2; justify-self: start; }

@@ -47,7 +47,9 @@ ok(dersSirasi[0][0] !== dersSirasi[1][0], "haftanın ilk dersi dönüşümlü", 
 // 4) Ağırlıklar: yüksek CED ağırlıklı ünite daha çok görev alır
 const tum = p.haftalar.flatMap(h => h.gorevler);
 const say = id => tum.filter(g => g.unite && g.unite.id === id).length;
-ok(say("chemistry#3") > say("chemistry#2"), "Chemistry Ünite 3 (%20) > Ünite 2 (%8)", [say("chemistry#3"), say("chemistry#2")]);
+// Ücretsiz planda kilitli Ünite 3 (%20) açık Ünite 2'nin önüne geçmez; ilk haftanın ünite görevleri açık ünitelerden
+ok(say("chemistry#2") >= say("chemistry#3"), "Ücretsiz planda açık Ünite 2 kilitli Ünite 3'ten önce", [say("chemistry#2"), say("chemistry#3")]);
+ok(p.haftalar[0].gorevler.filter(g => g.tur === "unite").every(g => !g.kilitli), "ilk haftanın ünite görevleri kilitsiz", p.haftalar[0].gorevler.map(g => g.id + (g.kilitli ? "🔒" : "")));
 ok(say("calculus-ab#6") >= say("calculus-ab#7"), "Calculus Ünite 6 (%18.5) ≥ Ünite 7 (%9)", [say("calculus-ab#6"), say("calculus-ab#7")]);
 const ilkUnite = p.haftalar.slice(0, 10).flatMap(h => h.gorevler).filter(g => g.tur === "unite").map(g => g.unite.id);
 ok(new Set(ilkUnite).size >= 8, "ilk haftalarda farklı üniteler (aynı ünite üst üste değil)", ilkUnite);

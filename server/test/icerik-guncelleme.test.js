@@ -13,8 +13,10 @@ const { TOHUM, TOHUM_AYAR, tohumSurumOku } = require("../sorubankasi");
 const GUNCEL = JSON.parse(fs.readFileSync(TOHUM, "utf8"));
 // v1.11.0: 1.11.0 üretimleri (229; bağımsız denetimle 220 aktif + 9 arşiv) ayrı sayılır; 1.10.0 tohumu = bunlarsız 1131 soru
 const URETIM = GUNCEL.sorular.filter(r => r.ek && r.ek.uretim === "1.11.0").map(r => r.id);
-const ARSIVLENEN = GUNCEL.sorular.filter(r => r.durum === "arsiv" && !URETIM.includes(r.id)).map(r => r.id);
-const YAYIN = GUNCEL.sorular.length - URETIM.length;
+// 1.14.0+: sonraki üretimler (ör. Ekonomi + English, araclar/onay2) 1.10.0 taklidinde de yoktu
+const SONRAKI = GUNCEL.sorular.filter(r => r.ek && r.ek.uretim && r.ek.uretim !== "1.11.0").map(r => r.id);
+const ARSIVLENEN = GUNCEL.sorular.filter(r => r.durum === "arsiv" && !URETIM.includes(r.id) && !SONRAKI.includes(r.id)).map(r => r.id);
+const YAYIN = GUNCEL.sorular.length - URETIM.length - SONRAKI.length;
 const klasor = fs.mkdtempSync(path.join(os.tmpdir(), "meberra-icerik-"));
 after(() => { try { fs.rmSync(klasor, { recursive: true, force: true }); } catch (e) { /* Windows: WAL dosyası kilitli kalabilir */ } });
 
@@ -22,7 +24,7 @@ after(() => { try { fs.rmSync(klasor, { recursive: true, force: true }); } catch
 function eskiTohum() {
   const t = JSON.parse(JSON.stringify(GUNCEL));
   t.surum = 1;
-  t.sorular = t.sorular.filter(r => !URETIM.includes(r.id)); // 1.10.0 öncesinde 1.11.0 üretimleri yoktu
+  t.sorular = t.sorular.filter(r => !URETIM.includes(r.id) && !SONRAKI.includes(r.id)); // 1.10.0 öncesinde 1.11.0+ üretimleri yoktu
   for (const r of t.sorular) {
     if (r.durum === "arsiv") r.durum = "aktif";
     const ek = {};
@@ -89,7 +91,7 @@ test("tohum: arşivlenen birebir tekrarlar var, satırlar silinmedi; aktif içer
   assert.equal(URETIM.length, 229, "1.11.0 üretimleri");
   assert.equal(GUNCEL.sorular.filter(r => r.durum === "taslak").length, 0, "1.11.0 onayı: taslak yok");
   assert.doesNotMatch(JSON.stringify(GUNCEL.sorular), /Erdem standardı/);
-  const ekli = GUNCEL.sorular.filter(r => r.tur !== "vitrin" && !URETIM.includes(r.id) && r.ek.kavram && r.ek.ipucu && r.ek.sikHata && r.ek.cedKonu).length;
+  const ekli = GUNCEL.sorular.filter(r => r.tur !== "vitrin" && !URETIM.includes(r.id) && !SONRAKI.includes(r.id) && r.ek.kavram && r.ek.ipucu && r.ek.sikHata && r.ek.cedKonu).length;
   assert.equal(ekli, 1130);
 });
 
