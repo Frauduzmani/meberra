@@ -1643,7 +1643,7 @@ function initUniteGorunumu() {
     const hedefU = acik.find(u => u.cevap && u.cevap < u.toplam) || acik.find(u => !u.cevap) || null;
     const devam = hedefU ? '<a class="btn-primary btn-sm ug-devam" href="' + base + "?unite=" + hedefU.no + '">' + (hedefU.cevap ? "Sürdür" : "Başla") +
       ": " + (bolumMu ? "Bölüm " : "Ünite ") + apEsc(String(hedefU.no)) + " →</a>" : "";
-    panel.innerHTML = '<div class="bg-sec-h"><div class="u-min0"><h2 id="ug-baslik">' + (bolumMu ? "Bölümler" : "Üniteler") + '</h2><span class="ug-ozet">' + g.uniteler.length + " " + birim +
+    panel.innerHTML = '<div class="bg-sec-h"><div class="u-min0"><h2 id="ug-baslik">' + (bolumMu ? "Bölümler" : "Üniteler") + '</h2><span class="ug-ozet">' + g.uniteler.filter(u => !u.yakinda).length + " " + birim +
     (T.t ? " · " + T.c + " / " + T.t + " soru çözüldü" : "") + '</span></div>' + devam + '</div><ol class="ug-liste">' +
     g.uniteler.map(u => {
       const durum = u.yakinda ? "Sorular hazırlanıyor" : u.cevap ? u.cevap + " / " + u.toplam + " soru · %" + yuzde(u.dogru, u.cevap) + " doğru" : u.toplam ? u.toplam + " soru · başlanmadı" : "Konu anlatımı";
@@ -1785,8 +1785,11 @@ function initUniteGorunumu() {
     oz.kutular.forEach(k => { const el = document.getElementById(k.kutu); if (el) el.dataset.sbToplam = k.toplam; });
     // Yeni istasyon: sunucu listesinde (onaylı sorusu) varsa açılır, yoksa "Yakında" kalır
     const var_ = new Set(oz.kutular.map(k => k.kutu));
+    const yakOnce = g.uniteler.map(u => !!u.yakinda).join();
     els.forEach(el => el.querySelectorAll("[data-sb-yeni-kutu]").forEach(k => { if (var_.has(k.id)) delete k.dataset.sbYakinda; else k.dataset.sbYakinda = "1"; }));
     istatistik(); panelCiz();
+    // Yeni istasyon açıldıysa (ör. ücretsiz planda Premium duvarı gerekir) açık görünüm yeniden çizilir
+    if (g.uniteler.map(u => !!u.yakinda).join() !== yakOnce) ciz.apply(null, coz());
     if (window.APMEBERRA_UNITELER) window.APMEBERRA_UNITELER.uniteler.forEach(x => { const u = g.uniteler.find(y => y.no === x.no); if (u) { x.toplam = u.toplam; x.yakinda = u.yakinda; } });
     try { window.dispatchEvent(new CustomEvent("meberra:unite-ozet", { detail: { page } })); } catch (e) { /* eski tarayıcı */ }
   });

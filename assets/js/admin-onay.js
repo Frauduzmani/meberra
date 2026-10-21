@@ -170,7 +170,8 @@
     }).then(function () { kap.removeAttribute("aria-busy"); kap.classList.remove("is-soluk"); });
   }
 
-  function sayfaAd(s) { return A.dersAd(s) + ""; }
+  var EK_AD = { "sinav-cents": "CEnT-S" };
+  function sayfaAd(s) { var k = String(s || "").replace(/\.html?$/i, ""); return EK_AD[k] || A.dersAd(s) + ""; }
   function kutuAd(k) { return (k.unite_no != null ? "Ü" + k.unite_no + " · " : "") + (k.baslik || k.kutu || "—"); }
   function secenekleriKur() {
     var say = (S.veri && S.veri.sayilar) || {};

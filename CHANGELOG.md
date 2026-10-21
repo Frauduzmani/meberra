@@ -9,6 +9,18 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.10.0] — 2026-10-21
+### Eklendi
+- İçerik denetimi: 1.130 sorunun her biri bağımsız olarak yeniden çözüldü — **hatalı cevap anahtarı yok**. Raporlar `araclar/icerik-denetim/`.
+- Cevaptan sonra geri bildirimde kavram, hesap makinesi bilgisi; "Daha fazla" altında ipucu ve sık hata (ders, tekrar, deneme, seviye testi).
+- FRQ pratiği (`/frq`): 32 özgün serbest yanıt sorusu (taslak, onaydan sonra yayında), rubrikle öz puanlama; ücretsiz planda her dersten 1.
+- 229 yeni çoktan seçmeli soru (taslak) ve yönetici › Soru bankası › Onay kuyruğu (önizleme, toplu onay/ret, klavye kısayolları); yönetici FRQ sekmesi.
+- Physics Unit 8 Fluids, Biology Unit 8 Ecology üniteleri ve English 4–6. okuma parçaları (onaylanan soru yoksa "Yakında").
+### Değişti
+- 40 metin/çeldirici düzeltmesi, 20 konu etiketi, 29 zorluk; 2 birebir tekrar soru arşivde (cevap geçmişi korunur).
+- Mevcut veritabanları tohum sürümüyle otomatik güncellenir; yönetici düzenlemeleri korunur. Taslak sorular hiçbir yoldan öğrenciye gitmez.
+- Ücretsiz planda Genel deneme kilitli kart olarak görünür. KVKK dışa aktarma ve silme FRQ verisini kapsar.
+
 ## [1.9.0] — 2026-10-21
 ### Değişti
 - Tasarım taraması (her sayfa masaüstü/telefon, açık/koyu ekran görüntüsüyle; notlar `araclar/tasarim-1.9/`):
