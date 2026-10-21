@@ -3,7 +3,8 @@
  * 1) Ürün değerlerini (fiyat, ücretsiz sınırlar, e-posta) [data-urun] öğelerine yazar (sunucu: GET /api/public/config).
  * 2) Kaydırınca beliren bölümler ([data-rv], IntersectionObserver; yalnızca opacity/transform → yerleşim kayması yok).
  * 3) 3 adımlı AP anlatımı (#vx): ~5 sn'de bir ilerler; durdur/geç; üzerine gelince/odakta durur.
- * 4) Mini demo ([data-demo]): örnek soru, anında geri bildirim + konfeti.
+ * 4) Mini demo ([data-demo]): örnek soru sunucudan (GET /api/public/demo-soru; cevap anahtarı sayfada yok), cevap sunucuda kontrol
+ *    edilir (POST /api/public/demo-soru/cevap), anında geri bildirim + konfeti.
  * prefers-reduced-motion: anlatım statik, belirme ve konfeti yok.
  */
 (function () {
@@ -219,9 +220,67 @@
   (function demo() {
     var kok = doc.querySelector("[data-demo]");
     if (!kok) return;
-    var secenekler = kok.querySelectorAll(".vt-opt");
     var fb = kok.querySelector("[data-demo-fb]"), sol = kok.querySelector("[data-demo-sol]");
-    var dogru = kok.querySelector('.vt-opt[data-ok="1"]');
+    var govde = kok.querySelector("[data-demo-govde]"), kap = kok.querySelector("[data-demo-opts]"), cozumEl = kok.querySelector("[data-demo-cozum]");
+    var secenekler = [], bekliyor = false;
+    var ZOR = { easy: "Kolay", medium: "Orta", hard: "Zor" };
+    function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (m) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]; }); }
+    function istek(yol, govdeVeri) {
+      var o = { credentials: "same-origin", headers: { "Content-Type": "application/json", "X-Meberra": "1" } };
+      if (govdeVeri !== undefined) { o.method = "POST"; o.body = JSON.stringify(govdeVeri); }
+      return fetch(yol, o).then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { durum: r.status, veri: j || {} }; }); },
+        function () { return { durum: 0, veri: {} }; });
+    }
+    function yukle() {
+      istek("/api/public/demo-soru").then(function (r) {
+        if (r.durum !== 200 || !r.veri.ok || !r.veri.soru) {
+          govde.innerHTML = '<p class="vt-q-text" id="vt-q-text">Örnek soru şu an yüklenemedi.</p>';
+          kap.innerHTML = '<button type="button" class="btn-ghost" data-demo-tekrar>Yeniden dene</button>';
+          kap.querySelector("[data-demo-tekrar]").addEventListener("click", yukle);
+          return;
+        }
+        var q = r.veri.soru;
+        var konu = kok.querySelector("[data-demo-konu]"), zor = kok.querySelector("[data-demo-zorluk]");
+        if (konu && q.konu) konu.textContent = q.konu;
+        if (zor) zor.textContent = ZOR[q.difficulty] || "Örnek soru";
+        govde.innerHTML = q.question;
+        if (!govde.querySelector("#vt-q-text")) { var p = govde.querySelector("p"); if (p) p.id = "vt-q-text"; }
+        kap.innerHTML = q.options.map(function (o) {
+          return '<button type="button" class="vt-opt" data-opt="' + esc(o.id) + '" aria-pressed="false"><span class="vt-opt-k">' + esc(o.id) + "</span><span>" + o.text + "</span></button>";
+        }).join("");
+        secenekler = kap.querySelectorAll(".vt-opt");
+        for (var i = 0; i < secenekler.length; i++) secenekler[i].addEventListener("click", sec);
+      });
+    }
+    function sec(e) {
+      if (bekliyor) return;
+      var b = e.currentTarget, harf = b.getAttribute("data-opt");
+      bekliyor = true;
+      for (var j = 0; j < secenekler.length; j++) secenekler[j].disabled = true;
+      b.setAttribute("aria-pressed", "true");
+      istek("/api/public/demo-soru/cevap", { secim: harf }).then(function (r) {
+        bekliyor = false;
+        if (r.durum !== 200 || !r.veri.ok) {
+          for (var k = 0; k < secenekler.length; k++) secenekler[k].disabled = false;
+          b.setAttribute("aria-pressed", "false");
+          fb.className = "vt-q-fb is-wrong";
+          fb.textContent = r.durum === 429 ? (r.veri.error || "Biraz bekleyip tekrar dene.") : "Cevabın kontrol edilemedi. Bağlantını kontrol edip yeniden dene.";
+          return;
+        }
+        var ok = !!r.veri.dogru;
+        var dogru = kap.querySelector('.vt-opt[data-opt="' + r.veri.dogruSecenek + '"]');
+        b.classList.add(ok ? "is-right" : "is-wrong");
+        if (dogru) dogru.classList.add("is-right");
+        kok.classList.add("is-done", ok ? "is-right" : "is-wrong");
+        fb.className = "vt-q-fb " + (ok ? "is-right" : "is-wrong");
+        var gt = document.createElement("span"); gt.innerHTML = r.veri.genelHatirlatma || "";
+        var ht = document.createElement("span"); ht.innerHTML = (r.veri.hataAciklamasi && r.veri.hataAciklamasi.aciklama) || "";
+        fb.textContent = ok ? (gt.textContent || "Doğru!") : "Doğru cevap " + r.veri.dogruSecenek + ". " + ht.textContent;
+        cozumEl.innerHTML = r.veri.aciklama || "";
+        sol.hidden = false;
+        if (ok) { var rc = b.getBoundingClientRect(); konfeti(rc.left + rc.width / 2, rc.top + rc.height / 2); }
+      });
+    }
     function sifirla() {
       kok.classList.remove("is-done", "is-right", "is-wrong");
       for (var i = 0; i < secenekler.length; i++) {
@@ -229,23 +288,9 @@
         secenekler[i].removeAttribute("aria-pressed");
       }
       fb.textContent = ""; fb.className = "vt-q-fb"; sol.hidden = true;
-      secenekler[0].focus();
+      if (secenekler[0]) secenekler[0].focus();
     }
-    for (var i = 0; i < secenekler.length; i++) {
-      secenekler[i].setAttribute("aria-pressed", "false");
-      secenekler[i].addEventListener("click", function (e) {
-        var b = e.currentTarget, ok = b.getAttribute("data-ok") === "1";
-        for (var j = 0; j < secenekler.length; j++) secenekler[j].disabled = true;
-        b.setAttribute("aria-pressed", "true");
-        b.classList.add(ok ? "is-right" : "is-wrong");
-        dogru.classList.add("is-right");
-        kok.classList.add("is-done", ok ? "is-right" : "is-wrong");
-        fb.className = "vt-q-fb " + (ok ? "is-right" : "is-wrong");
-        fb.textContent = ok ? "Doğru! 1/4. Eşlenik hamlesini buldun." : "Doğru cevap B (1/4). " + (b.getAttribute("data-r") || "");
-        sol.hidden = false;
-        if (ok) { var r = b.getBoundingClientRect(); konfeti(r.left + r.width / 2, r.top + r.height / 2); }
-      });
-    }
+    yukle();
     var reset = kok.querySelector("[data-demo-reset]");
     if (reset) reset.addEventListener("click", sifirla);
   })();

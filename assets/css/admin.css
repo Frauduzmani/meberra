@@ -819,3 +819,52 @@ html.adm-kilit { overflow: hidden; }
 @media (max-width: 380px) {
   .adm-saglik { grid-template-columns: 1fr; }
 }
+
+/* ============================================================================
+   Soru bankası sekmesi (v1.5.0): liste, şüpheli vurgusu, düzenleyici + canlı önizleme, sürüm geçmişi / fark
+   ========================================================================== */
+.adm-sb-supheli { align-self: end; min-height: 44px; display: inline-flex; align-items: center; gap: var(--sp-2); }
+.adm-sb-tablo tbody tr { cursor: pointer; }
+.adm-sb-tablo tbody tr.is-supheli { background: color-mix(in srgb, var(--bad) 7%, transparent); }
+.adm-sb-tablo tbody tr:hover, .adm-sb-tablo tbody tr:focus-visible { background: var(--surface-2); outline: none; }
+.adm-sb-tablo tbody tr.is-supheli:hover { background: color-mix(in srgb, var(--bad) 12%, transparent); }
+.adm-sb-konu { font-size: var(--fs-12); font-weight: 700; color: var(--text-dim); }
+.adm-sb-oran { font-weight: 800; font-variant-numeric: tabular-nums; }
+.adm-sb-oran.is-supheli { color: var(--bad); }
+.adm-sb-ist { margin-bottom: var(--sp-3); }
+.adm-sb-dagilim { list-style: none; margin: var(--sp-3) 0 0; padding: 0; display: grid; gap: 6px; max-width: 520px; }
+.adm-sb-dagilim li { display: grid; grid-template-columns: 3rem 1fr 6rem; align-items: center; gap: var(--sp-2); font-size: var(--fs-14); font-variant-numeric: tabular-nums; }
+.adm-sb-dagilim li.is-dogru { font-weight: 800; color: var(--ok); }
+.adm-sb-cubuk { height: 8px; border-radius: var(--radius-full); background: var(--surface-3); overflow: hidden; }
+.adm-sb-cubuk i { display: block; height: 100%; background: var(--accent); border-radius: inherit; }
+.adm-sb-dagilim li.is-dogru .adm-sb-cubuk i { background: var(--ok); }
+.adm-sb-duzen { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: var(--sp-4); align-items: start; margin: var(--sp-4) 0; }
+.adm-sb-oniz { position: sticky; top: var(--sp-4); max-height: calc(100vh - 2 * var(--sp-4)); overflow: auto; }
+.adm-sb-oniz .question-card { margin: 0; animation: none; }
+.adm-sb-oniz .option-btn { cursor: default; }
+.adm-sb-sik { border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--sp-3); margin: 0 0 var(--sp-3); display: grid; gap: var(--sp-2); min-width: 0; }
+.adm-sb-sik-ust { display: flex; align-items: center; gap: var(--sp-3); }
+.adm-sb-sik-ust .btn-ghost { margin-left: auto; }
+.adm-sb-dogru { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 700; }
+.adm-sb-harf { width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; background: var(--surface-3); font-weight: 900; }
+.adm-sb-sik:has(input[name="sb-dogru"]:checked) { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 6%, transparent); }
+.adm-sb-sik:has(input[name="sb-dogru"]:checked) .adm-sb-harf { background: var(--ok); color: var(--surface); }
+.adm-sb-hata { display: grid; gap: var(--sp-2); }
+.adm-sb-hata[hidden] { display: none; }
+.adm-sb-surumler { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-3); }
+.adm-sb-surum { border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--sp-3); display: grid; gap: var(--sp-2); }
+.adm-sb-surum-ust { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); }
+.adm-sb-fark { margin-top: var(--sp-2); }
+.adm-sb-fark-ad { margin: 0 0 4px; font-size: var(--fs-12); font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--text-dim); }
+.adm-sb-fark-iki { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-2); }
+.adm-sb-fark-iki pre { margin: 0; padding: var(--sp-2); border-radius: var(--radius-sm); white-space: pre-wrap; overflow-wrap: anywhere; font-size: var(--fs-12); max-height: 260px; overflow: auto; }
+.adm-sb-fark-iki .is-eski { background: color-mix(in srgb, var(--bad) 9%, transparent); border-left: 3px solid var(--bad); }
+.adm-sb-fark-iki .is-yeni { background: color-mix(in srgb, var(--ok) 9%, transparent); border-left: 3px solid var(--ok); }
+@media (max-width: 960px) {
+  .adm-sb-duzen { grid-template-columns: 1fr; }
+  .adm-sb-oniz { position: static; max-height: none; }
+}
+@media (max-width: 640px) {
+  .adm-sb-fark-iki { grid-template-columns: 1fr; }
+  .adm-sb-dagilim li { grid-template-columns: 2.5rem 1fr 5rem; }
+}

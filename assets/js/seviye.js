@@ -1,7 +1,9 @@
 /**
  * Meberra — Seviye Testi + Sınav Hazırlık Raporu (Ajan 11 — Frontend & UX)
  *
- * Veri:  data/sorular/seviye/<ders>.js  → window.APMEBERRA_SEVIYE[ders]   (salt okunur)
+ * Veri:  GET /api/seviye/bankalar → window.APMEBERRA_SEVIYE[ders] (v1.5.0: ünite meta verisi + sorular, doğru şık / çözüm YOK)
+ *        POST /api/seviye/teslim → sunucu cevapları kontrol eder, çözümleri döner; POST /api/seviye/cozumler → eski raporun çözümleri
+ *        (ünite meta verisi herkese açık data/sorular/seviye/<ders>.js dosyalarında da durur; sorular yalnız veritabanında)
  *        data/mevzuat/sinav-takvimi.js → window.APMEBERRA_TAKVIM          (salt okunur)
  * Depo:  localStorage "apmeberra:seviye:v1" (apmeberra: önekli → sunucu senkronu kapsar)
  *        { v:1, devam:{...}|null, raporlar:[en yeni önce, en fazla 5], kontrol:{gereklilikId:{c,t}} }
@@ -280,18 +282,40 @@
   function dersMeta(key) { return LISTE.filter(function (d) { return d.key === key; })[0] || { key: key, ad: key, cls: "" }; }
   function dersAd(key) { var b = banka(key); return (b && b.ad) || dersMeta(key).ad; }
 
+  // v1.5.0: bankalar sunucudan (cevapsız). Çözümler teslimden sonra COZUM'a yazılır ("ders|id" → { dogru, aciklama, genelHatirlatma, hatalar }).
+  var COZUM = {};
+  function sbIstek(yol, govde) {
+    var o = { credentials: "same-origin", headers: { "Content-Type": "application/json", "X-Meberra": "1" } };
+    if (govde !== undefined) { o.method = "POST"; o.body = JSON.stringify(govde); }
+    return fetch(yol, o).then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { durum: r.status, veri: j || {} }; }); },
+      function () { return { durum: 0, veri: {} }; });
+  }
+  /** Sorunun çözümlü kopyası (eski şema: options[].isCorrect/errorTag/remediation, stepByStepSolution, generalRemediation). */
+  function cozumlu(ders, q) {
+    var c = COZUM[ders + "|" + q.id];
+    if (!c) return q;
+    var h = c.hatalar || {};
+    return Object.assign({}, q, {
+      options: q.options.map(function (o) { return Object.assign({ id: o.id, text: o.text, isCorrect: o.id === c.dogru }, h[o.id] ? { errorTag: h[o.id].errorTag, remediation: h[o.id].remediation } : {}); }),
+      stepByStepSolution: c.aciklama || "", generalRemediation: c.genelHatirlatma || ""
+    });
+  }
   function bankalariYukle(bitti) {
-    var dosyalar = [];
-    LISTE.forEach(function (d) { if (dosyalar.indexOf(d.dosya) < 0) dosyalar.push(d.dosya); });
-    var kalan = dosyalar.length, tamam = false;
-    function bir() { if (--kalan <= 0 && !tamam) { tamam = true; bitti(); } }
-    window.setTimeout(function () { if (!tamam) { tamam = true; bitti(); } }, 8000);
-    dosyalar.forEach(function (f) {
-      var s = document.createElement("script");
-      s.src = "data/sorular/seviye/" + f;
-      s.onload = function () { dosyaDurum[f] = "ok"; bir(); };
-      s.onerror = function () { dosyaDurum[f] = "yok"; s.remove(); bir(); };
-      document.head.appendChild(s);
+    var yuk = $("sv-loading");
+    if (!document.querySelector('meta[name="meberra-api"]')) { LISTE.forEach(function (d) { dosyaDurum[d.dosya] = "yok"; }); bitti(); return; }
+    yuk.textContent = "Soru dosyaları yükleniyor…";
+    yuk.setAttribute("role", "status");
+    sbIstek("/api/seviye/bankalar").then(function (r) {
+      if (r.durum === 200 && r.veri.ok) {
+        window.APMEBERRA_SEVIYE = r.veri.bankalar || {};
+        LISTE.forEach(function (d) { if (dosyaDurum[d.dosya] !== "ok") dosyaDurum[d.dosya] = window.APMEBERRA_SEVIYE[d.key] ? "ok" : "yok"; });
+        bitti();
+        return;
+      }
+      yuk.setAttribute("role", "alert");
+      yuk.innerHTML = '<strong>Soru dosyaları yüklenemedi.</strong> ' + esc(r.durum === 0 ? "Bağlantın kopmuş görünüyor." : (r.veri.error || "Sunucu şu an yanıt vermiyor.")) +
+        ' <button type="button" class="btn-primary btn-sm" id="sv-yukle-tekrar">Yeniden dene</button>';
+      $("sv-yukle-tekrar").addEventListener("click", function () { bankalariYukle(bitti); });
     });
   }
 
@@ -651,10 +675,35 @@
     var sk = document.querySelector(".sv-skipped-note"); if (sk) sk.remove();
   }
 
+  var bitiriliyor = false;
   function testiBitir(neden) {
     var dv = V.devam;
-    if (!dv) return;
+    if (!dv || bitiriliyor) return;
     zamanlayiciDur();
+    bitiriliyor = true;
+    dv.guncelleme = new Date().toISOString(); yaz();
+    // Cevaplar sunucuda kontrol edilir (doğru şıklar tarayıcıda yok); gelen çözümlerle mevcut puanlama yapılır
+    var gonder = {};
+    dv.sira.forEach(function (s) { var k = s.ders + "|" + s.id; gonder[k] = dv.cevaplar[k] == null ? null : dv.cevaplar[k]; });
+    var msg = $("sv-q-msg");
+    if (msg) msg.textContent = "Cevapların kontrol ediliyor…";
+    sbIstek("/api/seviye/teslim", { cevaplar: gonder }).then(function (r) {
+      bitiriliyor = false;
+      if (r.durum !== 200 || !r.veri.ok) {
+        if (msg) msg.innerHTML = '<span role="alert">Rapor oluşturulamadı: ' + esc(r.durum === 0 ? "bağlantı yok." : (r.veri.error || "sunucu yanıt vermedi.")) +
+          ' Cevapların kayıtlı.</span> <button type="button" class="btn-primary btn-sm" id="sv-bitir-tekrar">Yeniden dene</button>';
+        var b = $("sv-bitir-tekrar"); if (b) b.addEventListener("click", function () { testiBitir(neden); });
+        if (neden !== "sure") zamanlayiciBaslat();
+        return;
+      }
+      Object.assign(COZUM, r.veri.cozumler || {});
+      if (msg) msg.textContent = "";
+      testiPuanla(neden);
+    });
+  }
+  function testiPuanla(neden) {
+    var dv = V.devam;
+    if (!dv) return;
     var now = new Date().toISOString();
     var sonuclar = {};
     dv.dersler.forEach(function (key) {
@@ -665,7 +714,7 @@
       // Testte sorulmayan (ör. sonradan eklenen) sorular puanlamaya girmez
       var sorulan = {};
       dv.sira.forEach(function (s) { if (s.ders === key) sorulan[s.id] = true; });
-      var bk = Object.assign({}, b, { sorular: b.sorular.filter(function (q) { return sorulan[q.id]; }) });
+      var bk = Object.assign({}, b, { sorular: b.sorular.filter(function (q) { return sorulan[q.id]; }).map(function (q) { return cozumlu(key, q); }) });
       var r = puanla(bk, cev);
       r.ad = b.ad || dersMeta(key).ad;
       r.cedSurum = b.cedSurum || null;
@@ -766,6 +815,28 @@
     root.innerHTML = html;
     raporOlaylari(r);
     dizgile(root);
+    cozumleriTamamla(r);
+  }
+  /** Raporun yanlış/cevapsız sorularının çözümleri bellekte yoksa (sayfa yenilendi, başka cihaz) sunucudan alınır; g bölümü yeniden çizilir. */
+  function cozumleriTamamla(r) {
+    var eksik = [];
+    r.dersler.forEach(function (key) {
+      var s = r.sonuclar[key] || {}, l = s.liste || {};
+      [].concat(l.yanlis || [], l.cevapsiz || []).forEach(function (id) { if (!COZUM[key + "|" + id]) eksik.push(key + "|" + id); });
+    });
+    if (!eksik.length || r._cozumIstendi) return;
+    r._cozumIstendi = true;
+    sbIstek("/api/seviye/cozumler", { anahtarlar: eksik }).then(function (x) {
+      if (x.durum !== 200 || !x.veri.ok || !Object.keys(x.veri.cozumler || {}).length) return;
+      Object.assign(COZUM, x.veri.cozumler);
+      var eski = document.querySelector('#sv-report section[aria-labelledby="sv-g"]');
+      if (!eski || aktifRaporId !== r.id) return;
+      var t = document.createElement("div");
+      t.innerHTML = yanlisBolumu(r);
+      var yeni = t.firstElementChild;
+      eski.parentNode.replaceChild(yeni, eski);
+      dizgile(yeni);
+    });
   }
 
   // a. Özet kartı
@@ -1001,6 +1072,13 @@
       list.forEach(function (x) {
         var q = b.sorular.filter(function (y) { return y.id === x.id; })[0];
         if (!q) { html += '<p class="side-note">' + esc(x.id) + ': soru artık bankada yok.</p>'; return; }
+        q = cozumlu(key, q);
+        if (!q.options.some(function (o) { return o.isCorrect; })) {
+          html += '<details class="sv-wrong" data-qid="' + esc(q.id) + '" data-tur="' + x.tur + '"><summary><span class="sv-wrong-tag ' + (x.tur === "yanlis" ? "is-bad" : "is-muted") + '">' + (x.tur === "yanlis" ? "Yanlış" : "Cevapsız") + '</span>' +
+            '<span class="sv-wrong-title">Unit ' + esc(q.unite) + ' · ' + esc(q.beceri || "") + '</span></summary><div class="sv-wrong-body"><div class="question-body">' + q.question + '</div>' +
+            '<p class="side-note" role="status">Çözüm yükleniyor…</p></div></details>';
+          return;
+        }
         var dogru = q.options.filter(function (o) { return o.isCorrect; })[0] || {};
         var secId = s.cevaplar ? s.cevaplar[q.id] : null;
         var sec = q.options.filter(function (o) { return o.id === secId; })[0];

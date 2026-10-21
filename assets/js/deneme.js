@@ -1,7 +1,10 @@
 /**
  * Meberra — Deneme Sınavı motoru (Tur 5 · Ajan 12 İçerik & Deneme Sorumlusu + Ajan 3 Canan Yılmaz)
  *
- * Veri: window.APMEBERRA_DENEME_BANKASI (data/sorular/deneme-bankasi.js, `node araclar/deneme-bankasi-olustur.js` üretir).
+ * Veri (v1.5.0): sorular sunucuda. GET /api/deneme/katalog → kodlar + pasajlar + soru meta verisi (kök/şık/cevap YOK);
+ *   POST /api/deneme/olustur → sunucu soruları seçer (aynı tohumlu algoritma), ücretsiz deneme hakkını yazar, soru içeriğini (cevapsız) verir;
+ *   GET /api/deneme/<id> → yarım denemeyi sürdürmek / sonucu incelemek için içerik (teslimden sonra çözümler);
+ *   POST /api/deneme/teslim → sunucu puanlar (bant dahil), exams tablosuna yazar, çözümleri döner.
  * Depolama: localStorage "apmeberra:deneme:v1" (apmeberra: önekli → sunucu senkronu otomatik kapsar)
  *   {
  *     v: 1,
@@ -34,7 +37,9 @@
   var HAK_KEY = "apmeberra:deneme-hak:v1";
   var ERR_KEY = "apmeberra:errors:v1";
   var MAX_GECMIS = 50;
-  var BANK = window.APMEBERRA_DENEME_BANKASI;
+  var BANK = null;          // katalog: { kodlar, pasajlar, sorular (meta), haklar }
+  var ICERIK = {};          // "sayfa|id" → { question, options:[{id,text}], source, difficulty, number } (cevapsız)
+  var COZUM = {};           // "sayfa|id" → sunucu çözümü (yalnız teslim edilen denemeler)
 
   // --------------------------------------------------------------------------
   // Sınav temposu: AP Section I (MCQ) soru başına süre = bölüm süresi / soru sayısı.
@@ -119,14 +124,46 @@
   }
   function param(name) { var m = new RegExp("[?&]" + name + "=([^&#]*)").exec(window.location.search); return m ? decodeURIComponent(m[1]) : null; }
 
-  if (!BANK || !BANK.sorular || !BANK.kodlar) {
-    view.innerHTML = '<div class="dn-alert is-bad" role="alert"><strong>Deneme soruları yüklenemedi.</strong> Sayfayı yenilemeyi dene; sorun sürerse biraz sonra tekrar dene.</div>';
-    return;
+  // ---------------- sunucu ----------------
+  function api(yontem, yol, govde) {
+    var o = { method: yontem, credentials: "same-origin", headers: { "Content-Type": "application/json", "X-Meberra": "1" } };
+    if (govde !== undefined) o.body = JSON.stringify(govde);
+    return fetch(yol, o).then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { durum: r.status, veri: j || {} }; }); },
+      function () { return { durum: 0, veri: {} }; });
   }
-
+  function hataMetni(r, varsayilan) {
+    return r.durum === 0 ? "Bağlantın kopmuş görünüyor. İnternete bağlanınca yeniden dene." : r.durum === 401 ? "Oturumun sona erdi; yeniden giriş yap." : (r.veri && r.veri.error) || varsayilan;
+  }
+  function iskelet(metin) {
+    return '<p class="visually-hidden" role="status">' + esc(metin || "Yükleniyor…") + '</p><div class="sb-iskelet dn-iskelet" aria-hidden="true"><div class="sb-isk-kart"><span class="sb-isk sb-isk-ust"></span>' +
+      '<span class="sb-isk sb-isk-satir"></span><span class="sb-isk sb-isk-satir is-kisa"></span><span class="sb-isk sb-isk-sik"></span><span class="sb-isk sb-isk-sik"></span><span class="sb-isk sb-isk-sik"></span><span class="sb-isk sb-isk-sik"></span></div></div>';
+  }
+  function hataEkrani(baslik, metin, tekrar) {
+    view.innerHTML = '<div class="sb-durum is-hata" role="alert"><strong>' + esc(baslik) + '</strong><p>' + esc(metin) + '</p><button type="button" class="btn-primary btn-sm" id="dn-tekrar">Yeniden dene</button></div>';
+    document.getElementById("dn-tekrar").addEventListener("click", tekrar);
+  }
   var BY_KEY = {};
-  BANK.sorular.forEach(function (q) { BY_KEY[q.sayfa + "|" + q.id] = q; });
-  var KODLAR = Object.keys(BANK.kodlar);
+  var KODLAR = [];
+  function bankaKur(B) {
+    BANK = B;
+    BY_KEY = {};
+    B.sorular.forEach(function (q) { BY_KEY[q.sayfa + "|" + q.id] = q; });
+    KODLAR = Object.keys(B.kodlar);
+  }
+  /** Soru = katalog meta + içerik (+ teslimden sonra çözüm). Çözüm eski şemaya işlenir (options[].isCorrect …). */
+  function soru(k) {
+    var m = BY_KEY[k]; if (!m) return null;
+    var ic = ICERIK[k];
+    var q = Object.assign({}, m, ic ? { question: ic.question, source: ic.source, difficulty: ic.difficulty, number: ic.number != null ? ic.number : m.number,
+      options: (ic.options || []).map(function (o) { return { id: o.id, text: o.text }; }) } : { question: "", options: [] });
+    var c = COZUM[k];
+    if (c) {
+      var h = c.hatalar || {};
+      q.options.forEach(function (o) { o.isCorrect = o.id === c.dogru; if (h[o.id]) { o.errorTag = h[o.id].errorTag; o.remediation = h[o.id].remediation; } });
+      q.stepByStepSolution = c.aciklama || ""; q.generalRemediation = c.genelHatirlatma || "";
+    }
+    return q;
+  }
   function qKey(q) { return q.sayfa + "|" + q.id; }
   function poolFor(kod, units) {
     return BANK.sorular.filter(function (q) { return q.denemeKodlari.indexOf(kod) >= 0 && (!units || units.indexOf(q.unite) >= 0); });
@@ -174,66 +211,7 @@
     });
   }
 
-  // ---------------- tohumlu rastgelelik + dengeli seçim ----------------
-  function mulberry32(a) {
-    return function () {
-      a |= 0; a = (a + 0x6D2B79F5) | 0;
-      var t = Math.imul(a ^ (a >>> 15), 1 | a);
-      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    };
-  }
-  function shuffle(arr, rng) { for (var i = arr.length - 1; i > 0; i--) { var j = Math.floor(rng() * (i + 1)); var t = arr[i]; arr[i] = arr[j]; arr[j] = t; } return arr; }
-  function roundRobin(groups, n) {
-    var out = [], idx = groups.map(function () { return 0; }), moved = true;
-    while (out.length < n && moved) {
-      moved = false;
-      for (var i = 0; i < groups.length && out.length < n; i++) {
-        if (idx[i] < groups[i].length) { out.push(groups[i][idx[i]++]); moved = true; }
-      }
-    }
-    return out;
-  }
-  /** Üniteler arasında dengeli: her ünite kendi içinde karışık, üniteler sırayla birer soru verir. */
-  function unitBalanced(pool, n, rng) {
-    var by = {};
-    pool.forEach(function (q) { (by[q.unite] = by[q.unite] || []).push(q); });
-    var groups = shuffle(Object.keys(by).sort(), rng).map(function (u) { return shuffle(by[u].slice(), rng); });
-    return roundRobin(groups, n);
-  }
-  /** Pasajlı sorular (English) kendi pasajıyla yan yana ve pasaj içindeki sırayla kalsın. */
-  function orderForExam(list, rng) {
-    shuffle(list, rng);
-    var firstIdx = {};
-    list.forEach(function (q, i) { var g = q.pasaj || ("_" + i); if (!(g in firstIdx)) firstIdx[g] = i; });
-    return list.map(function (q, i) { return { q: q, g: firstIdx[q.pasaj || ("_" + i)], n: q.pasaj ? (q.number || 0) : 0 }; })
-      .sort(function (a, b) { return a.g - b.g || a.n - b.n; }).map(function (x) { return x.q; });
-  }
-  function selectQuestions(cfg, seed) {
-    var rng = mulberry32(seed);
-    if (cfg.kod !== "genel") {
-      var pool = poolFor(cfg.kod, cfg.uniteFiltre);
-      var n = cfg.adet === "tam" ? pool.length : Math.min(cfg.adet, pool.length);
-      return orderForExam(unitBalanced(pool, n, rng), rng).map(function (q) { return { k: qKey(q), kod: cfg.kod }; });
-    }
-    // Genel: dersler arasında dengeli, her ders içinde üniteler arasında dengeli; tekrar eden soru (AB ⊂ BC) bir kez.
-    var seen = {}, groups = [];
-    cfg.dersler.forEach(function (kod) {
-      var p = poolFor(kod).filter(function (q) { var k = qKey(q); if (seen[k]) return false; seen[k] = true; return true; });
-      groups.push(unitBalanced(p, p.length, rng).map(function (q) { return { q: q, kod: kod }; }));
-    });
-    var total = groups.reduce(function (s, g) { return s + g.length; }, 0);
-    var n2 = cfg.adet === "tam" ? total : Math.min(cfg.adet, total);
-    var picked = roundRobin(groups, n2);
-    // Ders blokları (Bluebook'ta her ders ayrı bölüm gibi), blok içinde karışık
-    var out = [];
-    cfg.dersler.forEach(function (kod) {
-      var part = picked.filter(function (x) { return x.kod === kod; });
-      var ordered = orderForExam(part.map(function (x) { return x.q; }), rng);
-      ordered.forEach(function (q) { out.push({ k: qKey(q), kod: kod }); });
-    });
-    return out;
-  }
+  // ---------------- tohumlu rastgelelik + dengeli seçim: v1.5.0'dan beri SUNUCUDA (server/sorubankasi.js soruSec, aynı algoritma) ----------------
 
   // ======================================================================
   // 1) GİRİŞ EKRANI
@@ -394,19 +372,32 @@
 
   function startYanlislar(list, kaynak) {
     var sirali = yanlisSirala(list);
-    var seed = (Math.floor(Math.random() * 0xFFFFFFFF) >>> 0) || 1;
-    var dersler = []; sirali.forEach(function (x) { if (dersler.indexOf(x.kod) < 0) dersler.push(x.kod); });
-    var d = load();
-    d.aktif = {
-      id: "dn-" + Date.now().toString(36) + "-" + seed.toString(36),
-      kod: YKOD, mod: YKOD, ad: "Yanlışlarım tekrarı", dersler: dersler,
-      seed: seed, sorular: sirali.map(function (x) { return { k: qKey(x.q), kod: x.kod }; }), cevaplar: {}, isaretli: {}, mevcut: 0,
-      sureModu: "suresiz", sureLimitSn: null, gecenSn: 0,
-      baslangic: new Date().toISOString(), uniteFiltre: null, kaynakDeneme: kaynak ? kaynak.id : null
-    };
-    save(d);
-    try { history.replaceState(null, "", "deneme.html?mod=yanlislar"); } catch (e) { /* yok say */ }
-    renderExam(d.aktif);
+    var btn = document.getElementById("dn-ystart"), msg = document.getElementById("dn-yform-msg");
+    if (btn) { btn.disabled = true; btn.textContent = "Hazırlanıyor…"; }
+    // Yanlışlarım kayıtları önce sunucuya eşitlenir (sunucu ücretsiz planda yalnız kendi yanlışlarını kabul eder)
+    var esitle = window.MEBERRA_SYNC && typeof window.MEBERRA_SYNC.gonder === "function" ? window.MEBERRA_SYNC.gonder() : Promise.resolve();
+    Promise.resolve(esitle).catch(function () { /* eşitlenemese de dene */ }).then(function () {
+      return api("POST", "/api/deneme/olustur", { mod: YKOD, kaynakDeneme: kaynak ? kaynak.id : null, sorular: sirali.map(function (x) { return { k: qKey(x.q), kod: x.kod }; }) });
+    }).then(function (r) {
+      if (r.durum !== 200 || !r.veri.ok) {
+        if (btn) { btn.disabled = false; btn.textContent = "Yanlışlarımı çözmeye başla"; }
+        if (msg) msg.textContent = hataMetni(r, "Oturum kurulamadı. Yeniden dene.");
+        return;
+      }
+      var dn = r.veri.deneme;
+      Object.assign(ICERIK, r.veri.icerik || {});
+      var dersler = []; dn.sorular.forEach(function (x) { if (dersler.indexOf(x.kod) < 0) dersler.push(x.kod); });
+      var d = load();
+      d.aktif = {
+        id: dn.id, kod: YKOD, mod: YKOD, ad: dn.ad || "Yanlışlarım tekrarı", dersler: dersler,
+        seed: dn.seed, sorular: dn.sorular, cevaplar: {}, isaretli: {}, mevcut: 0,
+        sureModu: "suresiz", sureLimitSn: null, gecenSn: 0,
+        baslangic: new Date().toISOString(), uniteFiltre: null, kaynakDeneme: kaynak ? kaynak.id : null
+      };
+      save(d);
+      try { history.replaceState(null, "", "deneme.html?mod=yanlislar"); } catch (e) { /* yok say */ }
+      renderExam(d.aktif);
+    });
   }
 
   // ======================================================================
@@ -542,7 +533,7 @@
   /** Bu dersin (sayfasının) ücretsiz denemesi kullanıldı mı? Hak kaydı ya da (geriye uyum) tamamlanmış bir geçmiş kaydı. */
   function hakKullanildi(kod, d) {
     var sayfa = sayfaOf(kod);
-    if (hakKayitlari()[sayfa]) return true;
+    if (hakKayitlari()[sayfa] || (BANK && BANK.haklar && BANK.haklar[sayfa])) return true;
     return (d || load()).gecmis.some(function (r) { return r && r.mod !== YKOD && r.kod !== "genel" && r.kod !== YKOD && BANK.kodlar[r.kod] && sayfaOf(r.kod) === sayfa; });
   }
   function hakYaz(kod) {
@@ -568,29 +559,59 @@
 
   function startExam(cfg) {
     if (premiumGerekli(cfg)) { renderPremiumDuvar(cfg); return; }
-    var seed = (Math.floor(Math.random() * 0xFFFFFFFF) >>> 0) || 1;
-    var list = selectQuestions(cfg, seed);
-    if (!list.length) return;
-    var ad = cfg.kod === "genel" ? "Genel deneme (" + cfg.dersler.map(function (k) { return BANK.kodlar[k].ad.replace(/^AP /, ""); }).join(", ") + ")" : BANK.kodlar[cfg.kod].ad;
-    var limit = null;
-    if (cfg.sureModu === "tempo") limit = Math.round(list.reduce(function (s, x) { return s + tempoSn(x.kod); }, 0));
-    // Ücretsiz deneme hakkı başlarken kullanılır (iptal ya da geçmiş sınırı geri getirmez)
-    if (cfg.kod !== "genel" && cfg.kod !== YKOD) hakYaz(cfg.kod);
-    var d = load();
-    d.aktif = {
-      id: "dn-" + Date.now().toString(36) + "-" + seed.toString(36),
-      kod: cfg.kod, ad: ad, dersler: cfg.kod === "genel" ? cfg.dersler : [cfg.kod],
-      seed: seed, sorular: list, cevaplar: {}, isaretli: {}, mevcut: 0,
-      sureModu: cfg.sureModu, sureLimitSn: limit, gecenSn: 0,
-      baslangic: new Date().toISOString(), uniteFiltre: cfg.uniteFiltre || null
-    };
-    save(d);
-    renderExam(d.aktif);
+    var btn = document.getElementById("dn-start"), msg = document.getElementById("dn-form-msg");
+    if (btn) { btn.disabled = true; btn.textContent = "Deneme hazırlanıyor…"; }
+    // Sunucu soruları seçer (aynı tohumlu dengeli algoritma) ve ücretsiz deneme hakkını kurulumda yazar
+    api("POST", "/api/deneme/olustur", { kod: cfg.kod, adet: cfg.adet, sureModu: cfg.sureModu, dersler: cfg.dersler, uniteFiltre: cfg.uniteFiltre }).then(function (r) {
+      if (r.durum === 402) {
+        if (r.veri.hakKullanildi && cfg.kod !== "genel") hakYaz(cfg.kod);
+        renderPremiumDuvar(cfg);
+        return;
+      }
+      if (r.durum !== 200 || !r.veri.ok) {
+        if (btn) { btn.disabled = false; btn.textContent = "Denemeyi başlat"; }
+        if (msg) msg.textContent = hataMetni(r, "Deneme kurulamadı. Yeniden dene.");
+        return;
+      }
+      var dn = r.veri.deneme, list = dn.sorular;
+      Object.assign(ICERIK, r.veri.icerik || {});
+      var limit = null;
+      if (cfg.sureModu === "tempo") limit = Math.round(list.reduce(function (s, x) { return s + tempoSn(x.kod); }, 0));
+      // Ücretsiz deneme hakkı başlarken kullanılır (sunucu yazdı; yerel kopya arayüz için)
+      if (cfg.kod !== "genel" && cfg.kod !== YKOD) hakYaz(cfg.kod);
+      var d = load();
+      d.aktif = {
+        id: dn.id,
+        kod: cfg.kod, ad: dn.ad, dersler: cfg.kod === "genel" ? cfg.dersler : [cfg.kod],
+        seed: dn.seed, sorular: list, cevaplar: {}, isaretli: {}, mevcut: 0,
+        sureModu: cfg.sureModu, sureLimitSn: limit, gecenSn: 0,
+        baslangic: new Date().toISOString(), uniteFiltre: cfg.uniteFiltre || null
+      };
+      save(d);
+      renderExam(d.aktif);
+    });
   }
 
   function persist() { if (!A) return; var d = load(); d.aktif = A; save(d); sinceSave = 0; }
 
   function renderExam(aktif) {
+    // Soru içeriği bellekte yoksa (sayfa yenilendi / başka cihaz) sunucudan alınır; iskelet yerleşimi korur
+    if (aktif.sorular.some(function (x) { return BY_KEY[x.k] && !ICERIK[x.k]; })) {
+      view.innerHTML = iskelet("Deneme soruları yükleniyor…");
+      api("GET", "/api/deneme/" + encodeURIComponent(aktif.id)).then(function (r) {
+        if (r.durum === 200 && r.veri.ok) {
+          Object.assign(ICERIK, r.veri.icerik || {});
+          aktif.sorular.forEach(function (x) { if (!ICERIK[x.k]) ICERIK[x.k] = { question: "", options: [] }; });
+          renderExam(aktif);
+        } else if (r.durum === 404) {
+          // Sunucuda kaydı olmayan (v1.5.0 öncesi tarayıcıda kurulmuş) yarım deneme sürdürülemez
+          var d = load(); d.aktif = null; save(d);
+          renderLanding();
+          view.insertAdjacentHTML("afterbegin", '<div class="dn-alert is-warn" role="status">Yarım kalan eski denemen bu sürümde sürdürülemiyor; yeni bir deneme kurabilirsin.</div>');
+        } else hataEkrani("Deneme soruları yüklenemedi", hataMetni(r, "Sunucu şu an yanıt vermiyor."), function () { renderExam(aktif); });
+      });
+      return;
+    }
     A = aktif;
     // Bankada artık olmayan soru (içerik değişmiş olabilir) → listeden düş
     A.sorular = A.sorular.filter(function (x) { return !!BY_KEY[x.k]; });
@@ -650,7 +671,7 @@
   }
 
   function renderQuestion() {
-    var i = A.mevcut, item = A.sorular[i], q = BY_KEY[item.k];
+    var i = A.mevcut, item = A.sorular[i], q = soru(item.k);
     var sel = A.cevaplar[i] || null, marked = !!A.isaretli[i];
     var stage = document.getElementById("dn-stage");
     var pas = q.pasaj && BANK.pasajlar[q.pasaj];
@@ -812,8 +833,8 @@
     var map = { "1": "A", "2": "B", "3": "C", "4": "D", "5": "E" };
     var opt = /^[A-E]$/.test(up) ? up : map[key];
     if (opt && !navOpen) {
-      var q = BY_KEY[A.sorular[A.mevcut].k];
-      if (q.options.some(function (o) { return o.id === opt; })) { e.preventDefault(); choose(opt); }
+      var q = soru(A.sorular[A.mevcut].k);
+      if (q && q.options.some(function (o) { return o.id === opt; })) { e.preventDefault(); choose(opt); }
       return;
     }
     if (key === "ArrowRight") { e.preventDefault(); if (A.mevcut < A.sorular.length - 1) go(A.mevcut + 1); return; }
@@ -826,30 +847,37 @@
   // ======================================================================
   // 4) TESLİM + SONUÇ
   // ======================================================================
+  var teslimSuruyor = false;
   function submitExam(auto) {
-    if (!A) return;
+    if (!A || teslimSuruyor) return;
     stopTimer(); closeNav();
-    var now = new Date().toISOString();
-    var dogru = 0, yanlis = 0, bos = 0, uniteler = {}, inceleme = [], perKod = {};
-    A.sorular.forEach(function (x, i) {
-      var q = BY_KEY[x.k], s = A.cevaplar[i] || null;
-      var c = q.options.filter(function (o) { return o.isCorrect; })[0];
-      var st = !s ? "bos" : (c && c.id === s ? "dogru" : "yanlis");
-      if (st === "dogru") dogru++; else if (st === "yanlis") yanlis++; else bos++;
-      var uk = x.kod + "|" + q.unite;
-      var u = uniteler[uk] || (uniteler[uk] = { kod: x.kod, unite: q.unite, ad: unitName(x.kod, q.unite), soru: 0, dogru: 0, yanlis: 0, bos: 0 });
-      u.soru++; u[st]++;
-      var pk = perKod[x.kod] || (perKod[x.kod] = { soru: 0, dogru: 0 }); pk.soru++; if (st === "dogru") pk.dogru++;
-      inceleme.push({ k: x.k, kod: x.kod, s: s, m: A.isaretli[i] ? 1 : 0 });
+    persist();
+    teslimSuruyor = true;
+    var sb = document.getElementById("dn-submit"), ro = document.getElementById("dn-review-open");
+    [sb, ro].forEach(function (b) { if (b) { b.disabled = true; } });
+    if (ro) ro.textContent = "Teslim ediliyor…";
+    var eskiUyari = document.getElementById("dn-teslim-hata"); if (eskiUyari) eskiUyari.remove();
+    // Cevaplar sunucuda puanlanır (doğru şıklar tarayıcıda yok); sonuç exams tablosuna ve geçmişe yazılır
+    api("POST", "/api/deneme/teslim", { denemeId: A.id, cevaplar: A.cevaplar, isaretli: A.isaretli, gecenSn: A.gecenSn, otomatik: !!auto, sureLimitSn: A.sureLimitSn }).then(function (r) {
+      teslimSuruyor = false;
+      if (r.durum !== 200 || !r.veri.ok || !r.veri.sonuc) {
+        [sb, ro].forEach(function (b) { if (b) b.disabled = false; });
+        if (ro) ro.textContent = "Gözden geçir & teslim et";
+        var ex = document.getElementById("dn-exam");
+        if (ex) ex.insertAdjacentHTML("afterbegin", '<div class="dn-alert is-bad" role="alert" id="dn-teslim-hata"><strong>Teslim edilemedi.</strong> ' + esc(hataMetni(r, "Sunucu şu an yanıt vermiyor.")) +
+          ' Cevapların bu cihazda kayıtlı. <button type="button" class="btn-primary btn-sm" id="dn-teslim-tekrar">Yeniden teslim et</button></div>');
+        var tb = document.getElementById("dn-teslim-tekrar"); if (tb) tb.addEventListener("click", function () { submitExam(auto); });
+        if (!auto) startTimer();
+        announce("Teslim edilemedi. Yeniden dene.");
+        return;
+      }
+      Object.assign(ICERIK, r.veri.icerik || {});
+      Object.assign(COZUM, r.veri.cozumler || {});
+      teslimBitti(r.veri.sonuc, auto);
     });
-    var n = A.sorular.length, yuzde = n ? Math.round((dogru / n) * 100) : 0;
-    var rec = {
-      id: A.id, kod: A.kod, ad: A.ad, tarih: now, soruSayisi: n, dogru: dogru, yanlis: yanlis, bos: bos, yuzde: yuzde,
-      sureSn: Math.round(A.gecenSn), tahminiBand: karma(A) ? null : bandOf(yuzde),
-      uniteler: uniteler, seed: A.seed,
-      sureModu: A.sureModu, sureLimitSn: A.sureLimitSn, otomatikTeslim: !!auto, dersler: A.dersler, inceleme: inceleme
-    };
-    if (A.mod === YKOD) { rec.mod = YKOD; rec.kaynakDeneme = A.kaynakDeneme || null; }
+  }
+  function teslimBitti(rec, auto) {
+    var now = rec.tarih;
     writeErrors(rec, now);
     var d = load();
     d.aktif = null;
@@ -868,7 +896,7 @@
     var changed = false;
     rec.inceleme.forEach(function (it) {
       if (!it.s) return; // boş bırakılan soru Yanlışlarım’a yazılmaz
-      var q = BY_KEY[it.k]; if (!q) return;
+      var q = soru(it.k); if (!q || !q.options.some(function (o) { return o.isCorrect; })) return;
       var page = q.sayfa.replace(/\.html?$/i, ""), key = page + "|" + q.id;
       var sel = q.options.filter(function (o) { return o.id === it.s; })[0];
       var cor = q.options.filter(function (o) { return o.isCorrect; })[0];
@@ -892,12 +920,23 @@
 
   function statusOf(it) {
     var q = BY_KEY[it.k]; if (!q) return "yok";
+    if (it.st) return it.st; // sunucunun puanladığı durum (v1.5.0)
     if (!it.s) return "bos";
-    var c = q.options.filter(function (o) { return o.isCorrect; })[0];
-    return c && c.id === it.s ? "dogru" : "yanlis";
+    var c = (soru(it.k).options || []).filter(function (o) { return o.isCorrect; })[0];
+    return c ? (c.id === it.s ? "dogru" : "yanlis") : "yanlis";
   }
 
   function renderResult(rec, auto) {
+    // İnceleme için içerik + çözüm (teslim edilmiş deneme; eski kayıtlarda sunucu exams kaydından) bir kez yüklenir
+    if (!rec._yuklendi && (rec.inceleme || []).some(function (it) { return BY_KEY[it.k] && (!COZUM[it.k] || !ICERIK[it.k]); })) {
+      view.innerHTML = iskelet("Deneme sonucu yükleniyor…");
+      api("GET", "/api/deneme/" + encodeURIComponent(rec.id)).then(function (r) {
+        if (r.durum === 200 && r.veri.ok) { Object.assign(ICERIK, r.veri.icerik || {}); Object.assign(COZUM, r.veri.cozumler || {}); }
+        rec._yuklendi = true;
+        renderResult(rec, auto);
+      });
+      return;
+    }
     document.title = "Deneme sonucu — " + rec.ad + " | Meberra";
     var units = Object.keys(rec.uniteler).map(function (k) { return rec.uniteler[k]; });
     var kodOrder = rec.dersler || [rec.kod];
@@ -1056,7 +1095,8 @@
   }
 
   function reviewBody(it) {
-    var q = BY_KEY[it.k], sel = it.s;
+    var q = soru(it.k), sel = it.s;
+    if (!q.options.some(function (o) { return o.isCorrect; })) return '<p class="dn-note">Bu sorunun çözümü şu an yüklenemedi. Sayfayı yenileyip yeniden dene.</p>';
     var cor = q.options.filter(function (o) { return o.isCorrect; })[0];
     var selOpt = sel ? q.options.filter(function (o) { return o.id === sel; })[0] : null;
     var pas = q.pasaj && BANK.pasajlar[q.pasaj];
@@ -1137,7 +1177,25 @@
   // ======================================================================
   // BAŞLAT
   // ======================================================================
+  var katalogSuruyor = null;
+  function katalogYukle() {
+    if (!katalogSuruyor) katalogSuruyor = api("GET", "/api/deneme/katalog").then(function (r) {
+      katalogSuruyor = null;
+      if (r.durum === 200 && r.veri.ok && r.veri.kodlar && Array.isArray(r.veri.sorular)) { bankaKur(r.veri); return true; }
+      return r;
+    });
+    return katalogSuruyor;
+  }
   function boot() {
+    if (!BANK) {
+      if (!document.querySelector('meta[name="meberra-api"]')) { view.innerHTML = '<div class="sb-durum" role="status"><strong>Deneme çevrimiçi</strong><p>Deneme soruları Meberra hesabınla, çevrimiçiyken açılır.</p></div>'; return; }
+      view.innerHTML = iskelet("Deneme yükleniyor…");
+      katalogYukle().then(function (r) {
+        if (r === true) { boot(); return; }
+        hataEkrani("Deneme soruları yüklenemedi", hataMetni(r, "Sunucu şu an yanıt vermiyor. Biraz sonra yeniden dene."), boot);
+      });
+      return;
+    }
     var d = load();
     var mod = param("mod");
     if (d.aktif && Array.isArray(d.aktif.sorular) && d.aktif.sorular.length) {
@@ -1162,9 +1220,9 @@
   }
   window.addEventListener("popstate", function () { if (!A) boot(); });
   // Üyelik /api/me ile tazelenip premium durumu değişince (app.js apUyelikDegisti) sınav dışındaki ekran yeniden çizilir
-  window.addEventListener("meberra:uyelik", function () { if (!A && !param("sonuc")) boot(); });
+  window.addEventListener("meberra:uyelik", function () { if (!A && !param("sonuc")) { BANK = null; boot(); } }); // üyelik değişti: haklar tazelenir
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot); else boot();
 
   // Test/diğer sayfalar için salt-okunur API
-  window.APMEBERRA_DENEME = { KEY: KEY, load: load, tempoSn: tempoSn, bandOf: bandOf, selectQuestions: selectQuestions, TEMPO: TEMPO };
+  window.APMEBERRA_DENEME = { KEY: KEY, load: load, tempoSn: tempoSn, bandOf: bandOf, TEMPO: TEMPO }; // seçim (selectQuestions) sunucuda: server/sorubankasi.js soruSec
 })();

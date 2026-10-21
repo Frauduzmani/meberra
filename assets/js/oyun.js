@@ -756,14 +756,13 @@
     s.id = "MathJax-script"; s.async = true; s.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js";
     document.head.appendChild(s);
   }
-  function bankaYukle(sonra) {
-    if (window.APMEBERRA_DENEME_BANKASI) { sonra(window.APMEBERRA_DENEME_BANKASI); return; }
-    var s = document.createElement("script");
-    var kok = ((document.querySelector('script[src*="assets/js/oyun.js"]') || {}).src || "").replace(/assets\/js\/oyun\.js.*$/, "");
-    s.src = kok + "data/sorular/deneme-bankasi.js";
-    s.onload = function () { sonra(window.APMEBERRA_DENEME_BANKASI || null); };
-    s.onerror = function () { sonra(null); };
-    document.head.appendChild(s);
+  // v1.5.0: sorular sunucudan (cevapsız) gelir: POST /api/sorular-bankasi/getir; cevap POST /api/sorular-bankasi/cevap ile kontrol edilir.
+  function sbIstek(yol, govde) {
+    return fetch(yol, { method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json", "X-Meberra": "1" }, body: JSON.stringify(govde) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { durum: r.status, veri: j || {} }; }); }, function () { return { durum: 0, veri: {} }; });
+  }
+  function sorulariGetir(anahtarlar, sonra) {
+    sbIstek("/api/sorular-bankasi/getir", { anahtarlar: anahtarlar }).then(function (r) { sonra(r.durum === 200 && r.veri.ok ? r.veri : null); });
   }
   function tekrarKur() {
     var sec = document.getElementById("tekrar"), govde = document.getElementById("tekrar-govde");
@@ -781,12 +780,15 @@
     function basla() {
       var vade = tekrarZamani(oku(K.tekrar, null), bugunGun());
       if (!vade.length) { giris(); return; }
-      govde.innerHTML = '<p class="oy-alt" role="status">Sorular yükleniyor…</p>';
-      bankaYukle(function (B) {
-        var by = {};
-        if (B && Array.isArray(B.sorular)) B.sorular.forEach(function (q) { by[String(q.sayfa).replace(/\.html?$/i, "") + "|" + q.id] = q; });
-        oturum = { sira: [], eksik: [], i: 0, dogru: 0, pasaj: (B && B.pasajlar) || {} };
-        vade.forEach(function (k) { if (by[k]) oturum.sira.push({ k: k, q: by[k] }); else oturum.eksik.push(k); });
+      govde.innerHTML = '<p class="visually-hidden" role="status">Sorular yükleniyor…</p><div class="sb-iskelet" aria-hidden="true"><div class="sb-isk-kart"><span class="sb-isk sb-isk-ust"></span><span class="sb-isk sb-isk-satir"></span><span class="sb-isk sb-isk-satir is-kisa"></span><span class="sb-isk sb-isk-sik"></span><span class="sb-isk sb-isk-sik"></span><span class="sb-isk sb-isk-sik"></span><span class="sb-isk sb-isk-sik"></span></div></div>';
+      sorulariGetir(vade.slice(0, 100), function (B) {
+        if (!B) {
+          govde.innerHTML = '<div class="sb-durum is-hata" role="alert"><strong>Sorular yüklenemedi</strong><p>Bağlantını kontrol edip yeniden dene.</p><button type="button" class="btn-primary btn-sm" data-tekrar-basla>Yeniden dene</button></div>';
+          return;
+        }
+        var by = B.sorular || {};
+        oturum = { sira: [], eksik: [], i: 0, dogru: 0, pasaj: B.pasajlar || {} };
+        vade.forEach(function (k) { var q = by[k]; if (q) { delete q.cozum; oturum.sira.push({ k: k, q: q }); } else oturum.eksik.push(k); });
         if (!oturum.sira.length) { bitis(); return; }
         soruCiz();
       });
@@ -812,11 +814,26 @@
     function cevapla(secim) {
       var x = oturum.sira[oturum.i], q = x.q, sp = x.k.split("|")[0];
       var kap = govde.querySelector(".options-container");
-      if (!kap || kap.getAttribute("data-cevaplandi")) return;
+      if (!kap || kap.getAttribute("data-cevaplandi") || kap.getAttribute("aria-busy") === "true") return;
+      kap.setAttribute("aria-busy", "true");
+      var eski = govde.querySelector(".sb-cevap-hata"); if (eski) eski.remove();
+      sbIstek("/api/sorular-bankasi/cevap", { soruId: q.id, secim: secim }).then(function (r) {
+        kap.removeAttribute("aria-busy");
+        if (r.durum !== 200 || !r.veri.ok || !r.veri.cozum) {
+          var p = document.createElement("p"); p.className = "sb-cevap-hata"; p.setAttribute("role", "alert");
+          p.textContent = r.durum === 0 ? "Cevabın gönderilemedi: bağlantı yok. Bağlanınca yeniden dene." : (r.veri.error || "Cevabın gönderilemedi. Yeniden dene.");
+          kap.insertAdjacentElement("afterend", p);
+          return;
+        }
+        if (typeof window.apCozumUygula === "function") window.apCozumUygula(q, r.veri.cozum);
+        cevapSonucu(x, q, sp, secim, kap, r.veri);
+      });
+    }
+    function cevapSonucu(x, q, sp, secim, kap, yanit) {
       kap.setAttribute("data-cevaplandi", "1");
       var dogruMu = typeof window.apCevapKaydet === "function"
-        ? window.apCevapKaydet(sp, q.kap, q, secim, { title: q.kapBaslik })
-        : !!(q.options.filter(function (o) { return o.id === secim; })[0] || {}).isCorrect;
+        ? window.apCevapKaydet(sp, q.kap, q, secim, { title: q.kapBaslik, t: yanit.t })
+        : !!yanit.dogru;
       if (dogruMu) oturum.dogru++;
       var sec = q.options.filter(function (o) { return o.id === secim; })[0] || {}, dg = q.options.filter(function (o) { return o.isCorrect; })[0] || {};
       kap.querySelectorAll(".option-btn").forEach(function (b) {
@@ -892,6 +909,7 @@
     if (/^ap-|^sinav-cents$/.test(sayfa)) {
       dersYolu();
       window.addEventListener("meberra:oyun", dersYolu);
+      window.addEventListener("meberra:unite-ozet", dersYolu); // v1.5.0: soru sayıları sunucu özetinden sonradan gelir
     }
     window.addEventListener("meberra:uyelik", function () { if (sayfa === "calis") calisYolu(); korumaCiz(); });
   }
