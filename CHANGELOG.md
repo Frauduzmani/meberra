@@ -9,6 +9,10 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.12.1] — 2026-10-21
+### Düzeltildi
+- Bugün ve Çalış: AP kayıt son günü uyarısı yalnızca sınav yılı bu dönem olan öğrenciye gösterilir.
+
 ## [1.12.0] — 2026-10-21
 ### Eklendi
 - Tam deneme sınavı (`/deneme?tam=1`, Premium): gerçek AP bölüm yapısı, süreleri ve hesap makinesi kuralları (9 sınav; College Board kaynaklı, `server/tohum/sinav-formatlari.json`).

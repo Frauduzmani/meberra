@@ -390,7 +390,9 @@
     var T0 = window.APMEBERRA_TAKVIM;
     var todos = (window.apCalismaPlani ? apCalismaPlani({
       summary: s, mezun: !!(ME && ME.profile && ME.profile.sinif === "mezun"),
-      kayitSon: T0 && T0.kayit ? T0.kayit.sonGun : null, seviye: A.storeGet("apmeberra:seviye:v1", null), bugun: BG || new Date(),
+      // Kayıt son günü yalnızca öğrencinin sınav yılı bu dönemse gösterilir (ör. 2029'da girecek 9. sınıfa Kasım 2026 kaydı söylenmez)
+      kayitSon: T0 && T0.kayit && !(APH && ME && ME.profile && T0.sinavDonemi && APH.geriSayim(ME.profile, T0, BG || new Date()).yil > +String(T0.sinavDonemi.bas).slice(0, 4)) ? T0.kayit.sonGun : null,
+      seviye: A.storeGet("apmeberra:seviye:v1", null), bugun: BG || new Date(),
       premium: window.apPremiumMu ? apPremiumMu() : true, secim: SECIM
     }) : []).map(function (t) { return gorev(ICON[t.ikon] || ICON.book, t.title, t.desc, t.href, t.linkText); });
     // 1.7.0: Derslerin listesi — seçilen dersler önce (seçim sırasıyla)

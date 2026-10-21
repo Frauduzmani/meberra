@@ -170,7 +170,9 @@
     var T = window.APMEBERRA_TAKVIM;
     var plan = apCalismaPlani({
       summary: s, mezun: ME.profile.sinif === "mezun",
-      kayitSon: T && T.kayit ? T.kayit.sonGun : null, seviye: sv, bugun: BG || new Date(),
+      // Kayıt son günü yalnızca öğrencinin sınav yılı bu dönemse (Bugün ile aynı kural)
+      kayitSon: T && T.kayit && !(APH && T.sinavDonemi && APH.geriSayim(ME.profile, T, BG || new Date()).yil > +String(T.sinavDonemi.bas).slice(0, 4)) ? T.kayit.sonGun : null,
+      seviye: sv, bugun: BG || new Date(),
       premium: window.apPremiumMu ? apPremiumMu() : true, secim: SECIM
     });
     var sa = apSiradakiAdim({
