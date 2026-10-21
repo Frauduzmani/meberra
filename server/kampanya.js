@@ -27,6 +27,9 @@ const trTarih = iso => new Date(iso).toLocaleDateString("tr-TR", { timeZone: "Eu
 /** E-posta karması: HMAC-SHA256 (sunucu tuzu). Hesap silindikten sonra da deneme/davet tekrarını tanımak için saklanır. */
 function epostaHash(ep) {
   const tuz = process.env.BUYUME_TUZ || "meberra-buyume-v1";
+  if (!process.env.BUYUME_TUZ && process.env.NODE_ENV === "production") {
+    console.warn("[meberra] UYARI: BUYUME_TUZ tanımlı değil; varsayılan tuz kullanılıyor. .env dosyasına rastgele bir değer yazın (bkz. .env.example).");
+  }
   return crypto.createHmac("sha256", tuz).update(String(ep || "").trim().toLowerCase()).digest("hex");
 }
 

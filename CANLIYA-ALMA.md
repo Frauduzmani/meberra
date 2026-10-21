@@ -55,6 +55,34 @@ her yere kendi alan adınızı yazın.
 
 ---
 
+## A2) GitHub'dan sunucuya — kısa yol ve üretim kuralları (1.19.0)
+
+**İlk kurulum**
+1. Sunucuda gizli repoyu çekin (GitHub › Settings › Deploy keys ile salt okunur anahtar önerilir):
+   `git clone git@github.com:Frauduzmani/meberra.git /opt/meberra && cd /opt/meberra`
+2. `cp .env.example .env` ve doldurun. **Zorunlu:** `BASE_URL`, `BUYUME_TUZ` (rastgele; bir kez belirlenir, değiştirilmez),
+   `ADMIN_EPOSTA` / `ADMIN_SIFRE` (ilk girişten sonra satırları silin), banka bilgileri, SMTP. VAPID boş kalırsa ilk açılışta
+   üretilip `/data/vapid.json`'a yazılır (volume'da kalıcı).
+3. `docker compose up -d --build` → veritabanı göçleri (001–016) açılışta kendiliğinden uygulanır, soru bankası tohumdan yüklenir.
+4. nginx + SSL (B6), günlük yedek (B8) ve yedeğin **sunucu dışına** kopyası (`deploy/yedek-cron.txt`).
+
+**Güncelleme (her yeni sürümde)**
+1. Önce yedek: `docker compose exec -T meberra node server/cli.js yedek`
+2. `git pull && docker compose up -d --build` — yeni göçler ve soru tohumu sürümü açılışta uygulanır; yöneticinin panelde elle
+   düzenlediği sorular korunur. Sürüm `/api/health` yanıtında ve yönetici panelinde görünür.
+
+**Yerel veritabanını taşımak (isteğe bağlı):** yereldeki `server/data/meberra.db` dosyasını, uygulama kapalıyken volume'a kopyalayın:
+`docker compose stop && docker cp server/data/meberra.db meberra:/data/meberra.db && docker compose start` (bkz. `deploy/geri-yukleme.md`).
+Test hesaplarını önce yönetici panelinden pasife alabilirsiniz.
+
+**Üretim kuralları**
+- **Tek kopya çalıştırın.** Zamanlayıcı (hatırlatmalar, lig, okul koltukları), hız sınırlayıcı ve çevrimiçi durum bellekte tutulur;
+  aynı veritabanına iki uygulama kopyası bağlamayın.
+- `NODE_ENV=production`, `COOKIE_SECURE=1`, `TRUST_PROXY=1` (yalnızca nginx arkasında). `MEBERRA_TEST_ROTALARI` ve `TAM_SINAV_HIZ` tanımlanmaz.
+- nginx CSS/JS için önbellek başlığı eklemez (uygulama ETag ile doğrular); `deploy/nginx-meberra.conf` bu kurala göre güncel.
+- E-posta teslimi için alan adında SPF, DKIM ve DMARC kayıtlarını tanımlayın (SMTP sağlayıcınızın yönergesi).
+- CI: GitHub › Actions sekmesinde her gönderimde testler çalışır; kırmızıysa sunucuya almayın.
+
 ## B) Yol 1 — Docker ile kurulum (önerilen)
 
 ### B1. Docker'ı kurun
