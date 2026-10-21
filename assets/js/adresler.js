@@ -13,6 +13,17 @@
   var A = fabrika();
   if (typeof module === "object" && module.exports) module.exports = A;
   else kok.MEBERRA_ADRES = A;
+  // Ders sayfası ünite/bölüm görünümü (?unite=N · ?bolum=K): ilk boyamadan önce işaretlenir; ana içerik app.js
+  // initUniteGorunumu doğru üniteyi seçene dek gizli kalır (tüm sayfa çizilip sonra gizlenince oluşan kayma olmasın).
+  try {
+    if (typeof document !== "undefined" && document.documentElement && typeof location !== "undefined" &&
+        /^\/(ders\/|ap-|sinav-cents)/.test(location.pathname) && /[?&](unite|bolum)=\d/.test(location.search)) {
+      var kd = document.documentElement;
+      kd.classList.add("ug-erken");
+      // Emniyet: app.js hiç çalışmazsa içerik yine de görünür
+      setTimeout(function () { kd.classList.remove("ug-erken"); }, 6000);
+    }
+  } catch (e) { /* işaret isteğe bağlı */ }
 })(typeof self !== "undefined" ? self : this, function () {
   "use strict";
   var LISTE = [

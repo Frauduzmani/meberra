@@ -4082,6 +4082,10 @@ a.bg-mini:hover { border-color: var(--accent); transform: translateY(-2px); colo
 
 /* --- v4 ünite görünümü (ders sayfaları; app.js initUniteGorunumu) --------- */
 .ug-gizli { display: none !important; }
+/* ?unite=N açılışı: adresler.js ilk boyamadan önce html.ug-erken koyar; ünite seçilene dek içerik çizilmez, alt bilgi
+   görünür alanın dışında bekler (sonradan gizlenen hero/üniteler ve itilen alt bilgi kayma üretmesin) */
+html.ug-erken body:not(.has-unite) .main-container > * { display: none !important; }
+html.ug-erken body:not(.has-unite) .main-container { min-height: 100vh; }
 .ug-panel { border-radius: var(--radius-xl); margin: 0 0 var(--sp-6); }
 .ug-ozet { color: var(--text-muted); font-size: var(--fs-14); }
 .ug-liste { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }

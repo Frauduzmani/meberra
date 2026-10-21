@@ -1593,7 +1593,11 @@ function apUniteGrupla(bloklar) {
 // İlerleme kaydı değişmez (ünite kimliği = soru kutusu kimliği).
 // Üyelik değişince (/api/me tazelemesi) ünite görünümünü yeniden çizer; initUniteGorunumu kurar.
 let apUniteGorunumuYenile = null;
+// html.ug-erken (adresler.js; ?unite/?bolum açılışı) her durumda kalkar: görünüm kurulsa da kurulmasa da (az ünite, başka sayfa)
 function initUniteGorunumu() {
+  try { initUniteGorunumuKur(); } finally { document.documentElement.classList.remove("ug-erken"); }
+}
+function initUniteGorunumuKur() {
   const page = apCurrentPage();
   if (!/^ap-|^sinav-cents$/.test(page)) return;
   const main = document.querySelector(".main-container");

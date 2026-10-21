@@ -9,6 +9,11 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.19.1] — 2026-10-21
+### Düzeltildi
+- Ders sayfalarında ünite görünümü kayması (CLS 0,5–0,88 → 0,002): doğru ünite seçilene kadar içerik ilk boyamada gizlenir (6 sn güvenlik zaman aşımı).
+- Canlıya alma: nginx CSS/JS önbelleği uygulamaya bırakıldı; `BUYUME_TUZ` üretimde zorunlu uyarısı; GitHub → sunucu kısa yolu `CANLIYA-ALMA.md` › A2.
+
 ## [1.19.0] — 2026-10-21
 ### Eklendi
 - Okul ve öğretmen paneli: okul koltuk lisansı, öğretmen daveti, sınıf kodu (`/sinif?kod=`), ödevler, ilerleme ve ünite kapsamı ısı haritası, CSV. Öğrenci açık onayla katılır; boş koltuk varsa okul Premium'u. Öğretmen soru–cevap, not ve e-posta görmez.
