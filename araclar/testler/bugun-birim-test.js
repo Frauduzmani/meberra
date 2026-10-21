@@ -161,6 +161,38 @@ ok(apKaldiginYer({ pages: {} }, []) === null && apKaldiginYer(null) === null, "k
   pl = apCalismaPlani({ summary: ucretsiz, kayitSon: null, bugun: BUGUN, premium: true, kutuUcretsiz: acikKutu });
   ok(pl.some(x => x.href === "ap-calculus.html#u3"), "çalışma planı (premium): kilit yok", pl);
 }
+// ---------------------------------------------------------------- 4c) 1.7.0: AP ders seçimi (assets/js/ap-hedef.js filtre → apCalismaPlani secim)
+{
+  const APH = require(path.join(ROOT, "assets/js/ap-hedef.js"));
+  const ozet = { answered: 20, openErrors: [], courses: [
+    { page: "ap-calculus", name: "AP Calculus AB / BC", visited: true, units: [{ id: "calc-unit1-quiz-container", title: "Unit 1", total: 10, answered: 4, correct: 1 }, { id: "calc-unit2-quiz-container", title: "Unit 2", total: 10, answered: 0, correct: 0 }] },
+    { page: "ap-electives", name: "AP Seçmeliler", visited: true, units: [{ id: "csa-quiz-container", title: "CS A", total: 10, answered: 10, correct: 10 }, { id: "micro34-quiz-container", title: "Micro 3–4", total: 10, answered: 2, correct: 0 }, { id: "macro14-quiz-container", title: "Macro 1–4", total: 10, answered: 0, correct: 0 }] },
+    { page: "ap-biology", name: "AP Biology", visited: false, units: [] }] };
+  const secim = APH.filtre({ apDersleri: [{ ders: "macroeconomics", hedef: 5 }, { ders: "biology", hedef: 4 }] });
+  ok(secim.var && secim.sayfalar.join() === "ap-electives,ap-biology" && secim.uniteUygun("ap-electives", "macro14-quiz-container") && !secim.uniteUygun("ap-electives", "micro34-quiz-container") &&
+    !secim.uniteUygun("ap-calculus", "calc-unit1-quiz-container") && secim.denemeKodlari.join() === "economics,biology", "ap-hedef filtre: Macro seçiliyse Micro kutusu ve Calculus dışarıda", secim);
+  let pl = apCalismaPlani({ summary: ozet, kayitSon: null, seviye: { raporlar: [{ id: "r" }] }, bugun: BUGUN, secim });
+  ok(!pl.some(x => /ap-calculus|micro34/.test(x.href)) && pl.some(x => x.href === "ap-electives.html#macro14-quiz-container"), "seçim: zayıf/sıradaki ünite yalnızca seçilen derslerden (Calculus %25 ve Micro %0 önerilmez; sıradaki Macro)", pl);
+  pl = apCalismaPlani({ summary: ozet, kayitSon: null, seviye: { raporlar: [{ id: "r" }] }, bugun: BUGUN });
+  ok(pl.some(x => /micro34/.test(x.href)), "seçim yoksa davranış eskisi gibi (en zayıf Micro önerilir)", pl);
+  const yalnizBio = APH.filtre({ apDersleri: [{ ders: "biology", hedef: 4 }] });
+  pl = apCalismaPlani({ summary: ozet, kayitSon: null, seviye: { raporlar: [{ id: "r" }] }, bugun: BUGUN, secim: yalnizBio });
+  ok(pl.some(x => x.href === "ap-biology.html" && /Seçtiğin derse başla/.test(x.title)), "seçim: hiç açılmamış seçili ders → 'Seçtiğin derse başla'", pl);
+  pl = apCalismaPlani({ summary: { courses: [{ page: "ap-calculus", units: [] }, { page: "ap-biology", name: "AP Biology", units: [] }], openErrors: [], answered: 0 }, kayitSon: null, seviye: { raporlar: [{ id: "r" }] }, bugun: BUGUN, secim: yalnizBio });
+  ok(pl.some(x => x.title === "İlk soru bankanı çöz" && x.href === "ap-biology.html"), "seçim (yeni öğrenci): ilk soru bankası seçilen dersten", pl);
+  // Geri sayım ve sınav tarihleri: 2027 takvimden kesin, 2028 yalnızca ay (uydurma tarih yok)
+  const tkCtx = { window: {} };
+  vm.runInNewContext(fs.readFileSync(path.join(ROOT, "data/mevzuat/sinav-takvimi.js"), "utf8"), tkCtx); // require önbelleğine girmesin (5. bölüm aynı dosyayı yükler)
+  const TK = tkCtx.window.APMEBERRA_TAKVIM;
+  const gs = APH.geriSayim({ sinif: "11", sinavYili: 2027, apDersleri: [{ ders: "chemistry", hedef: 4 }, { ders: "microeconomics", hedef: 3 }] }, TK, new Date("2026-10-20"));
+  ok(gs.kesin && gs.gun === "2027-05-04" && /Microeconomics/.test(gs.ders), "geri sayım: seçilen derslerin en erken 2027 sınavı (Micro 4 Mayıs)", gs);
+  const gs2 = APH.geriSayim({ sinif: "10", apDersleri: [{ ders: "chemistry", hedef: 4 }] }, TK, new Date("2026-10-20"));
+  ok(gs2.yil === 2028 && gs2.gun === null && !gs2.kesin, "geri sayım: 10. sınıf varsayılan 2028 → tarih uydurulmaz", gs2);
+  const st = APH.sinavTarihleri({ sinavYili: 2027, apDersleri: [{ ders: "calculus-bc", hedef: 5 }] }, TK);
+  ok(st.length === 1 && st[0].gun === TK.sinavlar["calculus-bc"].tarih && st[0].hedef === 5, "sınav tarihleri: takvimdeki tarih ve hedef", st);
+  ok(APH.oneAl([{ page: "ap-calculus" }, { page: "ap-biology" }, { page: "ap-electives" }], { apDersleri: [{ ders: "biology" }, { ders: "computer-science-a" }] }).map(x => x.page).join() === "ap-biology,ap-electives,ap-calculus", "oneAl: seçilen dersler önce (seçim sırası)");
+  ok(APH.secimEksik({ ogrenciModeli: "lise" }) && !APH.secimEksik({ apHedefSoruldu: "2026-10-20T10:00:00Z" }) && !APH.secimEksik({ apDersleri: [{ ders: "biology", hedef: 4 }] }), "secimEksik: Bugün kartı yalnızca hiç seçim/atlama yoksa");
+}
 // ---------------------------------------------------------------- 5) Gerçek veriyle uçtan uca (uydurma tarih yok)
 global.window = {};
 require(path.join(ROOT, "data/mevzuat/sinav-takvimi.js"));

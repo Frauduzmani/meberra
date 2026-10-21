@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="stylesheet" href="assets/css/oyun.css?v=20261021a">
   <link rel="stylesheet" href="assets/css/bildirim.css?v=20261021a">
+  <link rel="stylesheet" href="assets/css/ap-hedef.css">
   <script src="assets/js/oyun.js?v=20261021a" defer></script>
   <script src="assets/js/bildirim.js?v=20261021a" defer></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
@@ -60,6 +61,9 @@
         <p class="oy-koruma" id="bg-koruma" hidden></p>
       </section>
     </div>
+
+    <!-- 1.7.0: AP dersleri seçilmemişse tek seferlik, engellemeyen kart (assets/js/ap-hedef-ui.js bugunKarti) -->
+    <section class="surface aph-kart" id="aph-kart" hidden></section>
 
     <!-- OYUNLAŞTIRMA ALANI (assets/js/oyun.js doldurur): günlük hedef halkası + XP, günün görevleri, akıllı tekrar -->
     <div id="bg-oyun" class="oy-alan is-iskelet" aria-busy="true">
@@ -129,7 +133,9 @@
   <script src="data/mevzuat/ulke-dizini.js"></script>
   <script src="assets/js/sartlar-motor.js"></script>
   <script src="assets/js/ucretsiz-kural.js"></script>
+  <script src="assets/js/ap-hedef.js"></script>
   <script src="assets/js/app.js"></script>
+  <script src="assets/js/ap-hedef-ui.js"></script>
   <script>
   (function () {
     "use strict";
@@ -138,6 +144,9 @@
     var s = A.summary();
     var ME = window.APMEBERRA_ME;
     var MODEL = ME && ME.profile ? ME.profile.ogrenciModeli : null;
+    // 1.7.0: AP ders seçimi (plan, ders sırası, geri sayım); seçim yoksa süzgeç yok
+    var APH = window.APMEBERRA_AP_HEDEF, SECIM = APH && ME && ME.profile ? APH.filtre(ME.profile) : null;
+    if (window.APMEBERRA_AP_HEDEF_UI && ME) APMEBERRA_AP_HEDEF_UI.bugunKarti(document.getElementById("aph-kart"), ME);
     var BG = typeof window.APMEBERRA_BUGUN === "string" ? window.APMEBERRA_BUGUN : null; // yalnızca test için
     // Bugün ekranı girdileri (Tur 14 A3): aşağıdaki bölümler doldurur, bugunCiz() kullanır
     var B = { rotaAdimlari: [], rotaUlke: "", rotaU: null, duyurular: [], plan: [], ylKalan: null };
@@ -190,15 +199,19 @@
       h1.appendChild(adEl); h1.appendChild(document.createTextNode("!"));
       document.title = "Bugün — " + ME.user.ad + " | Meberra";
       // Alt satır: sınıf · hedef ülke(ler) · AP sınavına kalan gün (yalnızca AP modellerinde, takvimde tarih varsa)
-      var T1 = window.APMEBERRA_TAKVIM, kalan = null;
-      if (MODEL !== "uni-mezun" && T1 && T1.sinavDonemi && /^\d{4}-\d{2}-\d{2}$/.test(T1.sinavDonemi.bas || "")) {
+      // 1.7.0: geri sayım profildeki sınav yılına ve seçilen derslerin en erken sınav gününe göre (takvimde o yıl yoksa "Mayıs YYYY")
+      var T1 = window.APMEBERRA_TAKVIM, kalan = null, gsMetin = "";
+      if (MODEL !== "uni-mezun" && T1) {
         var g0 = BG ? new Date(BG + "T00:00:00") : new Date(); g0.setHours(0, 0, 0, 0);
-        kalan = Math.round((new Date(T1.sinavDonemi.bas + "T00:00:00") - g0) / 864e5);
+        var gs = APH ? APH.geriSayim(p, T1, g0) : (T1.sinavDonemi && /^\d{4}-\d{2}-\d{2}$/.test(T1.sinavDonemi.bas || "") ? { gun: T1.sinavDonemi.bas } : null);
+        if (gs && gs.gun) kalan = Math.round((new Date(gs.gun + "T00:00:00") - g0) / 864e5);
+        else if (gs && gs.yil) gsMetin = "AP sınavın: Mayıs " + gs.yil;
+        if (kalan !== null && kalan >= 0) gsMetin = (gs && gs.ders ? gs.ders.replace(/^AP /, "") + " sınavına " : "AP sınavına ") + kalan + " gün";
       }
       document.getElementById("hello-sub").textContent = [
         p.sinif ? (A.sinifEtiket ? A.sinifEtiket(p) : p.sinif) : "",
         ul.length ? "Hedef: " + ul.map(function (u) { return ULKE[u] || u; }).join(" + ") : "",
-        kalan !== null && kalan >= 0 ? "AP sınavına " + kalan + " gün" : ""
+        gsMetin
       ].filter(Boolean).join(" · ");
 
       var panel = A.panel ? A.panel.get() : { sinavlarim: [] };
@@ -346,8 +359,15 @@
     var todos = (window.apCalismaPlani ? apCalismaPlani({
       summary: s, mezun: !!(ME && ME.profile && ME.profile.sinif === "mezun"),
       kayitSon: T0 && T0.kayit ? T0.kayit.sonGun : null, seviye: A.storeGet("apmeberra:seviye:v1", null), bugun: BG || new Date(),
-      premium: window.apPremiumMu ? apPremiumMu() : true
+      premium: window.apPremiumMu ? apPremiumMu() : true, secim: SECIM
     }) : []).map(function (t) { return gorev(ICON[t.ikon] || ICON.book, t.title, t.desc, t.href, t.linkText); });
+    // 1.7.0: Derslerin listesi — seçilen dersler önce (seçim sırasıyla)
+    (function () {
+      var ul = document.getElementById("course-grid");
+      if (!ul || !SECIM || !SECIM.var) return;
+      APH.oneAl(Array.prototype.slice.call(ul.children), ME.profile, function (li) { var a = li.querySelector("[data-course]"); return a && a.getAttribute("data-course"); })
+        .forEach(function (li) { ul.appendChild(li); var a = li.querySelector("[data-course]"); if (a && SECIM.sayfalar.indexOf(a.getAttribute("data-course")) >= 0) a.classList.add("is-secili"); });
+    })();
     var todoList = document.getElementById("todo-list");
     if (todoList) todoList.innerHTML = todos.slice(0, 4).map(gorevHtml).join("");
 
@@ -468,7 +488,8 @@
       var ytHam = apYaklasanTarihler({
         bugun: bugun, n: 3, nGecmis: 2, duyuruHref: SARTLAR_KENDI + "#mezun-panel",
         rotaAdimlari: B.rotaAdimlari, rotaUlke: B.rotaUlke,
-        apTakvim: MODEL === "lise" && T && T.kayit ? { kayitSon: T.kayit.sonGun, gecKayitBas: T.kayit.gecKayitBas, gecKayitSon: T.kayit.gecKayitSon, sinavBas: T.sinavDonemi && T.sinavDonemi.bas,
+        // 1.7.0: profildeki sınav yılı takvimdeki dönemden sonraysa (ör. 2029) bu dönemin kayıt tarihleri gösterilmez
+        apTakvim: MODEL === "lise" && T && T.kayit && !(APH && T.sinavDonemi && APH.geriSayim(ME.profile, T, bugun).yil > +String(T.sinavDonemi.bas).slice(0, 4)) ? { kayitSon: T.kayit.sonGun, gecKayitBas: T.kayit.gecKayitBas, gecKayitSon: T.kayit.gecKayitSon, sinavBas: T.sinavDonemi && T.sinavDonemi.bas,
           kayitSonraki: T.kayit.sonrakiTarih, gecKayitSonraki: T.kayit.gecKayitSonrakiTarih, sinavSonraki: T.sinavDonemi && T.sinavDonemi.sonrakiTarih } : null,
         sinavlar: liste,
         duyurular: B.duyurular

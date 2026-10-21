@@ -308,7 +308,7 @@
     sekme: "ozet",
     yuklendi: {},
     talepDurum: "bekliyor",
-    kul: { q: "", premium: false, varlik: "", sirala: "", sayfa: 1, boyut: 0, istek: 0, satirlar: [] },
+    kul: { q: "", premium: false, varlik: "", sirala: "", rol: "", sayfa: 1, boyut: 0, istek: 0, satirlar: [] },
     surum: "",
     hazir: null,           // hazır yanıtlar (önbellek)
     yoneticiler: null,
@@ -813,6 +813,8 @@
             '<option value="">Tümü</option><option value="cevrimici">Çevrimiçi (5 dk)</option><option value="yakin">Son 30 dk aktif</option><option value="engelli">Engelli / askıda</option></select></div>' +
           '<div class="field adm-field-dar"><label for="kul-sirala">Sırala</label><select id="kul-sirala" class="text-input">' +
             '<option value="">Kayıt (yeni önce)</option><option value="gorulme">Son görülme</option><option value="giris">Son giriş</option></select></div>' +
+          '<div class="field adm-field-dar"><label for="kul-rol">Rol</label><select id="kul-rol" class="text-input">' +
+            '<option value="">Tümü</option><option value="ogrenci">Öğrenci</option><option value="veli">Veli</option><option value="yonetici">Yönetici</option></select></div>' +
           '<label class="adm-check"><input type="checkbox" id="kul-premium"> <span>Yalnızca Premium</span></label>' +
         "</form>" +
         '<p class="adm-sonuc" id="kul-ozet" aria-live="polite"></p>' +
@@ -834,6 +836,7 @@
     $("#kul-premium").addEventListener("change", function (e) { S.kul.premium = e.target.checked; S.kul.sayfa = 1; kulYukle(); });
     $("#kul-varlik").addEventListener("change", function (e) { S.kul.varlik = e.target.value; S.kul.sayfa = 1; kulYukle(); });
     $("#kul-sirala").addEventListener("change", function (e) { S.kul.sirala = e.target.value; S.kul.sayfa = 1; kulYukle(); });
+    $("#kul-rol").addEventListener("change", function (e) { S.kul.rol = e.target.value; S.kul.sayfa = 1; kulYukle(); });
 
     $(".adm-kul-liste-gorunum", p).addEventListener("click", function (e) {
       if (e.target.closest("[data-tekrar]")) { kulYukle(); return; }
@@ -855,7 +858,7 @@
     if (!kap.querySelector("table")) kap.innerHTML = iskelet("tablo", 8);
     else kap.classList.add("is-soluk");
     var vs = $("#kul-varlik"); if (vs && vs.value !== S.kul.varlik) vs.value = S.kul.varlik;
-    return api("/api/admin/users" + sorgu({ q: S.kul.q, sayfa: S.kul.sayfa, premium: S.kul.premium ? 1 : "", varlik: S.kul.varlik, sirala: S.kul.sirala })).then(function (v) {
+    return api("/api/admin/users" + sorgu({ q: S.kul.q, sayfa: S.kul.sayfa, premium: S.kul.premium ? 1 : "", varlik: S.kul.varlik, sirala: S.kul.sirala, rol: S.kul.rol })).then(function (v) {
       if (no !== S.kul.istek) return;
       var liste = Array.isArray(v.kullanicilar) ? v.kullanicilar : [];
       S.kul.satirlar = liste;
@@ -864,7 +867,7 @@
       oz.tabIndex = -1;
       oz.textContent = b.toplam ? sayi(b.toplam) + " kullanıcı bulundu" + (S.kul.q ? " (“" + S.kul.q + "”)" : "") + "." : "";
       if (!liste.length) {
-        kap.innerHTML = bos(S.kul.q || S.kul.premium || S.kul.varlik ? "Bu filtreye uyan kullanıcı yok." : "Henüz kayıtlı kullanıcı yok.");
+        kap.innerHTML = bos(S.kul.q || S.kul.premium || S.kul.varlik || S.kul.rol ? "Bu filtreye uyan kullanıcı yok." : "Henüz kayıtlı kullanıcı yok.");
         say.innerHTML = "";
         return;
       }
@@ -880,7 +883,8 @@
           var hesapR = u.engel ? rozet(u.engel.dolmus ? "Engel süresi doldu" : "Engelli", u.engel.dolmus ? "warn" : "bad") : rozet(hesapDurumAd(u.durum), u.durum === "askida" ? "bad" : "ok");
           return '<tr data-satir="' + esc(u.id) + '">' +
             '<td data-label="Kullanıcı" class="adm-hucre-kisi"><button type="button" class="adm-link" data-kul="' + esc(u.id) + '">' + esc(adSoyad(u)) + "</button>" +
-              '<span class="adm-alt adm-kir">' + esc(u.eposta || "") + "</span></td>" +
+              '<span class="adm-alt adm-kir">' + esc(u.eposta || "") + "</span>" +
+              (u.rol === "veli" ? " " + rozet("Veli" + (u.bagliSayisi ? " · " + u.bagliSayisi + " öğrenci" : ""), "info") : u.bagliSayisi ? " " + rozet(u.bagliSayisi + " veli bağlı", "notr") : "") + "</td>" +
             (ipVar
               ? '<td data-label="Durum">' + varlikCip(u.varlik, u.sonGorulme) + "</td>" +
                 '<td data-label="Son görülme" class="adm-nowrap">' + zamanHucre(u.sonGorulme) + "</td>" +
@@ -1060,7 +1064,7 @@
         '<div class="adm-kisi-ust"><h2 id="kul-detay-baslik" tabindex="-1">' + esc(adSoyad(u)) + "</h2>" +
           '<div class="adm-rozetler">' + ("varlik" in u || "sonGorulme" in u ? varlikCip(u.varlik, u.sonGorulme) : "") +
             (u.engel ? rozet("Engelli", "bad") : rozet(hesapDurumAd(durum), askida ? "bad" : "ok")) + uyelikDurum +
-            (u.rol === "yonetici" ? rozet("Yönetici", "info") : "") + "</div></div>" +
+            (u.rol === "yonetici" ? rozet("Yönetici", "info") : u.rol === "veli" ? rozet("Veli", "info") : "") + "</div></div>" +
         '<p class="adm-alt adm-kir">' + esc(u.eposta || "—") + (u.kullaniciAdi ? " · @" + esc(u.kullaniciAdi) : "") +
           " · Kayıt: " + esc(tarih(u.olusturma)) + " · Kimlik #" + esc(u.id) + "</p>" +
       "</header>" +

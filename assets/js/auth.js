@@ -478,6 +478,18 @@
     return { aktifRota: aktif, hedefAlan: alan || VARSAYILAN_ALAN };
   }
 
+  /** 1.7.0: AP dersleri / hedef puan / sınav yılı (assets/js/ap-hedef.js varsa onunla doğrulanır; yoksa olduğu gibi —
+   *  sunucu yine doğrular). Yalnızca p'de olan alanlar döner; null → alan silinir. */
+  var AP_ALANLARI = ["apDersleri", "sinavYili", "apHedefSoruldu"];
+  function apAlanlari(p, e) {
+    var o = {};
+    AP_ALANLARI.forEach(function (k) { if (p[k] !== undefined) o[k] = p[k]; });
+    var APH = typeof window !== "undefined" ? window.APMEBERRA_AP_HEDEF : null;
+    if (!APH || !Object.keys(o).length) return o;
+    var v = APH.dogrula(o);
+    Object.keys(v.hatalar).forEach(function (k) { e[k] = v.hatalar[k]; });
+    return v.deger;
+  }
   function saveProfileMerged(id, p, eski) {
     var e = {};
     var okul = String(p.okul || "").trim().replace(/\s+/g, " ");
@@ -498,6 +510,7 @@
     var uniEk = validateUni(p, eski, model, e);
     Object.keys(uniEk).forEach(function (k) { ek[k] = uniEk[k]; });
     var rota = validateRota(p, eski, ulkeler, e);
+    var ap = apAlanlari(p, e); // 1.7.0
     if (Object.keys(e).length) return { ok: false, errors: e };
     // Bilinmeyen (ileride eklenecek) alanlar korunur; bilinen alanlar aşağıda yeniden yazılır
     var prof = {};
@@ -510,6 +523,7 @@
     });
     if (!prof.okulSehir) prof.okulSehir = "İstanbul";
     if (!prof.okul) delete prof.okul;
+    Object.keys(ap).forEach(function (k) { if (ap[k] === null) delete prof[k]; else prof[k] = ap[k]; });
     return store.saveProfile(id, prof).then(function () { return { ok: true, profile: prof }; })
       .catch(function (err) {
         // Sunucu modu: sunucunun alan hataları (err.errors) formda gösterilir; tarayıcı modunda depolama hatasıdır
@@ -624,6 +638,21 @@
         prof.guncelleme = new Date().toISOString();
         return store.saveProfile(id, prof).then(function () { return { ok: true, profile: prof }; });
       }).catch(function () { return { ok: false, errors: { genel: "Profil kaydedilemedi (depolama dolu ya da kapalı)." } }; });
+    },
+    /** 1.7.0: yalnızca AP ders/hedef/sınav yılı alanlarını günceller (Bugün kartı, profil). Dönüş: {ok, profile?, errors?} */
+    setApHedef: function (id, veri) {
+      return store.getProfile(id).then(function (eski) {
+        if (!eski || !eski.tamamlandi) return { ok: false, errors: { genel: "Önce profilini tamamla." } };
+        var e = {}, ap = apAlanlari(veri || {}, e);
+        if (Object.keys(e).length) return { ok: false, errors: e };
+        var prof = {}; Object.keys(eski).forEach(function (k) { prof[k] = eski[k]; });
+        Object.keys(ap).forEach(function (k) { if (ap[k] === null) delete prof[k]; else prof[k] = ap[k]; });
+        prof.guncelleme = new Date().toISOString();
+        return store.saveProfile(id, prof).then(function (kayitli) { return { ok: true, profile: kayitli && typeof kayitli === "object" ? kayitli : prof }; });
+      }).catch(function (err) {
+        if (err && err.errors) return { ok: false, errors: err.errors };
+        return { ok: false, errors: { genel: "Profil kaydedilemedi (depolama dolu ya da kapalı)." } };
+      });
     },
     VARSAYILAN_ALAN: VARSAYILAN_ALAN,
     EXTRA_FIELDS: EXTRA_FIELDS,

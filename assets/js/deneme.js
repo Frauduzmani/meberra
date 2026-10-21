@@ -223,11 +223,22 @@
   }
   function lastFor(kod, d) { for (var i = 0; i < d.gecmis.length; i++) if (d.gecmis[i].kod === kod) return d.gecmis[i]; return null; }
 
+  /** 1.7.0: profilde seçilen AP derslerinin denemeleri önce (seçim sırasıyla); diğerleri kendi sırasıyla. Dönüş: { sira, secili } */
+  function onerilenSira() {
+    var H = window.APMEBERRA_AP_HEDEF, me = window.APMEBERRA_ME;
+    var f = H && me && me.profile ? H.filtre(me.profile) : null;
+    if (!f || !f.var) return { sira: KODLAR, secili: [] };
+    var idx = function (k) { var i = f.denemeKodlari.indexOf(k); return i < 0 ? 999 : i; };
+    return { sira: KODLAR.map(function (k, i) { return { k: k, i: i }; }).sort(function (a, b) { return (idx(a.k) - idx(b.k)) || (a.i - b.i); }).map(function (o) { return o.k; }),
+      secili: f.denemeKodlari };
+  }
+
   function renderLanding() {
     var d = load();
     document.title = "Deneme | Meberra";
     var ucretsiz = ucretsizPlan();
-    var cards = KODLAR.map(function (kod) {
+    var oneri = onerilenSira();
+    var cards = oneri.sira.map(function (kod) {
       var k = BANK.kodlar[kod], n = onerilen(kod), last = lastFor(kod, d);
       var t = TEMPO[kod] || {};
       var yarim = d.aktif && d.aktif.kod === kod;
@@ -237,6 +248,7 @@
         : '<a class="btn-primary dn-card-cta" href="deneme.html?ders=' + encodeURIComponent(kod) + '">Denemeyi kur →</a>' +
           (ucretsiz ? '<p class="dn-note">Ücretsiz planda bu ders için 1 deneme hakkın var' + (sayfaOf(kod) === "ap-calculus" || sayfaOf(kod) === "ap-electives" ? ' (aynı ders sayfasındaki denemeyle ortak)' : '') + '.</p>' : '');
       return '<article class="dn-card" style="--dn-c:' + colorVar(kod) + '">' +
+        (oneri.secili.indexOf(kod) >= 0 ? '<p class="dn-note dn-oneri">Seçtiğin ders · önerilen</p>' : '') +
         '<h3 class="dn-card-title">' + esc(k.ad) + '</h3>' +
         '<dl class="dn-facts">' +
         '<div><dt>Soru havuzu</dt><dd>' + k.soruSayisi + ' soru</dd></div>' +
