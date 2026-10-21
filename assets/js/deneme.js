@@ -271,6 +271,7 @@
       '<p>Bluebook benzeri odaklı ekran: cevaplar teslimde açılır, ünite bazında sonuç ve soru soru inceleme alırsın.</p>' +
       '</header>' +
       yanlisGirisKarti() +
+      tamSinavKarti() +
       '<section class="dn-section" aria-labelledby="dn-ders-title">' +
       '<h2 class="panel-title" id="dn-ders-title">Ders denemeleri</h2>' +
       '<div class="dn-grid">' + cards + '</div>' +
@@ -296,6 +297,14 @@
     book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/></svg>',
     home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>'
   };
+  /** 1.12.0 Tam deneme sınavı girişi (Premium; ücretsiz planda kilitli rozetle aynı kart) */
+  function tamSinavKarti() {
+    var kilit = ucretsizPlan();
+    return '<section class="dn-section dn-yk ts-giris-kart" aria-labelledby="dn-tam-title"><span class="dn-yk-ico" aria-hidden="true">' + IC_Y.book + '</span><div class="dn-yk-body">' +
+      '<h2 class="panel-title" id="dn-tam-title">Tam deneme sınavı' + (kilit ? ' <span class="dn-tag">Premium</span>' : '') + '</h2>' +
+      '<p class="panel-sub">Gerçek AP düzeni: bölüm süreleri, hesap makinesi kuralları, ara ve gözden geçirme; MCQ + FRQ öz puanla bileşik puan ve tahmini 1–5.</p></div>' +
+      '<a class="' + (kilit ? 'btn-energy' : 'btn-primary') + '" href="/deneme?tam=1">' + (kilit ? 'Yapısını gör →' : 'Tam sınavlar →') + '</a></section>';
+  }
   /** Denemeler giriş ekranında Yanlışlarım kısayolu */
   function yanlisGirisKarti() {
     var h = yanlisHavuzu(), n = h.havuz.length;
@@ -1183,6 +1192,7 @@
       b.addEventListener("click", function () {
         var id = b.getAttribute("data-open"), rec = load().gecmis.filter(function (r) { return r.id === id; })[0];
         if (!rec) return;
+        if (rec.mod === "tam") { window.location.href = "/deneme?tam=" + encodeURIComponent(id); return; } // 1.12.0 tam sınav sonucu
         try { history.pushState(null, "", "/deneme?sonuc=" + encodeURIComponent(id)); } catch (e) { /* yok say */ }
         renderResult(rec, false); window.scrollTo(0, 0);
       });
@@ -1220,6 +1230,9 @@
     return katalogSuruyor;
   }
   function boot() {
+    // 1.12.0 Tam deneme sınavı: /deneme?tam=… → assets/js/tam-sinav.js (ayrı akış; deneme kataloğu gerekmez)
+    var tamP = param("tam");
+    if (tamP != null && window.MeberraTamSinav) { window.MeberraTamSinav.baslat(view, tamP); return; }
     if (!BANK) {
       if (!document.querySelector('meta[name="meberra-api"]')) { view.innerHTML = '<div class="sb-durum" role="status"><strong>Deneme çevrimiçi</strong><p>Deneme soruları Meberra hesabınla, çevrimiçiyken açılır.</p></div>'; return; }
       view.innerHTML = iskelet("Deneme yükleniyor…");
@@ -1244,6 +1257,7 @@
     var sonuc = param("sonuc");
     if (sonuc) {
       var rec = d.gecmis.filter(function (r) { return r.id === sonuc; })[0];
+      if (rec && rec.mod === "tam") { window.location.replace("/deneme?tam=" + encodeURIComponent(rec.id)); return; } // 1.12.0
       if (rec) { renderResult(rec, false); return; }
     }
     var ders = param("ders");
@@ -1253,7 +1267,7 @@
   }
   window.addEventListener("popstate", function () { if (!A) boot(); });
   // Üyelik /api/me ile tazelenip premium durumu değişince (app.js apUyelikDegisti) sınav dışındaki ekran yeniden çizilir
-  window.addEventListener("meberra:uyelik", function () { if (!A && !param("sonuc")) { BANK = null; boot(); } }); // üyelik değişti: haklar tazelenir
+  window.addEventListener("meberra:uyelik", function () { if (!A && !param("sonuc") && param("tam") == null) { BANK = null; boot(); } }); // üyelik değişti: haklar tazelenir
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot); else boot();
 
   // Test/diğer sayfalar için salt-okunur API

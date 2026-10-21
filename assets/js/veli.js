@@ -229,8 +229,8 @@
     }).join("");
     var denemeler = c.denemeler.map(function (d) {
       return '<li><div class="u-min0"><strong>' + esc(d.ad) + '</strong><span>' + esc(new Date(d.tarih).toLocaleDateString("tr-TR", { day: "numeric", month: "long" })) +
-        (d.soru ? " · " + d.dogru + "/" + d.soru + " doğru" : "") + (d.sureDk ? " · " + d.sureDk + " dk" : "") + '</span></div>' +
-        '<span class="vp-deneme-yuzde">%' + esc(d.yuzde) + '</span>' + (d.tahminiPuan != null ? '<span class="vp-bant" title="Tahmini AP puanı">' + d.tahminiPuan + '</span>' : "") + '</li>';
+        (d.tamSinav ? " · tam sınav (bileşik puan, MCQ " + d.dogru + "/" + d.soru + ")" : d.soru ? " · " + d.dogru + "/" + d.soru + " doğru" : "") + (d.sureDk ? " · " + d.sureDk + " dk" : "") + '</span></div>' +
+        '<span class="vp-deneme-yuzde">%' + esc(d.yuzde) + '</span>' + (d.tahminiPuan != null ? '<span class="vp-bant" title="Tahmini AP puanı' + (d.tamSinav ? " (tam sınav, tahmini)" : "") + '">' + d.tahminiPuan + '</span>' : "") + '</li>';
     }).join("");
     var premium = u.premium
       ? '<p class="vp-premium-durum is-acik">Premium açık · bitiş ' + esc(new Date(u.bitis).toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" })) + '</p>'

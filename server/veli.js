@@ -142,8 +142,10 @@ function veliServisi(db, c) {
       return { ders: x.ders, ad: "AP " + x.ad, hedef: x.hedef, cevap: cev.length, cozulen, bankada: banka, kapsam: banka ? Math.min(100, Math.round(cozulen / banka * 100)) : null,
         dogruluk: yuzde, tahmini, tahminKaynagi: sd && sd.tahmini_band != null ? "deneme" : tahmini != null ? "sorular" : null };
     });
-    const denemeler = db.prepare("SELECT kod, ad, tarih, soru_sayisi, dogru, yuzde, tahmini_band, sure_sn FROM exams WHERE user_id = ? ORDER BY tarih DESC LIMIT 5").all(u.id)
-      .map(e => ({ kod: e.kod, ad: e.ad || e.kod, tarih: e.tarih, soru: e.soru_sayisi, dogru: e.dogru, yuzde: e.yuzde, tahminiPuan: e.tahmini_band != null ? +e.tahmini_band : null, sureDk: e.sure_sn ? Math.round(e.sure_sn / 60) : null }));
+    // 1.12.0: tam deneme sınavları (istemci_id "ts-…") da listede; yuzde = bileşik puan, tahminiPuan = tahmini AP puanı (1–5)
+    const denemeler = db.prepare("SELECT istemci_id, kod, ad, tarih, soru_sayisi, dogru, yuzde, tahmini_band, sure_sn FROM exams WHERE user_id = ? ORDER BY tarih DESC LIMIT 5").all(u.id)
+      .map(e => ({ kod: e.kod, ad: e.ad || e.kod, tarih: e.tarih, soru: e.soru_sayisi, dogru: e.dogru, yuzde: e.yuzde, tahminiPuan: e.tahmini_band != null ? +e.tahmini_band : null, sureDk: e.sure_sn ? Math.round(e.sure_sn / 60) : null,
+        tamSinav: /^ts-/.test(String(e.istemci_id || "")) }));
     // Tarihler: AP sipariş son günü (okul koordinatörü) + seçilen derslerin sınav günleri (takvimde o yıl yoksa yalnızca ay)
     const bugun = zaman.gun(simdiMs), tarihler = [];
     if (T.kayit && T.kayit.sonGun && T.kayit.sonGun >= bugun) tarihler.push({ tur: "kayit", baslik: "AP sınav siparişi (kayıt) son günü", gun: T.kayit.sonGun, kesin: true });

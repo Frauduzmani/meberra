@@ -288,6 +288,13 @@ function olustur(secenek) {
   }
   // 1.11.0 FRQ sonu
 
+  // 1.12.0 Tam deneme sınavı (server/tamsinav.js; plan server/tohum/sinav-formatlari.json; süre sunucuda)
+  {
+    const tsS = require("./tamsinav").tamSinavRotalari(r, { db, hesap, veri, denetim, oturumGerekli, hiz: secenek.tamSinavHiz, saat: secenek.tamSinavSaat,
+      olusturSiniri: secenek.tamSinavSiniri, cevapSiniri: secenek.tamSinavCevapSiniri });
+    sinirlar["tamSinav.olustur"] = tsS.sinir.olustur; sinirlar["tamSinav.cevap"] = tsS.sinir.cevap;
+  }
+
   /** Bakım sayfası (503). Yönetici oturumu olan bu sayfayı görmez. */
   function bakimSayfasi(req, res) {
     const k = hesap.oturumKullanici(cerezleriOku(req)[CEREZ]);

@@ -237,5 +237,17 @@ for (const l of tekrarlar) { console.log(`✗ tekrar soru: ${l.join(", ")} (biri
     problems += frqSorun;
   }
 }
+// v1.12.0 tam sınav planları (server/tohum/sinav-formatlari.json): yapı (server/tamsinav.js dogrula — bölüm türü/süre/hesap makinesi,
+// ağırlık toplamı 100, azalan 5–2 eşikleri, AP Central kaynağı, resmî referans PDF'i).
+{
+  const PLAN = path.join(ROOT, "server", "tohum", "sinav-formatlari.json");
+  if (fs.existsSync(PLAN)) {
+    const { dogrula: planDogrula } = require("../server/tamsinav.js");
+    const t = JSON.parse(fs.readFileSync(PLAN, "utf8")), s = planDogrula(t);
+    s.forEach(x => console.log(`✗ Tam sınav planı ${x}`));
+    console.log(`TAM SINAV PLANI: ${Object.keys(t.sinavlar || {}).length} sınav, ${s.length} sorun`);
+    problems += s.length;
+  }
+}
 console.log(`TOPLAM: ${total} soru, ${problems} sorun`);
 process.exitCode = problems ? 1 : 0;

@@ -524,6 +524,32 @@ Yönetici (hepsi denetim kaydına yazılır: `frq.duzenle`, `frq.onayla`, `frq.a
 - `PUT /api/admin/frq/:id` `{ veri, surum, not? }` → yapı denetimi (rubrik toplamı = parça puanı, toplam_puan = parça toplamı, `$` yok) → yeni sürüm (`409` sürüm çakışması)
 - `POST /api/admin/frq/:id/durum` `{ durum:"aktif"|"arsiv"|"taslak" }` → onay / arşiv (silme yok)
 
+## Tam deneme sınavı (v1.12.0, `010_tam_sinav.sql`; `server/tamsinav.js`)
+Plan dosyası `server/tohum/sinav-formatlari.json`: sınav başına bölümler (`mcq|frq`, soru, dk, `hesapMakinesi: yasak|gerekli|serbest|yok`),
+bölüm ağırlıkları (`agirlik.I/II`, toplam 100), CED ünite ağırlıkları, referans PDF'i (resmî College Board), Desmos bağlantısı ve
+**tahmini** 1–5 eşikleri (bileşik yüzde; College Board dönüşüm yayımlamaz). Kaynak adresleri dosyada. Oturumlar `tam_sinavlar`.
+- **Erişim**: yalnız Premium (ve yönetici). Ücretsiz plan katalog/tanıtımı görür, kuramaz: `402 { premiumGerekli:true, neden:"tam-sinav" }`.
+- **Kurulum**: yalnız `durum='aktif'` sorular; ünite kotaları ağırlığa göre (en büyük kalan; sorusu olmayan ünitenin payı dağıtılır);
+  `hesapMakinesi:"yasak"` kısma yalnız `ek.hesapMakinesi = "gerekmez"` sorular; `"gerekli"` kısma önce gerekli/yardımcı sorular.
+  Son 60 günde cevaplanan ve önceki tam sınavlarda çıkan sorular mümkünse kullanılmaz. Bölüm II aktif FRQ'lardan (`frqDersleri` sırasıyla;
+  Calculus'ta `hesapMakinesi` true → Kısım A); FRQ yetmezse kısım kısaltılır (süre orantılı, `kisaltilmis:true`), hiç yoksa sınav yalnız
+  Bölüm I (`yalnizMcq:true`; tahmin yalnız MCQ'ya dayanır). MCQ havuzu yetmezse `400 { yetersiz:[…] }`. Kullanıcı başına tek `devam` sınav (`409 { aktifId }`).
+- **Süre sunucuda**: `bolum-baslat` açılış/bitişi sunucu saatiyle yazar (bitiş = açılış + süre ÷ hız). Bitiş + 15 sn sonrası gelen cevap
+  `409 { kapandi:true }`; süresi dolan bölüm sonraki istekte kendiliğinden kapanır (`otomatik:true`). Bölümler sırayla açılır.
+  Test hızı: `TAM_SINAV_HIZ` (ör. 60) yalnız `NODE_ENV=test` ya da `MEBERRA_TEST_ROTALARI=1` iken okunur.
+- **Gizlilik**: doğru şık/çözüm sınav bitene kadar hiçbir yanıtta yok; içerik yalnız açık bölüm için; FRQ rubriği yalnız kapanmış FRQ kısmı için.
+- `GET /api/tam-sinav/katalog` → `{ ok, premium, hiz, sinavlar:[{ kod, ad, kaynak, referans, hesapMakinesi, agirlik, esikler, bolumler, hazir, yetersiz, mcqHavuz, frqHedef, frqVar, frqDurumu:"tam"|"kisaltilmis"|"yok", toplamDk }], aktif:{id,kod}|null, gecmis }`
+- `POST /api/tam-sinav/olustur` `{ kod }` → durum yanıtı (aynı kodda yarım sınav varsa onu döner; saatte 12)
+- `GET /api/tam-sinav/:id` → durum yanıtı: `{ ok, sunucuZamani, sinav:{ id, kod, ad, durum, hiz, uyariMs, yalnizMcq, agirlik, esikler, referans, hesapMakinesi, aktifBolum, bolumler:[{ kod, bolum, ad, tur, soru, hedefSoru, sureSn, kisaltilmis, acilis, bitis, kapanis, otomatik, durum:"bekliyor"|"acik"|"kapandi", kalanMs }] }, cevaplar, isaret, eleme, sureler, frqCevap, icerik?, rubrikler?, sonuc?, cozumler? }`
+- `POST /api/tam-sinav/:id/bolum-baslat` `{ bolum }` · `POST /api/tam-sinav/:id/cevap` `{ bolum, i, secim?|null, eleme?:["B"], isaret?, sureSn?, frq?:{a:"…"} }` → `{ ok, kalanMs, sunucuZamani }`
+- `POST /api/tam-sinav/:id/bolum-teslim` `{ bolum, otomatik? }` → durum yanıtı (FRQ kısmında `frq_denemeleri` satırları açılır; öz puanlama `POST /api/frq/:id/puanla { denemeId }`)
+- `POST /api/tam-sinav/:id/bitir` → `{ …durum, sonuc:{ mcq:{dogru,yanlis,bos,toplam,yuzde}, frq:{kazanilan,toplam,yuzde,puanlanmamis,sorular}|null, agirlik, kompozit, katki:{I,II}, tahminiPuan, esikler, tahmini:true, bolumler, uniteler, zaman:[{b,i,k,sn,hedefSn,uzun,st}], inceleme }, icerik, cozumler, denemeKaydi, ilk }`.
+  Bileşik = (agirlik.I × MCQ% + agirlik.II × FRQ öz puan%) / 100. Bitmiş sınavda yeniden çağrı FRQ öz puanı değiştiyse bileşiği günceller.
+  Sonuç deneme geçmişine (`apmeberra:deneme:v1` → `exams`, `mod:"tam"`, `ad:"Tam sınav · …"`, `tahminiBand` = tahmini AP puanı) yazılır:
+  XP, veli paneli (son denemeler, `tamSinav:true`) ve `/deneme?mod=yanlislar&deneme=<id>` çalışır.
+- `POST /api/tam-sinav/:id/birak` · `GET /api/tam-sinav/gecmis` → `{ ok, gecmis:[{ id, kod, ad, tarih, kompozit, tahminiPuan, mcqYuzde, frqYuzde, yalnizMcq }] }`
+- Denetim kaydı: `tam-sinav.olustur`, `tam-sinav.bolum-teslim`, `tam-sinav.bitir`, `tam-sinav.birak`. KVKK dışa aktarma `tamSinavlar` alanını içerir.
+
 ## Sayfalar
 Sunucu proje kökündeki statik sayfaları da sunar. HTML yanıtlarına `<meta name="meberra-api" content="1">`
 eklenir; istemci bu etiketi görünce sunucu modunda çalışır (yoksa eski tarayıcı-içi mod).

@@ -9,6 +9,15 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.12.0] — 2026-10-21
+### Eklendi
+- Tam deneme sınavı (`/deneme?tam=1`, Premium): gerçek AP bölüm yapısı, süreleri ve hesap makinesi kuralları (9 sınav; College Board kaynaklı, `server/tohum/sinav-formatlari.json`).
+  Süre sunucuda tutulur, otomatik teslim, soru ızgarası, işaretleme, şık eleme, ara ekranı, gözden geçirme; resmi formül/başvuru PDF bağlantıları, izinli bölümlerde Desmos.
+- Bölüm II FRQ öz puanlamasıyla bileşik puan ve tahmini 1–5 (kesme puanları "tahmini"); ünite, soru süresi ve geçmiş grafikleri; yanlışlar akıllı tekrara eklenir.
+- Tam sınav sonuçları veli panelinde; KVKK dışa aktarma ve silme kapsar.
+### Not
+- Micro ve Macro için tam sınav yeterli soru olana dek "Yakında".
+
 ## [1.11.0] — 2026-10-21
 ### Eklendi
 - 220 yeni soru yayında (yazan ekipten bağımsız denetçiler her birini yeniden çözerek onayladı; 9 tekrar/benzer soru arşivde).

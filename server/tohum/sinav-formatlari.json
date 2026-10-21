@@ -1,0 +1,168 @@
+{
+  "surum": 1,
+  "dogrulama": "2026-10-21",
+  "aciklama": "v1.12.0 Tam deneme sınavı planları (server/tamsinav.js). Bölüm sayıları ve süreleri AP Central ders 'Exam' sayfalarından 21 Ekim 2026'da doğrulandı (kaynak alanları). Ünite ağırlıkları CED 'exam weighting' aralıklarının orta noktasıdır; havuzda sorusu olmayan ünitenin payı diğerlerine oranla dağıtılır. Eşikler (esikler) TAHMİNİDİR: College Board ham puan → 1–5 dönüşümünü yayımlamaz; değerler kamuya açık puan dağılımlarından ve yaygın puan hesaplayıcılarından türetilmiş yaklaşık bileşik yüzde sınırlarıdır ve her yıl değişir.",
+  "notlar": [
+    "Görevdeki Calculus düzeni (Kısım A 30 soru 60 dk, Kısım B 15 soru 45 dk) eski düzendir; AP Central sayfası Mayıs 2027 güncellemesiyle 29 soru 62 dk + 13 soru 38 dk gösteriyor. Sayfadaki değerler kullanıldı.",
+    "Görevdeki Physics 1 düzeni (40 MCQ 80 dk; 4 FRQ 100 dk) yerine AP Central'ın güncel değerleri kullanıldı: 42 MCQ 85 dk; 4 FRQ 95 dk (Mayıs 2027 güncellemesi).",
+    "Desmos: Bluebook'ta yerleşiktir (Calculus: grafik, yalnız hesap makineli kısımlarda; Chemistry/Physics: bilimsel veya grafik; Biology: bilimsel; Micro/Macro: 4 işlem). English Language ve Computer Science A'da hesap makinesi yok. Kaynak: https://apcentral.collegeboard.org/exam-administration-ordering-scores/administering-exams/exam-policies/calculator-policy",
+    "Referans sayfaları: https://apcentral.collegeboard.org/exam-administration-ordering-scores/administering-exams/subject-specific/reference-information (Calculus için referans sayfası yok)."
+  ],
+  "sinavlar": {
+    "calculus-ab": {
+      "ad": "AP Calculus AB",
+      "denemeKodu": "calculus-ab",
+      "uniteOnek": null,
+      "frqDersleri": ["calculus-ab"],
+      "kaynak": "https://apcentral.collegeboard.org/courses/ap-calculus-ab/exam",
+      "referans": null,
+      "hesapMakinesi": { "tur": "grafik", "desmos": "https://www.desmos.com/calculator", "not": "Grafik hesap makinesi yalnız Bölüm I Kısım B ve Bölüm II Kısım A'da (Bluebook'ta yerleşik Desmos)." },
+      "agirlik": { "I": 50, "II": 50 },
+      "bolumler": [
+        { "kod": "I-A", "bolum": "I", "ad": "Bölüm I · Kısım A", "tur": "mcq", "soru": 29, "dk": 62, "hesapMakinesi": "yasak" },
+        { "kod": "I-B", "bolum": "I", "ad": "Bölüm I · Kısım B", "tur": "mcq", "soru": 13, "dk": 38, "hesapMakinesi": "gerekli" },
+        { "kod": "II-A", "bolum": "II", "ad": "Bölüm II · Kısım A", "tur": "frq", "soru": 2, "dk": 30, "hesapMakinesi": "gerekli" },
+        { "kod": "II-B", "bolum": "II", "ad": "Bölüm II · Kısım B", "tur": "frq", "soru": 4, "dk": 60, "hesapMakinesi": "yasak" }
+      ],
+      "uniteAgirlik": { "1": 11, "2": 11, "3": 11, "4": 12.5, "5": 16.5, "6": 18.5, "7": 9, "8": 12.5 },
+      "esikler": [{ "puan": 5, "min": 58 }, { "puan": 4, "min": 46 }, { "puan": 3, "min": 34 }, { "puan": 2, "min": 24 }]
+    },
+    "calculus-bc": {
+      "ad": "AP Calculus BC",
+      "denemeKodu": "calculus-bc",
+      "uniteOnek": null,
+      "frqDersleri": ["calculus-bc", "calculus-ab"],
+      "frqNot": "BC Bölüm II'de AB konularından sorular da yer alır; BC FRQ'su yetmezse AB FRQ'ları kullanılır.",
+      "kaynak": "https://apcentral.collegeboard.org/courses/ap-calculus-bc/exam",
+      "referans": null,
+      "hesapMakinesi": { "tur": "grafik", "desmos": "https://www.desmos.com/calculator", "not": "Grafik hesap makinesi yalnız Bölüm I Kısım B ve Bölüm II Kısım A'da (Bluebook'ta yerleşik Desmos)." },
+      "agirlik": { "I": 50, "II": 50 },
+      "bolumler": [
+        { "kod": "I-A", "bolum": "I", "ad": "Bölüm I · Kısım A", "tur": "mcq", "soru": 29, "dk": 62, "hesapMakinesi": "yasak" },
+        { "kod": "I-B", "bolum": "I", "ad": "Bölüm I · Kısım B", "tur": "mcq", "soru": 13, "dk": 38, "hesapMakinesi": "gerekli" },
+        { "kod": "II-A", "bolum": "II", "ad": "Bölüm II · Kısım A", "tur": "frq", "soru": 2, "dk": 30, "hesapMakinesi": "gerekli" },
+        { "kod": "II-B", "bolum": "II", "ad": "Bölüm II · Kısım B", "tur": "frq", "soru": 4, "dk": 60, "hesapMakinesi": "yasak" }
+      ],
+      "uniteAgirlik": { "1": 5.5, "2": 5.5, "3": 5.5, "4": 7.5, "5": 9.5, "6": 18.5, "7": 7.5, "8": 7.5, "9": 11.5, "10": 17.5 },
+      "esikler": [{ "puan": 5, "min": 58 }, { "puan": 4, "min": 47 }, { "puan": 3, "min": 37 }, { "puan": 2, "min": 27 }]
+    },
+    "physics-1": {
+      "ad": "AP Physics 1: Algebra-Based",
+      "denemeKodu": "physics-1",
+      "uniteOnek": null,
+      "frqDersleri": ["physics-1"],
+      "kaynak": "https://apcentral.collegeboard.org/courses/ap-physics-1/exam",
+      "referans": { "ad": "AP Physics 1 denklem sayfası (College Board, PDF)", "url": "https://apcentral.collegeboard.org/media/pdf/ap-physics-1-equations-sheet.pdf" },
+      "hesapMakinesi": { "tur": "bilimsel veya grafik", "desmos": "https://www.desmos.com/calculator", "not": "Hesap makinesi tüm bölümlerde serbest (Bluebook'ta yerleşik Desmos)." },
+      "agirlik": { "I": 50, "II": 50 },
+      "bolumler": [
+        { "kod": "I", "bolum": "I", "ad": "Bölüm I · Çoktan seçmeli", "tur": "mcq", "soru": 42, "dk": 85, "hesapMakinesi": "serbest" },
+        { "kod": "II", "bolum": "II", "ad": "Bölüm II · Serbest yanıt", "tur": "frq", "soru": 4, "dk": 95, "hesapMakinesi": "serbest" }
+      ],
+      "uniteAgirlik": { "1": 12.5, "2": 20.5, "3": 20.5, "4": 12.5, "5": 12.5, "6": 6.5, "7": 6.5, "8": 12.5 },
+      "esikler": [{ "puan": 5, "min": 70 }, { "puan": 4, "min": 56 }, { "puan": 3, "min": 42 }, { "puan": 2, "min": 30 }]
+    },
+    "chemistry": {
+      "ad": "AP Chemistry",
+      "denemeKodu": "chemistry",
+      "uniteOnek": null,
+      "frqDersleri": ["chemistry"],
+      "frqNot": "Gerçek sınavda 3 uzun (10 puan) + 4 kısa (4 puan) soru vardır.",
+      "kaynak": "https://apcentral.collegeboard.org/courses/ap-chemistry/exam",
+      "referans": { "ad": "AP Chemistry denklem sayfası (College Board, PDF)", "url": "https://apcentral.collegeboard.org/media/pdf/ap-chemistry-equations-sheet.pdf" },
+      "hesapMakinesi": { "tur": "bilimsel veya grafik", "desmos": "https://www.desmos.com/scientific", "not": "Hesap makinesi tüm bölümlerde serbest (Bluebook'ta yerleşik Desmos)." },
+      "agirlik": { "I": 50, "II": 50 },
+      "bolumler": [
+        { "kod": "I", "bolum": "I", "ad": "Bölüm I · Çoktan seçmeli", "tur": "mcq", "soru": 60, "dk": 90, "hesapMakinesi": "serbest" },
+        { "kod": "II", "bolum": "II", "ad": "Bölüm II · Serbest yanıt", "tur": "frq", "soru": 7, "dk": 105, "hesapMakinesi": "serbest" }
+      ],
+      "uniteAgirlik": { "1": 8, "2": 8, "3": 20, "4": 8, "5": 8, "6": 8, "7": 8, "8": 13, "9": 8 },
+      "esikler": [{ "puan": 5, "min": 72 }, { "puan": 4, "min": 58 }, { "puan": 3, "min": 43 }, { "puan": 2, "min": 28 }]
+    },
+    "biology": {
+      "ad": "AP Biology",
+      "denemeKodu": "biology",
+      "uniteOnek": null,
+      "frqDersleri": ["biology"],
+      "frqNot": "Gerçek sınavda 2 uzun (9 puan) + 4 kısa (4 puan) soru vardır.",
+      "kaynak": "https://apcentral.collegeboard.org/courses/ap-biology/exam",
+      "referans": { "ad": "AP Biology denklem ve formül sayfası (College Board, PDF)", "url": "https://apcentral.collegeboard.org/media/pdf/ap-biology-equations-and-formulas-sheet.pdf" },
+      "hesapMakinesi": { "tur": "bilimsel", "desmos": "https://www.desmos.com/scientific", "not": "Bilimsel hesap makinesi tüm bölümlerde serbest (Bluebook'ta yerleşik Desmos)." },
+      "agirlik": { "I": 50, "II": 50 },
+      "bolumler": [
+        { "kod": "I", "bolum": "I", "ad": "Bölüm I · Çoktan seçmeli", "tur": "mcq", "soru": 60, "dk": 90, "hesapMakinesi": "serbest" },
+        { "kod": "II", "bolum": "II", "ad": "Bölüm II · Serbest yanıt", "tur": "frq", "soru": 6, "dk": 90, "hesapMakinesi": "serbest" }
+      ],
+      "uniteAgirlik": { "1": 9.5, "2": 11.5, "3": 14, "4": 12.5, "5": 9.5, "6": 14, "7": 16.5, "8": 12.5 },
+      "esikler": [{ "puan": 5, "min": 70 }, { "puan": 4, "min": 56 }, { "puan": 3, "min": 42 }, { "puan": 2, "min": 28 }]
+    },
+    "english-language": {
+      "ad": "AP English Language and Composition",
+      "denemeKodu": "english-language",
+      "uniteOnek": null,
+      "frqDersleri": ["english-language"],
+      "frqNot": "Üç kompozisyon: sentez, retorik analiz, argüman. Süre 15 dakikalık okuma süresini içerir.",
+      "kaynak": "https://apcentral.collegeboard.org/courses/ap-english-language-and-composition/exam",
+      "referans": null,
+      "hesapMakinesi": null,
+      "agirlik": { "I": 45, "II": 55 },
+      "bolumler": [
+        { "kod": "I", "bolum": "I", "ad": "Bölüm I · Çoktan seçmeli (okuma + yazma)", "tur": "mcq", "soru": 45, "dk": 60, "hesapMakinesi": "yok" },
+        { "kod": "II", "bolum": "II", "ad": "Bölüm II · Kompozisyonlar", "tur": "frq", "soru": 3, "dk": 135, "okumaDk": 15, "hesapMakinesi": "yok" }
+      ],
+      "uniteAgirlik": { "1": 12.5, "2": 12.5, "3": 14.5, "4": 14.5, "5": 14.5, "6": 11.5, "7": 12.5, "8": 12.5 },
+      "esikler": [{ "puan": 5, "min": 72 }, { "puan": 4, "min": 58 }, { "puan": 3, "min": 45 }, { "puan": 2, "min": 30 }]
+    },
+    "microeconomics": {
+      "ad": "AP Microeconomics",
+      "denemeKodu": "economics",
+      "uniteOnek": "Micro ",
+      "frqDersleri": ["microeconomics"],
+      "frqNot": "1 uzun (bölüm puanının %50'si) + 2 kısa (%25'er) soru; süre 10 dakikalık okuma süresini içerir.",
+      "kaynak": "https://apcentral.collegeboard.org/courses/ap-microeconomics/exam",
+      "referans": null,
+      "hesapMakinesi": { "tur": "4 işlem", "desmos": "https://www.desmos.com/fourfunction", "not": "Yalnız 4 işlemli hesap makinesi (Bluebook'ta yerleşik)." },
+      "agirlik": { "I": 66.7, "II": 33.3 },
+      "bolumler": [
+        { "kod": "I", "bolum": "I", "ad": "Bölüm I · Çoktan seçmeli", "tur": "mcq", "soru": 60, "dk": 70, "hesapMakinesi": "serbest" },
+        { "kod": "II", "bolum": "II", "ad": "Bölüm II · Serbest yanıt", "tur": "frq", "soru": 3, "dk": 60, "okumaDk": 10, "hesapMakinesi": "serbest" }
+      ],
+      "uniteAgirlik": { "Micro 1": 13.5, "Micro 2": 22.5, "Micro 3": 23.5, "Micro 4": 17.5, "Micro 5": 11.5, "Micro 6": 10.5 },
+      "esikler": [{ "puan": 5, "min": 73 }, { "puan": 4, "min": 60 }, { "puan": 3, "min": 48 }, { "puan": 2, "min": 36 }]
+    },
+    "macroeconomics": {
+      "ad": "AP Macroeconomics",
+      "denemeKodu": "economics",
+      "uniteOnek": "Macro ",
+      "frqDersleri": ["macroeconomics"],
+      "frqNot": "1 uzun (bölüm puanının %50'si) + 2 kısa (%25'er) soru; süre 10 dakikalık okuma süresini içerir.",
+      "kaynak": "https://apcentral.collegeboard.org/courses/ap-macroeconomics/exam",
+      "referans": null,
+      "hesapMakinesi": { "tur": "4 işlem", "desmos": "https://www.desmos.com/fourfunction", "not": "Yalnız 4 işlemli hesap makinesi (Bluebook'ta yerleşik)." },
+      "agirlik": { "I": 66.7, "II": 33.3 },
+      "bolumler": [
+        { "kod": "I", "bolum": "I", "ad": "Bölüm I · Çoktan seçmeli", "tur": "mcq", "soru": 60, "dk": 70, "hesapMakinesi": "serbest" },
+        { "kod": "II", "bolum": "II", "ad": "Bölüm II · Serbest yanıt", "tur": "frq", "soru": 3, "dk": 60, "okumaDk": 10, "hesapMakinesi": "serbest" }
+      ],
+      "uniteAgirlik": { "Macro 1": 7.5, "Macro 2": 14.5, "Macro 3": 22, "Macro 4": 20.5, "Macro 5": 25, "Macro 6": 11.5 },
+      "esikler": [{ "puan": 5, "min": 72 }, { "puan": 4, "min": 58 }, { "puan": 3, "min": 46 }, { "puan": 2, "min": 34 }]
+    },
+    "computer-science-a": {
+      "ad": "AP Computer Science A",
+      "denemeKodu": "cs-a",
+      "uniteOnek": null,
+      "frqDersleri": ["computer-science-a"],
+      "frqNot": "2025-26'dan beri 4 FRQ'nun hepsi kod yazma (Develop Code) becerisini ölçer.",
+      "kaynak": "https://apcentral.collegeboard.org/courses/ap-computer-science-a/exam",
+      "referans": { "ad": "Java Quick Reference (College Board, PDF)", "url": "https://apcentral.collegeboard.org/media/pdf/ap-computer-science-a-java-quick-reference.pdf" },
+      "hesapMakinesi": null,
+      "agirlik": { "I": 55, "II": 45 },
+      "bolumler": [
+        { "kod": "I", "bolum": "I", "ad": "Bölüm I · Çoktan seçmeli", "tur": "mcq", "soru": 42, "dk": 90, "hesapMakinesi": "yok" },
+        { "kod": "II", "bolum": "II", "ad": "Bölüm II · Serbest yanıt (kod yazma)", "tur": "frq", "soru": 4, "dk": 90, "hesapMakinesi": "yok" }
+      ],
+      "uniteAgirlik": { "1": 20, "2": 30, "3": 14, "4": 35 },
+      "esikler": [{ "puan": 5, "min": 75 }, { "puan": 4, "min": 60 }, { "puan": 3, "min": 45 }, { "puan": 2, "min": 33 }]
+    }
+  }
+}
