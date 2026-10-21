@@ -11,6 +11,7 @@
   <meta name="description" content="Doğrulanmış kritik bilgiler ve resmi kaynaklar: AP sınavları, Almanya ve İtalya başvuru şartları. Her madde durum rozeti ve resmi kaynak bağlantısıyla.">
   <link rel="stylesheet" href="/assets/css/styles.css">
   <link rel="stylesheet" href="/assets/css/icerik.css">
+  <link rel="stylesheet" href="/assets/css/hedefim.css">
   <script src="/assets/js/adresler.js"></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
@@ -21,12 +22,12 @@
     <div class="nav-actions"></div>
   </nav>
 
-  <main class="main-container" id="main-content">
+  <main class="main-container hd rh kb-sayfa" id="main-content">
 
-    <header class="page-head">
-      <span class="eyebrow">Kaynaklar</span>
+    <header class="page-head hd-head">
+      <p class="hd-ust">Kaynaklar</p>
       <h1>Bilmen gereken kritik bilgiler</h1>
-      <p>Tarihler, şartlar ve kurallar kısa kartlarda; her kartta resmi kaynak bağlantısı var.</p>
+      <p class="hd-alt">Tarihler, şartlar ve kurallar kısa kartlarda; her kartta resmi kaynak bağlantısı var.</p>
     </header>
 
     <div id="kb-update" class="notice" role="note">
@@ -50,6 +51,9 @@
 
     <p class="visually-hidden" aria-live="polite" id="kb-live"></p>
 
+    <div class="rh-duzen">
+    <nav class="rh-toc" aria-label="Bölümler"><details open><summary>Bölümler <span class="hd-say" id="kb-toc-say"></span></summary><ol id="kb-toc"></ol></details></nav>
+    <div class="rh-icerik">
     <div id="kb-root"></div>
 
     <div class="empty-state" id="kb-empty" hidden>
@@ -58,7 +62,7 @@
       <span>Farklı bir kelime dene ya da filtreyi “Tümü” yap.</span>
     </div>
 
-    <section class="section" aria-labelledby="legend-title">
+    <section class="section kb-lejant" aria-labelledby="legend-title">
       <h2 id="legend-title">Durum rozetleri ne anlama geliyor?</h2>
       <div class="kb-grid">
         <div class="kb-card">
@@ -75,6 +79,7 @@
         </div>
       </div>
     </section>
+    </div></div>
 
   </main>
 
@@ -177,6 +182,32 @@
       root.innerHTML = html;
       empty.hidden = shown !== 0;
       live.textContent = shown + " bilgi kartı gösteriliyor.";
+      tocYaz();
+      kisalt();
+    }
+    // 1.9.0: bölüm İçindekiler'i (masaüstünde yapışkan) ve uzun kart özetleri için "Devamını göster"
+    var tocDet = document.querySelector(".rh-toc details"), mq = window.matchMedia ? window.matchMedia("(min-width: 1100px)") : null;
+    if (tocDet && mq) { var es = function () { tocDet.open = mq.matches; }; es(); if (mq.addEventListener) mq.addEventListener("change", es); }
+    if (tocDet) tocDet.addEventListener("click", function (e) { if (e.target.closest("a") && mq && !mq.matches) tocDet.open = false; });
+    function tocYaz() {
+      var secs = root.querySelectorAll(".kb-section");
+      document.getElementById("kb-toc").innerHTML = Array.prototype.map.call(secs, function (s) {
+        var h = s.querySelector("h2"), n = s.querySelectorAll(".kb-card").length;
+        var lab = h.cloneNode(true), ic = lab.querySelector(".kb-section-ico"); if (ic) ic.remove();
+        return '<li><a href="#' + h.id + '">' + esc(lab.textContent.trim()) + ' <span class="hd-say">' + n + '</span></a></li>';
+      }).join("");
+      document.getElementById("kb-toc-say").textContent = secs.length;
+    }
+    function kisalt() {
+      root.querySelectorAll(".kb-card > p").forEach(function (el, i) {
+        el.classList.add("rh-kisa");
+        if (el.scrollHeight - el.clientHeight < 6) { el.classList.add("is-sigar"); return; }
+        el.id = "kb-ozet-" + i;
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "rh-devam"; b.setAttribute("aria-expanded", "false"); b.setAttribute("aria-controls", el.id); b.textContent = "Devamını göster";
+        b.addEventListener("click", function () { var ac = el.classList.toggle("is-acik"); b.setAttribute("aria-expanded", String(ac)); b.textContent = ac ? "Daha az göster" : "Devamını göster"; });
+        el.appendChild(b);
+      });
     }
 
     var t = null;

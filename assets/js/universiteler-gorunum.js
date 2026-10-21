@@ -144,7 +144,7 @@
     var digerleri = SIRALI.filter(function (k) { return hizli.indexOf(k) < 0; });
     secici.innerHTML = hizli.map(function (k) {
       return '<button type="button" class="uv-chip uv-ulke-chip" data-ulke="' + k + '" aria-pressed="' + (k === ulke) + '">' +
-        '<span class="cc-rozet" aria-hidden="true">' + k.toUpperCase() + '</span>' + esc(ulkeAd(k)) + '</button>';
+        '<span class="ul-bayrak ul-bayrak-' + k + '" aria-hidden="true"></span>' + esc(ulkeAd(k)) + '</button>';
     }).join("") +
       (digerleri.length ? '<label class="visually-hidden" for="uv-diger">Başka bir ülke seç</label><select class="calc-select uv-diger" id="uv-diger">' +
         '<option value="">Diğer ülkeler…</option>' + digerleri.map(function (k) { return '<option value="' + k + '">' + esc(ulkeAd(k)) + '</option>'; }).join("") + '</select>' : "");

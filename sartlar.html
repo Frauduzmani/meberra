@@ -11,6 +11,7 @@
   <meta name="description" content="15 Avrupa ülkesinde lisans: lise öğrencisi ya da lise mezunu olarak İngilizce ve yerel dilde ne gerektiği, tarihler, sık hatalar, burslar ve en iyi üniversiteler — resmi kaynaklarıyla. Giriş gerekmez.">
   <link rel="stylesheet" href="/assets/css/styles.css">
   <link rel="stylesheet" href="/assets/css/icerik.css">
+  <link rel="stylesheet" href="/assets/css/hedefim.css">
   <script src="/assets/js/adresler.js"></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
@@ -20,12 +21,15 @@
     <div class="nav-actions"></div>
   </nav>
 
-  <main class="main-container" id="main-content">
-    <header class="page-head sr-head">
-      <span class="eyebrow">Ülke şartları · Giriş gerekmez</span>
+  <main class="main-container hd" id="main-content">
+    <header class="page-head hd-head sr-head">
+      <p class="hd-ust eyebrow">Ülke şartları · Giriş gerekmez</p>
       <h1 id="sr-h1" tabindex="-1">15 Avrupa ülkesinde lisans: durumuna göre şartlar</h1>
-      <p id="sr-lead">Ne gerektiğini, kaçırmaman gereken tarihleri, sık yapılan hataları, bursları ve ülkenin en iyi üniversitelerini resmi kaynaklarıyla gör.</p>
+      <p class="hd-alt" id="sr-lead">Ne gerektiğini, kaçırmaman gereken tarihleri, sık yapılan hataları, bursları ve ülkenin en iyi üniversitelerini resmi kaynaklarıyla gör.</p>
     </header>
+
+    <!-- 1.9.0: profilinde hedef ülkeleri olan öğrenci için ülke değiştirici (form yalnızca "Başka ülke" ile açılır) -->
+    <nav class="ul-ulkeler" id="ul-ulkeler" aria-label="Hedef ülkelerim" hidden></nav>
 
     <!-- Seçici (Tur 11, plan §2): model → sınıf (yalnızca lise) → ülke → dil. Seçim adres satırında durur. -->
     <form class="sr-picker sr-picker-v2" id="sr-form" action="/ulkem" method="get" aria-label="Durum, ülke ve eğitim dili seçimi">
@@ -186,7 +190,7 @@
       KENDI = { model: PROF.ogrenciModeli, sinif: PROF.ogrenciModeli === "lise" ? PROF.sinif : null, ulke: PROF.ulkeler.indexOf(PROF.aktifRota) >= 0 ? PROF.aktifRota : PROF.ulkeler[0], dil: PROF.egitimDili === "yerel" ? "yerel" : "en" };
       if (!secim.model && !secim.ulke) secim = M.secimCoz("?" + (M.secimAdres("/ulkem", KENDI).split("?")[1] || ""));
     }
-    function kendiUlkemMi() { return !!(KENDI && secim.ulke === KENDI.ulke && secim.model === KENDI.model); }
+    function kendiUlkemMi() { return !!(KENDI && PROF.ulkeler.indexOf(secim.ulke) >= 0 && secim.model === KENDI.model); }
     var acik = false; // tam seçimde "Seçimi değiştir" ile açılan seçici
     var cizimNo = 0;
 
@@ -246,7 +250,8 @@
       // Özet çubuğu ve kompakt görünüm
       var t = tam(secim);
       form.classList.toggle("is-kompakt", t && !acik);
-      $("sr-ozetbar").hidden = !t;
+      $("sr-ozetbar").hidden = !t || !!ULKE_CIP;
+      ulkeCipleriYaz();
       $("sr-adimlar").hidden = t && !acik;
       $("sr-degistir").setAttribute("aria-expanded", String(t && acik));
       $("sr-degistir").textContent = acik ? "Kapat" : "Başka ülkeye bak";
@@ -256,6 +261,22 @@
       }
     }
 
+    // 1.9.0: hedef ülke değiştirici (profilde ülkeler varsa). Seçili ülke profilde yoksa "Başka ülke" olarak eklenir.
+    var ULKE_CIP = !GUEST && KENDI ? PROF.ulkeler.filter(function (u) { return ULKE_AD[u]; }) : null;
+    function ulkeCipleriYaz() {
+      var nav = $("ul-ulkeler");
+      if (!ULKE_CIP || !nav) return;
+      var liste = ULKE_CIP.slice();
+      if (secim.ulke && liste.indexOf(secim.ulke) < 0) liste.push(secim.ulke);
+      nav.hidden = false;
+      nav.innerHTML = liste.map(function (u) {
+        var s2 = { model: secim.model || KENDI.model, sinif: secim.sinif || KENDI.sinif, ulke: u, dil: secim.dil || KENDI.dil };
+        var on = u === secim.ulke;
+        return '<a class="ul-ulke-cip' + (ULKE_CIP.indexOf(u) < 0 ? " is-diger" : "") + '" href="' + esc(M.secimAdres("/ulkem", s2)) + '" data-secim="' + esc(JSON.stringify(s2)) + '"' + (on ? ' aria-current="page"' : "") + '>' +
+          '<span class="ul-bayrak ul-bayrak-' + esc(u) + '" aria-hidden="true"></span>' + esc(ULKE_AD[u] || u) + '</a>';
+      }).join("") +
+        '<button type="button" class="ul-ulke-cip ul-baska" id="ul-baska" aria-expanded="' + String(acik) + '" aria-controls="sr-adimlar">' + (acik ? "Kapat" : "Başka ülke") + '</button>';
+    }
     function adresiYaz(push) {
       var url = M.secimAdres("/ulkem", secim) + (push ? "" : location.hash);
       try { history[push ? "pushState" : "replaceState"](null, "", url); } catch (e) { /* file:// bazı tarayıcılarda */ }
@@ -500,6 +521,88 @@
           '<button type="button" class="btn-ghost" data-ulke-sec>Başka ülke seç</button></div></section>';
     }
 
+    // ---------------- 1.9.0 Ülkem görünümü: kahraman kart · şart kontrol listesi · adım şeridi · açılır ayrıntılar ----------------
+    var KES_ISARET = {
+      "Doğrulandı": { s: "ok", e: "Doğrulandı", i: '<svg ' + S + '><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>' },
+      "Yoruma açık": { s: "warn", e: "Yoruma açık", i: '<svg ' + S + '><path d="M12 6v8M12 18h.01"/></svg>' },
+      "Teyit gerekir": { s: "warn", e: "Teyit gerekir", i: '<svg ' + S + '><path d="M12 6v8M12 18h.01"/></svg>' },
+      "Yayımlanmadı": { s: "info", e: "Yayımlanmadı", i: '<svg ' + S + '><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 18h.01"/></svg>' },
+      "Doğrulanamadı": { s: "info", e: "Doğrulanamadı", i: '<svg ' + S + '><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 18h.01"/></svg>' }
+    };
+    function bayrakHtml(cc) { return '<span class="ul-bayrak ul-bayrak-' + esc(cc) + '" aria-hidden="true"></span>'; }
+    function ilkCumle(t) {
+      t = String(t || "");
+      var i = t.indexOf(". ", 60);
+      return i > 0 && i < t.length - 20 ? { bas: t.slice(0, i + 1), son: t.slice(i + 2) } : { bas: t, son: "" };
+    }
+    /** Şart maddesi: işaret (✓ ! ?) + başlık; metin, kaynak ve son kontrol açılır alanda. */
+    function kontrolMaddeHtml(m) {
+      var k = KES_ISARET[m.kesinlik] || { s: "info", e: m.kesinlik || "Belirsiz", i: KES_ISARET["Doğrulanamadı"].i };
+      var baslik = m.baslik || ilkCumle(m.metin).bas;
+      var kaynaklar = (m.kaynak || []).map(function (x) { return src(x && x.url, x && x.ad); }).join("");
+      return '<li class="ul-madde ul-' + k.s + '"' + (m.id ? ' id="m-' + esc(m.id) + '"' : "") + '><details class="ul-madde-d">' +
+        '<summary><span class="ul-isaret" role="img" aria-label="' + esc(k.e) + '">' + k.i + '</span><span class="ul-madde-bas">' + esc(baslik) + '</span><span class="ul-chev" aria-hidden="true"></span></summary>' +
+        '<div class="ul-madde-ic"><p>' + esc(m.metin) + '</p><div class="sr-meta">' + kes(m.kesinlik) + '<span class="sr-srcs">' + kaynaklar + '</span>' +
+          (m.sonKontrol ? '<span class="sr-checked">Son kontrol: ' + esc(gunYaz(m.sonKontrol)) + '</span>' : "") + '</div></div></details></li>';
+    }
+    function kontrolListesiHtml(liste) {
+      var say = { ok: 0, warn: 0, info: 0 };
+      liste.forEach(function (m) { say[(KES_ISARET[m.kesinlik] || { s: "info" }).s]++; });
+      var ILK = 6;
+      return '<section class="ul-kontrol hd-kart" id="sr-gerekenler" aria-labelledby="sr-gerekenler-h">' +
+        '<div class="ul-bas"><h2 id="sr-gerekenler-h">' + UI.IC.gerekenler + 'Ne gerekiyor</h2>' +
+          '<p class="ul-lejant"><span class="ul-lj ul-ok">' + KES_ISARET["Doğrulandı"].i + say.ok + ' doğrulandı</span>' +
+            (say.warn ? '<span class="ul-lj ul-warn">' + KES_ISARET["Teyit gerekir"].i + say.warn + ' teyit / yorum</span>' : "") +
+            (say.info ? '<span class="ul-lj ul-info">' + KES_ISARET["Doğrulanamadı"].i + say.info + ' belirsiz</span>' : "") + '</p></div>' +
+        '<p class="ul-ipucu">İşaret, bilginin resmi kaynakla ne kadar kesin olduğunu gösterir. Bir maddeye dokun: ayrıntı ve kaynak açılır.</p>' +
+        '<ul class="ul-liste' + (liste.length > ILK ? " is-kisa" : "") + '" id="ul-liste">' + liste.map(function (m, i) { return kontrolMaddeHtml(m).replace('<li class="ul-madde', '<li style="--i:' + i + '" class="' + (i >= ILK ? "ul-fazla " : "") + 'ul-madde'); }).join("") + '</ul>' +
+        (liste.length > ILK ? '<button type="button" class="btn-ghost btn-sm ul-tumu" aria-expanded="false" aria-controls="ul-liste" data-ul-tumu>Tüm maddeler (' + liste.length + ')</button>' : "") +
+      '</section>';
+    }
+    /** Başvuruya giden kısa adım şeridi (dönemler). DE/IT lisans: tarihli rota; diğerleri: genel yol. */
+    function adimSeridiHtml(ul, veri, k) {
+      var parca = [], kendi = PROF && Array.isArray(PROF.ulkeler) && PROF.ulkeler.indexOf(ul) >= 0;
+      if (ROTALAR[ul] && secim.duzey === "lisans" && Array.isArray(ROTALAR[ul].adimlar)) {
+        var y = M.yolHaritasi(ROTALAR[ul], secim.model === "lise-mezun" ? "mezun" : secim.sinif, bugun(), secim.dil), son = null;
+        y.adimlar.forEach(function (a) {
+          var key = donemKey(a.donem);
+          if (!son || son.k !== key) { son = { k: key, ad: DONEM_AD(a.donem), n: 0, now: false, ilk: a.baslik, gecti: true }; parca.push(son); }
+          son.n++; if (a.buYil) son.now = true; if (!a.gecti) son.gecti = false;
+        });
+      } else {
+        var g = M.genelYol(veri, DIZIN.genelAdimlar, secim, { hedefYil: PROF && PROF.hedefBaslangicYili }, bugun());
+        g.adimlar.slice(0, 6).forEach(function (a) { parca.push({ ad: a.tarih || a.goreli, n: 1, ilk: a.baslik, now: false, gecti: a.gecti }); });
+        var ilkGelecek = parca.filter(function (p) { return !p.gecti; })[0]; if (ilkGelecek) ilkGelecek.now = true;
+      }
+      if (!parca.length) return "";
+      parca = parca.slice(0, 6);
+      var hedef = kendi && !GUEST ? "/takvim?ulke=" + ul : "#sr-yol";
+      return '<section class="ul-serit" aria-labelledby="ul-serit-h"><div class="ul-bas"><h2 id="ul-serit-h">' + IC.route + 'Başvuruya giden yol</h2>' +
+          '<a class="ul-bas-link" href="' + esc(hedef) + '"' + (hedef.charAt(0) === "#" ? ' data-ac="sr-yol"' : "") + '>' + (kendi && !GUEST ? "Takvimimde aç" : "Tüm adımlar") + IC.arrow + '</a></div>' +
+        '<ol class="ul-adimlar">' + parca.map(function (p, i) {
+          return '<li class="ul-adim' + (p.now ? " is-simdi" : "") + (p.gecti && !p.now ? " is-gecti" : "") + '" style="--i:' + i + '">' +
+            '<span class="ul-adim-no" aria-hidden="true">' + (i + 1) + '</span>' +
+            '<span class="ul-adim-ad">' + esc(p.ad) + (p.now ? ' <span class="ul-simdi">Şimdi</span>' : "") + '</span>' +
+            '<span class="ul-adim-alt">' + esc(p.ilk) + (p.n > 1 ? " · +" + (p.n - 1) + " adım" : "") + '</span></li>';
+        }).join("") + '</ol></section>';
+    }
+    /** Açılır ayrıntı bölümü (id korunur: #sr-<id> bağlantıları açılıp kaydırılır). */
+    function acilirHtml(id, baslik, ikon, sayi, ic, acik) {
+      return '<details class="hd-acilir ul-acilir" id="' + id + '"' + (acik ? " open" : "") + '><summary><span class="ul-acilir-bas"><span class="ul-acilir-ikon" aria-hidden="true">' + ikon + '</span>' +
+        '<span>' + esc(baslik) + '</span>' + (sayi != null ? '<span class="hd-say">' + sayi + '</span>' : "") + '</span></summary><div class="ul-acilir-ic">' + ic + '</div></details>';
+    }
+    function maddeAcilirHtml(b, list, mez, bosMetin) {
+      return acilirHtml("sr-" + b.id, b.baslik, UI.IC[b.id] || UI.IC.gerekenler, list.length,
+        list.length ? '<ul class="sr-items">' + list.map(function (m) { return UI.maddeHtml(m, mez); }).join("") + '</ul>'
+          : '<div class="sr-empty">' + IC.wait + '<div><strong>Bu bölüm hazırlanıyor</strong><p>' + esc(bosMetin || "") + '</p></div></div>');
+    }
+    function dikkatHtml(k, veri, B, durum) {
+      var ou = M.ozetUyari(k, secim.duzey, secim.dil);
+      var b = (ou ? '<aside class="alert alert-warn sr-band ul-ozet-uyari" data-bant="ozet">' + IC.warn + '<div class="u-min0"><strong>Dikkat:</strong> ' + esc(ou.metin) + ' ' +
+        (ou.kaynak || []).map(function (x) { return src(x && x.url, x && x.ad); }).join(" ") + '</div></aside>' : "") + bantlarHtml(k, veri, B, durum);
+      return b ? '<div class="ul-dikkat">' + b + '</div>' : "";
+    }
+
     function sonucHtml(veri, hata) {
       var ul = secim.ulke, k = kayit(ul);
       var duzey = secim.duzey, dil = secim.dil;
@@ -508,81 +611,67 @@
       var durum = M.programDurumu(k, duzey, dil);
       var mez = secim.model === "lise" ? M.mezuniyetYili(secim.sinif, bugun()) : null;
       var bas = M.baslangicYili(secim, { hedefYil: PROF && PROF.hedefBaslangicYili }, bugun());
-      var core = M.BOLUMLER.filter(function (b) { return duzey === "lisans" || b.id !== "buYil"; });
-      var ek = varMi ? EK_BOLUMLER.filter(function (b) { return (!b.duzey || b.duzey === duzey) && B[b.id].length; }) : [];
-      var dolu = varMi ? core.filter(function (b) { return B[b.id].length; }).length + ek.length : 0;
-      var toplamB = core.length + (varMi ? ek.length : 0);
       var dAd = dilEtiket(dil, k);
-      var rehber = REHBER[ul] && duzey === "lisans" ? '<a class="btn-ghost btn-sm" href="' + REHBER[ul] + '">Detaylı rehber</a>' : "";
-      var apNotu = AP_NOTU[ul] && duzey === "lisans" ? '<p class="sr-ozet-p sr-ap-notu"><strong>AP burada ne işe yarar?</strong> ' + esc(AP_NOTU[ul]) + '</p>' : "";
+      var benim = !GUEST && PROF && Array.isArray(PROF.ulkeler) && PROF.ulkeler.indexOf(ul) >= 0;
       var ozet = duzey === "yl" ? (k.ylOzet || (veri && veri.yl && veri.yl.ozet) || "") : (k.ozet || (veri && veri.lisans && veri.lisans.ozet) || "");
-      var html =
-        '<div class="sr-top">' +
-          '<section class="sr-summary surface" aria-labelledby="sr-sum-h">' +
-            '<span class="uni-sub">Seçimin</span>' +
-            '<h2 id="sr-sum-h">' + ccRozet(ul) + '<span>' + esc(k.ad + " · " + kimKisa(secim)) + '</span>' + (k.rozet ? '<span class="kesinlik kesinlik-warn">' + esc(k.rozet) + '</span>' : "") + '</h2>' +
-            (ozet ? (function () {
-              // Uzun özet: ilk cümle görünür, devamı açılır alanda (telefonda ilk ekran dolmasın)
-              var kes = ozet.length > 220 ? ozet.indexOf(". ", 90) : -1;
-              return kes > 0 && kes < ozet.length - 40
-                ? '<p class="sr-ozet-p">' + esc(ozet.slice(0, kes + 1)) + '</p><details class="clamp-note sr-ozet-devam"><summary>Özetin devamı</summary><p class="sr-ozet-p">' + esc(ozet.slice(kes + 2)) + '</p></details>'
-                : '<p class="sr-ozet-p">' + esc(ozet) + '</p>';
-            })() : "") +
-            apNotu +
-            '<dl class="sr-facts">' +
-              (secim.model === "lise"
-                ? '<div><dt>Mezuniyet</dt><dd>' + (mez ? "Haziran " + mez : "—") + '</dd></div>'
-                : '<div><dt>Başlangıç</dt><dd>' + (bas ? (PROF && PROF.hedefBaslangicYili ? "" : "En erken ") + bas + "/" + String((bas + 1) % 100).padStart(2, "0") : "—") + '</dd></div>') +
-              '<div><dt>Eğitim dili</dt><dd>' + esc(dAd) +
-                (M.yalnizIngilizce(ul, k) ? "" : '<button type="button" class="sr-dil-gec" data-dil-gec="' + (dil === "en" ? "yerel" : "en") + '">' + (dil === "en" ? "Yerel dile geç" : "İngilizceye geç") + '</button>') + '</dd></div>' +
-              '<div><dt>' + esc(duzey === "yl" ? "Program (YL)" : "Program (lisans)") + '</dt><dd>' + UI.durumRozet(durum) + '</dd></div>' +
-              '<div><dt>Hazır bölüm</dt><dd>' + dolu + ' / ' + toplamB + '</dd></div>' +
-              (k.sonKontrol ? '<div><dt>Son kontrol</dt><dd>' + esc(gunYaz(k.sonKontrol)) + '</dd></div>' : "") +
-            '</dl>' +
-            UI.ozetUyariHtml(M.ozetUyari(k, duzey, dil)) +
-            '<div class="btn-row"><button type="button" class="btn-ghost btn-sm" id="sr-kopyala">' + IC.link + 'Bağlantıyı kopyala</button>' +
-              '<a class="btn-primary btn-sm" id="sr-uni-git" href="/universiteler?ulke=' + ul + '&amp;duzey=' + duzey + '&amp;dil=' + dil + '">Üniversiteler</a>' + rehber +
-              '<a class="btn-ghost btn-sm" href="/kaynaklar">Kaynaklar</a></div>' +
-            '<p class="field-hint" id="sr-kopya-msg" role="status" aria-live="polite"></p>' +
-          '</section>' +
-          koclukHtml() +
-        '</div>' +
-        bantlarHtml(k, veri, B, durum);
+      var oz = ilkCumle(ozet);
+      var apMetin = duzey === "lisans" ? (AP_NOTU[ul] || (B && B.apEtkisi && B.apEtkisi[0] ? (B.apEtkisi[0].baslik ? B.apEtkisi[0].baslik + ". " : "") + ilkCumle(B.apEtkisi[0].metin).bas : "")) : "";
+      var rehber = REHBER[ul] && duzey === "lisans" ? '<a class="btn-ghost" href="' + REHBER[ul] + '">Detaylı rehber</a>' : "";
+      var birincil = GUEST ? '<a class="btn-primary" href="' + esc(M.secimAdres("/giris", secim)) + '#kayit">Kişisel takvimini başlat' + IC.arrow + '</a>'
+        : benim ? '<a class="btn-primary" href="/takvim?ulke=' + ul + '">Takvimimi aç' + IC.arrow + '</a>'
+        : '<a class="btn-primary" href="/profil#pf-ulkeler-group">Hedef ülkelerime ekle' + IC.arrow + '</a>';
+      var hero =
+        '<section class="ul-hero hd-kart hd-gir" aria-labelledby="sr-sum-h">' +
+          '<div class="ul-hero-ust">' + bayrakHtml(ul) +
+            '<div class="u-min0"><p class="ul-kim">' + esc(kimKisa(secim) + " · " + dAd + " " + duzeyAd(duzey)) + (k.rozet ? ' <span class="kesinlik kesinlik-warn">' + esc(k.rozet) + '</span>' : "") + '</p>' +
+            '<h2 id="sr-sum-h">' + esc(k.ad) + '</h2></div>' +
+            '<div class="ul-hero-durum">' + UI.durumRozet(durum, duzey === "yl" ? "YL" : "Lisans") + '</div></div>' +
+          (oz.bas ? '<p class="ul-ozet">' + esc(oz.bas) + '</p>' + (oz.son ? '<details class="hd-acilir ul-ozet-devam"><summary>Özetin devamı</summary><p class="ul-ozet">' + esc(oz.son) + '</p></details>' : "") : "") +
+          (apMetin ? '<div class="ul-ap"><span class="ul-ap-ikon" aria-hidden="true">AP</span><p><strong>AP burada ne işe yarar?</strong> ' + esc(apMetin) + '</p></div>' : "") +
+          '<dl class="ul-hizli">' +
+            (secim.model === "lise" ? '<div><dt>Mezuniyet</dt><dd>' + (mez ? "Haziran " + mez : "—") + '</dd></div>'
+              : '<div><dt>Başlangıç</dt><dd>' + (bas ? (PROF && PROF.hedefBaslangicYili ? "" : "En erken ") + bas + "/" + String((bas + 1) % 100).padStart(2, "0") : "—") + '</dd></div>') +
+            '<div><dt>Eğitim dili</dt><dd>' + esc(dAd) + (M.yalnizIngilizce(ul, k) ? "" : ' <button type="button" class="sr-dil-gec" data-dil-gec="' + (dil === "en" ? "yerel" : "en") + '">' + (dil === "en" ? "Yerel dile geç" : "İngilizceye geç") + '</button>') + '</dd></div>' +
+            (k.sonKontrol ? '<div><dt>Son kontrol</dt><dd>' + esc(gunYaz(k.sonKontrol)) + '</dd></div>' : "") +
+          '</dl>' +
+          '<div class="ul-eylem">' + birincil +
+            '<a class="btn-ghost" id="sr-uni-git" href="/universiteler?ulke=' + ul + '&amp;duzey=' + duzey + '&amp;dil=' + dil + '">Üniversiteler</a>' + rehber +
+            '<button type="button" class="ul-kopya" id="sr-kopyala" title="Bu seçimin bağlantısını kopyala">' + IC.link + '<span class="visually-hidden">Bağlantıyı kopyala</span></button>' +
+          '</div><p class="field-hint" id="sr-kopya-msg" role="status" aria-live="polite"></p>' +
+        '</section>';
 
+      var html = hero + dikkatHtml(k, veri, B, durum);
       if (!varMi) {
-        return html + hazirlaniyorHtml(k, hata) + ilk20Html(veri, k) + genelYolHtml(veri, k);
+        return html + hazirlaniyorHtml(k, hata) + adimSeridiHtml(ul, veri, k) +
+          '<div class="ul-govde"><div class="ul-ana"><div class="ul-ayrinti">' + acilirHtml("ac-yol", "Genel yol haritası", IC.route, null, genelYolHtml(veri, k)) + '</div></div>' +
+          '<aside class="ul-yan">' + ilk20Html(veri, k) + (GUEST ? koclukHtml() : "") + '</aside></div>';
       }
-      var jump = core.concat(ek).map(function (b) { return '<a class="chip" href="#sr-' + b.id + '">' + esc(b.baslik) + (B[b.id].length ? " (" + B[b.id].length + ")" : "") + '</a>'; });
-      if (duzey === "yl" && B.ornekProgramlar.length) jump.push('<a class="chip" href="#sr-ornek">Örnek programlar (' + B.ornekProgramlar.length + ')</a>');
-      if (duzey === "yl") jump.push('<a class="chip" href="#sr-ylortak">Tüm ülkeler için YL notları</a>');
-      var sinavH = dilSinavlariHtml(k);
-      jump.push('<a class="chip" href="#sr-sinavlar">' + (duzey === "yl" ? "Dil sınavları ve GRE/GMAT" : "Dil sınavları") + '</a>');
-      jump.push('<a class="chip" href="#sr-ilk20">Üniversiteler</a>', '<a class="chip" href="#sr-yol">Yol haritası</a>');
-      html += '<nav class="jump-nav sr-jump" aria-label="Bu sayfadaki bölümler">' + jump.join("") + '</nav>' +
-        '<div class="sr-grid">' + core.map(function (b) {
-          return UI.bolumHtml(b, B[b.id], { mez: mez, bosMetin: BOS_METIN[b.id], bosEk: "Şimdilik aşağıdaki genel yol haritasına bakabilirsin." });
-        }).join("") + '</div>' +
-        (ek.length ? '<div class="sr-grid sr-grid-ek">' + ek.map(function (b) { return UI.bolumHtml(b, B[b.id], { mez: mez }); }).join("") + '</div>' : "");
+      var core = M.BOLUMLER.filter(function (b) { return duzey === "lisans" || b.id !== "buYil"; });
+      var ek = EK_BOLUMLER.filter(function (b) { return (!b.duzey || b.duzey === duzey) && B[b.id].length; });
+      html += adimSeridiHtml(ul, veri, k);
+      html += '<div class="ul-govde"><div class="ul-ana">' + kontrolListesiHtml(B.gerekenler) +
+        '<div class="ul-ayrinti">' +
+          core.filter(function (b) { return b.id !== "gerekenler"; }).map(function (b) { return maddeAcilirHtml(b, B[b.id], mez, BOS_METIN[b.id]); }).join("") +
+          ek.map(function (b) { return maddeAcilirHtml(b, B[b.id], mez); }).join("");
       if (duzey === "yl") {
         if (B.ornekProgramlar.length) {
-          html += '<section class="sr-ornek" id="sr-ornek" aria-labelledby="sr-ornek-h"><div class="sr-sec-head"><span class="sr-sec-ico" aria-hidden="true">' + UI.IC.ornekProgramlar + '</span><h2 id="sr-ornek-h">Örnek programlar</h2><span class="rs-count">' + B.ornekProgramlar.length + '</span></div>' +
+          html += acilirHtml("sr-ornek", "Örnek programlar", UI.IC.ornekProgramlar, B.ornekProgramlar.length,
             '<ul class="sr-uni-list">' + B.ornekProgramlar.map(function (p) {
               return '<li class="sr-uni"><div class="u-min0"><strong>' + esc(p.program) + '</strong><span class="sr-uni-sub">' + esc(p.universite) + (p.dil ? " · " + (p.dil === "en" ? "İngilizce" : dAd) : "") + '</span>' +
                 (p.not ? '<span class="sr-uni-sub">' + esc(p.not) + '</span>' : "") + src(p.url, "Program sayfası") + '</div></li>';
-            }).join("") + '</ul></section>';
+            }).join("") + '</ul>');
         }
-        html += '<section class="sr-ylortak" id="sr-ylortak" aria-labelledby="sr-ylortak-h"><div class="sr-sec-head"><span class="sr-sec-ico" aria-hidden="true">' + UI.IC.ylOrtak + '</span><h2 id="sr-ylortak-h">Tüm ülkeler için ortak YL notları</h2></div>' +
-          (B.ylOrtak && YL_ORTAK.some(function (x) { return B.ylOrtak[x[0]].length; })
+        html += acilirHtml("sr-ylortak", "Tüm ülkeler için ortak YL notları", UI.IC.ylOrtak, null,
+          B.ylOrtak && YL_ORTAK.some(function (x) { return B.ylOrtak[x[0]].length; })
             ? YL_ORTAK.filter(function (x) { return B.ylOrtak[x[0]].length; }).map(function (x) {
                 return '<details class="sr-yl-grup"><summary>' + esc(x[1]) + ' <span class="rs-count">' + B.ylOrtak[x[0]].length + '</span></summary>' + maddeListeHtml(B.ylOrtak[x[0]]) + '</details>';
               }).join("")
-            : '<div class="sr-empty">' + IC.wait + '<div><strong>Bu bölüm hazırlanıyor</strong><p>Belgeler, Türkiye ve AB bursları, askerlik ve GRE notları resmi kaynaklarla doğrulanıyor.</p></div></div>') +
-          '</section>';
+            : '<div class="sr-empty">' + IC.wait + '<div><strong>Bu bölüm hazırlanıyor</strong><p>Belgeler, Türkiye ve AB bursları, askerlik ve GRE notları resmi kaynaklarla doğrulanıyor.</p></div></div>');
       }
-      html += sinavH + ilk20Html(veri, k);
-      html += ROTALAR[ul] && duzey === "lisans" && Array.isArray(ROTALAR[ul].adimlar)
-        ? tarihliYolHtml(ul, secim.model === "lise-mezun" ? "mezun" : secim.sinif)
-        : genelYolHtml(veri, k);
+      html += acilirHtml("ac-yol", ROTALAR[ul] && duzey === "lisans" ? "Yol haritasının tamamı" : "Genel yol haritası", IC.route, null,
+        ROTALAR[ul] && duzey === "lisans" && Array.isArray(ROTALAR[ul].adimlar) ? tarihliYolHtml(ul, secim.model === "lise-mezun" ? "mezun" : secim.sinif) : genelYolHtml(veri, k));
+      html += '</div></div>' +
+        '<aside class="ul-yan">' + ilk20Html(veri, k) + dilSinavlariHtml(k) + (GUEST ? koclukHtml() : "") + '</aside></div>';
       return html;
     }
 
@@ -596,6 +685,7 @@
       if (!tam(secim)) {
         document.title = (GUEST ? "Ülke şartları" : "Ülkem") + " | Meberra";
         $("sr-h1").textContent = "15 Avrupa ülkesinde lisans: durumuna göre şartlar";
+        $("sr-lead").textContent = "Ne gerektiğini, kaçırmaman gereken tarihleri, sık yapılan hataları, bursları ve ülkenin en iyi üniversitelerini resmi kaynaklarıyla gör.";
         root.innerHTML = introHtml();
         return;
       }
@@ -606,14 +696,15 @@
       if (eb && !GUEST) eb.textContent = kendiUlkemMi() ? "Ülkem" : "Başka ülke";
       var dilSifat = secim.dil === "en" ? "İngilizce" : (k.yerelDil && k.yerelDil.length > 1 ? "yerel dilde" : dilEtiket("yerel", k));
       var kim = secim.model === "lise" ? secim.sinif + ". sınıf öğrencisi" : secim.model === "lise-mezun" ? "lise mezunları" : "üniversite mezunları";
-      $("sr-h1").textContent = bulunma(k) + " " + dilSifat + " " + duzeyAd(secim.duzey) + ": " + kim + " için şartlar";
+      $("sr-h1").textContent = bulunma(k) + " " + dilSifat + " " + duzeyAd(secim.duzey);
+      $("sr-lead").textContent = kim.charAt(0).toLocaleUpperCase("tr-TR") + kim.slice(1) + " için şartlar, AP’nin rolü ve başvuruya giden adımlar — resmi kaynaklarıyla.";
       root.innerHTML = '<div class="empty-state"><div class="empty-ico" aria-hidden="true"><span class="spinner"></span></div><h2>' + esc(k.ad) + ' verisi yükleniyor…</h2></div>';
       UI.veriYukle(ul, DK[ul]).then(function (r) {
         if (no !== cizimNo) return; // bu arada seçim değişti
         root.innerHTML = sonucHtml(r.veri, r.hata);
         var kb = $("sr-kopyala"); if (kb) kb.addEventListener("click", kopyala);
         if (odak) duyur(baslik + " için şartlar gösteriliyor.");
-        if (/^#(sr|m)-[\w-]+$/.test(location.hash) && odak === "hash") { var h = document.getElementById(location.hash.slice(1)); if (h) h.scrollIntoView({ block: "start" }); }
+        if (/^#(sr|m)-[\w-]+$/.test(location.hash) && odak === "hash") hedefAc(location.hash.slice(1), true);
       });
     }
     function kopyala() {
@@ -658,7 +749,26 @@
       acik = !acik; formuEsle();
       if (acik) { var i = form.querySelector("#sr-adimlar input:checked") || form.querySelector("#sr-adimlar input"); if (i) i.focus(); }
     });
+    /** Kapalı açılır alanın içindeki bir hedefi açıp ona kaydırır (#sr-… bağlantıları). */
+    function hedefAc(id, kaydir) {
+      var h = id && document.getElementById(id); if (!h) return false;
+      for (var p = h; p; p = p.parentElement) if (p.tagName === "DETAILS" && !p.open) p.open = true;
+      if (kaydir) h.scrollIntoView({ block: "start", behavior: window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+      return true;
+    }
     root.addEventListener("click", function (e) {
+      var tm = e.target.closest("[data-ul-tumu]");
+      if (tm) {
+        var lst = $("ul-liste"), ac = lst.classList.toggle("is-kisa") === false;
+        tm.setAttribute("aria-expanded", String(ac));
+        tm.textContent = ac ? "Daha az göster" : "Tüm maddeler (" + lst.children.length + ")";
+        return;
+      }
+      var ic = e.target.closest('a[href^="#"]');
+      if (ic && ic.getAttribute("href").length > 1) {
+        var hid = ic.getAttribute("data-ac") || ic.getAttribute("href").slice(1);
+        if (hedefAc(hid, true)) { e.preventDefault(); try { history.replaceState(null, "", "#" + hid); } catch (x) {} return; }
+      }
       var tog = e.target.closest(".sr-req-toggle");
       if (tog) {
         var drId = tog.getAttribute("aria-controls");
@@ -694,6 +804,18 @@
         var u = form.querySelector("input[name=ulke]:checked") || form.querySelector("input[name=ulke]");
         if (u) { u.closest(".sr-ulke").scrollIntoView({ block: "center" }); u.focus(); }
       }
+    });
+    $("ul-ulkeler").addEventListener("click", function (e) {
+      if (e.target.closest("#ul-baska")) {
+        acik = !acik; formuEsle();
+        if (acik) { var i0 = form.querySelector("#sr-adimlar input[name=ulke]:checked") || form.querySelector("#sr-adimlar input"); if (i0) i0.focus(); }
+        return;
+      }
+      var a2 = e.target.closest("[data-secim]");
+      if (!a2) return;
+      e.preventDefault();
+      var s3; try { s3 = JSON.parse(a2.getAttribute("data-secim")); } catch (x) { return; }
+      acik = false; s3.notlar = []; secimDegisti(s3);
     });
     window.addEventListener("popstate", function () {
       var onceModel = secim.model;

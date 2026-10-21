@@ -20,9 +20,11 @@
 .uv-chip:active { transform: scale(.96); }
 .uv-chip:focus-visible, .uk-detay-btn:focus-visible, .uv-mini:focus-visible { outline: none; box-shadow: var(--focus-ring); }
 .uv-chip[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); border-color: color-mix(in srgb, var(--accent) 55%, transparent); }
-.uv-ulke-chip[aria-pressed="true"] { background: var(--btn-bg); color: var(--on-btn); border-color: var(--btn-bg); box-shadow: var(--shadow-sm); }
-.uv-ulke-chip .cc-rozet { margin: 0; }
-.uv-ulke-chip[aria-pressed="true"] .cc-rozet { background: rgba(255, 255, 255, .2); color: inherit; border-color: transparent; }
+/* 1.9.0: ülke çipleri Ülkem / Takvimim ile aynı (bayrak çipi + yumuşak seçili hal) */
+.uv-ulkeler { margin: calc(-1 * var(--sp-2)) 0 var(--sp-6); }
+.uv-ulke-chip { padding: 6px 14px 6px 8px; font-weight: 700; }
+.uv-ulke-chip .ul-bayrak { width: 24px; height: 16px; border-radius: 4px; }
+.uv-ulke-chip[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); border-color: color-mix(in srgb, var(--accent) 55%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 40%, transparent); }
 .uv-chip-tik { width: 0; height: 14px; flex-shrink: 0; opacity: 0; margin-right: -8px; transition: width .2s var(--uv-ease), opacity .2s ease, margin .2s var(--uv-ease); }
 .uv-chip[aria-pressed="true"] .uv-chip-tik { width: 14px; opacity: 1; margin-right: 0; }
 .uv-chip-say { font-variant-numeric: tabular-nums; font-size: .8em; padding: 0 7px; border-radius: var(--radius-full); background: var(--surface-3); color: var(--text-muted); }

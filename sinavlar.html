@@ -8,9 +8,10 @@
   <meta name="theme-color" content="#5B3DF5">
   <link rel="apple-touch-icon" href="/assets/img/pwa/apple-touch-icon.png">
   <title>Sınavlar | Meberra</title>
-  <meta name="description" content="AP, giriş, dil ve yüksek lisans sınavları: durumuna, hedef ülkene ve eğitim diline göre süz. Format, süre, puanlama, tarih ve resmi kaynak.">
+  <meta name="description" content="AP, giriş, dil ve yüksek lisans sınavları: durumuna, hedef ülkene ve eğitim diline göre süz. Sıradaki tarih, ücret, format, süre, puanlama ve resmi kaynak.">
   <link rel="stylesheet" href="/assets/css/styles.css">
   <link rel="stylesheet" href="/assets/css/icerik.css">
+  <link rel="stylesheet" href="/assets/css/hedefim.css">
   <script src="/assets/js/adresler.js"></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
@@ -21,22 +22,14 @@
     <div class="nav-actions"></div>
   </nav>
 
-  <main class="main-container" id="main-content">
-    <header class="page-head">
-      <span class="eyebrow"><a href="/takvim" id="sv-takvim">← Takvimim</a> · Sınavlar</span>
-      <h1>Girmen gereken sınavlar, tek tek</h1>
-      <p>Durumunu, hedef ülkeni ve sınav dilini seç; sana uyan sınavlar format, süre ve tarihleriyle gelir.</p>
+  <main class="main-container hd" id="main-content">
+    <header class="page-head hd-head">
+      <p class="hd-ust"><a href="/takvim" id="sv-takvim">Takvimim</a><span aria-hidden="true">·</span>Sınavlar</p>
+      <h1>Sınavların</h1>
+      <p class="hd-alt">Hedef ülkelerine göre girmen gereken sınavlar: sıradaki tarih, ücret ve resmi kaynak tek kartta.</p>
     </header>
 
-    <div class="genel-banner">
-      <div>
-        <h2>Genel deneme</h2>
-        <p>Tüm derslerden karışık sorularla gerçek sınav temposunda kendini dene. Sonucun ve hataların kaydedilir.</p>
-      </div>
-      <a class="btn-primary" href="/deneme?ders=genel">Genel denemeye başla</a>
-    </div>
-
-    <div id="exam-root" aria-live="polite">
+    <div id="exam-root" class="sv-kok" aria-live="polite">
       <div class="empty-state"><div class="empty-ico" aria-hidden="true"><span class="spinner"></span></div><h2>Veri yükleniyor…</h2></div>
     </div>
   </main>
@@ -50,6 +43,7 @@
 
   <script src="/data/mevzuat/ulke-dizini.js"></script>
   <script src="/data/mevzuat/sinavlar.js"></script>
+  <script src="/data/mevzuat/sinav-takvimi.js"></script>
   <script src="/data/mevzuat/ulke-rotalari.js"></script>
   <script src="/assets/js/rota.js"></script>
   <script src="/assets/js/sinav-motor.js"></script>
@@ -64,28 +58,36 @@
     if (!GUEST && !ME.profile) return;
     var esc = apEsc, root = document.getElementById("exam-root");
     var DATA = Array.isArray(window.APMEBERRA_SINAVLAR) ? window.APMEBERRA_SINAVLAR.filter(function (s) { return s && s.id; }) : [];
+    var TAKVIM = window.APMEBERRA_TAKVIM || null;
+    var S = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"';
     var ICON = {
-      ext: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
-      book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/></svg>',
-      play: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg>',
-      star: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.2l1-6.2L3 9.6l6.2-.9z"/></svg>',
-      wait: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
-      lang: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 6 8M11 5c0 3-3 7-7 9"/><path d="M13 21l4-9 4 9M14.5 18h5"/></svg>',
-      arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
-      filter: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></svg>'
+      ext: '<svg ' + S + '><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
+      book: '<svg ' + S + '><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/></svg>',
+      play: '<svg ' + S + '><path d="M7 4l13 8-13 8z"/></svg>',
+      plus: '<svg ' + S + '><path d="M12 5v14M5 12h14"/></svg>',
+      check: '<svg ' + S + '><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+      wait: '<svg ' + S + '><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+      cal: '<svg ' + S + '><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>',
+      arrow: '<svg ' + S + '><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+      filter: '<svg ' + S + '><path d="M3 5h18l-7 8v6l-4 2v-8z"/></svg>',
+      ap: '<svg ' + S + '><path d="M4 19l5-14h2l5 14M6.5 13h7"/><path d="M17 5h1.5a2.5 2.5 0 0 1 0 5H17V5zM17 10v9"/></svg>',
+      giris: '<svg ' + S + '><path d="M9 4h6M9 4a2 2 0 0 0-2 2H5v15h14V6h-2a2 2 0 0 0-2-2"/><path d="M9 12h6M9 16h4"/></svg>',
+      dil: '<svg ' + S + '><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 6 8M11 5c0 3-3 7-7 9"/><path d="M13 21l4-9 4 9M14.5 18h5"/></svg>'
     };
 
     if (!DATA.length || !SM) {
-      root.innerHTML = '<div class="empty-state"><div class="empty-ico" aria-hidden="true">' + ICON.wait + '</div><h2>Sınav listesi hazırlanıyor</h2>' +
-        '<p>Sınav stratejistimiz her sınavın formatını ve tarihlerini resmi kaynaklardan doğruluyor. Bu sırada AP ders sayfalarından çalışmaya devam edebilirsin.</p>' +
+      root.innerHTML = '<div class="hd-bos"><span class="hd-tilo" data-tilo="dusunen" aria-hidden="true"></span><h2>Sınav listesi hazırlanıyor</h2>' +
+        '<p>Her sınavın formatı ve tarihleri resmi kaynaklardan doğrulanıyor. Bu sırada AP ders sayfalarından çalışmaya devam edebilirsin.</p>' +
         '<div class="btn-row"><a class="btn-ghost" href="/ders/calculus">AP Calculus</a><a class="btn-ghost" href="/rehber/istanbul-sinav">İstanbul sınav rehberi</a></div></div>';
+      tiloKoy();
       return;
     }
 
-    // Kategori anahtarları sabit (tab-0..2, data-count) — sekme SIRASI modele göre değişir (plan S5)
-    var KATS = [["AP", "AP"], ["Giriş Sınavı", "Giriş Sınavları"], ["Dil Sınavı", "Dil Sınavları"]];
+    // Kategori anahtarları sabit (tab-0..2, data-count); "Hepsi" (tab-h) varsayılan görünüm
+    var KATS = [["AP", "AP"], ["Giriş Sınavı", "Giriş"], ["Dil Sınavı", "Dil"]];
     var KAT_I = { "AP": 0, "Giriş Sınavı": 1, "Dil Sınavı": 2 };
-    var DURUM = { hazir: "Hazır", kismi: "Kısmen hazır", yakinda: "Yakında" };
+    var KAT_IKON = { "AP": ICON.ap, "Giriş Sınavı": ICON.giris, "Dil Sınavı": ICON.dil };
+    var KAT_NE = { "AP": "AP ders sınavı", "Giriş Sınavı": "Giriş / yetenek sınavı", "Dil Sınavı": "Dil yeterlilik sınavı" };
     var KES = { "Doğrulandı": "ok", "Yoruma açık": "warn", "Yayımlanmadı": "info", "Teyit gerekir": "warn", "Doğrulanamadı": "bad" };
     var ULKE = A.ulkeAdlari || { de: "Almanya", it: "İtalya" };
     var MODEL_AD = { "lise": "Lise öğrencisi", "lise-mezun": "Lise mezunu", "uni-mezun": "Üniversite mezunu" };
@@ -94,81 +96,136 @@
     var BY_ID = {}; DATA.forEach(function (s) { BY_ID[s.id] = s; });
     var PROF = GUEST ? null : ME.profile;
     var profUlke = PROF && Array.isArray(PROF.ulkeler) ? PROF.ulkeler.filter(function (u) { return ULKE[u]; }) : [];
+    var profAp = PROF && Array.isArray(PROF.apDersleri) ? PROF.apDersleri.map(function (d) { return "ap-" + (d && d.ders); }) : [];
     var mine = GUEST ? [] : A.panel.get().sinavlarim;
-    // Kilitli hedefler (ders anlatımı, deneme) ziyaretçide kilit simgesiyle gösterilir; tıklayınca giriş sayfası açıklar
-    var LOCK = GUEST ? '<svg class="lock-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>' : "";
+    var LOCK = GUEST ? '<svg class="lock-ico" ' + S + '><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>' : "";
     var LOCK_TXT = GUEST ? '<span class="visually-hidden"> (giriş gerekir)</span>' : "";
     var RT = window.APMEBERRA_ROTA, rotaU = A.rota ? A.rota.aktif() : null, rotaVeri = rotaU ? A.rota.veri(rotaU) : null;
 
-    // ---------------- Seçim durumu (URL > profil > varsayılan; plan S2–S3) ----------------
+    // ---------------- Seçim durumu (URL > profil > varsayılan) ----------------
     var ilk = SM.secimCoz(location.search, PROF);
-    var st = { model: ilk.model, sinif: ilk.sinif, dil: ilk.dil, apAcik: false, zorla: null };
+    var adresSecimli = /[?&](model|sinif|ulke|dil|filtre)=/.test(location.search);
+    var st = { model: ilk.model, sinif: ilk.sinif, dil: ilk.dil, apAcik: false, zorla: null, kapsam: GUEST || adresSecimli ? "tumu" : "benim" };
+
+    // ---------------- Tarih yardımcıları ----------------
+    var AYLAR = ["ocak", "şubat", "mart", "nisan", "mayıs", "haziran", "temmuz", "ağustos", "eylül", "ekim", "kasım", "aralık"];
+    var AY_KISA = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
+    function bugun() {
+      var o = window.APMEBERRA_BUGUN; // yalnızca test için
+      var d = typeof o === "string" && /^\d{4}-\d{2}-\d{2}$/.test(o) ? isoGun(o) : new Date();
+      return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    }
+    function isoGun(iso) { var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(iso || "")); return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null; }
+    var BUGUN = bugun();
+    function gunFark(d) { return Math.round((d - BUGUN) / 864e5); }
+    function kisaTarih(d) { return d.getDate() + " " + AY_KISA[d.getMonth()] + " " + d.getFullYear(); }
+    function gunYaz(iso) { var d = isoGun(iso); return d ? kisaTarih(d) : ""; }
+    /**
+     * Bir sınavın yaklaşan tarihleri (bugün ve sonrası). Kaynak sırası: AP için sinav-takvimi.js (yapılandırılmış),
+     * diğerlerinde kayıttaki sonrakiTarih, o da yoksa resmi kaynaktan aktarılmış tarih metnindeki yıllı tarihler.
+     * Metin yorumlanmaz: yalnızca "gün ay yıl" kalıbı okunur; etiketi tarihin hemen önündeki "kayıt / son gün" ifadesi belirler.
+     */
+    function olaylar(s) {
+      var out = [];
+      function ekle(d, etiket, ortak) { if (d && gunFark(d) >= 0) out.push({ d: d, etiket: etiket, ortak: ortak || null, id: s.id }); }
+      if (s.kategori === "AP" && TAKVIM && TAKVIM.sinavlar) {
+        var k = TAKVIM.sinavlar[String(s.id).replace(/^ap-/, "")];
+        if (k && k.tarih) ekle(isoGun(k.tarih), "Sınav günü");
+        if (TAKVIM.kayit) {
+          ekle(isoGun(TAKVIM.kayit.sonGun), "Sipariş son günü", "ap-siparis");
+          ekle(isoGun(TAKVIM.kayit.gecKayitSon), "Geç sipariş son günü", "ap-gec");
+        }
+      } else if (s.sonrakiTarih) {
+        ekle(isoGun(s.sonrakiTarih), "Sıradaki oturum");
+      } else if (s.kesinlik === "Doğrulandı") {
+        // Yalnızca doğrulanmış kayıtlarda, metindeki oturum tarihleri: parantez içi notlar, "kayıt / son gün / ödeme / pencere"
+        // ile başlayanlar, "…'da kapandı / geçti" diye bitenler ve kaynak okuma tarihleri sayılmaz. Yılı yazılmayan liste
+        // öğesi aynı cümlede sonra gelen yılı alır ("6–7 Şubat, …, 27–28 Kasım 2027").
+        var t = String(s.tarih || ""), re = /(\d{1,2})(?:\s*[–-]\s*\d{1,2})?\s+(Ocak|Şubat|Mart|Nisan|Mayıs|Haziran|Temmuz|Ağustos|Eylül|Ekim|Kasım|Aralık)(?:\s+(20\d\d))?(?![\dA-Za-zÇĞİÖŞÜçğıöşü])/g, m;
+        while ((m = re.exec(t))) {
+          var once = t.slice(0, m.index);
+          if ((once.match(/\(/g) || []).length > (once.match(/\)/g) || []).length) continue;
+          if (/kayıt|son gün|başvuru|ilgi bildirimi|ödeme|çekilme|erişim|okun|kontrol|güncel|itibaren|açılıyor|tarihli|pencere/.test(once.slice(-22).toLocaleLowerCase("tr-TR"))) continue;
+          var son = m.index + m[0].length, sonra = t.slice(son, son + 14).toLocaleLowerCase("tr-TR");
+          if (/^['’]/.test(sonra) || /kapandı|geçti/.test(sonra)) continue;
+          var yil = m[3];
+          if (!yil) { var cs = t.indexOf(". ", son), il = t.slice(son, cs < 0 ? t.length : cs).match(/\b(20\d\d)\b(?![\/–-])/); if (!il) continue; yil = il[1]; }
+          ekle(new Date(+yil, AYLAR.indexOf(m[2].toLocaleLowerCase("tr-TR")), +m[1]), "Sıradaki oturum");
+        }
+      }
+      return out.sort(function (a, b) { return a.d - b.d; });
+    }
+    var SIK = /neredeyse her gün|her an\b|sürekli randevu|haftanın 7 günü|sık ve son dakika|yıl boyunca oturum|tarih ve saati aday seçer/i;
+    var OLAY = {}; DATA.forEach(function (s) { OLAY[s.id] = olaylar(s); });
+    function geriCip(o, uzun, s) {
+      if (!o) return s && SIK.test(String(s.tarih || "")) ? '<span class="hd-geri is-yok">' + ICON.cal + 'Sık oturum</span>' + (uzun ? '<small class="sv-olay-ad">Tarihi sen seçersin</small>' : "")
+        : '<span class="hd-geri is-yok">' + ICON.cal + 'Tarih: ayrıntılarda</span>';
+      var g = gunFark(o.d);
+      return '<span class="hd-geri' + (g > 60 ? " is-uzak" : "") + '">' + ICON.cal + esc(kisaTarih(o.d)) + ' · ' + (g === 0 ? "bugün" : g + " gün") + '</span>' +
+        (uzun ? '<small class="sv-olay-ad">' + esc(o.etiket) + '</small>' : "");
+    }
+    function ucretKisa(s) {
+      if (s.kategori === "AP" && !s.ucret && TAKVIM && TAKVIM.kayit && TAKVIM.kayit.sinavUcretiUSD) return TAKVIM.kayit.sinavUcretiUSD + " $ · ABD dışı, sınav başına";
+      var u = String(s.ucret || "").trim();
+      if (!u) return "";
+      var kes = u.search(/[;.](\s|$)/);
+      var k = kes > 0 ? u.slice(0, kes) : u;
+      return k.length > 46 ? k.slice(0, 44).replace(/[\s,:(]+\S*$/, "") + "…" : k + (kes > 0 && kes < u.length - 2 ? "…" : "");
+    }
 
     function isUrl(u) { return typeof u === "string" && /^https?:\/\//i.test(u); }
     function safeLocal(h) { return typeof h === "string" && /^[A-Za-z0-9._-]+\.html(#[A-Za-z0-9._-]+)?$/.test(h); }
-    function gunYaz(iso) {
-      var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ""));
-      return m ? new Date(+m[1], +m[2] - 1, +m[3]).toLocaleDateString("tr-TR", { day: "numeric", month: "short", year: "numeric" }) : "";
-    }
     function meta(label, v, wide) {
       if (v == null || v === "") v = "Doğrulanamadı";
       var s = String(v);
       return '<div' + (wide ? ' class="wide"' : "") + '><dt>' + label + '</dt><dd>' + (/doğrulanamadı/i.test(s) ? '<span class="unverified">' + esc(s) + '</span>' : esc(s)) + '</dd></div>';
     }
-    /** Ülke pilleri: seçili ülke(ler) önce ve vurgulu, sonra diğerleri; 5'ten fazlası "+n ülke" (seçim değişince yeniden yazılır). */
     function ulkePilleri(s, vurgu) {
       vurgu = vurgu || profUlke;
       var us = (s.ulkeler || []).slice().sort(function (a, b) { return (vurgu.indexOf(a) < 0) - (vurgu.indexOf(b) < 0); });
-      var ilkler = us.slice(0, us.length > 5 ? 4 : 5), kalan = us.slice(ilkler.length);
-      return ilkler.map(function (u) { return '<span class="pill' + (vurgu.indexOf(u) >= 0 ? " pill-accent" : "") + '">' + esc(ULKE[u] || u) + '</span>'; }).join("") +
-        (kalan.length ? '<span class="pill pill-more" title="' + esc(kalan.map(function (u) { return ULKE[u] || u; }).join(", ")) + '">+' + kalan.length + ' ülke<span class="visually-hidden">: ' + esc(kalan.map(function (u) { return ULKE[u] || u; }).join(", ")) + '</span></span>' : "");
+      return us.map(function (u) { return '<span class="pill' + (vurgu.indexOf(u) >= 0 ? " pill-accent" : "") + '">' + esc(ULKE[u] || u) + '</span>'; }).join("");
     }
-    /** Tur 12 ek alanı: kaynaklar [{ad, url, belgeYili, erisim}] — ana kaynak dışındakiler açılır listede. */
     function kaynaklarHtml(s) {
       var l = (Array.isArray(s.kaynaklar) ? s.kaynaklar : []).filter(function (k) { return k && isUrl(k.url) && k.url !== s.kaynak; });
       if (!l.length) return "";
-      return '<details class="src-details exam-kaynaklar"><summary>Diğer resmi kaynaklar (' + l.length + ')</summary><ul class="src-list">' + l.map(function (k) {
+      return '<p class="sv-alt-bas">Diğer resmi kaynaklar</p><ul class="src-list sv-kaynaklar">' + l.map(function (k) {
         return '<li><a class="src-link" href="' + esc(k.url) + '" target="_blank" rel="noopener noreferrer">' + esc(k.ad || k.url) + ICON.ext + '<span class="visually-hidden"> (yeni sekmede açılır)</span></a>' +
           (k.belgeYili || k.erisim ? ' <span class="exam-kontrol">' + esc([k.belgeYili ? "belge " + k.belgeYili : "", k.erisim ? "erişim " + gunYaz(k.erisim) : ""].filter(Boolean).join(" · ")) + '</span>' : "") + '</li>';
-      }).join("") + '</ul></details>';
+      }).join("") + '</ul>';
     }
+    function pinMetin(on) { return on ? "Takvimimde" : "Takvimime ekle"; }
     function card(s) {
-      var durum = DURUM[s.durum] ? s.durum : "yakinda";
       var pinned = mine.indexOf(s.id) >= 0;
       var duz = SM.duzeyleri(s), dilAd = SM.dilEtiketi(s);
-      var ders = safeLocal(s.dersSayfasi)
-        ? '<a class="btn-ghost" href="' + esc(window.MEBERRA_ADRES ? MEBERRA_ADRES.temiz(s.dersSayfasi) : s.dersSayfasi) + '">' + ICON.book + 'Ders anlatımı (English)' + LOCK + LOCK_TXT + '</a>'
-        : '<span class="btn-ghost" aria-disabled="true" role="link">' + ICON.book + 'Ders anlatımı: Yakında</span>';
-      var den = s.denemeKodu
-        ? '<a class="btn-primary" href="/deneme?ders=' + encodeURIComponent(s.denemeKodu) + '">' + ICON.play + 'Deneme sınavına başla' + LOCK + LOCK_TXT + '</a>'
-        : '<span class="btn-primary" aria-disabled="true" role="link">' + ICON.play + 'Deneme: Yakında</span>';
-      // AP dışı ve portalda içerik yoksa iki pasif düğme yerine tek satır (Tur 12: dil sınavları çoğaldı)
-      var eylem = s.kategori !== "AP" && !safeLocal(s.dersSayfasi) && !s.denemeKodu
-        ? '<p class="exam-noprep">Portalda bu sınav için ders anlatımı ve deneme yok; hazırlık için resmi kaynağa bak.</p>'
-        : '<div class="exam-actions">' + ders + den + '</div>';
-      return '<article class="exam-card" id="' + esc(s.id) + '" data-kategori="' + esc(s.kategori) + '" data-ulkeler="' + esc((s.ulkeler || []).join(" ")) + '" data-dil="' + esc(SM.sinavDilleri(s).join(" ")) + '" data-duzey="' + esc(duz.join(" ")) + '" aria-labelledby="h-' + esc(s.id) + '">' +
-        '<div class="exam-head"><div class="u-min0"><h3 id="h-' + esc(s.id) + '">' + esc(s.ad) + '</h3><span class="exam-kurum">' + esc(s.kurum || "") + '</span></div>' +
-          '<span class="state-badge state-' + durum + '">' + DURUM[durum] + '</span></div>' +
-        '<div class="pill-row exam-pills"><span class="exam-rota" data-rota-rol hidden></span>' +
-          (dilAd ? '<span class="pill pill-dil">' + ICON.lang + '<span class="visually-hidden">Sınav dili: </span>' + esc(dilAd) + '</span>' : "") +
+      var o = OLAY[s.id][0], ucret = ucretKisa(s);
+      var ne = [KAT_NE[s.kategori] || s.kategori, s.kurum, dilAd].filter(Boolean).join(" · ");
+      var ders = safeLocal(s.dersSayfasi) ? '<a class="sv-link" href="' + esc(window.MEBERRA_ADRES ? MEBERRA_ADRES.temiz(s.dersSayfasi) : s.dersSayfasi) + '">' + ICON.book + 'Ders anlatımı (English)' + LOCK + LOCK_TXT + '</a>' : "";
+      var den = s.denemeKodu ? '<a class="btn-ghost btn-sm sv-deneme-btn" href="/deneme?ders=' + encodeURIComponent(s.denemeKodu) + '">' + ICON.play + 'Deneme' + LOCK + LOCK_TXT + '</a>' : "";
+      return '<article class="sv-kart exam-card" id="' + esc(s.id) + '" data-kategori="' + esc(s.kategori) + '" data-ulkeler="' + esc((s.ulkeler || []).join(" ")) + '" data-dil="' + esc(SM.sinavDilleri(s).join(" ")) + '" data-duzey="' + esc(duz.join(" ")) + '" aria-labelledby="h-' + esc(s.id) + '">' +
+        '<div class="sv-kart-bas"><span class="sv-ikon" aria-hidden="true">' + (KAT_IKON[s.kategori] || ICON.giris) + '</span>' +
+          '<div class="u-min0"><h3 id="h-' + esc(s.id) + '">' + esc(s.ad) + '</h3><p class="sv-ne">' + esc(ne) + '</p></div></div>' +
+        '<div class="sv-rozetler"><span class="exam-rota" data-rota-rol hidden></span><span class="sv-benim-rozet" data-benim hidden>Senin için</span>' +
           (duz.length === 1 && duz[0] === "yl" ? '<span class="pill pill-yl">Yüksek lisans</span>' : "") +
-          (KES[s.kesinlik] ? '<span class="kesinlik kesinlik-' + KES[s.kesinlik] + '" title="Bilginin kesinliği">' + esc(s.kesinlik) + '</span>' : "") +
-          '<span class="pill-ulkeler">' + ulkePilleri(s) + '</span></div>' +
-        // Format/süre/puanlama/tarih hiç yoksa (ör. yeni dil sınavı kaydı) dört ayrı "Doğrulanamadı" kutusu yerine tek satır
-        '<dl class="exam-meta">' + (!s.format && !s.sure && !s.puanlama && !s.tarih ? meta("Format, süre, puanlama, tarih", "Bu kayıtta yok; Doğrulanamadı. Resmi kaynaktan kontrol et.", true)
-          : meta("Format", s.format, true) + meta("Süre", s.sure) + meta("Puanlama", s.puanlama) + meta("Tarih", s.tarih, true)) +
-          (s.ucret ? meta("Ücret", s.ucret, true) : "") + '</dl>' +
-        // Uzun notlar (KMK/anabin açıklamaları) kartı uzatmasın: kısa ise doğrudan, uzunsa açılır alanda
-        (s.not ? (String(s.not).length > 140
-          ? '<details class="clamp-note"><summary>Not ve kural ayrıntısı</summary><p class="exam-note">' + esc(s.not) + '</p></details>'
-          : '<p class="exam-note">' + esc(s.not) + '</p>') : "") +
-        eylem +
-        kaynaklarHtml(s) +
-        '<div class="exam-foot">' +
-          (GUEST ? '<span></span>' : '<button type="button" class="pin-btn" data-pin="' + esc(s.id) + '" aria-pressed="' + pinned + '">' + ICON.star + '<span>' + (pinned ? "Listemde" : "Listeme ekle") + '</span></button>') +
-          '<span class="exam-foot-r">' + (gunYaz(s.sonKontrol) ? '<span class="exam-kontrol">Son kontrol: ' + esc(gunYaz(s.sonKontrol)) + '</span>' : "") +
-          (isUrl(s.kaynak) ? '<a class="src-link" href="' + esc(s.kaynak) + '" target="_blank" rel="noopener noreferrer">Resmi kaynak' + ICON.ext + '<span class="visually-hidden"> (yeni sekmede açılır)</span></a>' : '<span class="unverified">Kaynak: Doğrulanamadı</span>') +
-          '</span></div>' +
+          (KES[s.kesinlik] ? '<span class="kesinlik kesinlik-' + KES[s.kesinlik] + '" title="Bilginin kesinliği">' + esc(s.kesinlik) + '</span>' : "") + '</div>' +
+        '<dl class="sv-veri">' +
+          '<div><dt>Sıradaki</dt><dd>' + geriCip(o, true, s) + '</dd></div>' +
+          '<div><dt>Ücret</dt><dd class="sv-ucret">' + (ucret ? esc(ucret) : '<span class="sv-soluk">Resmi kaynakta</span>') + '</dd></div>' +
+        '</dl>' +
+        '<div class="sv-eylem">' +
+          (GUEST ? '<a class="btn-ghost btn-sm" href="/giris?donus=' + encodeURIComponent("/sinavlar#" + s.id) + '">' + LOCK + 'Takvimime ekle' + LOCK_TXT + '</a>'
+                 : '<button type="button" class="pin-btn sv-ekle" data-pin="' + esc(s.id) + '" aria-pressed="' + pinned + '">' + (pinned ? ICON.check : ICON.plus) + '<span>' + pinMetin(pinned) + '</span></button>') +
+          den + '</div>' +
+        '<details class="hd-acilir sv-detay"><summary>Ayrıntılar</summary><div class="sv-detay-ic">' +
+          '<dl class="exam-meta">' + (!s.format && !s.sure && !s.puanlama && !s.tarih ? meta("Format, süre, puanlama, tarih", "Bu kayıtta yok; Doğrulanamadı. Resmi kaynaktan kontrol et.", true)
+            : meta("Tarih", s.tarih, true) + meta("Format", s.format, true) + meta("Süre", s.sure) + meta("Puanlama", s.puanlama)) +
+            (s.ucret ? meta("Ücret", s.ucret, true) : "") + '</dl>' +
+          (s.not ? '<p class="exam-note">' + esc(s.not) + '</p>' : "") +
+          '<p class="sv-alt-bas">Geçerli olduğu ülkeler</p><div class="pill-row pill-ulkeler">' + ulkePilleri(s) + '</div>' +
+          (ders ? '<p class="sv-ders">' + ders + '</p>' : (s.kategori !== "AP" && !s.denemeKodu ? '<p class="exam-noprep">Portalda bu sınav için ders anlatımı ve deneme yok; hazırlık için resmi kaynağa bak.</p>' : "")) +
+          kaynaklarHtml(s) +
+          '<p class="sv-kaynak-satir">' + (s.sonKontrol ? '<span class="exam-kontrol">Son kontrol: ' + esc(gunYaz(s.sonKontrol)) + '</span>' : "") +
+            (isUrl(s.kaynak) ? '<a class="src-link" href="' + esc(s.kaynak) + '" target="_blank" rel="noopener noreferrer">Resmi kaynak' + ICON.ext + '<span class="visually-hidden"> (yeni sekmede açılır)</span></a>' : '<span class="unverified">Kaynak: Doğrulanamadı</span>') + '</p>' +
+        '</div></details>' +
       '</article>';
     }
     function seg(ad, deger, metin, idEk) {
@@ -177,46 +234,64 @@
     var ulkeOpts = Object.keys(ULKE).map(function (u) { return [u, ULKE[u]]; }).sort(function (a, b) { return a[1].localeCompare(b[1], "tr"); })
       .map(function (x) { return '<option value="' + x[0] + '">' + esc(x[1]) + '</option>'; }).join("");
 
+    // Kartlar sıradaki tarihe göre dizilir (tarihi olmayanlar sonda; aynı gün kategori sırası)
+    var SIRALI = DATA.slice().sort(function (a, b) {
+      var x = OLAY[a.id][0], y = OLAY[b.id][0];
+      if (x && y && x.d - y.d) return x.d - y.d;
+      if (!!x !== !!y) return x ? -1 : 1;
+      return (KAT_I[a.kategori] || 0) - (KAT_I[b.kategori] || 0);
+    });
+
     root.innerHTML =
-      '<form class="sn-filtre" id="sn-form" role="search" aria-label="Sınavları süz" novalidate>' +
-        '<fieldset class="sn-grup sn-grup-model" id="sn-model"><legend class="uni-filtre-ad">Durumun</legend>' +
-          '<div class="sr-seg sn-seg">' + seg("model", "lise", "Lise öğrencisi") + seg("model", "lise-mezun", "Lise mezunu") + seg("model", "uni-mezun", "Üniversite mezunu") + '</div></fieldset>' +
-        '<fieldset class="sn-grup" id="sn-sinif"><legend class="uni-filtre-ad">Sınıfın</legend>' +
-          '<div class="sr-seg sn-seg">' + ["9", "10", "11", "12"].map(function (x) { return seg("sinif", x, x + '<span class="visually-hidden">. sınıf</span>'); }).join("") + '</div></fieldset>' +
-        '<div class="sn-grup filter-field"><label for="ulke-filtre" class="uni-filtre-ad">Ülke</label><select class="calc-select" id="ulke-filtre">' +
-          (profUlke.length ? '<option value="profil">Hedef ülkelerim (' + esc(profUlke.map(function (u) { return ULKE[u] || u; }).join(", ")) + ')</option>' : "") +
-          (rotaU ? '<option value="rota" id="opt-rota">Takvimimdeki sınavlar</option>' : "") +
-          '<option value="hepsi">Tüm ülkeler</option>' +
-          '<optgroup label="Ülke seç">' + ulkeOpts + '</optgroup>' +
-          (GUEST ? "" : '<option value="listem">Yalnızca listem</option>') +
-        '</select></div>' +
-        '<fieldset class="sn-grup" id="sn-dil"><legend class="uni-filtre-ad">Sınav dili</legend>' +
-          '<div class="sr-seg sn-seg">' + seg("dil", "hepsi", "Hepsi") + seg("dil", "en", "İngilizce") + seg("dil", "yerel", "Yerel dil", "sn-yerel") + '</div>' +
-          '<p class="field-hint sn-dil-not" id="sn-dil-not" hidden></p></fieldset>' +
-        '<div class="sn-ozet"><p id="sn-ozet">' + ICON.filter + '<span id="sn-ozet-metin"></span></p>' +
-          '<button type="button" class="btn-ghost btn-sm" id="sn-temizle">' + (GUEST ? "Seçimi temizle" : "Profilime göre göster") + '</button></div>' +
-      '</form>' +
-      '<div class="rota-context"><p id="rota-ctx"></p><div id="rota-switch"></div></div>' +
-      '<div class="exam-toolbar">' +
-        '<div class="tabs" role="tablist" aria-label="Sınav kategorileri">' + KATS.map(function (k, i) {
-          return '<button type="button" class="tab" role="tab" id="tab-' + i + '" aria-controls="exam-panel" aria-selected="false" tabindex="-1" data-kat="' + esc(k[0]) + '"><span class="tab-ad">' + k[1] + '</span> <span class="tab-count" data-count="' + i + '"></span></button>';
-        }).join("") + '</div>' +
+      '<section class="sv-serit hd-kart hd-gir" id="sv-serit" aria-labelledby="sv-serit-h"></section>' +
+      '<div class="sv-arac">' +
+        '<div class="hd-cipler sv-kapsam" role="group" aria-label="Hangi sınavlar">' +
+          (GUEST ? "" : '<button type="button" class="hd-cip" data-kapsam="benim" aria-pressed="false">Benim sınavlarım <span class="hd-say" id="sv-say-benim"></span></button>') +
+          '<button type="button" class="hd-cip" data-kapsam="tumu" aria-pressed="false">' + (GUEST ? "Tüm sınavlar" : "Tümü") + ' <span class="hd-say" id="sv-say-tumu"></span></button>' +
+        '</div>' +
+        '<div class="hd-cipler sv-kat" role="tablist" aria-label="Sınav kategorileri">' +
+          '<button type="button" class="hd-cip" role="tab" id="tab-h" aria-controls="exam-panel" aria-selected="false" tabindex="-1" data-kat="hepsi">Hepsi</button>' +
+          KATS.map(function (k, i) {
+            return '<button type="button" class="hd-cip tab" role="tab" id="tab-' + i + '" aria-controls="exam-panel" aria-selected="false" tabindex="-1" data-kat="' + esc(k[0]) + '"><span class="tab-ad">' + k[1] + '</span> <span class="hd-say tab-count" data-count="' + i + '"></span></button>';
+          }).join("") + '</div>' +
       '</div>' +
-      '<div id="exam-panel" role="tabpanel" aria-labelledby="tab-0">' +
-        '<p class="result-count" id="exam-count"></p>' +
-        '<div class="exam-grid">' + DATA.map(card).join("") + '</div>' +
-        '<div class="empty-state" id="exam-empty" hidden></div>' +
+      '<details class="hd-acilir sv-filtre" id="sv-filtre"><summary><span class="sv-filtre-ozet" id="sn-ozet">' + ICON.filter + '<span id="sn-ozet-metin"></span></span><span class="sv-filtre-ac">Süzgeci değiştir</span></summary>' +
+        '<form class="sn-filtre" id="sn-form" role="search" aria-label="Sınavları süz" novalidate>' +
+          '<fieldset class="sn-grup sn-grup-model" id="sn-model"><legend class="uni-filtre-ad">Durumun</legend>' +
+            '<div class="sr-seg sn-seg">' + seg("model", "lise", "Lise öğrencisi") + seg("model", "lise-mezun", "Lise mezunu") + seg("model", "uni-mezun", "Üniversite mezunu") + '</div></fieldset>' +
+          '<fieldset class="sn-grup" id="sn-sinif"><legend class="uni-filtre-ad">Sınıfın</legend>' +
+            '<div class="sr-seg sn-seg">' + ["9", "10", "11", "12"].map(function (x) { return seg("sinif", x, x + '<span class="visually-hidden">. sınıf</span>'); }).join("") + '</div></fieldset>' +
+          '<div class="sn-grup filter-field"><label for="ulke-filtre" class="uni-filtre-ad">Ülke</label><select class="calc-select" id="ulke-filtre">' +
+            (profUlke.length ? '<option value="profil">Hedef ülkelerim (' + esc(profUlke.map(function (u) { return ULKE[u] || u; }).join(", ")) + ')</option>' : "") +
+            (rotaU ? '<option value="rota" id="opt-rota">Takvimimdeki sınavlar</option>' : "") +
+            '<option value="hepsi">Tüm ülkeler</option>' +
+            '<optgroup label="Ülke seç">' + ulkeOpts + '</optgroup>' +
+            (GUEST ? "" : '<option value="listem">Yalnızca takvimime eklediklerim</option>') +
+          '</select></div>' +
+          '<fieldset class="sn-grup" id="sn-dil"><legend class="uni-filtre-ad">Sınav dili</legend>' +
+            '<div class="sr-seg sn-seg">' + seg("dil", "hepsi", "Hepsi") + seg("dil", "en", "İngilizce") + seg("dil", "yerel", "Yerel dil", "sn-yerel") + '</div>' +
+            '<p class="field-hint sn-dil-not" id="sn-dil-not" hidden></p></fieldset>' +
+          '<div class="sn-ozet"><p class="rota-context" id="rota-ctx"></p><div id="rota-switch"></div>' +
+            '<button type="button" class="btn-ghost btn-sm" id="sn-temizle">' + (GUEST ? "Seçimi temizle" : "Profilime göre göster") + '</button></div>' +
+        '</form></details>' +
+      '<div id="exam-panel" role="tabpanel" aria-labelledby="tab-h">' +
+        '<p class="result-count sv-sonuc" id="exam-count"></p>' +
+        '<div class="sv-grid exam-grid">' + SIRALI.map(card).join("") + '</div>' +
+        '<div class="hd-bos" id="exam-empty" hidden></div>' +
       '</div>' +
-      '<div class="sn-ap-band" id="sn-ap-band" hidden><p><strong>Lise öğrencileri için:</strong> <span id="sn-ap-metin"></span></p>' +
+      '<div class="sn-ap-band hd-not" id="sn-ap-band" hidden><p><strong>Lise öğrencileri için:</strong> <span id="sn-ap-metin"></span></p>' +
         '<button type="button" class="btn-ghost btn-sm" id="sn-ap-ac" aria-expanded="false" aria-controls="tab-0">AP sınavlarını göster</button></div>' +
-      '<p class="sn-sartlar-link" id="sn-sartlar" hidden></p>';
+      '<p class="sn-sartlar-link sv-sartlar" id="sn-sartlar" hidden></p>' +
+      '<aside class="sv-deneme genel-banner" aria-label="Genel deneme"><div><h2>Genel deneme</h2><p>Tüm derslerden karışık sorularla gerçek sınav temposunda kendini dene.</p></div>' +
+        '<a class="btn-ghost" href="' + (GUEST ? "/giris?donus=" + encodeURIComponent("/deneme?ders=genel") : "/deneme?ders=genel") + '">' + LOCK + (GUEST ? "Giriş yap ve başla" : "Genel denemeye başla") + LOCK_TXT + '</a></aside>';
 
     var form = document.getElementById("sn-form");
     var tabs = KATS.map(function (k, i) { return document.getElementById("tab-" + i); });
+    var tabH = document.getElementById("tab-h");
     var tablist = root.querySelector('[role="tablist"]');
     var sel = document.getElementById("ulke-filtre"), panel = document.getElementById("exam-panel");
     var cards = Array.prototype.slice.call(root.querySelectorAll(".exam-card"));
-    var kat = null;
+    var kat = "hepsi", ilkCizim = true;
 
     // İlk ülke seçimi: ?filtre=rota|listem > URL ülkesi > hedef ülkelerim > tümü
     (function () {
@@ -231,16 +306,26 @@
     function ulkeSecimi() { var v = sel.value; return v === "profil" ? profUlke : (ULKE[v] ? v : null); }
     function yerelAd(u) { var k = DK[u]; return k && k.yerelDilAd ? k.yerelDilAd : ""; }
 
-    function gorunur(el) {
+    /** "Benim sınavlarım": takvimime eklediklerim + profildeki AP dersleri + aktif rotadaki sınavlar + hedef ülkelerimde eğitim dilime uyanlar. */
+    function benimMi(el) {
+      if (GUEST) return false;
+      if (mine.indexOf(el.id) >= 0) return true;
+      var s = BY_ID[el.id], pm = SM.profilModeli ? SM.profilModeli(PROF) : st.model;
+      if (s.kategori === "AP") return !SM.apGizli(pm) && (profAp.length ? profAp.indexOf(el.id) >= 0 : el.dataset.rol === "zorunlu");
+      if (el.dataset.rol === "zorunlu") return true;
+      if (!profUlke.length) return false;
+      return SM.suz([s], { model: pm, ulke: profUlke, dil: PROF.egitimDili === "yerel" || PROF.egitimDili === "en" ? PROF.egitimDili : "hepsi" }, { dizin: DK }).length === 1;
+    }
+    function suzgecGorunur(el) {
       if (st.zorla === el.id) return true;
       var v = sel.value;
       if (v === "listem") return mine.indexOf(el.id) >= 0;
       if (v === "rota") return rotaVeri ? !!el.dataset.rol : el.dataset.ulkeler.split(" ").indexOf(rotaU) >= 0;
-      // AP bandından açılan AP sekmesi (üniversite mezunu) düzey süzgecine takılmaz
       var model = st.apAcik && el.dataset.kategori === "AP" ? null : st.model;
       return SM.suz([BY_ID[el.id]], { model: model, ulke: ulkeSecimi(), dil: st.dil }, { dizin: DK }).length === 1;
     }
-    function sekmeGorunur(i) { return !(KATS[i][0] === "AP" && SM.apGizli(st.model) && !st.apAcik && !listeModu()); }
+    function gorunur(el) { return st.zorla === el.id || (st.kapsam === "benim" ? benimMi(el) : suzgecGorunur(el)); }
+    function sekmeGorunur(i) { return !(KATS[i][0] === "AP" && st.kapsam === "tumu" && SM.apGizli(st.model) && !st.apAcik && !listeModu()); }
 
     function formuYaz() {
       form.querySelectorAll('input[name="model"]').forEach(function (r) { r.checked = r.value === st.model; });
@@ -254,25 +339,31 @@
       not.hidden = !(ie || listeModu());
       not.textContent = ie ? "İrlanda’da öğretim dili İngilizce; yerel dil seçeneği yok." : listeModu() ? "Bu görünümde durum ve dil süzgeci uygulanmaz; listedeki sınavların hepsi gösterilir." : "";
     }
-
     function sekmeleriDiz() {
       var sira = SM.sekmeSirasi(st.model);
       sira.forEach(function (k) { tablist.appendChild(tabs[KAT_I[k]]); });
-      tabs[1].querySelector(".tab-ad").textContent = st.model === "uni-mezun" ? "GRE / GMAT" : "Giriş Sınavları";
+      tabs[1].querySelector(".tab-ad").textContent = st.model === "uni-mezun" ? "GRE / GMAT" : "Giriş";
       tabs.forEach(function (t, i) { t.hidden = !sekmeGorunur(i); });
     }
-    function siraliSekmeler() { return Array.prototype.slice.call(tablist.querySelectorAll('[role="tab"]')).filter(function (t) { return !t.hidden; }); }
+    function siraliSekmeler() { return [tabH].concat(Array.prototype.slice.call(tablist.querySelectorAll('[role="tab"].tab')).filter(function (t) { return !t.hidden; })); }
 
+    function tiloKoy() {
+      var yer = document.querySelectorAll("[data-tilo]");
+      if (!yer.length) return;
+      function koy() { if (!window.MeberraMaskot) return false; yer.forEach(function (y) { if (!y.firstChild) y.innerHTML = window.MeberraMaskot.html(y.getAttribute("data-tilo") || "dusunen", { boyut: 96, etiket: false }); }); return true; }
+      if (!koy()) window.addEventListener("load", koy, { once: true });
+    }
     function bosDurum(n) {
       var box = document.getElementById("exam-empty"), u = tekUlke();
       box.hidden = n > 0;
       if (n > 0) return;
       var sartlar = "/ulkem" + apSecimSorgusu("?" + (st.model ? "model=" + st.model + "&" : "") + (st.sinif ? "sinif=" + st.sinif + "&" : "") + (u ? "ulke=" + u + "&dil=" + (st.dil === "yerel" ? "yerel" : "en") : ""));
       var h, p, b = [];
-      if (sel.value === "listem") { h = "Listende sınav yok"; p = "Kartlardaki “Listeme ekle” düğmesiyle sınavlarını işaretle."; b.push('<button type="button" class="btn-ghost" data-sn="hepsi">Tüm ülkeler</button>'); }
+      if (st.kapsam === "benim") { h = "Senin listende bu türde sınav yok"; p = "Tümü görünümünden sınavları incele; “Takvimime ekle” ile işaretlediklerin burada toplanır."; b.push('<button type="button" class="btn-ghost" data-sn="tumu">Tüm sınavlara bak</button>'); }
+      else if (sel.value === "listem") { h = "Takvimine eklediğin sınav yok"; p = "Kartlardaki “Takvimime ekle” düğmesiyle sınavlarını işaretle."; b.push('<button type="button" class="btn-ghost" data-sn="hepsi">Tüm ülkeler</button>'); }
       else if (kat === "Dil Sınavı" && st.dil === "yerel" && u) {
         h = ULKE[u] + " için yerel dil sınavı kaydı henüz yok";
-        p = "Sınav stratejisti ve mevzuat uzmanı bu ülkenin " + (yerelAd(u) || "yerel dil") + " sınavlarını resmi kaynaklardan ekliyor. Şimdilik ülkenin şartlar sayfasındaki dil maddelerine bak.";
+        p = "Bu ülkenin " + (yerelAd(u) || "yerel dil") + " sınavları resmi kaynaklardan ekleniyor. Şimdilik ülkenin şartlar sayfasındaki dil maddelerine bak.";
         b.push('<button type="button" class="btn-ghost" data-sn="dil-en">İngilizce sınavları gör</button>', '<a class="btn-ghost" href="' + esc(sartlar) + '">' + esc(ULKE[u]) + ' şartları</a>');
       } else if (kat === "Giriş Sınavı" && st.model === "uni-mezun") {
         h = "Yüksek lisans giriş sınavı (GRE/GMAT) kaydı henüz yok";
@@ -284,84 +375,144 @@
         if (st.dil !== "hepsi") b.push('<button type="button" class="btn-ghost" data-sn="dil-hepsi">Sınav dilini “Hepsi” yap</button>');
         if (sel.value !== "hepsi") b.push('<button type="button" class="btn-ghost" data-sn="hepsi">Tüm ülkeler</button>');
       }
-      box.innerHTML = '<div class="empty-ico" aria-hidden="true">' + ICON.wait + '</div><h3>' + esc(h) + '</h3><p>' + esc(p) + '</p>' + (b.length ? '<div class="btn-row">' + b.join("") + '</div>' : "");
+      box.innerHTML = '<span class="hd-tilo" data-tilo="dusunen" aria-hidden="true"></span><h3>' + esc(h) + '</h3><p>' + esc(p) + '</p>' + (b.length ? '<div class="btn-row u-jcenter">' + b.join("") + '</div>' : "");
+      tiloKoy();
     }
 
     function ozetYaz(toplam) {
       var u = tekUlke(), parca = [];
       if (st.model) parca.push(MODEL_AD[st.model] + (st.model === "lise" && st.sinif ? " · " + st.sinif + ". sınıf" : ""));
-      parca.push(sel.value === "profil" ? "Hedef ülkelerim" : sel.value === "rota" ? "Takvimimdeki sınavlar" : sel.value === "listem" ? "Listem" : u ? ULKE[u] : "Tüm ülkeler");
+      parca.push(sel.value === "profil" ? "Hedef ülkelerim" : sel.value === "rota" ? "Takvimimdeki sınavlar" : sel.value === "listem" ? "Takvimime eklediklerim" : u ? ULKE[u] : "Tüm ülkeler");
       if (!listeModu()) parca.push(st.dil === "en" ? "İngilizce sınavlar" : st.dil === "yerel" ? "Yerel dil sınavları" + (u && yerelAd(u) && u !== "ie" ? " (" + yerelAd(u) + ")" : "") : "Tüm sınav dilleri");
-      document.getElementById("sn-ozet-metin").innerHTML = '<strong>' + parca.map(esc).join(" · ") + '</strong> — ' + toplam + ' sınav';
+      document.getElementById("sn-ozet-metin").innerHTML = st.kapsam === "benim"
+        ? '<strong>Profiline göre</strong> — ' + (profUlke.map(function (x) { return esc(ULKE[x]); }).join(", ") || "hedef ülke yok") + (profAp.length ? " · " + profAp.length + " AP dersi" : "")
+        : '<strong>' + parca.map(esc).join(" · ") + '</strong> — ' + toplam + ' sınav';
       var link = document.getElementById("sn-sartlar");
-      link.hidden = !u;
+      link.hidden = !u || st.kapsam === "benim";
       if (u) link.innerHTML = '<a href="' + esc("/ulkem" + apSecimSorgusu("?" + (st.model ? "model=" + st.model + "&" : "") + (st.sinif ? "sinif=" + st.sinif + "&" : "") + "ulke=" + u + "&dil=" + (st.dil === "yerel" ? "yerel" : "en"))) + '">' + esc(ULKE[u]) + ' için başvuru şartları ve tarihler' + ICON.arrow + '</a>';
     }
 
     function urlYaz() {
-      var v = sel.value;
-      var adres = SM.secimAdres("/sinavlar", { model: st.model, sinif: st.sinif, ulke: ULKE[v] ? v : (v === "hepsi" && !GUEST && profUlke.length ? "hepsi" : null), dil: st.dil, filtre: listeModu() ? v : null });
-      // Oturumluda dil profilden farklı "hepsi" ise adrese yazılır (yoksa yeniden yüklemede profil dili gelir)
-      if (!GUEST && st.dil === "hepsi" && !/[?&]dil=/.test(adres)) adres += (adres.indexOf("?") < 0 ? "?" : "&") + "dil=hepsi";
+      var v = sel.value, adres;
+      if (st.kapsam === "benim") adres = "/sinavlar";
+      else {
+        adres = SM.secimAdres("/sinavlar", { model: st.model, sinif: st.sinif, ulke: ULKE[v] ? v : (v === "hepsi" && !GUEST && profUlke.length ? "hepsi" : null), dil: st.dil, filtre: listeModu() ? v : null });
+        if (!GUEST && st.dil === "hepsi" && !/[?&]dil=/.test(adres)) adres += (adres.indexOf("?") < 0 ? "?" : "&") + "dil=hepsi";
+      }
       try { history.replaceState(null, "", adres + location.hash); } catch (e) {}
       if (GUEST) { var back = document.querySelector('.footer a[data-geri]'); if (back) back.setAttribute("href", "/ulkem" + A.erisim.secimSorgusu()); }
     }
 
     var sonVurgu = null;
     function pilleriYaz() {
-      var u = tekUlke(), v = u ? [u] : (sel.value === "profil" || listeModu() ? profUlke : []);
+      var u = tekUlke(), v = u ? [u] : (st.kapsam === "benim" || sel.value === "profil" || listeModu() ? profUlke : []);
       var anahtar = v.join(",");
       if (anahtar === sonVurgu) return;
       sonVurgu = anahtar;
       cards.forEach(function (el) { el.querySelector(".pill-ulkeler").innerHTML = ulkePilleri(BY_ID[el.id], v); });
     }
+
+    // ---------------- Odak: yaklaşan tarihler şeridi ----------------
+    var SVG_OK = '<svg ' + S + '><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+    function seritYaz(gorunenler) {
+      var kutu = document.getElementById("sv-serit");
+      var hepsi = [], ortak = {};
+      gorunenler.forEach(function (el) {
+        var tekil = false; // her sınavdan yalnızca sıradaki tarih; AP sipariş tarihleri ortak tek satır
+        OLAY[el.id].forEach(function (o) {
+          if (!o.ortak) { if (tekil) return; tekil = true; }
+          if (o.ortak) { if (ortak[o.ortak]) { ortak[o.ortak].n++; return; } ortak[o.ortak] = { d: o.d, etiket: o.etiket, ad: "AP " + o.etiket.toLocaleLowerCase("tr-TR"), id: o.id, n: 1 }; hepsi.push(ortak[o.ortak]); return; }
+          hepsi.push({ d: o.d, etiket: o.etiket, ad: BY_ID[el.id].ad, id: el.id, n: 1 });
+        });
+      });
+      hepsi.sort(function (a, b) { return a.d - b.d; });
+      var bas = hepsi[0], liste = hepsi.slice(0, 6);
+      var baslik = st.kapsam === "benim" ? "Senin sıradaki tarihin" : "Bu listede sıradaki tarih";
+      if (!bas) {
+        kutu.innerHTML = '<div class="sv-sirada"><p class="hd-ust" id="sv-serit-h">' + baslik + '</p><p class="sv-sirada-yok">Bu görünümde yaklaşan, tarihi belli bir sınav yok. Tarihler sürekli olan ya da merkeze göre değişen sınavların ayrıntılarında.</p></div>';
+        return;
+      }
+      var g = gunFark(bas.d);
+      kutu.innerHTML =
+        '<div class="sv-sirada">' +
+          '<p class="hd-ust" id="sv-serit-h">' + baslik + '</p>' +
+          '<p class="sv-sayac"><span class="sv-sayi h-sayac" data-hedef="' + g + '">' + (ilkCizim && !azHareket() ? 0 : g) + '</span><span class="sv-birim">' + (g === 0 ? "bugün" : "gün kaldı") + '</span></p>' +
+          '<p class="sv-sirada-ad"><strong>' + esc(bas.ad) + '</strong>' + (bas.n > 1 ? ' <span class="hd-say">' + bas.n + ' sınav</span>' : "") + '</p>' +
+          '<p class="sv-sirada-tarih">' + esc(kisaTarih(bas.d)) + ' · ' + esc(bas.etiket) + '</p>' +
+          '<a class="sv-sirada-git" href="#' + esc(bas.id) + '" data-git="' + esc(bas.id) + '">Karta git' + SVG_OK + '</a>' +
+        '</div>' +
+        '<ol class="sv-zaman" aria-label="Yaklaşan tarihler">' + liste.map(function (o, i) {
+          return '<li class="sv-zaman-oge' + (i === 0 ? " is-ilk" : "") + '" style="--i:' + i + '"><a href="#' + esc(o.id) + '" data-git="' + esc(o.id) + '">' +
+            '<span class="sv-zaman-tarih"><b>' + o.d.getDate() + '</b><small>' + AY_KISA[o.d.getMonth()] + (o.d.getFullYear() !== BUGUN.getFullYear() ? " " + String(o.d.getFullYear()).slice(2) : "") + '</small></span>' +
+            '<span class="sv-zaman-nokta" aria-hidden="true"></span>' +
+            '<span class="sv-zaman-ad">' + esc(o.ad) + (o.n > 1 ? " (" + o.n + ")" : "") + '<small>' + esc(o.etiket) + ' · ' + gunFark(o.d) + ' gün</small></span></a></li>';
+        }).join("") + '</ol>';
+      if (ilkCizim && !azHareket()) sayiSay(kutu.querySelector(".sv-sayi"), g);
+    }
+    function azHareket() { return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches; }
+    function sayiSay(el, hedef) {
+      if (!el) return;
+      var t0 = null, sure = 700;
+      function adim(t) { if (t0 === null) t0 = t; var k = Math.min(1, (t - t0) / sure); el.textContent = Math.round(hedef * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(adim); }
+      requestAnimationFrame(adim);
+    }
+
     function apply() {
       sekmeleriDiz();
       pilleriYaz();
-      if (kat === null || !sekmeGorunur(KAT_I[kat])) { var ilkTab = siraliSekmeler()[0]; selectTab(KAT_I[ilkTab.dataset.kat], false, true); return; }
-      var n = 0, toplam = 0;
-      var vis = {}; cards.forEach(function (el) { vis[el.id] = gorunur(el); });
-      KATS.forEach(function (k, i) {
-        var c = cards.filter(function (el) { return el.dataset.kategori === k[0] && vis[el.id]; }).length;
-        if (sekmeGorunur(i)) toplam += c;
-        root.querySelector('[data-count="' + i + '"]').textContent = c;
+      if (kat !== "hepsi" && !sekmeGorunur(KAT_I[kat])) kat = "hepsi";
+      var n = 0, vis = {}, benimN = 0, tumuN = 0;
+      cards.forEach(function (el) {
+        var b = benimMi(el);
+        el.querySelector("[data-benim]").hidden = !(b && st.kapsam === "tumu");
+        if (b) benimN++;
+        if (suzgecGorunur(el)) tumuN++;
+        vis[el.id] = gorunur(el);
       });
-      cards.forEach(function (el) { var ok = el.dataset.kategori === kat && vis[el.id]; el.hidden = !ok; if (ok) n++; });
-      document.getElementById("exam-count").textContent = n + " sınav gösteriliyor";
+      KATS.forEach(function (k, i) {
+        root.querySelector('[data-count="' + i + '"]').textContent = cards.filter(function (el) { return el.dataset.kategori === k[0] && vis[el.id]; }).length;
+      });
+      var gorunen = [];
+      cards.forEach(function (el) {
+        var ok = vis[el.id] && (kat === "hepsi" || el.dataset.kategori === kat) && (kat !== "hepsi" || sekmeGorunur(KAT_I[el.dataset.kategori]));
+        el.hidden = !ok; if (ok) { n++; gorunen.push(el); }
+      });
+      var bs = document.getElementById("sv-say-benim"); if (bs) bs.textContent = benimN;
+      document.getElementById("sv-say-tumu").textContent = tumuN;
+      root.querySelectorAll("[data-kapsam]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.kapsam === st.kapsam)); });
+      [tabH].concat(tabs).forEach(function (t) { var on = t.dataset.kat === kat; t.setAttribute("aria-selected", String(on)); t.tabIndex = on ? 0 : -1; });
+      panel.setAttribute("aria-labelledby", kat === "hepsi" ? "tab-h" : tabs[KAT_I[kat]].id);
+      document.getElementById("exam-count").textContent = n + " sınav · sıradaki tarihe göre";
       bosDurum(n);
+      seritYaz(gorunen);
       var band = document.getElementById("sn-ap-band"), apSay = cards.filter(function (el) { return el.dataset.kategori === "AP"; }).length;
-      band.hidden = !(SM.apGizli(st.model) && !listeModu());
-      document.getElementById("sn-ap-metin").textContent = st.apAcik ? "AP sınavları (" + apSay + ") sekmelerin sonunda açık. Yüksek lisans başvurusunda AP istenmez." : "AP sınavları (" + apSay + ") yüksek lisans başvurusunda istenmez; bu yüzden gizlendi.";
+      band.hidden = !(st.kapsam === "tumu" && SM.apGizli(st.model) && !listeModu());
+      document.getElementById("sn-ap-metin").textContent = st.apAcik ? "AP sınavları (" + apSay + ") açık. Yüksek lisans başvurusunda AP istenmez." : "AP sınavları (" + apSay + ") yüksek lisans başvurusunda istenmez; bu yüzden gizlendi.";
       var apB = document.getElementById("sn-ap-ac");
       apB.textContent = st.apAcik ? "AP sınavlarını gizle" : "AP sınavlarını göster";
       apB.setAttribute("aria-expanded", String(st.apAcik));
       formuYaz();
-      ozetYaz(toplam);
+      ozetYaz(tumuN);
+      if (ilkCizim) {
+        gorunen.slice(0, 9).forEach(function (el, i) { el.classList.add("hd-gir"); el.style.setProperty("--i", i + 1); });
+        ilkCizim = false;
+      }
     }
-    function selectTab(i, focus, sessiz) {
-      tabs.forEach(function (t, j) { t.setAttribute("aria-selected", String(i === j)); t.tabIndex = i === j ? 0 : -1; });
-      panel.setAttribute("aria-labelledby", tabs[i].id);
-      kat = KATS[i][0]; apply();
-      if (focus) tabs[i].focus();
+    function selectTab(k, focus) {
+      kat = k; apply();
+      if (focus) (k === "hepsi" ? tabH : tabs[KAT_I[k]]).focus();
     }
-    tabs.forEach(function (t, i) {
-      t.addEventListener("click", function () { selectTab(i); });
+    [tabH].concat(tabs).forEach(function (t) {
+      t.addEventListener("click", function () { selectTab(t.dataset.kat); });
       t.addEventListener("keydown", function (e) {
         var vt = siraliSekmeler(), j = vt.indexOf(t);
         var n = e.key === "ArrowRight" ? (j + 1) % vt.length : e.key === "ArrowLeft" ? (j - 1 + vt.length) % vt.length : e.key === "Home" ? 0 : e.key === "End" ? vt.length - 1 : -1;
-        if (n >= 0) { e.preventDefault(); selectTab(KAT_I[vt[n].dataset.kat], true); }
+        if (n >= 0) { e.preventDefault(); selectTab(vt[n].dataset.kat, true); }
       });
     });
-    /** Süzgeç değişince açık sekme boş kaldıysa sıradaki dolu sekmeye geçilir (ör. yerel dil seçilince AP sekmesi boşalır). */
-    function doluSekmeyeGec() {
-      var say = function (k) { return +root.querySelector('[data-count="' + KAT_I[k] + '"]').textContent || 0; };
-      if (kat === null || say(kat) > 0) return;
-      // Sınav dili seçiliyse Dil sekmesi açılır: kayıt varsa liste, yoksa açıklayıcı boş durum ("… yerel dil sınavı kaydı henüz yok")
-      if (st.dil !== "hepsi" && !listeModu() && sekmeGorunur(KAT_I["Dil Sınavı"])) { if (kat !== "Dil Sınavı") selectTab(KAT_I["Dil Sınavı"]); return; }
-      var dolu = siraliSekmeler().filter(function (t) { return say(t.dataset.kat) > 0; })[0];
-      if (dolu) selectTab(KAT_I[dolu.dataset.kat]);
-    }
-    function degisti() { st.zorla = null; apply(); doluSekmeyeGec(); urlYaz(); }
+    function kapsamYap(k) { st.kapsam = k; st.zorla = null; apply(); urlYaz(); }
+    root.querySelectorAll("[data-kapsam]").forEach(function (b) { b.addEventListener("click", function () { kapsamYap(b.dataset.kapsam); }); });
+    function degisti() { st.zorla = null; st.kapsam = "tumu"; apply(); urlYaz(); }
     sel.addEventListener("change", degisti);
     form.addEventListener("change", function (e) {
       var t = e.target; if (!t || t.type !== "radio") return;
@@ -375,33 +526,36 @@
       var p = SM.secimCoz("", PROF);
       st.model = p.model; st.sinif = p.sinif; st.dil = p.dil; st.apAcik = false;
       sel.value = sel.querySelector('option[value="profil"]') ? "profil" : "hepsi";
-      degisti();
-      document.getElementById("sn-ozet").setAttribute("tabindex", "-1"); document.getElementById("sn-ozet").focus();
+      if (GUEST) degisti(); else kapsamYap("benim");
+      var oz = document.getElementById("sn-ozet"); oz.setAttribute("tabindex", "-1"); oz.focus();
     });
     document.getElementById("sn-ap-ac").addEventListener("click", function () {
       st.apAcik = !st.apAcik; apply();
-      if (st.apAcik) selectTab(KAT_I.AP, true);
+      if (st.apAcik) selectTab("AP", true);
     });
     root.addEventListener("click", function (e) {
+      var g = e.target.closest("[data-git]");
+      if (g) { e.preventDefault(); kartaGit(g.dataset.git); return; }
       var b = e.target.closest("[data-sn]"); if (!b) return;
+      if (b.dataset.sn === "tumu") { kapsamYap("tumu"); return; }
       if (b.dataset.sn === "dil-en") st.dil = "en";
       else if (b.dataset.sn === "dil-hepsi") st.dil = "hepsi";
       else if (b.dataset.sn === "hepsi") sel.value = "hepsi";
       degisti();
     });
 
-    // Rota bağlamı (Tur 6): aktif rotaya göre "Bu rotada zorunlu" / "Seçmeli" rozetleri ve "Takvimimdeki sınavlar" filtresi
+    // Rota bağlamı: aktif rotaya göre "Bu rotada zorunlu" / "Seçmeli" rozetleri ve "Takvimimdeki sınavlar" süzgeci
     function rotaGuncelle() {
       rotaU = A.rota.aktif(); rotaVeri = rotaU ? A.rota.veri(rotaU) : null;
       var ad = ULKE[rotaU] || "";
       cards.forEach(function (el) {
-        var pr = !GUEST && ME && ME.profile ? ME.profile : null; // mezunda AP sınavları rotada sayılmaz (K5-b)
+        var pr = !GUEST && ME && ME.profile ? ME.profile : null;
         var rol = rotaVeri && RT ? RT.sinavRolu(rotaVeri, el.id, pr) : null;
         var alt = rol && RT ? RT.alternatifler(rotaVeri, el.id, pr).map(function (x) { return BY_ID[x] ? BY_ID[x].ad : x; }) : [];
         el.dataset.rol = rol || "";
         var b = el.querySelector("[data-rota-rol]");
         b.className = "exam-rota" + (rol ? " rota-badge rota-badge-" + rol : "");
-        b.textContent = rol === "zorunlu" ? (alt.length ? "Bu rotada zorunlu (biri yeterli)" : "Bu rotada zorunlu") : rol === "secmeli" ? "Bu rotada seçmeli" : "";
+        b.textContent = rol === "zorunlu" ? (alt.length ? ad + " rotasında zorunlu (biri yeterli)" : ad + " rotasında zorunlu") : rol === "secmeli" ? ad + " rotasında seçmeli" : "";
         b.title = alt.length ? "Şunlardan biri de olur: " + alt.join(", ") : "";
         b.hidden = !rol;
       });
@@ -409,31 +563,22 @@
       if (o) o.textContent = "Takvimimdeki sınavlar (" + ad + ")";
       var n = cards.filter(function (el) { return el.dataset.rol; }).length;
       document.getElementById("rota-ctx").innerHTML = rotaU
-        ? (rotaVeri ? '<strong>' + esc(ad) + ' rotası</strong>: ' + n + ' sınav bu rotada zorunlu ya da seçmeli olarak işaretli. Ayrıntılar ve tarihler <a href="/takvim?ulke=' + rotaU + '">Takvimim</a> sayfasında.'
+        ? (rotaVeri ? '<strong>' + esc(ad) + ' rotası</strong>: ' + n + ' sınav bu rotada zorunlu ya da seçmeli. Tarihli adımlar <a href="/takvim?ulke=' + rotaU + '">Takvimim</a>’de.'
                     : (rotaU === 'de' || rotaU === 'it') ? '<strong>' + esc(ad) + ' rotası</strong>: rota kuralları hazırlanıyor; şimdilik bu ülkenin sınavları gösteriliyor.'
-                    : '<strong>' + esc(ad) + '</strong>: tarihli rota Almanya ve İtalya lisans için hazır; bu ülkenin dil sınavları ve şartları <a href="/ulkem?model=' + esc((ME.profile && ME.profile.ogrenciModeli) || "lise") + '&amp;ulke=' + rotaU + '&amp;dil=' + (ME.profile && ME.profile.egitimDili === "yerel" ? "yerel" : "en") + '">Ülke şartları</a> sayfasında.')
+                    : '<strong>' + esc(ad) + '</strong>: tarihli rota Almanya ve İtalya lisans için hazır; bu ülkenin şartları <a href="/ulkem?model=' + esc((ME.profile && ME.profile.ogrenciModeli) || "lise") + '&amp;ulke=' + rotaU + '&amp;dil=' + (ME.profile && ME.profile.egitimDili === "yerel" ? "yerel" : "en") + '">Ülkem</a>’de.')
         : "";
-      if (kat !== null) apply();
+      apply();
     }
     if (rotaU) A.rota.anahtar(document.getElementById("rota-switch"), rotaGuncelle);
     cards.forEach(function (el) { el.dataset.rol = ""; });
     if (GUEST) {
-      // Ziyaretçi: genel deneme ve "← Takvimim" yerine giriş / şartlar
-      var gb = document.querySelector(".genel-banner");
-      if (gb) {
-        gb.querySelector("p").textContent = "Ders anlatımları, ders denemeleri ve genel deneme kişisel hesabınla açılır. Sonuçların ve yanlışların hesabında saklanır.";
-        var ga = gb.querySelector("a");
-        ga.setAttribute("href", "/giris?donus=" + encodeURIComponent("/deneme?ders=genel"));
-        ga.innerHTML = LOCK + "Giriş yap ve denemeye başla";
-      }
       var sn = document.querySelector(".footer .sv-sonraki"); if (sn) sn.remove();
-      var tk = document.getElementById("sv-takvim"); if (tk) tk.remove();
+      var tk = document.getElementById("sv-takvim"); if (tk) { var sp = tk.nextElementSibling; tk.remove(); if (sp) sp.remove(); }
       var back = document.querySelector('.footer a.sv-geri');
       if (back) { back.setAttribute("data-geri", ""); back.setAttribute("href", "/ulkem" + A.erisim.secimSorgusu()); back.textContent = "← Ülke şartlarına dön"; }
     }
-    if (rotaU) rotaGuncelle();
 
-    // "Listeme ekle" (yol haritası 2. adım)
+    // "Takvimime ekle": kişisel sınav listesi (apmeberra:panel:v1 → sinavlarim; Bugün ve Takvimim bu listeyi okur)
     root.addEventListener("click", function (e) {
       var b = e.target.closest(".pin-btn"); if (!b || GUEST) return;
       var id = b.dataset.pin;
@@ -444,29 +589,47 @@
       mine = o.sinavlarim;
       var on = mine.indexOf(id) >= 0;
       b.setAttribute("aria-pressed", String(on));
-      b.querySelector("span").textContent = on ? "Listemde" : "Listeme ekle";
-      if (sel.value === "listem") apply();
+      b.innerHTML = (on ? ICON.check : ICON.plus) + '<span>' + pinMetin(on) + '</span>';
+      if (on) { b.classList.remove("h-zipla"); void b.offsetWidth; b.classList.add("h-zipla"); }
+      apply();
     });
 
-    // #sinav-id ile gelindiyse: doğru sekmeyi aç, gerekirse süzgeci genişlet, karta odaklan
+    function kartaGit(id) {
+      var el = document.getElementById(id);
+      if (!el || !el.classList.contains("exam-card")) return false;
+      if (el.hidden) {
+        if (!gorunur(el)) { st.kapsam = "tumu"; if (!suzgecGorunur(el)) { sel.value = "hepsi"; st.dil = "hepsi"; } }
+        if (el.dataset.kategori === "AP" && SM.apGizli(st.model)) st.apAcik = true;
+        if (!gorunur(el)) st.zorla = el.id;
+        kat = "hepsi"; apply();
+      }
+      el.scrollIntoView({ block: "start", behavior: azHareket() ? "auto" : "smooth" });
+      el.classList.add("is-flash"); setTimeout(function () { el.classList.remove("is-flash"); }, 2200);
+      el.setAttribute("tabindex", "-1"); el.focus({ preventScroll: true });
+      return true;
+    }
+    // #sinav-id ile gelindiyse: süzgeci gerekirse genişlet, karta odaklan, ayrıntıyı aç
     function openHash() {
       var id = decodeURIComponent((location.hash || "").slice(1));
       var el = id && document.getElementById(id);
       if (!el || !el.classList.contains("exam-card")) return false;
+      if (!gorunur(el)) { st.kapsam = "tumu"; }
       if (el.dataset.kategori === "AP" && SM.apGizli(st.model)) st.apAcik = true;
       if (!gorunur(el)) { sel.value = "hepsi"; st.dil = "hepsi"; }
-      if (!gorunur(el)) st.zorla = el.id; // durum (düzey) süzgecine takılsa da doğrudan bağlantı açılır
-      selectTab(KAT_I[el.dataset.kategori] != null ? KAT_I[el.dataset.kategori] : 0);
+      if (!gorunur(el)) st.zorla = el.id;
+      kat = "hepsi"; apply();
+      var d = el.querySelector(".sv-detay"); if (d) d.open = true;
       el.scrollIntoView({ block: "start" });
       el.classList.add("is-flash"); setTimeout(function () { el.classList.remove("is-flash"); }, 2200);
       el.setAttribute("tabindex", "-1"); el.focus({ preventScroll: true });
       return true;
     }
+    if (rotaU) rotaGuncelle();
     if (!openHash()) {
       apply();
-      doluSekmeyeGec();
-      // Tur 11: hedef ülkelerin hiçbirinde kayıtlı sınav yoksa liste boş açılmasın; tüm ülkeler gösterilir
-      if (!GUEST && sel.value === "profil" && !cards.some(gorunur)) { sel.value = "hepsi"; apply(); }
+      // Profilde hiç eşleşme yoksa liste boş açılmasın
+      if (st.kapsam === "benim" && !cards.some(function (el) { return !el.hidden; })) { st.kapsam = "tumu"; apply(); }
+      if (st.kapsam === "tumu" && !GUEST && sel.value === "profil" && !cards.some(suzgecGorunur)) { sel.value = "hepsi"; apply(); }
     }
     if (location.search) urlYaz();
     window.addEventListener("hashchange", openHash);

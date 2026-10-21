@@ -11,6 +11,7 @@
   <meta name="description" content="Seçtiğin ülkenin kabul kuralları, sınıfına göre tarihlenmiş adımlar, belge kontrol listesi ve rotanın sınavları.">
   <link rel="stylesheet" href="/assets/css/styles.css">
   <link rel="stylesheet" href="/assets/css/icerik.css">
+  <link rel="stylesheet" href="/assets/css/hedefim.css">
   <script src="/assets/js/adresler.js"></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
@@ -21,10 +22,11 @@
     <div class="nav-actions"></div>
   </nav>
 
-  <main class="main-container" id="main-content">
-    <header class="page-head rota-head">
+  <main class="main-container hd" id="main-content">
+    <header class="page-head hd-head rota-head">
+      <p class="hd-ust">Takvimim</p>
       <h1 id="rota-h1">Takvimim</h1>
-      <p id="rota-lead">Hedef ülkene göre tarihli adımların, belge listen ve sınav tarihlerin.</p>
+      <p class="hd-alt" id="rota-lead">Hedef ülkene göre tarihli adımların, belge listen ve sınav tarihlerin.</p>
     </header>
 
     <div id="rota-root" aria-live="polite">
@@ -32,19 +34,11 @@
     </div>
     <p class="visually-hidden" id="rota-duyuru" role="status" aria-live="polite"></p>
 
-    <!-- Sınav bilgisi: Takvimim'in parçası (ayrıntılı katalog sinavlar.html'de) -->
-    <section class="surface u-mt-6" aria-labelledby="rota-sinav-title" style="padding:20px;">
-      <h2 id="rota-sinav-title" class="u-fs-18">Sınav tarihleri</h2>
-      <p class="u-c-muted">Tarihler, kayıt son günleri ve ücretler. “Listeme ekle” ile işaretlediklerin Bugün ekranında hatırlatılır.</p>
-      <div class="btn-row"><a class="btn-ghost" href="/sinavlar">Tüm sınavlar ve tarihler →</a><a class="btn-ghost" href="/rehber/istanbul-sinav">AP sınavına İstanbul’da girmek →</a></div>
-    </section>
-
-    <!-- Sonraki adım -->
-    <section class="next-step-card u-mt-6" aria-labelledby="rota-sonraki" style="padding:20px;">
-      <h2 id="rota-sonraki" class="u-fs-18">Sonraki adım: üniversitelere yaz</h2>
-      <p class="u-c-muted">Takvimindeki e-posta adımları için hazır taslaklar Başvurularım’da.</p>
-      <div class="btn-row"><a class="btn-primary" href="/basvurular">Başvurularım →</a></div>
-    </section>
+    <!-- Sonraki adım: sakin alt şerit (sınav tarihleri yan sütundaki "Sınavların" kartında) -->
+    <nav class="tk-sonraki" aria-label="Sonraki adımlar">
+      <a class="tk-sonraki-oge" href="/basvurular"><strong>Üniversitelere yaz</strong><span>Takvimindeki e-posta adımları için hazır taslaklar Başvurularım’da →</span></a>
+      <a class="tk-sonraki-oge" href="/rehber/istanbul-sinav"><strong>AP sınavına İstanbul’da gir</strong><span>Dış aday kaydı, merkezler ve son günler →</span></a>
+    </nav>
   </main>
 
   <footer class="footer">
@@ -77,6 +71,7 @@
     var TUR = { sinav: "Sınav", belge: "Belge", basvuru: "Başvuru", karar: "Karar", hazirlik: "Hazırlık", bilgi: "Bilgi notu" };
     // K5-a etiketleri (profil.html / auth.js ile aynı metin)
     var YERLESME_AD = { "uygun": "Hedef alanla uyumlu bir lisans programına yerleştim", "yok": "Yerleşmem yok", "alan-uyumsuz": "Yerleştim ama alan farklı" };
+    var AYLAR_KISA = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
     function akademikYil(y) { return y ? y + "/" + String((y + 1) % 100).padStart(2, "0") : ""; }
     var KES = { "Doğrulandı": "ok", "Yoruma açık": "warn", "Yayımlanmadı": "info", "Teyit gerekir": "warn", "Doğrulanamadı": "bad" };
     var IC = {
@@ -120,7 +115,7 @@
       ? '<div class="tabs rota-tabs" role="tablist" aria-label="Rota seç">' + ulkeler.map(function (u) {
           var on = u === aktif;
           return '<button type="button" class="tab" role="tab" id="rtab-' + u + '" data-ulke="' + u + '" aria-controls="rota-panel" aria-selected="' + on + '"' + (on ? "" : ' tabindex="-1"') + '>' +
-            '<span class="rota-dot rota-dot-' + u + '" aria-hidden="true"></span>' + esc(ULKE_AD[u]) + ' rotası <span class="tab-count" data-say="' + u + '"></span></button>';
+            '<span class="ul-bayrak ul-bayrak-' + u + '" aria-hidden="true"></span>' + esc(ULKE_AD[u]) + ' <span class="tab-count" data-say="' + u + '"></span></button>';
         }).join("") + '</div>'
       : '<p class="rota-single">' + IC.flag + '<span>Profilinde tek hedef ülke var: <strong>' + esc(ULKE_AD[aktif] || "") + '</strong>. Diğer ülkenin rotasını açmak için <a href="/profil#pf-ulkeler-group">hedef ülkelerini düzenle</a>.</span></p>';
     root.innerHTML = selector + '<div id="rota-panel"' + (ulkeler.length > 1 ? ' role="tabpanel" aria-labelledby="rtab-' + aktif + '" tabindex="-1"' : "") + '></div>';
@@ -156,7 +151,7 @@
           '<h4 id="' + esc(cid) + '-t">' + esc(a.baslik) + '</h4>' +
           (a.tarih && a.tarih.metin ? '<p class="rs-when">' + esc(a.tarih.metin) + '</p>' : "") +
           // Sıradaki adımın açıklaması açık; diğer uzun açıklamalar "Ayrıntılar" altında (zaman çizelgesi taranabilir kalsın)
-          (a.detay ? (a.siradaki || String(a.detay).length <= 160
+          (a.detay ? (String(a.detay).length <= 160
             ? '<p class="rs-detail">' + esc(a.detay) + '</p>'
             : '<details class="clamp-note rs-more"><summary>Ayrıntılar</summary><p class="rs-detail">' + esc(a.detay) + '</p></details>') : "") +
           '<div class="rs-tags">' +
@@ -276,7 +271,7 @@
     // ---------------- Çizim ----------------
     function ciz(odakAdim) {
       var v = A.rota.veri(aktif);
-      $("rota-h1").textContent = ULKE_AD[aktif] ? "Takvimim · " + ULKE_AD[aktif] : "Takvimim";
+      $("rota-h1").textContent = ULKE_AD[aktif] ? ULKE_AD[aktif] + " takvimin" : "Takvimim";
       document.title = "Takvimim | Meberra";
       document.documentElement.setAttribute("data-rota", aktif === "de" || aktif === "it" ? aktif : (aktif ? "genel" : ""));
       panel.setAttribute("data-ulke", aktif || "");
@@ -303,11 +298,11 @@
       var belDurum = durum[aktif] ? durum[aktif].belgeler : {};
       var belHazir = bel.filter(function (b) { return belDurum[b.id]; }).length;
       var oran = c.sayac.toplam ? Math.round(c.sayac.yapildi / c.sayac.toplam * 100) : 0;
-      $("rota-lead").textContent = "Bu sayfa yalnızca " + ULKE_AD[aktif] + " kurallarını uygular. Adımlar " +
+      $("rota-lead").textContent = "Yalnızca " + ULKE_AD[aktif] + " kuralları · " +
         (c.mezun
-          ? "mezun öğrencisine ve yerleşme durumuna göre süzüldü ve " + akademikYil(c.hedefYil) + " akademik yılı başlangıcına göre tarihlendi."
-          : (sinifAd ? sinifAd + " öğrencisine göre süzüldü" : "sınıfına göre süzüldü") +
-            (c.mezuniyetYili ? " ve Haziran " + c.mezuniyetYili + " mezuniyetine göre tarihlendi." : "; mezuniyet yılın bilinmediği için tarihler gösterilemiyor."));
+          ? "mezun profiline ve yerleşme durumuna göre, " + akademikYil(c.hedefYil) + " başlangıcına göre tarihli."
+          : (sinifAd ? sinifAd + " öğrencisine göre" : "sınıfına göre") +
+            (c.mezuniyetYili ? ", Haziran " + c.mezuniyetYili + " mezuniyetine göre tarihli." : "; mezuniyet yılın bilinmediği için tarihler gösterilemiyor."));
 
       var gecmis = c.adimlar.filter(function (a) { return a.zamanDurumu === "gecmis"; });
       var buay = c.adimlar.filter(function (a) { return a.zamanDurumu === "buay"; });
@@ -319,100 +314,115 @@
       var alan = prof.hedefAlan || "Mühendislik";
 
       var html = "";
-      // Özet şeridi
-      html += '<section class="rota-summary" aria-label="Rota özeti">' +
-        '<div class="surface rs-next">' +
-          '<span class="uni-sub">Sıradaki adım</span>' +
-          (nx ? '<strong>' + esc(nx.baslik) + '</strong><p>' + esc(nx.tarih && nx.tarih.etiket ? nx.tarih.etiket : "Tarih belirsiz") + (nx.tarih && nx.tarih.metin ? " · " + esc(nx.tarih.metin) : "") + '</p>' +
-                '<div class="btn-row">' + (nh ? '<a class="btn-primary" href="' + esc(nh.href) + '">' + esc(nh.etiket) + '</a>' : "") + '<a class="btn-ghost" href="#rs-c-' + esc(nx.id) + '" data-git="' + esc(nx.id) + '">Zaman çizelgesinde gör</a></div>'
-              : '<strong>Bekleyen adım yok</strong><p>' + (c.sayac.gecikmis ? "Tarihi geçmiş " + c.sayac.gecikmis + " zorunlu adımı kontrol et." : "Bu rotadaki tüm adımları tamamladın.") + '</p>') +
-        '</div>' +
-        '<div class="surface rs-stats">' +
-          '<div class="ring ring-sm" style="--p:' + oran + ';--ring-color:var(--rota-c);" aria-hidden="true"><span>%' + oran + '</span></div>' +
-          '<dl class="rs-stat-list">' +
-            '<div><dt>Adım</dt><dd>' + c.sayac.yapildi + ' / ' + c.sayac.toplam + ' yapıldı</dd></div>' +
-            '<div><dt>Belge</dt><dd>' + belHazir + ' / ' + bel.length + ' hazır</dd></div>' +
-            (c.mezun
-              ? '<div><dt>Hedef yıl</dt><dd>' + esc(akademikYil(c.hedefYil)) + '</dd></div>'
-              : '<div><dt>Mezuniyet</dt><dd>' + (c.mezuniyetYili ? "Haziran " + c.mezuniyetYili : '<span class="unverified">Bilinmiyor</span>') + '</dd></div>') +
-            (c.sayac.gecikmis ? '<div class="is-late"><dt>Tarihi geçen</dt><dd>' + c.sayac.gecikmis + ' zorunlu adım</dd></div>' : "") +
-          '</dl>' +
-        '</div>' +
-      '</section>';
+      // 1.9.0: Sıradaki adım (odak) + ilerleme — masaüstünde sağda yapışkan, telefonda en üstte
+      var simdiAy = (function () { var b = bugun(); var d = typeof b === "string" ? new Date(+b.slice(0, 4), +b.slice(5, 7) - 1, +b.slice(8, 10)) : b; return d.getFullYear() * 12 + d.getMonth(); })();
+      function ayFark(t) { return t && t.yil && t.ay ? t.yil * 12 + (t.ay - 1) - simdiAy : null; }
+      var nxFark = nx ? ayFark(nx.tarih) : null;
+      var sirada =
+        '<section class="tk-sirada hd-kart" aria-labelledby="tk-sirada-h">' +
+          '<p class="hd-ust">Sıradaki adım</p>' +
+          (nx ? '<h2 id="tk-sirada-h">' + esc(nx.baslik) + '</h2>' +
+                '<p class="tk-sirada-zaman">' + (nxFark != null ? '<span class="hd-geri' + (nxFark > 2 ? " is-uzak" : "") + '">' + (nxFark <= 0 ? "Bu ay" : nxFark + " ay sonra") + '</span>' : "") +
+                  '<span>' + esc(nx.tarih && nx.tarih.etiket ? nx.tarih.etiket : "Tarih belirsiz") + '</span></p>' +
+                (nx.tarih && nx.tarih.metin ? '<p class="tk-sirada-not">' + esc(nx.tarih.metin) + '</p>' : "") +
+                '<div class="tk-sirada-eylem">' + (nh ? '<a class="btn-primary" href="' + esc(nh.href) + '">' + esc(nh.etiket) + IC.arrow + '</a>' : "") +
+                  '<a class="btn-ghost" href="#rs-c-' + esc(nx.id) + '" data-git="' + esc(nx.id) + '">Çizelgede gör</a></div>'
+              : '<h2 id="tk-sirada-h">Bekleyen adım yok</h2><p class="tk-sirada-not">' + (c.sayac.gecikmis ? "Tarihi geçmiş " + c.sayac.gecikmis + " zorunlu adımı kontrol et." : "Bu rotadaki tüm adımları tamamladın.") + '</p>') +
+          '<div class="tk-ilerleme">' +
+            '<div class="ring ring-sm" style="--p:' + oran + ';--ring-color:var(--rota-c);" aria-hidden="true"><span>%' + oran + '</span></div>' +
+            '<dl class="rs-stat-list">' +
+              '<div><dt>Adım</dt><dd>' + c.sayac.yapildi + ' / ' + c.sayac.toplam + '</dd></div>' +
+              '<div><dt>Belge</dt><dd>' + belHazir + ' / ' + bel.length + '</dd></div>' +
+              (c.mezun ? '<div><dt>Hedef yıl</dt><dd>' + esc(akademikYil(c.hedefYil)) + '</dd></div>'
+                : '<div><dt>Mezuniyet</dt><dd>' + (c.mezuniyetYili ? "Haz " + c.mezuniyetYili : '<span class="unverified">Bilinmiyor</span>') + '</dd></div>') +
+              (c.sayac.gecikmis ? '<div class="is-late"><dt>Tarihi geçen</dt><dd>' + c.sayac.gecikmis + '</dd></div>' : "") +
+            '</dl></div>' +
+        '</section>';
+
+      // Rotanın sınavları (yan sütunda kısa liste) + takvimime eklediğim sınavlar
+      var benimSinav = (A.panel && A.panel.get().sinavlarim || []).filter(function (id) { return SINAV[id]; });
+      var sinavKart = (g.zorunlu.length || g.secmeli.length || benimSinav.length)
+        ? '<section class="tk-yan-kart hd-kart" aria-labelledby="rx-h"><h2 class="tk-yan-bas" id="rx-h">' + IC.exam + 'Sınavların</h2>' +
+            (g.zorunlu.length ? '<h3 class="rs-sub-h">Bu rotada zorunlu</h3><ul class="rs-exams">' + sinavGrupHtml(g.zorunlu, "zorunlu", g.notlar) + '</ul>' : "") +
+            (g.secmeli.length ? '<details class="hd-acilir tk-secmeli"><summary>Seçmeli sınavlar (' + g.secmeli.reduce(function (n, x) { return n + x.length; }, 0) + ')</summary><ul class="rs-exams">' + sinavGrupHtml(g.secmeli, "secmeli", g.notlar) + '</ul></details>' : "") +
+            (benimSinav.length ? '<h3 class="rs-sub-h">Takvimime eklediklerim</h3><p class="tk-benim">' + benimSinav.map(function (id) { return '<a class="chip" href="/sinavlar#' + encodeURIComponent(id) + '">' + esc(SINAV[id].ad) + '</a>'; }).join("") + '</p>' : "") +
+            '<p class="tk-yan-link"><a href="/sinavlar">Tarihler, ücretler ve geri sayım: Sınavlar' + IC.arrow + '</a></p>' +
+          '</section>' : "";
 
       // Mezun özeti ve profile özel uyarılar (K4-a, K5)
       html += mezunHtml(c) + profilUyariHtml();
 
-      // Temel kural
-      html += '<section class="surface rota-rule" aria-labelledby="rr-h">' +
-        '<div class="rota-rule-ico" aria-hidden="true">' + IC.rule + '</div>' +
-        '<div class="rota-rule-body">' +
-          '<span class="uni-sub">Temel kural · Bu bilgi ' + esc(ULKE_AD[aktif]) + ' rotası içindir</span>' +
+      html += '<div class="tk-govde"><div class="tk-ana">';
+      // Temel kural: başlık görünür, ayrıntı açılır
+      html += '<section class="tk-kural hd-kart" aria-labelledby="rr-h">' +
+        '<span class="tk-kural-ikon" aria-hidden="true">' + IC.rule + '</span>' +
+        '<div class="u-min0"><p class="tk-kural-ust">Temel kural · ' + esc(ULKE_AD[aktif]) + ' rotası</p>' +
           '<h2 id="rr-h">' + esc(tk.baslik || v.ad) + '</h2>' +
-          // Uzun açıklama tek tıkla açılır (sayfa taranabilir kalsın)
-          (tk.detay ? '<details class="ic-ayrinti"><summary>Ayrıntı</summary><p>' + esc(tk.detay) + '</p><div class="rs-foot">' + kes(tk.kesinlik) + src(tk.kaynak) + '</div></details>'
+          (tk.detay ? '<details class="hd-acilir tk-kural-d"><summary>Kuralın ayrıntısı</summary><p>' + esc(tk.detay) + '</p><div class="rs-foot">' + kes(tk.kesinlik) + src(tk.kaynak) + '</div></details>'
             : '<div class="rs-foot">' + kes(tk.kesinlik) + src(tk.kaynak) + '</div>') +
-          (aktif === "de" ? '<p class="rota-alan">' + IC.flag + '<span>Hedef alanın: <strong>' + esc(alan) + '</strong>. Türk diplomasıyla Almanya’da giriş hakkı YKS’de yerleştiğin alan ve komşu alanlar için doğar; YKS tercihini bu alana göre yap. <a href="/profil#pf-hedefAlan">Hedef alanı değiştir</a></span></p>' : "") +
-        '</div>' +
+          (aktif === "de" ? '<p class="rota-alan">' + IC.flag + '<span>Hedef alanın: <strong>' + esc(alan) + '</strong>. Giriş hakkı YKS’de yerleştiğin alan ve komşu alanlar için doğar. <a href="/profil#pf-hedefAlan">Değiştir</a></span></p>' : "") +
+        '</div></section>';
+
+      // Zaman çizelgesi: ay ay gruplu dikey çizgi (geçmiş katlanır)
+      function ayGruplari(list) {
+        var gr = [], son = null;
+        list.forEach(function (a) {
+          var t = a.tarih || {}, k = t.yil ? t.yil * 100 + (t.ay || 13) : "x";
+          if (!son || son.k !== k) { son = { k: k, ay: t.ay ? AYLAR_KISA[t.ay - 1] : "", yil: t.yil || "", list: [] }; gr.push(son); }
+          son.list.push(a);
+        });
+        return gr.map(function (x) {
+          return '<li class="tk-ay"><h3 class="tk-ay-bas"><span>' + esc(x.ay || "Yıl içinde") + '</span><small>' + esc(String(x.yil)) + '</small></h3>' +
+            '<ol class="rs-list">' + x.list.map(adimHtml).join("") + '</ol></li>';
+        }).join("");
+      }
+      var gizliNot = [
+        c.gizlenenSinif ? c.gizlenenSinif + " adım " + (sinifAd || "sınıfın") + " için geçerli olmadığından" : "",
+        c.gizlenenKosul ? c.gizlenenKosul + " adım yerleşme durumun nedeniyle" : "",
+        c.gizlenenDil ? c.gizlenenDil + " adım " + (c.egitimDili === "yerel" ? "İngilizce" : "yerel dil") + " yoluna ait olduğundan" : ""
+      ].filter(Boolean);
+      html += '<section class="rota-main tk-zaman" aria-labelledby="rt-h"><div class="tk-zaman-bas"><h2 id="rt-h">Zaman çizelgesi</h2>' +
+        '<p>' + c.sayac.toplam + ' adım · yaptığını işaretle' + (gizliNot.length ? ' · <span title="' + esc(gizliNot.join("; ") + " gizlendi.") + '">' + (c.gizlenenSinif + c.gizlenenKosul + c.gizlenenDil) + ' adım gizli</span>' : "") + '</p></div>' +
+        (c.adimlar.length ? "" : '<div class="hd-bos"><h3>Bu sınıf için adım yok</h3><p>Profilindeki sınıf bilgisini kontrol et.</p></div>') +
+        (gecmis.length ? '<details class="rs-group rs-past tk-gecmis"' + (c.sayac.gecikmis > 0 || (!buay.length && !gelecek.length) ? " open" : "") + '><summary><span class="rs-group-h" id="rg-past">Geçmiş <span class="rs-count">' + gecmis.length + '</span></span>' +
+            '<span class="rs-group-sub">' + (c.sayac.gecikmis ? c.sayac.gecikmis + " zorunlu adımın tarihi geçti; yaptıysan işaretle." : "Tarihi geçen adımlar.") + '</span></summary><ol class="tk-cizgi">' + ayGruplari(gecmis) + '</ol></details>' : "") +
+        (buay.length || gelecek.length ? '<ol class="tk-cizgi" aria-labelledby="rt-h">' + ayGruplari(buay.concat(gelecek)) + '</ol>' : "") +
+        (belirsiz.length ? '<div class="tk-belirsiz"><h3 class="tk-ay-bas tk-ay-bas-x" id="rg-tbd"><span>Tarihi belirsiz</span><small>' + belirsiz.length + ' adım</small></h3>' +
+            '<p class="rs-group-sub">Tarih resmi kaynakta henüz yok ya da bir önceki adıma bağlı.</p><ol class="rs-list">' + belirsiz.map(adimHtml).join("") + '</ol></div>' : "") +
       '</section>';
 
-      // İki sütun: zaman çizelgesi + yan bilgiler
-      html += '<div class="rota-grid">';
-      html += '<section class="rota-main" aria-labelledby="rt-h"><div class="rota-sec-head"><h2 id="rt-h">Zaman çizelgesi</h2>' +
-        '<p>' + c.sayac.toplam + ' adım' +
-          (c.gizlenenSinif ? ' · ' + c.gizlenenSinif + ' adım ' + esc(sinifAd || "sınıfın") + ' için geçerli olmadığından gizlendi' : "") +
-          (c.gizlenenKosul ? ' · ' + c.gizlenenKosul + ' adım yerleşme durumun nedeniyle gizlendi' : "") +
-          (c.gizlenenDil ? ' · ' + c.gizlenenDil + ' adım ' + (c.egitimDili === "yerel" ? "İngilizce" : "yerel dil") + ' yoluna ait olduğundan gizlendi (eğitim dilin profilde)' : "") +
-          '. Yaptığın adımı işaretle.</p></div>' +
-        (c.adimlar.length ? "" : '<div class="empty-state"><h3>Bu sınıf için adım yok</h3><p>Profilindeki sınıf bilgisini kontrol et.</p></div>') +
-        zamanBolumu("rg-past", "Geçmiş", c.sayac.gecikmis ? c.sayac.gecikmis + " zorunlu adımın tarihi geçti; yaptıysan işaretle." : "Tarihi geçen adımlar.", gecmis, c.sayac.gecikmis > 0 || (gecmis.length > 0 && !buay.length && !gelecek.length)) +
-        zamanBolumu("rg-now", "Bu ay", "", buay, null) +
-        zamanBolumu("rg-next", "Gelecek", "", gelecek, null) +
-        zamanBolumu("rg-tbd", "Tarihi belirsiz", "Tarih resmi kaynakta henüz yok ya da bir önceki adıma bağlı.", belirsiz, null) +
-      '</section>';
-
-      html += '<aside class="rota-side" aria-label="Rota bilgileri">';
-      // Koşullar
-      if (Array.isArray(v.kosullar) && v.kosullar.length) {
-        html += '<section class="surface rota-card" aria-labelledby="rk-h"><h2 class="panel-h" id="rk-h">' + IC.rule + 'Koşullar</h2><ul class="rk-list">' +
-          v.kosullar.map(function (k) {
-            return '<li><div class="rk-top"><strong>' + esc(k.baslik) + '</strong>' + kes(k.kesinlik) + '</div>' + (k.detay ? (String(k.detay).length > 160 ? '<details class="clamp-note"><summary>Ayrıntılar</summary><p>' + esc(k.detay) + '</p></details>' : '<p>' + esc(k.detay) + '</p>') : "") + src(k.kaynak) + '</li>';
-          }).join("") + '</ul></section>';
-      }
-      // Sınavlar
-      if (g.zorunlu.length || g.secmeli.length) {
-        html += '<section class="surface rota-card" aria-labelledby="rx-h"><h2 class="panel-h" id="rx-h">' + IC.exam + 'Rotanın sınavları</h2>' +
-          (g.zorunlu.length ? '<h3 class="rs-sub-h">Zorunlu</h3><ul class="rs-exams">' + sinavGrupHtml(g.zorunlu, "zorunlu", g.notlar) + '</ul>' : "") +
-          (g.secmeli.length ? '<h3 class="rs-sub-h">Seçmeli</h3><ul class="rs-exams">' + sinavGrupHtml(g.secmeli, "secmeli", g.notlar) + '</ul>' : "") +
-          '<p class="field-hint" style="margin-top:10px;"><a href="/sinavlar?filtre=rota">Sınavlar</a> sayfasında “Takvimimdeki sınavlar” filtresiyle de görebilirsin.</p>' +
-        '</section>';
-      }
-      // Belgeler
+      // Belgeler, koşullar, kararlar, uyarılar: açılır bölümler
+      html += '<div class="tk-ayrinti">';
       if (bel.length) {
-        html += '<section class="surface rota-card" aria-labelledby="rb-h"><h2 class="panel-h" id="rb-h">' + IC.doc + 'Belge kontrol listesi</h2>' +
+        html += '<details class="hd-acilir tk-acilir" id="tk-belgeler"><summary><span class="tk-acilir-bas">' + IC.doc + 'Belge kontrol listesi <span class="hd-say">' + belHazir + ' / ' + bel.length + '</span></span></summary>' +
           '<div class="rb-progress"><div class="rb-bar" role="progressbar" aria-label="Hazır belgeler" aria-valuemin="0" aria-valuemax="' + bel.length + '" aria-valuenow="' + belHazir + '"><span style="width:' + (bel.length ? Math.round(belHazir / bel.length * 100) : 0) + '%"></span></div><span>' + belHazir + ' / ' + bel.length + ' hazır</span></div>' +
           '<ul class="rb-list">' + bel.map(function (b) {
             var bid = "rb-c-" + b.id;
             return '<li class="' + (belDurum[b.id] ? "is-done" : "") + '"><input type="checkbox" class="rb-check" id="' + esc(bid) + '" data-belge="' + esc(b.id) + '"' + (belDurum[b.id] ? " checked" : "") + '>' +
               '<div><label for="' + esc(bid) + '">' + esc(b.ad) + '</label>' + (b.zorunlu === false ? ' <span class="rs-tag">İsteğe bağlı</span>' : "") +
               (b.detay ? '<p>' + esc(b.detay) + '</p>' : "") + src(b.kaynak) + '</div></li>';
-          }).join("") + '</ul></section>';
+          }).join("") + '</ul></details>';
       }
-      // Açık kararlar (yalnızca doluysa)
+      if (Array.isArray(v.kosullar) && v.kosullar.length) {
+        html += '<details class="hd-acilir tk-acilir"><summary><span class="tk-acilir-bas">' + IC.rule + 'Koşullar <span class="hd-say">' + v.kosullar.length + '</span></span></summary><ul class="rk-list">' +
+          v.kosullar.map(function (k) {
+            return '<li><div class="rk-top"><strong>' + esc(k.baslik) + '</strong>' + kes(k.kesinlik) + '</div>' + (k.detay ? '<p>' + esc(k.detay) + '</p>' : "") + src(k.kaynak) + '</li>';
+          }).join("") + '</ul></details>';
+      }
       if (Array.isArray(v.acikKararlar) && v.acikKararlar.length) {
-        html += '<section class="surface rota-card rota-decisions" aria-labelledby="rd-h"><h2 class="panel-h" id="rd-h">' + IC.fork + 'Açık kararlar</h2><ul class="rk-list">' +
+        html += '<details class="hd-acilir tk-acilir rota-decisions"><summary><span class="tk-acilir-bas">' + IC.fork + 'Açık kararlar <span class="hd-say">' + v.acikKararlar.length + '</span></span></summary><ul class="rk-list">' +
           v.acikKararlar.map(function (k) {
             return '<li><div class="rk-top"><strong>' + esc(k.baslik) + '</strong>' + (k.id ? '<span class="decision-badge">' + esc(k.id) + '</span>' : "") + '</div>' +
               (Array.isArray(k.secenekler) && k.secenekler.length ? '<ul class="rd-options">' + k.secenekler.map(function (s) { return '<li>' + esc(typeof s === "string" ? s : (s && (s.baslik || s.ad)) || "") + '</li>'; }).join("") + '</ul>' : "") +
               (k.not ? '<p>' + esc(k.not) + '</p>' : "") + '</li>';
-          }).join("") + '</ul></section>';
+          }).join("") + '</ul></details>';
       }
-      // Uyarılar
       if (Array.isArray(v.uyarilar) && v.uyarilar.length) {
-        html += '<section class="rota-card rota-warns" aria-labelledby="ru-h"><h2 class="panel-h" id="ru-h">' + IC.warn + 'Uyarılar</h2><ul>' +
-          v.uyarilar.map(function (u) { return '<li><p>' + esc(u.metin) + '</p>' + (u.kaynak ? src(u.kaynak) : "") + '</li>'; }).join("") + '</ul></section>';
+        html += '<details class="hd-acilir tk-acilir rota-warns"><summary><span class="tk-acilir-bas">' + IC.warn + 'Uyarılar <span class="hd-say">' + v.uyarilar.length + '</span></span></summary><ul class="rk-list">' +
+          v.uyarilar.map(function (u) { return '<li><p>' + esc(u.metin) + '</p>' + (u.kaynak ? src(u.kaynak) : "") + '</li>'; }).join("") + '</ul></details>';
       }
-      html += '</aside></div>';
+      html += '</div></div>';
+      html += '<aside class="rota-side tk-yan" aria-label="Sıradaki adım ve sınavlar"><div class="tk-yan-ic">' + sirada + sinavKart + '</div></aside></div>';
 
       panel.innerHTML = html;
       sayaclar();
