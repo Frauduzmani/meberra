@@ -10,8 +10,8 @@
   <title>AP sınavlarına hazırlan | Meberra</title>
   <meta name="description" content="AP sınavlarına ünite ünite hazırlan; puanınla hangi ülkeye nasıl gideceğini gör. 800+ AP tarzı özgün soru, deneme ve tahmini puan bandı, 15 Avrupa ülkesi için hedef pusulası. Ücretsiz başla.">
   <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/vitrin.css?v=20261021b">
-  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+  <link rel="stylesheet" href="assets/css/vitrin.css?v=20261021d">
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}if("IntersectionObserver"in window){var h=document.documentElement;h.classList.add("vt-js");if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches))h.classList.add("vt-anim")}</script>
 </head>
 <body class="page-vitrin">
   <nav class="navbar">
@@ -21,13 +21,39 @@
 
   <main class="main-container vt-page" id="main-content">
 
-    <!-- 1. Hero + 3 adımlı anlatım -->
+    <!-- 1. Hero -->
     <section class="vt-hero" aria-labelledby="vt-h1">
+      <div class="vt-mesh" aria-hidden="true">
+        <span class="vt-blob vt-blob-1"></span>
+        <span class="vt-blob vt-blob-2"></span>
+        <span class="vt-blob vt-blob-3"></span>
+        <svg class="vt-orbit" viewBox="0 0 600 600" focusable="false">
+          <circle cx="300" cy="300" r="180"/>
+          <circle cx="300" cy="300" r="260"/>
+          <circle class="vt-orbit-dot" cx="480" cy="300" r="6"/>
+          <circle class="vt-orbit-dot is-2" cx="300" cy="40" r="4"/>
+        </svg>
+      </div>
+
       <div class="vt-hero-grid">
         <div class="vt-hero-text">
-          <p class="vt-hero-tag">AP hazırlık · hedef pusulası</p>
-          <h1 id="vt-h1" tabindex="-1"><em>AP sınavlarına</em> hazırlan, puanınla hangi ülkeye nasıl gideceğini gör.</h1>
-          <p class="vt-hero-sub">Dersler İngilizce, arayüz Türkçe. Ünite ünite konu anlatımı, 800+ AP tarzı özgün soru ve deneme sınavları; yanında 15 Avrupa ülkesi için ne gerektiğini gösteren hedef pusulası.</p>
+          <p class="vt-hero-tag"><span class="vt-pulse" aria-hidden="true"></span>AP hazırlık · hedef pusulası</p>
+          <h1 id="vt-h1" tabindex="-1" class="vt-kinetic">
+            <span class="vt-w" style="--i:0"><em>AP</em></span> <span class="vt-w" style="--i:1"><em>sınavlarına</em></span> <span class="vt-w" style="--i:2">hazırlan,</span>
+            <span class="vt-w" style="--i:3">puanınla</span> <span class="vt-w" style="--i:4">hangi</span> <span class="vt-w" style="--i:5">ülkeye</span> <span class="vt-w" style="--i:6">nasıl</span> <span class="vt-w" style="--i:7">gideceğini</span> <span class="vt-w" style="--i:8">gör.</span>
+          </h1>
+          <p class="vt-hero-sub">Ünite ünite konu anlatımı, 800+ AP tarzı özgün soru ve denemeler. Yanında 15 Avrupa ülkesi için hedef pusulası.</p>
+          <div class="vt-hero-cta">
+            <a class="btn-energy vt-cta-big" href="giris.html#kayit">Ücretsiz başla
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="vt-btn-light" href="#vt-demo">Bir soru dene</a>
+          </div>
+          <ul class="vt-hero-notes">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Kart gerekmez</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Reklam yok</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Süresiz ücretsiz plan</li>
+          </ul>
         </div>
 
         <!-- 3 adımlı anlatım: JS yoksa ya da hareket azaltılmışsa üç adım birlikte görünür -->
@@ -47,9 +73,9 @@
               <button type="button" class="vx-btn" data-vx-skip hidden aria-label="Animasyonu geç, üç adımı birlikte göster">Geç</button>
             </div>
           </div>
+          <div class="vx-progress" aria-hidden="true"><span class="vx-progress-fill"></span></div>
 
           <div class="vx-stage">
-            <!-- Adım 1 -->
             <article class="vx-slide" id="vx-s1" data-vx-slide="0" aria-labelledby="vx-s1-h">
               <p class="vx-no">1. adım</p>
               <h2 class="vx-h" id="vx-s1-h">AP nedir?</h2>
@@ -64,31 +90,20 @@
                 <div class="vx-track"><div class="vx-fill"></div></div>
                 <div class="vx-exam-foot"><span>Puan</span><b>4 / 5</b></div>
               </div>
-              <p class="vx-text">Amerika’nın College Board’u tarafından yapılan, <strong>üniversite seviyesinde ders sınavı</strong>. 1–5 arası puanlanır; 4–5 güçlü sonuçtur. Türkiye’de de girilebilir, sınavlar her yıl <strong>mayısta</strong>.</p>
+              <p class="vx-text">College Board’un <strong>üniversite seviyesindeki ders sınavı</strong>. 1–5 arası puanlanır, 4–5 güçlü sonuçtur. Sınavlar her yıl <strong>mayısta</strong>; Türkiye’de de girilebilir.</p>
             </article>
 
-            <!-- Adım 2 -->
             <article class="vx-slide" id="vx-s2" data-vx-slide="1" aria-labelledby="vx-s2-h">
               <p class="vx-no">2. adım</p>
               <h2 class="vx-h" id="vx-s2-h">Ne işe yarar?</h2>
-              <div class="vx-map" aria-hidden="true">
-                <svg viewBox="0 0 220 150" focusable="false">
-                  <path class="vx-land" d="M58 22c14-8 34-10 50-6 10 3 18-4 30-2 14 2 24 10 36 12 12 2 22 10 22 22 0 10-8 16-6 26 2 12-6 22-18 24-10 2-14 12-26 14-10 2-14 14-24 20-8 5-16 2-18-6-2-8-10-10-14-4-6 8-16 12-24 6-6-5-2-14-8-18-10-6-24-2-30-12-6-9 2-18-2-28-4-10-14-16-10-28 3-10 14-14 22-20z"/>
-                  <g class="vx-pin vx-pin-nl"><circle cx="86" cy="44" r="9"/><circle cx="86" cy="44" r="3.5" class="vx-pin-c"/></g>
-                  <g class="vx-pin vx-pin-de"><circle cx="110" cy="56" r="9"/><circle cx="110" cy="56" r="3.5" class="vx-pin-c"/></g>
-                  <g class="vx-pin vx-pin-it"><circle cx="118" cy="104" r="9"/><circle cx="118" cy="104" r="3.5" class="vx-pin-c"/></g>
-                  <g class="vx-pin vx-pin-x"><circle cx="64" cy="84" r="5"/><circle cx="150" cy="40" r="5"/><circle cx="160" cy="76" r="5"/><circle cx="132" cy="28" r="5"/><circle cx="76" cy="116" r="5"/></g>
-                </svg>
-              </div>
               <ul class="vx-badges">
-                <li class="vx-badge is-ok"><b>Hollanda</b><span>Bazı üniversiteler Türk diplomasıyla birlikte AP ister (ör. Twente, Groningen: en az 4 AP).</span></li>
-                <li class="vx-badge is-warn"><b>Almanya</b><span>AP tek başına yetmez; YKS’de bir lisans programına yerleşmek de gerekir.</span></li>
-                <li class="vx-badge"><b>İtalya</b><span>AP şart değil; asıl belirleyici giriş testi (CEnT-S, TOLC vb.).</span></li>
-                <li class="vx-badge is-more"><b>Diğer 12 ülke</b><span>Ülkeye göre değişir; Meberra’da ülke ülke gör.</span></li>
+                <li class="vx-badge is-ok"><b>Hollanda</b><span>Bazı üniversiteler (ör. Twente, Groningen) en az 4 AP ister.</span></li>
+                <li class="vx-badge is-warn"><b>Almanya</b><span>Türk diplomasıyla AP tek başına yetmez; YKS yerleştirmesi de gerekir.</span></li>
+                <li class="vx-badge"><b>İtalya</b><span>AP şart değil; giriş sınavı (CEnT-S/TOLC) belirler.</span></li>
+                <li class="vx-badge is-more"><b>+12 ülke</b><span>Ülke ülke, resmi kaynaklarıyla.</span></li>
               </ul>
             </article>
 
-            <!-- Adım 3 -->
             <article class="vx-slide" id="vx-s3" data-vx-slide="2" aria-labelledby="vx-s3-h">
               <p class="vx-no">3. adım</p>
               <h2 class="vx-h" id="vx-s3-h">Meberra seni nasıl götürür?</h2>
@@ -98,165 +113,255 @@
                 <li class="vx-chip"><span class="vx-chip-n" aria-hidden="true">3</span>Deneme</li>
                 <li class="vx-chip is-goal"><span class="vx-chip-n" aria-hidden="true">4</span>Hedef puan</li>
               </ol>
-              <p class="vx-text">Seviye testi nereden başlayacağını gösterir, her gün kısa bir görev seni ilerletir, denemeler 1–5 ölçeğinde tahmini puan bandını verir.</p>
+              <p class="vx-text">Seviye testi nereden başlayacağını gösterir, günlük görevler seni ilerletir, denemeler 1–5 ölçeğinde tahmini puan bandını verir.</p>
             </article>
           </div>
 
           <p class="vx-caption" data-vx-caption aria-live="polite"></p>
         </div>
+      </div>
 
-        <div class="vt-hero-cta-wrap">
-          <div class="vt-hero-cta">
-            <a class="btn-energy" href="giris.html#kayit">Ücretsiz başla
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
-            <a class="vt-btn-light" href="#vt-nasil">Nasıl çalışır?</a>
+      <ul class="vt-stats" aria-label="Kısaca Meberra">
+        <li><b>800+</b><span>AP tarzı özgün soru</span></li>
+        <li><b>15</b><span>Avrupa ülkesi</span></li>
+        <li><b>1–5</b><span>tahmini puan bandı</span></li>
+      </ul>
+    </section>
+
+    <!-- 2. Mini demo -->
+    <section class="vt-demo" id="vt-demo" aria-labelledby="vt-demo-h">
+      <div class="vt-sec-head is-center" data-rv>
+        <p class="vt-kicker">30 saniyelik deneme</p>
+        <h2 class="vt-h2" id="vt-demo-h" tabindex="-1">Hadi, bir soru çöz</h2>
+        <p class="vt-lead">AP Calculus AB, Ünite 1’den gerçek bir soru. Seç, anında gör.</p>
+      </div>
+
+      <div class="vt-q surface" data-rv data-demo>
+        <div class="vt-q-top">
+          <span class="vt-q-tag">AP Calculus AB · 1.6</span>
+          <span class="vt-q-diff">Orta</span>
+        </div>
+        <p class="vt-q-text" id="vt-q-text">Evaluate the limit:</p>
+        <p class="vt-math" aria-label="limit, x 4'e giderken, karekök x eksi 2 bölü x eksi 4">
+          <span class="vt-lim" aria-hidden="true"><span>lim</span><small>x → 4</small></span>
+          <span class="vt-frac" aria-hidden="true"><span>√x − 2</span><span>x − 4</span></span>
+        </p>
+        <div class="vt-opts" role="group" aria-labelledby="vt-q-text">
+          <button type="button" class="vt-opt" data-opt="A" data-r="Dikkat: 0/0 bir belirsizliktir, sonucun 0 olduğu anlamına gelmez. Eşlenikle çarpıp sadeleştir."><span class="vt-opt-k">A</span><span>0</span></button>
+          <button type="button" class="vt-opt" data-opt="B" data-ok="1"><span class="vt-opt-k">B</span><span>1/4</span></button>
+          <button type="button" class="vt-opt" data-opt="C" data-r="Paydada 0 görmek limitin olmadığı anlamına gelmez; (x − 4) çarpanı sadeleşebilir."><span class="vt-opt-k">C</span><span>Does not exist</span></button>
+          <button type="button" class="vt-opt" data-opt="D" data-r="Neredeyse! Sadeleşince 1/(√x + 2) kalır; x = 4 için 1/(2 + 2) = 1/4."><span class="vt-opt-k">D</span><span>1/2</span></button>
+        </div>
+        <div class="vt-q-fb" data-demo-fb role="status" aria-live="polite"></div>
+        <div class="vt-q-sol" data-demo-sol hidden>
+          <p><strong>Çözüm:</strong> Doğrudan koyunca 0/0 çıkar. Pay ve paydayı (√x + 2) ile çarp: (x − 4) / [(x − 4)(√x + 2)]. Sadeleştir, x = 4 koy: 1/(2 + 2) = <strong>1/4</strong>.</p>
+          <div class="vt-q-actions">
+            <a class="btn-energy" href="giris.html#kayit">Daha fazlası için ücretsiz başla</a>
+            <button type="button" class="btn-ghost" data-demo-reset>Tekrar dene</button>
           </div>
-          <ul class="vt-hero-notes">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Kredi kartı gerekmez</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Reklam yok</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Süre sınırı olmayan ücretsiz plan</li>
-          </ul>
         </div>
       </div>
     </section>
 
-    <!-- 2. Nasıl çalışır -->
+    <!-- 3. Bir günün Meberra'da -->
+    <section class="vt-day" aria-labelledby="vt-day-h">
+      <div class="vt-day-grid">
+        <div class="vt-day-text" data-rv>
+          <p class="vt-kicker">Bir günün Meberra’da</p>
+          <h2 class="vt-h2" id="vt-day-h">Her gün kısa, her gün ileri</h2>
+          <p class="vt-lead">“Bugün” ekranı ne çalışacağını söyler; gerisi alışkanlık.</p>
+          <ul class="vt-day-list">
+            <li data-rv style="--d:1"><span class="vt-dot is-violet" aria-hidden="true"></span><div><strong>Günlük hedef halkası</strong><span>5, 10 ya da 20 soru; hedefi sen seçersin.</span></div></li>
+            <li data-rv style="--d:2"><span class="vt-dot is-orange" aria-hidden="true"></span><div><strong>Seri ve seri koruma</strong><span>Kaçırdığın bir gün serini bozmaz: haftada 1, Premium’da 2.</span></div></li>
+            <li data-rv style="--d:3"><span class="vt-dot is-green" aria-hidden="true"></span><div><strong>Günün görevleri</strong><span>Her biri +20 XP. Yanlışların akıllı tekrarla geri gelir.</span></div></li>
+            <li data-rv style="--d:4"><span class="vt-dot is-blue" aria-hidden="true"></span><div><strong>Rozetler</strong><span>İlk deneme, 7 gün seri, 100 soru… İlerlemen görünür olur.</span></div></li>
+          </ul>
+        </div>
+
+        <figure class="vt-app" data-rv style="--d:1" aria-label="Bugün ekranının örnek görünümü">
+          <div class="vt-app-head">
+            <div><small>Bugün</small><strong>Merhaba Deniz</strong></div>
+            <span class="vt-streak"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2c1 3.5 5 5.5 5 11a5 5 0 0 1-10 0c0-2.5 1.2-4.2 2.5-5.5.2 1.8 1 3 2.2 3.5C11 8 11 5 12 2z"/></svg><b>12</b> gün</span>
+          </div>
+          <div class="vt-app-row">
+            <div class="vt-ring">
+              <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+                <circle class="vt-ring-bg" cx="60" cy="60" r="50"/>
+                <circle class="vt-ring-fg" cx="60" cy="60" r="50" pathLength="100"/>
+              </svg>
+              <div class="vt-ring-in"><b>7<small>/10</small></b><span>soru</span></div>
+            </div>
+            <div class="vt-app-side">
+              <div class="vt-mini is-shield"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/></svg><span>Seri koruma hazır</span></div>
+              <div class="vt-mini is-review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg><span>4 soru tekrar zamanı</span></div>
+            </div>
+          </div>
+          <div class="vt-quests">
+            <p class="vt-app-h">Günün görevleri <span>+20 XP</span></p>
+            <div class="vt-quest"><span>8 doğru cevap ver</span><i style="--p:.75"></i><small>6/8</small></div>
+            <div class="vt-quest is-done"><span>5 doğru üst üste</span><i style="--p:1"></i><small>Tamam</small></div>
+            <div class="vt-quest"><span>2 yanlışını tekrar çöz</span><i style="--p:.5"></i><small>1/2</small></div>
+          </div>
+          <div class="vt-badges-row" aria-hidden="true">
+            <span class="vt-bdg is-a"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.5 7 .8-5.2 4.8 1.4 7L12 17.6 5.8 21l1.4-7L2 9.3l7-.8z"/></svg></span>
+            <span class="vt-bdg is-b"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 3.5 5 5.5 5 11a5 5 0 0 1-10 0c0-2.5 1.2-4.2 2.5-5.5.2 1.8 1 3 2.2 3.5C11 8 11 5 12 2z"/></svg></span>
+            <span class="vt-bdg is-c"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>
+            <span class="vt-bdg is-lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+          </div>
+          <figcaption class="vt-app-cap">Örnek görünüm</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 4. Ne var içinde -->
     <section aria-labelledby="vt-nasil" class="vt-anchor">
-      <div class="vt-sec-head is-center">
-        <p class="vt-kicker">Nasıl çalışır</p>
+      <div class="vt-sec-head is-center" data-rv>
+        <p class="vt-kicker">İçinde neler var</p>
         <h2 class="vt-h2" id="vt-nasil" tabindex="-1">Dersler merkezde, ülke bilgisi pusulan</h2>
-        <p class="vt-lead">Önce AP’ye hazırlanırsın; hedef pusulası da o puanın hangi ülkede ne işe yarayacağını gösterir.</p>
       </div>
       <ul class="vt-features">
-        <li class="vt-feature surface">
+        <li class="vt-feature surface" data-rv style="--d:0">
           <span class="vt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/><path d="M8 7h8M8 11h6"/></svg></span>
           <h3>Ünite ünite ders</h3>
-          <p>Calculus, Physics, Chemistry, Biology ve diğer derslerde sınavın diliyle konu anlatımı ve 800+ AP tarzı özgün soru. Başlamadan önce seviye testi nereden başlayacağını gösterir.</p>
+          <p>Calculus, Physics, Chemistry, Biology ve diğerleri: İngilizce konu anlatımı, Türkçe açıklamalı çözümler.</p>
         </li>
-        <li class="vt-feature surface">
-          <span class="vt-ico is-enerji" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-          <h3>Günlük görev ve Yanlışlarım</h3>
-          <p>“Bugün” ekranı sıradaki üniteyi gösterir. Yanlış yaptığın sorular Yanlışlarım listesinde toplanır; çözümüne bakıp yeniden çözersin.</p>
+        <li class="vt-feature surface" data-rv style="--d:1">
+          <span class="vt-ico is-enerji" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></span>
+          <h3>Yanlışlarım</h3>
+          <p>Yanlış yaptığın sorular toplanır, akıllı tekrarla doğru zamanda geri gelir.</p>
         </li>
-        <li class="vt-feature surface">
+        <li class="vt-feature surface" data-rv style="--d:2">
           <span class="vt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg></span>
-          <h3>Deneme ve tahmini puan bandı</h3>
-          <p>Her dersten deneme çöz; sonucuna göre AP’nin 1–5 ölçeğinde nerede olabileceğini gösteren tahmini bir puan bandı gör.</p>
+          <h3>Deneme ve puan bandı</h3>
+          <p>Deneme çöz, 1–5 ölçeğinde nerede olabileceğini gösteren tahmini bandı gör.</p>
         </li>
-        <li class="vt-feature surface">
+        <li class="vt-feature surface" data-rv style="--d:3">
           <span class="vt-ico is-ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></span>
-          <h3>Hedef pusulası: 15 ülke</h3>
-          <p>Almanya, İtalya, Hollanda ve 12 Avrupa ülkesinde AP’nin rolü, kabul şartları ve son tarihler; resmi kaynak bağlantılarıyla.</p>
+          <h3>Hedef pusulası</h3>
+          <p>15 Avrupa ülkesinde AP’nin rolü, kabul şartları ve son tarihler; resmi kaynaklarıyla.</p>
         </li>
       </ul>
     </section>
 
-    <!-- 3. Veliler için -->
-    <section class="vt-veli surface" aria-labelledby="vt-veli">
+    <!-- 5. Veliler için -->
+    <section class="vt-veli surface" aria-labelledby="vt-veli" data-rv>
       <div>
         <p class="vt-kicker">Veliler için</p>
-        <h2 class="vt-h2" id="vt-veli">Kısa ve net: ne, ne kadar, nerede</h2>
-        <p class="vt-lead">Yurt dışında üniversite süreci aileler için de yeni olabilir. Bilmeniz gereken dört şey:</p>
-        <a class="vt-link" href="kvkk.html">KVKK aydınlatma metnini okuyun</a>
+        <h2 class="vt-h2" id="vt-veli">Kısa ve net</h2>
+        <p class="vt-lead">Bilmeniz gereken dört şey.</p>
       </div>
       <dl class="vt-veli-list">
         <div>
           <span class="vt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
-          <div><dt>Çocuğunuz ne kazanır?</dt><dd>Üniversite seviyesinde derslerde düzenli çalışma, deneme sonuçlarıyla görünür ilerleme ve hedef ülkede AP’nin ne işe yarayacağına dair net bilgi.</dd></div>
+          <div><dt>Ne kazanır?</dt><dd>Düzenli çalışma, deneme sonuçlarıyla görünür ilerleme ve hedef ülkede AP’nin ne işe yarayacağına dair net bilgi.</dd></div>
         </div>
         <div>
           <span class="vt-ico is-enerji" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></span>
-          <div><dt>Ne kadar sürer?</dt><dd>AP sınavları yılda bir kez, mayısta yapılır. Hazırlık ders sayısına göre değişir; günde kısa ama düzenli çalışma önerilir.</dd></div>
+          <div><dt>Ne zaman?</dt><dd>AP sınavları yılda bir kez, mayısta. Günde kısa ama düzenli çalışma yeterli.</dd></div>
         </div>
         <div>
           <span class="vt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 10h18M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18M12 3l9 5H3z"/></svg></span>
-          <div><dt>Ne kadar tutar?</dt><dd>Ücretsiz plan süresizdir. Premium <span data-urun="fiyat:aylik">199</span> ₺/<span data-urun="donem:aylik">ay</span> ya da <span data-urun="fiyat:yillik">1.490</span> ₺/<span data-urun="donem:yillik">yıl</span>. Ödeme havale/EFT ile; otomatik çekim yok.</dd></div>
+          <div><dt>Ne kadar?</dt><dd>Ücretsiz plan süresiz. Premium <span data-urun="fiyat:aylik">199</span> ₺/ay ya da <span data-urun="fiyat:yillik">1.490</span> ₺/yıl; havale/EFT, otomatik çekim yok.</dd></div>
         </div>
         <div>
           <span class="vt-ico is-ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span>
-          <div><dt>Veriler nerede?</dt><dd>Kendi sunucumuzda saklanır; reklam için kullanılmaz, satılmaz. 18 yaş altı için veli onayı istenir.</dd></div>
+          <div><dt>Veriler?</dt><dd>Hesapta, kendi sunucumuzda saklanır; reklam için kullanılmaz, satılmaz. 18 yaş altına veli onayı. <a href="kvkk.html">KVKK metni</a></dd></div>
         </div>
       </dl>
     </section>
 
-    <!-- 4. Fiyat özeti -->
+    <!-- 6. Fiyatlar -->
     <section aria-labelledby="vt-fiyat">
-      <div class="vt-sec-head is-center">
+      <div class="vt-sec-head is-center" data-rv>
         <p class="vt-kicker">Fiyatlar</p>
-        <h2 class="vt-h2" id="vt-fiyat">Ücretsiz başla, hazır olunca Premium’a geç</h2>
+        <h2 class="vt-h2" id="vt-fiyat">Ücretsiz başla, hazır olunca Premium</h2>
       </div>
-      <div class="vt-plans is-two">
-        <article class="vt-plan surface" aria-labelledby="vt-p-aylik">
-          <h3 id="vt-p-aylik"><span data-urun="ad:aylik">Aylık</span></h3>
+      <div class="vt-plans">
+        <article class="vt-plan surface" aria-labelledby="vt-p-free" data-rv style="--d:0">
+          <h3 id="vt-p-free">Ücretsiz</h3>
+          <p class="vt-price"><b>0 ₺</b><span>/ süresiz</span></p>
+          <ul class="vt-checks">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><span>Her derste ilk <span data-urun="unite">2</span> ünite</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><span>Her dersten <span data-urun="deneme">1</span> deneme</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><span>Ayda 3 soru-cevap</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><span>Ülke şartları ve hedef pusulası</span></li>
+          </ul>
+          <a class="btn-ghost vt-plan-cta" href="giris.html#kayit">Ücretsiz başla</a>
+        </article>
+        <article class="vt-plan surface" aria-labelledby="vt-p-aylik" data-rv style="--d:1">
+          <h3 id="vt-p-aylik">Premium <span data-urun="ad:aylik">Aylık</span></h3>
           <p class="vt-price"><b><span data-urun="fiyat:aylik">199</span> ₺</b><span>/ <span data-urun="donem:aylik">ay</span></span></p>
-          <p class="vt-plan-note" data-urun="aciklama:aylik">İstediğin zaman bırak</p>
-          <a class="btn-ghost vt-plan-cta" href="fiyatlar.html">Planları karşılaştır</a>
+          <ul class="vt-checks">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><span>Tüm üniteler</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><span>Sınırsız deneme + genel deneme</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><span>Sınırsız soru-cevap</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><span>Haftada 2 seri koruma</span></li>
+          </ul>
+          <a class="btn-primary vt-plan-cta" href="premium.html?plan=aylik">Aylık planı seç</a>
         </article>
-        <article class="vt-plan surface is-featured" aria-labelledby="vt-p-yillik">
+        <article class="vt-plan surface is-featured" aria-labelledby="vt-p-yillik" data-rv style="--d:2">
           <span class="vt-badge">En avantajlı</span>
-          <h3 id="vt-p-yillik"><span data-urun="ad:yillik">Yıllık</span></h3>
+          <h3 id="vt-p-yillik">Premium <span data-urun="ad:yillik">Yıllık</span></h3>
           <p class="vt-price"><b><span data-urun="fiyat:yillik">1.490</span> ₺</b><span>/ <span data-urun="donem:yillik">yıl</span></span></p>
-          <p class="vt-plan-note" data-urun="aciklama:yillik">Ayda yaklaşık 124 ₺ · %38 tasarruf</p>
-          <a class="btn-primary vt-plan-cta" href="fiyatlar.html">Planları karşılaştır</a>
+          <p class="vt-save" data-urun="aciklama:yillik">Ayda yaklaşık 124 ₺ · %38 tasarruf</p>
+          <ul class="vt-checks">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><span>Aylık plandaki her şey</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><span>Bir sınav dönemini baştan sona kapsar</span></li>
+          </ul>
+          <a class="btn-energy vt-plan-cta" href="premium.html?plan=yillik">Yıllık planı seç</a>
         </article>
       </div>
-      <p class="vt-free-note"><strong>Ücretsiz plan:</strong> <span>her derste ilk <span data-urun="unite">2</span> ünite ve her dersten <span data-urun="deneme">1</span> deneme (tahmini puan bandı dahil).</span></p>
+      <p class="vt-free-note"><a class="vt-link" href="fiyatlar.html">Tüm farkları karşılaştır →</a></p>
     </section>
 
-    <!-- 5. SSS -->
+    <!-- 7. SSS -->
     <section aria-labelledby="vt-sss">
-      <div class="vt-sec-head is-center">
+      <div class="vt-sec-head is-center" data-rv>
         <p class="vt-kicker">Sık sorulanlar</p>
         <h2 class="vt-h2" id="vt-sss">Aklına takılanlar</h2>
       </div>
-      <div class="vt-faq">
+      <div class="vt-faq" data-rv>
         <details>
           <summary>AP tek başına yurt dışında üniversiteye girmemi sağlar mı?</summary>
-          <div class="vt-faq-body"><p>Ülkeye ve üniversiteye göre değişir. Örneğin Hollanda’da bazı üniversiteler Türk diplomasıyla birlikte AP ister; Almanya’da Türk lise diplomasıyla resmi yol YKS’de bir lisans programına yerleşmektir (anabin TUR-BV05), AP bunun yerine geçmez; İtalya’da AP şart değildir, giriş testi belirleyicidir. Hedef ülkende neyin gerektiğini Meberra’da ülke ülke, kaynaklarıyla görürsün.</p></div>
+          <div class="vt-faq-body"><p>Ülkeye ve üniversiteye göre değişir. Hollanda’da bazı üniversiteler (ör. Twente, Groningen) Türk diplomasıyla birlikte en az 4 AP ister. Almanya’da Türk diplomasıyla AP tek başına yetmez, YKS’de bir lisans programına yerleşmek de gerekir. İtalya’da AP şart değildir; giriş sınavı (CEnT-S, TOLC) belirler. Meberra’da hedef ülkeni kaynaklarıyla görürsün.</p></div>
         </details>
         <details>
-          <summary>Ücretsiz ne kadar kullanabilirim?</summary>
-          <div class="vt-faq-body"><p>Süre sınırı yok. Ücretsiz hesapla her derste ilk <span data-urun="unite">2</span> üniteyi ve her dersten <span data-urun="deneme">1</span> denemeyi kullanabilirsin. Ülke şartları, üniversite listeleri, sınav bilgileri, Yanlışlarım, kişisel rota ve e-posta şablonları ücretsiz planda da açık.</p></div>
+          <summary>Ücretsiz planda neler var?</summary>
+          <div class="vt-faq-body"><p>Süre sınırı yok. Her derste ilk <span data-urun="unite">2</span> ünite, her dersten <span data-urun="deneme">1</span> deneme (tahmini puan bandı dahil), ayda 3 soru-cevap ve haftada 1 seri koruma. Ülke şartları, üniversiteler, Yanlışlarım ve kişisel rota da açık.</p></div>
         </details>
         <details>
-          <summary>Nasıl ödeme yaparım?</summary>
-          <div class="vt-faq-body"><p>Ödeme havale/EFT ile alınır. Planını seçtiğinde ödeme için gereken banka bilgileri gösterilir. Ödemen onaylandığında Premium hesabına tanımlanır; bu genelde 1 iş günü içinde olur.</p></div>
-        </details>
-        <details>
-          <summary>İptal edebilir miyim?</summary>
-          <div class="vt-faq-body"><p>Evet. Otomatik yenileme ya da otomatik çekim yoktur; süren bittiğinde yenilemezsen hesabın ücretsiz plana döner, çalışma geçmişin silinmez. İade koşulları için <a href="fiyatlar.html#sss">fiyatlar sayfasındaki açıklamaya</a> bakabilirsin.</p></div>
+          <summary>Nasıl ödeme yaparım, iptal edebilir miyim?</summary>
+          <div class="vt-faq-body"><p>Ödeme havale/EFT ile alınır; ödemen onaylanınca (genelde 1 iş günü) Premium hesabına tanımlanır. Otomatik yenileme yok: süren bitince hesabın ücretsiz plana döner, çalışma geçmişin silinmez. Ayrıntılar <a href="fiyatlar.html#sss">fiyatlar sayfasında</a>.</p></div>
         </details>
         <details>
           <summary>AP sınavına nerede girerim?</summary>
-          <div class="vt-faq-body"><p>AP sınavları College Board’a bağlı yetkili okullarda yapılır; dışarıdan aday kabul eden okulların kayıt dönemleri farklıdır. İstanbul’daki seçenekler ve kayıt takvimi için <a href="istanbul-sinav-rehberi.html">İstanbul sınav rehberine</a> göz at.</p></div>
+          <div class="vt-faq-body"><p>College Board’a bağlı yetkili okullarda. İstanbul’daki seçenekler ve kayıt takvimi için <a href="istanbul-sinav-rehberi.html">İstanbul sınav rehberine</a> bak.</p></div>
         </details>
         <details>
           <summary>Bu resmi College Board içeriği mi?</summary>
-          <div class="vt-faq-body"><p>Hayır. Sorular AP formatına ve resmi müfredat çerçevesine (CED) göre hazırlanmış özgün sorulardır ve “AP-style original” olarak etiketlenir. AP®, College Board’un tescilli markasıdır; Meberra, College Board ile bağlantılı değildir ve College Board tarafından onaylanmamıştır.</p></div>
+          <div class="vt-faq-body"><p>Hayır. Sorular AP formatına ve resmi müfredat çerçevesine (CED) göre hazırlanmış özgün sorulardır. AP®, College Board’un tescilli markasıdır; Meberra, College Board ile bağlantılı değildir.</p></div>
         </details>
         <details>
           <summary>Hangi ülkeler var?</summary>
-          <div class="vt-faq-body"><p>15 Avrupa ülkesi: Almanya, İtalya, Avusturya, İsviçre, Hollanda, Belçika, Fransa, İspanya, İsveç, Finlandiya, Danimarka, İrlanda, Macaristan, Polonya ve Çekya. Her ülke için AP’nin rolü, İngilizce ve yerel dilde eğitim seçenekleri ve kabul şartları yer alır.</p></div>
-        </details>
-        <details>
-          <summary>Verilerim güvende mi?</summary>
-          <div class="vt-faq-body"><p>Verilerin kendi sunucumuzda saklanır, reklam için kullanılmaz ve satılmaz. Profil sayfandan verilerinin bir kopyasını indirebilir ya da hesabını tamamen silebilirsin. Ayrıntılar <a href="kvkk.html">KVKK aydınlatma metninde</a> ve <a href="gizlilik.html">gizlilik politikasında</a>.</p></div>
+          <div class="vt-faq-body"><p>15 Avrupa ülkesi: Almanya, İtalya, Avusturya, İsviçre, Hollanda, Belçika, Fransa, İspanya, İsveç, Finlandiya, Danimarka, İrlanda, Macaristan, Polonya ve Çekya.</p></div>
         </details>
         <details>
           <summary>18 yaşından küçüğüm, üye olabilir miyim?</summary>
-          <div class="vt-faq-body"><p>Evet, ancak velinin onayıyla. Premium ödemesinin de veli tarafından ya da veli onayıyla yapılması gerekir. Ayrıntılar <a href="kosullar.html">kullanım koşullarında</a>.</p></div>
+          <div class="vt-faq-body"><p>Evet, velinin onayıyla. Premium ödemesi de veli tarafından ya da veli onayıyla yapılır. Ayrıntılar <a href="kosullar.html">kullanım koşullarında</a>.</p></div>
         </details>
       </div>
     </section>
 
-    <!-- 6. Son çağrı -->
-    <section class="vt-final" aria-labelledby="vt-son">
-      <h2 class="vt-h2" id="vt-son">Bugün seviye testini çöz</h2>
-      <p class="vt-lead">Hesap açmak bir dakika sürer. Nereden başlayacağını gör, ilk üniteni bitir; Premium’a geçip geçmemeye sonra karar ver.</p>
+    <!-- 8. Son çağrı -->
+    <section class="vt-final" aria-labelledby="vt-son" data-rv>
+      <div class="vt-final-glow" aria-hidden="true"></div>
+      <h2 class="vt-h2" id="vt-son">Bugün ilk üniteni bitir</h2>
+      <p class="vt-lead">Hesap açmak bir dakika. Seviye testini çöz, nereden başlayacağını gör.</p>
       <div class="vt-final-cta">
-        <a class="btn-energy" href="giris.html#kayit">Ücretsiz başla</a>
-        <a class="btn-ghost" href="sartlar.html">Önce ülke şartlarına bak</a>
+        <a class="btn-energy vt-cta-big" href="giris.html#kayit">Ücretsiz başla
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="vt-btn-light" href="sartlar.html">Önce ülke şartlarına bak</a>
       </div>
     </section>
 
@@ -275,7 +380,7 @@
   </main>
 
   <script src="assets/js/urun.js"></script>
-  <script src="assets/js/vitrin.js?v=20261021b"></script>
+  <script src="assets/js/vitrin.js?v=20261021d"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>

@@ -8,9 +8,9 @@
   <meta name="theme-color" content="#5B3DF5">
   <link rel="apple-touch-icon" href="assets/img/pwa/apple-touch-icon.png">
   <title>Çerez politikası | Meberra</title>
-  <meta name="description" content="Meberra çerez politikası: yalnızca oturum için zorunlu bir çerez ve tarayıcıda tutulan ayarlar kullanılır; reklam veya takip çerezi yoktur.">
+  <meta name="description" content="Meberra çerez politikası: yalnızca oturum için zorunlu tek bir çerez (meberra_sid) kullanılır; reklam veya takip çerezi yoktur.">
   <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/vitrin.css">
+  <link rel="stylesheet" href="assets/css/vitrin.css?v=20261021d">
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body class="page-yasal">
@@ -30,7 +30,7 @@
         <p>Bu metin taslaktır; yayına almadan önce bir hukukçuya kontrol ettirin ve köşeli parantezli alanları doldurun.</p>
       </div>
 
-      <p>Bu politika, Meberra’nın çerezleri ve benzer tarayıcı depolama teknolojilerini nasıl kullandığını; 6698 sayılı Kişisel Verilerin Korunması Kanunu, 5809 sayılı Elektronik Haberleşme Kanunu ve Kişisel Verileri Koruma Kurumu’nun Çerez Uygulamaları Hakkında Rehberi çerçevesinde açıklar.</p>
+      <p>Bu politika, Meberra’nın çerezleri ve benzer teknolojileri nasıl kullandığını; 6698 sayılı Kişisel Verilerin Korunması Kanunu, 5809 sayılı Elektronik Haberleşme Kanunu ve Kişisel Verileri Koruma Kurumu’nun Çerez Uygulamaları Hakkında Rehberi çerçevesinde açıklar.</p>
 
       <nav class="lg-toc surface" aria-label="İçindekiler">
         <h2>İçindekiler</h2>
@@ -38,7 +38,7 @@
           <li><a href="#c1">Kısaca</a></li>
           <li><a href="#c2">Çerez nedir?</a></li>
           <li><a href="#c3">Kullandığımız çerezler</a></li>
-          <li><a href="#c4">Tarayıcı depolaması</a></li>
+          <li><a href="#c4">Uygulama verisi ve önbellek</a></li>
           <li><a href="#c5">Kullanmadıklarımız</a></li>
           <li><a href="#c6">Hukuki sebep ve rıza</a></li>
           <li><a href="#c7">Nasıl yönetirim?</a></li>
@@ -48,12 +48,12 @@
 
       <section id="c1" aria-labelledby="c1-h">
         <h2 id="c1-h">1. Kısaca</h2>
-        <p>Meberra yalnızca <strong>oturumunu açık tutmak için zorunlu tek bir çerez</strong> kullanır. Tema tercihi ve çalışma ilerlemesi gibi ayarlar tarayıcının yerel depolamasında tutulur. Reklam, analiz veya sosyal medya çerezi kullanmayız; bu yüzden sitede çerez onay penceresi göstermiyoruz.</p>
+        <p>Meberra yalnızca <strong>oturumunu açık tutmak için zorunlu tek bir çerez</strong> (<code>meberra_sid</code>) kullanır. Uygulama verisi (ilerleme, denemeler, ayarlar) <strong>hesabında, sunucumuzda</strong> saklanır. Reklam, analiz veya sosyal medya çerezi kullanmayız; bu yüzden sitede çerez onay penceresi göstermiyoruz.</p>
       </section>
 
       <section id="c2" aria-labelledby="c2-h">
         <h2 id="c2-h">2. Çerez nedir?</h2>
-        <p>Çerezler, ziyaret ettiğin sitenin tarayıcına kaydettiği küçük metin dosyalarıdır. Yerel depolama (localStorage) ise benzer şekilde tarayıcında, yalnızca o siteye ait verileri saklayan bir alandır. İkisi de cihazında tutulur.</p>
+        <p>Çerezler, ziyaret ettiğin sitenin cihazına kaydettiği küçük metin dosyalarıdır. Site, sonraki isteklerde seni tanımak için bu dosyayı okur.</p>
       </section>
 
       <section id="c3" aria-labelledby="c3-h">
@@ -74,20 +74,19 @@
       </section>
 
       <section id="c4" aria-labelledby="c4-h">
-        <h2 id="c4-h">4. Tarayıcı depolaması (localStorage)</h2>
-        <p>Aşağıdaki bilgiler <code>apmeberra:</code> önekiyle yalnızca senin tarayıcında saklanır; çevrimdışıyken de çalışabilmen ve sayfalar hızlı açılsın diye kullanılır:</p>
+        <h2 id="c4-h">4. Uygulama verisi ve önbellek</h2>
+        <p>Uygulama verisi hesabında saklanır. Sayfaların hızlı açılması ve bağlantı kısa süre koptuğunda çalışmanın kaybolmaması için cihazında yalnızca bir <strong>önbellek kopyası</strong> (<code>apmeberra:</code> önekli yerel depolama) tutulur; bağlantı gelince hesabınla eşitlenir:</p>
         <div class="lg-table-wrap">
           <table class="lg-table">
             <thead><tr><th scope="col">Veri</th><th scope="col">Amaç</th></tr></thead>
             <tbody>
               <tr><th scope="row">Tema tercihi</th><td>Açık veya koyu temayı hatırlamak</td></tr>
-              <tr><th scope="row">Çalışma ilerlemesi</th><td>Soru cevapları, Yanlışlarım, deneme ve seviye testi sonuçlarının yerel kopyası</td></tr>
+              <tr><th scope="row">Çalışma ilerlemesi</th><td>Hesabındaki soru cevapları, Yanlışlarım, deneme ve seviye testi sonuçlarının önbellek kopyası</td></tr>
               <tr><th scope="row">Rota ve panel durumu</th><td>Rota adımlarını, belge işaretlerini ve panel ayarlarını hatırlamak</td></tr>
-              <tr><th scope="row">Son yedek tarihi</th><td>Yedek alma hatırlatmasını doğru zamanda göstermek</td></tr>
             </tbody>
           </table>
         </div>
-        <p>Giriş yaptığında çalışma verilerin hesabınla da eşitlenir; yerel kopyayı silmen hesabındaki verileri silmez.</p>
+        <p>Önbelleği silmen hesabındaki verileri silmez; çıkış yaptığında önbellek temizlenir.</p>
       </section>
 
       <section id="c5" aria-labelledby="c5-h">
@@ -103,7 +102,7 @@
 
       <section id="c6" aria-labelledby="c6-h">
         <h2 id="c6-h">6. Hukuki sebep ve rıza</h2>
-        <p>Oturum çerezi ve yerel ayarlar, talep ettiğin hizmetin sunulabilmesi için kesinlikle gereklidir. Bu nedenle KVKK’nın 5. maddesinin 2. fıkrasının (c) bendi (sözleşmenin ifası) ve (f) bendi (meşru menfaat) kapsamında işlenir ve ayrıca açık rıza gerektirmez. Bu çerezle elde edilen veriler <a href="kvkk.html">KVKK aydınlatma metnindeki</a> esaslara göre korunur.</p>
+        <p>Oturum çerezi ve önbellek, talep ettiğin hizmetin sunulabilmesi için kesinlikle gereklidir. Bu nedenle KVKK’nın 5. maddesinin 2. fıkrasının (c) bendi (sözleşmenin ifası) ve (f) bendi (meşru menfaat) kapsamında işlenir ve ayrıca açık rıza gerektirmez. Bu çerezle elde edilen veriler <a href="kvkk.html">KVKK aydınlatma metnindeki</a> esaslara göre korunur.</p>
       </section>
 
       <section id="c7" aria-labelledby="c7-h">
@@ -111,7 +110,7 @@
         <ul>
           <li>Tarayıcının ayarlarından çerezleri ve site verilerini görebilir, silebilir veya engelleyebilirsin.</li>
           <li><code>meberra_sid</code> çerezini silersen ya da engellersen oturumun kapanır ve giriş yapamazsın; ücretsiz açık sayfalar (ülke şartları, üniversiteler, sınavlar) yine çalışır.</li>
-          <li>Yerel depolamayı silersen tema tercihin sıfırlanır; çalışma verilerin hesabından tekrar yüklenir.</li>
+          <li>Önbelleği silersen tema tercihin sıfırlanır; çalışma verilerin giriş yapınca hesabından yeniden yüklenir.</li>
           <li>Çıkış yaptığında oturum çerezi sunucuda geçersiz kılınır.</li>
         </ul>
       </section>
@@ -132,7 +131,7 @@
   </main>
 
   <script src="assets/js/urun.js"></script>
-  <script>(function(){var u=window.MEBERRA_URUN;if(!u)return;var l=document.querySelectorAll('[data-urun="eposta"]');for(var i=0;i<l.length;i++){l[i].textContent=u.destekEposta;if(l[i].tagName==="A")l[i].href="mailto:"+u.destekEposta}})();</script>
+  <script src="assets/js/vitrin.js?v=20261021d"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>

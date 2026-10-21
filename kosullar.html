@@ -10,7 +10,7 @@
   <title>Kullanım koşulları | Meberra</title>
   <meta name="description" content="Meberra kullanım koşulları ve üyelik sözleşmesi: hesap, 18 yaş altı kullanıcılar ve veli onayı, ücretsiz ve Premium üyelik, ödeme, iade, fikri mülkiyet ve sorumluluk.">
   <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/vitrin.css">
+  <link rel="stylesheet" href="assets/css/vitrin.css?v=20261021d">
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body class="page-yasal">
@@ -100,7 +100,7 @@
       <section id="s6" aria-labelledby="s6-h">
         <h2 id="s6-h">6. Ücretsiz ve Premium üyelik</h2>
         <ol>
-          <li>Ücretsiz plan süresizdir. Her derste ilk <span data-urun="unite">2</span> ünite ve her dersten <span data-urun="deneme">1</span> deneme ile ücretsiz olarak sunulan diğer bölümleri kapsar.</li>
+          <li>Ücretsiz plan süresizdir. Her derste ilk <span data-urun="unite">2</span> ünite, her dersten <span data-urun="deneme">1</span> deneme, ayda 3 soru-cevap hakkı ve ücretsiz olarak sunulan diğer bölümleri kapsar. Genel deneme ve sınırsız soru-cevap Premium’dadır.</li>
           <li>Premium; aylık (<span data-urun="fiyat:aylik">199</span> ₺, 30 gün) veya yıllık (<span data-urun="fiyat:yillik">1.490</span> ₺, 365 gün) olarak satın alınabilir. Güncel fiyatlar <a href="fiyatlar.html">fiyatlar sayfasında</a> yer alır; satın alma anında gösterilen fiyat geçerlidir.</li>
           <li>Meberra, ücretsiz plan kapsamını ileride değiştirebilir; bu değişiklik devam eden Premium sürelerini etkilemez.</li>
         </ol>
@@ -179,7 +179,7 @@
   </main>
 
   <script src="assets/js/urun.js"></script>
-  <script>(function(){if(!window.MEBERRA_URUN_AL)return;window.MEBERRA_URUN_AL(function(u){function f(n){try{return Number(n).toLocaleString("tr-TR")}catch(e){return String(n)}}var m={eposta:u.destekEposta,marka:u.marka,unite:u.ucretsiz&&u.ucretsiz.uniteSayisi,deneme:u.ucretsiz&&u.ucretsiz.dersDenemesi};(u.planlar||[]).forEach(function(p){m["fiyat:"+p.id]=f(p.fiyat);m["aciklama:"+p.id]=p.aciklama;m["donem:"+p.id]=p.donem;m["ad:"+p.id]=p.ad});var l=document.querySelectorAll("[data-urun]");for(var i=0;i<l.length;i++){var k=l[i].getAttribute("data-urun"),v=m[k];if(v==null||v==="")continue;l[i].textContent=String(v);if(k==="eposta"&&l[i].tagName==="A")l[i].href="mailto:"+v}});})();</script>
+  <script src="assets/js/vitrin.js?v=20261021d"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>

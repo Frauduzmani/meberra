@@ -10,31 +10,47 @@
   <title>Şifre sıfırla | Meberra</title>
   <meta name="robots" content="noindex">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/giris.css?v=20261021c">
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
-<body>
+<body class="page-giris">
   <nav class="navbar"><a href="index.html" class="nav-brand"><div class="brand-badge">Meberra</div></a></nav>
-  <main class="main-container" id="main-content">
-    <div class="auth-shell">
-      <div class="surface auth-card ss-kart">
-        <h1 class="u-fs-22" id="ss-baslik" tabindex="-1">Yeni şifre belirle</h1>
-        <p class="auth-lead">Hesabın için yeni bir şifre seç. Şifre değişince tüm cihazlardaki oturumların kapanır.</p>
-        <form id="ss-form" class="form-stack" novalidate>
-          <div class="form-alert" id="ss-alert" role="alert" tabindex="-1" hidden></div>
-          <div class="field">
-            <label for="ss-sifre">Yeni şifre</label>
-            <input class="text-input" id="ss-sifre" type="password" autocomplete="new-password" minlength="8" aria-describedby="ss-sifre-hint ss-sifre-err">
-            <p class="field-hint" id="ss-sifre-hint">En az 8 karakter.</p>
-            <p class="field-error" id="ss-sifre-err"></p>
-          </div>
-          <div class="field">
-            <label for="ss-sifre2">Yeni şifre (tekrar)</label>
-            <input class="text-input" id="ss-sifre2" type="password" autocomplete="new-password" aria-describedby="ss-sifre2-err">
-            <p class="field-error" id="ss-sifre2-err"></p>
-          </div>
-          <button type="submit" class="btn-primary btn-block" id="ss-btn">Şifremi kaydet</button>
-        </form>
-        <p class="field-hint u-mt-4"><a href="giris.html">← Girişe dön</a></p>
+  <main class="gr-main" id="main-content">
+    <div class="gr-shell is-narrow">
+      <div class="gr-card">
+        <div class="gr-view">
+          <h1 class="gr-title" id="ss-baslik" tabindex="-1">Yeni şifre belirle</h1>
+          <p class="gr-sub" id="ss-lead">Yeni şifreni seç. Kaydedince tüm cihazlardaki oturumların kapanır.</p>
+          <form id="ss-form" class="gr-form" novalidate>
+            <div class="form-alert" id="ss-alert" role="alert" tabindex="-1" hidden></div>
+            <div class="field">
+              <label for="ss-sifre">Yeni şifre</label>
+              <div class="input-wrap">
+                <input class="text-input" id="ss-sifre" type="password" autocomplete="new-password" minlength="8" aria-describedby="ss-sifre-guc ss-sifre-err">
+                <button type="button" class="pw-toggle" aria-controls="ss-sifre" aria-pressed="false" aria-label="Şifreyi göster">
+                  <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18M10.6 5.1A10.4 10.4 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.2 4M6.6 6.6C3.7 8.4 2 12 2 12s3.6 7 10 7a9.8 9.8 0 0 0 5.4-1.6M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+                </button>
+              </div>
+              <div class="gr-meter" data-guc="0" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <p class="gr-meter-t" id="ss-sifre-guc" aria-live="polite">En az 8 karakter.</p>
+              <p class="field-error" id="ss-sifre-err"></p>
+            </div>
+            <div class="field">
+              <label for="ss-sifre2">Yeni şifre (tekrar)</label>
+              <div class="input-wrap">
+                <input class="text-input" id="ss-sifre2" type="password" autocomplete="new-password" aria-describedby="ss-sifre2-err">
+                <button type="button" class="pw-toggle" aria-controls="ss-sifre2" aria-pressed="false" aria-label="Şifreyi göster">
+                  <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18M10.6 5.1A10.4 10.4 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.2 4M6.6 6.6C3.7 8.4 2 12 2 12s3.6 7 10 7a9.8 9.8 0 0 0 5.4-1.6M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+                </button>
+              </div>
+              <p class="field-error" id="ss-sifre2-err"></p>
+            </div>
+            <button type="submit" class="btn-primary btn-block gr-submit" id="ss-btn">Şifremi kaydet</button>
+          </form>
+          <p class="gr-switch"><a class="gr-link" href="giris.html">← Girişe dön</a></p>
+        </div>
       </div>
     </div>
   </main>
@@ -44,14 +60,37 @@
   (function () {
     "use strict";
     var AUTH = window.APMEBERRA_AUTH, UI = AUTH.ui, $ = function (id) { return document.getElementById(id); };
+    UI.wirePasswordToggles();
     var tok = new URLSearchParams(location.search).get("t") || "";
     if (!tok || !AUTH.sifreSifirla) {
       UI.alert($("ss-alert"), "Bağlantı eksik ya da geçersiz. Giriş sayfasından yeniden “Şifremi unuttum” iste.");
       $("ss-form").querySelectorAll("input, button").forEach(function (x) { x.disabled = true; });
       return;
     }
+    // Şifre gücü (giris.html ile aynı ölçek)
+    var meter = document.querySelector(".gr-meter"), meterT = $("ss-sifre-guc");
+    var GUC = ["En az 8 karakter.", "Şifre gücü: zayıf", "Şifre gücü: orta", "Şifre gücü: iyi", "Şifre gücü: güçlü"];
+    $("ss-sifre").addEventListener("input", function () {
+      var v = this.value, p = 0;
+      if (v.length >= 8) {
+        p = 1;
+        if (v.length >= 12) p++;
+        if (/[a-zçğıöşü]/.test(v) && /[A-ZÇĞİÖŞÜ]/.test(v)) p++;
+        if (/\d/.test(v)) p++;
+        if (/[^A-Za-z0-9çğıöşüÇĞİÖŞÜ]/.test(v)) p++;
+        p = Math.min(4, p);
+      }
+      meter.setAttribute("data-guc", String(v ? Math.max(p, 1) : 0));
+      meterT.textContent = v && v.length < 8 ? "En az 8 karakter (" + v.length + "/8)." : GUC[p];
+    });
     $("ss-form").addEventListener("submit", function (e) {
       e.preventDefault();
+      var errs = {};
+      if ($("ss-sifre").value.length < 8) errs.sifre = "Şifre en az 8 karakter olmalı.";
+      else if ($("ss-sifre").value !== $("ss-sifre2").value) errs.sifre2 = "Şifreler aynı değil.";
+      var f0 = UI.showErrors("ss", errs, ["sifre", "sifre2"]);
+      UI.alert($("ss-alert"), "");
+      if (f0) { f0.focus(); return; }
       UI.busy($("ss-btn"), true, "Kaydediliyor…");
       AUTH.sifreSifirla(tok, $("ss-sifre").value, $("ss-sifre2").value).then(function (r) {
         UI.busy($("ss-btn"), false);
@@ -63,7 +102,7 @@
         }
         $("ss-form").hidden = true;
         $("ss-baslik").textContent = "Şifren değişti";
-        document.querySelector(".auth-lead").innerHTML = 'Yeni şifrenle giriş yapabilirsin. <a href="giris.html">Giriş yap →</a>';
+        $("ss-lead").innerHTML = 'Yeni şifrenle giriş yapabilirsin. <a href="giris.html">Giriş yap →</a>';
         $("ss-baslik").focus();
       });
     });
