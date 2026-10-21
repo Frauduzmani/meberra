@@ -14,7 +14,10 @@ yeni özelliklerden doğdu; hukukçu onayıyla ilgili sayfaya işlenmeli.
 - **Koşullar:** İndirim kodu kuralları (süre, plan, kullanım sınırı) ve davet ödülü kuralları (davet edilen seviye testini bitirince iki tarafa 7 gün; davet edene yılda en çok 10 ödül; kötüye kullanımda ödül geri alınabilir).
 
 ## 1.7.0 — Veli paneli
-- (1.7.0 tamamlanınca eklenecek.)
+- **KVKK / Gizlilik:** İşlenen veli verileri (ad, e-posta, şifre özeti, onay zamanı, bağlantı ve rapor tercihi); amaç: öğrencinin toplu ilerlemesini veliye göstermek.
+- **Paylaşılan:** tahmini çalışma süresi, soru sayıları, doğruluk, seri, son etkinlik, deneme sonuçları, Premium durumu. **Paylaşılmayan:** soru–cevap yazışmaları, notlar, cevap ayrıntıları.
+- Öğrenci bağlantıyı istediği an kaldırabilir; iki hesaptan biri silinince bağlantı ve davet bilgileri silinir. Velinin verdiği ödeme bildirimi öğrencinin hesabına bağlanır.
+- **Koşullar:** Veli hesabı yalnızca davetle açılır ve yalnızca görüntüleme amaçlıdır.
 
 ## Genel
 - Hatırlatma e-postaları ve bildirimler için İYS (ticari elektronik ileti) gerekip gerekmediği.

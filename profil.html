@@ -22,6 +22,7 @@
   <script src="assets/js/canli.js?v=20261021m" defer></script>
   <script src="assets/js/oyun.js?v=20261021m" defer></script>
   <script src="assets/js/bildirim.js?v=20261021m" defer></script>
+  <link rel="stylesheet" href="assets/css/ap-hedef.css?v=170a">
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -38,14 +39,15 @@
       <header class="page-head u-mb-6">
         <span class="eyebrow">Hoş geldin</span>
         <h1 id="wz-hello">Seni tanıyalım</h1>
-        <p>Dört kısa adım. Cevaplarına göre sana uygun şartları, üniversiteleri ve yol haritanı göstereceğiz. Bunları sonradan Profil sayfasından değiştirebilirsin.</p>
+        <p>Birkaç kısa adım. Cevaplarına göre sana uygun şartları, üniversiteleri, çalışma planını ve yol haritanı göstereceğiz. Bunları sonradan Profil sayfasından değiştirebilirsin.</p>
       </header>
 
-      <ol class="wizard-progress wizard-progress-4" aria-label="Adımlar">
+      <ol class="wizard-progress wizard-progress-4" id="wz-progress" aria-label="Adımlar">
         <li id="wzp-1">1. Durumun</li>
         <li id="wzp-2">2. Ayrıntılar</li>
         <li id="wzp-3">3. Hedef ülkeler</li>
         <li id="wzp-4">4. Eğitim dili</li>
+        <li id="wzp-5" hidden>5. AP derslerin</li>
       </ol>
 
       <form id="wz-form" class="wizard-card" novalidate>
@@ -145,8 +147,16 @@
           </fieldset>
         </section>
 
+        <!-- 1.7.0: AP dersleri, hedef puan, sınav yılı (yalnızca lise / lise mezunu; "Sonra" ile atlanabilir) -->
+        <section id="wz-step-5" aria-labelledby="wz-t5" hidden>
+          <h2 id="wz-t5" tabindex="-1">AP derslerin ve hedefin</h2>
+          <p class="step-lead">Seçimine göre bugünkü planın, geri sayımın ve deneme önerilerin hazırlanır. Emin değilsen “Sonra”ya bas.</p>
+          <div id="wz-ap"></div>
+        </section>
+
         <div class="wizard-nav">
           <button type="button" class="btn-ghost" id="wz-back" hidden>← Geri</button>
+          <button type="button" class="btn-ghost" id="wz-sonra" hidden>Sonra</button>
           <button type="submit" class="btn-primary" id="wz-next">Devam et →</button>
         </div>
       </form>
@@ -350,6 +360,22 @@
         </section>
       </div>
 
+      <!-- 1.7.0: AP dersleri / hedef puan / sınav yılı + Velin (assets/js/profil-ap-veli.js doldurur) -->
+      <div class="profile-layout pf-ap-veli" id="pf-ap-veli">
+        <section class="surface" id="ap-dersler" aria-labelledby="apd-baslik" hidden>
+          <h2 class="panel-h" id="apd-baslik"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>AP derslerin ve hedefin</h2>
+          <p class="panel-lead">Bugün’deki planın, Çalış sayfandaki ders sırası, deneme önerilerin ve geri sayımın bu seçime göre.</p>
+          <div id="apd-secici"></div>
+          <div class="form-alert" id="apd-alert" role="status" aria-live="polite" tabindex="-1" hidden></div>
+          <button type="button" class="btn-primary u-mt-2" id="apd-kaydet">AP seçimimi kaydet</button>
+        </section>
+        <section class="surface" id="veli" aria-labelledby="veli-baslik" hidden>
+          <h2 class="panel-h" id="veli-baslik"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17.5" cy="9.5" r="2.5"/><path d="M16 14.5a5 5 0 0 1 6 4.9"/></svg>Velin</h2>
+          <p class="panel-lead">Velin veli panelinde haftalık çalışma süreni, çözdüğün soru sayısını, doğruluğunu, deneme sonuçlarını ve Premium durumunu görür. <strong>Soruların, yazışmaların ve notların paylaşılmaz.</strong> Bağlantıyı istediğin an kaldırabilirsin.</p>
+          <div id="veli-govde"></div>
+        </section>
+      </div>
+
       <!-- Haftalık lig (assets/js/bildirim.js doldurur) + Sorularım kısayolu (Sorularım kendi sayfasında: sorularim.html) -->
       <div class="profile-layout bd-profil-ek">
         <section class="surface bd-lig" id="lig" aria-labelledby="lig-baslik">
@@ -396,7 +422,9 @@
   <script src="data/mevzuat/ulke-dizini.js"></script>
   <script src="assets/js/auth.js"></script>
   <script src="assets/js/ucretsiz-kural.js"></script>
+  <script src="assets/js/ap-hedef.js?v=170a"></script>
   <script src="assets/js/app.js"></script>
+  <script src="assets/js/ap-hedef-ui.js?v=170a"></script>
   <script>
   (function () {
     "use strict";
@@ -573,15 +601,22 @@
       $("wz-sinif-group").addEventListener("change", function () { groupError("wz", "sinif", ""); });
       rotaGrubu("wz", prof.aktifRota);
       ulkeSiniri("wz");
-      var step = 1, ADIM = 4;
+      var step = 1, apSecici = null;
+      // 1.7.0: AP modellerinde 5. adım (AP dersleri, hedef puan, sınav yılı); üniversite mezununda 4 adım
+      function adimSayisi() { return window.APMEBERRA_AP_HEDEF_UI && wzModel() !== "uni-mezun" ? 5 : 4; }
       function render(focus) {
-        for (var i = 1; i <= ADIM; i++) {
+        var ADIM = adimSayisi();
+        $("wzp-5").hidden = ADIM < 5;
+        $("wz-progress").className = "wizard-progress wizard-progress-" + ADIM;
+        if (step === 5 && !apSecici) apSecici = APMEBERRA_AP_HEDEF_UI.ciz($("wz-ap"), { apDersleri: prof.apDersleri, sinavYili: prof.sinavYili, sinif: values($("wz-sinif-group"))[0] || prof.sinif, onek: "wz" });
+        for (var i = 1; i <= 5; i++) {
           $("wz-step-" + i).hidden = i !== step;
           var p = $("wzp-" + i);
           p.classList.toggle("is-done", i < step);
           if (i === step) p.setAttribute("aria-current", "step"); else p.removeAttribute("aria-current");
         }
         $("wz-back").hidden = step === 1;
+        $("wz-sonra").hidden = step !== 5;
         $("wz-next").textContent = step === ADIM ? (wzModel() === "uni-mezun" ? "Bitir ve üniversiteleri gör →" : "Bitir ve seviye testine başla →") : "Devam et →";
         UI.alert($("wz-alert"), "");
         if (focus) $("wz-t" + step).focus();
@@ -630,9 +665,17 @@
         var dil = values($("wz-egitimDili-group"))[0];
         groupError("wz", "egitimDili", dil ? "" : "Eğitim dilini seç.");
         if (!dil) { $("wz-egitimDili-group").querySelector("input").focus(); return; }
+        if (step === 4 && adimSayisi() === 5) { step = 5; return render(true); }
+        wzKaydet(step === 5 && apSecici ? apSecici.deger() : null);
+      });
+      $("wz-sonra").addEventListener("click", function () { wzKaydet({}); });
+      /** ap: { apDersleri, sinavYili } | {} ("Sonra": yalnızca bir daha sorulmasın diye zaman damgası) | null (üniversite mezunu) */
+      function wzKaydet(ap) {
+        var m = wzModel(), okul = $("wz-okul").value.trim(), dil = values($("wz-egitimDili-group"))[0];
         UI.busy($("wz-next"), true, "Kaydediliyor…");
-        var wzVeri = { okul: m === "uni-mezun" ? okul : okul, ogrenciModeli: m, sinif: m === "lise" ? values($("wz-sinif-group"))[0] : "", ulkeler: values($("wz-ulkeler-group")), aktifRota: rotaGrubu("wz"), egitimDili: dil };
+        var wzVeri = { okul: okul, ogrenciModeli: m, sinif: m === "lise" ? values($("wz-sinif-group"))[0] : "", ulkeler: values($("wz-ulkeler-group")), aktifRota: rotaGrubu("wz"), egitimDili: dil };
         var mv = modelVeri("wz", m); Object.keys(mv).forEach(function (k) { wzVeri[k] = mv[k]; });
+        if (ap) { Object.keys(ap).forEach(function (k) { wzVeri[k] = ap[k]; }); wzVeri.apHedefSoruldu = new Date().toISOString(); }
         AUTH.saveProfile(user.id, wzVeri).then(function (res) {
           if (!res.ok) {
             UI.busy($("wz-next"), false);
@@ -645,7 +688,7 @@
           // AP modellerinde ilk deneyim çalışma olsun: karşılama seviye testinde biter
           location.replace(m === "uni-mezun" ? "universiteler.html" : "seviye-testi.html");
         });
-      });
+      }
       return;
     }
 
@@ -776,5 +819,6 @@
 
   })();
   </script>
+  <script src="assets/js/profil-ap-veli.js?v=170a"></script>
 </body>
 </html>

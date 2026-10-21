@@ -21,7 +21,8 @@ const JSON_ = { tur: "json", max: 20000 };
 
 const TABLOLAR = {
   users: { aciklama: "Kullanıcı hesapları (silme yok: durum = askida)", gizli: ["sifre_hash"], damga: "guncelleme", kullanici: "id",
-    alanlar: { ad: metin(1, 40), soyad: metin(1, 40), durum: secim(["aktif", "askida"]), rol: secim(["ogrenci", "yonetici"]) } },
+    alanlar: { ad: metin(1, 40), soyad: metin(1, 40), durum: secim(["aktif", "askida"]), rol: secim(["ogrenci", "yonetici", "veli"]) } },
+  veli_baglantilari: { aciklama: "Veli bağlantıları (salt okunur; öğrenci ya da veli kaldırır)", gizli: ["belirtec_hash", "rapor_belirtec"], kullanici: "ogrenci_id" }, // 1.7.0
   profiles: { aciklama: "Öğrenci profilleri (sütun düzenlemesi veri JSON'una da işlenir)", anahtar: "user_id", damga: "guncelleme", kullanici: "user_id",
     alanlar: { ogrenci_modeli: metin(0, 20), sinif: metin(0, 20), ulkeler: Object.assign(metin(0, 60), { re: "^([a-z]{2}(,[a-z]{2})*)?$" }), okul: metin(0, 100), tamamlandi: BOOL, veri: JSON_ } },
   subscriptions: { aciklama: "Premium dönemleri", kullanici: "user_id", alanlar: { bitis: TARIH, durum: secim(["aktif", "iptal"]) } },

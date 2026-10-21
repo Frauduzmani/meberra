@@ -9,6 +9,14 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.7.0] — 2026-10-21
+### Eklendi
+- Veli paneli (`veli.html`): öğrenci davetiyle veli hesabı; haftalık özet, ders hedef ilerlemesi, son denemeler, AP tarihleri, Premium durumu; veli çocuğu için ödeme bildirimi verir.
+- Karşılamada ve profilde AP dersleri, hedef puan (3/4/5), sınav yılı; Bugün planı, Çalış, deneme önerileri ve geri sayım seçime göre.
+- Haftalık veli e-postası bağlı velilere (tek tıkla iptal); öğrenci bağlantıyı istediği an kaldırır; tüm bağlama işlemleri denetim kaydında.
+### Değişti
+- Yönetici kullanıcı listesinde rol süzgeci ve veli bağlantıları. Veritabanı göçleri artık `.js` de olabilir.
+
 ## [1.6.0] — 2026-10-21
 ### Eklendi
 - Birinci taraf dönüşüm hunisi ölçümü (üçüncü taraf betik yok; DNT/GPC ve profil tercihi; 400 gün saklama) ve yönetici "Büyüme" sekmesi: huni, kohort, günlük grafikler, paywall yerleri.

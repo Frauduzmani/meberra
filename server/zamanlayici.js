@@ -91,7 +91,9 @@ function zamanlayici(c) {
     if (p.haftaGunu !== 7 || p.saat < 18) return 0;
     const adaylar = db.prepare(`SELECT n.*, u.ad, u.soyad FROM notification_prefs n JOIN users u ON u.id = n.user_id
       WHERE u.durum = 'aktif' AND n.veli_raporu = 1 AND n.veli_eposta IS NOT NULL AND n.veli_dogrulandi IS NOT NULL AND n.veli_belirtec IS NOT NULL
-        AND NOT EXISTS (SELECT 1 FROM reminder_log r WHERE r.user_id = n.user_id AND r.tur = 'veli-raporu' AND r.gun = ?)`).all(p.tarih);
+        AND NOT EXISTS (SELECT 1 FROM reminder_log r WHERE r.user_id = n.user_id AND r.tur = 'veli-raporu' AND r.gun = ?)
+        AND NOT EXISTS (SELECT 1 FROM veli_baglantilari b JOIN users v ON v.id = b.veli_id WHERE b.ogrenci_id = n.user_id AND b.durum = 'aktif'
+          AND lower(v.eposta) = lower(n.veli_eposta))`).all(p.tarih); // 1.7.0: bu adres veli hesabı olarak bağlıysa rapor (ve tercihi) veli panelinden
     const aralik = zaman.haftaAraligi(zaman.hafta(simdiMs)), son = new Date(simdiMs).toISOString();
     let n = 0;
     for (const a of adaylar) {
@@ -110,8 +112,10 @@ function zamanlayici(c) {
         "Bu özeti " + a.ad + " " + a.soyad + " istedi ve siz onayladınız. Almak istemiyorsanız tek tıkla durdurun: " + tab + "&islem=iptal\n\nMeberra");
       n++;
     }
+    for (const f of ekRaporlar) n += (await f(simdiMs)) || 0; // 1.7.0: veli paneli raporları (server/veli.js)
     return n;
   }
+  const ekRaporlar = [];
 
   /** KVKK saklama: 90 günden eski IP'ler silinir (users.son_ip / son_giris_ip, sessions.ip / son_ip); süresi dolan
    *  yönetici engelleri kalkar; 400 günden eski giriş sayaçları ve süresi dolan IP engelleri silinir. */
@@ -188,6 +192,8 @@ function zamanlayici(c) {
   let zamanlayiciId = null, ilk = null;
   return {
     tik, calismaDurumu, calistir, erisimTemizligi,
+    /** Haftalık veli raporu işine ek gönderici (pazar 18:00 kuralını gönderici kendisi uygular) */
+    raporEkle(f) { if (typeof f === "function") ekRaporlar.push(f); },
     durum: () => Object.assign({}, durumBilgi, { isler: Object.keys(ISLER).map(ad => Object.assign({ ad, baslik: ISLER[ad] }, isBilgi[ad] || {}))
       .concat(ekIsler.map(e => Object.assign({ ad: e.ad, baslik: e.baslik }, isBilgi[e.ad] || {}))) }),
     /** İş ekler. sessizde: true → sessiz saatlerde de çalışır (bildirim göndermeyen işler) */

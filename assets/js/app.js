@@ -192,6 +192,8 @@ const APMEBERRA_ME = (function apSessionGuard() {
       window.location.replace("giris.html?donus=" + encodeURIComponent(decodeURIComponent(here)));
       return null;
     }
+    // 1.7.0: veli hesabı öğrenci sayfalarını kullanmaz; kendi paneline gider (veli.html app.js yüklemez)
+    if (me.user.rol === "veli") { window.location.replace("veli.html"); return null; }
     if (!(me.profile && me.profile.tamamlandi) && page !== "profil") {
       window.location.replace("profil.html");
       return me;
@@ -1233,12 +1235,18 @@ function apKaldiginYer(progress, dersler) {
 function apCalismaPlani(g) {
   g = g || {};
   const s = g.summary || {};
-  const courses = apDiz(s.courses), acik = apDiz(s.openErrors);
+  // 1.7.0: g.secim = APMEBERRA_AP_HEDEF.filtre(profil) → { var, sayfalar, uniteUygun(sayfa, kutu) }. Seçim varsa zayıf ünite ve
+  // "sıradaki ünite" yalnızca seçilen derslerden, seçim sırasıyla gelir; seçim yoksa davranış eskisi gibi (tüm dersler).
+  const secim = g.secim && g.secim.var ? g.secim : null;
+  const sira = c => { const i = secim ? secim.sayfalar.indexOf(c.page) : 0; return i < 0 ? 999 : i; };
+  const courses = apDiz(s.courses).filter(c => !secim || secim.sayfalar.indexOf(c.page) >= 0)
+    .map((c, i) => ({ c, i })).sort((a, b) => (sira(a.c) - sira(b.c)) || (a.i - b.i)).map(o => o.c);
+  const acik = apDiz(s.openErrors);
   const out = [];
   const gorev = (ikon, title, desc, href, linkText) => ({ ikon, title, desc, href, linkText });
   // Ücretsiz planda kilitli ünite (AP_UCRETSIZ_KUTULAR) önerilmez
   const kutuAcik = typeof g.kutuUcretsiz === "function" ? g.kutuUcretsiz : (typeof apKutuUcretsizMi === "function" ? apKutuUcretsizMi : () => true);
-  const kilitli = (c, u) => g.premium === false && !kutuAcik(c.page, u.id);
+  const kilitli = (c, u) => (g.premium === false && !kutuAcik(c.page, u.id)) || (secim && !secim.uniteUygun(c.page, u.id));
   if (acik.length) {
     const e0 = acik[0];
     out.push(gorev("redo", "Yanlışlarım’daki " + acik.length + " soruyu tekrar çöz", "En son yanlışın: " + (e0.topic || e0.id), "deneme.html?mod=yanlislar", "Yanlışlarımı çöz"));
@@ -1260,7 +1268,12 @@ function apCalismaPlani(g) {
     out.push(gorev("play", (s.answered ? "Kaldığın yerden devam et: " : "Buradan başla: ") + next.u.title,
       next.c.name + " · " + next.u.answered + " / " + next.u.total + " soru çözüldü", next.c.page + ".html#" + next.u.id, "Devam et"));
   } else if (!s.answered) {
-    out.push(gorev("play", "İlk soru bankanı çöz", "AP Calculus ile başla: her yanlışta konu hatırlatması ve adım adım çözüm görürsün.", "ap-calculus.html", "Calculus’u aç"));
+    const ilk = secim && courses[0];
+    if (ilk) out.push(gorev("play", "İlk soru bankanı çöz", (ilk.name || ilk.page) + " ile başla: her yanlışta konu hatırlatması ve adım adım çözüm görürsün.", ilk.page + ".html", "Dersi aç"));
+    else out.push(gorev("play", "İlk soru bankanı çöz", "AP Calculus ile başla: her yanlışta konu hatırlatması ve adım adım çözüm görürsün.", "ap-calculus.html", "Calculus’u aç"));
+  } else if (secim && courses.some(c => !apDiz(c.units).length)) {
+    const yeni = courses.find(c => !apDiz(c.units).length);
+    out.push(gorev("play", "Seçtiğin derse başla: " + (yeni.name || yeni.page), "Hedeflediğin derslerden henüz açmadığın bu. İlk ünitesiyle başla.", yeni.page + ".html", "Dersi aç"));
   } else if (g.premium === false) {
     // Ücretsiz plan: açılmış derslerin ücretsiz üniteleri bitti → henüz açılmamış bir ders, o da yoksa Premium önerisi
     const yeni = courses.find(c => c && c.page && c.visited === false);

@@ -23,6 +23,7 @@ const { sistemRotalari, istekIzleyici } = require("./sistem");
 const { varlikServisi } = require("./varlik");
 const { ayarServisi, bakimServisi, ipEngelServisi } = require("./erisim");
 const { operasyonRotalari } = require("./operasyon");
+const { veliServisi, veliRotalari, veliYolIzinli } = require("./veli"); // 1.7.0
 const zaman = require("./zaman");
 // 1.6.0
 const { huniServisi, huniRotalari } = require("./huni");
@@ -249,6 +250,12 @@ function olustur(secenek) {
   Object.keys(sbS.sinir).forEach(k => { sinirlar["soruBankasi." + k] = sbS.sinir[k]; });
   ligRotalari(r, { lig, oturumGerekli, yoneticiGerekli });
 
+  // 1.7.0 — veli paneli (server/veli.js): davet → veli hesabı → bağlantı; veli rolü öğrenci uçlarını kullanamaz
+  const veliS = veliServisi(db, { hesap, eposta, denetim, bildirim, calismaDurumu: zamanlayiciS.calismaDurumu, saat: secenek.saat });
+  zamanlayiciS.raporEkle(veliS.haftalikRaporlar);
+  veliRotalari(r, { db, veli: veliS, oturumGerekli, yoneticiGerekli, htmlSayfa, oturumYanit, kayitSiniri: secenek.kayitSiniri });
+  // 1.7.0 sonu
+
   // --- yönetici ---------------------------------------------------------------
   yonetimRotalari(r, { db, hesap, denetim, yoneticiGerekli, bildirim, varlik });
   veriRotalari(r, { db, denetim, yoneticiGerekli, lig });
@@ -317,6 +324,7 @@ function olustur(secenek) {
           if (e) throw new HttpHata(403, hesap.engelMesaji(e.bitis), null, { engelli: true, engelBitis: e.bitis });
         }
       }
+      if (req.kullanici && req.kullanici.rol === "veli" && !veliYolIzinli(yol)) throw new HttpHata(403, "Veli hesabı bu işlemi yapamaz."); // 1.7.0
       if (req.kullanici) varlik.dokun(req.kullanici, req.ip);
       req.params = eslesme.params;
       req.sorgu = u.searchParams;
@@ -340,7 +348,7 @@ function olustur(secenek) {
 
   const server = http.createServer((req, res) => { isle(req, res); });
   server.on("close", () => { varlik.durdur(); try { db.close(); } catch (e) { /* zaten kapalı */ } });
-  return { server, db, hesap, veri, denetim, bildirim, lig, zamanlayici: zamanlayiciS, push, gunluk, varlik, bakim, ipEngel, izle };
+  return { server, db, hesap, veri, denetim, bildirim, lig, zamanlayici: zamanlayiciS, push, gunluk, varlik, bakim, ipEngel, izle, veli: veliS };
 }
 
 module.exports = { olustur };

@@ -26,7 +26,7 @@ Başarı: `{ "ok": true, ... }`.
 - `GET /api/account/export` → kullanıcının tüm verisi (KVKK veri taşınabilirliği)
 - `POST /api/account/delete` `{ sifre }` → hesap silinir: öğrenci verisi silinir; bekleyen ödeme bildirimi `iptal`, aktif Premium dönemi sona erer; ödeme/abonelik kayıtları, denetim kaydı (IP/tarayıcı/e-posta silinir) ve giden e-postalar anonimleştirilerek saklanır
 
-`user` = `{ id, ad, soyad, kullaniciAdi, eposta, rol: "ogrenci"|"yonetici", olusturma }`
+`user` = `{ id, ad, soyad, kullaniciAdi, eposta, rol: "ogrenci"|"yonetici"|"veli", olusturma }` (veli: bkz. Veli paneli)
 `uyelik` = `{ premium: bool, plan: "aylik"|"yillik"|"ozel"|null, bitis: ISO|null, bekleyenTalep: {id, plan, olusturma}|null }`
 
 ## Öğrenci verisi (tarayıcı deposu senkronu)
@@ -413,6 +413,54 @@ Olaylar 400 gün saklanır; daha eskisi `olay_ozet` günlük toplamına çevrili
 - `GET /api/admin/kuponlar` (kullanım istatistiği + son 50 kullanım) · `POST /api/admin/kuponlar` `{ kod, tur:"yuzde"|"tutar", deger, plan:"aylik"|"yillik"|"hepsi",
   baslangic?, bitis?, maxKullanim?, kisiBasi=1, aktif, aciklama? }` · `PUT /api/admin/kuponlar/:id` (kısmi; `aktif:false` pasifleştirir; silme yok)
 - `GET /api/admin/davetler?durum=` → bayraklar: `kendi-kodu`, `ayni-ip`, `tekrar-eposta`, `yogun-davet` (24 saatte 5+), `hesap-silindi`
+
+## AP ders seçimi, hedef puan, sınav yılı (v1.7.0; profil alanları)
+`PUT /api/profile` içinde isteğe bağlı (yalnızca gönderilirse doğrulanır; kural `assets/js/ap-hedef.js`, istemciyle ortak):
+- `apDersleri`: `[{ ders, hedef }]` — `ders` ∈ `calculus-ab, calculus-bc, physics-1, chemistry, biology, english-language, computer-science-a,
+  microeconomics, macroeconomics` (anahtarlar `data/mevzuat/sinav-takvimi.js > sinavlar` ile aynı), `hedef` ∈ 3|4|5 (yoksa 4), tekrar yok, en fazla 9.
+  Dize öğe (`"biology"`) `{ ders: "biology", hedef: 4 }` olur. `null` → boş liste.
+- `sinavYili`: sıradaki AP dönemi (Haziran'dan itibaren bir sonraki yıl) ile +2 yıl arası (ör. 2027–2029; biten dönemin yılı da kabul) · `null` siler.
+- `apHedefSoruldu`: ISO zaman — Bugün'deki tek seferlik "derslerini seç" kartı bir daha gösterilmez ("Sonra" da bunu yazar).
+- 400: `errors.apDersleri` / `errors.sinavYili` / `errors.apHedefSoruldu`.
+Kullanım: Bugün planı (`apCalismaPlani` `secim`) yalnızca seçilen derslerden görev seçer; Çalış ve deneme listesi seçilenleri öne alır;
+geri sayım seçilen derslerin `sinavYili` sınav gününe (takvimde o yıl yoksa yalnızca "Mayıs YYYY"; tarih uydurulmaz).
+
+## Veli paneli (v1.7.0, `008_veli_paneli.js`)
+Rol `veli`: öğrenci davetiyle açılan hafif hesap. Veli oturumu yalnızca şu uçları kullanır: `/api/health`, `/api/me`, `/api/log`,
+`/api/account/export|delete`, `/api/auth/*`, `/api/public/*`, `/api/veli/*`; diğer her uç **403** ("Veli hesabı bu işlemi yapamaz.").
+`veli_baglantilari` = `{ ogrenci_id, veli_id (kabulde), eposta, belirtec_hash (davet belirtecinin SHA-256'sı), durum: davet|aktif|iptal, rapor,
+rapor_belirtec, olusturma, davet_bitis (7 gün), kabul, iptal_zamani, iptal_eden }`. `upgrade_requests.veli_id`: bildirimi veli verdiyse.
+Denetim eylemleri: `veli.davet`, `veli.davet-yeniden`, `veli.davet-iptal`, `veli.baglandi`, `veli.kaldirildi` (ayrıntı `kaldiran: ogrenci|veli`),
+`veli.rapor-ayar`, `veli.premium-talep`.
+
+Öğrenci (rol `ogrenci`; veli 403):
+- `GET /api/veli/baglantilar` → `{ ok, veliler: [{ id, durum: "davet"|"aktif", eposta, ad|null, olusturma, kabul, davetBitis }] }`
+- `POST /api/veli/davet` `{ eposta }` → veliye davet e-postası (`/veli.html?t=<belirteç>`, 7 gün) → `{ ok, davet, veliler }`.
+  400 geçersiz/kendi adresi/öğrenci hesabına ait adres · 409 zaten bağlı ya da 3 veli sınırı · 429 (saatte 10). Aynı adrese açık davet varsa yeni bağlantı gider (eskisi geçersiz).
+- `POST /api/veli/baglantilar/:id/iptal` → davet geri çekilir ya da bağlantı kaldırılır (aynı adrese eski "veli e-postası" raporu da durur) → `{ ok, veliler }`
+
+Davet ve veli hesabı:
+- `GET /api/public/veli-davet?t=` → `{ ok, davet: { ogrenci: { ad, soyad: "Y." }, eposta, hesapVar, hesapVeli, bitis } }` (404 geçersiz/süresi dolmuş)
+- `POST /api/veli/kayit` `{ t, ad, soyad, sifre, sifre2, kosullar:true, kvkk:true, veliRiza:true }` → veli hesabı (e-posta = davet adresi) + bağlantı + oturum
+  (`/api/auth/login` yanıtı gibi). 400 alan hataları / geçersiz davet · 409 bu e-postayla hesap var (giriş yapıp kabul edin).
+- `POST /api/veli/kabul` `{ t }` (oturum açmış veli) → bağlantı. 403: öğrenci/yönetici hesabı ya da davet başka adrese.
+  Bağlanınca öğrencinin `notification_prefs.veli_eposta` bu adresse adres onaylı sayılır (tek veli kimliği).
+
+Veli (rol `veli`):
+- `GET /api/veli/panel` → `{ ok, veli: { ad, soyad, eposta }, cocuklar: [ozet] }`. `ozet` = `{ id, ad, soyad, sinif, sinavYili, rapor,
+  hafta: { kod, soru, dogruluk, deneme, calismaDk (soru × 90 sn + deneme süreleri; tahmini) }, toplam: { soru, dogruluk }, seri, sonAktif,
+  dersler: [{ ders, ad, hedef, cevap, cozulen, bankada, kapsam, dogruluk, tahmini (1–5; son ders denemesi bandı, yoksa ≥10 cevabın doğruluğu), tahminKaynagi }],
+  denemeler: [son 5: { kod, ad, tarih, soru, dogru, yuzde, tahminiPuan, sureDk }], tarihler: [{ tur: kayit|sinav, baslik, gun|null, ay, kesin }],
+  uyelik: { premium, plan, bitis, bekleyenTalep } }`. **Asla** soru-cevap metinleri, cevap ayrıntısı, notlar, tarayıcı verisi dönmez.
+- `POST /api/veli/cocuk/:id/rapor` `{ rapor: bool }` · `POST /api/veli/cocuk/:id/ayril` · `POST /api/veli/cocuk/:id/premium-talep` `{ plan, odeyenAd, aciklama? }`
+  → talep **çocuğun** hesabına açılır (`POST /api/premium/talep` kuralları; yönetici onayı aynı) → `{ ok, talep, uyelik }`. Bağlı olmayan öğrenci: **404**.
+- `GET /api/public/veli-rapor-iptal?t=` → haftalık veli e-postasını tek tıkla kapatır (HTML).
+- Haftalık rapor (zamanlayıcı, pazar 18:00 İstanbul sonrası): aktif bağlantısı ve `rapor` açık her veliye çocuk başına bir e-posta (panel özetiyle aynı
+  veri; `reminder_log` tür `veli-panel:<veli_id>`). Eski veli e-postası akışı, aynı adres veli hesabı olarak bağlıysa gönderilmez.
+
+Yönetici: `GET /api/admin/users?rol=ogrenci|veli|yonetici` (her satırda `bagliSayisi`) · `GET /api/admin/veli-baglantilari?kullanici=<id>` →
+`{ ok, baglantilar: [{ id, durum, olusturma, kabul, iptal, rapor, ogrenci: { id, ad }, veli: { id?, ad?, eposta } }] }`.
+Hesap silinince (öğrenci ya da veli) bağlantılar `iptal` olur; davet adresi ve belirteçler silinir. Dışa aktarma `veliBaglantilari` içerir.
 
 ## Sayfalar
 Sunucu proje kökündeki statik sayfaları da sunar. HTML yanıtlarına `<meta name="meberra-api" content="1">`

@@ -109,12 +109,15 @@
 
   <script src="data/mevzuat/sinav-takvimi.js"></script>
   <script src="assets/js/ucretsiz-kural.js"></script>
+  <script src="assets/js/ap-hedef.js?v=170a"></script>
   <script src="assets/js/app.js"></script>
   <script>
   (function () {
     "use strict";
     var A = window.APMEBERRA, ME = window.APMEBERRA_ME;
     if (!A || !ME || !ME.profile) return;
+    // 1.7.0: seçilen AP dersleri önce; plan yalnızca seçilen derslerden
+    var APH = window.APMEBERRA_AP_HEDEF, SECIM = APH ? APH.filtre(ME.profile) : null;
     var MODEL = ME.profile.ogrenciModeli;
     var BG = typeof window.APMEBERRA_BUGUN === "string" ? window.APMEBERRA_BUGUN : null; // yalnızca test için
     function esc(x) { return String(x == null ? "" : x).replace(/[&<>"']/g, function (m) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]; }); }
@@ -154,6 +157,9 @@
     };
     var dersler = A.courses.map(function (c) { return { page: c.page, name: c.name, cls: c.cls }; })
       .concat([{ page: "sinav-cents", name: "CEnT-S (CISIA)", cls: "" }]);
+    if (APH) dersler = APH.oneAl(dersler, ME.profile);
+    var HEDEF = {}; // sayfa → "Calculus AB 5 · …" (seçilen dersler)
+    if (APH) APH.secilenler(ME.profile).forEach(function (x) { HEDEF[x.sayfa] = (HEDEF[x.sayfa] ? HEDEF[x.sayfa] + ", " : "") + x.kisa + " " + x.hedef; });
     var ozet = {};
     s.courses.forEach(function (c) { ozet[c.page] = c; });
     var hataSay = {};
@@ -164,7 +170,7 @@
     var plan = apCalismaPlani({
       summary: s, mezun: ME.profile.sinif === "mezun",
       kayitSon: T && T.kayit ? T.kayit.sonGun : null, seviye: sv, bugun: BG || new Date(),
-      premium: window.apPremiumMu ? apPremiumMu() : true
+      premium: window.apPremiumMu ? apPremiumMu() : true, secim: SECIM
     });
     var sa = apSiradakiAdim({
       bugun: BG || new Date(),
@@ -218,7 +224,7 @@
       for (var i = 0; i < gecmis.length; i++) if (kodlar.indexOf(gecmis[i].kod) >= 0) { son = gecmis[i]; break; }
       var ringAd = c.total ? "Soru bankasının yüzde " + kapsam + "'i çözüldü" : "Henüz başlanmadı";
       return '<article class="surface cd-kart ' + esc(d.cls) + '" data-ders="' + esc(d.page) + '"' + (d.cls ? "" : ' style="--cc:var(--accent-teal)"') + ' aria-labelledby="cd-' + esc(d.page) + '">' +
-        '<div class="cd-ust"><div class="u-min0"><span class="cd-etiket">' + esc(e.etiket) + '</span><h3 id="cd-' + esc(d.page) + '">' + esc(d.name) + '</h3></div>' +
+        '<div class="cd-ust"><div class="u-min0"><span class="cd-etiket">' + esc(e.etiket) + (HEDEF[d.page] ? ' · Hedefin: ' + esc(HEDEF[d.page]) : "") + '</span><h3 id="cd-' + esc(d.page) + '">' + esc(d.name) + '</h3></div>' +
         '<div class="ring ring-sm cd-ring" role="img" aria-label="' + esc(ringAd) + '" style="--p:' + kapsam + '"><span>' + (c.total ? "%" + kapsam : "–") + '</span></div></div>' +
         '<p class="cd-d">' + esc(e.d) + '</p>' +
         '<p class="cd-durum">' + esc(durum) + (hs ? ' · <a class="cd-hata" href="deneme.html?mod=yanlislar' + (e.deneme.length === 1 ? "&amp;ders=" + encodeURIComponent(e.deneme[0][0]) : "") + '">' + hs + ' açık hata</a>' : "") + '</p>' +

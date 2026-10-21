@@ -1,0 +1,48 @@
+/* Meberra 1.7.0 — AP ders / hedef puan / sınav yılı çipleri (assets/js/ap-hedef-ui.js) ve Bugün'deki tek seferlik kart */
+.aph-grup { border: 0; padding: 0; margin: 0 0 var(--sp-4); min-width: 0; }
+.aph-grup > .field-label { margin-bottom: var(--sp-1); }
+.aph-chips { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-2); }
+.aph-girdi { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.aph-chip {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 var(--sp-4);
+  border: 1.5px solid var(--border-strong); border-radius: var(--radius-full); background: var(--surface);
+  color: var(--text); font-weight: var(--fw-semibold); font-size: var(--fs-14); cursor: pointer; user-select: none;
+  transition: var(--transition);
+}
+.aph-chip:hover { border-color: var(--accent); }
+.aph-girdi:checked + .aph-chip { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+.aph-girdi:checked + .aph-chip::before { content: "✓"; margin-right: 6px; font-weight: var(--fw-bold); }
+.aph-girdi:focus-visible + .aph-chip { box-shadow: var(--focus-ring); }
+.aph-chips.is-kucuk { margin-top: 0; gap: 6px; }
+.aph-chips.is-kucuk .aph-chip { min-width: 44px; padding: 0 var(--sp-3); }
+.aph-chips.is-kucuk .aph-girdi:checked + .aph-chip::before { content: none; }
+.aph-hedefler { margin: 0 0 var(--sp-4); }
+.aph-hedef-bas { margin: 0 0 var(--sp-2); }
+.aph-hedef-satir { border: 0; padding: var(--sp-2) 0; margin: 0; display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3);
+  border-top: 1px solid var(--border); min-width: 0; flex-wrap: wrap; }
+.aph-hedef-satir legend { float: left; font-weight: var(--fw-semibold); font-size: var(--fs-14); padding: 0; }
+
+/* Bugün kartı */
+.aph-kart { padding: var(--sp-5); border: 1.5px dashed color-mix(in srgb, var(--accent) 45%, var(--border)); }
+.aph-kart-ust { display: flex; gap: var(--sp-3); align-items: flex-start; margin-bottom: var(--sp-4); }
+.aph-kart-ust h2 { font-size: var(--fs-18); margin: 0 0 2px; }
+.aph-kart-ust p { margin: 0; color: var(--text-muted); font-size: var(--fs-14); }
+.aph-kart-ik { width: 40px; height: 40px; border-radius: var(--radius-md); background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; flex-shrink: 0; }
+.aph-kart-ik svg { width: 22px; height: 22px; }
+.aph-kart-eylem { display: flex; gap: var(--sp-2); flex-wrap: wrap; }
+
+/* Karşılama sihirbazı: AP modellerinde 5. adım (AP derslerin) */
+.wizard-progress-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 480px) { .wizard-progress-5 li { font-size: 0.68rem; } }
+.wizard-nav [hidden], .wizard-progress li[hidden] { display: none !important; } /* .btn-ghost display kuralı hidden'ı ezmesin */
+
+/* Profil: veli bölümü (assets/js/veli-ogrenci.js) */
+.vo-liste { list-style: none; margin: var(--sp-3) 0; padding: 0; display: grid; gap: var(--sp-2); }
+.vo-oge { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-3); border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface-2); flex-wrap: wrap; }
+.vo-oge .u-min0 { flex: 1; }
+.vo-oge strong { display: block; font-size: var(--fs-14); overflow-wrap: anywhere; }
+.vo-oge span { font-size: var(--fs-12); color: var(--text-muted); }
+.vo-rozet { font-size: var(--fs-12); font-weight: var(--fw-bold); padding: 2px 8px; border-radius: var(--radius-full); background: var(--ok-bg); color: var(--ok); border: 1px solid var(--ok-border); }
+.vo-rozet.is-davet { background: var(--warn-bg); color: var(--warn); border-color: var(--warn-border); }
+.vo-form { display: flex; gap: var(--sp-2); flex-wrap: wrap; align-items: flex-start; }
+.vo-form .field { flex: 1 1 220px; margin: 0; }
