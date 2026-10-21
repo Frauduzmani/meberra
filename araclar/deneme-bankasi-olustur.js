@@ -1,19 +1,19 @@
-// Meberra — Deneme soru bankası üreticisi (Tur 5, Ajan 12 + Ajan 3 Canan Yılmaz)
+// Meberra — Deneme meta verisi üreticisi + deneme etiketleme yardımcıları (v1.5.0)
 // Kullanım (proje klasöründen): node araclar/deneme-bankasi-olustur.js
 //
-// ap-*.html ve sinav-*.html sayfalarındaki tüm `const X_QUESTIONS = [...]` dizilerini
-// node `vm` ile çıkarır (yöntem araclar/pm-denetim.js loadArrays ile aynıdır; ona
-// bağımlılık kurulmaz), her soruyu yalnızca ETİKETLER ve data/sorular/deneme-bankasi.js'e yazar:
-//   window.APMEBERRA_DENEME_BANKASI = { olusturma, kodlar: {<kod>: {...}}, pasajlar: {...}, sorular: [...] }
-// Soru şeması değişmez; eklenen alanlar: sayfa, dizi, kap, kapBaslik, unite, denemeKodlari, (pasaj).
-// Eşlenemeyen soru sessizce atlanmaz: uyarı basılır ve raporlanır (çıkış kodu 0, uyarı listesi ekranda).
+// v1.5.0: Sorular artık sunucu veritabanında (questions_bank; tohum: server/tohum/soru-bankasi.json, üretici:
+// araclar/soru-aktar.js). Bu araç YALNIZCA cevap içermeyen deneme meta verisini yazar: server/tohum/deneme-meta.json
+//   { kodlar: {<kod>: {ad, sayfa, uniteTuru, uniteler:[{no, ad}]}}, pasajlar: {"<kap>:Passage N": {baslik, html}} }
+// Pasajlar (English) ders sayfasındaki anlatım kartlarından okunur (soru cevabı değildir).
+// soru-aktar.js her soru için denemeEtiketleri() ile ünite / deneme kodları / pasaj etiketini bu modülden alır.
 "use strict";
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 
 const ROOT = path.resolve(__dirname, "..");
-const OUT = path.join(ROOT, "data", "sorular", "deneme-bankasi.js");
+const OUT = path.join(ROOT, "server", "tohum", "deneme-meta.json");
+const TOHUM = path.join(ROOT, "server", "tohum", "soru-bankasi.json");
 const PAGES = fs.readdirSync(ROOT).filter(f => /^(ap|sinav)-.*\.html$/.test(f)).sort();
 
 // --- CED ünite adları (College Board Course and Exam Description, güncel sürümler) ---
@@ -177,77 +177,55 @@ function codesOf(file, dizi, q, u) {
   return { kodlar: [], neden: "sayfa/dizi için deneme kodu tanımlı değil" };
 }
 
-const sorular = [];
-const pasajlar = {};
-const uyarilar = [];
-const diziFarki = [];
-for (const file of PAGES) {
-  let data;
-  try { data = loadPage(file); } catch (e) { uyarilar.push(`${file}: script çalıştırılamadı — ${e.message}`); continue; }
-  const kapOf = Object.fromEntries(data.containers.map(([cid, arr]) => [arr, cid]));
-  for (const [dizi, qs] of data.arrays) {
-    const kap = kapOf[dizi] || null;
-    const kapBaslik = kap ? unitTitle(data.html, kap) : dizi;
-    const pas = kap ? passagesOf(data.html, kap) : {};
-    for (const [label, p] of Object.entries(pas)) pasajlar[`${dizi}:${label}`] = p;
-    if (!kap) uyarilar.push(`${file} ${dizi}: initInteractiveQuiz konteyneri bulunamadı (ders sayfası bağlantısı yalnız sayfaya gider)`);
-    for (const q of qs) {
-      const u = unitOf(q, dizi);
-      if (!u) { uyarilar.push(`${q.id} (${file} ${dizi}): ünite çıkarılamadı — atlandı`); continue; }
-      const { kodlar, neden } = codesOf(file, dizi, q, u);
-      if (!kodlar.length) { uyarilar.push(`${q.id} (${file} ${dizi}): ${neden} — atlandı`); continue; }
-      const dm = dizi.match(/UNIT(\d+)/);
-      if (dm && /^\d+$/.test(u.unite) && dm[1] !== u.unite) diziFarki.push(`${q.id}: dizi ${dizi} → CED ünite ${u.unite}`);
-      for (const k of kodlar) {
-        if (!UNITS[k][u.unite] && k !== "cents") uyarilar.push(`${q.id}: ${k} için tanımsız ünite "${u.unite}"`);
-      }
-      const extra = { sayfa: file, dizi, kap, kapBaslik, unite: String(u.unite), denemeKodlari: kodlar };
-      const pm = (String(q.topic) + " " + strip(q.question).slice(0, 80)).match(/\b(Passage|Draft|Text|Source)\s+(\d+)\b/);
-      if (pm && pasajlar[`${dizi}:${pm[1]} ${pm[2]}`]) extra.pasaj = `${dizi}:${pm[1]} ${pm[2]}`;
-      else if (Object.keys(pas).length) uyarilar.push(`${q.id}: bölümde pasaj var ama soru bir pasaja bağlanamadı`);
-      sorular.push(Object.assign({}, q, extra));
-    }
+/**
+ * Deneme etiketleri (soru-aktar.js her soru için çağırır): ünite, deneme kodları, pasaj.
+ * kap: soru kutusu (container) kimliği, dizi: kaynak dizi adı (ör. CALC_UNIT1_QUESTIONS), html: ders sayfası.
+ * Dönüş: { unite, denemeKodlari, pasaj|null, uyari|null }
+ */
+const pasajOnbellek = new Map();
+function denemeEtiketleri(file, html, dizi, kap, q) {
+  const u = unitOf(q, dizi);
+  if (!u) return { unite: null, denemeKodlari: [], pasaj: null, uyari: `${q.id} (${file} ${dizi}): ünite çıkarılamadı` };
+  const { kodlar, neden } = codesOf(file, dizi, q, u);
+  const ck = file + "|" + kap;
+  if (!pasajOnbellek.has(ck)) pasajOnbellek.set(ck, kap ? passagesOf(html, kap) : {});
+  const pas = pasajOnbellek.get(ck);
+  let pasaj = null;
+  const pm = (String(q.topic) + " " + strip(q.question).slice(0, 80)).match(/\b(Passage|Draft|Text|Source)\s+(\d+)\b/);
+  if (pm && pas[`${pm[1]} ${pm[2]}`]) pasaj = `${kap}:${pm[1]} ${pm[2]}`;
+  return { unite: String(u.unite), denemeKodlari: kodlar, pasaj, uyari: kodlar.length ? null : `${q.id} (${file} ${dizi}): ${neden} — denemeye girmez` };
+}
+
+/** Deneme meta verisi: kod → {ad, sayfa, uniteTuru, uniteler:[{no, ad}]} ve pasajlar ("<kap>:Passage N" → {baslik, html}). */
+function denemeMeta(kaplar) {
+  const kodlar = {};
+  for (const [kod, meta] of Object.entries(CODES)) {
+    const names = UNITS[kod] || {};
+    kodlar[kod] = Object.assign({}, meta, { uniteler: Object.keys(names).map(no => ({ no, ad: names[no] })) });
   }
+  const pasajlar = {};
+  for (const [file, kap] of kaplar) {
+    const html = fs.readFileSync(path.join(ROOT, file), "utf8");
+    for (const [label, p] of Object.entries(passagesOf(html, kap))) pasajlar[`${kap}:${label}`] = p;
+  }
+  return { kodlar, pasajlar };
 }
 
-// Tekrar eden id kontrolü (sayfa|id benzersiz olmalı)
-const seen = new Set();
-for (const q of sorular) { const k = q.sayfa + "|" + q.id; if (seen.has(k)) uyarilar.push(`tekrar eden id: ${k}`); seen.add(k); }
-
-const kodlar = {};
-for (const [kod, meta] of Object.entries(CODES)) {
-  const qs = sorular.filter(q => q.denemeKodlari.includes(kod));
-  const sayim = {};
-  for (const q of qs) sayim[q.unite] = (sayim[q.unite] || 0) + 1;
-  const names = UNITS[kod] || {};
-  const keys = Object.keys(names).length ? Object.keys(names) : Object.keys(sayim);
-  for (const k of Object.keys(sayim)) if (!keys.includes(k)) keys.push(k);
-  kodlar[kod] = Object.assign({}, meta, {
-    soruSayisi: qs.length,
-    uniteler: keys.map(no => ({ no, ad: names[no] || ("Bölüm " + no), soruSayisi: sayim[no] || 0 }))
-  });
+function main() {
+  // Soru kutuları DB tohumundan (server/tohum/soru-bankasi.json) okunur: sayfalarda artık soru dizisi yok.
+  const tohum = JSON.parse(fs.readFileSync(TOHUM, "utf8"));
+  const kaplar = new Map();
+  for (const q of tohum.sorular) if (q.tur === "ders" && q.kutu) kaplar.set(q.sayfa + ".html|" + q.kutu, [q.sayfa + ".html", q.kutu]);
+  const meta = denemeMeta(Array.from(kaplar.values()));
+  const govde = { olusturma: new Date().toISOString(), surum: 2, kaynak: "node araclar/deneme-bankasi-olustur.js", kodlar: meta.kodlar, pasajlar: meta.pasajlar };
+  fs.mkdirSync(path.dirname(OUT), { recursive: true });
+  fs.writeFileSync(OUT, JSON.stringify(govde, null, 1) + "\n", "utf8");
+  const say = {};
+  for (const q of tohum.sorular) for (const k of q.deneme_kodlari || []) say[k] = (say[k] || 0) + 1;
+  console.log(`Deneme kodları: ${Object.keys(meta.kodlar).length} · pasaj: ${Object.keys(meta.pasajlar).length}`);
+  for (const k of Object.keys(meta.kodlar)) console.log(`  ${k.padEnd(17)} ${String(say[k] || 0).padStart(4)} soru`);
+  console.log(`Yazıldı: ${path.relative(ROOT, OUT)}`);
 }
 
-const bank = { olusturma: new Date().toISOString(), surum: 1, kodlar, pasajlar, sorular };
-const body = "// OTOMATİK ÜRETİLDİ — elle düzenlemeyin. Kaynak: ap-*.html / sinav-*.html soru dizileri.\n" +
-  "// Üretici: node araclar/deneme-bankasi-olustur.js\n" +
-  "window.APMEBERRA_DENEME_BANKASI = " + JSON.stringify(bank) + ";\n";
-fs.mkdirSync(path.dirname(OUT), { recursive: true });
-fs.writeFileSync(OUT, body, "utf8");
-
-console.log(`Sayfalar: ${PAGES.join(", ")}`);
-console.log(`Toplam etiketlenen soru: ${sorular.length} · pasaj: ${Object.keys(pasajlar).length} · CEnT-S: ${HAS_CENTS ? "var" : "yok (sinav-cents.html bulunamadı)"}`);
-for (const [kod, k] of Object.entries(kodlar)) {
-  const cov = k.uniteler.filter(u => u.soruSayisi).map(u => `${u.no}:${u.soruSayisi}`).join(" ");
-  console.log(`  ${kod.padEnd(17)} ${String(k.soruSayisi).padStart(4)} soru  [${cov}]`);
-}
-if (diziFarki.length) console.log(`\nBilgi — dizi adı ile CED ünitesi farklı (${diziFarki.length} soru, CED ünitesi kullanıldı):\n  ` + summarize(diziFarki));
-console.log(`\nUyarılar / eşlenemeyen: ${uyarilar.length}`);
-for (const w of uyarilar) console.log("  ! " + w);
-console.log(`\nYazıldı: ${path.relative(ROOT, OUT)} (${(Buffer.byteLength(body) / 1024).toFixed(0)} KB)`);
-
-function summarize(list) {
-  const by = {};
-  for (const s of list) { const k = s.replace(/^[^:]+: /, ""); by[k] = (by[k] || 0) + 1; }
-  return Object.entries(by).map(([k, n]) => `${k} (${n})`).join("\n  ");
-}
+module.exports = { CODES, UNITS, HAS_CENTS, loadPage, unitTitle, passagesOf, unitOf, codesOf, denemeEtiketleri, denemeMeta, strip };
+if (require.main === module) main();

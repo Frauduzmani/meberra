@@ -56,7 +56,8 @@ function json(res, kod, govde) {
   const s = JSON.stringify(govde);
   res.statusCode = kod;
   res.setHeader("Content-Type", "application/json; charset=utf-8");
-  res.setHeader("Cache-Control", "no-store");
+  // Rota kendi önbellek başlığını koyduysa (ör. "private, no-store", herkese açık demo için "public, max-age=300") korunur
+  if (!res.getHeader("Cache-Control")) res.setHeader("Cache-Control", "no-store");
   res.end(s);
 }
 

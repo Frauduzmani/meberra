@@ -14,6 +14,7 @@ const { yonetimRotalari } = require("./yonetim");
 const { bildirimServisi } = require("./bildirim");
 const { vapidAnahtarlari, pushGondericisi } = require("./push");
 const { soruRotalari } = require("./soru");
+const { soruBankasiRotalari, tohumYukleGerekirse } = require("./sorubankasi");
 const { ligServisi, ligRotalari } = require("./lig");
 const { veriRotalari } = require("./veriyonetim");
 const { zamanlayici } = require("./zamanlayici");
@@ -79,6 +80,11 @@ function olustur(secenek) {
   const ayar = ayarServisi(db);
   const bakim = bakimServisi(ayar);
   const ipEngel = ipEngelServisi(db);
+  // Soru bankası: tablo boşsa tohumdan (server/tohum/soru-bankasi.json) doldurulur
+  if (secenek.soruTohum !== false) {
+    try { const n = tohumYukleGerekirse(db, secenek.soruTohumDosyasi); if (n) gunluk.bilgi("sunucu", "Soru bankası tohumdan yüklendi: " + n + " soru"); }
+    catch (e) { gunluk.hata("sunucu", "Soru bankası tohumu yüklenemedi", hataAyrinti(e)); }
+  }
   const zamanlayiciS = zamanlayici({ db, bildirim, eposta, lig, gunluk, denetim, ipEngel });
   const r = yonlendirici();
   const sinir = {
@@ -236,6 +242,8 @@ function olustur(secenek) {
   // --- soru-cevap, lig ---------------------------------------------------------------
   const soruS = soruRotalari(r, { db, hesap, denetim, bildirim, eposta, oturumGerekli, yoneticiGerekli, varlik, soruSiniri: secenek.soruSiniri });
   sinirlar.soru = soruS.sinir;
+  const sbS = soruBankasiRotalari(r, { db, hesap, veri, denetim, oturumGerekli, yoneticiGerekli, cevapSiniri: secenek.cevapSiniri, denemeSiniri: secenek.denemeSiniri, seviyeSiniri: secenek.seviyeSiniri, demoSiniri: secenek.demoSiniri });
+  Object.keys(sbS.sinir).forEach(k => { sinirlar["soruBankasi." + k] = sbS.sinir[k]; });
   ligRotalari(r, { lig, oturumGerekli, yoneticiGerekli });
 
   // --- yönetici ---------------------------------------------------------------
