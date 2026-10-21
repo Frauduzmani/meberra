@@ -478,7 +478,7 @@
           '<p>Meberra ekibi en kısa sürede yanıtlayacak. Cevap gelince zil simgesinde bildirim görürsün.</p>' +
           (j.hak && !j.hak.sinirsiz ? '<p class="field-hint">' + esc(hakMetni(j.hak)) + '</p>' : "") +
           '<div class="bd-m-dugmeler">' +
-            (id ? '<a class="btn-ghost" href="profil.html?soru=' + encodeURIComponent(id) + '#sorularim">Sorularıma git</a>' : "") +
+            (id ? '<a class="btn-ghost" href="sorularim.html?soru=' + encodeURIComponent(id) + '">Sorularıma git</a>' : "") +
             '<button type="button" class="btn-primary bd-m-tamam">Çalışmaya dön</button></div></div>';
       govde.querySelector(".bd-m-tamam").addEventListener("click", kapat);
       govde.querySelector("h3").focus();
@@ -627,48 +627,78 @@
     }).catch(function () { /* SSS isteğe bağlı */ });
   }
 
-  /* ================================================================== 3. SORULARIM (profil.html#sorularim) */
+  /* ================================================================== 3. SORULARIM (sorularim.html; eski profil.html#sorularim adresi oraya yönlenir) */
   var Sorularim = (function () {
-    var kok, acikId = null;
+    var kok, kapsam, acikId = null;
     var DURUM = { bekliyor: ["Bekliyor", "bd-cip-bekliyor"], cevaplandi: ["Cevaplandı", "bd-cip-cevap"], kapandi: ["Kapandı", "bd-cip-kapali"] };
     function cip(d) { var x = DURUM[d] || DURUM.bekliyor; return '<span class="bd-cip ' + x[1] + '">' + x[0] + '</span>'; }
+    // Boş durum çizimi (satır içi SVG; renkler bildirim.css'teki sınıflardan, açık/koyu temaya uyar)
+    var BOS_CIZIM = '<svg class="bd-bos-cizim" viewBox="0 0 160 120" aria-hidden="true">' +
+      '<circle cx="80" cy="62" r="50" class="bd-c-zemin"/>' +
+      '<rect x="30" y="28" width="70" height="46" rx="15" class="bd-c-balon1"/><path d="M46 72l-6 15 19-15z" class="bd-c-balon1"/>' +
+      '<rect x="66" y="52" width="64" height="42" rx="15" class="bd-c-balon2"/><path d="M114 92l6 13-19-13z" class="bd-c-balon2"/>' +
+      '<path d="M57 44a8 8 0 0 1 15.5 2.6c0 5.4-7.5 5.4-7.5 9.4" class="bd-c-cizgi"/><circle cx="65" cy="63" r="2.6" class="bd-c-nokta"/>' +
+      '<rect x="80" y="66" width="38" height="5" rx="2.5" class="bd-c-satir"/><rect x="80" y="76" width="26" height="5" rx="2.5" class="bd-c-satir"/>' +
+      '<path d="M130 22l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" class="bd-c-yildiz"/><path d="M26 88l2 4.5 4.5 2-4.5 2-2 4.5-2-4.5-4.5-2 4.5-2z" class="bd-c-yildiz"/></svg>';
+    function iskelet(n) {
+      var h = '<ul class="bd-soru-liste bd-iskelet-liste" aria-hidden="true">';
+      for (var i = 0; i < n; i++) h += '<li><span class="iskelet bd-iskelet-oge"></span></li>';
+      return h + '</ul><p class="visually-hidden">Sorular yükleniyor…</p>';
+    }
+    // Liste ↔ konuşma geçişi: yeni içerik yönüne göre kayarak girer (azaltılmış harekette yok)
+    function yerlestir(html, yon) {
+      var g = govde();
+      g.innerHTML = html;
+      if (azHareket || !yon || !g.firstElementChild) return;
+      g.firstElementChild.classList.add(yon === "ileri" ? "bd-gir-ileri" : "bd-gir-geri");
+    }
 
     function kur(el) {
       kok = el;
-      kok.innerHTML =
+      var tam = el.hasAttribute("data-tam");
+      // Sorularım sayfası (sorularim.html): başlık, hak satırı ve "Soru sor" düğmesi sayfanın kendisinde
+      kapsam = tam ? D : kok;
+      kok.innerHTML = (tam ? "" :
         '<div class="bd-bolum-ust"><h2 class="panel-h" id="sorularim-baslik" tabindex="-1">' + IK.soru + 'Sorularım</h2>' +
           '<button type="button" class="btn-primary btn-sm bd-yeni-soru">' + IK.soru + 'Soru sor</button></div>' +
-        '<p class="panel-lead">Anlamadığın bir soruyu Meberra ekibine sor; cevaplar burada ve zilde görünür. <span class="bd-hak-satir"></span></p>' +
-        '<div class="bd-sorular-govde" aria-live="polite"><p class="field-hint">Yükleniyor…</p></div>';
-      kok.querySelector(".bd-yeni-soru").addEventListener("click", function (e) { SoruModal.ac(null, e.currentTarget); });
+        '<p class="panel-lead">Anlamadığın bir soruyu Meberra ekibine sor. <span class="bd-hak-satir"></span></p>') +
+        '<div class="bd-sorular-govde" aria-live="polite">' + iskelet(3) + '</div>';
+      kapsam.querySelectorAll(".bd-yeni-soru").forEach(function (b) { b.addEventListener("click", function (e) { SoruModal.ac(null, e.currentTarget); }); });
+      kok.addEventListener("click", function (e) { var b = e.target.closest(".bd-bos-sor"); if (b) SoruModal.ac(null, b); });
       D.addEventListener("meberra:soru-degisti", function () { if (!acikId) listele(); });
       var q = /[?&]soru=(\d+)/.exec(location.search);
-      if (q) ac(Number(q[1]), true); else listele();
+      if (q) { ac(Number(q[1]), true); hakGetir(true).then(function (j) { hakYaz(j.hak); }).catch(function () { /* hak satırı isteğe bağlı */ }); }
+      else listele();
+    }
+    function hakYaz(hak) {
+      kapsam.querySelectorAll(".bd-hak-satir").forEach(function (hs) {
+        hs.textContent = hakMetni(hak);
+        hs.className = "bd-hak-satir" + (hak && hak.sinirsiz ? " bd-hak-sinirsiz" : "");
+      });
     }
 
     function govde() { return kok.querySelector(".bd-sorular-govde"); }
 
-    function listele() {
+    function listele(yon) {
       acikId = null;
       return api("/api/sorular").then(function (j) {
         hakOnbellek = { veri: j, zaman: Date.now() };
-        var hs = kok.querySelector(".bd-hak-satir");
-        hs.textContent = hakMetni(j.hak);
-        hs.className = "bd-hak-satir" + (j.hak && j.hak.sinirsiz ? " bd-hak-sinirsiz" : "");
+        hakYaz(j.hak);
         var l = j.sorular || [];
         if (!l.length) {
-          govde().innerHTML = '<div class="bd-bos-kutu"><span class="bd-bos-ikon">' + IK["soru-yanit"] + '</span><strong>Henüz soru sormadın</strong>' +
-            '<span>Ders sayfalarında her sorunun altındaki <em>Bu soruyu anlamadım</em> düğmesiyle başlayabilirsin.</span></div>';
+          yerlestir('<div class="bd-bos-kutu">' + BOS_CIZIM + '<strong>Henüz soru sormadın</strong>' +
+            '<span>Takıldığın bir soru mu var? Ders sayfalarında sorunun altındaki <em>Bu soruyu anlamadım</em> düğmesine bas ya da hemen buradan sor.</span>' +
+            '<button type="button" class="btn-energy bd-bos-sor">' + IK.soru + 'Soru sor</button></div>', yon);
           return;
         }
-        govde().innerHTML = '<ul class="bd-soru-liste">' + l.map(function (s) {
+        yerlestir('<ul class="bd-soru-liste">' + l.map(function (s) {
           return '<li><button type="button" class="bd-soru-oge' + (s.okunmamis ? " bd-yeni" : "") + '" data-id="' + esc(s.id) + '">' +
             '<span class="bd-soru-oge-ust">' + cip(s.durum) + (s.okunmamis ? '<span class="bd-cip bd-cip-yeni">Yeni yanıt</span>' : "") +
               '<span class="bd-soru-ders">' + esc(dersAdi(s.sayfa)) + '</span></span>' +
             '<span class="bd-soru-metin">' + esc(kisalt(s.metin, 140)) + '</span>' +
             '<span class="bd-soru-meta">' + esc(zamanOnce(s.guncelleme || s.olusturma)) + ' · ' + s.mesajSayisi + ' mesaj</span>' +
           '</button></li>';
-        }).join("") + '</ul>';
+        }).join("") + '</ul>', yon);
         govde().querySelectorAll(".bd-soru-oge").forEach(function (b) {
           b.addEventListener("click", function () { ac(Number(b.getAttribute("data-id")), false); });
         });
@@ -681,35 +711,38 @@
       try {
         var u = new URL(location.href);
         if (id) u.searchParams.set("soru", id); else u.searchParams.delete("soru");
-        u.hash = "sorularim";
+        if (!kok.hasAttribute("data-tam")) u.hash = "sorularim";
         history.replaceState(history.state, "", u.pathname + u.search + u.hash);
       } catch (e) { /* yok say */ }
     }
 
     function ac(id, ilkAcilis) {
       acikId = id;
-      govde().innerHTML = '<p class="field-hint">Yükleniyor…</p>';
+      // Liste yerinde kalır (yükseklik korunur) ve yalnızca soluklaşır: içerik zıplamaz
+      var g = govde();
+      g.setAttribute("aria-busy", "true");
+      g.classList.add("bd-yukleniyor");
       return api("/api/sorular/" + encodeURIComponent(id)).then(function (j) {
         adresYaz(id);
-        konusmaCiz(j.soru);
+        konusmaCiz(j.soru, ilkAcilis ? null : "ileri");
         Zil.cek();
-        if (ilkAcilis) kaydir(kok);
+        if (ilkAcilis && !kok.hasAttribute("data-tam")) kaydir(kok);
+        else if (!ilkAcilis && kok.getBoundingClientRect().top < 0) kok.scrollIntoView({ block: "start", behavior: azHareket ? "auto" : "smooth" });
       }).catch(function (e) {
         adresYaz(null);
         acikId = null;
-        listele().then(function () {
-          var g = govde();
-          g.insertAdjacentHTML("afterbegin", '<div class="form-alert u-mb-2">' + esc(e.durum === 404 ? "Bu soru bulunamadı." : e.message) + '</div>');
+        return listele().then(function () {
+          govde().insertAdjacentHTML("afterbegin", '<div class="form-alert u-mb-2">' + esc(e.durum === 404 ? "Bu soru bulunamadı." : e.message) + '</div>');
         });
-      });
+      }).then(function () { g.removeAttribute("aria-busy"); g.classList.remove("bd-yukleniyor"); });
     }
 
-    function konusmaCiz(s) {
+    function konusmaCiz(s, yon) {
       var b = s.baglam && typeof s.baglam === "object" ? s.baglam : null;
-      var h = '<button type="button" class="bd-link-btn bd-geri">← Tüm sorularım</button>' +
+      var h = '<div class="bd-konusma-bas"><button type="button" class="bd-link-btn bd-geri">← Tüm sorularım</button>' +
         '<div class="bd-konusma-ust">' + cip(s.durum) + '<span class="bd-soru-ders">' + esc(dersAdi(s.sayfa)) + '</span>' +
           (s.sayfa && /^ap-/.test(s.sayfa) ? '<a class="bd-link" href="' + esc(s.sayfa) + '.html' + (s.soruRef && s.soruRef.indexOf("|") > 0 ? "#q-card-" + encodeURIComponent(s.soruRef.split("|")[1]) : "") + '">Soruya git</a>' : "") +
-        '</div>';
+        '</div></div>';
       if (b && (b.soru || b.ogrenciCevabi)) {
         h += '<details class="bd-konusma-baglam"><summary>Sorduğun soru</summary>' +
           (b.soru ? '<p>' + esc(kisalt(b.soru, 800)) + '</p>' : "") +
@@ -722,21 +755,20 @@
         return '<li class="bd-mesaj ' + (ben ? "bd-mesaj-ben" : "bd-mesaj-ekip") + '"><div class="bd-mesaj-kim">' + esc(ben ? "Sen" : "Meberra ekibi") +
           ' <time datetime="' + esc(m.tarih) + '">' + esc(tarihSaat(m.tarih)) + '</time></div><div class="bd-mesaj-metin">' + satirli(m.metin) + '</div></li>';
       }).join("") + '</ol>';
-      if (s.durum === "bekliyor") h += '<p class="bd-bekleme">Meberra ekibi sorunu inceliyor. Cevap gelince zilde bildirim görürsün.</p>';
+      if (s.durum === "bekliyor") h += '<p class="bd-bekleme"><span class="bd-yaziyor" aria-hidden="true"><i></i><i></i><i></i></span>Meberra ekibi sorunu inceliyor. Cevap gelince zilde bildirim görürsün.</p>';
       if (s.durum === "kapandi") {
         h += '<p class="bd-bekleme">Bu soru kapandı. Yeni bir sorun varsa <button type="button" class="bd-link-btn bd-yeni-soru2">yeni soru sor</button>.</p>';
       } else {
         h += '<form class="bd-takip" novalidate><div class="form-alert" role="alert" hidden></div>' +
           '<label class="bd-etiket-ust" for="bd-takip-metin">Ek soru ya da teşekkür</label>' +
           '<textarea id="bd-takip-metin" class="text-input bd-textarea" rows="3" maxlength="2000" placeholder="Yazmak istediğin bir şey var mı?"></textarea>' +
-          '<div class="bd-m-dugmeler"><button type="submit" class="btn-primary">Gönder</button></div>' +
-          '<p class="field-hint">Ek mesajlar soru hakkından düşmez.</p></form>';
+          '<div class="bd-m-dugmeler bd-takip-alt"><span class="field-hint">Ek mesajlar soru hakkından düşmez.</span><button type="submit" class="btn-primary">Gönder</button></div></form>';
       }
-      govde().innerHTML = '<div class="bd-konusma">' + h + '</div>';
+      yerlestir('<div class="bd-konusma">' + h + '</div>', yon);
       mathDiz(govde());
       govde().querySelector(".bd-geri").addEventListener("click", function () {
         adresYaz(null);
-        listele().then(function () { var x = kok.querySelector("#sorularim-baslik"); if (x) x.focus(); });
+        listele("geri").then(function () { var x = D.querySelector("#sorularim-baslik"); if (x) x.focus({ preventScroll: true }); });
       });
       var y2 = govde().querySelector(".bd-yeni-soru2");
       if (y2) y2.addEventListener("click", function () { SoruModal.ac(null, y2); });
@@ -780,7 +812,7 @@
     function kur(el) {
       kok = el;
       kok.innerHTML = '<div class="bd-bolum-ust"><h2 class="panel-h" id="lig-baslik" tabindex="-1">' + IK.lig + 'Haftalık lig</h2></div>' +
-        '<div class="bd-lig-govde" aria-live="polite"><p class="field-hint">Yükleniyor…</p></div>';
+        '<div class="bd-lig-govde" aria-live="polite"><div class="iskelet-grup" aria-hidden="true"><span class="iskelet iskelet-satir"></span><span class="iskelet iskelet-satir is-kisa"></span><span class="iskelet iskelet-blok"></span><span class="iskelet iskelet-satir is-kisa"></span></div><p class="visually-hidden">Yükleniyor…</p></div>';
       yukle();
     }
     function govde() { return kok.querySelector(".bd-lig-govde"); }
@@ -850,7 +882,7 @@
       var g = govde();
       if (!j.katildi) {
         g.innerHTML =
-          '<p class="panel-lead">Her hafta 30 kişilik gruplarda XP topla, haftanın sonunda üst kademeye çık. Katılmak tamamen isteğe bağlı; diğerleri yalnızca <strong>takma adını</strong> ve XP\'ni görür.</p>' +
+          '<p class="panel-lead">Her hafta en fazla 30 kişilik gruplarda XP topla, hafta sonunda üst kademeye çık. Katılım isteğe bağlı; diğerleri yalnızca <strong>takma adını</strong> ve XP\'ni görür.</p>' +
           '<div class="bd-lig-kademeler" aria-label="Kademeler">' + ((j.kurallar && j.kurallar.kademeler) || ["Bronz", "Gümüş", "Altın", "Elmas", "Şampiyon"]).map(function (k, i) {
             return '<span class="bd-kademe ' + KADEME_SINIF[i + 1] + '">' + IK.lig + esc(k) + '</span>';
           }).join("") + '</div>' +
@@ -942,7 +974,7 @@
 
     function kur(el) {
       kok = el;
-      kok.innerHTML = '<h3 class="panel-h u-fs-16" id="bildirim-ayarlari-baslik" tabindex="-1">' + IK.zil + 'Bildirimler</h3><p class="field-hint">Yükleniyor…</p>';
+      kok.innerHTML = '<h3 class="panel-h u-fs-16" id="bildirim-ayarlari-baslik" tabindex="-1">' + IK.zil + 'Bildirimler</h3><div class="iskelet-grup" aria-hidden="true"><span class="iskelet iskelet-satir"></span><span class="iskelet iskelet-blok"></span><span class="iskelet iskelet-blok"></span><span class="iskelet iskelet-blok is-kisa"></span></div><p class="visually-hidden">Yükleniyor…</p>';
       api("/api/bildirim-ayarlari").then(function (j) { ayar = j.ayarlar; pushDestek = !!j.pushDestek; ciz(j); })
         .catch(function (e) { kok.innerHTML = '<h3 class="panel-h u-fs-16">Bildirimler</h3><div class="form-alert">' + esc(e.message) + '</div>'; });
       D.addEventListener("meberra:yuklenebilir", yukleCiz);
@@ -954,21 +986,21 @@
       for (var h = 8; h <= 21; h++) saatler += '<option value="' + h + '"' + (ayar.hatirlatmaSaati === h ? " selected" : "") + '>' + (h < 10 ? "0" : "") + h + ':00</option>';
       kok.innerHTML =
         '<h3 class="panel-h u-fs-16" id="bildirim-ayarlari-baslik" tabindex="-1">' + IK.zil + 'Bildirimler</h3>' +
-        '<p class="panel-lead u-mb-2">Hepsi senin seçimin; istediğin zaman kapatabilirsin. ' + String(s.bas).padStart(2, "0") + ':00–' + String(s.bit).padStart(2, "0") + ':00 arası sessiz saatlerdir, o saatlerde hatırlatma göndermeyiz.</p>' +
+        '<p class="panel-lead u-mb-2">' + String(s.bas).padStart(2, "0") + ':00–' + String(s.bit).padStart(2, "0") + ':00 arası hatırlatma göndermeyiz.</p>' +
         '<div class="bd-kayit-durum" role="status" aria-live="polite"></div>' +
         '<div class="bd-ayar-grup">' +
-          anahtar("bd-a-hatirlatma", "Günlük çalışma hatırlatması (e-posta)", "Serin devam ederken ya da tekrar zamanı gelen soruların varsa günde en fazla bir kez.", ayar.epostaHatirlatma) +
-          '<div class="bd-anahtar-satir"><div class="bd-anahtar-metin"><label for="bd-a-saat">Hatırlatma saati</label><p class="field-hint">E-posta ve telefon hatırlatmaları bu saatten sonra gelir.</p></div>' +
+          anahtar("bd-a-hatirlatma", "Günlük çalışma hatırlatması (e-posta)", "Günde en fazla bir kez.", ayar.epostaHatirlatma) +
+          '<div class="bd-anahtar-satir"><div class="bd-anahtar-metin"><label for="bd-a-saat">Hatırlatma saati</label></div>' +
             '<select class="calc-select bd-saat" id="bd-a-saat">' + saatler + '</select></div>' +
-          anahtar("bd-a-yanit", "Soruma cevap gelince e-posta", "Meberra ekibi sorunu yanıtlayınca haber veririz.", ayar.epostaBildirim) +
+          anahtar("bd-a-yanit", "Soruma cevap gelince e-posta", "", ayar.epostaBildirim) +
         '</div>' +
         '<div class="bd-ayar-grup bd-push-kutu"><div class="bd-push-ust"><span class="bd-push-ikon">' + IK.telefon + '</span><div><strong>Telefon bildirimleri</strong><p class="bd-push-durum field-hint"></p></div></div><div class="bd-push-eylem"></div></div>' +
         '<div class="bd-ayar-grup bd-veli">' +
-          anahtar("bd-a-veli", "Veli haftalık raporu", "Velin her pazar akşamı kısa bir özet alır: çözdüğün soru sayısı, doğruluk, seri ve denemeler.", ayar.veliRaporu) +
+          anahtar("bd-a-veli", "Veli haftalık raporu", "Her pazar akşamı kısa özet: soru, doğruluk, seri, denemeler.", ayar.veliRaporu) +
           '<form class="bd-veli-form" novalidate><div class="field"><label for="bd-a-veli-eposta">Velinin e-posta adresi</label>' +
             '<div class="bd-satir"><input class="text-input" type="email" inputmode="email" autocomplete="off" id="bd-a-veli-eposta" maxlength="120" value="' + esc(ayar.veliEposta || "") + '" placeholder="veli@ornek.com" aria-describedby="bd-veli-ipucu bd-veli-hata">' +
             '<button type="submit" class="btn-ghost">Kaydet</button></div>' +
-            '<p class="field-hint" id="bd-veli-ipucu">Önce velinin e-postasına bir onay bağlantısı gider; velin onaylamadan rapor gönderilmez.</p>' +
+            '<p class="field-hint" id="bd-veli-ipucu">Velin onay bağlantısına tıklayınca raporlar başlar.</p>' +
             '<p class="field-error" id="bd-veli-hata"></p></div>' +
             '<p class="bd-veli-durum"></p></form>' +
         '</div>' +
@@ -1068,7 +1100,7 @@
         return;
       }
       if (!tarayiciDestekler()) {
-        durum.textContent = "Bu tarayıcı telefon bildirimlerini desteklemiyor. Chrome, Edge, Firefox ya da Safari'nin güncel sürümünü dene.";
+        durum.textContent = "Telefon bildirimleri bu cihazda desteklenmiyor. E-posta hatırlatmalarını açabilirsin.";
         eylem.innerHTML = "";
         return;
       }
@@ -1078,7 +1110,7 @@
         return;
       }
       if (Notification.permission === "denied") {
-        durum.textContent = "Bildirim izni reddedilmiş. Tarayıcının site ayarlarından Meberra için bildirimlere izin verip sayfayı yenile.";
+        durum.textContent = "Bildirim izni kapalı. Cihazının site ayarlarından Meberra'ya bildirim izni verip sayfayı yenile.";
         eylem.innerHTML = "";
         return;
       }

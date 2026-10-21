@@ -370,3 +370,53 @@ html.bd-kilit { overflow: hidden; }
   .bd-pop, .bd-salla svg, .bd-panel, .bd-basari-ikon, .bd-giris { animation: none !important; }
   .bd-modal, .bd-modal-ortu, .bd-sira-cubuk i, .bd-anahtar span, .bd-anahtar span::after, .bd-anlamadim, .bd-soru-oge { transition: none !important; }
 }
+
+/* ============================================================ SORULARIM SAYFASI (sorularim.html) — v5
+   Liste → konuşma geçişi kayarak (≤ 240 ms), boş durum çizimi, iskelet satırlar. Gövde en az yükseklik taşır:
+   yükleme ve geçişte alt içerik zıplamaz. */
+.bd-sorular-govde { position: relative; transition: opacity .15s ease; }
+.bd-sorular-govde.bd-yukleniyor { opacity: .55; pointer-events: none; }
+.sr-sayfa .bd-sorular-govde { min-height: 360px; }
+@media (max-width: 640px) { .sr-sayfa .bd-sorular-govde { min-height: 420px; } }
+.bd-iskelet-liste .bd-iskelet-oge { display: block; height: 86px; border-radius: var(--radius-md); }
+.bd-soru-oge { position: relative; padding-right: 40px; border-radius: var(--radius-lg); }
+.bd-soru-oge::after { content: ""; position: absolute; right: 16px; top: 50%; width: 9px; height: 9px; border-right: 2.5px solid var(--text-dim); border-top: 2.5px solid var(--text-dim); transform: translateY(-50%) rotate(45deg); transition: transform .15s ease, border-color .15s; }
+.bd-soru-oge:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); box-shadow: var(--shadow-card); }
+.bd-soru-oge:hover::after { border-color: var(--accent); transform: translate(3px, -50%) rotate(45deg); }
+.bd-konusma-bas { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 12px; padding-bottom: 10px; margin-bottom: 12px; border-bottom: 1px solid var(--border); }
+.bd-konusma-bas .bd-konusma-ust { margin: 0; }
+.bd-konusma-bas .bd-geri { text-decoration: none; padding-left: 0; }
+.bd-takip-alt { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.bd-takip-alt .field-hint { margin: 0; }
+.bd-bekleme { display: flex; align-items: center; gap: 10px; }
+.bd-yaziyor { display: inline-flex; gap: 3px; padding: 6px 9px; border-radius: 12px; background: var(--surface-3); flex: none; }
+.bd-yaziyor i { width: 6px; height: 6px; border-radius: 50%; background: var(--text-dim); }
+
+/* Boş durum */
+.bd-bos-kutu { gap: 8px; padding: 28px 16px 32px; }
+.bd-bos-kutu strong { font: 900 1.25rem/1.25 var(--font-head); margin-top: 4px; }
+.bd-bos-kutu > span { max-width: 46ch; }
+.bd-bos-kutu .btn-energy { margin-top: 10px; }
+.bd-bos-cizim { width: 168px; height: auto; }
+.bd-c-zemin { fill: var(--accent-soft); }
+.bd-c-balon1 { fill: var(--accent); }
+.bd-c-balon2 { fill: var(--surface); stroke: var(--border-strong); stroke-width: 2; }
+.bd-c-cizgi { fill: none; stroke: #fff; stroke-width: 4; stroke-linecap: round; }
+.bd-c-nokta { fill: #fff; }
+.bd-c-satir { fill: var(--surface-3); }
+.bd-c-yildiz { fill: var(--energy); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .bd-gir-ileri { animation: bdIleri .24s cubic-bezier(.2, .8, .2, 1) both; }
+  .bd-gir-geri { animation: bdGeri .24s cubic-bezier(.2, .8, .2, 1) both; }
+  @keyframes bdIleri { from { opacity: 0; transform: translateX(24px); } }
+  @keyframes bdGeri { from { opacity: 0; transform: translateX(-24px); } }
+  .bd-bos-cizim .bd-c-yildiz { transform-box: fill-box; transform-origin: center; animation: bdParla 2.4s ease-in-out infinite; }
+  .bd-bos-cizim .bd-c-yildiz + .bd-c-yildiz { animation-delay: 1.2s; }
+  @keyframes bdParla { 0%, 100% { transform: scale(1) rotate(0); opacity: 1; } 50% { transform: scale(.6) rotate(45deg); opacity: .6; } }
+  .bd-bos-cizim { animation: bdSuz 4s ease-in-out infinite; }
+  @keyframes bdSuz { 50% { transform: translateY(-4px); } }
+  .bd-yaziyor i { animation: bdNokta 1.2s ease-in-out infinite; }
+  .bd-yaziyor i:nth-child(2) { animation-delay: .15s; } .bd-yaziyor i:nth-child(3) { animation-delay: .3s; }
+  @keyframes bdNokta { 0%, 60%, 100% { transform: none; opacity: .5; } 30% { transform: translateY(-3px); opacity: 1; } }
+}

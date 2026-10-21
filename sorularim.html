@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#5B3DF5">
+  <link rel="apple-touch-icon" href="assets/img/pwa/apple-touch-icon.png">
+  <title>Sorularım | Meberra</title>
+  <meta name="description" content="Anlamadığın soruları Meberra ekibine sor; cevapları burada konuşma olarak takip et.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/oyun.css?v=20261021a">
+  <link rel="stylesheet" href="assets/css/bildirim.css?v=20261021a">
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+  <script src="assets/js/oyun.js?v=20261021a" defer></script>
+  <script src="assets/js/bildirim.js?v=20261021a" defer></script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand"><div class="brand-badge">Meberra</div></a>
+    <div class="nav-actions"></div>
+  </nav>
+
+  <main class="main-container sr-sayfa" id="main-content">
+    <header class="sr-bas">
+      <div class="u-min0">
+        <span class="eyebrow">Ben</span>
+        <h1 id="sorularim-baslik" tabindex="-1">Sorularım</h1>
+        <p class="sr-alt">Takıldığın soruyu Meberra ekibine sor; cevap burada ve zilde görünür.</p>
+        <p class="sr-hak"><span class="bd-hak-satir"></span></p>
+      </div>
+      <button type="button" class="btn-energy bd-yeni-soru">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.5-3 4.5M12 17.5v.01"/></svg>
+        Soru sor
+      </button>
+    </header>
+
+    <!-- bildirim.js (Sorularim.kur, data-tam): iskelet → liste ↔ konuşma -->
+    <section class="surface bd-sorularim sr-kart" id="sorularim" data-tam aria-labelledby="sorularim-baslik">
+      <div class="bd-sorular-govde" aria-hidden="true">
+        <ul class="bd-soru-liste bd-iskelet-liste"><li><span class="iskelet bd-iskelet-oge"></span></li><li><span class="iskelet bd-iskelet-oge"></span></li><li><span class="iskelet bd-iskelet-oge"></span></li></ul>
+      </div>
+    </section>
+
+    <ol class="sr-adimlar" aria-label="Nasıl işler?">
+      <li><span class="sr-adim-no" aria-hidden="true">1</span><span><strong>Sor</strong>Sorunun altındaki “Bu soruyu anlamadım” ya da buradaki düğmeyle.</span></li>
+      <li><span class="sr-adim-no" aria-hidden="true">2</span><span><strong>Cevap gelsin</strong>Meberra ekibi yanıtlar; zilde bildirim görürsün.</span></li>
+      <li><span class="sr-adim-no" aria-hidden="true">3</span><span><strong>Devam et</strong>Ek sorunu aynı konuşmaya yaz; ek mesajlar hakkından düşmez.</span></li>
+    </ol>
+  </main>
+
+  <footer class="footer footer-mini">
+    <div class="footer-bottom u-mt-0">
+      <div>© 2026 Meberra · Ücretsiz planda ayda 3 soru, Premium’da sınırsız.</div>
+      <div><a href="profil.html">Profil ve hesap →</a></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+  (function () {
+    "use strict";
+    // Sunucu modu yoksa (geliştirme kopyası) soru-cevap çalışmaz: sade bilgi
+    if (!document.querySelector('meta[name="meberra-api"]')) {
+      var g = document.querySelector("#sorularim .bd-sorular-govde");
+      if (g) { g.removeAttribute("aria-hidden"); g.innerHTML = '<p class="field-hint">Sorularım hesabınla birlikte çalışır; giriş yaptığında burada görünür.</p>'; }
+    }
+  })();
+  </script>
+</body>
+</html>

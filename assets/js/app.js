@@ -208,8 +208,8 @@ window.APMEBERRA_ME = APMEBERRA_ME;
 // Sayfa açılışında oturum sunucuda doğrulanır (GET /api/me) ve başka cihazdan gelen yeni veriler çekilir.
 // Mevcut sayfa kodu değişmeden çalışır: depo hâlâ eşzamanlı önbellektir, doğruluk kaynağı sunucudur.
 const MEBERRA_SUNUCU = !!document.querySelector('meta[name="meberra-api"]');
-// Depolama kipine göre metin/arayüz (styles.css): .yalniz-dosya yalnız dosya kipinde (file://, tarayıcı deposu), .yalniz-sunucu
-// yalnız sunucu kipinde görünür. Kurtarma kodu, kullanıcı adı, "Yedek al / yükle" gibi eski yerel özellikler .yalniz-dosya taşır.
+// Ürün yalnızca sunucu kipinde sunulur (Ekim 2026). html.mod-sunucu / html.mod-dosya sınıfları geriye uyum için kalır;
+// yerel depo artık yalnızca sunucuyla eşitlenen önbellektir ve kullanıcıya tarayıcıdan söz edilmez.
 document.documentElement.classList.add(MEBERRA_SUNUCU ? "mod-sunucu" : "mod-dosya");
 const MEBERRA_SYNC = (function () {
   if (!MEBERRA_SUNUCU) return null;
@@ -405,7 +405,7 @@ const APMEBERRA_NAV = [
   { id: "ben", href: "ilerleme.html", label: "Ben", modeller: AP_MODELLER, mobilBaglanti: true, children: [
     { href: "ilerleme.html", label: "İlerleme", desc: "Ders sonuçların ve Yanlışlarım" },
     { href: "profil.html", label: "Profil ve hesap" }
-  ].concat(MEBERRA_SUNUCU ? [] : [{ href: "profil.html#yedek", label: "Yedek al / yükle" }]) },
+  ].concat(MEBERRA_SUNUCU ? [{ href: "sorularim.html", label: "Sorularım", desc: "Meberra ekibine sorduğun sorular" }] : []) },
   { id: "ben", href: "profil.html", label: "Ben", modeller: ["uni-mezun"] }
 ];
 /** Tur 11 (plan §1.2): menü öğesi bu öğrenci modeline gösterilir mi? (modeller yoksa herkese) */
@@ -688,7 +688,7 @@ function initGlobalNav() {
         '</div>' +
         '<ul>' +
           (minimal ? "" : '<li><a href="profil.html"' + (current === "profil.html" ? ' aria-current="page"' : "") + '>' + APMEBERRA_ICONS.user + '<span>Profil ve hesap</span></a></li>' +
-          (MEBERRA_SUNUCU ? "" : '<li><a href="profil.html#yedek">' + APMEBERRA_ICONS.save + '<span>Yedek al / yükle</span></a></li>') +
+          (MEBERRA_SUNUCU ? '<li><a href="sorularim.html"' + (current === "sorularim.html" ? ' aria-current="page"' : "") + '>' + APMEBERRA_ICONS.chat + '<span>Sorularım</span></a></li>' : "") +
           // Meberra: Premium durumu ve yönetici paneli (sunucu modu)
           (MEBERRA_SUNUCU ? (me.uyelik && me.uyelik.premium && !me.uyelik.yonetici
             ? '<li><a href="premium.html">' + APMEBERRA_ICONS.crown + '<span>Premium · aktif</span></a></li>'
@@ -3068,6 +3068,8 @@ window.APMEBERRA = {
   var kok = (document.currentScript && document.currentScript.src) ? document.currentScript.src.replace(/assets\/js\/app\.js.*$/, "") : "";
   if (/admin\.html$/.test(location.pathname)) return;
   [["script", "assets/js/hata-izle.js"], ["link", "assets/css/oyun.css"], ["link", "assets/css/bildirim.css"], ["script", "assets/js/oyun.js"], ["script", "assets/js/bildirim.js"]].forEach(function (m) {
+    // Sayfa modülü statik olarak (head'de) yüklüyorsa ikinci kez eklenmez: stil ilk boyamada hazır olur, içerik kaymaz
+    if (document.querySelector(m[0] === "link" ? 'link[href*="' + m[1] + '"]' : 'script[src*="' + m[1] + '"]')) return;
     var el = document.createElement(m[0]);
     if (m[0] === "link") { el.rel = "stylesheet"; el.href = kok + m[1] + "?v=" + SURUM; }
     else { el.src = kok + m[1] + "?v=" + SURUM; el.defer = true; }

@@ -10,6 +10,10 @@
   <title>Çalış | Meberra</title>
   <meta name="description" content="Çalış merkezi: sıradaki çalışma, kaldığın yer, 6 AP dersi ve CEnT-S (ilerleme, konu anlatımı, deneme), denemeler, yanlışlarım ve seviye testi tek sayfada.">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/oyun.css?v=20261021a">
+  <link rel="stylesheet" href="assets/css/bildirim.css?v=20261021a">
+  <script src="assets/js/oyun.js?v=20261021a" defer></script>
+  <script src="assets/js/bildirim.js?v=20261021a" defer></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -25,7 +29,7 @@
     <header class="page-head calis-head">
       <span class="eyebrow">Çalış</span>
       <h1 id="calis-title">Ne çalışayım?</h1>
-      <p>Derslerin, denemelerin ve yanlışların tek yerde. Sıradaki çalışma Bugün ekranıyla aynı kurallarla seçilir.</p>
+      <p>Derslerin, denemelerin ve yanlışların tek yerde.</p>
     </header>
 
     <!-- Üniversite mezunu: AP çalışma alanı yok (menüde Çalış yerine Sınavlar) -->
@@ -56,7 +60,7 @@
       <section class="calis-bolum" id="calis-dersler" aria-labelledby="cd-title">
         <div class="calis-bolum-h">
           <h2 id="cd-title">Derslerin</h2>
-          <p>Konu anlatımları ve sorular İngilizce. Halka, dersin soru bankasında ne kadarını çözdüğünü gösterir.</p>
+          <p>Konu anlatımı ve sorular İngilizce. Halka, soru bankasında çözdüğün oranı gösterir.</p>
         </div>
         <div class="calis-grid" id="calis-grid"></div>
       </section>
@@ -91,7 +95,7 @@
 
   <footer class="footer">
     <div class="footer-bottom u-mt-0">
-      <div><span class="yalniz-sunucu">İlerleme, deneme sonuçları ve Yanlışlarım hesabına kaydedilir, her cihazdan devam edersin.</span><span class="yalniz-dosya">İlerlemen bu tarayıcıda saklanır; başka cihaza geçmek için <a href="ilerleme.html#yedek-title">Yedekle / Taşı</a>.</span></div>
+      <div>© 2026 Meberra · İlerlemen hesabına kaydedilir, her cihazdan devam edersin.</div>
       <div><a href="index.html">← Bugün</a></div>
     </div>
   </footer>
@@ -167,7 +171,7 @@
     ns.innerHTML = '<span class="sa-kicker">' + IC.step + 'Sıradaki çalışma <span class="sa-tur">' + esc(TUR_AD[sa.tur] || "") + '</span></span>' +
       '<h2 id="cs-title">' + esc(sa.baslik) + '</h2>' + (sa.aciklama ? '<p class="sa-meta">' + esc(sa.aciklama) + '</p>' : "") +
       '<div class="sa-actions"><a class="btn-primary" id="cs-git" href="' + esc(sa.href) + '">' + esc(sa.etiket) + ' →</a>' +
-      '<details class="sa-neden"><summary>Neden bu?</summary><p>' + esc(sa.neden) + ' Bugün ekranı aynı sırayı kullanır; orada ayrıca yakın tarihli rota adımları öne geçebilir.</p></details></div>';
+      '<details class="sa-neden"><summary>Neden bu?</summary><p>' + esc(sa.neden) + '</p></details></div>';
 
     // 2) Kaldığın yer: son ünite · yarım deneme · son deneme
     var ck = [];
@@ -188,7 +192,7 @@
     document.getElementById("ck-list").innerHTML = ck.length ? ck.map(function (x) {
       return '<li class="ck-item' + (x.vurgu ? " is-vurgu" : "") + '" id="' + x.id + '"><a href="' + esc(x.href) + '"><span class="ck-ico">' + x.ic + '</span>' +
         '<span class="ck-govde"><strong>' + esc(x.ana) + '</strong><span>' + esc(x.alt) + '</span></span><span class="ck-git">' + esc(x.git) + ' →</span></a></li>';
-    }).join("") : '<li class="ck-bos">Henüz soru çözmedin. Bir dersin konu anlatımını oku, ardından ünite sorularını çöz; kaldığın yer burada görünür.</li>';
+    }).join("") : '<li class="ck-bos">Henüz soru çözmedin. İlk ünitene başladığında kaldığın yer burada görünür.</li>';
 
     // 3) Ders kartları
     document.getElementById("calis-grid").innerHTML = dersler.map(function (d) {

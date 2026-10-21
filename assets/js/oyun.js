@@ -636,6 +636,7 @@
 
     kok.innerHTML = '<div class="oy-sol">' + hedefKart + tekrarKart + "</div>" + gorevKart;
     kok.hidden = false;
+    kok.classList.remove("is-iskelet"); kok.removeAttribute("aria-busy");
     if (ilk) {
       requestAnimationFrame(function () { requestAnimationFrame(function () {
         var c = kok.querySelector(".oy-halka-dolu");
@@ -650,7 +651,7 @@
     var limit = korumaHakki(premiumMu()), gun = bugunGun();
     var kalan = korumaKalan(oku(K.seri, null), gun, limit);
     el.innerHTML = svg("kalkan", "oy-koruma-ik") + "<span><strong>" + (kalan ? "Bu hafta " + kalan + " koruman var" : "Bu haftaki korumanı kullandın") + "</strong>" +
-      "<small>Seri koruma: çalışamadığın bir günde serin kendiliğinden korunur" + (limit > 1 ? " (Premium: haftada 2)." : " (haftada 1; Premium’da 2).") + "</small></span>";
+      "<small>Boş kalan bir gün serini bozmaz" + (limit > 1 ? " · Premium: haftada 2" : " · haftada 1, Premium’da 2") + "</small></span>";
     el.hidden = false;
   }
   function bugunKur() {
