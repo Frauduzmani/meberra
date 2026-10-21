@@ -7,6 +7,8 @@ AP sınavları ve Avrupa'da (Almanya, İtalya ve 13 ülke daha) üniversiteye ha
 
 Gerekli: Node.js 22.13+ (önerilen 24 LTS). Veritabanı SQLite'tır ve Node'a dahildir; ayrı kurulum gerekmez.
 
+Windows'ta en kolayı: **`baslat.bat`** dosyasına çift tıklayın (ilk seferde paketleri kurar, sunucuyu açar, tarayıcıyı başlatır).
+
 ```bash
 npm install
 npm start                      # http://localhost:3000
