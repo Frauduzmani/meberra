@@ -27,7 +27,7 @@ const ISLER = { lig: "Lig devri", temizlik: "Log temizliği", erisim: "IP saklam
 const GERI_DONUS = [3, 7, 14], GERI_DONUS_SON = 30;
 const GERI_DONUS_METIN = {
   3: { baslik: "Kısa bir tekrara ne dersin?", metin: "Kaldığın yerden 5 dakikalık bir tekrarla dönmeye ne dersin? Birkaç soru yeter." },
-  7: { baslik: "Yeni bir başlangıç için harika bir gün", metin: "Kaldığın yerden 5 dakikalık bir tekrarla dönmeye ne dersin? Tilo seni bekliyor." },
+  7: { baslik: "Yeni bir başlangıç için harika bir gün", metin: "Kaldığın yerden 5 dakikalık bir tekrarla dönmeye ne dersin? Dede Korkut seni bekliyor." },
   14: { baslik: "Hazır olduğunda buradayız", metin: "Kaldığın yerden 5 dakikalık bir tekrarla dönmeye ne dersin? Küçük adımlar da sayılır." }
 };
 /** Saf: son çalışılan günden bugüne geçen gün → gönderilecek ara (3 | 7 | 14) ya da null (30 günden sonra yok) */

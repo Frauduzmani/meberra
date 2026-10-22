@@ -20,7 +20,7 @@ test("çevrimdışı: SW kabuğu önbellekler, gezinmede uykulu maskotlu çevrim
   });
   const kabuk = onbellek["meberra-kabuk-" + SURUM];
   expect(kabuk, "sürümlü kabuk önbelleği: " + Object.keys(onbellek).join(", ")).toBeTruthy();
-  expect(kabuk).toEqual(expect.arrayContaining(["/cevrimdisi", "/assets/css/styles.css", "/assets/img/maskot/tilki-uykulu.svg", "/assets/fonts/nunito-latin.woff2"]));
+  expect(kabuk).toEqual(expect.arrayContaining(["/cevrimdisi", "/assets/css/styles.css", "/assets/img/maskot/korkut-uykulu.svg", "/assets/fonts/nunito-latin.woff2"]));
   for (const ad of Object.keys(onbellek)) {
     expect(onbellek[ad].filter(p => p.startsWith("/api/")), ad + " içinde API yanıtı olmamalı").toEqual([]);
     if (ad.startsWith("meberra-")) expect(ad.endsWith(SURUM), "eski sürüm önbelleği kalmamalı: " + ad).toBe(true);
@@ -32,7 +32,7 @@ test("çevrimdışı: SW kabuğu önbellekler, gezinmede uykulu maskotlu çevrim
     await expect(page.getByRole("heading", { level: 1, name: "İnternet bağlantın yok gibi" })).toBeVisible();
     await expect(page).toHaveURL(/\/ilerleme$/);
     await expect(page.getByText(/eşitlenir/)).toBeVisible();
-    const maskot = page.getByRole("img", { name: "Uykulu Tilo" });
+    const maskot = page.getByRole("img", { name: "Uykulu Dede Korkut" });
     await expect(maskot).toBeVisible();
     await expect.poll(() => maskot.evaluate(i => i.complete && i.naturalWidth > 0)).toBe(true);
     // Stil önbellekten geldi (styles.css değişkenleri uygulanmış)

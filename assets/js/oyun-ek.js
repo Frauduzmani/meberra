@@ -9,7 +9,7 @@
  *  2. Aylık görev: her takvim ayı (İstanbul) belirlenimli tek hedef (200 soru ya da 15 gün çalışma); Bugün › Daha fazla
  *     içinde kompakt kart, ay sonuna yakın/hedefe yakınken bağlamsal alanda; tamamlanınca aya özel rozet + kutlama.
  *  3. "Haftan nasıldı?": pazartesi ilk ziyarette geçen haftanın sakin özeti (soru, doğruluk, XP, seri, en iyi ders,
- *     gelişen ünite), Tilo, "Paylaş" hikâye kartı (yalnız ilk ad) ve "Kapat". Haftada bir kez; hiçbir şeyi engellemez.
+ *     gelişen ünite), Dede Korkut, "Paylaş" hikâye kartı (yalnız ilk ad) ve "Kapat". Haftada bir kez; hiçbir şeyi engellemez.
  *  4. Profil › Bildirimler: önerilen hatırlatma saati satırı (GET /api/bildirim-ayarlari onerilenSaat) + "Kullan".
  *
  * Depo: apmeberra:oyun:v1 ek alanları (sunucu birleştirmesi server/veri.js oyunBirlestir):

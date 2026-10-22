@@ -1,8 +1,8 @@
 /* ==========================================================================
-   MASKOT — "Tilo" (assets/js/maskot.js üretir). Kitaplıksız CSS canlandırma.
+   MASKOT — "Dede Korkut" (assets/js/maskot.js üretir). Kitaplıksız CSS canlandırma.
    Kullanım: <span data-...> içine MeberraMaskot.html("sevincli", { boyut: 120 }) ya da MeberraMaskot.el(...)
    Sınıflar: .maskot  .maskot--<ifade>  .maskot--anim (canlı)  .maskot--bas (yalnız baş)
-   Parçalar: .mk-hepsi (tüm figür) .mk-nefes .mk-kuyruk .mk-canta .mk-bas-ic .mk-kulak .mk-goz .mk-kol-salla .mk-puskul .mk-z .mk-konfeti
+   Parçalar: .mk-hepsi (tüm figür) .mk-nefes .mk-kopuz .mk-bas-ic .mk-kulak .mk-goz .mk-kol-salla .mk-puskul .mk-z .mk-konfeti
    Canlandırılan parçalar transform-box: fill-box ile kendi kutularına göre döner (her viewBox'ta çalışır).
    Not: transform özniteliği taşıyan (poz) gruplarına fill-box verilmez; canlandırma hep iç grupta yapılır.
    Azaltılmış hareket: hiç canlandırma yok, poz durağan kalır.
@@ -20,32 +20,31 @@
 
 /* --- Dönme noktaları ------------------------------------------------------------------- */
 /* fill-box yalnızca canlandırılan parçalarda */
-.maskot .mk-hepsi, .maskot .mk-nefes, .maskot .mk-bas-ic, .maskot .mk-goz, .maskot .mk-kuyruk, .maskot .mk-kulak,
+.maskot .mk-hepsi, .maskot .mk-nefes, .maskot .mk-bas-ic, .maskot .mk-goz, .maskot .mk-kopuz, .maskot .mk-kulak,
 .maskot .mk-kol-salla, .maskot .mk-kol-sol, .maskot .mk-kol-sag, .maskot .mk-puskul, .maskot .mk-z, .maskot .mk-dusunce > * { transform-box: fill-box; }
 .maskot .mk-hepsi { transform-origin: 50% 100%; }
 .maskot .mk-nefes { transform-origin: 50% 100%; }
 .maskot .mk-bas-ic { transform-origin: 50% 90%; }
 .maskot .mk-goz { transform-origin: 50% 55%; }
-.maskot .mk-kuyruk { transform-origin: 8% 88%; }
+.maskot .mk-kopuz { transform-origin: 70% 90%; }
 .maskot .mk-kulak { transform-origin: 75% 90%; }
 .maskot .mk-kol-salla { transform-origin: 0% 100%; }
 .maskot .mk-kol-sol { transform-origin: 100% 0%; }
 .maskot .mk-kol-sag { transform-origin: 0% 0%; }
 .maskot .mk-puskul { transform-origin: 0% 0%; }
 
-/* --- Boşta: göz kırpma, nefes, kulak oynatma, kuyruk (üzerine gelince) ------------------- */
+/* --- Boşta: göz kırpma, nefes, kopuz (üzerine gelince) ------------------- */
 @keyframes mk-kirp { 0%, 93%, 100% { transform: scaleY(1); } 95.5% { transform: scaleY(.08); } }
 @keyframes mk-nefes { 0%, 100% { transform: translateY(0) scale(1, 1); } 50% { transform: translateY(-1.5%) scale(1.012, .992); } }
 @keyframes mk-kulak { 0%, 88%, 100% { transform: rotate(0); } 90% { transform: rotate(-9deg); } 92% { transform: rotate(3deg); } 94% { transform: rotate(0); } }
-@keyframes mk-kuyruk { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-10deg); } 75% { transform: rotate(7deg); } }
+@keyframes mk-kopuz { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-6deg); } 75% { transform: rotate(4deg); } }
 @keyframes mk-puskul { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(8deg); } }
 
 .maskot--anim .mk-goz { animation: mk-kirp 5.2s linear infinite; animation-delay: var(--mk-gecikme, 0s); }
 .maskot--anim .mk-nefes { animation: mk-nefes 3.4s ease-in-out infinite; }
-.maskot--anim .mk-kulak-sol { animation: mk-kulak 7s ease-in-out infinite; animation-delay: calc(var(--mk-gecikme, 0s) - 2s); }
 .maskot--anim .mk-puskul { animation: mk-puskul 3.4s ease-in-out infinite; }
-.maskot--anim:hover .mk-kuyruk,
-.mk-konus:hover .maskot--anim .mk-kuyruk { animation: mk-kuyruk .7s ease-in-out 2; }
+.maskot--anim:hover .mk-kopuz,
+.mk-konus:hover .maskot--anim .mk-kopuz { animation: mk-kopuz .7s ease-in-out 2; }
 .maskot--bas.maskot--anim .mk-kulak-sol { animation: none; }
 
 /* --- İfadeye özel ---------------------------------------------------------------------- */

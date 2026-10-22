@@ -1,7 +1,7 @@
 /**
  * Meberra 1.11.0 — FRQ (serbest yanıt) pratiği: /frq (frq.html). Sunucu uçları: server/frq.js (bkz. server/API.md "FRQ").
  * Akış: ders çipleri → FRQ kartları → çözüm (isteğe bağlı süre, parça başına metin kutusu, taslak localStorage'da) → "Teslim et"
- * → rubrik (ölçüt başına onay kutusu / puan seçimi, örnek çözüm, sık hatalar) → "Puanımı kaydet" → toplam (sayiSay) + Tilo.
+ * → rubrik (ölçüt başına onay kutusu / puan seçimi, örnek çözüm, sık hatalar) → "Puanımı kaydet" → toplam (sayiSay) + Dede Korkut.
  * Rubrik ve çözümler yalnızca teslimden sonra sunucudan gelir. Adres: /frq?ders=calculus · /frq?id=frq-calc-ab-1
  */
 (function () {

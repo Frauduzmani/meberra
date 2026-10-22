@@ -81,13 +81,13 @@ test("kabuk dosyalarının hepsi sunucuda 200; çevrimdışı sayfa uykulu masko
   const liste = JSON.parse("[" + /var KABUK_DOSYALARI = \[([\s\S]*?)\];/.exec(kod)[1].replace(/CEVRIMDISI/, '"/cevrimdisi"').replace(/,\s*$/, "") + "]");
   assert.ok(liste.length >= 20);
   assert.ok(liste.includes("/cevrimdisi"));
-  assert.ok(liste.includes("/assets/img/maskot/tilki-uykulu.svg"));
+  assert.ok(liste.includes("/assets/img/maskot/korkut-uykulu.svg"));
   assert.ok(!liste.some(u => u.startsWith("/api/")), "API kabukta olamaz");
   for (const u of liste) assert.equal((await fetch(base + u)).status, 200, u);
 
   const s = await (await fetch(base + "/cevrimdisi")).text();
   assert.match(s, /<meta name="meberra-sayfa" content="cevrimdisi">/);
-  assert.match(s, /tilki-uykulu\.svg/);
+  assert.match(s, /korkut-uykulu.svg/);
   assert.match(s, /id="cd-dene"/);
   assert.match(s, /eşitlenir/);
   assert.match(s, /noindex/);

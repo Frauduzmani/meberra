@@ -87,7 +87,7 @@ ok(asiri.satirlar.length === 3 && /…$/.test(asiri.satirlar[2]), "sığmayan me
 ok(K.paylasDuzeni({}).baslik.satirlar[0] === "Harika iş!" && K.paylasDuzeni({}).yuzde === null && K.paylasDuzeni({}).ad === null, "boş paylaşım varsayılanları");
 
 // 7) Maskot SVG
-ok(M.MASKOT_ADI === "Tilo" && M.IFADELER.length === 6, "maskot adı ve 6 ifade");
+ok(M.MASKOT_ADI === "Dede Korkut" && M.IFADELER.length === 6, "maskot adı ve 6 ifade");
 M.IFADELER.forEach(f => {
   const s = M.html(f, { boyut: 64 });
   ok(/^<svg[^>]+viewBox="0 0 200 200"/.test(s) && s.includes("maskot--" + f) && /width="64"/.test(s) && (s.match(/<svg/g) || []).length === 1, "html(" + f + ") tek SVG, doğru sınıf ve boyut");
@@ -96,8 +96,8 @@ const a1 = M.html("sevincli"), a2 = M.html("sevincli");
 const id1 = /clipPath id="([^"]+)"/.exec(a1)[1], id2 = /clipPath id="([^"]+)"/.exec(a2)[1];
 ok(id1 !== id2, "her örnekte benzersiz clipPath kimliği");
 ok(M.html("bilinmez").includes("maskot--sevincli"), "bilinmeyen ifade → sevincli");
-ok(M.html("selam", { etiket: false }).includes('aria-hidden="true"') && M.html("selam").includes('aria-label="Tilo el sallıyor"'), "erişilebilir ad / dekoratif kip");
-ok(M.html("uykulu", { sadeceBas: true }).includes('viewBox="20 -4 160 160"') && !M.html("uykulu", { sadeceBas: true }).includes("mk-kuyruk"), "yalnız baş varyantı");
+ok(M.html("selam", { etiket: false }).includes('aria-hidden="true"') && M.html("selam").includes('aria-label="Dede Korkut el sallıyor"'), "erişilebilir ad / dekoratif kip");
+ok(M.html("uykulu", { sadeceBas: true }).includes('viewBox="14 -6 172 180"') && !M.html("uykulu", { sadeceBas: true }).includes("mk-kopuz"), "yalnız baş varyantı");
 ok(M.html("kutlama", { animasyon: false }).indexOf("maskot--anim") < 0, "animasyon: false sınıfı kaldırır");
 ok(/<mask/.test(M.tekRenk({ renk: "#5B3DF5" })) && M.tekRenk({ renk: "#5B3DF5" }).includes('fill="#5B3DF5"'), "tek renkli varyant");
 ok(M.kisalt("a ".repeat(80), 90).length <= 90 && M.kisalt("kısa", 90) === "kısa" && /…$/.test(M.kisalt("kelime ".repeat(30), 90)), "balon metni ~90 karakterde kısaltılır");

@@ -10,7 +10,7 @@
   <title>AP sınavlarına hazırlan | Meberra</title>
   <meta name="description" content="AP sınavlarına ünite ünite hazırlan; puanınla hangi ülkeye nasıl gideceğini gör. 800+ AP tarzı özgün soru, deneme ve tahmini puan bandı, 15 Avrupa ülkesi için hedef pusulası. Ücretsiz başla.">
   <link rel="stylesheet" href="/assets/css/styles.css">
-  <link rel="stylesheet" href="/assets/css/vitrin.css?v=20261021d">
+  <link rel="stylesheet" href="/assets/css/vitrin.css?v=1200">
   <script src="/assets/js/adresler.js"></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}if("IntersectionObserver"in window){var h=document.documentElement;h.classList.add("vt-js");if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches))h.classList.add("vt-anim")}</script>
 </head>
@@ -38,17 +38,18 @@
 
       <div class="vt-hero-grid">
         <div class="vt-hero-text">
-          <p class="vt-hero-tag"><span class="vt-pulse" aria-hidden="true"></span>AP hazırlık · hedef pusulası</p>
+          <p class="vt-hero-tag"><span class="vt-pulse" aria-hidden="true"></span>Lise öğrencileri için · AP sınav hazırlığı</p>
+          <!-- 1.20.0: AP'yi hiç duymamış ziyaretçi de ilk ekranda anlasın: başlık faydayı, alt metin AP'nin tanımını söyler -->
           <h1 id="vt-h1" tabindex="-1" class="vt-kinetic">
-            <span class="vt-w" style="--i:0"><em>AP</em></span> <span class="vt-w" style="--i:1"><em>sınavlarına</em></span> <span class="vt-w" style="--i:2">hazırlan,</span>
-            <span class="vt-w" style="--i:3">puanınla</span> <span class="vt-w" style="--i:4">hangi</span> <span class="vt-w" style="--i:5">ülkeye</span> <span class="vt-w" style="--i:6">nasıl</span> <span class="vt-w" style="--i:7">gideceğini</span> <span class="vt-w" style="--i:8">gör.</span>
+            <span class="vt-w" style="--i:0">Yurt</span> <span class="vt-w" style="--i:1">dışında</span> <span class="vt-w" style="--i:2">üniversite</span> <span class="vt-w" style="--i:3">mi</span> <span class="vt-w" style="--i:4">hedefin?</span>
+            <span class="vt-w" style="--i:5"><em>AP</em></span> <span class="vt-w" style="--i:6"><em>sınavlarına</em></span> <span class="vt-w" style="--i:7">buradan</span> <span class="vt-w" style="--i:8">hazırlan.</span>
           </h1>
-          <p class="vt-hero-sub">Ünite ünite konu anlatımı, 800+ AP tarzı özgün soru ve denemeler. Yanında 15 Avrupa ülkesi için hedef pusulası.</p>
+          <p class="vt-hero-sub"><strong>AP</strong>, lise öğrencilerinin girdiği, üniversite seviyesinde ders sınavlarıdır (Calculus, Fizik, Kimya, Biyoloji…). İyi bir AP puanı yurt dışı üniversite başvurusunda seni öne çıkarır. Meberra’da Türkçe açıklamalarla çalışır, puanının hangi ülkede ne işe yaradığını görürsün.</p>
           <div class="vt-hero-cta">
             <a class="btn-energy vt-cta-big" href="/giris#kayit">Ücretsiz başla
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
-            <a class="vt-btn-light" href="#vt-demo">Bir soru dene</a>
+            <a class="vt-btn-light" href="#vt-ap">AP nedir? 1 dakikada öğren</a>
           </div>
           <ul class="vt-hero-notes">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Kart gerekmez</li>
@@ -59,7 +60,7 @@
 
         <!-- 3 adımlı anlatım: JS yoksa ya da hareket azaltılmışsa üç adım birlikte görünür -->
         <div class="vx" id="vx" role="region" aria-roledescription="anlatım" aria-label="AP'yi üç adımda anla">
-          <!-- 1.4.0: Tilo anlatımın köşesinden el sallar (konumu mutlak: sayfa kaymaz; canli.js doldurur) -->
+          <!-- 1.4.0: Dede Korkut anlatımın köşesinden el sallar (konumu mutlak: sayfa kaymaz; canli.js doldurur) -->
           <span class="vt-tilo vt-tilo--hero" data-maskot="selam" data-boyut="96"></span>
           <div class="vx-bar">
             <div class="vx-dots" role="group" aria-label="Adım seç">
@@ -129,6 +130,38 @@
         <li><b>15</b><span>Avrupa ülkesi</span></li>
         <li><b>1–5</b><span>tahmini puan bandı</span></li>
       </ul>
+    </section>
+
+    <!-- 1b. AP'yi hiç bilmeyen için: dört soruda AP (statik, animasyonsuz da okunur) -->
+    <section class="vt-ap vt-anchor" id="vt-ap" aria-labelledby="vt-ap-h">
+      <div class="vt-sec-head is-center" data-rv>
+        <p class="vt-kicker">AP’yi ilk kez mi duyuyorsun?</p>
+        <h2 class="vt-h2" id="vt-ap-h" tabindex="-1">Bir dakikada AP</h2>
+        <p class="vt-lead">AP, “Advanced Placement” demek. ABD’deki College Board hazırlıyor; dünyanın her yerinden lise öğrencileri giriyor.</p>
+      </div>
+      <ul class="vt-features vt-ap-grid">
+        <li class="vt-feature surface" data-rv style="--d:0">
+          <span class="vt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/><path d="M8 7h8M8 11h6"/></svg></span>
+          <h3>Nedir?</h3>
+          <p>Üniversitenin ilk yılında okunan bir dersin (ör. Calculus, Fizik) <strong>lisedeyken girilen sınavı</strong>. Her ders ayrı sınavdır; hangilerine gireceğini sen seçersin. Puan 1–5 arasıdır, 4 ve 5 güçlü sayılır.</p>
+        </li>
+        <li class="vt-feature surface" data-rv style="--d:1">
+          <span class="vt-ico is-enerji" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span>
+          <h3>Kim girer?</h3>
+          <p>Çoğunlukla 10–12. sınıf öğrencileri. Okulunda AP dersi olmasa da girebilirsin; konuları kendin çalışırsın. Meberra tam olarak bunun için var.</p>
+        </li>
+        <li class="vt-feature surface" data-rv style="--d:2">
+          <span class="vt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></span>
+          <h3>Ne zaman, nerede?</h3>
+          <p>Yılda bir kez, <strong>mayısta</strong>. Türkiye’de College Board’a bağlı yetkili okullarda girilir; kayıtlar genelde sonbaharda kapanır.</p>
+        </li>
+        <li class="vt-feature surface" data-rv style="--d:3">
+          <span class="vt-ico is-ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></span>
+          <h3>Ne işe yarar?</h3>
+          <p>Yurt dışı başvurularında akademik gücünü kanıtlar. ABD’de üniversite kredisi sayılabilir; Hollanda gibi bazı Avrupa ülkelerinde bazı üniversiteler Türk lise diplomasının yanında AP ister. Her ülkede kural farklı; Meberra ülke ülke gösterir.</p>
+        </li>
+      </ul>
+      <p class="vt-ap-more" data-rv><a href="/rehber/ap-nedir">AP hakkında ayrıntılı rehber</a> · <a href="/rehber/turkiyede-ap">Türkiye’de AP sınavına nasıl girilir?</a></p>
     </section>
 
     <!-- 2. Mini demo -->

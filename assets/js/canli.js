@@ -1,5 +1,5 @@
 /**
- * Meberra 1.4.0 "woow ama kaotik değil" — canlı katman (maskot Tilo + hareket + kutlama bağlantıları). Kitaplıksız, derlemesiz.
+ * Meberra 1.4.0 "woow ama kaotik değil" — canlı katman (maskot Dede Korkut + hareket + kutlama bağlantıları). Kitaplıksız, derlemesiz.
  * Her sayfada app.js'in "1.4.0 maskot/hareket" bloğu yükler (admin hariç). Kaymanın önemli olduğu sayfalar (Bugün, Çalış,
  * ders sayfaları, İlerleme, Profil, Sorularım) başlıkta statik yükler; yükleyici ikinci kez eklemez.
  * Bağımlılıklar çağrı anında aranır (hepsi isteğe bağlı): MeberraMaskot (maskot.js), MeberraKutlama (kutlama.js), MEBERRA_OYUN (oyun.js).

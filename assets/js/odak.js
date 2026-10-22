@@ -1,6 +1,6 @@
 /**
  * Meberra 1.17.0 — Odak sayacı (Pomodoro benzeri). Kitaplıksız; stiller assets/css/odak.css.
- * Bağımlılıklar (isteğe bağlı): MeberraMaskot (Tilo "dusunen"), MeberraKutlama (bitişte küçük kutlama).
+ * Bağımlılıklar (isteğe bağlı): MeberraMaskot (Dede Korkut "dusunen"), MeberraKutlama (bitişte küçük kutlama).
  *
  * API (window.MeberraOdak):
  *   baslat({ dk?: 25, mola?: 5 })  odak başlar (dk: 15 | 25 | 45; mola: 3 | 5 | 10)

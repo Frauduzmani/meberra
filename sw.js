@@ -3,7 +3,7 @@
    - notificationclick: açık bir Meberra sekmesi varsa ona odaklanıp bağlantıya gider; yoksa yeni pencere açar.
    - 1.15.0 Çevrimdışı (PWA):
        * install: uygulama kabuğu (stiller, temel betikler, yerel fontlar, ikonlar, maskot, /cevrimdisi) önbelleğe alınır.
-       * Sayfa gezinmesi: önce ağ; ağ yoksa /cevrimdisi (uykulu Tilo). Sayfalar önbelleğe YAZILMAZ (güncellik ve kişisel veri).
+       * Sayfa gezinmesi: önce ağ; ağ yoksa /cevrimdisi (uykulu Dede Korkut). Sayfalar önbelleğe YAZILMAZ (güncellik ve kişisel veri).
        * /assets/*: stale-while-revalidate (önbellekten hemen, arka planda tazele).
        * /api/* HİÇBİR ZAMAN önbelleğe alınmaz ve ele alınmaz (tarayıcıya bırakılır).
        * activate: adı "meberra-" ile başlayan, bu sürüme ait olmayan önbellekler silinir.
@@ -62,8 +62,8 @@ var KABUK_DOSYALARI = [
   "/assets/img/pwa/icon-512.png",
   "/assets/img/pwa/badge-72.png",
   "/assets/img/pwa/apple-touch-icon.png",
-  "/assets/img/maskot/tilki-uykulu.svg",
-  "/assets/img/maskot/tilki-selam.svg"
+  "/assets/img/maskot/korkut-uykulu.svg",
+  "/assets/img/maskot/korkut-selam.svg"
 ];
 
 self.addEventListener("install", function (e) {

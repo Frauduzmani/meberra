@@ -1,7 +1,7 @@
 /**
  * Meberra 1.18.0 — Kavram kartları: /kartlar (kartlar.html). Sunucu: server/kart.js (bkz. server/API.md "Kavram kartları").
  * Akış: ders çipleri → "Bugünkü kartlar (N)" + ünite desteleri (öğrenilme çubuğu) → çalışma: kart çevir (Boşluk / dokun),
- * değerlendir (1 Tekrar · 2 Zor · 3 Biliyorum; mobilde kaydır: sola tekrar, sağa biliyorum, yukarı zor) → oturum özeti + Tilo.
+ * değerlendir (1 Tekrar · 2 Zor · 3 Biliyorum; mobilde kaydır: sola tekrar, sağa biliyorum, yukarı zor) → oturum özeti + Dede Korkut.
  * Tekrar durumu sunucuda tutulur (SM-2-lite). Adres: /kartlar?ders=calculus · /kartlar?ders=calculus&unite=1
  */
 (function () {

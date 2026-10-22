@@ -3494,13 +3494,13 @@ window.APMEBERRA = {
   });
 })();
 
-// 1.4.0 maskot/hareket — maskot (Tilo), hareket sistemi ve canlı katman her sayfada (admin hariç).
+// 1.4.0 maskot/hareket — maskot (Dede Korkut), hareket sistemi ve canlı katman her sayfada (admin hariç).
 // Sıra: hareket.css + maskot.css + canli.css (styles.css'ten sonra), maskot.js → kutlama.js → canli.js (async=false: eklenme sırasıyla
 // çalışır). Bugün / Çalış / ders sayfaları / İlerleme / Profil / Sorularım bunları başlıkta statik yükler (kayma olmasın): ikinci kez eklenmez.
 (function () {
   "use strict";
   if (typeof document === "undefined" || apCurrentPage() === "admin") return;
-  var V = "20261021m";
+  var V = "1200"; // 1.20.0: maskot Dede Korkut
   [["link", "/assets/css/hareket.css"], ["link", "/assets/css/maskot.css"], ["link", "/assets/css/canli.css"],
    ["script", "/assets/js/maskot.js"], ["script", "/assets/js/kutlama.js"], ["script", "/assets/js/canli.js"]].forEach(function (m) {
     if (document.querySelector(m[0] === "link" ? 'link[href*="' + m[1] + '"]' : 'script[src*="' + m[1] + '"]')) return;

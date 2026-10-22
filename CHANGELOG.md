@@ -9,6 +9,13 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.20.0] — 2026-10-22
+### Değişti
+- Maskot Tilki (Tilo) yerine **Dede Korkut**: ak sakal, uzun ak börk, mor kaftan + altın kuşak, sırtında kopuz. Aynı çizgi stili, aynı 6 ifade ve API (`MeberraMaskot`); kuyruk sallama yerine üzerine gelince kopuz sallanır. Statik dosyalar `assets/img/maskot/korkut-*.svg` (eski `tilki-*.svg` kaldırıldı). Maskot adı geçen tüm metinler güncellendi.
+- Vitrin (`/`) AP'yi hiç bilmeyen ziyaretçi için: başlık faydayı söyler ("Yurt dışında üniversite mi hedefin? AP sınavlarına buradan hazırlan."), alt metin AP'yi tek cümlede tanımlar; ikinci düğme "AP nedir? 1 dakikada öğren". Hero'nun hemen altına "Bir dakikada AP" bölümü: Nedir? · Kim girer? · Ne zaman, nerede? · Ne işe yarar? + rehber bağlantıları.
+### Düzeltildi
+- Statik maskot SVG'lerinde yinelenen `stroke-width` özniteliği `<img>` ile yüklemeyi bozuyordu (XML ayrıştırma hatası).
+
 ## [1.19.1] — 2026-10-21
 ### Düzeltildi
 - Ders sayfalarında ünite görünümü kayması (CLS 0,5–0,88 → 0,002): doğru ünite seçilene kadar içerik ilk boyamada gizlenir (6 sn güvenlik zaman aşımı).

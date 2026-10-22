@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="/assets/css/bildirim.css?v=20261021m">
   <!-- 1.4.0 maskot/hareket: statik (kayma olmasın); app.js yükleyicisi ikinci kez eklemez -->
   <link rel="stylesheet" href="/assets/css/hareket.css?v=20261021m">
-  <link rel="stylesheet" href="/assets/css/maskot.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/maskot.css?v=1200">
   <link rel="stylesheet" href="/assets/css/canli.css?v=20261021m">
   <link rel="stylesheet" href="/assets/css/oyun-ek.css?v=1160">
   <script src="/assets/js/adresler.js"></script>
@@ -43,7 +43,7 @@
     <div class="bugun-serit" id="bugun-serit" role="note" hidden></div>
 
     <div class="bg-ust">
-      <!-- (a) KARŞILAMA + BUGÜNKÜ GÖREV: Tilo saate göre selamlar (günün ilk ziyaretinde el sallar; akşam seri tehlikedeyse uykulu, dostça hatırlatır) -->
+      <!-- (a) KARŞILAMA + BUGÜNKÜ GÖREV: Dede Korkut saate göre selamlar (günün ilk ziyaretinde el sallar; akşam seri tehlikedeyse uykulu, dostça hatırlatır) -->
       <section class="bg-hero" id="siradaki" aria-labelledby="today-title">
         <span class="bg-hero-isik" aria-hidden="true"><i></i><i></i><i></i></span>
         <div class="mk-konus bg-tilo" id="bg-hello">
@@ -177,7 +177,7 @@
   <script src="/data/mevzuat/ulke-dizini.js"></script>
   <script src="/assets/js/sartlar-motor.js"></script>
   <!-- 1.4.0 maskot/hareket: Bugün karşılaması ilk boyamada çizilsin diye eşzamanlı (satır içi betik kullanır) -->
-  <script src="/assets/js/maskot.js?v=20261021m"></script>
+  <script src="/assets/js/maskot.js?v=1200"></script>
   <script src="/assets/js/canli.js?v=20261021m"></script>
   <script src="/assets/js/ucretsiz-kural.js"></script>
   <script src="/assets/js/auth.js"></script>
@@ -488,7 +488,7 @@
     }
     seriCiz();
 
-    // 4c) 1.4.0 Tilo karşılaması: saate göre selam; günün ilk ziyaretinde el sallar, sonra sevinçli; akşam (18:00+) serisi olup
+    // 4c) 1.4.0 Dede Korkut karşılaması: saate göre selam; günün ilk ziyaretinde el sallar, sonra sevinçli; akşam (18:00+) serisi olup
     // bugün çalışmamışsa uykulu ve dostça hatırlatır (suçlamaz). İlk ziyaret işareti cihazda: meberra-canli:selam = gün.
     function tiloCiz(saatZorla) {
       var C = window.MeberraCanli, MK = window.MeberraMaskot, yer = document.getElementById("bg-tilo");
@@ -713,7 +713,7 @@
         ns.insertAdjacentHTML("afterbegin", '<span class="bg-ilk-rozet">Hoş geldin! İlk adımın hazır</span>');
         ns.querySelector(".sa-actions").insertAdjacentHTML("beforebegin",
           '<ol class="bg-ilk-adim" aria-label="Başlangıç adımları"><li class="is-simdi"><b>1</b>Seviye testi</li><li><b>2</b>İlk ünite</li><li><b>3</b>Seriyi başlat</li></ol>');
-        // 1.4.0: hero çizimi yerine Tilo karşılar (tek büyük an)
+        // 1.4.0: hero çizimi yerine Dede Korkut karşılar (tek büyük an)
       } else if (window.apCalismaSerisi) {
         var seriV = A.storeGet("apmeberra:seri:v1", null);
         var sr = apCalismaSerisi(A.loadProgress(), den, BG || new Date(), seriV && Array.isArray(seriV.donmus) ? seriV.donmus : []);

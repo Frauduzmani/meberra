@@ -111,7 +111,7 @@
     indir: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>'
   };
   var TUR_AD = { "soru-yanit": "Soru yanıtı", seri: "Seri", premium: "Premium", duyuru: "Duyuru", rozet: "Rozet", lig: "Lig", tekrar: "Tekrar" };
-  // 1.4.0: oyun bildirimlerinde avatar maskot başıdır (Tilo, assets/js/maskot.js); soru yanıtı ve Premium kendi ikonunu korur.
+  // 1.4.0: oyun bildirimlerinde avatar maskot başıdır (Dede Korkut, assets/js/maskot.js); soru yanıtı ve Premium kendi ikonunu korur.
   var MASKOT_TUR = { seri: "uykulu", rozet: "kutlama", lig: "sevincli", tekrar: "dusunen", duyuru: "selam" };
   function maskotBas(ifade, boyut) {
     var M = window.MeberraMaskot;
@@ -903,7 +903,7 @@
       var g = govde();
       if (!j.katildi) {
         g.innerHTML =
-          // 1.4.0: Tilo el sallayarak lige davet eder (katılım isteğe bağlı)
+          // 1.4.0: Dede Korkut el sallayarak lige davet eder (katılım isteğe bağlı)
           (window.MeberraMaskot ? '<div class="mk-konus bd-lig-tilo"><div class="mk-konus__maskot">' + maskotTam("selam", 88) + '</div><div class="mk-balon"><p class="mk-balon__metin"><strong class="mk-balon__ad">' + esc(window.MeberraMaskot.MASKOT_ADI) + ':</strong> Ligde haftalık XP yarışı seni bekliyor. İstersen takma adınla katıl!</p></div></div>' : "") +
           '<p class="panel-lead">Her hafta en fazla 30 kişilik gruplarda XP topla, hafta sonunda üst kademeye çık. Katılım isteğe bağlı; diğerleri yalnızca <strong>takma adını</strong> ve XP\'ni görür.</p>' +
           '<div class="bd-lig-kademeler" aria-label="Kademeler">' + ((j.kurallar && j.kurallar.kademeler) || ["Bronz", "Gümüş", "Altın", "Elmas", "Şampiyon"]).map(function (k, i) {
