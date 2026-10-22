@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="/assets/css/styles.css">
   <link rel="stylesheet" href="/assets/css/icerik.css">
   <link rel="stylesheet" href="/assets/css/hedefim.css">
+  <link rel="stylesheet" href="/assets/css/ulkem.css?v=1210">
   <script src="/assets/js/adresler.js"></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
@@ -22,10 +23,29 @@
   </nav>
 
   <main class="main-container hd" id="main-content">
-    <header class="page-head hd-head sr-head">
-      <p class="hd-ust eyebrow">Ülke şartları · Giriş gerekmez</p>
-      <h1 id="sr-h1" tabindex="-1">15 Avrupa ülkesinde lisans: durumuna göre şartlar</h1>
-      <p class="hd-alt" id="sr-lead">Ne gerektiğini, kaçırmaman gereken tarihleri, sık yapılan hataları, bursları ve ülkenin en iyi üniversitelerini resmi kaynaklarıyla gör.</p>
+    <!-- 1.21.0: giriş ekranı sadeleşti — mor hero, önce ülke (bayraklı kartlar), sonra tek soru (durum + sınıf); dil sonuç sayfasında -->
+    <header class="page-head hd-head sr-head ulk-hero">
+      <div class="ulk-hero-in">
+        <p class="hd-ust eyebrow">Ülke şartları · Giriş gerekmez</p>
+        <h1 id="sr-h1" tabindex="-1">Nerede okumak istiyorsun?</h1>
+        <p class="hd-alt" id="sr-lead">Türk lise diploması ve AP ile 15 Avrupa ülkesinde lisansa ne gerektiğini tek sayfada gör: şartlar, tarihler, burslar. Hepsi resmi kaynaklarıyla.</p>
+        <ol class="ulk-yol" aria-label="Nasıl çalışır">
+          <li><span aria-hidden="true">1</span>Ülkeni seç</li>
+          <li><span aria-hidden="true">2</span>Durumunu söyle</li>
+          <li><span aria-hidden="true">3</span>Yol haritanı gör</li>
+        </ol>
+      </div>
+      <div class="ulk-bulut" aria-hidden="true">
+        <span class="ul-bayrak ul-bayrak-nl" style="--x:8%;--y:14%;--r:-8deg;--g:0s"></span>
+        <span class="ul-bayrak ul-bayrak-de" style="--x:42%;--y:4%;--r:6deg;--g:-1.2s"></span>
+        <span class="ul-bayrak ul-bayrak-it" style="--x:74%;--y:16%;--r:-4deg;--g:-2.4s"></span>
+        <span class="ul-bayrak ul-bayrak-fr" style="--x:22%;--y:42%;--r:5deg;--g:-.6s"></span>
+        <span class="ul-bayrak ul-bayrak-se" style="--x:58%;--y:38%;--r:-6deg;--g:-1.8s"></span>
+        <span class="ul-bayrak ul-bayrak-ch" style="--x:86%;--y:50%;--r:8deg;--g:-3s"></span>
+        <span class="ul-bayrak ul-bayrak-ie" style="--x:4%;--y:70%;--r:7deg;--g:-2.1s"></span>
+        <span class="ul-bayrak ul-bayrak-es" style="--x:38%;--y:72%;--r:-5deg;--g:-.9s"></span>
+        <span class="ul-bayrak ul-bayrak-at" style="--x:70%;--y:78%;--r:4deg;--g:-2.7s"></span>
+      </div>
     </header>
 
     <!-- 1.9.0: profilinde hedef ülkeleri olan öğrenci için ülke değiştirici (form yalnızca "Başka ülke" ile açılır) -->
@@ -38,32 +58,36 @@
         <button type="button" class="btn-ghost btn-sm" id="sr-degistir" aria-expanded="false" aria-controls="sr-adimlar">Başka ülkeye bak</button>
       </div>
       <div class="sr-adimlar" id="sr-adimlar">
-        <fieldset class="sr-field2" id="sr-f-model">
-          <legend class="sr-leg"><span class="sr-no" aria-hidden="true">1</span>Durumun</legend>
-          <div class="sr-cards">
-            <label class="sr-card"><input type="radio" name="model" value="lise"><span><strong>Lise öğrencisi</strong><small>9–12. sınıf · lisansa hazırlık</small></span></label>
-            <label class="sr-card"><input type="radio" name="model" value="lise-mezun"><span><strong>Lise mezunu</strong><small>Lisansa başvuru</small></span></label>
-            <label class="sr-card" id="sr-card-uni" hidden><input type="radio" name="model" value="uni-mezun"><span><strong>Üniversite mezunu</strong><small>Yüksek lisans</small></span></label>
-          </div>
-        </fieldset>
-        <fieldset class="sr-field2" id="sr-f-sinif">
-          <legend class="sr-leg"><span class="sr-no" aria-hidden="true">2</span>Sınıfın</legend>
-          <div class="sr-seg sr-seg-sinif">
-            <label class="sr-opt"><input type="radio" name="sinif" value="9"><span>9. sınıf</span></label>
-            <label class="sr-opt"><input type="radio" name="sinif" value="10"><span>10. sınıf</span></label>
-            <label class="sr-opt"><input type="radio" name="sinif" value="11"><span>11. sınıf</span></label>
-            <label class="sr-opt"><input type="radio" name="sinif" value="12"><span>12. sınıf</span></label>
-          </div>
-        </fieldset>
         <fieldset class="sr-field2" id="sr-f-ulke">
-          <legend class="sr-leg"><span class="sr-no" aria-hidden="true">3</span>Ülke</legend>
+          <legend class="sr-leg"><span class="sr-no" aria-hidden="true">1</span>Ülkeni seç</legend>
           <div class="sr-ulke-arac">
-            <label class="check-row sr-yalniz"><input type="checkbox" name="yalniz-en" id="sr-yalniz-en"> <span id="sr-yalniz-metin">Yalnızca İngilizce lisans programı olanlar</span></label>
+            <label class="check-row sr-yalniz ulk-suzgec"><input type="checkbox" name="yalniz-en" id="sr-yalniz-en"> <span id="sr-yalniz-metin">Yalnızca İngilizce lisans programı olanlar</span></label>
             <span class="sr-ulke-say" id="sr-ulke-say" aria-live="polite"></span>
           </div>
           <p class="field-hint" id="sr-yalniz-not" hidden></p>
           <div id="sr-ulke-grid"></div>
         </fieldset>
+        <!-- Ülke seçilince (ya da durum adreste varsa) açılan tek soru: durum + sınıf -->
+        <div class="ulk-son" id="ulk-son" hidden>
+          <p class="ulk-son-h" id="ulk-son-h">Son bir soru</p>
+          <fieldset class="sr-field2" id="sr-f-model">
+            <legend class="sr-leg"><span class="sr-no" aria-hidden="true">2</span>Durumun</legend>
+            <div class="sr-cards">
+              <label class="sr-card"><input type="radio" name="model" value="lise"><span><strong>Lise öğrencisiyim</strong><small>9–12. sınıf · lisansa hazırlık</small></span></label>
+              <label class="sr-card"><input type="radio" name="model" value="lise-mezun"><span><strong>Liseden mezun oldum</strong><small>Lisansa başvuru</small></span></label>
+              <label class="sr-card" id="sr-card-uni" hidden><input type="radio" name="model" value="uni-mezun"><span><strong>Üniversite mezunu</strong><small>Yüksek lisans</small></span></label>
+            </div>
+          </fieldset>
+          <fieldset class="sr-field2" id="sr-f-sinif">
+            <legend class="sr-leg"><span class="sr-no" aria-hidden="true">3</span>Sınıfın</legend>
+            <div class="sr-seg sr-seg-sinif">
+              <label class="sr-opt"><input type="radio" name="sinif" value="9"><span>9. sınıf</span></label>
+              <label class="sr-opt"><input type="radio" name="sinif" value="10"><span>10. sınıf</span></label>
+              <label class="sr-opt"><input type="radio" name="sinif" value="11"><span>11. sınıf</span></label>
+              <label class="sr-opt"><input type="radio" name="sinif" value="12"><span>12. sınıf</span></label>
+            </div>
+          </fieldset>
+        </div>
         <fieldset class="sr-field2" id="sr-f-dil">
           <legend class="sr-leg"><span class="sr-no" aria-hidden="true">4</span>Eğitim dili</legend>
           <div class="sr-seg sr-seg-dil">
@@ -176,7 +200,6 @@
     function kayit(cc) { return DK[cc] || { kod: cc, ad: ULKE_AD[cc] || cc, bulunma: (ULKE_AD[cc] || cc) + "’da", yerelDil: [], program: null, veri: { dosya: true } }; }
     function bulunma(k) { return String(k.bulunma || k.ad).replace(/'/g, "’"); }
     function duzeyAd(d) { return d === "yl" ? "yüksek lisans" : "lisans"; }
-    function duzeyKisa(d) { return d === "yl" ? "YL" : "lisans"; }
     function dilEtiket(dil, k) { return M.dilAd(dil, k, DIZIN.dilAd); }
     function kimKisa(s) { return s.model === "lise" ? (s.sinif ? s.sinif + ". sınıf" : "Lise öğrencisi") : M.modelAd(s.model); }
     function tam(s) { return !!(s.model && (s.model !== "lise" || s.sinif) && s.ulke); }
@@ -199,25 +222,28 @@
       var yalniz = $("sr-yalniz-en").checked;
       var bilinen = DIZIN.ulkeler.some(function (k) { return M.programDurumu(k, duzey, "en") !== "veri-yok"; });
       var gosterilen = 0;
-      function kart(k) {
+      // 1.21.0: sade kart — bayrak, ad, yerel dil, tek rozet. Uzun ülke uyarısı (ozetUyari) sonuç sayfasının özetinde.
+      function kart(k, i) {
         var d = M.programDurumu(k, duzey, "en");
         var gizli = yalniz && bilinen && d !== "genis" && d !== "kisitli";
         if (!gizli) gosterilen++;
-        return '<label class="sr-ulke' + (k.kod === secim.ulke ? " is-checked" : "") + '" data-ulke="' + esc(k.kod) + '"' + (gizli ? " hidden" : "") + '>' +
+        return '<label class="sr-ulke ulk-kart' + (k.kod === secim.ulke ? " is-checked" : "") + '" data-ulke="' + esc(k.kod) + '" style="--s:' + i + '"' + (gizli ? " hidden" : "") + '>' +
           '<input type="radio" name="ulke" value="' + esc(k.kod) + '"' + (k.kod === secim.ulke ? " checked" : "") + '>' +
           '<span class="sr-ulke-in">' +
-            '<span class="sr-ulke-top">' + ccRozet(k.kod) + '<strong>' + esc(k.ad) + '</strong>' + (k.rozet ? '<span class="mz-rozet">' + esc(k.rozet) + '</span>' : "") + '</span>' +
-            '<span class="sr-ulke-meta">' + UI.durumRozet(d, "EN " + duzeyKisa(duzey)) + '</span>' +
-            (M.ozetUyari(k, duzey, "en") ? '<span class="sr-ulke-uyari"><span aria-hidden="true">! </span>' + esc(M.ozetUyari(k, duzey, "en").metin) + '</span>' : "") +
-            '<span class="sr-ulke-sub">Yerel: ' + esc(k.yerelDilAd || "—") + (k.tarihliRota && k.tarihliRota[duzey] ? ' · <span class="sr-ulke-rota">Tarihli rota</span>' : "") + '</span>' +
+            '<span class="ulk-ust"><span class="ul-bayrak ul-bayrak-' + esc(k.kod) + ' ulk-bayrak" aria-hidden="true"></span>' +
+              '<span class="ulk-tik" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></span>' +
+            '<strong class="ulk-ad">' + esc(k.ad) + '</strong>' +
+            '<span class="ulk-yerel">Yerel dil: ' + esc(k.yerelDilAd || "—") + '</span>' +
+            '<span class="ulk-rozetler">' + UI.durumRozet(d, "İngilizce") +
+              (k.tarihliRota && k.tarihliRota[duzey] ? '<span class="ulk-rota">Adım adım takvim</span>' : "") +
+              (k.rozet ? '<span class="mz-rozet">' + esc(k.rozet) + '</span>' : "") + '</span>' +
           '</span></label>';
       }
       var ana = DIZIN.ulkeler.filter(function (k) { return k.grup === "ana"; });
       var diger = DIZIN.ulkeler.filter(function (k) { return k.grup !== "ana"; }).sort(function (a, b) { return a.ad.localeCompare(b.ad, "tr"); });
-      var html = '<p class="sr-ulke-grup-h">Tarihli rotası olanlar</p><div class="sr-ulke-grid">' + ana.map(kart).join("") + '</div>' +
-        '<p class="sr-ulke-grup-h">Diğer ülkeler</p><div class="sr-ulke-grid">' + diger.map(kart).join("") + '</div>';
+      var html = '<div class="sr-ulke-grid ulk-grid">' + ana.concat(diger).map(kart).join("") + '</div>';
       $("sr-ulke-grid").innerHTML = html;
-      $("sr-ulke-say").textContent = DIZIN.ulkeler.length + " ülke · " + gosterilen + " gösteriliyor";
+      $("sr-ulke-say").textContent = gosterilen === DIZIN.ulkeler.length ? DIZIN.ulkeler.length + " ülke" : gosterilen + " / " + DIZIN.ulkeler.length + " ülke";
       $("sr-yalniz-metin").textContent = "Yalnızca İngilizce " + duzeyAd(duzey) + " programı olanlar";
       $("sr-yalniz-en").disabled = !bilinen;
       var not = $("sr-yalniz-not");
@@ -240,13 +266,14 @@
       $("sr-dil-not").hidden = !ie;
       $("sr-dil-not").textContent = ie ? "İrlanda’da öğretim dili İngilizce; yerel dil seçeneği yok." : "";
       // Adım görünürlüğü ve numaraları
-      var lise = secim.model === "lise" || !secim.model;
-      $("sr-f-sinif").hidden = !lise;
+      $("sr-f-sinif").hidden = secim.model !== "lise"; // 1.21.0: sınıf sorusu yalnızca "Lise öğrencisiyim" seçilince
       var n = 1;
-      ["sr-f-model", "sr-f-sinif", "sr-f-ulke", "sr-f-dil"].forEach(function (id) { var f = $(id); if (!f.hidden) f.querySelector(".sr-no").textContent = n++; });
+      // 1.21.0: ülke her zaman canlı; durum sorusu ülke seçilince (ya da durum adreste varsa / seçici açıkken) açılır; dil yalnızca seçici açıkken
+      $("ulk-son").hidden = !(secim.ulke || secim.model || acik);
+      $("ulk-son-h").textContent = secim.ulke && !tam(secim) ? "Son bir soru: " + kayit(secim.ulke).ad + " için durumun ne?" : "Durumun";
+      $("sr-f-dil").hidden = !tam(secim);
+      ["sr-f-ulke", "sr-f-model", "sr-f-sinif", "sr-f-dil"].forEach(function (id) { var f = $(id); if (!f.hidden) f.querySelector(".sr-no").textContent = n++; });
       $("sr-f-sinif").classList.toggle("is-soluk", !secim.model);
-      $("sr-f-ulke").classList.toggle("is-soluk", !secim.model || (secim.model === "lise" && !secim.sinif));
-      $("sr-f-dil").classList.toggle("is-soluk", !secim.ulke);
       // Özet çubuğu ve kompakt görünüm
       var t = tam(secim);
       form.classList.toggle("is-kompakt", t && !acik);
@@ -287,12 +314,14 @@
 
     // ---------------- Bileşenler ----------------
     function introHtml() {
-      var eksik = !secim.model ? "durum" : secim.model === "lise" && !secim.sinif ? "sinif" : "ulke";
-      var BASLIK = { durum: "Önce durumunu seç", sinif: "Şimdi sınıfını seç", ulke: "Şimdi ülkeni seç" };
+      if (secim.ulke) return ""; // 1.21.0: ülke seçiliyse soru kutusu (#ulk-son) zaten ne eksik olduğunu söylüyor
+      // 1.21.0: önce ülke, sonra durum/sınıf (soru kutusu formun içinde); burada yalnızca "seçince ne göreceksin" şeridi
+      var eksik = !secim.ulke ? "ulke" : !secim.model ? "durum" : "sinif";
+      var BASLIK = { ulke: "Ülkeni seçince göreceklerin", durum: "Bir adım kaldı", sinif: "Bir adım kaldı" };
       var METIN = {
-        durum: "Lise öğrencisi ya da lise mezunu olmana göre farklı şartlar ve takvimler geçerli.",
-        sinif: "Sınıfına göre bu yıl yapman gerekenler ve takvim tarihleri değişir.",
-        ulke: "Yukarıdaki 15 ülkeden birini seç. Kartlardaki rozet, ülkede İngilizce " + duzeyAd(secim.duzey || "lisans") + " programı olup olmadığını gösterir."
+        ulke: "Kartlardaki rozet, ülkede İngilizce " + duzeyAd(secim.duzey || "lisans") + " programı ne kadar var, onu gösterir.",
+        durum: "Yukarıda durumunu seç; şartlar ve takvim ona göre hazırlanır.",
+        sinif: "Yukarıda sınıfını seç; bu yıl yapman gerekenler ona göre değişir."
       };
       var kendi = null;
       if (PROF && PROF.ogrenciModeli && Array.isArray(PROF.ulkeler) && PROF.ulkeler.length) {
@@ -684,11 +713,13 @@
       root.classList.toggle("is-intro", !tam(secim));
       if (!tam(secim)) {
         document.title = (GUEST ? "Ülke şartları" : "Ülkem") + " | Meberra";
-        $("sr-h1").textContent = "15 Avrupa ülkesinde lisans: durumuna göre şartlar";
-        $("sr-lead").textContent = "Ne gerektiğini, kaçırmaman gereken tarihleri, sık yapılan hataları, bursları ve ülkenin en iyi üniversitelerini resmi kaynaklarıyla gör.";
+        document.body.classList.remove("is-sonuc");
+        $("sr-h1").textContent = "Nerede okumak istiyorsun?";
+        $("sr-lead").textContent = "Türk lise diploması ve AP ile 15 Avrupa ülkesinde lisansa ne gerektiğini tek sayfada gör: şartlar, tarihler, burslar. Hepsi resmi kaynaklarıyla.";
         root.innerHTML = introHtml();
         return;
       }
+      document.body.classList.add("is-sonuc");
       var k = kayit(ul);
       var baslik = k.ad + " · " + kimKisa(secim) + " · " + dilEtiket(secim.dil, k);
       document.title = (kendiUlkemMi() ? "Ülkem · " : "") + baslik + " şartları | Meberra";
@@ -742,7 +773,12 @@
       y[t.name] = t.value;
       secimDegisti(y);
       var odak = form.querySelector('input[name="' + t.name + '"][value="' + t.value + '"]');
-      if (odak && !odak.closest("[hidden]")) odak.focus();
+      if (odak && !odak.closest("[hidden]")) odak.focus({ preventScroll: true });
+      if (!tam(secim) && (t.name === "ulke" || t.name === "model")) {
+        var son = $("ulk-son"), azalt = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+        son.classList.remove("is-yeni"); void son.offsetWidth; son.classList.add("is-yeni");
+        son.scrollIntoView({ block: "center", behavior: azalt ? "auto" : "smooth" });
+      }
     });
     form.addEventListener("submit", function (e) { e.preventDefault(); });
     $("sr-degistir").addEventListener("click", function () {

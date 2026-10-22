@@ -9,6 +9,10 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.21.0] — 2026-10-22
+### Değişti
+- Ülkem (`/ulkem`) giriş ekranı sadeleşti: mor hero "Nerede okumak istiyorsun?" + uçuşan bayraklar + 1-2-3 adım. Önce ülke seçilir (büyük bayraklı kartlar, tek rozet "İngilizce: Geniş/Kısıtlı", "Adım adım takvim"); soluk/kilitli görünüm ve kartlardaki uzun uyarı metinleri kaldırıldı (uyarı sonuç özetinde). Ülke seçilince tek soru kutusu: "Son bir soru: <ülke> için durumun ne?" + sınıf (yalnız lise öğrencisine). Dil seçimi girişten kalktı (sonuçta "Yerel dile geç"). Sonuç görünümünde hero sade başlık bandına döner. Stiller `assets/css/ulkem.css`.
+
 ## [1.20.0] — 2026-10-22
 ### Değişti
 - Maskot Tilki (Tilo) yerine **Dede Korkut**: ak sakal, uzun ak börk, mor kaftan + altın kuşak, sırtında kopuz. Aynı çizgi stili, aynı 6 ifade ve API (`MeberraMaskot`); kuyruk sallama yerine üzerine gelince kopuz sallanır. Statik dosyalar `assets/img/maskot/korkut-*.svg` (eski `tilki-*.svg` kaldırıldı). Maskot adı geçen tüm metinler güncellendi.

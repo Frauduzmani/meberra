@@ -1,0 +1,132 @@
+/* ==========================================================================
+   ÜLKEM (/ulkem, sartlar.html) — 1.21.0 giriş ekranı
+   Mor hero + uçuşan bayraklar · önce ülke (bayraklı kartlar) · sonra tek soru (durum + sınıf).
+   Seçim tamamlanınca (body.is-sonuc) hero sadeleşir: bayraklar ve adımlar gizlenir.
+   Bayrak renkleri hedefim.css › .ul-bayrak-<kod>. Yalnızca bu sayfada yüklenir.
+   ========================================================================== */
+
+/* --- Hero ------------------------------------------------------------------------------ */
+.hd .page-head.ulk-hero {
+  position: relative; overflow: hidden; isolation: isolate; display: grid; gap: var(--sp-6); align-items: center;
+  margin: 0 0 var(--sp-6); padding: clamp(24px, 3vw + 10px, 52px) clamp(18px, 3vw + 6px, 48px);
+  border-radius: 28px; color: #fff;
+  background:
+    radial-gradient(60% 90% at 100% 0%, color-mix(in srgb, var(--energy) 45%, transparent), transparent 60%),
+    radial-gradient(50% 80% at 0% 100%, rgba(56, 189, 248, .35), transparent 60%),
+    linear-gradient(135deg, var(--hero-a) 0%, #6a3cf0 50%, var(--hero-b) 100%);
+  box-shadow: 0 30px 60px -28px color-mix(in srgb, var(--hero-a) 65%, transparent);
+}
+@media (min-width: 900px) { .hd .page-head.ulk-hero { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); } }
+.ulk-hero-in { min-width: 0; }
+.hd .ulk-hero .hd-ust {
+  min-height: 30px; padding: 3px 12px; border-radius: var(--radius-full); color: #fff;
+  background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .26); letter-spacing: .06em;
+}
+.hd .ulk-hero h1 { color: #fff; font-size: clamp(1.9rem, 1.2rem + 2.6vw, 3.1rem); line-height: 1.08; margin: 14px 0 10px; max-width: 18ch; text-wrap: balance; }
+.hd .ulk-hero .hd-alt { color: rgba(255, 255, 255, .92); font-size: clamp(1rem, .95rem + .3vw, 1.15rem); line-height: 1.5; max-width: 52ch; }
+.hd .ulk-hero a { color: #fff; }
+
+/* 1-2-3 adımı */
+.ulk-yol { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: var(--sp-5) 0 0; padding: 0; }
+.ulk-yol li {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 36px; padding: 4px 14px 4px 5px; border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .22); font-weight: 700; font-size: var(--fs-14);
+}
+.ulk-yol li > span { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: #fff; color: var(--hero-a); font-weight: 900; font-size: var(--fs-12); }
+
+/* Uçuşan bayraklar (süs) */
+.ulk-bulut { position: relative; height: 200px; pointer-events: none; }
+.ulk-bulut .ul-bayrak {
+  position: absolute; left: var(--x); top: var(--y); width: 66px; height: 44px; border-radius: 10px;
+  transform: rotate(var(--r)); box-shadow: 0 10px 24px -8px rgba(15, 8, 40, .55), inset 0 0 0 1px rgba(255, 255, 255, .35);
+}
+@media (min-width: 900px) { .ulk-bulut { height: 260px; } .ulk-bulut .ul-bayrak { width: 78px; height: 52px; } }
+@media (max-width: 899px) { .ulk-bulut { height: 120px; margin-top: calc(-1 * var(--sp-2)); } .ulk-bulut .ul-bayrak { width: 48px; height: 32px; border-radius: 8px; } }
+@media (prefers-reduced-motion: no-preference) {
+  .ulk-bulut .ul-bayrak { animation: ulk-suzul 6s ease-in-out infinite alternate; animation-delay: var(--g); }
+}
+@keyframes ulk-suzul {
+  from { transform: translateY(0) rotate(var(--r)); }
+  to { transform: translateY(-12px) rotate(calc(var(--r) * -1)); }
+}
+
+/* Sonuç görünümünde hero sade: yalnız başlık + alt metin */
+.is-sonuc .hd .page-head.ulk-hero { grid-template-columns: minmax(0, 1fr); padding-block: clamp(20px, 2vw + 10px, 34px); }
+.is-sonuc .ulk-bulut, .is-sonuc .ulk-yol { display: none; }
+.is-sonuc .hd .ulk-hero h1 { font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.3rem); max-width: none; }
+
+/* --- Ülke kartları ------------------------------------------------------------------------ */
+.hd .sr-picker-v2 { padding: clamp(16px, 2vw + 6px, 28px); }
+.hd .sr-picker-v2 .sr-leg { font-size: var(--fs-18); font-weight: 800; }
+.ulk-suzgec {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 6px 14px; border-radius: var(--radius-full);
+  border: 1px solid var(--border); background: var(--surface-2); font-weight: 600; cursor: pointer;
+}
+.ulk-suzgec:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+
+.hd .ulk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 178px), 1fr)); gap: 12px; margin-top: var(--sp-3); }
+.ulk-kart .sr-ulke-in {
+  gap: 6px; padding: 14px; border-radius: 18px; height: 100%;
+  transition: transform .2s cubic-bezier(.2, .8, .3, 1), box-shadow .2s ease, border-color .15s ease, background-color .15s ease;
+}
+.ulk-kart:hover .sr-ulke-in { transform: translateY(-3px); box-shadow: 0 14px 28px -14px color-mix(in srgb, var(--accent) 45%, transparent); }
+.ulk-kart input:checked + .sr-ulke-in { transform: translateY(-2px); box-shadow: inset 0 0 0 1px var(--accent), 0 14px 30px -14px color-mix(in srgb, var(--accent) 60%, transparent); }
+.ulk-ust { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
+.ulk-kart .ulk-bayrak { width: 48px; height: 32px; border-radius: 8px; box-shadow: 0 6px 14px -6px rgba(26, 16, 51, .45), inset 0 0 0 1px rgba(26, 16, 51, .12); transition: transform .25s cubic-bezier(.34, 1.56, .64, 1); }
+.ulk-kart:hover .ulk-bayrak { transform: rotate(-6deg) scale(1.06); }
+.ulk-tik {
+  width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; flex: none;
+  background: var(--accent); color: #fff; transform: scale(0); opacity: 0; transition: transform .25s cubic-bezier(.34, 1.56, .64, 1), opacity .15s ease;
+}
+.ulk-tik svg { width: 15px; height: 15px; }
+.ulk-kart input:checked + .sr-ulke-in .ulk-tik { transform: scale(1); opacity: 1; }
+.ulk-ad { font-family: var(--font-head); font-size: var(--fs-18); font-weight: 800; line-height: 1.2; overflow-wrap: anywhere; }
+.ulk-yerel { font-size: var(--fs-12); color: var(--text-muted); overflow-wrap: anywhere; }
+.ulk-rozetler { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
+.ulk-rozetler .mz-rozet { margin-left: 0; }
+.ulk-rota {
+  display: inline-flex; align-items: center; padding: 1px 8px; border-radius: var(--radius-full); white-space: nowrap;
+  font-size: .74rem; font-weight: 700; color: var(--accent); background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ulk-kart { animation: ulk-gir .45s cubic-bezier(.2, .8, .3, 1) both; animation-delay: calc(var(--s, 0) * 35ms); }
+}
+@keyframes ulk-gir { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* styles.css dar ekranda .sr-ulke-grid'i tek sütun + satır kartı yapar; burada iki sütun, dikey kart kalır */
+@media (max-width: 640px) {
+  .hd .ulk-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .ulk-kart .sr-ulke-in { flex-direction: column; flex-wrap: nowrap; align-items: stretch; padding: 12px; }
+  .ulk-kart .ulk-bayrak { width: 40px; height: 27px; }
+  .ulk-ad { font-size: var(--fs-16); }
+}
+
+/* --- Tek soru (durum + sınıf) ------------------------------------------------------------- */
+.ulk-son {
+  display: grid; gap: var(--sp-4); margin-top: var(--sp-6); padding: clamp(16px, 2vw + 6px, 26px); border-radius: 22px;
+  background: linear-gradient(135deg, var(--accent-soft), color-mix(in srgb, var(--energy) 10%, var(--surface)));
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+}
+.ulk-son[hidden] { display: none; }
+.ulk-son-h { margin: 0; font-family: var(--font-head); font-size: clamp(1.15rem, 1rem + .6vw, 1.45rem); font-weight: 800; color: var(--text); }
+.ulk-son .sr-cards { grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+.ulk-son .sr-card > span { padding: 14px 16px; border-radius: 16px; }
+.ulk-son .sr-seg { background: var(--surface); }
+@media (prefers-reduced-motion: no-preference) {
+  .ulk-son.is-yeni { animation: ulk-son-gir .5s cubic-bezier(.2, .8, .3, 1); }
+}
+@keyframes ulk-son-gir {
+  0% { opacity: 0; transform: translateY(12px) scale(.98); box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 40%, transparent); }
+  60% { opacity: 1; transform: none; box-shadow: 0 0 0 10px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+/* "Seçince göreceklerin" şeridi: kesik kenarlı büyük kutu yerine sakin satır */
+.page-sartlar #sr-root.is-intro .sr-intro { padding: var(--sp-6) var(--sp-4); border: 0; background: transparent; }
+.page-sartlar #sr-root.is-intro .sr-intro-ico { display: none; }
+.page-sartlar #sr-root.is-intro .sr-intro h2 { font-size: var(--fs-18); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ulk-kart .sr-ulke-in, .ulk-kart .ulk-bayrak, .ulk-tik { transition: none; }
+}
+.hd .sr-picker-v2 .ulk-son { grid-column: 1 / -1; }
