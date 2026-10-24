@@ -1,6 +1,6 @@
 "use strict";
 // 1.22.0 Hedef sihirbazı (/ulkem): ülke → okul → şart tablosu → "Bu planı uygula" → kayıt → Bugün.
-const { test, expect, yatayKaydirmaYok } = require("./yardimci");
+const { test, expect, yatayKaydirmaYok, SIFRE, CSRF, yeniEposta, girisYap } = require("./yardimci");
 
 async function ulkeSec(page, ad) { await page.locator("#hd-adim-1").getByRole("checkbox", { name: ad, exact: true }).check(); }
 
@@ -62,4 +62,66 @@ test("telefon: 3 sütunlu tabloda sayfa yatay kaymaz", async ({ page }) => {
   await expect(page.locator("#hd-adim-3")).toBeVisible();
   await expect(page.locator("#hd-tablo thead th[data-sutun]")).toHaveCount(3);
   await yatayKaydirmaYok(page);
+});
+
+async function kayitOl(page, ad) {
+  const k = page.getByRole("tabpanel", { name: "Kayıt ol" });
+  await k.getByLabel("Ad", { exact: true }).fill(ad);
+  await k.getByLabel("Soyad").fill("Demir");
+  await k.getByLabel("E-posta").fill(yeniEposta("hedef"));
+  await k.getByLabel("Şifre", { exact: true }).fill(SIFRE);
+  await k.getByLabel("Şifre (tekrar)").fill(SIFRE);
+  await k.getByRole("checkbox", { name: /Kullanım koşullarını/ }).check();
+  await k.getByRole("checkbox", { name: /KVKK/ }).check();
+  await k.getByRole("button", { name: "Ücretsiz hesap oluştur" }).click();
+}
+
+test("misafir → planı uygula → kayıt → Bugün", async ({ page }) => {
+  await page.goto("/ulkem?u=it,de&o=it-politecnico-di-milano&s=11&a=muhendislik");
+  await page.getByRole("button", { name: /Bu planı uygula/ }).click();
+  await page.waitForURL(/\/giris/);
+  await kayitOl(page, "Ayşe");
+  await page.waitForURL(/\/bugun/);
+  await expect(page.getByText(/Plan senin, Ayşe/).first()).toBeVisible();
+  const me = await (await page.request.get("/api/me")).json();
+  expect(me.profile).toMatchObject({ tamamlandi: true, ogrenciModeli: "lise", sinif: "11", aktifRota: "it", hedefAlan: "Mühendislik" });
+  expect(me.profile.ulkeler).toEqual(["it", "de"]);
+  expect(me.profile.hedefOkullar).toEqual(["it-politecnico-di-milano"]);
+  expect(me.profile.apDersleri.map(d => d.ders)).toEqual(["calculus-ab", "physics-1", "chemistry"]);
+  expect(page.url()).not.toContain("ilk=1");
+});
+
+test("hedef adresi sessionStorage olmadan da uygulanır", async ({ page }) => {
+  await page.goto("/giris?donus=%2Fbugun&hedef=" + encodeURIComponent("?u=nl&s=12&a=fen") + "#kayit");
+  await kayitOl(page, "Can");
+  await page.waitForURL(/\/bugun/);
+  const me = await (await page.request.get("/api/me")).json();
+  expect(me.profile).toMatchObject({ ulkeler: ["nl"], sinif: "12", hedefAlan: "Fen", tamamlandi: true });
+});
+
+test("giriş yapmış öğrenci: mevcut profil korunur", async ({ page }) => {
+  const eposta = yeniEposta("hedefg");
+  let r = await page.request.post("/api/auth/register", { headers: CSRF, data: { ad: "Deniz", soyad: "Ak", eposta, sifre: SIFRE, sifre2: SIFRE, kosullar: true, kvkk: true } });
+  expect(r.status()).toBe(200);
+  r = await page.request.put("/api/profile", { headers: CSRF, data: { profile: {
+    ogrenciModeli: "lise", sinif: "10", ulkeler: ["nl", "at"], egitimDili: "en", tamamlandi: true, aktifRota: "nl", sinavYili: 2028,
+    apDersleri: [{ ders: "biology", hedef: 5 }], apHedefSoruldu: new Date().toISOString() } } });
+  expect(r.status()).toBe(200);
+  await page.context().clearCookies();
+  await girisYap(page, eposta, SIFRE, "/bugun");
+  await page.goto("/ulkem?u=it&s=10");
+  await page.getByRole("button", { name: /Bu planı uygula/ }).click();
+  await expect(page.getByRole("status").filter({ hasText: /eklenecek/ })).toBeVisible();
+  await page.getByRole("button", { name: "Onayla" }).click();
+  await page.waitForURL(/\/bugun/);
+  const me = await (await page.request.get("/api/me")).json();
+  expect(me.profile).toMatchObject({ sinif: "10", aktifRota: "nl", sinavYili: 2028 });
+  expect(me.profile.ulkeler).toEqual(["it", "nl", "at"]);
+  expect(me.profile.apDersleri[0]).toEqual({ ders: "biology", hedef: 5 });
+});
+
+test("vitrin: Ücretsiz başla sihirbazı açar", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("link", { name: /Ücretsiz başla/ }).first().click();
+  await expect(page.locator("#hd-adim-1")).toBeVisible();
 });

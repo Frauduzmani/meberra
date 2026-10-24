@@ -10,7 +10,8 @@
  *   hucre(ulkeVeri, cc, uniId, alan, satir) -> {durum ok|uyari|kapali|teyit, metin, kaynak[], kesinlik, ...}
  *                        çözüm sırası: üniversite+alan → üniversite → ülke+alan → ülke varsayılanı → teyit
  *   ortakYol(sutunlar, ulkeVeri, alan, sinif, bugun) -> {apDersleri, apSayi, apOneri, dil, sinavlar, yksUyari, sinavYili, haftaKaldi}
- *   profilYamasi(eski, secim, ortak) -> profil (yeni nesne; dolu sınıf/rota/sınav yılı korunur, ülkeler en çok 5)
+ *   profilYamasi(eski, secim, ortak) -> profil (yeni nesne; dolu sınıf/rota/sınav yılı korunur, ülkeler en çok 5;
+ *                        hedefAlan profilde görünen ad olarak yazılır: "Mühendislik") · alanKodu(ad) -> alan kodu
  */
 (function (root, factory) {
   "use strict";
@@ -154,6 +155,13 @@
       sinavlar: sinavlar, yksUyari: yks, sinavYili: yil, haftaKaldi: hafta };
   }
 
+  /** Profildeki görünen alan adı ("Tıp/Sağlık") → alan kodu; bilinmeyen ad mühendisliğe düşer. */
+  function alanKodu(ad) {
+    var a = String(ad || "").toLocaleLowerCase("tr-TR");
+    for (var i = 0; i < ALANLAR.length; i++) if (ALANLAR[i] === a || ALAN_AD[ALANLAR[i]].toLocaleLowerCase("tr-TR") === a) return ALANLAR[i];
+    return "muhendislik";
+  }
+
   function profilYamasi(eski, secim, ortak) {
     var p = {}, e = eski || {};
     Object.keys(e).forEach(function (k) { p[k] = e[k]; });
@@ -164,7 +172,7 @@
     p.ulkeler = tekil((secim.ulkeler || []).concat(Array.isArray(e.ulkeler) ? e.ulkeler : [])).slice(0, EN_FAZLA);
     if (bos("aktifRota")) p.aktifRota = p.ulkeler[0] || null;
     if (bos("egitimDili")) p.egitimDili = "en";
-    if (bos("hedefAlan")) p.hedefAlan = secim.alan;
+    p.hedefAlan = ALAN_AD[secim.alan] || ALAN_AD.muhendislik; // çipte açıkça seçildi
     if (bos("sinavYili")) p.sinavYili = ortak.sinavYili;
     var okul = Array.isArray(e.hedefOkullar) ? e.hedefOkullar.slice() : [];
     (secim.ulkeler || []).forEach(function (cc) { ((secim.okullar || {})[cc] || []).forEach(function (id) { if (okul.indexOf(id) < 0) okul.push(id); }); });
@@ -180,5 +188,5 @@
 
   return { ALANLAR: ALANLAR, ALAN_AD: ALAN_AD, SATIRLAR: SATIRLAR, SATIR_AD: SATIR_AD, SINIFLAR: SINIFLAR, EN_FAZLA: EN_FAZLA,
     VARSAYILAN_AP: VARSAYILAN_AP, secimCoz: secimCoz, secimAdres: secimAdres, sutunlar: sutunlar, hucre: hucre,
-    ortakYol: ortakYol, profilYamasi: profilYamasi, bayrak: bayrak, sinavYiliHesapla: sinavYiliHesapla };
+    ortakYol: ortakYol, profilYamasi: profilYamasi, alanKodu: alanKodu, bayrak: bayrak, sinavYiliHesapla: sinavYiliHesapla };
 });

@@ -38,7 +38,7 @@
     var okul = {};
     (PROF.hedefOkullar || []).forEach(function (id) { var cc = String(id).split("-")[0]; (okul[cc] = okul[cc] || []).push(id); });
     secim = H.secimCoz(H.secimAdres({ ulkeler: PROF.ulkeler, okullar: okul,
-      sinif: PROF.ogrenciModeli === "lise-mezun" ? "mezun" : PROF.sinif, alan: PROF.hedefAlan }));
+      sinif: PROF.ogrenciModeli === "lise-mezun" ? "mezun" : PROF.sinif, alan: H.alanKodu(PROF.hedefAlan) }));
     adim = 3;
   }
   if (!secim.ulkeler.length) adim = 1;

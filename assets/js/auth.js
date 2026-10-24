@@ -524,6 +524,8 @@
     if (!prof.okulSehir) prof.okulSehir = "İstanbul";
     if (!prof.okul) delete prof.okul;
     Object.keys(ap).forEach(function (k) { if (ap[k] === null) delete prof[k]; else prof[k] = ap[k]; });
+    // 1.22.0: hedef sihirbazında seçilen okullar (universiteKimligi, ör. "it-politecnico-di-milano")
+    if (Array.isArray(p.hedefOkullar)) prof.hedefOkullar = p.hedefOkullar.filter(function (x, i, a) { return typeof x === "string" && /^[a-z]{2}-[a-z0-9-]{2,120}$/.test(x) && a.indexOf(x) === i; }).slice(0, 40);
     return store.saveProfile(id, prof).then(function () { return { ok: true, profile: prof }; })
       .catch(function (err) {
         // Sunucu modu: sunucunun alan hataları (err.errors) formda gösterilir; tarayıcı modunda depolama hatasıdır

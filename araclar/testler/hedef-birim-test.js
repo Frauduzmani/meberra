@@ -85,7 +85,9 @@ eq(H.ortakYol([], {}, "muhendislik", "11", bugun).apDersleri, ["calculus-ab", "p
 const sec = { ulkeler: ["it", "de"], okullar: { it: ["it-politecnico-di-milano"] }, sinif: "11", alan: "muhendislik" };
 const p1 = H.profilYamasi(null, sec, o1);
 eq([p1.tamamlandi, p1.ogrenciModeli, p1.sinif, p1.ulkeler, p1.aktifRota, p1.egitimDili, p1.hedefAlan, p1.hedefOkullar, p1.sinavYili],
-  [true, "lise", "11", ["it", "de"], "it", "en", "muhendislik", ["it-politecnico-di-milano"], 2027], "yeni profil");
+  [true, "lise", "11", ["it", "de"], "it", "en", "Mühendislik", ["it-politecnico-di-milano"], 2027], "yeni profil (hedefAlan görünen ad)");
+eq(H.profilYamasi(null, Object.assign({}, sec, { alan: "tip" }), o1).hedefAlan, "Tıp/Sağlık", "alan adı");
+eq([H.alanKodu("Tıp/Sağlık"), H.alanKodu("Mühendislik"), H.alanKodu("Bilgisayar"), H.alanKodu(null)], ["tip", "muhendislik", "muhendislik", "muhendislik"], "profil alan adı → kod");
 eq(p1.apDersleri, [{ ders: "calculus-ab", hedef: 4 }, { ders: "physics-1", hedef: 4 }], "yeni profil dersleri hedef 4");
 eq(H.profilYamasi(null, Object.assign({}, sec, { sinif: "mezun" }), o1).ogrenciModeli, "lise-mezun", "mezun modeli");
 const eski = { sinif: "10", ogrenciModeli: "lise", aktifRota: "nl", sinavYili: 2028, ulkeler: ["nl", "at", "cz", "es"], apDersleri: [{ ders: "biology", hedef: 5 }], hedefOkullar: ["nl-x"], tamamlandi: true };
@@ -94,6 +96,7 @@ eq([p2.sinif, p2.aktifRota, p2.sinavYili, p2.ogrenciModeli], ["10", "nl", 2028, 
 eq(p2.ulkeler, ["it", "de", "nl", "at", "cz"], "ülkeler başa eklenir, en çok 5");
 eq(p2.apDersleri, [{ ders: "biology", hedef: 5 }, { ders: "calculus-ab", hedef: 4 }, { ders: "physics-1", hedef: 4 }], "dersler korunur + eklenir");
 eq(p2.hedefOkullar, ["nl-x", "it-politecnico-di-milano"], "okullar birleşimi");
+eq(H.profilYamasi({ hedefAlan: "Mühendislik", ulkeler: ["nl"] }, Object.assign({}, sec, { alan: "fen" }), o1).hedefAlan, "Fen", "alan sihirbazdaki seçimle güncellenir");
 eq(eski.ulkeler.length, 4, "eski profil değiştirilmez");
 
 console.log("\n" + pass + " geçti, " + fail + " kaldı");
