@@ -1,0 +1,618 @@
+{
+ "ders": "physics-2",
+ "unite": 11,
+ "baslik": "Electric Circuits",
+ "baslikTr": "Elektrik Devreleri",
+ "konular": [
+  {
+   "kod": "11.1",
+   "baslik": "Electric Current",
+   "baslikTr": "Elektrik akımı",
+   "hedefler": [
+    "Elektrik akımını (electric current) birim zamanda bir kesitten geçen yük olarak tanımlamak ve \\(I = \\dfrac{\\Delta Q}{\\Delta t}\\) ile hesaplamak.",
+    "Geleneksel akım yönünü (conventional current) elektronların gerçek hareket yönünden ayırt etmek.",
+    "Yük korunumunu (conservation of charge) kullanarak tek yollu bir iletkenin her noktasında akımın aynı olduğunu gerekçelendirmek."
+   ],
+   "anlatim": "<p>Bir iletken telde serbest elektronlar sürekli rastgele hareket eder; ama net bir yük akışı yoktur. Telin uçları arasına bir <strong>potansiyel farkı (potential difference)</strong> uygulanınca telin içinde bir elektrik alanı oluşur ve yükler net olarak bir yöne kaymaya başlar. Bu net yük akışına <strong>elektrik akımı (electric current)</strong> denir.</p>\n<div class=\"kn-tanim\"><strong>Tanım:</strong> \\[ I = \\frac{\\Delta Q}{\\Delta t} \\] Akım, bir kesitten birim zamanda geçen net yüktür. SI birimi <strong>amper (ampere, A)</strong>: \\(1\\text{ A} = 1\\text{ C/s}\\).</div>\n<h4>Akımın yönü</h4>\n<p>AP Physics 2'de akım yönü her zaman <strong>geleneksel akım (conventional current)</strong> yönüdür: pozitif yüklerin hareket edeceği yön, yani bataryanın dışında <strong>+ uçtan − uca</strong>. Metal tellerde gerçekte hareket eden elektronlardır ve geleneksel akımın <em>tersine</em> giderler. Sınavda \"direction of current\" dendiğinde geleneksel yönü yazın; \"direction electrons move\" dendiğinde tersini.</p>\n<table><thead><tr><th>Nicelik</th><th>Sembol</th><th>Birim</th><th>Not</th></tr></thead>\n<tbody><tr><td>Yük (charge)</td><td>\\(Q\\)</td><td>C</td><td>Elektronun yükü \\(e = 1.6\\times10^{-19}\\text{ C}\\)</td></tr>\n<tr><td>Akım (current)</td><td>\\(I\\)</td><td>A = C/s</td><td>Skaler; yönü işaretle gösterilir</td></tr>\n<tr><td>Zaman (time)</td><td>\\(\\Delta t\\)</td><td>s</td><td>Dakikayı saniyeye çevirin</td></tr></tbody></table>\n<h4>Elektron sayısı hesabı</h4>\n<p>Bir sürede geçen elektron sayısı \\(N = \\dfrac{\\Delta Q}{e} = \\dfrac{I\\Delta t}{e}\\). Örneğin \\(0.80\\text{ A}\\) akım \\(10\\text{ s}\\) boyunca akarsa \\(\\Delta Q = 8.0\\text{ C}\\) ve \\(N = 8.0/(1.6\\times10^{-19}) = 5.0\\times10^{19}\\) elektron geçer.</p>\n<h4>Yük korunumu ve akımın \"harcanmaması\"</h4>\n<p>Yük ne yaratılır ne yok edilir. Tek yollu (dallanmayan) bir devre parçasında yük bir yerde birikmediği sürece, her kesitten aynı sürede aynı yük geçmelidir. Bu yüzden <strong>seri bağlı elemanlardan aynı akım geçer</strong>; bir ampul akımı \"tüketmez\". Ampulün harcadığı şey <em>enerjidir</em>, yük değil. Bu fikir AP'nin en çok sorguladığı kavram yanılgısıdır.</p>\n<div class=\"kn-dikkat\">\"Akım ampulden geçerken azalır\" fikri yanlıştır. Ampulden önce ve sonra ölçülen akım aynıdır; değişen elektrik potansiyelidir (potansiyel düşmesi, potential drop).</div>\n<h4>Akım–zaman grafikleri</h4>\n<p>Akım zamanla değişiyorsa, geçen yük <strong>\\(I\\)–\\(t\\) grafiğinin altındaki alandır</strong>. Sabit akımda bu bir dikdörtgen alanıdır (\\(I\\Delta t\\)); doğrusal azalan akımda üçgen alanı kullanılır. Grafik okuma soruları için bu ilişki puan getirir.</p>\n<h4>Sürüklenme hızı (kısa not)</h4>\n<p>Elektronların net kayma hızı (drift speed) çok küçüktür (milimetre/saniye mertebesi); ama devredeki alan neredeyse ışık hızına yakın hızla kurulduğu için ampul anahtar kapanır kapanmaz yanar. Sürüklenme hızı AP Physics 2 CED'inde yer almaz; bu not yalnızca kavram kültürü içindir. CED'in vurguladığı nokta şudur: bir tel parçasında akım sıfırken de tek tek yük taşıyıcıları hareket eder; yalnızca <em>net</em> hareketleri sıfırdır.</p>\n<p>FRQ dili: \"Because charge is conserved and there is only one path, the current is the same at every point in the series branch.\" / \"The bulb converts electrical energy to light and thermal energy; it does not use up charge.\"</p>",
+   "ornekler": [
+    {
+     "soru": "Bir telden \\(2.5\\) dakika boyunca sabit \\(0.40\\text{ A}\\) akım geçiyor. Geçen yük ve elektron sayısı nedir?",
+     "cozum": [
+      "\\(\\Delta t = 2.5 \\times 60 = 150\\text{ s}\\); \\(\\Delta Q = I\\Delta t = (0.40)(150) = 60\\text{ C}\\).",
+      "\\(N = \\Delta Q / e = 60 / (1.6\\times10^{-19}) = 3.75\\times10^{20}\\) elektron."
+     ]
+    },
+    {
+     "soru": "Bir iletkendeki akım \\(t = 0\\)'da \\(3.0\\text{ A}\\) iken \\(t = 4.0\\text{ s}\\)'de doğrusal olarak sıfıra iniyor. Bu sürede geçen yük nedir?",
+     "cozum": [
+      "Geçen yük \\(I\\)–\\(t\\) grafiğinin altındaki alandır; şekil bir üçgendir.",
+      "\\(\\Delta Q = \\tfrac{1}{2}(4.0)(3.0) = 6.0\\text{ C}\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir öğrenci, seri devrede bataryadan çıkan akımın ilk ampulden sonra azaldığını, çünkü ampulün \"akımı kullandığını\" iddia ediyor. İddiayı değerlendirin.",
+     "cozum": [
+      "Seri devrede tek yol vardır; yük korunur ve devrenin hiçbir noktasında birikmez.",
+      "Bu yüzden her kesitten birim zamanda geçen yük, yani akım, aynıdır.",
+      "<strong>Reasoning:</strong> \"The claim is incorrect. Charge is conserved and cannot accumulate in the wire, so the current before and after the bulb is the same. The bulb transforms electrical potential energy into thermal and light energy; the potential decreases across the bulb, not the current.\""
+     ]
+    }
+   ],
+   "ipuclari": [
+    "AP Physics 2'de hesap makinesi tüm sınav boyunca serbesttir; yine de dakika→saniye ve mA→A çevirmelerini önce yazın.",
+    "Denklem sayfasındaki biçim: \\(I = \\dfrac{\\Delta Q}{\\Delta t}\\). Cevabı bu sembollerle başlatmak puanlayıcıya yöntemi gösterir.",
+    "Grafik sorusunda \"charge that passes\" görürseniz alanı, \"rate of charge flow\" görürseniz \\(I\\) değerini okuyun.",
+    "\"Justify\" sorularında yük korunumu (conservation of charge) ifadesini açıkça yazın; sadece \"aynı akım\" demek tam puan getirmez."
+   ],
+   "sikHatalar": [
+    "Ampulün akımı tükettiğini, ampulden sonra akımın azaldığını sanmak.",
+    "Elektronların hareket yönünü geleneksel akım yönüyle karıştırmak.",
+    "Dakikayı saniyeye çevirmeden \\(\\Delta Q = I\\Delta t\\) hesaplamak."
+   ],
+   "terimler": [
+    {
+     "en": "electric current",
+     "tr": "elektrik akımı"
+    },
+    {
+     "en": "conventional current",
+     "tr": "geleneksel akım"
+    },
+    {
+     "en": "ampere",
+     "tr": "amper"
+    },
+    {
+     "en": "conservation of charge",
+     "tr": "yükün korunumu"
+    },
+    {
+     "en": "drift speed",
+     "tr": "sürüklenme hızı"
+    },
+    {
+     "en": "elementary charge",
+     "tr": "temel yük"
+    }
+   ]
+  },
+  {
+   "kod": "11.2",
+   "baslik": "Simple Circuits",
+   "baslikTr": "Basit devreler",
+   "hedefler": [
+    "Bir devrenin akım taşıması için kapalı bir yol (closed loop) gerektiğini açıklamak; açık devre (open circuit) ve kısa devreyi (short circuit) tanımak.",
+    "Devre şeması (circuit schematic) sembollerini okumak ve çizmek; ampermetre (ammeter) ile voltmetrenin (voltmeter) nasıl bağlandığını bilmek.",
+    "Bir elemanın birden çok döngünün parçası olabileceğini ve devrenin özelliklerinin elemanların fiziksel düzenine bağlı olduğunu açıklamak."
+   ],
+   "anlatim": "<p>Bir <strong>elektrik devresi (electric circuit)</strong>, yüklerin hareket edebildiği kapalı bir yoldur. En basit devre bir batarya, bağlantı telleri ve bir yükten (ör. ampul ya da direnç) oluşur. Batarya, kimyasal enerjiyi elektrik potansiyel enerjisine dönüştürerek yükleri \"yokuş yukarı\" iter; yük devrede dolaşırken bu enerjiyi dirençlerde ısı ve ışığa çevirir.</p>\n<div class=\"kn-tanim\"><strong>Kural:</strong> Akım ancak <strong>kapalı bir döngü (closed loop)</strong> varsa akar. Döngünün herhangi bir yerinde boşluk varsa devre <strong>açıktır (open circuit)</strong> ve o döngüde akım sıfırdır.</div>\n<h4>Devre şeması sembolleri</h4>\n<table><thead><tr><th>Eleman</th><th>Şemadaki görünüm (sözel)</th><th>Görevi</th></tr></thead>\n<tbody><tr><td>Batarya / emk kaynağı (battery)</td><td>Uzun ince çizgi (+) ve kısa kalın çizgi (−)</td><td>Potansiyel farkı sağlar</td></tr>\n<tr><td>Direnç (resistor)</td><td>Zikzak çizgi</td><td>Enerjiyi ısıya çevirir</td></tr>\n<tr><td>Ampul (bulb)</td><td>İçinde ilmek ya da çarpı olan daire</td><td>Direnç gibi davranır; parlaklık gücü gösterir</td></tr>\n<tr><td>Anahtar (switch)</td><td>Açılıp kapanan kısa çizgi</td><td>Döngüyü açar/kapar</td></tr>\n<tr><td>Kondansatör (capacitor)</td><td>İki paralel eşit çizgi</td><td>Yük depolar (bkz. 11.8)</td></tr>\n<tr><td>Ampermetre / voltmetre</td><td>İçinde A / V yazan daire</td><td>Akım / potansiyel farkı ölçer</td></tr>\n<tr><td>Değişken eleman (ör. değişken direnç)</td><td>Standart sembolün üzerinden çapraz geçen ok</td><td>Değeri ayarlanabilir</td></tr></tbody></table>\n<h4>Ölçü aletlerinin bağlanması</h4>\n<ul><li><strong>Ampermetre (ammeter)</strong> ölçülecek akımın yoluna <strong>seri (in series)</strong> bağlanır. İdeal ampermetrenin direnci sıfırdır; devreyi değiştirmez.</li>\n<li><strong>Voltmetre (voltmeter)</strong> ölçülecek elemanın uçlarına <strong>paralel (in parallel)</strong> bağlanır. İdeal voltmetrenin direnci sonsuzdur; içinden akım geçmez.</li></ul>\n<div class=\"kn-dikkat\">Voltmetreyi seri bağlarsanız sonsuz direnç döngüyü fiilen açar ve akım ≈ 0 olur. Ampermetreyi paralel bağlarsanız eleman kısa devre olur.</div>\n<h4>Kısa devre (short circuit)</h4>\n<p>Bir elemanın uçları direnci ihmal edilebilir bir telle birleştirilirse akım neredeyse tamamen tel üzerinden geçer; eleman üzerinde potansiyel farkı sıfır olur ve eleman <strong>sönük/akımsız</strong> kalır. Bataryanın kendisi kısa devre edilirse çok büyük akım akar (yalnızca bataryanın iç direnci sınırlar; bkz. 11.5).</p>\n<h4>Birden çok döngü</h4>\n<p>Bir devre elemanı birden çok kapalı döngünün parçası olabilir. Örneğin batarya, ampul A ve ardından birbirine paralel B ve C ampulleri varsa; batarya–A–B, batarya–A–C ve B–C döngüleri vardır ve A ilk ikisinin ortak elemanıdır. Devrenin özellikleri elemanların <strong>fiziksel düzenine</strong> bağlıdır: aynı ampuller farklı bağlanırsa akımlar ve parlaklıklar değişir. Şemalarda akım yönü, aksi belirtilmedikçe <strong>geleneksel akım</strong> yönüdür.</p>\n<p>FRQ dili: \"When the switch is open, there is no closed path through bulb B, so the current in bulb B is zero.\" / \"The wire across bulb A provides a path with no potential difference, so there is no current in bulb A and it goes out.\"</p>",
+   "ornekler": [
+    {
+     "soru": "Bir batarya ampul A'ya seri bağlı; A'dan sonra devre, ampul B ve ampul C'nin bulunduğu iki paralel kola ayrılıyor. Devrede hangi kapalı döngüler vardır ve A bunların kaçının parçasıdır? C'nin kolu açılırsa A'dan akım geçmeye devam eder mi?",
+     "cozum": [
+      "Kapalı döngüler: batarya–A–B, batarya–A–C ve (bataryasız) B–C döngüsü. A, bataryayı içeren iki döngünün ortak elemanıdır.",
+      "C'nin kolu açılınca batarya–A–C ve B–C döngüleri kesilir; batarya–A–B döngüsü kapalı kaldığı için A'dan akım geçmeye devam eder."
+     ]
+    },
+    {
+     "soru": "İdeal bir bataryaya seri bağlı iki özdeş ampulden (A ve B) A'nın uçları bir telle birleştiriliyor. A ve B'nin parlaklığı nasıl değişir?",
+     "cozum": [
+      "A kısa devre olur: uçları arasında potansiyel farkı sıfır, içinden akım geçmez, A söner.",
+      "Devrede yalnızca B'nin direnci kalır; eşdeğer direnç yarıya iner, akım iki katına çıkar. B'nin gücü \\(I^2R\\) ile dört katına çıkar: B daha parlak yanar."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir öğrenci bir direncin akımını ölçmek için ampermetreyi dirence paralel bağlıyor. Ne olur? Açıklayın.",
+     "cozum": [
+      "İdeal ampermetrenin direnci sıfırdır; dirence paralel bağlanınca direnç kısa devre edilir.",
+      "Akımın neredeyse tamamı ampermetreden geçer; direncin akımı ≈ 0 olur ve ölçüm direncin gerçek akımını vermez.",
+      "<strong>Reasoning:</strong> \"An ammeter has nearly zero resistance, so connecting it in parallel provides a short-circuit path. Almost all current bypasses the resistor, so the reading does not represent the resistor's current. The ammeter must be placed in series.\""
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her şemada önce \"kapalı döngüler hangileri?\" sorusunu sorun; açık anahtarın olduğu dal akımsızdır.",
+    "Ampermetre seri, voltmetre paralel: şıklarda bu bağlantıların ters çizildiği çeldiriciler çok sık çıkar.",
+    "Şemada bir sembolün üzerinden çapraz bir ok geçiyorsa eleman değişkendir (ör. değişken direnç); soruda değerin nasıl değiştiğine bakın.",
+    "FRQ'da \"explain\" isteniyorsa \"closed path\", \"potential difference\" ve \"current\" sözcüklerini doğru ilişkilendiren tam cümle kurun."
+   ],
+   "sikHatalar": [
+    "Kısa devre edilen ampulün daha parlak yandığını sanmak (aslında söner).",
+    "Açık bir anahtarın tüm devreyi kestiğini sanmak; anahtar yalnızca bulunduğu döngüleri keser.",
+    "Voltmetreyi seri bağlamanın ölçümü etkilemeyeceğini düşünmek."
+   ],
+   "terimler": [
+    {
+     "en": "closed loop",
+     "tr": "kapalı döngü"
+    },
+    {
+     "en": "open circuit",
+     "tr": "açık devre"
+    },
+    {
+     "en": "short circuit",
+     "tr": "kısa devre"
+    },
+    {
+     "en": "circuit schematic",
+     "tr": "devre şeması"
+    },
+    {
+     "en": "ammeter",
+     "tr": "ampermetre"
+    },
+    {
+     "en": "voltmeter",
+     "tr": "voltmetre"
+    },
+    {
+     "en": "variable resistor",
+     "tr": "değişken direnç"
+    }
+   ]
+  },
+  {
+   "kod": "11.3",
+   "baslik": "Resistance, Resistivity, and Ohm's Law",
+   "baslikTr": "Direnç, özdirenç ve Ohm yasası",
+   "hedefler": [
+    "Direncin geometriye ve malzemeye bağlılığını \\(R = \\dfrac{\\rho \\ell}{A}\\) ile hesaplamak ve oran sorularında kullanmak.",
+    "Ohm yasasını (Ohm's law) \\(I = \\dfrac{\\Delta V}{R}\\) uygulamak; ohmik (ohmic) ve ohmik olmayan (non-ohmic) elemanları \\(I\\)–\\(\\Delta V\\) grafiğinden ayırt etmek.",
+    "Sıcaklığın metal iletkenlerin özdirencine (resistivity) etkisini açıklamak."
+   ],
+   "anlatim": "<p>Bir eleman yüklerin akışına ne kadar \"zorluk\" çıkarıyorsa, direnci o kadar büyüktür. <strong>Direnç (resistance, \\(R\\))</strong>, uygulanan potansiyel farkının oluşan akıma oranıdır; birimi <strong>ohm (\\(\\Omega\\))</strong>, \\(1\\,\\Omega = 1\\text{ V/A}\\).</p>\n<div class=\"kn-tanim\"><strong>Ohm yasası (Ohm's law):</strong> \\[ I = \\frac{\\Delta V}{R} \\] Bir <strong>ohmik (ohmic)</strong> elemanda \\(R\\) sabittir; \\(I\\)–\\(\\Delta V\\) grafiği orijinden geçen bir doğrudur ve eğimi \\(1/R\\)'dir.</div>\n<h4>Direnç neye bağlıdır? Özdirenç</h4>\n<p>Silindirik bir iletkenin direnci: \\[ R = \\frac{\\rho \\ell}{A} \\] Burada \\(\\rho\\) <strong>özdirenç (resistivity)</strong> (malzemenin özelliği, birimi \\(\\Omega\\cdot\\text{m}\\)), \\(\\ell\\) uzunluk, \\(A\\) kesit alanıdır. Uzun tel → daha çok çarpışma → büyük direnç; kalın tel → yük için daha çok \"şerit\" → küçük direnç.</p>\n<table><thead><tr><th>Değişiklik</th><th>Direnç</th><th>Gerekçe</th></tr></thead>\n<tbody><tr><td>\\(\\ell\\) iki katı</td><td>\\(2R\\)</td><td>\\(R \\propto \\ell\\)</td></tr>\n<tr><td>Çap iki katı</td><td>\\(R/4\\)</td><td>\\(A = \\pi r^2\\), alan dört katı</td></tr>\n<tr><td>Teli çekip uzunluğu iki katına çıkarmak (hacim sabit)</td><td>\\(4R\\)</td><td>\\(\\ell\\) iki katı, \\(A\\) yarıya iner</td></tr>\n<tr><td>Bakır yerine özdirenci 2 kat malzeme</td><td>\\(2R\\)</td><td>\\(R \\propto \\rho\\)</td></tr></tbody></table>\n<div class=\"kn-dikkat\">Çap (diameter) ile yarıçapı (radius) karıştırmayın; alan \\(\\pi d^2/4\\)'tür. Çap üç katına çıkarsa direnç 9'a bölünür.</div>\n<h4>Ohmik olmayan elemanlar</h4>\n<p>Ampul filamanı gibi bazı elemanlarda akım arttıkça sıcaklık artar ve direnç büyür. Bu durumda \\(I\\)–\\(\\Delta V\\) grafiği doğru değil, eğimi azalan bir eğridir. Grafikteki herhangi bir noktada direnç yine \\(R = \\Delta V / I\\) ile (o noktanın koordinatlarından) bulunur; eğimin tersiyle değil.</p>\n<h4>Sıcaklık etkisi</h4>\n<p>Metallerde sıcaklık artınca atomların titreşimi artar, elektronlar daha sık çarpışır; özdirenç ve direnç artar. AP'de bu ilişki niteldir (formül beklenmez).</p>\n<h4>Deneysel tasarım</h4>\n<p>Bir telin özdirencini bulmak için: farklı uzunluklarda \\(\\Delta V\\) ve \\(I\\) ölçülür, her biri için \\(R = \\Delta V/I\\) hesaplanır, \\(R\\)'ye karşı \\(\\ell\\) grafiği çizilir. Doğrunun eğimi \\(\\rho / A\\) olduğundan \\(\\rho = (\\text{eğim}) \\times A\\). Bu \"linearize the data\" yaklaşımı FRQ'da (Experimental Design ve Data Analysis) sık puanlanır.</p>\n<p>FRQ dili: \"The graph of current versus potential difference is linear and passes through the origin, so the resistor is ohmic.\" / \"Because resistance is proportional to length and inversely proportional to cross-sectional area, doubling the length and doubling the diameter changes R by a factor of 2/4 = 1/2.\"</p>",
+   "ornekler": [
+    {
+     "soru": "Bir telin direnci \\(12\\,\\Omega\\)'dur. Aynı malzemeden, uzunluğu \\(3\\) katı ve çapı \\(2\\) katı olan bir telin direnci nedir?",
+     "cozum": [
+      "\\(R \\propto \\ell / A\\) ve \\(A \\propto d^2\\): uzunluk çarpanı 3, alan çarpanı \\(2^2 = 4\\).",
+      "\\(R' = 12 \\times \\dfrac{3}{4} = 9.0\\,\\Omega\\)."
+     ]
+    },
+    {
+     "soru": "Uzunluğu \\(2.0\\text{ m}\\), kesit alanı \\(1.0\\times10^{-6}\\text{ m}^2\\) olan bir telin uçlarına \\(3.4\\text{ V}\\) uygulanınca \\(0.50\\text{ A}\\) akım geçiyor. Özdirenç nedir?",
+     "cozum": [
+      "\\(R = \\Delta V/I = 3.4/0.50 = 6.8\\,\\Omega\\).",
+      "\\(\\rho = RA/\\ell = (6.8)(1.0\\times10^{-6})/2.0 = 3.4\\times10^{-6}\\,\\Omega\\cdot\\text{m}\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir ampulün \\(I\\)–\\(\\Delta V\\) grafiği, \\(\\Delta V\\) arttıkça eğimi azalan bir eğridir. Ampulün direnci gerilimle nasıl değişir? Gerekçelendirin.",
+     "cozum": [
+      "Her noktada \\(R = \\Delta V/I\\). Eğri düzleştiği için \\(\\Delta V\\) arttıkça \\(I\\) daha yavaş artar; oran \\(\\Delta V/I\\) büyür.",
+      "Fiziksel neden: daha büyük akım filamanı ısıtır, metallerde özdirenç sıcaklıkla artar.",
+      "<strong>Reasoning:</strong> \"The ratio of potential difference to current increases as the potential difference increases, so the resistance increases. The filament gets hotter at higher current, and the resistivity of a metal increases with temperature. The bulb is non-ohmic.\""
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Oran sorularında sayı koymayın: \\(R' / R = (\\rho'/\\rho)(\\ell'/\\ell)(A/A')\\) yazıp çarpanları çarpın.",
+    "Denklem sayfası \\(R = \\dfrac{\\rho \\ell}{A}\\) ve \\(I = \\dfrac{\\Delta V}{R}\\) biçimindedir; FRQ'da bu biçimden başlamak \"starting equation\" puanını garantiler.",
+    "Hesap makinesi serbesttir; bilimsel gösterimdeki üsleri (\\(10^{-6}\\)) dikkatle girin ve sonucu 2–3 anlamlı basamakla yazın.",
+    "Grafikten direnç istendiğinde, grafik doğru ise eğim = 1/R (I–ΔV) ya da eğim = R (ΔV–I); eksenleri kontrol edin."
+   ],
+   "sikHatalar": [
+    "Çap iki katına çıkınca direncin yarıya indiğini sanmak (doğrusu dörtte bir).",
+    "Ohmik olmayan elemanda direnci eğimin tersinden hesaplamak; doğrusu \\(\\Delta V/I\\) noktasal oranıdır.",
+    "Direncin uygulanan gerilime bağlı olduğunu sanmak; ohmik bir dirençte \\(R\\) sabittir, \\(\\Delta V\\) artınca \\(I\\) artar."
+   ],
+   "terimler": [
+    {
+     "en": "resistance",
+     "tr": "direnç"
+    },
+    {
+     "en": "resistivity",
+     "tr": "özdirenç"
+    },
+    {
+     "en": "Ohm's law",
+     "tr": "Ohm yasası"
+    },
+    {
+     "en": "ohmic",
+     "tr": "ohmik"
+    },
+    {
+     "en": "non-ohmic",
+     "tr": "ohmik olmayan"
+    },
+    {
+     "en": "cross-sectional area",
+     "tr": "kesit alanı"
+    },
+    {
+     "en": "filament",
+     "tr": "filaman (ampul teli)"
+    }
+   ]
+  },
+  {
+   "kod": "11.4",
+   "baslik": "Electric Power",
+   "baslikTr": "Elektriksel güç",
+   "hedefler": [
+    "Bir elemanın harcadığı gücü \\(P = I\\Delta V = I^2R = \\dfrac{(\\Delta V)^2}{R}\\) ile hesaplamak ve hangi biçimin uygun olduğunu seçmek.",
+    "Ampul parlaklığını (brightness) güçle ilişkilendirerek seri/paralel devrelerde sıralama yapmak.",
+    "Enerji–güç–zaman ilişkisini (\\(E = P\\Delta t\\)) ve kWh birimini kullanmak."
+   ],
+   "anlatim": "<p>Bir yük \\(\\Delta V\\) potansiyel farkından geçtiğinde \\(q\\Delta V\\) kadar elektrik potansiyel enerjisi kaybeder; bu enerji dirençte ısıya, ampulde ışık ve ısıya dönüşür. Birim zamanda dönüşen enerji <strong>güçtür (power)</strong>.</p>\n<div class=\"kn-tanim\"><strong>Tanım:</strong> \\[ P = I\\Delta V \\] Ohm yasası ile birleştirilince: \\[ P = I^2R = \\frac{(\\Delta V)^2}{R} \\] Birim: <strong>watt (W)</strong> = J/s.</div>\n<h4>Hangi formül ne zaman?</h4>\n<table><thead><tr><th>Sabit olan</th><th>Kullanışlı biçim</th><th>Sonuç</th></tr></thead>\n<tbody><tr><td>Akım aynı (seri elemanlar)</td><td>\\(P = I^2R\\)</td><td>Büyük direnç daha çok güç harcar</td></tr>\n<tr><td>Gerilim aynı (paralel elemanlar)</td><td>\\(P = (\\Delta V)^2/R\\)</td><td>Küçük direnç daha çok güç harcar</td></tr>\n<tr><td>Hem \\(I\\) hem \\(\\Delta V\\) biliniyor</td><td>\\(P = I\\Delta V\\)</td><td>Doğrudan</td></tr></tbody></table>\n<div class=\"kn-dikkat\">\"Büyük direnç her zaman daha çok güç harcar\" ezberi yanlıştır. Seri bağlantıda doğru, paralel bağlantıda tersidir. Önce neyin ortak olduğunu belirleyin.</div>\n<h4>Ampul parlaklığı</h4>\n<p>AP'de ampul parlaklığı (brightness), ampulün harcadığı <strong>güçle</strong> ölçülür; akımla ya da gerilimle tek başına değil. Özdeş ampullerde (aynı \\(R\\)) güç \\(I^2R\\) olduğundan, daha çok akım taşıyan ampul daha parlaktır. Farklı ampullerde mutlaka gücü hesaplayın.</p>\n<p>Örnek: Etiketi \"\\(60\\text{ W}, 120\\text{ V}\\)\" olan bir ampulün direnci \\(R = (\\Delta V)^2/P = 14400/60 = 240\\,\\Omega\\). Aynı ampul \\(60\\text{ V}\\)'a bağlanırsa (direnç sabit varsayılırsa) gücü \\(60^2/240 = 15\\text{ W}\\) olur: gerilim yarıya inince güç dörtte bire iner.</p>\n<h4>Enerji ve zaman</h4>\n<p>\\(\\Delta E = P\\Delta t\\). Elektrik faturalarında enerji <strong>kilowatt-saat (kWh)</strong> ile ölçülür: \\(1\\text{ kWh} = 1000\\text{ W} \\times 3600\\text{ s} = 3.6\\times10^6\\text{ J}\\). Örneğin \\(1500\\text{ W}\\)'lık ısıtıcı \\(2\\) saat çalışırsa \\(3.0\\text{ kWh}\\) harcar.</p>\n<h4>Enerji korunumu ve batarya</h4>\n<p>Bataryanın verdiği güç \\(P = \\varepsilon I\\)'dir. Bu güç, dış dirençlerde ve iç dirençte harcanan güçlerin toplamına eşittir: \\(\\varepsilon I = I^2R + I^2 r\\). Bu eşitlik, devrede enerji korunumunun güç diliyle ifadesidir.</p>\n<p>FRQ dili: \"The bulbs are identical, so the bulb with the greater current dissipates more power, P = I²R, and is therefore brighter.\" / \"Both resistors have the same potential difference across them, so the resistor with smaller resistance dissipates more power, P = (ΔV)²/R.\"</p>",
+   "ornekler": [
+    {
+     "soru": "\\(3.0\\,\\Omega\\) ve \\(6.0\\,\\Omega\\)'luk iki direnç \\(18\\text{ V}\\)'luk ideal bir bataryaya seri bağlı. Her birinin gücü nedir?",
+     "cozum": [
+      "\\(R_{eq} = 9.0\\,\\Omega\\), \\(I = 18/9.0 = 2.0\\text{ A}\\) (her ikisinden aynı akım).",
+      "\\(P_3 = (2.0)^2(3.0) = 12\\text{ W}\\), \\(P_6 = (2.0)^2(6.0) = 24\\text{ W}\\). Toplam \\(36\\text{ W} = \\varepsilon I = 18 \\times 2.0\\). ✓"
+     ]
+    },
+    {
+     "soru": "Aynı iki direnç bu kez \\(18\\text{ V}\\)'luk bataryaya paralel bağlanıyor. Güçleri nedir?",
+     "cozum": [
+      "Her ikisinin uçlarında \\(18\\text{ V}\\) vardır.",
+      "\\(P_3 = 18^2/3.0 = 108\\text{ W}\\), \\(P_6 = 18^2/6.0 = 54\\text{ W}\\). Bu kez küçük direnç daha çok güç harcar."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \"\\(40\\text{ W}\\)\" ve \"\\(100\\text{ W}\\)\" etiketli (ikisi de \\(120\\text{ V}\\) için) iki ampul seri bağlanıp \\(120\\text{ V}\\)'a takılıyor. Hangisi daha parlak yanar? Açıklayın.",
+     "cozum": [
+      "Dirençler: \\(R_{40} = 120^2/40 = 360\\,\\Omega\\), \\(R_{100} = 120^2/100 = 144\\,\\Omega\\). Düşük güç etiketi büyük direnç demektir.",
+      "Seri bağlantıda akım aynıdır; \\(P = I^2R\\) olduğundan büyük dirençli \\(40\\text{ W}\\)'lık ampul daha çok güç harcar.",
+      "<strong>Reasoning:</strong> \"In series the bulbs have the same current. The 40 W bulb has the greater resistance, so by P = I²R it dissipates more power and is brighter, even though its rated power is lower.\""
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Parlaklık sıralamasında önce ortak niceliği (akım mı, gerilim mi?) belirleyin, sonra uygun güç formülünü seçin.",
+    "Denklem sayfasında yalnız \\(P = I\\Delta V\\) bulunabilir; \\(I^2R\\) ve \\((\\Delta V)^2/R\\) biçimlerini Ohm yasasıyla türetmeyi bilin.",
+    "kWh dönüşümünde hesap makinesi kullanın: W'yi 1000'e, saniyeyi 3600'e bölün; birimi her adımda yazın.",
+    "\"Justify\" cevabında hem formülü hem hangi niceliğin sabit olduğunu söyleyin; yalnız \"daha çok akım\" demek yetmez."
+   ],
+   "sikHatalar": [
+    "Etiketteki güç değerinin her devrede geçerli olduğunu sanmak; güç bağlandığı gerilime göre değişir.",
+    "Paralel bağlantıda büyük dirençli ampulün daha parlak olduğunu sanmak.",
+    "Gerilim yarıya inince gücün de yarıya indiğini düşünmek (sabit dirençte dörtte bire iner)."
+   ],
+   "terimler": [
+    {
+     "en": "power",
+     "tr": "güç"
+    },
+    {
+     "en": "watt",
+     "tr": "watt"
+    },
+    {
+     "en": "brightness",
+     "tr": "parlaklık"
+    },
+    {
+     "en": "dissipate",
+     "tr": "harcamak (ısıya çevirmek)"
+    },
+    {
+     "en": "kilowatt-hour",
+     "tr": "kilovat-saat"
+    },
+    {
+     "en": "energy transfer",
+     "tr": "enerji aktarımı"
+    }
+   ]
+  },
+  {
+   "kod": "11.5",
+   "baslik": "Compound Direct Current Circuits",
+   "baslikTr": "Bileşik doğru akım devreleri",
+   "hedefler": [
+    "Seri (series) ve paralel (parallel) dirençlerin eşdeğer direncini (equivalent resistance) hesaplamak; karışık devreyi adım adım sadeleştirmek.",
+    "Sadeleştirmeyi tersine çalıştırarak her elemanın akımını, potansiyel farkını ve gücünü bulmak.",
+    "Bir eleman eklenince/çıkarılınca diğer elemanların akım ve parlaklığının nasıl değiştiğini nitel olarak tahmin etmek.",
+    "Gerçek bataryayı ideal batarya ile seri bir iç direnç olarak modellemek, uç gerilimini \\(\\Delta V_{terminal} = \\varepsilon - Ir\\) ile bulmak ve ideal ampermetre/voltmetrenin bağlanışını açıklamak."
+   ],
+   "anlatim": "<p>Birden çok direnç içeren devrelere <strong>bileşik devre (compound circuit)</strong> denir. Bu devreleri çözmenin anahtarı, hangi elemanların seri, hangilerinin paralel olduğunu doğru tanımaktır.</p>\n<div class=\"kn-kural\"><strong>Seri (series):</strong> Elemanlar tek yol üzerinde art arda; aralarında dallanma yok. Aynı akım geçer; gerilimler toplanır. \\[ R_s = \\sum_i R_i \\]\n<strong>Paralel (parallel):</strong> Elemanların iki ucu da aynı iki düğüme bağlı. Aynı potansiyel farkına sahiptirler; akımlar toplanır. \\[ \\frac{1}{R_p} = \\sum_i \\frac{1}{R_i} \\]</div>\n<h4>Önemli sonuçlar</h4>\n<ul><li>Seri eşdeğer direnç, en büyük tek dirençten <strong>büyüktür</strong>.</li>\n<li>Paralel eşdeğer direnç, en küçük tek dirençten <strong>küçüktür</strong>. İki direnç için kısa yol: \\(R_p = \\dfrac{R_1R_2}{R_1 + R_2}\\).</li>\n<li>\\(n\\) özdeş \\(R\\) paralelse \\(R_p = R/n\\).</li>\n<li>Paralele bir dal eklemek eşdeğer direnci <strong>azaltır</strong>, bataryadan çekilen toplam akımı <strong>artırır</strong>.</li></ul>\n<h4>Adım adım çözüm stratejisi</h4>\n<table><thead><tr><th>Adım</th><th>İş</th></tr></thead>\n<tbody><tr><td>1</td><td>En içteki saf seri ya da saf paralel grubu bulun, eşdeğeriyle değiştirin.</td></tr>\n<tr><td>2</td><td>Tek eşdeğer direnç kalana kadar tekrarlayın: \\(I_{top} = \\varepsilon / R_{eq}\\).</td></tr>\n<tr><td>3</td><td>Geri dönün: seri grupta akım ortaktır, \\(\\Delta V = IR\\); paralel grupta gerilim ortaktır, \\(I = \\Delta V/R\\).</td></tr>\n<tr><td>4</td><td>Kontrol: gerilimler döngüde, akımlar düğümde tutuyor mu?</td></tr></tbody></table>\n<p><strong>Çalışılmış örnek:</strong> \\(24\\text{ V}\\) ideal batarya, seri \\(R_1 = 4.0\\,\\Omega\\), ardından paralel \\(R_2 = 6.0\\,\\Omega\\) ve \\(R_3 = 12\\,\\Omega\\). Paralel kısım: \\(\\dfrac{6 \\cdot 12}{18} = 4.0\\,\\Omega\\). \\(R_{eq} = 8.0\\,\\Omega\\), \\(I = 3.0\\text{ A}\\). \\(\\Delta V_1 = 12\\text{ V}\\), paralel kısmın gerilimi \\(12\\text{ V}\\); \\(I_2 = 2.0\\text{ A}\\), \\(I_3 = 1.0\\text{ A}\\). Kontrol: \\(2.0 + 1.0 = 3.0\\text{ A}\\). ✓</p>\n<h4>Nitel (qualitative) akıl yürütme</h4>\n<p>AP Physics 2 çoğu zaman sayı vermeden sorar: \"Ampul C'nin bağlı olduğu anahtar açılırsa ampul A'nın parlaklığı nasıl değişir?\" Zinciri kurun: <em>C çıkar → paralel kısmın eşdeğer direnci artar → toplam direnç artar → toplam akım azalır → seri ampul A'nın akımı azalır, A sönükleşir → A üzerindeki gerilim azalır → paralel kısmın gerilimi artar → kalan paralel ampul B parlaklaşır.</em> Her halkayı bir cümleyle yazmak FRQ'da tam puan getirir.</p>\n<div class=\"kn-dikkat\">\"Paralel kollar birbirinden bağımsızdır\" yalnızca <strong>ideal batarya doğrudan</strong> paralel kollara bağlıysa doğrudur. Arada seri bir direnç ya da iç direnç varsa, bir kolun değişmesi diğerlerini etkiler.</div>\n<h4>Gerçek batarya: emk ve uç gerilimi</h4>\n<p>Bataryanın <strong>emk'si (emf, \\(\\varepsilon\\))</strong>, birim yük başına sağladığı enerjidir (açık devrede uçlarda ölçülen gerilim). Gerçek bataryanın bir <strong>iç direnci (internal resistance, \\(r\\))</strong> vardır. Akım \\(I\\) aktığında uçlar arasındaki gerilim: \\[ \\Delta V_{terminal} = \\varepsilon - Ir \\] Akım ne kadar büyükse uç gerilimi o kadar düşer. İdeal batarya için \\(r = 0\\) ve \\(\\Delta V_{terminal} = \\varepsilon\\).</p>\n<p>Basit bir devrede (tek dış direnç \\(R\\)): \\(I = \\dfrac{\\varepsilon}{R + r}\\). Örnek: \\(\\varepsilon = 9.0\\text{ V}\\), \\(r = 1.0\\,\\Omega\\), \\(R = 8.0\\,\\Omega\\) ise \\(I = 1.0\\text{ A}\\), uç gerilimi \\(9.0 - 1.0 = 8.0\\text{ V}\\).</p>\n<p>İdeal bataryanın iç direnci, ideal tellerin direnci ihmal edilebilir. İyi iletken tellerin direnci, devrede başka dirençli elemanlar olduğu sürece ihmal edilir; telden başka dirençli eleman yoksa (kısa devre) ihmal edilemez. İç direnç, ideal bataryaya ve devrenin geri kalanına <strong>seri bağlı bir direnç</strong> gibi ele alınır.</p>\n<h4>Ölçü aletleri</h4>\n<p>Ampermetre ölçülen elemanla <strong>seri</strong> bağlanır; ideal ampermetrenin direnci sıfırdır. Voltmetre ölçülen elemana <strong>paralel</strong> bağlanır; ideal voltmetrenin direnci sonsuzdur (bkz. 11.2). İdeal olmayan aletler ölçtükleri devreyi değiştirir; AP Physics 2 bunu yalnızca nitel olarak sorar. Aksi belirtilmedikçe bataryalar, teller ve aletler idealdir.</p>\n<p>FRQ dili: \"The terminal voltage is less than the emf because of the potential drop across the internal resistance, Ir.\" / \"Removing bulb C increases the equivalent resistance of the circuit, which decreases the current from the battery. Therefore the potential difference across bulb A decreases and bulb A becomes dimmer.\"</p>",
+   "ornekler": [
+    {
+     "soru": "\\(2.0\\,\\Omega\\), \\(3.0\\,\\Omega\\) ve \\(6.0\\,\\Omega\\)'luk üç direnç birbirine paralel; bu grup \\(4.0\\,\\Omega\\)'luk bir dirençle seri ve hepsi \\(15\\text{ V}\\)'luk ideal bataryaya bağlı. \\(3.0\\,\\Omega\\)'luk dirençten geçen akım nedir?",
+     "cozum": [
+      "Paralel grup: \\(1/R_p = 1/2 + 1/3 + 1/6 = 1\\Rightarrow R_p = 1.0\\,\\Omega\\). \\(R_{eq} = 5.0\\,\\Omega\\), \\(I = 3.0\\text{ A}\\).",
+      "Paralel grubun gerilimi \\((3.0)(1.0) = 3.0\\text{ V}\\); \\(I_{3\\Omega} = 3.0/3.0 = 1.0\\text{ A}\\)."
+     ]
+    },
+    {
+     "soru": "İdeal bataryaya doğrudan paralel bağlı iki özdeş ampul var. Üçüncü özdeş ampul de paralel eklenirse ilk ampullerin parlaklığı ve bataryanın akımı nasıl değişir?",
+     "cozum": [
+      "İdeal batarya her paralel kola aynı \\(\\varepsilon\\)'u uygular; ilk ampullerin gerilimi ve akımı değişmez, parlaklıkları aynı kalır.",
+      "Toplam akım üç kolun toplamıdır; \\(2I\\)'dan \\(3I\\)'ya çıkar (eşdeğer direnç \\(R/2\\)'den \\(R/3\\)'e iner)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Ampul A bataryaya seri; A'dan sonra devre, B ve C ampullerinin paralel bağlı olduğu iki kola ayrılıyor (tüm ampuller özdeş, batarya ideal). C'nin kolundaki anahtar açılırsa B'nin parlaklığı nasıl değişir? Açıklayın.",
+     "cozum": [
+      "Önce: \\(R_{eq} = R + R/2 = 1.5R\\); \\(I_A = \\varepsilon/1.5R\\), \\(I_B = I_A/2 = \\varepsilon/3R\\).",
+      "Sonra: \\(R_{eq} = 2R\\); \\(I_B = I_A = \\varepsilon/2R\\). \\(\\varepsilon/2R \\gt \\varepsilon/3R\\): B parlaklaşır.",
+      "<strong>Reasoning:</strong> \"Opening the switch removes a parallel path, so the equivalent resistance increases and the battery current decreases. The potential difference across A decreases, so the potential difference across B (the emf minus the drop across A) increases. B's current increases, so B is brighter.\""
+     ]
+    },
+    {
+     "soru": "Emk'si \\(12\\text{ V}\\), iç direnci \\(0.50\\,\\Omega\\) olan bir batarya \\(5.5\\,\\Omega\\)'luk bir dirence bağlanıyor. Akım ve uç gerilimi nedir?",
+     "cozum": [
+      "Toplam direnç \\(R + r = 6.0\\,\\Omega\\); \\(I = 12/6.0 = 2.0\\text{ A}\\).",
+      "\\(\\Delta V_{terminal} = \\varepsilon - Ir = 12 - (2.0)(0.50) = 11\\text{ V}\\). Kontrol: \\(IR = (2.0)(5.5) = 11\\text{ V}\\). ✓"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Şemayı yeniden çizin: aynı tel üzerindeki noktaları tek düğüm sayın; iki ucu aynı iki düğüme bağlı elemanlar paraleldir.",
+    "Denklem sayfası: \\(R_s = \\sum R_i\\), \\(\\dfrac{1}{R_p} = \\sum \\dfrac{1}{R_i}\\). Hesap makinesinde \\(1/R_p\\)'yi bulduktan sonra tersini almayı unutmayın.",
+    "Nitel sorularda neden-sonuç zincirini tek tek yazın: eşdeğer direnç → toplam akım → seri elemanın gerilimi → paralel kolun gerilimi.",
+    "Sonucu kontrol edin: düğümde akımlar, döngüde gerilimler tutmalı; tutmuyorsa sadeleştirmede hata vardır.",
+    "İç direnç verilmişse \\(I = \\varepsilon/(R + r)\\) kullanın; hesap makinesi serbesttir ama önce sembolik ifadeyi yazın."
+   ],
+   "sikHatalar": [
+    "Paralel eşdeğer direnci hesaplarken \\(1/R_p\\)'nin tersini almayı unutmak.",
+    "Paralele dal eklemenin toplam direnci artırdığını sanmak.",
+    "Arada seri eleman varken paralel kolların birbirinden bağımsız olduğunu varsaymak.",
+    "Uç gerilimini her zaman emk'ye eşit kabul etmek; iç direnç verilmişse \\(\\varepsilon - Ir\\) gerekir."
+   ],
+   "terimler": [
+    {
+     "en": "series",
+     "tr": "seri"
+    },
+    {
+     "en": "parallel",
+     "tr": "paralel"
+    },
+    {
+     "en": "equivalent resistance",
+     "tr": "eşdeğer direnç"
+    },
+    {
+     "en": "branch",
+     "tr": "kol (dal)"
+    },
+    {
+     "en": "node / junction",
+     "tr": "düğüm"
+    },
+    {
+     "en": "compound circuit",
+     "tr": "bileşik devre"
+    },
+    {
+     "en": "emf",
+     "tr": "elektromotor kuvvet (emk)"
+    },
+    {
+     "en": "internal resistance",
+     "tr": "iç direnç"
+    },
+    {
+     "en": "terminal voltage",
+     "tr": "uç gerilimi"
+    }
+   ]
+  },
+  {
+   "kod": "11.6",
+   "baslik": "Kirchhoff's Loop Rule",
+   "baslikTr": "Kirchhoff'un döngü kuralı",
+   "hedefler": [
+    "Kirchhoff'un döngü kuralını (loop rule) enerji korunumunun sonucu olarak açıklamak: \\(\\sum \\Delta V = 0\\).",
+    "Bir döngü boyunca potansiyel değişimlerini doğru işaretle yazmak ve bilinmeyen gerilim/emk/akımı bulmak.",
+    "Devredeki noktaların elektrik potansiyelini (electric potential) karşılaştırmak ve potansiyel farkını (ör. \\(V_a - V_b\\)) hesaplamak."
+   ],
+   "anlatim": "<p>Bir yükü devrede tam bir tur dolaştırıp başladığı noktaya geri getirdiğinizi düşünün. Başladığı noktanın potansiyeli değişmediğine göre, yükün kazandığı ve kaybettiği elektrik potansiyel enerjilerinin toplamı sıfır olmalıdır. Bu <strong>enerji korunumu (conservation of energy)</strong> fikri, <strong>Kirchhoff'un döngü kuralıdır (Kirchhoff's loop rule)</strong>.</p>\n<div class=\"kn-kural\"><strong>Döngü kuralı:</strong> Herhangi bir kapalı döngü boyunca potansiyel farklarının toplamı sıfırdır: \\[ \\sum_{\\text{loop}} \\Delta V = 0 \\]</div>\n<h4>İşaret kuralları</h4>\n<table><thead><tr><th>Eleman ve yürüyüş yönü</th><th>Potansiyel değişimi</th></tr></thead>\n<tbody><tr><td>Bataryadan − uçtan + uca geçmek</td><td>\\(+\\varepsilon\\) (potansiyel artar)</td></tr>\n<tr><td>Bataryadan + uçtan − uca geçmek</td><td>\\(-\\varepsilon\\)</td></tr>\n<tr><td>Dirençten akım yönünde geçmek</td><td>\\(-IR\\) (potansiyel düşer)</td></tr>\n<tr><td>Dirençten akıma karşı geçmek</td><td>\\(+IR\\)</td></tr></tbody></table>\n<p>Akım yönünü bilmiyorsanız bir yön varsayın. Sonuç negatif çıkarsa akım gerçekte ters yöndedir; büyüklük yine doğrudur.</p>\n<h4>Çalışılmış örnek: iki bataryalı tek döngü</h4>\n<p>Tek döngüde \\(\\varepsilon_1 = 12\\text{ V}\\) ve \\(\\varepsilon_2 = 3.0\\text{ V}\\)'luk bataryalar birbirine <strong>karşı</strong> (+ uçlar aynı tarafa bakacak şekilde) bağlı; dirençler toplamı \\(R_{top} = 9.0\\,\\Omega\\). Akımın büyük bataryanın yönünde döndüğünü varsayalım. Döngü: \\(+12 - 3.0 - I(9.0) = 0 \\Rightarrow I = 1.0\\text{ A}\\). Bataryalar aynı yönde bağlı olsaydı emk'ler toplanırdı: \\(I = 15/9.0 \\approx 1.7\\text{ A}\\).</p>\n<h4>Potansiyel haritası</h4>\n<p>Bir noktayı (genellikle bataryanın − ucunu) \\(0\\text{ V}\\) seçin ve döngüde yürüyerek her noktanın potansiyelini yazın. Direnci olmayan bir tel boyunca potansiyel <strong>değişmez</strong>. Bu yöntemle \"\\(V_a - V_b\\) nedir?\" ya da \"voltmetre a ile b arasında ne okur?\" sorularını hızla çözersiniz. Aynı bilgi, döngü boyunca <strong>elektrik potansiyelinin konuma göre grafiği</strong> olarak da çizilebilir: bataryada basamak şeklinde artış, dirençlerde düşüş, tellerde yatay çizgi.</p>\n<h4>Paralel kollar ve döngü kuralı</h4>\n<p>Paralel kolların aynı gerilime sahip olması da döngü kuralının sonucudur: iki kolu içeren döngüde \\(-I_1R_1 + I_2R_2 = 0\\), yani \\(I_1R_1 = I_2R_2\\).</p>\n<h4>Gerçek batarya</h4>\n<p>İç direnç \\(r\\) de döngüye bir direnç olarak girer: \\(\\varepsilon - Ir - IR = 0\\). Bataryanın uç gerilimi \\(\\varepsilon - Ir\\)'dir.</p>\n<div class=\"kn-dikkat\">Döngü kuralı yalnız kapalı yollar için yazılır. Açık anahtar içeren bir dalda akım sıfırdır ama anahtarın uçları arasında potansiyel farkı olabilir; döngü kuralı bu farkı verir.</div>\n<p>FRQ dili: \"By conservation of energy (Kirchhoff's loop rule), the sum of the potential differences around the closed loop is zero: ε − IR₁ − IR₂ = 0.\" / \"Point a is at a higher potential than point b because current flows from a to b through the resistor.\"</p>",
+   "ornekler": [
+    {
+     "soru": "Tek döngülü bir devrede \\(9.0\\text{ V}\\) ideal batarya, \\(2.0\\,\\Omega\\) ve bilinmeyen \\(R\\) seri bağlı. \\(2.0\\,\\Omega\\)'luk direncin uçlarında \\(3.0\\text{ V}\\) ölçülüyor. \\(R\\) nedir?",
+     "cozum": [
+      "\\(I = 3.0/2.0 = 1.5\\text{ A}\\). Döngü kuralı: \\(9.0 - 3.0 - (1.5)R = 0\\).",
+      "\\(R = 6.0/1.5 = 4.0\\,\\Omega\\)."
+     ]
+    },
+    {
+     "soru": "Bir döngüde bataryanın − ucu \\(0\\text{ V}\\) seçiliyor. Batarya \\(10\\text{ V}\\); akım sırasıyla \\(2.0\\,\\Omega\\) (a ile b arası) ve \\(3.0\\,\\Omega\\) (b ile c arası) dirençlerden geçip − uca dönüyor. a, b, c noktalarının potansiyelleri nedir?",
+     "cozum": [
+      "\\(I = 10/5.0 = 2.0\\text{ A}\\). a noktası + uca tel ile bağlı: \\(V_a = 10\\text{ V}\\).",
+      "\\(V_b = 10 - (2.0)(2.0) = 6.0\\text{ V}\\); \\(V_c = 6.0 - (2.0)(3.0) = 0\\text{ V}\\) (− uç ile aynı). ✓"
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir öğrenci, seri bağlı iki dirençten birincisinin gerilimini \\(4.0\\text{ V}\\), ikincisininkini \\(7.0\\text{ V}\\) ölçüyor; ideal bataryanın emk'si \\(9.0\\text{ V}\\). Ölçümler tutarlı mı? Gerekçelendirin.",
+     "cozum": [
+      "Döngü kuralı: \\(\\varepsilon = \\Delta V_1 + \\Delta V_2\\) olmalı.",
+      "\\(4.0 + 7.0 = 11\\text{ V} \\ne 9.0\\text{ V}\\).",
+      "<strong>Reasoning:</strong> \"The measurements are inconsistent. By Kirchhoff's loop rule (conservation of energy), the potential drops across the resistors must add to the emf of the ideal battery, 9.0 V, but they add to 11 V.\""
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her döngüde önce yürüyüş yönünü ve varsayılan akım yönünü şemada okla işaretleyin.",
+    "Bir noktaya 0 V verip potansiyel haritası çıkarmak, voltmetre sorularının en hızlı çözümüdür.",
+    "Hesap makinesi serbesttir; ama çoğu döngü sorusu tamsayılarla çözülecek şekilde tasarlanır; garip bir sonuç işaret hatasına işarettir.",
+    "\"Justify\" cevabında \"conservation of energy\" ya da \"Kirchhoff's loop rule\" adını açıkça anın; puanlayıcı bu ilkeyi arar."
+   ],
+   "sikHatalar": [
+    "Bataryayı + uçtan − uca geçerken de \\(+\\varepsilon\\) yazmak.",
+    "Akım yönüne karşı geçilen dirençte de \\(-IR\\) yazmak.",
+    "Direnci olmayan bir tel boyunca potansiyelin düştüğünü sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "Kirchhoff's loop rule",
+     "tr": "Kirchhoff'un döngü kuralı"
+    },
+    {
+     "en": "conservation of energy",
+     "tr": "enerjinin korunumu"
+    },
+    {
+     "en": "electric potential",
+     "tr": "elektrik potansiyeli"
+    },
+    {
+     "en": "potential difference",
+     "tr": "potansiyel farkı"
+    },
+    {
+     "en": "potential drop",
+     "tr": "potansiyel düşmesi"
+    },
+    {
+     "en": "closed loop",
+     "tr": "kapalı döngü"
+    }
+   ]
+  },
+  {
+   "kod": "11.7",
+   "baslik": "Kirchhoff's Junction Rule",
+   "baslikTr": "Kirchhoff'un düğüm kuralı",
+   "hedefler": [
+    "Kirchhoff'un düğüm kuralını (junction rule) yük korunumunun sonucu olarak açıklamak: \\(\\sum I_{in} = \\sum I_{out}\\).",
+    "Düğüm ve döngü kurallarını birlikte kullanarak çok kollu devrelerde bilinmeyen akımları bulmak.",
+    "Paralel kollar arasında akımın direnç oranının tersiyle paylaşıldığını göstermek."
+   ],
+   "anlatim": "<p>Bir <strong>düğüm (junction)</strong>, üç ya da daha fazla telin birleştiği noktadır. Yük bir düğümde birikemez ve yok olamaz; bu yüzden düğüme giren toplam akım, düğümden çıkan toplam akıma eşittir. Bu, <strong>yük korunumunun (conservation of charge)</strong> devre dilindeki ifadesidir.</p>\n<div class=\"kn-kural\"><strong>Düğüm kuralı:</strong> \\[ \\sum I_{in} = \\sum I_{out} \\]</div>\n<h4>Akım paylaşımı</h4>\n<p>Paralel iki kolun gerilimi aynı olduğundan \\(I_1R_1 = I_2R_2\\); yani akım, dirençle <strong>ters orantılı</strong> paylaşılır. Düğüm kuralı ile birleştirince: \\[ I_1 = I_{top}\\frac{R_2}{R_1 + R_2}, \\qquad I_2 = I_{top}\\frac{R_1}{R_1 + R_2} \\] Küçük dirençli kol daha çok akım taşır. Örnek: \\(6.0\\text{ A}\\) bir düğümde \\(2.0\\,\\Omega\\) ve \\(4.0\\,\\Omega\\)'luk kollara ayrılırsa \\(I_{2\\Omega} = 4.0\\text{ A}\\), \\(I_{4\\Omega} = 2.0\\text{ A}\\).</p>\n<h4>Düğüm + döngü: sistematik yöntem</h4>\n<table><thead><tr><th>Adım</th><th>İş</th></tr></thead>\n<tbody><tr><td>1</td><td>Her kola bir akım adı ve varsayılan yön verin (\\(I_1, I_2, I_3\\)).</td></tr>\n<tr><td>2</td><td>Bağımsız düğüm sayısı kadar düğüm denklemi yazın (ör. \\(I_1 = I_2 + I_3\\)).</td></tr>\n<tr><td>3</td><td>Kalan bilinmeyenler için bağımsız döngü denklemleri yazın.</td></tr>\n<tr><td>4</td><td>Denklem sistemini çözün; negatif akım = ters yön.</td></tr></tbody></table>\n<p><strong>Çalışılmış örnek:</strong> Sol kolda \\(\\varepsilon_1 = 10\\text{ V}\\) ve \\(2.0\\,\\Omega\\), orta kolda yalnız \\(4.0\\,\\Omega\\), sağ kolda \\(\\varepsilon_2 = 10\\text{ V}\\) ve \\(2.0\\,\\Omega\\) var; üç kol üstte ve altta aynı iki düğüme bağlı, iki bataryanın da + ucu üst düğüme bakıyor. Üst düğümün alt düğüme göre potansiyeline \\(V\\) diyelim. Sol kolun yukarı akımı \\((10 - V)/2.0\\), sağ kolunki \\((10 - V)/2.0\\), orta koldan aşağı akım \\(V/4.0\\). Düğüm kuralı: \\(\\dfrac{10 - V}{2} + \\dfrac{10 - V}{2} = \\dfrac{V}{4} \\Rightarrow 40 - 4V = V \\Rightarrow V = 8.0\\text{ V}\\). Böylece \\(I_{orta} = 2.0\\text{ A}\\), sol ve sağ kolların her biri \\(1.0\\text{ A}\\) yukarı. Kontrol: \\(1.0 + 1.0 = 2.0\\text{ A}\\). ✓ (CED sınır ifadesi: farklı potansiyel farklı bataryaların paralel bağlandığı devreler AP Physics 2'de sorulmaz.)</p>\n<div class=\"kn-dikkat\">Düğüm kuralı her an geçerlidir; şarj olan bir RC devresindeki bir düğümde anlık akımlar için de yazılır. Bir telin \"kalınlığı\" akımı değiştirmez; bir koldaki akım o kolun her noktasında aynıdır.</div>\n<h4>Kavramsal kullanım</h4>\n<p>AP sıklıkla akım ölçümlerinin tutarlılığını sorar: \"Ampermetre 1 \\(0.6\\text{ A}\\), ampermetre 2 \\(0.2\\text{ A}\\) okuyorsa ampermetre 3 ne okur?\" Düğümde giren = çıkan yazın; sayılar tamamlanır.</p>\n<p>FRQ dili: \"By conservation of charge (Kirchhoff's junction rule), the current entering junction P equals the sum of the currents leaving it: I₁ = I₂ + I₃.\" / \"Because the branches are in parallel, they have the same potential difference, so the branch with the smaller resistance carries the larger current.\"</p>",
+   "ornekler": [
+    {
+     "soru": "Bir düğüme \\(2.5\\text{ A}\\) ve \\(1.5\\text{ A}\\) giriyor; düğümden bir kolda \\(3.0\\text{ A}\\) çıkıyor. Dördüncü koldaki akımın büyüklüğü ve yönü nedir?",
+     "cozum": [
+      "Giren toplam \\(4.0\\text{ A}\\); çıkan bilinen \\(3.0\\text{ A}\\).",
+      "Dördüncü kol: \\(4.0 - 3.0 = 1.0\\text{ A}\\), düğümden <em>dışarı</em>."
+     ]
+    },
+    {
+     "soru": "\\(4.5\\text{ A}\\) toplam akım, birbirine paralel \\(3.0\\,\\Omega\\) ve \\(6.0\\,\\Omega\\)'luk dirençlere ayrılıyor. Her koldaki akım nedir?",
+     "cozum": [
+      "\\(I_3 = 4.5 \\cdot \\dfrac{6.0}{9.0} = 3.0\\text{ A}\\), \\(I_6 = 4.5 \\cdot \\dfrac{3.0}{9.0} = 1.5\\text{ A}\\).",
+      "Kontrol: gerilimler eşit mi? \\((3.0)(3.0) = 9.0\\text{ V}\\), \\((1.5)(6.0) = 9.0\\text{ V}\\). ✓ Toplam \\(4.5\\text{ A}\\). ✓"
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir öğrenci, paralel üç koldan geçen akımları \\(0.30\\), \\(0.20\\) ve \\(0.40\\text{ A}\\), bataryadan çıkan akımı ise \\(0.70\\text{ A}\\) ölçüyor. Veriler tutarlı mı? Açıklayın.",
+     "cozum": [
+      "Düğüm kuralına göre bataryadan çıkan akım kol akımlarının toplamına eşit olmalı: \\(0.30 + 0.20 + 0.40 = 0.90\\text{ A}\\).",
+      "\\(0.90 \\ne 0.70\\); veriler tutarsızdır.",
+      "<strong>Reasoning:</strong> \"Charge is conserved and cannot accumulate at the junction, so the current from the battery must equal the sum of the branch currents, 0.90 A. The measured 0.70 A is inconsistent with Kirchhoff's junction rule, so at least one measurement is wrong.\""
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Bilinmeyen sayısı kadar bağımsız denklem gerekir: önce düğüm denklemleri, sonra eksik kalan kadar döngü denklemi.",
+    "İki bilinmeyenli sistemde hesap makinesi yardımcıdır; ama bir düğümün potansiyelini bilinmeyen seçmek çoğu zaman tek denkleme indirir.",
+    "Varsayılan yönü değiştirmeyin; negatif sonuç çıktığında cevabı \"büyüklük ... A, yön ters\" diye yazın.",
+    "Gerekçede \"conservation of charge\" ifadesini kullanın; düğüm kuralının fiziksel temeli budur."
+   ],
+   "sikHatalar": [
+    "Akımın paralel kollar arasında eşit bölündüğünü varsaymak (yalnız eşit dirençlerde doğru).",
+    "Akımı dirençle doğru orantılı paylaştırmak (doğrusu ters orantılı).",
+    "Negatif çıkan akımı hata sanıp çözümü baştan yapmak; yalnız yön terstir."
+   ],
+   "terimler": [
+    {
+     "en": "Kirchhoff's junction rule",
+     "tr": "Kirchhoff'un düğüm kuralı"
+    },
+    {
+     "en": "junction",
+     "tr": "düğüm"
+    },
+    {
+     "en": "conservation of charge",
+     "tr": "yükün korunumu"
+    },
+    {
+     "en": "current division",
+     "tr": "akım paylaşımı"
+    },
+    {
+     "en": "branch current",
+     "tr": "kol akımı"
+    },
+    {
+     "en": "steady state",
+     "tr": "kararlı durum"
+    }
+   ]
+  },
+  {
+   "kod": "11.8",
+   "baslik": "Resistor-Capacitor (RC) Circuits",
+   "baslikTr": "Direnç-kondansatör (RC) devreleri",
+   "hedefler": [
+    "Seri ve paralel kondansatörlerin eşdeğer sığasını (equivalent capacitance) hesaplamak.",
+    "RC devresinde anahtar kapandığı an ve uzun süre sonra (steady state) kondansatörün davranışını tahmin etmek.",
+    "Zaman sabitini (time constant) \\(\\tau = RC\\) yorumlamak ve yük/akım–zaman grafiklerinin biçimini açıklamak."
+   ],
+   "anlatim": "<p>Kondansatör (capacitor), iki iletken plaka arasında yük ayırarak elektrik potansiyel enerjisi depolayan elemandır (sığa \\(C = \\dfrac{Q}{\\Delta V}\\), Unit 10). Bir devrede dirençle birlikte bulunduğunda, akım zamanla değişen bir <strong>RC devresi (RC circuit)</strong> oluşur.</p>\n<h4>Kondansatörlerin bağlanması</h4>\n<table><thead><tr><th>Bağlantı</th><th>Ortak nicelik</th><th>Eşdeğer sığa</th></tr></thead>\n<tbody><tr><td>Paralel (parallel)</td><td>\\(\\Delta V\\)</td><td>\\(C_p = \\sum C_i\\) (büyür)</td></tr>\n<tr><td>Seri (series)</td><td>\\(Q\\) (her birinde aynı yük)</td><td>\\(\\dfrac{1}{C_s} = \\sum \\dfrac{1}{C_i}\\) (küçülür)</td></tr></tbody></table>\n<div class=\"kn-dikkat\">Kurallar dirençlerin <strong>tersidir</strong>: dirençlerde seri toplanır, kondansatörlerde paralel toplanır. En sık sınav tuzağı budur.</div>\n<h4>Şarj olma (charging)</h4>\n<p>Boş bir kondansatör, ideal batarya \\(\\varepsilon\\) ve direnç \\(R\\) seri bağlı; anahtar \\(t = 0\\)'da kapanıyor.</p>\n<ul><li><strong>\\(t = 0\\) anı:</strong> Kondansatörde yük yoktur, \\(\\Delta V_C = 0\\); kondansatör bir <strong>tel gibi</strong> davranır. Akım en büyüktür: \\(I_0 = \\varepsilon/R\\).</li>\n<li><strong>Zaman ilerledikçe:</strong> \\(Q\\) ve \\(\\Delta V_C\\) artar, direncin gerilimi \\(\\varepsilon - \\Delta V_C\\) azalır, akım üstel olarak azalır.</li>\n<li><strong>Uzun süre sonra (steady state):</strong> \\(\\Delta V_C = \\varepsilon\\), akım sıfırdır; kondansatör <strong>açık devre</strong> gibi davranır. Son yük \\(Q_{max} = C\\varepsilon\\).</li></ul>\n<h4>Zaman sabiti</h4>\n<p>\\(\\tau = RC\\) (birimi saniye). Şarjda bir zaman sabiti sonunda kondansatör son yükünün yaklaşık \\(\\%63\\)'üne ulaşır; deşarjda yükün yaklaşık \\(\\%37\\)'si kalır. Yaklaşık \\(5\\tau\\) sonra işlem pratikte tamamlanmıştır. \\(R\\) ya da \\(C\\) büyürse şarj/deşarj <strong>yavaşlar</strong>; son yük ise yalnızca \\(C\\varepsilon\\)'a bağlıdır, \\(R\\)'ye bağlı değildir. \\(\\tau = RC\\) denklem sayfasındadır. CED sınır ifadesine göre şarj/deşarjın zamana bağlı matematiksel modeli beklenmez; başlangıç ve son durumlar sayısal, aradaki davranış nitel (grafik biçimi) sorulur.</p>\n<h4>Deşarj (discharging)</h4>\n<p>Yüklü kondansatör bir dirence bağlanınca başlangıç akımı \\(\\Delta V_0/R\\)'dir; yük, gerilim ve akım aynı zaman sabitiyle üstel olarak sıfıra iner.</p>\n<table><thead><tr><th>Nicelik (şarj)</th><th>\\(t = 0\\)</th><th>\\(t \\to \\infty\\)</th><th>Grafik biçimi</th></tr></thead>\n<tbody><tr><td>Akım \\(I\\)</td><td>\\(\\varepsilon/R\\)</td><td>0</td><td>Üstel azalan</td></tr>\n<tr><td>Yük \\(Q\\), \\(\\Delta V_C\\)</td><td>0</td><td>\\(C\\varepsilon\\), \\(\\varepsilon\\)</td><td>Azalan eğimle artıp doyuma ulaşan</td></tr></tbody></table>\n<h4>Karışık devrede kararlı durum</h4>\n<p>Çok dirençli bir devrede uzun süre sonra kondansatörün bulunduğu koldan akım geçmez. Devreyi o kol yokmuş gibi çözün, sonra kondansatörün bağlı olduğu iki nokta arasındaki potansiyel farkını bulun: \\(Q = C\\Delta V\\). Depolanan enerji \\(U_C = \\tfrac{1}{2}Q\\Delta V = \\tfrac{1}{2}C(\\Delta V)^2\\).</p>\n<p>FRQ dili: \"Immediately after the switch is closed, the capacitor is uncharged, so the potential difference across it is zero and it behaves like a wire.\" / \"After a long time, the capacitor is fully charged and no current flows in its branch, so it acts like an open circuit.\"</p>",
+   "ornekler": [
+    {
+     "soru": "\\(4.0\\,\\mu\\text{F}\\) ve \\(12\\,\\mu\\text{F}\\)'lık kondansatörler seri bağlanıp \\(24\\text{ V}\\)'a takılıyor. Eşdeğer sığa ve her kondansatördeki yük nedir?",
+     "cozum": [
+      "\\(\\dfrac{1}{C_s} = \\dfrac{1}{4} + \\dfrac{1}{12} = \\dfrac{4}{12} \\Rightarrow C_s = 3.0\\,\\mu\\text{F}\\).",
+      "Seri bağlantıda yük ortaktır: \\(Q = C_s\\varepsilon = (3.0\\,\\mu\\text{F})(24\\text{ V}) = 72\\,\\mu\\text{C}\\), her ikisinde de."
+     ]
+    },
+    {
+     "soru": "\\(12\\text{ V}\\) ideal batarya, \\(2.0\\text{ k}\\Omega\\)'luk direnç ve boş \\(50\\,\\mu\\text{F}\\)'lık kondansatör seri. Başlangıç akımı, zaman sabiti ve son yük nedir?",
+     "cozum": [
+      "\\(I_0 = \\varepsilon/R = 12/2000 = 6.0\\text{ mA}\\).",
+      "\\(\\tau = RC = (2000)(50\\times10^{-6}) = 0.10\\text{ s}\\); \\(Q_{max} = C\\varepsilon = 600\\,\\mu\\text{C}\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(\\varepsilon\\) bataryası \\(R_1\\)'e seri; ardından devre \\(R_2\\) ile, \\(R_3\\) ve \\(C\\)'nin seri olduğu bir kola paralel ayrılıyor. Uzun süre sonra \\(R_3\\)'ten geçen akım nedir ve \\(C\\)'nin gerilimi ne olur? Açıklayın.",
+     "cozum": [
+      "Kararlı durumda kondansatör dolu ve kolundan akım geçmez; \\(R_3\\)'ün akımı sıfırdır, dolayısıyla \\(R_3\\)'te gerilim düşmesi yoktur.",
+      "Akım yalnız \\(R_1\\) ve \\(R_2\\)'den geçer: \\(I = \\varepsilon/(R_1 + R_2)\\). \\(C\\)'nin gerilimi \\(R_2\\)'ninkine eşittir: \\(\\Delta V_C = \\varepsilon R_2/(R_1 + R_2)\\).",
+      "<strong>Reasoning:</strong> \"After a long time the capacitor is fully charged, so no current flows in its branch and the potential difference across R₃ is zero. The capacitor branch is in parallel with R₂, so the capacitor has the same potential difference as R₂.\""
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her RC sorusunda iki anı ayrı ayrı çizin: t = 0 (boş kondansatör = tel) ve t → ∞ (dolu kondansatör = açık devre).",
+    "Hesap makinesi serbesttir; \\(\\mu\\text{F} = 10^{-6}\\text{ F}\\) ve \\(\\text{k}\\Omega = 10^{3}\\,\\Omega\\) çevirmelerini önce yazın. AP Physics 2'de zamana bağlı üstel hesap istenmez (CED sınır ifadesi); başlangıç/son durum değerleri, grafik biçimi ve \\(\\tau = RC\\) yorumu önemlidir.",
+    "Grafik çizim sorularında başlangıç değerini, asimptotu ve eğimin değişimini (azalan eğim) doğru gösterin; puanlar bu üç özelliğe verilir.",
+    "\"Explain\" cevabında kondansatörün yükü ile üzerindeki potansiyel farkını ilişkilendirin: ΔV_C = Q/C."
+   ],
+   "sikHatalar": [
+    "Kondansatörleri dirençler gibi birleştirmek (seride toplamak).",
+    "Kararlı durumda kondansatör kolundaki dirençten de akım geçtiğini sanmak.",
+    "Direnç büyüyünce son yükün azaldığını düşünmek; R yalnızca şarj süresini değiştirir."
+   ],
+   "terimler": [
+    {
+     "en": "capacitor",
+     "tr": "kondansatör (sığaç)"
+    },
+    {
+     "en": "capacitance",
+     "tr": "sığa"
+    },
+    {
+     "en": "equivalent capacitance",
+     "tr": "eşdeğer sığa"
+    },
+    {
+     "en": "time constant",
+     "tr": "zaman sabiti"
+    },
+    {
+     "en": "charging / discharging",
+     "tr": "şarj olma / deşarj olma"
+    },
+    {
+     "en": "steady state",
+     "tr": "kararlı durum"
+    },
+    {
+     "en": "exponential decay",
+     "tr": "üstel azalma"
+    }
+   ]
+  }
+ ]
+}
