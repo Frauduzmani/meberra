@@ -45,6 +45,9 @@
     { yol: "/ders/biology", dosya: "ap-biology.html" },
     { yol: "/ders/english", dosya: "ap-english.html" },
     { yol: "/ders/secmeli", dosya: "ap-electives.html" },
+    { yol: "/ders/precalculus", dosya: "ap-precalculus.html" }, // 1.28.0 yeni dersler
+    { yol: "/ders/statistics", dosya: "ap-statistics.html" },
+    { yol: "/ders/physics-2", dosya: "ap-physics-2.html" },
     { yol: "/ders/cent-s", dosya: "sinav-cents.html" },
     { yol: "/deneme", dosya: "deneme.html" },
     { yol: "/seviye-testi", dosya: "seviye-testi.html" },
@@ -60,6 +63,7 @@
     { yol: "/rehber/italya", dosya: "italya-muhendislik.html", herkese: true },
     { yol: "/rehber/istanbul-sinav", dosya: "istanbul-sinav-rehberi.html", herkese: true },
     // 1.18.0 herkese açık SEO rehber makaleleri (app.js yüklemez; oturumsuz ziyaretçi tam görür)
+    { yol: "/ap-nedir", dosya: "ap-nedir.html", herkese: true }, // 1.26.0 "10 dakikada AP" etkileşimli yolculuk
     { yol: "/rehber/ap-nedir", dosya: "rehber-ap-nedir.html", herkese: true },
     { yol: "/rehber/turkiyede-ap", dosya: "rehber-turkiyede-ap.html", herkese: true },
     { yol: "/rehber/ap-ile-avrupa", dosya: "rehber-ap-ile-avrupa.html", herkese: true },

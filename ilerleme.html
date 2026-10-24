@@ -256,7 +256,8 @@
       var sv = A.storeGet("apmeberra:seviye:v1", null) || {};
       var R = Array.isArray(sv.raporlar) ? sv.raporlar : [];
       var meta = document.getElementById("seviye-meta"), list = document.getElementById("seviye-list"), link = document.getElementById("seviye-link");
-      var CLS = { "calculus-ab": "c-calculus", "calculus-bc": "c-calculus", "physics-1": "c-physics", "chemistry": "c-chemistry", "biology": "c-biology", "english-language": "c-english" };
+      var CLS = { "calculus-ab": "c-calculus", "calculus-bc": "c-calculus", "physics-1": "c-physics", "chemistry": "c-chemistry", "biology": "c-biology", "english-language": "c-english",
+        "precalculus": "c-precalculus", "statistics": "c-statistics", "physics-2": "c-physics2" };
       var BANT = { kirmizi: ["zone-red", "Kırmızı"], sari: ["zone-yellow", "Sarı"], yesil: ["zone-green", "Yeşil"] };
       var devam = sv.devam && Array.isArray(sv.devam.sira) && sv.devam.sira.length ? " · yarım kalan bir testin var" : "";
       if (!R.length) {
@@ -430,7 +431,7 @@
           '<h3 id="il-h-' + i + '">' + esc(x.ad) + '</h3>' +
           '<p class="il-halka-sayi">' + (x.tahminiInce == null ? "Tahmin yok" : "Tahmini <b>" + sayi(x.tahminiInce, 1) + "</b>") + (x.hedef ? " · hedef <b>" + x.hedef + "</b>" : "") + '</p>' +
           '<p class="il-yorum">' + esc(G.puanYorumu(x.tahminiInce, x.hedef)) + '</p>' +
-          '<p class="il-halka-kaynak">' + esc(x.tahminKaynagi === "deneme" ? "Son denemenden" : x.tahminKaynagi === "sorular" ? x.cevap + " sorunun doğruluğundan (%" + x.dogruluk + ")" : x.cevap + " cevap · en az 10 gerekli") + '</p>' +
+          '<p class="il-halka-kaynak">' + esc(x.tahminKaynagi === "model+deneme" ? "Ünite ağırlıkları, FRQ'ların ve son denemen" : x.tahminKaynagi === "model" ? "Sınavdaki ünite ağırlıkları ve FRQ öz puanların (" + x.cevap + " cevap)" : x.tahminKaynagi === "deneme" ? "Son denemenden" : x.tahminKaynagi === "sorular" ? x.cevap + " sorunun doğruluğundan (%" + x.dogruluk + ")" : x.cevap + " cevap · en az 10 gerekli") + '</p>' +
           '</div></article>';
       }).join("");
       d.dersler.forEach(function (x, i) {

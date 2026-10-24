@@ -1,0 +1,445 @@
+[
+ {
+  "id": "frq-csa-k1",
+  "sayfa": "ap-electives",
+  "ders": "computer-science-a",
+  "tur": "Metotlar ve kontrol yapıları",
+  "baslik": "BusRoute",
+  "sure_dk": 22,
+  "hesapMakinesi": false,
+  "zorluk": "medium",
+  "giris": "<p>This question involves the <code>BusRoute</code> class, which contains static methods for a city bus line. Stops on the line are numbered 0, 1, 2, … in the order the bus visits them. You will write two methods of the class.</p><pre><code class=\"language-java\">public class BusRoute\n{\n    /** Returns the number of minutes the bus needs to travel from\n     *  stop number stop to stop number stop + 1.\n     *  Precondition: stop &gt;= 0\n     */\n    public static int legTime(int stop)\n    { /* implementation not shown */ }\n\n    /** Returns the total trip time, in minutes, from stop start\n     *  to stop end, as described in part (a).\n     *  Precondition: 0 &lt;= start &lt; end\n     */\n    public static int tripTime(int start, int end)\n    { /* to be implemented in part (a) */ }\n\n    /** Returns the short code for route, as described in part (b).\n     *  Precondition: route contains one or more stop names separated\n     *  by single hyphens (\"-\"). route does not begin or end with a\n     *  hyphen, and each stop name contains at least one letter.\n     */\n    public static String shortCode(String route)\n    { /* to be implemented in part (b) */ }\n}</code></pre>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "<p>Write the static method <code>tripTime</code>. The total trip time from stop <code>start</code> to stop <code>end</code> is the sum of the travel times of all legs between the two stops, plus a waiting time of 2 minutes at every stop the bus passes <em>between</em> <code>start</code> and <code>end</code>. There is no waiting time at <code>start</code> or at <code>end</code>. The travel time of each leg must be found by calling <code>legTime</code>.</p><p>Assume that <code>legTime</code> returns the following values.</p><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">stop</th><th scope=\"col\">0</th><th scope=\"col\">1</th><th scope=\"col\">2</th><th scope=\"col\">3</th><th scope=\"col\">4</th></tr></thead><tbody><tr><th scope=\"row\">legTime(stop)</th><td>4</td><td>7</td><td>3</td><td>12</td><td>5</td></tr></tbody></table><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">Method call</th><th scope=\"col\">Return value</th><th scope=\"col\">Explanation</th></tr></thead><tbody><tr><td><code>tripTime(1, 4)</code></td><td>26</td><td>legs 1, 2, 3: 7 + 3 + 12 = 22; waits at stops 2 and 3: 2 + 2 = 4</td></tr><tr><td><code>tripTime(2, 3)</code></td><td>3</td><td>one leg, no stop in between</td></tr><tr><td><code>tripTime(0, 5)</code></td><td>39</td><td>4 + 7 + 3 + 12 + 5 = 31; waits at stops 1, 2, 3, 4: 8</td></tr></tbody></table><p>Complete method <code>tripTime</code>.</p>",
+    "puan": 3,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "legTime'ı start'tan end − 1'e kadar her bacak için tam bir kez çağırır (end bacağını eklemez, start bacağını atlamaz).",
+      "ornek_cevap": "<code>for (int k = start; k &lt; end; k++)</code> … <code>legTime(k)</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "Bacak sürelerini bir toplamda biriktirir.",
+      "ornek_cevap": "<code>total += legTime(k);</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "Aradaki her durak için 2 dakika ekler (end − start − 1 durak; ya da döngü içinde eşdeğer koşulla) ve toplamı döndürür.",
+      "ornek_cevap": "<code>total += 2 * (end - start - 1); return total;</code>"
+     }
+    ],
+    "ornek_cozum": "<p><strong>1. adım — bacaklar:</strong> start'tan end'e giden bacaklar start, start + 1, …, end − 1 numaralı bacaklardır. Döngü <code>k &lt; end</code> ile biter; <code>legTime(end)</code> çağrılırsa end'den <em>sonraki</em> bacak eklenmiş olur.</p><p><strong>2. adım — bekleme:</strong> Aradaki duraklar start + 1, …, end − 1; sayıları end − start − 1. Her biri 2 dakika ekler.</p><pre><code class=\"language-java\">public static int tripTime(int start, int end)\n{\n    int total = 0;\n    for (int k = start; k &lt; end; k++)\n    {\n        total += legTime(k);\n    }\n    total += 2 * (end - start - 1);\n    return total;\n}</code></pre><p>İz: <code>tripTime(1, 4)</code> → k = 1, 2, 3 → 7 + 3 + 12 = 22; aradaki durak sayısı 4 − 1 − 1 = 2 → 22 + 4 = 26. <code>tripTime(2, 3)</code> → 3 + 2·0 = 3.</p><p><strong>Full-credit answer:</strong> The method adds <code>legTime(k)</code> for every k from start to end − 1, adds 2 minutes for each of the end − start − 1 stops in between, and returns the total.</p>",
+    "sik_hatalar": [
+     "Döngüyü k &lt;= end ile kurup fazladan bir bacak eklemek.",
+     "Bekleme süresini end − start durak için (ya da start ve end'de de) eklemek.",
+     "legTime yerine tablodaki sayıları koda gömmek (metot çağrılmalı)."
+    ],
+    "ne_soruyor": "Verilen yardımcı metodu doğru aralıkta çağırarak bir toplam biriktirmeni ve aradaki duraklar için ek süreyi doğru sayıda eklemeni istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "<p>Write the static method <code>shortCode</code>. The short code of a route is formed by taking the first two letters of each stop name, in order. If a stop name has only one letter, that letter is used. The code ends with a colon (<code>\":\"</code>) followed by the number of stops on the route.</p><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">route</th><th scope=\"col\">Return value</th></tr></thead><tbody><tr><td><code>\"Moda-Kadikoy-Ayrilik\"</code></td><td><code>\"MoKaAy:3\"</code></td></tr><tr><td><code>\"Bebek\"</code></td><td><code>\"Be:1\"</code></td></tr><tr><td><code>\"A-Bostanci\"</code></td><td><code>\"ABo:2\"</code></td></tr><tr><td><code>\"Cay-X-Uskudar-Su\"</code></td><td><code>\"CaXUsSu:4\"</code></td></tr></tbody></table><p>Complete method <code>shortCode</code>.</p>",
+    "puan": 4,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Tireleri bulur (indexOf ya da karakter karakter gezinme) ve son durak dahil her durak adını ayırır.",
+      "ornek_cevap": "<code>int dash = rest.indexOf(\"-\");</code> … <code>if (dash == -1) { name = rest; … }</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "Her adın ilk iki harfini alır; tek harfli adda sınır dışına çıkmadan o harfi alır.",
+      "ornek_cevap": "<code>if (name.length() &gt;= 2) code += name.substring(0, 2); else code += name;</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "Durak sayısını doğru sayar (tek duraklı rota için 1).",
+      "ornek_cevap": "<code>count++;</code> (her durak adı için bir kez)"
+     },
+     {
+      "puan": 1,
+      "olcut": "Harfleri sırayla birleştirip sonuna \":\" ve sayıyı ekler; dizeyi döndürür (yazdırmaz).",
+      "ornek_cevap": "<code>return code + \":\" + count;</code>"
+     }
+    ],
+    "ornek_cozum": "<p><strong>Fikir:</strong> <code>rest</code> henüz işlenmemiş kısım. Her turda ilk tire aranır: tire varsa ad tireden önceki kısımdır ve <code>rest</code> tireden sonrasına kısalır; tire yoksa kalan kısmın tamamı son addır. Böylece son durak ayrı bir döngü sonrası işleme gerek kalmadan işlenir.</p><p><strong>Sınır:</strong> <code>substring(0, 2)</code> yalnızca adın uzunluğu en az 2 ise güvenlidir; tek harfli adlarda adın kendisi eklenir.</p><pre><code class=\"language-java\">public static String shortCode(String route)\n{\n    String code = \"\";\n    int count = 0;\n    String rest = route;\n    while (rest.length() &gt; 0)\n    {\n        int dash = rest.indexOf(\"-\");\n        String name;\n        if (dash == -1)\n        {\n            name = rest;\n            rest = \"\";\n        }\n        else\n        {\n            name = rest.substring(0, dash);\n            rest = rest.substring(dash + 1);\n        }\n        if (name.length() &gt;= 2)\n        {\n            code += name.substring(0, 2);\n        }\n        else\n        {\n            code += name;\n        }\n        count++;\n    }\n    return code + \":\" + count;\n}</code></pre><p>İz: \"A-Bostanci\" → ad \"A\" (tek harf → \"A\"), rest = \"Bostanci\" → tire yok, ad \"Bostanci\" → \"Bo\" → code \"ABo\", count 2 → \"ABo:2\".</p><p><strong>Full-credit answer:</strong> The method splits route at each hyphen, appends the first two letters of each stop name (or the single letter), counts the stops, and returns the letters followed by \":\" and the count.</p>",
+    "sik_hatalar": [
+     "Son tireden sonraki son durak adını işlemeyi unutmak.",
+     "Tek harfli adda substring(0, 2) çağırıp StringIndexOutOfBoundsException almak.",
+     "Durakları tire sayısıyla saymak (durak sayısı = tire sayısı + 1).",
+     "Sonucu System.out.print ile yazdırıp return etmemek."
+    ],
+    "ne_soruyor": "Bir dizeyi ayraç karakterine göre parçalara ayırmanı, her parçadan istenen kısmı güvenle almanı ve parçaları sayarak belirtilen biçimde yeni bir dize döndürmeni istiyor."
+   }
+  ],
+  "toplam_puan": 7,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "Unit 1–2 (String methods, iteration, selection)",
+   "tip": "Methods and Control Structures"
+  }
+ },
+ {
+  "id": "frq-csa-k2",
+  "sayfa": "ap-electives",
+  "ders": "computer-science-a",
+  "tur": "Metotlar ve kontrol yapıları",
+  "baslik": "TypingCoach",
+  "sure_dk": 22,
+  "hesapMakinesi": false,
+  "zorluk": "easy",
+  "giris": "<p>A typing practice program compares the word a student was asked to type (<code>target</code>) with the word the student actually typed (<code>typed</code>). Both methods you write are in the <code>TypingCoach</code> class.</p><pre><code class=\"language-java\">public class TypingCoach\n{\n    /** Returns the number of typing errors, as described in part (a).\n     *  Precondition: target and typed contain only lowercase letters.\n     *                target.length() &gt;= 1; typed may be empty.\n     */\n    public static int countErrors(String target, String typed)\n    { /* to be implemented in part (a) */ }\n\n    /** Returns a feedback string, as described in part (b).\n     *  Precondition: same as countErrors.\n     */\n    public static String feedback(String target, String typed)\n    { /* to be implemented in part (b) */ }\n}</code></pre>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "<p>Write the static method <code>countErrors</code>. Compare the two words position by position, for every position that exists in <em>both</em> words. Each position where the letters are different is one error. In addition, every letter that one word has beyond the length of the other word is one error.</p><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">target</th><th scope=\"col\">typed</th><th scope=\"col\">Return value</th><th scope=\"col\">Explanation</th></tr></thead><tbody><tr><td><code>\"planet\"</code></td><td><code>\"plnaet\"</code></td><td>2</td><td>positions 2 and 3 differ</td></tr><tr><td><code>\"cat\"</code></td><td><code>\"cart\"</code></td><td>2</td><td>position 2 differs (t, r); typed has 1 extra letter</td></tr><tr><td><code>\"house\"</code></td><td><code>\"hose\"</code></td><td>3</td><td>positions 2 and 3 differ; target has 1 extra letter</td></tr><tr><td><code>\"tree\"</code></td><td><code>\"tree\"</code></td><td>0</td><td>no errors</td></tr><tr><td><code>\"go\"</code></td><td><code>\"\"</code></td><td>2</td><td>2 letters are missing</td></tr></tbody></table><p>Complete method <code>countErrors</code>.</p>",
+    "puan": 3,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Yalnızca iki kelimede de bulunan konumları (kısa olanın uzunluğuna kadar) sınır dışına çıkmadan dolaşır.",
+      "ornek_cevap": "<code>for (int i = 0; i &lt; shorter; i++)</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "Aynı konumdaki harfleri equals (ya da charAt ile ==) karşılaştırır ve farklı olanları sayar.",
+      "ornek_cevap": "<code>if (!target.substring(i, i + 1).equals(typed.substring(i, i + 1))) errors++;</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "Uzunluk farkını (mutlak değer) ekler ve toplamı döndürür.",
+      "ornek_cevap": "<code>errors += Math.abs(target.length() - typed.length()); return errors;</code>"
+     }
+    ],
+    "ornek_cozum": "<p><strong>1. adım:</strong> Kısa kelimenin uzunluğunu bul; döngü yalnızca o kadar konumu karşılaştırır. Böylece <code>substring(i, i + 1)</code> iki kelimede de geçerli olur.</p><p><strong>2. adım:</strong> Fazla harfler (hangi kelimede olursa olsun) uzunluk farkı kadardır; <code>Math.abs</code> işareti dert etmeden bunu verir.</p><pre><code class=\"language-java\">public static int countErrors(String target, String typed)\n{\n    int shorter = target.length();\n    if (typed.length() &lt; shorter)\n    {\n        shorter = typed.length();\n    }\n    int errors = 0;\n    for (int i = 0; i &lt; shorter; i++)\n    {\n        if (!target.substring(i, i + 1).equals(typed.substring(i, i + 1)))\n        {\n            errors++;\n        }\n    }\n    errors += Math.abs(target.length() - typed.length());\n    return errors;\n}</code></pre><p>İz: \"house\" / \"hose\" → shorter = 4; konum 2: u ≠ s, konum 3: s ≠ e → 2; uzunluk farkı 1 → 3.</p><p><strong>Full-credit answer:</strong> The method counts the positions in the shorter length where the letters differ and adds the difference in lengths.</p>",
+    "sik_hatalar": [
+     "Döngüyü target.length()'e kadar kurup kısa typed için StringIndexOutOfBoundsException almak.",
+     "Dizeleri == ile karşılaştırmak (substring sonucu için equals gerekir).",
+     "Uzunluk farkını eklemeyi unutmak ya da yalnızca typed daha uzunsa eklemek."
+    ],
+    "ne_soruyor": "İki kelimeyi ortak konumlarda karşılaştırıp farkları saymanı ve uzunluk farkından gelen hataları da hesaba katmanı istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "<p>Write the static method <code>feedback</code>, which returns a string with the same number of characters as <code>target</code>, plus a possible ending described below. For each position in <code>target</code>, the string contains the letter of <code>target</code> if <code>typed</code> has the same letter at that position; otherwise it contains <code>\"*\"</code>. If <code>typed</code> is longer than <code>target</code>, the string ends with <code>\"+\"</code> followed by the number of extra letters.</p><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">target</th><th scope=\"col\">typed</th><th scope=\"col\">Return value</th></tr></thead><tbody><tr><td><code>\"planet\"</code></td><td><code>\"plnaet\"</code></td><td><code>\"pl**et\"</code></td></tr><tr><td><code>\"cat\"</code></td><td><code>\"cart\"</code></td><td><code>\"ca*+1\"</code></td></tr><tr><td><code>\"house\"</code></td><td><code>\"hose\"</code></td><td><code>\"ho***\"</code></td></tr><tr><td><code>\"tree\"</code></td><td><code>\"tree\"</code></td><td><code>\"tree\"</code></td></tr><tr><td><code>\"go\"</code></td><td><code>\"goooo\"</code></td><td><code>\"go+3\"</code></td></tr></tbody></table><p>Complete method <code>feedback</code>.</p>",
+    "puan": 4,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "target'ın her konumunu dolaşır (sonuçta target uzunluğu kadar karakter olur).",
+      "ornek_cevap": "<code>for (int i = 0; i &lt; target.length(); i++)</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "typed'ın o konuma erişmeden önce i &lt; typed.length() kontrolü yapar (kısa typed'da hata yok).",
+      "ornek_cevap": "<code>if (i &lt; typed.length() &amp;&amp; …)</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "Harf aynıysa target harfini, değilse (ya da typed bitmişse) \"*\" ekler.",
+      "ornek_cevap": "<code>result += letter;</code> / <code>result += \"*\";</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "Yalnızca typed daha uzunsa \"+\" ve fazla harf sayısını ekler; dizeyi döndürür.",
+      "ornek_cevap": "<code>if (typed.length() &gt; target.length()) result += \"+\" + (typed.length() - target.length()); return result;</code>"
+     }
+    ],
+    "ornek_cozum": "<p><strong>Fikir:</strong> Sonuç target üzerinden kurulur. <code>&amp;&amp;</code> kısa devre yapar: <code>i &lt; typed.length()</code> yanlışsa <code>typed.substring(i, i + 1)</code> hiç çalışmaz, hata oluşmaz.</p><p><strong>Son ek:</strong> typed daha uzunsa fark kadar fazla harf vardır. <code>\"+\" + (…)</code> parantezi önemlidir; sayı önce hesaplanır, sonra dizeye eklenir.</p><pre><code class=\"language-java\">public static String feedback(String target, String typed)\n{\n    String result = \"\";\n    for (int i = 0; i &lt; target.length(); i++)\n    {\n        String letter = target.substring(i, i + 1);\n        if (i &lt; typed.length() &amp;&amp; letter.equals(typed.substring(i, i + 1)))\n        {\n            result += letter;\n        }\n        else\n        {\n            result += \"*\";\n        }\n    }\n    if (typed.length() &gt; target.length())\n    {\n        result += \"+\" + (typed.length() - target.length());\n    }\n    return result;\n}</code></pre><p>İz: \"cat\" / \"cart\" → c, a, (t ≠ r) * → \"ca*\"; typed 1 harf uzun → \"ca*+1\".</p><p><strong>Full-credit answer:</strong> The method builds a string over the positions of target, using the letter when typed matches and \"*\" otherwise, then appends \"+\" and the number of extra letters if typed is longer.</p>",
+    "sik_hatalar": [
+     "Koşulun sırasını ters yazmak (önce substring, sonra uzunluk kontrolü): kısa devre korumasız kalır.",
+     "Döngüyü typed üzerinden kurmak: typed kısa olduğunda eksik \"*\" kalır.",
+     "\"+\" + typed.length() - target.length() yazmak (parantezsiz ifade derlenmez)."
+    ],
+    "ne_soruyor": "Hedef kelimenin her konumu için doğru karakteri seçip güvenli bir koşulla yeni bir dize kurmanı ve gerektiğinde sonuna fazla harf bilgisini eklemeni istiyor."
+   }
+  ],
+  "toplam_puan": 7,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "Unit 1–2 (String methods, iteration, selection)",
+   "tip": "Methods and Control Structures"
+  }
+ },
+ {
+  "id": "frq-csa-k3",
+  "sayfa": "ap-electives",
+  "ders": "computer-science-a",
+  "tur": "Sınıf tasarımı",
+  "baslik": "ReadingChallenge",
+  "sure_dk": 22,
+  "hesapMakinesi": false,
+  "zorluk": "medium",
+  "giris": "<p>A school library runs a reading challenge. Each student has a page goal and records the number of pages read each day. A <code>ReadingChallenge</code> object keeps track of one student's progress.</p><ul><li>The constructor takes the student's name and the page goal. Precondition: the goal is greater than 0.</li><li><code>logDay(int pages)</code> records the pages read on one day. Precondition: <code>pages &gt;= 0</code>.</li><li><code>getPercent()</code> returns the percent of the goal completed so far, as an <code>int</code> (any fraction is dropped). The value is never greater than 100.</li><li><code>getStreak()</code> returns the number of most recent days in a row on which at least one page was read. A day with 0 pages ends the streak, so the streak becomes 0.</li><li><code>getSummary()</code> returns a string in the format shown below.</li></ul><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">Statement</th><th scope=\"col\">Value returned</th><th scope=\"col\">Explanation</th></tr></thead><tbody><tr><td><code>ReadingChallenge rc = new ReadingChallenge(\"Ece\", 300);</code></td><td></td><td>goal 300 pages</td></tr><tr><td><code>rc.logDay(50);</code></td><td></td><td>total 50, streak 1</td></tr><tr><td><code>rc.logDay(0);</code></td><td></td><td>total 50, streak 0</td></tr><tr><td><code>rc.logDay(40);</code></td><td></td><td>total 90, streak 1</td></tr><tr><td><code>rc.logDay(30);</code></td><td></td><td>total 120, streak 2</td></tr><tr><td><code>rc.getPercent();</code></td><td><code>40</code></td><td>120 * 100 / 300 = 40</td></tr><tr><td><code>rc.getStreak();</code></td><td><code>2</code></td><td></td></tr><tr><td><code>rc.getSummary();</code></td><td><code>\"Ece: 120/300 pages, streak 2\"</code></td><td></td></tr><tr><td><code>rc.logDay(200);</code></td><td></td><td>total 320, streak 3</td></tr><tr><td><code>rc.getPercent();</code></td><td><code>100</code></td><td>more than the goal, so 100</td></tr><tr><td><code>rc.getSummary();</code></td><td><code>\"Ece: 320/300 pages, streak 3\"</code></td><td></td></tr></tbody></table>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "<p>Write the complete <code>ReadingChallenge</code> class. Your implementation must meet all specifications and conform to the examples shown in the table.</p>",
+    "puan": 7,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "public class ReadingChallenge başlığı ve private örnek değişkenler (isim, hedef, toplam sayfa, seri).",
+      "ornek_cevap": "<code>private String name; private int goal; private int total; private int streak;</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "Kurucu (String, int) imzasıyla isim ve hedefi atar, toplam ve seriyi 0 başlatır (yerel değişkenle gölgelemeden).",
+      "ornek_cevap": "<code>public ReadingChallenge(String n, int g) { name = n; goal = g; total = 0; streak = 0; }</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "logDay başlığı doğru (public void logDay(int pages)) ve sayfaları toplama ekler.",
+      "ornek_cevap": "<code>total += pages;</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "logDay seriyi günceller: pages &gt; 0 ise 1 artırır, pages == 0 ise 0 yapar.",
+      "ornek_cevap": "<code>if (pages &gt; 0) streak++; else streak = 0;</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "getPercent yüzdeyi tam sayı olarak hesaplar (total * 100 / goal ya da eşdeğeri; total / goal * 100 gibi önce 0'a düşen ifade kabul edilmez).",
+      "ornek_cevap": "<code>int p = total * 100 / goal;</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "getPercent sonucu 100 ile sınırlar ve döndürür; getStreak seriyi döndürür.",
+      "ornek_cevap": "<code>if (p &gt; 100) p = 100; return p;</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "getSummary örnekteki biçimi birebir döndürür (yazdırmaz).",
+      "ornek_cevap": "<code>return name + \": \" + total + \"/\" + goal + \" pages, streak \" + streak;</code>"
+     }
+    ],
+    "ornek_cozum": "<p><strong>Tasarım:</strong> Dört private alan yeterli: isim, hedef, toplam sayfa ve o anki seri. Her gün için bir liste tutmaya gerek yok; seri her logDay çağrısında güncellenir.</p><p><strong>Yüzde:</strong> Önce 100 ile çarp, sonra böl: 120 * 100 / 300 = 40. Ters sırada (120 / 300 * 100) tam sayı bölmesi önce 0 verir. Sınır için basit bir if yeter.</p><pre><code class=\"language-java\">public class ReadingChallenge\n{\n    private String name;\n    private int goal;\n    private int total;\n    private int streak;\n\n    public ReadingChallenge(String studentName, int pageGoal)\n    {\n        name = studentName;\n        goal = pageGoal;\n        total = 0;\n        streak = 0;\n    }\n\n    public void logDay(int pages)\n    {\n        total += pages;\n        if (pages &gt; 0)\n        {\n            streak++;\n        }\n        else\n        {\n            streak = 0;\n        }\n    }\n\n    public int getPercent()\n    {\n        int percent = total * 100 / goal;\n        if (percent &gt; 100)\n        {\n            percent = 100;\n        }\n        return percent;\n    }\n\n    public int getStreak()\n    {\n        return streak;\n    }\n\n    public String getSummary()\n    {\n        return name + \": \" + total + \"/\" + goal + \" pages, streak \" + streak;\n    }\n}</code></pre><p>Doğrulama: tablodaki çağrılar sırasıyla 40, 2, \"Ece: 120/300 pages, streak 2\", 100, \"Ece: 320/300 pages, streak 3\" üretir.</p><p><strong>Full-credit answer:</strong> The class stores the name, goal, total pages, and current streak in private variables, updates the total and the streak in logDay, and returns the capped integer percent and the summary string in the required format.</p>",
+    "sik_hatalar": [
+     "Kurucuda int total = 0; gibi yerel değişken tanımlayıp örnek değişkeni gölgelemek.",
+     "Yüzdeyi total / goal * 100 ile hesaplamak (tam sayı bölmesi 0 verir).",
+     "0 sayfalık günde seriyi sıfırlamak yerine olduğu gibi bırakmak.",
+     "getSummary içinde System.out.println kullanıp return etmemek; özetteki boşluk ve virgülleri kaçırmak."
+    ],
+    "ne_soruyor": "Verilen davranış tablosuna uyan bir sınıfı baştan yazmanı; hangi bilgilerin örnek değişken olarak saklanacağına karar verip kurucu ve metotlarda bu durumu doğru güncellemeni istiyor."
+   }
+  ],
+  "toplam_puan": 7,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "Unit 3 (Class Creation)",
+   "tip": "Class Design"
+  }
+ },
+ {
+  "id": "frq-csa-k4",
+  "sayfa": "ap-electives",
+  "ders": "computer-science-a",
+  "tur": "ArrayList ile veri analizi",
+  "baslik": "TaskList Insert",
+  "sure_dk": 22,
+  "hesapMakinesi": false,
+  "zorluk": "medium",
+  "giris": "<p>A homework planner stores tasks in a <code>TaskList</code>. Each task has a title and a priority; a higher priority means a more urgent task. The declarations are shown below.</p><pre><code class=\"language-java\">public class Task\n{\n    /** Constructs a task with the given title and priority */\n    public Task(String title, int priority)\n    { /* implementation not shown */ }\n\n    /** Returns the title of this task */\n    public String getTitle()\n    { /* implementation not shown */ }\n\n    /** Returns the priority of this task */\n    public int getPriority()\n    { /* implementation not shown */ }\n\n    // There may be instance variables, constructors, and methods not shown.\n}\n\npublic class TaskList\n{\n    /** The tasks in this list; guaranteed not to be null.\n     *  The priorities never increase from the front of the list to\n     *  the back: tasks.get(i).getPriority() &gt;= tasks.get(i + 1).getPriority()\n     */\n    private ArrayList&lt;Task&gt; tasks;\n\n    /** Adds t to tasks as described below and returns the index where\n     *  t was inserted, or returns -1 if t was not added.\n     *  Precondition: t is not null.\n     */\n    public int addTask(Task t)\n    { /* to be implemented */ }\n\n    // There may be instance variables, constructors, and methods not shown.\n}</code></pre><p>If a task in the list already has the same title as <code>t</code>, the method does not change the list and returns -1. Otherwise, <code>t</code> is inserted <em>after</em> every task whose priority is greater than or equal to the priority of <code>t</code> and <em>before</em> the first task whose priority is less than the priority of <code>t</code>, so the list stays in order. The method returns the index of <code>t</code> in the list.</p><p>Suppose <code>tasks</code> contains the tasks below, shown as (title, priority).</p><p><code>[(\"essay\", 5), (\"lab\", 3), (\"quiz\", 3), (\"reading\", 1)]</code></p><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">Method call (in order)</th><th scope=\"col\">Return value</th><th scope=\"col\">tasks after the call</th></tr></thead><tbody><tr><td><code>addTask(new Task(\"project\", 3))</code></td><td>3</td><td><code>[(\"essay\", 5), (\"lab\", 3), (\"quiz\", 3), (\"project\", 3), (\"reading\", 1)]</code></td></tr><tr><td><code>addTask(new Task(\"lab\", 4))</code></td><td>-1</td><td>unchanged</td></tr><tr><td><code>addTask(new Task(\"exam\", 9))</code></td><td>0</td><td><code>[(\"exam\", 9), (\"essay\", 5), (\"lab\", 3), (\"quiz\", 3), (\"project\", 3), (\"reading\", 1)]</code></td></tr><tr><td><code>addTask(new Task(\"music\", 0))</code></td><td>6</td><td><code>[… , (\"reading\", 1), (\"music\", 0)]</code></td></tr></tbody></table>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "<p>Write the <code>TaskList</code> method <code>addTask</code>.</p>",
+    "puan": 5,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "tasks listesinin tüm elemanlarına sınır dışına çıkmadan erişir (get ile, size()'a kadar).",
+      "ornek_cevap": "<code>for (int i = 0; i &lt; tasks.size(); i++) { Task cur = tasks.get(i); … }</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "Başlıkları equals ile karşılaştırır; aynı başlık varsa listeyi değiştirmeden -1 döndürür (ekleme, tüm liste kontrol edilmeden yapılmaz).",
+      "ornek_cevap": "<code>if (cur.getTitle().equals(t.getTitle())) return -1;</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "Doğru konumu bulur: önceliği t'ninkinden KÜÇÜK olan ilk görevin indeksi; yoksa size().",
+      "ornek_cevap": "<code>if (pos == -1 &amp;&amp; cur.getPriority() &lt; t.getPriority()) pos = i;</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "t'yi add(index, t) ile tam bir kez ekler (listenin sonuna ekleme durumu dahil).",
+      "ornek_cevap": "<code>tasks.add(pos, t);</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "Eklenen konumun indeksini döndürür.",
+      "ornek_cevap": "<code>return pos;</code>"
+     }
+    ],
+    "ornek_cozum": "<p><strong>Kilit nokta 1 — önce kontrol, sonra ekleme:</strong> Aynı başlıklı görev listenin herhangi bir yerinde olabilir (ör. \"lab\" önceliği 4 olsa da 1. indekste). Bu yüzden ekleme, tüm liste tarandıktan sonra yapılır.</p><p><strong>Kilit nokta 2 — konum:</strong> Eşit öncelikli görevler t'den önce kalır; bu yüzden koşul <code>&lt;</code>, <code>&lt;=</code> değil. Böyle bir görev yoksa t en sona (indeks <code>size()</code>) gider. <code>add(size(), t)</code> geçerlidir.</p><p>Döngü içinde ekleme yapılmadığı için dolaşırken liste kaymaz.</p><pre><code class=\"language-java\">public int addTask(Task t)\n{\n    int pos = -1;\n    for (int i = 0; i &lt; tasks.size(); i++)\n    {\n        Task current = tasks.get(i);\n        if (current.getTitle().equals(t.getTitle()))\n        {\n            return -1;\n        }\n        if (pos == -1 &amp;&amp; current.getPriority() &lt; t.getPriority())\n        {\n            pos = i;\n        }\n    }\n    if (pos == -1)\n    {\n        pos = tasks.size();\n    }\n    tasks.add(pos, t);\n    return pos;\n}</code></pre><p>İz: (\"project\", 3) → i = 0: 5, i = 1: 3, i = 2: 3 (hiçbiri 3'ten küçük değil), i = 3: 1 &lt; 3 → pos = 3 → eklenir, dönüş 3. (\"music\", 0) → hiçbir öncelik 0'dan küçük değil → pos = size() = 6.</p><p><strong>Full-credit answer:</strong> The method checks every task for the same title and returns -1 if one is found; otherwise it inserts t at the index of the first task with a lower priority (or at the end) and returns that index.</p>",
+    "sik_hatalar": [
+     "Eklemeyi döngü içinde yapıp aynı başlık kontrolünü listenin geri kalanında yapmamak (ya da t'yi birden çok kez eklemek).",
+     "Koşulu &lt;= ile yazıp t'yi eşit öncelikli görevlerin önüne koymak.",
+     "Uygun görev bulunamadığında (en düşük öncelik) t'yi hiç eklememek.",
+     "Başlıkları == ile karşılaştırmak."
+    ],
+    "ne_soruyor": "Sıralı bir ArrayList'i tarayıp bir tekrar kontrolü yapmanı, yeni elemanın sırayı bozmayacağı konumu bulmanı ve elemanı o konuma güvenle ekleyip konumu döndürmeni istiyor."
+   }
+  ],
+  "toplam_puan": 5,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "Unit 4 (ArrayList traversal and insertion)",
+   "tip": "Data Analysis with ArrayList"
+  }
+ },
+ {
+  "id": "frq-csa-k5",
+  "sayfa": "ap-electives",
+  "ders": "computer-science-a",
+  "tur": "ArrayList ile veri analizi",
+  "baslik": "ChatLog Combine",
+  "sure_dk": 22,
+  "hesapMakinesi": false,
+  "zorluk": "hard",
+  "giris": "<p>A messaging app stores a conversation as a list of <code>Message</code> objects. The declarations are shown below.</p><pre><code class=\"language-java\">public class Message\n{\n    /** Constructs a message with the given sender and text */\n    public Message(String sender, String text)\n    { /* implementation not shown */ }\n\n    /** Returns the name of the sender of this message */\n    public String getSender()\n    { /* implementation not shown */ }\n\n    /** Returns the text of this message */\n    public String getText()\n    { /* implementation not shown */ }\n\n    // There may be instance variables, constructors, and methods not shown.\n}\n\npublic class ChatLog\n{\n    /** The messages in the order they were sent; guaranteed not to be null */\n    private ArrayList&lt;Message&gt; messages;\n\n    /** Combines runs of messages from the same sender, as described\n     *  below, and returns the number of messages removed from the list.\n     */\n    public int combineRuns()\n    { /* to be implemented */ }\n\n    // There may be instance variables, constructors, and methods not shown.\n}</code></pre><p>A <em>run</em> is a group of two or more messages that are next to each other in <code>messages</code> and have the same sender. The method <code>combineRuns</code> replaces each run with a single <code>Message</code> that has the same sender and whose text is the texts of the run, in their original order, joined by <code>\" / \"</code> (space, slash, space). The combined message takes the place of the first message of the run. Messages that are not in a run are not changed, and the order of the messages in the list is kept. The method returns the number of messages removed from the list.</p><p>For example, suppose <code>messages</code> contains the following messages, shown as (sender, text).</p><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">Index</th><th scope=\"col\">Before the call</th><th scope=\"col\">After the call</th></tr></thead><tbody><tr><td>0</td><td><code>(\"Ada\", \"hi\")</code></td><td><code>(\"Ada\", \"hi / are you there?\")</code></td></tr><tr><td>1</td><td><code>(\"Ada\", \"are you there?\")</code></td><td><code>(\"Can\", \"yes\")</code></td></tr><tr><td>2</td><td><code>(\"Can\", \"yes\")</code></td><td><code>(\"Ada\", \"ok / see you / bye\")</code></td></tr><tr><td>3</td><td><code>(\"Ada\", \"ok\")</code></td><td></td></tr><tr><td>4</td><td><code>(\"Ada\", \"see you\")</code></td><td></td></tr><tr><td>5</td><td><code>(\"Ada\", \"bye\")</code></td><td></td></tr></tbody></table><p>The call <code>combineRuns()</code> returns 3. Note that the two runs from \"Ada\" are not combined with each other because a message from \"Can\" is between them. If no two adjacent messages have the same sender, or if the list has fewer than two messages, the method returns 0 and the list is unchanged.</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "<p>Write the <code>ChatLog</code> method <code>combineRuns</code>.</p>",
+    "puan": 5,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Bitişik mesaj çiftlerinin göndericilerini equals ile karşılaştırır; tüm bitişik çiftleri inceler, sınır dışına çıkmaz (i + 1 &lt; size()).",
+      "ornek_cevap": "<code>while (i &lt; messages.size() - 1)</code> … <code>first.getSender().equals(next.getSender())</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "Birleşik metni özgün sırayla ve \" / \" ayıracıyla kurar (fazladan ayraç yok).",
+      "ornek_cevap": "<code>String joined = first.getText() + \" / \" + next.getText();</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "Birleşik mesajı yeni bir Message nesnesi olarak grubun ilk mesajının yerine koyar (set ya da remove + add ile).",
+      "ornek_cevap": "<code>messages.set(i, new Message(first.getSender(), joined));</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "Sonraki mesajları siler ve hiçbir mesajı atlamaz (silme sonrası indeks ilerletilmez; üçlü ve daha uzun gruplar tamamen birleşir).",
+      "ornek_cevap": "<code>messages.remove(i + 1);</code> (i artırılmadan); <code>else i++;</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "Silinen mesajları sayar ve sayıyı döndürür.",
+      "ornek_cevap": "<code>removed++;</code> … <code>return removed;</code>"
+     }
+    ],
+    "ornek_cozum": "<p><strong>Fikir:</strong> i, incelenen mesajın indeksi. i ve i + 1 aynı göndericiden ise ikisi tek mesajda birleştirilir: i'deki mesaj yenisiyle değiştirilir (<code>set</code>), i + 1 silinir (<code>remove</code>). i <em>artırılmaz</em>: bir sonraki mesaj şimdi i + 1'e kaymıştır ve o da aynı göndericiden olabilir (\"ok / see you / bye\" böyle oluşur). Göndericiler farklıysa i bir artar.</p><p><strong>Sınır:</strong> Koşul <code>i &lt; messages.size() - 1</code> her silmeden sonra yeniden hesaplanır; boş ya da tek elemanlı listede döngü hiç çalışmaz.</p><pre><code class=\"language-java\">public int combineRuns()\n{\n    int removed = 0;\n    int i = 0;\n    while (i &lt; messages.size() - 1)\n    {\n        Message first = messages.get(i);\n        Message next = messages.get(i + 1);\n        if (first.getSender().equals(next.getSender()))\n        {\n            String joined = first.getText() + \" / \" + next.getText();\n            messages.set(i, new Message(first.getSender(), joined));\n            messages.remove(i + 1);\n            removed++;\n        }\n        else\n        {\n            i++;\n        }\n    }\n    return removed;\n}</code></pre><p>İz: i = 0: Ada/Ada → \"hi / are you there?\", silinen 1; i = 0: Ada/Can → i = 1; i = 1: Can/Ada → i = 2; i = 2: Ada/Ada → \"ok / see you\", silinen 2; i = 2: Ada/Ada → \"ok / see you / bye\", silinen 3; size = 3, i = 2 → döngü biter. Dönüş 3.</p><p><strong>Full-credit answer:</strong> The method compares each message with the next one; when the senders are equal it sets a new combined message at index i, removes the message at i + 1 without advancing i, counts the removal, and returns the count.</p>",
+    "sik_hatalar": [
+     "for döngüsünde i++ ile silmek: üç ve daha uzun gruplarda bir mesaj atlanır, \"ok / see you\" ve \"bye\" ayrı kalır.",
+     "for-each döngüsü içinde remove çağırmak (ConcurrentModificationException).",
+     "Döngü sınırını i &lt; messages.size() yazıp get(i + 1) ile IndexOutOfBoundsException almak.",
+     "Mesajın metnini değiştirmeye çalışmak (setText yok) ya da metinleri ters sırada birleştirmek."
+    ],
+    "ne_soruyor": "Bir ArrayList'te bitişik elemanları karşılaştırıp aynı gruptakileri tek elemanda birleştirmeni, silme sırasında hiçbir elemanı atlamamanı ve kaç eleman silindiğini döndürmeni istiyor."
+   }
+  ],
+  "toplam_puan": 5,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "Unit 4 (ArrayList traversal, set and remove)",
+   "tip": "Data Analysis with ArrayList"
+  }
+ },
+ {
+  "id": "frq-csa-k6",
+  "sayfa": "ap-electives",
+  "ders": "computer-science-a",
+  "tur": "2B dizi",
+  "baslik": "TrailMap",
+  "sure_dk": 22,
+  "hesapMakinesi": false,
+  "zorluk": "hard",
+  "giris": "<p>A hiking app stores the elevation of points on a map in a 2D array. The <code>TrailMap</code> class is shown below.</p><pre><code class=\"language-java\">public class TrailMap\n{\n    /** heights[r][c] is the elevation, in meters, of the point in\n     *  row r and column c. heights is rectangular with at least\n     *  one row and one column.\n     */\n    private int[][] heights;\n\n    /** Returns true if the point at row r, column c is a peak,\n     *  as described in part (a); false otherwise.\n     *  Precondition: 0 &lt;= r &lt; heights.length,\n     *                0 &lt;= c &lt; heights[0].length\n     */\n    public boolean isPeak(int r, int c)\n    { /* to be implemented in part (a) */ }\n\n    /** Returns the index of the steepest column, as described in part (b) */\n    public int steepestColumn()\n    { /* to be implemented in part (b) */ }\n\n    // There may be instance variables, constructors, and methods not shown.\n}</code></pre><p>The examples in this question use the following <code>heights</code> array.</p><table class=\"frq-tablo\"><caption>heights</caption><thead><tr><th scope=\"col\"></th><th scope=\"col\">0</th><th scope=\"col\">1</th><th scope=\"col\">2</th><th scope=\"col\">3</th><th scope=\"col\">4</th></tr></thead><tbody><tr><th scope=\"row\">0</th><td>12</td><td>15</td><td>11</td><td>10</td><td>9</td></tr><tr><th scope=\"row\">1</th><td>14</td><td>13</td><td>18</td><td>17</td><td>8</td></tr><tr><th scope=\"row\">2</th><td>10</td><td>16</td><td>12</td><td>20</td><td>7</td></tr><tr><th scope=\"row\">3</th><td>9</td><td>11</td><td>13</td><td>14</td><td>12</td></tr></tbody></table>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "<p>Write the method <code>isPeak</code>. A point is a <em>peak</em> if its elevation is strictly greater than the elevation of each of its neighbors. The neighbors of a point are the points directly above, below, to the left, and to the right of it that exist in the array. A point on the edge of the array has fewer than four neighbors.</p><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">Method call</th><th scope=\"col\">Return value</th><th scope=\"col\">Explanation</th></tr></thead><tbody><tr><td><code>isPeak(1, 2)</code></td><td><code>true</code></td><td>18 &gt; 11, 12, 13, 17</td></tr><tr><td><code>isPeak(2, 3)</code></td><td><code>true</code></td><td>20 &gt; 17, 14, 12, 7</td></tr><tr><td><code>isPeak(0, 1)</code></td><td><code>true</code></td><td>15 &gt; 12, 11, 13 (no point above)</td></tr><tr><td><code>isPeak(1, 3)</code></td><td><code>false</code></td><td>17 is not greater than 18 (left) or 20 (below)</td></tr><tr><td><code>isPeak(3, 4)</code></td><td><code>false</code></td><td>corner point; 12 is not greater than 14 (left)</td></tr></tbody></table><p>Complete method <code>isPeak</code>.</p>",
+    "puan": 3,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Dört komşuyu da (üst, alt, sol, sağ) doğru indekslerle inceler.",
+      "ornek_cevap": "<code>heights[r - 1][c]</code>, <code>heights[r + 1][c]</code>, <code>heights[r][c - 1]</code>, <code>heights[r][c + 1]</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "Her komşuya erişmeden önce sınır kontrolü yapar; kenar ve köşe noktalarında dizi dışına çıkmaz (heights.length ve heights[0].length).",
+      "ornek_cevap": "<code>if (r &lt; heights.length - 1 &amp;&amp; heights[r + 1][c] &gt;= h) return false;</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "Kesin büyüklük ister (eşit komşu tepe yapmaz) ve doğru boolean değeri döndürür.",
+      "ornek_cevap": "<code>… &gt;= h) return false;</code> … <code>return true;</code>"
+     }
+    ],
+    "ornek_cozum": "<p><strong>Fikir:</strong> Noktanın yüksekliğini <code>h</code>'de tut. Her komşu için önce o komşunun var olup olmadığını kontrol et (<code>&amp;&amp;</code> kısa devre yapar), sonra komşu <code>h</code>'den küçük değilse hemen <code>false</code> döndür. Dört kontrolü de geçen nokta tepedir.</p><p><strong>Sınırlar:</strong> Üst komşu için <code>r &gt; 0</code>, alt için <code>r &lt; heights.length - 1</code>, sol için <code>c &gt; 0</code>, sağ için <code>c &lt; heights[0].length - 1</code>.</p><pre><code class=\"language-java\">public boolean isPeak(int r, int c)\n{\n    int h = heights[r][c];\n    if (r &gt; 0 &amp;&amp; heights[r - 1][c] &gt;= h)\n    {\n        return false;\n    }\n    if (r &lt; heights.length - 1 &amp;&amp; heights[r + 1][c] &gt;= h)\n    {\n        return false;\n    }\n    if (c &gt; 0 &amp;&amp; heights[r][c - 1] &gt;= h)\n    {\n        return false;\n    }\n    if (c &lt; heights[0].length - 1 &amp;&amp; heights[r][c + 1] &gt;= h)\n    {\n        return false;\n    }\n    return true;\n}</code></pre><p>İz: <code>isPeak(3, 4)</code> → üst 7 &lt; 12 geçer; alt yok (r = 3 son satır); sol 14 &gt;= 12 → false.</p><p><strong>Full-credit answer:</strong> The method checks each neighbor that exists, returns false as soon as a neighbor is greater than or equal to the point, and returns true otherwise.</p>",
+    "sik_hatalar": [
+     "Sınır kontrolünü komşuya erişimden SONRA yazmak (ArrayIndexOutOfBoundsException).",
+     "Sağ sınır için heights.length kullanmak (sütun sayısı heights[0].length).",
+     "&gt; yerine &gt;= kontrolünü ters kurup eşit komşuyu tepe saymak.",
+     "Çapraz komşuları da kontrol etmek."
+    ],
+    "ne_soruyor": "2B dizide bir hücrenin var olan komşularını dizi sınırlarını aşmadan karşılaştırmanı ve tanıma göre doğru boolean değeri döndürmeni istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "<p>Write the method <code>steepestColumn</code>. The <em>steepness</em> of a column is the largest absolute difference between the elevations of two vertically adjacent points in that column (a point and the point directly below it). The method returns the index of the column with the greatest steepness. If two or more columns have the same greatest steepness, the smallest such index is returned. If the array has only one row, every column has steepness 0 and the method returns 0.</p><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">Column</th><th scope=\"col\">Values (top to bottom)</th><th scope=\"col\">Differences</th><th scope=\"col\">Steepness</th></tr></thead><tbody><tr><td>0</td><td>12, 14, 10, 9</td><td>2, 4, 1</td><td>4</td></tr><tr><td>1</td><td>15, 13, 16, 11</td><td>2, 3, 5</td><td>5</td></tr><tr><td>2</td><td>11, 18, 12, 13</td><td>7, 6, 1</td><td>7</td></tr><tr><td>3</td><td>10, 17, 20, 14</td><td>7, 3, 6</td><td>7</td></tr><tr><td>4</td><td>9, 8, 7, 12</td><td>1, 1, 5</td><td>5</td></tr></tbody></table><p>For the example array, <code>steepestColumn()</code> returns 2. Columns 2 and 3 both have steepness 7, and 2 is the smaller index. You may use <code>Math.abs</code>.</p><p>Complete method <code>steepestColumn</code>.</p>",
+    "puan": 3,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Sütun öncelikli dolaşım: her sütunda dikey komşu satır çiftlerini sınır içinde inceler (r = 1'den başlayıp r − 1 ile ya da r + 1 &lt; heights.length).",
+      "ornek_cevap": "<code>for (int c = 0; c &lt; heights[0].length; c++) for (int r = 1; r &lt; heights.length; r++)</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "Her sütun için en büyük mutlak farkı hesaplar (sütun başına değişkeni yeniden başlatır).",
+      "ornek_cevap": "<code>int diff = Math.abs(heights[r][c] - heights[r - 1][c]); if (diff &gt; colMax) colMax = diff;</code>"
+     },
+     {
+      "puan": 1,
+      "olcut": "En dik sütunu izler; eşitlikte küçük indeksi korur (kesin &gt;) ve indeksi (değeri değil) döndürür; tek satırda 0 döner.",
+      "ornek_cevap": "<code>if (colMax &gt; bestDiff) { bestDiff = colMax; bestCol = c; } … return bestCol;</code>"
+     }
+    ],
+    "ornek_cozum": "<p><strong>Fikir:</strong> Dış döngü sütunlar, iç döngü satırlar. Her sütun için <code>colMax</code> 0'dan başlar; r = 1'den başlayan iç döngü <code>heights[r][c]</code> ile bir üstündeki <code>heights[r - 1][c]</code> arasındaki mutlak farkı hesaplar.</p><p><strong>Eşitlik:</strong> En iyi sütun yalnızca <em>kesin</em> büyük bir dikliğe rastlanınca değişir; böylece 3. sütunun 7'si 2. sütunun 7'sinin yerini almaz. <code>bestDiff</code> −1'den başladığı için 0. sütun her zaman ilk aday olur (tek satırda sonuç 0).</p><pre><code class=\"language-java\">public int steepestColumn()\n{\n    int bestCol = 0;\n    int bestDiff = -1;\n    for (int c = 0; c &lt; heights[0].length; c++)\n    {\n        int colMax = 0;\n        for (int r = 1; r &lt; heights.length; r++)\n        {\n            int diff = Math.abs(heights[r][c] - heights[r - 1][c]);\n            if (diff &gt; colMax)\n            {\n                colMax = diff;\n            }\n        }\n        if (colMax &gt; bestDiff)\n        {\n            bestDiff = colMax;\n            bestCol = c;\n        }\n    }\n    return bestCol;\n}</code></pre><p>İz: dikliklerin sırası 4, 5, 7, 7, 5 → en iyi değişimi: c = 0 (4), c = 1 (5), c = 2 (7); c = 3'te 7 &gt; 7 yanlış → bestCol = 2.</p><p><strong>Full-credit answer:</strong> The method computes, for each column, the largest absolute difference between vertically adjacent elevations and returns the index of the first column with the greatest value.</p>",
+    "sik_hatalar": [
+     "Satır öncelikli dolaşıp yatay komşu farklarını hesaplamak.",
+     "İç döngüyü r = 0'dan başlatıp heights[r - 1] ile dizi dışına çıkmak.",
+     "Eşitlikte &gt;= kullanıp en büyük indeksi döndürmek.",
+     "Mutlak değer almamak (aşağı inişler negatif olur) ya da indeks yerine dikliği döndürmek."
+    ],
+    "ne_soruyor": "2B diziyi sütun sütun dolaşıp her sütun için bir ölçü hesaplamanı ve eşitlik kuralına uyarak en büyük ölçüye sahip sütunun indeksini döndürmeni istiyor."
+   }
+  ],
+  "toplam_puan": 6,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "Unit 4 (2D array traversal)",
+   "tip": "2D Array"
+  }
+ }
+]

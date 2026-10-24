@@ -1,0 +1,723 @@
+[
+ {
+  "id": "frq-precalc-k1",
+  "sayfa": "ap-precalculus",
+  "ders": "precalculus",
+  "tur": "Fonksiyon kavramları (hesap makineli)",
+  "baslik": "A Table and a Cubic",
+  "sure_dk": 15,
+  "hesapMakinesi": true,
+  "zorluk": "easy",
+  "giris": "<p>The function \\(f\\) is increasing on the interval \\(0 \\le x \\le 5\\). Selected values of \\(f(x)\\) are given in the table below.</p><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">\\(x\\)</th><th scope=\"col\">0</th><th scope=\"col\">1</th><th scope=\"col\">2</th><th scope=\"col\">3</th><th scope=\"col\">4</th><th scope=\"col\">5</th></tr></thead><tbody><tr><th scope=\"row\">\\(f(x)\\)</th><td>−4</td><td>−2</td><td>1</td><td>5</td><td>10</td><td>16</td></tr></tbody></table><p>The function \\(g\\) is given by \\(g(x) = 0.5x^{3} - 2x^{2} + 1\\).</p><p>A graphing calculator is required for some parts of this question. Give decimal answers correct to three places after the decimal point.</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "(i) Find the value of \\((g \\circ f)(2)\\), or indicate that it is not defined.<br>(ii) Find the value of \\(f^{-1}\\big(g(4)\\big)\\), or indicate that it is not defined.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) \\(f(2)=1\\) kullanılarak \\(g(f(2))=g(1)=-0.5\\) bulunması (ara adım görünür olmalı).",
+      "ornek_cevap": "\\((g\\circ f)(2)=g(f(2))=g(1)=0.5-2+1=-0.5\\)"
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) \\(g(4)=1\\) ve tablodan \\(f(2)=1\\) olduğu için \\(f^{-1}(1)=2\\) sonucu.",
+      "ornek_cevap": "\\(g(4)=32-32+1=1\\); since \\(f(2)=1\\), \\(f^{-1}(g(4))=f^{-1}(1)=2\\)."
+     }
+    ],
+    "ornek_cozum": "<p><strong>(i)</strong> Bileşke içten dışa hesaplanır: önce \\(f(2)\\), sonra \\(g\\).</p>\\[(g\\circ f)(2)=g\\big(f(2)\\big)=g(1)=0.5(1)^3-2(1)^2+1=-0.5\\]<p><strong>(ii)</strong> Önce içteki değer: \\(g(4)=0.5(64)-2(16)+1=1\\). Ters fonksiyon soruyor: “\\(f\\) hangi girdide 1 verir?” Tabloda \\(f(2)=1\\).</p><p><strong>Cevap:</strong> <strong>(i) \\((g\\circ f)(2)=-0.5\\). (ii) \\(f^{-1}(g(4))=f^{-1}(1)=2\\), because \\(f(2)=1\\).</strong></p>",
+    "sik_hatalar": [
+     "\\((g\\circ f)(2)\\)'yi \\(f(g(2))\\) gibi ters sırada hesaplamak.",
+     "\\(f^{-1}(1)\\) yerine \\(\\frac{1}{f(1)}\\) hesaplamak; \\(f^{-1}\\) ters fonksiyondur, çarpmaya göre ters değildir."
+    ],
+    "ne_soruyor": "Tablo ile formülü birlikte kullanarak bir bileşke fonksiyon değeri ve bir ters fonksiyon değeri bulmanı istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "(i) Find all real zeros of \\(g\\).<br>(ii) Find all intervals on which \\(g(x) > 0\\).",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) Hesap makinesiyle üç sıfır: \\(x\\approx-0.655,\\ 0.789,\\ 3.866\\) (üçü de; üç ondalık doğru).",
+      "ornek_cevap": "The zeros of \\(g\\) are \\(x\\approx-0.655\\), \\(x\\approx0.789\\), and \\(x\\approx3.866\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) (i)'deki sıfırlarla tutarlı aralıklar: \\((-0.655,\\,0.789)\\) ve \\((3.866,\\,\\infty)\\).",
+      "ornek_cevap": "\\(g(x)>0\\) on \\((-0.655,\\ 0.789)\\) and on \\((3.866,\\ \\infty)\\)."
+     }
+    ],
+    "ornek_cozum": "<p><strong>(i)</strong> Hesap makinesinde \\(y=0.5x^3-2x^2+1\\) grafiğini çiz ve “zero” komutuyla x eksenini kestiği yerleri bul. Kübik fonksiyonun en çok 3 gerçek sıfırı vardır ve burada üçü de gerçektir: \\(x\\approx-0.655,\\ 0.789,\\ 3.866\\).</p><p><strong>(ii)</strong> Başkatsayı pozitif (\\(0.5>0\\)), derece tek: grafik solda aşağıdan gelir. Sıfırlarda işaret değişir (hepsi tek katlı):</p><ul><li>\\(x<-0.655\\): negatif</li><li>\\(-0.655<x<0.789\\): pozitif (ör. \\(g(0)=1\\))</li><li>\\(0.789<x<3.866\\): negatif (ör. \\(g(2)=-3\\))</li><li>\\(x>3.866\\): pozitif</li></ul><p><strong>Cevap:</strong> <strong>(i) \\(x\\approx-0.655,\\ 0.789,\\ 3.866\\). (ii) \\(g(x)>0\\) on \\((-0.655,\\ 0.789)\\cup(3.866,\\ \\infty)\\).</strong></p>",
+    "sik_hatalar": [
+     "Yalnızca bir ya da iki sıfır yazıp grafiğin tamamına bakmamak.",
+     "Sıfırları iki ondalıkla yazmak (AP üç ondalık ister) ya da aralığa sıfırların kendisini dahil etmek (\\(g(x)>0\\) kesin eşitsizlik)."
+    ],
+    "ne_soruyor": "Grafik hesap makinesiyle bir polinomun tüm sıfırlarını bulmanı ve bu sıfırları kullanarak fonksiyonun pozitif olduğu aralıkları belirlemeni istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "(i) Describe the end behavior of \\(g\\). Express your answer using the mathematical notation of limits.<br>(ii) Use the table to determine whether the graph of \\(f\\) is concave up or concave down on the interval \\(0 < x < 5\\). Give a reason for your answer based on average rates of change.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) Her iki limit doğru: \\(\\lim_{x\\to-\\infty}g(x)=-\\infty\\) ve \\(\\lim_{x\\to\\infty}g(x)=\\infty\\).",
+      "ornek_cevap": "\\(\\displaystyle\\lim_{x\\to-\\infty}g(x)=-\\infty\\) and \\(\\displaystyle\\lim_{x\\to\\infty}g(x)=\\infty\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) Eşit uzunluklu ardışık aralıklarda ortalama değişim oranlarını (2, 3, 4, 5, 6) hesaplayıp artan olduklarını belirterek “concave up” sonucu.",
+      "ornek_cevap": "Over the consecutive intervals of length 1, the average rates of change of \\(f\\) are 2, 3, 4, 5, 6. They are increasing, so the graph of \\(f\\) is concave up."
+     }
+    ],
+    "ornek_cozum": "<p><strong>(i)</strong> Uç davranışı en yüksek dereceli terim belirler: \\(0.5x^3\\). Derece tek, katsayı pozitif: \\(x\\to\\infty\\) iken \\(g\\to\\infty\\), \\(x\\to-\\infty\\) iken \\(g\\to-\\infty\\).</p><p><strong>(ii)</strong> Ardışık, eşit uzunluklu (1 birim) aralıklarda ortalama değişim oranı:</p>\\[\\frac{-2-(-4)}{1}=2,\\quad \\frac{1-(-2)}{1}=3,\\quad 4,\\quad 5,\\quad 6\\]<p>Ortalama değişim oranları artıyor: \\(f\\) artan bir hızla artıyor, yani grafik yukarı bükey.</p><p><strong>Cevap:</strong> <strong>(i) \\(\\lim_{x\\to-\\infty}g(x)=-\\infty\\), \\(\\lim_{x\\to\\infty}g(x)=\\infty\\). (ii) Concave up, because the average rates of change of \\(f\\) over consecutive equal-length intervals (2, 3, 4, 5, 6) are increasing.</strong></p>",
+    "sik_hatalar": [
+     "Limiti yazmadan yalnızca “sağda yukarı, solda aşağı” demek; soru limit gösterimi istiyor.",
+     "Yalnızca “f artıyor” deyip bükeyliği ortalama değişim oranlarının değişimiyle gerekçelendirmemek.",
+     "Farklı uzunluktaki aralıkların ortalama değişim oranlarını karşılaştırmak."
+    ],
+    "ne_soruyor": "Polinomun uç davranışını limit gösterimiyle yazmanı ve tablodaki ortalama değişim oranlarına bakarak grafiğin bükeyliğine karar verip gerekçelendirmeni istiyor."
+   }
+  ],
+  "ek": {
+   "uretim": "1.28.0",
+   "cedKonu": "1.2, 1.4, 1.6, 2.7, 2.8",
+   "tip": "Function Concepts (Graphing Calculator Required)"
+  },
+  "toplam_puan": 6,
+  "kaynak": "AP-style original (Meberra 1.28.0)",
+  "durum": "taslak"
+ },
+ {
+  "id": "frq-precalc-k2",
+  "sayfa": "ap-precalculus",
+  "ders": "precalculus",
+  "tur": "Fonksiyon kavramları (hesap makineli)",
+  "baslik": "An Exponential and a Rational Function",
+  "sure_dk": 15,
+  "hesapMakinesi": true,
+  "zorluk": "medium",
+  "giris": "<p>The functions \\(f\\) and \\(g\\) are given by</p>\\[f(x) = 2^{x} - 5 \\qquad\\text{and}\\qquad g(x) = \\frac{x^{2} - 9}{x^{2} - x - 6}.\\]<p>A graphing calculator is allowed for this question. Give decimal answers correct to three places after the decimal point.</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "(i) Find the value of \\((g \\circ f)(2)\\), or indicate that it is not defined.<br>(ii) Find the value of \\(f^{-1}(6)\\), or indicate that it is not defined.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) \\(f(2)=-1\\) ve \\(g(-1)=\\frac{-8}{-4}=2\\).",
+      "ornek_cevap": "\\(f(2)=4-5=-1\\), so \\((g\\circ f)(2)=g(-1)=\\dfrac{1-9}{1+1-6}=\\dfrac{-8}{-4}=2\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) \\(2^{x}-5=6\\) çözülerek \\(f^{-1}(6)=\\log_2 11\\approx3.459\\) (tam ya da ondalık).",
+      "ornek_cevap": "\\(f^{-1}(6)\\) is the input with \\(2^{x}-5=6\\), so \\(2^{x}=11\\) and \\(f^{-1}(6)=\\log_2 11\\approx 3.459\\)."
+     }
+    ],
+    "ornek_cozum": "<p><strong>(i)</strong> \\(f(2)=2^2-5=-1\\). Sonra \\(g(-1)=\\dfrac{(-1)^2-9}{(-1)^2-(-1)-6}=\\dfrac{-8}{-4}=2\\).</p><p><strong>(ii)</strong> \\(f^{-1}(6)\\), \\(f\\)'nin 6 değerini verdiği girdidir. \\(2^x-5=6\\Rightarrow 2^x=11\\Rightarrow x=\\log_2 11=\\dfrac{\\ln 11}{\\ln 2}\\approx3.459\\).</p><p><strong>Cevap:</strong> <strong>(i) \\((g\\circ f)(2)=2\\). (ii) \\(f^{-1}(6)=\\log_2 11\\approx 3.459\\).</strong></p>",
+    "sik_hatalar": [
+     "\\(f^{-1}(6)\\) yerine \\(f(6)=59\\) hesaplamak.",
+     "\\(\\log_2 11\\) yerine \\(\\log 11\\) (taban 10) yazmak; taban değiştirme formülünü unutmak."
+    ],
+    "ne_soruyor": "Bir bileşke fonksiyon değeri bulmanı ve üstel fonksiyonun tersinin belirli bir girdideki değerini hesaplamanı istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "(i) Find all zeros of \\(g\\), or explain why there are none.<br>(ii) The graph of \\(g\\) has a hole. Find the coordinates of the hole.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) Çarpanlara ayırma ile tek sıfır \\(x=-3\\); \\(x=3\\)'ün sıfır olmadığı (tanımsız) belirtilmeli.",
+      "ornek_cevap": "\\(g(x)=\\dfrac{(x-3)(x+3)}{(x-3)(x+2)}\\). The only zero is \\(x=-3\\); \\(x=3\\) is not a zero because \\(g(3)\\) is undefined."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) Delik \\(\\left(3,\\ \\tfrac{6}{5}\\right)\\): sadeleşmiş ifadede \\(x=3\\) yerine konarak.",
+      "ornek_cevap": "The hole is at \\(x=3\\); \\(\\lim_{x\\to3}\\dfrac{x+3}{x+2}=\\dfrac{6}{5}\\), so the hole is at \\(\\left(3,\\ \\tfrac{6}{5}\\right)\\)."
+     }
+    ],
+    "ornek_cozum": "<p>Pay ve paydayı çarpanlarına ayır:</p>\\[g(x)=\\frac{(x-3)(x+3)}{(x-3)(x+2)}\\]<p><strong>(i)</strong> Pay \\(x=3\\) ve \\(x=-3\\)'te sıfır olur. Ama \\(x=3\\)'te payda da sıfır, yani \\(g(3)\\) tanımsızdır: orada sıfır değil, <em>delik</em> var. \\(x=-3\\)'te payda \\((-6)(-1)=6\\neq0\\), bu yüzden tek sıfır \\(x=-3\\).</p><p><strong>(ii)</strong> \\(x\\neq3\\) için \\(g(x)=\\dfrac{x+3}{x+2}\\). Deliğin y değeri: \\(\\dfrac{3+3}{3+2}=\\dfrac{6}{5}\\).</p><p><strong>Cevap:</strong> <strong>(i) The only zero of \\(g\\) is \\(x=-3\\). (ii) The hole is at \\(\\left(3,\\ \\tfrac{6}{5}\\right)\\).</strong></p>",
+    "sik_hatalar": [
+     "\\(x=3\\)'ü de sıfır saymak — pay ve payda aynı çarpanla sıfırlanıyorsa orası delik olur.",
+     "Deliğin y değerini sadeleşmemiş ifadeye yazıp \\(\\frac{0}{0}\\)'da takılmak."
+    ],
+    "ne_soruyor": "Rasyonel fonksiyonun sıfırlarını, pay ve paydanın ortak çarpanına dikkat ederek bulmanı ve grafiğindeki deliğin koordinatlarını hesaplamanı istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "(i) Describe the end behavior of \\(g\\). Express your answer using the mathematical notation of limits.<br>(ii) The graph of \\(g\\) has a vertical asymptote at \\(x = -2\\). Find \\(\\displaystyle\\lim_{x\\to -2^{+}} g(x)\\). Give a reason for your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) \\(\\lim_{x\\to\\infty}g(x)=1\\) ve \\(\\lim_{x\\to-\\infty}g(x)=1\\) (dereceler eşit, başkatsayılar oranı 1).",
+      "ornek_cevap": "\\(\\displaystyle\\lim_{x\\to\\infty}g(x)=1\\) and \\(\\displaystyle\\lim_{x\\to-\\infty}g(x)=1\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) \\(+\\infty\\) sonucu, işaret gerekçesiyle: pay \\(1\\)'e yaklaşır (pozitif), payda \\(0\\)'a pozitif taraftan yaklaşır.",
+      "ornek_cevap": "\\(\\displaystyle\\lim_{x\\to-2^{+}}g(x)=\\infty\\), because as \\(x\\to-2^{+}\\), \\(x+3\\to1>0\\) and \\(x+2\\to0\\) through positive values."
+     }
+    ],
+    "ornek_cozum": "<p><strong>(i)</strong> Pay ve paydanın derecesi eşit (2). Uç davranış başkatsayılar oranıdır: \\(\\frac{1}{1}=1\\). Yatay asimptot \\(y=1\\).</p><p><strong>(ii)</strong> \\(x\\neq3\\) için \\(g(x)=\\dfrac{x+3}{x+2}\\). \\(x\\) sağdan \\(-2\\)'ye yaklaşırken (ör. \\(x=-1.999\\)): pay \\(\\approx1.001>0\\), payda \\(\\approx0.001>0\\) ve sıfıra gidiyor. Pozitif bir sayı, sıfıra yaklaşan pozitif bir sayıya bölünür: sonuç sınırsız büyür (ör. \\(g(-1.999)\\approx1001\\)).</p><p><strong>Cevap:</strong> <strong>(i) \\(\\lim_{x\\to\\pm\\infty}g(x)=1\\). (ii) \\(\\lim_{x\\to-2^{+}}g(x)=\\infty\\), because the numerator approaches 1 and the denominator approaches 0 through positive values.</strong></p>",
+    "sik_hatalar": [
+     "Uç davranışta 0 yazmak (bu, payın derecesi daha küçük olduğunda geçerlidir).",
+     "Sağdan limitte işareti kontrol etmeden \\(-\\infty\\) yazmak ya da yalnızca “tanımsız” demek."
+    ],
+    "ne_soruyor": "Rasyonel fonksiyonun uç davranışını limitle yazmanı ve düşey asimptota sağdan yaklaşırken fonksiyonun nereye gittiğini işaret gerekçesiyle açıklamanı istiyor."
+   }
+  ],
+  "ek": {
+   "uretim": "1.28.0",
+   "cedKonu": "1.7, 1.8, 1.9, 1.10, 2.7, 2.10",
+   "tip": "Function Concepts (Graphing Calculator Required)"
+  },
+  "toplam_puan": 6,
+  "kaynak": "AP-style original (Meberra 1.28.0)",
+  "durum": "taslak"
+ },
+ {
+  "id": "frq-precalc-k3",
+  "sayfa": "ap-precalculus",
+  "ders": "precalculus",
+  "tur": "Periyodik olmayan bağlamda modelleme (hesap makineli)",
+  "baslik": "Duckweed on a Pond",
+  "sure_dk": 15,
+  "hesapMakinesi": true,
+  "zorluk": "easy",
+  "giris": "<p>Duckweed is a small water plant that can quickly cover the surface of a pond. A biologist measures the area of a pond that is covered by duckweed. On day 4 the covered area is 30 square meters, and on day 10 the covered area is 120 square meters.</p><p>The covered area, in square meters, \\(t\\) days after the biologist starts the study can be modeled by the function \\(A\\) given by \\(A(t) = a \\cdot b^{t}\\), where \\(a\\) and \\(b\\) are positive constants. The total area of the pond's surface is 500 square meters.</p><p>A graphing calculator is allowed for this question. Give decimal answers correct to three places after the decimal point.</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "(i) Use the given data to write two equations that can be used to find the values for constants \\(a\\) and \\(b\\) in the expression for \\(A(t)\\).<br>(ii) Find the values for \\(a\\) and \\(b\\).",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) İki denklem: \\(a\\cdot b^{4}=30\\) ve \\(a\\cdot b^{10}=120\\).",
+      "ornek_cevap": "\\(a\\cdot b^{4}=30\\) and \\(a\\cdot b^{10}=120\\)"
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) \\(b=4^{1/6}\\approx1.260\\) ve \\(a\\approx11.906\\) (ikisi de; (i)'deki denklemlerle tutarlı).",
+      "ornek_cevap": "Dividing, \\(b^{6}=4\\), so \\(b=4^{1/6}\\approx1.260\\) and \\(a=\\dfrac{30}{b^{4}}\\approx11.906\\)."
+     }
+    ],
+    "ornek_cozum": "<p><strong>(i)</strong> Veri noktaları \\((4,\\,30)\\) ve \\((10,\\,120)\\) modele yazılır: \\(a b^{4}=30\\), \\(a b^{10}=120\\).</p><p><strong>(ii)</strong> İkinci denklemi birinciye böl: \\(b^{6}=\\dfrac{120}{30}=4\\Rightarrow b=4^{1/6}\\approx1.25992\\). Sonra \\(a=\\dfrac{30}{b^{4}}=\\dfrac{30}{4^{2/3}}\\approx11.906\\).</p><p><strong>Cevap:</strong> <strong>(i) \\(ab^{4}=30\\) and \\(ab^{10}=120\\). (ii) \\(b\\approx1.260\\) and \\(a\\approx11.906\\).</strong></p>",
+    "sik_hatalar": [
+     "\\(b\\)'yi \\(\\frac{120}{30}=4\\) sanmak — 4 katı 6 günde olmuştur, günlük çarpan \\(4^{1/6}\\)'dır.",
+     "\\(a\\)'yı ilk ölçüm (30) sanmak; \\(a\\) gün 0'daki alandır, gün 4'teki değil."
+    ],
+    "ne_soruyor": "Verilen iki ölçümü üstel modele yazıp iki denklem kurmanı ve bu denklemlerden modelin sabitlerini bulmanı istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "(i) Use the model to estimate the area covered by duckweed on day 14. Show the work that leads to your answer and indicate units of measure.<br>(ii) Use the model to find the number of days it takes for the covered area to double. Interpret your answer in the context of the problem.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) \\(A(14)\\approx302.4\\) metrekare (302 ile 303 arası kabul; birimle).",
+      "ornek_cevap": "\\(A(14)=11.906(1.25992)^{14}\\approx302.381\\) square meters."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) \\(b^{D}=2\\) çözülerek \\(D=3\\) gün ve bağlam yorumu: her 3 günde kaplanan alan iki katına çıkar.",
+      "ornek_cevap": "\\(4^{D/6}=2\\Rightarrow D=3\\). According to the model, the area covered by duckweed doubles every 3 days."
+     }
+    ],
+    "ornek_cozum": "<p><strong>(i)</strong> \\(A(14)=a\\cdot b^{14}\\approx11.906\\cdot(1.25992)^{14}\\approx302.381\\) m². (Kontrol: gün 10'dan gün 14'e 4 gün geçer; \\(120\\cdot4^{4/6}\\approx302.4\\).)</p><p><strong>(ii)</strong> Alanın iki katına çıkması için \\(b^{D}=2\\) olmalı. \\(b=4^{1/6}=2^{1/3}\\) olduğundan \\(2^{D/3}=2\\Rightarrow D=3\\).</p><p><strong>Cevap:</strong> <strong>(i) About 302.381 square meters of the pond are covered on day 14. (ii) 3 days; according to the model, the covered area doubles every 3 days.</strong></p>",
+    "sik_hatalar": [
+     "Birimi (square meters) yazmamak.",
+     "İki katına çıkma süresini \\(A(t)=2\\) denklemiyle bulmaya çalışmak; aranan, alanın \\(A\\)'dan \\(2A\\)'ya çıkma süresidir."
+    ],
+    "ne_soruyor": "Modelle belirli bir gündeki alanı birimiyle tahmin etmeni ve alanın iki katına çıkma süresini bulup bağlam içinde yorumlamanı istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "(i) According to the model, on what day does the covered area reach 500 square meters?<br>(ii) Explain why the model \\(A\\) is not appropriate for predicting the covered area for values of \\(t\\) much greater than your answer in (i).",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) \\(A(t)=500\\) çözümü \\(t\\approx16.177\\) gün.",
+      "ornek_cevap": "Solving \\(11.906(1.260)^{t}=500\\) gives \\(t\\approx16.177\\) days."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) Model sınırsız artar ama havuz yüzeyi 500 m² ile sınırlıdır; daha sonraki t değerlerinde model havuzdan büyük alan öngörür.",
+      "ornek_cevap": "The model keeps increasing without bound, but the duckweed cannot cover more than the 500 square meters of the pond, so for \\(t>16.177\\) the model gives impossible areas."
+     }
+    ],
+    "ornek_cozum": "<p><strong>(i)</strong> \\(a b^{t}=500\\Rightarrow b^{t}=\\dfrac{500}{a}\\Rightarrow t=\\dfrac{\\ln(500/a)}{\\ln b}\\approx16.177\\). (Hesap makinesinde \\(y=A(t)\\) ve \\(y=500\\) kesişimi de aynı sonucu verir.)</p><p><strong>(ii)</strong> Üstel model \\(b>1\\) olduğu için sınırsız büyür: \\(\\lim_{t\\to\\infty}A(t)=\\infty\\). Oysa kaplanan alan havuzun yüzeyini (500 m²) geçemez. Ayrıca alan büyüdükçe yer ve besin azalır, büyüme yavaşlar.</p><p><strong>Cevap:</strong> <strong>(i) About day 16.177. (ii) The model increases without bound, but the covered area can never be more than 500 square meters, so the model is not valid after the pond is full.</strong></p>",
+    "sik_hatalar": [
+     "(ii)'de bağlamdan kopuk genel bir cümle yazmak (“modeller her zaman doğru değildir”); havuzun 500 m² sınırı mutlaka söylenmeli.",
+     "Logaritma alırken \\(a\\)'yı ayırmadan \\(\\ln 500/\\ln b\\) hesaplamak."
+    ],
+    "ne_soruyor": "Modelin belirli bir değere ulaştığı zamanı bulmanı ve modelin bu bağlamdaki sınırını gerçek dünyadaki kısıtla açıklamanı istiyor."
+   }
+  ],
+  "ek": {
+   "uretim": "1.28.0",
+   "cedKonu": "2.3, 2.5, 2.13",
+   "tip": "Modeling a Non-Periodic Context (Graphing Calculator Required)"
+  },
+  "toplam_puan": 6,
+  "kaynak": "AP-style original (Meberra 1.28.0)",
+  "durum": "taslak"
+ },
+ {
+  "id": "frq-precalc-k4",
+  "sayfa": "ap-precalculus",
+  "ders": "precalculus",
+  "tur": "Periyodik olmayan bağlamda modelleme (hesap makineli)",
+  "baslik": "Bicycle Braking Distance",
+  "sure_dk": 15,
+  "hesapMakinesi": true,
+  "zorluk": "hard",
+  "giris": "<p>A cycling club tests how far an electric bicycle travels after the rider starts braking. The table gives the braking distance \\(D\\), in meters, for selected speeds \\(v\\), in kilometers per hour.</p><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">\\(v\\) (kilometers per hour)</th><th scope=\"col\">20</th><th scope=\"col\">40</th><th scope=\"col\">60</th><th scope=\"col\">80</th><th scope=\"col\">100</th></tr></thead><tbody><tr><th scope=\"row\">\\(D\\) (meters)</th><td>7.1</td><td>20.2</td><td>39.5</td><td>64.8</td><td>97.0</td></tr></tbody></table><p>A graphing calculator is required for this question. Give decimal answers correct to three places after the decimal point.</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "(i) The input values in the table are equally spaced. Using the output values, explain why a quadratic function model is more appropriate than a linear function model for these data.<br>(ii) Use the data in the table to write a quadratic regression model \\(D_Q(v)\\) for these data.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) Birinci farklar (13.1, 19.3, 25.3, 32.2) sabit değil, ikinci farklar (6.2, 6.0, 6.9) yaklaşık sabit — sayısal kanıtla.",
+      "ornek_cevap": "The first differences 13.1, 19.3, 25.3, 32.2 are not close to constant, but the second differences 6.2, 6.0, 6.9 are approximately constant, so a quadratic model is more appropriate."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) \\(D_Q(v)=0.00789v^{2}+0.175v+0.500\\) (ya da daha fazla basamaklı eşdeğeri: 0.0078929, 0.1748571, 0.5000).",
+      "ornek_cevap": "\\(D_Q(v)=0.0078929v^{2}+0.1748571v+0.500\\)"
+     }
+    ],
+    "ornek_cozum": "<p><strong>(i)</strong> Girdiler 20 birim aralıklı. Birinci farklar: \\(20.2-7.1=13.1\\), \\(19.3\\), \\(25.3\\), \\(32.2\\) — sürekli büyüyor, sabit değil; doğrusal model uymaz. İkinci farklar: \\(6.2,\\ 6.0,\\ 6.9\\) — yaklaşık sabit. Yaklaşık sabit ikinci farklar ikinci dereceden modeli gösterir.</p><p><strong>(ii)</strong> Hesap makinesi: L1 = speed, L2 = distance, <em>QuadReg</em>. Sonuç \\(a\\approx0.0078929\\), \\(b\\approx0.1748571\\), \\(c\\approx0.500\\).</p><p><strong>Cevap:</strong> <strong>(i) The second differences of the output values (6.2, 6.0, 6.9) are approximately constant, while the first differences are not. (ii) \\(D_Q(v)=0.0078929v^{2}+0.1748571v+0.500\\).</strong></p>",
+    "sik_hatalar": [
+     "(i)'de sayı vermeden “grafik eğri” demek; ikinci farklar hesaplanıp yazılmalı.",
+     "Katsayıları erken yuvarlamak (ör. 0.008) — sonraki parçalarda tahmin bozulur."
+    ],
+    "ne_soruyor": "Tablodaki farklara bakarak hangi model türünün uygun olduğunu gerekçelendirmeni ve hesap makinesiyle ikinci dereceden regresyon modelini yazmanı istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "(i) Use \\(D_Q\\) to estimate the braking distance at a speed of 70 kilometers per hour. Indicate units of measure.<br>(ii) Use \\(D_Q\\) to find the average rate of change of the braking distance from \\(v = 60\\) to \\(v = 100\\) kilometers per hour. Interpret your answer in the context of the problem, using correct units.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) \\(D_Q(70)\\approx51.415\\) metre (51.40–51.42 kabul; birimle).",
+      "ornek_cevap": "\\(D_Q(70)\\approx51.415\\) meters."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) \\(\\frac{D_Q(100)-D_Q(60)}{40}\\approx1.438\\) ve yorum: 60–100 km/h arasında hız 1 km/h arttıkça frenleme mesafesi ortalama yaklaşık 1.438 m artar.",
+      "ornek_cevap": "\\(\\dfrac{D_Q(100)-D_Q(60)}{100-60}\\approx1.438\\). From 60 to 100 kilometers per hour, the braking distance increases by about 1.438 meters per kilometer per hour, on average."
+     }
+    ],
+    "ornek_cozum": "<p><strong>(i)</strong> \\(D_Q(70)=0.0078929(70)^2+0.1748571(70)+0.5\\approx38.675+12.240+0.5\\approx51.415\\) m.</p><p><strong>(ii)</strong> Ortalama değişim oranı \\(=\\dfrac{D_Q(100)-D_Q(60)}{100-60}\\approx\\dfrac{96.914-39.406}{40}\\approx1.438\\). Birimi: metre / (km/saat).</p><p><strong>Cevap:</strong> <strong>(i) About 51.415 meters. (ii) About 1.438; on average, for speeds from 60 to 100 kilometers per hour, the braking distance increases by about 1.438 meters for each 1 kilometer per hour increase in speed.</strong></p>",
+    "sik_hatalar": [
+     "Ortalama değişim oranının birimini yanlış yazmak (ör. “meters per hour”); doğrusu meters per kilometer per hour.",
+     "Yorumda “ortalama” ve aralık (60 ile 100 km/h) bilgisini atlamak."
+    ],
+    "ne_soruyor": "Regresyon modeliyle bir hız için mesafe tahmin etmeni ve bir aralıktaki ortalama değişim oranını bulup birimiyle bağlamda yorumlamanı istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "(i) Find the residual for \\(D_Q\\) at \\(v = 80\\). Does \\(D_Q\\) overestimate or underestimate the braking distance at \\(v = 80\\)? Give a reason for your answer.<br>(ii) The model gives \\(D_Q(0)\\approx 0.500\\). Explain why this value does not make sense in the context of the problem.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) Artık \\(=64.8-D_Q(80)\\approx-0.203\\) (−0.18 ile −0.21 arası kabul) ve “overestimate”, çünkü artık negatif.",
+      "ornek_cevap": "Residual \\(=64.8-D_Q(80)\\approx64.8-65.003=-0.203\\). The residual is negative, so \\(D_Q\\) overestimates the braking distance at \\(v=80\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) Hız 0 iken bisiklet zaten durmuştur; frenleme mesafesi 0 olmalıdır, 0.5 m değil (model veri aralığı dışında geçersiz).",
+      "ornek_cevap": "At a speed of 0 kilometers per hour the bicycle is not moving, so its braking distance should be 0 meters, not 0.500 meters. The model is not valid outside the data range."
+     }
+    ],
+    "ornek_cozum": "<p><strong>(i)</strong> Artık (residual) = gerçek − tahmin. \\(D_Q(80)\\approx65.003\\), artık \\(\\approx64.8-65.003=-0.203\\). Negatif artık: modelin tahmini gerçek değerden büyük, yani model <em>fazla tahmin</em> ediyor.</p><p><strong>(ii)</strong> \\(v=0\\) veri aralığının (20–100) dışında. Duran bir bisikletin frenleme mesafesi 0'dır; model 0.5 m veriyor. Model yalnızca ölçülen hızlar civarında güvenilirdir.</p><p><strong>Cevap:</strong> <strong>(i) The residual is about −0.203; it is negative, so the model overestimates the braking distance at 80 kilometers per hour. (ii) A bicycle with speed 0 is already stopped, so the braking distance should be 0 meters; the model is not valid for speeds outside the data.</strong></p>",
+    "sik_hatalar": [
+     "Artığı ters sırada (tahmin − gerçek) hesaplamak ve işareti yanlış yorumlamak.",
+     "(ii)'de bağlamı kullanmadan “sayı küçük” demek; neden 0 olması gerektiği açıklanmalı."
+    ],
+    "ne_soruyor": "Bir veri noktasında artığı hesaplayıp modelin fazla mı az mı tahmin ettiğine karar vermeni ve modelin bir değerinin bağlamda neden anlamsız olduğunu açıklamanı istiyor."
+   }
+  ],
+  "ek": {
+   "uretim": "1.28.0",
+   "cedKonu": "1.3, 1.13, 1.14, 2.6",
+   "tip": "Modeling a Non-Periodic Context (Graphing Calculator Required)"
+  },
+  "toplam_puan": 6,
+  "kaynak": "AP-style original (Meberra 1.28.0)",
+  "durum": "taslak"
+ },
+ {
+  "id": "frq-precalc-k5",
+  "sayfa": "ap-precalculus",
+  "ders": "precalculus",
+  "tur": "Periyodik bağlamda modelleme (hesap makinesiz)",
+  "baslik": "Wind Turbine Blade",
+  "sure_dk": 15,
+  "hesapMakinesi": false,
+  "zorluk": "medium",
+  "giris": "<p>The tip of one blade of a wind turbine moves in a circle as the blades turn at a constant speed. The tip of the blade reaches a maximum height of 62 meters above the ground and a minimum height of 18 meters above the ground. The blades make one full turn every 4 seconds.</p><p>At time \\(t = 0\\) seconds, the tip of the blade is at the same height as the center of the turbine (the hub) and is moving upward. The height of the tip, in meters, at time \\(t\\) seconds is modeled by the sinusoidal function \\(h\\), where \\(h(t) = a\\sin\\big(b(t + c)\\big) + d\\), and \\(a\\), \\(b\\), \\(c\\), and \\(d\\) are constants.</p><p>In the \\(xy\\)-plane, the points \\(F\\), \\(G\\), and \\(J\\) are on the graph of \\(y = h(t)\\). Point \\(F\\) is the first point after \\(t = 0\\) where \\(h\\) has a maximum, point \\(G\\) is the first point after \\(t = 0\\) where \\(h\\) has a minimum, and point \\(J\\) is the first point after \\(G\\) where the tip is at the height of the hub.</p><p>A calculator is not allowed for this question.</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "(i) Find the coordinates of the points \\(F\\), \\(G\\), and \\(J\\).<br>(ii) Find values for constants \\(a\\), \\(b\\), \\(c\\), and \\(d\\) that define the function \\(h\\).",
+    "puan": 3,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) \\(F(1,\\,62)\\), \\(G(3,\\,18)\\), \\(J(4,\\,40)\\) — üçü de doğru.",
+      "ornek_cevap": "\\(F(1,\\ 62)\\), \\(G(3,\\ 18)\\), \\(J(4,\\ 40)\\)"
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) Periyot 4 olduğundan \\(b=\\frac{\\pi}{2}\\).",
+      "ornek_cevap": "The period is 4, so \\(b=\\dfrac{2\\pi}{4}=\\dfrac{\\pi}{2}\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) \\(a=22\\), \\(c=0\\), \\(d=40\\) (ya da eşdeğer başka bir doğru seçim, ör. \\(a=-22,\\ c=2\\)).",
+      "ornek_cevap": "\\(a=22\\), \\(c=0\\), \\(d=40\\)"
+     }
+    ],
+    "ornek_cozum": "<p><strong>(i)</strong> Göbek yüksekliği = orta çizgi \\(=\\frac{62+18}{2}=40\\). Bir tur 4 s. \\(t=0\\)'da uç orta çizgide ve yukarı gidiyor; çeyrek tur (1 s) sonra maksimumda: \\(F(1,62)\\). Yarım tur sonra (3 s) minimumda: \\(G(3,18)\\). Sonraki çeyrek turda (4 s) yeniden göbek hizasında: \\(J(4,40)\\).</p><p><strong>(ii)</strong> Genlik \\(a=\\frac{62-18}{2}=22\\); \\(b=\\frac{2\\pi}{4}=\\frac{\\pi}{2}\\); orta çizgi \\(d=40\\). \\(t=0\\)'da orta çizgiden yukarı başlayan sinüs için kaydırma gerekmez: \\(c=0\\).</p>\\[h(t)=22\\sin\\left(\\frac{\\pi}{2}t\\right)+40\\]<p><strong>Cevap:</strong> <strong>(i) \\(F(1,62)\\), \\(G(3,18)\\), \\(J(4,40)\\). (ii) \\(a=22,\\ b=\\frac{\\pi}{2},\\ c=0,\\ d=40\\).</strong></p>",
+    "sik_hatalar": [
+     "\\(b\\) yerine periyodu (4) yazmak; \\(b=\\frac{2\\pi}{\\text{period}}\\).",
+     "Genliği 44 (maksimum − minimum) yazmak; genlik bu farkın yarısıdır."
+    ],
+    "ne_soruyor": "Betimlenen periyodik hareketten grafiğin önemli noktalarını bulmanı ve sinüs modelinin dört sabitini belirlemeni istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "On the interval \\(3 < t < 4\\), is \\(h\\) increasing or decreasing? Is the rate of change of \\(h\\) increasing or decreasing on this interval? Give a reason for your answers.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(h\\) artan: uç minimumdan (G) göbek hizasına (J) çıkıyor.",
+      "ornek_cevap": "\\(h\\) is increasing on \\(3<t<4\\) because the tip moves up from its minimum height at \\(G\\) to the height of the hub at \\(J\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Değişim oranı artan: grafik bu aralıkta yukarı bükey (minimumla orta çizgi arası).",
+      "ornek_cevap": "The rate of change of \\(h\\) is increasing, because on \\(3<t<4\\) the graph of \\(h\\) is concave up (it is between a minimum and the midline)."
+     }
+    ],
+    "ornek_cozum": "<p>\\(3<t<4\\) aralığı \\(G\\) (minimum) ile \\(J\\) (orta çizgi) arası. Uç yükseliyor: \\(h\\) artan.</p><p>Sinüs grafiği minimum ile orta çizgi arasında yukarı bükeydir (concave up): eğim önce 0'dır (minimumda), sonra giderek dikleşir ve orta çizgide en büyük olur. Yani değişim oranı artıyor.</p><p><strong>Cevap:</strong> <strong>\\(h\\) is increasing on \\(3<t<4\\), and the rate of change of \\(h\\) is increasing, because the graph of \\(h\\) is concave up between the minimum at \\(G\\) and the midline point \\(J\\).</strong></p>",
+    "sik_hatalar": [
+     "“Artan” ile “değişim oranı artan” sorularını tek cevapla geçmek; ikisi ayrı ayrı gerekçelendirilmeli.",
+     "Minimum ile orta çizgi arasında grafiğin aşağı bükey olduğunu sanmak."
+    ],
+    "ne_soruyor": "Verilen aralıkta fonksiyonun artıp azaldığını ve değişim oranının artıp azaldığını grafiğin şekline dayanarak açıklamanı istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "Find all values of \\(t\\), for \\(0 \\le t \\le 4\\), at which the tip of the blade is 51 meters above the ground. Show the work that leads to your answer.",
+    "puan": 1,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(\\sin\\left(\\frac{\\pi}{2}t\\right)=\\frac12\\) kurulup \\(t=\\frac13\\) ve \\(t=\\frac53\\) saniye bulunması (ikisi de).",
+      "ornek_cevap": "\\(22\\sin\\left(\\frac{\\pi}{2}t\\right)+40=51\\Rightarrow\\sin\\left(\\frac{\\pi}{2}t\\right)=\\frac12\\Rightarrow\\frac{\\pi}{2}t=\\frac{\\pi}{6}\\) or \\(\\frac{5\\pi}{6}\\), so \\(t=\\frac13\\) or \\(t=\\frac53\\) seconds."
+     }
+    ],
+    "ornek_cozum": "<p>\\(22\\sin\\left(\\frac{\\pi}{2}t\\right)+40=51\\Rightarrow\\sin\\left(\\frac{\\pi}{2}t\\right)=\\frac{11}{22}=\\frac12\\).</p><p>\\(0\\le t\\le4\\) için \\(0\\le\\frac{\\pi}{2}t\\le2\\pi\\). Bu aralıkta sinüsü \\(\\frac12\\) olan açılar \\(\\frac{\\pi}{6}\\) ve \\(\\frac{5\\pi}{6}\\):</p>\\[\\frac{\\pi}{2}t=\\frac{\\pi}{6}\\Rightarrow t=\\frac13,\\qquad \\frac{\\pi}{2}t=\\frac{5\\pi}{6}\\Rightarrow t=\\frac53\\]<p><strong>Cevap:</strong> <strong>The tip is 51 meters above the ground at \\(t=\\frac13\\) and \\(t=\\frac53\\) seconds.</strong></p>",
+    "sik_hatalar": [
+     "Yalnızca ilk çözümü (1/3) bulup ikinci çözümü kaçırmak.",
+     "Açıyı \\(t\\) sanmak: \\(\\frac{\\pi}{2}t=\\frac{\\pi}{6}\\)'dan \\(t\\)'yi çözmeyi unutmak."
+    ],
+    "ne_soruyor": "Modeli kullanarak belirli bir yüksekliğe ulaşılan tüm zamanları hesap makinesi olmadan bulmanı istiyor."
+   }
+  ],
+  "ek": {
+   "uretim": "1.28.0",
+   "cedKonu": "3.4, 3.5, 3.6, 3.7, 3.10",
+   "tip": "Modeling a Periodic Context (No Calculator)"
+  },
+  "toplam_puan": 6,
+  "kaynak": "AP-style original (Meberra 1.28.0)",
+  "durum": "taslak"
+ },
+ {
+  "id": "frq-precalc-k6",
+  "sayfa": "ap-precalculus",
+  "ders": "precalculus",
+  "tur": "Periyodik bağlamda modelleme (hesap makinesiz)",
+  "baslik": "Mountain Town Temperatures",
+  "sure_dk": 15,
+  "hesapMakinesi": false,
+  "zorluk": "medium",
+  "giris": "<p>The average daily temperature in a mountain town changes in a periodic way over the year. The lowest average temperature, \\(-8\\) degrees Celsius (°C), occurs at \\(t = 0.5\\), and the highest average temperature, \\(20\\) °C, occurs six months later at \\(t = 6.5\\), where \\(t\\) is measured in months after the start of the year.</p><p>The average daily temperature, in °C, can be modeled by the sinusoidal function \\(T\\) given by \\(T(t) = a\\cos\\big(b(t - c)\\big) + d\\), where \\(a\\), \\(b\\), \\(c\\), and \\(d\\) are constants, \\(b > 0\\), and the period of \\(T\\) is 12 months.</p><p>A calculator is not allowed for this question.</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "Find values for constants \\(a\\), \\(b\\), \\(c\\), and \\(d\\) that define the function \\(T\\), where \\(0 \\le c < 12\\).",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(b=\\frac{\\pi}{6}\\) (periyot 12) ve \\(d=6\\) (orta çizgi).",
+      "ornek_cevap": "\\(b=\\dfrac{2\\pi}{12}=\\dfrac{\\pi}{6}\\) and \\(d=\\dfrac{20+(-8)}{2}=6\\)"
+     },
+     {
+      "puan": 1,
+      "olcut": "\\(a\\) ve \\(c\\) tutarlı: \\(a=-14,\\ c=0.5\\) ya da \\(a=14,\\ c=6.5\\).",
+      "ornek_cevap": "\\(a=-14\\) and \\(c=0.5\\) (or \\(a=14\\) and \\(c=6.5\\))"
+     }
+    ],
+    "ornek_cozum": "<p>Orta çizgi \\(d=\\frac{20+(-8)}{2}=6\\). Genlik \\(\\frac{20-(-8)}{2}=14\\). Periyot 12 ay: \\(b=\\frac{2\\pi}{12}=\\frac{\\pi}{6}\\).</p><p>Kosinüs grafiği kaydırma noktasında maksimumdan başlar. Kaydırmayı minimum noktasına (\\(t=0.5\\)) koyarsak grafik ters dönmeli: \\(a=-14,\\ c=0.5\\). Alternatif: maksimum noktasına (\\(t=6.5\\)) koyarsak \\(a=14,\\ c=6.5\\).</p>\\[T(t)=-14\\cos\\left(\\frac{\\pi}{6}(t-0.5)\\right)+6\\]<p><strong>Cevap:</strong> <strong>\\(a=-14,\\ b=\\frac{\\pi}{6},\\ c=0.5,\\ d=6\\).</strong></p>",
+    "sik_hatalar": [
+     "Minimumda başlayan kosinüs için \\(a\\)'yı pozitif almak.",
+     "\\(b\\) yerine 12 ya da \\(\\frac{12}{2\\pi}\\) yazmak."
+    ],
+    "ne_soruyor": "Bağlamdaki en düşük ve en yüksek sıcaklıklarla zamanlarından kosinüs modelinin dört sabitini bulmanı istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "(i) Find the average rate of change of \\(T\\) from \\(t = 0.5\\) to \\(t = 2.5\\). Interpret your answer in the context of the problem, using correct units.<br>(ii) On the interval \\(3.5 < t < 6.5\\), is \\(T\\) increasing or decreasing? Is the rate of change of \\(T\\) increasing or decreasing on this interval? Give a reason for your answers.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) \\(T(2.5)=-1\\), ortalama değişim oranı \\(\\frac{-1-(-8)}{2}=3.5\\) °C/ay ve yorum (aralık + ortalama + birim).",
+      "ornek_cevap": "\\(\\dfrac{T(2.5)-T(0.5)}{2.5-0.5}=\\dfrac{-1-(-8)}{2}=3.5\\). From \\(t=0.5\\) to \\(t=2.5\\), the average daily temperature increases by 3.5 °C per month, on average."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) \\(T\\) artan ve değişim oranı azalan; gerekçe: orta çizgiden (t = 3.5) maksimuma (t = 6.5) giderken grafik aşağı bükey.",
+      "ornek_cevap": "\\(T\\) is increasing, and the rate of change of \\(T\\) is decreasing, because between the midline at \\(t=3.5\\) and the maximum at \\(t=6.5\\) the graph of \\(T\\) is concave down."
+     }
+    ],
+    "ornek_cozum": "<p><strong>(i)</strong> \\(T(2.5)=-14\\cos\\left(\\frac{\\pi}{6}\\cdot2\\right)+6=-14\\cdot\\frac12+6=-1\\). \\(T(0.5)=-8\\).</p>\\[\\frac{-1-(-8)}{2.5-0.5}=\\frac{7}{2}=3.5\\ \\text{°C per month}\\]<p><strong>(ii)</strong> \\(T(3.5)=-14\\cos\\frac{\\pi}{2}+6=6\\): \\(t=3.5\\) orta çizgidir. 3.5'ten 6.5'e sıcaklık 6'dan 20'ye çıkar (artan). Orta çizgiden maksimuma giden kısımda grafik aşağı bükeydir: artış giderek yavaşlar, maksimumda eğim 0 olur.</p><p><strong>Cevap:</strong> <strong>(i) 3.5; from \\(t=0.5\\) to \\(t=2.5\\) months, the average daily temperature increases by an average of 3.5 °C per month. (ii) \\(T\\) is increasing and its rate of change is decreasing, because the graph of \\(T\\) is concave down between the midline and the maximum.</strong></p>",
+    "sik_hatalar": [
+     "Yorumda birimi “°C” yazıp “per month” kısmını atlamak.",
+     "Artan bir fonksiyonun değişim oranının da mutlaka arttığını sanmak."
+    ],
+    "ne_soruyor": "Bir aralıkta ortalama değişim oranını bulup birimiyle yorumlamanı ve başka bir aralıkta fonksiyonun ve değişim oranının nasıl davrandığını gerekçelendirmeni istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "(i) Find all values of \\(t\\), for \\(0 \\le t \\le 12\\), at which \\(T(t) = 13\\).<br>(ii) A travel guide claims that, according to the model, the average daily temperature in the town is at least 13 °C for exactly 4 months each year. Is the claim consistent with the model? Give a reason for your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) \\(\\cos\\left(\\frac{\\pi}{6}(t-0.5)\\right)=-\\frac12\\) ile \\(t=4.5\\) ve \\(t=8.5\\).",
+      "ornek_cevap": "\\(-14\\cos\\left(\\frac{\\pi}{6}(t-0.5)\\right)+6=13\\Rightarrow\\cos\\left(\\frac{\\pi}{6}(t-0.5)\\right)=-\\frac12\\Rightarrow t=4.5\\) or \\(t=8.5\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) Evet: maksimum (t = 6.5) bu iki zamanın arasında, \\(T\\ge13\\) yalnız \\(4.5\\le t\\le8.5\\) için; süre \\(8.5-4.5=4\\) ay.",
+      "ornek_cevap": "Yes. The maximum at \\(t=6.5\\) is between 4.5 and 8.5, so \\(T(t)\\ge13\\) exactly for \\(4.5\\le t\\le8.5\\), which is \\(8.5-4.5=4\\) months."
+     }
+    ],
+    "ornek_cozum": "<p><strong>(i)</strong> \\(-14\\cos(\\theta)+6=13\\Rightarrow\\cos\\theta=-\\frac12\\), burada \\(\\theta=\\frac{\\pi}{6}(t-0.5)\\). \\(0\\le t\\le12\\) için \\(-\\frac{\\pi}{12}\\le\\theta\\le\\frac{23\\pi}{12}\\); bu aralıkta \\(\\theta=\\frac{2\\pi}{3}\\) ya da \\(\\frac{4\\pi}{3}\\).</p>\\[\\frac{\\pi}{6}(t-0.5)=\\frac{2\\pi}{3}\\Rightarrow t=4.5,\\qquad \\frac{\\pi}{6}(t-0.5)=\\frac{4\\pi}{3}\\Rightarrow t=8.5\\]<p><strong>(ii)</strong> Maksimum \\(t=6.5\\)'te, 4.5 ile 8.5'in tam ortasında. Bu iki zaman arasında \\(T\\ge13\\), dışında \\(T<13\\). Süre 4 ay.</p><p><strong>Cevap:</strong> <strong>(i) \\(t=4.5\\) and \\(t=8.5\\). (ii) Yes; the model gives \\(T(t)\\ge13\\) only for \\(4.5\\le t\\le8.5\\), which is exactly 4 months.</strong></p>",
+    "sik_hatalar": [
+     "\\(\\cos\\theta=-\\frac12\\) için yalnız \\(\\frac{2\\pi}{3}\\)'ü alıp \\(\\frac{4\\pi}{3}\\)'ü unutmak.",
+     "(ii)'de yalnız “evet” yazıp sıcaklığın bu iki zaman arasında 13'ün üstünde kaldığını gerekçelendirmemek."
+    ],
+    "ne_soruyor": "Modelin belirli bir değeri aldığı tüm zamanları bulmanı ve bu sonuçları kullanarak bir iddianın modelle tutarlı olup olmadığını açıklamanı istiyor."
+   }
+  ],
+  "ek": {
+   "uretim": "1.28.0",
+   "cedKonu": "3.5, 3.6, 3.7, 3.10",
+   "tip": "Modeling a Periodic Context (No Calculator)"
+  },
+  "toplam_puan": 6,
+  "kaynak": "AP-style original (Meberra 1.28.0)",
+  "durum": "taslak"
+ },
+ {
+  "id": "frq-precalc-k7",
+  "sayfa": "ap-precalculus",
+  "ders": "precalculus",
+  "tur": "Sembolik işlemler (hesap makinesiz)",
+  "baslik": "Exponents, Logarithms, and a Trigonometric Equation",
+  "sure_dk": 15,
+  "hesapMakinesi": false,
+  "zorluk": "medium",
+  "giris": "<p>Directions: Unless otherwise specified, the domain of each function is the set of all real numbers \\(x\\) for which the expression is a real number. A calculator is not allowed for this question.</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "(i) Solve \\(3 \\cdot 5^{2x - 1} = 75\\) for all values of \\(x\\) in the domain.<br>(ii) Solve \\(\\log_{3}(x + 1) + \\log_{3}(x - 5) = 3\\) for all values of \\(x\\) in the domain.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) \\(5^{2x-1}=25=5^{2}\\Rightarrow x=\\frac32\\).",
+      "ornek_cevap": "\\(5^{2x-1}=25=5^{2}\\Rightarrow2x-1=2\\Rightarrow x=\\frac32\\)"
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) \\((x+1)(x-5)=27\\Rightarrow x=8\\); \\(x=-4\\) tanım kümesinde olmadığı için reddedilmeli.",
+      "ornek_cevap": "\\(\\log_3\\big((x+1)(x-5)\\big)=3\\Rightarrow x^{2}-4x-32=0\\Rightarrow(x-8)(x+4)=0\\). Only \\(x=8\\) is in the domain; \\(x=-4\\) is rejected."
+     }
+    ],
+    "ornek_cozum": "<p><strong>(i)</strong> Önce üstel kısmı yalnız bırak: \\(5^{2x-1}=25=5^2\\). Tabanlar eşit, üsler eşit: \\(2x-1=2\\Rightarrow x=\\frac32\\).</p><p><strong>(ii)</strong> Çarpım kuralı: \\(\\log_3\\big((x+1)(x-5)\\big)=3\\Rightarrow(x+1)(x-5)=3^3=27\\).</p>\\[x^2-4x-5=27\\Rightarrow x^2-4x-32=0\\Rightarrow(x-8)(x+4)=0\\]<p>Kontrol: \\(x=-4\\) için \\(\\log_3(-3)\\) tanımsız — yabancı kök. \\(x=8\\) için \\(\\log_3 9+\\log_3 3=2+1=3\\) ✓.</p><p><strong>Cevap:</strong> <strong>(i) \\(x=\\frac32\\). (ii) \\(x=8\\) (\\(x=-4\\) is not in the domain).</strong></p>",
+    "sik_hatalar": [
+     "(i)'de 3'e bölmeden \\(15^{2x-1}=75\\) yazmak.",
+     "(ii)'de \\(x=-4\\)'ü tanım kümesini kontrol etmeden cevaba katmak."
+    ],
+    "ne_soruyor": "Bir üstel denklemi ortak tabanla ve bir logaritmik denklemi logaritma kurallarıyla çözmeni, tanım kümesini kontrol etmeni istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "(i) The function \\(g\\) is given by \\(g(x) = \\log_{4}(16x^{3}) - 2\\log_{4}x\\). Rewrite \\(g(x)\\) as an expression of the form \\(c + \\log_{4}x\\), where \\(c\\) is a constant.<br>(ii) The function \\(h\\) is given by \\(h(x) = \\dfrac{8^{x}\\cdot 2^{1 - x}}{4}\\). Rewrite \\(h(x)\\) as an expression of the form \\(a\\cdot b^{x}\\), where \\(a\\) and \\(b\\) are constants.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) \\(g(x)=2+\\log_4 x\\) (logaritma kurallarıyla).",
+      "ornek_cevap": "\\(g(x)=\\log_4 16+3\\log_4 x-2\\log_4 x=2+\\log_4 x\\)"
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) \\(h(x)=\\frac12\\cdot4^{x}\\) (eşdeğeri \\(0.5\\cdot4^{x}\\)).",
+      "ornek_cevap": "\\(h(x)=\\dfrac{2^{3x}\\cdot2^{1-x}}{2^{2}}=2^{2x-1}=\\dfrac12\\cdot4^{x}\\)"
+     }
+    ],
+    "ornek_cozum": "<p><strong>(i)</strong> Çarpım ve kuvvet kuralları: \\(\\log_4(16x^3)=\\log_4 16+\\log_4 x^3=2+3\\log_4 x\\). Sonra \\(2+3\\log_4 x-2\\log_4 x=2+\\log_4 x\\).</p><p><strong>(ii)</strong> Hepsini 2 tabanına çevir: \\(8^x=2^{3x}\\), \\(4=2^2\\).</p>\\[h(x)=\\frac{2^{3x}\\cdot2^{1-x}}{2^{2}}=2^{3x+1-x-2}=2^{2x-1}=2^{-1}\\cdot(2^{2})^{x}=\\frac12\\cdot4^{x}\\]<p><strong>Cevap:</strong> <strong>(i) \\(g(x)=2+\\log_4 x\\). (ii) \\(h(x)=\\frac12\\cdot4^{x}\\).</strong></p>",
+    "sik_hatalar": [
+     "\\(\\log_4(16x^3)\\)'ü \\(16\\cdot\\log_4 x^3\\) gibi yazmak; çarpımın logaritması logaritmaların toplamıdır.",
+     "\\(2^{2x-1}\\)'i \\(2\\cdot4^{x}\\) yazmak; \\(2^{-1}=\\frac12\\)'dir."
+    ],
+    "ne_soruyor": "Logaritma ve üs kurallarıyla iki ifadeyi istenen denk biçime dönüştürmeni istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "(i) Rewrite \\(2\\cos^{2}\\theta + 3\\sin\\theta - 3\\) as an expression that involves \\(\\sin\\theta\\) as the only trigonometric function.<br>(ii) Solve \\(2\\cos^{2}\\theta + 3\\sin\\theta - 3 = 0\\) for all values of \\(\\theta\\) in the interval \\(0 \\le \\theta < 2\\pi\\).",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) Pisagor özdeşliğiyle \\(-2\\sin^2\\theta+3\\sin\\theta-1\\) (ya da eşdeğeri).",
+      "ornek_cevap": "\\(2(1-\\sin^{2}\\theta)+3\\sin\\theta-3=-2\\sin^{2}\\theta+3\\sin\\theta-1\\)"
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) \\(\\sin\\theta=\\frac12\\) ya da \\(1\\) ve tüm çözümler: \\(\\frac{\\pi}{6},\\ \\frac{\\pi}{2},\\ \\frac{5\\pi}{6}\\).",
+      "ornek_cevap": "\\((2\\sin\\theta-1)(\\sin\\theta-1)=0\\Rightarrow\\sin\\theta=\\frac12\\) or \\(\\sin\\theta=1\\), so \\(\\theta=\\frac{\\pi}{6},\\ \\frac{\\pi}{2},\\ \\frac{5\\pi}{6}\\)."
+     }
+    ],
+    "ornek_cozum": "<p><strong>(i)</strong> \\(\\cos^2\\theta=1-\\sin^2\\theta\\): \\(2-2\\sin^2\\theta+3\\sin\\theta-3=-2\\sin^2\\theta+3\\sin\\theta-1\\).</p><p><strong>(ii)</strong> \\(-2\\sin^2\\theta+3\\sin\\theta-1=0\\Rightarrow2\\sin^2\\theta-3\\sin\\theta+1=0\\Rightarrow(2\\sin\\theta-1)(\\sin\\theta-1)=0\\).</p><ul><li>\\(\\sin\\theta=\\frac12\\): \\(\\theta=\\frac{\\pi}{6}\\) ya da \\(\\frac{5\\pi}{6}\\)</li><li>\\(\\sin\\theta=1\\): \\(\\theta=\\frac{\\pi}{2}\\)</li></ul><p><strong>Cevap:</strong> <strong>(i) \\(-2\\sin^{2}\\theta+3\\sin\\theta-1\\). (ii) \\(\\theta=\\frac{\\pi}{6},\\ \\frac{\\pi}{2},\\ \\frac{5\\pi}{6}\\).</strong></p>",
+    "sik_hatalar": [
+     "\\(\\cos^2\\theta=1-\\sin^2\\theta\\) yerine \\(\\sin^2\\theta-1\\) yazmak.",
+     "\\(\\sin\\theta=\\frac12\\)'nin II. bölgedeki çözümünü (\\(\\frac{5\\pi}{6}\\)) kaçırmak."
+    ],
+    "ne_soruyor": "Pisagor özdeşliğiyle trigonometrik ifadeyi tek fonksiyona indirmeni ve oluşan denklemi verilen aralıkta tüm çözümleriyle çözmeni istiyor."
+   }
+  ],
+  "ek": {
+   "uretim": "1.28.0",
+   "cedKonu": "2.4, 2.12, 2.13, 3.10, 3.12",
+   "tip": "Symbolic Manipulations (No Calculator)"
+  },
+  "toplam_puan": 6,
+  "kaynak": "AP-style original (Meberra 1.28.0)",
+  "durum": "taslak"
+ },
+ {
+  "id": "frq-precalc-k8",
+  "sayfa": "ap-precalculus",
+  "ders": "precalculus",
+  "tur": "Sembolik işlemler (hesap makinesiz)",
+  "baslik": "Equivalent Forms and Hidden Domains",
+  "sure_dk": 15,
+  "hesapMakinesi": false,
+  "zorluk": "hard",
+  "giris": "<p>Directions: Unless otherwise specified, the domain of each function is the set of all real numbers \\(x\\) for which the expression is a real number. A calculator is not allowed for this question.</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "(i) Solve \\(4^{x} - 3\\cdot 2^{x+1} + 8 = 0\\) for all values of \\(x\\) in the domain.<br>(ii) Solve \\(2e^{0.5x} = 7e^{-0.5x}\\) for all values of \\(x\\) in the domain.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) \\(u=2^x\\) ile \\(u^2-6u+8=0\\), \\(u=2\\) ya da \\(4\\), çözümler \\(x=1\\) ve \\(x=2\\) (ikisi de).",
+      "ornek_cevap": "Let \\(u=2^{x}\\): \\(u^{2}-6u+8=0\\Rightarrow(u-2)(u-4)=0\\Rightarrow2^{x}=2\\) or \\(2^{x}=4\\), so \\(x=1\\) or \\(x=2\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) \\(e^{x}=\\frac72\\Rightarrow x=\\ln\\frac72\\) (eşdeğeri \\(\\ln7-\\ln2\\)).",
+      "ornek_cevap": "Multiply by \\(e^{0.5x}\\): \\(2e^{x}=7\\Rightarrow x=\\ln\\dfrac72\\)."
+     }
+    ],
+    "ornek_cozum": "<p><strong>(i)</strong> \\(4^x=(2^x)^2\\) ve \\(2^{x+1}=2\\cdot2^x\\). \\(u=2^x\\) dersek: \\(u^2-6u+8=0\\Rightarrow(u-2)(u-4)=0\\). \\(2^x=2\\Rightarrow x=1\\); \\(2^x=4\\Rightarrow x=2\\). (İki \\(u\\) değeri de pozitif, ikisi de geçerli.)</p><p><strong>(ii)</strong> Her iki tarafı \\(e^{0.5x}\\) ile çarp (\\(e^{0.5x}>0\\)): \\(2e^{x}=7\\Rightarrow e^x=\\frac72\\Rightarrow x=\\ln\\frac72\\).</p><p><strong>Cevap:</strong> <strong>(i) \\(x=1\\) or \\(x=2\\). (ii) \\(x=\\ln\\frac72\\).</strong></p>",
+    "sik_hatalar": [
+     "\\(3\\cdot2^{x+1}\\)'i \\(6^{x+1}\\) yazmak.",
+     "(ii)'de \\(\\ln\\) alırken \\(\\ln(2e^{0.5x})\\)'i \\(2\\cdot0.5x\\) gibi yazmak; \\(\\ln(2e^{0.5x})=\\ln2+0.5x\\)."
+    ],
+    "ne_soruyor": "Değişken değiştirmeyle ikinci dereceden biçime gelen bir üstel denklemi ve iki üstel ifadenin eşitliğini çözmeni istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "(i) The function \\(p\\) is given by \\(p(x) = \\ln(x^{2} - 9) - \\ln(x - 3)\\). Rewrite \\(p(x)\\) as a single natural logarithm without a fraction, and state the domain of \\(p\\).<br>(ii) The function \\(q\\) is given by \\(q(x) = 3 + \\log_{5}(2x)\\). Find an expression for \\(q^{-1}(x)\\), the inverse function of \\(q\\).",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) \\(p(x)=\\ln(x+3)\\) ve tanım kümesi \\(x>3\\) (ikisi de; \\(x>-3\\) kabul edilmez).",
+      "ornek_cevap": "\\(p(x)=\\ln\\dfrac{(x-3)(x+3)}{x-3}=\\ln(x+3)\\), with domain \\(x>3\\), because \\(\\ln(x-3)\\) requires \\(x>3\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) \\(q^{-1}(x)=\\frac12\\cdot5^{x-3}\\) (eşdeğeri).",
+      "ornek_cevap": "\\(x=3+\\log_5(2y)\\Rightarrow2y=5^{x-3}\\Rightarrow q^{-1}(x)=\\dfrac{5^{x-3}}{2}\\)"
+     }
+    ],
+    "ornek_cozum": "<p><strong>(i)</strong> Bölüm kuralı: \\(p(x)=\\ln\\dfrac{x^2-9}{x-3}=\\ln\\dfrac{(x-3)(x+3)}{x-3}=\\ln(x+3)\\).</p><p>Ama tanım kümesi <em>orijinal</em> ifadeden gelir: \\(\\ln(x-3)\\) için \\(x>3\\), \\(\\ln(x^2-9)\\) için \\(|x|>3\\). İkisi birlikte: \\(x>3\\). Yani \\(p(x)=\\ln(x+3)\\) yalnızca \\(x>3\\) için.</p><p><strong>(ii)</strong> \\(y=3+\\log_5(2x)\\) içinde \\(x\\) ile \\(y\\)'yi değiştir: \\(x=3+\\log_5(2y)\\Rightarrow\\log_5(2y)=x-3\\Rightarrow2y=5^{x-3}\\Rightarrow y=\\frac12\\cdot5^{x-3}\\).</p><p><strong>Cevap:</strong> <strong>(i) \\(p(x)=\\ln(x+3)\\) for \\(x>3\\). (ii) \\(q^{-1}(x)=\\frac12\\cdot5^{x-3}\\).</strong></p>",
+    "sik_hatalar": [
+     "Sadeleşmiş biçimin tanım kümesini (\\(x>-3\\)) yazmak; tanım kümesi orijinal fonksiyondan belirlenir.",
+     "(ii)'de \\(5^{x-3}\\)'ü 2'ye bölmeyi unutmak ya da \\(5^{x}-3\\) yazmak."
+    ],
+    "ne_soruyor": "Logaritmik bir ifadeyi tek logaritmaya indirip tanım kümesini orijinal ifadeden belirlemeni ve logaritmik fonksiyonun tersini bulmanı istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "(i) Rewrite \\(\\dfrac{\\sin(2\\theta)}{1 + \\cos(2\\theta)}\\) as an expression that involves \\(\\tan\\theta\\) as the only trigonometric function.<br>(ii) Solve \\(\\sin(2\\theta) = \\cos\\theta\\) for all values of \\(\\theta\\) in the interval \\(0 \\le \\theta < 2\\pi\\).",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) Çift açı formülleriyle \\(\\frac{2\\sin\\theta\\cos\\theta}{2\\cos^2\\theta}=\\tan\\theta\\).",
+      "ornek_cevap": "\\(\\dfrac{2\\sin\\theta\\cos\\theta}{1+(2\\cos^{2}\\theta-1)}=\\dfrac{2\\sin\\theta\\cos\\theta}{2\\cos^{2}\\theta}=\\tan\\theta\\)"
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) Ortak çarpanla \\(\\cos\\theta(2\\sin\\theta-1)=0\\) ve dört çözüm: \\(\\frac{\\pi}{6},\\ \\frac{\\pi}{2},\\ \\frac{5\\pi}{6},\\ \\frac{3\\pi}{2}\\).",
+      "ornek_cevap": "\\(2\\sin\\theta\\cos\\theta-\\cos\\theta=0\\Rightarrow\\cos\\theta(2\\sin\\theta-1)=0\\Rightarrow\\theta=\\frac{\\pi}{6},\\ \\frac{\\pi}{2},\\ \\frac{5\\pi}{6},\\ \\frac{3\\pi}{2}\\)."
+     }
+    ],
+    "ornek_cozum": "<p><strong>(i)</strong> \\(\\sin2\\theta=2\\sin\\theta\\cos\\theta\\) ve \\(\\cos2\\theta=2\\cos^2\\theta-1\\), bu yüzden \\(1+\\cos2\\theta=2\\cos^2\\theta\\).</p>\\[\\frac{2\\sin\\theta\\cos\\theta}{2\\cos^2\\theta}=\\frac{\\sin\\theta}{\\cos\\theta}=\\tan\\theta\\]<p><strong>(ii)</strong> \\(2\\sin\\theta\\cos\\theta=\\cos\\theta\\). \\(\\cos\\theta\\)'ya <em>bölme</em> — \\(\\cos\\theta=0\\) çözümleri kaybolur. Hepsini bir tarafa topla ve ortak çarpan al: \\(\\cos\\theta(2\\sin\\theta-1)=0\\).</p><ul><li>\\(\\cos\\theta=0\\): \\(\\theta=\\frac{\\pi}{2},\\ \\frac{3\\pi}{2}\\)</li><li>\\(\\sin\\theta=\\frac12\\): \\(\\theta=\\frac{\\pi}{6},\\ \\frac{5\\pi}{6}\\)</li></ul><p><strong>Cevap:</strong> <strong>(i) \\(\\tan\\theta\\). (ii) \\(\\theta=\\frac{\\pi}{6},\\ \\frac{\\pi}{2},\\ \\frac{5\\pi}{6},\\ \\frac{3\\pi}{2}\\).</strong></p>",
+    "sik_hatalar": [
+     "Denklemi \\(\\cos\\theta\\)'ya bölüp \\(\\frac{\\pi}{2}\\) ve \\(\\frac{3\\pi}{2}\\) çözümlerini kaybetmek.",
+     "\\(\\cos2\\theta\\) için \\(1-2\\cos^2\\theta\\) gibi yanlış bir çift açı biçimi kullanmak."
+    ],
+    "ne_soruyor": "Çift açı formülleriyle bir trigonometrik ifadeyi tek fonksiyona indirmeni ve bir trigonometrik denklemi çözüm kaybetmeden verilen aralıkta çözmeni istiyor."
+   }
+  ],
+  "ek": {
+   "uretim": "1.28.0",
+   "cedKonu": "2.8, 2.11, 2.12, 2.13, 3.10, 3.12",
+   "tip": "Symbolic Manipulations (No Calculator)"
+  },
+  "toplam_puan": 6,
+  "kaynak": "AP-style original (Meberra 1.28.0)",
+  "durum": "taslak"
+ }
+]

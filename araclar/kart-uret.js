@@ -9,7 +9,7 @@
  *   --sessiz : yalnızca hata/uyarı ve özet satırı
  *
  * Doğrulama (hata → çıkış kodu 1): yapı (id, ders, sayfa, unite, on, arka, etiket, kaynakKonu), benzersiz id, bilinen deste,
- * etiket ∈ tanim|formul|kural|yanilgi, arka ≤ 60 sözcük, on ≤ 160 karakter, LaTeX dengesi ($ çift, { } dengeli, \( \) eşli),
+ * etiket ∈ tanim|formul|kural|yanilgi|kalip, arka ≤ 60 sözcük, on ≤ 160 karakter, LaTeX dengesi ($ çift, { } dengeli, \( \) eşli),
  * aynı destede yinelenen ön yüz yok. Uyarı: kaynakKonu konu numarası soru bankasında (ek.cedKonu / konu) o ünite için yok;
  * destede "yanilgi" kartı yok. Rapor: ünite başına bankadaki CED konu numaralarından kaçı kartlarla kapsanıyor.
  */
@@ -19,36 +19,47 @@ const path = require("path");
 const KOK = path.join(__dirname, "..");
 const HEDEF = path.join(KOK, "server", "tohum", "kartlar.json");
 const BANKA = path.join(KOK, "server", "tohum", "soru-bankasi.json");
-const ETIKETLER = ["tanim", "formul", "kural", "yanilgi"];
+const ETIKETLER = ["tanim", "formul", "kural", "yanilgi", "kalip"]; // 1.25.0 kalip: İngilizce soru kalıbı (A2 köprüsü)
 const ARKA_SOZCUK = 60, ON_KARAKTER = 160;
 
-/** Ders ve deste (ünite) düzeni: sıra = arayüz sırası = ücretsiz kural sırası (ilk 2 deste açık) */
+/** Ders ve deste (ünite) düzeni: sıra = arayüz sırası = ücretsiz kural sırası (ilk 2 deste açık)
+ *  kismi: true (1.28.0 yeni dersler) → --birlestir parça dosyası yoksa dersi atlar, kartı olmayan desteyi kartlar.json'a yazmaz
+ *  (boş deste doğrulamada hatadır; içerik geldikçe desteler açılır). */
 const DESTELER = [
   { ders: "calculus", ad: "Calculus AB/BC", sayfa: "ap-calculus", dosya: "calculus.json", uniteler: [
     ["1", "Limits and Continuity"], ["2", "Differentiation: Definition and Fundamental Properties"], ["3", "Differentiation: Composite, Implicit, and Inverse Functions"],
     ["4", "Contextual Applications of Differentiation"], ["5", "Analytical Applications of Differentiation"], ["6", "Integration and Accumulation of Change"],
     ["7", "Differential Equations"], ["8", "Applications of Integration"], ["9", "Parametric Equations, Polar Coordinates, and Vector-Valued Functions (BC)"],
-    ["10", "Infinite Sequences and Series (BC)"]] },
+    ["10", "Infinite Sequences and Series (BC)"], ["Kalıp", "Soru kalıpları (İngilizce komut ifadeleri)", true]] },
   { ders: "physics", ad: "Physics 1", sayfa: "ap-physics", dosya: "physics.json", uniteler: [
     ["1", "Kinematics"], ["2", "Force and Translational Dynamics"], ["3", "Work, Energy, and Power"], ["4", "Linear Momentum"],
-    ["5", "Torque and Rotational Dynamics"], ["6", "Energy and Momentum of Rotating Systems"], ["7", "Oscillations"], ["8", "Fluids"]] },
+    ["5", "Torque and Rotational Dynamics"], ["6", "Energy and Momentum of Rotating Systems"], ["7", "Oscillations"], ["8", "Fluids"], ["Kalıp", "Soru kalıpları (İngilizce komut ifadeleri)", true]] },
   { ders: "chemistry", ad: "Chemistry", sayfa: "ap-chemistry", dosya: "chemistry.json", uniteler: [
     ["1", "Atomic Structure and Properties"], ["2", "Compound Structure and Properties"], ["3", "Properties of Substances and Mixtures"],
     ["4", "Chemical Reactions"], ["5", "Kinetics"], ["6", "Thermochemistry"], ["7", "Equilibrium"], ["8", "Acids and Bases"],
-    ["9", "Thermodynamics and Electrochemistry"]] },
+    ["9", "Thermodynamics and Electrochemistry"], ["Kalıp", "Soru kalıpları (İngilizce komut ifadeleri)", true]] },
   { ders: "biology", ad: "Biology", sayfa: "ap-biology", dosya: "biology.json", uniteler: [
     ["1", "Chemistry of Life"], ["2", "Cell Structure and Function"], ["3", "Cellular Energetics"], ["4", "Cell Communication and Cell Cycle"],
-    ["5", "Heredity"], ["6", "Gene Expression and Regulation"], ["7", "Natural Selection"], ["8", "Ecology"]] },
+    ["5", "Heredity"], ["6", "Gene Expression and Regulation"], ["7", "Natural Selection"], ["8", "Ecology"], ["Kalıp", "Soru kalıpları (İngilizce komut ifadeleri)", true]] },
   { ders: "english", ad: "English Language", sayfa: "ap-english", dosya: "english.json", uniteler: [
-    ["A", "Rhetorical Situation and Choices"], ["B", "Argument and Style Terms"], ["C", "Essay Scoring Rubric"]] },
+    ["A", "Rhetorical Situation and Choices"], ["B", "Argument and Style Terms"], ["C", "Essay Scoring Rubric"], ["Kalıp", "Soru kalıpları (İngilizce komut ifadeleri)", true]] },
   { ders: "csa", ad: "Computer Science A", sayfa: "ap-electives", dosya: "csa.json", uniteler: [
-    ["1", "Using Objects and Methods"], ["2", "Selection and Iteration"], ["3", "Class Creation"], ["4", "Data Collections"]] },
+    ["1", "Using Objects and Methods"], ["2", "Selection and Iteration"], ["3", "Class Creation"], ["4", "Data Collections"], ["Kalıp", "Soru kalıpları (İngilizce komut ifadeleri)", true]] },
   { ders: "micro", ad: "Microeconomics", sayfa: "ap-electives", dosya: "micro.json", uniteler: [
     ["Micro 1", "Basic Economic Concepts"], ["Micro 2", "Supply and Demand"], ["Micro 3", "Production, Cost, and the Perfect Competition Model"],
-    ["Micro 4", "Imperfect Competition"], ["Micro 5", "Factor Markets"], ["Micro 6", "Market Failure and the Role of Government"]] },
+    ["Micro 4", "Imperfect Competition"], ["Micro 5", "Factor Markets"], ["Micro 6", "Market Failure and the Role of Government"], ["Kalıp", "Soru kalıpları (İngilizce komut ifadeleri)", true]] },
   { ders: "macro", ad: "Macroeconomics", sayfa: "ap-electives", dosya: "macro.json", uniteler: [
     ["Macro 1", "Basic Economic Concepts"], ["Macro 2", "Economic Indicators and the Business Cycle"], ["Macro 3", "National Income and Price Determination"],
-    ["Macro 4", "Financial Sector"], ["Macro 5", "Long-Run Consequences of Stabilization Policies"], ["Macro 6", "Open Economy: International Trade and Finance"]] }
+    ["Macro 4", "Financial Sector"], ["Macro 5", "Long-Run Consequences of Stabilization Policies"], ["Macro 6", "Open Economy: International Trade and Finance"], ["Kalıp", "Soru kalıpları (İngilizce komut ifadeleri)", true]] },
+  { ders: "precalculus", ad: "Precalculus", sayfa: "ap-precalculus", dosya: "precalculus.json", kismi: true, uniteler: [
+    ["1", "Polynomial and Rational Functions"], ["2", "Exponential and Logarithmic Functions"], ["3", "Trigonometric and Polar Functions"],
+    ["4", "Functions Involving Parameters, Vectors, and Matrices"], ["Kalıp", "Soru kalıpları (İngilizce komut ifadeleri)", true]] },
+  { ders: "statistics", ad: "Statistics", sayfa: "ap-statistics", dosya: "statistics.json", kismi: true, uniteler: [
+    ["1", "Exploring One-Variable Data and Collecting Data"], ["2", "Probability, Random Variables, and Probability Distributions"],
+    ["3", "Inference for Categorical Data: Proportions"], ["4", "Inference for Quantitative Data: Means"], ["5", "Regression Analysis"], ["Kalıp", "Soru kalıpları (İngilizce komut ifadeleri)", true]] },
+  { ders: "physics2", ad: "Physics 2", sayfa: "ap-physics-2", dosya: "physics2.json", kismi: true, uniteler: [
+    ["9", "Thermodynamics"], ["10", "Electric Force, Field, and Potential"], ["11", "Electric Circuits"], ["12", "Magnetism and Electromagnetism"],
+    ["13", "Geometric Optics"], ["14", "Waves, Sound, and Physical Optics"], ["15", "Modern Physics"], ["Kalıp", "Soru kalıpları (İngilizce komut ifadeleri)", true]] }
 ];
 
 const sozcuk = s => String(s || "").trim().split(/\s+/).filter(Boolean).length;
@@ -96,7 +107,7 @@ function denetle(veri, banka) {
     ["id", "ders", "sayfa", "unite", "on", "arka", "etiket", "kaynakKonu"].forEach(a => { if (!k || typeof k[a] !== "string" || !k[a].trim()) hatalar.push(yer + ": " + a + " eksik"); });
     if (!k || !k.id) return;
     if (idler.has(k.id)) hatalar.push(yer + ": yinelenen id"); idler.add(k.id);
-    if (!/^[a-z]+-[A-Za-z0-9]+-\d{2}$/.test(k.id)) hatalar.push(yer + ": id biçimi (ör. calc-u1-01)");
+    if (!/^[a-z][a-z0-9]*-[A-Za-z0-9]+-\d{2}$/.test(k.id)) hatalar.push(yer + ": id biçimi (ör. calc-u1-01, phys2-u9-01)");
     const ds = deste[k.ders + "|" + k.unite];
     if (!ds) hatalar.push(yer + ": bilinmeyen deste " + k.ders + "/" + k.unite);
     else if (ds.d.sayfa !== k.sayfa) hatalar.push(yer + ": sayfa " + k.sayfa + " ≠ " + ds.d.sayfa);
@@ -115,7 +126,7 @@ function denetle(veri, banka) {
   dersler.forEach(d => (d.uniteler || []).forEach(u => {
     const ks = kartlar.filter(k => k.ders === d.ders && k.unite === u.unite);
     if (!ks.length) hatalar.push(d.ders + "/" + u.unite + ": boş deste");
-    if (ks.length && !ks.some(k => k.etiket === "yanilgi")) uyarilar.push(d.ders + "/" + u.unite + ": yanılgı kartı yok");
+    if (ks.length && !u.kalip && !ks.some(k => k.etiket === "yanilgi")) uyarilar.push(d.ders + "/" + u.unite + ": yanılgı kartı yok");
     const kume = banka && banka[d.sayfa === "ap-english" ? "ap-english|*" : d.sayfa + "|" + u.unite];
     const kapsanan = kume ? new Set(ks.map(k => konuNo(k.kaynakKonu)).filter(n => n && kume.has(n))).size : null;
     rapor.push({ ders: d.ders, unite: u.unite, kart: ks.length, kapsanan, bankaKonu: kume ? kume.size : null });
@@ -125,7 +136,7 @@ function denetle(veri, banka) {
 
 function birlestir(klasor) {
   const kartlar = [];
-  const dersler = DESTELER.map(d => {
+  const dersler = DESTELER.filter(d => !d.kismi || fs.existsSync(path.join(klasor, d.dosya))).map(d => {
     const dosya = path.join(klasor, d.dosya);
     const parca = JSON.parse(fs.readFileSync(dosya, "utf8"));
     const sira = d.uniteler.map(u => u[0]);
@@ -135,8 +146,9 @@ function birlestir(klasor) {
         if (k.bc) o.bc = true;
         kartlar.push(o);
       });
-    return { ders: d.ders, ad: d.ad, sayfa: d.sayfa, uniteler: d.uniteler.map(u => ({ unite: u[0], ad: u[1] })) };
-  });
+    const dolu = u => !d.kismi || parca.some(k => String(k.unite) === u[0]);
+    return { ders: d.ders, ad: d.ad, sayfa: d.sayfa, uniteler: d.uniteler.filter(dolu).map(u => Object.assign({ unite: u[0], ad: u[1] }, u[2] ? { kalip: true } : {})) };
+  }).filter(d => d.uniteler.length);
   let surum = 1;
   try { surum = (JSON.parse(fs.readFileSync(HEDEF, "utf8")).surum || 0) + 1; } catch (e) { /* ilk */ }
   const veri = { surum, olusturma: new Date().toISOString().slice(0, 10),

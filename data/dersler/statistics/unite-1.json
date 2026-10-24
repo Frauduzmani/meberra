@@ -1,0 +1,1053 @@
+{
+ "ders": "statistics",
+ "unite": 1,
+ "baslik": "Exploring One-Variable Data and Collecting Data",
+ "baslikTr": "Tek değişkenli verileri keşfetme ve veri toplama",
+ "konular": [
+  {
+   "kod": "1.1",
+   "baslik": "Introducing Statistics: What Can We Learn from Data?",
+   "baslikTr": "İstatistiğe giriş: Verilerden ne öğrenebiliriz?",
+   "hedefler": [
+    "Bir istatistiksel çalışmanın bileşenlerini (population, sample, data, n, N) tanımak.",
+    "Bir çalışmanın araştırma sorusunu (investigative question) belirlemek ve iyi bir sorunun özelliklerini açıklamak.",
+    "Bir sonucu “in context” (bağlamında) ifade etmek."
+   ],
+   "anlatim": "<p>İstatistik, <strong>belirsizlik altında karar verme</strong> bilimidir. Bir okulun 2000 öğrencisinin hepsine soru sormak zor, Türkiye'deki tüm hanelere ulaşmak neredeyse imkânsızdır. Bu yüzden küçük bir gruptan veri toplar, büyük grup hakkında sonuç çıkarırız. AP Statistics'in tamamı bu fikrin üzerine kuruludur.</p>\n<div class=\"kn-tanim\"><strong>İstatistiksel çalışma (statistical study):</strong> Daha büyük bir <strong>popülasyon (population)</strong> hakkındaki bir <strong>araştırma sorusunu (investigative question)</strong> cevaplamak için bir <strong>örneklemden (sample)</strong> veri toplanan çalışmadır.</div>\n<h4>Bileşenler</h4>\n<table><thead><tr><th>Terim</th><th>Anlamı</th><th>Sembol</th></tr></thead><tbody>\n<tr><td>population (popülasyon / evren)</td><td>İlgilendiğimiz bireylerin ya da nesnelerin <em>tamamı</em></td><td>\\(N\\) = popülasyon büyüklüğü</td></tr>\n<tr><td>sample (örneklem)</td><td>Popülasyonun, verisi gerçekten toplanan alt kümesi</td><td>\\(n\\) = örneklem büyüklüğü (sample size)</td></tr>\n<tr><td>datum / data (veri)</td><td>Bir birey ya da nesne hakkındaki tek bilgi; çoğulu data</td><td>—</td></tr>\n<tr><td>data set (veri kümesi)</td><td>Toplanan verilerin tamamı</td><td>—</td></tr>\n</tbody></table>\n<p><strong>Neden örneklem?</strong> Popülasyon çok büyükse, her bireye ulaşmak çok pahalı ya da çok zamansa, veya ölçüm nesneyi yok ediyorsa (ör. bir ampulün ömrünü ölçmek için onu yakıp bitirmek) örneklem kullanırız.</p>\n<h4>Araştırma sorusu (investigative question)</h4>\n<p>İyi bir araştırma sorusu iki şartı sağlar:</p>\n<ol>\n<li><strong>Amacı bellidir ve veriye bakıldıktan sonra değiştirilmez.</strong> Sonuçlara bakıp soruyu “uydurmak” istatistiksel olarak geçersizdir.</li>\n<li><strong>Cevaplanabilirdir:</strong> Gereken veri gerçekten toplanabilir ve analiz edilebilir.</li>\n</ol>\n<p>Örnek: “Öğrenciler mutlu mu?” belirsizdir. “Bu lisedeki öğrencilerin hafta içi gece ortalama kaç saat uyuduğu nedir?” ölçülebilir bir değişken, belli bir popülasyon ve belli bir amaç içerir.</p>\n<h4>“In context” ne demek?</h4>\n<p>AP puanlayıcıları her sonucun <strong>bağlamında (in context)</strong> yazılmasını ister: sayıyı gerçek dünyadaki karşılığına bağlamak. “Ortalama 6.8” yazmak eksik; “Örneklemdeki 50 öğrencinin hafta içi ortalama uyku süresi 6.8 saattir” tam cevaptır. Kural: <em>kim, ne, hangi birim</em> cümlede olmalı.</p>\n<div class=\"kn-kural\"><strong>FRQ kalıbı:</strong> “The population of interest is all <em>[kim]</em>. The sample is the <em>[n]</em> <em>[kim]</em> who were selected. The investigative question is whether/what <em>[değişken + popülasyon]</em>.”</div>\n<div class=\"kn-dikkat\">Popülasyonu “insanlar” ya da “öğrenciler” diye bırakma. Hangi öğrenciler? “All students enrolled at this high school this year” gibi sınırlarını yaz.</div>",
+   "ornekler": [
+    {
+     "soru": "Bir belediye, şehirdeki 48 000 hanenin geri dönüşüm kutusu kullanıp kullanmadığını öğrenmek istiyor. Rastgele seçilen 600 haneye telefon ediliyor. Popülasyonu, örneklemi, \\(N\\) ve \\(n\\)'yi belirleyin.",
+     "cozum": [
+      "Popülasyon: şehirdeki 48 000 hanenin tamamı; \\(N = 48\\,000\\).",
+      "Örneklem: telefonla ulaşılan 600 hane; \\(n = 600\\).",
+      "Toplanan veri: her hane için “geri dönüşüm kutusu kullanıyor / kullanmıyor” bilgisi."
+     ]
+    },
+    {
+     "soru": "(Explain) Bir araştırmacı verileri inceledikten sonra sorusunu “Spor yapanlar daha mı az uyur?” yerine “Basketbol oynayanlar daha mı az uyur?” olarak değiştiriyor çünkü fark en çok orada görünüyor. Bu neden sorunludur?",
+     "cozum": [
+      "Araştırma sorusu veri toplanmadan önce belirlenmeli ve sonuçlara göre değiştirilmemelidir.",
+      "Soruyu veriye bakarak seçmek, şans eseri ortaya çıkan bir farkı gerçek bir bulgu gibi sunma riskini yaratır.",
+      "Cevap kalıbı: “Because the question was changed after looking at the data, the conclusion may reflect chance variation in this sample rather than a real pattern in the population.”"
+     ]
+    },
+    {
+     "soru": "“Ortalama 23.4” sonucunu, 40 rastgele seçilmiş kafe müşterisinin bekleme süresi (dakika) bağlamında yeniden yazın.",
+     "cozum": [
+      "Kim: 40 rastgele seçilmiş müşteri. Ne: bekleme süresi. Birim: dakika.",
+      "Bağlam içinde: “The mean waiting time for the 40 randomly selected customers in the sample was 23.4 minutes.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "FRQ'da her sayı için “kim + ne + birim” üçlüsünü yaz; bağlamsız cevap genellikle tam puan almaz.",
+    "Sınav boyunca grafik hesap makinesi (ve Bluebook içindeki Desmos) serbesttir, ama 1.1 soruları kavramsaldır; hesap makinesine ihtiyaç yoktur.",
+    "Şıklarda “population” ile “sample” yer değiştirmişse dikkat: verisi toplanan grup her zaman örneklemdir.",
+    "Puanlayıcı popülasyonun sınırlarını (yer, zaman, grup) arar: “all adults in the city who have a library card” gibi."
+   ],
+   "sikHatalar": [
+    "Popülasyon ile örneklemi karıştırmak: verisi toplanan 600 hane popülasyon değildir.",
+    "Araştırma sorusunu veriye bakarak değiştirmek ya da cevaplanamayacak kadar belirsiz bırakmak.",
+    "\\(n\\) ile \\(N\\)'yi karıştırmak: küçük \\(n\\) örneklem, büyük \\(N\\) popülasyon büyüklüğüdür."
+   ],
+   "terimler": [
+    {
+     "en": "statistical study",
+     "tr": "istatistiksel çalışma"
+    },
+    {
+     "en": "population",
+     "tr": "popülasyon / evren"
+    },
+    {
+     "en": "sample",
+     "tr": "örneklem"
+    },
+    {
+     "en": "sample size (n)",
+     "tr": "örneklem büyüklüğü"
+    },
+    {
+     "en": "data set",
+     "tr": "veri kümesi"
+    },
+    {
+     "en": "investigative question",
+     "tr": "araştırma sorusu"
+    },
+    {
+     "en": "in context",
+     "tr": "bağlamında"
+    }
+   ]
+  },
+  {
+   "kod": "1.2",
+   "baslik": "Variables",
+   "baslikTr": "Değişkenler",
+   "hedefler": [
+    "Gözlem birimini (observational unit), değişkeni, parametreyi ve istatistiği ayırt etmek.",
+    "Değişkenleri kategorik (categorical) ya da nicel (quantitative) olarak sınıflandırmak.",
+    "Nicel değişkenleri kesikli (discrete) ve sürekli (continuous) olarak ayırmak."
+   ],
+   "anlatim": "<p>Her veri bir <strong>gözlem biriminden (observational unit)</strong> gelir: veriyi topladığımız birey ya da nesne. Bir öğrenci, bir araba, bir gün, bir maç olabilir. <strong>Değişken (variable)</strong> ise birimden birime değişebilen bir özelliktir: boy, göz rengi, puan, bekleme süresi.</p>\n<h4>Parametre mi, istatistik mi?</h4>\n<table><thead><tr><th></th><th>Parametre (parameter)</th><th>İstatistik (statistic)</th></tr></thead><tbody>\n<tr><td>Neyi özetler?</td><td><strong>Popülasyonu</strong></td><td><strong>Örneklemi</strong></td></tr>\n<tr><td>Genelde bilinir mi?</td><td>Hayır (bilinmeyen sabit)</td><td>Evet (veriden hesaplanır)</td></tr>\n<tr><td>Ortalama sembolü</td><td>\\(\\mu\\) (mu)</td><td>\\(\\bar{x}\\) (x-bar)</td></tr>\n<tr><td>Standart sapma</td><td>\\(\\sigma\\) (sigma)</td><td>\\(s\\)</td></tr>\n<tr><td>Oran (proportion)</td><td>\\(p\\)</td><td>\\(\\hat{p}\\) (p-hat)</td></tr>\n</tbody></table>\n<p>Hafıza kuralı: <strong>P</strong>arameter ↔ <strong>P</strong>opulation, <strong>S</strong>tatistic ↔ <strong>S</strong>ample. Bir istatistiğin değeri genelde parametreye tam eşit olmaz, ama parametre hakkında çıkarım (inference) yapmanın temelidir. Ünite 3–4'teki güven aralıkları ve testler tam olarak bunu yapar.</p>\n<h4>Değişken türleri</h4>\n<ul>\n<li><strong>Kategorik (categorical / qualitative):</strong> Değerleri kategori adları ya da grup etiketleridir: kan grubu, telefon markası, “evet/hayır”. Rakamla yazılsa bile (posta kodu, forma numarası) aritmetik ortalaması anlamsızsa kategoriktir.</li>\n<li><strong>Nicel (quantitative / numerical):</strong> Ölçülen ya da sayılan bir miktardır, genelde <strong>birimi</strong> vardır: kg, dakika, kardeş sayısı.</li>\n</ul>\n<p>Nicel değişkenler ikiye ayrılır:</p>\n<table><thead><tr><th>Tür</th><th>Tanım</th><th>Örnek</th></tr></thead><tbody>\n<tr><td>discrete (kesikli)</td><td>Sayılabilir sayıda değer alır (sonlu ya da 0, 1, 2, … gibi sayılabilir sonsuz)</td><td>Bir ailedeki çocuk sayısı, bir maçtaki gol sayısı</td></tr>\n<tr><td>continuous (sürekli)</td><td>Bir aralıktaki her değeri alabilir; ölçülür, sayılmaz</td><td>Boy, sıcaklık, koşu süresi</td></tr>\n</tbody></table>\n<div class=\"kn-kural\"><strong>Test sorusu:</strong> “Bu değişkenin ortalamasını almak anlamlı mı?” Evet → nicel. “İki değer arasında her ara değer mümkün mü?” Evet → sürekli.</div>\n<p>Veri yalnızca sayı ya da kelime olmak zorunda değildir: fotoğraflar, sesler, videolar ve metinler de değişkenlere dönüştürülebilir (ör. bir fotoğrafta kaç kişi var → nicel, bir yorumun tonu olumlu mu olumsuz mu → kategorik).</p>\n<div class=\"kn-dikkat\">“Yaş” sürekli bir niceliktir ama “yaş grubu (18–24, 25–34, …)” kategoriktir. Değişken türü, verinin <em>nasıl kaydedildiğine</em> bağlıdır.</div>",
+   "ornekler": [
+    {
+     "soru": "Bir kütüphane, rastgele seçilen 80 üyesinin geçen ay kaç kitap ödünç aldığını ve en sevdiği tür (roman, tarih, bilim…) bilgisini kaydediyor. Örneklemde ortalama 3.1 kitap bulunuyor. Gözlem birimini, değişkenleri ve türlerini, 3.1'in ne olduğunu belirtin.",
+     "cozum": [
+      "Gözlem birimi: kütüphanenin her bir (örneklemdeki) üyesi.",
+      "Ödünç alınan kitap sayısı: nicel, kesikli (0, 1, 2, …). En sevilen tür: kategorik.",
+      "3.1 örneklemden hesaplandığı için bir <strong>istatistiktir</strong> (\\(\\bar{x} = 3.1\\)); tüm üyelerin ortalaması \\(\\mu\\) bir parametredir ve bilinmiyor."
+     ]
+    },
+    {
+     "soru": "(Explain) Bir öğretmen “Öğrencilerin okul numaraları nicel bir değişkendir çünkü sayılardan oluşur” diyor. Katılıyor musunuz? Açıklayın.",
+     "cozum": [
+      "Okul numarası bir etikettir; bir ölçüm ya da sayım değildir.",
+      "Ortalamasını almak anlamsızdır (ortalama okul numarası 1532.4 bir şey ifade etmez).",
+      "Sonuç: “No. Student ID numbers are categorical because they are labels; arithmetic on them has no meaning in context.”"
+     ]
+    },
+    {
+     "soru": "Aşağıdakileri kesikli ya da sürekli olarak sınıflandırın: (a) bir otoparktaki araç sayısı, (b) bir aracın 0–100 km/sa hızlanma süresi.",
+     "cozum": [
+      "(a) Sayılır: 0, 1, 2, … → kesikli (discrete).",
+      "(b) Ölçülür; 6.21 s ile 6.22 s arasında da değer olabilir → sürekli (continuous)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Şıkta “parameter” kelimesini görünce sor: bu sayı popülasyonun tamamı için mi? Örneklemden hesaplandıysa statistic'tir.",
+    "FRQ'da sembolü sözle birlikte yaz: “μ = the mean sleep time of all students at the school”. Tanımsız sembol puan kaybettirir.",
+    "Değişken türü sorusunda hesap makinesi gerekmez; ortalama alma testini zihninde yap.",
+    "Puanlayıcı değişkeni gözlem birimiyle karıştırmamanı bekler: “the student” birimdir, “the student's height” değişkendir."
+   ],
+   "sikHatalar": [
+    "Rakamla kodlanmış kategorik değişkenleri (posta kodu, forma numarası) nicel saymak.",
+    "Örneklem ortalamasına parametre demek; \\(\\bar{x}\\) daima istatistiktir.",
+    "Kesikli ile kategoriği karıştırmak: kardeş sayısı nicel ve kesiklidir, kategorik değildir."
+   ],
+   "terimler": [
+    {
+     "en": "observational unit",
+     "tr": "gözlem birimi"
+    },
+    {
+     "en": "variable",
+     "tr": "değişken"
+    },
+    {
+     "en": "parameter",
+     "tr": "parametre"
+    },
+    {
+     "en": "statistic",
+     "tr": "istatistik"
+    },
+    {
+     "en": "categorical variable",
+     "tr": "kategorik değişken"
+    },
+    {
+     "en": "quantitative variable",
+     "tr": "nicel değişken"
+    },
+    {
+     "en": "discrete",
+     "tr": "kesikli"
+    },
+    {
+     "en": "continuous",
+     "tr": "sürekli"
+    }
+   ]
+  },
+  {
+   "kod": "1.3",
+   "baslik": "Tabular Representation and Summary Statistics for One Categorical Variable",
+   "baslikTr": "Tek kategorik değişken için tablo gösterimi ve özet istatistikler",
+   "hedefler": [
+    "Kategorik bir değişken için frekans (frequency) ve göreli frekans (relative frequency) tablosu oluşturmak.",
+    "Oran, yüzde ve göreli frekansın aynı bilgiyi verdiğini kullanarak tabloyu özetlemek.",
+    "Tablodaki sayılarla bağlam içinde bir iddiayı gerekçelendirmek."
+   ],
+   "anlatim": "<p>Kategorik bir değişkenin özeti çok basittir: <strong>her kategoride kaç birim var?</strong> Bunu iki tür tabloyla gösteririz.</p>\n<div class=\"kn-tanim\"><strong>Frekans tablosu (frequency table):</strong> Her kategorideki gözlem birimi sayısını (count) gösterir.<br><strong>Göreli frekans tablosu (relative frequency table):</strong> Her kategorideki birimlerin <strong>oranını (proportion)</strong> gösterir: \\[ \\text{relative frequency} = \\frac{\\text{kategori sayısı}}{\\text{toplam}} \\]</div>\n<h4>Örnek tablo</h4>\n<p>Bir lisede rastgele seçilen 250 öğrenciye okula nasıl geldikleri soruluyor:</p>\n<table><thead><tr><th>Ulaşım</th><th>Frequency</th><th>Relative frequency</th></tr></thead><tbody>\n<tr><td>Yürüyerek</td><td>70</td><td>70/250 = 0.28</td></tr>\n<tr><td>Otobüs</td><td>95</td><td>95/250 = 0.38</td></tr>\n<tr><td>Araba</td><td>60</td><td>60/250 = 0.24</td></tr>\n<tr><td>Bisiklet</td><td>25</td><td>25/250 = 0.10</td></tr>\n<tr><td><strong>Toplam</strong></td><td><strong>250</strong></td><td><strong>1.00</strong></td></tr>\n</tbody></table>\n<p>Kontrol: göreli frekansların toplamı <strong>1</strong> (ya da %100) olmalıdır; yuvarlama yüzünden 0.99 ya da 1.01 çıkabilir.</p>\n<h4>Oran = yüzde = göreli frekans</h4>\n<p>0.38, %38 ve “250'de 95” aynı bilgidir. AP sorularında bir biçimden diğerine hızlı geçmek gerekir. “Oran (ratio)” da aynı bilgiyi verir: otobüsle gelenlerin bisikletle gelenlere oranı 95 : 25 = 3.8'dir, yani otobüsle gelen öğrenci sayısı bisikletlinin 3.8 katıdır.</p>\n<h4>Ters yönde çalışmak</h4>\n<p>Göreli frekans ve toplam verilirse sayıyı bulabilirsin: \\(\\text{count} = \\text{relative frequency} \\times n\\). Örneğin 400 kişilik bir örneklemde %15 “kararsız” ise \\(0.15 \\times 400 = 60\\) kişi kararsızdır. Yalnız göreli frekans verilip \\(n\\) verilmezse sayıyı bulamazsın.</p>\n<h4>İddiayı gerekçelendirmek</h4>\n<p>Tablolar, bağlam içinde iddiaları desteklemek için kullanılır. “Bu örneklemde otobüs en yaygın ulaşım şeklidir, çünkü öğrencilerin 0.38'i otobüsle gelir ve bu, diğer kategorilerin her birinden büyüktür.” Gerekçe mutlaka <strong>sayı</strong> içermelidir.</p>\n<div class=\"kn-kural\"><strong>FRQ kalıbı:</strong> “The proportion of <em>[kim]</em> who <em>[kategori]</em> is <em>[sayı]/[toplam]</em> ≈ <em>[ondalık]</em>, which is greater than … , so …”</div>\n<div class=\"kn-dikkat\">Farklı büyüklükteki iki grubu karşılaştırırken <strong>sayıları değil göreli frekansları</strong> karşılaştır. 300 kişilik okulda 90 bisikletli (0.30) ile 1000 kişilik okulda 150 bisikletli (0.15) varsa, ham sayı daha büyük olsa da ikinci okulda bisiklet daha az yaygındır.</div>",
+   "ornekler": [
+    {
+     "soru": "Bir ankette 320 kişiye en çok kullandığı sosyal medya platformu soruluyor: A = 112, B = 96, C = 64, Diğer = 48. Göreli frekans tablosunu oluşturun.",
+     "cozum": [
+      "Toplamı kontrol et: 112 + 96 + 64 + 48 = 320.",
+      "Her sayıyı 320'ye böl: A = 0.35, B = 0.30, C = 0.20, Diğer = 0.15.",
+      "Kontrol: 0.35 + 0.30 + 0.20 + 0.15 = 1.00."
+     ]
+    },
+    {
+     "soru": "(Justify) Okul X'te 180 öğrenciden 54'ü, okul Y'de 420 öğrenciden 105'i müzik dersi alıyor. Bir veli “Y okulunda müzik daha popüler, çünkü daha çok öğrenci alıyor” diyor. İddiayı değerlendirin.",
+     "cozum": [
+      "Göreli frekanslar: X için 54/180 = 0.30, Y için 105/420 = 0.25.",
+      "Gruplar farklı büyüklükte olduğundan sayılar değil oranlar karşılaştırılmalıdır.",
+      "Sonuç: “The claim is not supported. A greater proportion of students at School X (0.30) than at School Y (0.25) take music.”"
+     ]
+    },
+    {
+     "soru": "Bir örneklemde kan gruplarının göreli frekansları: O = 0.42, A = 0.36, B = 0.15, AB = ?. Örneklemde 600 kişi varsa AB grubundan kaç kişi vardır?",
+     "cozum": [
+      "AB = 1 − (0.42 + 0.36 + 0.15) = 1 − 0.93 = 0.07.",
+      "Sayı: \\(0.07 \\times 600 = 42\\) kişi."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Göreli frekansları hesap makinesinde liste olarak böl (L1/toplam); ama cevapta kesri de yaz: 95/250 = 0.38.",
+    "Gerekçe cümlesinde mutlaka sayı ver; “daha fazla” demek yetmez, “0.30 > 0.25” yaz.",
+    "Eksik kategori sorularında toplamın 1 olduğunu kullan.",
+    "Puanlayıcı farklı büyüklükteki gruplarda oran karşılaştırması ister; ham sayıyla yapılan karşılaştırma puan almaz."
+   ],
+   "sikHatalar": [
+    "Farklı büyüklükteki grupları ham sayılarla karşılaştırmak.",
+    "Göreli frekansı yanlış toplama bölmek (ör. bir kategorinin sayısını başka bir kategoriye bölmek).",
+    "Yalnızca yüzde verildiğinde sayıyı bildiğini sanmak; \\(n\\) olmadan sayı bulunamaz."
+   ],
+   "terimler": [
+    {
+     "en": "frequency table",
+     "tr": "frekans tablosu"
+    },
+    {
+     "en": "relative frequency",
+     "tr": "göreli frekans"
+    },
+    {
+     "en": "count",
+     "tr": "sayı / sıklık"
+    },
+    {
+     "en": "proportion",
+     "tr": "oran"
+    },
+    {
+     "en": "percentage",
+     "tr": "yüzde"
+    },
+    {
+     "en": "ratio",
+     "tr": "oran (iki sayının oranı)"
+    }
+   ]
+  },
+  {
+   "kod": "1.4",
+   "baslik": "Graphical Representations for One Categorical Variable",
+   "baslikTr": "Tek kategorik değişken için grafik gösterimler",
+   "hedefler": [
+    "Kategorik bir değişken için çubuk grafik (bar chart) ve pasta grafik (pie chart) oluşturmak ve okumak.",
+    "Grafikten elde edilen bilgilerle bağlam içinde bir iddiayı gerekçelendirmek.",
+    "Aynı kategorik değişken için iki veri kümesini tablo ve grafiklerle karşılaştırmak."
+   ],
+   "anlatim": "<p>Kategorik verinin iki temel grafiği vardır. İkisi de “her kategoride ne kadar?” sorusunu görsel olarak cevaplar.</p>\n<h4>Çubuk grafik (bar chart / bar graph)</h4>\n<div class=\"kn-tanim\">Her çubuk bir <strong>kategoriyi</strong> temsil eder. Çubuğun <strong>yüksekliği</strong> (ya da yatay çizildiyse uzunluğu) o kategorinin frekansını ya da göreli frekansını gösterir.</div>\n<ul>\n<li>Çubuklar <strong>birbirine değmez</strong>: kategoriler arasında doğal bir sayı ekseni yoktur. (Histogramda çubuklar bitişiktir; Konu 1.5.)</li>\n<li>Kategorilerin sırası keyfidir; sıralamayı değiştirmek bilgiyi değiştirmez. Bu yüzden kategorik grafiklerde “çarpıklık (skewness)” konuşulmaz.</li>\n<li>Dikey eksen <strong>sıfırdan başlamalıdır</strong>. Eksen 40'tan başlarsa 45 ile 50 arasındaki fark çok büyük görünür; bu yanıltıcı bir grafiktir.</li>\n</ul>\n<h4>Pasta grafik (pie chart)</h4>\n<div class=\"kn-tanim\">Her dilim bir kategoridir. Dilimin <strong>alanı</strong>, toplam alanın kesri olarak, o kategorinin göreli frekansıdır. Tüm dilimler toplamı 1'dir (%100).</div>\n<p>Bir dilimin merkez açısı: \\(\\text{açı} = \\text{relative frequency} \\times 360^\\circ\\). Göreli frekansı 0.25 olan kategori \\(90^\\circ\\)'lik dilimdir. Pasta grafiği yalnızca kategoriler <strong>bir bütünün parçaları</strong> ise ve her birim tek bir kategoriye düşüyorsa kullanılır. “Birden fazla seçenek işaretleyebilirsiniz” sorusunun cevapları toplamı %100'ü aşar; pasta grafik uygun olmaz, çubuk grafik uygundur.</p>\n<h4>İki veri kümesini karşılaştırmak</h4>\n<p>İki grubu (ör. iki okul, iki yıl) aynı kategorik değişkenle karşılaştırmak için <strong>yan yana çubuk grafik (side-by-side bar chart)</strong> ya da iki ayrı pasta grafik kullanılır. Gruplar farklı büyüklükteyse grafikte <strong>göreli frekans</strong> kullanılmalıdır.</p>\n<table><thead><tr><th>Kategori</th><th>2024 (n = 200)</th><th>2025 (n = 500)</th></tr></thead><tbody>\n<tr><td>Kitap okur</td><td>80 (0.40)</td><td>150 (0.30)</td></tr>\n<tr><td>Okumaz</td><td>120 (0.60)</td><td>350 (0.70)</td></tr>\n</tbody></table>\n<p>Sayı grafiği 2025'te daha çok okuyucu varmış gibi gösterir (150 > 80); göreli frekans grafiği ise okuyan <em>oranının</em> düştüğünü gösterir (0.40 → 0.30). Doğru karşılaştırma ikincisidir.</p>\n<div class=\"kn-kural\"><strong>FRQ kalıbı:</strong> “Based on the bar chart, the relative frequency of <em>[kategori]</em> is about <em>[değer]</em> for <em>[grup 1]</em> compared with about <em>[değer]</em> for <em>[grup 2]</em>, so …”</div>\n<div class=\"kn-dikkat\">Grafikten değer okurken eksen ölçeğine bak: her çizgi 5 mi, 10 mu? Ölçeği yanlış okumak sayıları tümden bozar.</div>",
+   "ornekler": [
+    {
+     "soru": "Bir pasta grafikte “Kırmızı” dilimi \\(72^\\circ\\)'dir. Örneklemde 450 araba varsa kaç araba kırmızıdır?",
+     "cozum": [
+      "Göreli frekans: \\(72/360 = 0.20\\).",
+      "Sayı: \\(0.20 \\times 450 = 90\\) araba."
+     ]
+    },
+    {
+     "soru": "(Justify) Bir anket şirketi, ekseni %40'tan başlayan bir çubuk grafikte A partisi için %46, B partisi için %44 gösteriyor; A'nın çubuğu B'ninkinin yaklaşık 1.5 katı uzun görünüyor. Grafik neden yanıltıcıdır?",
+     "cozum": [
+      "Çubuk grafikte çubuk yüksekliği frekansla orantılı olmalıdır; bu ancak eksen 0'dan başlarsa doğrudur.",
+      "Eksen 40'tan başladığı için görünen yükseklikler 6 ve 4 birimdir; A'nın çubuğu 6/4 = 1.5 kat uzun görünür. Gerçek oran 46/44 ≈ 1.05'tir.",
+      "Cevap: “The vertical axis does not start at zero, so the bar heights exaggerate the small 2-percentage-point difference.”"
+     ]
+    },
+    {
+     "soru": "Öğrencilere “Hangi sporları yapıyorsunuz? (Birden fazla işaretleyebilirsiniz)” diye soruluyor. Sonuçlar pasta grafikle gösterilebilir mi?",
+     "cozum": [
+      "Pasta grafikte her birim tek bir dilime düşmeli ve dilimler toplamı %100 olmalıdır.",
+      "Bir öğrenci birden fazla spor seçebildiği için yüzdelerin toplamı %100'ü aşabilir; pasta grafik uygun değildir, çubuk grafik uygundur."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Çubuk grafikte çarpıklık, ortalama ya da medyan konuşma; kategorik verinin merkezi yoktur. En yaygın kategori (mode) söylenebilir.",
+    "Farklı büyüklükteki grupların grafiklerinde önce eksenin sayı mı oran mı olduğunu kontrol et.",
+    "Hesap makinesi gerekmez; ama pasta açısı ↔ oran dönüşümü için 360 ile çarp/böl.",
+    "Puanlayıcı karşılaştırmada iki grubun değerini de ister: “0.40 vs 0.30”."
+   ],
+   "sikHatalar": [
+    "Çubuk grafiği histogram gibi yorumlayıp “sağa çarpık” demek.",
+    "Sıfırdan başlamayan ekseni fark etmeden çubuk boylarını oran gibi okumak.",
+    "Birden fazla seçimin mümkün olduğu verilerde pasta grafik kullanmak."
+   ],
+   "terimler": [
+    {
+     "en": "bar chart (bar graph)",
+     "tr": "çubuk grafik"
+    },
+    {
+     "en": "pie chart",
+     "tr": "pasta grafik"
+    },
+    {
+     "en": "side-by-side bar chart",
+     "tr": "yan yana çubuk grafik"
+    },
+    {
+     "en": "relative frequency",
+     "tr": "göreli frekans"
+    },
+    {
+     "en": "misleading graph",
+     "tr": "yanıltıcı grafik"
+    }
+   ]
+  },
+  {
+   "kod": "1.5",
+   "baslik": "Graphical Representations for One Quantitative Variable",
+   "baslikTr": "Tek nicel değişken için grafik gösterimler",
+   "hedefler": [
+    "Nicel bir değişken için histogram, gövde-yaprak (stem-and-leaf) ve nokta grafiği (dotplot) oluşturmak.",
+    "Aralık genişliğinin (bin width) histogramın görünüşünü nasıl değiştirdiğini açıklamak.",
+    "Grafiklerden tek tek değerleri, sayıları ve oranları okumak."
+   ],
+   "anlatim": "<p>Nicel verinin grafikleri, değerlerin <strong>dağılımını (distribution)</strong> gösterir: hangi değerler var ve her biri ne sıklıkta? Kategorik grafiklerden farkı, eksenin <strong>doğal sıralı bir sayı ekseni</strong> olmasıdır (küçükten büyüğe).</p>\n<h4>1) Nokta grafiği (dotplot)</h4>\n<p>Her değer, sayı ekseni üzerinde bir noktadır; aynı değerler üst üste dizilir. Küçük veri kümelerinde her değeri tek tek görmeyi sağlar.</p>\n<h4>2) Gövde-yaprak grafiği (stem-and-leaf plot)</h4>\n<div class=\"kn-tanim\">Her sayı ikiye bölünür: <strong>gövde (stem)</strong> = baştaki basamak(lar), <strong>yaprak (leaf)</strong> = genelde son tek basamak. Gövdeler ve yapraklar küçükten büyüğe sıralanır. Bir <strong>anahtar (key)</strong> mutlaka verilir: “4 | 7 = 47 dakika”.</div>\n<table><thead><tr><th>Stem</th><th>Leaf</th></tr></thead><tbody>\n<tr><td>2</td><td>3 8</td></tr>\n<tr><td>3</td><td>0 4 4 9</td></tr>\n<tr><td>4</td><td>1 2 6</td></tr>\n<tr><td>5</td><td>5</td></tr>\n</tbody></table>\n<p>Key: 3 | 4 = 34. Veri: 23, 28, 30, 34, 34, 39, 41, 42, 46, 55 (n = 10). Gövde-yaprak grafiği ham değerleri korur, bu yüzden medyan gibi değerler doğrudan hesaplanabilir. <strong>Bölünmüş gövde (split stems)</strong>: her gövde ikiye ayrılır (yapraklar 0–4 ve 5–9) ve dağılım daha ayrıntılı görünür. <strong>Sırt sırta (back-to-back)</strong> gövde-yaprak, iki grubu ortak gövdeyle karşılaştırır.</p>\n<h4>3) Histogram</h4>\n<div class=\"kn-tanim\">Değerler sıralı <strong>aralıklara (bins / intervals)</strong> konur. Her çubuk bir aralıktır ve <strong>yüksekliği</strong> o aralıktaki gözlemlerin frekansı ya da göreli frekansıdır. Çubuklar bitişiktir çünkü eksen süreklidir.</div>\n<ul>\n<li>Sınır kuralı: genelde aralıklar \\([10, 20)\\) biçimindedir; tam 20 olan değer bir sonraki aralığa girer. Sorunun belirttiği kuralı oku.</li>\n<li><strong>Aralık genişliği (bin width)</strong> değişirse grafiğin görünüşü değişebilir: çok geniş aralıklar ayrıntıyı (boşlukları, iki tepeyi) gizler; çok dar aralıklar gürültülü bir görüntü verir.</li>\n<li>Histogram tek tek değerleri göstermez. “En büyük değer kaçtır?” sorusuna yalnızca bir aralık verebilirsin; medyanın da yalnız hangi aralıkta olduğunu söyleyebilirsin.</li>\n</ul>\n<h4>Hangi grafik ne zaman?</h4>\n<table><thead><tr><th>Grafik</th><th>Ham değerler görünür mü?</th><th>Uygun veri</th></tr></thead><tbody>\n<tr><td>Dotplot</td><td>Evet</td><td>Küçük–orta n</td></tr>\n<tr><td>Stem-and-leaf</td><td>Evet</td><td>Küçük–orta n, iki grup için back-to-back</td></tr>\n<tr><td>Histogram</td><td>Hayır</td><td>Büyük n</td></tr>\n</tbody></table>\n<div class=\"kn-dikkat\">Histogram ile çubuk grafiği karıştırma: histogram <strong>nicel</strong> veri içindir ve çubuklar bitişiktir; çubuk grafik <strong>kategorik</strong> veri içindir ve çubuklar ayrıktır.</div>",
+   "ornekler": [
+    {
+     "soru": "Bir histogramda aralıklar [0, 5), [5, 10), [10, 15), [15, 20) ve frekanslar 4, 9, 6, 1'dir. Değerlerin yüzde kaçı 10'dan küçüktür? Medyan hangi aralıktadır?",
+     "cozum": [
+      "n = 4 + 9 + 6 + 1 = 20. 10'dan küçük: 4 + 9 = 13 → 13/20 = 0.65, yani %65.",
+      "Medyan 10. ve 11. değerlerin ortalamasıdır. İlk iki aralık 13 değer içerdiği için 10. ve 11. değerler [5, 10) aralığındadır; medyan [5, 10) aralığındadır."
+     ]
+    },
+    {
+     "soru": "(Explain) Aynı veri iki histogramla çiziliyor: aralık genişliği 2 olanda iki ayrı tepe ve aralarında boşluk görülüyor, genişliği 10 olanda tek tepe görülüyor. Hangisi neden daha bilgilendiricidir?",
+     "cozum": [
+      "Aralık genişliği büyüdükçe yakın değerler aynı çubukta birleşir; tepeler ve boşluklar görünmez olabilir.",
+      "Genişliği 2 olan histogram verideki iki kümeyi (iki alt grubu) gösterir; bu, genişliği 10 olanın gizlediği önemli bir özelliktir.",
+      "Cevap: “The histogram with bin width 2 reveals two clusters separated by a gap, which the wider bins hide.”"
+     ]
+    },
+    {
+     "soru": "Key: 6 | 3 = 6.3 saniye. Satırlar: 5 | 8 9, 6 | 0 3 3 7, 7 | 1 4. En küçük değer, en büyük değer ve n nedir?",
+     "cozum": [
+      "En küçük: 5 | 8 = 5.8 s. En büyük: 7 | 4 = 7.4 s.",
+      "Yaprak sayısı: 2 + 4 + 2 = 8, yani n = 8."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Gövde-yaprak grafiğinde önce anahtara bak: 3 | 4 = 34 mü, 3.4 mü, 340 mı?",
+    "Histogramdan tam değer istenmez; “at least”, “less than” sorularında aralık sınırlarının dahil olup olmadığını kontrol et.",
+    "Hesap makinesinde histogram için STAT PLOT kullanılabilir, ama FRQ'da grafiği elle çizip ekseni etiketlemen (değişken adı + birim) gerekir.",
+    "Puanlayıcı grafiğin eksen etiketini ve ölçeğini arar; etiketsiz grafik eksik sayılır."
+   ],
+   "sikHatalar": [
+    "Histogramdan medyanın tam değerini okuduğunu sanmak; yalnızca aralığı bilinir.",
+    "Gövde-yaprak grafiğinde anahtarı dikkate almadan değerleri okumak.",
+    "Histogram çubuklarını ayrı çizmek ya da kategorik veri için histogram kullanmak."
+   ],
+   "terimler": [
+    {
+     "en": "distribution",
+     "tr": "dağılım"
+    },
+    {
+     "en": "dotplot",
+     "tr": "nokta grafiği"
+    },
+    {
+     "en": "stem-and-leaf plot",
+     "tr": "gövde-yaprak grafiği"
+    },
+    {
+     "en": "key",
+     "tr": "anahtar"
+    },
+    {
+     "en": "histogram",
+     "tr": "histogram"
+    },
+    {
+     "en": "bin width",
+     "tr": "aralık genişliği"
+    },
+    {
+     "en": "back-to-back stemplot",
+     "tr": "sırt sırta gövde-yaprak"
+    }
+   ]
+  },
+  {
+   "kod": "1.6",
+   "baslik": "Descriptions for One Quantitative Variable Distributions",
+   "baslikTr": "Tek nicel değişken dağılımlarını betimleme",
+   "hedefler": [
+    "Bir dağılımı biçim (shape), merkez (center), yayılım (variability) ve olağandışı özellikler (outliers, gaps, clusters) ile bağlam içinde betimlemek.",
+    "Çarpıklık (skewed right/left), simetri, tek/iki tepelilik ve düzgünlük (uniform) terimlerini doğru kullanmak.",
+    "Bir grafikten bağlam içinde iddiaları gerekçelendirmek."
+   ],
+   "anlatim": "<p>AP Statistics'te “Describe the distribution” komutu çok sık çıkar ve puanlaması standarttır. Dört öğe, <strong>bağlam içinde</strong>:</p>\n<div class=\"kn-kural\"><strong>SOCS:</strong> <strong>S</strong>hape (biçim), <strong>O</strong>utliers / unusual features (aykırı değer, boşluk, küme), <strong>C</strong>enter (merkez), <strong>S</strong>pread / variability (yayılım). Hepsini, değişken adı ve birimiyle yaz.</div>\n<h4>Biçim (shape)</h4>\n<table><thead><tr><th>Terim</th><th>Görünüş</th></tr></thead><tbody>\n<tr><td>skewed to the right (positively skewed) — sağa çarpık</td><td>Sağ kuyruk (büyük değerler tarafı) soldakinden <strong>uzun</strong>. Ör. gelir, bekleme süresi.</td></tr>\n<tr><td>skewed to the left (negatively skewed) — sola çarpık</td><td>Sol kuyruk (küçük değerler tarafı) daha uzun. Ör. kolay bir sınavın puanları.</td></tr>\n<tr><td>approximately symmetric — yaklaşık simetrik</td><td>Sol yarı, sağ yarının yaklaşık ayna görüntüsü.</td></tr>\n<tr><td>unimodal / bimodal — tek / iki tepeli</td><td>Bir belirgin tepe / iki belirgin tepe.</td></tr>\n<tr><td>approximately uniform — yaklaşık düzgün</td><td>Her aralığın frekansı yaklaşık eşit; belirgin tepe yok.</td></tr>\n</tbody></table>\n<p>Çarpıklığın yönü <strong>kuyruğun</strong> yönüdür, tepenin değil. Sağa çarpık bir dağılımda tepe solda, uzun kuyruk sağdadır. İki tepeli bir dağılım çoğu zaman iki farklı alt grubun (ör. erkek ve kadın boyları) karışımına işaret eder.</p>\n<h4>Olağandışı özellikler</h4>\n<ul>\n<li><strong>Aykırı değer (outlier):</strong> Verinin geri kalanına göre olağandışı küçük ya da büyük değer. (Kesin kurallar Konu 1.7'de.)</li>\n<li><strong>Boşluk (gap):</strong> İki değer arasında hiç gözlem olmayan bölge.</li>\n<li><strong>Küme (cluster):</strong> Genelde boşluklarla ayrılmış değer yoğunlaşmaları.</li>\n</ul>\n<h4>Merkez ve yayılım</h4>\n<p>Merkez için ortalama (mean) ya da medyan (median), yayılım için aralık (range), IQR ya da standart sapma (standard deviation) verilir. Grafikten yaklaşık değer yeterlidir: “The median is about 30 minutes; the values range from about 12 to 58 minutes.”</p>\n<h4>Örnek tam cevap</h4>\n<blockquote>“The distribution of commute times for the 40 employees is skewed to the right and unimodal, with a possible high outlier at about 95 minutes. The median commute time is about 25 minutes, and the commute times vary from about 5 minutes to 95 minutes (range ≈ 90 minutes).”</blockquote>\n<div class=\"kn-dikkat\">Bağlamsız betimleme (“skewed right, center 25, spread 90”) puanı düşürür. Ayrıca “normal” kelimesini biçim yerine kullanma; “approximately symmetric and unimodal” de. Normal dağılım bir modeldir (Ünite 2), veri dağılımının adı değildir.</div>\n<h4>Karşılaştırma ifadeleri</h4>\n<p>Bu konuda tek dağılım betimlenir; iki dağılım karşılaştırılırken (Konu 1.9) <strong>karşılaştırma sözcükleri</strong> (greater than, less than, similar to) zorunludur.</p>",
+   "ornekler": [
+    {
+     "soru": "Bir dotplot'ta 30 akıllı telefonun pil ömrü (saat) gösteriliyor: değerlerin çoğu 8–12 saat arasında, tepe 10 saatte; sol tarafta 4 ve 5 saatte birer nokta var, 5 ile 8 saat arasında hiç değer yok. Dağılımı betimleyin.",
+     "cozum": [
+      "Biçim: tek tepeli, küçük değerler yönünde uzun kuyruk → sola çarpık (skewed left).",
+      "Olağandışı: 4 ve 5 saatteki iki telefon olası düşük aykırı değerler; 5 ile 8 saat arasında boşluk (gap).",
+      "Merkez ve yayılım, bağlamla: “The battery lives of the 30 phones are centered at about 10 hours and vary from about 4 to 12 hours.”"
+     ]
+    },
+    {
+     "soru": "(Justify) Bir hastanedeki 200 doğumun bebek ağırlıkları histogramı iki tepelidir (2.4 kg civarı ve 3.4 kg civarı). Bu biçim için olası bir açıklama verin.",
+     "cozum": [
+      "İki tepe, verinin iki farklı alt gruptan geldiğini düşündürür.",
+      "Örneğin bir grup erken doğumlar (daha hafif), diğeri zamanında doğumlar olabilir.",
+      "Cevap: “The bimodal shape suggests two groups of births, such as preterm and full-term babies, with different typical weights.”"
+     ]
+    },
+    {
+     "soru": "Gelir verileri neden genellikle sağa çarpıktır?",
+     "cozum": [
+      "Gelir 0'ın altına inemez; çoğu kişi orta düzeyde kazanır.",
+      "Az sayıda kişi çok yüksek gelir elde eder, bu da büyük değerler tarafında uzun bir kuyruk oluşturur → sağa çarpık."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "“Describe” komutunda dört öğenin dördünü de yaz: shape, outliers/unusual features, center, variability — hepsi bağlam ve birimle.",
+    "Çarpıklık yönünü kuyruktan belirle; “the tail extends to the right” cümlesi gerekçe olarak kabul edilir.",
+    "Hesap makinesinde 1-Var Stats ile merkez ve yayılımı hesaplayabilirsin, ama “calculator speak” (L1, 1-Var Stats) cevap sayılmaz; sonucu sözle yaz.",
+    "Puanlayıcı “normal” yerine “approximately symmetric” bekler; bir öğeyi yanlış adlandırmak tüm bileşeni kaybettirebilir."
+   ],
+   "sikHatalar": [
+    "Çarpıklığın yönünü tepenin bulunduğu taraf sanmak (sağa çarpıkta tepe soldadır).",
+    "Bağlam ve birim vermeden dağılımı betimlemek.",
+    "Kategorik bir değişkenin çubuk grafiği için biçim (çarpıklık) yorumu yapmak."
+   ],
+   "terimler": [
+    {
+     "en": "shape",
+     "tr": "biçim"
+    },
+    {
+     "en": "center",
+     "tr": "merkez"
+    },
+    {
+     "en": "variability (spread)",
+     "tr": "yayılım / değişkenlik"
+    },
+    {
+     "en": "skewed to the right",
+     "tr": "sağa çarpık"
+    },
+    {
+     "en": "skewed to the left",
+     "tr": "sola çarpık"
+    },
+    {
+     "en": "approximately symmetric",
+     "tr": "yaklaşık simetrik"
+    },
+    {
+     "en": "unimodal / bimodal",
+     "tr": "tek tepeli / iki tepeli"
+    },
+    {
+     "en": "uniform",
+     "tr": "düzgün"
+    },
+    {
+     "en": "outlier",
+     "tr": "aykırı değer"
+    },
+    {
+     "en": "gap",
+     "tr": "boşluk"
+    },
+    {
+     "en": "cluster",
+     "tr": "küme"
+    }
+   ]
+  },
+  {
+   "kod": "1.7",
+   "baslik": "Summary Statistics for One Quantitative Variable",
+   "baslikTr": "Tek nicel değişken için özet istatistikler",
+   "hedefler": [
+    "Ortalama, medyan, çeyrekler (quartiles), yüzdelikler (percentiles), aralık, IQR ve standart sapmayı hesaplamak ve yorumlamak.",
+    "Birim değişikliğinin (ekleme ve çarpma) özet istatistikleri nasıl etkilediğini hesaplamak.",
+    "1.5 × IQR ve 2 standart sapma kurallarıyla aykırı değerleri belirlemek; dirençli (resistant) ölçüyü gerekçeyle seçmek."
+   ],
+   "anlatim": "<h4>Merkez ve konum ölçüleri (measures of center and position)</h4>\n<div class=\"kn-tanim\"><strong>Ortalama (mean):</strong> \\[ \\bar{x} = \\frac{1}{n}\\sum_{i=1}^{n} x_i \\] <strong>Medyan (median):</strong> Veriyi küçükten büyüğe sıraladığında ortadaki değer. \\(n\\) tekse tam ortadaki, çiftse ortadaki iki değerin ortalaması.</div>\n<p><strong>Çeyrekler (quartiles):</strong> \\(Q_1\\) alt yarının medyanı, \\(Q_3\\) üst yarının medyanıdır (AP yöntemi: \\(n\\) tekse medyan iki yarıya da dahil edilmez). Değerlerin yaklaşık %25'i \\(Q_1\\)'e eşit ya da küçüktür; \\(Q_1\\) ile \\(Q_3\\) ortadaki %50'yi sınırlar. <strong>p. yüzdelik (pth percentile)</strong>: verinin %p'si kendisine eşit ya da küçük olan değer; \\(Q_1\\) = 25. ve \\(Q_3\\) = 75. yüzdeliktir.</p>\n<h4>Yayılım ölçüleri (measures of variability)</h4>\n<table><thead><tr><th>Ölçü</th><th>Formül</th><th>Dirençli mi?</th></tr></thead><tbody>\n<tr><td>range (aralık)</td><td>max − min</td><td>Hayır</td></tr>\n<tr><td>IQR (çeyrekler açıklığı)</td><td>\\(Q_3 - Q_1\\)</td><td>Evet</td></tr>\n<tr><td>standard deviation (standart sapma)</td><td>\\(s = \\sqrt{\\dfrac{\\sum (x_i - \\bar{x})^2}{n-1}}\\)</td><td>Hayır</td></tr>\n</tbody></table>\n<p>Standart sapma, değerlerin ortalamadan <strong>tipik uzaklığıdır</strong>. Yorum kalıbı: “The <em>[değişken]</em> typically varies by about <em>s</em> <em>[birim]</em> from the mean of <em>x̄</em> <em>[birim]</em>.” \\(s^2\\) <strong>örneklem varyansıdır (sample variance)</strong>. Tüm değerler eşitse \\(s = 0\\); \\(s\\) asla negatif olamaz.</p>\n<h4>Çalışılmış örnek</h4>\n<p>Veri (dakika): 4, 7, 8, 10, 11, 15. \\(n = 6\\), \\(\\bar{x} = 55/6 \\approx 9.17\\). Medyan = (8 + 10)/2 = 9. Alt yarı 4, 7, 8 → \\(Q_1 = 7\\); üst yarı 10, 11, 15 → \\(Q_3 = 11\\); IQR = 4. Sapmaların kareleri toplamı ≈ 70.83, \\(s = \\sqrt{70.83/5} \\approx 3.76\\) dakika.</p>\n<h4>Birim değişikliği (changing units)</h4>\n<table><thead><tr><th>Dönüşüm</th><th>Merkez/konum (mean, median, Q1, Q3)</th><th>Yayılım (range, IQR, s)</th></tr></thead><tbody>\n<tr><td>Her değere \\(a\\) ekle</td><td>\\(a\\) kadar kayar</td><td><strong>Değişmez</strong></td></tr>\n<tr><td>Her değeri \\(b\\) (\\(b \\gt 0\\)) ile çarp</td><td>\\(b\\) ile çarpılır</td><td>\\(b\\) ile çarpılır</td></tr>\n</tbody></table>\n<p>Örnek: Sıcaklıklar °C'de \\(\\bar{x} = 20\\), \\(s = 5\\). °F = 1.8·C + 32 → \\(\\bar{x} = 1.8(20) + 32 = 68\\)°F, \\(s = 1.8(5) = 9\\)°F (32 eklemek yayılımı değiştirmez).</p>\n<h4>Aykırı değer kuralları (outlier rules)</h4>\n<div class=\"kn-kural\"><strong>1.5 × IQR kuralı:</strong> \\(x \\lt Q_1 - 1.5\\cdot IQR\\) ya da \\(x \\gt Q_3 + 1.5\\cdot IQR\\) ise aykırıdır.<br><strong>2 standart sapma kuralı:</strong> \\(x\\), ortalamadan 2 standart sapmadan daha uzaktaysa (\\(x \\lt \\bar{x} - 2s\\) ya da \\(x \\gt \\bar{x} + 2s\\)) aykırıdır.</div>\n<p>FRQ'da sınırı <strong>hesapla ve karşılaştır</strong>: “Q3 + 1.5(IQR) = 11 + 1.5(4) = 17. Since 15 &lt; 17, the value 15 is not an outlier.”</p>\n<h4>Dirençli (resistant) ölçüler</h4>\n<p>Medyan ve IQR aykırı değerlerden az etkilenir: <strong>resistant (robust)</strong>. Ortalama, aralık ve standart sapma çok etkilenir: <strong>nonresistant</strong>. Çarpık ya da aykırı değerli dağılımlarda merkez için medyan, yayılım için IQR seçilir; yaklaşık simetrik dağılımlarda ortalama ve standart sapma uygundur.</p>\n<div class=\"kn-dikkat\">Aykırı değeri silmek ya da en büyük değeri artırmak medyanı genelde değiştirmez, ama ortalamayı ve \\(s\\)'yi değiştirir. Soru “which statistic changes?” diyorsa önce dirençli olanları ele.</div>",
+   "ornekler": [
+    {
+     "soru": "Veri: 12, 15, 15, 18, 20, 22, 25, 41. Beş sayı özetini ve IQR'yi bulun; 41 bir aykırı değer midir (1.5 × IQR kuralı)?",
+     "cozum": [
+      "n = 8; medyan = (18 + 20)/2 = 19. Alt yarı 12, 15, 15, 18 → Q1 = 15; üst yarı 20, 22, 25, 41 → Q3 = 23.5.",
+      "IQR = 23.5 − 15 = 8.5. Üst sınır = 23.5 + 1.5(8.5) = 36.25.",
+      "41 > 36.25 olduğundan 41 aykırı değerdir. Alt sınır 15 − 12.75 = 2.25; 12 aykırı değildir."
+     ]
+    },
+    {
+     "soru": "(Justify) Bir mahalledeki 15 evin satış fiyatlarında bir ev diğerlerinin 4 katına satılmış. Tipik fiyatı bildirmek için ortalama mı medyan mı kullanılmalıdır? Gerekçelendirin.",
+     "cozum": [
+      "Çok yüksek fiyatlı tek ev, ortalamayı yukarı çeker; ortalama dirençli değildir.",
+      "Medyan sıralamadaki ortanca değere bağlıdır ve bu aykırı değerden neredeyse etkilenmez.",
+      "Cevap: “The median, because it is resistant to the high outlier, while the mean is pulled toward the unusually expensive house.”"
+     ]
+    },
+    {
+     "soru": "Bir sınıfın sınav puanlarında \\(\\bar{x} = 62\\), \\(s = 8\\), medyan = 60, IQR = 10. Öğretmen her puana 5 ekleyip sonra 1.1 ile çarpıyor. Yeni ortalama, s, medyan ve IQR nedir?",
+     "cozum": [
+      "Merkez ölçüleri her iki işlemden etkilenir: yeni ortalama = 1.1(62 + 5) = 73.7; yeni medyan = 1.1(60 + 5) = 71.5.",
+      "Yayılım yalnızca çarpmadan etkilenir: yeni s = 1.1(8) = 8.8; yeni IQR = 1.1(10) = 11."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesinde 1-Var Stats (TI) ya da Desmos stats; ama \\(s\\) (Sx) ile \\(\\sigma\\) (σx) farklıdır: örneklem verisinde Sx kullan.",
+    "Hesap makinesinin çeyrek değerleri bazen elle yönteminden küçük farklarla ayrılabilir; AP her ikisini de kabul eder, ama yöntemini göster.",
+    "Aykırı değer gerekçesinde sınırı sayıyla yaz ve değerle karşılaştır; “it looks far away” puan almaz.",
+    "Birim değişikliğinde önce “bu ölçü merkez mi yayılım mı?” diye sor; toplama yayılımı değiştirmez."
+   ],
+   "sikHatalar": [
+    "Standart sapmayı \\(n\\)'ye bölerek hesaplamak; örneklem standart sapmasında payda \\(n-1\\)'dir.",
+    "Her değere sabit eklendiğinde standart sapmanın ya da IQR'nin de değiştiğini sanmak.",
+    "IQR'yi “Q3 ile Q1 arasındaki değerler” diye tanımlamak; IQR bir sayıdır: Q3 − Q1."
+   ],
+   "terimler": [
+    {
+     "en": "mean",
+     "tr": "ortalama"
+    },
+    {
+     "en": "median",
+     "tr": "medyan / ortanca"
+    },
+    {
+     "en": "quartile (Q1, Q3)",
+     "tr": "çeyrek"
+    },
+    {
+     "en": "percentile",
+     "tr": "yüzdelik"
+    },
+    {
+     "en": "range",
+     "tr": "aralık (açıklık)"
+    },
+    {
+     "en": "interquartile range (IQR)",
+     "tr": "çeyrekler açıklığı"
+    },
+    {
+     "en": "standard deviation",
+     "tr": "standart sapma"
+    },
+    {
+     "en": "variance",
+     "tr": "varyans"
+    },
+    {
+     "en": "resistant (robust)",
+     "tr": "dirençli"
+    },
+    {
+     "en": "outlier",
+     "tr": "aykırı değer"
+    }
+   ]
+  },
+  {
+   "kod": "1.8",
+   "baslik": "Graphical Representations of Summary Statistics for One Quantitative Variable",
+   "baslikTr": "Özet istatistiklerin grafik gösterimi (kutu grafiği)",
+   "hedefler": [
+    "Beş sayı özetinden (five-number summary) kutu grafiği (boxplot) çizmek; aykırı değerleri ayrı işaretlemek.",
+    "Kutu grafiğinden çeyrekleri, IQR'yi ve yüzdeleri okumak.",
+    "Ortalama–medyan ilişkisinden dağılımın biçimini çıkarmak."
+   ],
+   "anlatim": "<div class=\"kn-tanim\"><strong>Beş sayı özeti (five-number summary):</strong> minimum, \\(Q_1\\), medyan, \\(Q_3\\), maksimum.<br><strong>Kutu grafiği (boxplot):</strong> Bu beş sayının grafiğidir. Kutu \\(Q_1\\)'den \\(Q_3\\)'e uzanır (ortadaki %50), kutunun içindeki çizgi medyandır, “bıyıklar (whiskers)” kutudan uçlara uzanır.</div>\n<h4>Kutu grafiği nasıl çizilir? (aykırı değerli, “modified boxplot”)</h4>\n<ol>\n<li>Beş sayı özetini ve IQR'yi bul.</li>\n<li>Sınırları hesapla: \\(Q_1 - 1.5\\cdot IQR\\) ve \\(Q_3 + 1.5\\cdot IQR\\).</li>\n<li>Kutuyu \\(Q_1\\)–\\(Q_3\\) arasında çiz, medyanda çizgi koy.</li>\n<li>Bıyıkları, sınırların <strong>içinde kalan en uç veri değerlerine</strong> kadar uzat (sınırın kendisine değil!).</li>\n<li>Aykırı değerleri ayrı bir sembolle (∗ ya da ●) işaretle.</li>\n</ol>\n<p>Örnek: Veri 3, 5, 6, 7, 8, 9, 10, 11, 25 (n = 9). Medyan = 8, \\(Q_1\\) = (5 + 6)/2 = 5.5, \\(Q_3\\) = (10 + 11)/2 = 10.5, IQR = 5. Üst sınır = 10.5 + 7.5 = 18 → 25 aykırıdır. Sağ bıyık 11'de biter, 25 ayrı işaretlenir. Alt sınır = −2; sol bıyık 3'e uzanır.</p>\n<h4>Kutu grafiğinden okumak</h4>\n<table><thead><tr><th>Bölge</th><th>Verinin yaklaşık yüzdesi</th></tr></thead><tbody>\n<tr><td>min – Q1 (sol bıyık)</td><td>%25</td></tr>\n<tr><td>Q1 – medyan</td><td>%25</td></tr>\n<tr><td>medyan – Q3</td><td>%25</td></tr>\n<tr><td>Q3 – max (sağ bıyık)</td><td>%25</td></tr>\n</tbody></table>\n<p>Uzun bir bölüm “daha çok veri” demek <strong>değildir</strong>; her çeyrekte yaklaşık aynı sayıda değer vardır. Uzun bölüm, o %25'lik verinin <strong>daha geniş bir aralığa yayıldığını</strong> gösterir.</p>\n<h4>Biçim ve ortalama–medyan ilişkisi</h4>\n<table><thead><tr><th>Biçim</th><th>Ortalama ve medyan</th><th>Kutu grafiğinde</th></tr></thead><tbody>\n<tr><td>Yaklaşık simetrik</td><td>mean ≈ median</td><td>Medyan kutunun ortasında, bıyıklar benzer</td></tr>\n<tr><td>Sağa çarpık</td><td>mean genelde &gt; median</td><td>Sağ bıyık uzun, medyan kutunun soluna yakın</td></tr>\n<tr><td>Sola çarpık</td><td>mean genelde &lt; median</td><td>Sol bıyık uzun, medyan sağa yakın</td></tr>\n</tbody></table>\n<p>Neden? Ortalama, uzun kuyruktaki uç değerlere doğru çekilir; medyan çekilmez.</p>\n<div class=\"kn-dikkat\">Kutu grafiği tepe sayısını, boşlukları ve kümeleri <strong>göstermez</strong>. İki tepeli bir dağılımın kutu grafiği simetrik görünebilir. Ortalamayı da göstermez (bazı yazılımlar ayrıca işaretler).</div>\n<div class=\"kn-kural\"><strong>FRQ kalıbı:</strong> “Because the mean (52) is greater than the median (45), the distribution is likely skewed to the right.”</div>",
+   "ornekler": [
+    {
+     "soru": "Beş sayı özeti: 14, 22, 27, 31, 48. 1.5 × IQR kuralına göre en az bir aykırı değer olduğunu gösterin ve bıyığın nereye kadar uzayabileceğini açıklayın.",
+     "cozum": [
+      "IQR = 31 − 22 = 9; üst sınır = 31 + 1.5(9) = 44.5; alt sınır = 22 − 13.5 = 8.5.",
+      "Maksimum 48 > 44.5 olduğundan en az bir yüksek aykırı değer vardır; min 14 > 8.5 olduğundan düşük aykırı değer yoktur.",
+      "Modified boxplot'ta sağ bıyık 44.5'ten küçük ya da eşit en büyük veri değerinde biter; 48 ayrı işaretlenir."
+     ]
+    },
+    {
+     "soru": "(Explain) Bir kutu grafiğinde Q3 – max bölümü, Q1 – medyan bölümünün üç katı uzunluğunda. Bir öğrenci “En yüksek çeyrekte daha fazla öğrenci var” diyor. Hatayı açıklayın.",
+     "cozum": [
+      "Kutu grafiğinin her bölümü verinin yaklaşık %25'ini içerir.",
+      "Uzunluk sayı değil yayılımı gösterir: en üst çeyrekteki değerler daha geniş bir aralığa dağılmıştır.",
+      "Cevap: “Each section contains about 25% of the data; the longer section means those values are more spread out, not more numerous.”"
+     ]
+    },
+    {
+     "soru": "Bir veri kümesinde ortalama 3.2 ve medyan 4.1'dir. Kutu grafiği büyük ihtimalle nasıl görünür?",
+     "cozum": [
+      "Ortalama medyandan küçük → ortalama sol kuyruktaki küçük değerlere çekilmiş; dağılım büyük ihtimalle sola çarpık.",
+      "Kutu grafiğinde sol bıyık daha uzun ve/veya medyan kutunun sağ tarafına yakın olur."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesinin modified boxplot seçeneği (aykırı değerli olan) AP kuralını kullanır; FRQ'da ise sınırları elle yaz.",
+    "Kutu grafiklerinde “yüzde kaç” sorularında yalnız 25'in katlarıyla düşün: medyanın üstü %50, Q1'in altı %25.",
+    "Ortalama–medyan karşılaştırmasıyla biçim çıkarırken “likely” (büyük olasılıkla) de; bu kural kesin değildir.",
+    "Puanlayıcı bıyıkların sınıra değil sınır içindeki en uç veri değerine uzandığını görmek ister."
+   ],
+   "sikHatalar": [
+    "Uzun bıyık ya da uzun kutu yarısını “daha çok veri” olarak yorumlamak.",
+    "Bıyığı aykırı değere ya da hesaplanan sınıra (ör. 44.5) kadar çizmek.",
+    "Kutu grafiğinden tepe sayısı ya da boşluk hakkında sonuç çıkarmak."
+   ],
+   "terimler": [
+    {
+     "en": "five-number summary",
+     "tr": "beş sayı özeti"
+    },
+    {
+     "en": "boxplot (box-and-whisker plot)",
+     "tr": "kutu grafiği"
+    },
+    {
+     "en": "whisker",
+     "tr": "bıyık"
+    },
+    {
+     "en": "modified boxplot",
+     "tr": "aykırı değerli kutu grafiği"
+    },
+    {
+     "en": "fence (boundary)",
+     "tr": "aykırı değer sınırı"
+    }
+   ]
+  },
+  {
+   "kod": "1.9",
+   "baslik": "Comparisons of the Distributions for One Quantitative Variable",
+   "baslikTr": "Nicel değişken dağılımlarının karşılaştırılması ve z-skorları",
+   "hedefler": [
+    "İki ya da daha fazla dağılımı biçim, merkez, yayılım ve olağandışı özelliklerle karşılaştırma sözcükleri kullanarak karşılaştırmak.",
+    "Grafik ve özet istatistiklere dayanarak bağlam içinde bir iddiayı gerekçelendirmek.",
+    "z-skoru hesaplamak ve farklı dağılımlardaki değerlerin göreli konumlarını karşılaştırmak."
+   ],
+   "anlatim": "<h4>Karşılaştırma = betimleme + karşılaştırma sözcüğü</h4>\n<p>“Compare the distributions” komutunda SOCS öğelerinin her biri için iki grubu <strong>doğrudan karşılaştırmalısın</strong>. İki ayrı betimleme yazmak (“A'nın medyanı 30, B'nin medyanı 40”) yetmez; karşılaştırma sözcüğü gerekir: <em>greater than, less than, about the same as, more variable than</em>.</p>\n<blockquote>“The median reaction time for the music group (about 0.42 s) is greater than the median for the silence group (about 0.35 s). The music group's times are also more variable (IQR ≈ 0.12 s vs. 0.06 s). Both distributions are roughly symmetric, and the silence group has one high outlier at about 0.58 s.”</blockquote>\n<h4>Hangi grafik neyi karşılaştırır?</h4>\n<table><thead><tr><th>Grafik</th><th>Karşılaştırabildiğin</th></tr></thead><tbody>\n<tr><td>Paralel dotplot, histogram, back-to-back stemplot</td><td>Merkez, yayılım, biçim, aykırı değerler, kümeler, boşluklar</td></tr>\n<tr><td>Paralel (yan yana) kutu grafikleri</td><td>Merkez (medyan), yayılım (IQR, range), aykırı değerler, çarpıklık/simetri — ama tepe sayısı ve boşluk <strong>değil</strong></td></tr>\n</tbody></table>\n<p>Karşılaştırırken grafiklerin <strong>aynı ölçekte</strong> olduğundan emin ol. Ayrıca özet istatistikler (mean, s, median, IQR) de karşılaştırmaya dahil edilebilir.</p>\n<h4>Standart skor (z-score)</h4>\n<div class=\"kn-tanim\">\\[ z = \\frac{x_i - \\mu}{\\sigma} \\] z-skoru, bir değerin ortalamanın kaç standart sapma <strong>üstünde</strong> (pozitif z) ya da <strong>altında</strong> (negatif z) olduğunu ölçer. Popülasyon parametreleri bilinmiyorsa \\(\\bar{x}\\) ve \\(s\\) kullanılır.</div>\n<p>Örnek: Ali matematikte 78 aldı (sınıf: \\(\\mu = 70\\), \\(\\sigma = 5\\)); tarihte 85 aldı (\\(\\mu = 80\\), \\(\\sigma = 10\\)).</p>\n<ul>\n<li>Matematik: \\(z = (78 - 70)/5 = 1.6\\)</li>\n<li>Tarih: \\(z = (85 - 80)/10 = 0.5\\)</li>\n</ul>\n<p>Ham puan tarihte daha yüksek, ama <strong>göreli konum</strong> matematikte daha iyi: Ali matematikte sınıf ortalamasının 1.6 standart sapma üstünde, tarihte yalnızca 0.5 standart sapma üstünde.</p>\n<div class=\"kn-kural\"><strong>z-skoru yorum kalıbı:</strong> “Ali's math score of 78 is 1.6 standard deviations above the mean math score of the class.”</div>\n<p>Ters yön: \\(x = \\mu + z\\sigma\\). Ortalaması 50, standart sapması 4 olan bir dağılımda \\(z = -1.5\\) olan değer \\(50 - 1.5(4) = 44\\)'tür. Bir dağılımdaki tüm değerlerin z-skorlarının ortalaması 0, standart sapması 1'dir; z-skoruna çevirmek dağılımın <strong>biçimini değiştirmez</strong>.</p>\n<div class=\"kn-dikkat\">z-skoru tek başına bir olasılık ya da yüzdelik değildir. Bir z-skorunu yüzdeliğe çevirmek için dağılımın normal model olduğu bilgisi gerekir (Ünite 2). Ünite 1'de z-skorunu yalnızca <strong>göreli konum</strong> için kullan.</div>",
+   "ornekler": [
+    {
+     "soru": "İki fırının ekmek ağırlıkları (g): Fırın A: medyan 498, IQR 6, simetrik; Fırın B: medyan 502, IQR 15, sağa çarpık ve 540 g'da bir aykırı değer. Dağılımları karşılaştırın.",
+     "cozum": [
+      "Merkez: B'nin medyanı (502 g) A'nınkinden (498 g) biraz büyüktür.",
+      "Yayılım: B'nin ağırlıkları daha değişkendir (IQR 15 g > 6 g).",
+      "Biçim ve aykırı: A yaklaşık simetrik, B sağa çarpık; yalnızca B'de yüksek bir aykırı değer (540 g) var. Her cümlede iki fırın karşılaştırıldı."
+     ]
+    },
+    {
+     "soru": "(Justify) Ayşe 400 m'yi 58.2 s'de koşuyor (yaş grubu: ortalama 63.0 s, sd 3.0 s); Mert uzun atlamada 6.10 m atlıyor (ortalama 5.50 m, sd 0.40 m). Kendi grubuna göre hangisi daha iyi performans gösterdi?",
+     "cozum": [
+      "Ayşe: \\(z = (58.2 - 63.0)/3.0 = -1.6\\). Koşuda <strong>düşük</strong> süre iyidir, yani Ayşe ortalamadan 1.6 standart sapma daha hızlıdır.",
+      "Mert: \\(z = (6.10 - 5.50)/0.40 = 1.5\\); atlamada büyük değer iyidir.",
+      "Ayşe'nin iyi yöndeki uzaklığı (1.6 sd) Mert'inkinden (1.5 sd) biraz büyük; Ayşe kendi grubuna göre biraz daha iyi performans gösterdi."
+     ]
+    },
+    {
+     "soru": "Bir sınavda puanların ortalaması 72, standart sapması 9'dur. z = 2.0 olan puan kaçtır? Tüm puanlar z-skoruna çevrilirse dağılımın biçimi değişir mi?",
+     "cozum": [
+      "\\(x = 72 + 2.0(9) = 90\\).",
+      "z-skoruna çevirmek her değerden aynı sayıyı çıkarıp aynı sayıya bölmektir; bu doğrusal dönüşüm biçimi değiştirmez. Yeni ortalama 0, standart sapma 1 olur."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Karşılaştırma cevabında her öğe için açık karşılaştırma sözcüğü kullan: “greater than”, “more variable than”. Paralel listeler puan almaz.",
+    "z-skoru hesaplarken formülü ve yerine koymayı göster: z = (78 − 70)/5 = 1.6. Yalnız sonucu yazmak tam puan getirmeyebilir.",
+    "“Hangisi daha iyi?” sorusunda bağlama bak: süre ve hata sayısında küçük değer iyidir, negatif z daha iyi olabilir.",
+    "Yan yana kutu grafiklerinde tepe/boşluk yorumu yapma; puanlayıcı bunu desteksiz iddia sayar."
+   ],
+   "sikHatalar": [
+    "İki dağılımı ayrı ayrı betimleyip karşılaştırma sözcüğü kullanmamak.",
+    "Ham puanı daha büyük olanın göreli konumunun da daha iyi olduğunu sanmak; standart sapma farklıysa z-skoru karşılaştırılmalı.",
+    "z-skoruna çevirmenin dağılımı normal yaptığını sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "compare",
+     "tr": "karşılaştırmak"
+    },
+    {
+     "en": "parallel boxplots",
+     "tr": "yan yana kutu grafikleri"
+    },
+    {
+     "en": "back-to-back stemplot",
+     "tr": "sırt sırta gövde-yaprak"
+    },
+    {
+     "en": "z-score (standardized score)",
+     "tr": "z-skoru (standart skor)"
+    },
+    {
+     "en": "relative position",
+     "tr": "göreli konum"
+    },
+    {
+     "en": "more variable",
+     "tr": "daha değişken"
+    }
+   ]
+  },
+  {
+   "kod": "1.10",
+   "baslik": "The Investigative Question Revisited and Data Collection",
+   "baslikTr": "Araştırma sorusuna dönüş ve veri toplama",
+   "hedefler": [
+    "Bir araştırma sorusunun üç bileşenini (veri toplama, analiz seçimi, sonucun türü) belirlemek.",
+    "Sayım (census), deney (experiment) ve gözlemsel çalışmayı (observational study) ayırt etmek; ileriye/geriye dönük çalışmaları ve anketleri tanımak.",
+    "Karıştırıcı değişkeni (confounding variable) açıklamak ve sonuçların hangi popülasyona genellenebileceğini gerekçelendirmek."
+   ],
+   "anlatim": "<h4>Araştırma sorusunun üç bileşeni</h4>\n<ol>\n<li><strong>Veri toplamayı yönlendirir:</strong> İlgilenilen değişken(ler) açıkça söylenir.</li>\n<li><strong>Analiz seçimini yönlendirir:</strong> Hipotez testi ise parametre ve alternatif hipotezin yönü (farklı, büyük, küçük, ilişki var) bellidir; güven aralığı ise parametre ve “bir aralıkta tahmin etme” amacı bellidir.</li>\n<li><strong>Sonucun türünü belirtir:</strong> Sonuçların hangi <strong>popülasyona</strong> uygulanacağını ve (rastgele atamalı deneyde) neden–sonuç (cause-and-effect) sonucu çıkarılıp çıkarılamayacağını söyler.</li>\n</ol>\n<h4>Veri toplama yolları</h4>\n<table><thead><tr><th>Yöntem</th><th>Tanım</th></tr></thead><tbody>\n<tr><td>census (sayım)</td><td>Popülasyondaki <strong>herkesten</strong> veri toplamak</td></tr>\n<tr><td>observational study (gözlemsel çalışma)</td><td>Araştırmacı muamele (treatment) <strong>uygulamaz</strong>; yalnızca değişkenleri kaydeder</td></tr>\n<tr><td>— prospective (ileriye dönük)</td><td>Birimler bugün seçilir, veri bugün ve <strong>gelecekte</strong> toplanır</td></tr>\n<tr><td>— retrospective (geriye dönük)</td><td>Birimler bugün seçilir, <strong>geçmişe</strong> ait veri toplanır (kayıtlar, hatıralar)</td></tr>\n<tr><td>— survey (anket)</td><td>İnsanlardan standart sorularla veri toplayan gözlemsel çalışma</td></tr>\n<tr><td>experiment (deney)</td><td>Araştırmacı deney birimlerine <strong>muamele atar</strong> ve yanıtı ölçer</td></tr>\n</tbody></table>\n<p>Deney terimleri: <strong>deney birimi (experimental unit)</strong> muamelenin atandığı birimdir (insansa <em>subjects/participants</em>). <strong>Açıklayıcı değişken (explanatory variable) ya da faktör (factor)</strong>, düzeyleri (levels) birimlere uygulanan değişkendir; uygulanan düzeylere <strong>muamele (treatment)</strong> denir. İki faktör varsa (ör. 3 sıcaklık × 2 nem), muameleler düzeylerin <strong>kombinasyonlarıdır</strong>: 3 × 2 = 6 muamele. <strong>Yanıt değişkeni (response variable)</strong>, muameleden sonra ölçülen sonuçtur.</p>\n<div class=\"kn-kural\"><strong>Ayırt etme testi:</strong> “Araştırmacı birimlere bir şey <em>yaptırdı/verdi</em> mi?” Evet → deney. Hayır, yalnızca kaydetti → gözlemsel çalışma. Katılımcıların kendi seçtiği gruplar (sigara içen/içmeyen) gözlemseldir.</div>\n<h4>Karıştırıcı değişken (confounding variable)</h4>\n<p>Gözlemsel bir çalışmada karıştırıcı değişken, gözlenen ilişki için <strong>alternatif bir açıklama</strong> sunar. Karıştırıcı olabilmesi için hem açıklayıcı değişkenle <strong>hem de</strong> yanıt değişkeniyle ilişkili olmalıdır. Örnek: Kahvaltı yapan öğrencilerin notları daha yüksek. Ama ailenin ilgisi hem kahvaltı yapmayla hem notlarla ilişkili olabilir; o halde kahvaltının notları <em>artırdığı</em> sonucu çıkarılamaz.</p>\n<div class=\"kn-kural\"><strong>FRQ kalıbı (iki bağlantı):</strong> “Students with more involved parents may be more likely to eat breakfast <em>and</em> more likely to earn higher grades, so we cannot tell whether breakfast or parental involvement explains the difference.”</div>\n<h4>Genelleme (generalization)</h4>\n<p>Birimler popülasyondan <strong>rastgele seçildiyse</strong> (random number generator gibi bir rastgele mekanizmayla), sonuçlar o popülasyonun tamamına genellenebilir. Birimler gönüllüyse ya da kasıtlı seçildiyse, sonuçlar yalnızca çalışmadakilere <strong>benzer</strong> bireylere genellenebilir.</p>\n<table><thead><tr><th></th><th>Rastgele atama var</th><th>Rastgele atama yok</th></tr></thead><tbody>\n<tr><td><strong>Rastgele seçim var</strong></td><td>Popülasyona genelle + neden–sonuç</td><td>Popülasyona genelle, neden–sonuç yok</td></tr>\n<tr><td><strong>Rastgele seçim yok</strong></td><td>Yalnız benzer bireyler için neden–sonuç</td><td>Ne genelleme ne neden–sonuç</td></tr>\n</tbody></table>",
+   "ornekler": [
+    {
+     "soru": "Araştırmacılar 2015'te 3000 yetişkini seçiyor ve 10 yıl boyunca her yıl egzersiz alışkanlıklarını ve kan basınçlarını kaydediyor. Çalışma türü nedir? Neden–sonuç çıkarılabilir mi?",
+     "cozum": [
+      "Araştırmacı egzersiz atamıyor, yalnızca kaydediyor → gözlemsel çalışma; birimler seçildikten sonra veri gelecekte toplandığı için ileriye dönük (prospective).",
+      "Muamele rastgele atanmadığından neden–sonuç çıkarılamaz; örneğin beslenme, hem egzersizle hem kan basıncıyla ilişkili karıştırıcı bir değişken olabilir."
+     ]
+    },
+    {
+     "soru": "(Explain) Bir çalışmada, evinde daha çok kitap olan çocukların okuma puanlarının daha yüksek olduğu bulunuyor. Olası bir karıştırıcı değişkeni ve iki bağlantısını açıklayın.",
+     "cozum": [
+      "Aday: ebeveynlerin eğitim düzeyi.",
+      "Bağlantı 1: Eğitim düzeyi yüksek ebeveynlerin evinde daha çok kitap olması olasıdır. Bağlantı 2: Bu ebeveynler çocuklarıyla daha çok okuyabilir, bu da okuma puanını yükseltir.",
+      "Bu yüzden kitap sayısının puanları artırdığı sonucu çıkarılamaz; fark ebeveyn eğitimiyle açıklanabilir."
+     ]
+    },
+    {
+     "soru": "Bir tarım deneyinde 3 gübre türü ve 2 sulama düzeyi karşılaştırılıyor. Faktörler, düzeyler ve muamele sayısı nedir?",
+     "cozum": [
+      "Faktörler: gübre türü (3 düzey) ve sulama düzeyi (2 düzey).",
+      "Muameleler tüm kombinasyonlardır: 3 × 2 = 6 muamele (ör. Gübre A + az su)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Karıştırıcı değişken cevabında iki bağlantıyı da yaz: açıklayıcı değişkenle ilişki VE yanıtla ilişki. Tek bağlantı genelde kısmi puandır.",
+    "“Experiment” kelimesi soruda geçse bile kontrol et: araştırmacı muameleyi atadı mı?",
+    "Genelleme sorusunda iki soruyu ayrı sor: seçim rastgele mi (genelleme), atama rastgele mi (neden–sonuç)?",
+    "Bu konu kavramsaldır; hesap makinesi gerekmez."
+   ],
+   "sikHatalar": [
+    "Gözlemsel bir çalışmadan “X, Y'ye neden olur” sonucu çıkarmak.",
+    "Rastgele seçimi (random selection) rastgele atamayla (random assignment) karıştırmak.",
+    "Yalnızca yanıtla ilişkili bir değişkeni karıştırıcı saymak; açıklayıcı değişkenle de ilişkili olmalıdır."
+   ],
+   "terimler": [
+    {
+     "en": "census",
+     "tr": "sayım (tam sayım)"
+    },
+    {
+     "en": "observational study",
+     "tr": "gözlemsel çalışma"
+    },
+    {
+     "en": "prospective study",
+     "tr": "ileriye dönük çalışma"
+    },
+    {
+     "en": "retrospective study",
+     "tr": "geriye dönük çalışma"
+    },
+    {
+     "en": "survey",
+     "tr": "anket"
+    },
+    {
+     "en": "experiment",
+     "tr": "deney"
+    },
+    {
+     "en": "experimental unit",
+     "tr": "deney birimi"
+    },
+    {
+     "en": "explanatory variable (factor)",
+     "tr": "açıklayıcı değişken (faktör)"
+    },
+    {
+     "en": "treatment",
+     "tr": "muamele"
+    },
+    {
+     "en": "response variable",
+     "tr": "yanıt değişkeni"
+    },
+    {
+     "en": "confounding variable",
+     "tr": "karıştırıcı değişken"
+    }
+   ]
+  },
+  {
+   "kod": "1.11",
+   "baslik": "Random Sampling",
+   "baslikTr": "Rastgele örnekleme",
+   "hedefler": [
+    "Basit rastgele örneklem (SRS), tabakalı (stratified), küme (cluster) ve sistematik (systematic) örneklemeyi tanımak.",
+    "Yerine koyarak (with replacement) ve yerine koymadan (without replacement) örneklemeyi ayırt etmek.",
+    "Bir örnekleme yöntemini duruma göre gerekçeyle seçmek ve bir SRS'nin nasıl alınacağını tarif etmek."
+   ],
+   "anlatim": "<p>Örneklemenin amacı popülasyonu <strong>temsil eden</strong> bir alt grup seçmektir. Bunu yapmanın en güvenilir yolu <strong>şansı (random chance)</strong> kullanmaktır; insan seçimi bilinçsizce yanlı olur.</p>\n<h4>Yerine koyarak / koymadan</h4>\n<p><strong>Without replacement:</strong> Seçilen birim popülasyona geri konmaz, tekrar seçilemez (anketlerin çoğu). <strong>With replacement:</strong> Birim geri konur, yeniden seçilebilir.</p>\n<h4>Dört rastgele örnekleme yöntemi</h4>\n<table><thead><tr><th>Yöntem</th><th>Nasıl?</th><th>Ne zaman iyi?</th></tr></thead><tbody>\n<tr><td><strong>SRS (simple random sample)</strong></td><td>\\(n\\) büyüklüğündeki <strong>her olası örneklemin</strong> seçilme şansı eşittir.</td><td>Tam bir liste (sampling frame) varsa; temel yöntem</td></tr>\n<tr><td><strong>Stratified random sample</strong></td><td>Popülasyon, ortak özelliğe göre <strong>homojen</strong> ve örtüşmeyen tabakalara (strata) ayrılır; <strong>her tabakadan</strong> SRS alınır, birleştirilir.</td><td>Tabakalar yanıtta farklıysa: tahmin daha kesin (daha az değişken) olur; her grubun temsili garanti edilir</td></tr>\n<tr><td><strong>Cluster random sample</strong></td><td>Popülasyon kümelere (clusters) ayrılır; kümelerden <strong>SRS</strong> seçilir ve seçilen kümelerdeki <strong>herkes</strong> ölçülür. İdeal küme popülasyon gibi <strong>heterojendir</strong>.</td><td>Ulaşımı kolaylaştırır, maliyeti düşürür (ör. sınıflar, apartmanlar)</td></tr>\n<tr><td><strong>Systematic random sample</strong></td><td>Rastgele bir başlangıç noktası, sonra sabit aralıkla (her k. birim) seçim.</td><td>Sıralı akışlarda (fabrika hattı, giriş kapısı) pratik</td></tr>\n</tbody></table>\n<div class=\"kn-kural\"><strong>Tabaka vs küme hafıza kuralı:</strong> Stratified → <em>bazılarını her gruptan</em> al (gruplar içinde benzer). Cluster → <em>bazı grupların hepsini</em> al (gruplar birbirine benzer).</div>\n<h4>SRS nasıl tarif edilir? (FRQ)</h4>\n<ol>\n<li>Popülasyondaki her birimi 1'den \\(N\\)'ye kadar numaralandır.</li>\n<li>Bir rastgele sayı üreteciyle 1 ile \\(N\\) arasında \\(n\\) <strong>farklı</strong> tam sayı üret (tekrar edenleri atla).</li>\n<li>Bu numaralara karşılık gelen birimleri örnekleme al.</li>\n</ol>\n<p>Alternatif: her ismi aynı büyüklükte kâğıtlara yaz, iyice karıştır, \\(n\\) kâğıdı yerine koymadan çek. “Rastgele seç” demek yeterli değildir; <strong>mekanizmayı</strong> yaz.</p>\n<h4>Çalışılmış örnek</h4>\n<p>Bir okulda 1200 öğrenci var: 9. sınıf 400, 10. sınıf 300, 11. sınıf 300, 12. sınıf 200. Ders çalışma süresinin sınıf düzeyine göre çok farklı olduğu düşünülüyor. Orantılı tabakalı örneklemde \\(n = 60\\) için: 9. sınıftan \\(60 \\times 400/1200 = 20\\), 10'dan 15, 11'den 15, 12'den 10 öğrenci seçilir. Gerekçe: “Because study time likely differs by grade level, stratifying by grade will produce a more precise estimate than an SRS of the same size.”</p>\n<div class=\"kn-dikkat\">Sistematik örnekleme, listede <strong>periyodik bir desen</strong> varsa (ör. her 10. ev köşe başı evi) yanlı sonuç verebilir. Kolaylık örneklemi (en yakın 50 kişi) rastgele değildir; adı ne olursa olsun “random” sayılmaz.</div>",
+   "ornekler": [
+    {
+     "soru": "Bir zincir markette 40 şube var. Yönetim rastgele 5 şube seçip bu şubelerdeki tüm çalışanlara anket uyguluyor. Yöntem nedir? Bir avantajını yazın.",
+     "cozum": [
+      "Şubeler kümedir; kümelerden SRS seçilip seçilen kümelerdeki herkes ölçüldüğü için bu bir küme örneklemidir (cluster random sample).",
+      "Avantaj: anketörlerin yalnızca 5 şubeye gitmesi gerekir; zaman ve maliyet azalır."
+     ]
+    },
+    {
+     "soru": "(Justify) Bir şehirde kira ortalamasını tahmin etmek için merkez ve dış mahalleler ayrımıyla tabakalı örnekleme öneriliyor. Neden SRS'ye göre daha iyi olabilir?",
+     "cozum": [
+      "Kiralar merkezde ve dış mahallelerde muhtemelen çok farklıdır; her tabaka kendi içinde daha homojendir.",
+      "Her tabakadan ayrı SRS almak, her iki bölgenin temsil edilmesini garanti eder ve tabakalar arası farktan gelen değişkenliği azaltır.",
+      "Cevap: “Stratifying by region produces a more precise estimate of the mean rent because rents are similar within regions but differ between them.”"
+     ]
+    },
+    {
+     "soru": "Bir fabrika hattından günde 2400 ürün çıkıyor. 48 ürünlük sistematik rastgele örneklem nasıl alınır?",
+     "cozum": [
+      "Aralık: 2400/48 = 50. 1 ile 50 arasında rastgele bir başlangıç sayısı seç (ör. 17).",
+      "Sonra her 50. ürünü al: 17, 67, 117, … , 2367 → toplam 48 ürün."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "SRS tarifinde üç şeyi yaz: numaralandırma, rastgele mekanizma (random number generator), tekrarları atlama.",
+    "Tabakalı örneklemeyi gerekçelendirirken “tabakalar içinde benzer, tabakalar arasında farklı yanıt” ifadesini kullan.",
+    "Hesap makinesinde randInt(1, N) tekrar üretebilir; FRQ'da “ignore repeats” yaz.",
+    "Puanlayıcı yöntem adının yanında birimin (öğrenci mi, sınıf mı) ne olduğunu açıkça görmek ister."
+   ],
+   "sikHatalar": [
+    "Tabakalı ile küme örneklemesini karıştırmak: kümede seçilen grupların hepsi ölçülür.",
+    "SRS'yi “her bireyin eşit şansı var” diye tanımlamak; tabakalı örneklemde de herkesin şansı eşit olabilir. SRS'de her olası örneklemin şansı eşittir.",
+    "“Rastgele seç” deyip mekanizmayı (rastgele sayı üreteci, kura) tarif etmemek."
+   ],
+   "terimler": [
+    {
+     "en": "simple random sample (SRS)",
+     "tr": "basit rastgele örneklem"
+    },
+    {
+     "en": "stratified random sample",
+     "tr": "tabakalı rastgele örneklem"
+    },
+    {
+     "en": "strata (stratum)",
+     "tr": "tabakalar (tabaka)"
+    },
+    {
+     "en": "cluster random sample",
+     "tr": "küme örneklemi"
+    },
+    {
+     "en": "systematic random sample",
+     "tr": "sistematik rastgele örneklem"
+    },
+    {
+     "en": "with / without replacement",
+     "tr": "yerine koyarak / koymadan"
+    },
+    {
+     "en": "random number generator",
+     "tr": "rastgele sayı üreteci"
+    }
+   ]
+  },
+  {
+   "kod": "1.12",
+   "baslik": "Potential Problems with Sampling",
+   "baslikTr": "Örneklemedeki olası sorunlar (yanlılık)",
+   "hedefler": [
+    "Yanlılığı (bias) sistematik hata olarak tanımlamak ve şans değişkenliğinden ayırmak.",
+    "Gönüllü yanıt (voluntary response), eksik kapsama (undercoverage), yanıtsızlık (nonresponse) ve yanıt yanlılığını (response bias) tanımak.",
+    "Bir yanlılığın tahmini hangi yönde etkileyeceğini bağlam içinde açıklamak."
+   ],
+   "anlatim": "<div class=\"kn-tanim\"><strong>Yanlılık (bias):</strong> Örnekleme yöntemindeki <strong>sistematik</strong> bir hatadır; istatistiğin, tahmin ettiği parametreden <strong>tutarlı olarak daha büyük ya da daha küçük</strong> çıkmasına yol açar.</div>\n<p>Yanlılık “şanssızlık” değildir. Rastgele bir örneklem tesadüfen parametreden biraz uzak çıkabilir (sampling variability); ama yanlı bir yöntem tekrar tekrar uygulandığında <strong>hep aynı yönde</strong> hata yapar. Örneklem büyüklüğünü artırmak şans değişkenliğini azaltır, <strong>yanlılığı azaltmaz</strong>.</p>\n<h4>Yanlılık türleri</h4>\n<table><thead><tr><th>Tür</th><th>Ne olur?</th><th>Örnek</th></tr></thead><tbody>\n<tr><td>voluntary response bias (gönüllü yanıt)</td><td>Örneklem tamamen gönüllülerden oluşur; güçlü (genelde olumsuz) görüşü olanlar katılır.</td><td>Bir haber sitesinin “Yeni vergi hakkında ne düşünüyorsunuz?” çevrim içi anketi</td></tr>\n<tr><td>undercoverage bias (eksik kapsama)</td><td>Yöntem popülasyonun bir kısmını hiç içermez ya da seçme şansını azaltır.</td><td>Sabit telefon rehberinden arama: yalnız cep telefonu olanlar dışarıda</td></tr>\n<tr><td>nonresponse bias (yanıtsızlık)</td><td>Seçilen bazı kişilerden yanıt alınamaz; yanıt verenler verilmeyenlerden önemli ölçüde farklıdır.</td><td>Postayla gönderilen 1000 anketten 150'si geri dönüyor; meşgul kişiler yanıtlamıyor</td></tr>\n<tr><td>response bias (yanıt yanlılığı)</td><td>Yanıtlar ya da ölçümler gerçek değerden bir yöne sapar: yönlendirici/kafa karıştırıcı soru (question wording bias), kendi beyanı, hassas konu.</td><td>“Çevreyi korumak için geri dönüşümü destekliyor musunuz?”; kendi beyan edilen kilo</td></tr>\n</tbody></table>\n<div class=\"kn-kural\"><strong>Undercoverage vs nonresponse:</strong> Undercoverage'da kişi <em>seçilme şansına sahip değildir</em> (seçim aşaması). Nonresponse'da kişi <em>seçilmiştir ama yanıt vermez</em> (yanıt aşaması).</div>\n<h4>Rastgele olmayan yöntemler</h4>\n<p><strong>Kolaylık örneklemesi (convenience sampling)</strong> ve gönüllü yanıt örneklemesi rastgeleliği kullanmaz; bu yüzden potansiyel olarak yanlıdır. Kolaylık örneği: alışveriş merkezi girişinde ilk 100 kişiye sormak (o gün AVM'ye gelenler popülasyonu temsil etmez).</p>\n<h4>Yönü açıklamak (FRQ'da tam puan)</h4>\n<p>Yanlılık sorusunda üç adım: (1) türü <strong>adlandır</strong>, (2) <strong>kimin</strong> eksik/fazla temsil edildiğini ve neden farklı olduğunu söyle, (3) tahminin <strong>hangi yönde</strong> (overestimate/underestimate) saptığını söyle.</p>\n<blockquote>“Because only people who visit the gym were surveyed, the sample likely overrepresents people who exercise regularly. These people are more likely to support a new bike lane, so the sample proportion will likely <strong>overestimate</strong> the true proportion of all city residents who support it.”</blockquote>\n<div class=\"kn-dikkat\">“Örneklem çok küçük” bir yanlılık değildir. Küçük örneklem değişkenliği artırır, ama yöntem rastgeleyse sistematik bir yön yaratmaz.</div>",
+   "ornekler": [
+    {
+     "soru": "Bir belediye, otopark ücretleri hakkındaki görüşleri öğrenmek için yalnızca belediye binasına arabayla gelenlere anket yapıyor. Yanlılık türünü ve olası yönünü açıklayın.",
+     "cozum": [
+      "Kolaylık örneği + eksik kapsama: araba kullanmayan sakinler (toplu taşıma, yaya) neredeyse hiç seçilemez.",
+      "Arabayla gelenler otopark ücretinden doğrudan etkilenir ve ücret artışına daha çok karşı çıkabilir.",
+      "Bu yüzden örneklem, ücret artışına karşı olanların oranını muhtemelen olduğundan yüksek tahmin eder (overestimate)."
+     ]
+    },
+    {
+     "soru": "(Explain) Rastgele seçilen 2000 haneye gönderilen bir ankete yalnızca 260 hane yanıt veriyor. Araştırmacı “Örneklem rastgele seçildiği için sonuç yansız” diyor. Katılıyor musunuz?",
+     "cozum": [
+      "Seçim rastgele olsa da, yanıt verenler (%13) yanıt vermeyenlerden önemli ölçüde farklı olabilir.",
+      "Bu, yanıtsızlık yanlılığıdır (nonresponse bias); rastgele seçim onu ortadan kaldırmaz.",
+      "Cevap: “No. The low response rate can cause nonresponse bias because the 260 households that responded may differ systematically from those that did not.”"
+     ]
+    },
+    {
+     "soru": "“Çoğu doktorun önerdiği bu vitamini kullanmayı düşünür müsünüz?” sorusunun sorununu adlandırın.",
+     "cozum": [
+      "Soru, “çoğu doktorun önerdiği” ifadesiyle yanıtlayanı olumlu cevaba yönlendirir.",
+      "Bu, soru ifadesi yanlılığıdır (question wording / response bias); “evet” oranını muhtemelen olduğundan yüksek gösterir."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Yanlılık cevabında “adlandır + kim + yön” üçlüsünü yaz; yalnız ismi yazmak genelde kısmi puandır.",
+    "Örneklem büyüklüğünü artırmak yanlılığı düzeltmez; bunu MCQ şıklarında tuzak olarak sık görürsün.",
+    "Undercoverage mı nonresponse mı karar verirken sor: kişi seçilme şansına sahip miydi?",
+    "Bu konuda hesap makinesi gerekmez; yanıt oranı gibi basit oranlar için kullanılabilir."
+   ],
+   "sikHatalar": [
+    "Küçük örneklemi yanlılık sanmak; küçüklük değişkenlik yaratır, sistematik hata değil.",
+    "Yanıtsızlık ile gönüllü yanıtı karıştırmak: gönüllü yanıtta kişi kendini seçer, yanıtsızlıkta araştırmacı seçer ama kişi yanıtlamaz.",
+    "Yanlılığın yönünü belirtmeden “bias olabilir” demek."
+   ],
+   "terimler": [
+    {
+     "en": "bias",
+     "tr": "yanlılık"
+    },
+    {
+     "en": "voluntary response bias",
+     "tr": "gönüllü yanıt yanlılığı"
+    },
+    {
+     "en": "undercoverage",
+     "tr": "eksik kapsama"
+    },
+    {
+     "en": "nonresponse bias",
+     "tr": "yanıtsızlık yanlılığı"
+    },
+    {
+     "en": "response bias",
+     "tr": "yanıt yanlılığı"
+    },
+    {
+     "en": "question wording bias",
+     "tr": "soru ifadesi yanlılığı"
+    },
+    {
+     "en": "convenience sample",
+     "tr": "kolaylık örneklemi"
+    },
+    {
+     "en": "overestimate / underestimate",
+     "tr": "fazla / eksik tahmin"
+    }
+   ]
+  },
+  {
+   "kod": "1.13",
+   "baslik": "Experimental Design",
+   "baslikTr": "Deney tasarımı",
+   "hedefler": [
+    "İyi tasarlanmış bir deneyin dört ilkesini (karşılaştırma, rastgele atama, tekrarlama, kontrol) tanımak.",
+    "Tamamen rastgele tasarım, rastgele blok tasarımı ve eşleştirilmiş çiftler tasarımını ayırt etmek ve gerekçelendirmek.",
+    "Plasebo, körleme (blinding) ve neden–sonuç sonuçlarının geçerliliğini açıklamak."
+   ],
+   "anlatim": "<h4>İyi bir deneyin dört ilkesi</h4>\n<ol>\n<li><strong>Karşılaştırma (comparison):</strong> En az iki muamele grubu; biri kontrol grubu olabilir.</li>\n<li><strong>Rastgele atama (random assignment):</strong> Muameleler deney birimlerine şansla atanır.</li>\n<li><strong>Tekrarlama (replication):</strong> Her muamele birden fazla birime uygulanır.</li>\n<li><strong>Kontrol (direct control):</strong> Olası yabancı değişkenler (extraneous variables) tüm birimler için aynı tutulur (aynı sıcaklık, aynı süre, aynı talimat).</li>\n</ol>\n<div class=\"kn-tanim\"><strong>Rastgele atamanın amacı:</strong> Muamele gruplarını, yabancı değişkenler açısından <strong>olabildiğince benzer</strong> yapmaktır. Başarılıysa her yabancı değişkenin dağılımı tüm gruplarda yaklaşık aynıdır; böylece yanıttaki fark muameleye bağlanabilir ve <strong>neden–sonuç (cause-and-effect)</strong> sonucu çıkarılabilir.</div>\n<h4>Kontrol grubu, plasebo, körleme</h4>\n<ul>\n<li><strong>Kontrol grubu (control group):</strong> Karşılaştırma için oluşturulan grup; muamele almayabilir ya da <strong>plasebo</strong> (etkisiz madde) alabilir.</li>\n<li><strong>Plasebo etkisi (placebo effect):</strong> Plaseboya verilen ortalama yanıt ile hiç muamele almamaya verilen ortalama yanıt arasındaki fark.</li>\n<li><strong>Tek kör (single-blind / single-masked):</strong> Katılımcılar hangi muameleyi aldıklarını bilmez (ama onlarla etkileşen araştırmacılar bilir) ya da tersi.</li>\n<li><strong>Çift kör (double-blind / double-masked):</strong> Ne katılımcılar ne de onlarla etkileşen/yanıtı ölçen araştırmacılar kimin hangi muameleyi aldığını bilir.</li>\n</ul>\n<p>Deneyde <strong>karıştırıcı değişken (confounding variable)</strong>, açıklayıcı değişkenle öyle ilişkilidir ki yanıttaki değişimi hangisinin yaptığı ayırt edilemez (ör. ilaç grubundaki herkes sabah, plasebo grubundakiler akşam test edilirse). İyi tasarım bu riski azaltır.</p>\n<h4>Tasarım türleri</h4>\n<table><thead><tr><th>Tasarım</th><th>Nasıl?</th></tr></thead><tbody>\n<tr><td><strong>Completely randomized design</strong></td><td>Muameleler birimlere tamamen rastgele atanır (grup büyüklükleri eşit olmak zorunda değil).</td></tr>\n<tr><td><strong>Randomized block design</strong></td><td>Birimler önce bir <strong>blok değişkenine</strong> (yanıtı etkilediği bilinen yabancı değişken) göre benzer gruplara (bloklara) ayrılır; sonra <strong>her blok içinde</strong> muameleler rastgele atanır.</td></tr>\n<tr><td><strong>Matched pairs design</strong></td><td>İki muameleli blok tasarımı: birimler benzerliklerine göre çiftlenir, çiftin birine rastgele bir muamele, diğerine öteki verilir; ya da her birim iki muameleyi de <strong>rastgele sırayla</strong> alır.</td></tr>\n</tbody></table>\n<div class=\"kn-kural\"><strong>Blok neden işe yarar?</strong> Blok değişkeninin yanıtta yarattığı değişkenliği diğer değişkenlikten ayırır; muameleler blok içinde karşılaştırıldığı için karşılaştırma <strong>daha kesin (more precise)</strong> olur. Kalıp: “Blocking by <em>[X]</em> accounts for the variability in <em>[response]</em> caused by <em>[X]</em>, making it easier to detect a difference between treatments.”</div>\n<h4>Rastgele atamayı tarif etmek (FRQ)</h4>\n<p>60 katılımcı, 2 muamele: “Assign each participant a number from 1 to 60. Use a random number generator to select 30 different numbers from 1 to 60, ignoring repeats. Those participants receive treatment A; the remaining 30 receive treatment B.” Yazı tura her kişi için kullanılırsa gruplar eşit olmayabilir; bu kabul edilir ama eşit büyüklük gerekiyorsa sayı üreteci daha iyidir.</p>\n<div class=\"kn-dikkat\">Rastgele atama neden–sonuç verir; <strong>genelleme</strong> ise rastgele seçime bağlıdır. Gönüllülerle yapılan deneyin sonucu yalnızca deneydekilere <strong>benzer</strong> kişiler için geçerlidir. Etik ya da pratik nedenlerle deney birimlerini rastgele seçmek çoğu zaman mümkün değildir.</div>",
+   "ornekler": [
+    {
+     "soru": "Bir araştırmacı yeni bir uyku uygulamasını test etmek istiyor. 80 gönüllünün 40'ı kadın, 40'ı erkek ve uyku süresinin cinsiyete göre farklı olduğu biliniyor. Uygun bir tasarım önerin ve rastgele atamayı tarif edin.",
+     "cozum": [
+      "Randomized block design: cinsiyete göre iki blok (40 kadın, 40 erkek).",
+      "Her blok içinde 1–40 numara ver; rastgele sayı üreteciyle 20 farklı numara seç → uygulama grubu; kalan 20 → kontrol (uygulama yok / plasebo uygulama).",
+      "Sonuçlar her blok içinde karşılaştırılır, sonra birleştirilir."
+     ]
+    },
+    {
+     "soru": "(Justify) Ayakkabı tabanı için iki malzemenin aşınmasını karşılaştırmak üzere 25 çocuk kullanılacak. Neden her çocuğun bir ayakkabısına A, diğerine B malzemesini rastgele koymak iyi bir tasarımdır?",
+     "cozum": [
+      "Bu bir matched pairs tasarımıdır: her çocuk kendi çiftidir.",
+      "Aşınma, çocuğun ne kadar koştuğuna ve yürüme biçimine göre çok değişir; aynı çocuğun iki ayağı bu yabancı değişkenler açısından hemen hemen aynıdır.",
+      "Hangi ayağa A konacağını rastgele (yazı tura) belirlemek sağ/sol ayak farkını dengeler. Karşılaştırma çocuk içinde yapıldığından daha kesindir."
+     ]
+    },
+    {
+     "soru": "Bir ağrı kesici deneyinde katılımcılar hangi hapı aldıklarını bilmiyor, ağrıyı puanlayan hemşireler de bilmiyor. Bu tasarım ne olarak adlandırılır ve neden önemlidir?",
+     "cozum": [
+      "Ne katılımcılar ne de yanıtı ölçenler muameleyi bildiği için deney çift kördür (double-blind).",
+      "Katılımcıların beklentisi (plasebo etkisi) ve hemşirelerin puanlamadaki bilinçsiz yanlılığı tüm gruplarda benzer olur; fark ilaca bağlanabilir."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Rastgele atama tarifinde: numaralandır, rastgele sayı üreteci, tekrarları atla, kim hangi muameleyi alır — dördünü yaz.",
+    "Blok değişkeni seçerken yanıtla ilişkili bir değişken seç ve bu ilişkiyi cümlede söyle.",
+    "“Replication” deneyin tekrarlanması değil, her muamelenin birden çok birime uygulanmasıdır (CED tanımı).",
+    "Bu konu kavramsaldır; hesap makinesi yalnızca rastgele sayı üretmek (randInt) için kullanılır."
+   ],
+   "sikHatalar": [
+    "Blok ile tabakayı karıştırmak: blok deneylerde (muamele atanır), tabaka örneklemede (birimler seçilir) kullanılır.",
+    "Gönüllülerle yapılan deneyin sonucunu tüm popülasyona genellemek.",
+    "Kontrol grubunu zorunlu sanmak; iki yeni muamele de karşılaştırılabilir — gerekli olan en az iki muamelenin karşılaştırılmasıdır."
+   ],
+   "terimler": [
+    {
+     "en": "comparison",
+     "tr": "karşılaştırma"
+    },
+    {
+     "en": "random assignment",
+     "tr": "rastgele atama"
+    },
+    {
+     "en": "replication",
+     "tr": "tekrarlama"
+    },
+    {
+     "en": "direct control",
+     "tr": "doğrudan kontrol"
+    },
+    {
+     "en": "control group",
+     "tr": "kontrol grubu"
+    },
+    {
+     "en": "placebo / placebo effect",
+     "tr": "plasebo / plasebo etkisi"
+    },
+    {
+     "en": "single-blind / double-blind",
+     "tr": "tek kör / çift kör"
+    },
+    {
+     "en": "extraneous variable",
+     "tr": "yabancı değişken"
+    },
+    {
+     "en": "completely randomized design",
+     "tr": "tamamen rastgele tasarım"
+    },
+    {
+     "en": "randomized block design",
+     "tr": "rastgele blok tasarımı"
+    },
+    {
+     "en": "blocking variable",
+     "tr": "blok değişkeni"
+    },
+    {
+     "en": "matched pairs design",
+     "tr": "eşleştirilmiş çiftler tasarımı"
+    }
+   ]
+  }
+ ]
+}

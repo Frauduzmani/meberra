@@ -12,6 +12,7 @@
   <script src="/assets/js/adresler.js"></script>
   <script>/* Sorularım kendi sayfasında: eski bağlantılar (/profil.html?soru=ID#sorularim, bildirim ve e-postalar) oraya gider */(function(){var q=/[?&]soru=(\d+)/.exec(location.search);if(q||location.hash==="#sorularim")location.replace("/sorularim"+(q?"?soru="+q[1]:""))})()</script>
   <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/kelime-kopru.css?v=1250">
   <link rel="stylesheet" href="/assets/css/oyun.css?v=20261021m">
   <link rel="stylesheet" href="/assets/css/bildirim.css?v=20261021m">
   <!-- 1.4.0 maskot/hareket: statik (kayma olmasın); app.js yükleyicisi ikinci kez eklemez -->
@@ -293,6 +294,13 @@
               <a class="btn-ghost" href="/basvurular">Başvurularım</a>
             </div>
           </form>
+        </section>
+
+        <!-- 1.25.0 A2 İngilizce köprüsü tercihi (cihaz başına; assets/js/kelime-kopru.js) -->
+        <section class="surface" id="tr-yardim-panel" aria-labelledby="tr-yardim-title">
+          <h2 class="panel-h" id="tr-yardim-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h7M7.5 5v1.5c0 3-1.5 5.5-4 7M5 9.5c1.2 2 3 3.4 5 4"/><path d="M12 20l4-9 4 9M13.4 17h5.2"/></svg>İngilizce yardımı</h2>
+          <p class="panel-lead">Soru metninde bilmediğin kelimeye dokununca Türkçesi, kökü ve okunuşu çıkar. Sınavdaki gibi çalışmak istediğinde kapatabilirsin.</p>
+          <label class="tr-yardim-satir"><input type="checkbox" id="tr-yardim-anahtar"> <span>Kelime yardımı açık</span></label>
         </section>
 
         <section class="surface" id="hesap" aria-labelledby="hesap-title">
@@ -823,5 +831,14 @@
   })();
   </script>
   <script src="/assets/js/profil-ap-veli.js?v=170a"></script>
+  <script src="/assets/js/kelime-kopru.js?v=1250" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var k = document.getElementById("tr-yardim-anahtar"), K = window.MeberraKopru;
+      if (!k || !K) return;
+      k.checked = K.acikMi();
+      k.addEventListener("change", function () { K.ayarla(k.checked); });
+    });
+  </script>
 </body>
 </html>

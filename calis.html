@@ -205,7 +205,7 @@
     var sv = A.storeGet(A.keys.seviye, null) || {};
     var progress = A.loadProgress();
 
-    // Dersler: 6 AP (APMEBERRA_COURSES) + CEnT-S; deneme kodları deneme bankasıyla aynı (deneme.html?ders=<kod>)
+    // Dersler: 9 AP (APMEBERRA_COURSES; 1.28.0 Precalculus, Statistics, Physics 2) + CEnT-S; deneme kodları deneme bankasıyla aynı (deneme.html?ders=<kod>)
     var EK = {
       "ap-calculus": { etiket: "Matematik", d: "Limit, türev, integral; teorem ön koşulları ve FRQ çözüm şablonları.", deneme: [["calculus-ab", "AB denemesi"], ["calculus-bc", "BC denemesi"]] },
       "ap-physics": { etiket: "Doğa bilimi", d: "Kinematik, dinamik, enerji; serbest cisim diyagramları ve deney tasarımı.", deneme: [["physics-1", "Deneme"]] },
@@ -213,6 +213,9 @@
       "ap-biology": { etiket: "Doğa bilimi", d: "Biyokimya, hücre, enerji dönüşümleri, genetik ve biyoistatistik.", deneme: [["biology", "Deneme"]] },
       "ap-english": { etiket: "Dil", d: "Retorik analiz, sentez ve argümantasyon kompozisyonları.", deneme: [["english-language", "Deneme"]] },
       "ap-electives": { etiket: "Seçmeli", d: "Mikro/makroekonomi grafik modelleri ve Java ile nesne yönelimli programlama.", deneme: [["cs-a", "CS A denemesi"], ["economics", "Ekonomi denemesi"]] },
+      "ap-precalculus": { etiket: "Matematik", d: "Polinom, rasyonel, üstel, logaritmik ve trigonometrik fonksiyonlar; Calculus'a hazırlık.", deneme: [["precalculus", "Deneme"]] },
+      "ap-statistics": { etiket: "Matematik", d: "Veri keşfi, deney tasarımı, olasılık, güven aralığı, hipotez testi ve regresyon.", deneme: [["statistics", "Deneme"]] },
+      "ap-physics-2": { etiket: "Doğa bilimi", d: "Termodinamik, elektrik ve manyetizma, optik, dalgalar ve modern fizik.", deneme: [["physics-2", "Deneme"]] },
       "sinav-cents": { etiket: "Giriş sınavı · İtalya", d: "CISIA CEnT-S: okuma, matematik, akıl yürütme ve fen bölümleri.", deneme: [["cents", "Deneme"]] }
     };
     var dersler = A.courses.map(function (c) { return { page: c.page, name: c.name, cls: c.cls }; })

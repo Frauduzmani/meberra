@@ -48,6 +48,9 @@
     "ap-chemistry": ["chem-unit1-quiz-container", "chem-unit2-quiz-container"],
     "ap-biology": ["bio-unit1-quiz-container", "bio-unit2-quiz-container"],
     "ap-english": ["eng-reading-quiz-container"],
+    "ap-precalculus": ["precalc-unit1-quiz-container", "precalc-unit2-quiz-container"], // 1.28.0
+    "ap-statistics": ["stat-unit1-quiz-container", "stat-unit2-quiz-container"],
+    "ap-physics-2": ["phys2-unit9-quiz-container", "phys2-unit10-quiz-container"], // Physics 2 üniteleri 9'dan başlar
     "ap-electives": ["csa-quiz-container", "econ-quiz-container", "micro34-quiz-container", "micro56-quiz-container", "macro14-quiz-container", "macro56-quiz-container"],
     "sinav-cents": ["cents-reading-quiz-container", "cents-math-quiz-container"]
   };

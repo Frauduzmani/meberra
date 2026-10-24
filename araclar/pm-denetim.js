@@ -51,7 +51,8 @@ function checkQuestions(qs, fields, seen, issues) {
     if (opts.map(o => o.id).join("") !== "ABCD".slice(0, opts.length)) issues.push(`${tag}: şık harf sırası bozuk`);
     for (const o of opts) if (!o.isCorrect && (!o.errorTag || !o.remediation)) issues.push(`${tag}: ${o.id} şıkkında errorTag/remediation eksik`);
     if (FORBIDDEN_SOURCE.test(q.source || "")) issues.push(`${tag}: yanıltıcı source "${q.source}"`);
-    if (/\*\*[^*]+\*\*/.test(JSON.stringify(q))) issues.push(`${tag}: ham Markdown **`);
+    // <code> içi hariç (Java/Javadoc yorumu /** … */ Markdown değildir)
+    if (/\*\*[^*]+\*\*/.test(JSON.stringify(q).replace(/<code>.*?<\/code>/g, "").replace(/\/\*\*/g, ""))) issues.push(`${tag}: ham Markdown **`);
     // 1.23.0: iç içe alanlar (ek, hata açıklamaları) da taranır — ek.ipucu içinde "\text" sekmeye dönmüştü
     const derin = o => (typeof o === "string" ? o : o && typeof o === "object" ? Object.values(o).map(derin).join("") : "");
     if (/[\u0000-\u0009\u000b\u000c\u000e-\u001f]/.test(derin(q.ek) + derin(q.hata_aciklamalari))) issues.push(`${tag}: iç içe alanda kontrol karakteri ya da sekme`);
@@ -94,11 +95,14 @@ for (const file of PAGES) {
   // Sayfadaki her soru istasyonunun bankada sorusu olmalı (boş istasyon öğrenciye "soru yok" gösterir).
   // Yalnız taslak sorusu olan istasyon sorun değil, uyarıdır (onay kuyruğunda bekliyor).
   const sayfaAdi = file.replace(/.html$/, "");
-  for (const m of html.matchAll(/id="([^"]*-quiz-container)"/g)) {
+  const yakinda = []; // 1.28.0: yeni istasyon (data-sb-yeni-kutu) sorusuz olabilir — öğrenci "Yakında" görür, hata değil
+  for (const m of html.matchAll(/id="([^"]*-quiz-container)"([^>]*)>/g)) {
     if (arrays.some(([k]) => k === m[1])) continue;
     if (TASLAK.some(r => r.tur === "ders" && r.sayfa === sayfaAdi && r.kutu === m[1])) { uyarilar.push(`${file}: ${m[1]} sayfada var ama yalnız taslak sorusu var (onaylanana dek öğrenci boş istasyon görür)`); continue; }
+    if (/\bdata-sb-yeni-kutu\b/.test(m[2])) { yakinda.push(m[1]); continue; }
     console.log(`✗ ${file}: ${m[1]} için bankada aktif soru yok`); problems++;
   }
+  if (yakinda.length) uyarilar.push(`${file}: ${yakinda.length} yeni istasyonda henüz aktif soru yok (Yakında): ${yakinda.join(", ")}`);
   // Taslak istasyonları: sayfada henüz yoksa uyarı (arayüz ekleyecek); kalite denetimi aşağıda (TASLAK bölümü)
   for (const k of new Set(TASLAK.filter(r => r.tur === "ders" && r.sayfa === sayfaAdi).map(r => r.kutu))) {
     if (!html.includes(`id="${k}"`)) uyarilar.push(`${file}: taslak istasyonu sayfada henüz yok: ${k}`);

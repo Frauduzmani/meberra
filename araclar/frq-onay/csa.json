@@ -1,0 +1,41 @@
+[
+  {
+    "id": "frq-csa-k1",
+    "karar": "duzelt",
+    "neden": "Çözümler JS ile örnekler + sınırlarda (tek bacak, tek harfli ad, tek durak) doğrulandı. (b) rubriği yalnızca indexOf/karakter gezinmeyi sayıyordu; güncel Java Quick Reference'taki split ile çözüm de kabul edilmeli.",
+    "duzeltme": {
+      "parcalar[1].rubrik[0].olcut": "Tireleri bulur (indexOf, karakter karakter gezinme ya da split(\"-\")) ve son durak dahil her durak adını ayırır."
+    }
+  },
+  {
+    "id": "frq-csa-k2",
+    "karar": "onay",
+    "neden": "Tanım tek anlamlı; örnekler ve sınırlar (boş typed, eşit kelimeler, uzun typed) JS ile doğrulandı. Rubrik ve sık hatalar doğru (parantezsiz \"+\" + a - b gerçekten derlenmez)."
+  },
+  {
+    "id": "frq-csa-k3",
+    "karar": "onay",
+    "neden": "Sınıf tasarımı GymPass ile aynı 7 puan düzeninde; tablo değerleri (40, 2, özet, 100 sınırı) ve tam sayı kesmesi JS ile doğrulandı. Rubrik puanları gözlenebilir ve ayrık."
+  },
+  {
+    "id": "frq-csa-k4",
+    "karar": "onay",
+    "neden": "Sıralı ekleme, tekrar başlık (-1), eşit öncelik sonrası ekleme, sona ekleme ve boş liste JS ile doğrulandı; örnek tablo doğru, rubrik 5 puan tutarlı."
+  },
+  {
+    "id": "frq-csa-k5",
+    "karar": "duzelt",
+    "neden": "Örnek (dönüş 3), boş/tek eleman, hepsi aynı gönderici ve hiç grup olmayan durum JS ile doğrulandı. Silme puanı yalnızca 'indeks ilerletilmez' yolunu anıyordu; yaygın doğru alternatif olan sondan başa dolaşım da açıkça kabul edilmeli.",
+    "duzeltme": {
+      "parcalar[0].rubrik[3].olcut": "Sonraki mesajları siler ve hiçbir mesajı atlamaz (silme sonrası indeks ilerletilmez ya da liste sondan başa dolaşılır; üçlü ve daha uzun gruplar tamamen birleşir)."
+    }
+  },
+  {
+    "id": "frq-csa-k6",
+    "karar": "duzelt",
+    "neden": "isPeak (kenar, köşe, 1x1, eşit komşu) ve steepestColumn (eşitlikte küçük indeks, tek satır, hepsi eşit) JS ile doğrulandı. (a) sık hatalardaki karşılaştırma maddesi karışık yazılmıştı; netleştirildi.",
+    "duzeltme": {
+      "parcalar[0].sik_hatalar[2]": "Komşu kontrolünde &gt;= yerine &gt; kullanıp eşit yükseklikte komşusu olan noktayı tepe saymak."
+    }
+  }
+]

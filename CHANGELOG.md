@@ -9,6 +9,48 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.28.0] — 2026-10-25
+### Eklendi
+- **3 yeni ders**: **AP Precalculus** (4 ünite; Ü4 sınavda yok, ayrıca işaretli), **AP Statistics** (2026–27 revize çerçeve: 5 ünite, sınav 42 MCQ + 4 FRQ × 10 puan) ve **AP Physics 2** (Ünite 9–15). Her ünitede Türkçe konu anlatımı ve çözümlü örnekler; sayfalar `/ap-precalculus`, `/ap-statistics`, `/ap-physics-2`, hedef sihirbazı ve tam deneme sınavı planlarında.
+- **2251 yeni doğrulanmış özgün soru** (aktif banka 5876): Precalculus 435 (30 hesap makineli dahil), Statistics 450, Physics 2 406; seçmeli dersler kalınlaştırıldı — CS A +374, Micro +216, Macro +270; English Language +100 soru ve 11 yeni pasaj. Hepsinde "🔍 Ne soruyor?" cümlesi. Her parti yazardan bağımsız bir denetçiden geçti (yanlış anahtar: 0).
+- **30 yeni FRQ** (toplam 137): Precalculus 8, Statistics 10, Physics 2 12 — resmî tipler ve puanlarla.
+- **Kavram kartları**: Precalculus 44, Statistics 60, Physics 2 76 (toplam 666) + her derste ücretsiz İngilizce kalıp destesi.
+### Değişti
+- Pratik değeri: sorular artık ders anlatımındaki çözümlü örneklerin sayılarını/bağlamını tekrar etmiyor (yazım ve denetim rehberine kural; Precalculus Ü4 ve Statistics Ü5 örnekleri yeniden yazıldı).
+### Düzeltildi
+- Ekonomi konu etiketleri: `econ_sk_ma3_1` → 3.6, `econ_sk_ma3_2` → 3.7, `econ_sk_mi2_1` → 2.1.
+- Araçlar: `onay2-uygula.js` artık `--taslak` ve `--karar` olmadan çalışmıyor (argümansız çalıştırma eski bir partiyi yeniden uyguluyordu); `yeni-soru-ekle.js` `ek` metinlerinde de LaTeX ve kontrol karakteri denetliyor; Markdown denetimi Javadoc `/**` ve `<code>` içini yok sayıyor.
+
+## [1.27.0] — 2026-10-25
+### Eklendi
+- **Bugün'de tahmini AP puanı** (karşılama kartının parçası): ders başına 1–5 halka, "Mayıs'a N hafta" ve tek somut sonraki adım — "Calculus AB: Unit 6'yı %85'e çıkar → tahminin 3 olur" (o üniteye bağlantı). Bant yükselince kutlama. "Tahminidir" notu.
+- **Yeni tahmin modeli** (`assets/js/puan-tahmin.js`): sınavdaki CED ünite ağırlıkları × ünite doğruluğu (şansa doğru büzülmüş; hiç çalışılmamış ünite %25 sayılır, böylece tek üniteyi iyi bilen 5 görmez) + son FRQ öz puanları (yoksa tahmin) + son 30 gündeki deneme harmanı; dersin 1–5 eşikleri. Cevaplar soru bankasındaki CED konu koduyla üniteye bağlanır. Aynı sayı Bugün'de, İlerleme'de ve veli panelinde görünür.
+
+## [1.26.1] — 2026-10-25
+### Düzeltildi
+- **Sınav içi hesap makinesi**: "Hesap makinesi" düğmesi artık Desmos sitesine (yeni sekme, giriş isteyen sayfa) gitmiyor. Desmos'un **College Board sürümü** — gerçek AP'de Bluebook'a yerleşik olanın aynısı, girişsiz — sınav ekranının içinde açılır: masaüstünde sağ altta sürüklenebilir pencere, telefonda alttan açılan sayfa. Tür sınavdaki gibi: Calculus/Physics/Chemistry grafik, Biology bilimsel, ekonomi 4 işlem. Tam deneme sınavında hesap makinesiz kısma geçilince panel kapanır. Hesap makineli FRQ'larda da "Hesap makinesini aç" düğmesi. CSP'ye yalnız `frame-src https://www.desmos.com` eklendi.
+
+## [1.26.0] — 2026-10-25
+### Eklendi
+- **`/ap-nedir` — "10 dakikada AP"** (giriş gerekmez): AP'yi hiç bilmeyen öğrenci için 6 sahnelik yolculuk, hedef sihirbazıyla aynı kart iskeleti ve Dede Korkut. 1) AP nedir (çevrilen kartlar) 2) 1–5 puan kaydırıcısı (College Board ölçeği) 3) MCQ / FRQ bölümleri 4) Türkiye'den kayıt takvimi (13 Kasım 2026 sipariş, geç sipariş +40 $, 3–14 Mayıs 2027, Temmuz puanlar) ve canlı geri sayım 5) Meberra'da yol 6) 5 soruluk mini test → **AP Kâşifi** rozeti + konfeti. Bütün sahneler aynı yükseklikte; telefonda yatay kaydırma yok.
+- Giriş noktaları: vitrin "AP nedir? 10 dakikada öğren 🧭"; Bugün'de rozeti olmayan yeni öğrenciye tek bağlamsal kart (hiç soru çözmediyse en önde).
+
+## [1.25.0] — 2026-10-25
+### Eklendi
+- **A2 İngilizce köprüsü.** Soru kökünde (ve FRQ metninde) bilmediğin kelimeye dokun → Türkçe anlam, kök, "AP terimi / sınav kelimesi" rozeti, 🔊 sesli okunuş; çok kelimeli terimler ("instantaneous rate of change") bütün olarak bulunur. Şıklarda basılı tut. Sayfa metni değiştirilmez (formüller bozulmaz). Sözlük: 4461 kelime + 1135 terim (`data/sozluk/ap-sozluk.json`, üretici `araclar/sozluk-olustur.js`). Yardım Profil'den ya da balondan kapatılır; 40 soruda neredeyse hiç kullanmayana "kapatabilirsin" önerisi.
+- **"🔍 Ne soruyor?"** 3551 MCQ'da ve 75 yeni FRQ'nun her parçasında: sorunun ne istediğini cevabı vermeden anlatan Türkçe tek cümle. Cümleler cevabı bilmeyen yazarlarca yazıldı; doğru şıkka özgü kelime/sayı sızıntısı (`araclar/ne-soruyor-ekle.js`) ve eşitsizlik yönü ayrıca denetlendi.
+- **İngilizce kalıplar destesi**: her derste 20 kartlık, her planda açık "Soru kalıpları" (Justify your answer, Derive an expression for…, Draw a correctly labeled graph…) — Türkçe anlam + puanlayıcının beklediği + İngilizce cümle kalıbı.
+### Değişti
+- Kelime balonu sınıf öneki `kb-` (kavram kartlarının `kk-` sınıflarıyla çakışıyordu).
+
+## [1.24.0] — 2026-10-25
+### Eklendi
+- **75 yeni özgün FRQ** (toplam 32 → 107), gerçek sınav tipleri ve puanlarıyla: Calculus AB 14 · BC 8 · Physics 1 16 (4 yeni tipin hepsi) · Chemistry 17 (uzun + kısa) · Biology 17 (6 tip) · English Language 9 (sentez, retorik analiz, argüman; tam puanlık örnek deneme + cümle kalıpları) · Macro 8 · Micro 8 · CS A 10. Hepsi yazardan bağımsız ikinci denetimden geçti (sayılar yeniden hesaplandı; ders kitabıyla aynı veri taşıyan bir tablo özgünleştirildi).
+- Calculus tam deneme sınavı artık gerçek düzende (Bölüm II-B: 4 FRQ, kısaltılmış değil).
+- Araç: `araclar/frq-ekle.js` (taslak + karar → doğrulama → aktif, tohum sürümü +1; 1.24.0 FRQ'larında `ne_soruyor` zorunlu).
+### Düzeltildi
+- `frq-eng-1` sentez rubriği: üçten az kaynak kullanan yanıt kanıt satırında en çok 1 puan alır (önceden 2 yazıyordu).
+
 ## [1.23.0] — 2026-10-24
 ### Eklendi
 - **Konu modu** (ders sayfaları): ünite açılınca üstte konu yolu (CED konuları, her konuda çözülen/toplam). Konu seçilince hedefler, ayrıntılı Türkçe anlatım (AP terimleri İngilizcesiyle), çözümlü örnekler, sınav ipuçları, sık hatalar, terimler ve altında yalnız o konunun soruları. "Ünite testi" tüm soruları gösterir; adres `?unite=N&konu=N.M`. `assets/js/konu-modu.js`, `assets/css/konu-modu.css`; sunucu sorularla `konuKod` gönderir.

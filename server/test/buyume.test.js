@@ -186,10 +186,10 @@ test("deneme: süresi dolunca Premium değil; 2 gün kala ve bitişte bir kez bi
   const c = await ogrenci();
   await c("POST", "/api/premium/deneme", {});
   const sid = db().prepare("SELECT abonelik_id FROM premium_denemeleri WHERE user_id = ?").get(c.uid).abonelik_id;
-  // 5. gün: bitişe 1,5 gün
-  db().prepare("UPDATE subscriptions SET bitis = ? WHERE id = ?").run(new Date(Date.now() + 1.5 * 864e5).toISOString(), sid);
   const ogle = (() => { const d = new Date(); d.setUTCHours(10, 0, 0, 0); return d.getTime(); })(); // 13:00 İstanbul
   const gece = (() => { const d = new Date(); d.setUTCHours(21, 0, 0, 0); return d.getTime(); })(); // 00:00 İstanbul
+  // 5. gün: bitişe 1,5 gün — zamanlayıcı saatine (ogle) göre; Date.now()'a göre olunca UTC 22:00 sonrası 2 günü aşıyordu
+  db().prepare("UPDATE subscriptions SET bitis = ? WHERE id = ?").run(new Date(ogle + 1.5 * 864e5).toISOString(), sid);
   assert.equal((await app.zamanlayici.calistir("denemeBildirim", gece)).calisti, false);
   const bild = () => db().prepare("SELECT baslik FROM notifications WHERE user_id = ? ORDER BY id").all(c.uid).map(x => x.baslik);
   await app.zamanlayici.calistir("denemeBildirim", ogle);
@@ -198,7 +198,7 @@ test("deneme: süresi dolunca Premium değil; 2 gün kala ve bitişte bir kez bi
   await app.zamanlayici.calistir("denemeBildirim", ogle);
   assert.equal(bild().filter(x => /2 gün kaldı/.test(x)).length, 1, "bir kez");
   // bitiş
-  db().prepare("UPDATE subscriptions SET bitis = ? WHERE id = ?").run(new Date(Date.now() - 60e3).toISOString(), sid);
+  db().prepare("UPDATE subscriptions SET bitis = ? WHERE id = ?").run(new Date(Math.min(ogle, Date.now()) - 60e3).toISOString(), sid);
   assert.equal((await c("GET", "/api/me")).govde.uyelik.premium, false);
   const sb = await c("POST", "/api/sorular-bankasi/getir", { anahtarlar: [] });
   assert.ok(sb.durum < 500);

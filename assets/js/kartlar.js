@@ -10,8 +10,9 @@
   var canli = document.getElementById("kk-live");
   if (!view) return;
 
-  var RENK = { calculus: "--c-calculus", physics: "--c-physics", chemistry: "--c-chemistry", biology: "--c-biology", english: "--c-english", macro: "--c-electives", micro: "--c-electives", csa: "--c-electives" };
-  var ETIKET = { tanim: "Tanım", formul: "Formül", kural: "Kural", yanilgi: "Sık yanılgı" };
+  var RENK = { calculus: "--c-calculus", physics: "--c-physics", chemistry: "--c-chemistry", biology: "--c-biology", english: "--c-english", macro: "--c-electives", micro: "--c-electives", csa: "--c-electives",
+    precalculus: "--c-precalculus", statistics: "--c-statistics", physics2: "--c-physics2" };
+  var ETIKET = { tanim: "Tanım", formul: "Formül", kural: "Kural", yanilgi: "Sık yanılgı", kalip: "Soru kalıbı" };
   var SONUC = [
     { k: "tekrar", ad: "Tekrar", tus: "1", ipucu: "yarın" },
     { k: "zor", ad: "Zor", tus: "2", ipucu: "biraz sonra" },
@@ -119,7 +120,8 @@
   function desteKart(d, u) {
     var yuzde = u.kart ? Math.round(u.ogrenilen / u.kart * 100) : 0;
     var etiket = u.kilitli ? '<span class="kk-rozet is-kilit">' + ikon("kilit") + "Premium</span>" : u.vadesi ? '<span class="kk-rozet is-vade">' + u.vadesi + " tekrar</span>" : "";
-    var etiketAd = "Ünite " + esc(u.unite).replace(/^(Micro|Macro) /, "");
+    // 1.25.0: "Kalıp" destesi ünite değil, İngilizce soru kalıpları (A2 köprüsü; her planda açık)
+    var etiketAd = u.unite === "Kalıp" ? "🗣️ İngilizce kalıplar" : "Ünite " + esc(u.unite).replace(/^(Micro|Macro) /, "");
     var ic = '<span class="kk-deste-ust"><span class="kk-unite">' + etiketAd + "</span>" + etiket + "</span>" +
       '<span class="kk-deste-ad">' + esc(u.ad) + "</span>" +
       '<span class="kk-cubuk" role="progressbar" aria-label="Öğrenilen kart" aria-valuemin="0" aria-valuemax="' + u.kart + '" aria-valuenow="' + u.ogrenilen + '"><span style="width:' + yuzde + '%"></span></span>' +

@@ -1,0 +1,1069 @@
+{
+ "ders": "precalculus",
+ "unite": 3,
+ "baslik": "Trigonometric and Polar Functions",
+ "baslikTr": "Trigonometrik ve kutupsal fonksiyonlar",
+ "konular": [
+  {
+   "kod": "3.1",
+   "baslik": "Periodic Phenomena",
+   "baslikTr": "Periyodik olaylar",
+   "hedefler": [
+    "Periyodik bir fonksiyonu (periodic function) tanımlamak ve verilen grafik, tablo ya da bağlamdan periyodu (period) bulmak.",
+    "Bir periyottaki davranışı (artan/azalan, içbükeylik, ekstremumlar) kullanarak fonksiyonun başka girdilerdeki değerlerini tahmin etmek.",
+    "Periyodik bir olayı orta çizgi (midline) ve genlik (amplitude) gibi özelliklerle sözlü olarak açıklamak."
+   ],
+   "anlatim": "<p>Dönme dolaptaki bir koltuğun yerden yüksekliği, bir şehrin gün ışığı süresi, gelgit sırasında deniz seviyesi… Bu olayların ortak özelliği <strong>kendini tekrar etmeleridir</strong>. Matematikte bunlara <strong>periyodik olaylar (periodic phenomena)</strong>, onları anlatan fonksiyonlara da <strong>periyodik fonksiyonlar (periodic functions)</strong> denir. Unit 3'ün tamamı bu fikrin üzerine kurulur.</p>\n<div class=\"kn-tanim\"><strong>Periyodik fonksiyon (periodic function):</strong> Her \\(x\\) için \\(f(x+P)=f(x)\\) olacak şekilde pozitif bir \\(P\\) sabiti varsa \\(f\\) periyodiktir. Bu özelliği sağlayan <strong>en küçük</strong> pozitif \\(P\\) sayısına <strong>periyot (period)</strong> denir.</div>\n<p>Bir periyotluk parçaya <strong>bir döngü (one cycle)</strong> denir. Grafiği bilmek için tek bir döngüyü bilmek yeter; geri kalanı bu parçanın sağa ve sola \\(P\\) birim kaydırılmış kopyalarıdır.</p>\n<h4>Periyodu kullanarak değer bulmak</h4>\n<p>\\(f\\) periyodu 8 olan bir fonksiyon ve \\(f(3)=5\\) ise \\(f(11)=f(19)=f(-5)=5\\) olur. Genel kural: girdiden periyodun katlarını çıkar, bilinen aralığa düş.</p>\n<div class=\"formul\">\\[ f(x)=f(x-kP) \\quad (k \\text{ tam sayı}) \\]</div>\n<p>Örnek: periyot 6 ve \\(0\\le x\\lt 6\\) için tablo verilmiş olsun. \\(f(40)\\) için \\(40=6\\cdot 6+4\\), yani \\(f(40)=f(4)\\).</p>\n<h4>Bir döngü içindeki davranış</h4>\n<table><thead><tr><th>Özellik</th><th>Anlamı</th><th>Dönme dolap örneği</th></tr></thead>\n<tbody>\n<tr><td>Maksimum / minimum (maximum / minimum)</td><td>Döngüdeki en büyük ve en küçük değer</td><td>Tepe noktası 32 m, en alt nokta 2 m</td></tr>\n<tr><td>Orta çizgi (midline)</td><td>\\(y=\\frac{\\max+\\min}{2}\\)</td><td>\\(y=17\\) m (dolabın merkezi)</td></tr>\n<tr><td>Genlik (amplitude)</td><td>\\(\\frac{\\max-\\min}{2}\\): orta çizgiden en uzak sapma</td><td>15 m (yarıçap)</td></tr>\n<tr><td>Artan / azalan aralıklar (increasing / decreasing)</td><td>Döngünün hangi kısmında değer büyüyor</td><td>Koltuk alttan tepeye çıkarken artan</td></tr>\n<tr><td>Değişim hızı (rate of change)</td><td>Değerin ne kadar hızlı değiştiği</td><td>Orta çizgiden geçerken en hızlı, tepede ve dipte yaklaşık sıfır</td></tr>\n</tbody></table>\n<p>Periyodik bir fonksiyonda değişim hızı da periyodiktir. Tepe ve dip noktalarına yaklaşırken fonksiyon \"yavaşlar\"; bu yüzden artarken önce içbükey yukarı (concave up), sonra içbükey aşağı (concave down) olur. Bu davranış Topic 3.4'te sinüs grafiğinde aynen görülecek.</p>\n<div class=\"kn-kural\"><strong>Tam periyot kuralı:</strong> Herhangi bir tam periyot boyunca ortalama değişim hızı (average rate of change) sıfırdır, çünkü \\(f(a+P)-f(a)=0\\).</div>\n<h4>Bağlamda periyot ve birimler</h4>\n<p>Dönme dolap bir turu 10 dakikada tamamlıyorsa yükseklik fonksiyonunun periyodu 10 dakikadır. Gelgit iki tepe arasında yaklaşık 12.4 saat sürüyorsa periyot 12.4 saattir. Periyodun birimi her zaman <strong>girdinin birimidir</strong> (dakika, saat, radyan); genlik ve orta çizginin birimi ise <strong>çıktının birimidir</strong>.</p>\n<div class=\"kn-dikkat\">FRQ'da \"Explain why the function is periodic\" denirse yalnızca \"çünkü tekrar ediyor\" yazmak yetmez. Puan getiren cümle: <em>\"The height repeats every 10 minutes because the wheel completes one full rotation in 10 minutes, so \\(h(t+10)=h(t)\\) for all \\(t\\).\"</em></div>\n<p>AP Precalculus Topic 3.1 genellikle kavramsal sorulur: tablo veya grafikten periyodu okumak, \\(f(100)\\) gibi uzak bir değeri periyotla bulmak, döngünün hangi kısmında değişim hızının pozitif/negatif ya da artan/azalan olduğunu söylemek.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f\\) periyodu 5 olan periyodik bir fonksiyondur ve \\(f(0)=2,\\ f(1)=4,\\ f(2)=7,\\ f(3)=4,\\ f(4)=1\\). \\(f(23)\\) ve \\(f(-3)\\) değerlerini bulun.",
+     "cozum": [
+      "\\(23=4\\cdot5+3\\), dolayısıyla \\(f(23)=f(3)=4\\).",
+      "\\(-3+5=2\\), dolayısıyla \\(f(-3)=f(2)=7\\).",
+      "Kontrol: girdiye 5'in katlarını ekleyip çıkarmak çıktıyı değiştirmez; bu periyodun tanımıdır."
+     ]
+    },
+    {
+     "soru": "Bir dönme dolabın merkezi yerden 20 m yüksekte, yarıçapı 18 m'dir ve bir tur 12 dakika sürer. Bir koltuğun yüksekliği \\(h(t)\\) için periyodu, orta çizgiyi, genliği, maksimum ve minimum değerleri bulun.",
+     "cozum": [
+      "Periyot = bir turun süresi = 12 dakika.",
+      "Orta çizgi = merkezin yüksekliği: \\(h=20\\) m. Genlik = yarıçap = 18 m.",
+      "Maksimum \\(20+18=38\\) m, minimum \\(20-18=2\\) m."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(g\\) periyodu 24 saat olan periyodik bir fonksiyondur ve bir şehirdeki sıcaklığı modeller. \\(g(30)-g(6)\\) değerinin ne olduğunu hesaplamadan açıklayın.",
+     "cozum": [
+      "\\(30-6=24\\), yani iki girdi arasındaki fark tam bir periyottur.",
+      "Periyodik olduğu için \\(g(30)=g(6+24)=g(6)\\), dolayısıyla \\(g(30)-g(6)=0\\).",
+      "Puan getiren cümle: <em>\"Because \\(g\\) has period 24, \\(g(6+24)=g(6)\\), so the change over this 24-hour interval is 0 degrees.\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Uzak bir girdi (\\(f(100)\\) gibi) sorulursa önce girdiyi periyoda böl, <strong>kalanı</strong> kullan. Bu soruların çoğu Bölüm I Kısım A'dadır (hesap makinesiz).",
+    "Tablodan periyot bulurken yalnızca iki eşit değere bakma; değerlerin <strong>aynı sırayla</strong> tekrar ettiği en küçük aralığı ara.",
+    "FRQ'da birim yaz: periyot girdinin birimiyle (dakika, saat), genlik çıktının birimiyle (metre, derece) verilir.",
+    "\"Rate of change\" sorularında: tepe ve dip yakınında değişim hızı sıfıra yakın, orta çizgiyi geçerken en büyüktür."
+   ],
+   "sikHatalar": [
+    "İki eşit çıktı arasındaki mesafeyi periyot sanmak: \\(f(1)=f(3)=4\\) olması periyodun 2 olduğunu göstermez; tüm döngü tekrar etmelidir.",
+    "Genliği maksimum ile minimum arasındaki fark olarak almak; doğrusu bu farkın <strong>yarısıdır</strong>.",
+    "Periyodik fonksiyonda değişim hızının sabit olduğunu düşünmek; hız döngü boyunca değişir."
+   ],
+   "terimler": [
+    {
+     "en": "periodic function",
+     "tr": "periyodik fonksiyon"
+    },
+    {
+     "en": "period",
+     "tr": "periyot"
+    },
+    {
+     "en": "cycle",
+     "tr": "döngü"
+    },
+    {
+     "en": "midline",
+     "tr": "orta çizgi"
+    },
+    {
+     "en": "amplitude",
+     "tr": "genlik"
+    },
+    {
+     "en": "rate of change",
+     "tr": "değişim hızı"
+    }
+   ]
+  },
+  {
+   "kod": "3.2",
+   "baslik": "Sine, Cosine, and Tangent",
+   "baslikTr": "Sinüs, kosinüs ve tanjant",
+   "hedefler": [
+    "Standart konumdaki bir açının (angle in standard position) radyan ölçüsünü yay uzunluğu ve yarıçapla ilişkilendirmek.",
+    "Bitiş kenarı (terminal ray) üzerindeki bir noktadan \\(\\sin\\theta\\), \\(\\cos\\theta\\) ve \\(\\tan\\theta\\) değerlerini bulmak.",
+    "Birim çember (unit circle) ve dik üçgen (right triangle) tanımlarının aynı oranları verdiğini açıklamak."
+   ],
+   "anlatim": "<p>Periyodik olayları modellemek için dönmeyi sayılara çevirmemiz gerekir. Bunun aracı <strong>açı (angle)</strong> ve ona bağlı üç oran: <strong>sinüs (sine)</strong>, <strong>kosinüs (cosine)</strong>, <strong>tanjant (tangent)</strong>.</p>\n<h4>Standart konumda açı</h4>\n<p>Köşesi orijinde, <strong>başlangıç kenarı (initial ray)</strong> pozitif \\(x\\)-ekseni üzerinde olan açıya <strong>standart konumda açı (angle in standard position)</strong> denir. Bitiş kenarı (terminal ray) <strong>saat yönünün tersine (counterclockwise)</strong> dönerse açı pozitif, <strong>saat yönünde (clockwise)</strong> dönerse negatiftir.</p>\n<h4>Radyan (radian)</h4>\n<div class=\"kn-tanim\"><strong>Radyan ölçüsü:</strong> Yarıçapı \\(r\\) olan bir çemberde açının gördüğü yay uzunluğu \\(s\\) ise açının ölçüsü \\(\\theta=\\frac{s}{r}\\) radyandır. Birim çemberde (\\(r=1\\)) radyan ölçüsü doğrudan yay uzunluğudur.</div>\n<p>Tam tur yay uzunluğu \\(2\\pi r\\) olduğundan tam tur \\(2\\pi\\) radyandır, yani \\(360^\\circ=2\\pi\\). AP Precalculus'ta açılar neredeyse her zaman radyanla verilir.</p>\n<table><thead><tr><th>Derece</th><th>30°</th><th>45°</th><th>60°</th><th>90°</th><th>180°</th><th>270°</th><th>360°</th></tr></thead>\n<tbody><tr><td>Radyan</td><td>\\(\\frac{\\pi}{6}\\)</td><td>\\(\\frac{\\pi}{4}\\)</td><td>\\(\\frac{\\pi}{3}\\)</td><td>\\(\\frac{\\pi}{2}\\)</td><td>\\(\\pi\\)</td><td>\\(\\frac{3\\pi}{2}\\)</td><td>\\(2\\pi\\)</td></tr></tbody></table>\n<h4>Üç oranın tanımı</h4>\n<p>Bitiş kenarı üzerinde orijinden \\(r\\) uzaklıkta bir nokta \\((x,y)\\) seçelim; \\(r=\\sqrt{x^2+y^2}\\).</p>\n<div class=\"formul\">\\[ \\sin\\theta=\\frac{y}{r},\\qquad \\cos\\theta=\\frac{x}{r},\\qquad \\tan\\theta=\\frac{y}{x}\\ (x\\neq0) \\]</div>\n<p>Bu oranlar seçilen noktaya bağlı değildir: aynı ışın üzerindeki tüm noktalar benzer üçgenler oluşturur. Birim çemberde \\(r=1\\) olduğundan nokta doğrudan \\((\\cos\\theta,\\ \\sin\\theta)\\) olur: <strong>kosinüs yatay koordinat, sinüs dikey koordinattır</strong>. Tanjant ise bitiş kenarının <strong>eğimidir (slope)</strong>: \\(\\tan\\theta=\\frac{y}{x}=\\frac{\\sin\\theta}{\\cos\\theta}\\).</p>\n<h4>Dik üçgen bağlantısı</h4>\n<p>\\(0\\lt\\theta\\lt\\frac{\\pi}{2}\\) için noktadan \\(x\\)-eksenine dik inersek bir dik üçgen oluşur: karşı kenar \\(y\\), komşu kenar \\(x\\), hipotenüs \\(r\\). Böylece ezber \"SOH-CAH-TOA\" (sin = karşı/hipotenüs, cos = komşu/hipotenüs, tan = karşı/komşu) birim çember tanımının özel halidir. Birim çember tanımı ise her açı için (negatif ya da \\(2\\pi\\)'den büyük de) çalışır.</p>\n<h4>Bölgelere göre işaretler</h4>\n<table><thead><tr><th>Bölge (quadrant)</th><th>\\(x\\)</th><th>\\(y\\)</th><th>sin</th><th>cos</th><th>tan</th></tr></thead>\n<tbody><tr><td>I</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td></tr><tr><td>II</td><td>−</td><td>+</td><td>+</td><td>−</td><td>−</td></tr><tr><td>III</td><td>−</td><td>−</td><td>−</td><td>−</td><td>+</td></tr><tr><td>IV</td><td>+</td><td>−</td><td>−</td><td>+</td><td>−</td></tr></tbody></table>\n<div class=\"kn-dikkat\">\\(\\theta\\) ile \\(\\theta+2\\pi k\\) aynı bitiş kenarına sahiptir (<strong>eş bitişli açılar, coterminal angles</strong>), dolayısıyla sin, cos ve tan değerleri aynıdır. Periyodikliğin kaynağı budur.</div>",
+   "ornekler": [
+    {
+     "soru": "Standart konumdaki \\(\\theta\\) açısının bitiş kenarı \\((-5,12)\\) noktasından geçiyor. \\(\\sin\\theta\\), \\(\\cos\\theta\\), \\(\\tan\\theta\\) değerlerini bulun.",
+     "cozum": [
+      "\\(r=\\sqrt{(-5)^2+12^2}=\\sqrt{169}=13\\).",
+      "\\(\\sin\\theta=\\frac{12}{13}\\), \\(\\cos\\theta=\\frac{-5}{13}\\), \\(\\tan\\theta=\\frac{12}{-5}=-\\frac{12}{5}\\).",
+      "Kontrol: nokta II. bölgede; sin pozitif, cos ve tan negatif. Tutarlı."
+     ]
+    },
+    {
+     "soru": "Yarıçapı 4 cm olan bir çemberde merkez açı 10 cm'lik bir yay görüyor. Açının radyan ölçüsünü ve dereceye yaklaşık karşılığını bulun.",
+     "cozum": [
+      "\\(\\theta=\\frac{s}{r}=\\frac{10}{4}=2.5\\) radyan.",
+      "\\(2.5\\cdot\\frac{180^\\circ}{\\pi}\\approx143.2^\\circ\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(\\theta\\) açısının bitiş kenarı \\(y=-2x\\) doğrusunun \\(x\\gt0\\) kısmıdır. \\(\\tan\\theta\\) ve \\(\\sin\\theta\\) değerlerini bulun; işaretleri gerekçelendirin.",
+     "cozum": [
+      "Işın üzerinde \\((1,-2)\\) noktası var. \\(\\tan\\theta=\\frac{-2}{1}=-2\\), yani tanjant ışının eğimidir.",
+      "\\(r=\\sqrt{1+4}=\\sqrt5\\), \\(\\sin\\theta=\\frac{-2}{\\sqrt5}\\).",
+      "Gerekçe: <em>\"The terminal ray lies in Quadrant IV, where \\(y\\lt0\\) and \\(x\\gt0\\), so sine is negative and tangent is negative.\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Nokta verilen sorularda önce \\(r=\\sqrt{x^2+y^2}\\) hesapla; \\(r\\) her zaman pozitiftir, işaret yalnızca \\(x\\) ve \\(y\\)'den gelir.",
+    "Bu tür sorular Bölüm I Kısım A'da (hesap makinesiz) gelir; 3-4-5, 5-12-13, 8-15-17 üçlülerini tanı.",
+    "Grafik hesap makinesi kullanırken (Kısım B, FRQ 1–2) <strong>radyan modunda</strong> olduğundan emin ol.",
+    "FRQ'da işaret gerekçesi: bölgeyi söyle ve hangi koordinatın negatif olduğunu yaz."
+   ],
+   "sikHatalar": [
+    "Sinüs ile kosinüsü karıştırmak: birim çemberde \\(x\\)-koordinatı kosinüs, \\(y\\)-koordinatı sinüstür.",
+    "\\(\\tan\\theta=\\frac{x}{y}\\) yazmak; tanjant eğimdir: \\(\\frac{y}{x}\\).",
+    "Radyan ile dereceyi karıştırmak; \\(\\theta=2\\) demek 2 radyan (yaklaşık 114.6°) demektir, 2° değil."
+   ],
+   "terimler": [
+    {
+     "en": "angle in standard position",
+     "tr": "standart konumda açı"
+    },
+    {
+     "en": "initial ray / terminal ray",
+     "tr": "başlangıç / bitiş kenarı"
+    },
+    {
+     "en": "radian",
+     "tr": "radyan"
+    },
+    {
+     "en": "unit circle",
+     "tr": "birim çember"
+    },
+    {
+     "en": "coterminal angles",
+     "tr": "eş bitişli açılar"
+    },
+    {
+     "en": "quadrant",
+     "tr": "bölge (çeyrek)"
+    }
+   ]
+  },
+  {
+   "kod": "3.3",
+   "baslik": "Sine and Cosine Function Values",
+   "baslikTr": "Sinüs ve kosinüs fonksiyon değerleri",
+   "hedefler": [
+    "\\(\\frac{\\pi}{6},\\ \\frac{\\pi}{4},\\ \\frac{\\pi}{3}\\) ve katlarında sinüs ve kosinüs değerlerini hesap makinesiz bulmak.",
+    "Referans açı (reference angle) ve simetri kullanarak tüm bölgelerdeki değerleri belirlemek.",
+    "Bir açının sinüs ve kosinüs değerlerinden bitiş kenarı üzerindeki noktanın koordinatlarını yazmak."
+   ],
+   "anlatim": "<p>Topic 3.2'de \\(\\sin\\theta\\) ve \\(\\cos\\theta\\)'yı birim çember üzerindeki noktanın koordinatları olarak tanımladık. Şimdi bu değerleri <strong>özel açılar (special angles)</strong> için kesin olarak, hesap makinesi olmadan bulmayı öğreneceğiz. Bölüm I Kısım A ve FRQ 3–4 hesap makinesiz olduğu için bu beceri sınavın her yerinde kullanılır.</p>\n<h4>İki özel üçgen</h4>\n<p><strong>45-45-90 üçgeni:</strong> hipotenüs 1 ise iki dik kenar da \\(\\frac{\\sqrt2}{2}\\). <strong>30-60-90 üçgeni:</strong> hipotenüs 1 ise kısa kenar \\(\\frac12\\) (30°'nin karşısı), uzun kenar \\(\\frac{\\sqrt3}{2}\\) (60°'nin karşısı).</p>\n<table><thead><tr><th>\\(\\theta\\)</th><th>0</th><th>\\(\\frac{\\pi}{6}\\)</th><th>\\(\\frac{\\pi}{4}\\)</th><th>\\(\\frac{\\pi}{3}\\)</th><th>\\(\\frac{\\pi}{2}\\)</th></tr></thead>\n<tbody><tr><td>\\(\\sin\\theta\\)</td><td>0</td><td>\\(\\frac12\\)</td><td>\\(\\frac{\\sqrt2}{2}\\)</td><td>\\(\\frac{\\sqrt3}{2}\\)</td><td>1</td></tr>\n<tr><td>\\(\\cos\\theta\\)</td><td>1</td><td>\\(\\frac{\\sqrt3}{2}\\)</td><td>\\(\\frac{\\sqrt2}{2}\\)</td><td>\\(\\frac12\\)</td><td>0</td></tr></tbody></table>\n<p>Hafıza hilesi: sinüs satırı \\(\\frac{\\sqrt0}{2},\\frac{\\sqrt1}{2},\\frac{\\sqrt2}{2},\\frac{\\sqrt3}{2},\\frac{\\sqrt4}{2}\\); kosinüs aynı satırın tersidir.</p>\n<h4>Referans açı (reference angle)</h4>\n<div class=\"kn-tanim\"><strong>Referans açı:</strong> Bitiş kenarı ile \\(x\\)-ekseni arasındaki dar açı. Bir açının sin ve cos değerlerinin <strong>büyüklüğü</strong> referans açınınkiyle aynıdır; <strong>işaret</strong> bölgeden gelir.</div>\n<table><thead><tr><th>Bölge</th><th>Referans açı</th><th>Örnek</th></tr></thead>\n<tbody><tr><td>II</td><td>\\(\\pi-\\theta\\)</td><td>\\(\\frac{5\\pi}{6}\\to\\frac{\\pi}{6}\\)</td></tr>\n<tr><td>III</td><td>\\(\\theta-\\pi\\)</td><td>\\(\\frac{4\\pi}{3}\\to\\frac{\\pi}{3}\\)</td></tr>\n<tr><td>IV</td><td>\\(2\\pi-\\theta\\)</td><td>\\(\\frac{7\\pi}{4}\\to\\frac{\\pi}{4}\\)</td></tr></tbody></table>\n<p><strong>Adım adım</strong> \\(\\cos\\frac{4\\pi}{3}\\): (1) \\(\\frac{4\\pi}{3}\\) açısı \\(\\pi\\) ile \\(\\frac{3\\pi}{2}\\) arasında, yani III. bölge. (2) Referans açı \\(\\frac{4\\pi}{3}-\\pi=\\frac{\\pi}{3}\\). (3) \\(\\cos\\frac{\\pi}{3}=\\frac12\\). (4) III. bölgede \\(x\\lt0\\), sonuç \\(-\\frac12\\).</p>\n<h4>Simetri ilişkileri</h4>\n<div class=\"formul\">\\[ \\sin(-\\theta)=-\\sin\\theta,\\quad \\cos(-\\theta)=\\cos\\theta,\\quad \\sin(\\pi-\\theta)=\\sin\\theta,\\quad \\cos(\\pi-\\theta)=-\\cos\\theta \\]</div>\n<p>Birim çemberde \\(-\\theta\\) noktası \\(x\\)-eksenine göre yansımadır (\\(y\\) işaret değiştirir); \\(\\pi-\\theta\\) noktası \\(y\\)-eksenine göre yansımadır (\\(x\\) işaret değiştirir). Büyük açılar için önce \\(2\\pi\\)'nin katlarını çıkar: \\(\\sin\\frac{13\\pi}{6}=\\sin\\left(\\frac{\\pi}{6}+2\\pi\\right)=\\frac12\\).</p>\n<h4>Koordinat yazmak</h4>\n<p>Yarıçapı \\(r\\) olan çemberde \\(\\theta\\) açısındaki nokta \\((r\\cos\\theta,\\ r\\sin\\theta)\\)'dir. Örneğin yarıçap 6 ve \\(\\theta=\\frac{5\\pi}{6}\\) ise nokta \\(\\left(-3\\sqrt3,\\ 3\\right)\\).</p>\n<div class=\"kn-dikkat\">Özel açı olmayan değerlerde (\\(\\sin 1.2\\) gibi) kesin değer beklenmez; bu sorular Kısım B'de grafik hesap makinesiyle (radyan modu) çözülür.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(\\sin\\frac{7\\pi}{6}\\) ve \\(\\cos\\frac{11\\pi}{4}\\) değerlerini bulun.",
+     "cozum": [
+      "\\(\\frac{7\\pi}{6}\\): III. bölge, referans açı \\(\\frac{\\pi}{6}\\), \\(\\sin\\frac{\\pi}{6}=\\frac12\\), III. bölgede sinüs negatif: \\(-\\frac12\\).",
+      "\\(\\frac{11\\pi}{4}-2\\pi=\\frac{3\\pi}{4}\\): II. bölge, referans \\(\\frac{\\pi}{4}\\), kosinüs negatif: \\(-\\frac{\\sqrt2}{2}\\)."
+     ]
+    },
+    {
+     "soru": "Yarıçapı 10 olan bir çemberde, merkez orijinde, \\(\\theta=\\frac{5\\pi}{3}\\) açısındaki noktanın koordinatlarını bulun.",
+     "cozum": [
+      "\\(\\frac{5\\pi}{3}\\): IV. bölge, referans \\(\\frac{\\pi}{3}\\). \\(\\cos\\frac{5\\pi}{3}=\\frac12\\), \\(\\sin\\frac{5\\pi}{3}=-\\frac{\\sqrt3}{2}\\).",
+      "Nokta: \\(\\left(10\\cdot\\frac12,\\ 10\\cdot\\left(-\\frac{\\sqrt3}{2}\\right)\\right)=(5,\\ -5\\sqrt3)\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir öğrenci \"\\(\\sin\\frac{2\\pi}{3}=\\sin\\frac{\\pi}{3}\\) olduğuna göre \\(\\cos\\frac{2\\pi}{3}=\\cos\\frac{\\pi}{3}\\) de olmalıdır\" diyor. Hatayı açıklayın.",
+     "cozum": [
+      "\\(\\frac{2\\pi}{3}=\\pi-\\frac{\\pi}{3}\\); bu iki nokta birim çemberde \\(y\\)-eksenine göre simetriktir.",
+      "\\(y\\)-eksenine göre yansımada \\(y\\) aynı kalır, \\(x\\) işaret değiştirir. Bu yüzden \\(\\sin\\frac{2\\pi}{3}=\\frac{\\sqrt3}{2}\\) ama \\(\\cos\\frac{2\\pi}{3}=-\\frac12\\neq\\frac12\\).",
+      "Puan getiren ifade: <em>\"The terminal ray of \\(\\frac{2\\pi}{3}\\) is in Quadrant II, where cosine is negative.\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her soruda 3 adım: bölge, referans açı, işaret. Bu sırayı yazarsan FRQ 4'te (sembolik, hesap makinesiz) işlem puanı kaybetmezsin.",
+    "Paydaya bak: payda 6 ise referans \\(\\frac{\\pi}{6}\\), 4 ise \\(\\frac{\\pi}{4}\\), 3 ise \\(\\frac{\\pi}{3}\\).",
+    "Büyük ya da negatif açılarda önce \\(2\\pi\\) ekle/çıkar; değerler değişmez.",
+    "Cevabı kontrol et: \\(\\sin^2\\theta+\\cos^2\\theta=1\\) sağlanmalı."
+   ],
+   "sikHatalar": [
+    "\\(\\sin\\frac{\\pi}{6}\\) ile \\(\\sin\\frac{\\pi}{3}\\)'ü karıştırmak (\\(\\frac12\\) ve \\(\\frac{\\sqrt3}{2}\\)). Küçük açının sinüsü küçüktür.",
+    "Referans açıyı \\(y\\)-eksenine göre almak (\\(\\frac{\\pi}{2}-\\theta\\)); referans açı daima \\(x\\)-eksenine göredir.",
+    "İşareti unutmak: II. bölgede kosinüs, III. bölgede ikisi birden negatiftir."
+   ],
+   "terimler": [
+    {
+     "en": "special angles",
+     "tr": "özel açılar"
+    },
+    {
+     "en": "reference angle",
+     "tr": "referans açı"
+    },
+    {
+     "en": "exact value",
+     "tr": "kesin değer"
+    },
+    {
+     "en": "symmetry",
+     "tr": "simetri"
+    },
+    {
+     "en": "coordinates",
+     "tr": "koordinatlar"
+    }
+   ]
+  },
+  {
+   "kod": "3.4",
+   "baslik": "Sine and Cosine Function Graphs",
+   "baslikTr": "Sinüs ve kosinüs fonksiyonlarının grafikleri",
+   "hedefler": [
+    "\\(y=\\sin\\theta\\) ve \\(y=\\cos\\theta\\) grafiklerini birim çemberden elde etmek; periyot, genlik, orta çizgi, sıfırlar ve ekstremumları belirlemek.",
+    "Artan/azalan ve içbükeylik aralıklarını belirlemek; değişim hızının nerede en büyük olduğunu açıklamak.",
+    "Sinüsün tek (odd), kosinüsün çift (even) fonksiyon olduğunu ve \\(\\cos\\theta=\\sin\\left(\\theta+\\frac{\\pi}{2}\\right)\\) ilişkisini kullanmak."
+   ],
+   "anlatim": "<p>Birim çember etrafında dönen bir nokta düşün. Açı \\(\\theta\\) arttıkça noktanın <strong>dikey koordinatı</strong> \\(\\sin\\theta\\), <strong>yatay koordinatı</strong> \\(\\cos\\theta\\)'dır. Bu iki koordinatı \\(\\theta\\)'ya karşı çizersek <strong>sinüs eğrisini (sine curve)</strong> ve <strong>kosinüs eğrisini (cosine curve)</strong> elde ederiz.</p>\n<h4>Bir periyotluk tablo</h4>\n<table><thead><tr><th>\\(\\theta\\)</th><th>0</th><th>\\(\\frac{\\pi}{2}\\)</th><th>\\(\\pi\\)</th><th>\\(\\frac{3\\pi}{2}\\)</th><th>\\(2\\pi\\)</th></tr></thead>\n<tbody><tr><td>\\(\\sin\\theta\\)</td><td>0</td><td>1 (maks)</td><td>0</td><td>−1 (min)</td><td>0</td></tr>\n<tr><td>\\(\\cos\\theta\\)</td><td>1 (maks)</td><td>0</td><td>−1 (min)</td><td>0</td><td>1 (maks)</td></tr></tbody></table>\n<p>Bu beş nokta (sıfırlar, maksimum, minimum) çizimin iskeletidir; aralarındaki eğri düzgün dalga şeklindedir.</p>\n<h4>Ortak özellikler</h4>\n<table><thead><tr><th>Özellik</th><th>\\(\\sin\\theta\\)</th><th>\\(\\cos\\theta\\)</th></tr></thead>\n<tbody><tr><td>Tanım kümesi (domain)</td><td>tüm reel sayılar</td><td>tüm reel sayılar</td></tr>\n<tr><td>Görüntü kümesi (range)</td><td>\\([-1,1]\\)</td><td>\\([-1,1]\\)</td></tr>\n<tr><td>Periyot</td><td>\\(2\\pi\\)</td><td>\\(2\\pi\\)</td></tr>\n<tr><td>Genlik / orta çizgi</td><td>1 / \\(y=0\\)</td><td>1 / \\(y=0\\)</td></tr>\n<tr><td>Sıfırlar (zeros)</td><td>\\(\\theta=k\\pi\\)</td><td>\\(\\theta=\\frac{\\pi}{2}+k\\pi\\)</td></tr>\n<tr><td>Simetri</td><td>tek: \\(\\sin(-\\theta)=-\\sin\\theta\\) (orijine göre)</td><td>çift: \\(\\cos(-\\theta)=\\cos\\theta\\) (\\(y\\)-eksenine göre)</td></tr></tbody></table>\n<h4>Artan, azalan, içbükeylik</h4>\n<p>\\([0,2\\pi]\\) aralığında \\(\\sin\\theta\\): \\(\\left(0,\\frac{\\pi}{2}\\right)\\) ve \\(\\left(\\frac{3\\pi}{2},2\\pi\\right)\\) üzerinde <strong>artan (increasing)</strong>, \\(\\left(\\frac{\\pi}{2},\\frac{3\\pi}{2}\\right)\\) üzerinde <strong>azalan (decreasing)</strong>. Grafik orta çizginin üstünde (\\(0\\lt\\theta\\lt\\pi\\)) <strong>içbükey aşağı (concave down)</strong>, altında (\\(\\pi\\lt\\theta\\lt2\\pi\\)) <strong>içbükey yukarı (concave up)</strong>dır. Bükülme noktaları (points of inflection) orta çizgi üzerindedir.</p>\n<div class=\"kn-kural\"><strong>Değişim hızı kuralı:</strong> Sinüs ve kosinüs, orta çizgiyi geçerken en hızlı değişir (eğim \\(\\pm1\\)); maksimum ve minimumda anlık değişim hızı 0'dır. Örneğin \\(\\left[0,\\frac{\\pi}{6}\\right]\\) aralığında sinüs \\(\\frac12\\) artar, \\(\\left[\\frac{\\pi}{3},\\frac{\\pi}{2}\\right]\\) aralığında yalnızca \\(1-\\frac{\\sqrt3}{2}\\approx0.13\\) artar.</div>\n<h4>Kosinüs, kaydırılmış sinüstür</h4>\n<div class=\"formul\">\\[ \\cos\\theta=\\sin\\left(\\theta+\\frac{\\pi}{2}\\right),\\qquad \\sin\\theta=\\cos\\left(\\theta-\\frac{\\pi}{2}\\right) \\]</div>\n<p>Kosinüs grafiği, sinüs grafiğinin \\(\\frac{\\pi}{2}\\) birim <strong>sola</strong> kaydırılmış halidir. Bu yüzden ikisine birlikte <strong>sinüzoidal fonksiyonlar (sinusoidal functions)</strong> denir (Topic 3.5).</p>\n<div class=\"kn-dikkat\">AP'de sık sorulan biçim: \"On which interval is \\(\\sin\\theta\\) increasing and concave down?\" Cevap \\(\\left(0,\\frac{\\pi}{2}\\right)\\): artıyor ve orta çizginin üstünde. Böyle sorularda iki koşulu ayrı ayrı kontrol et, kesişimi al.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(\\cos\\theta\\) fonksiyonunun \\([0,2\\pi]\\) aralığında hem azalan hem içbükey yukarı olduğu aralığı bulun.",
+     "cozum": [
+      "Kosinüs \\((0,\\pi)\\) aralığında azalandır (1'den −1'e iner).",
+      "Kosinüs orta çizginin altında, yani \\(\\left(\\frac{\\pi}{2},\\frac{3\\pi}{2}\\right)\\) aralığında içbükey yukarıdır.",
+      "Kesişim: \\(\\left(\\frac{\\pi}{2},\\pi\\right)\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\sin\\theta\\) fonksiyonunun \\(\\left[0,\\frac{\\pi}{6}\\right]\\) ve \\(\\left[\\frac{\\pi}{6},\\frac{\\pi}{2}\\right]\\) aralıklarındaki ortalama değişim hızlarını karşılaştırın.",
+     "cozum": [
+      "İlk aralık: \\(\\frac{\\frac12-0}{\\frac{\\pi}{6}}=\\frac{3}{\\pi}\\approx0.955\\).",
+      "İkinci aralık: \\(\\frac{1-\\frac12}{\\frac{\\pi}{3}}=\\frac{3}{2\\pi}\\approx0.477\\).",
+      "İlk aralık iki kat daha büyük; grafik içbükey aşağı olduğundan artış hızı azalıyor."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(f(\\theta)=\\sin\\theta\\) için \\(f(-a)\\) ile \\(f(a)\\) arasındaki ilişkiyi yazın ve grafikle gerekçelendirin.",
+     "cozum": [
+      "\\(f(-a)=-f(a)\\): sinüs tek fonksiyondur.",
+      "Gerekçe: birim çemberde \\(-a\\) açısının noktası, \\(a\\) açısının noktasının \\(x\\)-eksenine göre yansımasıdır; \\(y\\)-koordinatı işaret değiştirir.",
+      "Grafikte bu, eğrinin orijine göre simetrik olması demektir: <em>\"The graph of sine is symmetric about the origin.\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Grafik sorularında önce 5 kilit noktayı (0, çeyrek, yarım, üç çeyrek, tam periyot) işaretle.",
+    "\"Increasing and concave down\" gibi iki koşullu sorularda her koşulu ayrı aralık olarak yaz, sonra kesiştir.",
+    "Bu konu genellikle Kısım A'dadır (hesap makinesiz); özel açı değerleri hızlı gelmeli.",
+    "FRQ 3'te (periyodik bağlam, hesap makinesiz) \"where is the rate of change greatest\" sorusunun cevabı: orta çizgiyi geçtiği nokta."
+   ],
+   "sikHatalar": [
+    "Sinüsün sıfırlarını \\(\\frac{\\pi}{2}+k\\pi\\) sanmak; bunlar kosinüsün sıfırlarıdır.",
+    "İçbükeylik ile artanlığı karıştırmak: sinüs \\(\\left(\\frac{3\\pi}{2},2\\pi\\right)\\)'de artan ama içbükey yukarıdır.",
+    "Kosinüsü sinüsün sağa kaydırılmışı sanmak; \\(\\cos\\theta=\\sin\\left(\\theta+\\frac{\\pi}{2}\\right)\\), yani sola kaydırma."
+   ],
+   "terimler": [
+    {
+     "en": "sine curve",
+     "tr": "sinüs eğrisi"
+    },
+    {
+     "en": "zeros",
+     "tr": "sıfırlar"
+    },
+    {
+     "en": "concave up / down",
+     "tr": "içbükey yukarı / aşağı"
+    },
+    {
+     "en": "point of inflection",
+     "tr": "bükülme noktası"
+    },
+    {
+     "en": "odd / even function",
+     "tr": "tek / çift fonksiyon"
+    },
+    {
+     "en": "increasing / decreasing",
+     "tr": "artan / azalan"
+    }
+   ]
+  },
+  {
+   "kod": "3.5",
+   "baslik": "Sinusoidal Functions",
+   "baslikTr": "Sinüzoidal fonksiyonlar",
+   "hedefler": [
+    "\\(f(\\theta)=a\\sin(b(\\theta+c))+d\\) biçimindeki fonksiyonların genlik, periyot, frekans ve orta çizgisini bulmak.",
+    "Maksimum ve minimum değerlerden genlik ve orta çizgiyi hesaplamak.",
+    "Kosinüs fonksiyonunun kaydırılmış bir sinüs fonksiyonu olduğunu kullanarak iki biçim arasında geçiş yapmak."
+   ],
+   "anlatim": "<p><strong>Sinüzoidal fonksiyon (sinusoidal function)</strong>, sinüs grafiğinin dikey ve yatay olarak esnetilmiş, kaydırılmış halidir. Genel biçim:</p>\n<div class=\"formul\">\\[ f(\\theta)=a\\sin\\big(b(\\theta+c)\\big)+d \\qquad\\text{ya da}\\qquad g(\\theta)=a\\cos\\big(b(\\theta+c)\\big)+d \\]</div>\n<p>Kosinüs de sinüzoidaldir çünkü \\(\\cos\\theta=\\sin\\left(\\theta+\\frac{\\pi}{2}\\right)\\).</p>\n<h4>Dört parametre</h4>\n<table><thead><tr><th>Parametre</th><th>Etkisi</th><th>Formül</th></tr></thead>\n<tbody><tr><td>\\(a\\)</td><td>Genlik (amplitude), \\(a\\lt0\\) ise \\(x\\)-eksenine göre yansıma</td><td>genlik \\(=|a|\\)</td></tr>\n<tr><td>\\(b\\)</td><td>Periyodu belirler (yatay esneme)</td><td>periyot \\(=\\frac{2\\pi}{|b|}\\), frekans \\(=\\frac{|b|}{2\\pi}\\)</td></tr>\n<tr><td>\\(c\\)</td><td>Faz kayması (phase shift)</td><td>grafik \\(c\\) birim <strong>sola</strong> kayar</td></tr>\n<tr><td>\\(d\\)</td><td>Dikey kayma (vertical shift)</td><td>orta çizgi \\(y=d\\)</td></tr></tbody></table>\n<p><strong>Frekans (frequency)</strong>, birim girdi başına döngü sayısıdır ve periyodun tersidir. Periyot \\(\\frac{\\pi}{2}\\) ise frekans \\(\\frac{2}{\\pi}\\) döngü/birimdir.</p>\n<h4>Maksimum ve minimumdan parametreler</h4>\n<div class=\"formul\">\\[ \\text{genlik}=\\frac{\\max-\\min}{2},\\qquad d=\\frac{\\max+\\min}{2},\\qquad \\max=d+|a|,\\quad \\min=d-|a| \\]</div>\n<p>Örnek: \\(f(\\theta)=-3\\cos(4\\theta)+5\\). Genlik 3, orta çizgi \\(y=5\\), maksimum 8, minimum 2, periyot \\(\\frac{2\\pi}{4}=\\frac{\\pi}{2}\\). \\(a=-3\\) negatif olduğundan grafik \\(\\theta=0\\)'da maksimumda değil <strong>minimumda</strong> başlar: \\(f(0)=-3+5=2\\).</p>\n<h4>Görüntü kümesi ve sıfırlar</h4>\n<p>Görüntü kümesi (range) \\([d-|a|,\\ d+|a|]\\). Fonksiyonun sıfırı olması için orta çizgi ile genlik arasındaki ilişkiye bak: \\(|d|\\le|a|\\) ise grafik \\(x\\)-eksenini keser; \\(|d|\\gt|a|\\) ise hiç kesmez. Örneğin \\(2\\sin\\theta+3\\) daima pozitiftir.</p>\n<h4>Sinüs ve kosinüs biçimleri arasında geçiş</h4>\n<p>Aynı grafik birden fazla denklemle yazılabilir:</p>\n<div class=\"formul\">\\[ \\sin\\theta=\\cos\\left(\\theta-\\frac{\\pi}{2}\\right),\\qquad -\\sin\\theta=\\sin(\\theta+\\pi),\\qquad \\cos\\theta=-\\cos(\\theta+\\pi) \\]</div>\n<p>AP sınavında \"Which of the following is equivalent…\" sorularında bu kaymaları test etmek için iki kontrol yap: (1) \\(\\theta=0\\)'daki değer aynı mı? (2) Hemen sonrasında grafik aynı yönde mi gidiyor?</p>\n<div class=\"kn-kural\"><strong>Hızlı tanıma:</strong> \\(\\theta=0\\)'da orta çizgide ve artıyorsa \\(+\\sin\\); orta çizgide ve azalıyorsa \\(-\\sin\\); maksimumdaysa \\(+\\cos\\); minimumdaysa \\(-\\cos\\).</div>\n<div class=\"kn-dikkat\">\\(b\\) periyot <em>değildir</em>. \\(\\sin(3\\theta)\\)'nın periyodu 3 değil \\(\\frac{2\\pi}{3}\\)'tür. \\(b\\) büyüdükçe periyot küçülür, grafik sıkışır.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(h(\\theta)=4\\sin\\left(\\frac{\\pi}{3}\\theta\\right)-1\\) için genlik, periyot, frekans, orta çizgi ve görüntü kümesini bulun.",
+     "cozum": [
+      "Genlik \\(|4|=4\\), orta çizgi \\(y=-1\\).",
+      "Periyot \\(\\frac{2\\pi}{\\pi/3}=6\\), frekans \\(\\frac16\\).",
+      "Görüntü kümesi \\([-1-4,\\ -1+4]=[-5,3]\\)."
+     ]
+    },
+    {
+     "soru": "Bir sinüzoidal fonksiyonun maksimum değeri 11, minimum değeri −3'tür. Genliği ve orta çizgisini bulun.",
+     "cozum": [
+      "Genlik \\(=\\frac{11-(-3)}{2}=7\\).",
+      "Orta çizgi \\(y=\\frac{11+(-3)}{2}=4\\). Kontrol: \\(4+7=11\\), \\(4-7=-3\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(f(\\theta)=2\\cos\\theta+k\\) fonksiyonunun hiç sıfırı olmaması için \\(k\\) hangi değerleri almalıdır? Gerekçelendirin.",
+     "cozum": [
+      "Görüntü kümesi \\([k-2,\\ k+2]\\).",
+      "Sıfır olmaması için 0 bu aralıkta olmamalı: \\(k-2\\gt0\\) ya da \\(k+2\\lt0\\).",
+      "Sonuç: \\(k\\gt2\\) ya da \\(k\\lt-2\\). Gerekçe: <em>\"The minimum value \\(k-2\\) is positive, so the graph never reaches the \\(\\theta\\)-axis.\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Periyot \\(\\frac{2\\pi}{|b|}\\); \\(b\\) bir kesirse önce sadeleştir: \\(\\frac{2\\pi}{\\pi/4}=8\\).",
+    "Genlik daima pozitiftir; \\(a\\)'nın işareti yalnızca grafiğin baş aşağı dönmesini gösterir.",
+    "Denk ifade sorularında \\(\\theta=0\\) ve \\(\\theta=\\) çeyrek periyot noktalarını yerine koyarak test et. Bu soru tipleri Kısım A'dadır.",
+    "FRQ'da parametre bulurken formülü yaz: \"amplitude \\(=\\frac{\\max-\\min}{2}\\)\". Yöntem yazılırsa küçük hesap hatasında da kısmi puan alınabilir."
+   ],
+   "sikHatalar": [
+    "Periyodu \\(b\\) sanmak ya da \\(\\frac{b}{2\\pi}\\) yazmak (bu frekanstır).",
+    "Orta çizgiyi \\(\\frac{\\max-\\min}{2}\\) ile hesaplamak; o genliktir. Orta çizgi ortalamadır: \\(\\frac{\\max+\\min}{2}\\).",
+    "\\(a\\lt0\\) olduğunda genliği negatif yazmak."
+   ],
+   "terimler": [
+    {
+     "en": "sinusoidal function",
+     "tr": "sinüzoidal fonksiyon"
+    },
+    {
+     "en": "amplitude",
+     "tr": "genlik"
+    },
+    {
+     "en": "frequency",
+     "tr": "frekans"
+    },
+    {
+     "en": "phase shift",
+     "tr": "faz kayması"
+    },
+    {
+     "en": "vertical shift",
+     "tr": "dikey kayma"
+    },
+    {
+     "en": "range",
+     "tr": "görüntü kümesi"
+    }
+   ]
+  },
+  {
+   "kod": "3.6",
+   "baslik": "Sinusoidal Function Transformations",
+   "baslikTr": "Sinüzoidal fonksiyon dönüşümleri",
+   "hedefler": [
+    "Bir sinüzoidal fonksiyona uygulanan dikey/yatay öteleme, esneme ve yansımaları denklemden ve grafikten belirlemek.",
+    "Faz kaymasını (phase shift) \\(b\\) çarpanından ayırarak doğru hesaplamak.",
+    "Grafikteki özelliklerden (maksimum noktası, periyot, orta çizgi) sinüzoidal bir denklem kurmak."
+   ],
+   "anlatim": "<p>Topic 3.5'teki dört parametreyi şimdi <strong>dönüşüm (transformation)</strong> olarak okuyacağız. Unit 1'de öğrendiğin dönüşüm kuralları burada da geçerlidir: fonksiyonun <em>dışındaki</em> değişiklikler dikey, <em>içindeki</em> değişiklikler yatay etki yapar.</p>\n<div class=\"formul\">\\[ g(\\theta)=a\\,f\\big(b(\\theta+c)\\big)+d,\\qquad f=\\sin \\text{ ya da } \\cos \\]</div>\n<table><thead><tr><th>Dönüşüm</th><th>Denklemde</th><th>Grafikte</th></tr></thead>\n<tbody>\n<tr><td>Dikey öteleme (vertical translation)</td><td>\\(+d\\)</td><td>\\(d\\) birim yukarı; orta çizgi \\(y=d\\)</td></tr>\n<tr><td>Dikey esneme (vertical dilation)</td><td>\\(a\\cdot\\)</td><td>Genlik \\(|a|\\) olur; \\(a\\lt0\\) ise \\(x\\)-eksenine göre yansıma</td></tr>\n<tr><td>Yatay esneme (horizontal dilation)</td><td>\\(b\\theta\\)</td><td>Yatay ölçek \\(\\frac{1}{|b|}\\) çarpanıyla; periyot \\(\\frac{2\\pi}{|b|}\\); \\(b\\lt0\\) ise \\(y\\)-eksenine göre yansıma</td></tr>\n<tr><td>Yatay öteleme / faz kayması (phase shift)</td><td>\\(\\theta+c\\)</td><td>\\(c\\gt0\\) ise \\(c\\) birim sola, \\(c\\lt0\\) ise \\(|c|\\) birim sağa</td></tr></tbody></table>\n<h4>En sık tuzak: faz kayması</h4>\n<p>\\(y=\\sin(2\\theta-\\pi)\\) fonksiyonunun faz kayması \\(\\pi\\) <strong>değildir</strong>. Önce \\(b\\)'yi parantez dışına al:</p>\n<div class=\"formul\">\\[ \\sin(2\\theta-\\pi)=\\sin\\left(2\\left(\\theta-\\frac{\\pi}{2}\\right)\\right) \\]</div>\n<p>Grafik \\(\\frac{\\pi}{2}\\) birim <strong>sağa</strong> kayar. Yöntem: içteki ifadeyi sıfıra eşitle, \\(2\\theta-\\pi=0\\Rightarrow\\theta=\\frac{\\pi}{2}\\); temel sinüs döngüsünün başlangıcı buraya taşınmıştır.</p>\n<h4>Dönüşümlerin sırası</h4>\n<p>\\(\\theta\\)'dan çıktıya doğru: (1) \\(c\\) kadar yatay öteleme, (2) \\(\\frac{1}{|b|}\\) ile yatay esneme, (3) \\(a\\) ile dikey esneme/yansıma, (4) \\(d\\) ile dikey öteleme. Bir noktanın nereye gittiğini bulmak için: \\(f\\) grafiğindeki \\((p,q)\\) noktası \\(g\\) grafiğinde \\(\\left(\\frac{p}{b}-c,\\ aq+d\\right)\\) noktasına gider.</p>\n<p>Örnek: \\(\\sin\\theta\\)'nın maksimum noktası \\(\\left(\\frac{\\pi}{2},1\\right)\\). \\(g(\\theta)=3\\sin\\left(2\\left(\\theta+\\frac{\\pi}{6}\\right)\\right)-1\\) için bu nokta \\(\\left(\\frac{\\pi}{4}-\\frac{\\pi}{6},\\ 3-1\\right)=\\left(\\frac{\\pi}{12},\\ 2\\right)\\) olur.</p>\n<h4>Grafikten denklem kurmak</h4>\n<ol><li>Orta çizgi: \\(d=\\frac{\\max+\\min}{2}\\).</li><li>Genlik: \\(|a|=\\frac{\\max-\\min}{2}\\).</li><li>Periyot: iki ardışık maksimum arası; \\(b=\\frac{2\\pi}{\\text{periyot}}\\).</li><li>Faz: kosinüs kullanıyorsan bir maksimumun \\(\\theta\\)-değeri \\(h\\) ise \\(\\cos(b(\\theta-h))\\); sinüs kullanıyorsan orta çizgiden yukarı geçtiği bir nokta.</li></ol>\n<div class=\"kn-kural\">Aynı grafiğin <strong>sonsuz sayıda</strong> doğru denklemi vardır: faz kaymasına periyodun herhangi bir katı eklenebilir ve \\(-\\sin\\)/\\(\\cos\\) biçimleri birbirine çevrilebilir. FRQ'da hangisini yazarsan yaz, grafikle uyuşuyorsa puan alırsın.</div>\n<div class=\"kn-dikkat\">Yatay esneme ve öteleme birlikte olduğunda, ötelemeyi \\(b\\)'yi dışarı aldıktan sonra oku. \"\\(\\sin(3\\theta+\\pi)\\) is \\(\\sin\\theta\\) shifted \\(\\pi\\) left\" ifadesi yanlıştır; doğru kayma \\(\\frac{\\pi}{3}\\) sola.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(g(\\theta)=-2\\cos\\left(\\frac12\\theta-\\frac{\\pi}{4}\\right)+3\\) fonksiyonunu \\(\\cos\\theta\\)'dan elde eden dönüşümleri listeleyin.",
+     "cozum": [
+      "İç kısmı düzenle: \\(\\frac12\\theta-\\frac{\\pi}{4}=\\frac12\\left(\\theta-\\frac{\\pi}{2}\\right)\\).",
+      "Yatay: \\(\\frac{\\pi}{2}\\) sağa öteleme ve 2 kat yatay esneme (periyot \\(4\\pi\\)).",
+      "Dikey: 2 kat esneme, \\(x\\)-eksenine göre yansıma, 3 birim yukarı (orta çizgi \\(y=3\\))."
+     ]
+    },
+    {
+     "soru": "Bir sinüzoidal grafiğin maksimum noktası \\((1,\\ 7)\\), hemen sonraki minimum noktası \\((4,\\ 1)\\)'dir. Kosinüs kullanarak bir denklem yazın.",
+     "cozum": [
+      "\\(d=\\frac{7+1}{2}=4\\), \\(a=\\frac{7-1}{2}=3\\).",
+      "Maksimumdan minimuma yarım periyot: \\(4-1=3\\), periyot 6, \\(b=\\frac{2\\pi}{6}=\\frac{\\pi}{3}\\).",
+      "Maksimum \\(\\theta=1\\)'de: \\(f(\\theta)=3\\cos\\left(\\frac{\\pi}{3}(\\theta-1)\\right)+4\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir öğrenci \\(f(\\theta)=\\sin(4\\theta+\\pi)\\)'nin grafiğinin \\(\\sin(4\\theta)\\)'nın \\(\\pi\\) birim sola kaydırılmışı olduğunu söylüyor. Doğru mu? Açıklayın.",
+     "cozum": [
+      "\\(4\\theta+\\pi=4\\left(\\theta+\\frac{\\pi}{4}\\right)\\), yani gerçek kayma \\(\\frac{\\pi}{4}\\) sola.",
+      "Ayrıca \\(\\sin(4\\theta)\\)'nın periyodu \\(\\frac{\\pi}{2}\\); \\(\\pi\\) birim kaydırmak iki tam periyottur ve grafiği hiç değiştirmez. Öğrencinin iddiası farklı bir grafik (\\(\\sin 4\\theta\\)'nın kendisi) verir.",
+      "Sonuç: <em>\"Incorrect. Factoring out 4 shows the phase shift is \\(\\frac{\\pi}{4}\\) to the left.\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Faz kayması için içi sıfıra eşitle; \\(\\theta\\)'nın katsayısını mutlaka dışarı al.",
+    "Nokta takibi: \\((p,q)\\to\\left(\\frac{p}{b}-c,\\ aq+d\\right)\\). Grafik eşleştirme sorularında bir maksimum noktasını takip etmek en hızlı yoldur.",
+    "Bu konu Kısım A (hesap makinesiz) ve FRQ 3'te (periyodik model, hesap makinesiz) ağırlıklıdır; denklem yazarken hesap makinesine güvenme.",
+    "FRQ'da \"write an equation\" denince parametreleri (amplitude, midline, period) tek tek gerekçeleriyle göster."
+   ],
+   "sikHatalar": [
+    "\\(\\sin(b\\theta+k)\\)'da faz kaymasını \\(k\\) almak; doğrusu \\(\\frac{k}{b}\\).",
+    "\\(\\theta+c\\)'yi sağa kayma sanmak; \\(+c\\) sola kaydırır.",
+    "Yarım periyodu (maksimumdan minimuma) tam periyot sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "transformation",
+     "tr": "dönüşüm"
+    },
+    {
+     "en": "vertical / horizontal dilation",
+     "tr": "dikey / yatay esneme"
+    },
+    {
+     "en": "translation",
+     "tr": "öteleme"
+    },
+    {
+     "en": "reflection",
+     "tr": "yansıma"
+    },
+    {
+     "en": "phase shift",
+     "tr": "faz kayması"
+    }
+   ]
+  },
+  {
+   "kod": "3.7",
+   "baslik": "Sinusoidal Function Context and Data Modeling",
+   "baslikTr": "Sinüzoidal fonksiyonlarla bağlam ve veri modelleme",
+   "hedefler": [
+    "Gerçek bir periyodik bağlamdan (dönme dolap, gelgit, sıcaklık) sinüzoidal bir model kurmak ve parametreleri birimleriyle yorumlamak.",
+    "Veriden sinüzoidal regresyon (sinusoidal regression) ya da elle tahminle model oluşturmak.",
+    "Modeli kullanarak değer tahmin etmek ve modelin sınırlarını açıklamak."
+   ],
+   "anlatim": "<p>Bu konu, FRQ 3'ün (<strong>Modeling a Periodic Context</strong>, hesap makinesiz) doğrudan temelidir. Amaç: bir bağlamı okuyup \\(h(t)=a\\cos\\big(b(t-h_0)\\big)+d\\) gibi bir model kurmak ve her parametrenin <strong>gerçek dünyadaki anlamını</strong> söylemek.</p>\n<h4>Bağlamdan model kurma tarifi</h4>\n<table><thead><tr><th>Adım</th><th>Ne yapılır</th><th>Gelgit örneği: maksimum 9 m (saat 2), minimum 1 m (saat 8)</th></tr></thead>\n<tbody>\n<tr><td>1. Orta çizgi</td><td>\\(d=\\frac{\\max+\\min}{2}\\)</td><td>\\(d=5\\) m</td></tr>\n<tr><td>2. Genlik</td><td>\\(|a|=\\frac{\\max-\\min}{2}\\)</td><td>\\(4\\) m</td></tr>\n<tr><td>3. Periyot</td><td>maks→min süresi yarım periyottur</td><td>\\(2\\cdot(8-2)=12\\) saat</td></tr>\n<tr><td>4. \\(b\\)</td><td>\\(b=\\frac{2\\pi}{\\text{periyot}}\\)</td><td>\\(\\frac{2\\pi}{12}=\\frac{\\pi}{6}\\)</td></tr>\n<tr><td>5. Faz</td><td>Maksimum \\(t=h_0\\)'da ise \\(+\\cos(b(t-h_0))\\)</td><td>\\(h(t)=4\\cos\\left(\\frac{\\pi}{6}(t-2)\\right)+5\\)</td></tr></tbody></table>\n<p>Kontrol: \\(h(2)=4+5=9\\), \\(h(8)=4\\cos\\pi+5=1\\). Ara bir değer: \\(h(5)=4\\cos\\frac{\\pi}{2}+5=5\\) m, yani maksimum ile minimumun tam ortasında su seviyesi orta çizgidedir.</p>\n<h4>Dönme dolap: başlangıç noktasına dikkat</h4>\n<p>Yolcu en alttan biniyorsa \\(t=0\\)'da yükseklik minimumdur; o halde \\(-\\cos\\) kullan: \\(h(t)=-r\\cos\\left(\\frac{2\\pi}{T}t\\right)+c\\) (\\(r\\) yarıçap, \\(c\\) merkez yüksekliği, \\(T\\) tur süresi). Merkez hizasından yukarı doğru başlıyorsa \\(+\\sin\\) kullanılır.</p>\n<h4>Parametrelerin yorumu (FRQ dili)</h4>\n<ul><li><strong>Orta çizgi:</strong> \"The average water depth is 5 meters.\"</li><li><strong>Genlik:</strong> \"The depth varies 4 meters above and below the average.\"</li><li><strong>Periyot:</strong> \"The depth pattern repeats every 12 hours.\"</li></ul>\n<h4>Veriden model: regresyon</h4>\n<p>Veriler tablo halinde verilirse grafik hesap makinesindeki <strong>sinüzoidal regresyon (SinReg)</strong> özelliği \\(y=a\\sin(bx+c)+d\\) biçiminde bir model verir. Bu ancak hesap makineli kısımlarda (Kısım B, FRQ 1–2) kullanılabilir. Regresyon için en az bir tam döngüyü kapsayan veri gerekir. Hesap makinesiz kısımda maksimum/minimum değerlerini ve zamanlarını tablodan okuyup yukarıdaki tarifle elle model kurarsın.</p>\n<h4>Modelin sınırları</h4>\n<p>Gerçek veriler tam sinüzoidal değildir: günlük sıcaklık her yıl biraz farklıdır, gelgit periyodu 12 değil 12.4 saattir. Model, verinin aralığı dışında (<strong>extrapolation</strong>) güvenilmez olabilir. Bazı bağlamlarda sinüzoidal kısım doğrusal ya da üstel bir eğilimle (trend) toplanır: \\(P(t)=50t+200\\sin\\left(\\frac{\\pi}{6}t\\right)+3000\\) gibi; burada orta çizgi sabit değil, \\(y=50t+3000\\) doğrusudur.</p>\n<div class=\"kn-dikkat\">Birimlere dikkat: \\(t\\) gün cinsinden ve bir yıl 365 gün ise \\(b=\\frac{2\\pi}{365}\\). Periyot sorusu \"how often\" diye sorulur; cevap birimiyle yazılır.</div>",
+   "ornekler": [
+    {
+     "soru": "Bir dönme dolabın merkezi 25 m yükseklikte, çapı 40 m'dir, bir tur 8 dakika sürer. Yolcu \\(t=0\\)'da en alttan biniyor. \\(h(t)\\) modelini yazın ve \\(h(2)\\)'yi bulun.",
+     "cozum": [
+      "Yarıçap 20, orta çizgi 25, periyot 8, \\(b=\\frac{2\\pi}{8}=\\frac{\\pi}{4}\\).",
+      "\\(t=0\\)'da minimum: \\(h(t)=-20\\cos\\left(\\frac{\\pi}{4}t\\right)+25\\).",
+      "\\(h(2)=-20\\cos\\frac{\\pi}{2}+25=25\\) m: çeyrek turda yolcu merkez hizasındadır."
+     ]
+    },
+    {
+     "soru": "Bir şehirde gün ışığı süresi en uzun 15 saat (gün 172), en kısa 9 saattir; periyot 365 gündür. Kosinüs modelini yazın.",
+     "cozum": [
+      "Orta çizgi \\(\\frac{15+9}{2}=12\\), genlik \\(3\\), \\(b=\\frac{2\\pi}{365}\\).",
+      "Maksimum \\(t=172\\)'de: \\(L(t)=3\\cos\\left(\\frac{2\\pi}{365}(t-172)\\right)+12\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Gelgit modeli \\(D(t)=4\\cos\\left(\\frac{\\pi}{6}(t-2)\\right)+5\\) metredir (\\(t\\) saat). \\(t=4\\) ile \\(t=6\\) arasında suyun derinliği artıyor mu azalıyor mu? Değişim hızının büyüklüğü artıyor mu? Gerekçelendirin.",
+     "cozum": [
+      "Maksimum \\(t=2\\)'de, minimum \\(t=8\\)'de; \\(4\\lt t\\lt6\\) bu iki an arasındadır, dolayısıyla derinlik <strong>azalıyor</strong>.",
+      "Orta çizgiye \\(t=5\\)'te ulaşılır. \\(t=4\\)'ten \\(5\\)'e değişim hızının büyüklüğü artar (orta çizgide en hızlı), \\(5\\)'ten \\(6\\)'ya azalır.",
+      "Puan getiren cümle: <em>\"The depth is decreasing on \\(4\\lt t\\lt6\\) because the maximum occurs at \\(t=2\\) and the next minimum at \\(t=8\\).\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "FRQ 3 hesap makinesizdir: değerler genellikle \\(\\cos\\frac{\\pi}{3}\\) gibi özel açılara düşecek şekilde seçilir.",
+    "Maksimumda başlayan bağlamda \\(+\\cos\\), minimumda başlayanda \\(-\\cos\\), orta çizgiden yükselerek başlayanda \\(+\\sin\\) kullan; faz kayması hesabı azalır.",
+    "Sinüzoidal regresyon yalnız FRQ 1–2 ve Kısım B'de (grafik hesap makineli) kullanılabilir; sonucu en az 3 ondalık basamakla yaz.",
+    "Her parametre yorumuna <strong>birim</strong> ve <strong>bağlam</strong> ekle: \"every 12 hours\", \"5 meters above the ground\"."
+   ],
+   "sikHatalar": [
+    "Maksimumdan minimuma geçen süreyi periyot sanmak; bu yarım periyottur.",
+    "Periyot yerine \\(b\\) değerini yorumlamak: \"\\(b=\\frac{\\pi}{6}\\) means it repeats every \\(\\frac{\\pi}{6}\\) hours\" yanlıştır.",
+    "Yolcunun başlangıç konumunu dikkate almadan \\(+\\sin\\) yazmak."
+   ],
+   "terimler": [
+    {
+     "en": "model",
+     "tr": "model"
+    },
+    {
+     "en": "sinusoidal regression",
+     "tr": "sinüzoidal regresyon"
+    },
+    {
+     "en": "context",
+     "tr": "bağlam"
+    },
+    {
+     "en": "extrapolation",
+     "tr": "veri aralığı dışına tahmin"
+    },
+    {
+     "en": "trend",
+     "tr": "eğilim"
+    }
+   ]
+  },
+  {
+   "kod": "3.8",
+   "baslik": "The Tangent Function",
+   "baslikTr": "Tanjant fonksiyonu",
+   "hedefler": [
+    "\\(\\tan\\theta=\\frac{\\sin\\theta}{\\cos\\theta}\\) tanımından tanjant grafiğinin periyodunu, sıfırlarını ve dikey asimptotlarını (vertical asymptotes) belirlemek.",
+    "Tanjantın bitiş kenarının eğimi olduğunu kullanarak işaret ve değer belirlemek.",
+    "\\(f(\\theta)=a\\tan(b(\\theta+c))+d\\) dönüşümlerinde periyot \\(\\frac{\\pi}{|b|}\\) ve asimptot konumlarını bulmak."
+   ],
+   "anlatim": "<p><strong>Tanjant fonksiyonu (tangent function)</strong>, sinüs ve kosinüsün oranıdır:</p>\n<div class=\"formul\">\\[ \\tan\\theta=\\frac{\\sin\\theta}{\\cos\\theta} \\]</div>\n<p>Geometrik anlamı: \\(\\tan\\theta\\), açının bitiş kenarının <strong>eğimidir (slope of the terminal ray)</strong>. Eğim, ışın yatayken 0, dikeye yaklaşırken çok büyük olur.</p>\n<h4>Sıfırlar ve asimptotlar</h4>\n<ul><li><strong>Sıfırlar:</strong> \\(\\sin\\theta=0\\) olduğunda, \\(\\theta=k\\pi\\).</li><li><strong>Dikey asimptotlar (vertical asymptotes):</strong> \\(\\cos\\theta=0\\) olduğunda, \\(\\theta=\\frac{\\pi}{2}+k\\pi\\). Burada pay \\(\\pm1\\), payda 0'a yaklaşır; değerler sınırsız büyür.</li></ul>\n<p>\\(\\theta\\to\\frac{\\pi}{2}^-\\) iken \\(\\tan\\theta\\to+\\infty\\), \\(\\theta\\to\\frac{\\pi}{2}^+\\) iken \\(\\tan\\theta\\to-\\infty\\).</p>\n<h4>Periyot \\(\\pi\\)'dir</h4>\n<p>\\(\\theta\\) ile \\(\\theta+\\pi\\) açılarının bitiş kenarları aynı doğru üzerindedir (zıt yönlerde), bu yüzden eğimleri aynıdır: \\(\\tan(\\theta+\\pi)=\\tan\\theta\\). Sinüs ve kosinüsün periyodu \\(2\\pi\\) iken tanjantınki \\(\\pi\\)'dir.</p>\n<table><thead><tr><th>\\(\\theta\\)</th><th>\\(-\\frac{\\pi}{3}\\)</th><th>\\(-\\frac{\\pi}{4}\\)</th><th>\\(-\\frac{\\pi}{6}\\)</th><th>0</th><th>\\(\\frac{\\pi}{6}\\)</th><th>\\(\\frac{\\pi}{4}\\)</th><th>\\(\\frac{\\pi}{3}\\)</th></tr></thead>\n<tbody><tr><td>\\(\\tan\\theta\\)</td><td>\\(-\\sqrt3\\)</td><td>\\(-1\\)</td><td>\\(-\\frac{\\sqrt3}{3}\\)</td><td>0</td><td>\\(\\frac{\\sqrt3}{3}\\)</td><td>1</td><td>\\(\\sqrt3\\)</td></tr></tbody></table>\n<h4>Grafiğin özellikleri</h4>\n<ul><li>Tanım kümesi: \\(\\theta\\neq\\frac{\\pi}{2}+k\\pi\\); görüntü kümesi: tüm reel sayılar.</li><li>Her dal (branch) üzerinde <strong>daima artandır</strong> (increasing).</li><li>\\(\\left(-\\frac{\\pi}{2},0\\right)\\)'da içbükey aşağı, \\(\\left(0,\\frac{\\pi}{2}\\right)\\)'de içbükey yukarı; bükülme noktaları sıfırlarda.</li><li>Tek fonksiyon: \\(\\tan(-\\theta)=-\\tan\\theta\\).</li><li>Genliği <strong>yoktur</strong> (sınırsız).</li></ul>\n<h4>Dönüşümler</h4>\n<div class=\"formul\">\\[ f(\\theta)=a\\tan\\big(b(\\theta+c)\\big)+d:\\quad \\text{periyot}=\\frac{\\pi}{|b|} \\]</div>\n<p>Asimptotları bulmak için içi \\(\\frac{\\pi}{2}+k\\pi\\)'ye eşitle. Örnek: \\(f(\\theta)=2\\tan\\left(\\frac{\\theta}{2}\\right)\\): \\(\\frac{\\theta}{2}=\\frac{\\pi}{2}+k\\pi\\Rightarrow\\theta=\\pi+2k\\pi\\); periyot \\(2\\pi\\). \\(a\\lt0\\) olursa her dal azalan olur.</p>\n<div class=\"kn-dikkat\">Tanjant için periyot formülü \\(\\frac{\\pi}{|b|}\\)'dir, \\(\\frac{2\\pi}{|b|}\\) değil. Sınavda \\(\\tan(3\\theta)\\)'nın periyodu için \\(\\frac{2\\pi}{3}\\) çeldiricisi neredeyse her zaman vardır.</div>\n<p>Tanjantın eğim yorumu, doğrunun eğim açısıyla ilişkilidir: eğimi \\(m\\) olan ve orijinden geçen bir doğru \\(x\\)-ekseniyle \\(\\theta\\) açısı yapıyorsa \\(m=\\tan\\theta\\).</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(\\theta)=\\tan\\left(2\\theta-\\frac{\\pi}{2}\\right)\\) için periyodu ve \\(0\\le\\theta\\le\\pi\\) aralığındaki dikey asimptotları bulun.",
+     "cozum": [
+      "\\(b=2\\Rightarrow\\) periyot \\(\\frac{\\pi}{2}\\).",
+      "Asimptot: \\(2\\theta-\\frac{\\pi}{2}=\\frac{\\pi}{2}+k\\pi\\Rightarrow\\theta=\\frac{\\pi}{2}+\\frac{k\\pi}{2}\\).",
+      "\\([0,\\pi]\\)'de: \\(\\theta=0,\\ \\frac{\\pi}{2},\\ \\pi\\)."
+     ]
+    },
+    {
+     "soru": "Orijinden geçen bir doğru pozitif \\(x\\)-ekseniyle \\(\\frac{2\\pi}{3}\\) açısı yapıyor. Doğrunun eğimini bulun.",
+     "cozum": [
+      "Eğim \\(=\\tan\\frac{2\\pi}{3}\\). II. bölge, referans açı \\(\\frac{\\pi}{3}\\), tanjant negatif.",
+      "\\(\\tan\\frac{2\\pi}{3}=-\\sqrt3\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(\\tan\\theta\\)'nın \\(\\theta=\\frac{\\pi}{2}\\)'de tanımsız olduğunu ve grafiğin orada dikey asimptotu olduğunu açıklayın.",
+     "cozum": [
+      "\\(\\tan\\theta=\\frac{\\sin\\theta}{\\cos\\theta}\\) ve \\(\\cos\\frac{\\pi}{2}=0\\), \\(\\sin\\frac{\\pi}{2}=1\\).",
+      "\\(\\theta\\to\\frac{\\pi}{2}\\) iken pay 1'e, payda 0'a yaklaşır, oran sınırsız büyür.",
+      "Puan getiren cümle: <em>\"As \\(\\theta\\to\\frac{\\pi}{2}^-\\), \\(\\cos\\theta\\to0^+\\) while \\(\\sin\\theta\\to1\\), so \\(\\tan\\theta\\) increases without bound; therefore there is a vertical asymptote at \\(\\theta=\\frac{\\pi}{2}\\).\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Periyot: tanjant \\(\\frac{\\pi}{|b|}\\), sinüs/kosinüs \\(\\frac{2\\pi}{|b|}\\). Bu ayrım Kısım A'da sık test edilir.",
+    "Asimptot = kosinüsün sıfırı; sıfır = sinüsün sıfırı. Dönüşmüş fonksiyonda içi bu değerlere eşitle.",
+    "\"Slope of the terminal ray\" ifadesini görünce \\(\\tan\\theta=\\frac{y}{x}\\) yaz.",
+    "Grafik hesap makinesinde tanjant çizilirken asimptotlarda dikey çizgi görünebilir; bu grafiğin parçası değildir."
+   ],
+   "sikHatalar": [
+    "Tanjantın periyodunu \\(2\\pi\\) sanmak.",
+    "Tanjantın genliğinden söz etmek; tanjant sınırsızdır, genliği yoktur.",
+    "Asimptotları sinüsün sıfırlarına (\\(k\\pi\\)) koymak."
+   ],
+   "terimler": [
+    {
+     "en": "tangent function",
+     "tr": "tanjant fonksiyonu"
+    },
+    {
+     "en": "vertical asymptote",
+     "tr": "dikey asimptot"
+    },
+    {
+     "en": "slope",
+     "tr": "eğim"
+    },
+    {
+     "en": "branch",
+     "tr": "dal"
+    },
+    {
+     "en": "unbounded",
+     "tr": "sınırsız"
+    }
+   ]
+  },
+  {
+   "kod": "3.9",
+   "baslik": "Inverse Trigonometric Functions",
+   "baslikTr": "Ters trigonometrik fonksiyonlar",
+   "hedefler": [
+    "Sinüs, kosinüs ve tanjantın tanım kümelerini kısıtlayarak (restricted domain) ters fonksiyonlarını tanımlamak; tanım ve görüntü kümelerini bilmek.",
+    "\\(\\arcsin\\), \\(\\arccos\\), \\(\\arctan\\) değerlerini özel değerlerde kesin olarak bulmak.",
+    "\\(\\sin(\\arcsin x)\\) ve \\(\\arcsin(\\sin x)\\) gibi bileşkeleri doğru değerlendirmek."
+   ],
+   "anlatim": "<p>Bir fonksiyonun tersi (inverse) olması için birebir (one-to-one) olması gerekir. Sinüs periyodik olduğundan birebir değildir: \\(\\sin\\frac{\\pi}{6}=\\sin\\frac{5\\pi}{6}=\\frac12\\). Çözüm: <strong>tanım kümesini kısıtlamak (restrict the domain)</strong>.</p>\n<h4>Üç ters fonksiyon</h4>\n<table><thead><tr><th>Fonksiyon</th><th>Tanım kümesi (domain)</th><th>Görüntü kümesi (range)</th><th>Çıktının bölgesi</th></tr></thead>\n<tbody>\n<tr><td>\\(\\arcsin x=\\sin^{-1}x\\)</td><td>\\([-1,1]\\)</td><td>\\(\\left[-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right]\\)</td><td>I ve IV</td></tr>\n<tr><td>\\(\\arccos x=\\cos^{-1}x\\)</td><td>\\([-1,1]\\)</td><td>\\([0,\\pi]\\)</td><td>I ve II</td></tr>\n<tr><td>\\(\\arctan x=\\tan^{-1}x\\)</td><td>tüm reel sayılar</td><td>\\(\\left(-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right)\\)</td><td>I ve IV</td></tr></tbody></table>\n<div class=\"kn-tanim\">\\(\\arcsin x\\): \"sinüsü \\(x\\) olan, \\(\\left[-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right]\\) aralığındaki açı\". Çıktı bir <strong>açıdır</strong> (radyan), girdi bir <strong>orandır</strong>.</div>\n<p>Uyarı: \\(\\sin^{-1}x\\) yazımı \\(\\frac{1}{\\sin x}\\) anlamına <strong>gelmez</strong>; \\(\\frac{1}{\\sin x}=\\csc x\\)'tir (Topic 3.11).</p>\n<h4>Değer bulma</h4>\n<p>\\(\\arccos\\left(-\\frac12\\right)\\): \\([0,\\pi]\\) aralığında kosinüsü \\(-\\frac12\\) olan açı. Referans açı \\(\\frac{\\pi}{3}\\), kosinüs negatif → II. bölge → \\(\\pi-\\frac{\\pi}{3}=\\frac{2\\pi}{3}\\).</p>\n<p>\\(\\arcsin\\left(-\\frac{\\sqrt2}{2}\\right)\\): görüntü \\(\\left[-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right]\\), sinüs negatif → IV. bölge → \\(-\\frac{\\pi}{4}\\) (\\(\\frac{7\\pi}{4}\\) <strong>değil</strong>, çünkü görüntü kümesinde değil).</p>\n<h4>Bileşkeler</h4>\n<div class=\"formul\">\\[ \\sin(\\arcsin x)=x\\ \\ (-1\\le x\\le1), \\qquad \\arcsin(\\sin\\theta)=\\theta \\text{ yalnız } -\\tfrac{\\pi}{2}\\le\\theta\\le\\tfrac{\\pi}{2} \\]</div>\n<p>Örnek: \\(\\arcsin\\left(\\sin\\frac{5\\pi}{6}\\right)=\\arcsin\\frac12=\\frac{\\pi}{6}\\), \\(\\frac{5\\pi}{6}\\) değil.</p>\n<p><strong>Üçgen yöntemi:</strong> \\(\\cos\\left(\\arcsin\\frac35\\right)\\) için \\(\\theta=\\arcsin\\frac35\\) de; \\(\\sin\\theta=\\frac35\\) ve \\(\\theta\\) I. bölgede. Karşı 3, hipotenüs 5, komşu 4 → \\(\\cos\\theta=\\frac45\\). Değişkenle de çalışır: \\(\\cos(\\arcsin x)=\\sqrt{1-x^2}\\) (kosinüs \\(\\left[-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right]\\)'de negatif olmadığı için kök pozitif).</p>\n<h4>Grafikler</h4>\n<p>Ters fonksiyon grafiği, kısıtlanmış fonksiyon grafiğinin \\(y=x\\) doğrusuna göre yansımasıdır. \\(\\arctan x\\)'in iki <strong>yatay asimptotu (horizontal asymptotes)</strong> vardır: \\(y=\\pm\\frac{\\pi}{2}\\). \\(\\arcsin\\) ve \\(\\arctan\\) artan, \\(\\arccos\\) azalandır.</p>\n<div class=\"kn-dikkat\">Hesap makinesi (Kısım B) ters fonksiyonlarda yalnızca <strong>görüntü kümesindeki tek açıyı</strong> verir. Bir denklemin bütün çözümlerini istiyorsan (Topic 3.10) simetriyle diğer çözümü sen bulmalısın.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(\\arctan(-\\sqrt3)\\) ve \\(\\arccos\\left(\\frac{\\sqrt2}{2}\\right)\\) değerlerini bulun.",
+     "cozum": [
+      "\\(\\arctan\\): görüntü \\(\\left(-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right)\\); \\(\\tan\\frac{\\pi}{3}=\\sqrt3\\), negatif için IV. bölge: \\(-\\frac{\\pi}{3}\\).",
+      "\\(\\arccos\\frac{\\sqrt2}{2}=\\frac{\\pi}{4}\\) (\\([0,\\pi]\\) içinde)."
+     ]
+    },
+    {
+     "soru": "\\(\\tan\\left(\\arccos\\left(-\\frac{5}{13}\\right)\\right)\\) değerini bulun.",
+     "cozum": [
+      "\\(\\theta=\\arccos\\left(-\\frac{5}{13}\\right)\\) II. bölgededir (\\(\\arccos\\) negatif girdide \\(\\left(\\frac{\\pi}{2},\\pi\\right)\\) verir).",
+      "\\(\\cos\\theta=-\\frac{5}{13}\\), \\(\\sin\\theta=\\frac{12}{13}\\) (II. bölgede pozitif).",
+      "\\(\\tan\\theta=\\frac{12/13}{-5/13}=-\\frac{12}{5}\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(\\arccos(\\cos\\theta)=\\theta\\) eşitliğinin \\(\\theta=\\frac{3\\pi}{2}\\) için geçerli olmadığını gösterin.",
+     "cozum": [
+      "\\(\\cos\\frac{3\\pi}{2}=0\\), \\(\\arccos0=\\frac{\\pi}{2}\\).",
+      "\\(\\frac{\\pi}{2}\\neq\\frac{3\\pi}{2}\\).",
+      "Gerekçe: <em>\"The range of \\(\\arccos\\) is \\([0,\\pi]\\), and \\(\\frac{3\\pi}{2}\\) is not in that interval, so \\(\\arccos(\\cos\\theta)\\) cannot equal \\(\\frac{3\\pi}{2}\\).\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Görüntü kümelerini ezberle: arcsin ve arctan sağ yarı (\\(-\\frac{\\pi}{2}\\) ile \\(\\frac{\\pi}{2}\\)), arccos üst yarı (0 ile \\(\\pi\\)).",
+    "\\(\\arcsin(\\sin\\theta)\\) tipinde önce içi hesapla, sonra görüntü kümesinde açı ara.",
+    "Kısım B'de \\(\\sin^{-1}(0.3)\\) gibi değerler hesap makinesiyle bulunur (radyan modu); Kısım A'da yalnız özel değerler gelir.",
+    "FRQ 4 (sembolik, hesap makinesiz) ters fonksiyonlu denklem çözümü isteyebilir; görüntü kümesi sınırını yazarak çözümü gerekçelendir."
+   ],
+   "sikHatalar": [
+    "\\(\\sin^{-1}x\\)'i \\(\\frac{1}{\\sin x}\\) sanmak.",
+    "Görüntü kümesi dışında açı vermek: \\(\\arcsin\\left(-\\frac12\\right)=\\frac{7\\pi}{6}\\) ya da \\(\\frac{11\\pi}{6}\\) yazmak; doğrusu \\(-\\frac{\\pi}{6}\\).",
+    "\\(\\arccos\\) negatif girdide negatif açı vermek; arccos çıktısı daima \\(0\\) ile \\(\\pi\\) arasındadır."
+   ],
+   "terimler": [
+    {
+     "en": "inverse function",
+     "tr": "ters fonksiyon"
+    },
+    {
+     "en": "restricted domain",
+     "tr": "kısıtlanmış tanım kümesi"
+    },
+    {
+     "en": "one-to-one",
+     "tr": "birebir"
+    },
+    {
+     "en": "arcsine / arccosine / arctangent",
+     "tr": "ters sinüs / ters kosinüs / ters tanjant"
+    },
+    {
+     "en": "horizontal asymptote",
+     "tr": "yatay asimptot"
+    }
+   ]
+  },
+  {
+   "kod": "3.10",
+   "baslik": "Trigonometric Equations and Inequalities",
+   "baslikTr": "Trigonometrik denklemler ve eşitsizlikler",
+   "hedefler": [
+    "Trigonometrik denklemlerin belirli bir aralıktaki ve genel (tüm) çözümlerini bulmak.",
+    "Çarpanlara ayırma ve ikinci dereceden biçim kullanarak denklemleri çözmek.",
+    "Birim çember ya da grafikle trigonometrik eşitsizliklerin çözüm aralıklarını belirlemek."
+   ],
+   "anlatim": "<p>Bir trigonometrik denklemin genellikle <strong>sonsuz sayıda</strong> çözümü vardır, çünkü fonksiyonlar periyodiktir. Bu yüzden sorular ya bir aralık verir (\\(0\\le\\theta\\lt2\\pi\\)) ya da <strong>genel çözüm (general solution)</strong> ister.</p>\n<h4>Temel strateji</h4>\n<ol><li>Trigonometrik ifadeyi yalnız bırak: \\(2\\sin\\theta-1=0\\Rightarrow\\sin\\theta=\\frac12\\).</li><li>Referans açıyı bul: \\(\\frac{\\pi}{6}\\).</li><li>İşarete göre bölgeleri seç: sinüs pozitif → I ve II. bölge: \\(\\frac{\\pi}{6},\\ \\frac{5\\pi}{6}\\).</li><li>Genel çözüm için periyodu ekle: \\(\\theta=\\frac{\\pi}{6}+2\\pi k\\) ya da \\(\\theta=\\frac{5\\pi}{6}+2\\pi k\\).</li></ol>\n<table><thead><tr><th>Denklem</th><th>\\([0,2\\pi)\\) çözümleri</th><th>Genel çözüm</th></tr></thead>\n<tbody><tr><td>\\(\\sin\\theta=a\\)</td><td>\\(\\theta_1\\) ve \\(\\pi-\\theta_1\\)</td><td>\\(+2\\pi k\\)</td></tr>\n<tr><td>\\(\\cos\\theta=a\\)</td><td>\\(\\theta_1\\) ve \\(2\\pi-\\theta_1\\)</td><td>\\(+2\\pi k\\)</td></tr>\n<tr><td>\\(\\tan\\theta=a\\)</td><td>\\(\\theta_1\\) ve \\(\\theta_1+\\pi\\)</td><td>\\(\\theta_1+\\pi k\\)</td></tr></tbody></table>\n<h4>Çarpanlara ayırma</h4>\n<p>\\(2\\cos^2\\theta-\\cos\\theta-1=0\\). \\(u=\\cos\\theta\\) de: \\(2u^2-u-1=(2u+1)(u-1)=0\\). Yani \\(\\cos\\theta=-\\frac12\\) ya da \\(\\cos\\theta=1\\). \\([0,2\\pi)\\)'de: \\(\\frac{2\\pi}{3},\\ \\frac{4\\pi}{3},\\ 0\\).</p>\n<p>Ortak çarpan: \\(\\sin\\theta\\cos\\theta=\\sin\\theta\\) denklemini \\(\\sin\\theta\\)'ya <strong>bölme</strong>; bölersen \\(\\sin\\theta=0\\) çözümlerini kaybedersin. Doğrusu: \\(\\sin\\theta(\\cos\\theta-1)=0\\).</p>\n<h4>Katlı açılar</h4>\n<p>\\(\\sin(2\\theta)=\\frac{\\sqrt3}{2}\\), \\(0\\le\\theta\\lt2\\pi\\). \\(u=2\\theta\\) de; \\(u\\) aralığı \\([0,4\\pi)\\) olur. \\(u=\\frac{\\pi}{3},\\frac{2\\pi}{3},\\frac{7\\pi}{3},\\frac{8\\pi}{3}\\), ikiye böl: \\(\\theta=\\frac{\\pi}{6},\\frac{\\pi}{3},\\frac{7\\pi}{6},\\frac{4\\pi}{3}\\). Katsayı 2 olunca çözüm sayısı iki katına çıkar.</p>\n<h4>Eşitsizlikler</h4>\n<p>\\(\\sin\\theta\\gt\\frac12\\), \\(0\\le\\theta\\lt2\\pi\\): önce eşitliğin çözümlerini bul (\\(\\frac{\\pi}{6}, \\frac{5\\pi}{6}\\)); bu noktalar çemberi/grafiği parçalara ayırır. Sinüs grafiği bu iki nokta arasında \\(\\frac12\\)'nin üstündedir: çözüm \\(\\frac{\\pi}{6}\\lt\\theta\\lt\\frac{5\\pi}{6}\\).</p>\n<div class=\"kn-kural\"><strong>Eşitsizlik tarifi:</strong> (1) Eşitliği çöz, (2) aralığı parçalara böl, (3) her parçadan bir test değeri dene ya da grafiğe bak, (4) sınır noktalarının dahil olup olmadığını \\(\\ge\\)/\\(\\gt\\)'ye göre belirle.</div>\n<h4>Hesap makinesiyle (Kısım B)</h4>\n<p>\\(\\cos\\theta=0.3\\) için hesap makinesi \\(\\theta_1=\\arccos0.3\\approx1.266\\) verir. İkinci çözüm simetriden: \\(2\\pi-1.266\\approx5.017\\). Ya da \\(y=\\cos x\\) ve \\(y=0.3\\) grafiklerinin kesişimlerini bul.</p>\n<div class=\"kn-dikkat\">Aralığı oku: \\(0\\le\\theta\\lt2\\pi\\) mi, \\(-\\pi\\le\\theta\\le\\pi\\) mi, \\([0,\\pi]\\) mi? Yanlış aralıkta doğru açılar da yanlış cevaptır.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(2\\sin^2\\theta-\\sin\\theta=0\\) denklemini \\(0\\le\\theta\\lt2\\pi\\) için çözün.",
+     "cozum": [
+      "\\(\\sin\\theta(2\\sin\\theta-1)=0\\).",
+      "\\(\\sin\\theta=0\\Rightarrow\\theta=0,\\pi\\).",
+      "\\(\\sin\\theta=\\frac12\\Rightarrow\\theta=\\frac{\\pi}{6},\\frac{5\\pi}{6}\\). Toplam 4 çözüm."
+     ]
+    },
+    {
+     "soru": "\\(\\cos\\theta\\le-\\frac{\\sqrt2}{2}\\) eşitsizliğini \\(0\\le\\theta\\lt2\\pi\\) için çözün.",
+     "cozum": [
+      "Eşitlik: \\(\\cos\\theta=-\\frac{\\sqrt2}{2}\\Rightarrow\\theta=\\frac{3\\pi}{4},\\frac{5\\pi}{4}\\).",
+      "Kosinüs bu iki açı arasında (\\(\\pi\\) civarında) en küçüktür.",
+      "Çözüm: \\(\\frac{3\\pi}{4}\\le\\theta\\le\\frac{5\\pi}{4}\\) (eşitlik dahil)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir öğrenci \\(\\sin\\theta\\cos\\theta=\\frac12\\sin\\theta\\) denklemini her iki tarafı \\(\\sin\\theta\\)'ya bölerek çözüyor ve \\(\\theta=\\frac{\\pi}{3},\\frac{5\\pi}{3}\\) buluyor (\\(0\\le\\theta\\lt2\\pi\\)). Çözüm eksik mi? Açıklayın.",
+     "cozum": [
+      "Bölme, \\(\\sin\\theta\\neq0\\) varsayar; \\(\\sin\\theta=0\\) çözümleri kaybolur.",
+      "Doğru yol: \\(\\sin\\theta\\left(\\cos\\theta-\\frac12\\right)=0\\). \\(\\sin\\theta=0\\Rightarrow\\theta=0,\\pi\\).",
+      "Tam çözüm: \\(0,\\ \\frac{\\pi}{3},\\ \\pi,\\ \\frac{5\\pi}{3}\\). <em>\"Dividing by \\(\\sin\\theta\\) removes the solutions where \\(\\sin\\theta=0\\).\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "FRQ 4 (Symbolic Manipulations, hesap makinesiz) trig denklemi çözmeyi sıklıkla ister; her adımı yaz ve aralığı en sonda kontrol et.",
+    "Katlı açı (\\(\\sin 3\\theta\\)) gördüğünde aralığı da aynı katsayıyla genişlet; çözümleri en sonda böl.",
+    "Eşitsizlik cevaplarında aralık gösterimini net yaz: \\(\\frac{\\pi}{6}\\lt\\theta\\lt\\frac{5\\pi}{6}\\).",
+    "Kısım B'de özel olmayan değerler için hesap makinesinin tek açısını al, ikinci çözümü simetriyle ekle."
+   ],
+   "sikHatalar": [
+    "Yalnız bir çözüm yazmak (hesap makinesinin verdiği açı); sinüs ve kosinüs denklemlerinin bir periyotta genellikle iki çözümü vardır.",
+    "Ortak çarpana bölerek çözüm kaybetmek.",
+    "Tanjant genel çözümüne \\(2\\pi k\\) eklemek; tanjantın periyodu \\(\\pi\\)'dir."
+   ],
+   "terimler": [
+    {
+     "en": "general solution",
+     "tr": "genel çözüm"
+    },
+    {
+     "en": "interval",
+     "tr": "aralık"
+    },
+    {
+     "en": "factor",
+     "tr": "çarpanlara ayırmak"
+    },
+    {
+     "en": "inequality",
+     "tr": "eşitsizlik"
+    },
+    {
+     "en": "test value",
+     "tr": "deneme değeri"
+    }
+   ]
+  },
+  {
+   "kod": "3.11",
+   "baslik": "The Secant, Cosecant, and Cotangent Functions",
+   "baslikTr": "Sekant, kosekant ve kotanjant fonksiyonları",
+   "hedefler": [
+    "Sekant (secant), kosekant (cosecant) ve kotanjant (cotangent) fonksiyonlarını kosinüs, sinüs ve tanjantın tersi oranları (reciprocals) olarak tanımlamak.",
+    "Bu fonksiyonların tanım kümesi, görüntü kümesi, periyodu ve dikey asimptotlarını belirlemek.",
+    "Özel açılarda değerlerini kesin olarak hesaplamak."
+   ],
+   "anlatim": "<p>Üç yeni fonksiyon, bildiğimiz üç fonksiyonun <strong>çarpmaya göre tersleridir (reciprocals)</strong>:</p>\n<div class=\"formul\">\\[ \\sec\\theta=\\frac{1}{\\cos\\theta},\\qquad \\csc\\theta=\\frac{1}{\\sin\\theta},\\qquad \\cot\\theta=\\frac{1}{\\tan\\theta}=\\frac{\\cos\\theta}{\\sin\\theta} \\]</div>\n<p>Eşleştirme kuralı: her çiftte <strong>bir tane \"ko-\"</strong> vardır: sekant ↔ <strong>ko</strong>sinüs, <strong>ko</strong>sekant ↔ sinüs, <strong>ko</strong>tanjant ↔ tanjant.</p>\n<h4>Birim çember tanımı</h4>\n<p>Bitiş kenarı \\((x,y)\\)'den geçen, \\(r=\\sqrt{x^2+y^2}\\) olan açı için: \\(\\sec\\theta=\\frac{r}{x}\\), \\(\\csc\\theta=\\frac{r}{y}\\), \\(\\cot\\theta=\\frac{x}{y}\\). İşaretler, ters oranı alınan fonksiyonla aynıdır: kosinüs negatifse sekant da negatiftir.</p>\n<h4>Özellikler tablosu</h4>\n<table><thead><tr><th></th><th>\\(\\sec\\theta\\)</th><th>\\(\\csc\\theta\\)</th><th>\\(\\cot\\theta\\)</th></tr></thead>\n<tbody>\n<tr><td>Tanımsız olduğu yer (asimptot)</td><td>\\(\\cos\\theta=0\\): \\(\\frac{\\pi}{2}+k\\pi\\)</td><td>\\(\\sin\\theta=0\\): \\(k\\pi\\)</td><td>\\(\\sin\\theta=0\\): \\(k\\pi\\)</td></tr>\n<tr><td>Periyot</td><td>\\(2\\pi\\)</td><td>\\(2\\pi\\)</td><td>\\(\\pi\\)</td></tr>\n<tr><td>Görüntü kümesi</td><td>\\((-\\infty,-1]\\cup[1,\\infty)\\)</td><td>\\((-\\infty,-1]\\cup[1,\\infty)\\)</td><td>tüm reel sayılar</td></tr>\n<tr><td>Sıfırları</td><td>yok</td><td>yok</td><td>\\(\\frac{\\pi}{2}+k\\pi\\)</td></tr>\n<tr><td>Simetri</td><td>çift</td><td>tek</td><td>tek</td></tr></tbody></table>\n<h4>Grafiklerin mantığı</h4>\n<p>\\(\\sec\\theta\\) grafiğini çizmek için önce \\(\\cos\\theta\\)'yı çiz. Kosinüsün 1 ve −1 olduğu yerde sekant da 1 ve −1'dir (bunlar sekantın yerel ekstremumlarıdır). Kosinüs 0'a yaklaşırken sekant sınırsız büyür: dikey asimptot. Kosinüs küçülürken sekant büyür, yani <strong>artma/azalma yönleri terstir</strong>. Örneğin \\(\\left(0,\\frac{\\pi}{2}\\right)\\) aralığında \\(\\cos\\) azalırken \\(\\sec\\) artar.</p>\n<p>\\(|\\cos\\theta|\\le1\\) olduğundan \\(|\\sec\\theta|\\ge1\\); bu yüzden sekant ve kosekant hiçbir zaman \\(-1\\) ile \\(1\\) arasında değer almaz. \\(\\sec\\theta=\\frac12\\) denkleminin çözümü <strong>yoktur</strong>.</p>\n<p>Kotanjant, tanjantın tersi olduğundan sıfırlar ve asimptotlar yer değiştirir: tanjantın sıfırları (\\(k\\pi\\)) kotanjantın asimptotları, tanjantın asimptotları (\\(\\frac{\\pi}{2}+k\\pi\\)) kotanjantın sıfırlarıdır. Kotanjant her dalda <strong>azalandır</strong>.</p>\n<h4>Değer hesaplama</h4>\n<p>\\(\\sec\\frac{2\\pi}{3}=\\frac{1}{\\cos\\frac{2\\pi}{3}}=\\frac{1}{-1/2}=-2\\). \\(\\csc\\frac{\\pi}{4}=\\frac{1}{\\sqrt2/2}=\\frac{2}{\\sqrt2}=\\sqrt2\\). \\(\\cot\\frac{\\pi}{6}=\\frac{\\cos\\frac{\\pi}{6}}{\\sin\\frac{\\pi}{6}}=\\frac{\\sqrt3/2}{1/2}=\\sqrt3\\).</p>\n<div class=\"kn-dikkat\">Hesap makinelerinde sec/csc/cot tuşu yoktur. Kısım B'de \\(\\sec 1.2\\) için \\(1\\div\\cos(1.2)\\) yaz; \\(\\cos^{-1}(1.2)\\) yazmak ters fonksiyondur (ve tanımsızdır).</div>",
+   "ornekler": [
+    {
+     "soru": "\\(\\csc\\frac{7\\pi}{6}\\), \\(\\sec\\frac{7\\pi}{4}\\) ve \\(\\cot\\frac{3\\pi}{4}\\) değerlerini bulun.",
+     "cozum": [
+      "\\(\\sin\\frac{7\\pi}{6}=-\\frac12\\Rightarrow\\csc\\frac{7\\pi}{6}=-2\\).",
+      "\\(\\cos\\frac{7\\pi}{4}=\\frac{\\sqrt2}{2}\\Rightarrow\\sec\\frac{7\\pi}{4}=\\sqrt2\\).",
+      "\\(\\tan\\frac{3\\pi}{4}=-1\\Rightarrow\\cot\\frac{3\\pi}{4}=-1\\)."
+     ]
+    },
+    {
+     "soru": "\\(f(\\theta)=\\csc(2\\theta)\\) fonksiyonunun periyodunu ve \\(0\\lt\\theta\\lt\\pi\\) aralığındaki dikey asimptotlarını bulun.",
+     "cozum": [
+      "\\(\\csc\\)'in periyodu \\(2\\pi\\), \\(b=2\\Rightarrow\\) periyot \\(\\pi\\).",
+      "Asimptotlar \\(\\sin(2\\theta)=0\\): \\(2\\theta=k\\pi\\Rightarrow\\theta=\\frac{k\\pi}{2}\\).",
+      "\\((0,\\pi)\\) içinde yalnız \\(\\theta=\\frac{\\pi}{2}\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(\\sec\\theta=0.6\\) denkleminin çözümü olmadığını açıklayın.",
+     "cozum": [
+      "\\(\\sec\\theta=0.6\\Rightarrow\\cos\\theta=\\frac{1}{0.6}=\\frac53\\).",
+      "\\(\\cos\\theta\\) değerleri \\([-1,1]\\) aralığındadır ve \\(\\frac53\\gt1\\).",
+      "<em>\"Since \\(|\\cos\\theta|\\le1\\) for all \\(\\theta\\), \\(|\\sec\\theta|\\ge1\\); the value 0.6 is not in the range of secant.\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her sec/csc/cot sorusunu önce cos/sin/tan sorusuna çevir, sonra ters oranı al.",
+    "Asimptot sorularında \"paydanın sıfırı\" kuralını kullan: sec için kosinüs, csc ve cot için sinüs.",
+    "Bu konu genellikle Kısım A (hesap makinesiz) ve FRQ 4'tedir; değerleri kesin (\\(\\sqrt2\\), \\(-2\\)) yaz.",
+    "Kısım B'de \\(\\sec x\\) için \\(1/\\cos(x)\\) gir; \\(\\cos^{-1}\\) tuşu ters kosinüstür."
+   ],
+   "sikHatalar": [
+    "Sekantı sinüsün tersi sanmak; \\(\\sec=\\frac{1}{\\cos}\\), \\(\\csc=\\frac{1}{\\sin}\\).",
+    "\\(\\sec\\theta\\) ile \\(\\arccos\\theta\\)'yı (\\(\\cos^{-1}\\theta\\)) karıştırmak.",
+    "Kotanjantın asimptotlarını \\(\\frac{\\pi}{2}+k\\pi\\)'ye koymak; bunlar kotanjantın sıfırlarıdır."
+   ],
+   "terimler": [
+    {
+     "en": "secant",
+     "tr": "sekant"
+    },
+    {
+     "en": "cosecant",
+     "tr": "kosekant"
+    },
+    {
+     "en": "cotangent",
+     "tr": "kotanjant"
+    },
+    {
+     "en": "reciprocal",
+     "tr": "çarpmaya göre ters (1 bölü)"
+    },
+    {
+     "en": "local extremum",
+     "tr": "yerel ekstremum"
+    }
+   ]
+  },
+  {
+   "kod": "3.12",
+   "baslik": "Equivalent Representations of Trigonometric Functions",
+   "baslikTr": "Trigonometrik fonksiyonların denk gösterimleri",
+   "hedefler": [
+    "Pisagor özdeşliklerini (Pythagorean identities) türetmek ve ifadeleri sadeleştirmekte kullanmak.",
+    "Toplam ve fark formülleri (sum and difference identities) ile çift açı (double-angle) formüllerini kullanarak denk ifadeler yazmak ve değer hesaplamak.",
+    "Özdeşlikleri kullanarak trigonometrik denklemleri tek bir fonksiyona indirgeyip çözmek."
+   ],
+   "anlatim": "<p>Bir <strong>özdeşlik (identity)</strong>, değişkenin tanımlı olduğu <em>her</em> değer için doğru olan bir eşitliktir. Özdeşlikler, aynı fonksiyonun farklı ama denk gösterimlerini (equivalent representations) yazmamızı sağlar. FRQ 4 (Symbolic Manipulations) bu becerinin doğrudan sınandığı yerdir.</p>\n<h4>Pisagor özdeşlikleri</h4>\n<p>Birim çemberde \\((\\cos\\theta,\\sin\\theta)\\) noktası \\(x^2+y^2=1\\) çemberi üzerindedir:</p>\n<div class=\"formul\">\\[ \\sin^2\\theta+\\cos^2\\theta=1 \\]</div>\n<p>Her iki tarafı \\(\\cos^2\\theta\\)'ya bölersek \\(\\tan^2\\theta+1=\\sec^2\\theta\\); \\(\\sin^2\\theta\\)'ya bölersek \\(1+\\cot^2\\theta=\\csc^2\\theta\\) elde ederiz.</p>\n<p><strong>Kullanım:</strong> \\(\\sin\\theta=\\frac35\\) ve \\(\\theta\\) II. bölgede ise \\(\\cos^2\\theta=1-\\frac{9}{25}=\\frac{16}{25}\\), II. bölgede kosinüs negatif: \\(\\cos\\theta=-\\frac45\\).</p>\n<h4>Toplam ve fark formülleri</h4>\n<div class=\"formul\">\\[ \\sin(\\alpha\\pm\\beta)=\\sin\\alpha\\cos\\beta\\pm\\cos\\alpha\\sin\\beta \\]\n\\[ \\cos(\\alpha\\pm\\beta)=\\cos\\alpha\\cos\\beta\\mp\\sin\\alpha\\sin\\beta \\]</div>\n<p>Kosinüs formülünde işaret <strong>tersine döner</strong>: toplamda eksi, farkta artı. Örnek: \\(\\cos\\frac{\\pi}{12}=\\cos\\left(\\frac{\\pi}{3}-\\frac{\\pi}{4}\\right)=\\frac12\\cdot\\frac{\\sqrt2}{2}+\\frac{\\sqrt3}{2}\\cdot\\frac{\\sqrt2}{2}=\\frac{\\sqrt2+\\sqrt6}{4}\\).</p>\n<h4>Çift açı formülleri</h4>\n<p>\\(\\alpha=\\beta=\\theta\\) koyunca:</p>\n<div class=\"formul\">\\[ \\sin(2\\theta)=2\\sin\\theta\\cos\\theta,\\qquad \\cos(2\\theta)=\\cos^2\\theta-\\sin^2\\theta=2\\cos^2\\theta-1=1-2\\sin^2\\theta \\]</div>\n<p>Kosinüsün üç biçimi vardır; hangisini seçeceğin denklemin içinde ne olduğuna bağlıdır. \\(\\cos(2\\theta)+\\cos\\theta=0\\) denkleminde yalnız kosinüs kalsın diye \\(2\\cos^2\\theta-1\\) seçilir: \\(2\\cos^2\\theta+\\cos\\theta-1=0\\Rightarrow(2\\cos\\theta-1)(\\cos\\theta+1)=0\\).</p>\n<h4>Sadeleştirme stratejileri</h4>\n<table><thead><tr><th>Strateji</th><th>Örnek</th></tr></thead>\n<tbody><tr><td>Her şeyi sin ve cos'a çevir</td><td>\\(\\tan\\theta\\cos\\theta=\\frac{\\sin\\theta}{\\cos\\theta}\\cos\\theta=\\sin\\theta\\)</td></tr>\n<tr><td>Pisagor özdeşliği</td><td>\\(\\frac{1-\\cos^2\\theta}{\\sin\\theta}=\\frac{\\sin^2\\theta}{\\sin\\theta}=\\sin\\theta\\)</td></tr>\n<tr><td>Çarpanlara ayır</td><td>\\(\\sin^4\\theta-\\cos^4\\theta=(\\sin^2\\theta-\\cos^2\\theta)\\cdot1=-\\cos2\\theta\\)</td></tr></tbody></table>\n<h4>Sinüs ve kosinüs toplamını tek sinüzoide çevirmek</h4>\n<p>Toplam formülü, \\(a\\sin\\theta+b\\cos\\theta\\) biçimindeki ifadelerin tek bir sinüzoidal fonksiyon olduğunu gösterir. Örneğin \\(\\sin\\theta+\\cos\\theta=\\sqrt2\\sin\\left(\\theta+\\frac{\\pi}{4}\\right)\\), çünkü sağ taraf \\(\\sqrt2\\left(\\sin\\theta\\cdot\\frac{\\sqrt2}{2}+\\cos\\theta\\cdot\\frac{\\sqrt2}{2}\\right)\\)'ye açılır. Genliği \\(\\sqrt2\\)'dir.</p>\n<div class=\"kn-dikkat\">\\(\\sin(\\alpha+\\beta)\\neq\\sin\\alpha+\\sin\\beta\\) ve \\(\\sin2\\theta\\neq2\\sin\\theta\\). Kontrol için \\(\\alpha=\\beta=\\frac{\\pi}{2}\\) koy: \\(\\sin\\pi=0\\) ama \\(\\sin\\frac{\\pi}{2}+\\sin\\frac{\\pi}{2}=2\\).</div>",
+   "ornekler": [
+    {
+     "soru": "\\(\\cos\\theta=-\\frac{5}{13}\\) ve \\(\\pi\\lt\\theta\\lt\\frac{3\\pi}{2}\\) ise \\(\\sin(2\\theta)\\) ve \\(\\cos(2\\theta)\\) değerlerini bulun.",
+     "cozum": [
+      "III. bölgede sinüs negatif: \\(\\sin\\theta=-\\sqrt{1-\\frac{25}{169}}=-\\frac{12}{13}\\).",
+      "\\(\\sin2\\theta=2\\left(-\\frac{12}{13}\\right)\\left(-\\frac{5}{13}\\right)=\\frac{120}{169}\\).",
+      "\\(\\cos2\\theta=2\\cdot\\frac{25}{169}-1=-\\frac{119}{169}\\). Kontrol: \\(120^2+119^2=169^2\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\sin\\frac{5\\pi}{12}\\) değerini kesin olarak bulun.",
+     "cozum": [
+      "\\(\\frac{5\\pi}{12}=\\frac{\\pi}{4}+\\frac{\\pi}{6}\\).",
+      "\\(\\sin\\frac{\\pi}{4}\\cos\\frac{\\pi}{6}+\\cos\\frac{\\pi}{4}\\sin\\frac{\\pi}{6}=\\frac{\\sqrt2}{2}\\cdot\\frac{\\sqrt3}{2}+\\frac{\\sqrt2}{2}\\cdot\\frac12=\\frac{\\sqrt6+\\sqrt2}{4}\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(\\cos(2\\theta)=\\sin\\theta\\) denklemini \\(0\\le\\theta\\lt2\\pi\\) için çözün; kullandığınız özdeşliği belirtin.",
+     "cozum": [
+      "Yalnız sinüs kalsın diye \\(\\cos2\\theta=1-2\\sin^2\\theta\\) özdeşliğini kullan: \\(1-2\\sin^2\\theta=\\sin\\theta\\).",
+      "\\(2\\sin^2\\theta+\\sin\\theta-1=0\\Rightarrow(2\\sin\\theta-1)(\\sin\\theta+1)=0\\).",
+      "\\(\\sin\\theta=\\frac12\\Rightarrow\\frac{\\pi}{6},\\frac{5\\pi}{6}\\); \\(\\sin\\theta=-1\\Rightarrow\\frac{3\\pi}{2}\\). Üç çözüm."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "FRQ 4'te (hesap makinesiz) \"rewrite in terms of \\(\\sin x\\) only\" gibi istekler gelir; kullandığın özdeşliği adıyla yaz.",
+    "\\(\\cos2\\theta\\)'nın üç biçiminden denklemde kalan fonksiyona uyanı seç.",
+    "Bölge bilgisini (Quadrant) kökün işaretini seçmek için mutlaka kullan; \\(\\pm\\) bırakma.",
+    "Denk ifade sorusunda emin değilsen bir test değeri (\\(\\theta=\\frac{\\pi}{6}\\)) koyup iki tarafı karşılaştır."
+   ],
+   "sikHatalar": [
+    "\\(\\cos(\\alpha+\\beta)\\) formülünde işareti artı yazmak.",
+    "\\(\\sin^2\\theta\\)'yı \\(\\sin(\\theta^2)\\) ile karıştırmak.",
+    "Pisagor özdeşliğinden kök alırken işareti bölgeye göre seçmemek."
+   ],
+   "terimler": [
+    {
+     "en": "identity",
+     "tr": "özdeşlik"
+    },
+    {
+     "en": "Pythagorean identity",
+     "tr": "Pisagor özdeşliği"
+    },
+    {
+     "en": "sum and difference identities",
+     "tr": "toplam ve fark formülleri"
+    },
+    {
+     "en": "double-angle identity",
+     "tr": "çift açı formülü"
+    },
+    {
+     "en": "equivalent expression",
+     "tr": "denk ifade"
+    }
+   ]
+  },
+  {
+   "kod": "3.13",
+   "baslik": "Trigonometry and Polar Coordinates",
+   "baslikTr": "Trigonometri ve kutupsal koordinatlar",
+   "hedefler": [
+    "Bir noktayı kutupsal koordinatlarla (polar coordinates) \\((r,\\theta)\\) göstermek ve dik koordinatlarla (rectangular coordinates) arasında dönüşüm yapmak.",
+    "Aynı noktanın birden çok kutupsal gösterimi olduğunu (negatif \\(r\\) dahil) açıklamak.",
+    "Bir karmaşık sayıyı (complex number) karmaşık düzlemde konumlandırmak ve kutupsal biçimde \\(r(\\cos\\theta+i\\sin\\theta)\\) yazmak."
+   ],
+   "anlatim": "<p>Dik koordinatlarda (rectangular coordinates) bir nokta \"sağa \\(x\\), yukarı \\(y\\)\" ile verilir. <strong>Kutupsal koordinatlarda (polar coordinates)</strong> ise \"orijinden \\(r\\) uzaklıkta, pozitif \\(x\\)-ekseninden \\(\\theta\\) açısıyla\" verilir: \\((r,\\theta)\\). Orijine <strong>kutup (pole)</strong>, pozitif \\(x\\)-eksenine <strong>kutup ekseni (polar axis)</strong> denir.</p>\n<h4>Dönüşüm formülleri</h4>\n<div class=\"formul\">\\[ x=r\\cos\\theta,\\qquad y=r\\sin\\theta,\\qquad r^2=x^2+y^2,\\qquad \\tan\\theta=\\frac{y}{x}\\ (x\\neq0) \\]</div>\n<p><strong>Kutupsaldan dik koordinata:</strong> \\(\\left(4,\\frac{5\\pi}{6}\\right)\\to x=4\\cos\\frac{5\\pi}{6}=-2\\sqrt3,\\ y=4\\sin\\frac{5\\pi}{6}=2\\). Nokta: \\((-2\\sqrt3,\\ 2)\\).</p>\n<p><strong>Dik koordinattan kutupsala:</strong> \\((-3,-3)\\). \\(r=\\sqrt{9+9}=3\\sqrt2\\). \\(\\tan\\theta=1\\) ama nokta III. bölgede, bu yüzden \\(\\theta=\\frac{5\\pi}{4}\\) (\\(\\frac{\\pi}{4}\\) değil!). Yanıt: \\(\\left(3\\sqrt2,\\frac{5\\pi}{4}\\right)\\).</p>\n<div class=\"kn-dikkat\">\\(\\tan\\theta=\\frac{y}{x}\\)'ten \\(\\theta=\\arctan\\frac{y}{x}\\) almak yalnız I. ve IV. bölgede doğrudur. II. veya III. bölgedeki noktalar için \\(\\pi\\) ekle.</div>\n<h4>Bir noktanın çok sayıda gösterimi</h4>\n<p>Dik koordinatın aksine, bir noktanın sonsuz sayıda kutupsal adı vardır:</p>\n<ul><li>\\((r,\\theta)=(r,\\theta+2\\pi k)\\): tam tur eklemek aynı noktayı verir.</li><li>\\((r,\\theta)=(-r,\\theta+\\pi)\\): <strong>negatif \\(r\\)</strong>, \\(\\theta\\) yönünün tam tersine \\(|r|\\) kadar gitmek demektir.</li></ul>\n<p>Örnek: \\(\\left(-2,\\frac{\\pi}{3}\\right)\\) noktası, \\(\\left(2,\\frac{4\\pi}{3}\\right)\\) ile aynıdır; III. bölgededir.</p>\n<h4>Denklemleri dönüştürmek</h4>\n<table><thead><tr><th>Kutupsal</th><th>Dik koordinat</th><th>Grafik</th></tr></thead>\n<tbody><tr><td>\\(r=5\\)</td><td>\\(x^2+y^2=25\\)</td><td>merkezi orijinde çember</td></tr>\n<tr><td>\\(\\theta=\\frac{\\pi}{4}\\)</td><td>\\(y=x\\)</td><td>orijinden geçen doğru</td></tr>\n<tr><td>\\(r=4\\cos\\theta\\)</td><td>\\(x^2+y^2=4x\\)</td><td>merkezi \\((2,0)\\), yarıçapı 2 olan çember</td></tr></tbody></table>\n<p>Son satırda iki tarafı \\(r\\) ile çarptık: \\(r^2=4r\\cos\\theta\\Rightarrow x^2+y^2=4x\\).</p>\n<h4>Karmaşık sayılar ve kutupsal biçim</h4>\n<p>\\(z=a+bi\\) karmaşık sayısı, <strong>karmaşık düzlemde (complex plane)</strong> \\((a,b)\\) noktasıyla gösterilir: yatay eksen gerçel kısım (real axis), dikey eksen sanal kısım (imaginary axis). Kutupsal koordinatları kullanınca:</p>\n<div class=\"formul\">\\[ a+bi=r(\\cos\\theta+i\\sin\\theta),\\qquad r=\\sqrt{a^2+b^2} \\]</div>\n<p>Örnek: \\(1+i\\sqrt3\\): \\(r=\\sqrt{1+3}=2\\), \\(\\theta=\\frac{\\pi}{3}\\) (I. bölge). Kutupsal biçim: \\(2\\left(\\cos\\frac{\\pi}{3}+i\\sin\\frac{\\pi}{3}\\right)\\). \\(r\\)'ye karmaşık sayının <strong>modülü (modulus)</strong> ya da mutlak değeri, \\(\\theta\\)'ya <strong>argümanı (argument)</strong> denir.</p>",
+   "ornekler": [
+    {
+     "soru": "\\((2,\\ -2\\sqrt3)\\) noktasını \\(r\\gt0\\) ve \\(0\\le\\theta\\lt2\\pi\\) olacak şekilde kutupsal koordinatlarla yazın.",
+     "cozum": [
+      "\\(r=\\sqrt{4+12}=4\\).",
+      "Nokta IV. bölgede; \\(\\tan\\theta=\\frac{-2\\sqrt3}{2}=-\\sqrt3\\), referans \\(\\frac{\\pi}{3}\\), \\(\\theta=2\\pi-\\frac{\\pi}{3}=\\frac{5\\pi}{3}\\).",
+      "Yanıt: \\(\\left(4,\\ \\frac{5\\pi}{3}\\right)\\)."
+     ]
+    },
+    {
+     "soru": "\\(r=6\\sin\\theta\\) kutupsal denklemini dik koordinatlarla yazın ve grafiği tanımlayın.",
+     "cozum": [
+      "İki tarafı \\(r\\) ile çarp: \\(r^2=6r\\sin\\theta\\Rightarrow x^2+y^2=6y\\).",
+      "Tam kareye tamamla: \\(x^2+(y-3)^2=9\\).",
+      "Merkezi \\((0,3)\\), yarıçapı 3 olan çember."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir öğrenci \\((-4,\\ 4)\\) noktasının kutupsal açısının \\(\\arctan(-1)=-\\frac{\\pi}{4}\\) olduğunu söylüyor. Hatayı açıklayın ve doğru kutupsal koordinatları (\\(r\\gt0\\)) verin.",
+     "cozum": [
+      "\\(-\\frac{\\pi}{4}\\) açısının bitiş kenarı IV. bölgededir; ama \\((-4,4)\\) II. bölgededir.",
+      "\\(\\arctan\\) yalnız \\(\\left(-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right)\\) arasında açı verdiği için \\(\\pi\\) eklenmeli: \\(\\theta=\\frac{3\\pi}{4}\\).",
+      "\\(r=\\sqrt{32}=4\\sqrt2\\); doğru gösterim \\(\\left(4\\sqrt2,\\ \\frac{3\\pi}{4}\\right)\\). (Not: \\(\\left(-4\\sqrt2,-\\frac{\\pi}{4}\\right)\\) de aynı noktadır.)"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Dik→kutupsal dönüşümde önce noktanın bölgesini belirle, sonra açıyı seç. Bu tek adım çoğu çeldiriciyi eler.",
+    "Kısım B'de hesap makinesi \\(\\tan^{-1}\\) yalnız I/IV. bölge açısı verir; II/III. bölge için \\(\\pi\\) ekle.",
+    "Denklem dönüşümünde \"iki tarafı \\(r\\) ile çarp\" hilesi \\(r=a\\cos\\theta\\) ve \\(r=a\\sin\\theta\\) için standarttır.",
+    "Karmaşık sayı sorularında \\(a+bi\\)'yi \\((a,b)\\) noktası gibi düşün; modül \\(r\\), argüman \\(\\theta\\)'dır."
+   ],
+   "sikHatalar": [
+    "\\(\\theta=\\arctan\\frac{y}{x}\\)'i bölgeyi kontrol etmeden kullanmak.",
+    "Negatif \\(r\\)'yi yok saymak ya da \\((-r,\\theta)\\)'yı \\((r,-\\theta)\\) sanmak; doğrusu \\((-r,\\theta)=(r,\\theta+\\pi)\\).",
+    "\\(x=r\\sin\\theta\\), \\(y=r\\cos\\theta\\) yazmak (sin ve cos'u karıştırmak)."
+   ],
+   "terimler": [
+    {
+     "en": "polar coordinates",
+     "tr": "kutupsal koordinatlar"
+    },
+    {
+     "en": "rectangular coordinates",
+     "tr": "dik koordinatlar"
+    },
+    {
+     "en": "pole / polar axis",
+     "tr": "kutup / kutup ekseni"
+    },
+    {
+     "en": "complex plane",
+     "tr": "karmaşık düzlem"
+    },
+    {
+     "en": "modulus / argument",
+     "tr": "modül / argüman"
+    }
+   ]
+  },
+  {
+   "kod": "3.14",
+   "baslik": "Polar Function Graphs",
+   "baslikTr": "Kutupsal fonksiyon grafikleri",
+   "hedefler": [
+    "\\(r=f(\\theta)\\) kutupsal fonksiyonunun grafiğini, \\(\\theta\\)-\\(r\\) dik koordinat grafiğinden yararlanarak çizmek ve yorumlamak.",
+    "Çember, gül eğrisi (rose curve), limaçon ve kardiyoit (cardioid) gibi temel kutupsal eğrileri denkleminden tanımak.",
+    "Gül eğrisinde yaprak sayısını, limaçonda iç halka olup olmadığını belirlemek."
+   ],
+   "anlatim": "<p>Bir <strong>kutupsal fonksiyon (polar function)</strong> \\(r=f(\\theta)\\) biçimindedir: girdi açı, çıktı orijinden (işaretli) uzaklıktır. Grafik, \\(\\theta\\) dönerken noktanın orijine ne kadar uzak olduğunu gösterir.</p>\n<h4>İki grafik, bir fonksiyon</h4>\n<p>Aynı fonksiyonu iki şekilde çizebiliriz: (1) yatay eksen \\(\\theta\\), dikey eksen \\(r\\) olan <strong>dik koordinat grafiği</strong>; (2) gerçek <strong>kutupsal grafik (polar graph)</strong>. Birincisi ikincisini çizmenin haritasıdır: \\(\\theta\\)-\\(r\\) grafiğinde \\(r\\) yükselirken kutupsal grafikte nokta orijinden uzaklaşır; \\(r=0\\) iken nokta orijindedir; \\(r\\lt0\\) iken nokta ters yöndedir.</p>\n<table><thead><tr><th>\\(\\theta\\)</th><th>0</th><th>\\(\\frac{\\pi}{2}\\)</th><th>\\(\\pi\\)</th><th>\\(\\frac{3\\pi}{2}\\)</th><th>\\(2\\pi\\)</th></tr></thead>\n<tbody><tr><td>\\(r=2+2\\cos\\theta\\)</td><td>4</td><td>2</td><td>0</td><td>2</td><td>4</td></tr></tbody></table>\n<p>Bu tablo bir <strong>kardiyoit (cardioid)</strong> verir: \\(\\theta=0\\)'da sağda 4 birim, \\(\\theta=\\pi\\)'de orijine değer (kalp şeklinin çukuru).</p>\n<h4>Temel eğri aileleri</h4>\n<table><thead><tr><th>Denklem</th><th>Ad</th><th>Özellik</th></tr></thead>\n<tbody>\n<tr><td>\\(r=a\\)</td><td>çember</td><td>merkez orijin, yarıçap \\(|a|\\)</td></tr>\n<tr><td>\\(r=a\\cos\\theta\\), \\(r=a\\sin\\theta\\)</td><td>orijinden geçen çember</td><td>çap \\(|a|\\); cos → \\(x\\)-ekseni üzerinde, sin → \\(y\\)-ekseni üzerinde</td></tr>\n<tr><td>\\(r=a\\cos(n\\theta)\\), \\(r=a\\sin(n\\theta)\\)</td><td>gül eğrisi (rose curve)</td><td>\\(n\\) tek → \\(n\\) yaprak; \\(n\\) çift → \\(2n\\) yaprak; yaprak uzunluğu \\(|a|\\)</td></tr>\n<tr><td>\\(r=a+b\\cos\\theta\\) (ya da \\(\\sin\\))</td><td>limaçon</td><td>\\(|a|\\lt|b|\\): iç halka (inner loop); \\(|a|=|b|\\): kardiyoit; \\(|a|\\gt|b|\\): halkasız</td></tr></tbody></table>\n<h4>Gül eğrisinde yaprak sayısı</h4>\n<p>\\(r=3\\sin(2\\theta)\\): \\(n=2\\) çift → 4 yaprak, her biri 3 uzunlukta. \\(r=5\\cos(3\\theta)\\): \\(n=3\\) tek → 3 yaprak. Tek \\(n\\)'de grafik \\([0,\\pi]\\) aralığında tamamlanır ve ikinci yarı turda aynı yapraklar tekrar çizilir; bu yüzden yaprak sayısı iki katına çıkmaz.</p>\n<h4>Limaçon ve iç halka</h4>\n<p>\\(r=1+2\\cos\\theta\\): \\(|1|\\lt|2|\\) → iç halka. \\(r=0\\) olan açılar: \\(\\cos\\theta=-\\frac12\\Rightarrow\\theta=\\frac{2\\pi}{3},\\frac{4\\pi}{3}\\). Bu iki açı arasında \\(r\\lt0\\) olur ve nokta ters yöne gider; iç halka bu aralıkta çizilir. En büyük uzaklık \\(\\theta=0\\)'da \\(r=3\\).</p>\n<div class=\"kn-kural\"><strong>Simetri:</strong> \\(\\cos\\theta\\) içeren kutupsal denklemler kutup eksenine (\\(x\\)-ekseni) göre simetriktir, \\(\\sin\\theta\\) içerenler \\(\\theta=\\frac{\\pi}{2}\\) doğrusuna (\\(y\\)-ekseni) göre.</div>\n<div class=\"kn-dikkat\">Kutupsal grafikleri çizerken grafik hesap makinesini (Kısım B) <strong>polar mode</strong> ve radyana al; \\(\\theta\\) aralığını \\([0,2\\pi]\\) seç. Hesap makinesiz sorularda \\(\\theta=0,\\frac{\\pi}{2},\\pi,\\frac{3\\pi}{2}\\) noktalarını hesaplamak çoğu zaman eğriyi tanımaya yeter.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(r=4\\cos(5\\theta)\\) eğrisinin kaç yaprağı vardır ve orijinden en uzak noktaları ne kadar uzaktadır?",
+     "cozum": [
+      "Gül eğrisi, \\(n=5\\) tek → 5 yaprak.",
+      "\\(|r|\\)'nin en büyük değeri \\(|4|=4\\); yaprak uçları orijinden 4 birim uzaktadır."
+     ]
+    },
+    {
+     "soru": "\\(r=3-3\\sin\\theta\\) eğrisini sınıflandırın ve orijinden geçtiği açıyı bulun.",
+     "cozum": [
+      "\\(a=3,\\ b=-3\\), \\(|a|=|b|\\) → kardiyoit.",
+      "\\(r=0\\Rightarrow\\sin\\theta=1\\Rightarrow\\theta=\\frac{\\pi}{2}\\).",
+      "En uzak nokta \\(\\theta=\\frac{3\\pi}{2}\\)'de \\(r=6\\): kalp aşağıya doğru uzanır."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(r=1+2\\sin\\theta\\) için \\(\\frac{7\\pi}{6}\\lt\\theta\\lt\\frac{11\\pi}{6}\\) aralığında grafiğin nerede olduğunu açıklayın.",
+     "cozum": [
+      "\\(r=0\\Rightarrow\\sin\\theta=-\\frac12\\Rightarrow\\theta=\\frac{7\\pi}{6},\\frac{11\\pi}{6}\\).",
+      "Bu aralıkta \\(\\sin\\theta\\lt-\\frac12\\), dolayısıyla \\(r\\lt0\\).",
+      "<em>\"Because \\(r\\lt0\\), the points are plotted in the direction opposite to \\(\\theta\\), so they lie in Quadrants I and II and form the inner loop.\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Gül eğrisi: \\(n\\) tek ise \\(n\\), çift ise \\(2n\\) yaprak. Bu kural Kısım A'da doğrudan sorulur.",
+    "Limaçonda \\(|a|\\) ile \\(|b|\\)'yi karşılaştır: küçükse iç halka, eşitse kardiyoit.",
+    "FRQ'da negatif \\(r\\) yorumunu mutlaka \"opposite direction\" ifadesiyle yaz.",
+    "\\(\\theta\\)-\\(r\\) grafiği verilirse \\(r\\)'nin işaretine ve sıfırlarına bak: sıfırlar orijinden geçişleri gösterir."
+   ],
+   "sikHatalar": [
+    "\\(r=a\\sin(2\\theta)\\)'nın 2 yaprağı olduğunu sanmak; çift \\(n\\)'de yaprak sayısı \\(2n=4\\)'tür.",
+    "Negatif \\(r\\) değerlerini çizmemek ya da \\(\\theta\\) yönünde çizmek.",
+    "\\(r=a\\cos\\theta\\)'yı yarıçapı \\(a\\) olan çember sanmak; yarıçap \\(\\frac{|a|}{2}\\)'dir."
+   ],
+   "terimler": [
+    {
+     "en": "polar function",
+     "tr": "kutupsal fonksiyon"
+    },
+    {
+     "en": "rose curve",
+     "tr": "gül eğrisi"
+    },
+    {
+     "en": "petal",
+     "tr": "yaprak"
+    },
+    {
+     "en": "limaçon",
+     "tr": "limaçon (salyangoz eğrisi)"
+    },
+    {
+     "en": "cardioid",
+     "tr": "kardiyoit (kalp eğrisi)"
+    },
+    {
+     "en": "inner loop",
+     "tr": "iç halka"
+    }
+   ]
+  },
+  {
+   "kod": "3.15",
+   "baslik": "Rates of Change in Polar Functions",
+   "baslikTr": "Kutupsal fonksiyonlarda değişim hızı",
+   "hedefler": [
+    "\\(r=f(\\theta)\\) için \\(r\\)'nin artan/azalan olmasını, noktanın orijinden uzaklaşıp yaklaşmasıyla ilişkilendirmek (\\(r\\)'nin işaretini dikkate alarak).",
+    "Bir aralıkta \\(r\\)'nin \\(\\theta\\)'ya göre ortalama değişim hızını hesaplamak ve birimiyle yorumlamak.",
+    "Kutupsal grafikte orijine en uzak noktaları \\(|r|\\)'nin ekstremumlarından bulmak."
+   ],
+   "anlatim": "<p>Kutupsal fonksiyonda \\(r\\) orijinden işaretli uzaklıktır. \\(\\theta\\) arttıkça \\(r\\) değişir; bu değişimi okuyarak noktanın orijine <strong>yaklaştığını mı uzaklaştığını mı</strong> söyleyebiliriz. Ancak \\(r\\)'nin işareti önemlidir, çünkü gerçek uzaklık \\(|r|\\)'dir.</p>\n<h4>Uzaklaşma / yaklaşma kuralı</h4>\n<table><thead><tr><th>\\(r\\)'nin işareti</th><th>\\(r\\) artıyor</th><th>\\(r\\) azalıyor</th></tr></thead>\n<tbody><tr><td>\\(r\\gt0\\)</td><td>orijinden <strong>uzaklaşıyor</strong></td><td>orijine <strong>yaklaşıyor</strong></td></tr>\n<tr><td>\\(r\\lt0\\)</td><td>orijine <strong>yaklaşıyor</strong> (\\(|r|\\) küçülüyor)</td><td>orijinden <strong>uzaklaşıyor</strong> (\\(|r|\\) büyüyor)</td></tr></tbody></table>\n<div class=\"kn-kural\"><strong>Özet:</strong> \\(r\\) ile \\(r\\)'nin değişimi <strong>aynı işaretliyse</strong> (ikisi pozitif ya da ikisi negatif) nokta orijinden uzaklaşır; <strong>zıt işaretliyse</strong> yaklaşır.</div>\n<p>Örnek: \\(r=2\\sin(2\\theta)\\). \\(0\\lt\\theta\\lt\\frac{\\pi}{4}\\) aralığında \\(r\\gt0\\) ve artıyor (0'dan 2'ye) → uzaklaşıyor. \\(\\frac{\\pi}{4}\\lt\\theta\\lt\\frac{\\pi}{2}\\) aralığında \\(r\\gt0\\) ve azalıyor → yaklaşıyor. \\(\\frac{\\pi}{2}\\lt\\theta\\lt\\frac{3\\pi}{4}\\) aralığında \\(r\\lt0\\) ve azalıyor (0'dan −2'ye) → yine <strong>uzaklaşıyor</strong>.</p>\n<h4>Ortalama değişim hızı</h4>\n<div class=\"formul\">\\[ \\text{AROC}=\\frac{r(\\theta_2)-r(\\theta_1)}{\\theta_2-\\theta_1} \\]</div>\n<p>Birim: \"birim uzaklık / radyan\". Örneğin \\(r=3+2\\cos\\theta\\) için \\(\\left[0,\\frac{\\pi}{2}\\right]\\) aralığında AROC \\(=\\frac{3-5}{\\pi/2}=-\\frac{4}{\\pi}\\approx-1.27\\). Yorum: <em>\"On average, the distance from the origin decreases by about 1.27 units per radian as \\(\\theta\\) increases from 0 to \\(\\frac{\\pi}{2}\\).\"</em> Bu yorum yalnız \\(r\\gt0\\) olduğu için \"distance\" ifadesiyle yapılabilir.</p>\n<h4>Ortalama değişim hızıyla tahmin</h4>\n<p>Unit 1'deki gibi, AROC'u yerel doğrusal tahmin için kullanabiliriz: \\(r(\\theta_1+\\Delta\\theta)\\approx r(\\theta_1)+\\text{AROC}\\cdot\\Delta\\theta\\). Aralık küçüldükçe AROC, \\(\\theta_1\\)'deki anlık değişim hızına yaklaşır.</p>\n<h4>En uzak ve en yakın noktalar</h4>\n<p>Grafiğin orijine en uzak noktaları \\(|r|\\)'nin en büyük olduğu yerlerdir. \\(r\\) artmaktan azalmaya geçtiğinde (\\(r\\gt0\\) iken) yerel bir en uzak nokta oluşur. Orijinden geçiş \\(r=0\\) olan açılarda olur. Limaçon \\(r=1+2\\cos\\theta\\): en uzak nokta \\(\\theta=0\\)'da \\(|r|=3\\); iç halkanın en uzak noktası \\(\\theta=\\pi\\)'de \\(r=-1\\), yani orijinden 1 birim (sağ tarafta).</p>\n<div class=\"kn-dikkat\">\"\\(r\\) azalıyor\" ile \"orijine yaklaşıyor\" aynı şey <strong>değildir</strong>. FRQ'da cevabı gerekçelendirirken hem \\(r\\)'nin işaretini hem değişim yönünü yaz: <em>\"\\(r\\) is negative and decreasing, so the distance \\(|r|\\) is increasing.\"</em></div>",
+   "ornekler": [
+    {
+     "soru": "\\(r=4\\cos\\theta\\) için \\(\\frac{\\pi}{3}\\le\\theta\\le\\frac{\\pi}{2}\\) aralığında \\(r\\)'nin ortalama değişim hızını bulun ve yorumlayın.",
+     "cozum": [
+      "\\(r\\left(\\frac{\\pi}{3}\\right)=2\\), \\(r\\left(\\frac{\\pi}{2}\\right)=0\\).",
+      "AROC \\(=\\frac{0-2}{\\pi/6}=-\\frac{12}{\\pi}\\approx-3.82\\).",
+      "Bu aralıkta \\(r\\ge0\\), dolayısıyla nokta orijine ortalama yaklaşık 3.82 birim/radyan hızla yaklaşır."
+     ]
+    },
+    {
+     "soru": "\\(r=1-2\\sin\\theta\\) için \\(\\frac{\\pi}{2}\\lt\\theta\\lt\\frac{5\\pi}{6}\\) aralığında nokta orijine yaklaşıyor mu uzaklaşıyor mu?",
+     "cozum": [
+      "\\(\\theta=\\frac{\\pi}{2}\\)'de \\(r=-1\\); \\(\\theta=\\frac{5\\pi}{6}\\)'da \\(r=1-1=0\\). Aralıkta \\(\\sin\\theta\\gt\\frac12\\), yani \\(r\\lt0\\).",
+      "\\(\\sin\\theta\\) bu aralıkta azaldığı için \\(r=1-2\\sin\\theta\\) artıyor (−1'den 0'a).",
+      "\\(r\\lt0\\) ve artıyor → zıt işaret → orijine yaklaşıyor."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(r=3\\sin(2\\theta)\\) için \\(\\frac{\\pi}{2}\\lt\\theta\\lt\\frac{3\\pi}{4}\\) aralığında noktanın orijinden uzaklığı artıyor mu azalıyor mu? Gerekçelendirin.",
+     "cozum": [
+      "Bu aralıkta \\(2\\theta\\in\\left(\\pi,\\frac{3\\pi}{2}\\right)\\), \\(\\sin2\\theta\\lt0\\): \\(r\\lt0\\).",
+      "\\(\\sin(2\\theta)\\) bu aralıkta 0'dan −1'e azalır, dolayısıyla \\(r\\) azalıyor.",
+      "<em>\"On this interval \\(r\\lt0\\) and \\(r\\) is decreasing, so \\(|r|\\) is increasing; the distance from the origin is increasing.\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her soruda iki şeyi ayrı yaz: \\(r\\)'nin işareti ve \\(r\\)'nin artan/azalan olması. Sonra tabloyla karar ver.",
+    "AROC yorumunda birim \"per radian\" olur; \\(r\\gt0\\) değilse \"distance\" yerine \"\\(r\\)\" de.",
+    "Bu konu Kısım A ve B'de çıkabilir; hesap makineli soruda AROC'u ondalık olarak, hesap makinesizde \\(\\pi\\)'li kesin biçimde ver.",
+    "FRQ 1 (Function Concepts) kutupsal bir fonksiyonun grafiği ve değişim hızıyla ilgili kısım içerebilir; ortalama hızı yorumlarken aralığı belirt."
+   ],
+   "sikHatalar": [
+    "\\(r\\) azalırken noktanın her zaman orijine yaklaştığını sanmak; \\(r\\lt0\\) ise uzaklaşır.",
+    "AROC'u \\(\\frac{\\theta_2-\\theta_1}{r(\\theta_2)-r(\\theta_1)}\\) olarak ters yazmak.",
+    "En uzak noktayı \\(r\\)'nin en büyük (işaretli) değeri sanmak; ölçüt \\(|r|\\)'dir."
+   ],
+   "terimler": [
+    {
+     "en": "distance from the origin",
+     "tr": "orijinden uzaklık"
+    },
+    {
+     "en": "average rate of change",
+     "tr": "ortalama değişim hızı"
+    },
+    {
+     "en": "per radian",
+     "tr": "radyan başına"
+    },
+    {
+     "en": "increasing / decreasing",
+     "tr": "artan / azalan"
+    },
+    {
+     "en": "local maximum distance",
+     "tr": "yerel en büyük uzaklık"
+    }
+   ]
+  }
+ ]
+}

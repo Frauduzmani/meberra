@@ -1,0 +1,488 @@
+{
+ "ders": "physics-2",
+ "unite": 9,
+ "baslik": "Thermodynamics",
+ "baslikTr": "Termodinamik",
+ "konular": [
+  {
+   "kod": "9.1",
+   "baslik": "Kinetic Theory of Temperature and Pressure",
+   "baslikTr": "Sıcaklık ve basıncın kinetik teorisi",
+   "hedefler": [
+    "Gaz basıncını moleküllerin duvarlarla çarpışmasındaki momentum değişimiyle açıklamak: \\(P = F/A\\).",
+    "Sıcaklığı moleküllerin ortalama öteleme kinetik enerjisiyle ilişkilendirmek: \\(K_{avg} = \\frac{3}{2}k_B T\\).",
+    "rms hızını (root-mean-square speed) hesaplamak ve aynı sıcaklıktaki farklı gazları karşılaştırmak.",
+    "Maxwell–Boltzmann hız dağılımı grafiklerini sıcaklığa göre yorumlamak."
+   ],
+   "anlatim": "<p>Bir balonu şişirdiğinizde onu içeriden ne iter? Gözle göremediğimiz milyarlarca gaz molekülü saniyede yüzlerce metre hızla hareket eder ve duvarlara çarpar. <strong>Kinetik teori (kinetic theory)</strong>, gazın makroskobik özelliklerini (basınç, sıcaklık) bu mikroskobik hareketle açıklayan modeldir.</p>\n<div class=\"kn-tanim\"><strong>İdeal gaz modeli (ideal gas model):</strong> Moleküller çok küçüktür (hacimleri ihmal edilir), yalnız çarpışırken etkileşir, çarpışmalar esnektir (elastic) ve hareketleri rastgeledir (random).</div>\n<h4>Basınç nereden gelir?</h4>\n<p>Kütlesi \\(m\\), hızı \\(v\\) olan bir molekül duvara dik çarpıp geri dönerse momentumu \\(\\Delta p = 2mv\\) kadar değişir. Bu değişimi duvar sağlar; Newton'un üçüncü yasasına göre molekül de duvara eşit ve zıt kuvvet uygular. Çok sayıda çarpışmanın ortalama kuvveti birim alana bölünürse <strong>basınç (pressure)</strong> bulunur: \\[ P = \\frac{F}{A} \\] Basıncı artırmanın iki mikroskobik yolu vardır:</p>\n<table><thead><tr><th>Değişim</th><th>Çarpışma sıklığı</th><th>Çarpışma başına momentum</th><th>Basınç</th></tr></thead>\n<tbody><tr><td>Sıcaklık artar (V sabit)</td><td>artar</td><td>artar</td><td>artar</td></tr>\n<tr><td>Molekül sayısı artar (T, V sabit)</td><td>artar</td><td>aynı</td><td>artar</td></tr>\n<tr><td>Hacim küçülür (T sabit)</td><td>artar</td><td>aynı</td><td>artar</td></tr></tbody></table>\n<h4>Sıcaklık ne ölçer?</h4>\n<p><strong>Sıcaklık (temperature)</strong>, moleküllerin ortalama öteleme kinetik enerjisinin ölçüsüdür. Denklem sayfasındaki bağıntı: \\[ K_{avg} = \\frac{3}{2}k_B T, \\qquad k_B = 1.38\\times10^{-23}\\ \\text{J/K} \\] Burada \\(T\\) mutlaka <strong>mutlak sıcaklıktır (absolute temperature)</strong>, Kelvin: \\(T = T_C + 273\\). Celsius değerleri asla oranlanmaz.</p>\n<div class=\"kn-kural\"><strong>Ana sonuç:</strong> Aynı sıcaklıktaki tüm gazların molekülleri, kütleleri ne olursa olsun, <em>aynı ortalama kinetik enerjiye</em> sahiptir. Hafif moleküller daha hızlıdır.</div>\n<h4>rms hızı</h4>\n<p>\\(\\frac{1}{2}m v_{rms}^2 = \\frac{3}{2}k_B T\\) eşitliğinden \\[ v_{rms} = \\sqrt{\\frac{3k_B T}{m}} \\] çıkar. Sonuçlar: \\(v_{rms} \\propto \\sqrt{T}\\) (sıcaklık 4 katına çıkarsa hız 2 katına çıkar) ve \\(v_{rms} \\propto 1/\\sqrt{m}\\) (kütle 9 katı ise hız \\(\\frac{1}{3}\\)).</p>\n<h4>Hız dağılımı (Maxwell–Boltzmann distribution)</h4>\n<p>Bir gazdaki moleküllerin hepsi aynı hızda değildir. Molekül sayısı–hız grafiği sağa çarpık bir tepe şeklindedir. Sıcaklık artınca:</p>\n<ul><li>tepe noktası daha yüksek hıza kayar,</li><li>eğri genişler ve tepe alçalır,</li><li>eğrinin altındaki alan (toplam molekül sayısı) <strong>değişmez</strong>.</li></ul>\n<div class=\"kn-dikkat\">\"Sıcaklık arttı, öyleyse <em>her</em> molekül hızlandı\" demek yanlıştır. Sıcaklık bir ortalamayı belirler; sıcak gazda da yavaş moleküller bulunur.</div>\n<p>FRQ dili: \"As temperature increases, the average speed of the molecules increases, so they collide with the walls more frequently and each collision involves a greater change in momentum. Therefore the average force on the wall, and the pressure, increase.\" / \"Because the gases are in thermal equilibrium, the average kinetic energies of their molecules are equal.\"</p>",
+   "ornekler": [
+    {
+     "soru": "Neon gazı \\(250\\ \\text{K}\\) sıcaklıktadır. Bir neon atomunun ortalama öteleme kinetik enerjisi nedir?",
+     "cozum": [
+      "Tek atom sorulduğu için \\(k_B\\) kullanılır: \\(K_{avg} = \\frac{3}{2}k_B T\\).",
+      "\\(K_{avg} = 1.5 \\times (1.38\\times10^{-23})(250) \\approx 5.2\\times10^{-21}\\ \\text{J}\\)."
+     ]
+    },
+    {
+     "soru": "Bir gazın sıcaklığı \\(200\\ \\text{K}\\)'dir. Moleküllerin rms hızını iki katına çıkarmak için gaz hangi sıcaklığa getirilmelidir?",
+     "cozum": [
+      "\\(v_{rms} \\propto \\sqrt{T}\\) → hızın 2 katı için \\(T\\) \\(2^2 = 4\\) katına çıkmalıdır.",
+      "\\(T = 4 \\times 200 = 800\\ \\text{K}\\). (Celsius'ta düşünmek yanlış sonuç verirdi.)"
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir silindirdeki gaz, sıcaklığı sabit tutularak yavaşça sıkıştırılıyor ve basıncı artıyor. Bu artışı moleküler düzeyde açıklayın.",
+     "cozum": [
+      "Sıcaklık sabit → moleküllerin ortalama kinetik enerjisi ve ortalama hızı değişmez → çarpışma başına momentum değişimi aynı kalır.",
+      "Hacim küçüldüğü için moleküller duvarlar arasındaki kısa mesafeyi daha sık kat eder ve birim alana birim zamanda daha çok çarpışma olur.",
+      "<strong>Reasoning:</strong> \"The same molecules strike a given area of wall more frequently, with the same average momentum change per collision, so the average force per unit area (pressure) increases.\""
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Kinetik teori bağıntılarında her zaman Kelvin kullanın: \\(T = T_C + 273\\).",
+    "Tek molekül → \\(k_B\\); bir mol ya da \\(n\\) mol → \\(R\\). Şıklarda bu iki sabit en sık karışan çeldiricidir.",
+    "Basınç değişimini açıklarken iki etkiyi ayrı ayrı adlandırın: \"collision frequency\" ve \"momentum change per collision\". Puanlayıcı ikisini de arar.",
+    "Hesap makinesi AP Physics 2 sınavının tamamında serbesttir ve denklem sayfası (equation sheet) verilir; yine de oran sorularını (2 kat, yarı) kafadan çözmek zaman kazandırır."
+   ],
+   "sikHatalar": [
+    "Aynı sıcaklıktaki farklı gazların aynı hızda hareket ettiğini sanmak (eşit olan ortalama kinetik enerjidir).",
+    "rms hız oranında karekök almayı unutmak.",
+    "Hız dağılımında tepe yüksekliğini sıcaklık göstergesi sanmak; sıcaklığı tepenin hangi hızda olduğu gösterir."
+   ],
+   "terimler": [
+    {
+     "en": "kinetic theory",
+     "tr": "kinetik teori"
+    },
+    {
+     "en": "ideal gas",
+     "tr": "ideal gaz"
+    },
+    {
+     "en": "pressure",
+     "tr": "basınç"
+    },
+    {
+     "en": "absolute temperature",
+     "tr": "mutlak sıcaklık"
+    },
+    {
+     "en": "average kinetic energy",
+     "tr": "ortalama kinetik enerji"
+    },
+    {
+     "en": "root-mean-square speed",
+     "tr": "rms (kare ortalama karekök) hızı"
+    },
+    {
+     "en": "Boltzmann constant",
+     "tr": "Boltzmann sabiti"
+    },
+    {
+     "en": "speed distribution",
+     "tr": "hız dağılımı"
+    }
+   ]
+  },
+  {
+   "kod": "9.2",
+   "baslik": "The Ideal Gas Law",
+   "baslikTr": "İdeal gaz yasası",
+   "hedefler": [
+    "\\(PV = nRT = Nk_BT\\) bağıntısını SI birimleriyle doğru kullanmak.",
+    "İki durum arasındaki değişimlerde oran akıl yürütmesi yapmak: \\(\\frac{P_1V_1}{T_1} = \\frac{P_2V_2}{T_2}\\).",
+    "P–V, P–T ve V–T grafiklerini yorumlamak; eğimi ve kesişimi fiziksel olarak açıklamak."
+   ],
+   "anlatim": "<p>Kinetik teori bize gazın mikroskobik resmini verdi. <strong>İdeal gaz yasası (ideal gas law)</strong> ise bu resmin makroskobik özetidir: basınç, hacim, sıcaklık ve gaz miktarı tek bir denklemle bağlanır.</p>\n<div class=\"kn-tanim\"><strong>İdeal gaz yasası:</strong> \\[ PV = nRT = Nk_BT \\] \\(P\\): basınç (Pa), \\(V\\): hacim (m³), \\(n\\): mol sayısı, \\(N\\): molekül sayısı, \\(T\\): mutlak sıcaklık (K), \\(R = 8.31\\ \\text{J/(mol·K)}\\), \\(k_B = 1.38\\times10^{-23}\\ \\text{J/K}\\).</div>\n<h4>Birimler: en sık puan kaybı</h4>\n<table><thead><tr><th>Verilen</th><th>Çeviri</th></tr></thead>\n<tbody><tr><td>litre (L)</td><td>\\(1\\ \\text{L} = 10^{-3}\\ \\text{m}^3\\)</td></tr>\n<tr><td>santimetreküp</td><td>\\(1\\ \\text{cm}^3 = 10^{-6}\\ \\text{m}^3\\)</td></tr>\n<tr><td>Celsius</td><td>\\(T = T_C + 273\\)</td></tr>\n<tr><td>atmosfer</td><td>\\(1\\ \\text{atm} \\approx 1.0\\times10^{5}\\ \\text{Pa}\\)</td></tr></tbody></table>\n<h4>Oran akıl yürütmesi</h4>\n<p>Gaz miktarı sabitse \\(\\frac{PV}{T}\\) sabittir. Bir değişken sabit tutulursa kalan ikisi arasında basit orantı kalır:</p>\n<table><thead><tr><th>Sabit tutulan</th><th>İlişki</th><th>Örnek durum</th></tr></thead>\n<tbody><tr><td>\\(T\\) (isothermal)</td><td>\\(P \\propto 1/V\\)</td><td>yavaş sıkıştırılan şırınga</td></tr>\n<tr><td>\\(P\\) (isobaric)</td><td>\\(V \\propto T\\)</td><td>serbest pistonlu silindir</td></tr>\n<tr><td>\\(V\\) (isochoric)</td><td>\\(P \\propto T\\)</td><td>rijit çelik tank</td></tr></tbody></table>\n<p>Birden fazla değişken değişiyorsa çarpanları <strong>çarpın</strong>, toplamayın. Örneğin sabit hacimde molekül sayısı yarıya inip mutlak sıcaklık 3 katına çıkarsa \\(P_2/P_1 = (0.5)(3) = 1.5\\) olur.</p>\n<h4>Grafikler</h4>\n<p>Sabit hacimde \\(P = \\left(\\frac{nR}{V}\\right)T\\): P–T grafiği orijinden geçen doğrudur, eğimi \\(nR/V\\)'dir. Yatay eksen Celsius ise doğru \\(-273^\\circ\\text{C}\\)'de sıfır basınca uzanır; bu <strong>mutlak sıfırdır (absolute zero)</strong>. Sabit sıcaklıkta P–V grafiği bir hiperboldür (\\(PV\\) sabit); \\(P\\)'yi \\(1/V\\)'ye karşı çizmek doğrusal bir grafik verir, eğim \\(nRT\\)'dir. AP sınavında \"linearize the data\" istenirse bu tür bir dönüşüm yapılır.</p>\n<div class=\"kn-kural\">İdeal gaz basıncı gazın <strong>cinsine bağlı değildir</strong>. Aynı \\(n\\), \\(V\\), \\(T\\) değerlerinde helyum ve oksijen aynı basıncı yapar: ağır moleküller yavaştır (daha seyrek çarpışır) ama her çarpışmada daha çok momentum aktarır.</div>\n<div class=\"kn-dikkat\">Yoğunluk sorularında dikkat: kütle sabitken hacim artarsa yoğunluk azalır. Sabit basınçta \\(\\rho \\propto 1/T\\).</div>\n<p>FRQ dili: \"Because the volume and the number of moles are constant, the pressure is directly proportional to the absolute temperature.\" / \"The slope of the graph of \\(P\\) versus \\(T\\) equals \\(nR/V\\), so a greater number of moles gives a steeper line.\"</p>",
+   "ornekler": [
+    {
+     "soru": "Bir araba lastiğindeki havanın basıncı \\(290\\ \\text{K}\\)'de \\(2.4\\times10^{5}\\ \\text{Pa}\\)'dır. Yolculuktan sonra sıcaklık \\(310\\ \\text{K}\\)'e çıkıyor; lastik hacmi değişmiyor. Yeni basınç nedir?",
+     "cozum": [
+      "Hacim ve gaz miktarı sabit → \\(P \\propto T\\).",
+      "\\(P_2 = (2.4\\times10^{5})\\dfrac{310}{290} \\approx 2.6\\times10^{5}\\ \\text{Pa}\\)."
+     ]
+    },
+    {
+     "soru": "\\(0.050\\ \\text{m}^3\\) hacimli bir tank \\(400\\ \\text{K}\\) sıcaklıkta ve \\(2.0\\times10^{5}\\ \\text{Pa}\\) basınçta gaz içeriyor. Kaç mol gaz vardır?",
+     "cozum": [
+      "\\(n = \\dfrac{PV}{RT} = \\dfrac{(2.0\\times10^{5})(0.050)}{(8.31)(400)}\\).",
+      "\\(n = \\dfrac{1.0\\times10^{4}}{3324} \\approx 3.0\\ \\text{mol}\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) İki öğrenci sabit basınçta bir gazın hacmini sıcaklığa (K) karşı çiziyor. A grubunun doğrusu B grubununkinden daha diktir; basınçlar aynıdır. Hangi grupta daha çok gaz vardır? Gerekçelendirin.",
+     "cozum": [
+      "\\(V = \\left(\\frac{nR}{P}\\right)T\\) → V–T grafiğinin eğimi \\(nR/P\\)'dir.",
+      "\\(P\\) ve \\(R\\) aynı olduğundan eğim \\(n\\) ile doğru orantılıdır; daha dik doğru daha büyük \\(n\\) demektir.",
+      "<strong>Reasoning:</strong> \"The slope of the V versus T graph equals nR/P. Since the pressures are equal, the steeper line for group A means group A's sample contains more moles of gas.\""
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Formüle koymadan önce her niceliği SI'ya çevirin: m³, Pa, K. Litre ve Celsius tuzakları şıklarda mutlaka vardır.",
+    "Molekül sayısı soruluyorsa \\(PV = Nk_BT\\), mol soruluyorsa \\(PV = nRT\\) kullanın.",
+    "Grafik sorusunda önce denklemi \\(y = mx\\) biçiminde yazın; eğimin neye eşit olduğunu söylemek FRQ'da ayrı puan getirir.",
+    "Hesap makinesi AP Physics 2 sınavının tamamında serbesttir ve denklem sayfası (equation sheet) verilir; yine de oran sorularını (2 kat, yarı) kafadan çözmek zaman kazandırır."
+   ],
+   "sikHatalar": [
+    "Celsius sıcaklıklarını oranlamak (\\(40^\\circ\\text{C}\\) → \\(80^\\circ\\text{C}\\) sıcaklığı iki katına çıkarmaz).",
+    "Yüzde değişimleri toplamak; doğru yöntem çarpanları çarpmaktır.",
+    "Ağır moleküllü gazın aynı koşullarda daha büyük basınç yaptığını sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "ideal gas law",
+     "tr": "ideal gaz yasası"
+    },
+    {
+     "en": "number of moles",
+     "tr": "mol sayısı"
+    },
+    {
+     "en": "universal gas constant",
+     "tr": "evrensel gaz sabiti"
+    },
+    {
+     "en": "absolute zero",
+     "tr": "mutlak sıfır"
+    },
+    {
+     "en": "isothermal",
+     "tr": "sabit sıcaklıklı (izotermal)"
+    },
+    {
+     "en": "isobaric",
+     "tr": "sabit basınçlı (izobarik)"
+    },
+    {
+     "en": "isochoric (isovolumetric)",
+     "tr": "sabit hacimli (izokorik)"
+    },
+    {
+     "en": "linearize",
+     "tr": "doğrusallaştırmak"
+    }
+   ]
+  },
+  {
+   "kod": "9.3",
+   "baslik": "Thermal Energy Transfer and Equilibrium",
+   "baslikTr": "Isıl enerji aktarımı ve ısıl denge",
+   "hedefler": [
+    "Isı (heat), sıcaklık (temperature) ve iç enerji (internal energy) kavramlarını birbirinden ayırmak.",
+    "İletim, taşınım ve ışıma mekanizmalarını tanımak ve örneklerle eşleştirmek.",
+    "Isıl dengeyi ve sıfırıncı yasayı mikroskobik çarpışma modeliyle açıklamak.",
+    "Yalıtılmış sistemde \"kaybedilen enerji = kazanılan enerji\" ilkesini uygulamak."
+   ],
+   "anlatim": "<p>Günlük dilde \"ısı\" kelimesini birçok anlamda kullanırız; fizikte ise üç ayrı kavram vardır ve AP sınavı bunları ayırmanızı bekler.</p>\n<table><thead><tr><th>Kavram</th><th>Anlamı</th><th>Örnek cümle</th></tr></thead>\n<tbody><tr><td><strong>Sıcaklık (temperature)</strong></td><td>parçacıkların ortalama kinetik enerjisinin ölçüsü</td><td>\"The tea is at 70 °C.\"</td></tr>\n<tr><td><strong>İç enerji (internal energy, \\(U\\))</strong></td><td>sistemdeki tüm parçacıkların toplam enerjisi; sistem buna <em>sahiptir</em></td><td>\"The bathtub has more internal energy than the cup.\"</td></tr>\n<tr><td><strong>Isı (heat, \\(Q\\))</strong></td><td>sıcaklık farkı nedeniyle <em>aktarılan</em> enerji</td><td>\"Energy is transferred by heating from the tea to the room.\"</td></tr></tbody></table>\n<div class=\"kn-dikkat\">Bir cisim ısı \"içermez\". Cisim iç enerji içerir; ısı yalnız aktarım sırasında kullanılan bir addır.</div>\n<h4>Mikroskobik resim</h4>\n<p>Sıcak ve soğuk iki cisim temas ettiğinde sınırdaki parçacıklar çarpışır. Ortalamada hızlı (sıcak taraftaki) parçacıklar yavaş parçacıklara kinetik enerji aktarır. Tek tek çarpışmalarda enerji her iki yöne de gidebilir; ama <strong>net</strong> aktarım her zaman sıcaktan soğuğadır. Ortalama kinetik enerjiler eşitlenince net aktarım durur: bu <strong>ısıl dengedir (thermal equilibrium)</strong>.</p>\n<div class=\"kn-kural\"><strong>Sıfırıncı yasa (zeroth law of thermodynamics):</strong> A ile C ısıl dengede, B ile C ısıl dengedeyse A ile B de ısıl dengededir. Termometre (C) bu yüzden çalışır.</div>\n<h4>Üç aktarım mekanizması</h4>\n<table><thead><tr><th>Mekanizma</th><th>Nasıl?</th><th>Ortam gerekir mi?</th><th>Örnek</th></tr></thead>\n<tbody><tr><td>İletim (conduction)</td><td>temas hâlindeki parçacıkların çarpışmaları</td><td>evet (katılarda baskın)</td><td>sıcak çaydaki metal kaşığın ısınması</td></tr>\n<tr><td>Taşınım (convection)</td><td>akışkanın kendisinin hareket edip enerji taşıması</td><td>evet (sıvı/gaz)</td><td>kaynayan sudaki dolaşım, deniz meltemi</td></tr>\n<tr><td>Işıma (radiation)</td><td>elektromanyetik dalgalar (kızılötesi)</td><td>hayır, boşlukta da olur</td><td>Güneş'in Dünya'yı ısıtması</td></tr></tbody></table>\n<h4>Aktarım hızı ve sıcaklık farkı</h4>\n<p>Enerji aktarım hızı sıcaklık farkı büyüdükçe artar. Bu yüzden soğuyan bir cismin sıcaklık–zaman grafiği başta diktir, ortam sıcaklığına yaklaştıkça yataylaşır; cisim ortam sıcaklığının altına inmez.</p>\n<h4>Yalıtılmış sistemde enerji korunumu</h4>\n<p>Dışarıyla enerji alışverişi yoksa: \\[ Q_{kaybedilen} = Q_{kazanılan} \\] Son sıcaklık, iki cismin ısı sığalarıyla (kütle × özgül ısı) ağırlıklı ortalamadır; basit ortalama değildir. Kütlesi büyük (ya da özgül ısısı büyük) cismin sıcaklığı daha az değişir.</p>\n<p>FRQ dili: \"Energy is transferred from the hotter object to the colder object until both reach the same temperature, at which point there is no net energy transfer.\" / \"In collisions at the boundary, faster-moving particles of the hot object, on average, transfer kinetic energy to slower-moving particles of the cold object.\"</p>",
+   "ornekler": [
+    {
+     "soru": "Bir termos (vacuum flask) çift cam duvarlıdır; duvarlar arası boşaltılmış ve iç yüzeyler gümüş kaplanmıştır. Her özellik hangi aktarım mekanizmasını azaltır?",
+     "cozum": [
+      "Duvarlar arasındaki boşluk (vakum): parçacık olmadığından iletim ve taşınım neredeyse tamamen durur.",
+      "Gümüş kaplama: kızılötesi ışınımı geri yansıtır, ışıma ile aktarımı azaltır."
+     ]
+    },
+    {
+     "soru": "Yalıtılmış bir kapta \\(10^\\circ\\text{C}\\)'deki \\(3.0\\ \\text{kg}\\) su ile \\(90^\\circ\\text{C}\\)'deki \\(1.0\\ \\text{kg}\\) su karıştırılıyor. Son sıcaklık nedir?",
+     "cozum": [
+      "Kaybedilen = kazanılan; aynı madde olduğundan \\(c\\) sadeleşir: \\((1.0)(90 - T_f) = (3.0)(T_f - 10)\\).",
+      "\\(90 - T_f = 3T_f - 30 \\Rightarrow 4T_f = 120 \\Rightarrow T_f = 30^\\circ\\text{C}\\). Son sıcaklık büyük kütlenin sıcaklığına daha yakındır."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Sıcak bir metal blok, soğuk bir metal bloğa değdiriliyor. Isıl dengenin neden ve nasıl kurulduğunu parçacık düzeyinde açıklayın.",
+     "cozum": [
+      "Sıcak bloğun parçacıklarının ortalama kinetik enerjisi daha büyüktür.",
+      "Sınırdaki çarpışmalarda enerji ortalamada hızlı parçacıklardan yavaş parçacıklara geçer; sıcak bloğun ortalama kinetik enerjisi azalır, soğuğunki artar.",
+      "<strong>Reasoning:</strong> \"When the average kinetic energies (temperatures) of the two blocks become equal, energy transfers in both directions occur at equal rates, so there is no net energy transfer: the blocks are in thermal equilibrium.\""
+     ]
+    }
+   ],
+   "ipuclari": [
+    "\"Heat\" kelimesini yalnız aktarım için kullanın: \"energy is transferred by heating\". \"The object contains heat\" ifadesi puan kaybettirir.",
+    "Mekanizma sorularında üç soru sorun: Temas var mı? Madde yer değiştiriyor mu? Ortam gerekiyor mu?",
+    "Karıştırma sorularında son sıcaklığın iki başlangıç sıcaklığı <em>arasında</em> olduğunu kontrol edin; dışarıdaysa işaret hatası vardır.",
+    "Hesap makinesi AP Physics 2 sınavının tamamında serbesttir ve denklem sayfası (equation sheet) verilir; yine de oran sorularını (2 kat, yarı) kafadan çözmek zaman kazandırır."
+   ],
+   "sikHatalar": [
+    "Isıl dengeyi eşit iç enerji sanmak (doğrusu eşit sıcaklık).",
+    "Metalin \"daha soğuk hissettirmesini\" daha düşük sıcaklıkta olmasına bağlamak; asıl neden iletim hızıdır.",
+    "Son sıcaklığı kütleleri hesaba katmadan basit ortalama ile bulmak."
+   ],
+   "terimler": [
+    {
+     "en": "heat",
+     "tr": "ısı (aktarılan enerji)"
+    },
+    {
+     "en": "internal energy",
+     "tr": "iç enerji"
+    },
+    {
+     "en": "thermal equilibrium",
+     "tr": "ısıl denge"
+    },
+    {
+     "en": "zeroth law of thermodynamics",
+     "tr": "termodinamiğin sıfırıncı yasası"
+    },
+    {
+     "en": "conduction",
+     "tr": "iletim"
+    },
+    {
+     "en": "convection",
+     "tr": "taşınım"
+    },
+    {
+     "en": "radiation",
+     "tr": "ışıma"
+    },
+    {
+     "en": "isolated system",
+     "tr": "yalıtılmış sistem"
+    }
+   ]
+  },
+  {
+   "kod": "9.4",
+   "baslik": "The First Law of Thermodynamics",
+   "baslikTr": "Termodinamiğin birinci yasası",
+   "hedefler": [
+    "\\(\\Delta U = Q + W\\) bağıntısını AP işaret kuralıyla (W: gaz <em>üzerine</em> yapılan iş) uygulamak.",
+    "P–V diyagramında işi eğri altındaki alandan bulmak; \\(W = -P\\Delta V\\).",
+    "İzobarik, izokorik, izotermal ve adyabatik süreçlerde \\(Q\\), \\(W\\), \\(\\Delta U\\)'nun işaretlerini belirlemek.",
+    "Çevrimlerde \\(\\Delta U = 0\\) olduğunu ve net işin kapalı alana eşit olduğunu kullanmak."
+   ],
+   "anlatim": "<p>Bir gazın iç enerjisini iki yolla değiştirebiliriz: onu ısıtarak (ya da soğutarak) ve üzerine iş yaparak. <strong>Termodinamiğin birinci yasası (first law of thermodynamics)</strong>, enerjinin korunumunun termodinamik dilidir.</p>\n<div class=\"kn-tanim\"><strong>Birinci yasa (AP Physics denklem sayfası):</strong> \\[ \\Delta U = Q + W \\] \\(Q\\): ısıyla sisteme aktarılan enerji (alırsa +, verirse −). \\(W\\): sistem <em>üzerine</em> yapılan iş (sıkıştırma +, genleşme −).</div>\n<h4>Gaz üzerine yapılan iş</h4>\n<p>Sabit basınçta: \\[ W = -P\\Delta V \\] Gaz genleşirse (\\(\\Delta V > 0\\)) \\(W\\) negatiftir: gaz çevresine iş yapar ve enerji kaybeder. Basınç değişiyorsa işin büyüklüğü <strong>P–V grafiğinde eğri altındaki alandır</strong>; işaret hacmin artıp azalmasından belirlenir.</p>\n<div class=\"kn-dikkat\">Bazı kitaplar \\(\\Delta U = Q - W\\) yazar; orada \\(W\\) gazın yaptığı iştir. AP Physics 2 denklem sayfası \\(\\Delta U = Q + W\\) kullanır. Hangi kuralı kullandığınızı FRQ'da açıkça yazın.</div>\n<h4>İdeal gazın iç enerjisi</h4>\n<p><strong>İç enerji (internal energy)</strong>, sistemi oluşturan parçacıkların kinetik enerjileri ile parçacıkların birbirine göre konumlarından gelen potansiyel enerjinin toplamıdır. İdeal gaz atomları birbiriyle (çarpışmalar dışında) etkileşmediği için ideal gazın iç potansiyel enerjisi yoktur; iç enerjisi yalnız atomların kinetik enerjilerinin toplamıdır. Tek atomlu ideal gazda \\(U = \\frac{3}{2}nRT = \\frac{3}{2}Nk_BT\\). Yani \\(\\Delta U\\) yalnız sıcaklık değişimine bağlıdır: sıcaklık sabitse \\(\\Delta U = 0\\). Ayrıca \\(nR\\Delta T = \\Delta(PV)\\) olduğundan sabit basınçta \\(\\Delta U = \\frac{3}{2}P\\Delta V\\) yazılabilir.</p>\n<h4>Özel süreçler</h4>\n<table><thead><tr><th>Süreç</th><th>Sabit olan</th><th>\\(W\\)</th><th>\\(Q\\)</th><th>\\(\\Delta U\\)</th></tr></thead>\n<tbody><tr><td>İzokorik (isochoric)</td><td>\\(V\\)</td><td>0</td><td>\\(=\\Delta U\\)</td><td>\\(\\propto \\Delta T\\)</td></tr>\n<tr><td>İzobarik (isobaric)</td><td>\\(P\\)</td><td>\\(-P\\Delta V\\)</td><td>\\(\\Delta U - W\\)</td><td>\\(\\propto \\Delta T\\)</td></tr>\n<tr><td>İzotermal (isothermal)</td><td>\\(T\\)</td><td>eğri altı alan</td><td>\\(= -W\\)</td><td>0</td></tr>\n<tr><td>Adyabatik (adiabatic)</td><td>\\(Q = 0\\)</td><td>\\(=\\Delta U\\)</td><td>0</td><td>\\(= W\\)</td></tr></tbody></table>\n<p>Adyabatik sıkıştırmada gaz ısınır (bisiklet pompasının ucu ısınır); adyabatik genleşmede soğur.</p>\n<h4>Yol ve durum</h4>\n<p>\\(U\\) bir <strong>durum niceliğidir (state function)</strong>: \\(\\Delta U\\) yalnız ilk ve son duruma bağlıdır. \\(Q\\) ve \\(W\\) ise <strong>yola bağlıdır</strong>. Aynı iki durum arasında, genleşmenin daha yüksek basınçta yapıldığı yolda gaz daha çok iş yapar ve daha çok ısı alır.</p>\n<h4>Çevrimler (cycles)</h4>\n<p>Gaz başladığı duruma dönerse \\(\\Delta U = 0\\), dolayısıyla \\(Q_{net} = -W_{net}\\). Net işin büyüklüğü P–V diyagramındaki kapalı alandır. Saat yönündeki çevrimde gaz net iş yapar (\\(W_{net} \\lt 0\\)) ve net ısı alır: bu bir ısı makinesidir.</p>\n<p>FRQ dili: \"The gas expands, so work done on the gas is negative. Since the temperature increases, \\(\\Delta U\\) is positive, so by \\(\\Delta U = Q + W\\), \\(Q\\) must be positive and greater than \\(|W|\\).\"</p>",
+   "ornekler": [
+    {
+     "soru": "Bir gaz sıkıştırılırken üzerine \\(350\\ \\text{J}\\) iş yapılıyor ve aynı sürede gaz çevresine ısıyla \\(120\\ \\text{J}\\) enerji veriyor. \\(\\Delta U\\) nedir?",
+     "cozum": [
+      "İşaretler: \\(W = +350\\ \\text{J}\\) (sıkıştırma), \\(Q = -120\\ \\text{J}\\) (enerji veriyor).",
+      "\\(\\Delta U = Q + W = -120 + 350 = +230\\ \\text{J}\\). İç enerji ve sıcaklık artar."
+     ]
+    },
+    {
+     "soru": "Bir gaz \\(1.0\\times10^{5}\\ \\text{Pa}\\) sabit basınçta \\(4.0\\ \\text{L}\\)'den \\(1.0\\ \\text{L}\\)'ye sıkıştırılıyor. Gaz üzerine yapılan iş nedir?",
+     "cozum": [
+      "\\(\\Delta V = 1.0 - 4.0 = -3.0\\ \\text{L} = -3.0\\times10^{-3}\\ \\text{m}^3\\).",
+      "\\(W = -P\\Delta V = -(1.0\\times10^{5})(-3.0\\times10^{-3}) = +300\\ \\text{J}\\). Sıkıştırmada gaz üzerine pozitif iş yapılır."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Rijit bir kaptaki ideal gaz ısıtılıyor. \\(W\\), \\(Q\\) ve \\(\\Delta U\\)'nun işaretlerini belirleyip gerekçelendirin.",
+     "cozum": [
+      "Kap rijit → \\(\\Delta V = 0\\) → \\(W = 0\\).",
+      "Gaz ısıtılıyor → \\(Q > 0\\). Birinci yasa: \\(\\Delta U = Q > 0\\); sıcaklık artar.",
+      "<strong>Reasoning:</strong> \"Because the volume does not change, no work is done on the gas. All of the energy transferred by heating increases the internal energy, so the temperature of the gas increases.\""
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her soruda önce üç işareti bir tabloya yazın: \\(Q\\), \\(W\\), \\(\\Delta U\\). Sonra birinci yasayla eksik olanı bulun.",
+    "P–V grafiğinde iş alandır: dikdörtgen \\(P\\Delta V\\), üçgen \\(\\frac{1}{2}\\Delta P \\Delta V\\). Birim kontrolü: Pa·m³ = J.",
+    "\"Isothermal → \\(\\Delta U = 0\\)\", \"adiabatic → \\(Q = 0\\)\", \"constant volume → \\(W = 0\\)\" eşleşmelerini ezbere bilin; FRQ'da bu cümleleri gerekçe olarak yazın.",
+    "Hesap makinesi AP Physics 2 sınavının tamamında serbesttir ve denklem sayfası (equation sheet) verilir; yine de oran sorularını (2 kat, yarı) kafadan çözmek zaman kazandırır."
+   ],
+   "sikHatalar": [
+    "Gazın yaptığı işi pozitif \\(W\\) olarak almak (AP kuralında genleşmede \\(W\\) negatiftir).",
+    "Çevrimde \\(\\Delta U = 0\\) olduğu için \\(Q\\)'nun da sıfır olduğunu sanmak.",
+    "Adyabatik süreçte ısı yok diye sıcaklığın sabit kaldığını sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "first law of thermodynamics",
+     "tr": "termodinamiğin birinci yasası"
+    },
+    {
+     "en": "work done on the gas",
+     "tr": "gaz üzerine yapılan iş"
+    },
+    {
+     "en": "pressure-volume (PV) diagram",
+     "tr": "basınç-hacim diyagramı"
+    },
+    {
+     "en": "adiabatic",
+     "tr": "adyabatik (ısı alışverişsiz)"
+    },
+    {
+     "en": "state function",
+     "tr": "durum niceliği"
+    },
+    {
+     "en": "thermodynamic cycle",
+     "tr": "termodinamik çevrim"
+    },
+    {
+     "en": "monatomic",
+     "tr": "tek atomlu"
+    }
+   ]
+  },
+  {
+   "kod": "9.5",
+   "baslik": "Specific Heat and Thermal Conductivity",
+   "baslikTr": "Özgül ısı ve ısıl iletkenlik",
+   "hedefler": [
+    "\\(Q = mc\\Delta T\\) ile sıcaklık değişimi, enerji ve özgül ısı hesaplamak.",
+    "Kalorimetri (calorimetry) problemlerinde enerji korunumunu kurmak.",
+    "İletim hızını \\(\\frac{Q}{\\Delta t} = \\frac{kA\\Delta T}{L}\\) ile hesaplamak ve değişkenlerin etkisini oranla yorumlamak."
+   ],
+   "anlatim": "<p>Aynı güneş altında kumsalın kumu ayaklarınızı yakarken deniz suyu serin kalır. İki madde aynı enerjiyi alsa da sıcaklıkları farklı değişir. Bu farkı <strong>özgül ısı (specific heat)</strong> açıklar.</p>\n<div class=\"kn-tanim\"><strong>Özgül ısı:</strong> 1 kg maddenin sıcaklığını 1 °C (ya da 1 K) artırmak için gereken enerji. \\[ Q = mc\\Delta T \\] Birim: J/(kg·°C) = J/(kg·K). Su için \\(c \\approx 4186\\ \\text{J/(kg·}^\\circ\\text{C)}\\); metallerde çok daha küçüktür (alüminyum ≈ 900, bakır ≈ 390).</div>\n<p>Büyük özgül ısı, sıcaklık değişimine karşı \"direnç\" demektir. Aynı \\(Q\\) ve \\(m\\) için \\(\\Delta T \\propto 1/c\\). Sabit güçle ısıtılan bir numunenin sıcaklık–zaman grafiğinin eğimi \\(\\frac{P}{mc}\\)'dir; eğim dik ise \\(mc\\) küçüktür.</p>\n<div class=\"kn-dikkat\">Sıcaklık <em>farkı</em> Celsius'ta ve Kelvin'de aynıdır (\\(\\Delta T = 20^\\circ\\text{C} = 20\\ \\text{K}\\)). Ama \\(Q = mc\\Delta T\\)'ye son sıcaklığı değil farkı koyun.</div>\n<h4>Kalorimetri</h4>\n<p>Yalıtılmış bir kapta sıcak ve soğuk cisimler karıştırılırsa: \\[ m_1c_1(T_1 - T_f) = m_2c_2(T_f - T_2) \\] Her cisim kendi sıcaklık değişimini kullanır. Bu yöntemle bilinmeyen bir metalin özgül ısısı ölçülebilir: metal kaynar suda ısıtılır, soğuk suya atılır, son sıcaklık ölçülür.</p>\n<p>Faz değişimleri (erime, kaynama) sırasında enerji alınır ama sıcaklık sabit kalır; enerji parçacıklar arasındaki bağları değiştirir. Bu ünitede bunu nitel olarak bilmek yeterlidir.</p>\n<h4>Isıl iletkenlik (thermal conductivity)</h4>\n<p>Kalınlığı \\(L\\), alanı \\(A\\) olan bir levhadan, iki yüzeyi arasında \\(\\Delta T\\) sıcaklık farkı varken iletimle enerji aktarım hızı: \\[ \\frac{Q}{\\Delta t} = \\frac{kA\\Delta T}{L} \\] \\(k\\) malzemenin ısıl iletkenliğidir, birimi W/(m·K). Metallerde büyük (bakır ≈ 400), cam ve tahtada küçük, havada çok küçüktür; bu yüzden çift camlı pencereler ve yün kazaklar iyi yalıtır.</p>\n<table><thead><tr><th>Değişiklik</th><th>İletim hızına etkisi</th></tr></thead>\n<tbody><tr><td>\\(A\\) iki katı</td><td>2 katı</td></tr>\n<tr><td>\\(\\Delta T\\) iki katı</td><td>2 katı</td></tr>\n<tr><td>\\(L\\) iki katı</td><td>yarısı</td></tr>\n<tr><td>Çubuk çapı iki katı</td><td>alan \\(\\propto d^2\\) → 4 katı</td></tr></tbody></table>\n<p>Kararlı durumda (steady state) düzgün bir çubuğun her kesitinden aynı hızla enerji geçer ve sıcaklık uçlar arasında doğrusal değişir.</p>\n<p>FRQ dili: \"Because water has a much greater specific heat than sand, the same energy input produces a smaller temperature change in the water.\" / \"The rate of energy transfer is proportional to the cross-sectional area and inversely proportional to the length of the rod.\"</p>",
+   "ornekler": [
+    {
+     "soru": "\\(2.0\\ \\text{kg}\\) alüminyumun (\\(c = 900\\ \\text{J/(kg·}^\\circ\\text{C)}\\)) sıcaklığını \\(30^\\circ\\text{C}\\) artırmak için ne kadar enerji gerekir?",
+     "cozum": [
+      "\\(Q = mc\\Delta T = (2.0)(900)(30)\\).",
+      "\\(Q = 5.4\\times10^{4}\\ \\text{J}\\)."
+     ]
+    },
+    {
+     "soru": "Uzunluğu \\(0.25\\ \\text{m}\\), kesit alanı \\(1.0\\times10^{-4}\\ \\text{m}^2\\) olan bir bakır çubuğun (\\(k = 400\\ \\text{W/(m·K)}\\)) uçları arasında \\(60\\ \\text{K}\\) fark vardır. İletim hızı nedir?",
+     "cozum": [
+      "\\(\\dfrac{Q}{\\Delta t} = \\dfrac{kA\\Delta T}{L} = \\dfrac{(400)(1.0\\times10^{-4})(60)}{0.25}\\).",
+      "\\(\\dfrac{Q}{\\Delta t} = \\dfrac{2.4}{0.25} = 9.6\\ \\text{W}\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Güneşli bir günde aynı kütlede kum ve deniz suyu aynı enerjiyi alıyor. Hangisinin sıcaklığı daha çok artar? Gerekçelendirin.",
+     "cozum": [
+      "\\(\\Delta T = \\dfrac{Q}{mc}\\); \\(Q\\) ve \\(m\\) eşit olduğundan \\(\\Delta T \\propto 1/c\\).",
+      "Kumun özgül ısısı sudan çok daha küçüktür → kumun sıcaklığı daha çok artar.",
+      "<strong>Reasoning:</strong> \"Sand has a smaller specific heat than water, so less energy is needed to raise the temperature of each kilogram of sand by one degree. With equal energy input and equal mass, the sand's temperature increases more.\""
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Kalorimetride önce \"kim kaybediyor, kim kazanıyor\" yazın; her terimi pozitif tutup eşitleyin. İşaret karışıklığı böylece önlenir.",
+    "İletim sorularında kalınlığı mutlaka metreye çevirin (mm, cm tuzakları sık görülür).",
+    "Oran sorularında formülü yazıp değişen niceliklerin çarpanlarını yerleştirin; \"\\(A \\propto d^2\\)\" adımını FRQ'da açıkça gösterin.",
+    "Hesap makinesi AP Physics 2 sınavının tamamında serbesttir ve denklem sayfası (equation sheet) verilir; yine de oran sorularını (2 kat, yarı) kafadan çözmek zaman kazandırır."
+   ],
+   "sikHatalar": [
+    "\\(Q = mc\\Delta T\\)'de sıcaklık farkı yerine son sıcaklığı kullanmak.",
+    "Özgül ısısı büyük maddenin daha çok ısındığını sanmak (tersi doğrudur).",
+    "İletim hızının kalınlıkla arttığını sanmak; \\(L\\) paydadadır."
+   ],
+   "terimler": [
+    {
+     "en": "specific heat",
+     "tr": "özgül ısı"
+    },
+    {
+     "en": "heat capacity",
+     "tr": "ısı sığası"
+    },
+    {
+     "en": "calorimetry",
+     "tr": "kalorimetri"
+    },
+    {
+     "en": "thermal conductivity",
+     "tr": "ısıl iletkenlik"
+    },
+    {
+     "en": "rate of energy transfer",
+     "tr": "enerji aktarım hızı"
+    },
+    {
+     "en": "cross-sectional area",
+     "tr": "kesit alanı"
+    },
+    {
+     "en": "steady state",
+     "tr": "kararlı durum"
+    },
+    {
+     "en": "phase change",
+     "tr": "faz değişimi"
+    }
+   ]
+  },
+  {
+   "kod": "9.6",
+   "baslik": "Entropy and the Second Law of Thermodynamics",
+   "baslikTr": "Entropi ve termodinamiğin ikinci yasası",
+   "hedefler": [
+    "Entropiyi (entropy) bir sistemin olası mikroskobik düzenlenmelerinin (microstates) sayısıyla ilişkilendirmek.",
+    "İkinci yasayı kullanarak doğal süreçlerin yönünü ve tersinmezliği (irreversibility) açıklamak.",
+    "Isı makineleri ve buzdolaplarını ikinci yasa açısından nitel olarak değerlendirmek (2024+ CED verim hesabı ya da \\(\\Delta S\\) hesabı istemez)."
+   ],
+   "anlatim": "<p>Birinci yasa enerjinin korunduğunu söyler, ama hangi yönde süreçlerin gerçekleştiğini söylemez. Sıcak çayın odadan enerji alıp daha da ısınması enerji korunumuna aykırı değildir; yine de hiç görülmez. Yönü belirleyen yasa <strong>termodinamiğin ikinci yasasıdır (second law of thermodynamics)</strong>.</p>\n<h4>Entropi nedir?</h4>\n<p><strong>Entropi (entropy, \\(S\\))</strong>, bir makroskobik durumun (ör. \"gaz kutunun her yerine yayılmış\") kaç farklı mikroskobik düzenlenmeyle (<strong>mikrodurum, microstate</strong>) gerçekleşebileceğinin ölçüsüdür. Daha çok mikrodurum = daha büyük entropi = daha olası durum. Kabaca \"düzensizlik ölçüsü\" denir. CED'nin diliyle entropi, <strong>enerjinin yayılma eğilimi</strong> ya da sistem enerjisinin bir kısmının <strong>iş yapmaya elverişsiz</strong> hâle gelmesidir. Entropi bir <strong>durum niceliğidir (state function)</strong>: yalnız sistemin şimdiki durumuna bağlıdır, oraya nasıl gelindiğine bağlı değildir; sistem ısıl dengeye ulaştığında en büyük değerini alır.</p>\n<p>Örnek: 4 molekül bir kutunun sol ve sağ yarısına dağılabilir. Toplam \\(2^4 = 16\\) düzenleme vardır. \"Hepsi solda\" yalnız 1 düzenlemeyle olur; \"ikisi solda, ikisi sağda\" 6 düzenlemeyle olur. \\(10^{23}\\) molekülde \"hepsi bir yarıda\" durumunun olasılığı pratikte sıfırdır.</p>\n<div class=\"kn-kural\"><strong>İkinci yasa:</strong> Yalıtılmış bir sistemin toplam entropisi asla azalmaz: \\(\\Delta S_{toplam} \\geq 0\\). Gerçek (tersinmez) süreçlerde artar; yalnız idealleştirilmiş tersinir süreçte sabit kalır. Eşdeğer ifade: ısı kendiliğinden soğuk cisimden sıcak cisme akmaz.</div>\n<h4>Tersinmez süreçler</h4>\n<table><thead><tr><th>Doğal süreç</th><th>Neden entropi artar?</th></tr></thead>\n<tbody><tr><td>Sıcaktan soğuğa ısı akışı</td><td>soğuk cismin entropi artışı, sıcak cismin azalmasından büyüktür</td></tr>\n<tr><td>Gazın boşluğa serbest genleşmesi</td><td>moleküller için erişilebilir hacim ve mikrodurum sayısı artar</td></tr>\n<tr><td>Sürtünmeyle duran blok</td><td>düzenli kinetik enerji düzensiz iç enerjiye dönüşür</td></tr>\n<tr><td>Mürekkebin suda yayılması</td><td>karışık durumun mikrodurum sayısı çok daha büyüktür</td></tr></tbody></table>\n<p>Bu süreçlerin tersi enerji korunumunu sağlar ama toplam entropiyi azaltırdı; bu yüzden kendiliğinden gerçekleşmez.</p>\n<div class=\"kn-dikkat\">Bir <em>alt sistemin</em> entropisi azalabilir (donan su, canlıların büyümesi). İkinci yasa yalnız yalıtılmış sistemin toplamı için \"azalmaz\" der: çevrenin entropisi daha çok artar.</div>\n<div class=\"kn-kural\"><strong>Kapsam sınırı (boundary statement):</strong> AP Physics 2'de ikinci yasa yalnız <em>nitel</em> işlenir. Entropi değişimini sayısal hesaplamanız (ör. \\(\\Delta S = Q/T\\)) ya da makine verimi bulmanız beklenmez; yönü ve nedenini açıklamanız beklenir.</div>\n<h4>Isı makineleri ve buzdolapları</h4>\n<p>Bir <strong>ısı makinesi (heat engine)</strong> sıcak kaynaktan \\(Q_H\\) alır, \\(W\\) iş yapar ve soğuk kaynağa \\(|Q_C|\\) atar. Çevrimde \\(\\Delta U = 0\\) olduğundan \\(W = Q_H - |Q_C|\\). Yapılan işin alınan enerjiye oranına <strong>verim (efficiency)</strong> denir; verim hesabı 2024+ CED kapsamında değildir, yalnız şu nitel sonucu bilin: İkinci yasa nedeniyle \\(|Q_C|\\) sıfır olamaz: hiçbir çevrimsel makine aldığı ısının tamamını işe çeviremez. Bir <strong>buzdolabı (refrigerator)</strong> ya da ısı pompası ters yönde çalışır: iş harcayarak soğuk bölgeden enerji alır ve sıcak bölgeye atar; bu ikinci yasaya aykırı değildir çünkü kendiliğinden değildir ve odanın entropi artışı iç bölmenin azalmasından büyüktür.</p>\n<p>FRQ dili: \"The reverse process would conserve energy, but it would decrease the total entropy of the isolated system, which the second law of thermodynamics does not allow.\" / \"The entropy of the water decreases, but the entropy of the surroundings increases by a greater amount, so the total entropy increases.\"</p>",
+   "ornekler": [
+    {
+     "soru": "Bir ısı makinesi her çevrimde sıcak kaynaktan \\(1200\\ \\text{J}\\) alıyor ve \\(360\\ \\text{J}\\) iş yapıyor. Soğuk kaynağa ne kadar enerji atılır? Bu atık enerji sıfır olabilir mi?",
+     "cozum": [
+      "Çevrimde \\(\\Delta U = 0\\): \\(|Q_C| = Q_H - W = 1200 - 360 = 840\\ \\text{J}\\).",
+      "Hayır. Birinci yasa \\(|Q_C| = 0\\) durumuna izin verirdi, ama ikinci yasa çevrimsel bir makinenin tek kaynaktan aldığı enerjinin tamamını işe çevirmesine izin vermez; enerjinin bir kısmı mutlaka soğuk kaynağa atılır."
+     ]
+    },
+    {
+     "soru": "Bir kutuda 4 molekül var. \"Tüm moleküller sol yarıda\" ve \"iki molekül solda, iki molekül sağda\" makrodurumlarının olasılıkları nedir? Hangisinin entropisi daha büyüktür?",
+     "cozum": [
+      "Her molekül iki yarıdan birinde olabilir: toplam \\(2^4 = 16\\) eşit olasılıklı mikrodurum.",
+      "Hepsi solda: 1 mikrodurum → \\(1/16\\). İkiye iki: \\(\\binom{4}{2} = 6\\) mikrodurum → \\(6/16\\).",
+      "Daha çok mikrodurumlu \"ikiye iki\" durumunun entropisi daha büyüktür ve daha olasıdır."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Kışın bir ısı pompası (heat pump), soğuk dış havadan enerji alıp sıcak evin içine aktarıyor. Bir öğrenci bunun ikinci yasayı ihlal ettiğini söylüyor. İddiayı değerlendirin.",
+     "cozum": [
+      "İkinci yasa ısının <em>kendiliğinden</em> soğuktan sıcağa akmadığını söyler; ısı pompasında aktarım, elektrikle çalışan kompresörün yaptığı iş sayesinde olur.",
+      "Eve verilen enerji, dışarıdan alınan enerji artı yapılan iştir; evin entropi artışı dış havanın entropi azalmasından büyüktür.",
+      "<strong>Reasoning:</strong> \"The claim is incorrect. Work is done on the working fluid, so the transfer is not spontaneous, and the total entropy of the outside air and the house increases, consistent with the second law.\""
+     ]
+    }
+   ],
+   "ipuclari": [
+    "\"Hangi yasa ihlal ediliyor?\" sorusunda iki adım: önce enerji dengesini kontrol edin (birinci yasa), sonra yönü ve atık ısıyı kontrol edin (ikinci yasa).",
+    "Entropi sorularında \"isolated system\" ifadesini arayın; sistem yalıtılmış değilse alt sistemin entropisi azalabilir.",
+    "FRQ'da \"entropy increases\" demek yetmez; nedenini (daha çok mikrodurum, enerjinin dağılması) bir cümleyle yazın.",
+    "Hesap makinesi AP Physics 2 sınavının tamamında serbesttir ve denklem sayfası (equation sheet) verilir; yine de oran sorularını (2 kat, yarı) kafadan çözmek zaman kazandırır."
+   ],
+   "sikHatalar": [
+    "Entropinin enerji gibi korunan bir nicelik olduğunu sanmak.",
+    "Bir sistemin entropisinin hiçbir koşulda azalamayacağını sanmak (yalnız yalıtılmış sistemin toplamı azalmaz).",
+    "Enerji korunuyorsa her sürecin mümkün olduğunu sanmak; %100 verimli makine birinci yasayı değil ikinci yasayı ihlal eder."
+   ],
+   "terimler": [
+    {
+     "en": "entropy",
+     "tr": "entropi"
+    },
+    {
+     "en": "microstate",
+     "tr": "mikrodurum"
+    },
+    {
+     "en": "second law of thermodynamics",
+     "tr": "termodinamiğin ikinci yasası"
+    },
+    {
+     "en": "irreversible process",
+     "tr": "tersinmez süreç"
+    },
+    {
+     "en": "heat engine",
+     "tr": "ısı makinesi"
+    },
+    {
+     "en": "efficiency",
+     "tr": "verim"
+    },
+    {
+     "en": "refrigerator / heat pump",
+     "tr": "buzdolabı / ısı pompası"
+    },
+    {
+     "en": "hot reservoir / cold reservoir",
+     "tr": "sıcak kaynak / soğuk kaynak"
+    }
+   ]
+  }
+ ]
+}

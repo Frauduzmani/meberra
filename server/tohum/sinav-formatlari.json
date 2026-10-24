@@ -6,7 +6,8 @@
     "Görevdeki Calculus düzeni (Kısım A 30 soru 60 dk, Kısım B 15 soru 45 dk) eski düzendir; AP Central sayfası Mayıs 2027 güncellemesiyle 29 soru 62 dk + 13 soru 38 dk gösteriyor. Sayfadaki değerler kullanıldı.",
     "Görevdeki Physics 1 düzeni (40 MCQ 80 dk; 4 FRQ 100 dk) yerine AP Central'ın güncel değerleri kullanıldı: 42 MCQ 85 dk; 4 FRQ 95 dk (Mayıs 2027 güncellemesi).",
     "Desmos: Bluebook'ta yerleşiktir (Calculus: grafik, yalnız hesap makineli kısımlarda; Chemistry/Physics: bilimsel veya grafik; Biology: bilimsel; Micro/Macro: 4 işlem). English Language ve Computer Science A'da hesap makinesi yok. Kaynak: https://apcentral.collegeboard.org/exam-administration-ordering-scores/administering-exams/exam-policies/calculator-policy",
-    "Referans sayfaları: https://apcentral.collegeboard.org/exam-administration-ordering-scores/administering-exams/subject-specific/reference-information (Calculus için referans sayfası yok)."
+    "Referans sayfaları: https://apcentral.collegeboard.org/exam-administration-ordering-scores/administering-exams/subject-specific/reference-information (Calculus için referans sayfası yok).",
+    "1.28.0 (24 Ekim 2026, AP Central ders ve 'Exam' sayfaları): Precalculus, Statistics ve Physics 2 eklendi. Görevdeki düzenler (Precalculus 40 MCQ 120 dk; Statistics 40 MCQ 90 dk, 6 FRQ ve 9 ünite; Physics 2 40 MCQ 80 dk) yerine Mayıs 2027 değerleri kullanıldı: Precalculus 42 MCQ (29 + 13; 65 + 40 dk) ve 4 FRQ (35 + 35 dk); Statistics 2026–27 revizyonu 5 ünite, 42 MCQ 90 dk, 4 FRQ 90 dk; Physics 2 42 MCQ 85 dk, 4 FRQ 95 dk. Ünite ağırlıkları CED aralıklarının orta noktası (Precalculus Unit 4 sınavda yok → ağırlığı yok). Bu üç dersin eşikleri de yaklaşıktır."
   ],
   "sinavlar": {
     "calculus-ab": {
@@ -163,6 +164,59 @@
       ],
       "uniteAgirlik": { "1": 20, "2": 30, "3": 14, "4": 35 },
       "esikler": [{ "puan": 5, "min": 75 }, { "puan": 4, "min": 60 }, { "puan": 3, "min": 45 }, { "puan": 2, "min": 33 }]
+    },
+    "precalculus": {
+      "ad": "AP Precalculus",
+      "denemeKodu": "precalculus",
+      "uniteOnek": null,
+      "frqDersleri": ["precalculus"],
+      "frqNot": "1.28.0 · Mayıs 2027 düzeni (AP Central, 24 Ekim 2026): FRQ 1 Function Concepts, FRQ 2 Modeling a Non-Periodic Context (hesap makineli); FRQ 3 Modeling a Periodic Context, FRQ 4 Symbolic Manipulations (hesap makinesiz). Unit 4 sınavda yok.",
+      "kaynak": "https://apcentral.collegeboard.org/courses/ap-precalculus/exam",
+      "referans": null,
+      "hesapMakinesi": { "tur": "grafik", "desmos": "https://www.desmos.com/calculator", "not": "Grafik hesap makinesi yalnız Bölüm I Kısım B ve Bölüm II Kısım A'da (Bluebook'ta yerleşik Desmos)." },
+      "agirlik": { "I": 62.5, "II": 37.5 },
+      "bolumler": [
+        { "kod": "I-A", "bolum": "I", "ad": "Bölüm I · Kısım A", "tur": "mcq", "soru": 29, "dk": 65, "hesapMakinesi": "yasak" },
+        { "kod": "I-B", "bolum": "I", "ad": "Bölüm I · Kısım B", "tur": "mcq", "soru": 13, "dk": 40, "hesapMakinesi": "gerekli" },
+        { "kod": "II-A", "bolum": "II", "ad": "Bölüm II · Kısım A", "tur": "frq", "soru": 2, "dk": 35, "hesapMakinesi": "gerekli" },
+        { "kod": "II-B", "bolum": "II", "ad": "Bölüm II · Kısım B", "tur": "frq", "soru": 2, "dk": 35, "hesapMakinesi": "yasak" }
+      ],
+      "uniteAgirlik": { "1": 35, "2": 32.5, "3": 32.5 },
+      "esikler": [{ "puan": 5, "min": 70 }, { "puan": 4, "min": 55 }, { "puan": 3, "min": 41 }, { "puan": 2, "min": 28 }]
+    },
+    "statistics": {
+      "ad": "AP Statistics",
+      "denemeKodu": "statistics",
+      "uniteOnek": null,
+      "frqDersleri": ["statistics"],
+      "frqNot": "1.28.0 · 2026–27 revizyonu: 4 FRQ (her biri 10 puan); biri çıkarım (güven aralığı ya da hipotez testi) sorusu. Formül sayfası ve tablolar Bluebook'ta verilir.",
+      "kaynak": "https://apcentral.collegeboard.org/courses/ap-statistics/exam",
+      "referans": null,
+      "hesapMakinesi": { "tur": "grafik", "desmos": "https://www.desmos.com/calculator", "not": "Grafik hesap makinesi tüm bölümlerde serbest (Bluebook'ta yerleşik Desmos)." },
+      "agirlik": { "I": 50, "II": 50 },
+      "bolumler": [
+        { "kod": "I", "bolum": "I", "ad": "Bölüm I · Çoktan seçmeli", "tur": "mcq", "soru": 42, "dk": 90, "hesapMakinesi": "serbest" },
+        { "kod": "II", "bolum": "II", "ad": "Bölüm II · Serbest yanıt", "tur": "frq", "soru": 4, "dk": 90, "hesapMakinesi": "serbest" }
+      ],
+      "uniteAgirlik": { "1": 25, "2": 20, "3": 20, "4": 15, "5": 15 },
+      "esikler": [{ "puan": 5, "min": 70 }, { "puan": 4, "min": 57 }, { "puan": 3, "min": 44 }, { "puan": 2, "min": 32 }]
+    },
+    "physics-2": {
+      "ad": "AP Physics 2: Algebra-Based",
+      "denemeKodu": "physics-2",
+      "uniteOnek": null,
+      "frqDersleri": ["physics-2"],
+      "frqNot": "1.28.0 · Physics 1 ile aynı yapı: Mathematical Routines, Translation Between Representations, Experimental Design and Analysis, Qualitative/Quantitative Translation (birer soru).",
+      "kaynak": "https://apcentral.collegeboard.org/courses/ap-physics-2/exam",
+      "referans": { "ad": "AP Physics 2 denklem sayfası (College Board, PDF)", "url": "https://apcentral.collegeboard.org/media/pdf/ap-physics-2-equations-sheet.pdf" },
+      "hesapMakinesi": { "tur": "bilimsel veya grafik", "desmos": "https://www.desmos.com/calculator", "not": "Hesap makinesi tüm bölümlerde serbest (Bluebook'ta yerleşik Desmos)." },
+      "agirlik": { "I": 50, "II": 50 },
+      "bolumler": [
+        { "kod": "I", "bolum": "I", "ad": "Bölüm I · Çoktan seçmeli", "tur": "mcq", "soru": 42, "dk": 85, "hesapMakinesi": "serbest" },
+        { "kod": "II", "bolum": "II", "ad": "Bölüm II · Serbest yanıt", "tur": "frq", "soru": 4, "dk": 95, "hesapMakinesi": "serbest" }
+      ],
+      "uniteAgirlik": { "9": 16.5, "10": 16.5, "11": 16.5, "12": 13.5, "13": 13.5, "14": 13.5, "15": 13.5 },
+      "esikler": [{ "puan": 5, "min": 70 }, { "puan": 4, "min": 55 }, { "puan": 3, "min": 41 }, { "puan": 2, "min": 29 }]
     }
   }
 }

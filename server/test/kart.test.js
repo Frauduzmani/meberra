@@ -53,10 +53,14 @@ test("ücretsiz plan: ilk 2 deste açık, diğerleri 402", async () => {
   assert.equal(r.durum, 200);
   assert.equal(r.govde.premium, false);
   const calc = r.govde.dersler.find(d => d.ders === "calculus");
-  assert.deepEqual(calc.desteler.filter(u => !u.kilitli).map(u => u.unite), ["1", "2"]);
+  assert.deepEqual(calc.desteler.filter(u => !u.kilitli).map(u => u.unite), ["1", "2", "Kalıp"]);
   const micro = r.govde.dersler.find(d => d.ders === "micro");
-  assert.deepEqual(micro.desteler.filter(u => !u.kilitli).map(u => u.unite), ["Micro 1", "Micro 2"]);
-  assert.ok(r.govde.dersler.every(d => d.desteler.filter(u => !u.kilitli).length === 2));
+  assert.deepEqual(micro.desteler.filter(u => !u.kilitli).map(u => u.unite), ["Micro 1", "Micro 2", "Kalıp"]);
+  // 1.25.0: her dersin "Soru kalıpları" destesi ücretsiz ve ilk 2 numaralı desteye ek (onların yerini almaz)
+  assert.ok(r.govde.dersler.every(d => d.desteler.filter(u => !u.kilitli).length === 3 && d.desteler.some(u => u.unite === "Kalıp" && !u.kilitli)));
+  const kalip = await c("GET", "/api/kartlar?ders=calculus&unite=" + encodeURIComponent("Kalıp"));
+  assert.equal(kalip.durum, 200);
+  assert.ok(kalip.govde.kartlar.length >= 15 && kalip.govde.kartlar.every(k => k.etiket === "kalip"));
   const ac = await c("GET", "/api/kartlar?ders=calculus&unite=2");
   assert.equal(ac.durum, 200);
   assert.ok(ac.govde.kartlar.length >= 8 && ac.govde.kartlar.every(k => k.unite === "2" && k.arka && k.durum === null));

@@ -74,6 +74,15 @@
 .frq-parca { padding: 16px 18px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); margin-bottom: 12px; }
 .frq-parca-bas { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
 .frq-parca-bas h2 { margin: 0; font-size: var(--fs-18); color: var(--accent); }
+.frq-ne { margin: 4px 0 10px; }
+.frq-ne summary { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; padding: 4px 12px; border-radius: 999px;
+  font-size: var(--fs-14); font-weight: 600; color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); list-style: none; }
+.frq-ne summary::-webkit-details-marker { display: none; }
+.frq-ne[open] summary { background: color-mix(in srgb, var(--accent) 18%, transparent); }
+.frq-ne p { margin: 8px 0 0; padding: 10px 14px; border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0;
+  background: var(--surface-2, color-mix(in srgb, var(--accent) 6%, transparent)); animation: frq-ne-ac .25s ease-out; }
+@keyframes frq-ne-ac { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .frq-ne p { animation: none; } }
 .frq-puan-et { font-size: var(--fs-14); color: var(--text-muted); font-variant-numeric: tabular-nums; }
 .frq-cevap { display: block; width: 100%; box-sizing: border-box; margin-top: 10px; min-height: 120px; resize: vertical; font-family: var(--font-sans); line-height: 1.5; }
 .frq-teslim { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 16px; }

@@ -34,13 +34,18 @@ ok(V.kartlar.length >= 300, "en az 300 kart", V.kartlar.length);
 const say = {}; V.kartlar.forEach(k => { say[k.ders] = (say[k.ders] || 0) + 1; });
 ok(say.calculus >= 80 && say.physics >= 48 && say.chemistry >= 54 && say.biology >= 48 && say.micro >= 30 && say.macro >= 30 && say.csa >= 20 && say.english >= 15, "ders başına hedef sayılar", say);
 V.dersler.forEach(d => {
-  const ilk2 = d.uniteler.slice(0, 2).map(u => u.unite);
-  ok(d.uniteler.every(u => K.desteUcretsizMi(V, d.ders, u.unite) === (ilk2.indexOf(u.unite) >= 0)), d.ders + ": yalnız ilk 2 deste ücretsiz (" + ilk2.join(", ") + ")");
+  // 1.25.0: "kalip" destesi (Soru kalıpları) her zaman ücretsiz ve sayıya girmez
+  const ilk2 = d.uniteler.filter(u => !u.kalip).slice(0, 2).map(u => u.unite), acik = ilk2.concat(d.uniteler.filter(u => u.kalip).map(u => u.unite));
+  ok(d.uniteler.every(u => K.desteUcretsizMi(V, d.ders, u.unite) === (acik.indexOf(u.unite) >= 0)), d.ders + ": yalnız ilk 2 deste + kalıp destesi ücretsiz (" + acik.join(", ") + ")");
 });
 ok(!K.desteUcretsizMi(V, "calculus", "10") && K.desteUcretsizMi(V, "micro", "Micro 2") && !K.desteUcretsizMi(V, "macro", "Macro 3"), "örnek desteler");
 ok(!K.desteUcretsizMi(V, "yok", "1"), "bilinmeyen ders kilitli");
 ok(V.kartlar.every(k => V.dersler.some(d => d.ders === k.ders && d.uniteler.some(u => u.unite === k.unite))), "her kart tanımlı bir destede");
-ok(Object.values(K.PROFIL_DERS).every(d => V.dersler.some(x => x.ders === d)), "profil ders eşlemesi tohumdaki derslere gider");
+// 1.28.0: kartı henüz olmayan yeni ders (DESTELER kismi) tohumda yoktur; eşlemesi DESTELER'deki derse gitmeli
+ok(Object.values(K.PROFIL_DERS).every(d => V.dersler.some(x => x.ders === d) || U.DESTELER.some(x => x.kismi && x.ders === d)),
+  "profil ders eşlemesi tohumdaki (ya da kartı beklenen yeni) derslere gider");
+ok(U.DESTELER.filter(d => !d.kismi).every(d => V.dersler.some(x => x.ders === d.ders)), "kismi olmayan her ders tohumda");
+ok(["precalculus", "statistics", "physics2"].every(d => U.DESTELER.some(x => x.kismi && x.ders === d && x.uniteler.some(u => u[2]))), "yeni derslerin desteleri (kalıp dahil) tanımlı");
 
 // --- doğrulayıcı ---
 ok(U.latexDenetle("$x^2$ ve $\\frac{a}{b}$") === null, "LaTeX dengeli");

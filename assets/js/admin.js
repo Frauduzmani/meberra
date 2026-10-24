@@ -60,7 +60,8 @@
   function dilAd(d) { return d === "en" ? "İngilizce" : d === "yerel" ? "Yerel dil" : d ? String(d) : "—"; }
   var DERS = {
     "ap-calculus": "AP Calculus", "ap-physics": "AP Physics", "ap-chemistry": "AP Chemistry",
-    "ap-biology": "AP Biology", "ap-english": "AP English", "ap-electives": "AP Seçmeliler"
+    "ap-biology": "AP Biology", "ap-english": "AP English", "ap-electives": "AP Seçmeliler",
+    "ap-precalculus": "AP Precalculus", "ap-statistics": "AP Statistics", "ap-physics-2": "AP Physics 2"
   };
   function dersAd(sayfa) {
     var k = String(sayfa || "").replace(/^.*\//, "").replace(/\.html?$/i, "");

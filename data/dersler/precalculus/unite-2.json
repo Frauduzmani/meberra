@@ -1,0 +1,1073 @@
+{
+ "ders": "precalculus",
+ "unite": 2,
+ "baslik": "Exponential and Logarithmic Functions",
+ "baslikTr": "Üstel ve logaritmik fonksiyonlar",
+ "konular": [
+  {
+   "kod": "2.1",
+   "baslik": "Change in Arithmetic and Geometric Sequences",
+   "baslikTr": "Aritmetik ve geometrik dizilerde değişim",
+   "hedefler": [
+    "Aritmetik dizide (arithmetic sequence) ardışık terimler arasındaki sabit farkı, geometrik dizide (geometric sequence) sabit oranı bulmak.",
+    "İki terim verildiğinde \\(a_n = a_k + d(n-k)\\) ve \\(g_n = g_k\\, r^{\\,n-k}\\) formüllerini kullanarak herhangi bir terimi yazmak.",
+    "Diziyi, tam sayı girdili bir fonksiyon (function whose domain is a subset of the integers) olarak yorumlamak."
+   ],
+   "anlatim": "<h4>Dizi nedir? (What is a sequence?)</h4>\n<p>Bir <strong>dizi (sequence)</strong>, girdisi tam sayı olan bir fonksiyondur: \\(n = 0, 1, 2, \\dots\\) için bir çıktı \\(a_n\\) üretir. \\(a_n\\)'e dizinin <em>n'inci terimi (nth term)</em> denir. AP Precalculus'ta diziler, birazdan göreceğimiz <strong>doğrusal (linear)</strong> ve <strong>üstel (exponential)</strong> fonksiyonların “kesikli (discrete)” kardeşleridir.</p>\n<h4>Aritmetik dizi (arithmetic sequence)</h4>\n<div class=\"kn-tanim\">Ardışık terimler arasındaki <strong>fark sabittir</strong>: \\(a_{n+1} - a_n = d\\). Bu \\(d\\)'ye <em>ortak fark (common difference)</em> denir.\n\\[ a_n = a_0 + d\\,n \\qquad\\text{ya da}\\qquad a_n = a_k + d\\,(n-k) \\]</div>\n<p>Örnek: \\(7, 11, 15, 19, \\dots\\) dizisinde her adımda 4 eklenir, \\(d = 4\\). İkinci formül çok kullanışlıdır: başlangıç terimini bilmesen bile <em>herhangi bir</em> bilinen terimden yola çıkabilirsin.</p>\n<h4>Geometrik dizi (geometric sequence)</h4>\n<div class=\"kn-tanim\">Ardışık terimlerin <strong>oranı sabittir</strong>: \\(\\dfrac{g_{n+1}}{g_n} = r\\). Bu \\(r\\)'ye <em>ortak oran (common ratio)</em> denir (\\(r \\neq 0\\)).\n\\[ g_n = g_0\\, r^{\\,n} \\qquad\\text{ya da}\\qquad g_n = g_k\\, r^{\\,n-k} \\]</div>\n<p>Örnek: \\(5, 15, 45, 135, \\dots\\) dizisinde her adımda 3 ile çarpılır, \\(r = 3\\).</p>\n<table><thead><tr><th>Özellik</th><th>Aritmetik</th><th>Geometrik</th></tr></thead><tbody>\n<tr><td>Ardışık terimler</td><td>sabit <strong>fark</strong> \\(d\\) eklenir</td><td>sabit <strong>oran</strong> \\(r\\) ile çarpılır</td></tr>\n<tr><td>Değişim türü</td><td>toplamsal (additive)</td><td>çarpımsal (multiplicative)</td></tr>\n<tr><td>Genel terim</td><td>\\(a_n = a_k + d(n-k)\\)</td><td>\\(g_n = g_k r^{n-k}\\)</td></tr>\n<tr><td>Fonksiyon karşılığı</td><td>doğrusal fonksiyon</td><td>üstel fonksiyon</td></tr></tbody></table>\n<h4>İki terimden dizi bulmak</h4>\n<p>\\(a_3 = 10\\) ve \\(a_8 = 35\\) olan aritmetik dizi: 5 adımda 25 artmış, o halde \\(d = \\frac{35-10}{8-3} = 5\\). Fark, <strong>ortalama değişim hızının (average rate of change)</strong> ta kendisidir.</p>\n<p>\\(g_2 = 12\\) ve \\(g_5 = 96\\) olan geometrik dizi: 3 adımda 8 katına çıkmış, o halde \\(r^3 = \\frac{96}{12} = 8\\), \\(r = 2\\). Burada <strong>bölüp kök alırız</strong>; çıkarıp bölmeyiz.</p>\n<div class=\"kn-kural\"><strong>Hızlı test:</strong> Tablo verildiğinde önce ardışık farklara bak (hepsi eşitse aritmetik), sonra ardışık oranlara bak (hepsi eşitse geometrik). İkisi de değilse dizi bu iki türden biri değildir.</div>\n<h4>Dikkat: indeks nereden başlıyor?</h4>\n<p>Bazı sorular ilk terimi \\(a_0\\), bazıları \\(a_1\\) diye verir. \\(a_1 = 4\\), \\(d=3\\) ise \\(a_n = 4 + 3(n-1)\\) olur; \\(4 + 3n\\) değil. Formülün “\\(n-k\\)” biçimi bu karışıklığı tamamen ortadan kaldırır: hangi terimi biliyorsan \\(k\\) odur.</p>\n<p>FRQ dilinde gerekçe: <em>“The sequence is arithmetic because the differences between consecutive terms are constant (each is 4).”</em> ya da <em>“The sequence is geometric because the ratios of consecutive terms are constant (each is 3).”</em> Sabit olan niceliği <strong>sayıyla</strong> yazmak puan getirir.</p>",
+   "ornekler": [
+    {
+     "soru": "Bir aritmetik dizide \\(a_4 = 23\\) ve \\(a_{10} = 59\\). \\(a_{20}\\)'yi bulun.",
+     "cozum": [
+      "Ortak fark: \\(d = \\dfrac{59 - 23}{10 - 4} = \\dfrac{36}{6} = 6\\).",
+      "\\(a_{20} = a_{10} + 6(20 - 10) = 59 + 60 = 119\\)."
+     ]
+    },
+    {
+     "soru": "Bir geometrik dizide \\(g_1 = 3\\) ve \\(g_4 = -81\\). \\(g_6\\)'yı bulun.",
+     "cozum": [
+      "\\(r^{3} = \\dfrac{-81}{3} = -27\\), dolayısıyla \\(r = -3\\) (tek dereceli kök, işaret korunur).",
+      "\\(g_6 = g_4\\, r^{2} = -81 \\cdot 9 = -729\\)."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) Tablo: \\(n = 0,1,2,3\\) için \\(b_n = 2, 6, 18, 54\\). Dizinin aritmetik mi geometrik mi olduğunu belirleyin ve gerekçelendirin.",
+     "cozum": [
+      "Farklar: \\(4, 12, 36\\) — sabit değil, aritmetik değil.",
+      "Oranlar: \\(6/2 = 18/6 = 54/18 = 3\\) — sabit.",
+      "“The sequence is geometric because the ratio of consecutive terms is constant, \\(r = 3\\); so \\(b_n = 2\\cdot 3^n\\).”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Section I Part A'da hesap makinesi yoktur; dizi soruları genelde tam sayılarla kurulur, \\(r^3 = 8\\) gibi kökleri kafadan al.",
+    "Gerekçe yazarken “constant differences” ya da “constant ratios” ifadesini ve sabitin değerini birlikte yaz.",
+    "Terim numaraları arasındaki adım sayısı \\(n-k\\)'dır; \\(a_4\\)'ten \\(a_{10}\\)'a 6 adım vardır, 7 değil.",
+    "Geometrik dizide \\(r\\) negatif olabilir; işaretler değişiyorsa (\\(+,-,+\\)) oran negatiftir."
+   ],
+   "sikHatalar": [
+    "Geometrik dizide ortak oranı terimlerin farkını bölerek bulmak; oran için terimler bölünür.",
+    "\\(a_1\\) verildiğinde \\(a_n = a_1 + dn\\) yazmak; doğrusu \\(a_n = a_1 + d(n-1)\\).",
+    "Çift kuvvetli kökte (\\(r^2 = 16\\)) yalnız pozitif kökü almak; terimlerin işaretine bakılmalı."
+   ],
+   "terimler": [
+    {
+     "en": "sequence",
+     "tr": "dizi"
+    },
+    {
+     "en": "arithmetic sequence",
+     "tr": "aritmetik dizi"
+    },
+    {
+     "en": "geometric sequence",
+     "tr": "geometrik dizi"
+    },
+    {
+     "en": "common difference",
+     "tr": "ortak fark"
+    },
+    {
+     "en": "common ratio",
+     "tr": "ortak oran"
+    },
+    {
+     "en": "consecutive terms",
+     "tr": "ardışık terimler"
+    }
+   ]
+  },
+  {
+   "kod": "2.2",
+   "baslik": "Change in Linear and Exponential Functions",
+   "baslikTr": "Doğrusal ve üstel fonksiyonlarda değişim",
+   "hedefler": [
+    "Eşit uzunluklu girdi aralıklarında doğrusal fonksiyonun çıktısının eşit miktarda, üstel fonksiyonun çıktısının eşit oranda değiştiğini göstermek.",
+    "Doğrusal fonksiyonu aritmetik diziyle, üstel fonksiyonu geometrik diziyle ilişkilendirmek.",
+    "Bir nokta ve sabit (fark ya da oran) verildiğinde \\(f(x) = y_i + m(x - x_i)\\) ve \\(f(x) = y_i\\, r^{x - x_i}\\) modellerini yazmak."
+   ],
+   "anlatim": "<h4>Toplamsal ve çarpımsal değişim</h4>\n<p>Bir önceki konudaki diziler yalnız tam sayı girdilerde tanımlıydı. Şimdi aynı fikri tüm gerçek sayılara yayıyoruz.</p>\n<div class=\"kn-tanim\"><strong>Doğrusal fonksiyon (linear function)</strong> \\(f(x) = b + mx\\): girdi her \\(\\Delta x\\) kadar arttığında çıktı <strong>aynı miktarda</strong> (\\(m\\Delta x\\)) değişir. Bu <em>toplamsal (additive)</em> bir örüntüdür.<br>\n<strong>Üstel fonksiyon (exponential function)</strong> \\(f(x) = ab^{x}\\): girdi her \\(\\Delta x\\) kadar arttığında çıktı <strong>aynı çarpanla</strong> (\\(b^{\\Delta x}\\)) çarpılır. Bu <em>çarpımsal (multiplicative)</em> bir örüntüdür.</div>\n<table><thead><tr><th>\\(x\\)</th><th>0</th><th>2</th><th>4</th><th>6</th><th>Örüntü</th></tr></thead><tbody>\n<tr><td>\\(L(x) = 5 + 3x\\)</td><td>5</td><td>11</td><td>17</td><td>23</td><td>her 2 birimde \\(+6\\)</td></tr>\n<tr><td>\\(E(x) = 5\\cdot 3^{x/2}\\)</td><td>5</td><td>15</td><td>45</td><td>135</td><td>her 2 birimde \\(\\times 3\\)</td></tr></tbody></table>\n<p>Önemli: bu testin çalışması için girdi aralıklarının <strong>eşit uzunlukta (equal-length input-value intervals)</strong> olması gerekir. \\(x = 0, 1, 3, 6\\) gibi düzensiz aralıklarda farkları doğrudan karşılaştıramazsın; önce her aralığın uzunluğuna bölmelisin.</p>\n<h4>Dizilerle bağlantı</h4>\n<p>Doğrusal fonksiyonun tam sayı girdilerdeki değerleri bir <strong>aritmetik dizi</strong>, üstel fonksiyonun tam sayı girdilerdeki değerleri bir <strong>geometrik dizi</strong> oluşturur. \\(a_n = a_0 + dn\\) ile \\(f(x) = b + mx\\) aynı yapıdır; \\(g_n = g_0 r^n\\) ile \\(f(x) = ab^x\\) de öyle.</p>\n<div class=\"kn-kural\"><strong>Nokta–sabit biçimleri:</strong>\n\\[ f(x) = y_i + m(x - x_i) \\qquad\\qquad f(x) = y_i \\, r^{\\,x - x_i} \\]\nDoğrusal fonksiyon bir nokta \\((x_i, y_i)\\) ve eğim \\(m\\) ile; üstel fonksiyon bir nokta \\((x_i, y_i)\\) ve oran \\(r\\) ile tamamen belirlenir.</div>\n<h4>Ortalama değişim hızı açısından</h4>\n<p>Doğrusal fonksiyonun ortalama değişim hızı (average rate of change) her aralıkta aynıdır: \\(m\\). Üstel fonksiyonda ise eşit uzunluklu ardışık aralıklardaki ortalama değişim hızları da <strong>aynı oranla</strong> değişir. Yukarıdaki \\(E\\) için \\([0,2]\\) aralığında hız \\(\\frac{15-5}{2} = 5\\), \\([2,4]\\)'te \\(\\frac{45-15}{2} = 15\\), \\([4,6]\\)'da 45: her seferinde 3 katı. Bu, üstel fonksiyonun ya hep artan hızla büyüdüğünü (concave up) ya da hep azalan hızla küçüldüğünü gösterir.</p>\n<h4>Kısmi aralıklar</h4>\n<p>Üstel fonksiyon 4 birimde 16 ile çarpılıyorsa 1 birimde \\(16^{1/4} = 2\\) ile, 2 birimde \\(16^{1/2} = 4\\) ile çarpılır. Doğrusal fonksiyon 4 birimde 16 artıyorsa 1 birimde 4 artar. Fark burada: <em>doğrusalda böl, üstelde kök al</em>.</p>\n<p>FRQ cümlesi: <em>“Over equal-length input intervals, the output values change by a constant factor of 3, so an exponential model is appropriate.”</em></p>",
+   "ornekler": [
+    {
+     "soru": "Bir üstel fonksiyon için \\(f(2) = 50\\) ve \\(f(5) = 3.2\\). \\(f(x)\\)'i \\(f(x) = y_i\\, r^{x - x_i}\\) biçiminde yazın ve \\(f(3)\\)'ü bulun.",
+     "cozum": [
+      "3 birimde çarpan: \\(r^{3} = \\dfrac{3.2}{50} = 0.064\\), dolayısıyla \\(r = \\sqrt[3]{0.064} = 0.4\\).",
+      "\\(f(x) = 50\\,(0.4)^{x-2}\\); \\(f(3) = 50\\cdot 0.4 = 20\\). Kontrol: \\(f(5) = 50\\cdot 0.4^{3} = 3.2\\). ✓"
+     ]
+    },
+    {
+     "soru": "Bir doğrusal fonksiyon için \\(g(-1) = 7\\) ve \\(g(3) = -5\\). \\(g(10)\\)'u bulun.",
+     "cozum": [
+      "Eğim: \\(m = \\dfrac{-5 - 7}{3 - (-1)} = \\dfrac{-12}{4} = -3\\).",
+      "\\(g(10) = g(3) + m(10 - 3) = -5 - 21 = -26\\)."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) Tablo: \\(x = 1, 3, 5, 7\\) için \\(h(x) = 2, 8, 32, 128\\). \\(h\\)'nin doğrusal mı üstel mi modellenmesi gerektiğini açıklayın.",
+     "cozum": [
+      "Girdiler eşit aralıklı (her adım 2). Çıktı farkları \\(6, 24, 96\\): sabit değil.",
+      "Çıktı oranları \\(8/2 = 32/8 = 128/32 = 4\\): sabit.",
+      "“Over equal-length input intervals of length 2, the output values are multiplied by a constant factor of 4, so \\(h\\) is exponential: \\(h(x) = 2\\cdot 4^{(x-1)/2} = 2\\cdot 2^{x-1}\\).”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Tablo sorusunda önce girdilerin eşit aralıklı olup olmadığını kontrol et; değilse farkları aralık uzunluğuna böl.",
+    "Puanlayıcı “constant rate of change” (doğrusal) ya da “constant proportional change / constant factor” (üstel) ifadesini arar.",
+    "Part A'da (hesap makinesiz) sayılar genelde temiz seçilir: \\(r^2 = 9\\), \\(r^3 = 8\\). Kirli bir kök çıkıyorsa ya hata yaptın ya da soru Part B'dir."
+   ],
+   "sikHatalar": [
+    "Düzensiz aralıklı girdilerde farkları doğrudan karşılaştırıp “doğrusal değil” demek.",
+    "Üstel fonksiyonda 4 birimdeki çarpanı 4'e bölerek 1 birimlik çarpanı bulmak; doğrusu 4'üncü kökünü almaktır.",
+    "Ortalama değişim hızı sabit değil diye fonksiyonun üstel olduğuna karar vermek; oranların sabit olduğunu da göstermek gerekir."
+   ],
+   "terimler": [
+    {
+     "en": "linear function",
+     "tr": "doğrusal fonksiyon"
+    },
+    {
+     "en": "exponential function",
+     "tr": "üstel fonksiyon"
+    },
+    {
+     "en": "additive transformation",
+     "tr": "toplamsal değişim"
+    },
+    {
+     "en": "multiplicative change",
+     "tr": "çarpımsal değişim"
+    },
+    {
+     "en": "equal-length input intervals",
+     "tr": "eşit uzunluklu girdi aralıkları"
+    },
+    {
+     "en": "average rate of change",
+     "tr": "ortalama değişim hızı"
+    }
+   ]
+  },
+  {
+   "kod": "2.3",
+   "baslik": "Exponential Functions",
+   "baslikTr": "Üstel fonksiyonlar",
+   "hedefler": [
+    "\\(f(x) = ab^{x}\\) biçimindeki üstel fonksiyonun büyüme (growth) ya da azalma (decay) olduğunu \\(a\\) ve \\(b\\)'den belirlemek.",
+    "Üstel fonksiyonun artanlık, içbükeylik (concavity), uç davranış (end behavior) ve yatay asimptotunu (horizontal asymptote) açıklamak.",
+    "\\(f(x) = ab^{x} + k\\) gibi dönüşümlerin grafiği ve asimptotu nasıl değiştirdiğini belirlemek."
+   ],
+   "anlatim": "<h4>Tanım</h4>\n<div class=\"kn-tanim\">Genel üstel fonksiyon (general form of an exponential function): \\[ f(x) = a\\,b^{x}, \\qquad a \\neq 0,\\ \\ b \\gt 0,\\ \\ b \\neq 1 \\]\n\\(a\\): <em>başlangıç değeri (initial value)</em>, çünkü \\(f(0) = a\\). \\(b\\): <em>taban (base)</em>, girdi 1 arttığında çıktının çarpıldığı sayı.</div>\n<p>Neden \\(b \\gt 0\\)? Negatif tabanda \\((-2)^{1/2}\\) gerçek sayı değildir. Neden \\(b \\neq 1\\)? \\(1^{x} = 1\\) sabittir, üstel değildir.</p>\n<h4>Büyüme mi azalma mı?</h4>\n<table><thead><tr><th>Durum (\\(a \\gt 0\\))</th><th>Ad</th><th>Davranış</th></tr></thead><tbody>\n<tr><td>\\(b \\gt 1\\)</td><td>exponential growth</td><td>artan, içbükey yukarı (concave up)</td></tr>\n<tr><td>\\(0 \\lt b \\lt 1\\)</td><td>exponential decay</td><td>azalan, içbükey yukarı (concave up)</td></tr></tbody></table>\n<p>\\(a \\lt 0\\) ise grafik \\(x\\)-eksenine göre yansır: \\(b \\gt 1\\) iken azalan ve içbükey aşağı (concave down), \\(0 \\lt b \\lt 1\\) iken artan ve içbükey aşağı olur. Kısaca: <strong>\\(a\\)'nın işareti içbükeyliği belirler</strong>; \\(a\\) ile \\(b\\) birlikte artanlığı belirler.</p>\n<h4>Temel özellikler</h4>\n<ul>\n<li><strong>Tanım kümesi (domain):</strong> tüm gerçek sayılar. <strong>Görüntü kümesi (range):</strong> \\(a \\gt 0\\) ise \\(y \\gt 0\\); \\(a \\lt 0\\) ise \\(y \\lt 0\\).</li>\n<li>Her zaman artan ya da her zaman azalan; bu yüzden <strong>ekstremum (extrema) yoktur</strong> ve <strong>dönüm noktası (point of inflection) yoktur</strong>.</li>\n<li>Bir uçta sınırsız büyür, diğer uçta 0'a yaklaşır. \\(b \\gt 1\\), \\(a\\gt 0\\) için: \\(\\lim_{x\\to\\infty} ab^{x} = \\infty\\), \\(\\lim_{x\\to -\\infty} ab^{x} = 0\\). Yani \\(y = 0\\) bir <strong>yatay asimptottur (horizontal asymptote)</strong>.</li>\n<li>Grafik \\(y\\)-eksenini \\((0, a)\\)'da keser; \\(x\\)-eksenini hiç kesmez.</li>\n</ul>\n<h4>Dönüşümler (transformations)</h4>\n<p>\\(g(x) = ab^{x} + k\\): grafik \\(k\\) birim yukarı kayar, asimptot \\(y = k\\) olur, görüntü kümesi \\(y \\gt k\\) (\\(a\\gt0\\)). \\(g(x) = ab^{x - h}\\): grafik \\(h\\) birim sağa kayar; asimptot değişmez. Örneğin \\(g(x) = -2\\cdot 3^{x} + 5\\): \\(a = -2 \\lt 0\\), \\(b = 3 \\gt 1\\) → azalan, içbükey aşağı, \\(x \\to -\\infty\\) iken \\(g(x) \\to 5\\), \\(x \\to \\infty\\) iken \\(g(x) \\to -\\infty\\). Görüntü kümesi \\(y \\lt 5\\).</p>\n<div class=\"kn-dikkat\">Üstel büyüme <strong>sonunda her polinomu geçer</strong>: \\(2^{x}\\) ile \\(x^{10}\\) karşılaştırıldığında, yeterince büyük \\(x\\) için \\(2^{x}\\) daha büyüktür. Ama küçük \\(x\\) değerlerinde polinom önde olabilir.</div>\n<h4>Özel taban: \\(e\\)</h4>\n<p>\\(e \\approx 2.718\\) doğal tabandır (natural base). \\(f(x) = e^{x}\\) artandır; \\(e^{-x} = (1/e)^{x}\\) azalandır. Sürekli bileşik faiz (continuous growth) modellerinde görünür.</p>\n<p>FRQ dili: <em>“Because \\(a \\gt 0\\) and \\(0 \\lt b \\lt 1\\), \\(f\\) is decreasing and concave up, and \\(\\lim_{x\\to\\infty} f(x) = 0\\).”</em> Limit gösterimini doğru yazmak uç davranış puanını getirir.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x) = 4\\left(\\tfrac{1}{3}\\right)^{x} - 2\\) için artanlık, içbükeylik, yatay asimptot ve görüntü kümesini belirtin.",
+     "cozum": [
+      "\\(a = 4 \\gt 0\\), \\(b = \\tfrac13\\): azalma (decay), azalan ve içbükey yukarı.",
+      "\\(x \\to \\infty\\) iken \\(4(1/3)^x \\to 0\\), dolayısıyla \\(f(x) \\to -2\\): asimptot \\(y = -2\\).",
+      "Görüntü kümesi \\(y \\gt -2\\); \\(x \\to -\\infty\\) iken \\(f(x) \\to \\infty\\)."
+     ]
+    },
+    {
+     "soru": "Bir üstel fonksiyon \\((0, 6)\\) ve \\((2, 54)\\) noktalarından geçiyor, \\(f(x) = ab^{x}\\). \\(a\\) ve \\(b\\)'yi bulun.",
+     "cozum": [
+      "\\(f(0) = a = 6\\).",
+      "\\(6b^{2} = 54 \\Rightarrow b^{2} = 9 \\Rightarrow b = 3\\) (taban pozitif olmalı)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(g(x) = -5\\cdot 2^{x}\\) fonksiyonunun grafiği için “\\(g\\) is increasing” iddiası doğru mu? Gerekçelendirin.",
+     "cozum": [
+      "\\(2^{x}\\) artandır; \\(-5\\) ile çarpmak grafiği \\(x\\)-eksenine göre yansıtır.",
+      "“No. Since \\(b = 2 \\gt 1\\), \\(2^x\\) is increasing, and multiplying by \\(a = -5 \\lt 0\\) reverses the direction, so \\(g\\) is decreasing (and concave down).”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Uç davranışı her zaman limit gösterimiyle yaz: \\(\\lim_{x\\to\\infty} f(x) = \\dots\\). Sözel “gets close to 0” tek başına tam puan almayabilir.",
+    "Part A'da grafik çizemezsin: \\(a\\)'nın işaretinden içbükeyliği, \\(a\\) ve \\(b\\)'den artanlığı oku.",
+    "\\(+k\\) eklemek asimptotu \\(y = k\\)'ya taşır; görüntü kümesini yazarken bunu unutma.",
+    "Part B'de (graphing calculator) üstel ile polinomun kesişimlerini “intersect” ile bulabilirsin; cevabı 3 ondalıkla ver."
+   ],
+   "sikHatalar": [
+    "Azalan üstel fonksiyonun içbükey aşağı olduğunu sanmak; \\(a \\gt 0\\) iken azalma da içbükey yukarıdır.",
+    "\\(ab^{x} + k\\) için asimptotu hâlâ \\(y = 0\\) sanmak.",
+    "\\(y\\)-kesimini \\(b\\) sanmak; \\(f(0) = a\\)'dır."
+   ],
+   "terimler": [
+    {
+     "en": "exponential growth",
+     "tr": "üstel büyüme"
+    },
+    {
+     "en": "exponential decay",
+     "tr": "üstel azalma"
+    },
+    {
+     "en": "initial value",
+     "tr": "başlangıç değeri"
+    },
+    {
+     "en": "base",
+     "tr": "taban"
+    },
+    {
+     "en": "horizontal asymptote",
+     "tr": "yatay asimptot"
+    },
+    {
+     "en": "concave up / concave down",
+     "tr": "içbükey yukarı / aşağı"
+    },
+    {
+     "en": "natural base e",
+     "tr": "doğal taban e"
+    }
+   ]
+  },
+  {
+   "kod": "2.4",
+   "baslik": "Exponential Function Manipulation",
+   "baslikTr": "Üstel ifadelerin düzenlenmesi",
+   "hedefler": [
+    "Üs kurallarını (product property, power property, negative exponent) kullanarak eşdeğer üstel ifadeler yazmak.",
+    "Yatay kaydırmanın (horizontal translation) üstel fonksiyonda dikey genişlemeye (vertical dilation) eşdeğer olduğunu göstermek.",
+    "Yatay genişlemenin (horizontal dilation) tabanı değiştirdiğini kullanmak: \\(b^{cx} = (b^{c})^{x}\\)."
+   ],
+   "anlatim": "<h4>Üs kuralları (properties of exponents)</h4>\n<table><thead><tr><th>Kural</th><th>Formül</th><th>Örnek</th></tr></thead><tbody>\n<tr><td>Çarpım (product property)</td><td>\\(b^{m} b^{n} = b^{m+n}\\)</td><td>\\(2^{3}\\cdot2^{4} = 2^{7}\\)</td></tr>\n<tr><td>Bölüm</td><td>\\(\\dfrac{b^{m}}{b^{n}} = b^{m-n}\\)</td><td>\\(\\dfrac{5^{6}}{5^{2}} = 5^{4}\\)</td></tr>\n<tr><td>Kuvvetin kuvveti (power property)</td><td>\\((b^{m})^{n} = b^{mn}\\)</td><td>\\((3^{2})^{x} = 9^{x}\\)</td></tr>\n<tr><td>Negatif üs (negative exponent)</td><td>\\(b^{-n} = \\dfrac{1}{b^{n}}\\)</td><td>\\(4^{-x} = \\left(\\tfrac14\\right)^{x}\\)</td></tr>\n<tr><td>Kesirli üs</td><td>\\(b^{1/k} = \\sqrt[k]{b}\\)</td><td>\\(8^{1/3} = 2\\)</td></tr></tbody></table>\n<h4>Yatay kaydırma = dikey genişleme</h4>\n<div class=\"kn-kural\">\\[ f(x) = a\\,b^{\\,x + k} = a\\,b^{k}\\cdot b^{x} \\]\nÜstel fonksiyonda grafiği \\(k\\) birim sola kaydırmak, onu \\(b^{k}\\) çarpanıyla dikey genişletmekle (vertical dilation) <strong>aynı sonucu</strong> verir.</div>\n<p>Örnek: \\(3\\cdot 2^{x + 3} = 3\\cdot 8\\cdot 2^{x} = 24\\cdot 2^{x}\\). İki ifade tamamen aynı fonksiyondur. Benzer şekilde \\(2^{x-1} = \\tfrac12 \\cdot 2^{x}\\). Bu, polinomlarda olmayan özel bir durumdur: \\((x+3)^2\\) ile \\(c\\,x^{2}\\) hiçbir \\(c\\) için eşit değildir.</p>\n<h4>Yatay genişleme = taban değişimi</h4>\n<p>\\(b^{cx} = (b^{c})^{x}\\). Örneğin \\(9^{x/2} = (9^{1/2})^{x} = 3^{x}\\) ve \\(2^{3x} = 8^{x}\\). Girdiyi \\(c\\) ile çarpmak, tabanı \\(b\\)'den \\(b^{c}\\)'ye değiştirir. Sonuç: <strong>tüm pozitif tabanlı üstel fonksiyonlar birbirinin yatay genişlemesidir</strong>; hatta her \\(b^{x}\\) şöyle yazılabilir: \\(b^{x} = e^{(\\ln b)x}\\).</p>\n<h4>Tabanları eşitlemek</h4>\n<p>İfadeleri karşılaştırmak ya da sadeleştirmek için ortak bir taban seç: \\(4^{x}\\cdot 8^{x-1} = 2^{2x}\\cdot 2^{3x-3} = 2^{5x-3}\\). Sonra gerekirse \\(2^{5x-3} = 2^{-3}\\cdot(2^{5})^{x} = \\tfrac18\\cdot 32^{x}\\) biçimine, yani \\(ab^{x}\\) biçimine getir. AP sorularında “Which of the following is equivalent to …” kalıbı çoğu zaman tam bu dönüşümü ister.</p>\n<h4>Kök ve kesirli üs</h4>\n<p>\\(\\sqrt{x^{3}} = x^{3/2}\\), \\(\\dfrac{1}{\\sqrt[3]{x}} = x^{-1/3}\\). Değişken tabanlı bu ifadeler kuvvet fonksiyonudur (power function), üstel değildir; ama aynı üs kuralları geçerlidir. Sabit tabanda kesirli üs: \\(27^{2/3} = (\\sqrt[3]{27})^{2} = 9\\).</p>\n<div class=\"kn-dikkat\">\\(2^{x} + 2^{x} = 2\\cdot 2^{x} = 2^{x+1}\\); ama \\(2^{x}\\cdot 2^{x} = 2^{2x}\\). Toplama ile çarpmayı karıştırma. \\((2+3)^{x} \\neq 2^{x} + 3^{x}\\).</div>\n<p>Q4 (Symbolic Manipulations, hesap makinesiz) tam bu tür dönüşümleri ister: <em>“Rewrite \\(h(x)\\) as a single exponential of the form \\(ab^{x}\\)”</em>. Her adımı ayrı satırda, hangi özelliği kullandığını belli ederek yaz.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x) = 5\\cdot 3^{x-2}\\) fonksiyonunu \\(ab^{x}\\) biçiminde yazın.",
+     "cozum": [
+      "\\(3^{x-2} = 3^{x}\\cdot 3^{-2} = \\tfrac19\\cdot 3^{x}\\).",
+      "\\(f(x) = \\tfrac{5}{9}\\cdot 3^{x}\\): sağa 2 kaydırma, \\(\\tfrac19\\) çarpanlı dikey genişlemeyle aynıdır."
+     ]
+    },
+    {
+     "soru": "\\(g(x) = \\dfrac{16^{x}}{2^{x+3}}\\) ifadesini \\(ab^{x}\\) biçiminde yazın.",
+     "cozum": [
+      "\\(16^{x} = 2^{4x}\\), dolayısıyla \\(g(x) = 2^{4x - x - 3} = 2^{3x - 3}\\).",
+      "\\(2^{3x-3} = 2^{-3}\\cdot (2^{3})^{x} = \\tfrac18 \\cdot 8^{x}\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Bir öğrenci “\\(h(x) = 2^{x+1}\\)'in grafiği, \\(y = 2^{x}\\)'in grafiğinin dikey olarak 2 katıdır” diyor. Doğru mu?",
+     "cozum": [
+      "Çarpım özelliği: \\(2^{x+1} = 2^{1}\\cdot 2^{x} = 2\\cdot 2^{x}\\).",
+      "“Yes. By the product property, \\(2^{x+1} = 2\\cdot 2^{x}\\), so the horizontal translation 1 unit left is equivalent to a vertical dilation by a factor of 2.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Bu konu Q4 (Symbolic Manipulations, no calculator) için birebirdir; kullandığın özelliğin adını (product property vb.) yazmak açıklamayı güçlendirir.",
+    "Ortak taban seç: 4, 8, 16, 32 → 2'nin kuvvetleri; 9, 27, 81 → 3'ün kuvvetleri.",
+    "Şıklardaki eşdeğer ifadeyi bulmak için \\(x = 0\\) ve \\(x = 1\\) koyup değerleri karşılaştırmak hızlı bir kontroldür."
+   ],
+   "sikHatalar": [
+    "\\(3\\cdot 2^{x}\\)'i \\(6^{x}\\) sanmak; katsayı tabana girmez.",
+    "\\(b^{x+k}\\)'yı \\(b^{x} + b^{k}\\) diye açmak; doğrusu çarpımdır: \\(b^{x}b^{k}\\).",
+    "\\(b^{-x}\\)'i \\(-b^{x}\\) sanmak; negatif üs tersini alır: \\((1/b)^{x}\\)."
+   ],
+   "terimler": [
+    {
+     "en": "product property",
+     "tr": "çarpım özelliği"
+    },
+    {
+     "en": "power property",
+     "tr": "kuvvet özelliği"
+    },
+    {
+     "en": "negative exponent property",
+     "tr": "negatif üs özelliği"
+    },
+    {
+     "en": "horizontal translation",
+     "tr": "yatay kaydırma"
+    },
+    {
+     "en": "vertical dilation",
+     "tr": "dikey genişleme"
+    },
+    {
+     "en": "horizontal dilation",
+     "tr": "yatay genişleme"
+    },
+    {
+     "en": "equivalent form",
+     "tr": "eşdeğer biçim"
+    }
+   ]
+  },
+  {
+   "kod": "2.5",
+   "baslik": "Exponential Function Context and Data Modeling",
+   "baslikTr": "Üstel fonksiyonla bağlam ve veri modelleme",
+   "hedefler": [
+    "Yüzde artış/azalış, yarılanma (half-life) ve ikiye katlanma (doubling) bağlamlarında üstel model kurmak.",
+    "Modeli farklı zaman birimlerine çevirmek (yıllık oranı aylık orana dönüştürmek gibi).",
+    "Veriden üstel regresyon (exponential regression) ile model bulmak ve modelin parametrelerini bağlamda yorumlamak."
+   ],
+   "anlatim": "<h4>Üstel model ne zaman uygun?</h4>\n<p>Bir nicelik <strong>eşit zaman aralıklarında aynı oranda (by a constant percent)</strong> değişiyorsa üstel modellenir: nüfus, bileşik faiz, radyoaktif bozunma, ilacın vücuttan atılması, ısınan bir cismin sıcaklık farkı.</p>\n<h4>Model biçimleri</h4>\n<table><thead><tr><th>Bağlam</th><th>Model</th><th>Parametre anlamı</th></tr></thead><tbody>\n<tr><td>Yüzde \\(r\\) artış</td><td>\\(f(t) = a(1 + r)^{t}\\)</td><td>\\(1 + r\\): büyüme çarpanı (growth factor)</td></tr>\n<tr><td>Yüzde \\(r\\) azalış</td><td>\\(f(t) = a(1 - r)^{t}\\)</td><td>\\(1 - r\\): azalma çarpanı (decay factor)</td></tr>\n<tr><td>İkiye katlanma süresi \\(D\\)</td><td>\\(f(t) = a\\cdot 2^{t/D}\\)</td><td>her \\(D\\) birimde 2 katı</td></tr>\n<tr><td>Yarılanma süresi \\(H\\)</td><td>\\(f(t) = a\\left(\\tfrac12\\right)^{t/H}\\)</td><td>her \\(H\\) birimde yarısı</td></tr>\n<tr><td>Yılda \\(n\\) kez bileşik faiz</td><td>\\(A(t) = P\\left(1 + \\tfrac{r}{n}\\right)^{nt}\\)</td><td>\\(r\\): yıllık nominal oran</td></tr>\n<tr><td>Sürekli büyüme</td><td>\\(f(t) = a e^{kt}\\)</td><td>\\(k\\): sürekli büyüme oranı</td></tr></tbody></table>\n<div class=\"kn-tanim\"><strong>Başlangıç değeri (initial value)</strong> \\(a = f(0)\\): \\(t = 0\\) anındaki miktar. <strong>Büyüme çarpanı (growth factor)</strong> \\(b\\): her bir zaman biriminde miktarın çarpıldığı sayı. “%8 artış” → \\(b = 1.08\\); “%8 azalış” → \\(b = 0.92\\). Dikkat: “8%” \\(b\\) değil, \\(r\\)'dir.</div>\n<h4>Zaman birimini değiştirmek</h4>\n<p>Yıllık çarpanı 1.12 olan bir model aylık olarak nasıl yazılır? Bir yıl = 12 ay olduğundan \\(1.12^{t} = \\left(1.12^{1/12}\\right)^{12t}\\). \\(t\\) yıl, \\(m = 12t\\) ay ise \\(f = a\\left(1.12^{1/12}\\right)^{m} \\approx a(1.00949)^{m}\\). Aylık oran yaklaşık %0.949'dur, \\(12\\%/12 = 1\\%\\) <strong>değildir</strong>. Benzer şekilde haftalık çarpan 0.9 ise günlük çarpan \\(0.9^{1/7}\\)'dir.</p>\n<h4>Veriden model</h4>\n<p>İki veri noktası \\((t_1, y_1)\\), \\((t_2, y_2)\\) varsa: \\(b^{t_2 - t_1} = y_2/y_1\\) → \\(b\\); sonra \\(a = y_1/b^{t_1}\\). Çok veri varsa Part B'de grafik hesap makinesinin <strong>exponential regression</strong> (ExpReg) komutu \\(y = a\\cdot b^{x}\\) verir. Bu modelin değerlerini yuvarlarken en az 3 ondalık kullan; ara adımlarda yuvarlamak son cevabı bozar.</p>\n<h4>Modelin sınırları</h4>\n<p>Üstel model gerçek durumu sonsuza kadar tanımlamaz: nüfus kaynaklarla sınırlıdır, faiz oranı değişebilir. Bağlam sorularında modelin tahmini için “The model may not be valid for large \\(t\\) because …” cümlesi kurulabilir. Ayrıca bazı modellerde çıktı ancak belirli bir değere yaklaşır: soğuyan çay \\(T(t) = 20 + 70(0.9)^{t}\\) oda sıcaklığı 20'ye yaklaşır; burada 20, yatay asimptottur.</p>\n<p>FRQ (Q2 Modeling a Non-Periodic Context, graphing calculator) cümle kalıbı: <em>“The value 1.08 means the population increases by 8% each year.”</em>, <em>“\\(f(0) = 1500\\) is the number of bacteria at time \\(t = 0\\).”</em> Birim (unit) yazmayı unutma.</p>",
+   "ornekler": [
+    {
+     "soru": "Bir arabanın değeri her yıl %15 azalıyor. Bugün 24000 dolar. \\(t\\) yıl sonraki değer için model yazın ve 3 yıl sonraki değeri bulun.",
+     "cozum": [
+      "Azalma çarpanı \\(1 - 0.15 = 0.85\\): \\(V(t) = 24000(0.85)^{t}\\).",
+      "\\(V(3) = 24000\\cdot 0.614125 = 14739\\) dolar."
+     ]
+    },
+    {
+     "soru": "Bir maddenin yarılanma süresi 6 saattir. 80 mg ile başlanırsa 15 saat sonra ne kadar kalır?",
+     "cozum": [
+      "\\(M(t) = 80\\left(\\tfrac12\\right)^{t/6}\\).",
+      "\\(M(15) = 80\\cdot (0.5)^{2.5} \\approx 80\\cdot 0.17678 \\approx 14.142\\) mg (Part B: hesap makinesi)."
+     ]
+    },
+    {
+     "soru": "(Yorum) Bir modelde \\(P(t) = 3200(1.035)^{t}\\), \\(t\\) yıl. 3200 ve 1.035'in bağlamdaki anlamını yazın.",
+     "cozum": [
+      "\\(P(0) = 3200\\): \\(t = 0\\) anındaki nüfus 3200'dür.",
+      "1.035 büyüme çarpanıdır: “The population increases by 3.5% per year.” Yıllık çarpan olduğu için birim “per year”dır."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Model bağlamı Q2'de (Modeling a Non-Periodic Context) graphing calculator ile çözülür; ara değerleri saklayıp son cevabı 3 ondalıkla ver.",
+    "Parametre yorumunda üç şey yaz: değer, nicelik, birim. “1.035 means the population is multiplied by 1.035 each year.”",
+    "Zaman birimi değişince çarpanın kökünü/kuvvetini al; oranı bölme/çarpma.",
+    "Part A'da (hesap makinesiz) cevaplar genelde \\(80(0.5)^{2}\\) gibi temiz kuvvetlerle verilir ya da ifade olarak bırakılır."
+   ],
+   "sikHatalar": [
+    "“%6 artış” için \\(b = 0.06\\) ya da \\(b = 6\\) yazmak; doğrusu \\(b = 1.06\\).",
+    "Yarılanma modelinde \\(\\left(\\tfrac12\\right)^{t}\\) yazıp süreye bölmeyi unutmak.",
+    "Yıllık %12'yi aylık %1'e çevirmek; bileşik oranlarda doğru çevirme \\(1.12^{1/12}\\)'dir."
+   ],
+   "terimler": [
+    {
+     "en": "growth factor",
+     "tr": "büyüme çarpanı"
+    },
+    {
+     "en": "decay factor",
+     "tr": "azalma çarpanı"
+    },
+    {
+     "en": "half-life",
+     "tr": "yarılanma süresi"
+    },
+    {
+     "en": "doubling time",
+     "tr": "ikiye katlanma süresi"
+    },
+    {
+     "en": "compound interest",
+     "tr": "bileşik faiz"
+    },
+    {
+     "en": "exponential regression",
+     "tr": "üstel regresyon"
+    },
+    {
+     "en": "initial value",
+     "tr": "başlangıç değeri"
+    }
+   ]
+  },
+  {
+   "kod": "2.6",
+   "baslik": "Competing Function Model Validation",
+   "baslikTr": "Rakip modellerin doğrulanması",
+   "hedefler": [
+    "Verinin doğrusal, ikinci dereceden (quadratic) ya da üstel modelle temsil edilmeye uygun olup olmadığını farklar ve oranlarla belirlemek.",
+    "Artık (residual) = gerçek değer − tahmin değerini hesaplamak ve yorumlamak.",
+    "Artık grafiğindeki (residual plot) örüntüye bakarak modelin uygunluğunu değerlendirmek."
+   ],
+   "anlatim": "<h4>Hangi model?</h4>\n<p>Bir veri tablosunda girdiler eşit aralıklıysa (equal-length intervals) çıktıların değişimine bakarak model seçeriz:</p>\n<table><thead><tr><th>Gözlem</th><th>Uygun model</th></tr></thead><tbody>\n<tr><td>Birinci farklar (first differences) yaklaşık sabit</td><td>doğrusal (linear)</td></tr>\n<tr><td>İkinci farklar (second differences) yaklaşık sabit</td><td>ikinci dereceden (quadratic)</td></tr>\n<tr><td>Ardışık oranlar (ratios) yaklaşık sabit</td><td>üstel (exponential)</td></tr></tbody></table>\n<p>Bağlam da ipucu verir: “her yıl aynı miktarda artış” → doğrusal; “her yıl aynı yüzde artış” → üstel; “yükselip sonra düşen” (bir topun yüksekliği, bir maksimumu olan gelir) → ikinci dereceden.</p>\n<h4>Artık (residual)</h4>\n<div class=\"kn-tanim\">\\[ \\text{residual} = \\text{actual value} - \\text{predicted value} = y - \\hat{y} \\]\nPozitif artık: model gerçek değeri <strong>düşük tahmin etmiştir (underestimate)</strong>. Negatif artık: model <strong>yüksek tahmin etmiştir (overestimate)</strong>.</div>\n<p>Örnek: Model \\(\\hat{y} = 50(1.2)^{x}\\), veri \\((2, 75)\\). Tahmin \\(50\\cdot 1.44 = 72\\); artık \\(75 - 72 = 3\\). Pozitif olduğu için model \\(x = 2\\)'de gerçek değerin 3 birim altında tahmin yapmıştır.</p>\n<h4>Artık grafiği (residual plot)</h4>\n<p>Her girdi değeri için artık noktası çizilir: \\((x, y - \\hat{y})\\).</p>\n<ul>\n<li><strong>Uygun model:</strong> artıklar 0 etrafında <em>rastgele</em> dağılır, belirgin bir örüntü yoktur (no clear pattern), büyüklükleri küçüktür.</li>\n<li><strong>Uygun olmayan model:</strong> artıklarda eğri biçimli (U ya da ters U) bir örüntü vardır. Örneğin üstel veriye doğrusal model uydurursan artıklar önce pozitif, sonra negatif, sonra yine pozitif olur.</li>\n</ul>\n<div class=\"kn-dikkat\">Artıkların hepsinin küçük olması yetmez; <strong>örüntü</strong> olup olmadığına bak. Sistematik bir örüntü, modelin verinin şeklini yakalamadığını gösterir.</div>\n<h4>İki modeli karşılaştırmak</h4>\n<p>Aynı veriye iki model uydurulduysa: (1) hangisinin artık grafiği rastgele? (2) hangisinin artıkları daha küçük? (3) hangisi bağlama uyuyor? Üçü genelde aynı modeli işaret eder. Part B'de graphing calculator ile LinReg, QuadReg ve ExpReg kullanılabilir; ancak karar <em>gerekçeyle</em> verilmelidir.</p>\n<h4>Modelden tahmin: ara değer ve dış değer</h4>\n<p>Veri aralığı içindeki tahmin (interpolation) genelde güvenilirdir. Aralık dışındaki tahmin (extrapolation) risklidir: doğrusal ve üstel modeller veri aralığı dışında çok farklı sonuçlar verir. AP sorusu “Is the model appropriate for \\(t = 50\\)?” derse veri aralığını ve bağlamı kullanarak cevap ver.</p>\n<p>FRQ kalıbı: <em>“An exponential model is more appropriate because the residual plot for the exponential model shows no clear pattern, while the residual plot for the linear model is curved.”</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(x = 0,1,2,3\\) için \\(y = 4, 6, 9, 13.5\\). Uygun modeli seçin ve yazın.",
+     "cozum": [
+      "Farklar: \\(2, 3, 4.5\\) sabit değil; oranlar: \\(6/4 = 9/6 = 13.5/9 = 1.5\\) sabit.",
+      "Üstel model: \\(y = 4(1.5)^{x}\\)."
+     ]
+    },
+    {
+     "soru": "Bir model \\(\\hat{y} = 2x + 10\\). Veri noktası \\((7, 21)\\) için artığı bulun ve yorumlayın.",
+     "cozum": [
+      "Tahmin: \\(2(7) + 10 = 24\\).",
+      "Artık: \\(21 - 24 = -3\\). Negatif: model \\(x = 7\\)'de gerçek değeri 3 birim fazla tahmin etmiştir (overestimate)."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) Bir veriye doğrusal model uydurulmuş; artıklar sırasıyla \\(+5, -1, -4, -3, +2, +6\\). Model uygun mu?",
+     "cozum": [
+      "Artıklar önce pozitif, sonra negatif, sonra yine pozitif: U biçimli sistematik örüntü.",
+      "“The linear model is not appropriate because the residuals show a clear curved pattern (positive, then negative, then positive) instead of being randomly scattered about 0.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Artık hesabında sıra: gerçek − tahmin. Ters çıkarırsan işaret ve yorum (under/overestimate) tersine döner.",
+    "Model seçiminde puan alan cümle bir gözlem (sabit fark/oran ya da artık örüntüsü) ve bir sonuç içerir.",
+    "Part B'de regresyon komutunu kullanabilirsin; ama tablonun kendisinden fark/oran hesabı Part A'da da sorulur."
+   ],
+   "sikHatalar": [
+    "Pozitif artığı “model fazla tahmin etti” diye yorumlamak.",
+    "Artıklar küçük diye örüntüyü göz ardı etmek.",
+    "Girdiler eşit aralıklı değilken farkları doğrudan karşılaştırmak."
+   ],
+   "terimler": [
+    {
+     "en": "residual",
+     "tr": "artık"
+    },
+    {
+     "en": "residual plot",
+     "tr": "artık grafiği"
+    },
+    {
+     "en": "predicted value",
+     "tr": "tahmin edilen değer"
+    },
+    {
+     "en": "underestimate / overestimate",
+     "tr": "düşük / yüksek tahmin"
+    },
+    {
+     "en": "second differences",
+     "tr": "ikinci farklar"
+    },
+    {
+     "en": "extrapolation",
+     "tr": "dış değer tahmini"
+    }
+   ]
+  },
+  {
+   "kod": "2.7",
+   "baslik": "Composition of Functions",
+   "baslikTr": "Fonksiyonların bileşkesi",
+   "hedefler": [
+    "\\(f(g(x))\\) bileşkesini (composition) tablodan, grafikten ve formülden değerlendirmek.",
+    "Bileşkenin genelde değişmeli olmadığını (\\(f(g(x)) \\neq g(f(x))\\)) göstermek ve bileşkenin tanım kümesini belirlemek.",
+    "Bir fonksiyonu daha basit iki fonksiyonun bileşkesi olarak ayrıştırmak (decomposition); dönüşümleri bileşke olarak görmek."
+   ],
+   "anlatim": "<h4>Tanım</h4>\n<div class=\"kn-tanim\">\\[ (f\\circ g)(x) = f(g(x)) \\]\nÖnce <strong>içteki</strong> fonksiyon \\(g\\) uygulanır, çıkan değer <strong>dıştaki</strong> fonksiyon \\(f\\)'nin girdisi olur. Okunuş: “f of g of x” ya da “f composed with g”.</div>\n<p>Zincir gibi düşün: \\(x \\xrightarrow{\\;g\\;} g(x) \\xrightarrow{\\;f\\;} f(g(x))\\). Bu yüzden \\(g\\)'nin çıktısı \\(f\\)'nin tanım kümesinde olmalıdır.</p>\n<h4>Üç gösterimde bileşke</h4>\n<p><strong>Formül:</strong> \\(f(x) = x^{2} + 1\\), \\(g(x) = 3x - 2\\) ise \\(f(g(x)) = (3x - 2)^{2} + 1 = 9x^{2} - 12x + 5\\) ve \\(g(f(x)) = 3(x^{2} + 1) - 2 = 3x^{2} + 1\\). İkisi farklıdır: <strong>bileşke değişmeli değildir (not commutative)</strong>.</p>\n<p><strong>Tablo:</strong></p>\n<table><thead><tr><th>\\(x\\)</th><th>1</th><th>2</th><th>3</th><th>4</th></tr></thead><tbody>\n<tr><td>\\(f(x)\\)</td><td>3</td><td>4</td><td>1</td><td>2</td></tr>\n<tr><td>\\(g(x)\\)</td><td>2</td><td>3</td><td>4</td><td>1</td></tr></tbody></table>\n<p>\\(f(g(1))\\): önce \\(g(1) = 2\\), sonra \\(f(2) = 4\\). \\(g(f(1))\\): önce \\(f(1) = 3\\), sonra \\(g(3) = 4\\). Her zaman <em>içten dışa</em> ilerle.</p>\n<p><strong>Grafik:</strong> \\(g\\)'nin grafiğinden \\(g(a)\\)'yı oku, sonra bu değeri \\(f\\)'nin grafiğinde \\(x\\) olarak kullan.</p>\n<h4>Tanım kümesi (domain of a composition)</h4>\n<p>\\(f(g(x))\\)'in tanım kümesi: \\(x\\), \\(g\\)'nin tanım kümesinde <strong>ve</strong> \\(g(x)\\), \\(f\\)'nin tanım kümesinde olmalı. Örnek: \\(f(x) = \\sqrt{x}\\), \\(g(x) = x - 5\\): \\(f(g(x)) = \\sqrt{x - 5}\\), tanım kümesi \\(x \\ge 5\\).</p>\n<h4>Özdeşlik fonksiyonu ve dönüşümler</h4>\n<p><strong>Özdeşlik fonksiyonu (identity function)</strong> \\(I(x) = x\\): \\(f(I(x)) = I(f(x)) = f(x)\\). Bileşkede “hiçbir şey yapmayan” fonksiyondur ve ters fonksiyonları tanımlamak için kullanılır (Konu 2.8).</p>\n<p>Dönüşümler bileşkedir: \\(g(x) = f(x + 3)\\), \\(f\\)'nin \\(x + 3\\) ile bileşkesidir (yatay kaydırma); \\(g(x) = 2f(x)\\), \\(f\\)'nin \\(2x\\) ile <em>dıştan</em> bileşkesidir (dikey genişleme). İçe giren işlem yatay, dışa giren işlem dikey etki yapar.</p>\n<h4>Ayrıştırma (decomposition)</h4>\n<p>\\(h(x) = (2x + 1)^{5}\\) için \\(f(x) = x^{5}\\), \\(g(x) = 2x + 1\\) seçersek \\(h = f\\circ g\\). \\(h(x) = e^{x^{2}}\\) için dış \\(f(x) = e^{x}\\), iç \\(g(x) = x^{2}\\). Ayrıştırma birden fazla doğru cevaba sahip olabilir ama en doğal seçim “en son yapılan işlem dış fonksiyondur” kuralıdır.</p>\n<div class=\"kn-dikkat\">\\(f(g(x))\\) ile \\(f(x)\\cdot g(x)\\) farklıdır. Bileşke çarpma değildir.</div>\n<p>FRQ Q1 (Function Concepts) bileşkeyi tablo ve grafikle birlikte sorar: <em>“Find the value of \\((f\\circ g)(2)\\), or indicate that it does not exist.”</em> \\(g(2)\\) \\(f\\)'nin tanım kümesinde değilse cevap “does not exist”tir; nedenini yaz.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x) = 2^{x}\\), \\(g(x) = x^{2} - 3\\). \\(f(g(2))\\) ve \\(g(f(2))\\)'yi bulun.",
+     "cozum": [
+      "\\(g(2) = 1\\), \\(f(1) = 2\\): \\(f(g(2)) = 2\\).",
+      "\\(f(2) = 4\\), \\(g(4) = 13\\): \\(g(f(2)) = 13\\). Sonuçların farklı olması bileşkenin değişmeli olmadığını gösterir."
+     ]
+    },
+    {
+     "soru": "\\(f(x) = \\dfrac{1}{x - 4}\\), \\(g(x) = x^{2}\\). \\(f(g(x))\\)'in tanım kümesini bulun.",
+     "cozum": [
+      "\\(f(g(x)) = \\dfrac{1}{x^{2} - 4}\\).",
+      "Payda sıfır olamaz: \\(x^{2} \\neq 4\\), yani \\(x \\neq \\pm 2\\). Tanım kümesi: \\(x \\neq 2\\) ve \\(x \\neq -2\\) olan tüm gerçek sayılar."
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(h(x) = \\sqrt{3x + 7}\\) fonksiyonunu \\(h = f\\circ g\\) olacak şekilde iki fonksiyona ayırın ve neden doğru olduğunu gösterin.",
+     "cozum": [
+      "İç: \\(g(x) = 3x + 7\\). Dış: \\(f(x) = \\sqrt{x}\\).",
+      "Kontrol: \\(f(g(x)) = \\sqrt{g(x)} = \\sqrt{3x + 7} = h(x)\\). En son yapılan işlem karekök olduğu için dış fonksiyon odur."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her zaman içten dışa çalış ve ara değeri yaz: “\\(g(3) = 5\\), so \\(f(g(3)) = f(5) = \\dots\\)”. Ara adım puanı korur.",
+    "Tablo/grafik bileşkesinde hesap makinesi gerekmez; Q1'deki grafik okuma kısmında dikkat ve düzen önemlidir.",
+    "Bir değer tanım kümesinin dışındaysa “does not exist” de ve nedenini yaz."
+   ],
+   "sikHatalar": [
+    "\\(f(g(x))\\)'te önce \\(f\\)'yi uygulamak; sıra içten dışadır.",
+    "Bileşkeyi çarpma sanmak: \\(f(g(x)) \\neq f(x)g(x)\\).",
+    "Bileşkenin tanım kümesinde yalnızca son formüle bakıp iç fonksiyonun kısıtlamasını unutmak."
+   ],
+   "terimler": [
+    {
+     "en": "composition of functions",
+     "tr": "fonksiyonların bileşkesi"
+    },
+    {
+     "en": "inner / outer function",
+     "tr": "iç / dış fonksiyon"
+    },
+    {
+     "en": "identity function",
+     "tr": "özdeşlik fonksiyonu"
+    },
+    {
+     "en": "not commutative",
+     "tr": "değişmeli değil"
+    },
+    {
+     "en": "decomposition",
+     "tr": "ayrıştırma"
+    },
+    {
+     "en": "domain",
+     "tr": "tanım kümesi"
+    }
+   ]
+  },
+  {
+   "kod": "2.8",
+   "baslik": "Inverse Functions",
+   "baslikTr": "Ters fonksiyonlar",
+   "hedefler": [
+    "Bir fonksiyonun tersinin (inverse function) var olması için bire bir (one-to-one) olması gerektiğini açıklamak; gerekirse tanım kümesini kısıtlamak.",
+    "Ters fonksiyonu tablodan, grafikten (\\(y = x\\)'e göre yansıma) ve cebirsel olarak bulmak.",
+    "\\(f(f^{-1}(x)) = f^{-1}(f(x)) = x\\) özelliğini kullanmak ve tanım/görüntü kümesi değişimini belirlemek."
+   ],
+   "anlatim": "<h4>Ters fonksiyon ne yapar?</h4>\n<div class=\"kn-tanim\">\\(f\\), \\(a\\)'yı \\(b\\)'ye götürüyorsa (\\(f(a) = b\\)), ters fonksiyon \\(f^{-1}\\), \\(b\\)'yi \\(a\\)'ya geri götürür (\\(f^{-1}(b) = a\\)).\n\\[ f\\big(f^{-1}(x)\\big) = x \\quad\\text{ve}\\quad f^{-1}\\big(f(x)\\big) = x \\]\nYani \\(f\\) ile \\(f^{-1}\\)'in bileşkesi <strong>özdeşlik fonksiyonudur (identity function)</strong>.</div>\n<div class=\"kn-dikkat\">\\(f^{-1}(x)\\) gösterimi \\(\\dfrac{1}{f(x)}\\) <strong>demek değildir</strong>. Üstteki \\(-1\\) burada “ters işlem” anlamındadır.</div>\n<h4>Ne zaman ters fonksiyon vardır?</h4>\n<p>Tersin bir fonksiyon olması için her çıktının <strong>tek bir</strong> girdiden gelmesi gerekir: \\(f\\) <strong>bire bir (one-to-one)</strong> olmalıdır. Grafikte bu, <em>yatay doğru testi (horizontal line test)</em> ile kontrol edilir. Her zaman artan ya da her zaman azalan fonksiyonlar (doğrusal, üstel, logaritmik) bire birdir.</p>\n<p>\\(f(x) = x^{2}\\) bire bir değildir: \\(f(3) = f(-3) = 9\\). Tanım kümesini \\(x \\ge 0\\)'a <strong>kısıtlarsak (restrict the domain)</strong> bire bir olur ve tersi \\(f^{-1}(x) = \\sqrt{x}\\)'tir.</p>\n<h4>Tanım ve görüntü kümesi yer değiştirir</h4>\n<table><thead><tr><th></th><th>\\(f\\)</th><th>\\(f^{-1}\\)</th></tr></thead><tbody>\n<tr><td>Tanım kümesi (domain)</td><td>\\(D\\)</td><td>\\(f\\)'nin görüntü kümesi \\(R\\)</td></tr>\n<tr><td>Görüntü kümesi (range)</td><td>\\(R\\)</td><td>\\(f\\)'nin tanım kümesi \\(D\\)</td></tr>\n<tr><td>Grafik noktası</td><td>\\((a, b)\\)</td><td>\\((b, a)\\)</td></tr></tbody></table>\n<p>Grafik olarak \\(f^{-1}\\), \\(f\\)'nin \\(y = x\\) doğrusuna göre yansımasıdır (reflection over the line \\(y = x\\)).</p>\n<h4>Cebirsel olarak ters bulmak</h4>\n<ol>\n<li>\\(y = f(x)\\) yaz.</li>\n<li>\\(x\\) ile \\(y\\)'nin yerini değiştir.</li>\n<li>\\(y\\)'yi yalnız bırak; sonuç \\(f^{-1}(x)\\)'tir.</li>\n</ol>\n<p>Örnek: \\(f(x) = \\dfrac{2x - 1}{5}\\). \\(x = \\dfrac{2y - 1}{5} \\Rightarrow 5x = 2y - 1 \\Rightarrow y = \\dfrac{5x + 1}{2}\\). Kontrol: \\(f\\!\\left(\\frac{5x+1}{2}\\right) = \\frac{(5x + 1) - 1}{5} = x\\). ✓</p>\n<p>Rasyonel örnek: \\(g(x) = \\dfrac{x + 3}{x - 2}\\). \\(x(y - 2) = y + 3 \\Rightarrow xy - y = 2x + 3 \\Rightarrow y = \\dfrac{2x + 3}{x - 1}\\). \\(g\\)'nin yatay asimptotu \\(y = 1\\), tersin dikey asimptotu \\(x = 1\\): asimptotlar da yer değiştirir.</p>\n<h4>Tablodan ters</h4>\n<p>\\(f(2) = 7\\) ise \\(f^{-1}(7) = 2\\). Tabloda \\(f^{-1}(c)\\)'yi bulmak için <em>çıktı satırında</em> \\(c\\)'yi ara ve üstündeki girdiyi oku. Ters fonksiyonun girdi-çıktı çiftleri, \\(f\\)'nin çiftlerinin ters çevrilmiş halidir.</p>\n<p>FRQ kalıbı: <em>“\\(f\\) is invertible on this interval because \\(f\\) is always increasing there, so each output corresponds to exactly one input.”</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x) = 4 - 3x\\) için \\(f^{-1}(x)\\)'i bulun ve \\(f^{-1}(10)\\)'u hesaplayın.",
+     "cozum": [
+      "\\(x = 4 - 3y \\Rightarrow 3y = 4 - x \\Rightarrow f^{-1}(x) = \\dfrac{4 - x}{3}\\).",
+      "\\(f^{-1}(10) = \\dfrac{4 - 10}{3} = -2\\). Kontrol: \\(f(-2) = 4 + 6 = 10\\). ✓"
+     ]
+    },
+    {
+     "soru": "\\(h(x) = (x - 1)^{2} + 3\\), \\(x \\ge 1\\). \\(h^{-1}(x)\\)'i ve tanım kümesini bulun.",
+     "cozum": [
+      "\\(x = (y - 1)^{2} + 3 \\Rightarrow y - 1 = \\sqrt{x - 3}\\) (\\(y \\ge 1\\) olduğu için pozitif kök).",
+      "\\(h^{-1}(x) = 1 + \\sqrt{x - 3}\\). Tanım kümesi = \\(h\\)'nin görüntü kümesi: \\(x \\ge 3\\)."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) \\(p(x) = x^{2} - 6x\\) fonksiyonunun tüm gerçek sayılarda tersi var mı?",
+     "cozum": [
+      "\\(p(0) = 0\\) ve \\(p(6) = 0\\): iki farklı girdi aynı çıktıyı veriyor.",
+      "“No. \\(p\\) is not one-to-one because \\(p(0) = p(6) = 0\\), so an inverse would have to map 0 to two different values.” Tanım kümesi \\(x \\ge 3\\)'e kısıtlanırsa tersi vardır."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Tersin doğruluğunu bir noktayla kontrol et: \\(f(a) = b\\) ise \\(f^{-1}(b) = a\\) olmalı.",
+    "“Invertible” gerekçesinde “one-to-one” ya da “always increasing/decreasing on the interval” ifadesi puan getirir.",
+    "Kare kök alırken işaret seçimini tanım kümesi kısıtlamasıyla gerekçelendir.",
+    "Bu konu genelde Part A (hesap makinesiz) ve Q4'te cebirsel olarak sorulur."
+   ],
+   "sikHatalar": [
+    "\\(f^{-1}(x)\\)'i \\(\\dfrac{1}{f(x)}\\) sanmak.",
+    "Ters fonksiyonun tanım kümesini \\(f\\)'nin tanım kümesiyle aynı yazmak.",
+    "Bire bir olmayan fonksiyonun tersini kısıtlama yapmadan yazmak."
+   ],
+   "terimler": [
+    {
+     "en": "inverse function",
+     "tr": "ters fonksiyon"
+    },
+    {
+     "en": "one-to-one",
+     "tr": "bire bir"
+    },
+    {
+     "en": "horizontal line test",
+     "tr": "yatay doğru testi"
+    },
+    {
+     "en": "restrict the domain",
+     "tr": "tanım kümesini kısıtlamak"
+    },
+    {
+     "en": "reflection over y = x",
+     "tr": "y = x doğrusuna göre yansıma"
+    },
+    {
+     "en": "invertible",
+     "tr": "tersinir"
+    }
+   ]
+  },
+  {
+   "kod": "2.9",
+   "baslik": "Logarithmic Expressions",
+   "baslikTr": "Logaritmik ifadeler",
+   "hedefler": [
+    "\\(\\log_b c = a \\iff b^{a} = c\\) tanımını kullanarak logaritmik ve üstel ifadeler arasında geçiş yapmak.",
+    "Ortak logaritma (common logarithm, \\(\\log\\)) ve doğal logaritma (natural logarithm, \\(\\ln\\)) değerlerini hesaplamak ya da iki tam sayı arasında tahmin etmek.",
+    "Logaritmik ölçeği (logarithmic scale) yorumlamak: logaritma 1 arttığında sayı tabanla çarpılır."
+   ],
+   "anlatim": "<h4>Logaritma bir üstür</h4>\n<div class=\"kn-tanim\">\\(b \\gt 0\\), \\(b \\neq 1\\) ve \\(c \\gt 0\\) için\n\\[ \\log_b c = a \\quad\\Longleftrightarrow\\quad b^{a} = c \\]\n“\\(\\log_b c\\)” sorusu şudur: <strong>\\(b\\)'yi hangi üsse yükseltirsem \\(c\\) elde ederim?</strong> Cevap bir üstür (exponent).</div>\n<table><thead><tr><th>Logaritmik biçim</th><th>Üstel biçim</th><th>Okunuş</th></tr></thead><tbody>\n<tr><td>\\(\\log_2 32 = 5\\)</td><td>\\(2^{5} = 32\\)</td><td>log base 2 of 32 is 5</td></tr>\n<tr><td>\\(\\log_3 \\tfrac19 = -2\\)</td><td>\\(3^{-2} = \\tfrac19\\)</td><td>log base 3 of one-ninth</td></tr>\n<tr><td>\\(\\log_{25} 5 = \\tfrac12\\)</td><td>\\(25^{1/2} = 5\\)</td><td>kesirli üs</td></tr>\n<tr><td>\\(\\log_7 1 = 0\\)</td><td>\\(7^{0} = 1\\)</td><td>her tabanda \\(\\log_b 1 = 0\\)</td></tr>\n<tr><td>\\(\\log_b b = 1\\)</td><td>\\(b^{1} = b\\)</td><td></td></tr></tbody></table>\n<h4>Özel tabanlar</h4>\n<ul>\n<li><strong>Ortak logaritma (common logarithm):</strong> \\(\\log x = \\log_{10} x\\). \\(\\log 1000 = 3\\), \\(\\log 0.01 = -2\\).</li>\n<li><strong>Doğal logaritma (natural logarithm):</strong> \\(\\ln x = \\log_e x\\). \\(\\ln e^{4} = 4\\), \\(\\ln 1 = 0\\).</li>\n</ul>\n<h4>Hesap makinesiz tahmin</h4>\n<p>\\(\\log_2 20\\) kaçtır? \\(2^{4} = 16 \\lt 20 \\lt 32 = 2^{5}\\), o halde \\(4 \\lt \\log_2 20 \\lt 5\\). Part A'da şıklar arasından doğru aralığı seçmek için bu yeterlidir. Benzer şekilde \\(\\log 350\\): \\(10^{2} = 100 \\lt 350 \\lt 1000 = 10^{3}\\), yani 2 ile 3 arasında.</p>\n<h4>Neden \\(c \\gt 0\\)?</h4>\n<p>\\(b \\gt 0\\) olduğundan \\(b^{a}\\) her zaman pozitiftir. Hiçbir üs \\(2^{a} = -4\\) ya da \\(2^{a} = 0\\) yapamaz. Bu yüzden \\(\\log_2(-4)\\) ve \\(\\log_2 0\\) <strong>tanımsızdır (undefined)</strong>. Ama logaritmanın <em>değeri</em> negatif olabilir: \\(\\log_2 \\tfrac14 = -2\\).</p>\n<h4>Logaritmik ölçek (logarithmic scale)</h4>\n<p>Çok farklı büyüklükteki değerleri (1'den milyara) tek bir eksende göstermek için logaritmik ölçek kullanılır. Bu eksende eşit aralıklı işaretler 1, 10, 100, 1000, … gibi <strong>çarpımsal</strong> adımlarla ilerler.</p>\n<div class=\"kn-kural\">\\(\\log_b c\\) değeri 1 arttığında \\(c\\), \\(b\\) ile çarpılır: \\(\\log_b(bc) = \\log_b c + 1\\). Örneğin \\(\\log\\) ölçeğinde 3'ten 5'e çıkmak, değerin \\(10^{2} = 100\\) katına çıkması demektir.</div>\n<p>Gerçek hayattan: pH ölçeğinde (\\(\\text{pH} = -\\log[\\text{H}^+]\\)) pH'ı 1 düşen çözeltinin hidrojen iyonu yoğunluğu 10 katıdır. Richter ölçeğinde 2 birim fark, yer hareketi genliğinde 100 kat fark demektir.</p>\n<p>FRQ'da (Q4 Symbolic Manipulations) logaritmanın tanımını açıkça yazmak yeterli gerekçedir: <em>“\\(\\log_3 81 = 4\\) because \\(3^{4} = 81\\).”</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\log_4 8\\)'in değerini bulun.",
+     "cozum": [
+      "\\(4^{a} = 8 \\Rightarrow 2^{2a} = 2^{3}\\).",
+      "\\(2a = 3 \\Rightarrow a = \\tfrac32\\). Kontrol: \\(4^{3/2} = (\\sqrt4)^{3} = 8\\). ✓"
+     ]
+    },
+    {
+     "soru": "\\(\\log_5 x = -3\\) ise \\(x\\) kaçtır?",
+     "cozum": [
+      "Üstel biçime çevir: \\(x = 5^{-3}\\).",
+      "\\(x = \\dfrac{1}{125}\\). Logaritmanın değeri negatif, ama \\(x\\) pozitif: tanımla uyumlu."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Bir deprem büyüklük ölçeğinde \\(M = \\log\\left(\\dfrac{A}{A_0}\\right)\\). A depremi 6.2, B depremi 4.2 büyüklüğünde. A'nın genliği B'ninkinin kaç katıdır?",
+     "cozum": [
+      "\\(M_A - M_B = 2\\). Logaritma 1 arttıkça genlik 10 ile çarpılır.",
+      "\\(\\dfrac{A_A}{A_B} = 10^{2} = 100\\). “The amplitude of earthquake A is 100 times that of earthquake B, because a difference of 2 in a base-10 logarithm corresponds to a factor of \\(10^{2}\\).”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Logaritmayı her zaman “hangi üs?” sorusuna çevir; bu, Part A'daki tüm log değerlendirme sorularını çözer.",
+    "Tam sayı olmayan logaritmayı iki ardışık kuvvet arasına sıkıştırarak tahmin et; hesap makinesi gerekmez.",
+    "Logaritmik ölçek sorularında farkı üsse çevir: fark \\(d\\) ise oran \\(b^{d}\\)."
+   ],
+   "sikHatalar": [
+    "\\(\\log_b c\\)'yi \\(c^{b}\\) ya da \\(c/b\\) sanmak.",
+    "Logaritmanın değerinin negatif olamayacağını sanmak; negatif olamayan, logaritmanın içindeki sayıdır.",
+    "\\(\\log 0 = 0\\) yazmak; \\(\\log 0\\) tanımsızdır, \\(\\log 1 = 0\\)'dır."
+   ],
+   "terimler": [
+    {
+     "en": "logarithm",
+     "tr": "logaritma"
+    },
+    {
+     "en": "common logarithm",
+     "tr": "ortak (10 tabanlı) logaritma"
+    },
+    {
+     "en": "natural logarithm",
+     "tr": "doğal logaritma"
+    },
+    {
+     "en": "logarithmic scale",
+     "tr": "logaritmik ölçek"
+    },
+    {
+     "en": "exponent",
+     "tr": "üs"
+    },
+    {
+     "en": "undefined",
+     "tr": "tanımsız"
+    }
+   ]
+  },
+  {
+   "kod": "2.10",
+   "baslik": "Inverses of Exponential Functions",
+   "baslikTr": "Üstel fonksiyonların tersleri",
+   "hedefler": [
+    "\\(f(x) = b^{x}\\) ile \\(g(x) = \\log_b x\\)'in birbirinin tersi olduğunu açıklamak ve girdi–çıktı çiftlerini eşleştirmek.",
+    "Üstel fonksiyonda toplamsal girdi değişiminin çarpımsal çıktı değişimine, logaritmada çarpımsal girdinin toplamsal çıktıya karşılık geldiğini göstermek.",
+    "\\(f(x) = ab^{x} + k\\) gibi fonksiyonların tersini logaritma ile yazmak."
+   ],
+   "anlatim": "<h4>Üstel ve logaritma: aynı ilişkinin iki yönü</h4>\n<div class=\"kn-tanim\">\\(b \\gt 0\\), \\(b \\neq 1\\) için \\(f(x) = b^{x}\\) ve \\(g(x) = \\log_b x\\) birbirinin ters fonksiyonudur (inverse functions):\n\\[ \\log_b\\left(b^{x}\\right) = x \\ \\ \\text{(her } x\\text{)}, \\qquad b^{\\log_b x} = x \\ \\ (x \\gt 0) \\]</div>\n<p>\\(f\\)'nin grafiğinde \\((x, b^{x})\\) noktası varsa \\(g\\)'nin grafiğinde \\((b^{x}, x)\\) noktası vardır. Örneğin \\(2^{3} = 8\\) olduğundan \\((3, 8)\\) üstel grafikte, \\((8, 3)\\) logaritmik grafikte yer alır. Grafikler \\(y = x\\) doğrusuna göre simetriktir.</p>\n<table><thead><tr><th></th><th>\\(f(x) = b^{x}\\)</th><th>\\(g(x) = \\log_b x\\)</th></tr></thead><tbody>\n<tr><td>Tanım kümesi</td><td>tüm gerçek sayılar</td><td>\\(x \\gt 0\\)</td></tr>\n<tr><td>Görüntü kümesi</td><td>\\(y \\gt 0\\)</td><td>tüm gerçek sayılar</td></tr>\n<tr><td>Asimptot</td><td>yatay: \\(y = 0\\)</td><td>dikey: \\(x = 0\\)</td></tr>\n<tr><td>Sabit nokta</td><td>\\((0, 1)\\)</td><td>\\((1, 0)\\)</td></tr>\n<tr><td>Bir diğer nokta</td><td>\\((1, b)\\)</td><td>\\((b, 1)\\)</td></tr></tbody></table>\n<h4>Toplamsal ↔ çarpımsal</h4>\n<p>Üstel fonksiyonda girdiye sabit bir miktar <strong>eklemek</strong> çıktıyı sabit bir sayıyla <strong>çarpar</strong>: \\(b^{x+1} = b\\cdot b^{x}\\). Logaritmada bunun tersi olur: girdiyi sabit bir sayıyla <strong>çarpmak</strong> çıktıya sabit bir miktar <strong>ekler</strong>: \\(\\log_b(bx) = \\log_b x + 1\\).</p>\n<table><thead><tr><th>\\(x\\)</th><th>1</th><th>3</th><th>9</th><th>27</th><th>81</th></tr></thead><tbody>\n<tr><td>\\(\\log_3 x\\)</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr></tbody></table>\n<p>Girdiler geometrik dizi (\\(\\times 3\\)), çıktılar aritmetik dizi (\\(+1\\)). Bir tablo böyle görünüyorsa logaritmik modeldir.</p>\n<h4>Daha genel üstel fonksiyonun tersi</h4>\n<p>\\(f(x) = 5\\cdot 2^{x} - 3\\) için: \\(x = 5\\cdot 2^{y} - 3 \\Rightarrow \\dfrac{x + 3}{5} = 2^{y} \\Rightarrow y = \\log_2\\!\\left(\\dfrac{x + 3}{5}\\right)\\). Böylece \\(f^{-1}(x) = \\log_2\\!\\left(\\frac{x+3}{5}\\right)\\), tanım kümesi \\(x \\gt -3\\) (\\(f\\)'nin görüntü kümesi). \\(f\\)'nin yatay asimptotu \\(y = -3\\), \\(f^{-1}\\)'in dikey asimptotu \\(x = -3\\).</p>\n<p>Ters yönde: \\(g(x) = \\ln(x - 1) + 2\\) için \\(x = \\ln(y - 1) + 2 \\Rightarrow e^{x - 2} = y - 1 \\Rightarrow g^{-1}(x) = e^{x-2} + 1\\).</p>\n<div class=\"kn-dikkat\">\\(\\log_b x\\) yalnızca \\(x \\gt 0\\) için tanımlıdır; bu, \\(b^{x}\\)'in yalnızca pozitif değerler üretmesinin doğrudan sonucudur.</div>\n<p>Q4 sorularında beklenen yazım: <em>“\\(f^{-1}(x) = \\log_2\\left(\\frac{x+3}{5}\\right)\\)”</em> — ara adımları göster ve sonucu \\(f^{-1}(x)\\) ile etiketle.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x) = 4^{x}\\)'in grafiği \\((1.5, 8)\\) noktasından geçer. \\(f^{-1}\\)'in grafiğindeki karşılık gelen noktayı ve \\(\\log_4 8\\)'i yazın.",
+     "cozum": [
+      "Ters fonksiyonda koordinatlar yer değiştirir: \\((8, 1.5)\\).",
+      "\\(f^{-1}(x) = \\log_4 x\\), dolayısıyla \\(\\log_4 8 = 1.5\\)."
+     ]
+    },
+    {
+     "soru": "\\(h(x) = 3e^{2x}\\) için \\(h^{-1}(x)\\)'i bulun.",
+     "cozum": [
+      "\\(x = 3e^{2y} \\Rightarrow \\dfrac{x}{3} = e^{2y} \\Rightarrow 2y = \\ln\\dfrac{x}{3}\\).",
+      "\\(h^{-1}(x) = \\dfrac12 \\ln\\dfrac{x}{3}\\), \\(x \\gt 0\\)."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) Tablo: \\(x = 2, 6, 18, 54\\) için \\(p(x) = 5, 7, 9, 11\\). \\(p\\) hangi tür fonksiyonla modellenmeli? Gerekçelendirin.",
+     "cozum": [
+      "Girdiler her adımda 3 ile çarpılıyor (geometrik), çıktılar her adımda 2 artıyor (aritmetik).",
+      "“A logarithmic model is appropriate because as the inputs change multiplicatively by a factor of 3, the outputs change additively by 2.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Ters fonksiyon sorusunda asimptotları da değiştir: yatay \\(y = k\\) ↔ dikey \\(x = k\\).",
+    "Tablo yorumunda “inputs change multiplicatively, outputs change additively” cümlesi logaritmik model için tam gerekçedir.",
+    "Bu konu genelde Part A'dadır; \\(\\log_b b^{x} = x\\) gibi özdeşlikler hesap makinesi gerektirmez."
+   ],
+   "sikHatalar": [
+    "\\(\\log_b x\\)'in tersini \\(x^{b}\\) sanmak; doğrusu \\(b^{x}\\).",
+    "Ters alırken \\(+k\\) ile çarpanı yanlış sırayla geri almak: önce \\(k\\)'yı çıkar, sonra \\(a\\)'ya böl, en son logaritma al.",
+    "Tersin tanım kümesini “tüm gerçek sayılar” yazmak."
+   ],
+   "terimler": [
+    {
+     "en": "inverse of an exponential function",
+     "tr": "üstel fonksiyonun tersi"
+    },
+    {
+     "en": "logarithmic function",
+     "tr": "logaritmik fonksiyon"
+    },
+    {
+     "en": "input-output pair",
+     "tr": "girdi–çıktı çifti"
+    },
+    {
+     "en": "vertical asymptote",
+     "tr": "dikey asimptot"
+    },
+    {
+     "en": "multiplicative / additive change",
+     "tr": "çarpımsal / toplamsal değişim"
+    }
+   ]
+  },
+  {
+   "kod": "2.11",
+   "baslik": "Logarithmic Functions",
+   "baslikTr": "Logaritmik fonksiyonlar",
+   "hedefler": [
+    "\\(f(x) = a\\log_b x\\) fonksiyonunun artanlık, içbükeylik ve uç davranışını \\(a\\) ve \\(b\\)'den belirlemek.",
+    "Logaritmik fonksiyonun tanım kümesini, dikey asimptotunu ve dönüşümlerle değişimini bulmak.",
+    "Logaritmik büyümenin çok yavaş olduğunu ve sınırsız olduğunu açıklamak."
+   ],
+   "anlatim": "<h4>Genel biçim</h4>\n<div class=\"kn-tanim\">\\[ f(x) = a\\log_b x, \\qquad a \\neq 0,\\ b \\gt 0,\\ b \\neq 1 \\]\nTanım kümesi (domain): \\(x \\gt 0\\). Görüntü kümesi (range): tüm gerçek sayılar. Dikey asimptot (vertical asymptote): \\(x = 0\\).</div>\n<h4>Artanlık ve içbükeylik</h4>\n<table><thead><tr><th>\\(a\\), \\(b\\)</th><th>Artanlık</th><th>İçbükeylik</th></tr></thead><tbody>\n<tr><td>\\(a \\gt 0,\\ b \\gt 1\\)</td><td>artan (increasing)</td><td>içbükey aşağı (concave down)</td></tr>\n<tr><td>\\(a \\gt 0,\\ 0 \\lt b \\lt 1\\)</td><td>azalan</td><td>içbükey yukarı</td></tr>\n<tr><td>\\(a \\lt 0,\\ b \\gt 1\\)</td><td>azalan</td><td>içbükey yukarı</td></tr>\n<tr><td>\\(a \\lt 0,\\ 0 \\lt b \\lt 1\\)</td><td>artan</td><td>içbükey aşağı</td></tr></tbody></table>\n<p>Kısa kural: <strong>artan logaritma içbükey aşağıdır, azalan logaritma içbükey yukarıdır</strong>. Bu, üstel fonksiyonun \\(y = x\\)'e göre yansımasından gelir. Her durumda fonksiyon <strong>ya hep artan ya hep azalandır</strong>: ekstremum ve dönüm noktası yoktur.</p>\n<h4>Uç davranış (end behavior)</h4>\n<p>\\(a \\gt 0\\), \\(b \\gt 1\\) için:</p>\n<div class=\"formul\">\\[ \\lim_{x\\to 0^{+}} a\\log_b x = -\\infty, \\qquad \\lim_{x\\to\\infty} a\\log_b x = \\infty \\]</div>\n<p>Dikkat: soldan limit (\\(x \\to 0^-\\)) sorulmaz, çünkü fonksiyon \\(x \\le 0\\)'da tanımsızdır. Sağ uçta fonksiyon sınırsız büyür ama <strong>çok yavaş</strong>: \\(\\log x = 6\\) olması için \\(x = 1\\,000\\,000\\) gerekir. Logaritma, yeterince büyük \\(x\\) için pozitif üslü her kuvvet fonksiyonundan (power function; \\(\\sqrt{x} = x^{1/2}\\) dahil) daha yavaş büyür; ama yatay asimptotu <strong>yoktur</strong>.</p>\n<h4>Dönüşümler</h4>\n<ul>\n<li>\\(g(x) = \\log_b(x - h)\\): sağa \\(h\\) kayma; dikey asimptot \\(x = h\\), tanım kümesi \\(x \\gt h\\).</li>\n<li>\\(g(x) = \\log_b x + k\\): yukarı \\(k\\) kayma; asimptot değişmez.</li>\n<li>\\(g(x) = \\log_b(-x)\\): \\(y\\)-eksenine göre yansıma; tanım kümesi \\(x \\lt 0\\).</li>\n<li>\\(g(x) = \\log_b(cx - d)\\): tanım kümesi \\(cx - d \\gt 0\\) eşitsizliğinden bulunur.</li>\n</ul>\n<p>Örnek: \\(g(x) = -2\\ln(x + 3) + 1\\). Tanım kümesi \\(x \\gt -3\\); asimptot \\(x = -3\\); \\(a = -2 \\lt 0\\) ve taban \\(e \\gt 1\\) → azalan, içbükey yukarı; \\(\\lim_{x\\to -3^{+}} g(x) = \\infty\\), \\(\\lim_{x\\to\\infty} g(x) = -\\infty\\). \\(x\\)-kesimi: \\(\\ln(x+3) = \\tfrac12 \\Rightarrow x = e^{1/2} - 3\\).</p>\n<h4>Logaritmik fonksiyon ve üstel fonksiyon karşılaştırması</h4>\n<p>Üstel fonksiyonun ortalama değişim hızı giderek <em>büyür</em> (artan üstel, concave up); artan logaritmanınki giderek <em>küçülür</em> (concave down). Eşit uzunluklu aralıklarda logaritmik çıktının artışları azalır: \\(\\ln 2 - \\ln 1 \\approx 0.693\\), \\(\\ln 3 - \\ln 2 \\approx 0.405\\), \\(\\ln 4 - \\ln 3 \\approx 0.288\\).</p>\n<p>FRQ kalıbı: <em>“\\(f\\) is increasing and concave down because \\(a \\gt 0\\) and the base is greater than 1; the rate of change of \\(f\\) is decreasing.”</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x) = \\log_2(x - 4) + 3\\) için tanım kümesi, dikey asimptot ve \\(x\\)-kesimini bulun.",
+     "cozum": [
+      "\\(x - 4 \\gt 0 \\Rightarrow x \\gt 4\\); asimptot \\(x = 4\\).",
+      "\\(\\log_2(x - 4) = -3 \\Rightarrow x - 4 = 2^{-3} = \\tfrac18 \\Rightarrow x = 4.125\\)."
+     ]
+    },
+    {
+     "soru": "\\(g(x) = \\log_{1/3} x\\) için \\(\\lim_{x\\to0^+} g(x)\\) ve \\(\\lim_{x\\to\\infty} g(x)\\)'i bulun.",
+     "cozum": [
+      "Taban \\(\\tfrac13 \\lt 1\\) ve \\(a = 1 \\gt 0\\): \\(g\\) azalan.",
+      "\\(x \\to 0^+\\) iken \\(g(x) \\to \\infty\\); \\(x \\to \\infty\\) iken \\(g(x) \\to -\\infty\\). (Örnek: \\(g(9) = -2\\), \\(g(\\tfrac19) = 2\\).)"
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(f(x) = 3\\ln x\\) için \\([1, 2]\\) ve \\([2, 3]\\) aralıklarındaki ortalama değişim hızlarını karşılaştırın ve bu karşılaştırmanın \\(f\\)'nin içbükeyliği hakkında ne söylediğini açıklayın.",
+     "cozum": [
+      "\\([1,2]\\): \\(3(\\ln 2 - 0) \\approx 2.079\\). \\([2,3]\\): \\(3(\\ln 3 - \\ln 2) \\approx 1.216\\).",
+      "“The average rate of change decreases over consecutive equal-length intervals, which is consistent with \\(f\\) being concave down.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Tanım kümesini her zaman logaritmanın içini sıfırdan büyük yaparak bul; uçtaki dikey asimptotu da aynı denklem verir.",
+    "Uç davranışı yalnız tanımlı taraftan yaz: \\(x \\to h^{+}\\).",
+    "Part B'de \\(\\ln\\) değerlerini hesap makinesiyle bul; Part A'da yalnızca karşılaştırma ve işaret bilgisi istenir.",
+    "“Concave down” iddiasını ortalama değişim hızlarının azaldığını göstererek destekle."
+   ],
+   "sikHatalar": [
+    "Logaritmik fonksiyonun bir yatay asimptotu olduğunu sanmak; yavaş büyür ama sınırsızdır.",
+    "\\(\\log_b(x - h)\\)'te asimptotu \\(x = -h\\) yazmak.",
+    "Artan logaritmanın içbükey yukarı olduğunu sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "logarithmic function",
+     "tr": "logaritmik fonksiyon"
+    },
+    {
+     "en": "vertical asymptote",
+     "tr": "dikey asimptot"
+    },
+    {
+     "en": "end behavior",
+     "tr": "uç davranış"
+    },
+    {
+     "en": "concave down",
+     "tr": "içbükey aşağı"
+    },
+    {
+     "en": "increases without bound",
+     "tr": "sınırsız artar"
+    },
+    {
+     "en": "domain restriction",
+     "tr": "tanım kümesi kısıtlaması"
+    }
+   ]
+  },
+  {
+   "kod": "2.12",
+   "baslik": "Logarithmic Function Manipulation",
+   "baslikTr": "Logaritma özellikleriyle düzenleme",
+   "hedefler": [
+    "Çarpım, bölüm ve kuvvet özelliklerini (product, quotient, power properties) kullanarak logaritmik ifadeleri genişletmek ve birleştirmek.",
+    "Taban değiştirme kuralını (change of base) uygulamak.",
+    "\\(\\log_b(kx)\\) ve \\(\\log_b(x^{k})\\) dönüşümlerinin grafikte dikey kaydırma ve dikey genişleme olduğunu göstermek."
+   ],
+   "anlatim": "<h4>Üç temel özellik</h4>\n<p>Logaritmalar üs olduğundan üs kurallarından doğrudan şu özellikler çıkar (\\(x, y \\gt 0\\)):</p>\n<table><thead><tr><th>Özellik</th><th>Formül</th><th>Üs kuralı karşılığı</th></tr></thead><tbody>\n<tr><td>Çarpım (product property)</td><td>\\(\\log_b(xy) = \\log_b x + \\log_b y\\)</td><td>\\(b^{m}b^{n} = b^{m+n}\\)</td></tr>\n<tr><td>Bölüm (quotient property)</td><td>\\(\\log_b\\dfrac{x}{y} = \\log_b x - \\log_b y\\)</td><td>\\(b^{m}/b^{n} = b^{m-n}\\)</td></tr>\n<tr><td>Kuvvet (power property)</td><td>\\(\\log_b(x^{n}) = n\\log_b x\\)</td><td>\\((b^{m})^{n} = b^{mn}\\)</td></tr></tbody></table>\n<div class=\"kn-kural\"><strong>Taban değiştirme (change of base):</strong>\n\\[ \\log_b x = \\frac{\\log_a x}{\\log_a b} = \\frac{\\ln x}{\\ln b} \\]\nHesap makinesi yalnız \\(\\log\\) ve \\(\\ln\\) bilir; \\(\\log_7 50 = \\dfrac{\\ln 50}{\\ln 7} \\approx 2.010\\).</div>\n<h4>Genişletmek ve birleştirmek</h4>\n<p><strong>Genişletme (expand):</strong> \\(\\log_3\\dfrac{9x^{4}}{\\sqrt{y}} = \\log_3 9 + 4\\log_3 x - \\tfrac12\\log_3 y = 2 + 4\\log_3 x - \\tfrac12\\log_3 y\\).</p>\n<p><strong>Birleştirme (condense):</strong> \\(2\\ln x - \\ln(x + 1) + \\ln 5 = \\ln\\dfrac{5x^{2}}{x + 1}\\). Önce kuvvet özelliğiyle katsayıları üsse taşı, sonra toplamı çarpıma, farkı bölüme çevir.</p>\n<div class=\"kn-dikkat\"><strong>Yanlış “özellikler”:</strong> \\(\\log_b(x + y) \\neq \\log_b x + \\log_b y\\); \\(\\dfrac{\\log_b x}{\\log_b y} \\neq \\log_b\\dfrac{x}{y}\\); \\((\\log_b x)^{2} \\neq 2\\log_b x\\). Bunlar sınavın en sevdiği çeldiricilerdir.</div>\n<h4>Grafik dönüşümü olarak özellikler</h4>\n<p>\\(g(x) = \\log_2(8x)\\) için çarpım özelliği: \\(g(x) = \\log_2 8 + \\log_2 x = 3 + \\log_2 x\\). Yani girdiyi 8 ile çarpmak (yatay sıkıştırma), grafiği 3 birim yukarı kaydırmakla (vertical translation) <strong>aynıdır</strong>.</p>\n<p>\\(h(x) = \\ln(x^{3})\\) için kuvvet özelliği: \\(h(x) = 3\\ln x\\) (\\(x \\gt 0\\)), yani dikey genişleme (vertical dilation). Taban değiştirme ise <strong>tüm logaritmik fonksiyonların birbirinin dikey genişlemesi</strong> olduğunu gösterir: \\(\\log_2 x = \\dfrac{1}{\\ln 2}\\ln x \\approx 1.443\\ln x\\).</p>\n<h4>Tanım kümesine dikkat</h4>\n<p>\\(\\ln(x^{2}) = 2\\ln x\\) yalnızca \\(x \\gt 0\\) için geçerlidir; \\(\\ln(x^{2})\\) aslında \\(x \\neq 0\\) için tanımlıdır ve \\(2\\ln|x|\\)'e eşittir. Özellik uygularken tanım kümesinin değişip değişmediğini kontrol et.</p>\n<h4>Sayısal değerlendirme</h4>\n<p>\\(\\log 2 \\approx 0.301\\) ve \\(\\log 3 \\approx 0.477\\) verildiyse: \\(\\log 12 = \\log(4\\cdot 3) = 2\\log 2 + \\log 3 \\approx 1.079\\); \\(\\log 5 = \\log\\frac{10}{2} = 1 - \\log 2 \\approx 0.699\\). Part A'da bu tür “verilenlerden hesapla” soruları sık gelir.</p>\n<p>Q4 (Symbolic Manipulations) kalıbı: <em>“Write \\(\\ln(x^{2}) - \\ln(x) + \\ln 4\\) as a single natural logarithm.”</em> Her adımda hangi özelliği kullandığını göster.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(3\\log_2 x - \\log_2 (x - 1) + 2\\) ifadesini tek bir logaritma olarak yazın.",
+     "cozum": [
+      "\\(2 = \\log_2 4\\) ve \\(3\\log_2 x = \\log_2 x^{3}\\).",
+      "\\(\\log_2 x^{3} - \\log_2(x - 1) + \\log_2 4 = \\log_2\\dfrac{4x^{3}}{x - 1}\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\log_b 2 = p\\) ve \\(\\log_b 5 = q\\) ise \\(\\log_b 40\\)'ı \\(p\\) ve \\(q\\) cinsinden yazın.",
+     "cozum": [
+      "\\(40 = 2^{3}\\cdot 5\\).",
+      "\\(\\log_b 40 = 3\\log_b 2 + \\log_b 5 = 3p + q\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(f(x) = \\log_3(27x)\\)'in grafiğinin \\(y = \\log_3 x\\)'in grafiğinden nasıl elde edildiğini dikey dönüşüm olarak açıklayın.",
+     "cozum": [
+      "Çarpım özelliği: \\(\\log_3(27x) = \\log_3 27 + \\log_3 x = 3 + \\log_3 x\\).",
+      "“By the product property, \\(f(x) = \\log_3 x + 3\\), so the graph of \\(f\\) is the graph of \\(y = \\log_3 x\\) translated vertically up 3 units.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Q4'te özelliğin adını yazmak (by the product property) puan için şart değildir ama adımların takip edilmesini sağlar; ara adımı atlama.",
+    "Birleştirmede sıra: katsayılar üsse → toplamlar çarpıma → farklar bölüme.",
+    "Part B'de taban değiştirme ile her logaritmayı hesaplayabilirsin: \\(\\log_b x = \\ln x / \\ln b\\).",
+    "Şıklarda eşdeğerlik sorusunda \\(x\\) için uygun bir değer (\\(x = b\\) gibi) koyarak hızlı kontrol yap."
+   ],
+   "sikHatalar": [
+    "\\(\\log_b(x + y)\\)'yi \\(\\log_b x + \\log_b y\\) diye açmak.",
+    "\\(\\dfrac{\\log x}{\\log y}\\)'yi \\(\\log x - \\log y\\) sanmak.",
+    "Katsayıyı üsse taşımadan birleştirmek: \\(2\\ln x + \\ln y \\neq \\ln(2xy)\\)."
+   ],
+   "terimler": [
+    {
+     "en": "product property of logarithms",
+     "tr": "logaritmanın çarpım özelliği"
+    },
+    {
+     "en": "quotient property",
+     "tr": "bölüm özelliği"
+    },
+    {
+     "en": "power property",
+     "tr": "kuvvet özelliği"
+    },
+    {
+     "en": "change of base",
+     "tr": "taban değiştirme"
+    },
+    {
+     "en": "expand / condense",
+     "tr": "genişletmek / birleştirmek"
+    },
+    {
+     "en": "vertical translation",
+     "tr": "dikey kaydırma"
+    }
+   ]
+  },
+  {
+   "kod": "2.13",
+   "baslik": "Exponential and Logarithmic Equations and Inequalities",
+   "baslikTr": "Üstel ve logaritmik denklemler ve eşitsizlikler",
+   "hedefler": [
+    "Üstel denklemleri ortak taban ya da logaritma alarak, logaritmik denklemleri üstel biçime çevirerek çözmek.",
+    "Logaritmanın tanım kümesinden gelen yabancı kökleri (extraneous solutions) elemek.",
+    "Üstel ve logaritmik eşitsizlikleri fonksiyonun artan/azalan olmasını kullanarak çözmek."
+   ],
+   "anlatim": "<h4>Üstel denklemler</h4>\n<p><strong>Yol 1 — ortak taban:</strong> \\(8^{x+1} = 4^{x}\\) → \\(2^{3x+3} = 2^{2x}\\) → \\(3x + 3 = 2x\\) → \\(x = -3\\). Üstel fonksiyon bire bir olduğu için tabanlar eşitse üsler eşittir.</p>\n<p><strong>Yol 2 — logaritma al:</strong> \\(5\\cdot 3^{x} = 40\\) → \\(3^{x} = 8\\) → \\(x = \\log_3 8 = \\dfrac{\\ln 8}{\\ln 3} \\approx 1.893\\). Önce üstel kısmı yalnız bırak, sonra logaritma al.</p>\n<p>Farklı tabanlar: \\(2^{x} = 3^{x-1}\\) → \\(x\\ln 2 = (x - 1)\\ln 3\\) → \\(x(\\ln 3 - \\ln 2) = \\ln 3\\) → \\(x = \\dfrac{\\ln 3}{\\ln 3 - \\ln 2} \\approx 2.710\\).</p>\n<p><strong>İkinci derece biçiminde üstel:</strong> \\(e^{2x} - 5e^{x} + 6 = 0\\). \\(u = e^{x}\\) dersek \\(u^{2} - 5u + 6 = 0\\), \\(u = 2\\) ya da \\(u = 3\\), yani \\(x = \\ln 2\\) ya da \\(x = \\ln 3\\). \\(u\\) negatif çıksaydı o kök atılırdı, çünkü \\(e^{x} \\gt 0\\).</p>\n<h4>Logaritmik denklemler</h4>\n<div class=\"kn-kural\">1) Özelliklerle tek logaritmaya indir. 2) Üstel biçime çevir. 3) Çöz. 4) <strong>Her kökü orijinal denklemde kontrol et</strong>: logaritmanın içi pozitif olmalı.</div>\n<p>Örnek: \\(\\log_2 x + \\log_2(x - 2) = 3\\) → \\(\\log_2(x^{2} - 2x) = 3\\) → \\(x^{2} - 2x = 8\\) → \\((x - 4)(x + 2) = 0\\). \\(x = -2\\) için \\(\\log_2(-2)\\) tanımsız: <strong>yabancı kök (extraneous solution)</strong>. Tek çözüm \\(x = 4\\).</p>\n<p>Eşit logaritmalar: \\(\\ln(2x + 1) = \\ln(x + 4)\\) → \\(2x + 1 = x + 4\\) → \\(x = 3\\) (kontrol: \\(\\ln 7 = \\ln 7\\) ✓).</p>\n<h4>Eşitsizlikler</h4>\n<p>Artan bir fonksiyon eşitsizliğin yönünü korur, azalan bir fonksiyon tersine çevirir.</p>\n<table><thead><tr><th>Eşitsizlik</th><th>Çözüm</th><th>Neden</th></tr></thead><tbody>\n<tr><td>\\(2^{x} \\gt 32\\)</td><td>\\(x \\gt 5\\)</td><td>\\(2^{x}\\) artan</td></tr>\n<tr><td>\\(\\left(\\tfrac12\\right)^{x} \\gt 8\\)</td><td>\\(x \\lt -3\\)</td><td>\\((1/2)^{x}\\) azalan, yön döner</td></tr>\n<tr><td>\\(\\log_3(x - 1) \\lt 2\\)</td><td>\\(1 \\lt x \\lt 10\\)</td><td>artan + tanım kümesi \\(x \\gt 1\\)</td></tr></tbody></table>\n<p>Logaritmik eşitsizlikte tanım kümesini unutma: \\(\\log_3(x - 1) \\lt 2\\) için \\(x - 1 \\lt 9\\) <strong>ve</strong> \\(x - 1 \\gt 0\\).</p>\n<h4>Bağlamda: ne zaman ulaşır?</h4>\n<p>“\\(P(t) = 200(1.05)^{t}\\) nüfusu ne zaman 500'ü geçer?” → \\(1.05^{t} \\gt 2.5\\) → \\(t \\gt \\dfrac{\\ln 2.5}{\\ln 1.05} \\approx 18.780\\). Bu tür sorular Part B'de ya da Q2'de gelir; graphing calculator ile \\(y = 200(1.05)^{x}\\) ve \\(y = 500\\) kesişimi de kullanılabilir.</p>\n<p>Part A/Q4'te cevap genelde tam biçimde istenir: \\(t = \\dfrac{\\ln 2.5}{\\ln 1.05}\\) ya da \\(t = \\log_{1.05} 2.5\\). Ondalık yazmana gerek yoktur.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(9^{x} = 27^{x - 2}\\) denklemini çözün.",
+     "cozum": [
+      "\\(3^{2x} = 3^{3x - 6}\\).",
+      "\\(2x = 3x - 6 \\Rightarrow x = 6\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\log_3(x + 6) - \\log_3 x = 2\\) denklemini çözün.",
+     "cozum": [
+      "\\(\\log_3\\dfrac{x + 6}{x} = 2 \\Rightarrow \\dfrac{x + 6}{x} = 9\\).",
+      "\\(x + 6 = 9x \\Rightarrow x = \\tfrac34\\). Kontrol: \\(x \\gt 0\\) ve \\(x + 6 \\gt 0\\) ✓."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) \\(\\ln x + \\ln(x + 3) = \\ln 10\\) denklemini çözün ve her kökün kabul edilip edilmediğini açıklayın.",
+     "cozum": [
+      "\\(\\ln(x(x + 3)) = \\ln 10 \\Rightarrow x^{2} + 3x - 10 = 0 \\Rightarrow (x + 5)(x - 2) = 0\\).",
+      "\\(x = 2\\): \\(\\ln 2 + \\ln 5 = \\ln 10\\) ✓.",
+      "“\\(x = -5\\) is extraneous because \\(\\ln(-5)\\) is undefined; the only solution is \\(x = 2\\).”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Logaritmik denklemde son adım her zaman kontrol: yabancı kökü atmadan bırakılan cevap Q4'te puan kaybettirir.",
+    "Taban 0 ile 1 arasındaysa eşitsizlik yönünü değiştir ve bunu bir cümleyle belirt.",
+    "Part A'da tam cevap (\\(\\ln 3/\\ln 2\\)) yeterli; Part B'de ondalık istenirse 3 basamak ver.",
+    "Önce üstel ya da logaritmik terimi yalnız bırak; katsayıyı logaritmanın içine sokma."
+   ],
+   "sikHatalar": [
+    "\\(5\\cdot 3^{x} = 40\\)'ı \\(15^{x} = 40\\) yapmak.",
+    "Logaritmik denklemde yabancı kökü kontrol etmemek.",
+    "\\((1/2)^{x} \\gt 8\\) için yönü değiştirmeyi unutmak."
+   ],
+   "terimler": [
+    {
+     "en": "exponential equation",
+     "tr": "üstel denklem"
+    },
+    {
+     "en": "logarithmic equation",
+     "tr": "logaritmik denklem"
+    },
+    {
+     "en": "extraneous solution",
+     "tr": "yabancı kök"
+    },
+    {
+     "en": "inequality",
+     "tr": "eşitsizlik"
+    },
+    {
+     "en": "isolate",
+     "tr": "yalnız bırakmak"
+    },
+    {
+     "en": "one-to-one property",
+     "tr": "bire birlik özelliği"
+    }
+   ]
+  },
+  {
+   "kod": "2.14",
+   "baslik": "Logarithmic Function Context and Data Modeling",
+   "baslikTr": "Logaritmik fonksiyonla bağlam ve veri modelleme",
+   "hedefler": [
+    "Girdinin çarpımsal, çıktının toplamsal değiştiği bağlamlarda logaritmik model kurmak.",
+    "Veriden logaritmik regresyon (logarithmic regression, \\(y = a + b\\ln x\\)) ile model bulmak ve parametreleri yorumlamak.",
+    "Logaritmik ölçekli bağlamlarda (pH, desibel, Richter) hesap ve yorum yapmak."
+   ],
+   "anlatim": "<h4>Logaritmik model ne zaman uygun?</h4>\n<p>Girdi her seferinde <strong>aynı çarpanla</strong> büyürken çıktı her seferinde <strong>aynı miktarda</strong> artıyorsa logaritmik model uygundur. Örnekler: bir çocuğun boyunun yaşla artışı (giderek yavaşlar), bir öğrenme eğrisi, ses şiddeti (desibel), asitlik (pH), deprem büyüklüğü.</p>\n<div class=\"kn-tanim\">Logaritmik model: \\[ y = a + b\\ln x \\quad\\text{ya da}\\quad y = a + b\\log x \\]\n\\(a\\): \\(x = 1\\) iken çıktı (çünkü \\(\\ln 1 = 0\\)). \\(b\\): girdi \\(e\\) katına çıktığında çıktının değişimi (\\(\\log\\) için: girdi 10 katına çıktığında).</div>\n<p>Bu yorumu genelleştir: \\(y = a + b\\ln x\\) için girdi \\(k\\) katına çıkarsa çıktı \\(b\\ln k\\) kadar değişir. Girdi iki katına çıkarsa çıktı \\(b\\ln 2 \\approx 0.693b\\) artar.</p>\n<h4>Örnek bağlamlar</h4>\n<table><thead><tr><th>Ölçek</th><th>Formül</th><th>Anlam</th></tr></thead><tbody>\n<tr><td>pH</td><td>\\(\\text{pH} = -\\log[\\text{H}^+]\\)</td><td>1 birim düşüş = yoğunluk \\(\\times 10\\)</td></tr>\n<tr><td>Desibel</td><td>\\(L = 10\\log\\dfrac{I}{I_0}\\)</td><td>10 dB artış = şiddet \\(\\times 10\\)</td></tr>\n<tr><td>Büyüklük</td><td>\\(M = \\log\\dfrac{A}{A_0}\\)</td><td>1 birim artış = genlik \\(\\times 10\\)</td></tr></tbody></table>\n<p>Desibel örneği: 70 dB'lik bir ses 40 dB'lik bir sesten kaç kat şiddetlidir? Fark \\(30 = 10\\log\\frac{I_1}{I_2}\\) → \\(\\log\\frac{I_1}{I_2} = 3\\) → \\(10^{3} = 1000\\) kat.</p>\n<h4>Veriden model</h4>\n<p>Part B'de graphing calculator'ın <strong>LnReg</strong> komutu \\(y = a + b\\ln x\\) verir. İki noktadan elle de kurulabilir: \\((1, 12)\\) ve \\((e^{2}, 18)\\) için \\(a = 12\\), \\(12 + 2b = 18 \\Rightarrow b = 3\\). Genelde \\((x_1, y_1)\\), \\((x_2, y_2)\\) için \\(b = \\dfrac{y_2 - y_1}{\\ln x_2 - \\ln x_1}\\).</p>\n<h4>Modelin uygunluğu</h4>\n<ul>\n<li>Logaritmik model yalnız \\(x \\gt 0\\) için tanımlıdır; bağlamda \\(x = 0\\) (örneğin \\(t = 0\\) anı) anlamlıysa \\(\\ln t\\) kullanılamaz, \\(\\ln(t + 1)\\) gibi kaydırılmış bir model gerekir.</li>\n<li>Logaritmik model sınırsız büyür; ama artış giderek yavaşlar. Gerçekte sınırlı bir nicelik (örneğin bir test puanı) için uzun vadede uygun olmayabilir.</li>\n<li>Veri artan ve içbükey aşağı (increasing, concave down) görünüyorsa logaritmik model güçlü bir adaydır; artan ve içbükey yukarı ise üstel.</li>\n</ul>\n<h4>Ters soru: bir değere ne zaman ulaşılır?</h4>\n<p>\\(y = 4 + 6\\ln x\\) modelinde \\(y = 22\\) için \\(\\ln x = 3 \\Rightarrow x = e^{3} \\approx 20.086\\). Logaritmik modelde hedef değeri bulmak bir üstel denklem çözmek demektir.</p>\n<p>FRQ (Q2) kalıbı: <em>“According to the model, each time the number of hours doubles, the score increases by \\(b\\ln 2 \\approx 2.079\\) points.”</em> Bağlam, birim ve sayı birlikte yazılmalı.</p>",
+   "ornekler": [
+    {
+     "soru": "Bir çözeltinin pH'ı 3.0, diğerininki 5.5. Birincinin hidrojen iyonu yoğunluğu ikincininkinin kaç katıdır?",
+     "cozum": [
+      "pH farkı \\(2.5\\); pH 1 düştükçe yoğunluk 10 ile çarpılır.",
+      "Oran \\(10^{2.5} \\approx 316.228\\) (Part B). Tam biçimde \\(10^{2.5} = 100\\sqrt{10}\\)."
+     ]
+    },
+    {
+     "soru": "\\(S(x) = 50 + 8\\ln x\\) modelinde \\(x\\) çalışma saati, \\(S\\) puan. \\(S(20)\\)'yi bulun ve \\(x\\)'in 4 katına çıkmasının etkisini açıklayın.",
+     "cozum": [
+      "\\(S(20) = 50 + 8\\ln 20 \\approx 50 + 8(2.996) \\approx 73.966\\).",
+      "\\(x\\) 4 katına çıkınca \\(S\\), \\(8\\ln 4 \\approx 11.090\\) puan artar; artış \\(x\\)'in değerinden bağımsızdır."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Bir veride \\(x = 1, 10, 100, 1000\\) iken \\(y = 3, 5, 7, 9\\). Hangi model uygundur ve modeli yazın.",
+     "cozum": [
+      "Girdi her adımda 10 ile çarpılıyor, çıktı her adımda 2 artıyor: logaritmik.",
+      "\\(y = a + b\\log x\\): \\(x = 1\\) için \\(a = 3\\); \\(x = 10\\) için \\(3 + b = 5\\), \\(b = 2\\). Model \\(y = 3 + 2\\log x\\). “Because the outputs increase by a constant amount as the inputs are multiplied by a constant factor, a logarithmic model is appropriate.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Q2'de (graphing calculator) LnReg sonucunu en az 3 ondalıkla yaz ve modeli \\(y = \\dots\\) biçiminde tam olarak ver.",
+    "Parametre yorumu: “\\(a\\) is the predicted value when \\(x = 1\\)” ve “when \\(x\\) is multiplied by \\(e\\), \\(y\\) increases by \\(b\\)”.",
+    "Ölçek farkı sorularında (pH, dB, büyüklük) farkı önce katsayıya böl, sonra 10'un kuvveti yap."
+   ],
+   "sikHatalar": [
+    "Logaritmik modelde \\(a\\)'yı \\(x = 0\\)'daki değer sanmak; \\(\\ln 0\\) tanımsızdır, \\(a\\) değeri \\(x = 1\\)'dedir.",
+    "Desibel farkını doğrudan oran sanmak: 30 dB fark 30 kat değil, 1000 kattır.",
+    "Artan ve içbükey aşağı veriye üstel model önermek."
+   ],
+   "terimler": [
+    {
+     "en": "logarithmic model",
+     "tr": "logaritmik model"
+    },
+    {
+     "en": "logarithmic regression",
+     "tr": "logaritmik regresyon"
+    },
+    {
+     "en": "decibel",
+     "tr": "desibel"
+    },
+    {
+     "en": "pH scale",
+     "tr": "pH ölçeği"
+    },
+    {
+     "en": "magnitude",
+     "tr": "büyüklük"
+    },
+    {
+     "en": "concave down data",
+     "tr": "içbükey aşağı veri"
+    }
+   ]
+  },
+  {
+   "kod": "2.15",
+   "baslik": "Semi-log Plots",
+   "baslikTr": "Yarı logaritmik grafikler",
+   "hedefler": [
+    "Yarı logaritmik grafikte (semi-log plot) dikey eksenin logaritmik ölçekli olduğunu ve üstel verinin doğrusal göründüğünü açıklamak.",
+    "Yarı log grafikteki doğrunun eğimi ve kesiminden \\(y = ab^{x}\\) modelini elde etmek.",
+    "\\(\\log y\\) ile \\(x\\) arasındaki doğrusal modeli üstel modele, üstel modeli doğrusal modele çevirmek."
+   ],
+   "anlatim": "<h4>Yarı logaritmik grafik nedir?</h4>\n<div class=\"kn-tanim\"><strong>Yarı logaritmik grafikte (semi-log plot)</strong> yatay eksen doğrusal (linear scale), dikey eksen <strong>logaritmik ölçeklidir</strong> (logarithmic scale). Dikey eksendeki eşit aralıklar 1, 10, 100, 1000 gibi çarpımsal adımlardır. Pratikte \\((x, \\log y)\\) ya da \\((x, \\ln y)\\) noktaları çizilmiş olur.</div>\n<h4>Neden üstel veri doğru olur?</h4>\n<p>\\(y = ab^{x}\\) ise her iki tarafın logaritmasını alalım:</p>\n<div class=\"formul\">\\[ \\log y = \\log(ab^{x}) = \\log a + x\\log b \\]</div>\n<p>Bu, \\(Y = \\log y\\) değişkeni için bir doğrudur: \\(Y = (\\log b)\\,x + \\log a\\).</p>\n<table><thead><tr><th>Yarı log doğrusu</th><th>Üstel modeldeki karşılığı</th></tr></thead><tbody>\n<tr><td>Eğim (slope) \\(m\\)</td><td>\\(\\log b = m \\Rightarrow b = 10^{m}\\)</td></tr>\n<tr><td>Dikey kesim (\\(Y\\)-intercept) \\(c\\)</td><td>\\(\\log a = c \\Rightarrow a = 10^{c}\\)</td></tr>\n<tr><td>Pozitif eğim</td><td>\\(b \\gt 1\\): büyüme</td></tr>\n<tr><td>Negatif eğim</td><td>\\(0 \\lt b \\lt 1\\): azalma</td></tr></tbody></table>\n<p>\\(\\ln\\) kullanılırsa: \\(\\ln y = (\\ln b)x + \\ln a\\), dolayısıyla \\(b = e^{m}\\), \\(a = e^{c}\\).</p>\n<h4>Örnek</h4>\n<p>Bir bakteri verisi yarı log grafikte \\(\\log y = 0.3x + 2\\) doğrusuna oturuyor. O halde \\(y = 10^{0.3x + 2} = 10^{2}\\cdot(10^{0.3})^{x} \\approx 100(1.995)^{x}\\). Her bir zaman biriminde bakteri sayısı yaklaşık 2 katına çıkıyor; başlangıç değeri 100.</p>\n<h4>Bir veri üstel mi? Yarı log testi</h4>\n<p>Veriyi yarı log grafikte çiz: noktalar bir <strong>doğru üzerinde</strong> ise veri üsteldir. Noktalar eğri çiziyorsa (örneğin yukarı doğru bükülüyorsa) veri üstelden daha hızlı ya da yavaş değişiyordur; doğrusal bir veri ise yarı log grafikte içbükey aşağı bir eğri görünür.</p>\n<div class=\"kn-dikkat\">Yarı log grafikte dikey eksende okunan sayı \\(y\\)'dir ama aralıklar \\(\\log y\\)'ye göre çizilir. Ekseni okurken “1'den 10'a” ile “10'dan 100'e” aynı uzunluktadır. Eğimi hesaplarken \\(\\log\\) değerlerini kullan: \\((0, 10)\\) ve \\((4, 1000)\\) noktaları için eğim \\(\\dfrac{\\log 1000 - \\log 10}{4 - 0} = \\dfrac{3 - 1}{4} = 0.5\\), yani \\(b = 10^{0.5} \\approx 3.162\\).</div>\n<h4>Ters yönde</h4>\n<p>\\(y = 5(0.8)^{x}\\) yarı log grafikte nasıl görünür? \\(\\log y = \\log 5 + x\\log 0.8 \\approx 0.699 - 0.097x\\): negatif eğimli bir doğru.</p>\n<p>FRQ kalıbı: <em>“Because the data appear linear on the semi-log plot, an exponential model is appropriate. The slope of the line is \\(\\log b\\), so \\(b = 10^{\\text{slope}}\\).”</em> Bu konu Part A'da (hesap makinesiz) eğim/kesim yorumu, Part B ya da Q2'de sayısal model olarak gelebilir.</p>",
+   "ornekler": [
+    {
+     "soru": "Yarı log grafikte (\\(\\log y\\) dikey) veriler \\(\\log y = -0.2x + 3\\) doğrusuna uyuyor. \\(y\\)'yi \\(ab^{x}\\) biçiminde yazın.",
+     "cozum": [
+      "\\(y = 10^{3 - 0.2x} = 10^{3}\\cdot(10^{-0.2})^{x}\\).",
+      "\\(a = 1000\\), \\(b = 10^{-0.2} \\approx 0.631\\): her birimde yaklaşık %36.9 azalma."
+     ]
+    },
+    {
+     "soru": "\\(y = 4\\cdot 3^{x}\\) modeli için \\(\\ln y\\)'yi \\(x\\)'in doğrusal fonksiyonu olarak yazın.",
+     "cozum": [
+      "\\(\\ln y = \\ln 4 + x\\ln 3\\).",
+      "Eğim \\(\\ln 3 \\approx 1.099\\), kesim \\(\\ln 4 \\approx 1.386\\)."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) Bir verinin \\((x, \\log y)\\) noktaları \\((0, 1.2), (1, 1.5), (2, 1.8), (3, 2.1)\\). Hangi model uygundur? Modeli yazın.",
+     "cozum": [
+      "\\(\\log y\\) değerleri her adımda 0.3 artıyor: \\((x, \\log y)\\) doğrusal.",
+      "“Because \\(\\log y\\) is linear in \\(x\\), \\(y\\) is exponential.” \\(\\log y = 0.3x + 1.2\\), yani \\(y = 10^{1.2}(10^{0.3})^{x} \\approx 15.849(1.995)^{x}\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Yarı log doğrusu → üstel model; logaritma tabanına dikkat et: \\(\\log\\) ise \\(10^{m}\\), \\(\\ln\\) ise \\(e^{m}\\).",
+    "Eğimi dikey eksende okunan \\(y\\) değerleriyle değil, \\(\\log y\\) değerleriyle hesapla.",
+    "Part A'da kesim ve eğim tam sayı ya da basit kesir seçilir; \\(10^{2}\\), \\(10^{0.5}\\) gibi ifadeleri tam bırakabilirsin."
+   ],
+   "sikHatalar": [
+    "Yarı log grafikteki doğrunun verinin doğrusal olduğunu gösterdiğini sanmak; üstel olduğunu gösterir.",
+    "Kesimi doğrudan \\(a\\) sanmak; \\(a = 10^{c}\\)'dir.",
+    "Eğimi \\(b\\) sanmak; \\(b = 10^{m}\\)'dir."
+   ],
+   "terimler": [
+    {
+     "en": "semi-log plot",
+     "tr": "yarı logaritmik grafik"
+    },
+    {
+     "en": "logarithmic scale",
+     "tr": "logaritmik ölçek"
+    },
+    {
+     "en": "linearize",
+     "tr": "doğrusallaştırmak"
+    },
+    {
+     "en": "slope",
+     "tr": "eğim"
+    },
+    {
+     "en": "vertical intercept",
+     "tr": "dikey kesim"
+    }
+   ]
+  }
+ ]
+}

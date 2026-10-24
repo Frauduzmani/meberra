@@ -140,8 +140,11 @@ function veliServisi(db, c) {
       const sd = db.prepare("SELECT yuzde, tahmini_band, tarih FROM exams WHERE user_id = ? AND kod = ? ORDER BY tarih DESC LIMIT 1").get(u.id, x.deneme);
       // Tahmini puan: son ders denemesinin bandı; deneme yoksa en az 10 cevabın doğruluğu (aynı eşikler)
       const tahmini = sd && sd.tahmini_band != null ? +sd.tahmini_band : cev.length >= 10 ? AP.tahminiPuan(yuzde) : null;
+      // 1.27.0: en az 10 cevapta öğrencinin gördüğü modelle aynı tahmin (server/ilerleme.js dersOzeti → tahminModel)
+      const mo = cev.length >= 10 ? ILERLEME.dersOzeti(db, u.id, x).tahminModel : null;
       return { ders: x.ders, ad: "AP " + x.ad, hedef: x.hedef, cevap: cev.length, cozulen, bankada: banka, kapsam: banka ? Math.min(100, Math.round(cozulen / banka * 100)) : null,
-        dogruluk: yuzde, tahmini, tahminiInce: sd && sd.tahmini_band != null ? +sd.tahmini_band : tahmini != null ? ILERLEME.inceTahmin(yuzde) : null, tahminKaynagi: sd && sd.tahmini_band != null ? "deneme" : tahmini != null ? "sorular" : null };
+        dogruluk: yuzde, tahmini: mo ? mo.puan : tahmini, tahminiInce: mo ? mo.ince : sd && sd.tahmini_band != null ? +sd.tahmini_band : tahmini != null ? ILERLEME.inceTahmin(yuzde) : null,
+        tahminKaynagi: mo ? mo.kaynak : sd && sd.tahmini_band != null ? "deneme" : tahmini != null ? "sorular" : null };
     });
     // 1.12.0: tam deneme sınavları (istemci_id "ts-…") da listede; yuzde = bileşik puan, tahminiPuan = tahmini AP puanı (1–5)
     const denemeler = db.prepare("SELECT istemci_id, kod, ad, tarih, soru_sayisi, dogru, yuzde, tahmini_band, sure_sn FROM exams WHERE user_id = ? ORDER BY tarih DESC LIMIT 5").all(u.id)

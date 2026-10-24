@@ -7,7 +7,7 @@
  *   sinavYili:  2027 | 2028 | 2029 …                     (AP sınavları her yıl Mayıs'ta)
  *   apHedefSoruldu: ISO                                  (Bugün'deki tek seferlik "derslerini seç" kartı bir daha gösterilmez)
  * Ders → sayfa eşlemesi sitenin ders sayfalarından gelir (ap-calculus, ap-physics, ap-chemistry, ap-biology, ap-english,
- * ap-electives). Seçmeliler sayfasında üç ders vardır; ünite (soru kutusu) kimliğinin önekiyle ayrılır.
+ * ap-electives; 1.28.0: ap-precalculus, ap-statistics, ap-physics-2). Seçmeliler sayfasında üç ders vardır; ünite (soru kutusu) kimliğinin önekiyle ayrılır.
  */
 (function (kok, fabrika) {
   "use strict";
@@ -20,7 +20,10 @@
   var DERSLER = [
     { ders: "calculus-ab", ad: "Calculus AB", sayfa: "ap-calculus", deneme: "calculus-ab" },
     { ders: "calculus-bc", ad: "Calculus BC", sayfa: "ap-calculus", deneme: "calculus-bc" },
+    { ders: "precalculus", ad: "Precalculus", sayfa: "ap-precalculus", deneme: "precalculus" }, // 1.28.0
+    { ders: "statistics", ad: "Statistics", sayfa: "ap-statistics", deneme: "statistics" }, // 1.28.0
     { ders: "physics-1", ad: "Physics 1", sayfa: "ap-physics", deneme: "physics-1" },
+    { ders: "physics-2", ad: "Physics 2", sayfa: "ap-physics-2", deneme: "physics-2" }, // 1.28.0
     { ders: "chemistry", ad: "Chemistry", sayfa: "ap-chemistry", deneme: "chemistry" },
     { ders: "biology", ad: "Biology", sayfa: "ap-biology", deneme: "biology" },
     { ders: "english-language", ad: "English Language", sayfa: "ap-english", deneme: "english-language" },

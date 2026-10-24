@@ -25,6 +25,7 @@ AP MEBERRA/              (klasör tur sonunda "AP AZRA" adından yeniden adland�
 │                           1.22.0: hedef-motor.js (hedef sihirbazı motoru: seçim, şart hücresi, ortak yol, profil yaması),
 │                           hedef-sihirbaz.js (/ulkem sihirbaz arayüzü; stil css/hedef.css)
 │                           1.23.0: konu-modu.js (ünite sayfasında konu yolu + konu paneli + konuya göre soru süzgeci; stil css/konu-modu.css)
+│                           1.25.0: kelime-kopru.js (kelimeye dokun → Türkçe; sözlük data/sozluk/ap-sozluk.json) · 1.26.0: ap-nedir.js (/ap-nedir)
 │                           sinav-motor.js (Tur 12: sınav süzgeci — model/ülke/dil/düzey)
 │
 ├── data/
@@ -43,6 +44,7 @@ AP MEBERRA/              (klasör tur sonunda "AP AZRA" adından yeniden adland�
 │   │   ├── mezun-ulkeler.js      (Tur 10 Mezun Menüsü) — Tur 11'de kaynak/'a taşındı; aynı durum
 │   │   ├── sinavlar.js           (Tur 12: 47 kayıt, 15 ülke; aktarım: node araclar/sinav-aktar.js ← .agents/mevzuat/dogrulama/sinavlar-tur12.json)
 │   │   └── sinav-takvimi.js
+│   ├── sozluk/             1.25.0: ap-sozluk.json ÜRETİLİR (node araclar/sozluk-olustur.js ← araclar/sozluk/kelimeler.json + konu terimleri)
 │   ├── dersler/            1.23.0: konu anlatımları <ders>/unite-<n>.json (hedefler, anlatım, örnekler, ipuçları, sık hatalar, terimler)
 │   │                         dizin.json ÜRETİLİR: node araclar/ders-veri-denetim.js --dizin (denetim aynı araçla)
 │   ├── rehber/
@@ -114,6 +116,7 @@ Her sayfa ayrıca `assets/css/styles.css` ve `assets/js/app.js` yükler (aşağ�
 | `ap-biology.html` | Biology anlatım + sorular (134) | Sayfa içinde | — |
 | `ap-english.html` | English anlatım + sorular (41) + FRQ yazım istasyonu | Sayfa içinde | — |
 | `ap-electives.html` | CS A, Micro, Macro (113) | Sayfa içinde | — |
+| `ap-precalculus.html` · `ap-statistics.html` · `ap-physics-2.html` (1.28.0) | Yeni dersler: konu anlatımı `data/dersler/{precalculus,statistics,physics-2}/` + soru bankası (sunucu) | `data/dersler/` | — |
 | `sinav-cents.html` | CEnT-S hazırlık + sorular (60) | Sayfa içinde | — |
 | `deneme.html` | Deneme sınavları; `?mod=yanlislar` Yanlışlarım tek oturum modu (Tur 14 A7, Hata Defteri açık kayıtları) | `data/sorular/deneme-bankasi.js` | `deneme.js`, `assets/css/deneme.css` |
 | `calis.html` (Tur 14 A6) | Çalış merkezi: sıradaki çalışma (Bugün ile aynı `apCalismaPlani`/`apSiradakiAdim`), kaldığın yer, 6 AP + CEnT-S ders kartları, Denemeler / Yanlışlarım / Seviye testi. Giriş gerekir (K4) | `sinav-takvimi.js`, `data/sorular/seviye/*` | `app.js` |

@@ -58,6 +58,23 @@ test("plan dosyası: yapı geçerli; Calculus 29+13 MCQ / 2+4 FRQ ve hesap makin
   assert.equal(P.sinavlar.chemistry.referans.url, "https://apcentral.collegeboard.org/media/pdf/ap-chemistry-equations-sheet.pdf");
   assert.equal(P.sinavlar["calculus-ab"].referans, null, "Calculus'ta referans sayfası yok");
   assert.equal(P.sinavlar["english-language"].hesapMakinesi, null);
+  // 1.28.0 yeni dersler (Mayıs 2027 düzeni): bölümler, hesap makinesi, ünite anahtarları (CED numarası), FRQ dersi
+  const ozet = k => P.sinavlar[k].bolumler.map(b => [b.kod, b.tur, b.soru, b.dk, b.hesapMakinesi].join(" "));
+  assert.deepEqual(ozet("precalculus"), ["I-A mcq 29 65 yasak", "I-B mcq 13 40 gerekli", "II-A frq 2 35 gerekli", "II-B frq 2 35 yasak"]);
+  assert.deepEqual(P.sinavlar.precalculus.agirlik, { I: 62.5, II: 37.5 });
+  assert.deepEqual(Object.keys(P.sinavlar.precalculus.uniteAgirlik), ["1", "2", "3"], "Precalculus Unit 4 sınavda yok");
+  assert.deepEqual(ozet("statistics"), ["I mcq 42 90 serbest", "II frq 4 90 serbest"]);
+  assert.deepEqual(Object.keys(P.sinavlar.statistics.uniteAgirlik), ["1", "2", "3", "4", "5"], "Statistics 2026–27: 5 ünite");
+  assert.deepEqual(ozet("physics-2"), ["I mcq 42 85 serbest", "II frq 4 95 serbest"]);
+  assert.deepEqual(Object.keys(P.sinavlar["physics-2"].uniteAgirlik), ["9", "10", "11", "12", "13", "14", "15"]);
+  ["precalculus", "statistics", "physics-2"].forEach(k => {
+    assert.equal(P.sinavlar[k].denemeKodu, k); assert.deepEqual(P.sinavlar[k].frqDersleri, [k]);
+    const tek = { sinavlar: { [k]: P.sinavlar[k] } };
+    assert.deepEqual(T.dogrula(tek), [], k);
+    const b2 = JSON.parse(JSON.stringify(tek)); b2.sinavlar[k].frqDersleri = ["yok-boyle"]; b2.sinavlar[k].bolumler[0].hesapMakinesi = "belki";
+    const s2 = T.dogrula(b2);
+    assert.ok(s2.some(x => /frqDersleri/.test(x)) && s2.some(x => /hesapMakinesi/.test(x)), k + ": " + s2.join("; "));
+  });
   // Bozuk plan yakalanır
   const bozuk = JSON.parse(JSON.stringify(P)); bozuk.sinavlar["calculus-ab"].agirlik.I = 70; bozuk.sinavlar["calculus-ab"].esikler[1].min = 90;
   const s = T.dogrula(bozuk);
@@ -120,7 +137,7 @@ test("aktif FRQ yoksa sınav yalnız Bölüm I; havuzu yetersiz derste kurulmaz"
 });
 
 let C, SID;
-test("kurulum: yalnız aktif sorular, Calculus kısımları doğru sayıda; Kısım A hesap makinesiz; FRQ kısaltılmış Bölüm II", async () => {
+test("kurulum: yalnız aktif sorular, Calculus kısımları doğru sayıda; Kısım A hesap makinesiz; Bölüm II tam (2 + 4 FRQ)", async () => {
   frqAktifEt("calculus-ab");
   // Taslak bir soruya ek kod ekleyip havuzu "kirletelim": yine seçilmemeli
   C = await ogrenci(true);
@@ -128,8 +145,8 @@ test("kurulum: yalnız aktif sorular, Calculus kısımları doğru sayıda; Kıs
   assert.equal(r.durum, 200, JSON.stringify(r.govde));
   SID = r.govde.sinav.id;
   const p = plan(SID);
-  assert.deepEqual(p.bolumler.map(b => [b.kod, (b.sorular || b.frq).length, b.sureSn]), [["I-A", 29, 3720], ["I-B", 13, 2280], ["II-A", 2, 1800], ["II-B", 2, 1800]]);
-  assert.equal(p.bolumler[3].kisaltilmis, true, "4 yerine 2 FRQ → süre yarıya");
+  assert.deepEqual(p.bolumler.map(b => [b.kod, (b.sorular || b.frq).length, b.sureSn]), [["I-A", 29, 3720], ["I-B", 13, 2280], ["II-A", 2, 1800], ["II-B", 4, 3600]]);
+  assert.equal(p.bolumler[3].kisaltilmis, false, "1.24.0: havuzda 4 hesap makinesiz FRQ var → gerçek sınav düzeni");
   const tum = p.bolumler[0].sorular.concat(p.bolumler[1].sorular);
   assert.equal(new Set(tum).size, 42, "yinelenen soru yok");
   tum.forEach(k => { const s = satir(k); assert.equal(s.durum, "aktif", k); assert.ok(JSON.parse(s.deneme_kodlari).includes("calculus-ab")); });
@@ -200,7 +217,7 @@ test("tam akış: Kısım B, FRQ teslim → rubrik (önce değil), öz puan, bil
   await C("POST", "/api/tam-sinav/" + SID + "/bolum-baslat", { bolum: 3 });
   SAAT += 1000;
   const t3 = await C("POST", "/api/tam-sinav/" + SID + "/bolum-teslim", { bolum: 3 });
-  assert.equal(t3.govde.rubrikler.length, 4);
+  assert.equal(t3.govde.rubrikler.length, 6); // 1.24.0: II-A 2 + II-B 4
   // Öz puanlama: ilk FRQ tam puan, diğerleri 0 (mevcut FRQ API'si)
   let frqKazanilan = 0, frqToplam = 0;
   for (const [j, rb] of t3.govde.rubrikler.entries()) {

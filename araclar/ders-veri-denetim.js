@@ -13,7 +13,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const DERSLER = ["calculus", "physics", "chemistry", "biology", "english", "secmeli"];
+const DERSLER = ["calculus", "physics", "chemistry", "biology", "english", "secmeli", "precalculus", "statistics", "physics-2"]; // 1.28.0: yeni dersler
 const ETIKETLER = ["p", "strong", "em", "b", "i", "u", "ul", "ol", "li", "br", "span", "div", "table", "thead", "tbody", "tr", "th", "td",
   "code", "sub", "sup", "h4", "h5", "blockquote", "figure", "figcaption", "hr", "small", "mark"];
 const SINIF_ONEK = /^(kn-|u-|formul|akis)/;
@@ -48,7 +48,7 @@ function denetle(o, dosya) {
   const s = [], d = dosya || "veri";
   if (!isObj(o)) return [d + ": nesne olmalı"];
   if (DERSLER.indexOf(o.ders) < 0) s.push(d + ": ders " + DERSLER.join("|") + " olmalı");
-  if (!Number.isInteger(o.unite) || o.unite < 1 || o.unite > 12) s.push(d + ": unite 1–12 tam sayı olmalı");
+  if (!Number.isInteger(o.unite) || o.unite < 1 || o.unite > 15) s.push(d + ": unite 1–15 tam sayı olmalı"); // Physics 2: 9–15
   if (!metin(o.baslik) || !metin(o.baslikTr)) s.push(d + ": baslik ve baslikTr zorunlu");
   if (!Array.isArray(o.konular) || !o.konular.length) { s.push(d + ": konular boş"); return s; }
   const kodlar = {};

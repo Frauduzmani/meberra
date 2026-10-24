@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#5B3DF5">
+  <link rel="apple-touch-icon" href="/assets/img/pwa/apple-touch-icon.png">
+  <title>AP Statistics | Meberra</title>
+  <meta name="description" content="AP Statistics stüdyosu: veri keşfi ve veri toplama, olasılık ve dağılımlar, oranlar ve ortalamalar için çıkarım, regresyon; konu anlatımı ve hata teşhisli sorular.">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/icerik.css">
+  <!-- 1.4.0 maskot/hareket: kıvrımlı öğrenme yolu ünite paneliyle aynı karede çizilsin diye statik (kayma olmasın) -->
+  <link rel="stylesheet" href="/assets/css/oyun.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/hareket.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/maskot.css?v=1200">
+  <link rel="stylesheet" href="/assets/css/canli.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/etkilesim-kbe.css?v=20261021kbe">
+  <link rel="stylesheet" href="/assets/css/konu-modu.css?v=1230">
+  <link rel="stylesheet" href="/assets/css/kelime-kopru.css?v=1250">
+  <script src="/assets/js/kelime-kopru.js?v=1250" defer></script>
+  <script src="/assets/js/konu-modu.js?v=1230" defer></script>
+  <script src="/assets/js/adresler.js"></script>
+  <script src="/assets/js/maskot.js?v=1200" defer></script>
+  <script src="/assets/js/kutlama.js?v=20261021m" defer></script>
+  <script src="/assets/js/canli.js?v=20261021m" defer></script>
+  <script src="/assets/js/oyun.js?v=20261021m" defer></script>
+  <script src="/assets/js/etkilesim-kbe.js?v=20261021kbe" defer></script>
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/bugun" class="nav-brand"><div class="brand-badge">Meberra</div></a>
+    <div class="nav-actions"></div>
+  </nav>
+
+  <div class="main-container">
+
+    <header class="hero-section">
+      <div class="hero-pill">
+        <span class="pulse-dot"></span>
+        <span>AP Statistics · College Board müfredatı (2026–27)</span>
+      </div>
+      <h1 class="hero-title">AP Statistics</h1>
+      <p class="hero-desc">
+        Veriden sonuç çıkarmayı öğreten giriş istatistiği: grafik ve özet ölçüler, deney tasarımı, olasılık, güven aralığı ve hipotez testi.
+      </p>
+
+      <div class="hero-stats icerik-stats">
+        <div class="stat-item">
+          <div class="stat-num">5 <span class="stat-unit">ÜNİTE</span></div>
+          <div class="stat-label">2026–27 yeni CED</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">TAM DİJİTAL</div>
+          <div class="stat-label">MCQ ve FRQ Bluebook'ta</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">11 <span class="stat-unit">MAYIS</span></div>
+          <div class="stat-label">2027 sınav günü (öğleden sonra)</div>
+        </div>
+      </div>
+      <div class="u-mt-6 icerik-not">
+        <p><strong>Sınav biçimi:</strong> Bölüm I çoktan seçmeli (42 soru, 4 şık, 90 dk, %50) · Bölüm II serbest yanıt (4 soru, 90 dk, %50; biri çıkarım sorusu).</p>
+        <p><strong>Hesap makinesi:</strong> grafik hesap makinesi sınavın tamamında serbest (Bluebook'ta yerleşik Desmos); formül sayfası ve tablolar verilir.</p>
+        <p><strong>Not:</strong> 2026–27'de ders 9 üniteden 5 üniteye indi; ki-kare uyum iyiliği, geometrik dağılım ve eğim için çıkarım artık sınavda yok.</p>
+      </div>
+    </header>
+
+    <!-- 1.28.0: yeni ders. Konu anlatımı konu modundan (/data/dersler/<ders>/unite-N.json); sorular yönetici onaylayana dek API'de yok →
+         kutular "Yakında" gösterir, öğrenme yolunda sayılmaz (data-sb-yeni-kutu). -->
+    <section class="interactive-panel" id="stat-unit1-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag u-tag u-tone-amber">UNIT 1 SORULAR</span>
+      </div>
+      <h2 class="panel-title">Unit 1 Exploring One-Variable Data and Collecting Data: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub icerik-not">Tek değişkenli veri: grafikler, merkez ve yayılım ölçüleri, normal dağılım; örnekleme yöntemleri ve deney tasarımı.</p>
+
+      <div class="u-mt-6" id="stat-unit1-quiz-container" data-sb-yeni-kutu>
+      </div>
+    </section>
+
+    <section class="interactive-panel" id="stat-unit2-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag u-tag u-tone-amber">UNIT 2 SORULAR</span>
+      </div>
+      <h2 class="panel-title">Unit 2 Probability, Random Variables, and Probability Distributions: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub icerik-not">Olasılık kuralları, koşullu olasılık, rastgele değişkenler, binom dağılımı ve örnekleme dağılımları.</p>
+
+      <div class="u-mt-6" id="stat-unit2-quiz-container" data-sb-yeni-kutu>
+      </div>
+    </section>
+
+    <section class="interactive-panel" id="stat-unit3-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag u-tag u-tone-amber">UNIT 3 SORULAR</span>
+      </div>
+      <h2 class="panel-title">Unit 3 Inference for Categorical Data: Proportions: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub icerik-not">Oranlar için güven aralığı ve anlamlılık testi; koşulları kontrol etme ve sonucu bağlamda yorumlama.</p>
+
+      <div class="u-mt-6" id="stat-unit3-quiz-container" data-sb-yeni-kutu>
+      </div>
+    </section>
+
+    <section class="interactive-panel" id="stat-unit4-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag u-tag u-tone-amber">UNIT 4 SORULAR</span>
+      </div>
+      <h2 class="panel-title">Unit 4 Inference for Quantitative Data: Means: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub icerik-not">Ortalamalar için t aralıkları ve t testleri: tek örneklem, eşleştirilmiş veri ve iki örneklem.</p>
+
+      <div class="u-mt-6" id="stat-unit4-quiz-container" data-sb-yeni-kutu>
+      </div>
+    </section>
+
+    <section class="interactive-panel" id="stat-unit5-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag u-tag u-tone-amber">UNIT 5 SORULAR</span>
+      </div>
+      <h2 class="panel-title">Unit 5 Regression Analysis: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub icerik-not">İki değişkenli nicel veri: saçılım grafiği, korelasyon, en küçük kareler doğrusu, artıklar ve yorum.</p>
+
+      <div class="u-mt-6" id="stat-unit5-quiz-container" data-sb-yeni-kutu>
+      </div>
+    </section>
+
+  </div>
+
+
+  <footer class="footer">
+    <div class="footer-bottom u-mt-0">
+      <div>© 2026 Meberra • AP Statistics</div>
+      <div><a class="u-c-cyan u-nodec" href="/bugun">← Bugün</a></div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/ucretsiz-kural.js"></script>
+  <script src="/assets/js/app.js"></script>
+</body>
+</html>

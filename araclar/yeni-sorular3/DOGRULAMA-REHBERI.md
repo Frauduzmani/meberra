@@ -6,6 +6,8 @@ Sen yazardan bağımsız, titiz bir AP sınav uzmanısın. Hiçbir şeyi kendin 
 Her soru için: önce `dogru`/`aciklama`'ya bakmadan kendin çöz, sonra karşılaştır. Kontrol et: tek doğru şık var mı; anahtar doğru mu;
 çözüm doğru ve eksiksiz mi; her çeldirici yanlış ve inandırıcı mı; kök tek anlamlı ve CED ünite kapsamında mı; zorluk etiketi makul mü;
 cevabı ele veren ipucu (tek birimli şık, ondalık ipucu, yalnız doğru şıkta özel kelime) yok mu; Türkçe açıklama doğru mu.
+`ek.neSoruyor` (1.28.0+) var mı, kökle tutarlı mı (eşitsizlik yönü, NOT/EXCEPT), cevabı ele veriyor mu (veriyorsa duzelt:
+"ek.neSoruyor").
 Sayısal kontrolleri node ile yap (`node -e "..."`).
 
 Kararları `araclar/onay3/<dosya>.json` dosyasına yaz — TÜM id'ler için:
