@@ -22,6 +22,17 @@
   const R_J = 8.314;          // J/(mol·K)
   const R_ATM = 0.08206;      // L·atm/(mol·K)
 
+  /** Şık sırası: soru metninden türetilen kararlı karıştırma (her açılışta aynı, sorular arasında farklı). Dönüş: görünen sıra → asıl şık indisi. */
+  function siraKaristir(n, anahtar) {
+    let h = 2166136261;
+    const t = String(anahtar || "");
+    for (let i = 0; i < t.length; i++) { h ^= t.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
+    const rnd = () => { h = (h + 0x6D2B79F5) >>> 0; let x = Math.imul(h ^ (h >>> 15), 1 | h); x = (x + Math.imul(x ^ (x >>> 7), 61 | x)) ^ x; return ((x ^ (x >>> 14)) >>> 0) / 4294967296; };
+    const p = Array.from({ length: n }, (_, i) => i);
+    for (let i = n - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); const g = p[i]; p[i] = p[j]; p[j] = g; }
+    return p;
+  }
+
   /** İkiye bölme: f artan, [a,b] aralığında kök. */
   function ikiyeBol(f, a, b, n) {
     let fa = f(a);
@@ -1359,12 +1370,13 @@
       const gid = yeniId("q");
       const geriE = el("p", { class: "kbe-sonuc", "aria-live": "polite", role: "status" });
       const liste = el("div", { class: "kbe-siklar", role: "group", "aria-labelledby": gid });
-      const btn = siklar.map((s, i) => dugme(el("span", { class: "kbe-harf", "aria-hidden": "true", text: "ABCD"[i] }), () => {
-        btn.forEach((x, j) => { x.disabled = true; x.classList.toggle("kbe-dogru", j === dogru); x.classList.toggle("kbe-yanlis", j === i && i !== dogru); x.setAttribute("aria-pressed", String(j === i)); });
-        geriE.textContent = (i === dogru ? "Doğru! " : "Yanlış. ") + geri[i] + (i === dogru ? "" : " (Doğru cevap: " + "ABCD"[dogru] + ")");
+      const sira = siraKaristir(siklar.length, soru); // görünen konum k → asıl şık sira[k]; doğru cevap hep A olmasın
+      const btn = sira.map((i, k) => dugme(el("span", { class: "kbe-harf", "aria-hidden": "true", text: "ABCD"[k] }), () => {
+        btn.forEach((x, m) => { x.disabled = true; x.classList.toggle("kbe-dogru", sira[m] === dogru); x.classList.toggle("kbe-yanlis", sira[m] === i && i !== dogru); x.setAttribute("aria-pressed", String(sira[m] === i)); });
+        geriE.textContent = (i === dogru ? "Doğru! " : "Yanlış. ") + geri[i] + (i === dogru ? "" : " (Doğru cevap: " + "ABCD"[sira.indexOf(dogru)] + ")");
         tekrar.hidden = false;
       }, { class: "kbe-btn kbe-sik", "aria-pressed": "false" }));
-      btn.forEach((x, i) => x.appendChild(document.createTextNode(siklar[i])));
+      btn.forEach((x, k) => x.appendChild(document.createTextNode(siklar[sira[k]])));
       const tekrar = dugme("Tekrar dene", () => { btn.forEach(x => { x.disabled = false; x.classList.remove("kbe-dogru", "kbe-yanlis"); x.setAttribute("aria-pressed", "false"); }); geriE.textContent = ""; tekrar.hidden = true; btn[0].focus(); }, { class: "kbe-btn kbe-btn--ghost" });
       tekrar.hidden = true;
       liste.append(...btn);
@@ -1449,5 +1461,5 @@
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", calis); else calis();
   }
 
-  return { Ç, BIRIM, TEZLER, PARAGRAF, ROL, baslat, _W: W };
+  return { Ç, BIRIM, TEZLER, PARAGRAF, ROL, siraKaristir, baslat, _W: W };
 });

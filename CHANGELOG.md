@@ -9,6 +9,15 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.22.1] — 2026-10-24
+### Düzeltildi
+- Ders sayfalarında ham görünen formüller (Calculus, Chemistry, Physics, Biology; `<code>` içindeki LaTeX) MathJax ile çizilir.
+- "Kendini dene" mini sorularında şıklar soru başına kararlı biçimde karıştırılır; doğru cevap artık hep A (ya da B) değil (`siraKaristir`, etkilesim-kbe.js ve etkilesim-mf.js).
+- Physics 1 formül kartı resmî formül sayfasına göre yeniden yazıldı (kinematik, dinamik, enerji, momentum, dönme, salınım, akışkanlar, çekim); Gauss yasası, integral/türev formülleri ve yazım hataları kaldırıldı. "Temel kavramlar" bölümü cebir tabanlı Physics 1'e uyarlandı.
+- Soru bankası (tohum sürümü 7): `calc_u8_q24` negatif hacim çeldiricisi, `calc_u4_q6` cevabı ele veren ondalık, `calc_u6_q32` konu etiketi, `chem_u1_q2` kök ve şık uzunluğu, `calc_sk_u2_2` cevabı veren şekil alt metni düzeltildi; Physics 1 bankasındaki 6 Physics C (calculus gerektiren) soru arşive alındı.
+### Kaldırıldı
+- Ders sayfalarındaki Abitur / Maturità / INVALSI / IMAT "üçlü sınav havuzu" bölümleri (AP dışı içerik). İçlerindeki AP tarzı çözümlü FRQ örnekleri "Adım Adım Çözümlü AP FRQ" bölümünde korundu.
+
 ## [1.22.0] — 2026-10-24
 ### Eklendi
 - **Hedef sihirbazı** (`/ulkem`): 3 ekran, her biri aynı iskelette (renkli başlık + ilerleme çubuğu, ortada tek iş, altta Dede Korkut ve tek turuncu düğme). 1) Bayraklı kartlardan en çok 5 ülke (çoklu seçim, canlı "N ülke · M üniversite" sayacı). 2) Seçilen ülkelerin üniversiteleri (arama, isteğe bağlı) ya da "🤷 Okul bilmiyorum, ülke yeter". 3) **Şart tablosu**: sütunlar okul ya da ülke (genel kural), satırlar lise diploması · YKS · AP · giriş sınavı · dil belgesi · başvuru dönemi; hücreler ✅/⚠️/❌/❔ ve dokununca açıklama + resmî kaynak. Altında "🧭 Hepsine birden yeten yol" (AP dersleri, dil eşiği, sınavlar, YKS uyarısı, Mayıs AP sınavına kalan hafta). Sınıf (9–12, Mezun) ve alan (Mühendislik · Tıp/Sağlık · İşletme/Ekonomi · Fen) çipleri tabloyu canlı değiştirir. İlk açılışta konfeti; azaltılmış harekette animasyon yok.

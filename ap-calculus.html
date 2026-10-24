@@ -396,8 +396,8 @@
           <p>
             <strong>Formal Definition of Continuity:</strong> A function $f(x)$ is continuous at $x = c$ if and only if three conditions are satisfied:
             <br/><code>1. f(c) is defined (c is in the domain of f)</code>
-            <br/><code>2. lim_{x → c} f(x) exists (i.e., lim_{x → c^-} f(x) = lim_{x → c^+} f(x) = L)</code>
-            <br/><code>3. lim_{x → c} f(x) = f(c)</code>
+            <br/>2. <span class="formul">\(\lim_{x \to c} f(x) \text{ exists (i.e., }\lim_{x \to c^-} f(x) = \lim_{x \to c^+} f(x) = L\text{)}\)</span>
+            <br/>3. <span class="formul">\(\lim_{x \to c} f(x) = f(c)\)</span>
           </p>
           <div class="theory-callout">
             <strong>Intermediate Value Theorem (IVT):</strong> If $f$ is continuous on the closed interval $[a, b]$, and $u$ is any number between $f(a)$ and $f(b)$, then there exists at least one number $c \in (a, b)$ such that $f(c) = u$. 
@@ -417,7 +417,7 @@
         <div class="theory-body">
           <p>
             <strong>The Derivative as an Instantaneous Rate of Change:</strong> The derivative is defined rigorously as the limit of the difference quotient:
-            <br/><code>f'(x) = lim_{h → 0} [f(x + h) - f(x)] / h = lim_{x → a} [f(x) - f(a)] / (x - a)</code>
+            <br/><span class="formul">\(f'(x) = \lim_{h \to 0} [f(x + h) - f(x)] / h = \lim_{x \to a} [f(x) - f(a)] / (x - a)\)</span>
             <br/><em>Theorem:</em> Differentiability implies continuity ($f \text{ differentiable at } c \implies f \text{ continuous at } c$). The converse is FALSE (e.g., $f(x) = |x|$ at $x = 0$ has a sharp corner).
           </p>
           <div class="theory-callout">
@@ -446,7 +446,7 @@
           <p>
             <strong>FTC Part 1 (Derivative of an Accumulation Function):</strong> If $f$ is continuous on $[a, b]$, then $g(x) = \int_a^x f(t) dt$ is continuous on $[a, b]$, differentiable on $(a, b)$, and:
             <br/><code>g'(x) = d/dx [ ∫_a^x f(t) dt ] = f(x)</code>
-            <br/><em>Chain Rule Extension:</em> <code>d/dx [ ∫_a^{u(x)} f(t) dt ] = f(u(x)) · u'(x)</code>
+            <br/><em>Chain Rule Extension:</em> <span class="formul">\(d/dx [ \int _a^{u(x)} f(t) dt ] = f(u(x)) \cdot u'(x)\)</span>
           </p>
           <p>
             <strong>FTC Part 2 (Evaluation Theorem & Net Change):</strong>
@@ -467,7 +467,7 @@
         <div class="theory-body">
           <p>
             <strong>Taylor Polynomial Centered at $x = c$:</strong>
-            <br/><code>P_n(x) = f(c) + f'(c)(x - c) + [f''(c)/2!](x - c)^2 + ... + [f^{(n)}(c)/n!](x - c)^n</code>
+            <br/><span class="formul">\(P_n(x) = f(c) + f'(c)(x - c) + [f''(c)/2!](x - c)^2 + ... + [f^{(n)}(c)/n!](x - c)^n\)</span>
             <br/>For Maclaurin series ($c = 0$), memorize the 4 canonical power series:
             <br/>• $e^x = \sum_{n=0}^\infty \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + ... \quad (\forall x \in \mathbb{R})$
             <br/>• $\sin(x) = \sum_{n=0}^\infty (-1)^n \frac{x^{2n+1}}{(2n+1)!} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - ... \quad (\forall x \in \mathbb{R})$
@@ -476,160 +476,12 @@
           </p>
           <div class="theory-callout">
             <strong>Lagrange Error Bound (Taylor's Remainder Theorem):</strong> If $|f^{(n+1)}(t)| \le M$ for all $t$ between $c$ and $x$, then the error in approximating $f(x)$ with $P_n(x)$ is bounded by:
-            <br/><code>|R_n(x)| = |f(x) - P_n(x)| \le [M / (n + 1)!] · |x - c|^{n + 1}</code>
+            <br/><span class="formul">\(|R_n(x)| = |f(x) - P_n(x)| \le [M / (n + 1)!] \cdot |x - c|^{n + 1}\)</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="interactive-panel">
-      <span class="section-tag">ULUSLARARASI RESMİ SORU BANKALARI & ÇÖZÜMLER</span>
-      <h2 class="panel-title">Calculus Üçlü Sınav Havuzu: AP Central • Abitur IQB • Maturità MIM</h2>
-      <p class="panel-sub">
-        Öğrencinin hem College Board AP 5/5 hedefine ulaşması hem de üniversite giriş sınavlarına hazırlanması için derlenen resmî arşivler ve çözümlü soru modelleri:
-      </p>
-
-      <div class="grid-2 u-mb-8 u-gap-5">
-        <div class="glass-card u-bt u-tone-cyan">
-          <span class="card-badge badge-cyan">ABD • COLLEGE BOARD AP CENTRAL</span>
-          <h4 class="u-c-text u-mb-2">AP Calculus AB/BC & Statistics FRQ Arşivi</h4>
-          <p class="u-fs-14 u-c-muted u-mb-3">
-            Tüm geçmiş Calculus ve Statistics sınavlarının serbest yanıtlı soruları, scoring guidelines puanlama anahtarları ve örnek öğrenci çözümleri.
-          </p>
-          <div class="u-flex u-col u-gap-2">
-            <a href="https://apcentral.collegeboard.org/courses/ap-calculus-ab/exam/past-exam-questions" target="_blank" class="btn-card resource-link btn-sm" rel="noopener noreferrer">AP Calculus AB/BC Past FRQs</a>
-            <a href="https://apcentral.collegeboard.org/courses/ap-statistics/exam/past-exam-questions" target="_blank" class="btn-card resource-link btn-sm" rel="noopener noreferrer">AP Statistics Past FRQs</a>
-            <a href="https://apcentral.collegeboard.org/courses/past-exam-questions" target="_blank" class="btn-card resource-link btn-sm" rel="noopener noreferrer">Tüm AP Dersleri Ana Portalı</a>
-          </div>
-        </div>
-
-        <div class="glass-card u-bt u-tone-violet">
-          <span class="card-badge badge-violet">ALMANYA • IQB & BAYERN / NRW</span>
-          <h4 class="u-c-text u-mb-2">Abitur Mathematik Aufgabenpool (Analysis)</h4>
-          <p class="u-fs-14 u-c-muted u-mb-3">
-            Humboldt Üniversitesi IQB ortak Abitur havuzu, Bavyera ISB München ve Kuzey Ren-Vestfalya analiz, integral ve diferansiyel modelleme PDF'leri.
-          </p>
-          <div class="u-flex u-col u-gap-2">
-            <a href="https://www.iqb.hu-berlin.de/de/schule/aufgaben/sekii/mathematik/" target="_blank" class="btn-card resource-link btn-sm" rel="noopener noreferrer">IQB Mathematik Ortak Havuz</a>
-            <a href="https://www.isb.bayern.de/schularten/gymnasium/illustrierende-pruefungsaufgaben/" target="_blank" class="btn-card resource-link btn-sm" rel="noopener noreferrer">Bayern ISB Illustrierende Aufgaben</a>
-            <a href="https://www.schulministerium.nrw/abituraufgaben-vergangener-jahre-zum-herunterladen" target="_blank" class="btn-card resource-link btn-sm" rel="noopener noreferrer">NRW Geçmiş Abitur Sınavları</a>
-          </div>
-        </div>
-
-        <div class="glass-card u-bt u-tone-emerald">
-          <span class="card-badge badge-emerald">İTALYA • MIM (ESAME DI STATO)</span>
-          <h4 class="u-c-text u-mb-2">Seconda Prova Scritta Matematica</h4>
-          <p class="u-fs-14 u-c-muted u-mb-3">
-            İtalya Eğitim Bakanlığı (MIM) Liceo Scientifico resmî 2. yazılı sınav soruları ve analitik çözüm rehberleri.
-          </p>
-          <div class="u-flex u-col u-gap-2">
-            <a href="https://www.istruzione.it/esame_di_stato/202425/Licei/Ordinaria/A002_ORD25.pdf" target="_blank" class="btn-card resource-link btn-sm" rel="noopener noreferrer">2025 MIM Matematik Sınavı PDF (A002_ORD25)</a>
-            <a href="https://www.istruzione.it/esame_di_stato/202526/default_anno.htm" target="_blank" class="btn-card resource-link btn-sm" rel="noopener noreferrer">MIM 2025/2026 Esame di Stato Portalı</a>
-            <a href="https://www.miur.gov.it/tracce-prove-scritte" target="_blank" class="btn-card resource-link btn-sm" rel="noopener noreferrer">Esami di Stato Tüm Geçmiş Yazılı Sınavlar</a>
-          </div>
-        </div>
-
-        <div class="glass-card u-bt u-tone-blue">
-          <span class="card-badge u-tag u-tone-blue">İTALYA • INVALSI NAZIONALE</span>
-          <h4 class="u-c-text u-mb-2">INVALSI Matematica & Probabilità</h4>
-          <p class="u-fs-14 u-c-muted u-mb-3">
-            İtalya Ulusal Değerlendirme Enstitüsü (INVALSI) ileri matematik, fonksiyon analizi ve olasılık/istatistik örnek sınavları.
-          </p>
-          <div class="u-flex u-col u-gap-2">
-            <a href="https://www.invalsi.it/EsamiDiStato/documenti/esempi_mat/esempiMAT.pdf" target="_blank" class="btn-card resource-link btn-sm" rel="noopener noreferrer">INVALSI Esempi Matematica PDF</a>
-            <a href="https://www.invalsi.it/rilevazioni-nazionali/prove-invalsi-esempi/" target="_blank" class="btn-card resource-link btn-sm" rel="noopener noreferrer">INVALSI Örnek Sınavlar ve Grigliatolar</a>
-          </div>
-        </div>
-      </div>
-
-      <h3 class="u-fs-22 u-fw-700 u-c-text u-mb-4">Üçlü Sınav Sisteminden Seçme Soru ve Adım Adım Çözümler</h3>
-
-      <div class="u-flex u-col u-gap-6">
-        
-        <div class="glass-card u-bl u-tone-cyan">
-          <div class="u-flex u-between u-center u-mb-3">
-            <span class="card-badge badge-cyan">MODEL 1: COLLEGE BOARD AP CENTRAL FRQ TARZI</span>
-            <span class="u-fs-12 u-c-dim">Puan Değeri: 9 Puan</span>
-          </div>
-          <p class="u-fs-14 u-c-text u-mb-3">
-            <strong>SORU (Particle Motion & Accumulation):</strong> Bir doğru boyunca hareket eden parçacığın t anındaki hızı <code>v(t) = 3t² - 12t + 9</code> (metre/saniye) olarak verilmiştir. Parçacığın t = 0 anındaki başlangıç konumu <code>s(0) = 5</code> metredir.<br/>
-            (a) t ∈ [0, 4] aralığında parçacığın yön değiştirdiği anları bulunuz.<br/>
-            (b) t ∈ [0, 4] aralığında parçacığın yer değiştirmesini (Displacement) ve toplam aldığı yolu (Total Distance) hesaplayınız.<br/>
-            (c) t = 2 anında parçacığın hızlandığını mı yavaşladığını mı gerekçesiyle açıklayınız.
-          </p>
-          <div class="u-inset u-fs-14 u-c-muted">
-            <strong class="u-c-cyan">College Board Scoring Rubric & Adım Adım Çözüm:</strong><br/>
-            • <strong>(a) Çözüm [2 Puan]:</strong> <code>v(t) = 3(t² - 4t + 3) = 3(t - 1)(t - 3) = 0</code>. Kökler: t = 1 ve t = 3.<br/>
-            İşaret tablosu: [0, 1) aralığında v(t) > 0; (1, 3) aralığında v(t) < 0; (3, 4] aralığında v(t) > 0.<br/>
-            <em>Cevap:</em> Hız fonksiyonu işaret değiştirdiği için parçacık <strong>t = 1 ve t = 3</strong> saniyelerinde yön değiştirir.<br/>
-            • <strong>(b) Çözüm [4 Puan]:</strong><br/>
-            Yer Değiştirme (Displacement) = <code>∫[0 to 4] v(t) dt = [t³ - 6t² + 9t]_0^4 = (64 - 96 + 36) - 0 = 4 metre</code>.<br/>
-            Toplam Yol (Total Distance) = <code>∫[0 to 4] |v(t)| dt = ∫[0 to 1] v dt - ∫[1 to 3] v dt + ∫[3 to 4] v dt</code><br/>
-            [t³ - 6t² + 9t] değerleri: t=1'de 4; t=3'te 0; t=4'te 4.<br/>
-            Mesafe = |4 - 0| + |0 - 4| + |4 - 0| = 4 + 4 + 4 = <strong>12 metre</strong>.<br/>
-            • <strong>(c) Çözüm [3 Puan]:</strong> İvme <code>a(t) = v'(t) = 6t - 12</code>.<br/>
-            t = 2 için: <code>v(2) = 3(4) - 24 + 9 = -3 < 0</code> (negatif yön).<br/>
-            <code>a(2) = 6(2) - 12 = 0</code>.<br/>
-            <em>Gerekçeli Cevap:</em> İvme 0 olduğu için parçacık t = 2 anında <strong>ne hızlanmakta ne de yavaşlamaktadır</strong> (Hız yerel minimumdadır).
-          </div>
-        </div>
-
-        <div class="glass-card u-bl u-tone-violet">
-          <div class="u-flex u-between u-center u-mb-3">
-            <span class="card-badge badge-violet">MODEL 2: ALMANYA ABITUR (IQB / BAYERN) TARZI</span>
-            <span class="u-fs-12 u-c-dim">Analiz & Sonsuz İntegral</span>
-          </div>
-          <p class="u-fs-14 u-c-text u-mb-3">
-            <strong>AUFGABE (Kurvendiskussion & Uneigentliches Integral):</strong> Tanım kümesi ℝ olan <code>f(x) = (x² - 4) · e^(-x)</code> fonksiyonu verilmiştir.<br/>
-            (a) f fonksiyonunun x eksenini kestiği pozitif sıfır noktasını (Nullstelle) bulunuz.<br/>
-            (b) x ≥ 2 bölgesi için fonksiyon eğrisi ile x ekseni arasında kalan sınırsız alanın sonlu bir değere yakınsayıp yakınsamadığını has olmayan integral (uneigentliches Integral) ile hesaplayınız: <code>lim (k → ∞) ∫[2 to k] f(x) dx</code>.
-          </p>
-          <div class="u-inset u-fs-14 u-c-muted">
-            <strong class="u-c-violet">Abitur Çözüm Metodu (Partielle Integration):</strong><br/>
-            • <strong>(a):</strong> <code>(x² - 4) · e^(-x) = 0</code>. <code>e^(-x) ≠ 0</code> olduğundan <code>x² - 4 = 0</code> => Pozitif sıfır noktası <strong>x = 2</strong>'dir.<br/>
-            • <strong>(b):</strong> Kısmi integrasyon uygulanır: <code>∫ u · v' dx = u · v - ∫ u' · v dx</code>.<br/>
-            1. Adım: u = x² - 4 => u' = 2x ; v' = e^(-x) => v = -e^(-x).<br/>
-            <code>∫ (x² - 4)e^(-x) dx = -(x² - 4)e^(-x) + 2 ∫ x e^(-x) dx</code>.<br/>
-            2. Adım: Tekrar kısmi integrasyon: <code>∫ x e^(-x) dx = -x e^(-x) - e^(-x)</code>.<br/>
-            Genel İlkel Fonksiyon: <code>F(x) = -e^(-x) · [ (x² - 4) + 2x + 2 ] = -e^(-x) · (x² + 2x - 2)</code>.<br/>
-            Sınırları koyalım: F(2) = -e^(-2) · (4 + 4 - 2) = -6 · e^(-2).<br/>
-            k → ∞ iken: <code>lim (k → ∞) -e^(-k)(k² + 2k - 2) = 0</code> (Üstel fonksiyon polinomdan çok daha hızlı büyür).<br/>
-            <em>Sonuç:</em> Alan = <code>0 - (-6 · e^(-2)) = 6 / e² ≈ 0.812 birimkare</code> (Alan sonludur ve yakınsar).
-          </div>
-        </div>
-
-        <div class="glass-card u-bl u-tone-emerald">
-          <div class="u-flex u-between u-center u-mb-3">
-            <span class="card-badge badge-emerald">MODEL 3: İTALYA ESAME DI STATO (MIM SECONDA PROVA) TARZI</span>
-            <span class="u-fs-12 u-c-dim">Problema di Realtà e Modelli</span>
-          </div>
-          <p class="u-fs-14 u-c-text u-mb-3">
-            <strong>PROBLEMA (Solido di Rotazione):</strong> Bir endüstriyel seramik parçasının profili x ∈ [0, 4] aralığında <code>y = f(x) = √(x) + 1</code> eğrisiyle modellenmiştir.<br/>
-            Parçanın x ekseni etrafında 360° döndürülmesiyle elde edilen dönel cismin (solido di rotazione) hacmini π cinsinden hesaplayınız.
-          </p>
-          <div class="u-inset u-fs-14 u-c-muted">
-            <strong class="u-c-emerald">MIM Maturità Çözüm Basamakları:</strong><br/>
-            • Dönel cismin hacim integrali formülü: <code>V = π ∫[a to b] [f(x)]² dx</code>.<br/>
-            • <code>[f(x)]² = (√(x) + 1)² = x + 2√(x) + 1</code>.<br/>
-            • Belirli integral: <code>V = π ∫[0 to 4] (x + 2x^(1/2) + 1) dx</code>.<br/>
-            İlkel fonksiyon: <code>[ (x²/2) + 2 · (2/3)x^(3/2) + x ]_0^4 = [ x²/2 + (4/3)x^(3/2) + x ]_0^4</code>.<br/>
-            x = 4 için: <code>16/2 + (4/3) · (8) + 4 = 8 + 32/3 + 4 = 12 + 32/3 = 68/3</code>.<br/>
-            <em>Cevap:</em> Seramik parçanın hacmi <strong>V = (68/3)π ≈ 71.21 birimküp</strong> olarak bulunur.
-          </div>
-        </div>
-
-      </div>
-
-      <div class="u-mt-6 u-inset">
-        <h5 class="u-c-muted u-mb-2 u-fs-14">İleri Düzey Almanca ve İtalyanca PDF Arama Anahtarları:</h5>
-        <div class="u-flex u-wrap u-gap-2">
-          <span class="agent-tag u-tag u-tone-indigo">Abitur Mathematik Aufgaben mit Lösungen PDF</span>
-          <span class="agent-tag u-tag u-tone-indigo">Bayern Abitur Mathematik illustrierende Aufgaben PDF</span>
-          <span class="agent-tag u-tag u-tone-emerald">prove maturità matematica liceo scientifico PDF con soluzioni</span>
-          <span class="agent-tag u-tag u-tone-emerald">seconda prova matematica A002 licei scientifici PDF</span>
-        </div>
-      </div>
-    </section>
 
     <section class="interactive-panel" id="calc-unit1-lecture-section">
       <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
@@ -645,17 +497,17 @@
           </div>
           <div class="theory-body">
             <p>
-              <strong>Intuitive Definition:</strong> We write <code>lim_{x → c} f(x) = L</code> if as $x$ approaches $c$ from both sides (left and right), $f(x)$ becomes arbitrarily close to the finite real number $L$. Notice that $x \ne c$; limits describe behavior <em>near</em> a point, completely independent of the value $f(c)$.
+              <strong>Intuitive Definition:</strong> We write <span class="formul">\(\lim_{x \to c} f(x) = L\)</span> if as $x$ approaches $c$ from both sides (left and right), $f(x)$ becomes arbitrarily close to the finite real number $L$. Notice that $x \ne c$; limits describe behavior <em>near</em> a point, completely independent of the value $f(c)$.
             </p>
             <div class="theory-callout">
               <strong>Formal Cauchy-Weierstrass (ε - δ) Definition:</strong><br/>
-              Let $f$ be a function defined on an open interval containing $c$, except possibly at $c$ itself. We say that <code>lim_{x → c} f(x) = L</code> if for every $\varepsilon > 0$, there exists a corresponding $\delta > 0$ such that:
+              Let $f$ be a function defined on an open interval containing $c$, except possibly at $c$ itself. We say that <span class="formul">\(\lim_{x \to c} f(x) = L\)</span> if for every $\varepsilon > 0$, there exists a corresponding $\delta > 0$ such that:
               <br/><code>0 < |x - c| < δ  ⟹  |f(x) - L| < ε</code>.
               <br/><em>Proof Mechanism:</em> Given a challenge error tolerance $\varepsilon$ around the target limit $L$, we must construct an input radius $\delta$ around $c$ such that all $x$ within the punctured interval $(c - \delta, c) \cup (c, c + \delta)$ map inside $(L - \varepsilon, L + \varepsilon)$.
             </div>
             <p>
               <strong>Existence Criterion:</strong> The two-sided limit exists if and only if both one-sided limits exist and are equal:
-              <br/><code>lim_{x → c} f(x) = L  ⟺  lim_{x → c^-} f(x) = lim_{x → c^+} f(x) = L</code>.
+              <br/><span class="formul">\(\lim_{x \to c} f(x) = L \iff \lim_{x \to c^-} f(x) = \lim_{x \to c^+} f(x) = L\)</span>.
             </p>
             <div class="emf-w" data-emf="limit"></div>
           </div>
@@ -681,7 +533,7 @@
             </div>
             <div class="pitfall-box">
               <strong>Special Trigonometric Limits (Must Memorize):</strong><br/>
-              <code>lim_{x → 0} [sin(x) / x] = 1</code>  and  <code>lim_{x → 0} [(1 - cos(x)) / x] = 0</code>.<br/>
+              <span class="formul">\(\lim_{x \to 0} [sin(x) / x] = 1\)</span>  and  <span class="formul">\(\lim_{x \to 0} [(1 - cos(x)) / x] = 0\)</span>.<br/>
               <em>Generalized:</em> $\lim_{x \to 0} \frac{\sin(ax)}{bx} = \frac{a}{b}$ and $\lim_{x \to 0} \frac{\tan(ax)}{\sin(bx)} = \frac{a}{b}$.
             </div>
           </div>
@@ -695,8 +547,8 @@
           <div class="theory-body">
             <p>
               <strong>Theorem Statement:</strong> If $g(x) \le f(x) \le h(x)$ for all $x$ in an open interval containing $c$ (except possibly at $c$), and if:
-              <br/><code>lim_{x → c} g(x) = lim_{x → c} h(x) = L</code>,
-              <br/>then <code>lim_{x → c} f(x) = L</code>.
+              <br/><span class="formul">\(\lim_{x \to c} g(x) = \lim_{x \to c} h(x) = L\)</span>,
+              <br/>then <span class="formul">\(\lim_{x \to c} f(x) = L\)</span>.
             </p>
             <div class="theory-callout">
               <strong>Canonical AP Proof Model:</strong> Show that $\lim_{x \to 0} x^2 \sin(1/x) = 0$.<br/>
@@ -718,8 +570,8 @@
               <strong>The 3-Condition Continuity Test (College Board Rubric Requirement):</strong><br/>
               A function $f(x)$ is continuous at $x = c$ if and only if ALL THREE conditions hold:
               <br/><code>1. f(c) is defined (c is in the domain of f).</code>
-              <br/><code>2. lim_{x → c} f(x) exists (i.e., lim_{x → c^-} f(x) = lim_{x → c^+} f(x)).</code>
-              <br/><code>3. lim_{x → c} f(x) = f(c).</code>
+              <br/>2. <span class="formul">\(\lim_{x \to c} f(x) \text{ exists (i.e., }\lim_{x \to c^-} f(x) = \lim_{x \to c^+} f(x)\text{)}\)</span>.
+              <br/>3. <span class="formul">\(\lim_{x \to c} f(x) = f(c)\)</span>.
             </p>
             <div class="theory-callout">
               <strong>Taxonomy of Discontinuities:</strong><br/>
@@ -758,7 +610,7 @@
           <div class="theory-body">
             <p>
               <strong>Horizontal Asymptotes (HA):</strong> The line $y = L$ is a horizontal asymptote of $y = f(x)$ if:
-              <br/><code>lim_{x → ∞} f(x) = L   or   lim_{x → -∞} f(x) = L</code>.
+              <br/><span class="formul">\(\lim_{x \to \infty } f(x) = L \quad\text{or}\quad \lim_{x \to -\infty } f(x) = L\)</span>.
               <br/>A function can have at most TWO horizontal asymptotes (one as $x \to +\infty$ and another as $x \to -\infty$).
             </p>
             <div class="theory-callout">
@@ -810,9 +662,9 @@
           <div class="theory-body">
             <p>
               <strong>The Derivative as a Function:</strong> The derivative of a function $f(x)$ with respect to $x$ is defined as the limit of the difference quotient as the interval width $h \to 0$:
-              <br/><code>f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h} = \frac{dy}{dx}</code>
+              <br/><span class="formul">\(f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h} = \frac{dy}{dx}\)</span>
               <br/><strong>Alternative Definition at a Fixed Point $x = c$:</strong>
-              <br/><code>f'(c) = \lim_{x \to c} \frac{f(x) - f(c)}{x - c}</code>
+              <br/><span class="formul">\(f'(c) = \lim_{x \to c} \frac{f(x) - f(c)}{x - c}\)</span>
             </p>
             <div class="theory-callout">
               <strong>College Board Recognition Skill (Reverse Limit Identification):</strong><br/>
@@ -864,7 +716,7 @@
           <div class="theory-body">
             <p>
               <strong>The General Power Rule:</strong> For any real exponent $n \in \mathbb{R}$:
-              <br/><code>\frac{d}{dx}[x^n] = n \cdot x^{n - 1}</code>
+              <br/><span class="formul">\(\frac{d}{dx}[x^n] = n \cdot x^{n - 1}\)</span>
               <br/><em>Radicals & Negative Exponents:</em> Always rewrite roots and denominators into rational powers before taking derivatives:<br/>
               • $\frac{d}{dx}\left[\frac{1}{x^3}\right] = \frac{d}{dx}[x^{-3}] = -3x^{-4} = -\frac{3}{x^4}$<br/>
               • $\frac{d}{dx}[\sqrt[3]{x^2}] = \frac{d}{dx}[x^{2/3}] = \frac{2}{3}x^{-1/3} = \frac{2}{3\sqrt[3]{x}}$
@@ -897,22 +749,22 @@
             </p>
             <div class="u-grid u-gap-3 u-mt-3 u-mb-3" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
               <div class="glass-card u-p-3">
-                <code>\frac{d}{dx}[\sin(x)] = \cos(x)</code>
+                <span class="formul">\(\frac{d}{dx}[\sin(x)] = \cos(x)\)</span>
               </div>
               <div class="glass-card u-p-3">
-                <code>\frac{d}{dx}[\cos(x)] = -\sin(x)</code>
+                <span class="formul">\(\frac{d}{dx}[\cos(x)] = -\sin(x)\)</span>
               </div>
               <div class="glass-card u-p-3">
-                <code>\frac{d}{dx}[\tan(x)] = \sec^2(x)</code>
+                <span class="formul">\(\frac{d}{dx}[\tan(x)] = \sec^2(x)\)</span>
               </div>
               <div class="glass-card u-p-3">
-                <code>\frac{d}{dx}[\csc(x)] = -\csc(x)\cot(x)</code>
+                <span class="formul">\(\frac{d}{dx}[\csc(x)] = -\csc(x)\cot(x)\)</span>
               </div>
               <div class="glass-card u-p-3">
-                <code>\frac{d}{dx}[\sec(x)] = \sec(x)\tan(x)</code>
+                <span class="formul">\(\frac{d}{dx}[\sec(x)] = \sec(x)\tan(x)\)</span>
               </div>
               <div class="glass-card u-p-3">
-                <code>\frac{d}{dx}[\cot(x)] = -\csc^2(x)</code>
+                <span class="formul">\(\frac{d}{dx}[\cot(x)] = -\csc^2(x)\)</span>
               </div>
             </div>
             <div class="theory-callout">
@@ -929,7 +781,7 @@
           <div class="theory-body">
             <p>
               <strong>The Product Rule:</strong> The derivative of a product is NOT the product of derivatives!
-              <br/><code>\frac{d}{dx}[f(x) \cdot g(x)] = f'(x)g(x) + f(x)g'(x)</code>
+              <br/><span class="formul">\(\frac{d}{dx}[f(x) \cdot g(x)] = f'(x)g(x) + f(x)g'(x)\)</span>
             </p>
             <div class="theory-callout">
               <strong>Proof of Product Rule:</strong><br/>
@@ -943,7 +795,7 @@
             </div>
             <p>
               <strong>The Quotient Rule:</strong> For $g(x) \ne 0$:
-              <br/><code>\frac{d}{dx}\left[\frac{f(x)}{g(x)}\right] = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2} = \frac{\text{Low } d(\text{High}) - \text{High } d(\text{Low})}{\text{Low}^2}</code>
+              <br/><span class="formul">\(\frac{d}{dx}\left[\frac{f(x)}{g(x)}\right] = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2} = \frac{\text{Low } d(\text{High}) - \text{High } d(\text{Low})}{\text{Low}^2}\)</span>
             </p>
             <div class="pitfall-box">
               <strong>Deadly AP Sign Reversal Trap:</strong><br/>
@@ -995,7 +847,7 @@
           <div class="theory-body">
             <p>
               <strong>The Chain Rule:</strong> If $g$ is differentiable at $x$ and $f$ is differentiable at $g(x)$, then the composite function $F(x) = f(g(x))$ is differentiable at $x$:
-              <br/><code>F'(x) = f'(g(x)) \cdot g'(x) \quad \text{or in Leibniz notation:} \quad \frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}</code>
+              <br/><span class="formul">\(F'(x) = f'(g(x)) \cdot g'(x) \quad \text{or in Leibniz notation:} \quad \frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}\)</span>
             </p>
             <div class="theory-callout">
               <strong>Decomposition of Nested Functions:</strong><br/>
@@ -1036,15 +888,15 @@
           <div class="theory-body">
             <p>
               <strong>Derivative of an Inverse Function:</strong> If $f$ is strictly monotonic and differentiable with inverse $g = f^{-1}$, and $f(b) = a$ (so $g(a) = b$), then:
-              <br/><code>g'(a) = (f^{-1})'(a) = \frac{1}{f'(g(a))} = \frac{1}{f'(b)} \quad \text{provided } f'(b) \ne 0</code>
+              <br/><span class="formul">\(g'(a) = (f^{-1})'(a) = \frac{1}{f'(g(a))} = \frac{1}{f'(b)} \quad \text{provided } f'(b) \ne 0\)</span>
               <br/><em>Geometric Insight:</em> Tangent lines of inverse functions across $y = x$ have reciprocal slopes.
             </p>
             <div class="theory-callout">
               <strong>Derivatives of Inverse Trigonometric Functions:</strong><br/>
               • <code>\frac{d}{dx}[\arcsin(x)] = \frac{1}{\sqrt{1 - x^2}}, \quad |x| < 1</code><br/>
               • <code>\frac{d}{dx}[\arccos(x)] = -\frac{1}{\sqrt{1 - x^2}}, \quad |x| < 1</code><br/>
-              • <code>\frac{d}{dx}[\arctan(x)] = \frac{1}{1 + x^2}, \quad x \in \mathbb{R}</code><br/>
-              • <code>\frac{d}{dx}[\text{arcsec}(x)] = \frac{1}{|x|\sqrt{x^2 - 1}}, \quad |x| > 1</code>
+              • <span class="formul">\(\frac{d}{dx}[\arctan(x)] = \frac{1}{1 + x^2}, \quad x \in \mathbb{R}\)</span><br/>
+              • <span class="formul">\(\frac{d}{dx}[\text{arcsec}(x)] = \frac{1}{|x|\sqrt{x^2 - 1}}, \quad |x| &gt; 1\)</span>
             </div>
             <div class="pitfall-box">
               <strong>Chain Rule with Inverse Trig:</strong> Never forget to chain out: $\frac{d}{dx}[\arctan(u)] = \frac{1}{1 + u^2} \cdot \frac{du}{dx}$. For example: $\frac{d}{dx}[\arctan(3x)] = \frac{3}{1 + 9x^2}$.

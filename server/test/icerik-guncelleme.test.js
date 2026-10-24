@@ -86,7 +86,7 @@ const satir = (app, id) => app.db.prepare("SELECT * FROM questions_bank WHERE id
 
 test("tohum: arşivlenen birebir tekrarlar var, satırlar silinmedi; aktif içerikte iç not yok", () => {
   assert.ok(GUNCEL.surum >= 2, "tohum sürümü artırıldı");
-  assert.deepEqual(ARSIVLENEN.sort(), ["calc_u6_q33", "chem_u8_q11"]);
+  assert.deepEqual(ARSIVLENEN.sort(), ["calc_u6_q33", "chem_u8_q11", "phys_mom_q21", "phys_u1_q6", "phys_u2_q7", "phys_u3_q8", "phys_wep_q16", "phys_wep_q21"]); // 1.22.1: Physics C soruları Physics 1 bankasından arşive
   assert.equal(YAYIN, 1131);
   assert.equal(URETIM.length, 229, "1.11.0 üretimleri");
   assert.equal(GUNCEL.sorular.filter(r => r.durum === "taslak").length, 0, "1.11.0 onayı: taslak yok");
