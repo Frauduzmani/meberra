@@ -1,0 +1,1101 @@
+{
+  "ders": "statistics",
+  "unite": 3,
+  "baslik": "Inference for Categorical Data: Proportions",
+  "baslikTr": "Kategorik veri için çıkarım: Oranlar",
+  "konular": [
+    {
+      "kod": "3.1",
+      "baslik": "Estimators",
+      "baslikTr": "Tahmin ediciler (estimators)",
+      "hedefler": [
+        "Bir tahmin edicinin yansız (unbiased) olup olmadığını örnekleme dağılımının merkezine bakarak gerekçelendirmek.",
+        "Örneklem oranı \\(\\hat{p}\\) ile nokta tahmini (point estimate) hesaplamak ve bağlam içinde yazmak.",
+        "Yanlılık (bias) ile değişkenliği (variability) ayırt etmek; örneklem büyüklüğünün yalnız değişkenliği etkilediğini açıklamak."
+      ],
+      "anlatim": "<h4>Parametre, istatistik, tahmin edici</h4>\n<div class=\"kn-tanim\"><strong>Parametre (parameter):</strong> tüm popülasyonu (population) anlatan sayı; genelde bilinmez. Oran için \\(p\\).<br><strong>İstatistik (statistic):</strong> örneklemden (sample) hesaplanan sayı. Oran için \\(\\hat{p}\\) (\"p-hat\").<br><strong>Tahmin edici (estimator):</strong> parametreyi tahmin etmek için kullanılan istatistik kuralı. Bu kuralın tek bir örneklemde verdiği sayıya <strong>nokta tahmini (point estimate)</strong> denir.</div>\n<p>Hatırlatma cümlesi: <em>Parameter – Population, Statistic – Sample</em> (P–P, S–S). Ünite 3'ün tüm konuları kategorik değişkenle (categorical variable) ilgilidir: her birey \"başarı (success)\" ya da \"başarısızlık (failure)\" olarak sınıflanır ve ilgilendiğimiz parametre başarı oranıdır.</p>\n<table><thead><tr><th>Popülasyon parametresi</th><th>Tahmin edici</th><th>Hesap</th></tr></thead><tbody>\n<tr><td>\\(p\\) (popülasyon oranı)</td><td>\\(\\hat{p}\\)</td><td>\\(\\hat{p}=\\dfrac{x}{n}\\) (x = başarı sayısı)</td></tr>\n<tr><td>\\(p_1-p_2\\)</td><td>\\(\\hat{p}_1-\\hat{p}_2\\)</td><td>iki örneklem oranının farkı</td></tr>\n<tr><td>Popülasyondaki başarı <em>sayısı</em> \\(Np\\)</td><td>\\(N\\hat{p}\\)</td><td>oranı popülasyon büyüklüğüyle çarp</td></tr></tbody></table>\n<h4>Yansızlık (unbiasedness)</h4>\n<div class=\"kn-kural\">Bir tahmin edici, örnekleme dağılımının (sampling distribution) <strong>ortalaması parametreye eşitse</strong> yansızdır (unbiased): ortalamada parametreyi ne sistematik olarak fazla ne de az tahmin eder. \\(\\mu_{\\hat{p}}=p\\) olduğu için \\(\\hat{p}\\) yansızdır.</div>\n<p>Yansız olmak \"her örneklemde doğru çıkar\" demek <strong>değildir</strong>. Tek bir \\(\\hat{p}\\) değeri \\(p\\)'den farklı olabilir; yansızlık, <em>tekrarlanan örneklemelerde (repeated sampling)</em> değerlerin \\(p\\) etrafında dengeli dağıldığını söyler. Örneğin popülasyondaki en büyük değeri tahmin etmek için \"örneklemdeki en büyük değer\" kullanılırsa bu tahmin edici asla gerçek maksimumdan büyük olamaz; ortalamada az tahmin eder, yani <strong>yanlıdır (biased)</strong>.</p>\n<h4>Yanlılık ve değişkenlik: hedef tahtası</h4>\n<table><thead><tr><th></th><th>Düşük değişkenlik</th><th>Yüksek değişkenlik</th></tr></thead><tbody>\n<tr><td><strong>Yansız</strong></td><td>okların hepsi merkezde toplanmış (en iyisi)</td><td>merkezin etrafında geniş dağılmış</td></tr>\n<tr><td><strong>Yanlı</strong></td><td>sıkı küme ama merkezden kaymış</td><td>hem kaymış hem dağınık (en kötüsü)</td></tr></tbody></table>\n<p>Simülasyonla elde edilmiş birkaç tahmin edicinin dağılımı verildiğinde sıra şöyledir: (1) merkezi parametreye eşit olanları seç (yansız), (2) bunlar arasında yayılımı (spread) en küçük olanı seç. Örneklem büyüklüğü \\(n\\)'yi artırmak <strong>değişkenliği azaltır</strong> (\\(\\sigma_{\\hat{p}}=\\sqrt{p(1-p)/n}\\) küçülür) ama <strong>yanlılığı düzeltmez</strong>. Gönüllü yanıtlı (voluntary response) ya da kapsam dışı bırakan (undercoverage) bir örneklem büyütülse de aynı yöne kaymaya devam eder.</p>\n<h4>FRQ'da puan getiren ifade</h4>\n<blockquote><em>\"The estimator is unbiased because the mean of its sampling distribution (about 0.40) is equal to the population proportion, 0.40.\"</em><br><em>\"Estimator B is preferred because it is unbiased and its sampling distribution has less variability than that of estimator A.\"</em></blockquote>\n<div class=\"kn-dikkat\">Gerekçede iki şey birlikte olmalı: <strong>merkez</strong> (bias için) ve <strong>yayılım</strong> (variability için). Yalnız \"B daha iyi görünüyor\" demek puan getirmez.</div>",
+      "ornekler": [
+        {
+          "soru": "Rastgele seçilen 480 lise öğrencisinden 168'i okula bisikletle geldiğini söylüyor. Tüm öğrenciler için uygun nokta tahminini bulun ve bağlam içinde yazın.",
+          "cozum": [
+            "Tahmin edici: \\(\\hat{p}=x/n\\). \\(\\hat{p}=168/480=0.35\\).",
+            "Bağlam: \"The point estimate for the proportion of all students at this school who ride a bike to school is 0.35.\" Parametre (tüm öğrenciler) ile istatistik (480 kişi) ayrımını cümlede koru."
+          ]
+        },
+        {
+          "soru": "Gerçek oranın \\(p=0.30\\) olduğu bir popülasyondan her biri \\(n=50\\) olan 1000 örneklem simüle ediliyor. Tahmin edici X'in değerlerinin ortalaması 0.30, standart sapması 0.065; tahmin edici Y'nin ortalaması 0.27, standart sapması 0.040. Hangisini tercih edersiniz? Gerekçelendirin.",
+          "cozum": [
+            "Merkez: X'in ortalaması 0.30 = \\(p\\) → yansız; Y'nin ortalaması 0.27 \\(\\lt\\) 0.30 → sistematik olarak az tahmin ediyor (biased).",
+            "Yayılım: Y daha az değişken ama yanlı. Beklenen AP cevabı: yansız olan X tercih edilir, çünkü n artırılarak X'in değişkenliği azaltılabilir; Y'nin yanlılığı ise n büyüdükçe ortadan kalkmaz ve tahminler hep 0.30'un altında toplanır."
+          ]
+        },
+        {
+          "soru": "(Açıklama) Bir dergi, web sitesinde \"Ders dışı etkinlikler gereksiz mi?\" anketi yapıyor ve 9000 yanıt alıyor. Editör \"örneklem çok büyük olduğu için tahminimiz yansızdır\" diyor. Bu iddiayı değerlendirin.",
+          "cozum": [
+            "Bu bir gönüllü yanıtlı örneklemdir (voluntary response sample): güçlü görüşü olanlar daha çok katılır, bu yüzden \\(\\hat{p}\\) sistematik olarak bir yöne kayar.",
+            "Büyük \\(n\\) yalnız değişkenliği azaltır; yanlılığı ortadan kaldırmaz. Doğru ifade: \"The large sample size reduces variability, but it does not remove the bias caused by voluntary response.\""
+          ]
+        }
+      ],
+      "ipuclari": [
+        "\"Unbiased\" sorusunda örnekleme dağılımının <strong>merkezini</strong> parametreyle karşılaştır; tek bir örneklemin değeri yansızlık hakkında bilgi vermez.",
+        "Hesap makinesi: \\(\\hat{p}=x/n\\) basit bölmedir; ama popülasyondaki <em>sayıyı</em> tahmin ederken \\(N\\hat{p}\\) yaz ve sonucu bağlamla ver.",
+        "Puanlayıcı \"parametre\" ile \"istatistik\" kelimelerinin karıştırılmamasını arar: \"the proportion of <em>all</em> …\" parametredir, \"the proportion in the sample\" istatistiktir.",
+        "İki tahmin edici karşılaştırılıyorsa cevabın iki parçası olsun: bias (center) + variability (spread)."
+      ],
+      "sikHatalar": [
+        "Büyük örneklemin yanlılığı giderdiğini sanmak; büyük \\(n\\) yalnız değişkenliği azaltır.",
+        "\"Yansız tahmin edici her zaman parametreye eşit sonuç verir\" demek; yansızlık ortalamada doğruluk demektir.",
+        "Simülasyon tablosunda en küçük standart sapmalı tahmin ediciyi merkezine bakmadan seçmek."
+      ],
+      "terimler": [
+        {
+          "en": "parameter",
+          "tr": "parametre"
+        },
+        {
+          "en": "statistic",
+          "tr": "istatistik"
+        },
+        {
+          "en": "estimator",
+          "tr": "tahmin edici"
+        },
+        {
+          "en": "point estimate",
+          "tr": "nokta tahmini"
+        },
+        {
+          "en": "unbiased",
+          "tr": "yansız"
+        },
+        {
+          "en": "bias",
+          "tr": "yanlılık"
+        },
+        {
+          "en": "variability",
+          "tr": "değişkenlik"
+        },
+        {
+          "en": "sampling distribution",
+          "tr": "örnekleme dağılımı"
+        }
+      ]
+    },
+    {
+      "kod": "3.2",
+      "baslik": "Sampling Distributions for Sample Proportions",
+      "baslikTr": "Örneklem oranlarının örnekleme dağılımı",
+      "hedefler": [
+        "\\(\\hat{p}\\)'nin örnekleme dağılımının ortalamasını ve standart sapmasını hesaplamak.",
+        "Rastgelelik, %10 ve büyük sayılar (large counts) koşullarını kontrol edip normal modeli gerekçelendirmek.",
+        "Örnekleme dağılımından olasılık hesaplayıp sonucu bağlam içinde yorumlamak."
+      ],
+      "anlatim": "<h4>Örnekleme dağılımı nedir?</h4>\n<p>Aynı popülasyondan aynı büyüklükte (\\(n\\)) tüm olası örneklemleri alıp her birinde \\(\\hat{p}\\)'yi hesapladığımızı düşün. Bu \\(\\hat{p}\\) değerlerinin dağılımına <strong>örnekleme dağılımı (sampling distribution of \\(\\hat{p}\\))</strong> denir. Tek bir örneklemin verisi (data distribution) ile bu dağılımı karıştırma: örnekleme dağılımı <em>istatistiğin</em> dağılımıdır.</p>\n<div class=\"kn-kural\">Örneklemdeki gözlemler bağımsızsa (independent):\n\\[ \\mu_{\\hat{p}} = p \\qquad \\sigma_{\\hat{p}} = \\sqrt{\\frac{p(1-p)}{n}} \\]\nBu formüller AP formül kâğıdındadır (formula sheet).</div>\n<h4>Koşullar (conditions)</h4>\n<table><thead><tr><th>Koşul</th><th>Ne kontrol edilir?</th><th>Neyi sağlar?</th></tr></thead><tbody>\n<tr><td>Random</td><td>Veri rastgele örneklemden (random sample) mi?</td><td>Sonuçları popülasyona genelleme</td></tr>\n<tr><td>10% condition</td><td>İadesiz örneklemede \\(n \\lt 0.10N\\)</td><td>Gözlemler yaklaşık bağımsız, \\(\\sigma_{\\hat{p}}\\) formülü geçerli</td></tr>\n<tr><td>Large counts</td><td>\\(np \\ge 10\\) ve \\(n(1-p)\\ge 10\\)</td><td>Dağılım yaklaşık normal (approximately normal)</td></tr></tbody></table>\n<p>Burada \\(np\\) beklenen başarı sayısı (expected number of successes), \\(n(1-p)\\) beklenen başarısızlık sayısıdır. Örnekleme dağılımı konusunda \\(p\\) <strong>bilinir</strong> (verilmiştir), bu yüzden koşul \\(p\\) ile kontrol edilir. Koşul sağlanmazsa \\(p\\) küçükken dağılım sağa çarpık (right-skewed) olur ve normal hesap yanıltır.</p>\n<h4>Olasılık hesabı: adım adım</h4>\n<p>Örnek: Bir ülkede yetişkinlerin \\(p=0.30\\)'u düzenli spor yapıyor. \\(n=150\\) kişilik rastgele örneklemde \\(\\hat{p}\\ge0.35\\) olasılığı nedir?</p>\n<ol><li>Koşullar: rastgele; 150 \\(\\lt\\) tüm yetişkinlerin %10'u; \\(150(0.30)=45\\ge10\\), \\(150(0.70)=105\\ge10\\).</li>\n<li>\\(\\mu_{\\hat{p}}=0.30\\), \\(\\sigma_{\\hat{p}}=\\sqrt{0.30(0.70)/150}\\approx0.0374\\).</li>\n<li>\\(z=\\dfrac{0.35-0.30}{0.0374}\\approx1.34\\); \\(P(Z\\ge1.34)\\approx0.090\\) (hesap makinesinde yuvarlanmamış değerlerle <code>normalcdf(0.35, 1E99, 0.30, 0.0374)</code> \\(\\approx0.091\\) verir).</li>\n<li>Bağlam: \"About 9.1% of all random samples of 150 adults would have 35% or more who exercise regularly.\"</li></ol>\n<h4>Örneklem büyüklüğünün etkisi</h4>\n<p>\\(\\sigma_{\\hat{p}}\\), \\(\\sqrt{n}\\) ile ters orantılıdır: \\(n\\)'yi 4 katına çıkarmak standart sapmayı yarıya indirir. Merkez değişmez (\\(p\\)), şekil daha normal olur, yayılım küçülür.</p>\n<h4>Yorum kalıpları (interpretation)</h4>\n<blockquote><em>Mean:</em> \"If we took many random samples of size 150, the sample proportions would be centered at 0.30.\"<br><em>Standard deviation:</em> \"The sample proportion of adults who exercise regularly typically varies by about 0.037 from the true proportion of 0.30 in random samples of size 150.\"</blockquote>\n<div class=\"kn-dikkat\">%10 koşulu normallik ile ilgili değildir; bağımsızlıkla ilgilidir. %10 koşulu bozulursa gerçek standart sapma formülün verdiğinden <strong>küçüktür</strong> (formül değişkenliği abartır).</div>",
+      "ornekler": [
+        {
+          "soru": "Bir havayolu uçuşlarının %90'ının zamanında kalktığını söylüyor. 200 uçuşluk rastgele örneklemde \\(\\hat{p}=0.84\\) bulunuyor. İddia doğruysa \\(\\hat{p}\\le0.84\\) olasılığını bulun ve sonucun iddia hakkında ne söylediğini açıklayın.",
+          "cozum": [
+            "Koşullar: rastgele; 200 \\(\\lt\\) tüm uçuşların %10'u; \\(200(0.9)=180\\), \\(200(0.1)=20\\), ikisi de \\(\\ge10\\).",
+            "\\(\\sigma_{\\hat{p}}=\\sqrt{0.9(0.1)/200}\\approx0.0212\\); \\(z=(0.84-0.90)/0.0212\\approx-2.83\\); \\(P\\approx0.0023\\).",
+            "Yorum: İddia doğru olsaydı bu kadar düşük bir örneklem oranı yalnızca yaklaşık %0.23 olasılıkla görülürdü. Bu çok olağandışı olduğu için havayolunun %90 iddiasından şüphe etmek için güçlü bir neden vardır."
+          ]
+        },
+        {
+          "soru": "\\(p=0.04\\) olan bir üretim hattından örneklem alınacak. Büyük sayılar koşulunu sağlayan en küçük \\(n\\) nedir?",
+          "cozum": [
+            "Kısıtlayıcı olan \\(np\\ge10\\): \\(n\\ge10/0.04=250\\). Diğer koşul \\(n(0.96)\\ge10\\) çok daha önce sağlanır.",
+            "En küçük \\(n=250\\). Daha küçük örneklemlerde \\(\\hat{p}\\) dağılımı sağa çarpık kalır."
+          ]
+        },
+        {
+          "soru": "(Açıklama) 600 öğrencilik bir okuldan iadesiz 120 öğrenci seçiliyor. \\(\\sigma_{\\hat{p}}=\\sqrt{p(1-p)/120}\\) formülünü kullanmak uygun mu?",
+          "cozum": [
+            "%10 koşulu: \\(0.10(600)=60\\) ve \\(120\\gt60\\); koşul sağlanmıyor.",
+            "Sonuç: Gözlemler bağımsız sayılamaz; formül gerçek standart sapmayı olduğundan büyük gösterir. \"The 10% condition is not met, so the formula overstates the variability of \\(\\hat{p}\\).\""
+          ]
+        }
+      ],
+      "ipuclari": [
+        "Hesap makinesi: <code>normalcdf(lower, upper, μ, σ)</code> kullanıyorsan FRQ'da etiketleri de yaz (μ = 0.30, σ = 0.0374); yalnız komut yazmak tam puan getirmez.",
+        "Örnekleme dağılımı sorularında koşullar \\(p\\) ile kontrol edilir; güven aralığında ise \\(\\hat{p}\\) ile (Konu 3.3).",
+        "Standart sapma yorumunda üç parça: \"typically varies\", \"by about …\", \"from the true proportion … in samples of size n\".",
+        "\"Normal\" demek için mutlaka sayıları yaz: \\(np = 45 \\ge 10\\) ve \\(n(1-p)=105\\ge10\\)."
+      ],
+      "sikHatalar": [
+        "Standart sapmada \\(\\sqrt{n}\\) yerine \\(n\\) kullanmak ya da kökü unutmak.",
+        "%10 koşulunu normallik koşulu sanmak; o bağımsızlık içindir.",
+        "Tek örneklemdeki verinin dağılımını örnekleme dağılımıyla karıştırmak."
+      ],
+      "terimler": [
+        {
+          "en": "sampling distribution",
+          "tr": "örnekleme dağılımı"
+        },
+        {
+          "en": "sample proportion",
+          "tr": "örneklem oranı"
+        },
+        {
+          "en": "10% condition",
+          "tr": "%10 koşulu"
+        },
+        {
+          "en": "large counts condition",
+          "tr": "büyük sayılar koşulu"
+        },
+        {
+          "en": "expected number of successes",
+          "tr": "beklenen başarı sayısı"
+        },
+        {
+          "en": "independent",
+          "tr": "bağımsız"
+        },
+        {
+          "en": "approximately normal",
+          "tr": "yaklaşık normal"
+        }
+      ]
+    },
+    {
+      "kod": "3.3",
+      "baslik": "Constructing a Confidence Interval for a Population Proportion",
+      "baslikTr": "Popülasyon oranı için güven aralığı oluşturma",
+      "hedefler": [
+        "Tek örneklem z-aralığını (one-sample z-interval for a proportion) seçmek ve parametreyi bağlamla tanımlamak.",
+        "Koşulları kontrol edip \\(\\hat{p}\\pm z^*\\sqrt{\\hat{p}(1-\\hat{p})/n}\\) aralığını hesaplamak.",
+        "Standart hata (SE) ve hata payını (margin of error) hesaplamak; istenen hata payı için gereken örneklem büyüklüğünü bulmak."
+      ],
+      "anlatim": "<h4>Neden aralık?</h4>\n<p>Nokta tahmini \\(\\hat{p}\\) neredeyse hiçbir zaman \\(p\\)'ye tam eşit değildir. Bu yüzden \"\\(p\\) muhtemelen bu sayıların arasındadır\" diyen bir <strong>güven aralığı (confidence interval)</strong> veririz:</p>\n<div class=\"kn-kural\">\\[ \\text{point estimate} \\pm \\text{margin of error} \\qquad\\Longrightarrow\\qquad \\hat{p} \\pm z^*\\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}} \\]\n\\(SE_{\\hat{p}}=\\sqrt{\\hat{p}(1-\\hat{p})/n}\\) <strong>standart hata (standard error)</strong>, \\(ME = z^*\\cdot SE\\) <strong>hata payı (margin of error)</strong>dır. Hata payı aralık genişliğinin yarısıdır.</div>\n<p>\\(p\\) bilinmediği için standart sapmayı \\(\\hat{p}\\) ile tahmin ederiz; bu tahmine standart hata denir. SE, istatistiğin parametreden tipik olarak ne kadar saptığını ölçer.</p>\n<h4>Kritik değer (critical value) \\(z^*\\)</h4>\n<table><thead><tr><th>Güven düzeyi (C)</th><th>90%</th><th>95%</th><th>98%</th><th>99%</th></tr></thead><tbody>\n<tr><td>\\(z^*\\)</td><td>1.645</td><td>1.960</td><td>2.326</td><td>2.576</td></tr></tbody></table>\n<p>\\(z^*\\), standart normal eğrinin ortadaki %C'lik alanını sınırlayan değerdir. Hesap makinesinde: <code>invNorm(0.95)</code> → 1.645 (90% için kuyruklar 0.05'er).</p>\n<h4>Dört adım (AP FRQ yapısı)</h4>\n<ol><li><strong>State:</strong> Parametre + güven düzeyi. \"\\(p\\) = the true proportion of all [population] who [response]. We will estimate \\(p\\) with 95% confidence.\"</li>\n<li><strong>Plan:</strong> Prosedürü adıyla yaz (one-sample z-interval for \\(p\\)) ve koşulları kontrol et: Random (random sample), 10% (\\(n \\lt 10\\%N\\)), Large counts: \\(n\\hat{p}\\ge10\\) ve \\(n(1-\\hat{p})\\ge10\\) — burada \\(p\\) bilinmediği için <strong>gözlenen</strong> başarı ve başarısızlık sayıları kullanılır.</li>\n<li><strong>Do:</strong> Hesapla. Örnek: 620 kişiden 248'i evet → \\(\\hat{p}=0.40\\), \\(SE=\\sqrt{0.4(0.6)/620}\\approx0.0197\\), \\(ME=1.96(0.0197)\\approx0.0386\\), aralık \\((0.361,\\,0.439)\\).</li>\n<li><strong>Conclude:</strong> Bağlamla yorumla (Konu 3.4).</li></ol>\n<h4>Gerekli örneklem büyüklüğü (sample size)</h4>\n<div class=\"kn-kural\">\\[ n = \\frac{(z^*)^2\\,\\hat{p}(1-\\hat{p})}{(ME)^2} \\]\nÖnceki bir tahmin yoksa \\(\\hat{p}=0.5\\) kullan: \\(\\hat{p}(1-\\hat{p})\\) en büyük değerini (0.25) alır ve güvenli üst sınır verir. Sonucu her zaman <strong>yukarı yuvarla</strong> (round up): 1067.1 → 1068.</div>\n<p>Örnek: 95% güvenle hata payı en çok 0.03 olsun: \\(n=1.96^2(0.25)/0.03^2\\approx1067.1\\), yani en az 1068 kişi.</p>\n<div class=\"kn-dikkat\">Koşullar <strong>veriye</strong> dairdir; aralığı hesaplamadan önce kontrol et. \"n is large\" demek yeterli değildir; sayıları yaz: \\(n\\hat{p}=248\\ge10\\), \\(n(1-\\hat{p})=372\\ge10\\).</div>",
+      "ornekler": [
+        {
+          "soru": "Rastgele seçilen 500 seçmenden 290'ı yeni park projesini destekliyor. Tüm seçmenlerde destek oranı için %90 güven aralığı oluşturun.",
+          "cozum": [
+            "State: \\(p\\) = the true proportion of all voters in the city who support the park project; 90% confidence.",
+            "Plan: one-sample z-interval for \\(p\\). Random sample ✓; 500 \\(\\lt\\) %10 of all voters ✓; \\(n\\hat{p}=290\\ge10\\), \\(n(1-\\hat{p})=210\\ge10\\) ✓.",
+            "Do: \\(\\hat{p}=0.58\\), \\(SE=\\sqrt{0.58(0.42)/500}\\approx0.0221\\), \\(ME=1.645(0.0221)\\approx0.0363\\) → \\((0.544,\\,0.616)\\)."
+          ]
+        },
+        {
+          "soru": "Bir araştırmacı geçen yılki çalışmadan \\(\\hat{p}\\approx0.15\\) olduğunu biliyor. %99 güvenle hata payını en çok 0.02 yapmak için kaç kişi gerekir?",
+          "cozum": [
+            "\\(n=\\dfrac{2.576^2(0.15)(0.85)}{0.02^2}=\\dfrac{6.636(0.1275)}{0.0004}\\approx2115.2\\).",
+            "Yukarı yuvarla: en az 2116 kişi. (Hesap makinesindeki \\(z^*=\\)<code>invNorm(0.995)</code>\\(\\approx2.5758\\) ile \\(n\\approx2114.9\\) → 2115 çıkar; \\(z^*\\) yuvarlaması sonucu bir kişi değiştirebilir, FRQ'da kullandığın \\(z^*\\)'ı yaz.) (0.5 kullanılsaydı yaklaşık 4148 gerekirdi; önceki tahmin maliyeti düşürür.)"
+          ]
+        },
+        {
+          "soru": "(Açıklama) 40 kişilik rastgele örneklemde 6 kişi \"evet\" diyor. Bir öğrenci %95 z-aralığı hesaplıyor. Bu prosedür uygun mu?",
+          "cozum": [
+            "Büyük sayılar koşulu: \\(n\\hat{p}=6\\lt10\\). Koşul sağlanmıyor.",
+            "Gerekçe: \"The large counts condition is not met because there are only 6 successes, so the sampling distribution of \\(\\hat{p}\\) may not be approximately normal and the z-interval is not appropriate.\""
+          ]
+        }
+      ],
+      "ipuclari": [
+        "Hesap makinesi: <code>1-PropZInt</code> (TI) x, n ve C-Level ister; x tam sayı olmalıdır. Sonucu kullanabilirsin ama FRQ'da formülü ve değerleri de yaz.",
+        "Örneklem büyüklüğü sorularında sonucu daima yukarı yuvarla; \\(\\hat{p}\\) verilmemişse 0.5 kullan.",
+        "Puanlayıcı prosedür adını (\"one-sample z-interval for a population proportion\") ya da formülü görmek ister; \"1-PropZInt\" tek başına kabul edilmez.",
+        "Parametre tanımında üç parça: proportion + response (ne?) + population (kimler?)."
+      ],
+      "sikHatalar": [
+        "Güven aralığında büyük sayılar koşulunu \\(p_0\\) ya da 0.5 ile kontrol etmek; aralıkta \\(\\hat{p}\\) (gözlenen sayılar) kullanılır.",
+        "Gerekli örneklem büyüklüğünü aşağı yuvarlamak (1067.1 → 1067); bu, istenen hata payını garanti etmez.",
+        "Hata payını aralığın tüm genişliği sanmak; ME genişliğin yarısıdır."
+      ],
+      "terimler": [
+        {
+          "en": "confidence interval",
+          "tr": "güven aralığı"
+        },
+        {
+          "en": "critical value",
+          "tr": "kritik değer"
+        },
+        {
+          "en": "standard error (SE)",
+          "tr": "standart hata"
+        },
+        {
+          "en": "margin of error (ME)",
+          "tr": "hata payı"
+        },
+        {
+          "en": "confidence level",
+          "tr": "güven düzeyi"
+        },
+        {
+          "en": "one-sample z-interval",
+          "tr": "tek örneklem z-aralığı"
+        },
+        {
+          "en": "round up",
+          "tr": "yukarı yuvarla"
+        }
+      ]
+    },
+    {
+      "kod": "3.4",
+      "baslik": "Justifying a Claim Based on a Confidence Interval for a Population Proportion",
+      "baslikTr": "Popülasyon oranı için güven aralığına dayanarak iddiayı gerekçelendirme",
+      "hedefler": [
+        "Güven aralığını ve güven düzeyini bağlam içinde doğru yorumlamak.",
+        "Aralıktaki makul değerlere (plausible values) bakarak bir iddiayı desteklemek ya da desteklememek.",
+        "Güven düzeyi, örneklem büyüklüğü, hata payı ve genişlik arasındaki ilişkileri açıklamak."
+      ],
+      "anlatim": "<h4>Aralığın yorumu (interpreting the interval)</h4>\n<div class=\"kn-tanim\">\"We are 95% confident that the interval from 0.361 to 0.439 captures the true proportion of all adults in the city who support the policy.\"</div>\n<p>Bu cümlenin üç zorunlu parçası var: <strong>güven düzeyi</strong> (95% confident), <strong>aralığın sınırları</strong> (0.361 to 0.439) ve <strong>bağlam içinde parametre</strong> (the true proportion of all …). Hesaplanmış bir aralık parametreyi ya içerir ya içermez; biz hangisi olduğunu bilmeyiz.</p>\n<h4>Güven düzeyinin yorumu (interpreting the confidence level)</h4>\n<div class=\"kn-kural\">\"If we took many random samples of the same size and built a 95% confidence interval from each, about 95% of those intervals would capture the true population proportion.\"</div>\n<p>Güven düzeyi <em>yöntemin</em> uzun vadeli başarı oranıdır; tek bir aralığın olasılığı değildir. Aşağıdaki ifadeler <strong>yanlıştır</strong>:</p>\n<table><thead><tr><th>Yanlış ifade</th><th>Neden yanlış?</th></tr></thead><tbody>\n<tr><td>\"There is a 95% probability that \\(p\\) is between 0.361 and 0.439.\"</td><td>\\(p\\) sabit bir sayıdır; bu aralıkta ya vardır ya yoktur.</td></tr>\n<tr><td>\"95% of the sample proportions are in the interval.\"</td><td>Aralık \\(p\\) hakkındadır, \\(\\hat{p}\\)'ler hakkında değil.</td></tr>\n<tr><td>\"95% of adults support the policy.\"</td><td>Güven düzeyini oranla karıştırmak.</td></tr></tbody></table>\n<h4>İddiayı gerekçelendirmek (justifying a claim)</h4>\n<p>Aralık, \\(p\\) için <strong>makul değerlerin (plausible values)</strong> kümesidir.</p>\n<ul><li>İddia edilen değer aralığın <strong>dışındaysa</strong> → o değerin doğru olmadığına dair ikna edici kanıt (convincing evidence) vardır.</li>\n<li>İddia edilen değer aralığın <strong>içindeyse</strong> → o değer makuldür; ama bu iddiayı <em>kanıtlamaz</em>, çünkü başka değerler de makuldür.</li>\n<li>\"Çoğunluk (majority)\" iddiası \\(p\\gt0.5\\) demektir: aralığın <strong>tamamı</strong> 0.5'in üstündeyse ikna edici kanıt vardır.</li></ul>\n<p>Örnek: Aralık \\((0.47,\\,0.55)\\). Hem 0.5'ten küçük hem büyük değerler makul olduğundan \"çoğunluk destekliyor\" iddiası için ikna edici kanıt yoktur.</p>\n<h4>İlişkiler (relationships)</h4>\n<table><thead><tr><th>Değişiklik (diğerleri sabit)</th><th>\\(z^*\\)</th><th>ME</th><th>Genişlik</th></tr></thead><tbody>\n<tr><td>Güven düzeyini artır</td><td>artar</td><td>artar</td><td>artar</td></tr>\n<tr><td>\\(n\\)'yi artır</td><td>değişmez</td><td>azalır</td><td>azalır</td></tr>\n<tr><td>\\(n\\)'yi 4 katına çıkar</td><td>değişmez</td><td>yarıya iner</td><td>yarıya iner</td></tr></tbody></table>\n<p>Genişlik yaklaşık \\(1/\\sqrt{n}\\) ile orantılıdır. Aynı veriden farklı güven düzeyleri istenirse önce \\(SE = ME/z^*\\) bulunur, sonra yeni \\(z^*\\) ile çarpılır.</p>\n<div class=\"kn-dikkat\">Güven aralığı yalnız <strong>örnekleme değişkenliğini (sampling variability)</strong> hesaba katar. Kötü örnekleme yönteminden (bias, yanıt vermeme) gelen hatayı düzeltmez.</div>",
+      "ornekler": [
+        {
+          "soru": "Bir belediye, rastgele örneklemden sakinlerin otobüs hattı memnuniyeti için %95 güven aralığını \\((0.58,\\,0.66)\\) buluyor. (a) \"Sakinlerin yarıdan fazlası memnun\" ve (b) \"Sakinlerin %60'ından fazlası memnun\" iddialarını değerlendirin.",
+          "cozum": [
+            "(a) Aralıktaki tüm makul değerler 0.5'ten büyük: sakinlerin yarıdan fazlasının memnun olduğuna dair ikna edici kanıt vardır.",
+            "(b) Aralık 0.60'tan küçük değerleri (0.58, 0.59) de içeriyor: %60'tan fazlası için ikna edici kanıt <strong>yoktur</strong>; 0.60 ve altı da makuldür."
+          ]
+        },
+        {
+          "soru": "Bir örneklemden %90 güven aralığı \\((0.418,\\,0.482)\\) bulunuyor. Aynı veriden %99 güven aralığını bulun.",
+          "cozum": [
+            "\\(\\hat{p}=(0.418+0.482)/2=0.45\\), \\(ME_{90}=0.032\\), \\(SE=0.032/1.645\\approx0.01945\\).",
+            "\\(ME_{99}=2.576(0.01945)\\approx0.0501\\) → \\((0.400,\\,0.500)\\). Daha yüksek güven, daha geniş aralık."
+          ]
+        },
+        {
+          "soru": "(Açıklama) Bir öğrenci \"%95 güven aralığımız (0.31, 0.39), yani p'nin bu aralıkta olma olasılığı 0.95\" diyor. Hatayı düzeltin.",
+          "cozum": [
+            "\\(p\\) rastgele değil, sabittir; hesaplanmış aralık onu ya içerir ya içermez. 0.95, yöntemin uzun vadeli başarı oranıdır.",
+            "Doğru ifade: \"We are 95% confident that the interval from 0.31 to 0.39 captures the true proportion … In repeated random sampling, about 95% of such intervals would capture the true proportion.\""
+          ]
+        }
+      ],
+      "ipuclari": [
+        "Aralık yorumu ezber kalıbı: \"We are C% confident that the interval from __ to __ captures the true proportion of all __ who __.\"",
+        "İddia sorularında cevabın bir gerekçe cümlesi olsun: \"Because all of the values in the interval are greater than 0.5 …\" ya da \"Because 0.60 is in the interval, it is a plausible value …\"",
+        "Hesap makinesinde aralığı bulduysan genişliği kontrol et: üst − alt = 2·ME. Sınavda farklı güven düzeyine geçiş için SE = ME / z* yolunu kullan.",
+        "\"Prove\" ya da \"the claim is true\" yazma; puanlayıcı non-definitive dil ister: \"convincing evidence\", \"plausible\"."
+      ],
+      "sikHatalar": [
+        "Aralık iddia değerini içeriyor diye iddianın \"kanıtlandığını\" söylemek.",
+        "Güven düzeyini tek aralık için olasılık gibi yorumlamak.",
+        "Genişliği yarıya indirmek için \\(n\\)'yi 2 katına çıkarmak yeterli sanmak; 4 katı gerekir."
+      ],
+      "terimler": [
+        {
+          "en": "plausible value",
+          "tr": "makul değer"
+        },
+        {
+          "en": "convincing evidence",
+          "tr": "ikna edici kanıt"
+        },
+        {
+          "en": "capture",
+          "tr": "içermek, yakalamak"
+        },
+        {
+          "en": "repeated sampling",
+          "tr": "tekrarlanan örnekleme"
+        },
+        {
+          "en": "width",
+          "tr": "genişlik"
+        },
+        {
+          "en": "sampling variability",
+          "tr": "örnekleme değişkenliği"
+        }
+      ]
+    },
+    {
+      "kod": "3.5",
+      "baslik": "Setting Up a Test for a Population Proportion",
+      "baslikTr": "Popülasyon oranı için test kurma",
+      "hedefler": [
+        "Tek örneklem z-testini (one-sample z-test for a proportion) seçmek ve parametreyi bağlamla tanımlamak.",
+        "Sıfır (null) ve alternatif (alternative) hipotezleri \\(p\\) ve \\(p_0\\) ile doğru yazmak; tek ve çift yönlü testi ayırt etmek.",
+        "Testin koşullarını \\(p_0\\) kullanarak kontrol etmek."
+      ],
+      "anlatim": "<h4>Hipotez testi (hypothesis test) ne yapar?</h4>\n<p>Güven aralığı \"p hangi değerlerde olabilir?\" diye sorar. Hipotez testi ise \"veri, belirli bir \\(p_0\\) değerine karşı ikna edici kanıt sağlıyor mu?\" diye sorar. Mantık bir mahkemeye benzer: sanık suçsuz kabul edilir (\\(H_0\\)), kanıt yeterince güçlüyse bu kabul reddedilir.</p>\n<div class=\"kn-tanim\"><strong>\\(H_0\\) (null hypothesis):</strong> mevcut durum (status quo), \"değişiklik yok\"; her zaman eşitlik içerir: \\(H_0: p=p_0\\).<br><strong>\\(H_a\\) (alternative hypothesis):</strong> araştırmacının kanıt aradığı iddia: \\(p\\gt p_0\\), \\(p\\lt p_0\\) ya da \\(p\\ne p_0\\).</div>\n<table><thead><tr><th>Sözel iddia</th><th>\\(H_a\\)</th><th>Tür</th></tr></thead><tbody>\n<tr><td>\"more than\", \"increased\", \"greater than\"</td><td>\\(p\\gt p_0\\)</td><td>one-sided (tek yönlü)</td></tr>\n<tr><td>\"less than\", \"decreased\", \"fewer\"</td><td>\\(p\\lt p_0\\)</td><td>one-sided</td></tr>\n<tr><td>\"different from\", \"changed\", \"not equal\"</td><td>\\(p\\ne p_0\\)</td><td>two-sided (çift yönlü)</td></tr></tbody></table>\n<p>Hipotezler <strong>parametre</strong> (\\(p\\)) ile yazılır, asla \\(\\hat{p}\\) ile yazılmaz: örneklem oranını zaten biliyoruz, test edilen popülasyondur. Ayrıca hipotezler veriye bakmadan önce kurulur; \\(H_a\\)'nın yönünü veriyi gördükten sonra seçmek yanlıştır.</p>\n<p>Tek yönlü bir iddiada \\(H_0\\) bazen \"\\(p\\le0.60\\)\" gibi yazılsa da AP'de test <strong>sınır değerinde (boundary)</strong> yapılır: \\(H_0: p=0.60\\). Çünkü null dağılımını (null distribution) kurmak için tek bir sayı gerekir.</p>\n<h4>Parametre tanımı</h4>\n<blockquote>\"\\(p\\) = the true proportion of all customers of this bank who use the mobile app at least once a week.\"</blockquote>\n<p>Parça parça: proportion (oran) + response (ne?) + population (kimler?). \"\\(p\\) = proportion of customers\" gibi eksik tanımlar puan kaybettirir.</p>\n<h4>Koşullar (conditions) — testte \\(p_0\\) kullanılır</h4>\n<table><thead><tr><th>Koşul</th><th>Kontrol</th></tr></thead><tbody>\n<tr><td>Random</td><td>Rastgele örneklem (ya da rastgele atama)</td></tr>\n<tr><td>10%</td><td>\\(n\\lt10\\%N\\) (iadesiz örneklemede)</td></tr>\n<tr><td>Large counts</td><td>\\(np_0\\ge10\\) ve \\(n(1-p_0)\\ge10\\)</td></tr></tbody></table>\n<div class=\"kn-kural\">Neden \\(p_0\\)? Test, \\(H_0\\) doğru varsayılarak yapılır. Null dağılımının normal olup olmadığını \\(H_0\\)'daki değerle kontrol ederiz. (Güven aralığında ise \\(p\\) bilinmediği için \\(\\hat{p}\\) kullanılır.)</div>\n<p>Örnek: \\(n=120\\), \\(p_0=0.08\\): \\(np_0=9.6\\lt10\\). Örneklem çok başarı içerse bile koşul sağlanmaz; z-testi uygun değildir.</p>\n<h4>FRQ kalıbı (State + Plan)</h4>\n<blockquote>\"\\(H_0: p = 0.20\\) versus \\(H_a: p \\gt 0.20\\), where \\(p\\) is the true proportion of all … We will use \\(\\alpha = 0.05\\). This is a one-sample z-test for a population proportion. Random: … 10%: … Large counts: \\(150(0.20)=30\\ge10\\) and \\(150(0.80)=120\\ge10\\).\"</blockquote>",
+      "ornekler": [
+        {
+          "soru": "Bir uygulama şirketi kullanıcılarının %35'inin premium sürüme geçtiğini söylüyor. Bir analist bu oranın daha düşük olduğundan şüpheleniyor ve 300 kullanıcıdan rastgele örneklem alıyor. Hipotezleri yazın ve koşulları kontrol edin.",
+          "cozum": [
+            "\\(H_0: p=0.35\\), \\(H_a: p\\lt0.35\\); \\(p\\) = the true proportion of all users of the app who have upgraded to premium.",
+            "Random sample ✓; 300 \\(\\lt\\) %10 of all users (makul) ✓; \\(300(0.35)=105\\ge10\\), \\(300(0.65)=195\\ge10\\) ✓. One-sample z-test for \\(p\\)."
+          ]
+        },
+        {
+          "soru": "500 öğrencilik bir okuldan 60 öğrenci rastgele seçiliyor; \\(H_0:p=0.30\\). Koşulları kontrol edin.",
+          "cozum": [
+            "Random ✓. Large counts: \\(60(0.30)=18\\ge10\\), \\(60(0.70)=42\\ge10\\) ✓.",
+            "10%: \\(0.10(500)=50\\) ve \\(60\\gt50\\): koşul sağlanmıyor. Gözlemler bağımsız sayılamaz; standart sapma formülü güvenilmez. Bunu açıkça belirtmek gerekir."
+          ]
+        },
+        {
+          "soru": "(Açıklama) Bir öğrenci örneklemde \\(\\hat{p}=0.12\\) bulduktan sonra \"\\(H_0:\\hat{p}=0.15\\), \\(H_a:\\hat{p}\\lt0.15\\)\" yazıyor. Neden yanlış?",
+          "cozum": [
+            "Hipotezler popülasyon parametresi hakkındadır; \\(\\hat{p}=0.12\\) zaten bilinen bir sayıdır, hakkında test yapılmaz.",
+            "Doğrusu: \\(H_0:p=0.15\\), \\(H_a:p\\lt0.15\\), \\(p\\) bağlamla tanımlanarak. Ayrıca \\(H_a\\)'nın yönü veriye bakılarak değil, araştırma sorusuna göre seçilmelidir."
+          ]
+        }
+      ],
+      "ipuclari": [
+        "Hipotezde sembol kullanıyorsan mutlaka tanımla: \"where p is the true proportion of all …\". Tanımsız \\(p\\) puan kaybettirir.",
+        "Testte large counts kontrolü \\(np_0\\) ve \\(n(1-p_0)\\) ile; aralıkta \\(n\\hat{p}\\) ve \\(n(1-\\hat{p})\\) ile yapılır. Bu fark sık sorulur.",
+        "Hesap makinesinde <code>1-PropZTest</code> seçerken \\(p_0\\), x, n ve yönü (≠, <, >) gir; yönü FRQ'daki \\(H_a\\) ile aynı olmalı.",
+        "Anahtar kelimeler: \"at least\" / \"no more than\" gibi ifadeler genelde \\(H_0\\) tarafına aittir; \\(H_a\\) kanıt aranan iddiadır."
+      ],
+      "sikHatalar": [
+        "Hipotezleri \\(\\hat{p}\\) ile yazmak.",
+        "Test koşulunda \\(p_0\\) yerine \\(\\hat{p}\\) kullanmak.",
+        "\"Different from\" iddiası için tek yönlü \\(H_a\\) seçmek."
+      ],
+      "terimler": [
+        {
+          "en": "hypothesis test",
+          "tr": "hipotez testi"
+        },
+        {
+          "en": "null hypothesis",
+          "tr": "sıfır hipotezi"
+        },
+        {
+          "en": "alternative hypothesis",
+          "tr": "alternatif hipotez"
+        },
+        {
+          "en": "one-sided / two-sided",
+          "tr": "tek yönlü / çift yönlü"
+        },
+        {
+          "en": "null distribution",
+          "tr": "sıfır (null) dağılımı"
+        },
+        {
+          "en": "status quo",
+          "tr": "mevcut durum"
+        },
+        {
+          "en": "one-sample z-test",
+          "tr": "tek örneklem z-testi"
+        }
+      ]
+    },
+    {
+      "kod": "3.6",
+      "baslik": "p-Values",
+      "baslikTr": "p-değerleri",
+      "hedefler": [
+        "p-değerini, \\(H_0\\) doğru varsayımıyla hesaplanan bir olasılık olarak bağlam içinde yorumlamak.",
+        "\\(H_a\\)'nın yönüne göre (\\(\\gt\\), \\(\\lt\\), \\(\\ne\\)) doğru kuyruk alanını seçmek; simülasyondan p-değeri bulmak.",
+        "Küçük ve büyük p-değerlerinin kanıt açısından ne anlama geldiğini (ve ne anlama gelmediğini) açıklamak."
+      ],
+      "anlatim": "<h4>Tanım</h4>\n<div class=\"kn-tanim\"><strong>p-değeri (p-value):</strong> \\(H_0\\) doğruysa, gözlenen test istatistiği kadar ya da ondan daha uç (as extreme as or more extreme) — \\(H_a\\) yönünde — bir sonuç elde etme olasılığıdır.</div>\n<p>p-değeri her zaman <strong>\\(H_0\\)'ın doğru olduğu</strong> bir dünyada hesaplanır. Bu varsayım altında test istatistiğinin dağılımına <strong>null dağılımı (null distribution)</strong> denir. Tek örneklem oran testinde null dağılımı yaklaşık standart normaldir.</p>\n<h4>Hangi kuyruk? (which tail?)</h4>\n<table><thead><tr><th>\\(H_a\\)</th><th>p-değeri</th><th>Örnek (\\(z=1.80\\))</th></tr></thead><tbody>\n<tr><td>\\(p\\gt p_0\\)</td><td>\\(P(Z\\ge z)\\)</td><td>0.0359</td></tr>\n<tr><td>\\(p\\lt p_0\\)</td><td>\\(P(Z\\le z)\\)</td><td>0.9641</td></tr>\n<tr><td>\\(p\\ne p_0\\)</td><td>\\(P(Z\\le-|z|)+P(Z\\ge|z|)\\)</td><td>0.0719</td></tr></tbody></table>\n<p>Dikkat: \\(H_a: p\\gt p_0\\) iken \\(z\\) negatifse p-değeri 0.5'ten büyüktür; veri \\(H_a\\)'nın tersi yönündedir ve kanıt yoktur.</p>\n<h4>Simülasyonla p-değeri (simulation)</h4>\n<p>Null dağılımı simülasyonla kurulduysa (ör. \\(p=0.5\\) varsayılarak 200 kez 50 kişilik örneklem üretildi), p-değeri <strong>gözlenen değer kadar ya da daha uç olan simüle değerlerin oranıdır</strong>:</p>\n<ul><li>\\(H_a: \\gt\\) → gözlenen değerde ve üstündeki noktalar / toplam</li>\n<li>\\(H_a: \\lt\\) → gözlenen değerde ve altındaki noktalar / toplam</li>\n<li>\\(H_a: \\ne\\) → iki kuyruğun toplamı (merkezden en az aynı uzaklıktaki her iki taraf)</li></ul>\n<p>Örnek: 200 simülasyondan 7'sinde \\(\\hat{p}\\ge0.64\\) → p-değeri \\(7/200=0.035\\).</p>\n<h4>Yorum kalıbı</h4>\n<blockquote>\"Assuming the true proportion of all customers who prefer the new design is 0.50, there is a 0.035 probability of getting a sample proportion of 0.64 or greater just by chance in a random sample of 50 customers.\"</blockquote>\n<p>Üç zorunlu parça: (1) \"assuming \\(H_0\\) is true\" (bağlamla, \\(p_0\\) değeriyle), (2) olasılığın değeri, (3) \"as extreme as or more extreme than the observed result\" (yönüyle).</p>\n<h4>Küçük ve büyük p-değerleri</h4>\n<table><thead><tr><th>p-değeri</th><th>Anlamı</th><th>Anlamı DEĞİL</th></tr></thead><tbody>\n<tr><td>Küçük (ör. 0.01)</td><td>Gözlenen sonuç \\(H_0\\) altında olağandışı → \\(H_a\\) için kanıt</td><td>\"\\(H_0\\)'ın doğru olma olasılığı 0.01\"</td></tr>\n<tr><td>Büyük (ör. 0.40)</td><td>Sonuç \\(H_0\\) altında olağan → \\(H_a\\) için ikna edici kanıt yok</td><td>\"\\(H_0\\) doğrudur\" ya da \"\\(H_0\\) için kanıt\"</td></tr></tbody></table>\n<div class=\"kn-dikkat\">p-değeri \\(P(H_0 \\text{ true})\\) <strong>değildir</strong>; \\(P(\\text{data this extreme} \\mid H_0 \\text{ true})\\)'dur. p-değeri ne kadar küçükse \\(H_a\\) lehine kanıt o kadar güçlüdür.</div>",
+      "ornekler": [
+        {
+          "soru": "\\(H_0:p=0.25\\), \\(H_a:p\\ne0.25\\) testinde \\(z=-2.10\\) bulunuyor. p-değerini bulun.",
+          "cozum": [
+            "Çift yönlü: \\(P(Z\\le-2.10)+P(Z\\ge2.10)=2(0.0179)\\).",
+            "p-değeri \\(\\approx0.0357\\). (Hesap makinesi: <code>2·normalcdf(-1E99, -2.10)</code>.)"
+          ]
+        },
+        {
+          "soru": "\\(H_0:p=0.5\\) altında 500 örneklem simüle ediliyor (n = 50). Gözlenen \\(\\hat{p}=0.38\\). Simülasyonda 9 değer \\(\\le0.38\\), 11 değer \\(\\ge0.62\\). \\(H_a:p\\ne0.5\\) için p-değeri nedir?",
+          "cozum": [
+            "Gözlenen değer merkezden \\(0.5-0.38=0.12\\) uzakta. Diğer taraftaki eşit uzaklık 0.62'dir.",
+            "p-değeri \\(=(9+11)/500=0.04\\). Yalnız bir kuyruğu almak (9/500 = 0.018) çift yönlü \\(H_a\\) için yanlıştır."
+          ]
+        },
+        {
+          "soru": "(Yorum) Bir okul yemekhanesi, öğrencilerin %60'ının yeni menüyü beğendiğini iddia ediyor; \\(H_a:p\\lt0.60\\) testinde 120 öğrencilik örneklemden p-değeri 0.08 çıkıyor. p-değerini bağlam içinde yorumlayın.",
+          "cozum": [
+            "Varsayım: \"Assuming that 60% of all students at the school like the new menu …\"",
+            "\"… there is about a 0.08 probability of obtaining a sample proportion as low as or lower than the one observed in a random sample of 120 students, by chance alone.\""
+          ]
+        }
+      ],
+      "ipuclari": [
+        "p-değeri yorumunda \"assuming the null hypothesis is true\" ifadesini <strong>bağlamla</strong> yaz (\"assuming the true proportion is 0.60\"); bu parça olmadan puan verilmez.",
+        "Hesap makinesi: <code>normalcdf</code> ile kuyruk alanını bul; çift yönlü testte 2 ile çarp. <code>1-PropZTest</code> doğru yönü seçersen p-değerini doğrudan verir.",
+        "Simülasyon grafiğinde \"gözlenen değere eşit\" noktaları da say (as extreme <em>or more</em>).",
+        "\"Accept H0\" ya da \"H0 is true\" yazma; büyük p-değeri yalnızca kanıt yokluğudur."
+      ],
+      "sikHatalar": [
+        "p-değerini \\(H_0\\)'ın doğru olma olasılığı sanmak.",
+        "Çift yönlü testte tek kuyruğu kullanmak ya da tek yönlü testte yanlış kuyruğu almak.",
+        "Büyük p-değerini \"\\(H_0\\)'ı destekleyen kanıt\" olarak yorumlamak."
+      ],
+      "terimler": [
+        {
+          "en": "p-value",
+          "tr": "p-değeri"
+        },
+        {
+          "en": "test statistic",
+          "tr": "test istatistiği"
+        },
+        {
+          "en": "null distribution",
+          "tr": "null (sıfır) dağılımı"
+        },
+        {
+          "en": "as extreme or more extreme",
+          "tr": "o kadar ya da daha uç"
+        },
+        {
+          "en": "by chance alone",
+          "tr": "yalnızca şans eseri"
+        },
+        {
+          "en": "simulation",
+          "tr": "simülasyon"
+        }
+      ]
+    },
+    {
+      "kod": "3.7",
+      "baslik": "Carrying Out a Test for a Population Proportion",
+      "baslikTr": "Popülasyon oranı için testi yürütme",
+      "hedefler": [
+        "\\(z=\\dfrac{\\hat{p}-p_0}{\\sqrt{p_0(1-p_0)/n}}\\) test istatistiğini ve p-değerini hesaplamak.",
+        "p-değerini anlamlılık düzeyi \\(\\alpha\\) ile karşılaştırıp resmî karar (reject / fail to reject \\(H_0\\)) vermek.",
+        "Sonucu \\(H_a\\) cinsinden, bağlam içinde ve kesin olmayan (non-definitive) dille yazmak."
+      ],
+      "anlatim": "<h4>Test istatistiği (test statistic)</h4>\n<div class=\"kn-kural\">\\[ z=\\frac{\\hat{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} \\qquad\\text{(standardized test statistic = } \\frac{\\text{statistic}-\\text{parameter}}{\\text{SD of statistic}}\\text{)} \\]\nPaydada \\(p_0\\) kullanılır, çünkü hesap \\(H_0\\) doğru varsayılarak yapılır. \\(H_0\\) doğruysa \\(z\\) yaklaşık standart normal dağılır.</div>\n<p>\\(z\\), örneklem oranının \\(p_0\\)'dan kaç standart sapma uzakta olduğunu söyler. Örnek: \\(p_0=0.40\\), \\(n=250\\), 115 başarı → \\(\\hat{p}=0.46\\), \\(\\sigma=\\sqrt{0.4(0.6)/250}\\approx0.0310\\), \\(z=(0.46-0.40)/0.0310\\approx1.94\\). \\(H_a:p\\gt0.40\\) için p-değeri \\(P(Z\\ge1.94)\\approx0.026\\).</p>\n<h4>Anlamlılık düzeyi (significance level) \\(\\alpha\\)</h4>\n<p>\\(\\alpha\\), veri toplanmadan <strong>önce</strong> seçilir (genelde 0.05; bazen 0.01 ya da 0.10). \\(H_0\\) doğruyken onu reddetme olasılığıdır (Konu 3.8). Verilmemişse \\(\\alpha=0.05\\) kullan ve bunu yaz.</p>\n<table><thead><tr><th>Karşılaştırma</th><th>Karar</th><th>Anlamı</th></tr></thead><tbody>\n<tr><td>p-value \\(\\le\\alpha\\)</td><td>Reject \\(H_0\\)</td><td>\\(H_a\\) için ikna edici istatistiksel kanıt var (statistically significant)</td></tr>\n<tr><td>p-value \\(\\gt\\alpha\\)</td><td>Fail to reject \\(H_0\\)</td><td>\\(H_a\\) için ikna edici kanıt yok</td></tr></tbody></table>\n<p>\"Fail to reject\" asla \"\\(H_0\\) doğrudur\" demek değildir. Kanıt yokluğu (lack of evidence for \\(H_a\\)), \\(H_0\\) lehine kanıt değildir.</p>\n<h4>Tam FRQ çözümü: dört adım</h4>\n<ol><li><strong>State:</strong> \\(H_0:p=0.12\\), \\(H_a:p\\gt0.12\\), \\(p\\) = the true proportion of all items from this machine that are defective; \\(\\alpha=0.01\\).</li>\n<li><strong>Plan:</strong> One-sample z-test for \\(p\\). Random sample of 400 items ✓; 400 \\(\\lt\\) 10% of all items ✓; \\(400(0.12)=48\\ge10\\), \\(400(0.88)=352\\ge10\\) ✓.</li>\n<li><strong>Do:</strong> 62 hatalı → \\(\\hat{p}=0.155\\); \\(z=\\dfrac{0.155-0.12}{\\sqrt{0.12(0.88)/400}}\\approx2.15\\); p-value \\(\\approx0.0156\\).</li>\n<li><strong>Conclude:</strong> \"Because the p-value of 0.0156 is greater than \\(\\alpha=0.01\\), we fail to reject \\(H_0\\). We do not have convincing statistical evidence that the true proportion of all items from this machine that are defective is greater than 0.12.\"</li></ol>\n<p>Aynı veriyle \\(\\alpha=0.05\\) seçilseydi karar \"reject\" olurdu. Bu yüzden \\(\\alpha\\)'yı önceden seçmek dürüstlük gerektirir.</p>\n<div class=\"kn-dikkat\">Sonuç cümlesinin dört parçası: (1) p-değeri ile \\(\\alpha\\)'nın <strong>açık karşılaştırması</strong>, (2) karar, (3) \\(H_a\\) cinsinden ifade, (4) bağlam (parametre ve popülasyon). \"Proves\", \"shows that p is 0.155\" gibi kesin dil kullanma.</div>\n<h4>Test ve aralık uyumu</h4>\n<p>Çift yönlü \\(\\alpha=0.05\\) testi ile %95 güven aralığı genelde aynı kararı verir: \\(p_0\\) aralığın dışındaysa \\(H_0\\) reddedilir. (Küçük farklar olabilir; testte SE \\(p_0\\) ile, aralıkta \\(\\hat{p}\\) ile hesaplanır.)</p>",
+      "ornekler": [
+        {
+          "soru": "Bir yazı tura parasının hileli olup olmadığı test ediliyor: 900 atışta 486 tura. \\(H_0:p=0.5\\), \\(H_a:p\\ne0.5\\), \\(\\alpha=0.05\\). Testi yapın.",
+          "cozum": [
+            "\\(\\hat{p}=486/900=0.54\\); \\(\\sigma=\\sqrt{0.25/900}\\approx0.01667\\); \\(z=(0.54-0.50)/0.01667=2.40\\).",
+            "Çift yönlü p-değeri \\(=2P(Z\\ge2.40)\\approx0.0164\\).",
+            "0.0164 \\(\\lt\\) 0.05 → reject \\(H_0\\). Bu paranın uzun vadede tura gelme oranının 0.5'ten farklı olduğuna dair ikna edici kanıt vardır."
+          ]
+        },
+        {
+          "soru": "Bir öğrenci \\(z\\)'yi \\(\\dfrac{0.46-0.40}{\\sqrt{0.46(0.54)/250}}\\) olarak hesaplıyor. Hata nedir ve doğru değer nedir?",
+          "cozum": [
+            "Test istatistiğinin paydasında \\(\\hat{p}\\) değil, \\(H_0\\) değeri \\(p_0=0.40\\) kullanılmalı.",
+            "Doğru: \\(z=0.06/\\sqrt{0.4(0.6)/250}=0.06/0.0310\\approx1.94\\). (Yanlış hesap \\(\\approx1.90\\) verir.)"
+          ]
+        },
+        {
+          "soru": "(Açıklama) p-değeri 0.21 olan bir testten sonra araştırmacı \"Kanıtımız, oranın 0.30 olduğunu gösteriyor\" yazıyor. Düzeltin.",
+          "cozum": [
+            "Büyük p-değeri yalnızca \\(H_a\\) için ikna edici kanıt olmadığını söyler; \\(H_0\\)'ı kanıtlamaz.",
+            "Doğru: \"Because 0.21 \\(\\gt\\) 0.05, we fail to reject \\(H_0\\). We do not have convincing evidence that the true proportion … differs from 0.30.\" 0.30 makul bir değerdir ama tek makul değer değildir."
+          ]
+        }
+      ],
+      "ipuclari": [
+        "Karar cümlesinde karşılaştırmayı açıkça yaz: \"Because the p-value of 0.026 &lt; α = 0.05 …\". Yalnız \"reject H0\" puan getirmez.",
+        "Hesap makinesi: <code>1-PropZTest</code> z ve p-değerini verir; FRQ'da yine de test adını, \\(p_0\\), \\(\\hat{p}\\), \\(n\\), z ve p-değerini yaz.",
+        "\\(\\alpha\\) verilmemişse \"Using α = 0.05\" diye kendin belirt.",
+        "Sonuç cümlesi \\(H_a\\) yönünü tekrar etmeli: \"… greater than 0.12\"."
+      ],
+      "sikHatalar": [
+        "Test istatistiğinin paydasında \\(\\hat{p}\\) kullanmak.",
+        "\"Fail to reject\" kararını \"\\(H_0\\) doğru\" ya da \"accept \\(H_0\\)\" diye yazmak.",
+        "p-değeri ile \\(\\alpha\\)'yı karşılaştırmadan sonuç yazmak."
+      ],
+      "terimler": [
+        {
+          "en": "significance level (α)",
+          "tr": "anlamlılık düzeyi"
+        },
+        {
+          "en": "reject the null hypothesis",
+          "tr": "sıfır hipotezini reddetmek"
+        },
+        {
+          "en": "fail to reject",
+          "tr": "reddetmemek / reddedememek"
+        },
+        {
+          "en": "statistically significant",
+          "tr": "istatistiksel olarak anlamlı"
+        },
+        {
+          "en": "standardized test statistic",
+          "tr": "standartlaştırılmış test istatistiği"
+        },
+        {
+          "en": "non-definitive language",
+          "tr": "kesin olmayan dil"
+        }
+      ]
+    },
+    {
+      "kod": "3.8",
+      "baslik": "Potential Errors When Performing Tests",
+      "baslikTr": "Test yaparken olası hatalar",
+      "hedefler": [
+        "Tip I ve Tip II hatalarını bağlam içinde tanımlamak ve sonuçlarını yorumlamak.",
+        "\\(P(\\text{Type I})=\\alpha\\) ve \\(P(\\text{Type II})=1-\\text{power}\\) ilişkilerini kullanmak.",
+        "Gücü (power) artıran etkenleri (n, SE, \\(\\alpha\\), gerçek değerin \\(p_0\\)'a uzaklığı) açıklamak."
+      ],
+      "anlatim": "<h4>Dört olası durum</h4>\n<table><thead><tr><th>Karar \\ Gerçek</th><th>\\(H_0\\) doğru</th><th>\\(H_0\\) yanlış (\\(H_a\\) doğru)</th></tr></thead><tbody>\n<tr><td>Reject \\(H_0\\)</td><td><strong>Type I error</strong> (olasılığı \\(\\alpha\\))</td><td>Doğru karar (olasılığı = <strong>power</strong>)</td></tr>\n<tr><td>Fail to reject \\(H_0\\)</td><td>Doğru karar</td><td><strong>Type II error</strong> (olasılığı \\(\\beta = 1-\\text{power}\\))</td></tr></tbody></table>\n<div class=\"kn-tanim\"><strong>Type I error:</strong> \\(H_a\\) için kanıt bulduk (küçük p-değeri), ama \\(H_a\\) aslında doğru değil.<br><strong>Type II error:</strong> \\(H_a\\) için kanıt bulamadık (büyük p-değeri), ama \\(H_a\\) aslında doğru.<br><strong>Power (güç):</strong> \\(H_0\\) yanlışken onu doğru şekilde reddetme olasılığı.</div>\n<p>Kural: Bir karar verdiysen yalnız <strong>bir</strong> hata türü mümkündür. \"Reject\" dediysen yalnız Type I yapmış olabilirsin; \"fail to reject\" dediysen yalnız Type II.</p>\n<h4>Bağlam içinde yazmak</h4>\n<p>\\(H_0:p=0.12\\), \\(H_a:p\\gt0.12\\) (makinenin hatalı ürün oranı).</p>\n<ul><li>Type I: \"The machine's true defective rate is 0.12, but we find convincing evidence that it is greater than 0.12\" → gereksiz yere makineyi durdururuz (zaman, para kaybı).</li>\n<li>Type II: \"The true defective rate is greater than 0.12, but we do not find convincing evidence of this\" → hatalı ürünler müşteriye gitmeye devam eder.</li></ul>\n<h4>Hangi hata daha ciddi? \\(\\alpha\\) seçimi</h4>\n<p>Type I daha ciddi ise küçük \\(\\alpha\\) (ör. 0.01) seç. Type II daha ciddi ise daha büyük \\(\\alpha\\) (ör. 0.10) ve/veya daha büyük \\(n\\) seç. Hastalık taramasında hastalığı kaçırmak (Type II) çoğu zaman daha tehlikelidir; yeni ve pahalı bir ilacı gereksiz yere onaylamak (Type I) da ciddi olabilir. Cevap bağlamın sonuçlarına (consequences) dayanmalıdır.</p>\n<h4>Gücü artıran etkenler (diğerleri sabitken)</h4>\n<table><thead><tr><th>Değişiklik</th><th>Power</th><th>P(Type II)</th><th>P(Type I)</th></tr></thead><tbody>\n<tr><td>\\(n\\) artar</td><td>artar</td><td>azalır</td><td>değişmez</td></tr>\n<tr><td>SE azalır</td><td>artar</td><td>azalır</td><td>değişmez</td></tr>\n<tr><td>Gerçek \\(p\\), \\(p_0\\)'dan daha uzakta</td><td>artar</td><td>azalır</td><td>değişmez</td></tr>\n<tr><td>\\(\\alpha\\) artar</td><td>artar</td><td>azalır</td><td><strong>artar</strong></td></tr></tbody></table>\n<div class=\"kn-kural\">Type II'yi Type I'i artırmadan azaltmanın tek yolu: <strong>örneklem büyüklüğünü artırmak</strong> (ya da SE'yi başka yoldan azaltmak).</div>\n<p>Güç yorumu: \"If the true proportion is 0.60, there is a 0.64 probability that the test will correctly reject \\(H_0: p = 0.50\\).\" O halde \\(P(\\text{Type II})=0.36\\).</p>\n<div class=\"kn-dikkat\">\\(\\alpha\\), \\(P(H_0\\text{ true})\\) değildir; \"\\(H_0\\) doğruysa reddetme olasılığı\"dır. Güç ise belirli bir alternatif değere göre hesaplanır; tek bir \"güç\" yoktur.</div>",
+      "ornekler": [
+        {
+          "soru": "Bir hastane yeni bir el yıkama protokolünün enfeksiyon oranını 0.08'in altına düşürüp düşürmediğini test ediyor: \\(H_0:p=0.08\\), \\(H_a:p\\lt0.08\\). Type I ve Type II hatalarını bağlamla açıklayın ve sonuçlarını yazın.",
+          "cozum": [
+            "Type I: Gerçek enfeksiyon oranı hâlâ 0.08 iken protokolün oranı düşürdüğüne dair ikna edici kanıt bulmak. Sonuç: etkisiz bir protokol benimsenir, hastalar korunduğunu sanır.",
+            "Type II: Protokol oranı gerçekten 0.08'in altına düşürdüğü halde bunun kanıtını bulamamak. Sonuç: etkili bir protokol terk edilebilir."
+          ]
+        },
+        {
+          "soru": "Bir test \\(\\alpha=0.05\\) ile yapılıyor; gerçek oran 0.60 iken güç 0.72. \\(P(\\text{Type II})\\) nedir? Araştırmacı \\(\\alpha\\)'yı değiştirmeden gücü artırmak istiyor; ne yapmalı?",
+          "cozum": [
+            "\\(P(\\text{Type II})=1-0.72=0.28\\) (gerçek oran 0.60 iken).",
+            "\\(\\alpha\\) sabit kalacaksa örneklem büyüklüğünü artırmalı: SE küçülür, \\(H_0\\) yanlışken reddetme olasılığı artar, \\(P(\\text{Type I})\\) değişmez."
+          ]
+        },
+        {
+          "soru": "(Açıklama) Bir test sonunda p-değeri 0.003 bulunup \\(H_0\\) reddedildi. Bir öğrenci \"Type II hata yapmış olabiliriz\" diyor. Doğru mu?",
+          "cozum": [
+            "Type II hata yalnızca \\(H_0\\) reddedilmediğinde mümkündür.",
+            "\\(H_0\\) reddedildiği için yapılmış olabilecek tek hata Type I'dir: \\(H_0\\) aslında doğru olabilir ve bu küçük p-değeri şans eseri çıkmış olabilir."
+          ]
+        }
+      ],
+      "ipuclari": [
+        "Hata tanımında iki parça yaz: <strong>gerçek</strong> ne (\"the true proportion is actually 0.08\") ve <strong>karar</strong> ne (\"but we find convincing evidence that it is less\"). İkisi bağlamla olmalı.",
+        "Sonuç (consequence) sorusunda hatanın gerçek dünyadaki etkisini yaz (maliyet, sağlık, güvenlik); yalnız tanımı tekrarlamak yetmez.",
+        "Hesap makinesi bu konuda gerekmez; ama güç verilmişse \\(1-\\text{power}\\) aritmetiğini dikkatle yap ve hangi alternatif değer için olduğunu belirt.",
+        "\"Increase the sample size\" cevabı, Type I'i değiştirmeden Type II'yi azaltmanın standart yoludur."
+      ],
+      "sikHatalar": [
+        "Type I ve Type II'yi yer değiştirmek; ezber: Type I = yanlış alarm (false alarm), Type II = kaçırılan etki (missed effect).",
+        "\\(\\alpha\\)'yı artırmanın \"bedava\" güç artışı olduğunu sanmak; Type I olasılığı da artar.",
+        "Reddedilen bir testte Type II hata olasılığından bahsetmek."
+      ],
+      "terimler": [
+        {
+          "en": "Type I error",
+          "tr": "I. tip hata"
+        },
+        {
+          "en": "Type II error",
+          "tr": "II. tip hata"
+        },
+        {
+          "en": "power",
+          "tr": "güç (testin gücü)"
+        },
+        {
+          "en": "consequence",
+          "tr": "sonuç, etki"
+        },
+        {
+          "en": "false alarm",
+          "tr": "yanlış alarm"
+        },
+        {
+          "en": "significance level",
+          "tr": "anlamlılık düzeyi"
+        }
+      ]
+    },
+    {
+      "kod": "3.9",
+      "baslik": "Sampling Distributions for the Difference Between Sample Proportions",
+      "baslikTr": "Örneklem oranları farkının örnekleme dağılımı",
+      "hedefler": [
+        "\\(\\hat{p}_1-\\hat{p}_2\\)'nin örnekleme dağılımının ortalamasını ve standart sapmasını hesaplamak.",
+        "İki bağımsız rastgele örneklem / rastgele atama, %10 ve dört büyük sayı koşulunu kontrol etmek.",
+        "Fark dağılımından olasılık hesaplayıp iki popülasyon bağlamında yorumlamak."
+      ],
+      "anlatim": "<h4>İki grup, bir fark</h4>\n<p>Pek çok soru iki grubu karşılaştırır: iki şehirdeki sigara içme oranı, iki reklamın tıklanma oranı. İstatistik \\(\\hat{p}_1-\\hat{p}_2\\)'dir ve onun da bir örnekleme dağılımı vardır.</p>\n<div class=\"kn-kural\">İki bağımsız örneklem için:\n\\[ \\mu_{\\hat{p}_1-\\hat{p}_2}=p_1-p_2 \\qquad \\sigma_{\\hat{p}_1-\\hat{p}_2}=\\sqrt{\\frac{p_1(1-p_1)}{n_1}+\\frac{p_2(1-p_2)}{n_2}} \\]</div>\n<p>Neden toplama? Bağımsız iki rastgele değişkenin farkının <strong>varyansı</strong> (variance) varyansların <em>toplamıdır</em> (Ünite 2): \\(\\sigma^2_{X-Y}=\\sigma^2_X+\\sigma^2_Y\\). Fark, her iki örneklemin değişkenliğini taşır; bu yüzden farkın standart sapması her birinden büyüktür. Standart sapmalar doğrudan toplanmaz; önce kareler (varyanslar) toplanır, sonra karekök alınır.</p>\n<h4>Koşullar</h4>\n<table><thead><tr><th>Koşul</th><th>Kontrol</th></tr></thead><tbody>\n<tr><td>Random</td><td>İki bağımsız rastgele örneklem; deneyde (experiment) tedavilerin rastgele atanması</td></tr>\n<tr><td>10%</td><td>\\(n_1\\lt10\\%N_1\\) ve \\(n_2\\lt10\\%N_2\\) (deneyde gerekmez)</td></tr>\n<tr><td>Large counts</td><td>\\(n_1p_1,\\ n_1(1-p_1),\\ n_2p_2,\\ n_2(1-p_2)\\) <strong>dördü de</strong> \\(\\ge10\\)</td></tr></tbody></table>\n<p>Veri bir deneyden geliyorsa yalnız rastgele atama (random assignment) koşulu gerekir; deneklerin popülasyondan rastgele seçilmesi zorunlu değildir (ama genelleme o zaman sınırlıdır).</p>\n<h4>Olasılık örneği</h4>\n<p>A ilçesinde \\(p_1=0.45\\), B ilçesinde \\(p_2=0.30\\). \\(n_1=200\\), \\(n_2=150\\) bağımsız rastgele örneklem.</p>\n<ol><li>\\(\\mu=0.45-0.30=0.15\\).</li>\n<li>\\(\\sigma=\\sqrt{\\dfrac{0.45(0.55)}{200}+\\dfrac{0.30(0.70)}{150}}=\\sqrt{0.0012375+0.0014}\\approx0.0514\\).</li>\n<li>Large counts: 90, 110, 45, 105 — hepsi \\(\\ge10\\) → yaklaşık normal.</li>\n<li>\\(P(\\hat{p}_1-\\hat{p}_2\\lt0.05)\\): \\(z=(0.05-0.15)/0.0514\\approx-1.95\\) → \\(\\approx0.026\\).</li></ol>\n<p>Özel durum: \"örneklem 1'in oranı örneklem 2'ninkinden küçük\" = \\(P(\\hat{p}_1-\\hat{p}_2\\lt0)\\).</p>\n<h4>Yorum kalıpları</h4>\n<blockquote><em>Mean:</em> \"In repeated random samples, the difference in sample proportions (A − B) would be centered at 0.15.\"<br><em>SD:</em> \"The difference in sample proportions of residents who … (A − B) typically varies by about 0.051 from the true difference of 0.15.\"</blockquote>\n<div class=\"kn-dikkat\">Sıra önemlidir: \\(\\hat{p}_1-\\hat{p}_2\\) mi \\(\\hat{p}_2-\\hat{p}_1\\) mi? Ortalamanın işareti değişir, standart sapma değişmez. Hangi farkı kullandığını açıkça yaz.</div>",
+      "ornekler": [
+        {
+          "soru": "İki büyük okulda öğrencilerin \\(p_1=0.52\\) ve \\(p_2=0.48\\)'i okul formasını destekliyor. Her okuldan 300'er öğrenci rastgele seçiliyor. 1. okulun örneklem oranının 2. okulunkinden küçük çıkma olasılığı nedir?",
+          "cozum": [
+            "\\(\\mu=0.04\\); \\(\\sigma=\\sqrt{2\\cdot0.52(0.48)/300}\\approx0.0408\\). Large counts: 156, 144, 144, 156 ✓.",
+            "\\(P(\\hat{p}_1-\\hat{p}_2\\lt0)\\): \\(z=(0-0.04)/0.0408\\approx-0.98\\) → \\(\\approx0.163\\).",
+            "Yorum: Gerçek oranlar farklı olsa da yaklaşık %16 olasılıkla örneklem sıralaması tersine çıkar; örnekleme değişkenliği büyüktür."
+          ]
+        },
+        {
+          "soru": "\\(p_1=0.06\\), \\(n_1=150\\); \\(p_2=0.20\\), \\(n_2=100\\). Fark dağılımı yaklaşık normal mi?",
+          "cozum": [
+            "\\(n_1p_1=9\\lt10\\); diğerleri: \\(n_1(1-p_1)=141\\), \\(n_2p_2=20\\), \\(n_2(1-p_2)=80\\).",
+            "Bir sayı 10'dan küçük olduğu için büyük sayılar koşulu sağlanmıyor; normal model güvenilir değildir."
+          ]
+        },
+        {
+          "soru": "(Açıklama) Bir öğrenci \\(\\sigma_{\\hat{p}_1-\\hat{p}_2}=\\sigma_{\\hat{p}_1}-\\sigma_{\\hat{p}_2}\\) yazıyor. Neden yanlış?",
+          "cozum": [
+            "Bağımsız değişkenlerin farkında değişkenlik azalmaz, birikir: varyanslar toplanır.",
+            "Doğrusu \\(\\sqrt{\\sigma^2_{\\hat{p}_1}+\\sigma^2_{\\hat{p}_2}}\\). Fark, iki ayrı örneklemin rastgele hatasını birlikte taşır."
+          ]
+        }
+      ],
+      "ipuclari": [
+        "Hesap makinesi: <code>normalcdf(lower, upper, p1−p2, σ)</code>. FRQ'da ortalama ve σ değerlerini etiketleyerek yaz.",
+        "Dört büyük sayı kontrolünün dördünü de sayıyla yaz; biri eksikse puan kaybedersin.",
+        "\"Independent random samples\" ifadesini kullan; iki örneklemin birbirinden bağımsız seçilmesi bağımsızlığın temelidir.",
+        "Farkın yönünü (1 − 2) en başta tanımla ve tüm hesapta koru."
+      ],
+      "sikHatalar": [
+        "Standart sapmaları doğrudan toplamak ya da çıkarmak.",
+        "Dört büyük sayı koşulundan yalnız ikisini kontrol etmek.",
+        "Deneyde %10 koşulunu zorunlu sanmak; rastgele atama yeterlidir."
+      ],
+      "terimler": [
+        {
+          "en": "difference in sample proportions",
+          "tr": "örneklem oranları farkı"
+        },
+        {
+          "en": "independent random samples",
+          "tr": "bağımsız rastgele örneklemler"
+        },
+        {
+          "en": "random assignment",
+          "tr": "rastgele atama"
+        },
+        {
+          "en": "variance",
+          "tr": "varyans"
+        },
+        {
+          "en": "experiment",
+          "tr": "deney"
+        },
+        {
+          "en": "treatment",
+          "tr": "tedavi / uygulama"
+        }
+      ]
+    },
+    {
+      "kod": "3.10",
+      "baslik": "Constructing a Confidence Interval for the Difference Between Two Population Proportions",
+      "baslikTr": "İki popülasyon oranının farkı için güven aralığı oluşturma",
+      "hedefler": [
+        "İki örneklem z-aralığını (two-sample z-interval for \\(p_1-p_2\\)) seçmek ve parametreyi bağlamla tanımlamak.",
+        "Koşulları kontrol edip \\((\\hat{p}_1-\\hat{p}_2)\\pm z^*\\sqrt{\\frac{\\hat{p}_1(1-\\hat{p}_1)}{n_1}+\\frac{\\hat{p}_2(1-\\hat{p}_2)}{n_2}}\\) aralığını hesaplamak.",
+        "Farkın standart hatasını ve hata payını hesaplamak."
+      ],
+      "anlatim": "<h4>Parametre ve prosedür</h4>\n<div class=\"kn-tanim\">Parametre: \\(p_1-p_2\\) = (popülasyon 1'deki gerçek oran) − (popülasyon 2'deki gerçek oran). Prosedür: <strong>two-sample z-interval for a difference between population proportions</strong>.</div>\n<p>Parametre tanımı her iki popülasyonu ve yanıt değişkenini içermeli: \"\\(p_1-p_2\\) = the difference in the true proportions of all first-year and all fourth-year students at the university who own a bus pass (first-year minus fourth-year).\"</p>\n<h4>Formül</h4>\n<div class=\"kn-kural\">\\[ (\\hat{p}_1-\\hat{p}_2)\\pm z^*\\sqrt{\\frac{\\hat{p}_1(1-\\hat{p}_1)}{n_1}+\\frac{\\hat{p}_2(1-\\hat{p}_2)}{n_2}} \\]\n\\(SE=\\sqrt{\\frac{\\hat{p}_1(1-\\hat{p}_1)}{n_1}+\\frac{\\hat{p}_2(1-\\hat{p}_2)}{n_2}}\\) (birleştirme/pooling <strong>yapılmaz</strong>), \\(ME=z^*\\cdot SE\\).</div>\n<h4>Koşullar</h4>\n<table><thead><tr><th>Koşul</th><th>Kontrol</th></tr></thead><tbody>\n<tr><td>Random</td><td>İki bağımsız rastgele örneklem ya da rastgele atanmış deney</td></tr>\n<tr><td>10%</td><td>\\(n_1\\lt10\\%N_1\\), \\(n_2\\lt10\\%N_2\\) (deneyde gereksiz)</td></tr>\n<tr><td>Large counts</td><td>\\(n_1\\hat{p}_1,\\ n_1(1-\\hat{p}_1),\\ n_2\\hat{p}_2,\\ n_2(1-\\hat{p}_2)\\) hepsi \\(\\ge10\\) — yani her grupta gözlenen başarı ve başarısızlık sayıları</td></tr></tbody></table>\n<h4>Çözümlü hesap</h4>\n<p>Bir kampüste 200 birinci sınıftan 84'ü, 220 dördüncü sınıftan 66'sı otobüs kartı almış.</p>\n<ol><li>\\(\\hat{p}_1=84/200=0.42\\), \\(\\hat{p}_2=66/220=0.30\\), nokta tahmini \\(0.12\\).</li>\n<li>Large counts: 84, 116, 66, 154 hepsi \\(\\ge10\\).</li>\n<li>\\(SE=\\sqrt{\\dfrac{0.42(0.58)}{200}+\\dfrac{0.30(0.70)}{220}}=\\sqrt{0.001218+0.000955}\\approx0.0466\\).</li>\n<li>%95: \\(ME=1.96(0.0466)\\approx0.0914\\) → \\((0.029,\\,0.211)\\).</li>\n<li>%90 isteseydik: \\(ME=1.645(0.0466)\\approx0.0767\\) → \\((0.043,\\,0.197)\\).</li></ol>\n<h4>Deney verisi</h4>\n<p>Gönüllüler iki tedaviye rastgele atanmışsa (random assignment) aynı formül kullanılır; %10 koşulu gerekmez. Ancak sonuç \"bu deneklere benzer bireyler\" için geçerlidir; rastgele seçim yoksa geniş popülasyona genelleme yapılamaz.</p>\n<h4>FRQ kalıbı (State–Plan–Do–Conclude)</h4>\n<blockquote>\"\\(p_1-p_2\\) = the difference in the true proportions of all first-year and all fourth-year students who own a bus pass. Two-sample z-interval for \\(p_1-p_2\\), 95% confidence. Random: independent random samples. 10%: 200 &lt; 10% of first-years, 220 &lt; 10% of fourth-years. Large counts: 84, 116, 66, 154 are all at least 10. Interval: (0.029, 0.211).\"</blockquote>\n<p>Sonuç cümlesi bir sonraki konunun (3.11) işidir: aralığı bağlamla yorumla ve 0'ın aralıkta olup olmadığına bak.</p>\n<div class=\"kn-dikkat\">Aralıkta SE <strong>havuzlanmaz</strong> (unpooled). Havuzlanmış oran (pooled proportion) yalnızca \\(H_0:p_1=p_2\\) testinde kullanılır (Konu 3.12–3.13), çünkü yalnız orada iki oranın eşit olduğu varsayılır.</div>",
+      "ornekler": [
+        {
+          "soru": "Rastgele seçilen 250 kentli yetişkinin 95'i, 200 kırsal yetişkinin 52'si haftada en az üç gün yürüyüş yapıyor. \\(p_K-p_R\\) için %95 güven aralığı oluşturun.",
+          "cozum": [
+            "\\(\\hat{p}_K=0.38\\), \\(\\hat{p}_R=0.26\\); fark 0.12. Koşullar: bağımsız rastgele örneklemler; her biri popülasyonun %10'undan az; 95, 155, 52, 148 hepsi \\(\\ge10\\).",
+            "\\(SE=\\sqrt{0.38(0.62)/250+0.26(0.74)/200}=\\sqrt{0.0009424+0.000962}\\approx0.0436\\); \\(ME=1.96(0.0436)\\approx0.0855\\).",
+            "Aralık \\(\\approx(0.034,\\,0.206)\\)."
+          ]
+        },
+        {
+          "soru": "Bir deneyde 60 hasta ilaca, 60 hasta plaseboya rastgele atanıyor; iyileşen sayıları 51 ve 46. Büyük sayılar koşulunu kontrol edin.",
+          "cozum": [
+            "İlaç: başarı 51, başarısızlık 9; plasebo: başarı 46, başarısızlık 14.",
+            "İlaç grubunda başarısızlık sayısı \\(9\\lt10\\): koşul sağlanmıyor; z-aralığı güvenilir olmayabilir."
+          ]
+        },
+        {
+          "soru": "(Açıklama) Bir öğrenci fark aralığında \\(SE\\)'yi havuzlanmış oranla hesaplıyor. Neden uygun değil?",
+          "cozum": [
+            "Havuzlama \\(p_1=p_2\\) varsayımına dayanır; güven aralığında böyle bir varsayım yoktur, amaç farkın büyüklüğünü tahmin etmektir.",
+            "Bu yüzden her grup kendi \\(\\hat{p}\\)'si ile SE'ye katkıda bulunur (unpooled SE)."
+          ]
+        }
+      ],
+      "ipuclari": [
+        "Hesap makinesi: <code>2-PropZInt</code> x1, n1, x2, n2 ister; x değerleri tam sayıdır. Sonucu FRQ'da formül ve değerlerle destekle.",
+        "Parametreyi \"difference in the true proportions … (group 1 minus group 2)\" diye tanımla; sıra yorumun işaretini belirler.",
+        "Large counts için gözlenen başarı/başarısızlık sayılarını (dört sayı) listele.",
+        "Deneyde \"random assignment\" ifadesini kullan; \"random sample\" yazmak yanlış koşul olur."
+      ],
+      "sikHatalar": [
+        "Aralıkta havuzlanmış oran kullanmak.",
+        "Varyansları toplamak yerine standart hataları toplamak.",
+        "Deneyde %10 koşulunu kontrol etmeye çalışmak ya da rastgele atamayı atlamak."
+      ],
+      "terimler": [
+        {
+          "en": "two-sample z-interval",
+          "tr": "iki örneklem z-aralığı"
+        },
+        {
+          "en": "difference in proportions",
+          "tr": "oranlar farkı"
+        },
+        {
+          "en": "unpooled standard error",
+          "tr": "havuzlanmamış standart hata"
+        },
+        {
+          "en": "random assignment",
+          "tr": "rastgele atama"
+        },
+        {
+          "en": "point estimate",
+          "tr": "nokta tahmini"
+        },
+        {
+          "en": "margin of error",
+          "tr": "hata payı"
+        }
+      ]
+    },
+    {
+      "kod": "3.11",
+      "baslik": "Justifying a Claim Based on a Confidence Interval for the Difference Between Two Population Proportions",
+      "baslikTr": "İki oranın farkı için güven aralığına dayanarak iddiayı gerekçelendirme",
+      "hedefler": [
+        "\\(p_1-p_2\\) için güven aralığını ve güven düzeyini iki popülasyon bağlamında yorumlamak.",
+        "Aralığın 0'ı içerip içermediğine ve işaretine bakarak fark iddiasını gerekçelendirmek.",
+        "Aralığın yönünü (1 − 2 ya da 2 − 1) doğru okumak; deney ve gözlem çalışması için kapsamı (scope) belirlemek."
+      ],
+      "anlatim": "<h4>Aralığın yorumu</h4>\n<div class=\"kn-tanim\">\"We are 95% confident that the interval from 0.029 to 0.211 captures the true difference in the proportions of all first-year students and all fourth-year students at this university who own a bus pass (first-year minus fourth-year).\"</div>\n<p>Güven düzeyi yorumu tek oranla aynıdır: \"In repeated random sampling with the same sample sizes from the same populations, about 95% of the intervals would capture the true difference \\(p_1-p_2\\).\"</p>\n<h4>0 kritik değerdir</h4>\n<table><thead><tr><th>Aralık (\\(p_1-p_2\\))</th><th>Sonuç</th></tr></thead><tbody>\n<tr><td>Tamamı pozitif, ör. \\((0.03,\\,0.15)\\)</td><td>\\(p_1\\gt p_2\\) için ikna edici kanıt: 1. popülasyonun oranı daha yüksek</td></tr>\n<tr><td>Tamamı negatif, ör. \\((-0.12,\\,-0.02)\\)</td><td>\\(p_1\\lt p_2\\) için ikna edici kanıt: 2. popülasyonun oranı daha yüksek</td></tr>\n<tr><td>0'ı içeriyor, ör. \\((-0.04,\\,0.09)\\)</td><td>Fark için ikna edici kanıt yok; \"fark yok\" makul bir değerdir (ama kanıtlanmış değildir)</td></tr></tbody></table>\n<p>Aralığın sınırları farkın <strong>büyüklüğünü</strong> de söyler. \\((0.03,\\,0.15)\\): 1. popülasyonun oranı 2.'ninkinden yaklaşık 3 ile 15 yüzde puanı (percentage points) arasında daha yüksektir. \"Fark 0.10'dan büyüktür\" iddiası için aralığın <em>tamamının</em> 0.10'un üstünde olması gerekir.</p>\n<h4>Yön değiştirmek</h4>\n<p>\\(p_M-p_W\\) için aralık \\((-0.08,\\,-0.01)\\) ise \\(p_W-p_M\\) için aralık \\((0.01,\\,0.08)\\)'dir: sınırlar işaret değiştirir ve yer değiştirir. Genişlik aynı kalır.</p>\n<h4>Kapsam (scope of inference)</h4>\n<table><thead><tr><th>Tasarım</th><th>Genelleme (popülasyona)</th><th>Neden-sonuç (causation)</th></tr></thead><tbody>\n<tr><td>İki bağımsız rastgele örneklem</td><td>Evet</td><td>Hayır (gözlem çalışması)</td></tr>\n<tr><td>Rastgele atanmış deney, gönüllüler</td><td>Yalnız benzer deneklere</td><td>Evet</td></tr>\n<tr><td>Rastgele seçim + rastgele atama</td><td>Evet</td><td>Evet</td></tr></tbody></table>\n<p>Deneyde aralık 0'ı içermiyorsa: \"Because the interval does not contain 0 and treatments were randomly assigned, we have convincing evidence that the new treatment causes a higher recovery rate for subjects like these.\"</p>\n<div class=\"kn-dikkat\">\"0 aralıkta, o halde oranlar eşit\" demek yanlıştır. 0 yalnızca makul değerlerden biridir; aralıktaki diğer değerler de bir fark olabileceğini gösterir.</div>\n<h4>FRQ kalıbı</h4>\n<blockquote>\"Because all of the values in the interval are positive (the interval does not include 0), there is convincing evidence that the proportion of all … is greater for group 1 than for group 2.\"</blockquote>",
+      "ornekler": [
+        {
+          "soru": "Bir araştırma, iki ilçedeki geri dönüşüm oranı için \\(p_A-p_B\\)'ye %95 aralık \\((-0.12,\\,-0.02)\\) buluyor. Sonucu yorumlayın.",
+          "cozum": [
+            "Aralığın tüm değerleri negatif → \\(p_A-p_B\\lt0\\), yani \\(p_A\\lt p_B\\).",
+            "\"We have convincing evidence that the true proportion of households that recycle is higher in district B than in district A; B's proportion is plausibly between 2 and 12 percentage points higher.\""
+          ]
+        },
+        {
+          "soru": "Bir dil uygulaması iki bildirim tasarımını rastgele atanmış kullanıcılarla karşılaştırıyor. \\(p_{yeni}-p_{eski}\\) için %95 aralık \\((0.04,\\,0.16)\\). Şirket \"yeni tasarım geri dönüş oranını en az 10 puan artırır\" diyor. Değerlendirin.",
+          "cozum": [
+            "Aralık tamamen pozitif: yeni tasarımın oranı artırdığına dair ikna edici kanıt var; rastgele atama nedeniyle neden-sonuç yorumu yapılabilir.",
+            "Ama 0.04–0.10 arası değerler de makul: \"en az 10 puan\" iddiası için ikna edici kanıt <strong>yoktur</strong>."
+          ]
+        },
+        {
+          "soru": "(Açıklama) Erkek ve kadın öğrencilerden bağımsız rastgele örneklemlerle \\(p_E-p_K\\) için %90 aralık \\((-0.03,\\,0.07)\\) bulunuyor. Bir öğrenci \"erkek ve kadın oranları eşittir\" diyor. Düzeltin.",
+          "cozum": [
+            "Aralık 0'ı içerdiği için fark için ikna edici kanıt yoktur; ancak −0.03 ile 0.07 arasındaki sıfır olmayan değerler de makuldür.",
+            "Doğru ifade: \"Because 0 is in the interval, we do not have convincing evidence of a difference in the true proportions; a difference of 0 is plausible.\""
+          ]
+        }
+      ],
+      "ipuclari": [
+        "Cevabın gerekçe kelimesi: \"Because the interval contains 0 …\" ya da \"Because all values in the interval are greater than 0 …\". Puanlayıcı bu bağlantıyı arar.",
+        "Aralığı hesap makinesinde (<code>2-PropZInt</code>) bulduğunda hangi grubu 1 yaptığını kontrol et; makine her zaman \\(\\hat{p}_1-\\hat{p}_2\\) verir.",
+        "Neden-sonuç dili (\"causes\") yalnızca rastgele atama varsa; genelleme yalnızca rastgele seçim varsa.",
+        "Farkı yüzde puanı (percentage points) olarak ifade et: 0.04 → \"4 percentage points\"."
+      ],
+      "sikHatalar": [
+        "0'ı içeren aralıktan \"oranlar eşit\" sonucu çıkarmak.",
+        "Negatif aralığı yanlış gruba atfetmek (yönü ters okumak).",
+        "Gözlem çalışmasında \"causes\" demek."
+      ],
+      "terimler": [
+        {
+          "en": "difference in proportions",
+          "tr": "oranlar farkı"
+        },
+        {
+          "en": "percentage points",
+          "tr": "yüzde puanı"
+        },
+        {
+          "en": "scope of inference",
+          "tr": "çıkarımın kapsamı"
+        },
+        {
+          "en": "causation",
+          "tr": "nedensellik"
+        },
+        {
+          "en": "observational study",
+          "tr": "gözlem çalışması"
+        },
+        {
+          "en": "plausible",
+          "tr": "makul"
+        }
+      ]
+    },
+    {
+      "kod": "3.12",
+      "baslik": "Setting Up a Test for the Difference Between Two Population Proportions",
+      "baslikTr": "İki popülasyon oranının farkı için test kurma",
+      "hedefler": [
+        "İki örneklem z-testini (two-sample z-test for \\(p_1-p_2\\)) seçmek ve parametreleri bağlamla tanımlamak.",
+        "\\(H_0: p_1=p_2\\) (ya da \\(p_1-p_2=0\\)) ve uygun \\(H_a\\)'yı yazmak.",
+        "Havuzlanmış oran \\(\\hat{p}_c\\) ile büyük sayılar koşulunu ve diğer koşulları kontrol etmek."
+      ],
+      "anlatim": "<h4>Hipotezler</h4>\n<div class=\"kn-kural\">\\[ H_0: p_1=p_2 \\;\\;(\\text{ya da } p_1-p_2=0) \\]\n\\[ H_a: p_1\\gt p_2 \\quad\\text{ya da}\\quad p_1\\lt p_2 \\quad\\text{ya da}\\quad p_1\\ne p_2 \\]</div>\n<p>\\(H_0\\) her zaman \"fark yok\" der. \\(H_a\\)'nın yönü araştırma sorusundan gelir. Parametreler ikisi de tanımlanmalı: \"\\(p_1\\) = the true proportion of all patients who would recover with the new drug; \\(p_2\\) = the true proportion of all patients who would recover with the standard drug.\"</p>\n<h4>Prosedür adı</h4>\n<p><strong>Two-sample z-test for a difference between two population proportions.</strong> Yalnız \"z-test\" yazmak yetmez; \"two-sample\" ve \"proportions\" kelimeleri gerekir.</p>\n<h4>Havuzlanmış oran (pooled / combined proportion)</h4>\n<div class=\"kn-tanim\">\\[ \\hat{p}_c=\\frac{x_1+x_2}{n_1+n_2}=\\frac{n_1\\hat{p}_1+n_2\\hat{p}_2}{n_1+n_2} \\]\n\\(H_0\\) doğruysa iki popülasyonun oranı aynıdır; bu ortak oranın en iyi tahmini iki örneklemin <strong>birleşik</strong> başarı oranıdır.</div>\n<p>Örnek: 150 kişiden 45, 120 kişiden 30 başarı → \\(\\hat{p}_c=75/270\\approx0.278\\). Dikkat: \\(\\hat{p}_c\\), \\(\\hat{p}_1=0.30\\) ile \\(\\hat{p}_2=0.25\\)'in basit ortalaması (0.275) değildir; büyük örneklem daha çok ağırlık alır.</p>\n<h4>Koşullar</h4>\n<table><thead><tr><th>Koşul</th><th>Kontrol</th></tr></thead><tbody>\n<tr><td>Random</td><td>İki bağımsız rastgele örneklem ya da rastgele atanmış deney</td></tr>\n<tr><td>10%</td><td>\\(n_1\\lt10\\%N_1\\), \\(n_2\\lt10\\%N_2\\) (deneyde gereksiz)</td></tr>\n<tr><td>Large counts</td><td>\\(n_1\\hat{p}_c,\\ n_1(1-\\hat{p}_c),\\ n_2\\hat{p}_c,\\ n_2(1-\\hat{p}_c)\\) hepsi \\(\\ge10\\)</td></tr></tbody></table>\n<p>Framework testte büyük sayıları <strong>havuzlanmış oranla</strong> kontrol etmeyi ister (çünkü \\(H_0\\) altında ortak oran budur). Örnek: \\(n_1=40\\), \\(n_2=45\\), \\(\\hat{p}_c=0.20\\) → \\(40(0.20)=8\\lt10\\), \\(45(0.20)=9\\lt10\\): koşul sağlanmaz.</p>\n<h4>Aralık ile test arasındaki fark</h4>\n<table><thead><tr><th></th><th>Güven aralığı (3.10)</th><th>Test (3.12–3.13)</th></tr></thead><tbody>\n<tr><td>Varsayım</td><td>Yok</td><td>\\(p_1=p_2\\)</td></tr>\n<tr><td>SE</td><td>Havuzlanmamış</td><td>Havuzlanmış</td></tr>\n<tr><td>Large counts</td><td>Her grubun kendi \\(\\hat{p}\\)'si</td><td>\\(\\hat{p}_c\\)</td></tr></tbody></table>\n<div class=\"kn-dikkat\">Deneyde \"random sample\" değil \"random assignment\" yaz; deneklerin gönüllü olması rastgele atama koşulunu bozmaz.</div>\n<h4>FRQ kalıbı</h4>\n<blockquote>\"\\(H_0: p_1 - p_2 = 0\\), \\(H_a: p_1 - p_2 \\gt 0\\), where \\(p_1\\) = … and \\(p_2\\) = … Two-sample z-test for \\(p_1-p_2\\). Random: treatments were randomly assigned. Large counts: \\(\\hat{p}_c = 0.25\\); \\(150(0.25)=37.5\\), \\(150(0.75)=112.5\\), both groups ≥ 10.\"</blockquote>",
+      "ornekler": [
+        {
+          "soru": "Bir okul, ödev uygulaması kullanan öğrencilerin ödev teslim oranının kullanmayanlardan yüksek olup olmadığını merak ediyor. Her gruptan bağımsız rastgele örneklem alınıyor: kullananlar 90/120, kullanmayanlar 102/160. Hipotezleri yazın ve koşulları kontrol edin.",
+          "cozum": [
+            "\\(H_0:p_K=p_D\\), \\(H_a:p_K\\gt p_D\\); \\(p_K\\) = true proportion of all app users at the school who submit homework on time, \\(p_D\\) = same for non-users.",
+            "\\(\\hat{p}_c=(90+102)/(120+160)=192/280\\approx0.686\\). Large counts: \\(120(0.686)\\approx82.3\\), \\(120(0.314)\\approx37.7\\), \\(160(0.686)\\approx109.7\\), \\(160(0.314)\\approx50.3\\) hepsi \\(\\ge10\\).",
+            "Random: bağımsız rastgele örneklemler ✓; 10%: okulda en az 1200 kullanan ve 1600 kullanmayan öğrenci olmalı (bunu varsayım olarak belirt)."
+          ]
+        },
+        {
+          "soru": "150 kişiden 45'i, 120 kişiden 30'u başarılı. Havuzlanmış oranı bulun ve neden basit ortalamadan farklı olduğunu açıklayın.",
+          "cozum": [
+            "\\(\\hat{p}_c=75/270\\approx0.2778\\).",
+            "Basit ortalama \\((0.30+0.25)/2=0.275\\). Havuzlama her bireyi eşit sayar; daha büyük örneklem (150) toplamı daha çok etkiler."
+          ]
+        },
+        {
+          "soru": "(Açıklama) Neden iki oran testinde SE'yi \\(\\hat{p}_c\\) ile hesaplarız ama güven aralığında hesaplamayız?",
+          "cozum": [
+            "Test \\(H_0:p_1=p_2\\) doğru varsayılarak yürütülür; tek ortak oran varsa onun en iyi tahmini birleşik örneklem oranıdır.",
+            "Aralıkta ise eşitlik varsayımı yoktur; amaç iki farklı oranın farkını tahmin etmektir. Bu yüzden her grubun kendi \\(\\hat{p}\\)'si kullanılır."
+          ]
+        }
+      ],
+      "ipuclari": [
+        "Hipotezlerde iki parametreyi de ayrı ayrı tanımla; \"\\(p_1-p_2\\) = difference\" tek başına yetmeyebilir, gruplar açık olmalı.",
+        "Hesap makinesi: <code>2-PropZTest</code> havuzlanmış oranı (p̂) ekranda gösterir; koşul kontrolünde bu değeri kullanabilirsin.",
+        "Koşullarda gruplar arası bağımsızlığı belirt: \"two independent random samples\" ya da \"random assignment\".",
+        "Large counts yazarken dört çarpımı göster; ondalıklı çıkması sorun değildir."
+      ],
+      "sikHatalar": [
+        "\\(H_0\\)'ı \\(\\hat{p}_1=\\hat{p}_2\\) ile yazmak.",
+        "Havuzlanmış oranı iki oranın basit ortalaması olarak hesaplamak.",
+        "Testte büyük sayı koşulunu havuzlanmış oran yerine \\(p_0\\) gibi uydurma bir değerle kontrol etmek."
+      ],
+      "terimler": [
+        {
+          "en": "two-sample z-test",
+          "tr": "iki örneklem z-testi"
+        },
+        {
+          "en": "pooled (combined) proportion",
+          "tr": "havuzlanmış (birleşik) oran"
+        },
+        {
+          "en": "no difference",
+          "tr": "fark yok"
+        },
+        {
+          "en": "random assignment",
+          "tr": "rastgele atama"
+        },
+        {
+          "en": "independent samples",
+          "tr": "bağımsız örneklemler"
+        }
+      ]
+    },
+    {
+      "kod": "3.13",
+      "baslik": "Carrying Out a Test for the Difference Between Two Population Proportions",
+      "baslikTr": "İki popülasyon oranının farkı için testi yürütme",
+      "hedefler": [
+        "Havuzlanmış SE ile \\(z\\) test istatistiğini ve p-değerini hesaplamak.",
+        "p-değerini \\(H_0:p_1=p_2\\) varsayımıyla bağlam içinde yorumlamak.",
+        "p-değerini \\(\\alpha\\) ile karşılaştırıp iki popülasyon bağlamında sonuç yazmak."
+      ],
+      "anlatim": "<h4>Test istatistiği</h4>\n<div class=\"kn-kural\">\\[ z=\\frac{(\\hat{p}_1-\\hat{p}_2)-0}{\\sqrt{\\hat{p}_c(1-\\hat{p}_c)\\left(\\dfrac{1}{n_1}+\\dfrac{1}{n_2}\\right)}}, \\qquad \\hat{p}_c=\\frac{x_1+x_2}{n_1+n_2} \\]\n\\(H_0\\) doğruysa \\(z\\) yaklaşık standart normaldir. Paydaki \"−0\", \\(H_0\\)'daki farktır.</div>\n<h4>Çözümlü örnek (gözlem çalışması)</h4>\n<p>İki şehirden bağımsız rastgele örneklemler: A'da 200 kişiden 78'i (0.39), B'de 180 kişiden 54'ü (0.30) toplu taşıma kullanıyor. \\(H_a:p_A\\gt p_B\\), \\(\\alpha=0.05\\).</p>\n<ol><li>\\(\\hat{p}_c=132/380\\approx0.3474\\).</li>\n<li>\\(SE=\\sqrt{0.3474(0.6526)\\left(\\frac{1}{200}+\\frac{1}{180}\\right)}\\approx\\sqrt{0.22670(0.010556)}\\approx0.0489\\).</li>\n<li>\\(z=0.09/0.0489\\approx1.84\\); p-value \\(=P(Z\\ge1.84)\\approx0.033\\).</li>\n<li>0.033 \\(\\lt\\) 0.05 → reject \\(H_0\\). \"There is convincing evidence that the true proportion of all adults who use public transit is greater in city A than in city B.\"</li></ol>\n<p>Aynı veriyle \\(H_a:p_A\\ne p_B\\) olsaydı p-değeri \\(2(0.033)\\approx0.066\\) olurdu ve \\(\\alpha=0.05\\)'te fail to reject kararı çıkardı. Yön önceden seçilmelidir.</p>\n<h4>p-değeri yorumu</h4>\n<blockquote>\"Assuming there is no difference in the true proportions of adults who use public transit in the two cities, there is about a 0.033 probability of getting a difference in sample proportions (A − B) of 0.09 or more by chance alone.\"</blockquote>\n<h4>Deney örneği: \\(\\alpha\\) değişince karar değişir</h4>\n<p>150 hasta yeni ilaca, 150 hasta plaseboya rastgele atanıyor; iyileşen 45 (0.30) ve 30 (0.20). \\(\\hat{p}_c=0.25\\), \\(SE=\\sqrt{0.25(0.75)(2/150)}=0.05\\), \\(z=0.10/0.05=2.00\\), p-value \\(\\approx0.023\\).</p>\n<table><thead><tr><th>\\(\\alpha\\)</th><th>Karar</th></tr></thead><tbody>\n<tr><td>0.05</td><td>Reject \\(H_0\\): ilacın iyileşme oranını artırdığına dair ikna edici kanıt</td></tr>\n<tr><td>0.01</td><td>Fail to reject \\(H_0\\): ikna edici kanıt yok</td></tr></tbody></table>\n<p>Rastgele atama olduğu için \"reject\" durumunda neden-sonuç dili kullanılabilir: \"the new drug causes a higher recovery rate for patients like these\".</p>\n<h4>Tam puan için kontrol listesi</h4>\n<ol><li><strong>State:</strong> \\(H_0:p_1=p_2\\), \\(H_a\\) (yönüyle); iki parametreyi bağlamla tanımla; \\(\\alpha\\).</li>\n<li><strong>Plan:</strong> \"two-sample z-test for \\(p_1-p_2\\)\"; random (iki bağımsız rastgele örneklem ya da rastgele atama), 10% (deneyde gereksiz), large counts \\(\\hat{p}_c\\) ile dört değer.</li>\n<li><strong>Do:</strong> \\(\\hat{p}_1\\), \\(\\hat{p}_2\\), \\(\\hat{p}_c\\), z ve p-değeri.</li>\n<li><strong>Conclude:</strong> p-değeri ile \\(\\alpha\\)'nın açık karşılaştırması, karar, \\(H_a\\) cinsinden bağlamlı sonuç.</li></ol>\n<div class=\"kn-dikkat\">Testte <strong>havuzlanmış</strong> SE, aralıkta <strong>havuzlanmamış</strong> SE. Yanlış SE seçimi küçük ama puan kaybettiren bir hatadır. Sonuç cümlesinde iki popülasyonu da adlandır.</div>",
+      "ornekler": [
+        {
+          "soru": "Bir mağaza iki e-posta konusunu test ediyor: rastgele atanmış 400 müşteriden 72'si (A), 400 müşteriden 52'si (B) e-postayı açıyor. \\(H_a:p_A\\ne p_B\\), \\(\\alpha=0.05\\). Testi yapın.",
+          "cozum": [
+            "\\(\\hat{p}_A=0.18\\), \\(\\hat{p}_B=0.13\\), \\(\\hat{p}_c=124/800=0.155\\). Large counts: \\(400(0.155)=62\\), \\(400(0.845)=338\\) her iki grup için ✓; rastgele atama ✓.",
+            "\\(SE=\\sqrt{0.155(0.845)(2/400)}\\approx0.0256\\); \\(z=0.05/0.0256\\approx1.95\\); p-value \\(\\approx2(0.0255)=0.051\\).",
+            "0.051 \\(\\gt\\) 0.05 → fail to reject \\(H_0\\). İki konu başlığının açılma oranlarının farklı olduğuna dair ikna edici kanıt yoktur (sınırda bir sonuç)."
+          ]
+        },
+        {
+          "soru": "Bir öğrenci aynı veride SE'yi \\(\\sqrt{0.18(0.82)/400+0.13(0.87)/400}\\) ile hesaplıyor. Ne değişir?",
+          "cozum": [
+            "Bu havuzlanmamış SE \\(\\approx0.0255\\) verir; burada sonuç hemen hemen aynıdır ama yöntem yanlıştır.",
+            "Test \\(H_0:p_A=p_B\\) varsayımıyla yürütüldüğü için framework havuzlanmış \\(\\hat{p}_c\\) ister; FRQ'da yanlış formül puan kaybettirir."
+          ]
+        },
+        {
+          "soru": "(Yorum) Bir deneyde p-değeri 0.004 bulunuyor (\\(H_a:p_1\\gt p_2\\), tedavi 1 yeni yöntem). p-değerini yorumlayın.",
+          "cozum": [
+            "Varsayım bağlamla: \"Assuming the new method and the standard method have the same true success rate …\"",
+            "\"… there is about a 0.004 probability of getting a difference in sample proportions (new − standard) as large as or larger than the one observed, just by the chance variation in random assignment.\""
+          ]
+        }
+      ],
+      "ipuclari": [
+        "Hesap makinesi: <code>2-PropZTest</code> z, p-değeri ve \\(\\hat{p}_c\\) verir. FRQ'da test adını, \\(\\hat{p}_1\\), \\(\\hat{p}_2\\), z ve p-değerini yazarak destekle.",
+        "Sonuç cümlesi: karşılaştırma (p vs α) + karar + \\(H_a\\) cinsinden + iki popülasyon bağlamı.",
+        "Deneyde p-değeri yorumunda \"by chance alone\" = rastgele atamanın şans değişkenliği; örneklemede ise rastgele örneklemenin.",
+        "Çift yönlü testte tek kuyruk alanını 2 ile çarpmayı unutma."
+      ],
+      "sikHatalar": [
+        "Testte havuzlanmamış SE kullanmak.",
+        "Çift yönlü testte p-değerini ikiye katlamayı unutmak.",
+        "Gözlem çalışmasında anlamlı sonucu neden-sonuç olarak yazmak."
+      ],
+      "terimler": [
+        {
+          "en": "pooled standard error",
+          "tr": "havuzlanmış standart hata"
+        },
+        {
+          "en": "test statistic",
+          "tr": "test istatistiği"
+        },
+        {
+          "en": "two-sided p-value",
+          "tr": "çift yönlü p-değeri"
+        },
+        {
+          "en": "chance variation",
+          "tr": "şans değişkenliği"
+        },
+        {
+          "en": "convincing evidence",
+          "tr": "ikna edici kanıt"
+        }
+      ]
+    },
+    {
+      "kod": "3.14",
+      "baslik": "Setting Up a Chi-Square Test for Homogeneity or Independence",
+      "baslikTr": "Homojenlik veya bağımsızlık için ki-kare testini kurma",
+      "hedefler": [
+        "Ki-kare dağılımlarının (chi-square distributions) özelliklerini tanımlamak.",
+        "Veri toplama tasarımına göre homojenlik (homogeneity) ve bağımsızlık (independence) testini ayırt etmek.",
+        "Uygun \\(H_0\\) ve \\(H_a\\)'yı bağlamla yazmak ve koşulları (beklenen sayılar dahil) kontrol etmek."
+      ],
+      "anlatim": "<h4>Ki-kare istatistiği ve dağılımı</h4>\n<p>İki yönlü tablo (two-way table) kategorik veriyi satır ve sütunlarda özetler. Ki-kare istatistiği (chi-square statistic), <strong>gözlenen (observed)</strong> sayıların <strong>beklenen (expected)</strong> sayılardan ne kadar uzak olduğunu, beklenen sayılara göre ölçer.</p>\n<div class=\"kn-tanim\">Ki-kare dağılımları: yalnız negatif olmayan (nonnegative) değerler alır, <strong>sağa çarpıktır (skewed right)</strong>; serbestlik derecesi (degrees of freedom, df) arttıkça çarpıklık azalır ve eğrinin tepesi sağa kayar.</div>\n<h4>Hangi test? Tasarıma bak</h4>\n<table><thead><tr><th></th><th>Homojenlik (homogeneity)</th><th>Bağımsızlık (independence)</th></tr></thead><tbody>\n<tr><td>Veri nasıl toplandı?</td><td><strong>İki ya da daha fazla</strong> popülasyondan ayrı bağımsız rastgele örneklemler ya da rastgele atanmış tedaviler</td><td><strong>Tek</strong> popülasyondan tek rastgele örneklem; her birey iki değişkene göre sınıflanır</td></tr>\n<tr><td>Soru</td><td>Bir kategorik değişkenin dağılımı popülasyonlar/tedaviler arasında farklı mı?</td><td>İki kategorik değişken arasında ilişki (association) var mı?</td></tr>\n<tr><td>\\(H_0\\)</td><td>There is no difference in the distribution of [variable] across [populations/treatments].</td><td>There is no association between [var 1] and [var 2] in [population]. (They are independent.)</td></tr>\n<tr><td>\\(H_a\\)</td><td>There is a difference in the distributions …</td><td>There is an association … (not independent)</td></tr></tbody></table>\n<p>İpucu: Araştırmacı grupları <em>önceden</em> belirleyip her gruptan ayrı örneklem aldıysa → homojenlik. Tek örneklem alıp sonra iki değişkeni kaydettiyse (gruplar sonradan oluştuysa) → bağımsızlık. Tablonun görünüşü iki durumda da aynı olabilir; karar <strong>tasarıma</strong> göre verilir.</p>\n<h4>Koşullar</h4>\n<table><thead><tr><th>Koşul</th><th>Kontrol</th></tr></thead><tbody>\n<tr><td>Random</td><td>Bağımsızlık: tek rastgele örneklem. Homojenlik: bağımsız rastgele örneklemler ya da rastgele atanmış deney</td></tr>\n<tr><td>10%</td><td>\\(n\\lt10\\%N\\) (her örneklem için; deneyde gereksiz)</td></tr>\n<tr><td>Expected counts</td><td>Tüm <strong>beklenen</strong> sayılar 5'ten büyük (framework: \"greater than 5\")</td></tr></tbody></table>\n<div class=\"kn-dikkat\">Beklenen sayılar koşulu <strong>gözlenen</strong> sayılarla kontrol edilmez. Gözlenen bir hücre 3 olsa bile beklenen sayılar 5'ten büyükse koşul sağlanır. Beklenen sayılar: \\(\\dfrac{(\\text{row total})(\\text{column total})}{\\text{table total}}\\) (Konu 3.15).</div>\n<h4>Not: ki-kare uyum iyiliği</h4>\n<p>Revize edilmiş 2026–27 çerçevesinde ki-kare <em>uyum iyiliği (goodness-of-fit)</em> testi sınav kapsamında değildir; yalnız iki yönlü tablolar için homojenlik ve bağımsızlık testleri vardır.</p>\n<h4>FRQ kalıbı</h4>\n<blockquote>\"\\(H_0\\): There is no association between grade level and preferred lunch option among students at this school. \\(H_a\\): There is an association … We will use a chi-square test for independence. Random: random sample of 300 students. 10%: 300 &lt; 10% of all students. Expected counts: all expected counts (smallest 12.4) are greater than 5.\"</blockquote>",
+      "ornekler": [
+        {
+          "soru": "Bir araştırmacı üç farklı şehirden ayrı ayrı 200'er kişilik rastgele örneklem alıp her kişiye tercih ettiği ulaşım türünü (araba, toplu taşıma, bisiklet/yürüme) soruyor. Uygun testi ve hipotezleri yazın.",
+          "cozum": [
+            "Üç popülasyondan ayrı örneklem → chi-square test for homogeneity.",
+            "\\(H_0\\): The distribution of preferred transportation mode is the same for adults in all three cities. \\(H_a\\): The distribution of preferred transportation mode differs for at least one city (is not the same for all three cities)."
+          ]
+        },
+        {
+          "soru": "Bir okulda rastgele seçilen 400 öğrencinin sınıf düzeyi (9–12) ve sosyal medya platformu tercihi kaydediliyor. Hangi test? Hipotezler?",
+          "cozum": [
+            "Tek örneklem, iki değişken → chi-square test for independence.",
+            "\\(H_0\\): There is no association between grade level and preferred platform for students at this school. \\(H_a\\): There is an association between grade level and preferred platform."
+          ]
+        },
+        {
+          "soru": "(Açıklama) Bir 2×3 tabloda gözlenen bir hücre 4, beklenen sayıların en küçüğü 7.2. Bir öğrenci \"4 \\(\\lt\\) 5 olduğu için koşul sağlanmıyor\" diyor. Doğru mu?",
+          "cozum": [
+            "Koşul beklenen sayılar içindir, gözlenen sayılar için değil.",
+            "En küçük beklenen sayı 7.2 \\(\\gt\\) 5 → koşul sağlanır. \"All expected counts are greater than 5 (smallest is 7.2).\""
+          ]
+        }
+      ],
+      "ipuclari": [
+        "Test seçimini tasarıma bağla ve yaz: \"Because separate random samples were taken from each population …\" ya da \"Because a single random sample was classified by two variables …\".",
+        "Hesap makinesi: gözlenen tabloyu matrise ([A]) gir, <code>χ²-Test</code> beklenen sayıları [B]'ye yazar; koşul kontrolü için [B]'ye bak ve en küçük değeri FRQ'da belirt.",
+        "Hipotezleri sözle yaz; ki-kare testinde parametre sembolü kullanılmaz. Değişkenler ve popülasyon(lar) bağlamla geçmeli.",
+        "\"Expected counts &gt; 5\" ifadesini sayıyla destekle (\"the smallest expected count is 12.4\")."
+      ],
+      "sikHatalar": [
+        "Tablonun görünüşüne bakarak test seçmek; karar veri toplama tasarımına göre verilir.",
+        "Beklenen sayılar koşulunu gözlenen sayılarla kontrol etmek.",
+        "Hipotezleri \"oranlar eşit\" diye tek hücreye indirgemek; ki-kare dağılımların tamamı hakkındadır."
+      ],
+      "terimler": [
+        {
+          "en": "chi-square test for homogeneity",
+          "tr": "ki-kare homojenlik testi"
+        },
+        {
+          "en": "chi-square test for independence",
+          "tr": "ki-kare bağımsızlık testi"
+        },
+        {
+          "en": "two-way table",
+          "tr": "iki yönlü tablo"
+        },
+        {
+          "en": "expected count",
+          "tr": "beklenen sayı"
+        },
+        {
+          "en": "observed count",
+          "tr": "gözlenen sayı"
+        },
+        {
+          "en": "association",
+          "tr": "ilişki"
+        },
+        {
+          "en": "degrees of freedom",
+          "tr": "serbestlik derecesi"
+        },
+        {
+          "en": "skewed right",
+          "tr": "sağa çarpık"
+        }
+      ]
+    },
+    {
+      "kod": "3.15",
+      "baslik": "Carrying Out a Chi-Square Test for Homogeneity or Independence",
+      "baslikTr": "Homojenlik veya bağımsızlık için ki-kare testini yürütme",
+      "hedefler": [
+        "İki yönlü tabloda beklenen sayıları hesaplamak.",
+        "\\(\\chi^2=\\sum\\frac{(O-E)^2}{E}\\) istatistiğini, df = (r − 1)(c − 1) değerini ve p-değerini bulmak.",
+        "p-değerini yorumlamak ve \\(\\alpha\\) ile karşılaştırıp bağlam içinde sonuç yazmak."
+      ],
+      "anlatim": "<h4>Beklenen sayılar (expected counts)</h4>\n<div class=\"kn-kural\">\\[ E=\\frac{(\\text{row total})(\\text{column total})}{\\text{table total}} \\]</div>\n<p>Mantık: \\(H_0\\) doğruysa (fark yok / ilişki yok) her satırda sütun oranları genel oranla aynı olmalıdır. Örnek: toplam 400 kişinin 80'i \"evet\" demişse (%20), 120 kişilik bir satırda beklenen \"evet\" sayısı \\(120(80/400)=24\\)'tür.</p>\n<h4>Test istatistiği ve df</h4>\n<div class=\"kn-kural\">\\[ \\chi^2=\\sum_{\\text{all cells}}\\frac{(\\text{Observed}-\\text{Expected})^2}{\\text{Expected}}, \\qquad df=(\\text{rows}-1)(\\text{columns}-1) \\]\n\\(H_0\\) doğruysa \\(\\chi^2\\) yaklaşık ki-kare dağılımına uyar. p-değeri her zaman <strong>sağ kuyruktur</strong>: \\(P(\\chi^2\\ge\\text{observed})\\).</div>\n<p>df hesabında \"toplam\" satır ve sütunu sayılmaz: 3 satır × 4 sütun → \\(df=2\\cdot3=6\\).</p>\n<h4>Çözümlü örnek</h4>\n<p>İki okuldan bağımsız rastgele 100'er öğrenciye \"okul saatinin geç başlaması\" soruluyor:</p>\n<table><thead><tr><th></th><th>Yes</th><th>No</th><th>Unsure</th><th>Total</th></tr></thead><tbody>\n<tr><td>School A</td><td>40 (50)</td><td>35 (30)</td><td>25 (20)</td><td>100</td></tr>\n<tr><td>School B</td><td>60 (50)</td><td>25 (30)</td><td>15 (20)</td><td>100</td></tr>\n<tr><td>Total</td><td>100</td><td>60</td><td>40</td><td>200</td></tr></tbody></table>\n<p>Parantez içi beklenen sayılar. Katkılar (components): A satırı \\(\\frac{(40-50)^2}{50}=2\\), \\(\\frac{(35-30)^2}{30}\\approx0.833\\), \\(\\frac{(25-20)^2}{20}=1.25\\); B satırı aynı. \\(\\chi^2\\approx8.17\\), \\(df=(2-1)(3-1)=2\\), p-value \\(\\approx0.017\\) (<code>χ²cdf(8.17, 1E99, 2)</code>).</p>\n<p>Sonuç (\\(\\alpha=0.05\\)): \"Because the p-value of 0.017 &lt; 0.05, we reject \\(H_0\\). There is convincing evidence that the distribution of opinions about a later start time differs between students at School A and School B.\"</p>\n<h4>Takip: hangi hücreler fark yarattı?</h4>\n<p>En büyük katkılar (2 ve 2) \"Yes\" sütunundadır: A okulunda beklenenden daha az, B'de daha fazla \"Yes\" var. FRQ'da \"en çok katkı yapan hücre\" sorulursa katkıyı ve yönü (beklenenden fazla/az) yaz.</p>\n<h4>p-değeri yorumu</h4>\n<blockquote>\"Assuming there is no difference in the distribution of opinions between the two schools, there is about a 0.017 probability of getting a chi-square statistic of 8.17 or larger by chance alone.\"</blockquote>\n<div class=\"kn-dikkat\">Ki-kare testi yön vermez; \"B okulu daha olumlu\" demek için hücre katkılarına bakmak gerekir. Bağımsızlık testinde anlamlı sonuç \"ilişki var\" demektir, neden-sonuç değil.</div>",
+      "ornekler": [
+        {
+          "soru": "Üç mağaza büyüklüğünden bağımsız rastgele örneklemler: Küçük 18 geç / 102 zamanında, Orta 30 / 150, Büyük 42 / 108. Teslimat zamanlamasının dağılımı mağaza türüne göre farklı mı? \\(\\alpha=0.01\\).",
+          "cozum": [
+            "Toplamlar: satırlar 120, 180, 150; sütunlar 90 geç, 360 zamanında; toplam 450. Beklenen: Küçük 24 / 96, Orta 36 / 144, Büyük 30 / 120 (hepsi \\(\\gt5\\)).",
+            "\\(\\chi^2=1.5+0.375+1+0.25+4.8+1.2=9.125\\), \\(df=(3-1)(2-1)=2\\), p-value \\(\\approx0.0104\\).",
+            "0.0104 \\(\\gt\\) 0.01 → fail to reject \\(H_0\\). \\(\\alpha=0.01\\) düzeyinde teslimat zamanlamasının dağılımının mağaza büyüklüğüne göre farklı olduğuna dair ikna edici kanıt yoktur (\\(\\alpha=0.05\\) olsaydı reddedilirdi)."
+          ]
+        },
+        {
+          "soru": "Bir tabloda satır toplamı 120, sütun toplamı 80, genel toplam 400. Bu hücrenin beklenen sayısı ve gözlenen 30 ise katkısı nedir?",
+          "cozum": [
+            "\\(E=120(80)/400=24\\).",
+            "Katkı \\(=(30-24)^2/24=36/24=1.5\\)."
+          ]
+        },
+        {
+          "soru": "(Açıklama) 4 satır, 3 sütunlu bir bağımsızlık testinde \\(\\chi^2=5.2\\) bulunuyor. Bir öğrenci df = 12 kullanıyor. Hatayı açıklayın ve doğru df ile kararın yönünü tartışın.",
+          "cozum": [
+            "df hücre sayısı değil: \\((4-1)(3-1)=6\\).",
+            "df = 6 için ki-kare dağılımının merkezi yaklaşık 6 civarındadır; 5.2 olağan bir değerdir, p-değeri büyük çıkar (yaklaşık 0.52) → ilişki için ikna edici kanıt yok."
+          ]
+        }
+      ],
+      "ipuclari": [
+        "Hesap makinesi: <code>χ²-Test</code> (matris [A]) χ², df ve p-değerini verir; FRQ'da test adını, df'yi, χ²'yi ve p-değerini yaz. Elle hesap gerekmez ama birkaç beklenen sayıyı göstermek iyidir.",
+        "Sonuç cümlesi: \"Because the p-value of … &lt; α …, we reject H0. There is convincing evidence of an association between … and … in [population].\"",
+        "df'yi toplam satırı/sütunu katmadan hesapla.",
+        "Takip sorusunda en büyük \\((O-E)^2/E\\) katkısını bul ve gözlenenin beklenenden fazla mı az mı olduğunu bağlamla yaz."
+      ],
+      "sikHatalar": [
+        "Beklenen sayıları satır ya da sütun toplamını eşit bölerek hesaplamak (her hücreye aynı sayı vermek).",
+        "Katkıda paydaya gözlenen sayıyı yazmak: doğru payda \\(E\\)'dir.",
+        "df = hücre sayısı − 1 kullanmak (bu, sınavdan çıkarılan uyum iyiliği testinin kuralıdır)."
+      ],
+      "terimler": [
+        {
+          "en": "expected count",
+          "tr": "beklenen sayı"
+        },
+        {
+          "en": "chi-square statistic",
+          "tr": "ki-kare istatistiği"
+        },
+        {
+          "en": "component (contribution)",
+          "tr": "hücre katkısı"
+        },
+        {
+          "en": "degrees of freedom",
+          "tr": "serbestlik derecesi"
+        },
+        {
+          "en": "right tail",
+          "tr": "sağ kuyruk"
+        },
+        {
+          "en": "row total / column total",
+          "tr": "satır toplamı / sütun toplamı"
+        }
+      ]
+    }
+  ]
+}
