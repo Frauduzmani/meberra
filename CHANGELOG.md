@@ -9,6 +9,18 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.28.0] — 2026-10-25
+### Eklendi
+- **3 yeni ders**: **AP Precalculus** (4 ünite; Ü4 sınavda yok, ayrıca işaretli), **AP Statistics** (2026–27 revize çerçeve: 5 ünite, sınav 42 MCQ + 4 FRQ × 10 puan) ve **AP Physics 2** (Ünite 9–15). Her ünitede Türkçe konu anlatımı ve çözümlü örnekler; sayfalar `/ap-precalculus`, `/ap-statistics`, `/ap-physics-2`, hedef sihirbazı ve tam deneme sınavı planlarında.
+- **2251 yeni doğrulanmış özgün soru** (aktif banka 5876): Precalculus 435 (30 hesap makineli dahil), Statistics 450, Physics 2 406; seçmeli dersler kalınlaştırıldı — CS A +374, Micro +216, Macro +270; English Language +100 soru ve 11 yeni pasaj. Hepsinde "🔍 Ne soruyor?" cümlesi. Her parti yazardan bağımsız bir denetçiden geçti (yanlış anahtar: 0).
+- **30 yeni FRQ** (toplam 137): Precalculus 8, Statistics 10, Physics 2 12 — resmî tipler ve puanlarla.
+- **Kavram kartları**: Precalculus 44, Statistics 60, Physics 2 76 (toplam 666) + her derste ücretsiz İngilizce kalıp destesi.
+### Değişti
+- Pratik değeri: sorular artık ders anlatımındaki çözümlü örneklerin sayılarını/bağlamını tekrar etmiyor (yazım ve denetim rehberine kural; Precalculus Ü4 ve Statistics Ü5 örnekleri yeniden yazıldı).
+### Düzeltildi
+- Ekonomi konu etiketleri: `econ_sk_ma3_1` → 3.6, `econ_sk_ma3_2` → 3.7, `econ_sk_mi2_1` → 2.1.
+- Araçlar: `onay2-uygula.js` artık `--taslak` ve `--karar` olmadan çalışmıyor (argümansız çalıştırma eski bir partiyi yeniden uyguluyordu); `yeni-soru-ekle.js` `ek` metinlerinde de LaTeX ve kontrol karakteri denetliyor; Markdown denetimi Javadoc `/**` ve `<code>` içini yok sayıyor.
+
 ## [1.27.0] — 2026-10-25
 ### Eklendi
 - **Bugün'de tahmini AP puanı** (karşılama kartının parçası): ders başına 1–5 halka, "Mayıs'a N hafta" ve tek somut sonraki adım — "Calculus AB: Unit 6'yı %85'e çıkar → tahminin 3 olur" (o üniteye bağlantı). Bant yükselince kutlama. "Tahminidir" notu.

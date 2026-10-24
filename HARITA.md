@@ -116,6 +116,7 @@ Her sayfa ayrıca `assets/css/styles.css` ve `assets/js/app.js` yükler (aşağ�
 | `ap-biology.html` | Biology anlatım + sorular (134) | Sayfa içinde | — |
 | `ap-english.html` | English anlatım + sorular (41) + FRQ yazım istasyonu | Sayfa içinde | — |
 | `ap-electives.html` | CS A, Micro, Macro (113) | Sayfa içinde | — |
+| `ap-precalculus.html` · `ap-statistics.html` · `ap-physics-2.html` (1.28.0) | Yeni dersler: konu anlatımı `data/dersler/{precalculus,statistics,physics-2}/` + soru bankası (sunucu) | `data/dersler/` | — |
 | `sinav-cents.html` | CEnT-S hazırlık + sorular (60) | Sayfa içinde | — |
 | `deneme.html` | Deneme sınavları; `?mod=yanlislar` Yanlışlarım tek oturum modu (Tur 14 A7, Hata Defteri açık kayıtları) | `data/sorular/deneme-bankasi.js` | `deneme.js`, `assets/css/deneme.css` |
 | `calis.html` (Tur 14 A6) | Çalış merkezi: sıradaki çalışma (Bugün ile aynı `apCalismaPlani`/`apSiradakiAdim`), kaldığın yer, 6 AP + CEnT-S ders kartları, Denemeler / Yanlışlarım / Seviye testi. Giriş gerekir (K4) | `sinav-takvimi.js`, `data/sorular/seviye/*` | `app.js` |
