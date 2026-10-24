@@ -1,0 +1,333 @@
+{
+ "ders": "physics",
+ "unite": 8,
+ "baslik": "Fluids",
+ "baslikTr": "Akışkanlar",
+ "konular": [
+  {
+   "kod": "8.1",
+   "baslik": "Internal Structure and Density",
+   "baslikTr": "İç yapı ve yoğunluk",
+   "hedefler": [
+    "Akışkanı (fluid) iç yapısıyla tanımlamak; sıvı ve gazların sıkıştırılabilirlik (compressibility) farkını molekül aralığıyla açıklamak.",
+    "Yoğunluğu \\(\\rho = m/V\\) ile hesaplamak, birimleri (g/cm³, kg/m³, L, mL) doğru çevirmek.",
+    "Kütle–hacim grafiğinin eğiminden yoğunluğu bulmak ve yoğunluk ölçen bir deney tasarlamak.",
+    "İdeal akışkan modelinin (ideal fluid model) varsayımlarını sıralamak."
+   ],
+   "anlatim": "<h4>Akışkan nedir? (What is a fluid?)</h4>\n<div class=\"kn-tanim\"><strong>Akışkan (fluid)</strong>, kendine ait sabit bir şekli olmayan, akabilen ve bulunduğu kabın şeklini alan maddedir. AP Physics 1'de hem <strong>sıvılar (liquids)</strong> hem <strong>gazlar (gases)</strong> akışkandır.</div>\n<p>Akışkanın davranışı <strong>iç yapısından (internal structure)</strong> gelir. Bir akışkan çok sayıda molekülden oluşur; ama biz onu tek tek moleküllerle değil, <em>yoğunluk</em> ve <em>basınç</em> gibi ortalama (makroskopik) niceliklerle modelleriz.</p>\n<table><thead><tr><th>Özellik</th><th>Sıvı (liquid)</th><th>Gaz (gas)</th></tr></thead><tbody>\n<tr><td>Moleküller arası uzaklık</td><td>Moleküller birbirine neredeyse değer</td><td>Ortalama uzaklık molekül boyutundan çok büyük</td></tr>\n<tr><td>Sıkıştırılabilirlik (compressibility)</td><td>Neredeyse sıkıştırılamaz (incompressible)</td><td>Kolayca sıkıştırılır</td></tr>\n<tr><td>Yoğunluk basınçla değişir mi?</td><td>Pratikte hayır</td><td>Evet: hacim yarıya inerse yoğunluk iki katına çıkar</td></tr></tbody></table>\n<h4>Yoğunluk (density)</h4>\n<div class=\"kn-kural\">\\[ \\rho = \\frac{m}{V} \\] \\(\\rho\\) (rho): yoğunluk, birimi \\(\\text{kg/m}^3\\); \\(m\\): kütle (kg); \\(V\\): hacim (m³).</div>\n<p>Yoğunluk bir <strong>yoğun özellik (intensive property)</strong>'tir: düzgün (uniform) bir maddeyi ikiye kesersen her parçanın kütlesi de hacmi de yarıya iner, oranları — yoğunluk — <strong>aynı kalır</strong>. Kütle ve hacim ise <em>kapsamlı (extensive)</em> niceliklerdir.</p>\n<p>Sık kullanılan yaklaşık değerler (sınavda genellikle verilir):</p>\n<table><thead><tr><th>Madde</th><th>\\(\\rho\\) (kg/m³)</th><th>Madde</th><th>\\(\\rho\\) (kg/m³)</th></tr></thead><tbody>\n<tr><td>Su (water)</td><td>1000</td><td>Hava (air, deniz seviyesi)</td><td>≈ 1.2</td></tr>\n<tr><td>Buz (ice)</td><td>≈ 920</td><td>Alüminyum</td><td>2700</td></tr>\n<tr><td>Yağ (oil)</td><td>≈ 800–900</td><td>Demir</td><td>≈ 7900</td></tr></tbody></table>\n<h4>Birim çevirme (unit conversion) — en çok puan kaybedilen yer</h4>\n<ul>\n<li>\\(1\\ \\text{g/cm}^3 = 1000\\ \\text{kg/m}^3\\) (su: \\(1\\ \\text{g/cm}^3\\)).</li>\n<li>\\(1\\ \\text{L} = 10^{-3}\\ \\text{m}^3\\); \\(1\\ \\text{mL} = 1\\ \\text{cm}^3 = 10^{-6}\\ \\text{m}^3\\).</li>\n<li>\\(1\\ \\text{cm}^2 = 10^{-4}\\ \\text{m}^2\\); \\(1\\ \\text{cm} = 10^{-2}\\ \\text{m}\\). Uzunluğu çevirip <em>sonra</em> küp/kare al.</li>\n</ul>\n<h4>Ortalama yoğunluk (average density)</h4>\n<p>İçi boş (hollow) ya da birden çok malzemeden yapılmış bir cisim için \\(\\rho_{avg} = \\dfrac{m_{toplam}}{V_{toplam}}\\). Örneğin içinde hava boşluğu olan çelik bir top, çelikten çok daha düşük ortalama yoğunluğa sahiptir; Konu 8.3'te yüzüp yüzmeyeceğini bu ortalama yoğunluk belirler. Kum, köpük gibi gözenekli maddelerde de dökme (bulk) yoğunluk, tanelerin yoğunluğundan küçüktür, çünkü hacmin bir kısmı havadır.</p>\n<h4>Yoğunluğu ölçmek (measuring density)</h4>\n<ol>\n<li><strong>Düzgün şekilli cisim:</strong> terazi ile \\(m\\), cetvel ile boyutlar → \\(V\\) formülle.</li>\n<li><strong>Düzensiz cisim:</strong> dereceli silindirde <em>taşırma yöntemi (water displacement)</em>: \\(V = V_{son} - V_{ilk}\\).</li>\n<li><strong>Grafik yöntemi:</strong> farklı hacimlerde sıvı ekleyip toplam kütleyi ölç; \\(m\\)–\\(V\\) grafiği doğrusal olur. <strong>Eğim (slope) = yoğunluk</strong>, dikey eksen kesişimi (intercept) = kabın kütlesi. Tek ölçümden hesap yapmaya göre kabın kütlesinin etkisini kaldırır ve rastgele hataları azaltır.</li>\n</ol>\n<h4>İdeal akışkan modeli (ideal fluid model)</h4>\n<div class=\"kn-tanim\">AP Physics 1, özellikle Konu 8.4'te akışkanı <strong>ideal</strong> kabul eder: (1) <strong>sıkıştırılamaz (incompressible)</strong> — yoğunluk her yerde sabit; (2) <strong>viskozitesiz (nonviscous)</strong> — iç sürtünme yok, enerji kaybı yok; (3) <strong>düzgün/kararlı akış (laminar, steady flow)</strong> — her noktadaki hız zamanla değişmez, türbülans yok.</div>\n<div class=\"kn-dikkat\">Gazlar sıkıştırılabilir; ama hızları ses hızına göre küçükse akış problemlerinde (ör. çatı üzerindeki rüzgâr) yine sabit yoğunluklu kabul edilebilir. Soru \"ideal fluid\" diyorsa yoğunluğu sabit al.</div>\n<p><strong>FRQ kalıpları:</strong> <em>“Density is an intensive property, so cutting the block in half does not change its density.”</em> · <em>“The slope of the mass versus volume graph represents the density of the liquid.”</em> · <em>“Gas molecules are far apart compared with their size, so the gas can be compressed and its density increases.”</em></p>",
+   "ornekler": [
+    {
+     "soru": "Bir öğrenci boş bir beherin içine farklı hacimlerde bir sıvı koyup toplam kütleyi ölçüyor: \\(V\\) = 50, 100, 150, 200 mL için \\(m_{toplam}\\) = 0.140, 0.180, 0.220, 0.260 kg. Sıvının yoğunluğunu ve beherin kütlesini bulun.",
+     "cozum": [
+      "Eğim: \\(\\dfrac{\\Delta m}{\\Delta V} = \\dfrac{0.260-0.140}{(200-50)\\times10^{-6}\\ \\text{m}^3} = \\dfrac{0.120}{1.50\\times10^{-4}} = 800\\ \\text{kg/m}^3\\).",
+      "Kesişim: \\(m = m_{beher} + \\rho V\\) → \\(0.140 = m_{beher} + 800(50\\times10^{-6})\\) → \\(m_{beher} = 0.140 - 0.040 = 0.100\\ \\text{kg}\\).",
+      "Not: Tek nokta ile \\(0.260/(2.00\\times10^{-4}) = 1300\\ \\text{kg/m}^3\\) bulunurdu; bu, beherin kütlesini sıvıya katmak demektir."
+     ]
+    },
+    {
+     "soru": "Dış hacmi \\(4.0\\times10^{-4}\\ \\text{m}^3\\) olan içi boş bir demir kürenin (\\(\\rho_{Fe} = 7900\\ \\text{kg/m}^3\\)) kütlesi 1.58 kg'dır. Boşluğun hacmini ve kürenin ortalama yoğunluğunu bulun.",
+     "cozum": [
+      "Demirin hacmi: \\(V_{Fe} = m/\\rho_{Fe} = 1.58/7900 = 2.0\\times10^{-4}\\ \\text{m}^3\\).",
+      "Boşluk: \\(V_{boşluk} = 4.0\\times10^{-4} - 2.0\\times10^{-4} = 2.0\\times10^{-4}\\ \\text{m}^3\\).",
+      "Ortalama yoğunluk: \\(\\rho_{avg} = 1.58/(4.0\\times10^{-4}) = 3950\\ \\text{kg/m}^3\\) — demirin yarısı."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Kapalı bir şırıngadaki hava ve tamamen suyla dolu, ucu kapalı başka bir şırınganın pistonlarına aynı kuvvetle bastırılıyor. Hava şırıngasının pistonu belirgin biçimde ilerlerken su şırıngasınınki neredeyse hiç ilerlemiyor. Bu farkı iç yapı ile açıklayın ve her şırıngadaki yoğunluğun ne olduğunu belirtin.",
+     "cozum": [
+      "Gazda moleküller arası ortalama uzaklık molekül boyutundan çok büyüktür; boşluk azaltılabildiği için gaz sıkışır. Sıvıda moleküller zaten birbirine değecek kadar yakındır; hacmi küçültmek için moleküllerin kendilerini sıkıştırmak gerekir.",
+      "Hava: kütle sabit, hacim azalıyor → \\(\\rho = m/V\\) artar. Su: hacim pratikte değişmez → yoğunluk sabit kalır.",
+      "Puan getiren cümle: <em>“The mass of air is constant while its volume decreases, so its density increases; the water's volume does not change measurably, so its density stays the same.”</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Bu ünitede hesap makinesi serbesttir, ama sayılar genelde \\(g = 10\\ \\text{m/s}^2\\) ile kolay seçilir; önce birimleri SI'ya çevir, sonra hesapla.",
+    "Tablo verilmişse tek satırdan değil <strong>eğimden</strong> yoğunluk bul; kesişim kabın kütlesi gibi sistematik bir etkiyi gösterir.",
+    "Deney tasarımı sorusunda ölçülecek nicelikleri, aleti (balance, graduated cylinder, ruler) ve hangi grafiğin çizileceğini (eğimin neyi temsil ettiğini) açıkça yaz.",
+    "İçi boş ya da karışım bir cisimde \"yoğunluk\" sorulduğunda ortalama yoğunluğu, yani toplam kütle / toplam hacim kullan."
+   ],
+   "sikHatalar": [
+    "\\(1\\ \\text{mL} = 10^{-3}\\ \\text{m}^3\\) sanmak. Doğrusu \\(10^{-6}\\ \\text{m}^3\\); \\(10^{-3}\\ \\text{m}^3\\) bir litredir.",
+    "Büyük parçanın yoğunluğunun da büyük olduğunu düşünmek. Aynı maddeden kesilen her parçanın yoğunluğu aynıdır.",
+    "Kabın kütlesini sıvının kütlesine katarak \\(m_{toplam}/V\\) ile yoğunluk hesaplamak."
+   ],
+   "terimler": [
+    {
+     "en": "fluid",
+     "tr": "akışkan"
+    },
+    {
+     "en": "density",
+     "tr": "yoğunluk"
+    },
+    {
+     "en": "intensive property",
+     "tr": "yoğun (miktardan bağımsız) özellik"
+    },
+    {
+     "en": "incompressible",
+     "tr": "sıkıştırılamaz"
+    },
+    {
+     "en": "viscosity",
+     "tr": "viskozite, akmazlık"
+    },
+    {
+     "en": "water displacement",
+     "tr": "taşırma yöntemi"
+    },
+    {
+     "en": "average density",
+     "tr": "ortalama yoğunluk"
+    },
+    {
+     "en": "graduated cylinder",
+     "tr": "dereceli silindir"
+    }
+   ]
+  },
+  {
+   "kod": "8.2",
+   "baslik": "Pressure",
+   "baslikTr": "Basınç",
+   "hedefler": [
+    "Basıncı \\(P = F_\\perp / A\\) ile tanımlamak ve akışkan basıncının her yöne, yüzeye dik etki ettiğini açıklamak.",
+    "Durgun akışkanda derinlikle basıncı \\(P = P_0 + \\rho g h\\) ile hesaplamak; mutlak (absolute) ve gösterge (gauge) basıncını ayırt etmek.",
+    "Derinlik–basınç tablosu/grafiğinden yoğunluk ve yüzey basıncını bulmak; Pascal ilkesini hidrolik sistemlerde kullanmak."
+   ],
+   "anlatim": "<h4>Basınç (pressure)</h4>\n<div class=\"kn-tanim\">\\[ P = \\frac{F_\\perp}{A} \\] Basınç, bir yüzeye <strong>dik (perpendicular)</strong> etki eden kuvvetin birim alana düşen büyüklüğüdür. Birimi pascal: \\(1\\ \\text{Pa} = 1\\ \\text{N/m}^2\\). Basınç bir <strong>skaler</strong>dir; yönü yoktur, ama yüzeye uyguladığı kuvvet daima yüzeye diktir.</div>\n<p>Durgun bir akışkanın içindeki bir noktada basınç <strong>her yönde aynıdır</strong>. Akışkan, temas ettiği her yüzeye (kabın duvarı, batmış bir cismin yüzü) o yüzeye dik bir kuvvet uygular. Atmosfer basıncı \\(P_0 \\approx 1.0\\times10^5\\ \\text{Pa}\\)'dır (1 atm ≈ 101 kPa).</p>\n<h4>Derinlikle basınç: hidrostatik basınç (hydrostatic pressure)</h4>\n<p>Yüzey alanı \\(A\\), yüksekliği \\(h\\) olan hayali bir su sütununu <strong>sistem</strong> olarak seç. Sütun dengede ise kuvvetler toplamı sıfırdır:</p>\n<ul>\n<li>Üst yüze aşağı doğru: \\(P_{üst}A\\) · Alt yüze yukarı doğru: \\(P_{alt}A\\) · Ağırlık: \\(mg = \\rho (Ah) g\\)</li>\n</ul>\n\\[ P_{alt}A = P_{üst}A + \\rho A h g \\;\\Rightarrow\\; P = P_0 + \\rho g h \\]\n<p>Kap düşeyde \\(a\\) ivmesiyle <strong>yukarı hızlanıyorsa</strong> (ör. asansörde) sütun dengede değildir. Aynı sütuna Newton'un ikinci yasası uygulanır: \\(P_{alt}A - P_{üst}A - \\rho A h g = \\rho A h a\\), yani \\(P_{alt} - P_{üst} = \\rho (g + a) h\\).</p>\n<div class=\"kn-kural\"><strong>Mutlak basınç (absolute pressure):</strong> \\(P = P_0 + \\rho g h\\) — gerçek toplam basınç.<br><strong>Gösterge basıncı (gauge pressure):</strong> \\(P_{gauge} = P - P_0 = \\rho g h\\) — atmosfer basıncının <em>üzerindeki</em> kısım. Lastik ve tansiyon ölçerler gösterge basıncı okur.</div>\n<h4>Basınç yalnızca derinliğe bağlıdır</h4>\n<p>\\(P = P_0 + \\rho g h\\) ifadesinde kabın <strong>şekli</strong>, <strong>genişliği</strong> ya da içindeki toplam su miktarı yoktur. Aynı <strong>durgun</strong> sıvıda, birbirine bağlı ve <strong>aynı yatay seviyedeki</strong> tüm noktalarda basınç eşittir (hidrostatik paradoks). Bu yüzden birleşik kaplarda (U-tüp gibi) tek sıvının yüzeyleri aynı seviyede olur.</p>\n<p>Üst üste duran birden çok katman varsa her katmanın katkısı toplanır: \\(P = P_0 + \\rho_1 g h_1 + \\rho_2 g h_2 + \\dots\\)</p>\n<h4>Grafik/tablo okuma</h4>\n<table><thead><tr><th>Grafik</th><th>Eğim (slope)</th><th>Dikey kesişim (intercept)</th></tr></thead><tbody>\n<tr><td>Mutlak \\(P\\) – derinlik \\(h\\)</td><td>\\(\\rho g\\)</td><td>\\(P_0\\) (yüzeydeki basınç)</td></tr>\n<tr><td>Gösterge \\(P_{gauge}\\) – \\(h\\)</td><td>\\(\\rho g\\)</td><td>0</td></tr></tbody></table>\n<p>Yoğunluğu bulmak için eğimi \\(g\\)'ye böl: \\(\\rho = \\text{slope}/g\\). Tek bir mutlak basınç değerini derinliğe bölmek <em>yanlıştır</em>, çünkü \\(P_0\\)'ı da içerir.</p>\n<h4>Bir yüzeye etki eden kuvvet</h4>\n<p>Düz bir yüzeyin her yerinde basınç aynıysa \\(F = PA\\). Bir akvaryum camının bir tarafında su, diğer tarafında hava varsa, atmosfer iki taraftan da iter; <strong>net kuvvet</strong> için gösterge basıncı kullanılır: \\(F_{net} = \\rho g h A\\) (h: camın merkezinin derinliği, küçük camlarda).</p>\n<h4>Pascal ilkesi (Pascal's principle) ve hidrolik sistem</h4>\n<div class=\"kn-kural\">Kapalı bir sıvıya uygulanan basınç değişimi, sıvının her noktasına ve kabın çeperlerine <strong>azalmadan</strong> iletilir. Pistonlar aynı seviyedeyse \\(\\dfrac{F_1}{A_1} = \\dfrac{F_2}{A_2}\\).</div>\n<p>Küçük pistona küçük kuvvet, büyük pistonda büyük kuvvet üretir; ama enerji korunur: küçük piston çok daha uzun yol alır (\\(A_1 d_1 = A_2 d_2\\)). Pistonlar farklı yükseklikteyse \\(\\rho g \\Delta h\\) terimi de eklenir.</p>\n<h4>Manometre</h4>\n<p>Açık uçlu U-tüp manometrede, gazın bağlı olduğu koldaki sıvı seviyesi açık koldakinden \\(h\\) kadar aşağıdaysa gaz basıncı \\(P_{gaz} = P_0 + \\rho g h\\) olur (gaz, sıvıyı aşağı itmiştir). Aynı seviyedeki iki nokta aynı basınçtadır; denklemi bu seviyeden kur.</p>\n<p><strong>FRQ kalıpları:</strong> <em>“Pressure in a static fluid depends only on depth and fluid density, \\(P = P_0 + \\rho g h\\), not on the shape of the container.”</em> · <em>“Points at the same depth in the same connected fluid are at the same pressure.”</em> · <em>“The slope of the absolute pressure versus depth graph equals \\(\\rho g\\).”</em></p>",
+   "ornekler": [
+    {
+     "soru": "Bir gölde derinlik–mutlak basınç ölçümleri: \\(h\\) = 0, 2.0, 4.0, 6.0 m için \\(P\\) = 101, 121, 141, 161 kPa. Suyun yoğunluğunu ve yüzeydeki basıncı bulun (\\(g = 10\\ \\text{m/s}^2\\)).",
+     "cozum": [
+      "Eğim: \\(\\Delta P/\\Delta h = (161-101)\\ \\text{kPa}/6.0\\ \\text{m} = 10\\ \\text{kPa/m} = 1.0\\times10^4\\ \\text{Pa/m}\\).",
+      "\\(\\rho g = 1.0\\times10^4\\) → \\(\\rho = 1.0\\times10^4/10 = 1000\\ \\text{kg/m}^3\\).",
+      "Kesişim (\\(h=0\\)): \\(P_0 = 101\\ \\text{kPa}\\) — atmosfer basıncı."
+     ]
+    },
+    {
+     "soru": "Bir kapta 0.20 m yağ (\\(\\rho = 800\\ \\text{kg/m}^3\\)) 0.40 m suyun üstünde duruyor. Kabın tabanındaki gösterge ve mutlak basıncı bulun (\\(P_0 = 1.0\\times10^5\\ \\text{Pa}\\), \\(g = 10\\ \\text{m/s}^2\\)).",
+     "cozum": [
+      "Yağ katmanı: \\(\\rho g h = 800(10)(0.20) = 1600\\ \\text{Pa}\\). Su katmanı: \\(1000(10)(0.40) = 4000\\ \\text{Pa}\\).",
+      "Gösterge: \\(1600 + 4000 = 5600\\ \\text{Pa}\\). Mutlak: \\(1.0\\times10^5 + 5600 = 1.056\\times10^5\\ \\text{Pa}\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Tabanlarının alanı aynı olan iki kaptan biri yukarı doğru genişleyen bir kova, diğeri düz kenarlı dik bir silindirdir. İkisi de aynı derinliğe kadar suyla doldurulmuştur. Bir öğrenci “Kovada daha çok su var, bu yüzden tabanındaki basınç daha büyüktür” diyor. Bu iddiayı değerlendirin.",
+     "cozum": [
+      "İddia yanlıştır. Durgun suda basınç \\(P = P_0 + \\rho g h\\) ile verilir; yalnızca yoğunluğa ve derinliğe bağlıdır.",
+      "İki kapta su aynı, derinlik aynı → taban basınçları eşittir. Kovanın fazladan suyunun ağırlığını eğimli/geniş çeperler taşır.",
+      "Puan getiren cümle: <em>“The pressure at the bottom depends only on the depth and the density of the water, which are the same, so the pressures are equal.”</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Soru “absolute” mu “gauge” mu diyor? Altını çiz. Mutlak basınçta \\(P_0\\)'ı ekle, gösterge basıncında ekleme.",
+    "Derinlik \\(h\\) daima sıvı <strong>yüzeyinden aşağı</strong> doğru ölçülür; kabın tabanından değil.",
+    "Hesap makinesi serbest; ama \\(\\rho g h\\) çarpımında birimleri (cm → m) kontrol etmeden sayıyı yazma.",
+    "Bağlı kap ve U-tüp sorularında aynı sıvının içinde aynı yatay seviyede iki nokta seç ve basınçlarını eşitle; puanlayıcı bu adımı arar."
+   ],
+   "sikHatalar": [
+    "Basıncın kabın şekline veya içindeki toplam sıvı miktarına bağlı olduğunu düşünmek.",
+    "Mutlak basınç grafiğinde \\(P/h\\) oranını yoğunluk sanmak; doğrusu eğimi \\(g\\)'ye bölmektir.",
+    "Pistonların çapı verildiğinde alan oranı yerine çap oranını kullanmak (alan çapın karesiyle orantılıdır)."
+   ],
+   "terimler": [
+    {
+     "en": "pressure",
+     "tr": "basınç"
+    },
+    {
+     "en": "absolute pressure",
+     "tr": "mutlak basınç"
+    },
+    {
+     "en": "gauge pressure",
+     "tr": "gösterge (manometre) basıncı"
+    },
+    {
+     "en": "atmospheric pressure",
+     "tr": "atmosfer basıncı"
+    },
+    {
+     "en": "hydrostatic pressure",
+     "tr": "hidrostatik (durgun sıvı) basıncı"
+    },
+    {
+     "en": "Pascal's principle",
+     "tr": "Pascal ilkesi"
+    },
+    {
+     "en": "hydraulic lift",
+     "tr": "hidrolik kaldıraç"
+    },
+    {
+     "en": "manometer",
+     "tr": "manometre"
+    }
+   ]
+  },
+  {
+   "kod": "8.3",
+   "baslik": "Fluids and Newton's Laws",
+   "baslikTr": "Akışkanlar ve Newton yasaları",
+   "hedefler": [
+    "Kaldırma kuvvetinin (buoyant force) kaynağını üst ve alt yüzler arasındaki basınç farkıyla açıklamak.",
+    "Arşimet ilkesini (Archimedes' principle) \\(F_B = \\rho_f V_{disp} g\\) ile kullanmak; yüzen, batan, iple tutulan cisimlerin serbest cisim diyagramlarını çizmek.",
+    "Dinamometre (spring scale) ve terazi okumalarını Newton'un ikinci ve üçüncü yasalarıyla yorumlamak."
+   ],
+   "anlatim": "<h4>Kaldırma kuvveti nereden gelir?</h4>\n<p>Suya batırılmış, üst ve alt yüzlerinin alanı \\(A\\), yüksekliği \\(h\\) olan bir blok düşün. Alt yüz daha derindedir, bu yüzden basıncı daha büyüktür:</p>\n\\[ F_B = P_{alt}A - P_{üst}A = (\\rho_f g h)A = \\rho_f g V \\]\n<p>Yan yüzlere etki eden kuvvetler karşılıklı birbirini götürür. Geriye kalan <strong>net yukarı kuvvet</strong> kaldırma kuvvetidir (buoyant force). Tamamen battıktan sonra blok daha da derine insin: hem \\(P_{alt}\\) hem \\(P_{üst}\\) aynı miktarda artar, fark — dolayısıyla \\(F_B\\) — <strong>değişmez</strong>.</p>\n<div class=\"kn-kural\"><strong>Arşimet ilkesi (Archimedes' principle):</strong> Bir akışkana kısmen ya da tamamen batmış bir cisme etki eden kaldırma kuvveti, cismin yerini değiştirdiği (displaced) akışkanın ağırlığına eşittir: \\[ F_B = \\rho_{f}\\, V_{disp}\\, g \\] \\(\\rho_f\\): <strong>akışkanın</strong> yoğunluğu (cismin değil!), \\(V_{disp}\\): akışkanın içinde kalan hacim.</div>\n<h4>Serbest cisim diyagramları (free-body diagrams)</h4>\n<table><thead><tr><th>Durum</th><th>Kuvvetler</th><th>Newton'un 2. yasası</th></tr></thead><tbody>\n<tr><td>Serbestçe yüzen (floating)</td><td>\\(F_B\\) yukarı, \\(mg\\) aşağı</td><td>\\(F_B = mg\\)</td></tr>\n<tr><td>Dinamometreye asılı, batmış</td><td>\\(T\\) ve \\(F_B\\) yukarı, \\(mg\\) aşağı</td><td>\\(T = mg - F_B\\) (görünür ağırlık, apparent weight)</td></tr>\n<tr><td>Tabanda duran</td><td>\\(F_N\\) ve \\(F_B\\) yukarı, \\(mg\\) aşağı</td><td>\\(F_N = mg - F_B\\)</td></tr>\n<tr><td>Tabana iple bağlı, batmış (hafif cisim)</td><td>\\(F_B\\) yukarı; \\(mg\\) ve \\(T\\) aşağı</td><td>\\(T = F_B - mg\\)</td></tr>\n<tr><td>Serbest bırakılmış, hızlanan</td><td>\\(F_B\\), \\(mg\\) (sürtünme ihmal)</td><td>\\(F_B - mg = ma\\)</td></tr></tbody></table>\n<h4>Yüzme ve batma (floating and sinking)</h4>\n<p>Tamamen batmış bir cisim için \\(F_B = \\rho_f V g\\), \\(mg = \\rho_{cisim} V g\\). Karşılaştırma yalnızca yoğunluklara kalır:</p>\n<ul>\n<li>\\(\\rho_{cisim} \\lt \\rho_f\\): net kuvvet yukarı, cisim yükselir ve sonunda <strong>yüzer</strong>.</li>\n<li>\\(\\rho_{cisim} = \\rho_f\\): her derinlikte dengede (nötr).</li>\n<li>\\(\\rho_{cisim} \\gt \\rho_f\\): cisim <strong>batar</strong>.</li>\n</ul>\n<div class=\"kn-kural\">Yüzen cisim için \\(\\rho_f V_{sub} g = \\rho_{cisim} V g\\) ⇒ \\[ \\frac{V_{sub}}{V} = \\frac{\\rho_{cisim}}{\\rho_f} \\] Yoğunluğu 600 kg/m³ olan tahta suda hacminin %60'ı batık yüzer.</div>\n<h4>Yoğunluğu tartarak ölçmek</h4>\n<p>Dinamometre havada \\(W\\), cisim suya tamamen batınca \\(W'\\) gösteriyorsa: \\(F_B = W - W' = \\rho_w V g\\) ve \\(W = \\rho_{cisim} V g\\). Oranlarsak \\[ \\rho_{cisim} = \\rho_w \\frac{W}{W - W'} \\] Hacmi ayrıca ölçmeye gerek kalmaz.</p>\n<h4>Newton'un üçüncü yasası ve terazi okumaları</h4>\n<p>Su cisme \\(F_B\\) kadar yukarı kuvvet uyguluyorsa, cisim de suya \\(F_B\\) kadar <strong>aşağı</strong> kuvvet uygular (etki–tepki çifti). Bu yüzden altında terazi olan bir su kabına, iple tutulan bir cisim batırıldığında terazi okuması \\(F_B\\) kadar artar; ipteki gerilme de \\(F_B\\) kadar azalır. Cisim serbestçe yüzüyorsa terazi, cismin ağırlığı kadar artar. <strong>Sistemi seç:</strong> “kap + su + cisim” sisteminde dış kuvvetler ağırlıklar, ip gerilmesi ve terazinin normal kuvvetidir.</p>\n<div class=\"kn-dikkat\">\\(F_B\\), cismin derinliğine (tamamen battıktan sonra), kütlesine ya da yoğunluğuna bağlı <strong>değildir</strong>. Aynı hacimdeki demir ve alüminyum küplere suda aynı kaldırma kuvveti etki eder.</div>\n<p><strong>FRQ kalıpları:</strong> <em>“The buoyant force equals the weight of the displaced fluid, \\(F_B = \\rho_f V g\\).”</em> · <em>“Since the object is in equilibrium, the upward forces (buoyant force and tension) balance the weight.”</em> · <em>“By Newton's third law, the object exerts a downward force on the water equal in magnitude to the buoyant force, so the scale reading increases.”</em></p>",
+   "ornekler": [
+    {
+     "soru": "Bir taş dinamometreye asılıyken havada 6.0 N, suya tamamen batırılınca 3.6 N gösteriyor. Taşın hacmini ve yoğunluğunu bulun (\\(\\rho_w = 1000\\ \\text{kg/m}^3\\), \\(g = 10\\ \\text{m/s}^2\\)).",
+     "cozum": [
+      "\\(F_B = 6.0 - 3.6 = 2.4\\ \\text{N}\\). \\(V = F_B/(\\rho_w g) = 2.4/(1000\\cdot10) = 2.4\\times10^{-4}\\ \\text{m}^3\\).",
+      "\\(m = 6.0/10 = 0.60\\ \\text{kg}\\), \\(\\rho = 0.60/(2.4\\times10^{-4}) = 2500\\ \\text{kg/m}^3\\). Kontrol: \\(1000\\cdot 6.0/2.4 = 2500\\)."
+     ]
+    },
+    {
+     "soru": "Kütlesi 0.30 kg, hacmi \\(5.0\\times10^{-4}\\ \\text{m}^3\\) olan bir top, havuzun tabanına bir iple bağlı ve tamamen su altında duruyor. İpteki gerilmeyi bulun. İp kesilirse topun ilk ivmesi ne olur (sürtünme ihmal)?",
+     "cozum": [
+      "\\(F_B = 1000(5.0\\times10^{-4})(10) = 5.0\\ \\text{N}\\), \\(mg = 3.0\\ \\text{N}\\). Denge: \\(F_B = mg + T\\) → \\(T = 2.0\\ \\text{N}\\).",
+      "İp kesilince net kuvvet \\(5.0 - 3.0 = 2.0\\ \\text{N}\\) yukarı; \\(a = 2.0/0.30 \\approx 6.7\\ \\text{m/s}^2\\) yukarı."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Terazi üzerindeki su dolu bir kap 30 N gösteriyor. Hacmi \\(2.0\\times10^{-4}\\ \\text{m}^3\\) olan bir metal blok, elle tutulan bir ipe asılı olarak, kaba değmeden suya tamamen batırılıyor (su taşmıyor). Terazi ne gösterir? Gerekçelendirin.",
+     "cozum": [
+      "Su bloğa \\(F_B = 1000(2.0\\times10^{-4})(10) = 2.0\\ \\text{N}\\) yukarı kuvvet uygular.",
+      "Newton'un üçüncü yasası: blok suya 2.0 N aşağı kuvvet uygular; bu kuvvet su yoluyla kabın tabanına ve teraziye aktarılır.",
+      "Terazi \\(30 + 2.0 = 32\\ \\text{N}\\) gösterir. Bloğun ağırlığının geri kalanını ip taşır; bloğun kütlesi sonucu değiştirmez."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her kaldırma kuvveti sorusunda önce serbest cisim diyagramını çiz; FRQ'da diyagramdaki okların göreli uzunlukları puanlanır.",
+    "\\(F_B = \\rho_f V_{disp} g\\) yazarken \\(\\rho\\)'nun <strong>akışkanın</strong> yoğunluğu olduğunu ve \\(V\\)'nin yalnızca batık hacim olduğunu söyle.",
+    "Dinamometre tablolarında okuma sabitlendiği anda cisim tamamen batmıştır; bu noktadan sonra derinlik \\(F_B\\)'yi değiştirmez.",
+    "Terazi sorularında sistemi açıkça tanımla (ör. “kap + su”) ve Newton'un üçüncü yasasını adıyla an."
+   ],
+   "sikHatalar": [
+    "\\(F_B\\) hesabında cismin yoğunluğunu kullanmak; doğrusu akışkanın yoğunluğudur.",
+    "Kaldırma kuvvetinin derinlikle arttığını sanmak (tamamen battıktan sonra sabittir; sıkıştırılamaz akışkanda).",
+    "Yüzen cisimde kaldırma kuvvetinin ağırlıktan büyük olduğunu düşünmek; dengede tam olarak eşittirler."
+   ],
+   "terimler": [
+    {
+     "en": "buoyant force",
+     "tr": "kaldırma kuvveti"
+    },
+    {
+     "en": "Archimedes' principle",
+     "tr": "Arşimet ilkesi"
+    },
+    {
+     "en": "displaced fluid",
+     "tr": "yeri değiştirilen (taşırılan) akışkan"
+    },
+    {
+     "en": "apparent weight",
+     "tr": "görünür ağırlık"
+    },
+    {
+     "en": "spring scale",
+     "tr": "dinamometre"
+    },
+    {
+     "en": "free-body diagram",
+     "tr": "serbest cisim diyagramı"
+    },
+    {
+     "en": "submerged",
+     "tr": "batmış, suya gömülü"
+    },
+    {
+     "en": "neutral buoyancy",
+     "tr": "nötr yüzerlik"
+    }
+   ]
+  },
+  {
+   "kod": "8.4",
+   "baslik": "Fluids and Conservation Laws",
+   "baslikTr": "Akışkanlar ve korunum yasaları",
+   "hedefler": [
+    "Kütlenin korunumundan süreklilik denklemini (continuity equation) \\(A_1 v_1 = A_2 v_2\\) türetmek ve hacimsel debiyi (volume flow rate) hesaplamak.",
+    "Enerjinin korunumundan Bernoulli denklemini \\(P + \\tfrac12\\rho v^2 + \\rho g y = \\text{sabit}\\) kullanmak; Torricelli sonucunu elde etmek.",
+    "Hız–basınç ilişkisini nitel (qualitative) olarak açıklamak ve akış deneylerini tablo/grafik ile analiz etmek."
+   ],
+   "anlatim": "<h4>Hacimsel debi (volume flow rate)</h4>\n<div class=\"kn-tanim\">Bir borunun kesitinden birim zamanda geçen akışkan hacmi: \\[ Q = \\frac{V}{t} = A v \\] Birimi \\(\\text{m}^3/\\text{s}\\). (\\(1\\ \\text{L/s} = 10^{-3}\\ \\text{m}^3/\\text{s}\\).) Kütlesel debi \\(\\rho A v\\)'dir (kg/s).</div>\n<h4>Süreklilik denklemi (continuity equation) — kütlenin korunumu</h4>\n<p>Kararlı akışta borunun hiçbir yerinde akışkan birikmez ya da kaybolmaz. Bir bölümden giren kütle, diğerinden çıkan kütleye eşittir: \\(\\rho_1 A_1 v_1 = \\rho_2 A_2 v_2\\). İdeal (sıkıştırılamaz) akışkanda \\(\\rho\\) sabit olduğundan:</p>\n<div class=\"kn-kural\">\\[ A_1 v_1 = A_2 v_2 \\] Boru daraldıkça akış <strong>hızlanır</strong>. Dairesel kesitte \\(A = \\pi d^2/4\\), dolayısıyla \\(v \\propto 1/d^2\\): çap yarıya inerse hız <strong>4 katına</strong> çıkar.</div>\n<p>Boru kollara ayrılıyorsa toplam debi korunur: \\(Q_{ana} = Q_1 + Q_2 + \\dots\\)</p>\n<h4>Bernoulli denklemi (Bernoulli's equation) — enerjinin korunumu</h4>\n<p>Küçük bir akışkan parçasını sistem seç. Arkasındaki akışkan onu iter (pozitif iş), önündeki akışkan ona direnir (negatif iş). Bu net iş, parçanın kinetik ve kütleçekim potansiyel enerjisindeki değişime eşittir. Her şeyi birim hacme bölünce:</p>\n<div class=\"kn-kural\">\\[ P_1 + \\tfrac12 \\rho v_1^2 + \\rho g y_1 = P_2 + \\tfrac12 \\rho v_2^2 + \\rho g y_2 \\] Her terim birim hacim başına enerjidir (J/m³ = Pa). Geçerlilik: ideal akışkan, kararlı akış, aynı akım çizgisi (streamline).</div>\n<table><thead><tr><th>Özel durum</th><th>Bernoulli neye dönüşür?</th></tr></thead><tbody>\n<tr><td>Akışkan durgun (\\(v_1 = v_2 = 0\\))</td><td>\\(P_2 = P_1 + \\rho g (y_1 - y_2)\\): hidrostatik basınç (Konu 8.2)</td></tr>\n<tr><td>Yatay boru (\\(y_1 = y_2\\))</td><td>\\(P_1 - P_2 = \\tfrac12\\rho(v_2^2 - v_1^2)\\): <strong>hızın büyük olduğu yerde basınç küçüktür</strong></td></tr>\n<tr><td>Büyük açık depodaki delik (Torricelli)</td><td>İki nokta da \\(P_0\\)'da, yüzeyde \\(v \\approx 0\\): \\(v = \\sqrt{2gh}\\), \\(h\\): yüzeyin delikten yüksekliği</td></tr>\n<tr><td>Sabit kesitli eğimli boru</td><td>Hız aynı (süreklilik); \\(P_1 - P_2 = \\rho g (y_2 - y_1)\\)</td></tr></tbody></table>\n<h4>Nitel akıl yürütme (qualitative reasoning)</h4>\n<ul>\n<li>Yatay bir borunun dar kısmına bağlı dik açık tüpte su sütunu daha <strong>alçaktır</strong>: dar kısımda hız büyük, basınç küçük.</li>\n<li>Fırtınada çatının üstünde hızlı akan hava, içerideki durgun havadan daha düşük basınç oluşturur; net kuvvet çatıyı yukarı iter.</li>\n<li>Neden–sonuç: akışkanı <em>hızlandıran</em>, arkadaki yüksek basınçla öndeki düşük basınç arasındaki farktır (Newton'un ikinci yasası). “Hız arttığı için basınç düşer” ile “basınç farkı akışkanı hızlandırır” aynı enerji ilişkisinin iki yüzüdür.</li>\n</ul>\n<h4>Problem çözme adımları</h4>\n<ol>\n<li>İki noktayı seç (biri bilinen, biri istenen); yüksekliklerini aynı referansa göre yaz.</li>\n<li>Hızlar bilinmiyorsa önce <strong>süreklilik</strong> ile bul.</li>\n<li>Açık havaya bakan noktalarda \\(P = P_0\\); büyük depo yüzeyinde \\(v \\approx 0\\).</li>\n<li>Bernoulli'yi yaz, tek bilinmeyeni çöz, birimleri (cm² → m², kPa → Pa) kontrol et.</li>\n</ol>\n<div class=\"kn-dikkat\">Torricelli hızı yalnız \\(h\\)'ye bağlıdır, deliğin alanına değil. Deliğin alanı yalnızca debiyi (\\(Q = A v\\)) belirler. Fıskiye sorularında çıkış hızından sonra hareket bir <em>mermi hareketi (projectile motion)</em> problemidir.</div>\n<p><strong>FRQ kalıpları:</strong> <em>“By the continuity equation, the smaller cross-sectional area requires a greater speed.”</em> · <em>“By Bernoulli's equation, at the same height the region of greater speed has lower pressure.”</em> · <em>“A plot of \\(v^2\\) versus \\(h\\) should be linear with slope \\(2g\\).”</em></p>",
+   "ornekler": [
+    {
+     "soru": "Yatay bir boruda su, kesit alanı \\(12\\ \\text{cm}^2\\) olan kısımda \\(1.5\\ \\text{m/s}\\) hızla akıyor ve basınç \\(1.40\\times10^5\\ \\text{Pa}\\). Alanı \\(4.0\\ \\text{cm}^2\\) olan dar kısımda hız ve basınç nedir?",
+     "cozum": [
+      "Süreklilik: \\(v_2 = v_1 A_1/A_2 = 1.5 \\times 12/4.0 = 4.5\\ \\text{m/s}\\).",
+      "Bernoulli (aynı yükseklik): \\(P_2 = P_1 - \\tfrac12\\rho(v_2^2 - v_1^2) = 1.40\\times10^5 - 500(20.25 - 2.25) = 1.40\\times10^5 - 9000 = 1.31\\times10^5\\ \\text{Pa}\\)."
+     ]
+    },
+    {
+     "soru": "Büyük açık bir su tankında yüzey, yan duvardaki küçük bir deliğin 0.80 m üstünde; delik yerden 1.25 m yüksekte. Su delikten ne hızla çıkar ve yere delikten yatay olarak ne kadar uzakta düşer (\\(g = 10\\ \\text{m/s}^2\\))?",
+     "cozum": [
+      "Torricelli: \\(v = \\sqrt{2gh} = \\sqrt{2(10)(0.80)} = 4.0\\ \\text{m/s}\\), yatay.",
+      "Düşme süresi: \\(1.25 = \\tfrac12 (10) t^2\\) → \\(t = 0.50\\ \\text{s}\\).",
+      "Yatay uzaklık: \\(x = v t = 4.0 \\times 0.50 = 2.0\\ \\text{m}\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Su, yatay bir boruda geniş bölüm 1'den dar bölüm 2'ye, sonra yeniden aynı genişlikteki bölüm 3'e akıyor. Her bölümün üstündeki açık dik tüplerde su yükseklikleri \\(h_1, h_2, h_3\\). Bunları sıralayın ve gerekçelendirin (ideal akışkan).",
+     "cozum": [
+      "Süreklilik: \\(A_2 \\lt A_1 = A_3\\) olduğundan \\(v_2 \\gt v_1 = v_3\\).",
+      "Bernoulli (aynı yükseklik): hız büyükse basınç küçük → \\(P_2 \\lt P_1 = P_3\\).",
+      "Dik tüpteki sütun yüksekliği o noktadaki gösterge basıncıyla orantılıdır (\\(P - P_0 = \\rho g h\\)), bu yüzden \\(h_1 = h_3 \\gt h_2\\). İdeal akışkanda enerji kaybı olmadığı için 1 ve 3 eşittir."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Çap verilirse önce alanı ya da doğrudan \\(v \\propto 1/d^2\\) oranını kullan; çapı alan gibi kullanmak en sık çeldiricidir.",
+    "Bernoulli'de her terimin birimi Pa'dır; cm²'yi m²'ye, kPa'yı Pa'ya çevirmeden yerine koyma. Hesap makinesi serbesttir.",
+    "Nitel sorularda iki adım yaz: önce süreklilikle hızları karşılaştır, sonra Bernoulli ile basınçları. Puanlayıcı ikisini de arar.",
+    "Deney sorusunda doğrusal grafik iste: Torricelli için \\(v^2\\)–\\(h\\) (eğim \\(2g\\)), süreklilik için \\(v\\)–\\(1/A\\) (eğim \\(Q\\))."
+   ],
+   "sikHatalar": [
+    "Dar kısımda basıncın arttığını sanmak (“su sıkışıyor”). İdeal akışkan sıkışmaz; dar kısımda hız artar, basınç azalır.",
+    "Torricelli'de \\(h\\) olarak deliğin yerden yüksekliğini almak. Doğrusu su yüzeyinin delikten yüksekliğidir.",
+    "Bernoulli'de \\(\\tfrac12\\rho v^2\\) yerine \\(\\tfrac12 m v^2\\) yazmak; denklem birim hacim başına enerjidir."
+   ],
+   "terimler": [
+    {
+     "en": "volume flow rate",
+     "tr": "hacimsel debi"
+    },
+    {
+     "en": "continuity equation",
+     "tr": "süreklilik denklemi"
+    },
+    {
+     "en": "Bernoulli's equation",
+     "tr": "Bernoulli denklemi"
+    },
+    {
+     "en": "streamline",
+     "tr": "akım çizgisi"
+    },
+    {
+     "en": "steady (laminar) flow",
+     "tr": "kararlı (katmanlı) akış"
+    },
+    {
+     "en": "cross-sectional area",
+     "tr": "kesit alanı"
+    },
+    {
+     "en": "Torricelli's theorem",
+     "tr": "Torricelli teoremi"
+    },
+    {
+     "en": "Venturi meter",
+     "tr": "Venturi ölçer"
+    }
+   ]
+  }
+ ]
+}

@@ -1,5 +1,5 @@
 {
- "surum": 19,
+ "surum": 20,
  "olusturma": "2026-10-21T08:13:59.509Z",
  "aciklama": "Meberra soru bankası tohumu — tek doğruluk kaynağı. Statik olarak SUNULMAZ. Üretici: node araclar/soru-aktar.js",
  "sorular": [
@@ -154542,8 +154542,3320 @@
     }
    },
    "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_1",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 20,
+   "numara": 21,
+   "konu": "8.1 Internal Structure and Density",
+   "zorluk": "easy",
+   "govde": "A solid rectangular block measures $0.10\\ \\text{m} \\times 0.20\\ \\text{m} \\times 0.050\\ \\text{m}$ and has a mass of $2.7\\ \\text{kg}$. What is the density of the material of the block?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$2.7 \\times 10^{3}\\ \\text{kg/m}^3$"
+    },
+    {
+     "id": "B",
+     "text": "$2.7 \\times 10^{2}\\ \\text{kg/m}^3$"
+    },
+    {
+     "id": "C",
+     "text": "$2.7 \\times 10^{4}\\ \\text{kg/m}^3$"
+    },
+    {
+     "id": "D",
+     "text": "$3.7 \\times 10^{-4}\\ \\text{kg/m}^3$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Hacim: $V = 0.10 \\times 0.20 \\times 0.050 = 1.0 \\times 10^{-3}\\ \\text{m}^3$.<br/>2. $\\rho = \\frac{m}{V} = \\frac{2.7}{1.0\\times10^{-3}} = 2.7 \\times 10^{3}\\ \\text{kg/m}^3$ (alüminyuma yakın).",
+   "genel_hatirlatma": "Yoğunluk $\\rho = m/V$. Düzgün şekilli cisimde hacmi boyutların çarpımından bul; SI birimleri kullan.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Hacmi bir basamak büyük hesaplamak.",
+     "aciklama": "$0.10 \\times 0.20 \\times 0.050 = 1.0\\times10^{-3}\\ \\text{m}^3$'tür; $1.0\\times10^{-2}$ alınırsa $\\rho = 270\\ \\text{kg/m}^3$ çıkar."
+    },
+    "C": {
+     "etiket": "Hacmi bir basamak küçük hesaplamak.",
+     "aciklama": "$V = 1.0\\times10^{-4}\\ \\text{m}^3$ alınırsa sonuç 10 kat büyük olur; ondalık basamakları dikkatle çarp."
+    },
+    "D": {
+     "etiket": "Oranı ters kurmak ($V/m$).",
+     "aciklama": "$V/m = 1.0\\times10^{-3}/2.7 \\approx 3.7\\times10^{-4}$, birim kütle başına hacimdir (m³/kg). Yoğunluk $m/V$'dir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Yoğunluk = kütle / hacim",
+    "ipucu": "Önce hacmi m³ olarak bul, sonra kütleyi hacme böl.",
+    "sikHata": "Ondalık çarpımında basamak kaydırmak.",
+    "cedKonu": "8.1",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_2",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 21,
+   "numara": 22,
+   "konu": "8.1 Internal Structure and Density",
+   "zorluk": "easy",
+   "govde": "In AP Physics 1, the flow of a liquid through a pipe is often analyzed with the <strong>ideal fluid</strong> model. Which of the following is an assumption of that model?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "Internal friction (viscosity) between layers of the fluid is what keeps the flow steady."
+    },
+    {
+     "id": "B",
+     "text": "The density of the fluid is the same at every point and does not change when the pressure changes."
+    },
+    {
+     "id": "C",
+     "text": "The density of the fluid increases with depth because the fluid below is squeezed by the fluid above."
+    },
+    {
+     "id": "D",
+     "text": "The flow is turbulent, so the velocity at each point changes randomly with time."
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "İdeal akışkan modelinin varsayımları: (1) sıkıştırılamaz — yoğunluk her yerde sabit, (2) viskozitesiz, (3) kararlı, katmanlı akış. Doğru seçenek (1)'i ifade eder.",
+   "genel_hatirlatma": "İdeal akışkan: incompressible, nonviscous, steady (laminar) flow. Süreklilik ve Bernoulli denklemleri bu varsayımlara dayanır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Viskoziteyi modele katmak.",
+     "aciklama": "İdeal akışkan viskozitesizdir (nonviscous): iç sürtünme ve buna bağlı enerji kaybı yok sayılır."
+    },
+    "C": {
+     "etiket": "Sıvıyı sıkıştırılabilir sanmak.",
+     "aciklama": "İdeal akışkan sıkıştırılamaz (incompressible); derinlikle artan şey basınçtır, yoğunluk değil."
+    },
+    "D": {
+     "etiket": "Kararlı akış ile türbülansı karıştırmak.",
+     "aciklama": "Modelde akış kararlı ve katmanlıdır (steady, laminar): bir noktadaki hız zamanla değişmez."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "İdeal akışkan modeli",
+    "ipucu": "Üç anahtar kelimeyi hatırla: incompressible, nonviscous, steady.",
+    "sikHata": "Sıvı yoğunluğunun derinlikle arttığını sanmak.",
+    "cedKonu": "8.1",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_3",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 22,
+   "numara": 23,
+   "konu": "8.1 Internal Structure and Density",
+   "zorluk": "medium",
+   "govde": "A student pours different volumes of a liquid into the same empty beaker and records the total mass of the beaker and liquid each time.<table><thead><tr><th>Volume of liquid (mL)</th><th>Total mass (g)</th></tr></thead><tbody><tr><td>20</td><td>87</td></tr><tr><td>40</td><td>111</td></tr><tr><td>60</td><td>135</td></tr><tr><td>80</td><td>159</td></tr></tbody></table>Based on the data, what is the density of the liquid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$2.0 \\times 10^{3}\\ \\text{kg/m}^3$"
+    },
+    {
+     "id": "B",
+     "text": "$4.4 \\times 10^{3}\\ \\text{kg/m}^3$"
+    },
+    {
+     "id": "C",
+     "text": "$1.2 \\times 10^{3}\\ \\text{kg/m}^3$"
+    },
+    {
+     "id": "D",
+     "text": "$1.2\\ \\text{kg/m}^3$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Her 20 mL'de kütle 24 g artıyor: eğim $= \\frac{24\\ \\text{g}}{20\\ \\text{mL}} = 1.2\\ \\text{g/cm}^3$.<br/>2. Çevir: $1.2\\ \\text{g/cm}^3 = 1.2 \\times 10^{3}\\ \\text{kg/m}^3$.<br/>3. Kesişim: $87 - 1.2(20) = 63\\ \\text{g}$ — beherin kütlesi.",
+   "genel_hatirlatma": "Toplam kütle–hacim verisinde eğim sıvının yoğunluğu, kesişim kabın kütlesidir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Tek noktadan toplam kütle / hacim almak.",
+     "aciklama": "$159/80 \\approx 1.99\\ \\text{g/mL}$ beherin kütlesini de içerir. Beher kütlesini ayıklamak için eğim kullanılır."
+    },
+    "B": {
+     "etiket": "İlk satırı tek başına kullanmak.",
+     "aciklama": "$87/20 \\approx 4.35\\ \\text{g/mL}$; burada 63 g'lık beherin payı daha da büyüktür."
+    },
+    "D": {
+     "etiket": "g/mL'yi kg/m³'e çevirmemek.",
+     "aciklama": "Eğim $1.2\\ \\text{g/mL} = 1.2\\ \\text{g/cm}^3 = 1200\\ \\text{kg/m}^3$'tür. $1.2\\ \\text{kg/m}^3$ havanın yoğunluğu kadardır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Kütle–hacim grafiğinin eğimi = yoğunluk",
+    "ipucu": "Ardışık satırlar arasındaki kütle farkını hacim farkına böl.",
+    "sikHata": "Kabın kütlesini sıvıya katmak.",
+    "cedKonu": "8.1",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_4",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 23,
+   "numara": 24,
+   "konu": "8.1 Internal Structure and Density",
+   "zorluk": "medium",
+   "govde": "The table gives the mass and volume of four solid objects.<table><thead><tr><th>Object</th><th>Mass (kg)</th><th>Volume ($\\text{m}^3$)</th></tr></thead><tbody><tr><td>P</td><td>2.0</td><td>$1.0 \\times 10^{-3}$</td></tr><tr><td>Q</td><td>3.0</td><td>$2.0 \\times 10^{-3}$</td></tr><tr><td>R</td><td>1.0</td><td>$4.0 \\times 10^{-4}$</td></tr><tr><td>S</td><td>6.0</td><td>$3.0 \\times 10^{-3}$</td></tr></tbody></table>Which of the following correctly ranks the densities of the objects?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\rho_S > \\rho_Q > \\rho_P > \\rho_R$"
+    },
+    {
+     "id": "B",
+     "text": "$\\rho_Q > \\rho_P = \\rho_S > \\rho_R$"
+    },
+    {
+     "id": "C",
+     "text": "$\\rho_R > \\rho_S > \\rho_P > \\rho_Q$"
+    },
+    {
+     "id": "D",
+     "text": "$\\rho_R > \\rho_P = \\rho_S > \\rho_Q$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "$\\rho = m/V$:<br/>P: $2.0/1.0\\times10^{-3} = 2000$; Q: $3.0/2.0\\times10^{-3} = 1500$; R: $1.0/4.0\\times10^{-4} = 2500$; S: $6.0/3.0\\times10^{-3} = 2000\\ \\text{kg/m}^3$.<br/>Sıralama: $\\rho_R > \\rho_P = \\rho_S > \\rho_Q$.",
+   "genel_hatirlatma": "Yoğunluk, kütle ya da hacim tek başına değil, ikisinin oranıdır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Kütleye (ya da hacme) göre sıralamak.",
+     "aciklama": "Bu sıralama kütle sıralamasıdır. Yoğunluk kütlenin hacme oranıdır; en hafif cisim R en yoğun olandır."
+    },
+    "B": {
+     "etiket": "Oranı ters kurmak ($V/m$).",
+     "aciklama": "$V/m$ ile sıralama tam ters çıkar. $\\rho = m/V$: R için $2500$, P ve S için $2000$, Q için $1500\\ \\text{kg/m}^3$."
+    },
+    "C": {
+     "etiket": "Eşitliği fark etmemek (büyük kütleyi büyük yoğunluk sanmak).",
+     "aciklama": "S'nin kütlesi P'nin 3 katı ama hacmi de 3 katı; $6.0/3.0\\times10^{-3} = 2.0/1.0\\times10^{-3} = 2000\\ \\text{kg/m}^3$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Yoğunluk karşılaştırması",
+    "ipucu": "Her satır için m/V hesapla, sonra sırala.",
+    "sikHata": "En ağır cismi en yoğun sanmak.",
+    "cedKonu": "8.1",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_5",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 24,
+   "numara": 25,
+   "konu": "8.1 Internal Structure and Density",
+   "zorluk": "hard",
+   "govde": "A hollow metal sphere has an outer volume of $6.0 \\times 10^{-4}\\ \\text{m}^3$ and a mass of $3.2\\ \\text{kg}$. The metal has a density of $8000\\ \\text{kg/m}^3$, and the cavity inside is initially empty. The cavity is then completely filled with water ($\\rho = 1000\\ \\text{kg/m}^3$) through a tiny hole, which is then sealed. What is the average density of the water-filled sphere?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$5.3 \\times 10^{3}\\ \\text{kg/m}^3$"
+    },
+    {
+     "id": "B",
+     "text": "$5.7 \\times 10^{3}\\ \\text{kg/m}^3$"
+    },
+    {
+     "id": "C",
+     "text": "$4.5 \\times 10^{3}\\ \\text{kg/m}^3$"
+    },
+    {
+     "id": "D",
+     "text": "$6.3 \\times 10^{3}\\ \\text{kg/m}^3$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Metal hacmi: $V_m = 3.2/8000 = 4.0\\times10^{-4}\\ \\text{m}^3$.<br/>2. Boşluk: $6.0\\times10^{-4} - 4.0\\times10^{-4} = 2.0\\times10^{-4}\\ \\text{m}^3$; içine giren su: $1000 \\times 2.0\\times10^{-4} = 0.20\\ \\text{kg}$.<br/>3. $\\rho_{avg} = \\frac{3.2 + 0.20}{6.0\\times10^{-4}} \\approx 5.7\\times10^{3}\\ \\text{kg/m}^3$.",
+   "genel_hatirlatma": "Bileşik ya da içi boş cisimde ortalama yoğunluk = toplam kütle / toplam (dış) hacim.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Eklenen suyun kütlesini unutmak.",
+     "aciklama": "$3.2/6.0\\times10^{-4} \\approx 5.3\\times10^3\\ \\text{kg/m}^3$ boş kürenin ortalama yoğunluğudur; boşluğa giren 0.20 kg su da kütleye eklenmeli."
+    },
+    "C": {
+     "etiket": "İki yoğunluğun basit ortalamasını almak.",
+     "aciklama": "$(8000+1000)/2 = 4500$ ancak metal ve su eşit hacimde olsaydı doğru olurdu. Burada metal hacmi $4.0\\times10^{-4}$, su hacmi $2.0\\times10^{-4}\\ \\text{m}^3$."
+    },
+    "D": {
+     "etiket": "Suyun dış hacmin tamamını doldurduğunu sanmak.",
+     "aciklama": "Su yalnızca boşluğu doldurur ($2.0\\times10^{-4}\\ \\text{m}^3$, 0.20 kg). Dış hacmin tamamı ($6.0\\times10^{-4}\\ \\text{m}^3$) alınırsa 0.60 kg su eklenir ve $(3.2+0.60)/6.0\\times10^{-4} \\approx 6.3\\times10^3\\ \\text{kg/m}^3$ çıkar."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Ortalama yoğunluk, boşluk hacmi",
+    "ipucu": "Önce metalin hacmini, sonra boşluğu, sonra eklenen kütleyi bul.",
+    "sikHata": "Yoğunlukların basit ortalamasını almak.",
+    "cedKonu": "8.1",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_6",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 25,
+   "numara": 26,
+   "konu": "8.1 Internal Structure and Density",
+   "zorluk": "medium",
+   "govde": "A student wants to determine the density of a liquid. The available equipment is a beaker of unknown mass, an electronic balance, and a graduated cylinder. Which procedure will give the most reliable value for the density of the liquid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "Add one measured volume of liquid to the beaker, record the total mass, and divide that total mass by the volume."
+    },
+    {
+     "id": "B",
+     "text": "Graph total mass versus volume for several volumes and use the vertical intercept of the best-fit line as the density."
+    },
+    {
+     "id": "C",
+     "text": "Add several different measured volumes of liquid to the beaker, record the total mass each time, graph total mass versus volume, and use the slope of the best-fit line."
+    },
+    {
+     "id": "D",
+     "text": "Fill the beaker to the top, measure the height of the liquid with the graduated cylinder, and divide the total mass by that height."
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $m_{toplam} = m_{beher} + \\rho V$ doğrusaldır.<br/>2. Birkaç farklı hacim için ölçüp $m_{toplam}$–$V$ grafiği çizilirse eğim $\\rho$'yu verir; beherin bilinmeyen kütlesi yalnızca kesişimi etkiler.<br/>3. Çok sayıda noktaya en iyi doğru (best-fit line) çizmek rastgele ölçüm hatalarını azaltır.",
+   "genel_hatirlatma": "Deney tasarımında doğrusal bir grafik kur ve eğimin hangi fiziksel niceliğe eşit olduğunu belirt.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Kabın kütlesini dahil etmek ve tek ölçüme güvenmek.",
+     "aciklama": "Toplam kütle beherin kütlesini de içerir; sonuç sistematik olarak büyük çıkar. Tek ölçüm rastgele hatayı da azaltmaz."
+    },
+    "B": {
+     "etiket": "Kesişimi yoğunluk sanmak.",
+     "aciklama": "$m_{toplam} = m_{beher} + \\rho V$ doğrusunda kesişim beherin kütlesidir; yoğunluk eğimdir."
+    },
+    "D": {
+     "etiket": "Hacim yerine yükseklik kullanmak.",
+     "aciklama": "Kütle/yükseklik oranı yoğunluk değildir (birimi kg/m). Yoğunluk için hacim ölçülmelidir; ayrıca beherin kütlesi yine dahil olur."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Deney tasarımı: eğimden yoğunluk",
+    "ipucu": "Bilinmeyen kabın kütlesi hangi terimde kalıyor? Kesişimde.",
+    "sikHata": "Kesişimi aranan nicelik sanmak.",
+    "cedKonu": "8.1",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_7",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 26,
+   "numara": 27,
+   "konu": "8.1 Internal Structure and Density",
+   "zorluk": "medium",
+   "govde": "A rigid container with an internal volume of $1.0\\ \\text{L}$ is filled to the top with dry sand. The sand has a mass of $1.56\\ \\text{kg}$, and each grain is quartz with a density of $2600\\ \\text{kg/m}^3$. What fraction of the container's internal volume is occupied by the air between the grains?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "0.60"
+    },
+    {
+     "id": "B",
+     "text": "0.67"
+    },
+    {
+     "id": "C",
+     "text": "0"
+    },
+    {
+     "id": "D",
+     "text": "0.40"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Tanelerin toplam hacmi: $V_t = \\frac{1.56}{2600} = 6.0\\times10^{-4}\\ \\text{m}^3 = 0.60\\ \\text{L}$.<br/>2. Hava: $1.0 - 0.60 = 0.40\\ \\text{L}$.<br/>3. Oran: $0.40/1.0 = 0.40$. (Eşdeğer: $1 - \\rho_{dökme}/\\rho_{kuvars} = 1 - 1560/2600 = 0.40$.)",
+   "genel_hatirlatma": "Gözenekli maddelerde dökme yoğunluk, malzeme yoğunluğundan küçüktür; fark boşluk oranını verir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Tanelerin kapladığı oranı vermek.",
+     "aciklama": "Taneler $1.56/2600 = 6.0\\times10^{-4}\\ \\text{m}^3 = 0.60\\ \\text{L}$ kaplar; soru havanın oranını, yani kalan kısmı soruyor."
+    },
+    "B": {
+     "etiket": "Hava hacmini yanlış referansa bölmek.",
+     "aciklama": "$0.40/0.60 \\approx 0.67$ havanın tanelerin hacmine oranıdır. Soru kabın iç hacmine oranı soruyor: $0.40\\ \\text{L}/1.0\\ \\text{L} = 0.40$."
+    },
+    "C": {
+     "etiket": "Kap “dolu” olduğu için boşluk olmadığını sanmak.",
+     "aciklama": "Kum taneleri arasında hava vardır; kumun dökme yoğunluğu ($1560\\ \\text{kg/m}^3$) kuvarsınkinden ($2600$) küçüktür, bu da boşluğun kanıtıdır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "İç yapı: gözenek (boşluk) oranı",
+    "ipucu": "Tanelerin hacmini kütle/yoğunluk ile bul, kabın hacminden çıkar.",
+    "sikHata": "Tanelerin oranını boşluk oranı sanmak.",
+    "cedKonu": "8.1",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_8",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 27,
+   "numara": 28,
+   "konu": "8.1 Internal Structure and Density",
+   "zorluk": "medium",
+   "govde": "A sealed helium balloon rises from the ground into the upper atmosphere. No helium escapes, and the volume of the balloon increases by $25\\%$. By what factor does the density of the helium inside the balloon change?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "It becomes 0.80 times its original value."
+    },
+    {
+     "id": "B",
+     "text": "It becomes 0.75 times its original value."
+    },
+    {
+     "id": "C",
+     "text": "It becomes 1.25 times its original value."
+    },
+    {
+     "id": "D",
+     "text": "It does not change, because density is an intensive property."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Kütle sabit: $m$. Yeni hacim: $V' = 1.25V$.<br/>2. $\\rho' = \\frac{m}{1.25V} = \\frac{1}{1.25}\\rho = 0.80\\rho$.",
+   "genel_hatirlatma": "Gazlar sıkıştırılabilir/genleşebilir; kütle sabitken yoğunluk hacimle ters orantılıdır.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Yüzde artışı doğrudan çıkarmak.",
+     "aciklama": "Hacim $1.25V$ olur; $\\rho' = m/(1.25V) = 0.80\\rho$. %25 azalma ($0.75$) yanlış orandır."
+    },
+    "C": {
+     "etiket": "Yoğunluğu hacimle doğru orantılı sanmak.",
+     "aciklama": "Kütle sabitken $\\rho \\propto 1/V$; hacim artınca yoğunluk azalır."
+    },
+    "D": {
+     "etiket": "Yoğun özellik kavramını yanlış uygulamak.",
+     "aciklama": "Yoğunluk, maddeyi parçalara bölmekle değişmez; ama gaz genleşip aynı kütle daha büyük hacme yayılınca değişir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Gaz yoğunluğu ve hacim",
+    "ipucu": "ρ = m/V; m sabit, V'yi 1.25 ile çarp.",
+    "sikHata": "Yüzde değişimi doğrudan yoğunluğa uygulamak.",
+    "cedKonu": "8.1",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_9",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 28,
+   "numara": 29,
+   "konu": "8.1 Internal Structure and Density",
+   "zorluk": "hard",
+   "govde": "Liquid X ($\\rho_X = 800\\ \\text{kg/m}^3$) and liquid Y ($\\rho_Y = 1300\\ \\text{kg/m}^3$) mix completely, and the volume of the mixture equals the sum of the volumes used. A technician wants a mixture with a density of $1000\\ \\text{kg/m}^3$. What fraction of the mixture's total <strong>volume</strong> must be liquid X?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "0.40"
+    },
+    {
+     "id": "B",
+     "text": "0.48"
+    },
+    {
+     "id": "C",
+     "text": "0.60"
+    },
+    {
+     "id": "D",
+     "text": "0.50"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. X'in hacim kesri $f$ olsun: $\\rho_{karışım} = \\frac{\\rho_X fV + \\rho_Y(1-f)V}{V} = 800f + 1300(1-f)$.<br/>2. $800f + 1300 - 1300f = 1000 \\Rightarrow 500f = 300 \\Rightarrow f = 0.60$.",
+   "genel_hatirlatma": "Hacimler toplanıyorsa karışımın yoğunluğu, hacim kesirleriyle ağırlıklandırılmış ortalamadır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Kesirleri yer değiştirmek.",
+     "aciklama": "$0.40$, Y'nin hacim kesridir. Kontrol: $800(0.40)+1300(0.60) = 1100 \\neq 1000$."
+    },
+    "B": {
+     "etiket": "Kütle kesrini vermek.",
+     "aciklama": "X'in kütle kesri $\\frac{800(0.60)}{1000} = 0.48$'dir; soru hacim kesrini soruyor."
+    },
+    "D": {
+     "etiket": "Eşit hacimlerin istenen yoğunluğu verdiğini sanmak.",
+     "aciklama": "Eşit hacimlerde $\\rho = (800+1300)/2 = 1050\\ \\text{kg/m}^3$ olur, 1000 değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Karışımın ortalama yoğunluğu",
+    "ipucu": "Toplam kütle / toplam hacim yaz; bilinmeyen hacim kesrini çöz.",
+    "sikHata": "Kütle kesri ile hacim kesrini karıştırmak.",
+    "cedKonu": "8.1",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_10",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 29,
+   "numara": 30,
+   "konu": "8.1 Internal Structure and Density",
+   "zorluk": "hard",
+   "govde": "Several solid cylinders are cut from the same metal rod, which has a cross-sectional area of $4.0\\ \\text{cm}^2$. Each cylinder is weighed while resting on the same small plastic tray.<table><thead><tr><th>Length of cylinder (cm)</th><th>Mass of cylinder + tray (g)</th></tr></thead><tbody><tr><td>5.0</td><td>74</td></tr><tr><td>10.0</td><td>128</td></tr><tr><td>15.0</td><td>182</td></tr><tr><td>20.0</td><td>236</td></tr></tbody></table>What is the density of the metal?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$3.0 \\times 10^{3}\\ \\text{kg/m}^3$"
+    },
+    {
+     "id": "B",
+     "text": "$2.7\\ \\text{kg/m}^3$"
+    },
+    {
+     "id": "C",
+     "text": "$4.3 \\times 10^{4}\\ \\text{kg/m}^3$"
+    },
+    {
+     "id": "D",
+     "text": "$2.7 \\times 10^{3}\\ \\text{kg/m}^3$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Eğim: $\\frac{236-74}{20.0-5.0} = \\frac{162}{15.0} = 10.8\\ \\text{g/cm}$.<br/>2. $m = \\rho A L + m_{tepsi}$ olduğundan eğim $= \\rho A$: $\\rho = \\frac{10.8}{4.0} = 2.7\\ \\text{g/cm}^3$.<br/>3. $2.7\\ \\text{g/cm}^3 = 2.7\\times10^{3}\\ \\text{kg/m}^3$. (Kesişim: $74 - 54 = 20\\ \\text{g}$ tepsi.)",
+   "genel_hatirlatma": "Grafikte eğimin ne olduğunu denklemden bul: m = (ρA)L + m_tepsi ⇒ eğim = ρA.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Tepsiyi dahil ederek tek nokta kullanmak.",
+     "aciklama": "$236/(20.0 \\times 4.0) = 2.95\\ \\text{g/cm}^3$; 20 g'lık tepsi kütleye karışmıştır. Eğim tepsinin etkisini kaldırır."
+    },
+    "B": {
+     "etiket": "g/cm³'ü kg/m³'e çevirmemek.",
+     "aciklama": "$2.7\\ \\text{g/cm}^3 = 2700\\ \\text{kg/m}^3$; çarpan 1000'dir."
+    },
+    "C": {
+     "etiket": "Eğimi alana bölmek yerine alanla çarpmak.",
+     "aciklama": "Eğim $10.8\\ \\text{g/cm}$ birim uzunluk başına kütledir; $\\rho = \\frac{\\text{eğim}}{A}$. $10.8 \\times 4.0 = 43.2$ işlemi boyutça yanlıştır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Uzunluk–kütle grafiğinden yoğunluk",
+    "ipucu": "Önce eğimi bul, sonra kesit alanına böl.",
+    "sikHata": "Tepsinin kütlesini metale katmak.",
+    "cedKonu": "8.1",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_11",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 30,
+   "numara": 31,
+   "konu": "8.1 Internal Structure and Density",
+   "zorluk": "easy",
+   "govde": "Water is very difficult to compress, but air in a sealed syringe can be compressed easily. Which statement about the internal structure of these fluids best explains this difference?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "In a liquid the molecules are already nearly in contact, while in a gas the average spacing between molecules is much larger than the molecules themselves."
+    },
+    {
+     "id": "B",
+     "text": "Liquid molecules are much heavier than gas molecules, so they cannot be pushed closer together."
+    },
+    {
+     "id": "C",
+     "text": "Gas molecules do not exert any forces on the walls of their container, so nothing resists compression."
+    },
+    {
+     "id": "D",
+     "text": "Liquids have a lower density than gases, so there is less matter to compress."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "Sıvıda moleküller birbirine neredeyse değer; hacmi azaltmak için moleküllerin kendisini sıkıştırmak gerekir. Gazda molekül boyutuna göre çok büyük boşluklar vardır; bu boşluk azaltılarak gaz kolayca sıkıştırılır ve yoğunluğu artar.",
+   "genel_hatirlatma": "Akışkanın makroskopik özellikleri (sıkıştırılabilirlik, yoğunluk) iç yapısından, yani molekül aralığından gelir.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Molekül kütlesini molekül aralığıyla karıştırmak.",
+     "aciklama": "Sıkıştırılabilirliği belirleyen moleküllerin kütlesi değil, aralarındaki boşluktur."
+    },
+    "C": {
+     "etiket": "Gaz basıncını yok saymak.",
+     "aciklama": "Gaz molekülleri çeperlere çarparak basınç uygular; sıkıştırırken bu basınç artar. Gaz yine de sıkışır, çünkü moleküller arasında çok boşluk vardır."
+    },
+    "D": {
+     "etiket": "Yoğunluk karşılaştırmasını ters bilmek.",
+     "aciklama": "Sıvılar gazlardan çok daha yoğundur (su $1000$, hava $\\approx 1.2\\ \\text{kg/m}^3$)."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "İç yapı ve sıkıştırılabilirlik",
+    "ipucu": "Moleküller arasında boşluk var mı?",
+    "sikHata": "Kütle ile aralığı karıştırmak.",
+    "cedKonu": "8.1",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_12",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 31,
+   "numara": 32,
+   "konu": "8.1 Internal Structure and Density",
+   "zorluk": "medium",
+   "govde": "A $1.0\\ \\text{kg}$ block of ice ($\\rho = 917\\ \\text{kg/m}^3$) melts completely into liquid water ($\\rho = 1000\\ \\text{kg/m}^3$). How does the volume of the $\\text{H}_2\\text{O}$ change?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "It increases by about $9.1\\%$."
+    },
+    {
+     "id": "B",
+     "text": "It decreases by about $8.3\\%$."
+    },
+    {
+     "id": "C",
+     "text": "It decreases by about $9.1\\%$."
+    },
+    {
+     "id": "D",
+     "text": "It does not change, because mass is conserved."
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $V_{buz} = \\frac{1.0}{917} \\approx 1.091\\times10^{-3}\\ \\text{m}^3$, $V_{su} = \\frac{1.0}{1000} = 1.000\\times10^{-3}\\ \\text{m}^3$.<br/>2. Azalma: $\\frac{1.091-1.000}{1.091} \\approx 0.083 = 8.3\\%$ (eşdeğer: $1 - 917/1000$).",
+   "genel_hatirlatma": "Kütle sabitken hacim yoğunlukla ters orantılıdır; yüzde değişim başlangıç değerine göre hesaplanır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Erime ile donmayı karıştırmak.",
+     "aciklama": "Su donarken hacmi yaklaşık %9 artar; buz eriyince hacim <strong>azalır</strong>, çünkü suyun yoğunluğu buzunkinden büyüktür."
+    },
+    "C": {
+     "etiket": "Değişimi yanlış referansa bölmek.",
+     "aciklama": "Hacim farkı $9.05\\times10^{-5}\\ \\text{m}^3$'tür; bunu başlangıçtaki buz hacmine ($1.09\\times10^{-3}$) bölmek gerekir, son su hacmine değil."
+    },
+    "D": {
+     "etiket": "Kütle korunumunu hacim korunumu sanmak.",
+     "aciklama": "Kütle sabittir ama yoğunluk değişir; $V = m/\\rho$ olduğundan hacim de değişir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Faz değişiminde kütle sabit, yoğunluk ve hacim değişir",
+    "ipucu": "Hacimleri ayrı ayrı bul, farkı ilk hacme böl.",
+    "sikHata": "Buz eriyince hacmin arttığını sanmak.",
+    "cedKonu": "8.1",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_13",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 32,
+   "numara": 33,
+   "konu": "8.2 Pressure",
+   "zorluk": "easy",
+   "govde": "A tire gauge connected to a car tire reads $2.0 \\times 10^{5}\\ \\text{Pa}$. The atmospheric pressure is $1.0 \\times 10^{5}\\ \\text{Pa}$. Which of the following gives the absolute pressure of the air inside the tire and the difference between the pressures on the inner and outer surfaces of the tire wall?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "Absolute: $2.0 \\times 10^{5}\\ \\text{Pa}$; difference: $2.0 \\times 10^{5}\\ \\text{Pa}$"
+    },
+    {
+     "id": "B",
+     "text": "Absolute: $3.0 \\times 10^{5}\\ \\text{Pa}$; difference: $3.0 \\times 10^{5}\\ \\text{Pa}$"
+    },
+    {
+     "id": "C",
+     "text": "Absolute: $1.0 \\times 10^{5}\\ \\text{Pa}$; difference: $1.0 \\times 10^{5}\\ \\text{Pa}$"
+    },
+    {
+     "id": "D",
+     "text": "Absolute: $3.0 \\times 10^{5}\\ \\text{Pa}$; difference: $2.0 \\times 10^{5}\\ \\text{Pa}$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Gösterge basıncı atmosferin üzerindeki kısımdır: $P = P_0 + P_{gauge} = 1.0\\times10^5 + 2.0\\times10^5 = 3.0\\times10^5\\ \\text{Pa}$.<br/>2. Duvarın içine $3.0\\times10^5$, dışına $1.0\\times10^5\\ \\text{Pa}$ etki eder; fark $2.0\\times10^5\\ \\text{Pa}$ = gösterge basıncı.",
+   "genel_hatirlatma": "$P_{abs} = P_0 + P_{gauge}$. Bir duvarın iki yüzü arasındaki basınç farkı, dış taraf atmosferdeyse gösterge basıncıdır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Gösterge basıncını mutlak basınç sanmak.",
+     "aciklama": "Lastik ölçerleri gösterge basıncı okur: $P = P_0 + P_{gauge} = 3.0\\times10^5\\ \\text{Pa}$."
+    },
+    "B": {
+     "etiket": "Dıştaki atmosferi unutmak.",
+     "aciklama": "Duvarın dış yüzüne de $P_0$ etki eder; fark $3.0\\times10^5 - 1.0\\times10^5 = 2.0\\times10^5\\ \\text{Pa}$, yani gösterge basıncıdır."
+    },
+    "C": {
+     "etiket": "Atmosfer basıncını eklemek yerine çıkarmak.",
+     "aciklama": "$P_{gauge} = P - P_0$ ⇒ $P = P_{gauge} + P_0$; çıkarma işlemi tersine yapılmıştır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Mutlak ve gösterge basıncı",
+    "ipucu": "Ölçer atmosferin üzerindeki kısmı okur.",
+    "sikHata": "Gösterge basıncını mutlak sanmak.",
+    "cedKonu": "8.2",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_14",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 33,
+   "numara": 34,
+   "konu": "8.2 Pressure",
+   "zorluk": "medium",
+   "govde": "A pressure sensor is lowered into an open tank of an unknown liquid. The table shows the gauge pressure measured at several depths below the surface.<table><thead><tr><th>Depth (cm)</th><th>Gauge pressure (Pa)</th></tr></thead><tbody><tr><td>0</td><td>0</td></tr><tr><td>20</td><td>1600</td></tr><tr><td>40</td><td>3200</td></tr><tr><td>60</td><td>4800</td></tr></tbody></table>What is the density of the liquid? Use $g = 10\\ \\text{m/s}^2$.",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$800\\ \\text{kg/m}^3$"
+    },
+    {
+     "id": "B",
+     "text": "$8000\\ \\text{kg/m}^3$"
+    },
+    {
+     "id": "C",
+     "text": "$8.0\\ \\text{kg/m}^3$"
+    },
+    {
+     "id": "D",
+     "text": "$1.25 \\times 10^{-3}\\ \\text{kg/m}^3$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Gösterge basıncı $P_{gauge} = \\rho g h$; grafik doğrusal, eğim $\\rho g$.<br/>2. Eğim: $\\frac{1600\\ \\text{Pa}}{0.20\\ \\text{m}} = 8000\\ \\text{Pa/m}$.<br/>3. $\\rho = \\frac{8000}{10} = 800\\ \\text{kg/m}^3$.",
+   "genel_hatirlatma": "Gösterge basıncı–derinlik grafiği orijinden geçer; eğim $\\rho g$'dir.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "$g$'ye bölmeyi unutmak.",
+     "aciklama": "Eğim $\\frac{1600}{0.20} = 8000\\ \\text{Pa/m}$ değeri $\\rho g$'dir; $\\rho = 8000/10 = 800\\ \\text{kg/m}^3$."
+    },
+    "C": {
+     "etiket": "Derinliği cm'den m'ye çevirmemek.",
+     "aciklama": "$1600/(20 \\times 10) = 8.0$ işleminde 20 cm, 0.20 m yazılmalıydı."
+    },
+    "D": {
+     "etiket": "Oranı ters kurmak ($gh/P$).",
+     "aciklama": "$P_{gauge} = \\rho g h$ ⇒ $\\rho = \\frac{P_{gauge}}{gh}$; ters oran $1/800$ verir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Derinlik–basınç tablosundan yoğunluk",
+    "ipucu": "Eğimi bul, g'ye böl; cm'yi m'ye çevir.",
+    "sikHata": "g'ye bölmeyi unutmak.",
+    "cedKonu": "8.2",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_15",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 34,
+   "numara": 35,
+   "konu": "8.2 Pressure",
+   "zorluk": "medium",
+   "govde": "A diver carries a gauge that reads <strong>absolute</strong> pressure while descending in a deep lake. The readings are shown below.<table><thead><tr><th>Depth (m)</th><th>Absolute pressure (kPa)</th></tr></thead><tbody><tr><td>0</td><td>100</td></tr><tr><td>2.0</td><td>124</td></tr><tr><td>4.0</td><td>148</td></tr><tr><td>6.0</td><td>172</td></tr></tbody></table>If the trend continues, what absolute pressure would the gauge read at a depth of $9.0\\ \\text{m}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$258\\ \\text{kPa}$"
+    },
+    {
+     "id": "B",
+     "text": "$208\\ \\text{kPa}$"
+    },
+    {
+     "id": "C",
+     "text": "$108\\ \\text{kPa}$"
+    },
+    {
+     "id": "D",
+     "text": "$316\\ \\text{kPa}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Eğim: $\\frac{172-100}{6.0} = 12\\ \\text{kPa/m}$ ($= \\rho g$, yani $\\rho = 1200\\ \\text{kg/m}^3$).<br/>2. Kesişim $P_0 = 100\\ \\text{kPa}$.<br/>3. $P(9.0) = 100 + 12(9.0) = 208\\ \\text{kPa}$.",
+   "genel_hatirlatma": "Mutlak basınç $P = P_0 + \\rho g h$: doğrusal ama orijinden geçmez.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Mutlak basıncı derinlikle doğru orantılı sanmak.",
+     "aciklama": "$172 \\times \\frac{9.0}{6.0} = 258$ işlemi grafiğin orijinden geçtiğini varsayar; oysa yüzeyde basınç 100 kPa'dır."
+    },
+    "C": {
+     "etiket": "Yalnızca sıvının katkısını (gösterge basıncını) vermek.",
+     "aciklama": "$\\rho g h = 12 \\times 9.0 = 108\\ \\text{kPa}$ gösterge basıncıdır; mutlak basınç için $P_0 = 100\\ \\text{kPa}$ eklenir."
+    },
+    "D": {
+     "etiket": "Tablo adımını metre başına artış sanmak.",
+     "aciklama": "Her satırda artış 24 kPa ama derinlik 2.0 m artıyor; metre başına artış $12\\ \\text{kPa}$'dır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Mutlak basınç–derinlik doğrusu",
+    "ipucu": "Önce eğim ve kesişimi yaz, sonra yerine koy.",
+    "sikHata": "Mutlak basıncı derinlikle orantılı sanmak.",
+    "cedKonu": "8.2",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_16",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 35,
+   "numara": 36,
+   "konu": "8.2 Pressure",
+   "zorluk": "medium",
+   "govde": "A small rectangular glass window in the side wall of an aquarium has an area of $0.50\\ \\text{m}^2$. Its center is $2.0\\ \\text{m}$ below the water surface ($\\rho = 1000\\ \\text{kg/m}^3$). Outside the window is air at atmospheric pressure, $1.0 \\times 10^{5}\\ \\text{Pa}$, which is also the pressure at the water's surface. Treating the pressure on the window as uniform and equal to the value at its center, what is the magnitude of the <strong>net</strong> force exerted on the window by the water and the outside air? ($g = 10\\ \\text{m/s}^2$)",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$6.0 \\times 10^{4}\\ \\text{N}$"
+    },
+    {
+     "id": "B",
+     "text": "$2.0 \\times 10^{4}\\ \\text{N}$"
+    },
+    {
+     "id": "C",
+     "text": "$1.0 \\times 10^{4}\\ \\text{N}$"
+    },
+    {
+     "id": "D",
+     "text": "$4.0 \\times 10^{4}\\ \\text{N}$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Suyun içteki mutlak basıncı $P_0 + \\rho g h$, dışta $P_0$; net basınç farkı $\\rho g h = 1000(10)(2.0) = 2.0\\times10^4\\ \\text{Pa}$.<br/>2. $F_{net} = \\Delta P \\cdot A = 2.0\\times10^4 \\times 0.50 = 1.0\\times10^4\\ \\text{N}$ (dışa doğru).",
+   "genel_hatirlatma": "Atmosfer bir yüzeyin iki tarafına da etki ediyorsa net kuvveti gösterge basıncı belirler.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Dıştaki hava basıncını unutmak.",
+     "aciklama": "$(1.0\\times10^5 + 2.0\\times10^4)(0.50) = 6.0\\times10^4\\ \\text{N}$ yalnızca suyun kuvvetidir. Hava dışarıdan $5.0\\times10^4\\ \\text{N}$ iter; net kuvvet gösterge basıncıyla bulunur."
+    },
+    "B": {
+     "etiket": "Basıncı kuvvet sanmak (alanla çarpmamak).",
+     "aciklama": "$\\rho g h = 2.0\\times10^4$ birimi Pa olan bir basınçtır; kuvvet için $0.50\\ \\text{m}^2$ ile çarpılır."
+    },
+    "D": {
+     "etiket": "Alanla çarpmak yerine alana bölmek.",
+     "aciklama": "$F = PA$, $P/A$ değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Batık yüzeye etki eden net kuvvet",
+    "ipucu": "İki taraftaki P₀ birbirini götürür.",
+    "sikHata": "Mutlak basınçla net kuvvet hesaplamak.",
+    "cedKonu": "8.2",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_17",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 36,
+   "numara": 37,
+   "konu": "8.2 Pressure",
+   "zorluk": "easy",
+   "govde": "A large open tank of water is connected near its bottom to a narrow vertical glass tube that is open at the top. The water is at rest. Point P is in the tank $1.0\\ \\text{m}$ below the tank's water surface. Point Q is in the narrow tube $1.0\\ \\text{m}$ below the water surface in the tube. Point R is in the tank $2.0\\ \\text{m}$ below the tank's water surface. Which of the following correctly ranks the pressures at the three points?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$P_R > P_P = P_Q$"
+    },
+    {
+     "id": "B",
+     "text": "$P_R > P_P > P_Q$"
+    },
+    {
+     "id": "C",
+     "text": "$P_R > P_Q > P_P$"
+    },
+    {
+     "id": "D",
+     "text": "$P_P = P_Q = P_R$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Durgun suda $P = P_0 + \\rho g h$; kabın şekli ya da genişliği formülde yoktur.<br/>2. Birleşik kaplarda yüzeyler aynı seviyededir; P ve Q aynı derinlikte ($1.0\\ \\text{m}$) ⇒ $P_P = P_Q$.<br/>3. R iki kat derinde ⇒ $P_R$ en büyük.",
+   "genel_hatirlatma": "Aynı durgun sıvıda, birbirine bağlı ve aynı derinlikteki noktalarda basınç eşittir.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Basıncın üstteki su miktarına bağlı olduğunu sanmak.",
+     "aciklama": "Geniş tankta P'nin üstünde daha çok su vardır, ama basınç yalnızca derinliğe ve yoğunluğa bağlıdır; P ve Q'nun derinliği aynıdır."
+    },
+    "C": {
+     "etiket": "Dar tüpte suyun “sıkıştığını” sanmak.",
+     "aciklama": "Durgun suda dar tüp basıncı artırmaz; birleşik kaplarda aynı derinlikte basınç aynıdır."
+    },
+    "D": {
+     "etiket": "Pascal ilkesini yanlış uygulamak.",
+     "aciklama": "Pascal ilkesi basınç <em>değişiminin</em> iletildiğini söyler; durgun suda basınç yine $\\rho g h$ kadar derinlikle artar. R daha derindedir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Basınç yalnızca derinliğe bağlı (hidrostatik paradoks)",
+    "ipucu": "Her noktanın yüzeyden derinliğini yaz.",
+    "sikHata": "Geniş kapta basıncın daha büyük olduğunu sanmak.",
+    "cedKonu": "8.2",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_18",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 37,
+   "numara": 38,
+   "konu": "8.2 Pressure",
+   "zorluk": "medium",
+   "govde": "A person tries to drink water through a very long vertical straw. Even if the person could remove <strong>all</strong> of the air from the top of the straw, there is a maximum height to which the water could be raised above the surface of the water in the glass. Using $P_0 = 1.0 \\times 10^{5}\\ \\text{Pa}$, $\\rho_{water} = 1000\\ \\text{kg/m}^3$, and $g = 10\\ \\text{m/s}^2$, what is this maximum height?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$100\\ \\text{m}$"
+    },
+    {
+     "id": "B",
+     "text": "$10\\ \\text{m}$"
+    },
+    {
+     "id": "C",
+     "text": "$1.0 \\times 10^{4}\\ \\text{m}$"
+    },
+    {
+     "id": "D",
+     "text": "There is no maximum; the suction pulls the water up any distance."
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Pipenin tepesinde $P = 0$ (tam vakum), bardak yüzeyinde $P_0$.<br/>2. Durgun sütun: $P_0 = 0 + \\rho g h \\Rightarrow h = \\frac{P_0}{\\rho g} = \\frac{1.0\\times10^5}{1000 \\times 10} = 10\\ \\text{m}$.",
+   "genel_hatirlatma": "Sıvı sütununu yukarıda tutan, alttaki basınç farkıdır; vakum “çekmez”, atmosfer iter.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$g$'yi unutmak.",
+     "aciklama": "$h = P_0/(\\rho g) = 1.0\\times10^5/(1000 \\times 10) = 10\\ \\text{m}$; $g$ unutulursa 100 çıkar."
+    },
+    "C": {
+     "etiket": "$\\rho$'yu unutmak.",
+     "aciklama": "$P_0/g = 10^4$ birimce yanlıştır; paydada $\\rho g$ olmalıdır."
+    },
+    "D": {
+     "etiket": "Emmeyi “çeken kuvvet” sanmak.",
+     "aciklama": "Suyu yukarı iten, bardaktaki yüzeye etki eden atmosfer basıncıdır. Pipenin üstünde basınç sıfıra inse bile $P_0$ en fazla $\\rho g h = P_0$ olan bir sütunu taşıyabilir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Atmosfer basıncı ve sıvı sütunu",
+    "ipucu": "P₀ = ρgh yaz, h'yi çöz.",
+    "sikHata": "Emmenin suyu çektiğini sanmak.",
+    "cedKonu": "8.2",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_19",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 38,
+   "numara": 39,
+   "konu": "8.2 Pressure",
+   "zorluk": "medium",
+   "govde": "A lake is located high in the mountains, where the atmospheric pressure at the water's surface is $0.80 \\times 10^{5}\\ \\text{Pa}$. At what depth in the lake is the absolute pressure $2.0 \\times 10^{5}\\ \\text{Pa}$? ($\\rho_{water} = 1000\\ \\text{kg/m}^3$, $g = 10\\ \\text{m/s}^2$)",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$10\\ \\text{m}$"
+    },
+    {
+     "id": "B",
+     "text": "$20\\ \\text{m}$"
+    },
+    {
+     "id": "C",
+     "text": "$12\\ \\text{m}$"
+    },
+    {
+     "id": "D",
+     "text": "$28\\ \\text{m}$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $P = P_0 + \\rho g h \\Rightarrow h = \\frac{P - P_0}{\\rho g}$.<br/>2. $h = \\frac{2.0\\times10^5 - 0.80\\times10^5}{1000 \\times 10} = \\frac{1.2\\times10^5}{1.0\\times10^4} = 12\\ \\text{m}$.",
+   "genel_hatirlatma": "Yüzeydeki basınç her zaman $1.0\\times10^5\\ \\text{Pa}$ değildir; soruda verilen $P_0$'ı kullan.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Deniz seviyesindeki $P_0$'ı kullanmak.",
+     "aciklama": "$(2.0 - 1.0)\\times10^5/10^4 = 10\\ \\text{m}$ işlemi $1.0\\times10^5\\ \\text{Pa}$'lık atmosferi varsayar; burada yüzey basıncı $0.80\\times10^5\\ \\text{Pa}$'dır."
+    },
+    "B": {
+     "etiket": "Atmosfer basıncını çıkarmamak.",
+     "aciklama": "$2.0\\times10^5/10^4 = 20\\ \\text{m}$; mutlak basıncın bir kısmı atmosferden gelir."
+    },
+    "D": {
+     "etiket": "Atmosfer basıncını eklemek.",
+     "aciklama": "$P = P_0 + \\rho g h$ ⇒ $\\rho g h = P - P_0$; $P_0$ eklenmez, çıkarılır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Mutlak basınç ve derinlik",
+    "ipucu": "Önce P − P₀ (gösterge) bul, sonra ρg'ye böl.",
+    "sikHata": "Her yerde P₀ = 1.0×10⁵ Pa almak.",
+    "cedKonu": "8.2",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_20",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 39,
+   "numara": 40,
+   "konu": "8.2 Pressure",
+   "zorluk": "hard",
+   "govde": "Three liquids that do not mix are poured into an open tank and settle into the layers shown in the table (top layer first).<table><thead><tr><th>Layer</th><th>Density ($\\text{kg/m}^3$)</th><th>Thickness (m)</th></tr></thead><tbody><tr><td>Top</td><td>800</td><td>0.25</td></tr><tr><td>Middle</td><td>1000</td><td>0.40</td></tr><tr><td>Bottom</td><td>1250</td><td>0.20</td></tr></tbody></table>What is the <strong>gauge</strong> pressure at a point $0.10\\ \\text{m}$ above the bottom of the tank? Use $g = 10\\ \\text{m/s}^2$.",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$8500\\ \\text{Pa}$"
+    },
+    {
+     "id": "B",
+     "text": "$7500\\ \\text{Pa}$"
+    },
+    {
+     "id": "C",
+     "text": "$1.07 \\times 10^{5}\\ \\text{Pa}$"
+    },
+    {
+     "id": "D",
+     "text": "$7250\\ \\text{Pa}$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Üst katman: $800(10)(0.25) = 2000\\ \\text{Pa}$.<br/>2. Orta katman: $1000(10)(0.40) = 4000\\ \\text{Pa}$.<br/>3. Alt katmanın üst kısmı: noktaya kadar $0.20 - 0.10 = 0.10\\ \\text{m}$: $1250(10)(0.10) = 1250\\ \\text{Pa}$.<br/>4. Toplam gösterge basıncı: $2000 + 4000 + 1250 = 7250\\ \\text{Pa}$.",
+   "genel_hatirlatma": "Katmanlı akışkanda gösterge basıncı her katmanın $\\rho_i g h_i$ katkılarının toplamıdır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Tankın tabanındaki basıncı vermek.",
+     "aciklama": "Alt katmanın tamamı (0.20 m) kullanılırsa $2000 + 4000 + 2500 = 8500\\ \\text{Pa}$ çıkar; nokta alt katmanın yalnızca 0.10 m içindedir."
+    },
+    "B": {
+     "etiket": "Tüm katmanları su sanmak.",
+     "aciklama": "Toplam derinlik $0.75\\ \\text{m}$; $1000(10)(0.75) = 7500$. Her katman kendi yoğunluğuyla katkı yapar."
+    },
+    "C": {
+     "etiket": "Mutlak basıncı vermek.",
+     "aciklama": "Soru gösterge basıncını istiyor; $P_0$ eklenmez."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Katmanlı sıvılarda hidrostatik basınç",
+    "ipucu": "Noktanın üstündeki her katmanın kalınlığını ayrı yaz.",
+    "sikHata": "Noktanın değil tabanın derinliğini kullanmak.",
+    "cedKonu": "8.2",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_21",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 40,
+   "numara": 41,
+   "konu": "8.2 Pressure",
+   "zorluk": "hard",
+   "govde": "An open bucket contains water to a depth of $0.50\\ \\text{m}$ and rests on the floor of an elevator. The elevator is moving upward and <strong>speeding up</strong> with an acceleration of magnitude $2.0\\ \\text{m/s}^2$. The water is at rest relative to the bucket. What is the gauge pressure at the bottom of the bucket? ($\\rho = 1000\\ \\text{kg/m}^3$, $g = 10\\ \\text{m/s}^2$)",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$5000\\ \\text{Pa}$"
+    },
+    {
+     "id": "B",
+     "text": "$6000\\ \\text{Pa}$"
+    },
+    {
+     "id": "C",
+     "text": "$4000\\ \\text{Pa}$"
+    },
+    {
+     "id": "D",
+     "text": "$1.06 \\times 10^{5}\\ \\text{Pa}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Kesit alanı $A$, yüksekliği $h$ olan su sütununu sistem seç. Kuvvetler: alttan $P_{alt}A$ yukarı, üstten $P_0 A$ aşağı, ağırlık $\\rho A h g$ aşağı.<br/>2. Newton'un ikinci yasası: $P_{alt}A - P_0A - \\rho A h g = \\rho A h a$.<br/>3. $P_{alt} - P_0 = \\rho h (g + a) = 1000(0.50)(12) = 6000\\ \\text{Pa}$.",
+   "genel_hatirlatma": "Hidrostatik basınç formülü bir sıvı sütununa uygulanan Newton'un ikinci yasasından gelir; ivmeli sistemde a eklenir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "İvmeyi yok saymak.",
+     "aciklama": "$\\rho g h = 5000\\ \\text{Pa}$ yalnızca asansör durgun ya da sabit hızlıysa doğrudur. Su sütunu yukarı ivmelendiği için alttan daha büyük kuvvet gerekir."
+    },
+    "C": {
+     "etiket": "İvmenin yönünü ters almak.",
+     "aciklama": "Yukarı hızlanan asansörde etkin $g$ artar: $g + a$. $g - a$ aşağı ivmelenme içindir."
+    },
+    "D": {
+     "etiket": "Mutlak basınç vermek.",
+     "aciklama": "Soru gösterge basıncını istiyor; $P_0$ eklenmez."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Basınç ve Newton'un ikinci yasası",
+    "ipucu": "Su sütununun serbest cisim diyagramını çiz.",
+    "sikHata": "Asansör ivmesini yok saymak.",
+    "cedKonu": "8.2",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_22",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 41,
+   "numara": 42,
+   "konu": "8.2 Pressure",
+   "zorluk": "medium",
+   "govde": "An open-tube manometer containing water ($\\rho = 1000\\ \\text{kg/m}^3$) is connected to a tank of gas. One arm of the U-tube is attached to the tank and the other arm is open to the atmosphere ($P_0 = 1.0 \\times 10^{5}\\ \\text{Pa}$). When the water is at rest, the water surface in the open arm is $0.40\\ \\text{m}$ <strong>higher</strong> than the water surface in the arm attached to the tank. What is the absolute pressure of the gas? ($g = 10\\ \\text{m/s}^2$)",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0.96 \\times 10^{5}\\ \\text{Pa}$"
+    },
+    {
+     "id": "B",
+     "text": "$4.0 \\times 10^{3}\\ \\text{Pa}$"
+    },
+    {
+     "id": "C",
+     "text": "$1.04 \\times 10^{5}\\ \\text{Pa}$"
+    },
+    {
+     "id": "D",
+     "text": "$1.40 \\times 10^{5}\\ \\text{Pa}$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Gaz kolundaki su yüzeyi seviyesinde, açık kolda da aynı seviyede bir nokta seç; aynı durgun suda aynı seviyede basınçlar eşittir.<br/>2. Açık kolda bu nokta yüzeyden $0.40\\ \\text{m}$ aşağıda: $P = P_0 + \\rho g h = 1.0\\times10^5 + 1000(10)(0.40) = 1.04\\times10^5\\ \\text{Pa}$.<br/>3. Bu, gaz basıncıdır.",
+   "genel_hatirlatma": "Manometrede aynı seviyedeki iki noktayı eşitle; gaz tarafındaki sıvı aşağıdaysa gaz basıncı atmosferden büyüktür.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "İşaret hatası.",
+     "aciklama": "Gaz tarafındaki su aşağı itilmiştir, yani gaz basıncı atmosferden <strong>büyüktür</strong>: $P_{gaz} = P_0 + \\rho g h$."
+    },
+    "B": {
+     "etiket": "Gösterge basıncını mutlak sanmak.",
+     "aciklama": "$\\rho g h = 4000\\ \\text{Pa}$ gösterge basıncıdır; mutlak için $P_0$ eklenir."
+    },
+    "D": {
+     "etiket": "$\\rho g h$'yi 10 kat büyük hesaplamak.",
+     "aciklama": "$1000 \\times 10 \\times 0.40 = 4.0\\times10^3\\ \\text{Pa}$'dır, $4.0\\times10^4$ değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Manometre ile basınç ölçümü",
+    "ipucu": "Alçak yüzeyin seviyesinden yatay bir çizgi çiz.",
+    "sikHata": "Gösterge ve mutlak basıncı karıştırmak.",
+    "cedKonu": "8.2",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_23",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 42,
+   "numara": 43,
+   "konu": "8.2 Pressure",
+   "zorluk": "hard",
+   "govde": "A hydraulic jack is filled with oil ($\\rho = 800\\ \\text{kg/m}^3$). The small piston has an area of $10\\ \\text{cm}^2$ and the large piston has an area of $500\\ \\text{cm}^2$. The large piston is $0.50\\ \\text{m}$ <strong>higher</strong> than the small piston. A load pushes down on the large piston with a force of $5000\\ \\text{N}$. The pistons have negligible mass, and the system is at rest. What force must be exerted on the small piston? ($g = 10\\ \\text{m/s}^2$)",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$100\\ \\text{N}$"
+    },
+    {
+     "id": "B",
+     "text": "$96\\ \\text{N}$"
+    },
+    {
+     "id": "C",
+     "text": "$2.0\\ \\text{N}$"
+    },
+    {
+     "id": "D",
+     "text": "$104\\ \\text{N}$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Büyük pistondaki basınç: $P_b = \\frac{5000}{500\\times10^{-4}} = 1.0\\times10^5\\ \\text{Pa}$ (gösterge).<br/>2. Küçük piston $0.50\\ \\text{m}$ aşağıda: $P_k = P_b + \\rho g h = 1.0\\times10^5 + 800(10)(0.50) = 1.04\\times10^5\\ \\text{Pa}$.<br/>3. $F_k = P_k A_k = 1.04\\times10^5 \\times 10\\times10^{-4} = 104\\ \\text{N}$.",
+   "genel_hatirlatma": "Pascal ilkesi: basınç iletilir; ama farklı seviyelerdeki pistonlar arasında $\\rho g \\Delta h$ farkı eklenir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yükseklik farkını ihmal etmek.",
+     "aciklama": "$5000 \\times \\frac{10}{500} = 100\\ \\text{N}$ pistonlar aynı seviyedeyse doğrudur. Küçük piston 0.50 m daha derinde olduğundan oradaki basınç $\\rho g h$ kadar fazladır."
+    },
+    "B": {
+     "etiket": "$\\rho g h$'nin işaretini ters almak.",
+     "aciklama": "Daha derindeki noktada basınç daha büyüktür; küçük piston aşağıdadır, $\\rho g h$ eklenir."
+    },
+    "C": {
+     "etiket": "Alan oranının karesini almak.",
+     "aciklama": "Verilenler zaten alandır; oran $10/500 = 1/50$'dir. Çap verilseydi kare alınırdı."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Pascal ilkesi + hidrostatik basınç farkı",
+    "ipucu": "Önce büyük pistondaki basıncı, sonra derinlik farkını hesapla.",
+    "sikHata": "Yükseklik farkını unutmak.",
+    "cedKonu": "8.2",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_24",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 43,
+   "numara": 44,
+   "konu": "8.2 Pressure",
+   "zorluk": "easy",
+   "govde": "A solid cube is held at rest completely under water, with its top and bottom faces horizontal. Which statement correctly describes the forces that the water exerts on the faces of the cube?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The force on the bottom face is greater than the force on the top face, and the forces on opposite side faces cancel."
+    },
+    {
+     "id": "B",
+     "text": "The forces on all six faces have equal magnitudes, because pressure acts equally in all directions."
+    },
+    {
+     "id": "C",
+     "text": "The water exerts a force only on the top face, pushing the cube downward."
+    },
+    {
+     "id": "D",
+     "text": "The force on the top face is greater, because the water above the cube pushes down on it."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Basınç derinlikle artar: $P_{alt} = P_{üst} + \\rho g h$; alanlar eşit olduğundan alt yüze etki eden yukarı kuvvet daha büyüktür.<br/>2. Karşılıklı yan yüzler aynı derinlik aralığındadır; kuvvetleri eşit ve zıttır, birbirini götürür.<br/>3. Net yukarı kuvvet kaldırma kuvvetidir (Konu 8.3).",
+   "genel_hatirlatma": "Akışkan basıncı her yüzeye dik etki eder; derinlikle arttığı için batmış cisme net yukarı kuvvet doğar.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "“Her yönde eşit” ile “her derinlikte eşit”i karıştırmak.",
+     "aciklama": "Bir noktada basınç her yönde aynıdır, ama alt yüz üst yüzden daha derindedir; orada basınç daha büyüktür."
+    },
+    "C": {
+     "etiket": "Sıvı basıncının yalnız aşağı ittiğini sanmak.",
+     "aciklama": "Akışkan temas ettiği her yüzeye, o yüzeye dik kuvvet uygular: alt yüzü yukarı, yanları içe doğru iter."
+    },
+    "D": {
+     "etiket": "Üstteki suyun ağırlığına odaklanmak.",
+     "aciklama": "Alt yüzün üstünde de (küp dahil) aynı sütun ve fazladan $h$ kadar derinlik vardır; $P_{alt} = P_{üst} + \\rho g h$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Basınç kuvvetlerinin yönü ve derinlik",
+    "ipucu": "Her yüzün derinliğini karşılaştır.",
+    "sikHata": "Tüm yüzlere eşit kuvvet etki ettiğini sanmak.",
+    "cedKonu": "8.2",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_25",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 44,
+   "numara": 45,
+   "konu": "8.3 Fluids and Newton's Laws",
+   "zorluk": "easy",
+   "govde": "A solid steel block ($\\rho = 7900\\ \\text{kg/m}^3$) with a volume of $2.0 \\times 10^{-3}\\ \\text{m}^3$ rests completely submerged on the bottom of a tank of fresh water ($\\rho = 1000\\ \\text{kg/m}^3$). What is the magnitude of the buoyant force on the block? ($g = 10\\ \\text{m/s}^2$)",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$158\\ \\text{N}$"
+    },
+    {
+     "id": "B",
+     "text": "$2.0\\ \\text{N}$"
+    },
+    {
+     "id": "C",
+     "text": "$20\\ \\text{N}$"
+    },
+    {
+     "id": "D",
+     "text": "$0\\ \\text{N}$, because the block sinks"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Arşimet: $F_B = \\rho_{su} V_{disp} g$.<br/>2. Blok tamamen batık: $V_{disp} = 2.0\\times10^{-3}\\ \\text{m}^3$.<br/>3. $F_B = 1000 \\times 2.0\\times10^{-3} \\times 10 = 20\\ \\text{N}$.",
+   "genel_hatirlatma": "Kaldırma kuvveti, yer değiştiren akışkanın ağırlığıdır; cismin malzemesine bağlı değildir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Cismin yoğunluğunu kullanmak.",
+     "aciklama": "$7900 \\times 2.0\\times10^{-3} \\times 10 = 158\\ \\text{N}$ bloğun ağırlığıdır. $F_B$ akışkanın yoğunluğuyla hesaplanır."
+    },
+    "B": {
+     "etiket": "$g$ ile çarpmayı unutmak.",
+     "aciklama": "$1000 \\times 2.0\\times10^{-3} = 2.0\\ \\text{kg}$ yer değiştiren suyun kütlesidir; ağırlığı $20\\ \\text{N}$."
+    },
+    "D": {
+     "etiket": "Batan cisme kaldırma kuvveti etki etmediğini sanmak.",
+     "aciklama": "Batan cisme de kaldırma kuvveti etki eder; yalnızca ağırlıktan küçüktür. Taban, kalan kısmı normal kuvvetle dengeler."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Arşimet ilkesi",
+    "ipucu": "ρ olarak suyun yoğunluğunu kullan.",
+    "sikHata": "Cismin yoğunluğunu kullanmak.",
+    "cedKonu": "8.3",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_26",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 45,
+   "numara": 46,
+   "konu": "8.3 Fluids and Newton's Laws",
+   "zorluk": "medium",
+   "govde": "In an experiment, objects of different volumes are fully submerged in a liquid, and the buoyant force on each is measured.<table><thead><tr><th>Submerged volume ($\\text{cm}^3$)</th><th>Buoyant force (N)</th></tr></thead><tbody><tr><td>100</td><td>0.90</td></tr><tr><td>200</td><td>1.80</td></tr><tr><td>300</td><td>2.70</td></tr><tr><td>400</td><td>3.60</td></tr></tbody></table>What is the density of the liquid? ($g = 10\\ \\text{m/s}^2$)",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$9.0 \\times 10^{-4}\\ \\text{kg/m}^3$"
+    },
+    {
+     "id": "B",
+     "text": "$9.0 \\times 10^{3}\\ \\text{kg/m}^3$"
+    },
+    {
+     "id": "C",
+     "text": "$1.0 \\times 10^{3}\\ \\text{kg/m}^3$"
+    },
+    {
+     "id": "D",
+     "text": "$900\\ \\text{kg/m}^3$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $F_B = \\rho g V$: $F_B$–$V$ grafiğinin eğimi $\\rho g$'dir.<br/>2. Eğim: $\\frac{0.90\\ \\text{N}}{1.0\\times10^{-4}\\ \\text{m}^3} = 9.0\\times10^3\\ \\text{N/m}^3$.<br/>3. $\\rho = 9.0\\times10^3/10 = 900\\ \\text{kg/m}^3$.",
+   "genel_hatirlatma": "Kaldırma kuvveti batık hacimle doğru orantılıdır; orantı sabiti ρg'dir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "cm³'ü m³'e çevirmemek.",
+     "aciklama": "$0.90/(100 \\times 10)$ işleminde $100\\ \\text{cm}^3 = 1.0\\times10^{-4}\\ \\text{m}^3$ yazılmalıydı."
+    },
+    "B": {
+     "etiket": "$g$'ye bölmeyi unutmak.",
+     "aciklama": "Eğim $0.90/(1.0\\times10^{-4}) = 9000\\ \\text{N/m}^3$ değeri $\\rho g$'dir."
+    },
+    "C": {
+     "etiket": "Sıvıyı su varsaymak.",
+     "aciklama": "Veriler $\\rho = 900\\ \\text{kg/m}^3$ veriyor; bilinmeyen sıvının yoğunluğu ölçümden bulunmalı."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "F_B–V grafiğinden akışkan yoğunluğu",
+    "ipucu": "Eğim = ρg; cm³ → m³ (×10⁻⁶).",
+    "sikHata": "Birim çevirmeyi unutmak.",
+    "cedKonu": "8.3",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_27",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 46,
+   "numara": 47,
+   "konu": "8.3 Fluids and Newton's Laws",
+   "zorluk": "easy",
+   "govde": "A $0.50\\ \\text{kg}$ wooden block ($\\rho = 600\\ \\text{kg/m}^3$) floats at rest in a pond, with part of the block above the water surface. What is the magnitude of the buoyant force on the block? ($g = 10\\ \\text{m/s}^2$)",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$5.0\\ \\text{N}$"
+    },
+    {
+     "id": "B",
+     "text": "$3.0\\ \\text{N}$"
+    },
+    {
+     "id": "C",
+     "text": "$8.3\\ \\text{N}$"
+    },
+    {
+     "id": "D",
+     "text": "$2.0\\ \\text{N}$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Blok durgun ve yüzüyor: kuvvetler yalnızca $F_B$ (yukarı) ve $mg$ (aşağı).<br/>2. Newton'un ikinci yasası, $a = 0$: $F_B = mg = 0.50 \\times 10 = 5.0\\ \\text{N}$.",
+   "genel_hatirlatma": "Serbestçe yüzen cisimde kaldırma kuvveti cismin ağırlığına eşittir — yoğunluktan bağımsız.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Ağırlığı batık kesirle çarpmak.",
+     "aciklama": "Bloğun %60'ı batıktır, ama bu kesir zaten $F_B = mg$ koşulundan gelir. Kaldırma kuvveti ağırlığa eşittir."
+    },
+    "C": {
+     "etiket": "Ağırlığı batık kesre bölmek.",
+     "aciklama": "$5.0/0.60$ yüzen bir cisim için anlamsızdır; dengede net kuvvet sıfırdır, $F_B = mg$."
+    },
+    "D": {
+     "etiket": "Su üstünde kalan kısmın ağırlığını vermek.",
+     "aciklama": "$0.40 \\times 5.0 = 2.0\\ \\text{N}$ dışarıdaki kısmın ağırlığıdır; kaldırma kuvveti bütün bloğun ağırlığını dengeler."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Yüzme koşulu",
+    "ipucu": "Önce serbest cisim diyagramı: iki kuvvet, denge.",
+    "sikHata": "Kısmen batık cisimde F_B'nin ağırlıktan küçük olduğunu sanmak.",
+    "cedKonu": "8.3",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_28",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 47,
+   "numara": 48,
+   "konu": "8.3 Fluids and Newton's Laws",
+   "zorluk": "hard",
+   "govde": "A rectangular block hangs from a spring scale and is slowly lowered, bottom face first, into a beaker of water ($\\rho = 1000\\ \\text{kg/m}^3$). The block never touches the beaker. The table shows the scale reading as a function of the depth of the block's bottom face.<table><thead><tr><th>Depth of bottom face below surface (cm)</th><th>Spring scale reading (N)</th></tr></thead><tbody><tr><td>0</td><td>8.0</td></tr><tr><td>2.0</td><td>7.2</td></tr><tr><td>4.0</td><td>6.4</td></tr><tr><td>6.0</td><td>5.6</td></tr><tr><td>8.0</td><td>5.6</td></tr><tr><td>10.0</td><td>5.6</td></tr></tbody></table>What is the density of the block? ($g = 10\\ \\text{m/s}^2$)",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$2.3 \\times 10^{3}\\ \\text{kg/m}^3$"
+    },
+    {
+     "id": "B",
+     "text": "$3.3 \\times 10^{3}\\ \\text{kg/m}^3$"
+    },
+    {
+     "id": "C",
+     "text": "$1.4 \\times 10^{3}\\ \\text{kg/m}^3$"
+    },
+    {
+     "id": "D",
+     "text": "$1.0 \\times 10^{4}\\ \\text{kg/m}^3$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Havadaki ağırlık $W = 8.0\\ \\text{N}$ ⇒ $m = 0.80\\ \\text{kg}$.<br/>2. 6.0 cm'den sonra okuma sabit: blok tamamen batık, $F_B = 8.0 - 5.6 = 2.4\\ \\text{N}$.<br/>3. $V = \\frac{F_B}{\\rho_w g} = \\frac{2.4}{1000 \\times 10} = 2.4\\times10^{-4}\\ \\text{m}^3$.<br/>4. $\\rho = \\frac{0.80}{2.4\\times10^{-4}} \\approx 3.3\\times10^{3}\\ \\text{kg/m}^3$.",
+   "genel_hatirlatma": "$\\rho_{cisim} = \\rho_w \\frac{W}{W - W'}$; $W'$ cisim <strong>tamamen</strong> batıkken okunan değerdir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Sudaki okumayı ağırlık sanmak.",
+     "aciklama": "$1000 \\times 5.6/2.4 \\approx 2.3\\times10^3$; formülde $W$ havadaki ağırlıktır ($8.0\\ \\text{N}$)."
+    },
+    "C": {
+     "etiket": "Okumaların oranını almak.",
+     "aciklama": "$1000 \\times 8.0/5.6 \\approx 1.4\\times10^3$. Doğru oran $W/(W - W')$, yani ağırlık / kaldırma kuvvetidir."
+    },
+    "D": {
+     "etiket": "Kısmi batmadaki kaldırma kuvvetini kullanmak.",
+     "aciklama": "İlk 2 cm'deki $0.8\\ \\text{N}$'lik düşüş bloğun yalnızca bir kısmı battığında oluşur; tam kaldırma kuvveti okuma sabitlendiğinde ölçülür ($2.4\\ \\text{N}$)."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Görünür ağırlıktan yoğunluk",
+    "ipucu": "Okumanın sabitlendiği değeri bul; fark tam kaldırma kuvvetidir.",
+    "sikHata": "Kısmi batmadaki okumayı kullanmak.",
+    "cedKonu": "8.3",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_29",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 48,
+   "numara": 49,
+   "konu": "8.3 Fluids and Newton's Laws",
+   "zorluk": "medium",
+   "govde": "A rectangular block hanging from a spring scale is lowered into water. The scale readings are recorded below; the block never touches the container.<table><thead><tr><th>Depth of bottom face below surface (cm)</th><th>Spring scale reading (N)</th></tr></thead><tbody><tr><td>0</td><td>8.0</td></tr><tr><td>2.0</td><td>7.2</td></tr><tr><td>4.0</td><td>6.4</td></tr><tr><td>6.0</td><td>5.6</td></tr><tr><td>8.0</td><td>5.6</td></tr><tr><td>10.0</td><td>5.6</td></tr></tbody></table>Which statement best explains why the scale reading stops changing once the depth of the bottom face reaches $6.0\\ \\text{cm}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "Below 6.0 cm, the water pressure no longer increases with depth."
+    },
+    {
+     "id": "B",
+     "text": "As the block goes deeper it becomes lighter, which exactly cancels an increase in the buoyant force."
+    },
+    {
+     "id": "C",
+     "text": "At 6.0 cm the block reaches neutral buoyancy, so its density now equals the density of water."
+    },
+    {
+     "id": "D",
+     "text": "Once the block is completely under water, the volume of water it displaces stops changing, so the buoyant force stays constant."
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Bloğun yüksekliği 6.0 cm: o andan sonra blok tamamen batıktır.<br/>2. $F_B = \\rho_w V_{disp} g$ ve $V_{disp}$ artık sabit (bloğun hacmi) ⇒ $F_B$ sabit.<br/>3. Basınç açısından: $F_B = (P_{alt} - P_{üst})A = \\rho_w g h_{blok} A$; derinleştikçe iki basınç birlikte artar, fark değişmez. Okuma $W - F_B$ sabit kalır.",
+   "genel_hatirlatma": "Sıkıştırılamaz akışkanda tamamen batmış cisme etki eden kaldırma kuvveti derinlikten bağımsızdır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Basıncın belli bir derinlikten sonra sabitlendiğini sanmak.",
+     "aciklama": "Basınç derinlikle artmaya devam eder ($P = P_0 + \\rho g h$); ama alt ve üst yüzlerdeki basınçlar <em>aynı miktarda</em> arttığı için fark sabit kalır."
+    },
+    "B": {
+     "etiket": "Ağırlığın derinlikle değiştiğini sanmak.",
+     "aciklama": "Bloğun ağırlığı $mg$ derinlikten bağımsızdır; kaldırma kuvveti de tam batıktan sonra artmaz."
+    },
+    "C": {
+     "etiket": "Sabit okumayı nötr yüzerlik sanmak.",
+     "aciklama": "Nötr yüzerlikte okuma sıfır olurdu. Okuma $5.6\\ \\text{N}$; blok sudan yoğundur ve yoğunluğu değişmez."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Kaldırma kuvveti ve batık hacim",
+    "ipucu": "Batık hacim ne zaman değişmeyi bırakır?",
+    "sikHata": "Kaldırma kuvvetinin derinlikle arttığını sanmak.",
+    "cedKonu": "8.3",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_30",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 49,
+   "numara": 50,
+   "konu": "8.3 Fluids and Newton's Laws",
+   "zorluk": "medium",
+   "govde": "A wooden block of density $600\\ \\text{kg/m}^3$ floats in water ($\\rho = 1000\\ \\text{kg/m}^3$). The block is then placed in a tank of oil ($\\rho = 800\\ \\text{kg/m}^3$). What fraction of the block's volume is below the surface of the oil when it is at rest?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "0.75"
+    },
+    {
+     "id": "B",
+     "text": "0.60"
+    },
+    {
+     "id": "C",
+     "text": "0.48"
+    },
+    {
+     "id": "D",
+     "text": "The block sinks completely, because oil is less dense than water."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Yüzen blok: $F_B = mg \\Rightarrow \\rho_{yağ} V_{sub} g = \\rho_{blok} V g$.<br/>2. $\\frac{V_{sub}}{V} = \\frac{\\rho_{blok}}{\\rho_{yağ}} = \\frac{600}{800} = 0.75$.<br/>3. Yağ daha az yoğun olduğundan aynı ağırlığı dengelemek için daha fazla hacim batmalıdır.",
+   "genel_hatirlatma": "Yüzen cisimde batık kesir $= \\rho_{cisim}/\\rho_{akışkan}$.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Sudaki kesri kullanmak.",
+     "aciklama": "$600/1000 = 0.60$ sudaki kesirdir; yağda $\\rho_{blok}/\\rho_{yağ}$ kullanılır."
+    },
+    "C": {
+     "etiket": "Yoğunluk oranlarını çarpmak.",
+     "aciklama": "$0.60 \\times 0.80 = 0.48$ fiziksel bir anlam taşımaz; yüzme koşulu $\\rho_f V_{sub} = \\rho_{blok}V$'dir."
+    },
+    "D": {
+     "etiket": "Yağda her şeyin battığını sanmak.",
+     "aciklama": "Blok yalnızca $\\rho_{blok} > \\rho_{yağ}$ ise batar; $600 \\lt 800$ olduğu için yüzer, ama daha derin batarak."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Farklı akışkanlarda yüzme",
+    "ipucu": "F_B = mg yaz; g ve V sadeleşir.",
+    "sikHata": "Su için bulunan kesri her akışkana uygulamak.",
+    "cedKonu": "8.3",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_31",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 50,
+   "numara": 51,
+   "konu": "8.3 Fluids and Newton's Laws",
+   "zorluk": "medium",
+   "govde": "A $0.20\\ \\text{kg}$ plastic ball with a volume of $5.0 \\times 10^{-4}\\ \\text{m}^3$ is held at rest deep under water and then released. Immediately after release, before drag forces become significant, what is the acceleration of the ball? ($\\rho_{water} = 1000\\ \\text{kg/m}^3$, $g = 10\\ \\text{m/s}^2$)",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$25\\ \\text{m/s}^2$ upward"
+    },
+    {
+     "id": "B",
+     "text": "$15\\ \\text{m/s}^2$ upward"
+    },
+    {
+     "id": "C",
+     "text": "$10\\ \\text{m/s}^2$ upward"
+    },
+    {
+     "id": "D",
+     "text": "$35\\ \\text{m/s}^2$ upward"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $F_B = 1000 \\times 5.0\\times10^{-4} \\times 10 = 5.0\\ \\text{N}$ yukarı; $mg = 2.0\\ \\text{N}$ aşağı.<br/>2. $F_{net} = 5.0 - 2.0 = 3.0\\ \\text{N}$ yukarı.<br/>3. $a = \\frac{3.0}{0.20} = 15\\ \\text{m/s}^2$ yukarı.",
+   "genel_hatirlatma": "Akışkandaki cisme Newton'un ikinci yasası: F_B − mg = ma (sürtünme ihmal).",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Ağırlığı unutmak.",
+     "aciklama": "$F_B/m = 5.0/0.20 = 25$; net kuvvet $F_B - mg = 3.0\\ \\text{N}$'dir."
+    },
+    "C": {
+     "etiket": "İvmeyi her zaman $g$ sanmak.",
+     "aciklama": "$g$ yalnızca tek kuvvet ağırlık olduğunda ivmedir; burada kaldırma kuvveti de var."
+    },
+    "D": {
+     "etiket": "Ağırlığı yukarı yönlü almak.",
+     "aciklama": "$(5.0 + 2.0)/0.20 = 35$; ağırlık aşağı yönlüdür, kaldırma kuvvetinden çıkarılır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Kaldırma kuvveti ve ivme",
+    "ipucu": "Serbest cisim diyagramı: iki kuvvet, net kuvvet ≠ 0.",
+    "sikHata": "Net kuvvet yerine F_B'yi kullanmak.",
+    "cedKonu": "8.3",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_32",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 51,
+   "numara": 52,
+   "konu": "8.3 Fluids and Newton's Laws",
+   "zorluk": "hard",
+   "govde": "A beaker of water sits on a scale, which reads $20.0\\ \\text{N}$. A wooden block ($\\rho = 500\\ \\text{kg/m}^3$, volume $4.0 \\times 10^{-4}\\ \\text{m}^3$) is placed in the water and is then pushed down with a thin rod held by a student until the block is completely submerged and at rest. The block and rod do not touch the beaker, the rod's own volume in the water is negligible, and no water spills. What does the scale read now? ($\\rho_{water} = 1000\\ \\text{kg/m}^3$, $g = 10\\ \\text{m/s}^2$)",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$22.0\\ \\text{N}$"
+    },
+    {
+     "id": "B",
+     "text": "$26.0\\ \\text{N}$"
+    },
+    {
+     "id": "C",
+     "text": "$24.0\\ \\text{N}$"
+    },
+    {
+     "id": "D",
+     "text": "$20.0\\ \\text{N}$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Tam batık blok: $F_B = 1000 \\times 4.0\\times10^{-4} \\times 10 = 4.0\\ \\text{N}$.<br/>2. Newton'un üçüncü yasası: blok suya $4.0\\ \\text{N}$ aşağı kuvvet uygular.<br/>3. Sistem “beher + su”: aşağı kuvvetler $20.0 + 4.0$, yukarı kuvvet terazinin normal kuvveti ⇒ okuma $24.0\\ \\text{N}$.<br/>(Kontrol: sistem “beher + su + blok”: $20.0 + 2.0 + F_{çubuk}$, $F_{çubuk} = F_B - mg = 2.0\\ \\text{N}$ ⇒ $24.0\\ \\text{N}$.)",
+   "genel_hatirlatma": "Batmış cisim suya, suyun ona uyguladığı kaldırma kuvvetine eşit büyüklükte aşağı kuvvet uygular; terazi bu kadar artar.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Bloğun serbestçe yüzdüğünü varsaymak.",
+     "aciklama": "Blok serbestçe yüzseydi terazi ağırlığı ($2.0\\ \\text{N}$) kadar artardı. Çubuk bloğu daha derine ittiği için su bloğa $4.0\\ \\text{N}$ uygular ve blok da suya $4.0\\ \\text{N}$ uygular."
+    },
+    "B": {
+     "etiket": "Ağırlık ile kaldırma kuvvetini toplamak.",
+     "aciklama": "Bloğun ağırlığı ve çubuğun itmesi bloğun üzerindedir; teraziye su yoluyla aktarılan yalnızca bloğun suya uyguladığı tepki kuvvetidir ($F_B$)."
+    },
+    "D": {
+     "etiket": "Kaba değmediği için değişmeyeceğini sanmak.",
+     "aciklama": "Blok kaba değmese de suya (Newton'un üçüncü yasası) kuvvet uygular; bu kuvvet tabana ve teraziye iletilir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Newton'un üçüncü yasası ve terazi okuması",
+    "ipucu": "Sistemi “beher + su” seç.",
+    "sikHata": "Bloğun ağırlığını eklemek.",
+    "cedKonu": "8.3",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_33",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 52,
+   "numara": 53,
+   "konu": "8.3 Fluids and Newton's Laws",
+   "zorluk": "medium",
+   "govde": "To test Archimedes' principle, a student hangs each of three objects from a spring scale, records its weight in air, and then lowers it completely into a full overflow can of water. The water that overflows is caught and weighed.<table><thead><tr><th>Trial</th><th>Weight in air (N)</th><th>Reading when submerged (N)</th><th>Weight of overflow water (N)</th></tr></thead><tbody><tr><td>1</td><td>5.00</td><td>4.38</td><td>0.61</td></tr><tr><td>2</td><td>3.20</td><td>2.20</td><td>0.99</td></tr><tr><td>3</td><td>7.50</td><td>6.55</td><td>0.94</td></tr></tbody></table>Which conclusion is best supported by the data?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "In each trial, the decrease in the scale reading equals the weight of the overflow water, within measurement uncertainty."
+    },
+    {
+     "id": "B",
+     "text": "The buoyant force depends on the object's weight, since the heaviest object had the greatest buoyant force."
+    },
+    {
+     "id": "C",
+     "text": "The reading when submerged equals the weight of the overflow water."
+    },
+    {
+     "id": "D",
+     "text": "The buoyant force increases the deeper an object is lowered into the water."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Okumadaki azalma (kaldırma kuvveti): $5.00-4.38 = 0.62$; $3.20-2.20 = 1.00$; $7.50-6.55 = 0.95\\ \\text{N}$.<br/>2. Taşan su: $0.61$, $0.99$, $0.94\\ \\text{N}$ — her denemede 0.01 N içinde eşit.<br/>3. Sonuç: $F_B$ = yer değiştiren suyun ağırlığı (Arşimet ilkesi).",
+   "genel_hatirlatma": "Arşimet ilkesini doğrulamak için iki bağımsız ölçüm karşılaştırılır: görünür ağırlık kaybı ve taşan sıvının ağırlığı.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Veriyi ağırlıkla ilişkilendirmek.",
+     "aciklama": "En büyük kaldırma kuvveti ($1.00\\ \\text{N}$) deneme 2'de, yani en hafif cisimdedir. Kaldırma kuvveti ağırlığa değil yer değiştiren hacme bağlıdır."
+    },
+    "C": {
+     "etiket": "Görünür ağırlığı kaldırma kuvveti sanmak.",
+     "aciklama": "Örneğin $4.38 \\neq 0.61$. Taşan suyun ağırlığına eşit olan, okumadaki <strong>azalmadır</strong>."
+    },
+    "D": {
+     "etiket": "Veride olmayan bir değişkenden sonuç çıkarmak.",
+     "aciklama": "Tabloda derinlik verisi yoktur; ayrıca tam batmış cisimde kaldırma kuvveti derinlikle değişmez."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Deney verisiyle Arşimet ilkesi",
+    "ipucu": "Her satırda havadaki − sudaki farkını hesapla.",
+    "sikHata": "Görünür ağırlığı kaldırma kuvveti sanmak.",
+    "cedKonu": "8.3",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_34",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 53,
+   "numara": 54,
+   "konu": "8.3 Fluids and Newton's Laws",
+   "zorluk": "medium",
+   "govde": "A helium balloon has a volume of $3.0\\ \\text{m}^3$. The density of the surrounding air is $1.2\\ \\text{kg/m}^3$, and the density of the helium is $0.18\\ \\text{kg/m}^3$. What is the greatest total mass of the balloon's skin, string, and attached load (not including the helium) that the balloon can hold at rest in the air?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$3.6\\ \\text{kg}$"
+    },
+    {
+     "id": "B",
+     "text": "$3.1\\ \\text{kg}$"
+    },
+    {
+     "id": "C",
+     "text": "$0.54\\ \\text{kg}$"
+    },
+    {
+     "id": "D",
+     "text": "$4.1\\ \\text{kg}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Denge: $F_B = (m_{He} + m_{yük})g$.<br/>2. $F_B = \\rho_{hava} V g$ ⇒ $\\rho_{hava}V = \\rho_{He}V + m_{yük}$.<br/>3. $m_{yük} = (1.2 - 0.18)(3.0) = 3.06 \\approx 3.1\\ \\text{kg}$.",
+   "genel_hatirlatma": "Gazlar da akışkandır; havada da Arşimet ilkesi geçerlidir. Balonun kendi gazının ağırlığını unutma.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Helyumun ağırlığını unutmak.",
+     "aciklama": "$1.2 \\times 3.0 = 3.6\\ \\text{kg}$ yer değiştiren havanın kütlesidir; kaldırma kuvveti helyumun ağırlığını da taşımak zorundadır."
+    },
+    "C": {
+     "etiket": "Helyumun kütlesini vermek.",
+     "aciklama": "$0.18 \\times 3.0 = 0.54\\ \\text{kg}$ helyumun kütlesidir, taşınabilecek yük değil."
+    },
+    "D": {
+     "etiket": "Helyumun ağırlığını kaldırma kuvvetine eklemek.",
+     "aciklama": "$(1.2 + 0.18)(3.0) \\approx 4.1$; helyumun ağırlığı aşağı yönlüdür, çıkarılır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Havada kaldırma kuvveti",
+    "ipucu": "Tüm sistemin (helyum + yük) serbest cisim diyagramını çiz.",
+    "sikHata": "Helyumun ağırlığını ihmal etmek.",
+    "cedKonu": "8.3",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_35",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 54,
+   "numara": 55,
+   "konu": "8.3 Fluids and Newton's Laws",
+   "zorluk": "hard",
+   "govde": "An ice cube with a small stone frozen inside it floats in a glass of water. The ice melts completely, and the stone ends up resting on the bottom of the glass. How does the final water level compare with the water level before the ice melted, and why?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "It is higher, because the melted ice adds extra water to the glass."
+    },
+    {
+     "id": "B",
+     "text": "It is the same, because melting floating ice never changes the water level."
+    },
+    {
+     "id": "C",
+     "text": "It is lower, because while the stone was in the floating ice it caused water with a weight equal to the stone's weight to be displaced, but on the bottom it displaces only its own volume."
+    },
+    {
+     "id": "D",
+     "text": "It is lower, because ice is less dense than water, so melting decreases the volume of the H₂O."
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Yüzerken: buz + taş için $F_B$ = toplam ağırlık. Taşa ait kısım: $V_1 = \\frac{m_{taş}}{\\rho_w}$ hacminde su yer değiştirir.<br/>2. Buzun payı: buzun kütlesi kadar su, eriyince tam aynı hacmi doldurur — etkisiz.<br/>3. Taş tabanda: yalnızca kendi hacmi $V_2 = \\frac{m_{taş}}{\\rho_{taş}}$ kadar yer değiştirir. $\\rho_{taş} > \\rho_w$ ⇒ $V_2 \\lt V_1$ ⇒ seviye düşer.",
+   "genel_hatirlatma": "Yüzen cisim kendi ağırlığı kadar, batan cisim yalnızca kendi hacmi kadar akışkan yer değiştirir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Eriyen buzun fazladan su eklediğini sanmak.",
+     "aciklama": "Yüzen buz, zaten kendi ağırlığı kadar su yer değiştiriyordu; eriyince tam o hacmi doldurur. Seviyeyi değiştiren taştır."
+    },
+    "B": {
+     "etiket": "Saf buz kuralını genellemek.",
+     "aciklama": "Saf buz için doğru; ama içinde sudan yoğun bir taş varsa taşın yer değiştirdiği hacim azalır."
+    },
+    "D": {
+     "etiket": "Doğru sonuca yanlış gerekçe.",
+     "aciklama": "Buzun hacmi azalır, ama yüzen buzun yer değiştirdiği hacim erimiş suyun hacmine tam eşittir; bu etki seviyeyi değiştirmez. Seviyenin düşmesinin nedeni taştır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Yüzen ve batan cisimlerin yer değiştirdiği hacim",
+    "ipucu": "Taşın yer değiştirdiği hacmi önce ve sonra karşılaştır.",
+    "sikHata": "Doğru sonucu yanlış nedene bağlamak.",
+    "cedKonu": "8.3",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_36",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 55,
+   "numara": 56,
+   "konu": "8.3 Fluids and Newton's Laws",
+   "zorluk": "easy",
+   "govde": "A $3.0\\ \\text{kg}$ rock with a volume of $1.0 \\times 10^{-3}\\ \\text{m}^3$ rests on the flat bottom of a pond ($\\rho_{water} = 1000\\ \\text{kg/m}^3$). What is the magnitude of the normal force exerted on the rock by the bottom of the pond? ($g = 10\\ \\text{m/s}^2$)",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$30\\ \\text{N}$"
+    },
+    {
+     "id": "B",
+     "text": "$40\\ \\text{N}$"
+    },
+    {
+     "id": "C",
+     "text": "$10\\ \\text{N}$"
+    },
+    {
+     "id": "D",
+     "text": "$20\\ \\text{N}$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $F_B = 1000 \\times 1.0\\times10^{-3} \\times 10 = 10\\ \\text{N}$ yukarı; $mg = 30\\ \\text{N}$ aşağı.<br/>2. Denge: $F_N + F_B = mg \\Rightarrow F_N = 30 - 10 = 20\\ \\text{N}$.",
+   "genel_hatirlatma": "Tabanda duran batık cisim: F_N + F_B = mg.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Kaldırma kuvvetini unutmak.",
+     "aciklama": "Suyun içinde taşa $F_B = 10\\ \\text{N}$ yukarı kuvvet de etki eder; taban yalnızca kalanı taşır."
+    },
+    "B": {
+     "etiket": "Kaldırma kuvvetini aşağı yönlü almak.",
+     "aciklama": "Kaldırma kuvveti yukarı yönlüdür; ağırlığa eklenmez, ondan çıkarılır."
+    },
+    "C": {
+     "etiket": "Kaldırma kuvvetini normal kuvvet sanmak.",
+     "aciklama": "$10\\ \\text{N}$, suyun uyguladığı kaldırma kuvvetidir; normal kuvvet $mg - F_B$'dir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Batık cismin serbest cisim diyagramı",
+    "ipucu": "Üç kuvvet: ağırlık, kaldırma, normal.",
+    "sikHata": "Kaldırma kuvvetini ihmal etmek.",
+    "cedKonu": "8.3",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_37",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 56,
+   "numara": 57,
+   "konu": "8.4 Fluids and Conservation Laws",
+   "zorluk": "easy",
+   "govde": "Water flows steadily through a pipe made of three sections with different cross-sectional areas. The table gives some measurements.<table><thead><tr><th>Section</th><th>Cross-sectional area ($\\text{cm}^2$)</th><th>Water speed (m/s)</th></tr></thead><tbody><tr><td>1</td><td>6.0</td><td>2.0</td></tr><tr><td>2</td><td>2.0</td><td>?</td></tr><tr><td>3</td><td>4.0</td><td>?</td></tr></tbody></table>Treating water as an ideal fluid, what is the speed of the water in section 3?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$1.3\\ \\text{m/s}$"
+    },
+    {
+     "id": "B",
+     "text": "$3.0\\ \\text{m/s}$"
+    },
+    {
+     "id": "C",
+     "text": "$6.0\\ \\text{m/s}$"
+    },
+    {
+     "id": "D",
+     "text": "$2.0\\ \\text{m/s}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Süreklilik: $A_1 v_1 = A_3 v_3$.<br/>2. $v_3 = \\frac{A_1 v_1}{A_3} = \\frac{6.0 \\times 2.0}{4.0} = 3.0\\ \\text{m/s}$. (Alanlar oran olarak girdiği için cm² çevirmeye gerek yok.)",
+   "genel_hatirlatma": "Süreklilik: A₁v₁ = A₂v₂; dar kesitte hız büyük.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Hızı alanla doğru orantılı sanmak.",
+     "aciklama": "$2.0 \\times 4.0/6.0 \\approx 1.3$; oysa $Av$ sabittir, alan küçülünce hız artar."
+    },
+    "C": {
+     "etiket": "Bölüm 2'nin hızını vermek.",
+     "aciklama": "$6.0\\ \\text{m/s}$, alanı $2.0\\ \\text{cm}^2$ olan bölüm 2'deki hızdır."
+    },
+    "D": {
+     "etiket": "Hızın her yerde aynı olduğunu sanmak.",
+     "aciklama": "Sıkıştırılamaz akışkanda debi (Av) aynıdır, hız değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Süreklilik denklemi",
+    "ipucu": "Debiyi (A·v) bölüm 1'den hesapla.",
+    "sikHata": "Hızı alanla doğru orantılı sanmak.",
+    "cedKonu": "8.4",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_38",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 57,
+   "numara": 58,
+   "konu": "8.4 Fluids and Conservation Laws",
+   "zorluk": "easy",
+   "govde": "Water from a faucet fills a $10\\ \\text{L}$ bucket in $20\\ \\text{s}$. The water leaves the faucet through an opening with a cross-sectional area of $1.0\\ \\text{cm}^2$. What is the speed of the water as it leaves the opening? ($1\\ \\text{L} = 10^{-3}\\ \\text{m}^3$)",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0.50\\ \\text{m/s}$"
+    },
+    {
+     "id": "B",
+     "text": "$50\\ \\text{m/s}$"
+    },
+    {
+     "id": "C",
+     "text": "$5.0\\ \\text{m/s}$"
+    },
+    {
+     "id": "D",
+     "text": "$0.20\\ \\text{m/s}$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Debi: $Q = \\frac{V}{t} = \\frac{10\\times10^{-3}}{20} = 5.0\\times10^{-4}\\ \\text{m}^3/\\text{s}$.<br/>2. $v = \\frac{Q}{A} = \\frac{5.0\\times10^{-4}}{1.0\\times10^{-4}} = 5.0\\ \\text{m/s}$.",
+   "genel_hatirlatma": "Hacimsel debi Q = V/t = Av.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "cm²'yi m²'ye yanlış çevirmek.",
+     "aciklama": "$1.0\\ \\text{cm}^2 = 1.0\\times10^{-4}\\ \\text{m}^2$; $10^{-3}$ alınırsa hız 10 kat küçük çıkar."
+    },
+    "B": {
+     "etiket": "Litreyi m³'e yanlış çevirmek.",
+     "aciklama": "$10\\ \\text{L} = 1.0\\times10^{-2}\\ \\text{m}^3$; $Q = 5.0\\times10^{-4}\\ \\text{m}^3/\\text{s}$. $1\\ \\text{L} = 10^{-2}\\ \\text{m}^3$ alınırsa sonuç 10 kat büyük olur."
+    },
+    "D": {
+     "etiket": "Oranı ters kurmak ($A/Q$).",
+     "aciklama": "$Q = Av \\Rightarrow v = Q/A$; $A/Q$'nun birimi s/m'dir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Hacimsel debi",
+    "ipucu": "Önce Q'yu m³/s cinsinden bul.",
+    "sikHata": "Birim çevirme hataları.",
+    "cedKonu": "8.4",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_39",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 58,
+   "numara": 59,
+   "konu": "8.4 Fluids and Conservation Laws",
+   "zorluk": "easy",
+   "govde": "Water flows steadily to the right through a horizontal pipe that has a wide section followed by a narrow section. A vertical glass tube, open at the top, is attached to the top of each section, and water rises in both tubes. Treating water as an ideal fluid, which statement is correct?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The water in the tube above the narrow section stands higher, because the water is squeezed in the narrow section and its pressure increases."
+    },
+    {
+     "id": "B",
+     "text": "The water in the two tubes stands at the same height, because points at the same level in a connected fluid have the same pressure."
+    },
+    {
+     "id": "C",
+     "text": "The water in the tube above the narrow section stands lower, because the water moves slower in the narrow section."
+    },
+    {
+     "id": "D",
+     "text": "The water in the tube above the narrow section stands lower, because the water moves faster there and its pressure is lower."
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Süreklilik: $A_1 v_1 = A_2 v_2$; dar kısımda $v$ büyük.<br/>2. Bernoulli (aynı yükseklik): $P + \\tfrac12\\rho v^2$ sabit ⇒ $v$ büyükse $P$ küçük.<br/>3. Açık tüpteki sütun yüksekliği gösterge basıncını gösterir ($P - P_0 = \\rho g h$) ⇒ dar kısım üstündeki sütun daha alçak.",
+   "genel_hatirlatma": "Nitel akış sorusu: önce süreklilikle hız, sonra Bernoulli ile basınç.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Dar kısımda suyun sıkıştığını sanmak.",
+     "aciklama": "İdeal akışkan sıkıştırılamaz. Süreklilik gereği dar kısımda hız artar; Bernoulli'ye göre aynı yükseklikte hızın büyük olduğu yerde basınç küçüktür."
+    },
+    "B": {
+     "etiket": "Durgun sıvı kuralını akan sıvıya uygulamak.",
+     "aciklama": "“Aynı seviye, aynı basınç” yalnızca durgun akışkanda geçerlidir. Akan akışkanda Bernoulli denklemi kullanılır."
+    },
+    "C": {
+     "etiket": "Doğru sonuca yanlış gerekçe (hız yönü ters).",
+     "aciklama": "Süreklilik: $A_{dar} \\lt A_{geniş}$ ⇒ $v_{dar} \\gt v_{geniş}$. Dar kısımda su <strong>daha hızlı</strong> akar."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Venturi etkisi (nitel)",
+    "ipucu": "İki adım: hız karşılaştırması, sonra basınç.",
+    "sikHata": "Dar kısımda basıncın arttığını sanmak.",
+    "cedKonu": "8.4",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_40",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 59,
+   "numara": 60,
+   "konu": "8.4 Fluids and Conservation Laws",
+   "zorluk": "medium",
+   "govde": "An ideal fluid flows steadily through a circular pipe whose diameter changes along its length. The table shows the measured speed at several sections.<table><thead><tr><th>Pipe diameter (cm)</th><th>Speed (m/s)</th></tr></thead><tbody><tr><td>4.0</td><td>1.0</td></tr><tr><td>2.0</td><td>4.0</td></tr><tr><td>1.0</td><td>16</td></tr></tbody></table>Based on the pattern in the data, what is the speed in a section of the same pipe where the diameter is $8.0\\ \\text{cm}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0.25\\ \\text{m/s}$"
+    },
+    {
+     "id": "B",
+     "text": "$0.50\\ \\text{m/s}$"
+    },
+    {
+     "id": "C",
+     "text": "$2.0\\ \\text{m/s}$"
+    },
+    {
+     "id": "D",
+     "text": "$0.063\\ \\text{m/s}$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Süreklilik: $A v$ sabit, $A = \\pi d^2/4$ ⇒ $v d^2$ sabit. Tablo: $1.0(4.0)^2 = 4.0(2.0)^2 = 16(1.0)^2 = 16$.<br/>2. $v = \\frac{16}{(8.0)^2} = 0.25\\ \\text{m/s}$.",
+   "genel_hatirlatma": "Dairesel boruda v ∝ 1/d²: çap 2 katına çıkarsa hız 1/4'e iner.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Hızı çapla ters orantılı sanmak.",
+     "aciklama": "Tablo, çap yarıya inince hızın 4 katına çıktığını gösteriyor: $v \\propto 1/d^2$, $1/d$ değil."
+    },
+    "C": {
+     "etiket": "Hızı çapla doğru orantılı sanmak.",
+     "aciklama": "Geniş bölümde akış yavaşlar; çap büyüdükçe hız azalmalıdır."
+    },
+    "D": {
+     "etiket": "Hızı $1/d^4$ ile orantılı sanmak.",
+     "aciklama": "Alan $d^2$ ile orantılıdır; çap 2 kat → alan 4 kat → hız 1/4. $(1/4)^2$ almak oranı iki kez uygulamaktır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Süreklilik ve çap",
+    "ipucu": "v·d² çarpımını tablodan kontrol et.",
+    "sikHata": "Çapı alan gibi kullanmak.",
+    "cedKonu": "8.4",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_41",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 60,
+   "numara": 61,
+   "konu": "8.4 Fluids and Conservation Laws",
+   "zorluk": "medium",
+   "govde": "Water ($\\rho = 1000\\ \\text{kg/m}^3$) flows through a horizontal pipe. In the wide section, the speed is $2.0\\ \\text{m/s}$ and the pressure is $1.50 \\times 10^{5}\\ \\text{Pa}$. In the narrow section, the speed is $6.0\\ \\text{m/s}$. What is the pressure in the narrow section?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$1.18 \\times 10^{5}\\ \\text{Pa}$"
+    },
+    {
+     "id": "B",
+     "text": "$1.42 \\times 10^{5}\\ \\text{Pa}$"
+    },
+    {
+     "id": "C",
+     "text": "$1.34 \\times 10^{5}\\ \\text{Pa}$"
+    },
+    {
+     "id": "D",
+     "text": "$1.32 \\times 10^{5}\\ \\text{Pa}$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Bernoulli, $y_1 = y_2$: $P_2 = P_1 - \\tfrac12\\rho(v_2^2 - v_1^2)$.<br/>2. $\\tfrac12(1000)(36 - 4) = 1.6\\times10^4\\ \\text{Pa}$.<br/>3. $P_2 = 1.50\\times10^5 - 0.16\\times10^5 = 1.34\\times10^5\\ \\text{Pa}$.",
+   "genel_hatirlatma": "Yatay akışta basınç düşüşü ½ρ(v₂² − v₁²)'dir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$\\tfrac12$ çarpanını unutmak.",
+     "aciklama": "$\\rho(v_2^2 - v_1^2) = 32\\ \\text{kPa}$ değil, $\\tfrac12\\rho(v_2^2 - v_1^2) = 16\\ \\text{kPa}$ düşüş vardır."
+    },
+    "B": {
+     "etiket": "Hız farkının karesini almak.",
+     "aciklama": "$\\tfrac12\\rho(v_2 - v_1)^2 = 8\\ \\text{kPa}$; doğrusu karelerin farkıdır: $v_2^2 - v_1^2 = 36 - 4 = 32$."
+    },
+    "D": {
+     "etiket": "Geniş kısımdaki hızı ihmal etmek.",
+     "aciklama": "$\\tfrac12\\rho v_2^2 = 18\\ \\text{kPa}$; geniş kısımdaki $\\tfrac12\\rho v_1^2 = 2\\ \\text{kPa}$ da hesaba katılmalı."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Bernoulli denklemi (yatay boru)",
+    "ipucu": "Karelerin farkını al, ½ρ ile çarp.",
+    "sikHata": "½'yi unutmak.",
+    "cedKonu": "8.4",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_42",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 61,
+   "numara": 62,
+   "konu": "8.4 Fluids and Conservation Laws",
+   "zorluk": "hard",
+   "govde": "A large open water tank stands on a platform. A small hole in the side of the tank is $0.45\\ \\text{m}$ above the ground, and the water surface in the tank is $1.25\\ \\text{m}$ above the hole. Water leaves the hole horizontally. The tank is wide enough that the water level drops very slowly, and air resistance is negligible. How far from the base of the tank, measured horizontally from the hole, does the stream hit the ground? ($g = 10\\ \\text{m/s}^2$)",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$1.75\\ \\text{m}$"
+    },
+    {
+     "id": "B",
+     "text": "$1.1\\ \\text{m}$"
+    },
+    {
+     "id": "C",
+     "text": "$7.5\\ \\text{m}$"
+    },
+    {
+     "id": "D",
+     "text": "$1.5\\ \\text{m}$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Bernoulli (yüzey ve delik, ikisi de $P_0$'da, yüzeyde $v \\approx 0$): $v = \\sqrt{2gh} = \\sqrt{2(10)(1.25)} = 5.0\\ \\text{m/s}$.<br/>2. Düşme süresi: $0.45 = \\tfrac12(10)t^2 \\Rightarrow t = 0.30\\ \\text{s}$.<br/>3. $x = vt = 5.0 \\times 0.30 = 1.5\\ \\text{m}$.",
+   "genel_hatirlatma": "Torricelli: v = √(2gh), h = yüzeyin delikten yüksekliği; sonra mermi hareketi.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yüksekliği yerden ölçmek.",
+     "aciklama": "Torricelli'de $h$ yüzeyin <em>delikten</em> yüksekliğidir ($1.25\\ \\text{m}$). $1.70\\ \\text{m}$ kullanılırsa $v \\approx 5.8\\ \\text{m/s}$, $x \\approx 1.75\\ \\text{m}$ çıkar."
+    },
+    "B": {
+     "etiket": "$v = \\sqrt{gh}$ yazmak.",
+     "aciklama": "Enerji korunumu $\\tfrac12\\rho v^2 = \\rho g h$ verir: $v = \\sqrt{2gh} = 5.0\\ \\text{m/s}$; 2 çarpanı unutulursa $v \\approx 3.5\\ \\text{m/s}$, $x \\approx 1.1\\ \\text{m}$."
+    },
+    "C": {
+     "etiket": "Karekökü almayı unutmak.",
+     "aciklama": "$2gh = 25\\ (\\text{m/s})^2$, $v^2$'dir; $v = 5.0\\ \\text{m/s}$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Torricelli + yatay atış",
+    "ipucu": "İki ayrı yükseklik var: biri hız, biri düşme süresi için.",
+    "sikHata": "h'yi yerden ölçmek.",
+    "cedKonu": "8.4",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_43",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 62,
+   "numara": 63,
+   "konu": "8.4 Fluids and Conservation Laws",
+   "zorluk": "medium",
+   "govde": "Water flows steadily upward through a straight pipe with a <strong>constant</strong> cross-sectional area. Pressure gauges at several heights give the readings below.<table><thead><tr><th>Height above ground (m)</th><th>Absolute pressure (kPa)</th></tr></thead><tbody><tr><td>0</td><td>150</td></tr><tr><td>1.0</td><td>140</td></tr><tr><td>2.0</td><td>130</td></tr><tr><td>3.0</td><td>120</td></tr></tbody></table>Which statement correctly compares the speed of the water at a height of $3.0\\ \\text{m}$ with its speed at ground level, and gives the correct reason? ($\\rho = 1000\\ \\text{kg/m}^3$, $g = 10\\ \\text{m/s}^2$)",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The speeds are equal, because the cross-sectional area is constant; the entire pressure drop is accounted for by the change in height."
+    },
+    {
+     "id": "B",
+     "text": "The speed is smaller at 3.0 m, because the water slows down as it rises against gravity."
+    },
+    {
+     "id": "C",
+     "text": "The speed is greater at 3.0 m, because the pressure is lower there and lower pressure means greater speed."
+    },
+    {
+     "id": "D",
+     "text": "It cannot be determined without knowing the volume flow rate."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Süreklilik: $A$ sabit ⇒ $v$ her yükseklikte aynı.<br/>2. Bernoulli: $P_1 - P_2 = \\rho g (y_2 - y_1) + \\tfrac12\\rho(v_2^2 - v_1^2)$. Hızlar eşit ⇒ $\\Delta P = \\rho g \\Delta y = 1000 \\times 10 \\times 3.0 = 30\\ \\text{kPa}$.<br/>3. Tablo: $150 - 120 = 30\\ \\text{kPa}$ — tutarlı.",
+   "genel_hatirlatma": "Sabit kesitli boruda hız değişmez; basınç farkı yalnızca yükseklik farkından gelir.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Akışkanı tek bir atılan cisim gibi düşünmek.",
+     "aciklama": "Boru sabit kesitliyse süreklilik (Av sabit) hızın her yerde aynı olmasını zorunlu kılar; yükselmenin “bedelini” basınç düşüşü öder."
+    },
+    "C": {
+     "etiket": "Bernoulli'yi yükseklik terimini unutarak uygulamak.",
+     "aciklama": "Basınç düşüşü $\\rho g \\Delta y = 1000(10)(3.0) = 30\\ \\text{kPa}$, gözlenen düşüşle aynıdır; kinetik enerji terimine pay kalmaz."
+    },
+    "D": {
+     "etiket": "Sürekliliğin yeterli olduğunu görmemek.",
+     "aciklama": "Hızların değerlerini bulmak için debi gerekir, ama karşılaştırma için sabit alan yeterlidir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Süreklilik + Bernoulli (yükseklik terimi)",
+    "ipucu": "Hızları önce süreklilikle karşılaştır.",
+    "sikHata": "Düşük basıncı her zaman yüksek hız sanmak.",
+    "cedKonu": "8.4",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_44",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 63,
+   "numara": 64,
+   "konu": "8.4 Fluids and Conservation Laws",
+   "zorluk": "hard",
+   "govde": "A garden hose lies horizontally on the ground and ends in a nozzle. The cross-sectional area of the hose is $4$ times the area of the nozzle opening. Water ($\\rho = 1000\\ \\text{kg/m}^3$) leaves the nozzle into the air at $8.0\\ \\text{m/s}$. What is the <strong>gauge</strong> pressure of the water inside the hose, just before the nozzle?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$32\\ \\text{kPa}$"
+    },
+    {
+     "id": "B",
+     "text": "$30\\ \\text{kPa}$"
+    },
+    {
+     "id": "C",
+     "text": "$24\\ \\text{kPa}$"
+    },
+    {
+     "id": "D",
+     "text": "$130\\ \\text{kPa}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Süreklilik: $v_1 = v_2 \\frac{A_2}{A_1} = \\frac{8.0}{4} = 2.0\\ \\text{m/s}$.<br/>2. Çıkışta su atmosfere açılır: $P_2 = P_0$.<br/>3. Bernoulli (yatay): $P_1 - P_0 = \\tfrac12\\rho(v_2^2 - v_1^2) = \\tfrac12(1000)(64 - 4) = 3.0\\times10^4\\ \\text{Pa} = 30\\ \\text{kPa}$.",
+   "genel_hatirlatma": "Açık havaya çıkan jette P = P₀ al; hızları süreklilikle bağla.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Hortumdaki hızı ihmal etmek.",
+     "aciklama": "$\\tfrac12\\rho v_2^2 = 32\\ \\text{kPa}$; hortumda da su $2.0\\ \\text{m/s}$ ile akar ve $\\tfrac12\\rho v_1^2 = 2\\ \\text{kPa}$ çıkarılmalıdır."
+    },
+    "C": {
+     "etiket": "Hızı alanla değil çapla ters orantılı sanmak.",
+     "aciklama": "Süreklilik $A_1v_1 = A_2v_2$ verir; alan oranı 4 ise hız oranı da 4'tür: $v_1 = 8.0/4 = 2.0\\ \\text{m/s}$. Oranın karekökü (2) alınırsa $v_1 = 4.0\\ \\text{m/s}$ ve $\\tfrac12(1000)(64-16) = 24\\ \\text{kPa}$ çıkar."
+    },
+    "D": {
+     "etiket": "Mutlak basınç vermek.",
+     "aciklama": "Soru gösterge basıncını istiyor; $P_0 = 100\\ \\text{kPa}$ eklenmez."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Süreklilik + Bernoulli (jet)",
+    "ipucu": "Çıkış noktasında basınç atmosferiktir.",
+    "sikHata": "Hortumdaki akış hızını ihmal etmek.",
+    "cedKonu": "8.4",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_45",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 64,
+   "numara": 65,
+   "konu": "8.4 Fluids and Conservation Laws",
+   "zorluk": "medium",
+   "govde": "During a storm, wind blows horizontally across the flat roof of a closed house at $30\\ \\text{m/s}$, while the air inside the house is essentially still. The roof has an area of $100\\ \\text{m}^2$, and the density of air is $1.2\\ \\text{kg/m}^3$. Using Bernoulli's equation and neglecting the small height difference, what is the approximate magnitude of the net force on the roof due to the air?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$1.1 \\times 10^{5}\\ \\text{N}$"
+    },
+    {
+     "id": "B",
+     "text": "$540\\ \\text{N}$"
+    },
+    {
+     "id": "C",
+     "text": "$1.8 \\times 10^{3}\\ \\text{N}$"
+    },
+    {
+     "id": "D",
+     "text": "$5.4 \\times 10^{4}\\ \\text{N}$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Bernoulli (aynı yükseklik): $P_{iç} - P_{dış} = \\tfrac12\\rho v^2 = \\tfrac12(1.2)(30)^2 = 540\\ \\text{Pa}$.<br/>2. İçerideki basınç daha büyük ⇒ net kuvvet yukarı: $F = \\Delta P \\cdot A = 540 \\times 100 = 5.4\\times10^4\\ \\text{N}$.",
+   "genel_hatirlatma": "Hızlı akan havanın basıncı durgun havanınkinden küçüktür; fark × alan = net kuvvet.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$\\tfrac12$ çarpanını unutmak.",
+     "aciklama": "$\\rho v^2 A = 1.08\\times10^5$; Bernoulli'de kinetik terim $\\tfrac12\\rho v^2$'dir."
+    },
+    "B": {
+     "etiket": "Basınç farkını kuvvet sanmak.",
+     "aciklama": "$\\tfrac12\\rho v^2 = 540\\ \\text{Pa}$ bir basınçtır; kuvvet için $100\\ \\text{m}^2$ ile çarpılır."
+    },
+    "C": {
+     "etiket": "Hızın karesini almamak.",
+     "aciklama": "$\\tfrac12(1.2)(30)(100) = 1800$; kinetik terimde $v^2$ vardır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Bernoulli: çatı kaldırma",
+    "ipucu": "ΔP = ½ρv², sonra F = ΔP·A.",
+    "sikHata": "Basıncı kuvvet sanmak.",
+    "cedKonu": "8.4",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_46",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 65,
+   "numara": 66,
+   "konu": "8.4 Fluids and Conservation Laws",
+   "zorluk": "hard",
+   "govde": "A student measures the speed $v$ of water leaving a small hole in a large open tank for several heights $h$ of the water surface above the hole.<table><thead><tr><th>h (m)</th><th>v (m/s)</th></tr></thead><tbody><tr><td>0.20</td><td>2.0</td></tr><tr><td>0.45</td><td>3.0</td></tr><tr><td>0.80</td><td>4.0</td></tr><tr><td>1.25</td><td>5.0</td></tr></tbody></table>The student wants to graph the data so that the points fall on a straight line through the origin whose slope can be compared with a prediction from Bernoulli's equation. Which choice of graph and slope is consistent with the data?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$v^2$ versus $h$, with a slope of about $20\\ \\text{m/s}^2$"
+    },
+    {
+     "id": "B",
+     "text": "$v$ versus $h$, with a slope of about $4.0\\ \\text{s}^{-1}$"
+    },
+    {
+     "id": "C",
+     "text": "$v^2$ versus $h$, with a slope of about $10\\ \\text{m/s}^2$"
+    },
+    {
+     "id": "D",
+     "text": "$v$ versus $\\sqrt{h}$, with a slope of about $20\\ \\text{m/s}^2$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Bernoulli (yüzey ve delik $P_0$'da, yüzeyde $v \\approx 0$): $\\rho g h = \\tfrac12 \\rho v^2 \\Rightarrow v^2 = 2gh$.<br/>2. $v^2$–$h$ doğrusal, orijinden geçer, eğim $2g$.<br/>3. Veri: $v^2/h = 4.0/0.20 = 9.0/0.45 = 16/0.80 = 25/1.25 = 20\\ \\text{m/s}^2 \\approx 2g$.",
+   "genel_hatirlatma": "Doğrusallaştırma: denklemi y = (eğim)·x biçimine getir; v² = 2gh ⇒ y = v², x = h, eğim = 2g.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "v–h ilişkisini doğrusal sanmak.",
+     "aciklama": "$v/h$ oranları $10, 6.7, 5.0, 4.0$ — sabit değil. Torricelli $v \\propto \\sqrt{h}$ der."
+    },
+    "C": {
+     "etiket": "Eğimi $g$ sanmak.",
+     "aciklama": "$v^2 = 2gh$ ⇒ eğim $2g$. Tablo: $4.0/0.20 = 20\\ \\text{m/s}^2$."
+    },
+    "D": {
+     "etiket": "Doğru grafik, yanlış eğim.",
+     "aciklama": "$v$–$\\sqrt{h}$ da doğrusaldır, ama eğimi $\\sqrt{2g} \\approx 4.5\\ \\text{m}^{1/2}/\\text{s}$'dir; 20 değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Torricelli deneyinin doğrusallaştırılması",
+    "ipucu": "Her satırda v²/h hesapla.",
+    "sikHata": "Eğimi g sanmak.",
+    "cedKonu": "8.4",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_47",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 66,
+   "numara": 67,
+   "konu": "8.4 Fluids and Conservation Laws",
+   "zorluk": "hard",
+   "govde": "A fountain nozzle points straight up and has an opening with a cross-sectional area of $2.0\\ \\text{cm}^2$. The water stream rises to a maximum height of $5.0\\ \\text{m}$ above the nozzle. Neglecting air resistance, what is the volume flow rate of water through the nozzle? ($g = 10\\ \\text{m/s}^2$)",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$1.4\\ \\text{L/s}$"
+    },
+    {
+     "id": "B",
+     "text": "$2.0\\ \\text{L/s}$"
+    },
+    {
+     "id": "C",
+     "text": "$20\\ \\text{L/s}$"
+    },
+    {
+     "id": "D",
+     "text": "$200\\ \\text{L/s}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Enerji korunumu (ya da Bernoulli; tepe ve nozul $P_0$'da): $\\tfrac12 v^2 = gh \\Rightarrow v = \\sqrt{2(10)(5.0)} = 10\\ \\text{m/s}$.<br/>2. $Q = Av = 2.0\\times10^{-4} \\times 10 = 2.0\\times10^{-3}\\ \\text{m}^3/\\text{s}$.<br/>3. $2.0\\times10^{-3}\\ \\text{m}^3/\\text{s} = 2.0\\ \\text{L/s}$.",
+   "genel_hatirlatma": "Enerji korunumu hızı, süreklilik (Q = Av) debiyi verir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$v = \\sqrt{gh}$ yazmak.",
+     "aciklama": "$\\tfrac12 v^2 = gh$ ⇒ $v = \\sqrt{2gh} = 10\\ \\text{m/s}$; 2 unutulursa $v \\approx 7.1\\ \\text{m/s}$, $Q \\approx 1.4\\ \\text{L/s}$."
+    },
+    "C": {
+     "etiket": "Karekökü almayı unutmak.",
+     "aciklama": "$2gh = 100$, $v^2$'dir; $v = 10\\ \\text{m/s}$."
+    },
+    "D": {
+     "etiket": "cm²'yi m²'ye yanlış çevirmek.",
+     "aciklama": "$2.0\\ \\text{cm}^2 = 2.0\\times10^{-4}\\ \\text{m}^2$; $10^{-2}$ alınırsa debi 100 kat büyük çıkar."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Enerji korunumu + debi",
+    "ipucu": "Önce çıkış hızı, sonra Q = Av.",
+    "sikHata": "v = √(2gh)'de 2'yi unutmak.",
+    "cedKonu": "8.4",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u8_48",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 9,
+   "unite": "8",
+   "kutu": "phys-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Fluids",
+   "dizi": "PHYS_UNIT8_QUESTIONS",
+   "sira": 67,
+   "numara": 68,
+   "konu": "8.4 Fluids and Conservation Laws",
+   "zorluk": "medium",
+   "govde": "A narrow vertical tube is dipped into a cup of water so that its open top end sticks out just above the water surface. A student blows a fast stream of air horizontally across the open top of the tube, and water rises in the tube. Which explanation is correct?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The moving air pulls the water up by dragging on the water surface inside the tube."
+    },
+    {
+     "id": "B",
+     "text": "The air stream increases the pressure above the tube, and this higher pressure pushes water up the tube."
+    },
+    {
+     "id": "C",
+     "text": "The fast-moving air above the tube has lower pressure than the still air above the water in the cup, so the pressure difference pushes water up the tube."
+    },
+    {
+     "id": "D",
+     "text": "The air stream lowers the pressure on the water surface in the cup, so the water there moves up the tube."
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Tüpün tepesinde hava hızlı akar ⇒ Bernoulli: orada basınç $P_0$'dan küçük.<br/>2. Bardaktaki su yüzeyi durgun havada, basınç $P_0$.<br/>3. Tüpün altı ile üstü arasındaki basınç farkı suyu yükseltir, ta ki su sütununun $\\rho g h$ değeri bu farka eşit olana dek.",
+   "genel_hatirlatma": "Bernoulli nitel: aynı yükseklikte hızlı akan akışkanda basınç düşüktür; akışkanı basınç farkı iter.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Akan havanın suyu “çektiğini” sanmak.",
+     "aciklama": "Akışkanlar çekmez, iter. Suyu yukarı iten, bardaktaki yüzeye etki eden daha büyük basınçtır."
+    },
+    "B": {
+     "etiket": "Hız–basınç ilişkisini ters kurmak.",
+     "aciklama": "Bernoulli'ye göre hızlı akan havada basınç düşer; tüpün üstündeki basınç artsaydı su aşağı itilirdi."
+    },
+    "D": {
+     "etiket": "Düşük basıncın yerini karıştırmak.",
+     "aciklama": "Hava akımı tüpün ağzından geçer; bardaktaki yüzeyin üstündeki hava durgundur ve atmosfer basıncındadır. Basınç tüpün tepesinde düşer."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Bernoulli: püskürtücü (atomizer) etkisi",
+    "ipucu": "Hangi yüzeyin üstünde hava hızlı akıyor?",
+    "sikHata": "Düşük basıncın “çektiğini” sanmak.",
+    "cedKonu": "8.4",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
   }
  ],
  "icerikGuncelleme": "2026-10-24T14:48:10.000Z",
- "yeniSoruEkleme": "2026-10-24T16:47:35.112Z"
+ "yeniSoruEkleme": "2026-10-24T16:51:06.431Z"
 }
