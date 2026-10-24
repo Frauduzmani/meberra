@@ -1,5 +1,5 @@
 {
- "surum": 9,
+ "surum": 10,
  "olusturma": "2026-10-21T08:13:59.509Z",
  "aciklama": "Meberra soru bankası tohumu — tek doğruluk kaynağı. Statik olarak SUNULMAZ. Üretici: node araclar/soru-aktar.js",
  "sorular": [
@@ -107641,8 +107641,2108 @@
     }
    },
    "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_1",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 27,
+   "numara": 28,
+   "konu": "4.1 Interpreting the Meaning of the Derivative in Context",
+   "zorluk": "easy",
+   "govde": "The number of fish in a lake is modeled by $P(t)$, measured in hundreds of fish, where $t$ is measured in months. It is known that $P'(6)=2.4$. Which of the following is the best interpretation of this value?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "After 6 months, there are 240 fish in the lake."
+    },
+    {
+     "id": "B",
+     "text": "At $t=6$ months, the fish population is increasing at a rate of 240 fish per month."
+    },
+    {
+     "id": "C",
+     "text": "Over the first 6 months, the population increased at an average rate of 240 fish per month."
+    },
+    {
+     "id": "D",
+     "text": "At $t=6$ months, the fish population is increasing at a rate of 2.4 fish per month."
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $P'(6)$, $t=6$ anındaki <b>anlık değişim hızıdır</b>; birimi “yüz balık / ay”dır.<br/>2. $2.4$ yüz balık $=240$ balık. İşaret pozitif ⇒ nüfus artıyor.<br/>3. Doğru yorum: “At $t=6$ months, the fish population is increasing at a rate of 240 fish per month.”",
+   "genel_hatirlatma": "Türev yorumu: zaman + büyüklük + artıyor/azalıyor + değer + birim. Fonksiyonun birimi “hundreds” ise hızın birimi de “hundreds per month” olur.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Türevi fonksiyon değeri sanmak.",
+     "aciklama": "$P'(6)$ bir hızdır, balık sayısı değildir. Balık sayısı $P(6)$ ile verilir."
+    },
+    "C": {
+     "etiket": "Anlık hızı ortalama hız sanmak.",
+     "aciklama": "“Over the first 6 months … average rate” ifadesi $\\frac{P(6)-P(0)}{6}$'yı anlatır; türev tek bir andaki hızdır."
+    },
+    "D": {
+     "etiket": "Birimi gözden kaçırmak (hundreds).",
+     "aciklama": "$P$ yüz balık cinsinden ölçülüyor; $2.4$ yüz balık $=240$ balık. “2.4 fish per month” birimi yanlış okur."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.1)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Türev değerini birimiyle yorumlamak",
+    "ipucu": "Önce birimi kur: çıktı birimi / girdi birimi.",
+    "sikHata": "Türevi miktar sanmak",
+    "cedKonu": "4.1",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_2",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 28,
+   "numara": 29,
+   "konu": "4.1 Interpreting the Meaning of the Derivative in Context",
+   "zorluk": "medium",
+   "govde": "A theater sells $F(p)$ tickets for a show when the price of one ticket is $p$ dollars. The function $F$ is differentiable, and $F'(25)=-40$. Which of the following is the best interpretation of $F'(25)=-40$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "When the price is 25 dollars, the theater sells 40 fewer tickets each day than the day before."
+    },
+    {
+     "id": "B",
+     "text": "If the price rises from 25 to 26 dollars, exactly 40 more tickets are sold."
+    },
+    {
+     "id": "C",
+     "text": "When 25 tickets have been sold, the ticket price is decreasing at a rate of 40 dollars per ticket."
+    },
+    {
+     "id": "D",
+     "text": "When the price is 25 dollars, the number of tickets sold is decreasing at a rate of 40 tickets per dollar."
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Girdi fiyat $p$ (dolar), çıktı bilet sayısı $F$. Türevin birimi: tickets per dollar.<br/>2. $F'(25)=-40\\lt0$ ⇒ fiyat 25 dolar civarında arttıkça satılan bilet sayısı azalıyor.<br/>3. Doğru yorum: “When the price is 25 dollars, the number of tickets sold is decreasing at a rate of 40 tickets per dollar.” (Fiyat 1 dolar artarsa yaklaşık 40 bilet daha az satılır.)",
+   "genel_hatirlatma": "Girdi her zaman zaman değildir. Birim “çıktı / girdi” olur: burada tickets per dollar.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Girdiyi zaman sanmak (“each day”).",
+     "aciklama": "Fonksiyonun girdisi fiyattır; türev “per dollar” ölçülür. Soruda gün ya da zaman yoktur."
+    },
+    "B": {
+     "etiket": "İşareti ve “kesinlik”i yanlış okumak.",
+     "aciklama": "Türev negatif ⇒ bilet sayısı azalır, artmaz. Ayrıca türev yalnız yaklaşık değişimi verir; “exactly” yanlıştır."
+    },
+    "C": {
+     "etiket": "Girdi ile çıktıyı yer değiştirmek.",
+     "aciklama": "$F'(25)$'te 25 fiyattır, bilet sayısı değil. Türev bilet sayısının fiyata göre değişimidir, fiyatın bilete göre değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.1)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Zaman olmayan girdiyle türev yorumu",
+    "ipucu": "Fonksiyon notasyonunu oku: F(p) ⇒ girdi p (fiyat).",
+    "sikHata": "Her türevi zamana göre hız sanmak",
+    "cedKonu": "4.1",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_3",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 29,
+   "numara": 30,
+   "konu": "4.1 Interpreting the Meaning of the Derivative in Context",
+   "zorluk": "medium",
+   "govde": "<em>(Graphing calculator allowed.)</em> The depth of snow on a flat roof is modeled by $S(t)=4te^{-0.2t}+10$ centimeters, where $t$ is the number of hours after a storm begins, $0\\le t\\le 12$. Which of the following is the best interpretation of $S'(7)$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "At $t=7$ hours, the depth of snow is decreasing at about 0.395 centimeter per hour."
+    },
+    {
+     "id": "B",
+     "text": "At $t=7$ hours, the depth of snow is about 16.905 centimeters."
+    },
+    {
+     "id": "C",
+     "text": "At $t=7$ hours, the depth of snow is increasing at about 0.395 centimeter per hour."
+    },
+    {
+     "id": "D",
+     "text": "During the first 7 hours, the depth of snow decreased by about 0.395 centimeter."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Hesap makinesiyle (nDeriv) $S'(7)\\approx-0.395$. (Elle: $S'(t)=4e^{-0.2t}(1-0.2t)$, $S'(7)=4e^{-1.4}(-0.4)\\approx-0.395$.)<br/>2. Negatif ⇒ kar derinliği azalıyor; birim cm/saat.<br/>3. Yorum: “At $t=7$ hours, the depth of snow is decreasing at about 0.395 centimeter per hour.”",
+   "genel_hatirlatma": "Türevin işareti yönü (increasing/decreasing), mutlak değeri hızı verir. Değer bir miktar değil, anlık hızdır.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Türev yerine fonksiyon değerini hesaplamak.",
+     "aciklama": "$S(7)\\approx16.905$ cm derinliktir; soru $S'(7)$'yi, yani derinliğin değişim hızını soruyor."
+    },
+    "C": {
+     "etiket": "İşareti göz ardı etmek.",
+     "aciklama": "$S'(7)\\approx-0.395\\lt0$; derinlik artmıyor, azalıyor."
+    },
+    "D": {
+     "etiket": "Anlık hızı toplam değişim sanmak.",
+     "aciklama": "İlk 7 saatte derinlik aslında $S(7)-S(0)\\approx6.905$ cm <em>arttı</em>. $S'(7)$ yalnız $t=7$ anındaki hızdır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.1)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Hesap makinesiyle türev değeri ve yorumu",
+    "ipucu": "nDeriv ile S'(7)'yi bul, işaretine bak, birim yaz.",
+    "sikHata": "Fonksiyon değeriyle türev değerini karıştırmak",
+    "cedKonu": "4.1",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_4",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 30,
+   "numara": 31,
+   "konu": "4.1 Interpreting the Meaning of the Derivative in Context",
+   "zorluk": "hard",
+   "govde": "<em>(Graphing calculator allowed.)</em> The depth of water in a harbor is modeled by $D(t)=8+3\\sin(0.5t)$ meters, where $t$ is the number of hours after midnight, $0\\le t\\le 12$. Which of the following statements about the depth of the water at $t=4$ is true?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The depth is decreasing at about 0.624 meter per hour, and the rate at which it decreases is itself decreasing."
+    },
+    {
+     "id": "B",
+     "text": "The depth is increasing at about 1.499 meters per hour."
+    },
+    {
+     "id": "C",
+     "text": "The depth is decreasing at about 0.624 meter per hour, and the rate at which it decreases is increasing."
+    },
+    {
+     "id": "D",
+     "text": "The depth is decreasing at about 0.682 meter per hour."
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $D'(t)=1.5\\cos(0.5t)$ ⇒ $D'(4)=1.5\\cos 2\\approx-0.624$ (radyan). Derinlik 0.624 m/saat hızla azalıyor.<br/>2. $D''(t)=-0.75\\sin(0.5t)$ ⇒ $D''(4)=-0.75\\sin2\\approx-0.682\\lt0$.<br/>3. $D'\\lt0$ ve $D''\\lt0$ ⇒ $D'$ daha da negatifleşiyor; yani azalma hızı (rate of decrease) <b>artıyor</b>.",
+   "genel_hatirlatma": "$f'\\lt0$ ve $f''\\lt0$: “decreasing at an increasing rate”. $f'\\lt0$ ve $f''\\gt0$: “decreasing at a decreasing rate”. Trigonometride radyan modu zorunlu.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "İkinci türevin anlamını ters yorumlamak.",
+     "aciklama": "$D''(4)\\lt0$ ⇒ $D'$ azalıyor (−0.624'ten daha negatif değerlere). Hız negatif olduğu için azalmanın büyüklüğü artıyor, azalmıyor."
+    },
+    "B": {
+     "etiket": "Hesap makinesi derece modunda.",
+     "aciklama": "$1.5\\cos(2^\\circ)\\approx1.499$ derece modunun sonucudur. Radyanda $D'(4)\\approx-0.624$."
+    },
+    "D": {
+     "etiket": "Türev yerine ikinci türev değerini kullanmak.",
+     "aciklama": "$-0.682$, $D''(4)$'tür; birimi m/saat². Derinliğin değişim hızı $D'(4)\\approx-0.624$ m/saat'tir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.1)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Birinci ve ikinci türevi bağlamda birlikte yorumlamak",
+    "ipucu": "D' işareti: derinlik yönü. D'' işareti: D' artıyor mu azalıyor mu.",
+    "sikHata": "Derece modu; f'' işaretini f'nin büyüklüğüyle karıştırmak",
+    "cedKonu": "4.1",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_5",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 31,
+   "numara": 32,
+   "konu": "4.2 Straight-Line Motion: Connecting Position, Velocity, and Acceleration",
+   "zorluk": "easy",
+   "govde": "A particle moves along the $x$-axis so that its position at time $t\\ge 0$ is $x(t)=2t^3-9t^2+12t$. What is the acceleration of the particle at the first time $t\\gt 0$ when the particle is at rest?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0$"
+    },
+    {
+     "id": "B",
+     "text": "$5$"
+    },
+    {
+     "id": "C",
+     "text": "$-6$"
+    },
+    {
+     "id": "D",
+     "text": "$6$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $v(t)=x'(t)=6t^2-18t+12=6(t-1)(t-2)$.<br/>2. Durgun (at rest) ⇒ $v=0$ ⇒ $t=1$ veya $t=2$; ilk an $t=1$.<br/>3. $a(t)=v'(t)=12t-18$ ⇒ $a(1)=-6$.",
+   "genel_hatirlatma": "At rest ⇒ $v(t)=0$. İvme hızın türevidir: $a(t)=v'(t)=x''(t)$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Durgunluk anında ivmeyi de sıfır sanmak.",
+     "aciklama": "$v(1)=0$ olması $a(1)=0$ demek değildir; $a(1)=12-18=-6$."
+    },
+    "B": {
+     "etiket": "Konum değerini vermek.",
+     "aciklama": "$x(1)=2-9+12=5$ konumdur; soru ivmeyi soruyor."
+    },
+    "D": {
+     "etiket": "İkinci durgunluk anını kullanmak.",
+     "aciklama": "$a(2)=24-18=6$; ama ilk durgunluk anı $t=1$'dir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.2)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Konumdan hız ve ivmeye geçiş",
+    "ipucu": "v = x', a = v'. At rest ⇒ v = 0.",
+    "sikHata": "v = 0 olan anda a = 0 sanmak",
+    "cedKonu": "4.2",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_6",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 32,
+   "numara": 33,
+   "konu": "4.2 Straight-Line Motion: Connecting Position, Velocity, and Acceleration",
+   "zorluk": "medium",
+   "govde": "A particle moves along a straight line. Its velocity $v(t)$, in meters per second, is given in the table below for selected times $t$, in seconds.<br/><table><thead><tr><th>$t$</th><th>0</th><th>2</th><th>5</th><th>7</th><th>10</th></tr></thead><tbody><tr><td>$v(t)$</td><td>4</td><td>1</td><td>$-2$</td><td>$-1$</td><td>3</td></tr></tbody></table>Based on the data, which of the following gives the best estimate of the acceleration at $t=6$, together with the most reasonable conclusion about the motion of the particle near $t=6$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0.5\\text{ m/s}^2$; the particle is slowing down."
+    },
+    {
+     "id": "B",
+     "text": "$0.5\\text{ m/s}^2$; the particle is speeding up."
+    },
+    {
+     "id": "C",
+     "text": "$-1.5\\text{ m/s}^2$; the particle is speeding up."
+    },
+    {
+     "id": "D",
+     "text": "$-0.5\\text{ m/s}^2$; the particle is slowing down."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $a(6)\\approx\\dfrac{v(7)-v(5)}{7-5}=\\dfrac{-1-(-2)}{2}=0.5$ m/s².<br/>2. $t=6$ civarında hız $-2$ ile $-1$ arasında, yani negatif; tablo, sürat $|v|$'nin $t=5$'ten $t=7$'ye 2'den 1'e düştüğünü de gösteriyor.<br/>3. $v\\lt0$, $a\\gt0$: işaretler zıt ⇒ parçacık yavaşlıyor (slowing down). Bu verilere dayalı bir tahmindir; soru bu yüzden “most reasonable conclusion” der.",
+   "genel_hatirlatma": "Tablodan türev: $t$ değerini kapsayan en yakın iki veriyle fark bölümü. Hızlanma kararı için $v$ ve $a$'nın işaretlerini karşılaştır.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Pozitif ivmeyi her zaman hızlanma sanmak.",
+     "aciklama": "Hız negatifken pozitif ivme hızın büyüklüğünü küçültür; parçacık yavaşlar."
+    },
+    "C": {
+     "etiket": "Hızın ortalamasını ivme sanmak.",
+     "aciklama": "$\\frac{v(5)+v(7)}{2}=-1.5$ hızın tahminidir (m/s); ivme hızdaki değişimin zamana oranıdır."
+    },
+    "D": {
+     "etiket": "Fark bölümünde sırayı karıştırmak.",
+     "aciklama": "$\\frac{v(5)-v(7)}{7-5}=-0.5$ işareti ters çevirir. Doğru sıra: $\\frac{v(7)-v(5)}{7-5}$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.2)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Tablodan ivme tahmini ve hızlanma/yavaşlama",
+    "ipucu": "Speeding up ⇔ v ve a aynı işaretli.",
+    "sikHata": "a > 0 ⇒ hızlanıyor sanmak",
+    "cedKonu": "4.2",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_7",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 33,
+   "numara": 34,
+   "konu": "4.2 Straight-Line Motion: Connecting Position, Velocity, and Acceleration",
+   "zorluk": "hard",
+   "govde": "<em>(Graphing calculator allowed.)</em> A particle moves along the $x$-axis with velocity $v(t)=2\\sin\\!\\left(e^{t/4}\\right)+1$ for $0\\le t\\le 6$. Which of the following is true at time $t=4$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$a(4)\\approx 1.239$, and the particle is speeding up."
+    },
+    {
+     "id": "B",
+     "text": "$a(4)\\approx -1.239$, so the particle is speeding up."
+    },
+    {
+     "id": "C",
+     "text": "$a(4)\\approx 1.822$, and the particle is moving to the right."
+    },
+    {
+     "id": "D",
+     "text": "$a(4)\\approx -1.239$, and the particle is slowing down."
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Hesap makinesi (radyan): $v(4)=2\\sin(e)+1\\approx1.822\\gt0$.<br/>2. $a(4)=v'(4)\\approx-1.239$ (nDeriv; elle $v'(t)=\\frac12e^{t/4}\\cos(e^{t/4})$).<br/>3. $v(4)\\gt0$, $a(4)\\lt0$: işaretler zıt ⇒ parçacık yavaşlıyor.",
+   "genel_hatirlatma": "Calculator bölümünde ivme = hızın sayısal türevi. Hızlanma/yavaşlama için iki değerin işareti birlikte kullanılır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Türevin işaretini düşürmek.",
+     "aciklama": "$v'(4)$ negatiftir: $\\cos(e)\\approx-0.912$. Pozitif 1.239 işaret hatasıdır."
+    },
+    "B": {
+     "etiket": "Negatif ivmeyi tek başına yorumlamak.",
+     "aciklama": "İvme negatif ama hız pozitif; zıt işaretler yavaşlama demektir. Tek başına $a$'nın işareti karar vermez."
+    },
+    "C": {
+     "etiket": "Hız değerini ivme sanmak.",
+     "aciklama": "$1.822$, $v(4)$'tür. Parçacık sağa gidiyor ama ivme $v'(4)\\approx-1.239$'dur."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.2)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Transandant hızla hareket, sayısal türev",
+    "ipucu": "v(4) ve a(4)'ü ayrı ayrı hesapla, işaretleri karşılaştır.",
+    "sikHata": "Sadece a'nın işaretine bakmak",
+    "cedKonu": "4.2",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_8",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 34,
+   "numara": 35,
+   "konu": "4.2 Straight-Line Motion: Connecting Position, Velocity, and Acceleration",
+   "zorluk": "medium",
+   "govde": "<em>(Graphing calculator allowed.)</em> A particle moves along the $x$-axis so that its position at time $t$ is $x(t)=2t-3\\sin\\!\\left(\\dfrac{t^2}{3}\\right)$. What is the speed of the particle at time $t=1.5$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$-0.195$"
+    },
+    {
+     "id": "B",
+     "text": "$0.195$"
+    },
+    {
+     "id": "C",
+     "text": "$0.955$"
+    },
+    {
+     "id": "D",
+     "text": "$1.000$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $v(t)=x'(t)=2-3\\cos\\!\\left(\\frac{t^2}{3}\\right)\\cdot\\frac{2t}{3}=2-2t\\cos\\!\\left(\\frac{t^2}{3}\\right)$.<br/>2. Hesap makinesi (radyan): $v(1.5)=2-3\\cos(0.75)\\approx-0.195$.<br/>3. Sürat (speed) $=|v(1.5)|\\approx0.195$.",
+   "genel_hatirlatma": "Speed $=|v(t)|$, her zaman $\\ge0$. Velocity işaretlidir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Hız (velocity) ile sürati (speed) karıştırmak.",
+     "aciklama": "$-0.195$ hızdır; sürat mutlak değerdir: $0.195$."
+    },
+    "C": {
+     "etiket": "Konumu hesaplamak.",
+     "aciklama": "$x(1.5)=3-3\\sin(0.75)\\approx0.955$ konumdur; sürat türevden gelir."
+    },
+    "D": {
+     "etiket": "Hesap makinesi derece modunda.",
+     "aciklama": "Derece modunda $\\cos(0.75^\\circ)\\approx1$ ⇒ $v\\approx-1.000$. AP'de daima radyan kullanılır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.2)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Sürat = |hız|; hesap makinesiyle türev",
+    "ipucu": "Speed sorusunda cevabı mutlak değerle ver.",
+    "sikHata": "Negatif hızı sürat olarak yazmak",
+    "cedKonu": "4.2",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_9",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 35,
+   "numara": 36,
+   "konu": "4.3 Rates of Change in Applied Contexts Other Than Motion",
+   "zorluk": "easy",
+   "govde": "The number of subscribers to an online service is modeled by $N(t)=5000+800t-20t^2$, where $t$ is measured in months, $0\\le t\\le 20$. At what rate is the number of subscribers changing at $t=12$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "11,720 subscribers"
+    },
+    {
+     "id": "B",
+     "text": "560 subscribers per month"
+    },
+    {
+     "id": "C",
+     "text": "800 subscribers per month"
+    },
+    {
+     "id": "D",
+     "text": "320 subscribers per month"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $N'(t)=800-40t$.<br/>2. $N'(12)=800-480=320$.<br/>3. At $t=12$ months, the number of subscribers is increasing at 320 subscribers per month.",
+   "genel_hatirlatma": "“Rate at $t=c$” ⇒ türevi $c$'de hesapla. Birim: subscribers per month.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Fonksiyon değerini hesaplamak.",
+     "aciklama": "$N(12)=11\\,720$ abone sayısıdır, değişim hızı değildir."
+    },
+    "B": {
+     "etiket": "Ortalama değişim hızını hesaplamak.",
+     "aciklama": "$\\frac{N(12)-N(0)}{12}=560$, $[0,12]$ aralığının ortalama hızıdır; anlık hız $N'(12)$'dir."
+    },
+    "C": {
+     "etiket": "Türevi $t=12$'de değerlendirmemek.",
+     "aciklama": "800, $N'(0)$'dır. $N'(t)=800-40t$ ifadesine $t=12$ konmalı."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.3)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Anlık değişim hızı (nüfus/abone)",
+    "ipucu": "Anlık ⇒ türev; aralık ⇒ fark bölümü.",
+    "sikHata": "Ortalama hızı anlık hız sanmak",
+    "cedKonu": "4.3",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_10",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 36,
+   "numara": 37,
+   "konu": "4.3 Rates of Change in Applied Contexts Other Than Motion",
+   "zorluk": "medium",
+   "govde": "The mass of the first $x$ meters of a thin rod, measured from its left end, is $m(x)=2x+0.25x^2$ kilograms. What is the linear density of the rod at the point $x=6$ meters?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "3.5 kilograms per meter"
+    },
+    {
+     "id": "B",
+     "text": "5 kilograms per meter"
+    },
+    {
+     "id": "C",
+     "text": "21 kilograms"
+    },
+    {
+     "id": "D",
+     "text": "5 kilograms"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Doğrusal yoğunluk (linear density) = kütlenin uzunluğa göre türevi: $m'(x)=2+0.5x$.<br/>2. $m'(6)=2+3=5$.<br/>3. Birim: kütle/uzunluk ⇒ 5 kg/m.",
+   "genel_hatirlatma": "Bir noktadaki yoğunluk $m'(x)$'tir; birimi kg/m. Ortalama yoğunluk $\\frac{m(x)}{x}$'tir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Ortalama yoğunluğu hesaplamak.",
+     "aciklama": "$\\frac{m(6)}{6}=\\frac{21}{6}=3.5$, ilk 6 metrenin ortalamasıdır; noktadaki yoğunluk türevdir."
+    },
+    "C": {
+     "etiket": "Kütleyi vermek.",
+     "aciklama": "$m(6)=12+9=21$ kg, ilk 6 metrenin kütlesidir; yoğunluk değildir."
+    },
+    "D": {
+     "etiket": "Birimi yanlış yazmak.",
+     "aciklama": "Sayı doğru ama türevin birimi kg/m'dir. “5 kilograms” bir kütle bildirir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.3)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Doğrusal yoğunluk = kütlenin konuma göre türevi",
+    "ipucu": "Birim kontrolü: kg / m.",
+    "sikHata": "Ortalama yoğunlukla noktadaki yoğunluğu karıştırmak",
+    "cedKonu": "4.3",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_11",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 37,
+   "numara": 38,
+   "konu": "4.3 Rates of Change in Applied Contexts Other Than Motion",
+   "zorluk": "medium",
+   "govde": "<em>(Graphing calculator allowed.)</em> The number of people waiting in line at a museum is modeled by $L(t)=10+30te^{-0.5t}$, where $t$ is the number of hours after the museum opens, $0\\le t\\le 8$. At what time $t$ is the number of people in line increasing at a rate of 6 people per hour?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$t=2.000$"
+    },
+    {
+     "id": "B",
+     "text": "$t=1.600$"
+    },
+    {
+     "id": "C",
+     "text": "$t=1.252$"
+    },
+    {
+     "id": "D",
+     "text": "$t=3.219$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $L'(t)=30e^{-0.5t}(1-0.5t)$. $L'(0)=30$, $L'(2)=0$, $t\\gt2$ için $L'\\lt0$; bu yüzden $L'(t)=6$'nın tek çözümü $(0,2)$'dedir.<br/>2. Hesap makinesi: $y_1=L'(t)$ (ya da nDeriv), $y_2=6$; kesişim $t\\approx1.252$.<br/>3. At $t\\approx1.252$ hours, the line is growing at 6 people per hour.",
+   "genel_hatirlatma": "“Rate equals k” ⇒ $f'(t)=k$ denklemini hesap makinesinde iki grafiğin kesişimiyle çöz.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Hızın sıfır olduğu anı bulmak.",
+     "aciklama": "$t=2$'de $L'(2)=0$; kuyruk en uzun haldedir, artış hızı 6 değil 0'dır."
+    },
+    "B": {
+     "etiket": "Çarpım kuralında üstel çarpanı düşürmek.",
+     "aciklama": "$30(1-0.5t)=6$ çözümü $t=1.6$'dır; ama $L'$ içinde $e^{-0.5t}$ çarpanı vardır."
+    },
+    "D": {
+     "etiket": "Ortalama hızı 6'ya eşitlemek.",
+     "aciklama": "$\\frac{L(t)-L(0)}{t}=30e^{-0.5t}=6$ ⇒ $t=2\\ln5\\approx3.219$; bu ortalama hızdır, anlık hız değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.3)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Değişim hızının belirli bir değere eşit olduğu an",
+    "ipucu": "L'(t) = 6 denklemini grafikle (intersect) çöz.",
+    "sikHata": "Ortalama hızla anlık hızı karıştırmak",
+    "cedKonu": "4.3",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_12",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 38,
+   "numara": 39,
+   "konu": "4.3 Rates of Change in Applied Contexts Other Than Motion",
+   "zorluk": "hard",
+   "govde": "<em>(Graphing calculator allowed.)</em> The total number of downloads of a new app, in thousands, is modeled by $D(t)=t^3e^{-0.5t}$, where $t$ is measured in weeks, $0\\le t\\le 10$. At what time $t$ is the number of downloads increasing most rapidly?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$t=2.536$"
+    },
+    {
+     "id": "B",
+     "text": "$t=6.000$"
+    },
+    {
+     "id": "C",
+     "text": "$t=9.464$"
+    },
+    {
+     "id": "D",
+     "text": "$t=10.000$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. “Increasing most rapidly” ⇒ $D'(t)$'nin maksimumu aranır.<br/>2. $D'(t)=e^{-0.5t}(3t^2-0.5t^3)$. Hesap makinesiyle $D'$'yi çiz; maksimum $t\\approx2.536$'da ($D''=0$ ⇒ $t^2-12t+24=0$ ⇒ $t=6-\\sqrt{12}$).<br/>3. Aday kontrolü: $D'(0)=0$, $D'(2.536)\\approx3.134$, $D'(10)\\approx-1.348$. En büyük değer $t\\approx2.536$'dadır.",
+   "genel_hatirlatma": "En hızlı artış = türevin maksimumu; $D''=0$ adaylarını ve uç noktaları karşılaştır.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Fonksiyonun maksimumunu aramak.",
+     "aciklama": "$t=6$'da $D'(6)=0$: indirme sayısı en büyük, ama artış hızı sıfırdır."
+    },
+    "C": {
+     "etiket": "$D''=0$'ın yanlış kökünü seçmek.",
+     "aciklama": "$t\\approx9.464$'te $D'$ yerel minimumdadır (en hızlı azalış civarı), en hızlı artış değil; $D'(9.464)\\lt0$."
+    },
+    "D": {
+     "etiket": "Uç noktayı test etmeden seçmek.",
+     "aciklama": "$D'(10)\\approx-1.348\\lt0$; $t=10$'da indirme sayısı azalıyor bile."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.3)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "En hızlı artış: türevin maksimumu",
+    "ipucu": "D(t)'nin değil, D'(t)'nin grafiğini çiz ve maksimumunu bul.",
+    "sikHata": "D'nin maksimumunu (D' = 0) cevap sanmak",
+    "cedKonu": "4.3",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_13",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 39,
+   "numara": 40,
+   "konu": "4.3 Rates of Change in Applied Contexts Other Than Motion",
+   "zorluk": "medium",
+   "govde": "The total cost, in dollars, of producing $x$ chairs is $C(x)=500+40x-0.5x^2+0.01x^3$. Using the marginal cost at $x=20$, what is the approximate cost of producing the 21st chair?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "32 dollars"
+    },
+    {
+     "id": "B",
+     "text": "59 dollars"
+    },
+    {
+     "id": "C",
+     "text": "1180 dollars"
+    },
+    {
+     "id": "D",
+     "text": "32.23 dollars"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Marjinal maliyet: $C'(x)=40-x+0.03x^2$.<br/>2. $C'(20)=40-20+12=32$ dolar/sandalye.<br/>3. 21. sandalyenin maliyeti $C(21)-C(20)\\approx C'(20)\\cdot1=32$ dolar. (Kesin değer 32.11; türev iyi bir tahmin verir.)",
+   "genel_hatirlatma": "Marginal cost $C'(x)$, bir sonraki birimin, yani $(x+1)$'inci birimin maliyetini yaklaşık verir.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Ortalama maliyeti hesaplamak.",
+     "aciklama": "$\\frac{C(20)}{20}=59$, ilk 20 sandalyenin birim başı ortalama maliyetidir."
+    },
+    "C": {
+     "etiket": "Toplam maliyeti vermek.",
+     "aciklama": "$C(20)=1180$, 20 sandalyenin toplam maliyetidir."
+    },
+    "D": {
+     "etiket": "Türevi yanlış noktada almak.",
+     "aciklama": "$C'(21)\\approx32.23$, 22. sandalyenin yaklaşık maliyetidir; 21. sandalye için $C'(20)$ kullanılır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.3)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Marjinal maliyet ve bir sonraki birimin maliyeti",
+    "ipucu": "Cost of the (x+1)th item ≈ C'(x).",
+    "sikHata": "Ortalama maliyeti marjinal maliyet sanmak",
+    "cedKonu": "4.3",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_14",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 40,
+   "numara": 41,
+   "konu": "4.4 Introduction to Related Rates",
+   "zorluk": "easy",
+   "govde": "The variables $x$ and $y$ are differentiable functions of time $t$ and satisfy $y=\\sqrt{x}$. At the instant when $x=9$, $\\dfrac{dx}{dt}=6$. What is $\\dfrac{dy}{dt}$ at that instant?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$3$"
+    },
+    {
+     "id": "B",
+     "text": "$\\dfrac{1}{6}$"
+    },
+    {
+     "id": "C",
+     "text": "$1$"
+    },
+    {
+     "id": "D",
+     "text": "$36$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $t$'ye göre türev: $\\dfrac{dy}{dt}=\\dfrac{1}{2\\sqrt{x}}\\cdot\\dfrac{dx}{dt}$ (zincir kuralı).<br/>2. $x=9$, $\\frac{dx}{dt}=6$: $\\dfrac{dy}{dt}=\\dfrac{1}{2(3)}\\cdot6=1$.",
+   "genel_hatirlatma": "$\\frac{d}{dt}g(x)=g'(x)\\frac{dx}{dt}$: türevin yanına daima $\\frac{dx}{dt}$ çarpanı gelir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Türev yerine $y$ değerini vermek.",
+     "aciklama": "$\\sqrt9=3$, o andaki $y$'dir; hız değildir."
+    },
+    "B": {
+     "etiket": "Zincir kuralı çarpanını unutmak.",
+     "aciklama": "$\\frac{1}{2\\sqrt9}=\\frac16$, $\\frac{dy}{dx}$'tir; $\\frac{dx}{dt}=6$ ile çarpılmalı."
+    },
+    "D": {
+     "etiket": "Karekökün türevini ters almak.",
+     "aciklama": "$\\frac{d}{dx}\\sqrt x=\\frac{1}{2\\sqrt x}$, $2\\sqrt x$ değil. $2(3)(6)=36$ bu hatadan gelir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.4)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Zincir kuralıyla zamana göre türev",
+    "ipucu": "dy/dt = (dy/dx)(dx/dt).",
+    "sikHata": "dx/dt çarpanını unutmak",
+    "cedKonu": "4.4",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_15",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 41,
+   "numara": 42,
+   "konu": "4.4 Introduction to Related Rates",
+   "zorluk": "easy",
+   "govde": "The radius $r$ and the height $h$ of a right circular cylinder are both changing with time $t$. The volume of the cylinder is $V=\\pi r^2h$. Which of the following is an expression for $\\dfrac{dV}{dt}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\pi\\left(2r\\dfrac{dr}{dt}\\right)\\left(\\dfrac{dh}{dt}\\right)$"
+    },
+    {
+     "id": "B",
+     "text": "$\\pi\\left(2rh\\dfrac{dr}{dt}+r^2\\dfrac{dh}{dt}\\right)$"
+    },
+    {
+     "id": "C",
+     "text": "$2\\pi rh\\dfrac{dr}{dt}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\pi\\left(2r\\dfrac{dr}{dt}+\\dfrac{dh}{dt}\\right)$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $V=\\pi\\cdot r^2\\cdot h$ iki değişkenin çarpımıdır ⇒ çarpım kuralı.<br/>2. $\\dfrac{dV}{dt}=\\pi\\left(\\dfrac{d(r^2)}{dt}h+r^2\\dfrac{dh}{dt}\\right)=\\pi\\left(2rh\\dfrac{dr}{dt}+r^2\\dfrac{dh}{dt}\\right)$.",
+   "genel_hatirlatma": "İki değişen büyüklüğün çarpımı ⇒ çarpım kuralı: $(uv)'=u'v+uv'$, her türevde zincir kuralı çarpanı.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Türevi çarpanlara dağıtmak.",
+     "aciklama": "$(uv)'\\ne u'v'$. Çarpım kuralı iki terimin toplamını verir."
+    },
+    "C": {
+     "etiket": "Yüksekliği sabit sanmak.",
+     "aciklama": "$h$ de değişiyor; $\\pi r^2\\frac{dh}{dt}$ terimi eksik."
+    },
+    "D": {
+     "etiket": "Çarpımı toplam gibi türetmek.",
+     "aciklama": "$r^2h$ bir çarpımdır, toplam değil; terimler $h$ ve $r^2$ çarpanlarını taşımalıdır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.4)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Bağıntılı hızlarda çarpım kuralı",
+    "ipucu": "Değişen iki çarpan ⇒ iki terim.",
+    "sikHata": "Bir terimi unutmak",
+    "cedKonu": "4.4",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_16",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 42,
+   "numara": 43,
+   "konu": "4.4 Introduction to Related Rates",
+   "zorluk": "medium",
+   "govde": "The length $L$ of a rectangle is increasing at a rate of 3 centimeters per second, and its width $W$ is decreasing at a rate of 2 centimeters per second. At the instant when $L=10$ centimeters and $W=4$ centimeters, what is the rate of change of the area of the rectangle?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$32\\text{ cm}^2/\\text{s}$"
+    },
+    {
+     "id": "B",
+     "text": "$-6\\text{ cm}^2/\\text{s}$"
+    },
+    {
+     "id": "C",
+     "text": "$12\\text{ cm}^2/\\text{s}$"
+    },
+    {
+     "id": "D",
+     "text": "$-8\\text{ cm}^2/\\text{s}$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $A=LW$ ⇒ $\\dfrac{dA}{dt}=\\dfrac{dL}{dt}W+L\\dfrac{dW}{dt}$.<br/>2. $\\frac{dL}{dt}=3$, $\\frac{dW}{dt}=-2$ (azalıyor).<br/>3. $\\dfrac{dA}{dt}=3(4)+10(-2)=-8$ cm²/s: alan o anda 8 cm²/s hızla azalıyor.",
+   "genel_hatirlatma": "“Decreasing” bilgisi negatif hız olarak yazılır; çarpım kuralının iki terimi de gerekir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Azalan genişliğin hızını pozitif almak.",
+     "aciklama": "$\\frac{dW}{dt}=+2$ alınırsa $12+20=32$ çıkar; genişlik azaldığı için $-2$ kullanılmalı."
+    },
+    "B": {
+     "etiket": "Hızları çarpmak.",
+     "aciklama": "$\\frac{dA}{dt}\\ne\\frac{dL}{dt}\\cdot\\frac{dW}{dt}$; $3(-2)=-6$ çarpım kuralının yanlış hali."
+    },
+    "C": {
+     "etiket": "Çarpım kuralının bir terimini unutmak.",
+     "aciklama": "$3\\cdot4=12$ yalnız $\\frac{dL}{dt}W$'dir; $L\\frac{dW}{dt}=-20$ eklenmeli."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.4)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Alan için bağıntılı hız, işaret",
+    "ipucu": "dA/dt = L'W + LW'; azalan büyüklük ⇒ negatif hız.",
+    "sikHata": "Azalma hızını pozitif yazmak",
+    "cedKonu": "4.4",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_17",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 43,
+   "numara": 44,
+   "konu": "4.4 Introduction to Related Rates",
+   "zorluk": "hard",
+   "govde": "The radius of a sphere is increasing. At a certain instant, the rate of change of the volume of the sphere, in cubic centimeters per second, is numerically equal to 3 times the rate of change of its surface area, in square centimeters per second. What is the radius of the sphere at that instant? (Volume $V=\\tfrac43\\pi r^3$, surface area $S=4\\pi r^2$.)",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$6$ cm"
+    },
+    {
+     "id": "B",
+     "text": "$9$ cm"
+    },
+    {
+     "id": "C",
+     "text": "$\\dfrac{2}{3}$ cm"
+    },
+    {
+     "id": "D",
+     "text": "$2$ cm"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $\\dfrac{dV}{dt}=4\\pi r^2\\dfrac{dr}{dt}$, $\\dfrac{dS}{dt}=8\\pi r\\dfrac{dr}{dt}$.<br/>2. Koşul: $4\\pi r^2\\dfrac{dr}{dt}=3\\cdot8\\pi r\\dfrac{dr}{dt}$.<br/>3. $\\frac{dr}{dt}\\gt0$ ve $r\\gt0$ olduğundan iki taraf $4\\pi r\\frac{dr}{dt}$'ye bölünür: $r=6$ cm.",
+   "genel_hatirlatma": "Hızlar arasındaki bir koşul, türevlenmiş denklemler arasında kurulur; büyüklükler arasında değil.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Hızlar yerine büyüklükleri eşitlemek.",
+     "aciklama": "$\\frac43\\pi r^3=3\\cdot4\\pi r^2$ ⇒ $r=9$; bu, hacmin alanın 3 katı olduğu andır, hızlarla ilgili değildir."
+    },
+    "C": {
+     "etiket": "Katsayıyı yanlış tarafa yazmak.",
+     "aciklama": "$3\\cdot4\\pi r^2=8\\pi r$ kurulursa $r=\\frac23$ çıkar; koşul “hacim hızı = 3 × alan hızı”dır."
+    },
+    "D": {
+     "etiket": "Katsayıyı unutmak.",
+     "aciklama": "$r=2$, iki hızın eşit olduğu andır; soruda hacim hızı alan hızının 3 katıdır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.4)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Küre: hacim ve yüzey alanı hızları arası ilişki",
+    "ipucu": "İki denklemi t'ye göre türet, sonra koşulu kur.",
+    "sikHata": "V = 3S koşulunu kullanmak",
+    "cedKonu": "4.4",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_18",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 44,
+   "numara": 45,
+   "konu": "4.4 Introduction to Related Rates",
+   "zorluk": "medium",
+   "govde": "<em>(Graphing calculator allowed.)</em> A point moves along the curve $y=e^{x}\\sin x$ so that its $x$-coordinate increases at a constant rate of 3 units per second. What is the rate of change of the $y$-coordinate of the point at the instant when $x=1.2$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$3.609$ units per second"
+    },
+    {
+     "id": "B",
+     "text": "$12.893$ units per second"
+    },
+    {
+     "id": "C",
+     "text": "$4.298$ units per second"
+    },
+    {
+     "id": "D",
+     "text": "$9.283$ units per second"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $\\dfrac{dy}{dt}=\\dfrac{d}{dx}\\left(e^x\\sin x\\right)\\dfrac{dx}{dt}=e^x(\\sin x+\\cos x)\\dfrac{dx}{dt}$.<br/>2. Hesap makinesi (radyan): $e^{1.2}(\\sin1.2+\\cos1.2)\\approx4.298$.<br/>3. $\\dfrac{dy}{dt}\\approx4.298\\cdot3\\approx12.893$ units per second.",
+   "genel_hatirlatma": "$\\frac{dy}{dt}=\\frac{dy}{dx}\\cdot\\frac{dx}{dt}$. Calculator bölümünde $\\frac{dy}{dx}$'i nDeriv ile de bulabilirsin.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Çarpım kuralında bir terimi unutmak.",
+     "aciklama": "$3e^{1.2}\\cos1.2\\approx3.609$ yalnız $e^x\\cos x$ terimini kullanır; $e^x\\sin x$ terimi eksik."
+    },
+    "C": {
+     "etiket": "$\\frac{dx}{dt}$ ile çarpmayı unutmak.",
+     "aciklama": "$4.298$, $\\frac{dy}{dx}$'tir; zamana göre hız için 3 ile çarpılmalı."
+    },
+    "D": {
+     "etiket": "$\\sin x$'in türevini $\\sin x$ sanmak.",
+     "aciklama": "$3e^{1.2}\\sin1.2\\approx9.283$, $3y$'dir; $(e^x\\sin x)'=e^x\\sin x+e^x\\cos x$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.4)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Eğri üzerindeki noktanın koordinat hızları",
+    "ipucu": "Önce dy/dx, sonra dx/dt ile çarp.",
+    "sikHata": "Çarpım/zincir kuralı terimini atlamak",
+    "cedKonu": "4.4",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_19",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 45,
+   "numara": 46,
+   "konu": "4.5 Solving Related Rates Problems",
+   "zorluk": "medium",
+   "govde": "Car A is 3 miles north of an intersection and is traveling toward the intersection at 30 miles per hour. At the same instant, car B is 4 miles east of the intersection and is traveling away from the intersection at 50 miles per hour. At what rate is the distance between the two cars changing at that instant?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$80$ miles per hour"
+    },
+    {
+     "id": "B",
+     "text": "$20$ miles per hour"
+    },
+    {
+     "id": "C",
+     "text": "$58$ miles per hour"
+    },
+    {
+     "id": "D",
+     "text": "$22$ miles per hour"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $x$ = B'nin doğu uzaklığı, $y$ = A'nın kuzey uzaklığı, $z$ = aralarındaki mesafe: $x^2+y^2=z^2$.<br/>2. Türev: $x\\dfrac{dx}{dt}+y\\dfrac{dy}{dt}=z\\dfrac{dz}{dt}$. Değerler: $x=4$, $y=3$, $z=5$, $\\frac{dx}{dt}=50$, $\\frac{dy}{dt}=-30$ (yaklaşıyor).<br/>3. $5\\dfrac{dz}{dt}=4(50)+3(-30)=110$ ⇒ $\\dfrac{dz}{dt}=22$ mph: mesafe artıyor.",
+   "genel_hatirlatma": "Pisagor ilişkisini türet; kavşağa yaklaşan aracın hızı negatiftir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Hızları toplamak.",
+     "aciklama": "$30+50=80$ mph: mesafenin hızı Pisagor ilişkisinden gelir, hızlar doğrudan toplanmaz."
+    },
+    "B": {
+     "etiket": "Hızları çıkarmak.",
+     "aciklama": "$50-30=20$; araçlar dik doğrultularda gidiyor, hızlar tek doğruda değil."
+    },
+    "C": {
+     "etiket": "Yaklaşan aracın hızını pozitif almak.",
+     "aciklama": "$\\frac{dy}{dt}=+30$ ile $(200+90)/5=58$ çıkar; A kavşağa yaklaştığı için $\\frac{dy}{dt}=-30$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.5)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "İki araç: Pisagor ile bağıntılı hız",
+    "ipucu": "Yaklaşıyor ⇒ negatif; uzaklaşıyor ⇒ pozitif.",
+    "sikHata": "Hızları doğrudan toplamak",
+    "cedKonu": "4.5",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_20",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 46,
+   "numara": 47,
+   "konu": "4.5 Solving Related Rates Problems",
+   "zorluk": "hard",
+   "govde": "An airplane flies horizontally at a constant altitude of 6 kilometers, directly away from an observer on the ground, at a speed of 480 kilometers per hour. Let $\\theta$ be the angle of elevation from the observer to the airplane. At the instant when the horizontal distance between the observer and the airplane is 8 kilometers, what is $\\dfrac{d\\theta}{dt}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$-45$ radians per hour"
+    },
+    {
+     "id": "B",
+     "text": "$28.8$ radians per hour"
+    },
+    {
+     "id": "C",
+     "text": "$-28.8$ radians per hour"
+    },
+    {
+     "id": "D",
+     "text": "$-36$ radians per hour"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $\\tan\\theta=\\dfrac{6}{x}$ ⇒ $\\sec^2\\theta\\,\\dfrac{d\\theta}{dt}=-\\dfrac{6}{x^2}\\dfrac{dx}{dt}$.<br/>2. $x=8$: hipotenüs $=10$, $\\sec\\theta=\\frac{10}{8}$ ⇒ $\\sec^2\\theta=\\frac{100}{64}$.<br/>3. $\\dfrac{100}{64}\\dfrac{d\\theta}{dt}=-\\dfrac{6}{64}(480)$ ⇒ $\\dfrac{d\\theta}{dt}=-\\dfrac{2880}{100}=-28.8$ rad/h. Uçak uzaklaştıkça açı küçülüyor.",
+   "genel_hatirlatma": "Açı problemleri: $\\tan\\theta=\\frac{\\text{karşı}}{\\text{komşu}}$, türevde $\\sec^2\\theta$ çarpanı; değerini o anki üçgenden bul.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$\\sec^2\\theta$ çarpanını unutmak.",
+     "aciklama": "$-\\frac{6}{64}(480)=-45$, $\\frac{d}{dt}\\tan\\theta$'nın değeridir; $\\frac{d\\theta}{dt}$ için $\\sec^2\\theta=\\frac{100}{64}$'e bölünmeli."
+    },
+    "B": {
+     "etiket": "İşaret hatası.",
+     "aciklama": "Uçak uzaklaştıkça $\\theta$ küçülür; $\\frac{d\\theta}{dt}$ negatif olmalı."
+    },
+    "D": {
+     "etiket": "$\\sec^2\\theta$ yerine $\\sec\\theta$ kullanmak.",
+     "aciklama": "$-45\\cdot\\frac{8}{10}=-36$; türev $\\sec^2\\theta$ getirir, karesi alınmalı."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.5)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Açı içeren bağıntılı hız",
+    "ipucu": "(tan θ)' = sec²θ · θ'.",
+    "sikHata": "sec²θ çarpanını unutmak",
+    "cedKonu": "4.5",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_21",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 47,
+   "numara": 48,
+   "konu": "4.5 Solving Related Rates Problems",
+   "zorluk": "hard",
+   "govde": "<em>(Graphing calculator allowed.)</em> Gravel is poured onto a conical pile at a rate of $R(t)=6+2\\sin t$ cubic meters per minute, where $t$ is measured in minutes. The radius of the base of the pile is always equal to its height. At time $t=2$, the height of the pile is 2 meters. At what rate is the height of the pile increasing at $t=2$? (Volume of a cone: $V=\\tfrac13\\pi r^2h$.)",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0.622$ meter per minute"
+    },
+    {
+     "id": "B",
+     "text": "$0.207$ meter per minute"
+    },
+    {
+     "id": "C",
+     "text": "$0.477$ meter per minute"
+    },
+    {
+     "id": "D",
+     "text": "$-0.066$ meter per minute"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $r=h$ ⇒ $V=\\dfrac13\\pi h^3$ ⇒ $\\dfrac{dV}{dt}=\\pi h^2\\dfrac{dh}{dt}$.<br/>2. Hesap makinesi (radyan): $\\dfrac{dV}{dt}=R(2)=6+2\\sin2\\approx7.819$ m³/dk.<br/>3. $\\dfrac{dh}{dt}=\\dfrac{7.819}{\\pi(2)^2}\\approx0.622$ m/dk.",
+   "genel_hatirlatma": "Zamana bağlı giriş hızı varsa $\\frac{dV}{dt}$, o anki $R(t_0)$ değeridir; sonra geometrik ilişkiye koy.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Koni yerine silindir hacmi kullanmak ($\\frac13$ çarpanını unutmak).",
+     "aciklama": "$V=\\pi r^2h=\\pi h^3$ alınırsa $\\frac{dV}{dt}=3\\pi h^2\\frac{dh}{dt}$ ve $\\frac{7.819}{12\\pi}\\approx0.207$ çıkar. Koni için $V=\\frac13\\pi h^3$ ⇒ $\\frac{dV}{dt}=\\pi h^2\\frac{dh}{dt}$."
+    },
+    "C": {
+     "etiket": "Giriş hızını $t=0$'da almak.",
+     "aciklama": "$R(0)=6$ ile $\\frac{6}{4\\pi}\\approx0.477$ çıkar; hız $t=2$ anında hesaplanmalı: $R(2)\\approx7.819$."
+    },
+    "D": {
+     "etiket": "$R(t)$'nin türevini kullanmak.",
+     "aciklama": "$R(t)$ zaten hacmin değişim hızıdır ($\\frac{dV}{dt}$); $R'(2)=2\\cos2$ kullanmak yanlıştır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.5)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Değişken giriş hızıyla koni problemi",
+    "ipucu": "dV/dt = R(2); r = h ile V'yi tek değişkene indir.",
+    "sikHata": "R(t)'yi türetmek ya da yanlış anda değerlendirmek",
+    "cedKonu": "4.5",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_22",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 48,
+   "numara": 49,
+   "konu": "4.6 Approximating Values of a Function Using Local Linearity and Linearization",
+   "zorluk": "easy",
+   "govde": "Using the line tangent to the graph of $f(x)=\\sqrt{x}$ at $x=25$, what is the approximation of $\\sqrt{25.4}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$5.40$"
+    },
+    {
+     "id": "B",
+     "text": "$5.04$"
+    },
+    {
+     "id": "C",
+     "text": "$5.08$"
+    },
+    {
+     "id": "D",
+     "text": "$4.96$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $f(25)=5$, $f'(x)=\\dfrac{1}{2\\sqrt x}$ ⇒ $f'(25)=\\dfrac{1}{10}$.<br/>2. $L(x)=5+\\dfrac{1}{10}(x-25)$.<br/>3. $L(25.4)=5+0.04=5.04$.",
+   "genel_hatirlatma": "$L(x)=f(a)+f'(a)(x-a)$; yalnızca $f(a)$ ve $f'(a)$ gerekir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Adımı eğimle çarpmamak.",
+     "aciklama": "$5+0.4=5.4$: $(x-a)$ farkı eğim $f'(25)=0.1$ ile çarpılmalı."
+    },
+    "C": {
+     "etiket": "Kökün türevinde $\\frac12$'yi unutmak.",
+     "aciklama": "$f'(x)=\\frac{1}{2\\sqrt x}$; $\\frac{1}{\\sqrt x}=\\frac15$ alınırsa $5.08$ çıkar."
+    },
+    "D": {
+     "etiket": "Adımın işaretini ters almak.",
+     "aciklama": "$x-a=25.4-25=+0.4$; tahmin 5'ten büyük olmalı."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.6)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Teğet doğrusuyla kök tahmini",
+    "ipucu": "Kolay a seç (tam kare), f(a) ve f'(a) bul.",
+    "sikHata": "Eğimle çarpmayı unutmak",
+    "cedKonu": "4.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_23",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 49,
+   "numara": 50,
+   "konu": "4.6 Approximating Values of a Function Using Local Linearity and Linearization",
+   "zorluk": "medium",
+   "govde": "A twice-differentiable function $f$ satisfies $f(5)=-1$ and $f'(5)=3$, and $f''(x)\\lt 0$ for all $x$. The line tangent to the graph of $f$ at $x=5$ is used to approximate $f(5.4)$. Which of the following is true?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The approximation is $0.2$, and it is an overestimate."
+    },
+    {
+     "id": "B",
+     "text": "The approximation is $0.2$, and it is an underestimate."
+    },
+    {
+     "id": "C",
+     "text": "The approximation is $1.2$, and it is an overestimate."
+    },
+    {
+     "id": "D",
+     "text": "The approximation is $-2.2$, and it is an underestimate."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $L(x)=-1+3(x-5)$ ⇒ $L(5.4)=-1+1.2=0.2$.<br/>2. $f''\\lt0$ ⇒ grafik aşağı içbükey (concave down) ⇒ teğet doğrusu grafiğin üstünde.<br/>3. Bu yüzden $0.2$ bir overestimate'tir: $f(5.4)\\lt0.2$.",
+   "genel_hatirlatma": "Concave down ⇒ tangent line above graph ⇒ overestimate. Concave up ⇒ underestimate.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "İçbükeylik kuralını ters hatırlamak.",
+     "aciklama": "Aşağı içbükey grafikte teğet doğrusu grafiğin üstünde kalır; tahmin büyük çıkar (overestimate)."
+    },
+    "C": {
+     "etiket": "$f(5)$'i eklemeyi unutmak.",
+     "aciklama": "$f'(5)(0.4)=1.2$ yalnız değişimdir; $L(5.4)=f(5)+1.2=0.2$."
+    },
+    "D": {
+     "etiket": "Adımı negatif almak.",
+     "aciklama": "$-1-1.2=-2.2$, $x-a$'yı $-0.4$ almanın sonucudur; ayrıca concave down ⇒ overestimate."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.6)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Doğrusallaştırma ve fazla/eksik tahmin",
+    "ipucu": "f'' işareti ⇒ teğetin grafiğe göre konumu.",
+    "sikHata": "Concave down'da underestimate demek",
+    "cedKonu": "4.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_24",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 50,
+   "numara": 51,
+   "konu": "4.6 Approximating Values of a Function Using Local Linearity and Linearization",
+   "zorluk": "hard",
+   "govde": "Let $f$ be a function with $f(1)=3$ and derivative $f'(x)=\\sqrt{x^3+8}$. The line tangent to the graph of $f$ at $x=1$ is used to approximate $f(0.6)$. Which of the following gives the approximation and a correct conclusion about it?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$1.8$; it is an overestimate."
+    },
+    {
+     "id": "B",
+     "text": "$4.2$; it is an underestimate."
+    },
+    {
+     "id": "C",
+     "text": "$4.2$; it is an overestimate."
+    },
+    {
+     "id": "D",
+     "text": "$1.8$; it is an underestimate."
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $f'(1)=\\sqrt9=3$ ⇒ $L(x)=3+3(x-1)$ ⇒ $L(0.6)=3+3(-0.4)=1.8$.<br/>2. $f''(x)=\\dfrac{3x^2}{2\\sqrt{x^3+8}}\\gt0$ for $0.6\\le x\\le1$ ⇒ $f$ bu aralıkta yukarı içbükey.<br/>3. Teğet doğrusu grafiğin altında (sol tarafta da) ⇒ $1.8$ bir underestimate'tir.",
+   "genel_hatirlatma": "İçbükeylik kuralı $x\\lt a$ için de aynıdır: concave up ⇒ teğet her iki yanda grafiğin altında ⇒ underestimate.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Sol tarafta kuralın ters döndüğünü sanmak.",
+     "aciklama": "$x\\lt a$ olması sonucu değiştirmez; concave up grafikte teğet doğrusu her iki yanda da altta kalır."
+    },
+    "B": {
+     "etiket": "Adımı pozitif almak.",
+     "aciklama": "$x-a=0.6-1=-0.4$; $3+1.2=4.2$ işaret hatasıdır."
+    },
+    "C": {
+     "etiket": "Hem adım hem içbükeylik hatası.",
+     "aciklama": "$L(0.6)=1.8$ olmalı; ayrıca $f''\\gt0$ ⇒ underestimate."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.6)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Türevi verilen fonksiyonda doğrusallaştırma, sol taraf",
+    "ipucu": "f''yi verilen f'nün türevinden bul; aralıktaki işaretine bak.",
+    "sikHata": "x < a için concavity kuralını ters çevirmek",
+    "cedKonu": "4.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_25",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 51,
+   "numara": 52,
+   "konu": "4.6 Approximating Values of a Function Using Local Linearity and Linearization",
+   "zorluk": "medium",
+   "govde": "<em>(Graphing calculator allowed.)</em> Let $g(x)=\\sqrt{x}\\,e^{\\cos x}$. What is the approximation of $g(2.1)$ obtained by using the line tangent to the graph of $g$ at $x=2$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0.875$"
+    },
+    {
+     "id": "B",
+     "text": "$1.049$"
+    },
+    {
+     "id": "C",
+     "text": "$0.871$"
+    },
+    {
+     "id": "D",
+     "text": "$0.878$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Hesap makinesi (radyan): $g(2)=\\sqrt2\\,e^{\\cos2}\\approx0.93279$ (değeri sakla).<br/>2. $g'(2)\\approx-0.61499$ (nDeriv; elle $g'(x)=e^{\\cos x}\\left(\\frac{1}{2\\sqrt x}-\\sqrt x\\sin x\\right)$).<br/>3. $L(2.1)=g(2)+g'(2)(0.1)\\approx0.93279-0.06150=0.87129\\approx0.871$. (Ara değerleri 3 ondalığa yuvarlarsan $0.8715$ bulursun; bu yüzden ara adımda yuvarlama yapma.)",
+   "genel_hatirlatma": "Tahmin isteniyorsa cevap $L(x)$'tir, gerçek $g(x)$ değil. Ara değerleri yuvarlamadan sakla.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Tahmin yerine gerçek değeri hesaplamak.",
+     "aciklama": "$g(2.1)\\approx0.875$ gerçek değerdir; soru teğet doğrusu tahminini istiyor."
+    },
+    "B": {
+     "etiket": "$e^{\\cos x}$'in türevinde zincir kuralını unutmak.",
+     "aciklama": "$(e^{\\cos x})'=-\\sin x\\,e^{\\cos x}$; $e^{\\cos x}$ alınırsa eğim pozitif çıkar ve $1.049$ bulunur."
+    },
+    "D": {
+     "etiket": "Eğimi $x=2.1$'de almak.",
+     "aciklama": "$g'(2.1)\\approx-0.547$ ile $0.878$ çıkar; doğrusallaştırmada eğim $a=2$ noktasında alınır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.6)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Hesap makinesiyle doğrusallaştırma",
+    "ipucu": "g(2) ve g'(2)'yi ayrı sakla, sonra L(2.1).",
+    "sikHata": "Tahmin yerine gerçek değeri seçmek",
+    "cedKonu": "4.6",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_26",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 52,
+   "numara": 53,
+   "konu": "4.6 Approximating Values of a Function Using Local Linearity and Linearization",
+   "zorluk": "hard",
+   "govde": "<em>(Graphing calculator allowed.)</em> Let $f$ be a function with $f(1)=2$ and $f'(x)=\\cos\\!\\left(x^2\\right)$. The line tangent to the graph of $f$ at $x=1$ is used to approximate $f(1.1)$. Which of the following is true?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The approximation is $2.054$, and it is an underestimate."
+    },
+    {
+     "id": "B",
+     "text": "The approximation is $2.054$, and it is an overestimate."
+    },
+    {
+     "id": "C",
+     "text": "The approximation is $2.100$, and it is an overestimate."
+    },
+    {
+     "id": "D",
+     "text": "The approximation is $2.035$, and it is an overestimate."
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Hesap makinesi (radyan): $f'(1)=\\cos1\\approx0.540$ ⇒ $L(1.1)=2+0.540(0.1)\\approx2.054$.<br/>2. $f''(x)=-2x\\sin(x^2)$. $1\\le x\\le1.1$ için $1\\le x^2\\le1.21$, $\\sin(x^2)\\gt0$ ⇒ $f''\\lt0$.<br/>3. Grafik aşağı içbükey ⇒ teğet doğrusu üstte ⇒ $2.054$ bir overestimate'tir.",
+   "genel_hatirlatma": "Önce $L(x)$, sonra aralıktaki $f''$ işareti. Concave down ⇒ overestimate.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "İçbükeylik sonucunu ters çevirmek.",
+     "aciklama": "$f''\\lt0$ (concave down) ⇒ teğet grafiğin üstünde ⇒ overestimate."
+    },
+    "C": {
+     "etiket": "Hesap makinesi derece modunda.",
+     "aciklama": "$\\cos(1^\\circ)\\approx0.9998$ ⇒ $2.100$; AP'de radyan kullanılır: $\\cos1\\approx0.540$."
+    },
+    "D": {
+     "etiket": "Eğimi yanlış noktada almak.",
+     "aciklama": "$f'(1.1)=\\cos(1.21)\\approx0.353$ ile $2.035$ bulunur; eğim $a=1$'de alınmalı."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.6)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Calculator ile doğrusallaştırma ve concavity gerekçesi",
+    "ipucu": "f'' = (f')'. x² aralığında sin işaretine bak.",
+    "sikHata": "Derece modu; eğimi yanlış noktada almak",
+    "cedKonu": "4.6",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_27",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 53,
+   "numara": 54,
+   "konu": "4.7 Using L'Hospital's Rule for Determining Limits of Indeterminate Forms",
+   "zorluk": "easy",
+   "govde": "Let $f$ and $g$ be differentiable functions with continuous derivatives such that $f(4)=0$, $g(4)=0$, $f'(4)=-3$, and $g'(4)=12$. What is $\\displaystyle\\lim_{x\\to 4}\\frac{f(x)}{g(x)}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$-4$"
+    },
+    {
+     "id": "B",
+     "text": "$0$"
+    },
+    {
+     "id": "C",
+     "text": "The limit does not exist."
+    },
+    {
+     "id": "D",
+     "text": "$-\\dfrac14$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $f,g$ türevlenebilir ⇒ sürekli ⇒ $\\lim_{x\\to4}f(x)=0$, $\\lim_{x\\to4}g(x)=0$: $\\frac00$ belirsiz biçim.<br/>2. L'Hôpital: $\\displaystyle\\lim_{x\\to4}\\frac{f(x)}{g(x)}=\\lim_{x\\to4}\\frac{f'(x)}{g'(x)}=\\frac{-3}{12}=-\\frac14$.",
+   "genel_hatirlatma": "$\\frac00$ ⇒ pay ve paydayı ayrı türet. Gerekçede iki limitin de 0 olduğunu yaz.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Oranı ters çevirmek.",
+     "aciklama": "$\\frac{g'(4)}{f'(4)}=-4$; doğru oran $\\frac{f'(4)}{g'(4)}$'tür."
+    },
+    "B": {
+     "etiket": "$\\frac00$'ı 0 sanmak.",
+     "aciklama": "$\\frac00$ belirsizdir, değeri 0 değildir; L'Hôpital gerekir."
+    },
+    "C": {
+     "etiket": "$\\frac00$'ı “limit yok” sanmak.",
+     "aciklama": "Belirsiz biçim limitin olmadığı anlamına gelmez; kural sonlu bir değer verir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.7)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Verilen değerlerle L'Hôpital",
+    "ipucu": "f(c) = g(c) = 0 ⇒ lim = f'(c)/g'(c).",
+    "sikHata": "0/0 = 0 sanmak",
+    "cedKonu": "4.7",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_28",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 54,
+   "numara": 55,
+   "konu": "4.7 Using L'Hospital's Rule for Determining Limits of Indeterminate Forms",
+   "zorluk": "hard",
+   "govde": "What is $\\displaystyle\\lim_{x\\to 0}\\left(\\frac{1}{\\ln(1+x)}-\\frac{1}{x}\\right)$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0$"
+    },
+    {
+     "id": "B",
+     "text": "$1$"
+    },
+    {
+     "id": "C",
+     "text": "$\\dfrac12$"
+    },
+    {
+     "id": "D",
+     "text": "$-\\dfrac12$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $\\infty-\\infty$ ⇒ ortak payda: $\\dfrac{x-\\ln(1+x)}{x\\ln(1+x)}$ ⇒ $\\frac00$.<br/>2. L'Hôpital: $\\dfrac{1-\\frac{1}{1+x}}{\\ln(1+x)+\\frac{x}{1+x}}=\\dfrac{x}{(1+x)\\ln(1+x)+x}$ ⇒ yine $\\frac00$.<br/>3. Tekrar: $\\dfrac{1}{\\ln(1+x)+1+1}\\to\\dfrac12$.",
+   "genel_hatirlatma": "$\\infty-\\infty$ ⇒ tek kesir yap, sonra L'Hôpital; her adımda belirsizliği yeniden kontrol et.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$\\infty-\\infty=0$ sanmak.",
+     "aciklama": "İki sonsuz büyüklüğün farkı belirsizdir; ortak payda ile incelenmeli."
+    },
+    "B": {
+     "etiket": "İkinci L'Hôpital adımında türev hatası.",
+     "aciklama": "$(1+x)\\ln(1+x)+x$'in türevi $\\ln(1+x)+1+1$'dir; $+1$ unutulursa $1$ çıkar."
+    },
+    "D": {
+     "etiket": "Ortak paydada payı ters kurmak.",
+     "aciklama": "Ortak paydada pay $x-\\ln(1+x)$'tir; $\\ln(1+x)-x$ alınırsa işaret ters döner."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.7)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "∞ − ∞ biçimi ve tekrarlı L'Hôpital",
+    "ipucu": "Önce tek kesir; 0/0 ise kural.",
+    "sikHata": "∞ − ∞ = 0 sanmak",
+    "cedKonu": "4.7",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_29",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 55,
+   "numara": 56,
+   "konu": "4.7 Using L'Hospital's Rule for Determining Limits of Indeterminate Forms",
+   "zorluk": "hard",
+   "govde": "For a certain constant $k$, the limit $\\displaystyle\\lim_{x\\to 0}\\frac{e^{kx}-1-3x}{x^2}$ exists and is a finite number. What is the value of this limit?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\dfrac92$"
+    },
+    {
+     "id": "B",
+     "text": "$\\dfrac32$"
+    },
+    {
+     "id": "C",
+     "text": "$9$"
+    },
+    {
+     "id": "D",
+     "text": "$0$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Pay ve payda $x\\to0$ iken 0'a gider ⇒ L'Hôpital: $\\displaystyle\\lim\\frac{ke^{kx}-3}{2x}$.<br/>2. Payda 0'a gidiyor; limitin sonlu olması için pay da 0'a gitmeli: $k-3=0$ ⇒ $k=3$.<br/>3. Tekrar L'Hôpital: $\\displaystyle\\lim\\frac{9e^{3x}}{2}=\\frac92$.",
+   "genel_hatirlatma": "Payda 0'a giderken limit sonluysa pay da 0'a gitmek zorundadır; bu koşul bilinmeyen sabiti verir.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "İkinci türevde $k$'yi bir kez almak.",
+     "aciklama": "$(3e^{3x})'=9e^{3x}$; $3e^{3x}$ alınırsa $\\frac32$ çıkar."
+    },
+    "C": {
+     "etiket": "Paydanın ikinci türevini unutmak.",
+     "aciklama": "$(x^2)''=2$; $9e^{3x}$ 2'ye bölünmeli: $\\frac92$."
+    },
+    "D": {
+     "etiket": "Sabiti bulduktan sonra limiti 0 sanmak.",
+     "aciklama": "$k=3$ yalnız sabiti verir; bu durumda ikinci adımda limit hâlâ $\\frac00$ biçimindedir ve tekrar L'Hôpital ile $\\frac92$ bulunur, 0 değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.7)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Sonlu limit koşulundan sabit bulmak",
+    "ipucu": "Payda → 0 ve limit sonlu ⇒ pay → 0.",
+    "sikHata": "Kuralı bir kez uygulayıp durmak",
+    "cedKonu": "4.7",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u4_30",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 4,
+   "unite": "4",
+   "kutu": "calc-unit4-quiz-container",
+   "kutu_baslik": "Unit 4 Contextual Applications",
+   "dizi": "CALC_UNIT4_QUESTIONS",
+   "sira": 56,
+   "numara": 57,
+   "konu": "4.7 Using L'Hospital's Rule for Determining Limits of Indeterminate Forms",
+   "zorluk": "medium",
+   "govde": "A student evaluates a limit as follows: $\\displaystyle\\lim_{x\\to 2}\\frac{x^2+1}{3x-1}=\\lim_{x\\to 2}\\frac{2x}{3}=\\frac43$. Which of the following statements is true?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The student is correct; the limit is $\\dfrac43$."
+    },
+    {
+     "id": "B",
+     "text": "The student is incorrect; the limit is not an indeterminate form, and its value is $1$."
+    },
+    {
+     "id": "C",
+     "text": "The student is incorrect; the limit does not exist."
+    },
+    {
+     "id": "D",
+     "text": "The student is incorrect; the rule gives $\\dfrac{3}{2x}$, so the limit is $\\dfrac34$."
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $x\\to2$: pay $\\to5$, payda $\\to5$. Bu $\\frac55$'tir, belirsiz değil.<br/>2. L'Hôpital yalnız $\\frac00$ ya da $\\frac{\\infty}{\\infty}$ için geçerlidir; burada uygulanamaz.<br/>3. Doğrudan yerine koyma: limit $=\\frac55=1$.",
+   "genel_hatirlatma": "L'Hôpital'den önce daima belirsizliği kontrol et; belirsiz değilse doğrudan yerine koy.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Koşulu kontrol etmeden kuralı uygulamak.",
+     "aciklama": "$\\frac55$ belirsiz değildir; kural yanlış sonuç ($\\frac43$) verir."
+    },
+    "C": {
+     "etiket": "Payda sıfır olmadığı halde limit yok demek.",
+     "aciklama": "Payda $5\\ne0$; fonksiyon $x=2$'de süreklidir ve limit 1'dir."
+    },
+    "D": {
+     "etiket": "Türev oranını ters çevirmek.",
+     "aciklama": "Kural $\\frac{f'}{g'}$'dür, $\\frac{g'}{f'}$ değil; ayrıca burada kural hiç uygulanamaz."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 4.7)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "L'Hôpital kuralının koşulu",
+    "ipucu": "Önce yerine koy: 0/0 ya da ∞/∞ mı?",
+    "sikHata": "Belirsiz olmayan limite kural uygulamak",
+    "cedKonu": "4.7",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
   }
  ],
  "icerikGuncelleme": "2026-10-24T14:48:10.000Z",
- "yeniSoruEkleme": "2026-10-24T15:52:00.401Z"
+ "yeniSoruEkleme": "2026-10-24T15:53:21.503Z"
 }
