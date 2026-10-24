@@ -17,6 +17,9 @@ const CALC1_ISTASYON = _TV.sorular.filter(x => x.kutu === "calc-unit1-quiz-conta
 // davranışı, 1.11.0 üretimlerinin onay öncesi hâli (hepsi taslak) olan bir sınama tohumuyla sınanır.
 const GERCEK = JSON.parse(fs.readFileSync(TOHUM, "utf8"));
 const GUNCEL = JSON.parse(JSON.stringify(GERCEK));
+// 1.23.0: phys/bio Unit 8 kutularına aktif sorular eklendi; "taslak-yalnız yeni kutu" senaryosu için sınama tohumundan çıkarılır
+const YENI_KUTU = ["phys-unit8-quiz-container", "bio-unit8-quiz-container"];
+GUNCEL.sorular = GUNCEL.sorular.filter(r => !YENI_KUTU.includes(r.kutu) || (r.ek && r.ek.uretim === "1.11.0"));
 GUNCEL.sorular.forEach(r => { if (r.ek && r.ek.uretim === "1.11.0") { r.durum = "taslak"; delete r.ek.onay; delete r.ek.redNedeni; } });
 const TASLAK = GUNCEL.sorular.filter(r => r.durum === "taslak");
 const FIZIK8 = TASLAK.filter(r => r.kutu === "phys-unit8-quiz-container").map(r => r.id);
