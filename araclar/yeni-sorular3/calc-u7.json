@@ -1,0 +1,2960 @@
+[
+ {
+  "id": "calc_k_u7_1",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 0,
+  "numara": 1,
+  "konu": "7.1 Modeling Situations with Differential Equations",
+  "zorluk": "easy",
+  "govde": "In a school of 1200 students, the number of students $N(t)$ who have heard a rumor increases at a rate that is jointly proportional to the number of students who have heard the rumor and the number of students who have not heard it. Which differential equation models this situation, where $k$ is a positive constant?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\frac{dN}{dt} = k(1200 - N)$"
+   },
+   {
+    "id": "B",
+    "text": "$\\frac{dN}{dt} = kN(1200 - N)$"
+   },
+   {
+    "id": "C",
+    "text": "$\\frac{dN}{dt} = kN - 1200$"
+   },
+   {
+    "id": "D",
+    "text": "$\\frac{dN}{dt} = \\frac{kN}{1200 - N}$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Değişen büyüklük $N$ ⇒ sol taraf $\\frac{dN}{dt}$.<br/>2. Haberi duymamış öğrenci sayısı: $1200 - N$.<br/>3. \"Jointly proportional to $N$ and $1200 - N$\" ⇒ $k\\cdot N\\cdot(1200-N)$.<br/>4. Sonuç: $\\frac{dN}{dt} = kN(1200 - N)$, $k \\gt 0$ (haber yayılıyor).",
+  "genel_hatirlatma": "\"Jointly proportional to A and B\" ⇒ $kAB$. \"Inversely proportional\" ⇒ bölme.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Eksik çarpan: yalnız \"duymamış\" sayısını almak.",
+    "aciklama": "\"Jointly proportional to A and B\" ifadesi $k\\cdot A\\cdot B$ demektir. Duymuş olanların sayısı $N$ de çarpan olmalıdır."
+   },
+   "C": {
+    "etiket": "Çeviri hatası: \"duymamış\" sayısını $1200 - N$ yerine sabit 1200 almak.",
+    "aciklama": "Haberi duymamış öğrenci sayısı $1200 - N$'dir ve bu çarpan olarak girmelidir; 1200'ü çıkarmak anlamsız bir model verir."
+   },
+   "D": {
+    "etiket": "\"Jointly proportional\" ile \"inversely proportional\" ifadelerini karıştırmak.",
+    "aciklama": "Bölme, ters orantıyı anlatır. \"Jointly proportional\" iki büyüklüğün çarpımıyla orantı demektir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.1)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Ortak orantıyı diferansiyel denkleme çevirmek",
+   "ipucu": "Önce her iki grubun sayısını N cinsinden yaz.",
+   "sikHata": "Çarpanlardan birini atlamak",
+   "cedKonu": "7.1",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_2",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 1,
+  "numara": 2,
+  "konu": "7.1 Modeling Situations with Differential Equations",
+  "zorluk": "easy",
+  "govde": "Water drains from a tank so that the depth $h$ of the water, in feet, decreases at a rate proportional to the square root of the depth. If $k$ is a positive constant and $t$ is time in minutes, which differential equation describes this situation?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\frac{dh}{dt} = k\\sqrt{h}$"
+   },
+   {
+    "id": "B",
+    "text": "$\\frac{dh}{dt} = -kh^2$"
+   },
+   {
+    "id": "C",
+    "text": "$\\frac{dh}{dt} = -\\frac{k}{\\sqrt{h}}$"
+   },
+   {
+    "id": "D",
+    "text": "$\\frac{dh}{dt} = -k\\sqrt{h}$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. Değişen büyüklük derinlik $h$ ⇒ $\\frac{dh}{dt}$.<br/>2. \"Proportional to the square root of the depth\" ⇒ $k\\sqrt{h}$.<br/>3. Derinlik azalıyor ve $k \\gt 0$ ⇒ eksi işareti gerekir: $\\frac{dh}{dt} = -k\\sqrt{h}$.",
+  "genel_hatirlatma": "\"$k$ is a positive constant\" ise azalan büyüklük için işareti sen eklersin: $-k(\\ldots)$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İşaret hatası: $k \\gt 0$ verilmişken azalmayı göstermemek.",
+    "aciklama": "$k$ pozitif olduğuna göre $k\\sqrt{h} \\gt 0$ olur ve derinlik artardı. \"Decreases\" bilgisi eksi işaretini gerektirir."
+   },
+   "B": {
+    "etiket": "Yanlış kuvvet: \"square root\" ifadesini kare olarak okumak.",
+    "aciklama": "\"Square root of the depth\" $\\sqrt{h} = h^{1/2}$ demektir; $h^2$ \"square of the depth\" olurdu."
+   },
+   "C": {
+    "etiket": "Doğru ve ters orantıyı karıştırmak.",
+    "aciklama": "\"Proportional to\" çarpma ile yazılır. $\\frac{k}{\\sqrt{h}}$ \"inversely proportional to the square root\" anlamına gelir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.1)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Azalan büyüklük için işaretli model",
+   "ipucu": "k > 0 ise azalma ⇒ eksi işaret.",
+   "sikHata": "Eksi işaretini unutmak",
+   "cedKonu": "7.1",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_3",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 2,
+  "numara": 3,
+  "konu": "7.1 Modeling Situations with Differential Equations",
+  "zorluk": "medium",
+  "govde": "The number of fish $P$ in a pond is modeled by $\\frac{dP}{dt} = 0.2P - 300$, where $t$ is measured in years. Which of the following statements is true?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "When there are 1000 fish, the population is decreasing at a rate of 100 fish per year."
+   },
+   {
+    "id": "B",
+    "text": "The population is increasing whenever there are fewer than 1500 fish in the pond."
+   },
+   {
+    "id": "C",
+    "text": "Exactly 300 new fish are born in the pond during each year of the model."
+   },
+   {
+    "id": "D",
+    "text": "If $P(0) = 1500$, the fish population increases without bound as $t$ increases."
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $P = 1000$ ⇒ $\\frac{dP}{dt} = 0.2(1000) - 300 = -100$.<br/>2. Negatif ⇒ nüfus azalıyor; birim balık/yıl ⇒ \"decreasing at a rate of 100 fish per year\" doğru.<br/>3. Diğerleri: artış koşulu $P \\gt 1500$; $-300$ çıkış terimidir; $P = 1500$ denge noktasıdır.",
+  "genel_hatirlatma": "Modeli çözmeden oku: türevin işareti artış/azalışı, sıfır olduğu değer dengeyi verir.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Eşitsizliği ters okumak.",
+    "aciklama": "$0.2P - 300 \\gt 0$ ⇔ $P \\gt 1500$. Yani $P \\lt 1500$ iken türev negatiftir ve nüfus azalır."
+   },
+   "C": {
+    "etiket": "Model terimini yanlış yorumlamak.",
+    "aciklama": "$-300$ terimi her yıl sabit bir hızla <b>çıkarılan</b> (ör. avlanan) balıkları gösterir; doğumları değil. Doğumlar $0.2P$ teriminin içindedir."
+   },
+   "D": {
+    "etiket": "Denge çözümünü tanımamak.",
+    "aciklama": "$P = 1500$ iken $\\frac{dP}{dt} = 300 - 300 = 0$. Bu bir denge değeridir; nüfus 1500'de sabit kalır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.1)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Modelden işaret ve denge okumak",
+   "ipucu": "Verilen P değerini doğrudan denkleme koy.",
+   "sikHata": "Çıkış terimini doğum sanmak",
+   "cedKonu": "7.1",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_4",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 3,
+  "numara": 4,
+  "konu": "7.1 Modeling Situations with Differential Equations",
+  "zorluk": "medium",
+  "govde": "An object with temperature $80^\\circ\\text{C}$ is placed in a room kept at $25^\\circ\\text{C}$. The temperature $T$ of the object changes at a rate proportional to the difference between $T$ and the room temperature. When $T = 60^\\circ\\text{C}$, the object is cooling at a rate of $2^\\circ\\text{C}$ per minute. Which differential equation models $T$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\frac{dT}{dt} = -\\frac{2}{60}(T - 25)$"
+   },
+   {
+    "id": "B",
+    "text": "$\\frac{dT}{dt} = \\frac{2}{35}(T - 25)$"
+   },
+   {
+    "id": "C",
+    "text": "$\\frac{dT}{dt} = -\\frac{2}{35}(T - 25)$"
+   },
+   {
+    "id": "D",
+    "text": "$\\frac{dT}{dt} = -\\frac{2}{55}(T - 25)$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. Model: $\\frac{dT}{dt} = k(T - 25)$.<br/>2. $T = 60$ iken soğuma hızı 2 ⇒ $\\frac{dT}{dt} = -2$.<br/>3. $-2 = k(60 - 25) = 35k$ ⇒ $k = -\\frac{2}{35}$.<br/>4. $\\frac{dT}{dt} = -\\frac{2}{35}(T - 25)$.",
+  "genel_hatirlatma": "Verilen hızı, verildiği andaki değerle eşleştir; \"cooling\" ⇒ türev negatif.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Farkı değil sıcaklığın kendisini kullanmak.",
+    "aciklama": "$k$ bulunurken $T - 25 = 35$ farkı kullanılmalı: $-2 = k\\cdot 35$. 60'a bölmek, modelin \"fark\" yapısını yok sayar."
+   },
+   "B": {
+    "etiket": "İşaret hatası: \"cooling\" bilgisini kullanmamak.",
+    "aciklama": "Cisim soğuyorsa $T = 60$ iken $\\frac{dT}{dt} = -2$ olmalıdır. Pozitif $k$ ile $T \\gt 25$ iken sıcaklık artardı."
+   },
+   "D": {
+    "etiket": "Yanlış veri: başlangıç sıcaklığını kullanmak.",
+    "aciklama": "Soğuma hızı $T = 60$ anında verilmiştir; farkı $80 - 25 = 55$ değil $60 - 25 = 35$ almalısın."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.1)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Veriden orantı sabitini bulmak",
+   "ipucu": "Hızın verildiği andaki T değerini kullan.",
+   "sikHata": "Başlangıç değerini kullanmak",
+   "cedKonu": "7.1",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_5",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 4,
+  "numara": 5,
+  "konu": "7.1 Modeling Situations with Differential Equations",
+  "zorluk": "hard",
+  "govde": "A drug is infused into a patient's bloodstream at a constant rate of 5 milligrams per hour. The drug is removed from the bloodstream at a rate proportional to the amount $A$ of drug present. When $A = 40$ milligrams, the amount of drug is increasing at a rate of 1 milligram per hour. Which differential equation models $A$, and what value does $A$ approach in the long run?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\frac{dA}{dt} = 5 - 0.15A$; $A$ approaches about 33.3 mg"
+   },
+   {
+    "id": "B",
+    "text": "$\\frac{dA}{dt} = 0.1A - 5$; $A$ approaches 50 mg"
+   },
+   {
+    "id": "C",
+    "text": "$\\frac{dA}{dt} = 5 - 0.1A$; $A$ approaches 50 mg"
+   },
+   {
+    "id": "D",
+    "text": "$\\frac{dA}{dt} = 1 - 0.1A$; $A$ approaches 10 mg"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. Net hız = giriş − çıkış: $\\frac{dA}{dt} = 5 - kA$.<br/>2. $A = 40$ iken $\\frac{dA}{dt} = 1$: $1 = 5 - 40k$ ⇒ $k = 0.1$.<br/>3. Denge: $5 - 0.1A = 0$ ⇒ $A = 50$. $A \\lt 50$ iken türev pozitif, $A \\gt 50$ iken negatif ⇒ $A \\to 50$ mg.",
+  "genel_hatirlatma": "Net rate = rate in − rate out. Denge, net hızın sıfır olduğu değerdir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İşaret hatası: artış hızını çıkış hızına eklemek.",
+    "aciklama": "$1 = 5 - 40k$ ⇒ $40k = 4$. Öğrenci $40k = 5 + 1 = 6$ yazarsa $k = 0.15$ bulur; bu, $A$'nın azaldığı duruma karşılık gelir."
+   },
+   "B": {
+    "etiket": "Giriş ve çıkışı ters yazmak.",
+    "aciklama": "İlaç sabit hızla <b>giriyor</b> (+5) ve miktarla orantılı <b>çıkıyor</b> ($-kA$). Ters işaretli modelde $A = 50$ kararsız bir denge olur ve $A=40$ iken miktar azalır."
+   },
+   "D": {
+    "etiket": "Anlık değişim hızını giriş hızı sanmak.",
+    "aciklama": "1 mg/saat, $A = 40$ anındaki <b>net</b> hızdır; sabit giriş hızı 5 mg/saattir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.1)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Giriş–çıkış modeli ve denge",
+   "ipucu": "Verilen net hızı giriş − çıkış denklemine koy.",
+   "sikHata": "Net hızı giriş hızı sanmak",
+   "cedKonu": "7.1",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_6",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 5,
+  "numara": 6,
+  "konu": "7.1 Modeling Situations with Differential Equations",
+  "zorluk": "hard",
+  "govde": "The radius $r$ of a circular oil spill increases at a rate inversely proportional to the area $A$ of the spill. Which of the following is true about $\\frac{dA}{dt}$, the rate of change of the area?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\frac{dA}{dt}$ is inversely proportional to $\\sqrt{A}$."
+   },
+   {
+    "id": "B",
+    "text": "$\\frac{dA}{dt}$ is inversely proportional to $A$."
+   },
+   {
+    "id": "C",
+    "text": "$\\frac{dA}{dt}$ is proportional to $\\sqrt{A}$."
+   },
+   {
+    "id": "D",
+    "text": "$\\frac{dA}{dt}$ is constant."
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $\\frac{dr}{dt} = \\frac{k}{A} = \\frac{k}{\\pi r^2}$.<br/>2. $A = \\pi r^2$ ⇒ $\\frac{dA}{dt} = 2\\pi r\\frac{dr}{dt} = 2\\pi r\\cdot\\frac{k}{\\pi r^2} = \\frac{2k}{r}$.<br/>3. $r = \\sqrt{A/\\pi}$ ⇒ $\\frac{dA}{dt} = \\frac{2k\\sqrt{\\pi}}{\\sqrt{A}}$, yani $\\frac{1}{\\sqrt{A}}$ ile orantılıdır (orantı sabiti $2k\\sqrt{\\pi}$).",
+  "genel_hatirlatma": "Bir büyüklüğün hızından diğerininkine geçerken zincir kuralını kullan, sonra her şeyi istenen değişkenle yaz.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Yarıçaptaki ilişkiyi alana olduğu gibi aktarmak.",
+    "aciklama": "$\\frac{dA}{dt} = 2\\pi r\\frac{dr}{dt}$; zincir kuralı fazladan bir $r$ çarpanı getirir. Sonuç $\\frac{1}{A}$ değil $\\frac{1}{\\sqrt{A}}$ ile orantılıdır."
+   },
+   "C": {
+    "etiket": "$r$'yi paydaya değil paya yerleştirmek.",
+    "aciklama": "$\\frac{dA}{dt} = 2\\pi r\\cdot\\frac{k}{\\pi r^2} = \\frac{2k}{r}$; $r$ paydada kalır, yani $\\frac{dA}{dt}$, $\\sqrt{A}$ ile ters orantılıdır."
+   },
+   "D": {
+    "etiket": "Sadeleştirmede bir $r$'yi kaybetmek.",
+    "aciklama": "$\\frac{2\\pi r}{\\pi r^2} = \\frac{2}{r}$, sabit değildir; $r$ büyüdükçe alanın artış hızı azalır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.1)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Modeli başka bir değişkene çevirmek",
+   "ipucu": "A = πr² ifadesini t'ye göre türet.",
+   "sikHata": "Zincir kuralındaki çarpanı unutmak",
+   "cedKonu": "7.1",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_7",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 6,
+  "numara": 7,
+  "konu": "7.2 Verifying Solutions for Differential Equations",
+  "zorluk": "easy",
+  "govde": "Which of the following functions satisfies both the differential equation $\\frac{dy}{dx} = -2y$ and the initial condition $y(0) = 4$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$y = 4e^{-x/2}$"
+   },
+   {
+    "id": "B",
+    "text": "$y = e^{-2x} + 3$"
+   },
+   {
+    "id": "C",
+    "text": "$y = 4 - 8x$"
+   },
+   {
+    "id": "D",
+    "text": "$y = 4e^{-2x}$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $y = 4e^{-2x}$ ⇒ $y' = -8e^{-2x}$ ve $-2y = -8e^{-2x}$: her $x$ için eşit.<br/>2. $y(0) = 4e^0 = 4$ ✓.<br/>3. (Genel çözüm $y = Ce^{-2x}$; koşul $C = 4$ verir.)",
+  "genel_hatirlatma": "Doğrulama iki parçalıdır: denklem her $x$ için sağlanmalı ve başlangıç koşulu tutmalı.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Üsteki katsayıyı ters çevirmek.",
+    "aciklama": "$y' = -\\frac12\\cdot 4e^{-x/2} = -\\frac12 y$; denklem $-2y$ istiyor."
+   },
+   "B": {
+    "etiket": "Başlangıç koşulunu sağlamak için sabit eklemek.",
+    "aciklama": "$y(0) = 4$ sağlanır ama $y' = -2e^{-2x}$, $-2y = -2e^{-2x} - 6$; denklem sağlanmaz. Sabit çarpan olarak girmelidir: $Ce^{-2x}$."
+   },
+   "C": {
+    "etiket": "Denklemi yalnız $x = 0$ noktasında kontrol etmek.",
+    "aciklama": "$x = 0$'da $y' = -8 = -2(4)$ doğru, ama $x = 1$'de $y' = -8$, $-2y = 8$. Çözüm her $x$ için sağlamalıdır; bu yalnız teğet doğrusudur."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.2)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Çözümü ve başlangıç koşulunu doğrulamak",
+   "ipucu": "Her şıkkı türetip −2y ile karşılaştır; sonra y(0)'a bak.",
+   "sikHata": "Sabit eklemenin zararsız olduğunu sanmak",
+   "cedKonu": "7.2",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_8",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 7,
+  "numara": 8,
+  "konu": "7.2 Verifying Solutions for Differential Equations",
+  "zorluk": "medium",
+  "govde": "For which values of the constants $m$ and $b$ is the linear function $y = mx + b$ a solution to the differential equation $\\frac{dy}{dx} = 2y - 4x$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$m = 2,\\ b = 0$"
+   },
+   {
+    "id": "B",
+    "text": "$m = 2,\\ b = 1$"
+   },
+   {
+    "id": "C",
+    "text": "$m = 2,\\ b = -1$"
+   },
+   {
+    "id": "D",
+    "text": "$m = 1,\\ b = \\frac12$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $y' = m$; sağ taraf: $2(mx + b) - 4x = (2m - 4)x + 2b$.<br/>2. Her $x$ için $m = (2m - 4)x + 2b$ ⇒ $x$'in katsayısı: $2m - 4 = 0$ ⇒ $m = 2$.<br/>3. Sabitler: $m = 2b$ ⇒ $b = 1$. Çözüm $y = 2x + 1$.",
+  "genel_hatirlatma": "\"Her $x$ için\" eşitlik ⇒ katsayılar ayrı ayrı eşitlenir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Sabit terimleri eşitlemeyi unutmak.",
+    "aciklama": "$m = 2$ doğru, ama $y = 2x$ için $2y - 4x = 0 \\ne 2$. Sabit terimlerin de eşitlenmesi gerekir: $2b = m$."
+   },
+   "C": {
+    "etiket": "Sabit terimleri eşitlerken işaret hatası.",
+    "aciklama": "$y = 2x - 1$ ⇒ $y' = 2$, ama $2y - 4x = -2$. Sabit koşulu $m = 2b$ ⇒ $b = +1$."
+   },
+   "D": {
+    "etiket": "Yalnız $x = 0$ noktasında kontrol etmek.",
+    "aciklama": "$y = x + \\frac12$ ⇒ $y' = 1$, $2y - 4x = -2x + 1$; yalnız $x = 0$'da eşit, her $x$ için değil."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.2)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Bilinmeyen katsayılı çözüm adayı",
+   "ipucu": "x'in katsayısını ve sabit terimi ayrı eşitle.",
+   "sikHata": "Yalnız bir katsayıyı eşitlemek",
+   "cedKonu": "7.2",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_9",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 8,
+  "numara": 9,
+  "konu": "7.2 Verifying Solutions for Differential Equations",
+  "zorluk": "medium",
+  "govde": "Which of the following functions is a solution to the differential equation $y'' + 4y = 0$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$y = 3\\cos(2x)$"
+   },
+   {
+    "id": "B",
+    "text": "$y = \\cos(4x)$"
+   },
+   {
+    "id": "C",
+    "text": "$y = e^{2x}$"
+   },
+   {
+    "id": "D",
+    "text": "$y = \\sin\\left(\\frac{x}{2}\\right)$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $y = 3\\cos 2x$ ⇒ $y' = -6\\sin 2x$ ⇒ $y'' = -12\\cos 2x$.<br/>2. $y'' + 4y = -12\\cos 2x + 12\\cos 2x = 0$ ✓.",
+  "genel_hatirlatma": "İkinci mertebe denklemde iki türev al ve yerine koy.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Denklemdeki 4'ü doğrudan açısal katsayı almak.",
+    "aciklama": "$y'' = -16\\cos(4x)$ ⇒ $y'' + 4y = -12\\cos(4x) \\ne 0$. Gereken katsayı $\\sqrt4 = 2$'dir."
+   },
+   "C": {
+    "etiket": "İşaret: $y'' = 4y$ ile $y'' = -4y$'yi karıştırmak.",
+    "aciklama": "$y'' = 4e^{2x}$ ⇒ $y'' + 4y = 8e^{2x} \\ne 0$. Üstel fonksiyon $y'' - 4y = 0$'ı sağlar."
+   },
+   "D": {
+    "etiket": "Zincir kuralı katsayısını ters çevirmek.",
+    "aciklama": "$y'' = -\\frac14\\sin\\frac{x}{2}$ ⇒ $y'' + 4y = \\frac{15}{4}\\sin\\frac{x}{2} \\ne 0$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.2)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "İkinci mertebe çözüm doğrulama",
+   "ipucu": "cos(ax) için y'' = −a²y.",
+   "sikHata": "Zincir kuralı katsayısını karıştırmak",
+   "cedKonu": "7.2",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_10",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 9,
+  "numara": 10,
+  "konu": "7.2 Verifying Solutions for Differential Equations",
+  "zorluk": "hard",
+  "govde": "For each constant $C \\ne 0$, the curve $xy^2 = C$ is a solution curve of a differential equation for $x \\gt 0$. Which differential equation is satisfied by every function $y$ defined implicitly by $xy^2 = C$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\frac{dy}{dx} = -\\frac{2y}{x}$"
+   },
+   {
+    "id": "B",
+    "text": "$\\frac{dy}{dx} = \\frac{y}{2x}$"
+   },
+   {
+    "id": "C",
+    "text": "$\\frac{dy}{dx} = -\\frac{y}{2x}$"
+   },
+   {
+    "id": "D",
+    "text": "$\\frac{dy}{dx} = -\\frac{y^2}{2x}$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $xy^2 = C$'nin iki tarafını $x$'e göre türet (çarpım + zincir kuralı): $y^2 + x\\cdot 2y\\frac{dy}{dx} = 0$.<br/>2. $\\frac{dy}{dx} = -\\frac{y^2}{2xy} = -\\frac{y}{2x}$.<br/>3. $C$ denklemde kalmadığı için bu tüm eğriler için geçerlidir.",
+  "genel_hatirlatma": "Bir eğri ailesinin denklemi: kapalı türev al ve sabiti yok et.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Kapalı türevde katsayıyı ters yerleştirmek.",
+    "aciklama": "$y^2 + 2xyy' = 0$ ⇒ $y' = -\\frac{y^2}{2xy} = -\\frac{y}{2x}$. 2 paydadadır."
+   },
+   "B": {
+    "etiket": "Terimi karşıya geçirirken işareti kaybetmek.",
+    "aciklama": "$2xyy' = -y^2$; eksi işareti korunmalıdır."
+   },
+   "D": {
+    "etiket": "Sadeleştirmeyi eksik yapmak.",
+    "aciklama": "$-\\frac{y^2}{2xy}$ ifadesinde paydaki $y$ de sadeleşir: $-\\frac{y}{2x}$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.2)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Kapalı çözüm ailesinden denklem bulmak",
+   "ipucu": "xy² terimini çarpım kuralıyla türet.",
+   "sikHata": "Çarpım kuralını eksik uygulamak",
+   "cedKonu": "7.2",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_11",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 10,
+  "numara": 11,
+  "konu": "7.2 Verifying Solutions for Differential Equations",
+  "zorluk": "hard",
+  "govde": "For which values of the constant $k$ is $y = x^k$ a solution to the differential equation $x^2y'' - 2xy' - 4y = 0$ for $x \\gt 0$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$k = -4$ and $k = 1$ only"
+   },
+   {
+    "id": "B",
+    "text": "$k = 4$ and $k = -1$ only"
+   },
+   {
+    "id": "C",
+    "text": "$k = 4$ only"
+   },
+   {
+    "id": "D",
+    "text": "$k = 2$ and $k = -2$ only"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $y' = kx^{k-1}$, $y'' = k(k-1)x^{k-2}$.<br/>2. Yerine koy: $k(k-1)x^k - 2kx^k - 4x^k = x^k(k^2 - 3k - 4)$.<br/>3. $x^k \\ne 0$ ⇒ $k^2 - 3k - 4 = (k-4)(k+1) = 0$ ⇒ $k = 4$ ya da $k = -1$.",
+  "genel_hatirlatma": "Kuvvet adayında ortak çarpan $x^k$'yı sadeleştir; geriye $k$ için bir polinom kalır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Köklerin işaretini ters almak.",
+    "aciklama": "$k^2 - 3k - 4 = (k - 4)(k + 1)$; kökler $4$ ve $-1$'dir. $k = 1$ için $1 - 3 - 4 = -6 \\ne 0$."
+   },
+   "C": {
+    "etiket": "İkinci dereceden denklemin bir kökünü kaybetmek.",
+    "aciklama": "$k = -1$ de çalışır: $y = x^{-1}$ ⇒ $x^2(2x^{-3}) - 2x(-x^{-2}) - 4x^{-1} = 2x^{-1} + 2x^{-1} - 4x^{-1} = 0$."
+   },
+   "D": {
+    "etiket": "$x^2y''$ terimini $k^2x^k$ alıp $-2xy'$ terimini unutmak.",
+    "aciklama": "Bu hatalar $k^2 - 4 = 0$ verir. Oysa $x^2y'' = k(k-1)x^k$ ve $-2xy' = -2kx^k$; doğru denklem $k^2 - 3k - 4 = 0$. $k = 2$ için $2 - 4 - 4 = -6 \\ne 0$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.2)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Parametreli çözüm adayı",
+   "ipucu": "Her terimin x^k'ya dönüştüğünü kontrol et.",
+   "sikHata": "Bir kökü kaybetmek",
+   "cedKonu": "7.2",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_12",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 11,
+  "numara": 12,
+  "konu": "7.3 Sketching Slope Fields",
+  "zorluk": "easy",
+  "govde": "A slope field is drawn for the differential equation $\\frac{dy}{dx} = \\frac{x - y}{2}$. What is the slope of the segment drawn at the point $(3, -1)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$1$"
+   },
+   {
+    "id": "B",
+    "text": "$-2$"
+   },
+   {
+    "id": "C",
+    "text": "$4$"
+   },
+   {
+    "id": "D",
+    "text": "$2$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $x = 3$, $y = -1$.<br/>2. $\\frac{dy}{dx} = \\frac{3 - (-1)}{2} = \\frac{4}{2} = 2$.",
+  "genel_hatirlatma": "Bir noktadaki eğim = o noktanın koordinatlarını denkleme koymak.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "$x - y$ yerine $x + y$ hesaplamak.",
+    "aciklama": "$\\frac{3 + (-1)}{2} = 1$; ama denklem $x - y$ istiyor: $3 - (-1) = 4$."
+   },
+   "B": {
+    "etiket": "Koordinatları ters sırayla koymak.",
+    "aciklama": "$\\frac{y - x}{2} = \\frac{-1 - 3}{2} = -2$; pay $x - y$ olmalı."
+   },
+   "C": {
+    "etiket": "Paydayı unutmak.",
+    "aciklama": "$x - y = 4$, ama 2'ye bölmek gerekir: $\\frac{4}{2} = 2$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.3)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Noktada eğim hesaplamak",
+   "ipucu": "Eksi bir sayıyı çıkarırken parantez kullan.",
+   "sikHata": "x ile y'yi karıştırmak",
+   "cedKonu": "7.3",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_13",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 12,
+  "numara": 13,
+  "konu": "7.3 Sketching Slope Fields",
+  "zorluk": "medium",
+  "govde": "In the slope field for the differential equation $\\frac{dy}{dx} = y - 2x$, all of the segments along a certain line are horizontal. Which line is it?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$y = \\frac{x}{2}$"
+   },
+   {
+    "id": "B",
+    "text": "$y = -2x$"
+   },
+   {
+    "id": "C",
+    "text": "$x = 0$"
+   },
+   {
+    "id": "D",
+    "text": "$y = 2x$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. Yatay parça ⇔ eğim 0.<br/>2. $y - 2x = 0$ ⇒ $y = 2x$.<br/>3. Kontrol: $(1, 2)$: $2 - 2 = 0$ ✓; $(-1, -2)$: $-2 + 2 = 0$ ✓.",
+  "genel_hatirlatma": "Eğimin sıfır olduğu yer: $\\frac{dy}{dx} = 0$ denklemini çöz.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Denklemi yanlış değişken için çözmek.",
+    "aciklama": "$y - 2x = 0$ ⇒ $y = 2x$. $x = 2y$ yazmak, $x$ ile $y$'nin rolünü değiştirir."
+   },
+   "B": {
+    "etiket": "Terimi karşıya geçirirken işareti değiştirmemek.",
+    "aciklama": "$y - 2x = 0$ ⇒ $y = +2x$. $(1, -2)$ noktasında eğim $-2 - 2 = -4 \\ne 0$."
+   },
+   "C": {
+    "etiket": "Yatay parçayı \"yatay eksen/dikey eksen\" ile karıştırmak.",
+    "aciklama": "$x = 0$ üzerinde eğim $y - 0 = y$; yalnız $y = 0$ noktasında sıfırdır, doğrunun tamamında değil."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.3)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Sıfır eğim eğrisi (isocline)",
+   "ipucu": "dy/dx = 0 koy ve y'yi yalnız bırak.",
+   "sikHata": "İşaret hatası",
+   "cedKonu": "7.3",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_14",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 13,
+  "numara": 14,
+  "konu": "7.3 Sketching Slope Fields",
+  "zorluk": "medium",
+  "govde": "The table below gives the slope of the segment drawn at several points in the slope field of a differential equation.<br/><table class='u-table'><tr><th>$(x, y)$</th><td>$(1, 1)$</td><td>$(-1, 1)$</td><td>$(2, 1)$</td><td>$(0, 2)$</td><td>$(1, -2)$</td></tr><tr><th>slope</th><td>$1$</td><td>$-1$</td><td>$2$</td><td>$0$</td><td>$-2$</td></tr></table>Which differential equation is consistent with all of the slopes in the table?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\frac{dy}{dx} = \\frac{y}{x}$"
+   },
+   {
+    "id": "B",
+    "text": "$\\frac{dy}{dx} = xy$"
+   },
+   {
+    "id": "C",
+    "text": "$\\frac{dy}{dx} = x^2y$"
+   },
+   {
+    "id": "D",
+    "text": "$\\frac{dy}{dx} = x + y$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $xy$: $(1,1) \\to 1$, $(-1,1) \\to -1$, $(2,1) \\to 2$, $(0,2) \\to 0$, $(1,-2) \\to -2$ — hepsi uyar.<br/>2. $\\frac{y}{x}$: $(2,1) \\to \\frac12$ ✗. $x^2y$: $(-1,1) \\to 1$ ✗. $x + y$: $(1,1) \\to 2$ ✗.",
+  "genel_hatirlatma": "Eşleştirmede her şıkkı birden fazla noktada test et; tek nokta yetmez.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Yalnız ilk iki noktayı test etmek.",
+    "aciklama": "$(1,1)$ ve $(-1,1)$'de uyar, ama $(2,1)$'de $\\frac12 \\ne 2$ ve $(0,2)$'de tanımsızdır."
+   },
+   "C": {
+    "etiket": "Eğimin işaretini kontrol etmemek.",
+    "aciklama": "$(-1, 1)$'de $x^2y = 1$, tabloda $-1$. $x^2 \\ge 0$ olduğundan bu denklem $x$'in işaretini yansıtmaz."
+   },
+   "D": {
+    "etiket": "Çarpım yerine toplam düşünmek.",
+    "aciklama": "$(1,1)$'de $x + y = 2$, tabloda $1$. $(0, 2)$'de de $2 \\ne 0$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.3)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Eğim tablosunu denklemle eşleştirmek",
+   "ipucu": "Önce şıkları ayıran noktayı bul.",
+   "sikHata": "Tek noktayla karar vermek",
+   "cedKonu": "7.3",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_15",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 14,
+  "numara": 15,
+  "konu": "7.3 Sketching Slope Fields",
+  "zorluk": "hard",
+  "govde": "A slope field for a differential equation has the following features.<br/>• At all points with the same $y$-coordinate, the segments are parallel.<br/>• Along the lines $y = 1$ and $y = -1$, every segment is horizontal.<br/>• For $-1 \\lt y \\lt 1$, every segment has positive slope; for $y \\gt 1$ and for $y \\lt -1$, every segment has negative slope.<br/>Which differential equation could the slope field represent?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\frac{dy}{dx} = y^2 - 1$"
+   },
+   {
+    "id": "B",
+    "text": "$\\frac{dy}{dx} = 1 - x^2$"
+   },
+   {
+    "id": "C",
+    "text": "$\\frac{dy}{dx} = 1 - y^2$"
+   },
+   {
+    "id": "D",
+    "text": "$\\frac{dy}{dx} = (1 - y)^2$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. Aynı $y$'de paralel ⇒ $\\frac{dy}{dx}$ yalnız $y$'ye bağlı ⇒ $1 - x^2$ elenir.<br/>2. $y = \\pm1$'de sıfır ⇒ $(1 - y)^2$ elenir ($y = -1$'de 4).<br/>3. $y = 0$'da pozitif olmalı: $1 - 0 = 1 \\gt 0$ ✓, $0 - 1 = -1$ ✗.<br/>4. $y = 2$'de $1 - 4 = -3 \\lt 0$ ✓. Cevap $1 - y^2$.",
+  "genel_hatirlatma": "Üç test: paralellik yönü, sıfır eğimin yeri, her bölgedeki işaret.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İşaret bölgelerini ters okumak.",
+    "aciklama": "$y = 0$'da $y^2 - 1 = -1 \\lt 0$; ama alan $-1 \\lt y \\lt 1$ için pozitif eğim istiyor."
+   },
+   "B": {
+    "etiket": "Paralellik yönünü karıştırmak.",
+    "aciklama": "Eğim yalnız $x$'e bağlı olsaydı aynı <b>$x$</b> değerindeki (dikey sütun) parçalar paralel olurdu; alan aynı $y$'deki parçaların paralel olduğunu söylüyor."
+   },
+   "D": {
+    "etiket": "Sıfır noktalarını kontrol edip işareti kontrol etmemek.",
+    "aciklama": "$(1 - y)^2 \\ge 0$ hiç negatif olmaz ve $y = -1$'de $4 \\ne 0$'dır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.3)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Sözle tarif edilen eğim alanını tanımak",
+   "ipucu": "Her bölgeden bir y değeri seçip işareti kontrol et.",
+   "sikHata": "Satır/sütun paralelliğini karıştırmak",
+   "cedKonu": "7.3",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_16",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 15,
+  "numara": 16,
+  "konu": "7.4 Reasoning Using Slope Fields",
+  "zorluk": "easy",
+  "govde": "Let $y = f(x)$ be the solution to $\\frac{dy}{dx} = y(y - 4)$ with $f(0) = 2$. Which of the following is true about $f$ at $x = 0$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$f$ is decreasing, because $\\frac{dy}{dx} = -4$ there."
+   },
+   {
+    "id": "B",
+    "text": "$f$ is increasing, because $\\frac{dy}{dx} = 4$ there."
+   },
+   {
+    "id": "C",
+    "text": "$f$ has a horizontal tangent, because $y = 2$ is an equilibrium solution."
+   },
+   {
+    "id": "D",
+    "text": "$f$ is increasing, because $f(0) = 2 \\gt 0$."
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $(0, 2)$'de $\\frac{dy}{dx} = 2(2 - 4) = -4$.<br/>2. Negatif ⇒ $f$ orada azalandır.",
+  "genel_hatirlatma": "Artan/azalan sorusu = noktadaki $\\frac{dy}{dx}$'in işareti.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "$(y - 4)$ çarpanının işaretini kaçırmak.",
+    "aciklama": "$2(2 - 4) = 2(-2) = -4$; çarpanlardan biri negatiftir."
+   },
+   "C": {
+    "etiket": "Dengeleri yanlış belirlemek.",
+    "aciklama": "Dengeler $y(y-4) = 0$ ⇒ $y = 0$ ve $y = 4$'tür; $y = 2$ değildir."
+   },
+   "D": {
+    "etiket": "Fonksiyon değerinin işaretini türevin işareti sanmak.",
+    "aciklama": "Artma/azalma $\\frac{dy}{dx}$'in işaretine bağlıdır, $y$'nin işaretine değil."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.4)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Türevin işaretinden davranış",
+   "ipucu": "Noktayı denkleme koy, işarete bak.",
+   "sikHata": "y'nin işaretini türevin işareti sanmak",
+   "cedKonu": "7.4",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_17",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 16,
+  "numara": 17,
+  "konu": "7.4 Reasoning Using Slope Fields",
+  "zorluk": "medium",
+  "govde": "Let $y = f(t)$ be the solution to the differential equation $\\frac{dy}{dt} = (y - 1)(3 - y)$ with $f(0) = 2$. Which of the following best describes the behavior of $f$ for $t \\gt 0$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$f$ increases and approaches 3."
+   },
+   {
+    "id": "B",
+    "text": "$f$ decreases and approaches 1."
+   },
+   {
+    "id": "C",
+    "text": "$f$ increases without bound."
+   },
+   {
+    "id": "D",
+    "text": "$f$ remains equal to 2 for all $t$."
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. Dengeler: $y = 1$, $y = 3$.<br/>2. $1 \\lt y \\lt 3$ için $(y-1) \\gt 0$ ve $(3-y) \\gt 0$ ⇒ $\\frac{dy}{dt} \\gt 0$.<br/>3. Çözüm artar ama $y = 3$ çizgisini geçemez ⇒ $\\lim_{t\\to\\infty} f(t) = 3$.",
+  "genel_hatirlatma": "Dengeler + işaret tablosu ⇒ uzun vadeli davranış.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Çarpanların işaretini yanlış hesaplamak.",
+    "aciklama": "$y = 2$'de $(2-1)(3-2) = 1 \\gt 0$; çözüm artar."
+   },
+   "C": {
+    "etiket": "Çözümün bir dengeyi geçebileceğini sanmak.",
+    "aciklama": "$y = 3$ bir denge çözümüdür; çözüm eğrileri kesişemediği için $f$ 3'ü geçemez."
+   },
+   "D": {
+    "etiket": "Başlangıç değerini denge sanmak.",
+    "aciklama": "$y = 2$'de türev $1 \\ne 0$; sabit kalmaz."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.4)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Dengeler arasında çözüm davranışı",
+   "ipucu": "İki denge arasında işaret değişmez.",
+   "sikHata": "Dengeyi geçebileceğini sanmak",
+   "cedKonu": "7.4",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_18",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 17,
+  "numara": 18,
+  "konu": "7.4 Reasoning Using Slope Fields",
+  "zorluk": "medium",
+  "govde": "For the differential equation $\\frac{dy}{dx} = xy^2$, which of the following expresses $\\frac{d^2y}{dx^2}$ in terms of $x$ and $y$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$y^2 + 2xy$"
+   },
+   {
+    "id": "B",
+    "text": "$2x^2y^3$"
+   },
+   {
+    "id": "C",
+    "text": "$2xy$"
+   },
+   {
+    "id": "D",
+    "text": "$y^2 + 2x^2y^3$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. Çarpım kuralı: $\\frac{d^2y}{dx^2} = y^2 + x\\cdot 2y\\frac{dy}{dx}$.<br/>2. $\\frac{dy}{dx} = xy^2$ koy: $y^2 + 2xy\\cdot xy^2 = y^2 + 2x^2y^3$.",
+  "genel_hatirlatma": "$y''$: kapalı türev al, sonra $\\frac{dy}{dx}$ yerine denklemi koy.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Zincir kuralında $\\frac{dy}{dx}$ çarpanını unutmak.",
+    "aciklama": "$\\frac{d}{dx}(y^2) = 2y\\frac{dy}{dx}$; $\\frac{dy}{dx}$'i atlamak $2xy$ verir. Doğrusu $x\\cdot 2y\\cdot xy^2 = 2x^2y^3$."
+   },
+   "B": {
+    "etiket": "Çarpım kuralının ilk terimini atlamak.",
+    "aciklama": "$\\frac{d}{dx}(x\\cdot y^2) = 1\\cdot y^2 + x\\cdot 2y\\frac{dy}{dx}$; $y^2$ terimi de vardır."
+   },
+   "C": {
+    "etiket": "$y$'yi $x$'ten bağımsız sabit gibi türetmek ve çarpım kuralını yanlış uygulamak.",
+    "aciklama": "$y$, $x$'in fonksiyonudur; hem çarpım hem zincir kuralı gerekir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.4)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "İkinci türevi x ve y cinsinden bulmak",
+   "ipucu": "Her y teriminden bir dy/dx çıkar.",
+   "sikHata": "dy/dx çarpanını unutmak",
+   "cedKonu": "7.4",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_19",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 18,
+  "numara": 19,
+  "konu": "7.4 Reasoning Using Slope Fields",
+  "zorluk": "hard",
+  "govde": "Let $y = f(x)$ be the solution to $\\frac{dy}{dx} = x(y - 2)$ whose graph passes through the point $(0, 5)$. Which of the following is true about $f$ at $x = 0$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$f$ has a relative maximum at $x = 0$."
+   },
+   {
+    "id": "B",
+    "text": "$f$ has a point of inflection at $x = 0$."
+   },
+   {
+    "id": "C",
+    "text": "$f$ has a relative minimum at $x = 0$."
+   },
+   {
+    "id": "D",
+    "text": "$f$ has no relative extremum at $x = 0$, because $y = 2$ is an equilibrium solution."
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $(0, 5)$'te $\\frac{dy}{dx} = 0\\cdot(5 - 2) = 0$.<br/>2. $\\frac{d^2y}{dx^2} = (y - 2) + x\\frac{dy}{dx}$ ⇒ $(0,5)$'te $3 + 0 = 3 \\gt 0$.<br/>3. $f'(0) = 0$ ve $f''(0) \\gt 0$ ⇒ ikinci türev testine göre yerel minimum.",
+  "genel_hatirlatma": "Ekstremum gerekçesi: $f'(a) = 0$ ve $f''(a)$'nın işareti.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İkinci türevin işaretini ters yorumlamak.",
+    "aciklama": "$f''(0) = 3 \\gt 0$ ⇒ yukarı içbükey ⇒ minimum, maksimum değil."
+   },
+   "B": {
+    "etiket": "$f'(0) = 0$'ı bükülme koşulu sanmak.",
+    "aciklama": "Bükülme için $f''$'nün işaret değiştirmesi gerekir; burada $f''(0) = 3 \\ne 0$."
+   },
+   "D": {
+    "etiket": "Dengeyi bu çözümle karıştırmak.",
+    "aciklama": "$y = 2$ başka bir çözümdür; bizim çözüm $y = 5$'ten geçer ve $x = 0$'da eğimi 0, ikinci türevi pozitiftir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.4)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Diferansiyel denklemden ikinci türev testi",
+   "ipucu": "y'' için çarpım kuralı: (y − 2)'nin türevi dy/dx.",
+   "sikHata": "Maksimum/minimum'u karıştırmak",
+   "cedKonu": "7.4",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_20",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 19,
+  "numara": 20,
+  "konu": "7.4 Reasoning Using Slope Fields",
+  "zorluk": "hard",
+  "govde": "Let $y = f(x)$ be the solution to $\\frac{dy}{dx} = y^2 - 4y$ with $f(0) = 1$. Consider the following statements.<br/>I. $f$ is decreasing for all $x \\gt 0$.<br/>II. $\\lim_{x\\to\\infty} f(x) = 0$.<br/>III. $f(x) \\gt 0$ for all $x \\gt 0$.<br/>Which of the statements must be true?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "I only"
+   },
+   {
+    "id": "B",
+    "text": "I, II, and III"
+   },
+   {
+    "id": "C",
+    "text": "I and II only"
+   },
+   {
+    "id": "D",
+    "text": "I and III only"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $\\frac{dy}{dx} = y(y - 4)$; dengeler $y = 0$, $y = 4$.<br/>2. $0 \\lt y \\lt 4$ ⇒ $y \\gt 0$, $y - 4 \\lt 0$ ⇒ türev negatif ⇒ $f$ azalan (I).<br/>3. Çözüm $y = 0$ dengesini kesemez ⇒ $f \\gt 0$ (III).<br/>4. Azalan ve alttan 0 ile sınırlı ⇒ $f \\to 0$ (II).",
+  "genel_hatirlatma": "İki denge arasında başlayan çözüm, türevin işaretine göre bir dengeye doğru gider ve onu geçmez.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Limit bilgisini kullanmamak.",
+    "aciklama": "$0 \\lt y \\lt 4$ bölgesinde türev hep negatif; çözüm aşağıdan $y = 0$ dengesiyle sınırlı olduğu için 0'a yaklaşır (II) ve hep pozitif kalır (III)."
+   },
+   "C": {
+    "etiket": "Çözümün bir dengeyi geçebileceğini sanmak.",
+    "aciklama": "$y = 0$ bir denge çözümüdür; $f$ onu kesemez. Bu yüzden $f(x) \\gt 0$ kalır (III de doğrudur)."
+   },
+   "D": {
+    "etiket": "Azalan ve alttan sınırlı fonksiyonun bir değere yaklaşmayacağını sanmak.",
+    "aciklama": "Azalan ve 0'ın üstünde kalan $f$, bir dengeye yaklaşmak zorundadır; $(0,1)$ aralığında tek denge değeri $0$'dır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.4)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Dengelerle çok yönlü akıl yürütme",
+   "ipucu": "İşaret tablosu kur, sonra kesişmezlik ilkesini kullan.",
+   "sikHata": "Çözümün dengeyi geçeceğini sanmak",
+   "cedKonu": "7.4",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_21",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 20,
+  "numara": 21,
+  "konu": "7.5 Approximating Solutions Using Euler's Method",
+  "zorluk": "easy",
+  "govde": "<strong>[BC ONLY]</strong> Let $y = f(x)$ be the solution to $\\frac{dy}{dx} = x - 2y$ with $f(1) = 2$. Using Euler's method with one step of size $0.5$, what is the approximation of $f(1.5)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$3.5$"
+   },
+   {
+    "id": "B",
+    "text": "$0.5$"
+   },
+   {
+    "id": "C",
+    "text": "$-1$"
+   },
+   {
+    "id": "D",
+    "text": "$0.75$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $(1, 2)$'de eğim: $1 - 2(2) = -3$.<br/>2. $f(1.5) \\approx 2 + 0.5(-3) = 0.5$.",
+  "genel_hatirlatma": "Euler: yeni $y$ = eski $y$ + $\\Delta x\\cdot$(eski noktadaki eğim).",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Eğimin işaretini kaybetmek.",
+    "aciklama": "$(1, 2)$'de eğim $1 - 4 = -3$; $2 + 0.5(3) = 3.5$ eksi işareti atlanmış hâlidir."
+   },
+   "C": {
+    "etiket": "Adım boyuyla çarpmayı unutmak.",
+    "aciklama": "$y_1 = y_0 + \\Delta x\\cdot\\text{eğim} = 2 + 0.5(-3)$; $2 + (-3) = -1$ adım boyunu yok sayar."
+   },
+   "D": {
+    "etiket": "Eğimi adımın sonundaki $x$ ile hesaplamak.",
+    "aciklama": "Euler'de eğim adımın <b>başındaki</b> noktada alınır: $(1, 2)$. $(1.5, 2)$'de hesaplanan eğim $-2.5$ ⇒ $2 + 0.5(-2.5) = 0.75$ bulunur."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.5)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Tek adım Euler",
+   "ipucu": "Eğimi başlangıç noktasında hesapla.",
+   "sikHata": "Δx ile çarpmayı unutmak",
+   "cedKonu": "7.5",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_22",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 21,
+  "numara": 22,
+  "konu": "7.5 Approximating Solutions Using Euler's Method",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> Let $y = f(x)$ be the solution to $\\frac{dy}{dx} = xy$ with $f(0) = 2$. What is the approximation of $f(1)$ obtained by using Euler's method with two steps of equal size starting at $x = 0$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$2$"
+   },
+   {
+    "id": "B",
+    "text": "$3$"
+   },
+   {
+    "id": "C",
+    "text": "$2.5$"
+   },
+   {
+    "id": "D",
+    "text": "$2.25$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $\\Delta x = 0.5$. $(0, 2)$'de eğim $0\\cdot 2 = 0$ ⇒ $f(0.5) \\approx 2$.<br/>2. $(0.5, 2)$'de eğim $0.5\\cdot 2 = 1$ ⇒ $f(1) \\approx 2 + 0.5(1) = 2.5$.",
+  "genel_hatirlatma": "\"Two steps of equal size\" ⇒ $\\Delta x$ = aralık uzunluğu / 2.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Tek adım ($\\Delta x = 1$) kullanmak.",
+    "aciklama": "$\\Delta x = 1$ ile $2 + 1(0) = 2$ olur; soru iki eşit adım, yani $\\Delta x = 0.5$ istiyor."
+   },
+   "B": {
+    "etiket": "İkinci adımda $x$ değerini güncellememek ya da $x=1$ almak.",
+    "aciklama": "İkinci adımın eğimi $(0.5,\\,2)$'de alınır: $0.5\\cdot 2 = 1$. $(1, 2)$'de eğim 2 alınırsa $2 + 0.5(2) = 3$ bulunur."
+   },
+   "D": {
+    "etiket": "İkinci adımda eğimi yarı yarıya hesaplamak.",
+    "aciklama": "$\\Delta y = \\Delta x\\cdot\\text{eğim} = 0.5\\cdot 1 = 0.5$; $0.25$ değil."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.5)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "İki adımlı Euler",
+   "ipucu": "Önce Δx'i bul.",
+   "sikHata": "Adım sayısını yanlış almak",
+   "cedKonu": "7.5",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_23",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 22,
+  "numara": 23,
+  "konu": "7.5 Approximating Solutions Using Euler's Method",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> Let $y = f(x)$ be the solution to $\\frac{dy}{dx} = 1 + y^2$ with $f(0) = 0$. Using Euler's method with step size $0.2$, what is the approximation of $f(0.4)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$0.408$"
+   },
+   {
+    "id": "B",
+    "text": "$0.4$"
+   },
+   {
+    "id": "C",
+    "text": "$0.48$"
+   },
+   {
+    "id": "D",
+    "text": "$0.208$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $(0, 0)$'da eğim $1$ ⇒ $f(0.2) \\approx 0 + 0.2(1) = 0.2$.<br/>2. $(0.2, 0.2)$'de eğim $1 + 0.04 = 1.04$ ⇒ $f(0.4) \\approx 0.2 + 0.2(1.04) = 0.408$.",
+  "genel_hatirlatma": "Her adımda eğim, bir önceki adımda bulunan yaklaşık $y$ ile hesaplanır.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "İkinci adımda eğimi başlangıçtaki eğim ile hesaplamak.",
+    "aciklama": "İkinci adımın eğimi $(0.2, 0.2)$'de $1 + 0.04 = 1.04$'tür; 1 değil."
+   },
+   "C": {
+    "etiket": "Eğimde $y^2$ yerine $2y$ kullanmak.",
+    "aciklama": "$(0.2, 0.2)$'de eğim $1 + (0.2)^2 = 1.04$'tür; $1 + 2(0.2) = 1.4$ alınırsa $0.2 + 0.2(1.4) = 0.48$ bulunur."
+   },
+   "D": {
+    "etiket": "Yalnız ikinci adımın artışını sonuç sanmak.",
+    "aciklama": "$0.2\\cdot 1.04 = 0.208$ ikinci adımdaki <b>artıştır</b>; bunu $0.2$'ye eklemen gerekir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.5)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Doğrusal olmayan denklemde Euler",
+   "ipucu": "Tablo kur: x, y, eğim, Δy.",
+   "sikHata": "Artışı sonuç sanmak",
+   "cedKonu": "7.5",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_24",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 23,
+  "numara": 24,
+  "konu": "7.5 Approximating Solutions Using Euler's Method",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> Let $y = f(x)$ be the solution to $\\frac{dy}{dx} = y - x$ with $f(0) = 2$. Euler's method with two steps of size $0.5$ is used to approximate $f(1)$. Which of the following gives the approximation and correctly describes it?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$4.25$; it is an overestimate because the graph of $f$ is concave up."
+   },
+   {
+    "id": "B",
+    "text": "$4.00$; it is an underestimate because the graph of $f$ is concave up."
+   },
+   {
+    "id": "C",
+    "text": "$4.75$; it is an overestimate because the graph of $f$ is concave down."
+   },
+   {
+    "id": "D",
+    "text": "$4.25$; it is an underestimate because the graph of $f$ is concave up."
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $(0, 2)$: eğim $2$ ⇒ $f(0.5) \\approx 3$.<br/>2. $(0.5, 3)$: eğim $2.5$ ⇒ $f(1) \\approx 3 + 1.25 = 4.25$.<br/>3. $\\frac{d^2y}{dx^2} = \\frac{dy}{dx} - 1 = y - x - 1$; $(0, 2)$'de $1 \\gt 0$. Gerçek çözüm $f(x) = x + 1 + e^{x}$ (kontrol: $f' = 1 + e^{x} = f - x$, $f(0) = 2$) ⇒ $f''(x) = e^{x} \\gt 0$ her yerde.<br/>4. Yukarı içbükey ⇒ teğetler altta ⇒ $4.25$ bir underestimate ($f(1) = 2 + e \\approx 4.718$).",
+  "genel_hatirlatma": "Concave up ⇒ Euler underestimate; concave down ⇒ overestimate. İçbükeyliği $\\frac{d^2y}{dx^2}$'den bul.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İçbükeylik–tahmin ilişkisini ters hatırlamak.",
+    "aciklama": "Yukarı içbükey grafikte teğet doğruları eğrinin <b>altında</b> kalır; Euler bu teğetleri izlediği için tahmin eksik (underestimate) olur."
+   },
+   "B": {
+    "etiket": "İki adımda da başlangıç eğimini kullanmak.",
+    "aciklama": "İkinci adımın eğimi $(0.5, 3)$'te $3 - 0.5 = 2.5$'tir; $2$ değil."
+   },
+   "C": {
+    "etiket": "Eğimi $y + x$ olarak hesaplamak ve içbükeyliği yanlış belirlemek.",
+    "aciklama": "$(0.5, 3)$'te $y - x = 2.5$; $y + x = 3.5$ kullanmak $4.75$ verir. Ayrıca $\\frac{d^2y}{dx^2} = \\frac{dy}{dx} - 1$ ve gerçek çözümde $f''(x) = e^{x} \\gt 0$; grafik yukarı içbükeydir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.5)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Euler tahmininin fazla/eksik olması",
+   "ipucu": "y'' = y' − 1 ifadesini başlangıç noktasında değerlendir.",
+   "sikHata": "Over/under kuralını ters hatırlamak",
+   "cedKonu": "7.5",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_25",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 24,
+  "numara": 25,
+  "konu": "7.5 Approximating Solutions Using Euler's Method",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> Let $y = f(x)$ be the solution to $\\frac{dy}{dx} = \\ln(x + y)$ with $f(1) = 2$. Using Euler's method with three steps of size $0.1$, what is the approximation of $f(1.3)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$2.330$"
+   },
+   {
+    "id": "B",
+    "text": "$2.226$"
+   },
+   {
+    "id": "C",
+    "text": "$2.350$"
+   },
+   {
+    "id": "D",
+    "text": "$2.340$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $(1, 2)$: eğim $\\ln 3 \\approx 1.09861$ ⇒ $y \\approx 2.10986$.<br/>2. $(1.1, 2.10986)$: eğim $\\ln 3.20986 \\approx 1.16623$ ⇒ $y \\approx 2.22648$.<br/>3. $(1.2, 2.22648)$: eğim $\\ln 3.42648 \\approx 1.23153$ ⇒ $y \\approx 2.34964$.<br/>4. $f(1.3) \\approx 2.350$.",
+  "genel_hatirlatma": "Hesap makinesiyle Euler: ara değerleri saklayarak her adımda $x$ ve $y$'yi birlikte güncelle.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Üç adımda da başlangıç eğimini kullanmak.",
+    "aciklama": "$2 + 0.3\\ln 3 \\approx 2.330$; her adımda eğim güncellenmelidir."
+   },
+   "B": {
+    "etiket": "İki adımda durmak.",
+    "aciklama": "$2.226$, $f(1.2)$ tahminidir; $f(1.3)$ için üçüncü adım gerekir."
+   },
+   "D": {
+    "etiket": "$x$ değerini güncellememek.",
+    "aciklama": "Eğimler $\\ln(x_n + y_n)$ ile hesaplanmalı; $x$'i hep 1 almak $2.340$ verir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.5)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Hesap makineli çok adımlı Euler",
+   "ipucu": "Ara sonuçları yuvarlama.",
+   "sikHata": "x'i güncellememek",
+   "cedKonu": "7.5",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_26",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 25,
+  "numara": 26,
+  "konu": "7.5 Approximating Solutions Using Euler's Method",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> Let $y = f(x)$ be the solution to $\\frac{dy}{dx} = \\sqrt{x + y}$ with $f(0) = 1$. What is the approximation of $f(1)$ obtained by using Euler's method with four steps of equal size starting at $x = 0$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$2.207$"
+   },
+   {
+    "id": "B",
+    "text": "$1.915$"
+   },
+   {
+    "id": "C",
+    "text": "$2.000$"
+   },
+   {
+    "id": "D",
+    "text": "$2.323$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "$\\Delta x = 0.25$.<br/>1. $(0, 1)$: eğim $1$ ⇒ $y \\approx 1.25$.<br/>2. $(0.25, 1.25)$: eğim $\\sqrt{1.5} \\approx 1.22474$ ⇒ $y \\approx 1.55619$.<br/>3. $(0.5, 1.55619)$: eğim $\\sqrt{2.05619} \\approx 1.43394$ ⇒ $y \\approx 1.91467$.<br/>4. $(0.75, 1.91467)$: eğim $\\sqrt{2.66467} \\approx 1.63238$ ⇒ $y \\approx 2.32277$.<br/>$f(1) \\approx 2.323$.",
+  "genel_hatirlatma": "\"n steps of equal size\" ⇒ $\\Delta x = \\frac{b - a}{n}$; her adımda $x$'i de güncelle.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Dört yerine iki adım ($\\Delta x = 0.5$) kullanmak.",
+    "aciklama": "İki adımda $1 + 0.5(1) = 1.5$, $1.5 + 0.5\\sqrt{2} \\approx 2.207$ olur; soru dört adım ($\\Delta x = 0.25$) istiyor."
+   },
+   "B": {
+    "etiket": "Bir adım eksik yapmak.",
+    "aciklama": "$1.915$, $x = 0.75$'teki tahmindir; dördüncü adım eksik."
+   },
+   "C": {
+    "etiket": "Tek adım ($\\Delta x = 1$) kullanmak.",
+    "aciklama": "$1 + 1\\cdot\\sqrt{1} = 2$; adım sayısı dört olmalı."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.5)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Dört adımlı Euler",
+   "ipucu": "Önce Δx = 1/4.",
+   "sikHata": "Adım sayısını yanlış almak",
+   "cedKonu": "7.5",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_27",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 26,
+  "numara": 27,
+  "konu": "7.6 Finding General Solutions Using Separation of Variables",
+  "zorluk": "easy",
+  "govde": "Which of the following is the general solution of the differential equation $\\frac{dy}{dx} = \\frac{3x^2}{y}$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$y^2 = 2x^3 + C$"
+   },
+   {
+    "id": "B",
+    "text": "$y = x^3 + C$"
+   },
+   {
+    "id": "C",
+    "text": "$y^2 = x^3 + C$"
+   },
+   {
+    "id": "D",
+    "text": "$y = \\sqrt{2x^3} + C$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. Ayır: $y\\,dy = 3x^2\\,dx$.<br/>2. İntegral: $\\frac{y^2}{2} = x^3 + C_1$.<br/>3. 2 ile çarp: $y^2 = 2x^3 + C$ ($C = 2C_1$).",
+  "genel_hatirlatma": "Ayır → integral → $+C$ → istersen sabiti yeniden adlandır.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "$y$'yi ayırmadan yalnız sağ tarafın integralini almak.",
+    "aciklama": "$y$ paydadadır; önce $y\\,dy = 3x^2\\,dx$ diye ayırmalısın."
+   },
+   "C": {
+    "etiket": "$\\int y\\,dy = \\frac{y^2}{2}$ ifadesindeki $\\frac12$'yi kaybetmek.",
+    "aciklama": "$\\frac{y^2}{2} = x^3 + C$ ⇒ $y^2 = 2x^3 + 2C$. $x^3$'ün katsayısı 2 olmalıdır."
+   },
+   "D": {
+    "etiket": "$C$'yi en sona eklemek.",
+    "aciklama": "$C$ integral alındığı anda eklenir: $y^2 = 2x^3 + C$. Kökü aldıktan sonra $+C$ eklemek denklemi sağlamayan bir aile verir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.6)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Temel ayırma ile genel çözüm",
+   "ipucu": "y'yi dy tarafına taşı.",
+   "sikHata": "1/2 katsayısını kaybetmek",
+   "cedKonu": "7.6",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_28",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 27,
+  "numara": 28,
+  "konu": "7.6 Finding General Solutions Using Separation of Variables",
+  "zorluk": "medium",
+  "govde": "Which of the following is the general solution of $\\frac{dy}{dx} = xe^{y}$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$y = \\ln\\left(\\frac{x^2}{2} + C\\right)$"
+   },
+   {
+    "id": "B",
+    "text": "$y = -\\ln\\left(C - \\frac{x^2}{2}\\right)$"
+   },
+   {
+    "id": "C",
+    "text": "$y = -\\ln\\left(\\frac{x^2}{2} + C\\right)$"
+   },
+   {
+    "id": "D",
+    "text": "$y = \\ln\\left(\\frac{x^2}{2}\\right) + C$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Ayır: $e^{-y}\\,dy = x\\,dx$.<br/>2. İntegral: $-e^{-y} = \\frac{x^2}{2} + C_1$ ⇒ $e^{-y} = C - \\frac{x^2}{2}$ ($C = -C_1$).<br/>3. $-y = \\ln\\left(C - \\frac{x^2}{2}\\right)$ ⇒ $y = -\\ln\\left(C - \\frac{x^2}{2}\\right)$.",
+  "genel_hatirlatma": "$e^{y}$ çarpanını ayırınca $e^{-y}\\,dy$ olur; $\\int e^{-y}\\,dy = -e^{-y}$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "$e^{y}$'yi ayırmak yerine $\\ln$ ile \"kaldırmak\".",
+    "aciklama": "Doğru ayırma $e^{-y}\\,dy = x\\,dx$'tir; $\\int e^{-y}\\,dy = -e^{-y}$. Bu şık $e^{y} = \\frac{x^2}{2} + C$ demektir; türevi $y' = \\frac{x}{e^{y}}$ olur, $xe^{y}$ değil."
+   },
+   "C": {
+    "etiket": "$\\int e^{-y}\\,dy$'deki eksi işaretini kaybetmek.",
+    "aciklama": "$\\int e^{-y}\\,dy = -e^{-y}$; eksi işaretiyle $e^{-y} = C - \\frac{x^2}{2}$ olur. İşaret kaybolursa $x^2$ teriminin işareti yanlış çıkar."
+   },
+   "D": {
+    "etiket": "$+C$'yi logaritmanın dışına yazmak.",
+    "aciklama": "$C$, integral alındığı anda $e^{-y}$ ile aynı tarafta olmalı; $\\ln$'den sonra eklenen $C$ denklemi sağlamaz."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.6)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Üstel çarpanlı ayırma",
+   "ipucu": "e^y'ye böl: e^{−y} dy.",
+   "sikHata": "e^{−y}'nin integralindeki eksi işareti",
+   "cedKonu": "7.6",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_29",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 28,
+  "numara": 29,
+  "konu": "7.6 Finding General Solutions Using Separation of Variables",
+  "zorluk": "medium",
+  "govde": "Which of the following is the general solution of $\\frac{dy}{dx} = \\frac{\\cos x}{\\sin y}$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\cos y = \\sin x + C$"
+   },
+   {
+    "id": "B",
+    "text": "$\\cos y = C - \\sin x$"
+   },
+   {
+    "id": "C",
+    "text": "$\\sin y = \\cos x + C$"
+   },
+   {
+    "id": "D",
+    "text": "$-\\sin y = \\cos x + C$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Ayır: $\\sin y\\,dy = \\cos x\\,dx$.<br/>2. İntegral: $-\\cos y = \\sin x + C_1$.<br/>3. $-1$ ile çarp: $\\cos y = C - \\sin x$ ($C = -C_1$).",
+  "genel_hatirlatma": "Trigonometrik ters türevler: $\\int\\sin u\\,du = -\\cos u$, $\\int\\cos u\\,du = \\sin u$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "$\\int \\sin y\\,dy = \\cos y$ yazmak.",
+    "aciklama": "$\\int \\sin y\\,dy = -\\cos y$ ⇒ $-\\cos y = \\sin x + C$ ⇒ $\\cos y = -\\sin x + C$. İşaret önemlidir."
+   },
+   "C": {
+    "etiket": "Ayırmadan payı ve paydayı ayrı ayrı türetmek ya da yer değiştirmek.",
+    "aciklama": "$\\sin y\\,dy = \\cos x\\,dx$ ayrımından sonra integral alınır; $\\sin y$ ve $\\cos x$ türev/integral olarak yer değiştirmez."
+   },
+   "D": {
+    "etiket": "İntegral yerine türev almak.",
+    "aciklama": "$\\sin y$'nin <b>türevi</b> $\\cos y$'dir; burada ise ters türev gerekir: $\\int \\sin y\\,dy = -\\cos y$, $\\int\\cos x\\,dx = \\sin x$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.6)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Trigonometrik ayırma",
+   "ipucu": "sin y'yi dy tarafına çarp.",
+   "sikHata": "∫sin y dy işaret hatası",
+   "cedKonu": "7.6",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_30",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 29,
+  "numara": 30,
+  "konu": "7.6 Finding General Solutions Using Separation of Variables",
+  "zorluk": "medium",
+  "govde": "Which of the following differential equations can NOT be solved by separation of variables?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\frac{dy}{dx} = xy + y$"
+   },
+   {
+    "id": "B",
+    "text": "$\\frac{dy}{dx} = e^{x + y}$"
+   },
+   {
+    "id": "C",
+    "text": "$\\frac{dy}{dx} = \\frac{\\sin x}{y^2 + 1}$"
+   },
+   {
+    "id": "D",
+    "text": "$\\frac{dy}{dx} = x + y$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. Ayrılabilir: sağ taraf $g(x)\\cdot h(y)$ biçiminde yazılabilmeli.<br/>2. $xy + y = y(x+1)$ ✓; $e^{x+y} = e^xe^y$ ✓; $\\frac{\\sin x}{y^2+1}$ ✓.<br/>3. $x + y$ bir toplamdır ve çarpıma ayrılamaz ⇒ ayırma yöntemi kullanılamaz.",
+  "genel_hatirlatma": "Ayrılabilirlik testi: sağ tarafı \"yalnız $x$\" × \"yalnız $y$\" biçiminde yazabiliyor musun?",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Çarpanlara ayırmayı görmemek.",
+    "aciklama": "$xy + y = y(x + 1)$; bu bir \"$x$ çarpanı × $y$ çarpanı\" olduğundan ayrılabilir: $\\frac{dy}{y} = (x+1)\\,dx$."
+   },
+   "B": {
+    "etiket": "Üs içindeki toplamı ayrılamaz sanmak.",
+    "aciklama": "$e^{x+y} = e^{x}e^{y}$ ⇒ $e^{-y}\\,dy = e^{x}\\,dx$; ayrılabilir."
+   },
+   "C": {
+    "etiket": "Kesirli ifadeyi ayrılamaz sanmak.",
+    "aciklama": "$(y^2 + 1)\\,dy = \\sin x\\,dx$; ayrılabilir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.6)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Ayrılabilirliği tanımak",
+   "ipucu": "Çarpanlara ayırmayı ve üs kurallarını dene.",
+   "sikHata": "e^{x+y}'yi ayrılamaz sanmak",
+   "cedKonu": "7.6",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_31",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 30,
+  "numara": 31,
+  "konu": "7.6 Finding General Solutions Using Separation of Variables",
+  "zorluk": "hard",
+  "govde": "Which of the following is the general solution of $\\frac{dy}{dx} = \\frac{x(y - 1)}{x^2 + 1}$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$y = 1 + C\\sqrt{x^2 + 1}$"
+   },
+   {
+    "id": "B",
+    "text": "$y = 1 + C(x^2 + 1)$"
+   },
+   {
+    "id": "C",
+    "text": "$y = 1 + Ce^{\\arctan x}$"
+   },
+   {
+    "id": "D",
+    "text": "$y = \\sqrt{x^2 + 1} + C$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. Ayır: $\\frac{dy}{y - 1} = \\frac{x}{x^2+1}\\,dx$.<br/>2. İntegral: $\\ln|y - 1| = \\frac12\\ln(x^2 + 1) + C_1$ ($u = x^2 + 1$).<br/>3. Üs al: $|y - 1| = e^{C_1}\\sqrt{x^2+1}$ ⇒ $y = 1 + C\\sqrt{x^2+1}$ ($C = \\pm e^{C_1}$, ayrıca $C = 0$ denge çözümü $y = 1$).",
+  "genel_hatirlatma": "$\\ln|y - M| = (\\ldots) + C$ ⇒ $y = M + Ae^{(\\ldots)}$; $C$ üste girer ve çarpana dönüşür.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "$u$-yerine koymada $\\frac12$ katsayısını kaybetmek.",
+    "aciklama": "$\\int \\frac{x}{x^2+1}\\,dx = \\frac12\\ln(x^2+1)$; $\\frac12$ kaybolursa $e^{\\ln(x^2+1)} = x^2 + 1$ bulunur. Doğrusu $(x^2+1)^{1/2}$."
+   },
+   "C": {
+    "etiket": "Yanlış ters türev: $\\frac{x}{x^2+1}$'i $\\frac{1}{x^2+1}$ gibi integrallemek.",
+    "aciklama": "$\\arctan x$, $\\frac{1}{x^2+1}$'in ters türevidir; paydaki $x$ ile ifade $\\frac12\\ln(x^2+1)$ olur."
+   },
+   "D": {
+    "etiket": "Sabiti çarpan yerine toplam olarak yazmak ve 1'i kaybetmek.",
+    "aciklama": "$\\ln|y - 1| = \\frac12\\ln(x^2+1) + C$ ⇒ $y - 1 = A\\sqrt{x^2+1}$; sabit çarpan olur ve $+1$ kalır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.6)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "u-yerine koymalı ayırma",
+   "ipucu": "x/(x²+1) için u = x²+1.",
+   "sikHata": "1/2 katsayısını kaybetmek",
+   "cedKonu": "7.6",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_32",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 31,
+  "numara": 32,
+  "konu": "7.7 Finding Particular Solutions Using Initial Conditions and Separation of Variables",
+  "zorluk": "hard",
+  "govde": "Let $y = f(x)$ be the particular solution to $\\frac{dy}{dx} = 2xy^2$ with $f(0) = 1$. Which of the following gives $f(x)$ and the largest open interval on which this particular solution is defined?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$f(x) = \\frac{1}{1 - x^2}$ for all $x \\ne \\pm1$"
+   },
+   {
+    "id": "B",
+    "text": "$f(x) = \\frac{1}{1 + x^2}$ for all real $x$"
+   },
+   {
+    "id": "C",
+    "text": "$f(x) = \\frac{1}{1 - x^2}$ for $-1 \\lt x \\lt 1$"
+   },
+   {
+    "id": "D",
+    "text": "$f(x) = 1 - x^2$ for all real $x$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. Ayır: $y^{-2}\\,dy = 2x\\,dx$ ⇒ $-\\frac1y = x^2 + C$.<br/>2. $f(0) = 1$: $-1 = C$ ⇒ $-\\frac1y = x^2 - 1$ ⇒ $y = \\frac{1}{1 - x^2}$.<br/>3. $x = \\pm1$'de tanımsız; $x = 0$'ı içeren en geniş açık aralık $-1 \\lt x \\lt 1$.",
+  "genel_hatirlatma": "Tanım aralığı: başlangıç noktasını içeren, çözümün tanımlı ve türevlenebilir olduğu en geniş açık aralık.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Tanım aralığını başlangıç noktasını içeren tek aralıkla sınırlamamak.",
+    "aciklama": "Özel çözüm, $x = 0$'ı içeren ve fonksiyonun tanımlı olduğu en geniş <b>açık aralıkta</b> tanımlıdır: $(-1, 1)$. Diğer parçalar bu çözümün devamı değildir."
+   },
+   "B": {
+    "etiket": "$-\\frac1y$'deki eksi işaretini kaybetmek.",
+    "aciklama": "$\\int y^{-2}\\,dy = -\\frac1y$ ⇒ $-\\frac1y = x^2 - 1$ ⇒ $y = \\frac{1}{1 - x^2}$. İşaret kaybolursa $\\frac{1}{1 + x^2}$ bulunur; türevi $-2xy^2$ olur."
+   },
+   "D": {
+    "etiket": "$-\\frac1y$ ifadesini ters çevirmeyi unutmak.",
+    "aciklama": "$-\\frac1y = x^2 - 1$ ⇒ $\\frac1y = 1 - x^2$ ⇒ $y = \\frac{1}{1-x^2}$; $y = 1 - x^2$ denklemi sağlamaz."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.7)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Özel çözüm ve tanım aralığı",
+   "ipucu": "C'yi hemen bul, sonra paydanın sıfırlarını incele.",
+   "sikHata": "Tanım aralığını parçalı vermek",
+   "cedKonu": "7.7",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_33",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 32,
+  "numara": 33,
+  "konu": "7.7 Finding Particular Solutions Using Initial Conditions and Separation of Variables",
+  "zorluk": "medium",
+  "govde": "Let $y = f(x)$ be the particular solution to $\\frac{dy}{dx} = \\frac{3x^2 + 1}{2y}$ with $f(1) = -2$. Which of the following is $f(x)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$f(x) = \\sqrt{x^3 + x + 2}$"
+   },
+   {
+    "id": "B",
+    "text": "$f(x) = -\\sqrt{x^3 + x + 4}$"
+   },
+   {
+    "id": "C",
+    "text": "$f(x) = -\\sqrt{x^3 + x + 2}$"
+   },
+   {
+    "id": "D",
+    "text": "$f(x) = -\\sqrt{x^3 + x} - 2$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. Ayır: $2y\\,dy = (3x^2 + 1)\\,dx$ ⇒ $y^2 = x^3 + x + C$.<br/>2. $f(1) = -2$: $4 = 2 + C$ ⇒ $C = 2$.<br/>3. $y = \\pm\\sqrt{x^3 + x + 2}$; $f(1) \\lt 0$ ⇒ $f(x) = -\\sqrt{x^3 + x + 2}$.",
+  "genel_hatirlatma": "Karekök alırken ± yaz; başlangıç değerinin işareti hangisini seçeceğini söyler.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Karekökte başlangıç değerinin işaretini dikkate almamak.",
+    "aciklama": "$f(1) = \\sqrt{4} = 2 \\ne -2$. Başlangıç değeri negatif olduğundan negatif kök seçilmelidir."
+   },
+   "B": {
+    "etiket": "$C$'yi bulurken sağ tarafın değerini çıkarmamak.",
+    "aciklama": "$y^2 = x^3 + x + C$ ⇒ $4 = 1 + 1 + C$ ⇒ $C = 2$; $C = 4$ alınırsa $f(1) = -\\sqrt6$ olur."
+   },
+   "D": {
+    "etiket": "$C$'yi kökün dışına eklemek.",
+    "aciklama": "Sabit, integral alındığında $y^2$ ile birlikte yazılır; kökten sonra eklenen $-2$ denklemi sağlamaz."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.7)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "İşaret seçimi gerektiren özel çözüm",
+   "ipucu": "y(1) negatif ⇒ negatif kök.",
+   "sikHata": "Pozitif kökü seçmek",
+   "cedKonu": "7.7",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_34",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 33,
+  "numara": 34,
+  "konu": "7.7 Finding Particular Solutions Using Initial Conditions and Separation of Variables",
+  "zorluk": "medium",
+  "govde": "<em>(Graphing calculator allowed.)</em> Let $y = f(x)$ be the particular solution to $\\frac{dy}{dx} = \\frac{2x}{e^{y}}$ with $f(0) = 0$. What is the value of $f(2.5)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$1.981$"
+   },
+   {
+    "id": "B",
+    "text": "$1.833$"
+   },
+   {
+    "id": "C",
+    "text": "$7.250$"
+   },
+   {
+    "id": "D",
+    "text": "$0.860$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. Ayır: $e^{y}\\,dy = 2x\\,dx$ ⇒ $e^{y} = x^2 + C$.<br/>2. $f(0) = 0$: $1 = 0 + C$ ⇒ $C = 1$ ⇒ $f(x) = \\ln(x^2 + 1)$.<br/>3. $f(2.5) = \\ln 7.25 \\approx 1.981$.",
+  "genel_hatirlatma": "Önce tam formülü yaz, sonra sayıyı hesapla.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "$C$'yi sıfır almak.",
+    "aciklama": "$e^{y} = x^2 + C$ ve $f(0) = 0$ ⇒ $1 = C$. $C = 0$ alınırsa $y = \\ln(x^2) = 2\\ln 2.5 \\approx 1.833$ bulunur."
+   },
+   "C": {
+    "etiket": "Son adımda $\\ln$ almayı unutmak.",
+    "aciklama": "$e^{y} = 7.25$, $y$'nin kendisi değil; $y = \\ln 7.25$."
+   },
+   "D": {
+    "etiket": "Hesap makinesinde $\\ln$ yerine $\\log$ (10 tabanı) kullanmak.",
+    "aciklama": "$\\log_{10} 7.25 \\approx 0.860$; çözüm doğal logaritma içerir: $\\ln 7.25 \\approx 1.981$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.7)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Özel çözümden değer hesaplamak",
+   "ipucu": "C'yi y'yi yalnız bırakmadan bul.",
+   "sikHata": "C = 0 sanmak",
+   "cedKonu": "7.7",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_35",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 34,
+  "numara": 35,
+  "konu": "7.8 Exponential Models with Differential Equations",
+  "zorluk": "easy",
+  "govde": "A population $y$ satisfies $\\frac{dy}{dt} = ky$ for a constant $k$, where $t$ is measured in years. The population is 200 at $t = 0$ and doubles every 5 years. Which of the following expressions gives $y(t)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$200e^{t/5}$"
+   },
+   {
+    "id": "B",
+    "text": "$200\\cdot 2^{5t}$"
+   },
+   {
+    "id": "C",
+    "text": "$200 + 200\\cdot\\frac{t}{5}$"
+   },
+   {
+    "id": "D",
+    "text": "$200\\cdot 2^{t/5}$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $\\frac{dy}{dt} = ky$ ⇒ $y = 200e^{kt}$.<br/>2. $y(5) = 400$ ⇒ $e^{5k} = 2$ ⇒ $e^{kt} = (e^{5k})^{t/5} = 2^{t/5}$.<br/>3. $y(t) = 200\\cdot 2^{t/5}$.",
+  "genel_hatirlatma": "\"Her $d$ yılda iki katı\" ⇒ $y = y_0\\cdot 2^{t/d}$, yani $k = \\frac{\\ln2}{d}$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Katlanma süresini $k = \\frac15$ ile karıştırmak.",
+    "aciklama": "$200e^{t/5}$, $t = 5$'te $200e \\approx 544$ verir; iki katı (400) değil. Doğru $k = \\frac{\\ln 2}{5}$'tir."
+   },
+   "B": {
+    "etiket": "Üstteki oranı ters kurmak.",
+    "aciklama": "$2^{5t}$, nüfusun her $\\frac15$ yılda iki katına çıktığı anlamına gelir."
+   },
+   "C": {
+    "etiket": "Üstel büyümeyi doğrusal sanmak.",
+    "aciklama": "Bu ifade her 5 yılda 200 <b>ekler</b>; $\\frac{dy}{dt} = ky$ ise çarpımsal (üstel) büyüme verir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.8)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Katlanma süresinden model",
+   "ipucu": "t = 5'te ifadeyi kontrol et: 400 çıkmalı.",
+   "sikHata": "k = 1/5 sanmak",
+   "cedKonu": "7.8",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_36",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 35,
+  "numara": 36,
+  "konu": "7.8 Exponential Models with Differential Equations",
+  "zorluk": "medium",
+  "govde": "<em>(Graphing calculator allowed.)</em> The temperature $T$ of a cup of tea, in degrees Fahrenheit, satisfies $\\frac{dT}{dt} = k(T - 70)$, where $t$ is measured in minutes. The tea has temperature $350^\\circ$ at $t = 0$ and $250^\\circ$ at $t = 10$. To the nearest hundredth of a minute, at what time does the tea reach $150^\\circ$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$20.00$ minutes"
+   },
+   {
+    "id": "B",
+    "text": "$28.35$ minutes"
+   },
+   {
+    "id": "C",
+    "text": "$25.18$ minutes"
+   },
+   {
+    "id": "D",
+    "text": "$14.13$ minutes"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $T - 70 = 280e^{kt}$.<br/>2. $t = 10$: $180 = 280e^{10k}$ ⇒ $k = \\frac{\\ln(9/14)}{10} \\approx -0.044183$.<br/>3. $80 = 280e^{kt}$ ⇒ $t = \\frac{\\ln(2/7)}{k} \\approx 28.35$ dakika.",
+  "genel_hatirlatma": "Newton modelinde farklar üstel değişir: $T - M = (T_0 - M)e^{kt}$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Soğumayı doğrusal (sabit hızlı) sanmak.",
+    "aciklama": "İlk 10 dakikada 100 derece düştü diye 150'ye 20. dakikada ulaşacağını varsaymak yanlıştır; fark üstel azalır ve soğuma yavaşlar."
+   },
+   "C": {
+    "etiket": "Ortam sıcaklığını çıkarmadan sıcaklıkları oranlamak.",
+    "aciklama": "$k$ ve $t$, farklar ($T - 70$) ile bulunmalı: $\\frac{180}{280} = e^{10k}$. $\\frac{250}{350}$ kullanmak $25.18$ verir."
+   },
+   "D": {
+    "etiket": "Hedefte farkı değil sıcaklığı kullanmak.",
+    "aciklama": "$T = 150$ ⇒ $T - 70 = 80$; denklem $80 = 280e^{kt}$ olmalı, $150 = 280e^{kt}$ değil."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.8)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Newton'un soğuma yasası ile zaman bulmak",
+   "ipucu": "Her sıcaklıktan 70'i çıkar.",
+   "sikHata": "Sıcaklıkları doğrudan oranlamak",
+   "cedKonu": "7.8",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_37",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 36,
+  "numara": 37,
+  "konu": "7.8 Exponential Models with Differential Equations",
+  "zorluk": "hard",
+  "govde": "<em>(Graphing calculator allowed.)</em> A population $P$ satisfies $\\frac{dP}{dt} = kP$, where $t$ is in years. At $t = 0$, $P = 500$ and the population is increasing at a rate of 20 per year. To the nearest hundredth of a year, at what time will the population reach 800?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$11.75$ years"
+   },
+   {
+    "id": "B",
+    "text": "$15.00$ years"
+   },
+   {
+    "id": "C",
+    "text": "$0.47$ years"
+   },
+   {
+    "id": "D",
+    "text": "$167.12$ years"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $t = 0$'da $\\frac{dP}{dt} = 20 = k\\cdot 500$ ⇒ $k = 0.04$.<br/>2. $P = 500e^{0.04t}$.<br/>3. $800 = 500e^{0.04t}$ ⇒ $t = \\frac{\\ln 1.6}{0.04} \\approx 11.75$ yıl.",
+  "genel_hatirlatma": "Bir anda verilen hız $k$'yı verir: $\\frac{dP}{dt} = kP$ ⇒ $k = \\frac{\\text{hız}}{P}$.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Büyüme hızını sabit sanmak.",
+    "aciklama": "$\\frac{300}{20} = 15$, hız hep 20 kalsaydı doğru olurdu; ama hız $P$ ile birlikte artar."
+   },
+   "C": {
+    "etiket": "$k$'ya bölmeyi unutmak.",
+    "aciklama": "$e^{0.04t} = 1.6$ ⇒ $0.04t = \\ln 1.6 \\approx 0.47$; $t$ için $0.04$'e bölmek gerekir."
+   },
+   "D": {
+    "etiket": "Başlangıç değerini modele koymamak.",
+    "aciklama": "$800 = 500e^{0.04t}$ olmalıdır; $800 = e^{0.04t}$ çözmek $\\frac{\\ln 800}{0.04}$ verir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.8)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Anlık hızdan büyüme sabiti",
+   "ipucu": "Önce k = 20/500.",
+   "sikHata": "Hızı sabit sanmak",
+   "cedKonu": "7.8",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_38",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 37,
+  "numara": 38,
+  "konu": "7.8 Exponential Models with Differential Equations",
+  "zorluk": "hard",
+  "govde": "Let $y(t)$ be the solution to $\\frac{dy}{dt} = -0.3(y - 50)$ with $y(0) = 10$. Consider the following statements.<br/>I. $y$ is increasing for all $t \\gt 0$.<br/>II. $\\lim_{t\\to\\infty} y(t) = 50$.<br/>III. The graph of $y$ is concave up for all $t \\gt 0$.<br/>Which of the statements are true?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "I only"
+   },
+   {
+    "id": "B",
+    "text": "II and III only"
+   },
+   {
+    "id": "C",
+    "text": "I and II only"
+   },
+   {
+    "id": "D",
+    "text": "I, II, and III"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $y - 50 = (10 - 50)e^{-0.3t}$ ⇒ $y = 50 - 40e^{-0.3t}$.<br/>2. $\\frac{dy}{dt} = 12e^{-0.3t} \\gt 0$ ⇒ artan (I ✓).<br/>3. $e^{-0.3t} \\to 0$ ⇒ $y \\to 50$ (II ✓).<br/>4. $\\frac{d^2y}{dt^2} = -3.6e^{-0.3t} \\lt 0$ ⇒ aşağı içbükey (III ✗).",
+  "genel_hatirlatma": "$\\frac{dy}{dt} = k(y - M)$, $k \\lt 0$: $y$ her iki taraftan $M$'ye yaklaşır; alttan yaklaşırken artan ve aşağı içbükeydir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Uzun vadeli davranışı belirlememek.",
+    "aciklama": "$y = 50 - 40e^{-0.3t}$ ve $e^{-0.3t} \\to 0$ ⇒ $y \\to 50$; II de doğrudur."
+   },
+   "B": {
+    "etiket": "$k \\lt 0$ görünce çözümün azalan olduğunu sanmak.",
+    "aciklama": "$y \\lt 50$ iken $-0.3(y - 50) \\gt 0$; $y$ artar, I doğrudur. Ayrıca III yanlıştır."
+   },
+   "D": {
+    "etiket": "İçbükeyliği kontrol etmemek.",
+    "aciklama": "$\\frac{d^2y}{dt^2} = -0.3\\frac{dy}{dt} \\lt 0$ (çünkü $\\frac{dy}{dt} \\gt 0$) ⇒ grafik aşağı içbükeydir; III yanlış."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.8)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Ötelenmiş üstel modelin niteliksel özellikleri",
+   "ipucu": "y'' = −0.3·y' ile içbükeyliği bul.",
+   "sikHata": "k < 0 ⇒ azalan sanmak",
+   "cedKonu": "7.8",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_39",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 38,
+  "numara": 39,
+  "konu": "7.8 Exponential Models with Differential Equations",
+  "zorluk": "medium",
+  "govde": "<em>(Graphing calculator allowed.)</em> A population $P$ satisfies $\\frac{dP}{dt} = kP$, where $t$ is in years. If $P(0) = 2000$ and $P(4) = 2600$, what is the rate of change of the population at $t = 6$, in people per year?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$150.0$"
+   },
+   {
+    "id": "B",
+    "text": "$194.4$"
+   },
+   {
+    "id": "C",
+    "text": "$170.5$"
+   },
+   {
+    "id": "D",
+    "text": "$222.3$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $e^{4k} = 1.3$ ⇒ $k = \\frac{\\ln 1.3}{4} \\approx 0.065591$.<br/>2. $P(6) = 2000e^{6k} = 2000(1.3)^{1.5} \\approx 2964.46$.<br/>3. $\\frac{dP}{dt} = kP(6) \\approx 0.065591\\cdot 2964.46 \\approx 194.4$ kişi/yıl.",
+  "genel_hatirlatma": "Hız sorusunda $\\frac{dP}{dt} = kP$'yi o anki $P$ ile hesapla.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Ortalama değişim hızını anlık hız sanmak.",
+    "aciklama": "$\\frac{2600 - 2000}{4} = 150$, $[0, 4]$ aralığındaki ortalama hızdır; soru $t = 6$'daki anlık hızı istiyor."
+   },
+   "C": {
+    "etiket": "Hızı yanlış anda hesaplamak.",
+    "aciklama": "$k\\cdot P(4) = 0.06559\\cdot 2600 \\approx 170.5$, $t = 4$'teki hızdır; $P(6)$ kullanılmalı."
+   },
+   "D": {
+    "etiket": "$k$'yı yüzde artıştan doğrusal hesaplamak.",
+    "aciklama": "4 yılda %30 artış ⇒ $k = 0.075$ değildir; $e^{4k} = 1.3$ ⇒ $k = \\frac{\\ln 1.3}{4} \\approx 0.06559$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.8)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Üstel modelde anlık hız",
+   "ipucu": "Önce k, sonra P(6), sonra kP(6).",
+   "sikHata": "Ortalama hızı anlık hız sanmak",
+   "cedKonu": "7.8",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_40",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 39,
+  "numara": 40,
+  "konu": "7.9 Logistic Models with Differential Equations",
+  "zorluk": "easy",
+  "govde": "<strong>[BC ONLY]</strong> A population $P(t)$ satisfies the logistic differential equation $\\frac{dP}{dt} = 0.05P\\left(1 - \\frac{P}{800}\\right)$ with $P(0) = 50$. For what value of $P$ is the population growing the fastest?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$800$"
+   },
+   {
+    "id": "B",
+    "text": "$200$"
+   },
+   {
+    "id": "C",
+    "text": "$50$"
+   },
+   {
+    "id": "D",
+    "text": "$400$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $L = 800$.<br/>2. $\\frac{dP}{dt}$, $P$'nin parabolü; tepe noktası $P = \\frac{L}{2} = 400$.<br/>3. En hızlı büyüme $P = 400$ iken.",
+  "genel_hatirlatma": "Lojistik modelde en hızlı büyüme $P = \\frac{L}{2}$'de olur.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Taşıma kapasitesini en hızlı büyüme noktası sanmak.",
+    "aciklama": "$P = 800$'de $\\frac{dP}{dt} = 0$; nüfus orada büyümez."
+   },
+   "B": {
+    "etiket": "Taşıma kapasitesini 4'e bölmek ($\\frac{kL}{4}$ formülünü karıştırmak).",
+    "aciklama": "$\\frac{kL}{4}$ en büyük <b>hızdır</b>; hızın en büyük olduğu nüfus $\\frac{L}{2} = 400$'dür."
+   },
+   "C": {
+    "etiket": "Başlangıç değerinde hızın en büyük olduğunu sanmak.",
+    "aciklama": "Lojistik büyümede hız önce artar; $P = 50$'de hız $0.05\\cdot50\\cdot\\frac{750}{800} \\approx 2.34$, $P = 400$'de $10$'dur."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.9)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "En hızlı büyüme noktası",
+   "ipucu": "L'yi oku, ikiye böl.",
+   "sikHata": "L'de en hızlı sanmak",
+   "cedKonu": "7.9",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_41",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 40,
+  "numara": 41,
+  "konu": "7.9 Logistic Models with Differential Equations",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> A population $y(t)$ satisfies $\\frac{dy}{dt} = 3y - 0.006y^2$ with $y(0) = 40$. What is $\\lim_{t\\to\\infty} y(t)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$250$"
+   },
+   {
+    "id": "B",
+    "text": "$\\frac{500}{3}$"
+   },
+   {
+    "id": "C",
+    "text": "$3$"
+   },
+   {
+    "id": "D",
+    "text": "$500$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $3y - 0.006y^2 = 3y\\left(1 - \\frac{y}{500}\\right)$ ⇒ $L = 500$.<br/>2. $0 \\lt y(0) = 40 \\lt 500$ ⇒ $y$ artar ve $\\lim_{t\\to\\infty} y = 500$.",
+  "genel_hatirlatma": "$ky(1 - \\frac{y}{L})$ biçimine getir; $y(0) \\gt 0$ ise limit $L$'dir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "En hızlı büyüme noktasını limit sanmak.",
+    "aciklama": "$250 = \\frac{L}{2}$, büyümenin en hızlı olduğu nüfustur; limit $L = 500$'dür."
+   },
+   "B": {
+    "etiket": "$y^2$'nin katsayısının tersini taşıma kapasitesi sanmak.",
+    "aciklama": "$\\frac{1}{0.006} = \\frac{500}{3}$; önce $3y$ parantezine alınmalı: $3y(1 - 0.002y)$ ⇒ $L = \\frac{1}{0.002} = 500$."
+   },
+   "C": {
+    "etiket": "Büyüme sabitini taşıma kapasitesi sanmak.",
+    "aciklama": "3, $k$ büyüme sabitidir; taşıma kapasitesi $\\frac{dy}{dt} = 0$ olan pozitif değerdir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.9)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Taşıma kapasitesini okumak",
+   "ipucu": "3y parantezine al.",
+   "sikHata": "L/2'yi limit sanmak",
+   "cedKonu": "7.9",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_42",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 41,
+  "numara": 42,
+  "konu": "7.9 Logistic Models with Differential Equations",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> The function $P(t) = \\frac{1000}{1 + 9e^{-0.4t}}$ is a solution to a logistic differential equation. Which differential equation does $P$ satisfy?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\frac{dP}{dt} = 0.4P(1000 - P)$"
+   },
+   {
+    "id": "B",
+    "text": "$\\frac{dP}{dt} = 0.4P\\left(1 - \\frac{P}{1000}\\right)$"
+   },
+   {
+    "id": "C",
+    "text": "$\\frac{dP}{dt} = 3.6P\\left(1 - \\frac{P}{1000}\\right)$"
+   },
+   {
+    "id": "D",
+    "text": "$\\frac{dP}{dt} = -0.4P\\left(1 - \\frac{P}{1000}\\right)$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Standart çözüm $P = \\frac{L}{1 + Ae^{-kt}}$ ⇒ $L = 1000$, $k = 0.4$, $A = 9$.<br/>2. Denklem: $\\frac{dP}{dt} = 0.4P\\left(1 - \\frac{P}{1000}\\right)$.<br/>3. Kontrol: $P(0) = 100$ ve $A = \\frac{1000 - 100}{100} = 9$ ✓.",
+  "genel_hatirlatma": "$P = \\frac{L}{1 + Ae^{-kt}}$ ↔ $\\frac{dP}{dt} = kP(1 - \\frac{P}{L})$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İki lojistik biçimi karıştırmak.",
+    "aciklama": "$cP(L - P)$ biçiminde $c = \\frac{k}{L} = 0.0004$ olmalıdır; $0.4P(1000 - P)$ çok büyük bir büyüme sabiti verir."
+   },
+   "C": {
+    "etiket": "$A$ sabitini $k$ ile çarpmak.",
+    "aciklama": "$A = 9$ yalnız başlangıç değerini belirler ($P(0) = 100$); büyüme sabiti üsteki $0.4$'tür."
+   },
+   "D": {
+    "etiket": "Üsteki eksi işaretini $k$'ya aktarmak.",
+    "aciklama": "$P = \\frac{L}{1 + Ae^{-kt}}$ biçiminde üsteki eksi standarttır; $k = +0.4$ ve $P$ artandır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.9)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Lojistik çözüm ile denklemi eşleştirmek",
+   "ipucu": "Pay = L, üsteki katsayı = k.",
+   "sikHata": "A'yı büyüme sabitine katmak",
+   "cedKonu": "7.9",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_43",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 42,
+  "numara": 43,
+  "konu": "7.9 Logistic Models with Differential Equations",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> A population is modeled by $P(t) = \\frac{1000}{1 + 9e^{-0.4t}}$, where $t$ is in years. At what time $t$ is the population growing the fastest?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$t \\approx 2.197$"
+   },
+   {
+    "id": "B",
+    "text": "$t \\approx 0.879$"
+   },
+   {
+    "id": "C",
+    "text": "$t \\approx 5.493$"
+   },
+   {
+    "id": "D",
+    "text": "$t \\approx 1.733$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $L = 1000$ ⇒ en hızlı büyüme $P = 500$'de.<br/>2. $\\frac{1000}{1 + 9e^{-0.4t}} = 500$ ⇒ $9e^{-0.4t} = 1$.<br/>3. $t = \\frac{\\ln 9}{0.4} \\approx 5.493$ yıl.",
+  "genel_hatirlatma": "\"Fastest growing\" ⇒ $P = \\frac{L}{2}$ anını bul.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "$0.4$'e bölmeyi unutmak.",
+    "aciklama": "$e^{-0.4t} = \\frac19$ ⇒ $0.4t = \\ln 9 \\approx 2.197$ ⇒ $t = \\frac{2.197}{0.4}$."
+   },
+   "B": {
+    "etiket": "Bölmek yerine çarpmak.",
+    "aciklama": "$0.4t = \\ln 9$ ⇒ $t = \\frac{\\ln 9}{0.4}$; $0.4\\ln 9$ değil."
+   },
+   "D": {
+    "etiket": "$A = 9$ katsayısını yok sayıp $e^{-0.4t} = \\frac12$ çözmek.",
+    "aciklama": "$P = 500$ ⇔ $1 + 9e^{-0.4t} = 2$ ⇔ $9e^{-0.4t} = 1$; 9 çarpanı denklemde kalmalıdır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.9)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Bükülme anını bulmak",
+   "ipucu": "P = 500 koy ve t'yi çöz.",
+   "sikHata": "k'ya bölmeyi unutmak",
+   "cedKonu": "7.9",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_44",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 43,
+  "numara": 44,
+  "konu": "7.9 Logistic Models with Differential Equations",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> A population $P$ satisfies the logistic differential equation $\\frac{dP}{dt} = kP\\left(1 - \\frac{P}{L}\\right)$, where $k$ and $L$ are positive constants. When $P = 100$, $\\frac{dP}{dt} = 18$, and when $P = 200$, $\\frac{dP}{dt} = 32$. What is the carrying capacity $L$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$1000$"
+   },
+   {
+    "id": "B",
+    "text": "$1800$"
+   },
+   {
+    "id": "C",
+    "text": "$900$"
+   },
+   {
+    "id": "D",
+    "text": "$800$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $18 = 100k\\left(1 - \\frac{100}{L}\\right)$ ⇒ $0.18 = k\\cdot\\frac{L - 100}{L}$.<br/>2. $32 = 200k\\left(1 - \\frac{200}{L}\\right)$ ⇒ $0.16 = k\\cdot\\frac{L - 200}{L}$.<br/>3. Böl: $\\frac{0.18}{0.16} = \\frac{L - 100}{L - 200}$ ⇒ $1.125L - 225 = L - 100$ ⇒ $L = 1000$ (ve $k = 0.2$).",
+  "genel_hatirlatma": "İki veri noktası ⇒ iki denklem; bölmek $k$'yı yok eder.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "$k$'yı üstel modeldeki gibi $\\frac{18}{100}$ almak.",
+    "aciklama": "$\\frac{18}{100} = 0.18$, $k$'nın kendisi değil $k\\left(1 - \\frac{100}{L}\\right)$'dir. $k = 0.18$ ile ikinci denklem $0.16 = 0.18\\left(1 - \\frac{200}{L}\\right)$ ⇒ $L = 1800$ verir; ama bu değerler ilk denklemi sağlamaz."
+   },
+   "C": {
+    "etiket": "Denklemleri çıkarıp $k$ yerine $0.18$ koymak.",
+    "aciklama": "Çıkarma $0.02 = \\frac{100k}{L}$ verir; burada $k = 0.2$ olmalıdır. $k = 0.18$ alınırsa $L = 900$ bulunur. Kontrol: $L = 900$ için $\\frac{800}{700} \\approx 1.143 \\ne 1.125$."
+   },
+   "D": {
+    "etiket": "Parantezi açarken $1.125\\cdot 200$ yerine $200$ yazmak.",
+    "aciklama": "$1.125(L - 200) = 1.125L - 225$; $1.125L - 200 = L - 100$ yazılırsa $0.125L = 100$ ⇒ $L = 800$ bulunur."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.9)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Veriden lojistik parametre bulmak",
+   "ipucu": "Denklemleri bölerek k'dan kurtul.",
+   "sikHata": "Oranı ters kurmak",
+   "cedKonu": "7.9",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u7_45",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 7,
+  "unite": "7",
+  "kutu": "calc-unit7-quiz-container",
+  "kutu_baslik": "Unit 7 Differential Equations",
+  "dizi": "CALC_UNIT7_QUESTIONS",
+  "sira": 44,
+  "numara": 45,
+  "konu": "7.9 Logistic Models with Differential Equations",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> A population satisfies $\\frac{dP}{dt} = 0.3P\\left(1 - \\frac{P}{50}\\right)$ with $P(0) = 10$, where $t$ is in months. Using Euler's method with two steps of size 1, what is the approximation of $P(2)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$15.197$"
+   },
+   {
+    "id": "B",
+    "text": "$14.800$"
+   },
+   {
+    "id": "C",
+    "text": "$12.400$"
+   },
+   {
+    "id": "D",
+    "text": "$16.900$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $P = 10$: eğim $0.3(10)(1 - 0.2) = 2.4$ ⇒ $P(1) \\approx 12.4$.<br/>2. $P = 12.4$: eğim $0.3(12.4)(1 - 0.248) \\approx 2.79744$ ⇒ $P(2) \\approx 15.197$.",
+  "genel_hatirlatma": "Euler her türlü $\\frac{dy}{dt} = f(t, y)$ denklemine uygulanır; lojistik denklem de dahil.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "İki adımda da başlangıç eğimini kullanmak.",
+    "aciklama": "İlk eğim $0.3\\cdot10\\cdot0.8 = 2.4$; ikinci adımın eğimi $P = 12.4$ ile yeniden hesaplanmalı ($\\approx 2.797$)."
+   },
+   "C": {
+    "etiket": "Tek adımda durmak.",
+    "aciklama": "$12.4$, $P(1)$ tahminidir; $P(2)$ için ikinci adım gerekir."
+   },
+   "D": {
+    "etiket": "$\\left(1 - \\frac{P}{50}\\right)$ çarpanını unutmak (üstel büyüme gibi hesaplamak).",
+    "aciklama": "Eğim $0.3P$ alınırsa adımlar $10 \\to 13 \\to 16.9$ olur; lojistik çarpan büyümeyi yavaşlatır ve her adımda hesaba katılmalıdır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 7.9)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Lojistik denklemde Euler",
+   "ipucu": "Her adımda (1 − P/50) çarpanını yeniden hesapla.",
+   "sikHata": "Eğimi güncellememek",
+   "cedKonu": "7.9",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ }
+]
