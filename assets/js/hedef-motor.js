@@ -170,6 +170,14 @@
     if (satir === "donem") return d === "kapali" ? "Kapalı" : "Takvim";
     return d === "ok" ? "Yeter" : d === "kapali" ? "Kapalı" : "Ek şart";
   }
+  /** Kayıtlı profilden sihirbaz seçimi (giriş yapmış öğrencinin /ulkem açılışı); ülkesi yoksa null. */
+  function profildenSecim(prof) {
+    if (!prof || !Array.isArray(prof.ulkeler) || !prof.ulkeler.length) return null;
+    var okul = {};
+    (prof.hedefOkullar || []).forEach(function (id) { var cc = String(id).split("-")[0]; (okul[cc] = okul[cc] || []).push(id); });
+    return secimCoz(secimAdres({ ulkeler: prof.ulkeler, okullar: okul,
+      sinif: prof.ogrenciModeli && prof.ogrenciModeli !== "lise" ? "mezun" : prof.sinif, alan: alanKodu(prof.hedefAlan) }));
+  }
   /** Birleştirmede profilden düşen ülkeler (en çok 5 sınırı). */
   function cikanUlkeler(eski, yama) {
     var once = eski && Array.isArray(eski.ulkeler) ? eski.ulkeler : [];
@@ -209,5 +217,5 @@
 
   return { ALANLAR: ALANLAR, ALAN_AD: ALAN_AD, SATIRLAR: SATIRLAR, SATIR_AD: SATIR_AD, SINIFLAR: SINIFLAR, EN_FAZLA: EN_FAZLA,
     VARSAYILAN_AP: VARSAYILAN_AP, secimCoz: secimCoz, secimAdres: secimAdres, sutunlar: sutunlar, hucre: hucre,
-    ortakYol: ortakYol, profilYamasi: profilYamasi, alanKodu: alanKodu, hucreEtiket: hucreEtiket, cikanUlkeler: cikanUlkeler, bayrak: bayrak, sinavYiliHesapla: sinavYiliHesapla };
+    ortakYol: ortakYol, profilYamasi: profilYamasi, alanKodu: alanKodu, profildenSecim: profildenSecim, hucreEtiket: hucreEtiket, cikanUlkeler: cikanUlkeler, bayrak: bayrak, sinavYiliHesapla: sinavYiliHesapla };
 });

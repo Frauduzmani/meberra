@@ -156,3 +156,21 @@ test("YKS'si bilinmeyen ülkede 'gerekiyor' denmez", async ({ page }) => {
   await expect(page.locator("#hd-ortak")).not.toContainText("YKS’ye girmen gerekiyor");
   await expect(page.locator("#hd-ortak")).toContainText("teyit et");
 });
+
+test("lise mezunu: planı uygula → profil lise-mezun", async ({ page }) => {
+  await page.goto("/ulkem?u=it&s=mezun&a=muhendislik");
+  await page.getByRole("button", { name: /Bu planı uygula/ }).click();
+  await page.waitForURL(/\/giris/);
+  await kayitOl(page, "Mert");
+  await page.waitForURL(/\/bugun/);
+  const me = await (await page.request.get("/api/me")).json();
+  expect(me.profile).toMatchObject({ ogrenciModeli: "lise-mezun", ulkeler: ["it"], tamamlandi: true });
+});
+
+test("yalnızca # değişince adım yeniden çizilmez (arama korunur)", async ({ page }) => {
+  await page.goto("/ulkem?u=it&adim=2");
+  await page.locator("#hd-ara").fill("politecnico");
+  await page.evaluate(() => { window.__ara = document.getElementById("hd-ara"); location.hash = "main-content"; });
+  await page.waitForTimeout(300);
+  expect(await page.evaluate(() => window.__ara.isConnected)).toBe(true);
+});

@@ -114,5 +114,15 @@ eq([ET("yks", { durum: "teyit" }), ET("yks", { durum: "uyari" }), ET("ap", { dur
 eq(H.cikanUlkeler(eski, p2), ["es"], "birleştirmede düşen ülke");
 eq(H.cikanUlkeler(null, p1), [], "yeni profilde düşen yok");
 
+// 7) Ertelenen küçükler: profilden seçim, alan önerilerinin geçerliliği
+const A2 = require(path.join(ROOT, "assets", "js", "ap-hedef.js"));
+eq(H.profildenSecim({ ogrenciModeli: "lise", sinif: "10", ulkeler: ["nl", "it"], hedefOkullar: ["it-politecnico-di-milano", "nl-x"], hedefAlan: "Tıp/Sağlık" }),
+  { ulkeler: ["nl", "it"], okullar: { nl: ["nl-x"], it: ["it-politecnico-di-milano"] }, sinif: "10", alan: "tip" }, "profilden seçim");
+eq(H.profildenSecim({ ogrenciModeli: "lise-mezun", sinif: "mezun", ulkeler: ["de"] }).sinif, "mezun", "lise mezunu");
+eq(H.profildenSecim({ ogrenciModeli: "uni-mezun", sinif: "lisans-mezun", ulkeler: ["de"] }).sinif, "mezun", "üniversite mezunu 11 seçilmez");
+eq(H.profildenSecim(null), null, "profil yok");
+eq(H.profildenSecim({ ulkeler: [] }), null, "ülkesiz profil");
+H.ALANLAR.forEach(a => ok(A2.dogrula({ apDersleri: H.VARSAYILAN_AP[a].map(d => ({ ders: d, hedef: 4 })) }).ok, "alan önerisi geçerli AP: " + a));
+
 console.log("\n" + pass + " geçti, " + fail + " kaldı");
 process.exit(fail ? 1 : 0);

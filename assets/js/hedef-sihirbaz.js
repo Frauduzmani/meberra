@@ -34,20 +34,15 @@
   var q = location.search, secim = H.secimCoz(q), adim = 1;
   var adimQ = /[?&]adim=([123])/.exec(q);
   if (secim.ulkeler.length) adim = adimQ ? +adimQ[1] : 3;
-  else if (PROF && Array.isArray(PROF.ulkeler) && PROF.ulkeler.length) {
-    var okul = {};
-    (PROF.hedefOkullar || []).forEach(function (id) { var cc = String(id).split("-")[0]; (okul[cc] = okul[cc] || []).push(id); });
-    secim = H.secimCoz(H.secimAdres({ ulkeler: PROF.ulkeler, okullar: okul,
-      sinif: PROF.ogrenciModeli === "lise-mezun" ? "mezun" : PROF.sinif, alan: H.alanKodu(PROF.hedefAlan) }));
-    adim = 3;
-  }
+  else if (H.profildenSecim(PROF)) { secim = H.profildenSecim(PROF); adim = 3; }
   if (!secim.ulkeler.length) adim = 1;
-  var veri = {}, arama = "", uyari = "", kutlandi = false;
+  var veri = {}, arama = "", kutlandi = false, sonArama = location.search;
 
   function adresYaz(push) {
     var a = H.secimAdres(secim);
     var url = "/ulkem" + (a ? a + "&" : "?") + "adim=" + adim;
     try { history[push ? "pushState" : "replaceState"](null, "", url); } catch (e) { /* file:// */ }
+    sonArama = location.search;
   }
   function yukle() {
     return Promise.all(secim.ulkeler.map(function (cc) {
@@ -93,7 +88,7 @@
     return kabuk({
       baslik: "Hayalindeki ülke hangisi?", alt: "İstediğin kadar seç (en çok " + H.EN_FAZLA + ")",
       govde: '<div class="hz-fl" role="group" aria-label="Ülkeler">' + kartlar + '</div><p class="hz-cnt" id="hd-sayac" aria-live="polite">' + esc(sayacMetni()) + '</p>',
-      alt2: balon("selam", uyari || "Merhaba! Önce yönümüzü belirleyelim.") +
+      alt2: balon("selam", "Merhaba! Önce yönümüzü belirleyelim.") +
         '<button type="button" class="hz-btn" data-git="2" ' + (secim.ulkeler.length ? "" : "disabled") + '>Devam et →</button>'
     });
   }
@@ -190,7 +185,7 @@
     adim = n;
     if (n > 1 && !secim.ulkeler.length) adim = 1;
     adresYaz(push !== false);
-    if (adim === 1) { uyari = ""; ciz(true); return; }
+    if (adim === 1) { ciz(true); return; }
     kok.setAttribute("aria-busy", "true");
     yukle().then(function () { kok.removeAttribute("aria-busy"); ciz(true); });
   }
@@ -211,6 +206,7 @@
       var l = t.closest(".hz-f"); l.classList.toggle("on", t.checked);
       if (t.checked && !azHareket) { l.classList.remove("is-pop"); void l.offsetWidth; l.classList.add("is-pop"); }
       document.getElementById("hd-sayac").textContent = sayacMetni();
+      if (!secim.ulkeler.length) { var bb = document.getElementById("hd-balon"); if (bb) bb.textContent = "Bir ya da birkaç ülke seç; sonra okullara bakarız."; }
       kok.querySelector("[data-git='2']").disabled = !secim.ulkeler.length;
       adresYaz(false);
       return;
@@ -295,6 +291,8 @@
     });
   }
   window.addEventListener("popstate", function () {
+    if (location.search === sonArama) return; // yalnızca # değişti (ör. içeriğe atla bağlantısı)
+    sonArama = location.search;
     secim = H.secimCoz(location.search);
     var m = /[?&]adim=([123])/.exec(location.search);
     adim = secim.ulkeler.length ? (m ? +m[1] : 3) : 1;
