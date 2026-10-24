@@ -16,6 +16,8 @@ const { HttpHata } = require("./http");
 const { hizSinirlayici } = require("./guvenlik");
 const kural = require("../assets/js/ucretsiz-kural.js");
 const sekilM = require("./sekil");
+// 1.28.0: ders sayfaları (/ders/<x> adresli) — sorusu henüz olmayan yeni derste özet 404 değil boş liste döner
+const DERS_SAYFALARI = new Set(require("../assets/js/adresler.js").LISTE.filter(x => /^\/ders\//.test(x.yol)).map(x => x.dosya.replace(/\.html$/, "")));
 
 const TOHUM = path.join(__dirname, "tohum", "soru-bankasi.json");
 const DENEME_META = path.join(__dirname, "tohum", "deneme-meta.json");
@@ -329,7 +331,7 @@ function soruBankasiRotalari(r, bag) {
     oturumGerekli(req); ozel(res);
     const sayfa = sayfaAd(req.params.sayfa), prem = premiumMu(req);
     const kutular = q.ozet.all(sayfa).map(k => ({ kutu: k.kutu, baslik: k.baslik, uniteNo: k.unite_no, toplam: k.toplam, kilitli: !prem && !kural.apKutuUcretsizMi(sayfa, k.kutu) }));
-    if (!kutular.length) throw new HttpHata(404, "Bu sayfada soru yok.");
+    if (!kutular.length && !DERS_SAYFALARI.has(sayfa)) throw new HttpHata(404, "Bu sayfada soru yok.");
     return { ok: true, sayfa, premium: prem, kutular };
   });
   r.get("/api/sorular-bankasi/:sayfa/:unite", (req, res) => {

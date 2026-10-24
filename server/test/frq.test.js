@@ -79,7 +79,10 @@ test("tohum: yapı geçerli, sayılar (1.24.0: calc AB 14 + BC 8, phys 16, chem 
   assert.equal(new Set(t.frq.map(f => f.id)).size, t.frq.length);
   t.frq.filter(f => f.ders === "english-language").forEach(f => assert.deepEqual(f.parcalar[0].rubrik.map(r => r.puan), [1, 4, 1], f.id + " 6 puanlık rubrik"));
   assert.equal(db().prepare("SELECT COUNT(*) AS n FROM frq").get().n, t.frq.length, "veritabanına yüklendi");
-  Object.keys(DERSLER).forEach(k => assert.ok(say[k], k));
+  // 1.28.0 yeni dersler (Precalculus, Statistics, Physics 2): FRQ içeriği sonra gelir (araclar/frq-ekle.js); diğer her derste FRQ var
+  const ICERIK_BEKLENEN = ["precalculus", "statistics", "physics-2"];
+  Object.keys(DERSLER).filter(k => ICERIK_BEKLENEN.indexOf(k) < 0).forEach(k => assert.ok(say[k], k));
+  ICERIK_BEKLENEN.forEach(k => assert.ok(DERSLER[k] && DERSLER[k].sayfa === "ap-" + k, k + " FRQ dersi tanımlı"));
 });
 
 test("dogrula: rubrik toplamı ≠ parça puanı, toplam_puan hatası ve $ yakalanır", () => {

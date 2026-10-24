@@ -22,7 +22,9 @@ const BANKA = path.join(KOK, "server", "tohum", "soru-bankasi.json");
 const ETIKETLER = ["tanim", "formul", "kural", "yanilgi", "kalip"]; // 1.25.0 kalip: İngilizce soru kalıbı (A2 köprüsü)
 const ARKA_SOZCUK = 60, ON_KARAKTER = 160;
 
-/** Ders ve deste (ünite) düzeni: sıra = arayüz sırası = ücretsiz kural sırası (ilk 2 deste açık) */
+/** Ders ve deste (ünite) düzeni: sıra = arayüz sırası = ücretsiz kural sırası (ilk 2 deste açık)
+ *  kismi: true (1.28.0 yeni dersler) → --birlestir parça dosyası yoksa dersi atlar, kartı olmayan desteyi kartlar.json'a yazmaz
+ *  (boş deste doğrulamada hatadır; içerik geldikçe desteler açılır). */
 const DESTELER = [
   { ders: "calculus", ad: "Calculus AB/BC", sayfa: "ap-calculus", dosya: "calculus.json", uniteler: [
     ["1", "Limits and Continuity"], ["2", "Differentiation: Definition and Fundamental Properties"], ["3", "Differentiation: Composite, Implicit, and Inverse Functions"],
@@ -48,7 +50,16 @@ const DESTELER = [
     ["Micro 4", "Imperfect Competition"], ["Micro 5", "Factor Markets"], ["Micro 6", "Market Failure and the Role of Government"], ["Kalıp", "Soru kalıpları (İngilizce komut ifadeleri)", true]] },
   { ders: "macro", ad: "Macroeconomics", sayfa: "ap-electives", dosya: "macro.json", uniteler: [
     ["Macro 1", "Basic Economic Concepts"], ["Macro 2", "Economic Indicators and the Business Cycle"], ["Macro 3", "National Income and Price Determination"],
-    ["Macro 4", "Financial Sector"], ["Macro 5", "Long-Run Consequences of Stabilization Policies"], ["Macro 6", "Open Economy: International Trade and Finance"], ["Kalıp", "Soru kalıpları (İngilizce komut ifadeleri)", true]] }
+    ["Macro 4", "Financial Sector"], ["Macro 5", "Long-Run Consequences of Stabilization Policies"], ["Macro 6", "Open Economy: International Trade and Finance"], ["Kalıp", "Soru kalıpları (İngilizce komut ifadeleri)", true]] },
+  { ders: "precalculus", ad: "Precalculus", sayfa: "ap-precalculus", dosya: "precalculus.json", kismi: true, uniteler: [
+    ["1", "Polynomial and Rational Functions"], ["2", "Exponential and Logarithmic Functions"], ["3", "Trigonometric and Polar Functions"],
+    ["4", "Functions Involving Parameters, Vectors, and Matrices"], ["Kalıp", "Soru kalıpları (İngilizce komut ifadeleri)", true]] },
+  { ders: "statistics", ad: "Statistics", sayfa: "ap-statistics", dosya: "statistics.json", kismi: true, uniteler: [
+    ["1", "Exploring One-Variable Data and Collecting Data"], ["2", "Probability, Random Variables, and Probability Distributions"],
+    ["3", "Inference for Categorical Data: Proportions"], ["4", "Inference for Quantitative Data: Means"], ["5", "Regression Analysis"], ["Kalıp", "Soru kalıpları (İngilizce komut ifadeleri)", true]] },
+  { ders: "physics2", ad: "Physics 2", sayfa: "ap-physics-2", dosya: "physics2.json", kismi: true, uniteler: [
+    ["9", "Thermodynamics"], ["10", "Electric Force, Field, and Potential"], ["11", "Electric Circuits"], ["12", "Magnetism and Electromagnetism"],
+    ["13", "Geometric Optics"], ["14", "Waves, Sound, and Physical Optics"], ["15", "Modern Physics"], ["Kalıp", "Soru kalıpları (İngilizce komut ifadeleri)", true]] }
 ];
 
 const sozcuk = s => String(s || "").trim().split(/\s+/).filter(Boolean).length;
@@ -96,7 +107,7 @@ function denetle(veri, banka) {
     ["id", "ders", "sayfa", "unite", "on", "arka", "etiket", "kaynakKonu"].forEach(a => { if (!k || typeof k[a] !== "string" || !k[a].trim()) hatalar.push(yer + ": " + a + " eksik"); });
     if (!k || !k.id) return;
     if (idler.has(k.id)) hatalar.push(yer + ": yinelenen id"); idler.add(k.id);
-    if (!/^[a-z]+-[A-Za-z0-9]+-\d{2}$/.test(k.id)) hatalar.push(yer + ": id biçimi (ör. calc-u1-01)");
+    if (!/^[a-z][a-z0-9]*-[A-Za-z0-9]+-\d{2}$/.test(k.id)) hatalar.push(yer + ": id biçimi (ör. calc-u1-01, phys2-u9-01)");
     const ds = deste[k.ders + "|" + k.unite];
     if (!ds) hatalar.push(yer + ": bilinmeyen deste " + k.ders + "/" + k.unite);
     else if (ds.d.sayfa !== k.sayfa) hatalar.push(yer + ": sayfa " + k.sayfa + " ≠ " + ds.d.sayfa);
@@ -125,7 +136,7 @@ function denetle(veri, banka) {
 
 function birlestir(klasor) {
   const kartlar = [];
-  const dersler = DESTELER.map(d => {
+  const dersler = DESTELER.filter(d => !d.kismi || fs.existsSync(path.join(klasor, d.dosya))).map(d => {
     const dosya = path.join(klasor, d.dosya);
     const parca = JSON.parse(fs.readFileSync(dosya, "utf8"));
     const sira = d.uniteler.map(u => u[0]);
@@ -135,8 +146,9 @@ function birlestir(klasor) {
         if (k.bc) o.bc = true;
         kartlar.push(o);
       });
-    return { ders: d.ders, ad: d.ad, sayfa: d.sayfa, uniteler: d.uniteler.map(u => Object.assign({ unite: u[0], ad: u[1] }, u[2] ? { kalip: true } : {})) };
-  });
+    const dolu = u => !d.kismi || parca.some(k => String(k.unite) === u[0]);
+    return { ders: d.ders, ad: d.ad, sayfa: d.sayfa, uniteler: d.uniteler.filter(dolu).map(u => Object.assign({ unite: u[0], ad: u[1] }, u[2] ? { kalip: true } : {})) };
+  }).filter(d => d.uniteler.length);
   let surum = 1;
   try { surum = (JSON.parse(fs.readFileSync(HEDEF, "utf8")).surum || 0) + 1; } catch (e) { /* ilk */ }
   const veri = { surum, olusturma: new Date().toISOString().slice(0, 10),

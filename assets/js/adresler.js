@@ -45,6 +45,9 @@
     { yol: "/ders/biology", dosya: "ap-biology.html" },
     { yol: "/ders/english", dosya: "ap-english.html" },
     { yol: "/ders/secmeli", dosya: "ap-electives.html" },
+    { yol: "/ders/precalculus", dosya: "ap-precalculus.html" }, // 1.28.0 yeni dersler
+    { yol: "/ders/statistics", dosya: "ap-statistics.html" },
+    { yol: "/ders/physics-2", dosya: "ap-physics-2.html" },
     { yol: "/ders/cent-s", dosya: "sinav-cents.html" },
     { yol: "/deneme", dosya: "deneme.html" },
     { yol: "/seviye-testi", dosya: "seviye-testi.html" },

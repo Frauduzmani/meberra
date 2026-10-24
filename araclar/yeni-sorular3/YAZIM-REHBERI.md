@@ -30,6 +30,9 @@ yeniden yazma (paraphrase) da yapma. Herkese açık CED konularını ve sınav f
 - 4 şık A–D; doğru harf partide ≈ eşit dağılır; doğru şık sistematik olarak en uzun OLMAZ (istasyonda ≤%40 kuralı).
 - aciklama: Türkçe adım adım çözüm (`$…$` MathJax, para `\$`) · genel_hatirlatma: ana fikir · hata_aciklamalari: HER yanlış harf için
   {etiket, aciklama} — çeldirici gerçek bir öğrenci hatasından gelir ve o hata adlandırılır.
+- **1.28.0+: `ek.neSoruyor` zorunlu** — kökün ne istediğini anlatan Türkçe tek cümle (≤ 170 karakter, HTML/`<` `>`/`$` yok;
+  eşitsizlikleri sözle: "x pozitifken"). CEVABI ELE VERMEZ: doğru şıkka özgü kelime/sayı kullanma, şıkları değerlendirme.
+  NOT/EXCEPT varsa "… OLMAYAN" de. Denetim: `node araclar/ne-soruyor-ekle.js` sızıntı kuralları.
 - Kök tekrarı yok. Şekil gerekiyorsa `araclar/yeni-sorular2/SEKIL-BICIMI.md` (isteğe bağlı; HTML tablo tercih edilir).
 
 ## 3. Dosya yazma uyarısı

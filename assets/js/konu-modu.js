@@ -17,7 +17,8 @@
 })(typeof self !== "undefined" ? self : this, function () {
   "use strict";
 
-  const DERS = { "ap-calculus": "calculus", "ap-physics": "physics", "ap-chemistry": "chemistry", "ap-biology": "biology", "ap-english": "english", "ap-electives": "secmeli" };
+  const DERS = { "ap-calculus": "calculus", "ap-physics": "physics", "ap-chemistry": "chemistry", "ap-biology": "biology", "ap-english": "english", "ap-electives": "secmeli",
+    "ap-precalculus": "precalculus", "ap-statistics": "statistics", "ap-physics-2": "physics-2" }; // 1.28.0
 
   /** "1.10" > "1.9": konu kodlarını sayısal sıralar. */
   function kodSirala(a, b) {
@@ -180,5 +181,5 @@
     document.addEventListener("meberra:unite-acildi", e => { try { kur(e.detail || {}); } catch (x) { if (window.console) console.warn("konu modu:", x); } });
   }
 
-  return { kodSirala, sorulardanKonular, konuListesi, secimOku, secimYaz, baslat, _kur: kur };
+  return { DERS, kodSirala, sorulardanKonular, konuListesi, secimOku, secimYaz, baslat, _kur: kur };
 });

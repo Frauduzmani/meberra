@@ -1,6 +1,6 @@
 // v4 ünite görünümü: ders sayfası bloklarını ünitelere gruplayan saf fonksiyon — apUniteGrupla (assets/js/app.js).
 // Kullanım (proje klasöründen): node araclar/testler/unite-birim-test.js
-// Ayrıca 6 gerçek ders sayfasının (+ sinav-cents) başlıklarıyla uçtan uca kontrol: her soru istasyonu bir üniteye düşer.
+// Ayrıca 9 gerçek ders sayfasının (+ sinav-cents; 1.28.0 Precalculus, Statistics, Physics 2) başlıklarıyla uçtan uca kontrol: her soru istasyonu bir üniteye düşer.
 // Ücretsiz ünite kuralı (apUcretsizUniteNolari) ve sayfa dışı listeler (AP_UCRETSIZ_KUTULAR, apCapaUcretsizMi) gerçek sayfalarla denetlenir.
 "use strict";
 const fs = require("fs");
@@ -86,7 +86,8 @@ ok(apCapaUcretsizMi("ap-calculus.html", "unit1-quiz-section") === true && apCapa
 //    AP_UCRETSIZ_KUTULAR ve seviye testi çapaları (apCapaUcretsizMi) kuralla birebir
 const BEKLENEN_UCRETSIZ = {
   "ap-calculus": [1, 2], "ap-physics": [1, 2, 3], "ap-chemistry": [1, 2], "ap-biology": [1, 2],
-  "ap-english": [1], "ap-electives": [1, 3, 4, 5], "sinav-cents": [1, 2]
+  "ap-english": [1], "ap-electives": [1, 3, 4, 5], "sinav-cents": [1, 2],
+  "ap-precalculus": [1, 2], "ap-statistics": [1, 2], "ap-physics-2": [1, 2] // 1.28.0 (Physics 2: Unit 9–10)
 };
 const seviyeBanka = {};
 {
@@ -100,7 +101,9 @@ const seviyeBanka = {};
   });
 }
 let capaSay = 0, capaHata = 0;
-for (const f of ["ap-calculus.html", "ap-physics.html", "ap-chemistry.html", "ap-biology.html", "ap-english.html", "ap-electives.html", "sinav-cents.html"]) {
+const SAYFA_UNITE = {}; // sayfa → [{ no, num, baslik, kutular }] (1.28.0 yeni ders denetimi)
+for (const f of ["ap-calculus.html", "ap-physics.html", "ap-chemistry.html", "ap-biology.html", "ap-english.html", "ap-electives.html", "sinav-cents.html",
+  "ap-precalculus.html", "ap-statistics.html", "ap-physics-2.html"]) {
   const page = f.replace(".html", "");
   const h = fs.readFileSync(path.join(ROOT, f), "utf8").replace(/<script[\s\S]*?<\/script>/g, "").replace(/<!--[\s\S]*?-->/g, "");
   const hm = [...h.matchAll(/<h2[^>]*>([\s\S]*?)<\/h2>/g)];
@@ -116,6 +119,7 @@ for (const f of ["ap-calculus.html", "ap-physics.html", "ap-chemistry.html", "ap
   const blokOnce = pos => { let b = -1; hm.forEach((m, i) => { if (m.index < pos) b = i; }); return b; };
   const uniteOf = blok => g.uniteler.find(u => u.bloklar.indexOf(blok) >= 0);
   const kutular = [...h.matchAll(/id="([^"]*quiz-container)"/g)].map(m => ({ id: m[1], u: uniteOf(blokOnce(m.index)) }));
+  SAYFA_UNITE[page] = g.uniteler.map(u => ({ no: u.no, num: u.num, baslik: u.baslik, kutular: kutular.filter(k => k.u === u).map(k => k.id) }));
   const beklenenKutu = kutular.filter(k => k.u && acik.indexOf(k.u.no) >= 0).map(k => k.id).sort();
   ok(JSON.stringify((AP_UCRETSIZ_KUTULAR[page] || []).slice().sort()) === JSON.stringify(beklenenKutu), f + ": AP_UCRETSIZ_KUTULAR kuralla aynı", beklenenKutu);
   (seviyeBanka[f] || []).forEach(su => {
@@ -128,6 +132,57 @@ for (const f of ["ap-calculus.html", "ap-physics.html", "ap-chemistry.html", "ap
   });
 }
 ok(capaSay > 0 && capaHata === 0, capaSay + " seviye testi çapasının ücretsiz/kilitli durumu ünite kuralıyla aynı");
+
+// 6) 1.28.0 yeni dersler: sayfa ünite listesi CED ile aynı (başlık, numara, tek kutu) ve ders her kayıtta var
+{
+  const YENI = {
+    "ap-precalculus": { ders: "precalculus", profil: "precalculus", onek: "precalc", uniteler: [[1, "Polynomial and Rational Functions"], [2, "Exponential and Logarithmic Functions"],
+      [3, "Trigonometric and Polar Functions"], [4, "Functions Involving Parameters, Vectors, and Matrices"]] },
+    "ap-statistics": { ders: "statistics", profil: "statistics", onek: "stat", uniteler: [[1, "Exploring One-Variable Data and Collecting Data"],
+      [2, "Probability, Random Variables, and Probability Distributions"], [3, "Inference for Categorical Data: Proportions"], [4, "Inference for Quantitative Data: Means"], [5, "Regression Analysis"]] },
+    "ap-physics-2": { ders: "physics-2", profil: "physics-2", onek: "phys2", uniteler: [[9, "Thermodynamics"], [10, "Electric Force, Field, and Potential"], [11, "Electric Circuits"],
+      [12, "Magnetism and Electromagnetism"], [13, "Geometric Optics"], [14, "Waves, Sound, and Physical Optics"], [15, "Modern Physics"]] }
+  };
+  // Başlık 64 karakteri aşınca apTocParse kısaltır ("…"); kısaltılmış başlık tam adın başı olmalı
+  const ayni = (b, tam) => b === tam || (tam.length > 64 && /…$/.test(b) && tam.indexOf(b.slice(0, -1)) === 0);
+  const ADR = require(path.join(ROOT, "assets/js/adresler.js"));
+  const KM = require(path.join(ROOT, "assets/js/konu-modu.js"));
+  const APH = require(path.join(ROOT, "assets/js/ap-hedef.js"));
+  const YSE = require(path.join(ROOT, "araclar/yeni-soru-ekle.js"));
+  const FRQ = require(path.join(ROOT, "server/frq.js"));
+  const SF = require(path.join(ROOT, "server/tohum/sinav-formatlari.json")).sinavlar;
+  const META = require(path.join(ROOT, "server/tohum/deneme-meta.json")).kodlar;
+  Object.keys(YENI).forEach(page => {
+    const y = YENI[page], L = SAYFA_UNITE[page] || [];
+    ok(L.length === y.uniteler.length, page + ": " + y.uniteler.length + " ünite", L.map(u => u.baslik));
+    y.uniteler.forEach(([n, ad], i) => {
+      const u = L[i] || {}, kutu = y.onek + "-unit" + n + "-quiz-container";
+      ok(u.num === String(n) && ayni(u.baslik, "Unit " + n + " " + ad) && JSON.stringify(u.kutular) === JSON.stringify([kutu]), page + ": Unit " + n + " " + ad, u);
+      const yk = YSE.YENI_KUTULAR[page + "|" + kutu];
+      ok(!!yk && yk.unite_no === n && yk.kutu_baslik === "Unit " + n + " " + ad, page + ": yeni-soru-ekle kutusu " + kutu, yk);
+    });
+    ok(ADR.dosyadan(page + ".html") === "/ders/" + y.ders, page + ": adres /ders/" + y.ders, ADR.dosyadan(page + ".html"));
+    ok(KM.DERS[page] === y.ders, page + ": konu modu ders verisi klasörü " + y.ders, KM.DERS[page]);
+    const d = APH.DERSLER.find(x => x.ders === y.profil);
+    ok(!!d && d.sayfa === page && d.deneme === y.profil && !!META[y.profil] && META[y.profil].sayfa === page + ".html", page + ": profil dersi + deneme kodu", d);
+    ok(!!FRQ.DERSLER[y.profil] && FRQ.DERSLER[y.profil].sayfa === page && !!SF[y.profil] && SF[y.profil].frqDersleri.indexOf(y.profil) >= 0, page + ": FRQ dersi ve tam sınav planı", SF[y.profil] && SF[y.profil].ad);
+    ok(new RegExp('page: "' + page + '"').test(src), page + ": APMEBERRA_COURSES kaydı");
+  });
+  ok(META.precalculus.uniteler.map(u => u.no).join() === "1,2,3", "Precalculus deneme kodunda Unit 4 yok (sınavda değil)", META.precalculus.uniteler);
+  ok(Object.keys(SF.precalculus.uniteAgirlik).join() === "1,2,3" && Object.keys(SF["physics-2"].uniteAgirlik).join() === "9,10,11,12,13,14,15", "plan ünite ağırlık anahtarları CED numaraları");
+  // Soru ekleme aracı yeni sayfaları kabul eder (kuru çalıştırma; tohuma yazılmaz)
+  const os = require("os");
+  const ornek = JSON.parse(fs.readFileSync(path.join(ROOT, "server/tohum/soru-bankasi.json"), "utf8")).sorular.find(q => q.tur === "ders" && q.sayfa === "ap-chemistry" && q.durum === "aktif" && !q.pasaj && !q.sekil);
+  const q = Object.assign(JSON.parse(JSON.stringify(ornek)), { id: "precalc_k_u1_test", sayfa: "ap-precalculus", ders: null, unite_no: 1, unite: "1", kutu: "precalc-unit1-quiz-container",
+    kutu_baslik: "Unit 1 Polynomial and Rational Functions", dizi: "PRECALC_UNIT1_QUESTIONS", konu: "1.1 Change in Tandem", deneme_kodlari: ["precalculus"], durum: "taslak",
+    govde: "Birim testi örneği (1.28.0): yeni ders kutusu kabul denetimi " + Date.now(), ek: Object.assign({}, ornek.ek, { uretim: "test-1.28.0" }) });
+  const gecici = path.join(os.tmpdir(), "meberra-yeni-ders-" + process.pid + ".json");
+  fs.writeFileSync(gecici, JSON.stringify([q]));
+  const eskiLog = console.log; let sonuc;
+  console.log = () => {};
+  try { sonuc = YSE.calistir({ girdi: gecici, uretim: "test-1.28.0", kuru: true }); } finally { console.log = eskiLog; fs.unlinkSync(gecici); process.exitCode = 0; }
+  ok(sonuc && sonuc.ok, "yeni-soru-ekle.js ap-precalculus kutusunu kabul eder (kuru)", sonuc && sonuc.hatalar);
+}
 
 console.log("SONUC: " + pass + " gecti, " + fail + " kaldi.");
 process.exit(fail ? 1 : 0);

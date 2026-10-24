@@ -113,6 +113,22 @@ test("misafir: soru bankası, cevap, deneme ve seviye uçları 401; yalnızca vi
   assert.match(yan.basliklar.get("cache-control"), /no-store/);
 });
 
+test("1.28.0 yeni dersler: sayfa adresi açılır; sorusu yokken özet 200 + boş liste, kutu 404 (Yakında); bilinmeyen sayfa 404", async () => {
+  const o = await ogrenci(false);
+  for (const [yol, sayfa, kutu] of [["/ders/precalculus", "ap-precalculus", "precalc-unit1-quiz-container"], ["/ders/statistics", "ap-statistics", "stat-unit1-quiz-container"],
+    ["/ders/physics-2", "ap-physics-2", "phys2-unit9-quiz-container"]]) {
+    const h = await o("GET", yol);
+    assert.equal(h.durum, 200, yol);
+    assert.match(String(h.govde), new RegExp('id="' + kutu + '"'), yol + " soru kutusu");
+    const r = await o("GET", "/api/sorular-bankasi/" + sayfa);
+    assert.equal(r.durum, 200, sayfa);
+    assert.equal(r.govde.ok, true); assert.equal(r.govde.sayfa, sayfa);
+    // Henüz onaylı soru yok (içerik sonra gelir); gelince bu ders de diğerleri gibi kutu listesi döner
+    if (!r.govde.kutular.length) assert.equal((await o("GET", "/api/sorular-bankasi/" + sayfa + "/" + kutu)).durum, 404, kutu);
+  }
+  assert.equal((await o("GET", "/api/sorular-bankasi/ap-olmayan-ders")).durum, 404);
+});
+
 test("ücretsiz kullanıcı: açık ünite listesinde cevap yok; kilitli ünite 402; Premium açık", async () => {
   const o = await ogrenci(false);
   let r = await o("GET", "/api/sorular-bankasi/ap-calculus");

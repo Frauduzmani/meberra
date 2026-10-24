@@ -30,7 +30,8 @@ const OGRENILDI_GUN = 7; // aralığı ≥ 7 gün olan kart "öğrenildi" sayıl
 /** Profil ders anahtarı (ap-hedef.js) → kart dersi */
 const PROFIL_DERS = {
   "calculus-ab": "calculus", "calculus-bc": "calculus", "physics-1": "physics", "chemistry": "chemistry", "biology": "biology",
-  "english-language": "english", "computer-science-a": "csa", "microeconomics": "micro", "macroeconomics": "macro"
+  "english-language": "english", "computer-science-a": "csa", "microeconomics": "micro", "macroeconomics": "macro",
+  "precalculus": "precalculus", "statistics": "statistics", "physics-2": "physics2" // 1.28.0
 };
 
 /**

@@ -13,9 +13,11 @@
   var TASLAK_KEY = "meberra:frq-taslak:v1:";
   var CIPLER = [
     { k: "", ad: "Tümü" }, { k: "calculus", ad: "Calculus" }, { k: "physics", ad: "Physics 1" }, { k: "chemistry", ad: "Chemistry" },
-    { k: "biology", ad: "Biology" }, { k: "english", ad: "English Lang." }, { k: "macro", ad: "Macro" }, { k: "micro", ad: "Micro" }, { k: "csa", ad: "CS A" }
+    { k: "biology", ad: "Biology" }, { k: "english", ad: "English Lang." }, { k: "macro", ad: "Macro" }, { k: "micro", ad: "Micro" }, { k: "csa", ad: "CS A" },
+    { k: "precalculus", ad: "Precalculus" }, { k: "statistics", ad: "Statistics" }, { k: "physics2", ad: "Physics 2" } // 1.28.0
   ];
-  var RENK = { calculus: "--c-calculus", physics: "--c-physics", chemistry: "--c-chemistry", biology: "--c-biology", english: "--c-english", macro: "--c-electives", micro: "--c-electives", csa: "--c-electives" };
+  var RENK = { calculus: "--c-calculus", physics: "--c-physics", chemistry: "--c-chemistry", biology: "--c-biology", english: "--c-english", macro: "--c-electives", micro: "--c-electives", csa: "--c-electives",
+    precalculus: "--c-precalculus", statistics: "--c-statistics", physics2: "--c-physics2" };
   var ZORLUK = { easy: "Kolay", medium: "Orta", hard: "Zor" };
   var S = { ders: "", liste: null, premium: false, haklar: {}, aktif: null, sure: null, zamanlayici: null };
 

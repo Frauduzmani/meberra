@@ -382,7 +382,11 @@ const APMEBERRA_COURSES = [
   { page: "ap-chemistry", name: "AP Chemistry",        short: "Chemistry",  cls: "c-chemistry" },
   { page: "ap-biology",   name: "AP Biology",          short: "Biology",    cls: "c-biology" },
   { page: "ap-english",   name: "AP English Language", short: "English",    cls: "c-english" },
-  { page: "ap-electives", name: "AP Seçmeliler (Ekonomi & CS A)", short: "Seçmeliler", cls: "c-electives" }
+  { page: "ap-electives", name: "AP Seçmeliler (Ekonomi & CS A)", short: "Seçmeliler", cls: "c-electives" },
+  // 1.28.0 yeni dersler (ünite başına bir soru istasyonu; konu anlatımı konu modundan)
+  { page: "ap-precalculus", name: "AP Precalculus",   short: "Precalculus", cls: "c-precalculus" },
+  { page: "ap-statistics", name: "AP Statistics",     short: "Statistics", cls: "c-statistics" },
+  { page: "ap-physics-2",  name: "AP Physics 2",      short: "Physics 2",  cls: "c-physics2" }
 ];
 
 // Menü (v4): 4 ana öğe — Bugün · Çalış · Hedefim · Ben (üniversite mezununda Çalış yerine Sınavlar).
@@ -1658,7 +1662,8 @@ function initUniteGorunumuKur() {
     const hedefU = acik.find(u => u.cevap && u.cevap < u.toplam) || acik.find(u => !u.cevap) || null;
     const devam = hedefU ? '<a class="btn-primary btn-sm ug-devam" href="' + base + "?unite=" + hedefU.no + '">' + (hedefU.cevap ? "Sürdür" : "Başla") +
       ": " + (bolumMu ? "Bölüm " : "Ünite ") + apEsc(String(hedefU.no)) + " →</a>" : "";
-    panel.innerHTML = '<div class="bg-sec-h"><div class="u-min0"><h2 id="ug-baslik">' + (bolumMu ? "Bölümler" : "Üniteler") + '</h2><span class="ug-ozet">' + g.uniteler.filter(u => !u.yakinda).length + " " + birim +
+    panel.innerHTML = '<div class="bg-sec-h"><div class="u-min0"><h2 id="ug-baslik">' + (bolumMu ? "Bölümler" : "Üniteler") + '</h2><span class="ug-ozet">' + (g.uniteler.filter(u => !u.yakinda).length || g.uniteler.length) + " " + birim +
+    (g.uniteler.every(u => u.yakinda) ? " · sorular hazırlanıyor" : "") + // 1.28.0: sorusu henüz olmayan yeni ders "0 ünite" demesin
     (T.t ? " · " + T.c + " / " + T.t + " soru çözüldü" : "") + '</span></div>' + devam + '</div><ol class="ug-liste">' +
     g.uniteler.map(u => {
       const durum = u.yakinda ? "Sorular hazırlanıyor" : u.cevap ? u.cevap + " / " + u.toplam + " soru · %" + yuzde(u.dogru, u.cevap) + " doğru" : u.toplam ? u.toplam + " soru · başlanmadı" : "Konu anlatımı";
@@ -2312,7 +2317,10 @@ function apSbKutuYukle(kutu, zorla) {
   const page = apCurrentPage();
   kutu._sbDurum = "yukleniyor";
   apSbIskelet(kutu, Math.max(1, Math.min(3, +kutu.dataset.sbToplam || 3)));
-  apSbIstek("/api/sorular-bankasi/" + encodeURIComponent(page) + "/" + encodeURIComponent(kutu.id)).then(r => {
+  // 1.28.0: yeni istasyon sunucu özetinde yoksa (onaylı sorusu yok) kutu isteği atılmaz → 404 dalı "Yakında" çizer (gereksiz istek yok)
+  const ozetteYok = kutu.hasAttribute("data-sb-yeni-kutu")
+    ? apSbOzet(page).then(oz => !!(oz && Array.isArray(oz.kutular) && !oz.kutular.some(k => k.kutu === kutu.id))) : Promise.resolve(false);
+  ozetteYok.then(yok => (yok ? { durum: 404, veri: {} } : apSbIstek("/api/sorular-bankasi/" + encodeURIComponent(page) + "/" + encodeURIComponent(kutu.id)))).then(r => {
     if (r.durum === 200 && r.veri.ok) {
       const k = (r.veri.kutular || [])[0], sorular = k && Array.isArray(k.sorular) ? k.sorular : [];
       kutu._sbDurum = "hazir";

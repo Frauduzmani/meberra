@@ -28,7 +28,11 @@ const DERSLER = {
   "english-language": { ad: "AP English Language", kisa: "english", sayfa: "ap-english", agirlik: 55, bolumPuan: 18 },
   "macroeconomics": { ad: "AP Macroeconomics", kisa: "macro", sayfa: "ap-electives", agirlik: 33, bolumPuan: 20 },
   "microeconomics": { ad: "AP Microeconomics", kisa: "micro", sayfa: "ap-electives", agirlik: 33, bolumPuan: 20 },
-  "computer-science-a": { ad: "AP Computer Science A", kisa: "csa", sayfa: "ap-electives", agirlik: 45, bolumPuan: 25 }
+  "computer-science-a": { ad: "AP Computer Science A", kisa: "csa", sayfa: "ap-electives", agirlik: 45, bolumPuan: 25 },
+  // 1.28.0 (Mayıs 2027 düzeni): Precalculus 4 FRQ × 6 puan (%37,5) · Statistics 4 FRQ × 10 puan · Physics 2 Physics 1 ile aynı
+  "precalculus": { ad: "AP Precalculus", kisa: "precalculus", sayfa: "ap-precalculus", agirlik: 37.5, bolumPuan: 24 },
+  "statistics": { ad: "AP Statistics", kisa: "statistics", sayfa: "ap-statistics", agirlik: 50, bolumPuan: 40 },
+  "physics-2": { ad: "AP Physics 2", kisa: "physics2", sayfa: "ap-physics-2", agirlik: 50, bolumPuan: 40 }
 };
 
 const kirp = s => String(s == null ? "" : s).trim();

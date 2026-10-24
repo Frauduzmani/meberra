@@ -34,8 +34,21 @@ const argDeger = ad => { const i = process.argv.indexOf(ad); return i > 1 && pro
 // Bu sürümde açılan yeni soru kutuları (ders sayfalarına arayüz tarafından eklenecek; bkz. yeni-sorular/BIRLESTIRME.md)
 const YENI_KUTULAR = {
   "ap-physics|phys-unit8-quiz-container": { kutu_baslik: "Unit 8 Fluids", unite_no: 9, dizi: "PHYS_UNIT8_QUESTIONS" },
-  "ap-biology|bio-unit8-quiz-container": { kutu_baslik: "Unit 8 Ecology", unite_no: 8, dizi: "BIO_UNIT8_QUESTIONS" }
+  "ap-biology|bio-unit8-quiz-container": { kutu_baslik: "Unit 8 Ecology", unite_no: 8, dizi: "BIO_UNIT8_QUESTIONS" },
+  // 1.28.0 yeni dersler (sayfalar hazır; kutu_baslik = sayfadaki istasyon başlığı, unite_no = CED ünite numarası)
+  ...yeniDers("ap-precalculus", "precalc", "PRECALC", [[1, "Polynomial and Rational Functions"], [2, "Exponential and Logarithmic Functions"],
+    [3, "Trigonometric and Polar Functions"], [4, "Functions Involving Parameters, Vectors, and Matrices"]]),
+  ...yeniDers("ap-statistics", "stat", "STAT", [[1, "Exploring One-Variable Data and Collecting Data"], [2, "Probability, Random Variables, and Probability Distributions"],
+    [3, "Inference for Categorical Data: Proportions"], [4, "Inference for Quantitative Data: Means"], [5, "Regression Analysis"]]),
+  ...yeniDers("ap-physics-2", "phys2", "PHYS2", [[9, "Thermodynamics"], [10, "Electric Force, Field, and Potential"], [11, "Electric Circuits"],
+    [12, "Magnetism and Electromagnetism"], [13, "Geometric Optics"], [14, "Waves, Sound, and Physical Optics"], [15, "Modern Physics"]])
 };
+/** Yeni dersin kutuları: "<sayfa>|<önek>-unitN-quiz-container" → { kutu_baslik: "Unit N <ad>", unite_no: N, dizi: "<DİZİ>_UNITN_QUESTIONS" } */
+function yeniDers(sayfa, onek, dizi, uniteler) {
+  const o = {};
+  uniteler.forEach(([n, ad]) => { o[sayfa + "|" + onek + "-unit" + n + "-quiz-container"] = { kutu_baslik: "Unit " + n + " " + ad, unite_no: n, dizi: dizi + "_UNIT" + n + "_QUESTIONS" }; });
+  return o;
+}
 const ALANLAR = ["id", "tur", "sayfa", "ders", "unite_no", "unite", "kutu", "kutu_baslik", "dizi", "sira", "numara", "konu", "zorluk", "govde", "secenekler",
   "dogru", "aciklama", "genel_hatirlatma", "hata_aciklamalari", "kaynak", "deneme_kodlari", "pasaj", "ek", "durum"];
 // v1.13.0 isteğe bağlı alanlar: sekil (kök şekli; biçim yeni-sorular2/SEKIL-BICIMI.md). Şık şekli secenekler[i].sekil.
@@ -105,6 +118,7 @@ function calistir(secenek) {
     kutular.set(k, o);
   }
   const sayfalar = new Set(tohum.sorular.filter(r => r.tur === "ders").map(r => r.sayfa));
+  Object.keys(YENI_KUTULAR).forEach(k => sayfalar.add(k.split("|")[0])); // 1.28.0: henüz sorusu olmayan yeni ders sayfaları
 
   // Tekrar özetleri: tohumdaki arşivlenmemiş sorular (yeni girdilerle aynı kimlikli olanlar hariç — önceki çalıştırma)
   const girdiId = new Set(girdi.map(x => x.q.id));

@@ -55,6 +55,11 @@
   //  - Micro- ve Macroeconomics: 60 soru / 70 dk
   //      https://apcentral.collegeboard.org/courses/ap-microeconomics/exam
   //      https://apcentral.collegeboard.org/courses/ap-macroeconomics/exam
+  //  1.28.0 (erişim 24 Ekim 2026, Mayıs 2027 düzeni):
+  //  - Precalculus: 42 soru / 105 dk (Part A 29 soru 65 dk hesapsız, Part B 13 soru 40 dk grafik hesaplı)
+  //      https://apcentral.collegeboard.org/courses/ap-precalculus/exam
+  //  - Statistics: 42 soru / 90 dk   https://apcentral.collegeboard.org/courses/ap-statistics/exam
+  //  - Physics 2: 42 soru / 85 dk    https://apcentral.collegeboard.org/courses/ap-physics-2/exam
   //  - CEnT-S: doğrulanmadı → "yaklaşık" etiketli varsayılan.
   // --------------------------------------------------------------------------
   var TEMPO = {
@@ -66,6 +71,9 @@
     "english-language": { soru: 45, dk: 60, url: "https://apcentral.collegeboard.org/courses/ap-english-language-and-composition/exam" },
     "cs-a": { soru: 42, dk: 90, url: "https://apcentral.collegeboard.org/courses/ap-computer-science-a/exam" },
     "economics": { soru: 60, dk: 70, url: "https://apcentral.collegeboard.org/courses/ap-microeconomics/exam" },
+    "precalculus": { soru: 42, dk: 105, url: "https://apcentral.collegeboard.org/courses/ap-precalculus/exam" },
+    "statistics": { soru: 42, dk: 90, url: "https://apcentral.collegeboard.org/courses/ap-statistics/exam" },
+    "physics-2": { soru: 42, dk: 85, url: "https://apcentral.collegeboard.org/courses/ap-physics-2/exam" },
     "cents": { soru: 1, dk: 1.5, url: null, yaklasik: true, not: "CEnT-S temposu doğrulanamadı; soru başına 90 sn yaklaşık" }
   };
   function tempoSn(kod) { var t = TEMPO[kod]; return t ? (t.dk * 60) / t.soru : 90; }
@@ -81,7 +89,8 @@
   var RENK = {
     "calculus-ab": "--c-calculus", "calculus-bc": "--c-calculus", "physics-1": "--c-physics",
     "chemistry": "--c-chemistry", "biology": "--c-biology", "english-language": "--c-english",
-    "cs-a": "--c-electives", "economics": "--c-electives", "cents": "--accent-teal", "genel": "--accent"
+    "cs-a": "--c-electives", "economics": "--c-electives", "cents": "--accent-teal", "genel": "--accent",
+    "precalculus": "--c-precalculus", "statistics": "--c-statistics", "physics-2": "--c-physics2"
   };
 
   // ---------------- yardımcılar ----------------

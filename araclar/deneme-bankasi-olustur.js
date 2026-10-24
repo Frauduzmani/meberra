@@ -53,6 +53,17 @@ const UNITS = {
     5: "Skill Cat. 5 — Reasoning and Organization (Reading)", 6: "Skill Cat. 6 — Reasoning and Organization (Writing)",
     7: "Skill Cat. 7 — Style (Reading)", 8: "Skill Cat. 8 — Style (Writing)"
   },
+  // 1.28.0 yeni dersler. Precalculus: Unit 4 sınavda yok (deneme kodunda yer almaz); Statistics: 2026–27 CED (5 ünite);
+  // Physics 2: resmî numaralandırma Physics 1'in devamıdır (Unit 9–15).
+  precalculus: { 1: "Polynomial and Rational Functions", 2: "Exponential and Logarithmic Functions", 3: "Trigonometric and Polar Functions" },
+  statistics: {
+    1: "Exploring One-Variable Data and Collecting Data", 2: "Probability, Random Variables, and Probability Distributions",
+    3: "Inference for Categorical Data: Proportions", 4: "Inference for Quantitative Data: Means", 5: "Regression Analysis"
+  },
+  "physics-2": {
+    9: "Thermodynamics", 10: "Electric Force, Field, and Potential", 11: "Electric Circuits", 12: "Magnetism and Electromagnetism",
+    13: "Geometric Optics", 14: "Waves, Sound, and Physical Optics", 15: "Modern Physics"
+  },
   // AP CSA CED (2025–26 sürümü, 4 ünite)
   "cs-a": { 1: "Using Objects and Methods", 2: "Selection and Iteration", 3: "Class Creation", 4: "Data Collections" },
   // Ekonomi: Micro ve Macro iki ayrı AP sınavıdır; ünite anahtarı "Micro 2" / "Macro 3" biçimindedir.
@@ -75,7 +86,10 @@ const CODES = {
   biology: { ad: "AP Biology", sayfa: "ap-biology.html", uniteTuru: "CED Unit" },
   "english-language": { ad: "AP English Language and Composition", sayfa: "ap-english.html", uniteTuru: "CED Skill Category" },
   "cs-a": { ad: "AP Computer Science A", sayfa: "ap-electives.html", uniteTuru: "CED Unit" },
-  economics: { ad: "AP Micro/Macroeconomics", sayfa: "ap-electives.html", uniteTuru: "CED Unit (Micro/Macro)" }
+  economics: { ad: "AP Micro/Macroeconomics", sayfa: "ap-electives.html", uniteTuru: "CED Unit (Micro/Macro)" },
+  precalculus: { ad: "AP Precalculus", sayfa: "ap-precalculus.html", uniteTuru: "CED Unit" },
+  statistics: { ad: "AP Statistics", sayfa: "ap-statistics.html", uniteTuru: "CED Unit" },
+  "physics-2": { ad: "AP Physics 2: Algebra-Based", sayfa: "ap-physics-2.html", uniteTuru: "CED Unit" }
 };
 // CEnT-S yalnızca sinav-cents.html varsa eklenir.
 const HAS_CENTS = fs.existsSync(path.join(ROOT, "sinav-cents.html"));
@@ -167,6 +181,12 @@ function codesOf(file, dizi, q, u) {
     return { kodlar: ["physics-1"] };
   }
   if (file === "ap-chemistry.html") return { kodlar: ["chemistry"] };
+  if (file === "ap-precalculus.html") {
+    if (Number(u.unite) === 4) return { kodlar: [], neden: "Precalculus Unit 4 AP sınavında yok" };
+    return { kodlar: ["precalculus"] };
+  }
+  if (file === "ap-statistics.html") return { kodlar: ["statistics"] };
+  if (file === "ap-physics-2.html") return { kodlar: ["physics-2"] };
   if (file === "ap-biology.html") return { kodlar: ["biology"] };
   if (file === "ap-english.html") return { kodlar: ["english-language"] };
   if (file === "ap-electives.html") {

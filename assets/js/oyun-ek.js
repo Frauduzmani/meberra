@@ -33,7 +33,7 @@
   var ESIK = { bronz: { cevap: 0.5, dogru: 0.6 }, gumus: { cevap: 0.8, dogru: 0.75 }, altin: { cevap: 1, dogru: 0.9 } };
   var AYLIK_SECENEK = [{ tur: "soru", miktar: 200 }, { tur: "gun", miktar: 15 }]; // ulaşılabilir hedefler (cevaplanan farklı soru / çalışılan gün)
   var AY_AD = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
-  var KISA = { "ap-calculus": "Calculus", "ap-physics": "Physics", "ap-chemistry": "Chemistry", "ap-biology": "Biology", "ap-english": "English", "ap-electives": "Seçmeliler", "sinav-cents": "CEnT-S" };
+  var KISA = { "ap-calculus": "Calculus", "ap-physics": "Physics", "ap-chemistry": "Chemistry", "ap-biology": "Biology", "ap-english": "English", "ap-electives": "Seçmeliler", "ap-precalculus": "Precalculus", "ap-statistics": "Statistics", "ap-physics-2": "Physics 2", "sinav-cents": "CEnT-S" };
 
   /** Saf: { toplam, cevap, dogruIlk, acikYanlis } → "altin" | "gumus" | "bronz" | null */
   function ustalikSeviyesi(s) {

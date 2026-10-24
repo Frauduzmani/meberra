@@ -10,7 +10,8 @@
   var canli = document.getElementById("kk-live");
   if (!view) return;
 
-  var RENK = { calculus: "--c-calculus", physics: "--c-physics", chemistry: "--c-chemistry", biology: "--c-biology", english: "--c-english", macro: "--c-electives", micro: "--c-electives", csa: "--c-electives" };
+  var RENK = { calculus: "--c-calculus", physics: "--c-physics", chemistry: "--c-chemistry", biology: "--c-biology", english: "--c-english", macro: "--c-electives", micro: "--c-electives", csa: "--c-electives",
+    precalculus: "--c-precalculus", statistics: "--c-statistics", physics2: "--c-physics2" };
   var ETIKET = { tanim: "Tanım", formul: "Formül", kural: "Kural", yanilgi: "Sık yanılgı", kalip: "Soru kalıbı" };
   var SONUC = [
     { k: "tekrar", ad: "Tekrar", tus: "1", ipucu: "yarın" },

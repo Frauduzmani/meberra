@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#5B3DF5">
+  <link rel="apple-touch-icon" href="/assets/img/pwa/apple-touch-icon.png">
+  <title>AP Physics 2 | Meberra</title>
+  <meta name="description" content="AP Physics 2 stüdyosu: termodinamik, elektrik, devreler, manyetizma, optik, dalgalar ve modern fizik; konu anlatımı ve hata teşhisli sorular.">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/icerik.css">
+  <!-- 1.4.0 maskot/hareket: kıvrımlı öğrenme yolu ünite paneliyle aynı karede çizilsin diye statik (kayma olmasın) -->
+  <link rel="stylesheet" href="/assets/css/oyun.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/hareket.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/maskot.css?v=1200">
+  <link rel="stylesheet" href="/assets/css/canli.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/etkilesim-kbe.css?v=20261021kbe">
+  <link rel="stylesheet" href="/assets/css/konu-modu.css?v=1230">
+  <link rel="stylesheet" href="/assets/css/kelime-kopru.css?v=1250">
+  <script src="/assets/js/kelime-kopru.js?v=1250" defer></script>
+  <script src="/assets/js/konu-modu.js?v=1230" defer></script>
+  <script src="/assets/js/adresler.js"></script>
+  <script src="/assets/js/maskot.js?v=1200" defer></script>
+  <script src="/assets/js/kutlama.js?v=20261021m" defer></script>
+  <script src="/assets/js/canli.js?v=20261021m" defer></script>
+  <script src="/assets/js/oyun.js?v=20261021m" defer></script>
+  <script src="/assets/js/etkilesim-kbe.js?v=20261021kbe" defer></script>
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/bugun" class="nav-brand"><div class="brand-badge">Meberra</div></a>
+    <div class="nav-actions"></div>
+  </nav>
+
+  <div class="main-container">
+
+    <header class="hero-section">
+      <div class="hero-pill">
+        <span class="pulse-dot"></span>
+        <span>AP Physics 2 · College Board müfredatı</span>
+      </div>
+      <h1 class="hero-title">AP Physics 2</h1>
+      <p class="hero-desc">
+        Physics 1'in devamı: ısı ve gazlar, elektrik ve manyetizma, ışık ve dalgalar, atom ve çekirdek fiziği. Üniteler Physics 1'den sonra 9'dan başlar.
+      </p>
+
+      <div class="hero-stats icerik-stats">
+        <div class="stat-item">
+          <div class="stat-num">9–15 <span class="stat-unit">ÜNİTE</span></div>
+          <div class="stat-label">Physics 1'in devamı</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">HİBRİT</div>
+          <div class="stat-label">MCQ Bluebook'ta, FRQ kâğıtta</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">6 <span class="stat-unit">MAYIS</span></div>
+          <div class="stat-label">2027 sınav günü (sabah)</div>
+        </div>
+      </div>
+      <div class="u-mt-6 icerik-not">
+        <p><strong>Sınav biçimi:</strong> Bölüm I çoktan seçmeli (42 soru, 85 dk, %50) · Bölüm II serbest yanıt (4 soru, 95 dk, %50): matematiksel işlem, temsiller arası çeviri, deney tasarımı ve analizi, nitel–nicel çeviri.</p>
+        <p><strong>Hesap makinesi:</strong> bilimsel ya da grafik hesap makinesi tüm bölümlerde serbest (Bluebook'ta yerleşik Desmos); denklem sayfası verilir.</p>
+        <p><strong>Not:</strong> Physics 1 bilgisi (kuvvet, enerji, momentum) varsayılır; önce onu bitirmen önerilir.</p>
+      </div>
+    </header>
+
+    <!-- 1.28.0: yeni ders. Konu anlatımı konu modundan (/data/dersler/<ders>/unite-N.json); sorular yönetici onaylayana dek API'de yok →
+         kutular "Yakında" gösterir, öğrenme yolunda sayılmaz (data-sb-yeni-kutu). -->
+    <section class="interactive-panel" id="phys2-unit9-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag u-tag u-tone-amber">UNIT 9 SORULAR</span>
+      </div>
+      <h2 class="panel-title">Unit 9 Thermodynamics: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub icerik-not">İdeal gaz, iç enerji, ısı ve iş, termodinamiğin yasaları, entropi ve ısı iletimi.</p>
+
+      <div class="u-mt-6" id="phys2-unit9-quiz-container" data-sb-yeni-kutu>
+      </div>
+    </section>
+
+    <section class="interactive-panel" id="phys2-unit10-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag u-tag u-tone-amber">UNIT 10 SORULAR</span>
+      </div>
+      <h2 class="panel-title">Unit 10 Electric Force, Field, and Potential: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub icerik-not">Coulomb yasası, elektrik alanı, elektrik potansiyeli ve potansiyel enerji, kondansatörler.</p>
+
+      <div class="u-mt-6" id="phys2-unit10-quiz-container" data-sb-yeni-kutu>
+      </div>
+    </section>
+
+    <section class="interactive-panel" id="phys2-unit11-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag u-tag u-tone-amber">UNIT 11 SORULAR</span>
+      </div>
+      <h2 class="panel-title">Unit 11 Electric Circuits: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub icerik-not">Akım, direnç, Ohm yasası, seri ve paralel devreler, Kirchhoff kuralları ve RC devreleri.</p>
+
+      <div class="u-mt-6" id="phys2-unit11-quiz-container" data-sb-yeni-kutu>
+      </div>
+    </section>
+
+    <section class="interactive-panel" id="phys2-unit12-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag u-tag u-tone-amber">UNIT 12 SORULAR</span>
+      </div>
+      <h2 class="panel-title">Unit 12 Magnetism and Electromagnetism: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub icerik-not">Manyetik alan ve kuvvet, akım taşıyan teller, manyetik akı, Faraday ve Lenz yasaları.</p>
+
+      <div class="u-mt-6" id="phys2-unit12-quiz-container" data-sb-yeni-kutu>
+      </div>
+    </section>
+
+    <section class="interactive-panel" id="phys2-unit13-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag u-tag u-tone-amber">UNIT 13 SORULAR</span>
+      </div>
+      <h2 class="panel-title">Unit 13 Geometric Optics: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub icerik-not">Yansıma, kırılma, Snell yasası, aynalar ve mercekler, görüntü oluşumu.</p>
+
+      <div class="u-mt-6" id="phys2-unit13-quiz-container" data-sb-yeni-kutu>
+      </div>
+    </section>
+
+    <section class="interactive-panel" id="phys2-unit14-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag u-tag u-tone-amber">UNIT 14 SORULAR</span>
+      </div>
+      <h2 class="panel-title">Unit 14 Waves, Sound, and Physical Optics: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub icerik-not">Dalga özellikleri, ses, girişim, kırınım, çift yarık ve ince film girişimi.</p>
+
+      <div class="u-mt-6" id="phys2-unit14-quiz-container" data-sb-yeni-kutu>
+      </div>
+    </section>
+
+    <section class="interactive-panel" id="phys2-unit15-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag u-tag u-tone-amber">UNIT 15 SORULAR</span>
+      </div>
+      <h2 class="panel-title">Unit 15 Modern Physics: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub icerik-not">Kuantum ve dalga–parçacık ikiliği, fotoelektrik olay, atom enerji düzeyleri, çekirdek ve radyoaktivite.</p>
+
+      <div class="u-mt-6" id="phys2-unit15-quiz-container" data-sb-yeni-kutu>
+      </div>
+    </section>
+
+  </div>
+
+
+  <footer class="footer">
+    <div class="footer-bottom u-mt-0">
+      <div>© 2026 Meberra • AP Physics 2</div>
+      <div><a class="u-c-cyan u-nodec" href="/bugun">← Bugün</a></div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/ucretsiz-kural.js"></script>
+  <script src="/assets/js/app.js"></script>
+</body>
+</html>

@@ -27,10 +27,14 @@ const DERSLER = {
   biology: { ad: "Biology", sayfa: "ap-biology" },
   english: { ad: "English", sayfa: "ap-english" },
   secmeli: { ad: "Seçmeliler", sayfa: "ap-electives" },
+  precalculus: { ad: "Precalculus", sayfa: "ap-precalculus" }, // 1.28.0 (sorusu yoksa tur 409 "yeterli soru yok")
+  statistics: { ad: "Statistics", sayfa: "ap-statistics" },
+  physics2: { ad: "Physics 2", sayfa: "ap-physics-2" },
   karisik: { ad: "Karışık", sayfa: null }
 };
-const SAYFA_AD = { "ap-calculus": "Calculus", "ap-physics": "Physics", "ap-chemistry": "Chemistry", "ap-biology": "Biology", "ap-english": "English", "ap-electives": "Seçmeliler" };
-const GUNLUK_SAYFALAR = ["ap-calculus", "ap-physics", "ap-chemistry", "ap-biology", "ap-electives", "ap-english"];
+const SAYFA_AD = { "ap-calculus": "Calculus", "ap-physics": "Physics", "ap-chemistry": "Chemistry", "ap-biology": "Biology", "ap-english": "English", "ap-electives": "Seçmeliler",
+  "ap-precalculus": "Precalculus", "ap-statistics": "Statistics", "ap-physics-2": "Physics 2" };
+const GUNLUK_SAYFALAR = ["ap-calculus", "ap-physics", "ap-chemistry", "ap-biology", "ap-electives", "ap-english", "ap-precalculus", "ap-statistics", "ap-physics-2"];
 
 function jsonCoz(v, d) { if (v == null) return d; try { return JSON.parse(v); } catch (e) { return d; } }
 const kirp = s => String(s == null ? "" : s).trim();

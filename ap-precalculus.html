@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#5B3DF5">
+  <link rel="apple-touch-icon" href="/assets/img/pwa/apple-touch-icon.png">
+  <title>AP Precalculus | Meberra</title>
+  <meta name="description" content="AP Precalculus stüdyosu: polinom ve rasyonel fonksiyonlar, üstel ve logaritmik fonksiyonlar, trigonometrik ve kutupsal fonksiyonlar; konu anlatımı ve hata teşhisli sorular.">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/icerik.css">
+  <!-- 1.4.0 maskot/hareket: kıvrımlı öğrenme yolu ünite paneliyle aynı karede çizilsin diye statik (kayma olmasın) -->
+  <link rel="stylesheet" href="/assets/css/oyun.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/hareket.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/maskot.css?v=1200">
+  <link rel="stylesheet" href="/assets/css/canli.css?v=20261021m">
+  <link rel="stylesheet" href="/assets/css/etkilesim-kbe.css?v=20261021kbe">
+  <link rel="stylesheet" href="/assets/css/konu-modu.css?v=1230">
+  <link rel="stylesheet" href="/assets/css/kelime-kopru.css?v=1250">
+  <script src="/assets/js/kelime-kopru.js?v=1250" defer></script>
+  <script src="/assets/js/konu-modu.js?v=1230" defer></script>
+  <script src="/assets/js/adresler.js"></script>
+  <script src="/assets/js/maskot.js?v=1200" defer></script>
+  <script src="/assets/js/kutlama.js?v=20261021m" defer></script>
+  <script src="/assets/js/canli.js?v=20261021m" defer></script>
+  <script src="/assets/js/oyun.js?v=20261021m" defer></script>
+  <script src="/assets/js/etkilesim-kbe.js?v=20261021kbe" defer></script>
+  <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/bugun" class="nav-brand"><div class="brand-badge">Meberra</div></a>
+    <div class="nav-actions"></div>
+  </nav>
+
+  <div class="main-container">
+
+    <header class="hero-section">
+      <div class="hero-pill">
+        <span class="pulse-dot"></span>
+        <span>AP Precalculus · College Board müfredatı</span>
+      </div>
+      <h1 class="hero-title">AP Precalculus</h1>
+      <p class="hero-desc">
+        Calculus'a hazırlık dersi: fonksiyonları tablo, grafik ve formülle okumayı, değişim oranlarını ve modellemeyi öğretir.
+      </p>
+
+      <div class="hero-stats icerik-stats">
+        <div class="stat-item">
+          <div class="stat-num">3 <span class="stat-unit">ÜNİTE</span></div>
+          <div class="stat-label">Sınavda Unit 1–3</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">42 + 4</div>
+          <div class="stat-label">MCQ + FRQ · yaklaşık 3 saat</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">11 <span class="stat-unit">MAYIS</span></div>
+          <div class="stat-label">2027 sınav günü (sabah)</div>
+        </div>
+      </div>
+      <div class="u-mt-6 icerik-not">
+        <p><strong>Sınav biçimi:</strong> Bölüm I çoktan seçmeli (42 soru, %62,5): Kısım A 29 soru / 65 dk hesap makinesiz, Kısım B 13 soru / 40 dk grafik hesap makineli. Bölüm II serbest yanıt (4 soru, %37,5): Kısım A 2 soru / 35 dk hesap makineli, Kısım B 2 soru / 35 dk hesap makinesiz.</p>
+        <p><strong>Hesap makinesi:</strong> yalnızca "hesap makineli" kısımlarda; Bluebook'taki yerleşik Desmos grafik hesap makinesi kullanılabilir.</p>
+        <p><strong>Not:</strong> Unit 4 (parametreler, vektörler, matrisler) AP sınavında sorulmaz; okulun müfredatında varsa çalışabilirsin.</p>
+      </div>
+    </header>
+
+    <!-- 1.28.0: yeni ders. Konu anlatımı konu modundan (/data/dersler/<ders>/unite-N.json); sorular yönetici onaylayana dek API'de yok →
+         kutular "Yakında" gösterir, öğrenme yolunda sayılmaz (data-sb-yeni-kutu). -->
+    <section class="interactive-panel" id="precalc-unit1-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag u-tag u-tone-amber">UNIT 1 SORULAR</span>
+      </div>
+      <h2 class="panel-title">Unit 1 Polynomial and Rational Functions: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub icerik-not">Polinom ve rasyonel fonksiyonlar: değişim oranları, sıfırlar, asimptotlar, dönüşümler ve modelleme.</p>
+
+      <div class="u-mt-6" id="precalc-unit1-quiz-container" data-sb-yeni-kutu>
+      </div>
+    </section>
+
+    <section class="interactive-panel" id="precalc-unit2-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag u-tag u-tone-amber">UNIT 2 SORULAR</span>
+      </div>
+      <h2 class="panel-title">Unit 2 Exponential and Logarithmic Functions: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub icerik-not">Aritmetik ve geometrik diziler, üstel ve logaritmik fonksiyonlar, ters fonksiyonlar ve yarı-log grafikler.</p>
+
+      <div class="u-mt-6" id="precalc-unit2-quiz-container" data-sb-yeni-kutu>
+      </div>
+    </section>
+
+    <section class="interactive-panel" id="precalc-unit3-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag u-tag u-tone-amber">UNIT 3 SORULAR</span>
+      </div>
+      <h2 class="panel-title">Unit 3 Trigonometric and Polar Functions: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub icerik-not">Periyodik olaylar, birim çember, sinüzoidal fonksiyonlar, trigonometrik denklemler ve kutupsal koordinatlar.</p>
+
+      <div class="u-mt-6" id="precalc-unit3-quiz-container" data-sb-yeni-kutu>
+      </div>
+    </section>
+
+    <section class="interactive-panel" id="precalc-unit4-quiz-section">
+      <div class="u-flex u-between u-center u-wrap u-gap-2 u-mb-3">
+        <span class="section-tag u-tag u-tone-amber">UNIT 4 SORULAR</span>
+      </div>
+      <h2 class="panel-title">Unit 4 Functions Involving Parameters, Vectors, and Matrices: İnteraktif Soru İstasyonu</h2>
+      <p class="panel-sub icerik-not">Bu ünite AP sınavında yok: parametrik fonksiyonlar, vektörler ve matrisler (okul müfredatına göre işlenir).</p>
+
+      <div class="u-mt-6" id="precalc-unit4-quiz-container" data-sb-yeni-kutu>
+      </div>
+    </section>
+
+  </div>
+
+
+  <footer class="footer">
+    <div class="footer-bottom u-mt-0">
+      <div>© 2026 Meberra • AP Precalculus</div>
+      <div><a class="u-c-cyan u-nodec" href="/bugun">← Bugün</a></div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/ucretsiz-kural.js"></script>
+  <script src="/assets/js/app.js"></script>
+</body>
+</html>

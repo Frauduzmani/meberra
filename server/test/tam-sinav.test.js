@@ -58,6 +58,23 @@ test("plan dosyası: yapı geçerli; Calculus 29+13 MCQ / 2+4 FRQ ve hesap makin
   assert.equal(P.sinavlar.chemistry.referans.url, "https://apcentral.collegeboard.org/media/pdf/ap-chemistry-equations-sheet.pdf");
   assert.equal(P.sinavlar["calculus-ab"].referans, null, "Calculus'ta referans sayfası yok");
   assert.equal(P.sinavlar["english-language"].hesapMakinesi, null);
+  // 1.28.0 yeni dersler (Mayıs 2027 düzeni): bölümler, hesap makinesi, ünite anahtarları (CED numarası), FRQ dersi
+  const ozet = k => P.sinavlar[k].bolumler.map(b => [b.kod, b.tur, b.soru, b.dk, b.hesapMakinesi].join(" "));
+  assert.deepEqual(ozet("precalculus"), ["I-A mcq 29 65 yasak", "I-B mcq 13 40 gerekli", "II-A frq 2 35 gerekli", "II-B frq 2 35 yasak"]);
+  assert.deepEqual(P.sinavlar.precalculus.agirlik, { I: 62.5, II: 37.5 });
+  assert.deepEqual(Object.keys(P.sinavlar.precalculus.uniteAgirlik), ["1", "2", "3"], "Precalculus Unit 4 sınavda yok");
+  assert.deepEqual(ozet("statistics"), ["I mcq 42 90 serbest", "II frq 4 90 serbest"]);
+  assert.deepEqual(Object.keys(P.sinavlar.statistics.uniteAgirlik), ["1", "2", "3", "4", "5"], "Statistics 2026–27: 5 ünite");
+  assert.deepEqual(ozet("physics-2"), ["I mcq 42 85 serbest", "II frq 4 95 serbest"]);
+  assert.deepEqual(Object.keys(P.sinavlar["physics-2"].uniteAgirlik), ["9", "10", "11", "12", "13", "14", "15"]);
+  ["precalculus", "statistics", "physics-2"].forEach(k => {
+    assert.equal(P.sinavlar[k].denemeKodu, k); assert.deepEqual(P.sinavlar[k].frqDersleri, [k]);
+    const tek = { sinavlar: { [k]: P.sinavlar[k] } };
+    assert.deepEqual(T.dogrula(tek), [], k);
+    const b2 = JSON.parse(JSON.stringify(tek)); b2.sinavlar[k].frqDersleri = ["yok-boyle"]; b2.sinavlar[k].bolumler[0].hesapMakinesi = "belki";
+    const s2 = T.dogrula(b2);
+    assert.ok(s2.some(x => /frqDersleri/.test(x)) && s2.some(x => /hesapMakinesi/.test(x)), k + ": " + s2.join("; "));
+  });
   // Bozuk plan yakalanır
   const bozuk = JSON.parse(JSON.stringify(P)); bozuk.sinavlar["calculus-ab"].agirlik.I = 70; bozuk.sinavlar["calculus-ab"].esikler[1].min = 90;
   const s = T.dogrula(bozuk);
