@@ -28,7 +28,7 @@ test("soru kökünde kelimeye dokun → Türkçe anlam; kapatınca yardım devre
   const kart = page.locator("#calc-unit1-quiz-container .question-card:visible").first();
   await expect(kart).toBeVisible();
   // İlk kullanım ipucu
-  await expect(page.locator(".kk-ipucu")).toBeVisible();
+  await expect(page.locator(".kb-ipucu")).toBeVisible();
   // "Ne soruyor?" Türkçe açıklaması: kapalı gelir, açılınca görünür
   const ne = kart.locator(".q-ne");
   await expect(ne.locator("p")).toBeHidden();
@@ -44,10 +44,10 @@ test("soru kökünde kelimeye dokun → Türkçe anlam; kapatınca yardım devre
   const p = await kelimeNoktasi(page, "#calc-unit1-quiz-container .question-body", kelime);
   expect(p).toBeTruthy();
   await page.mouse.click(p.x, p.y);
-  const balon = page.locator(".kk-balon");
+  const balon = page.locator(".kb-balon");
   await expect(balon).toBeVisible();
-  await expect(balon.locator(".kk-kelime")).toHaveText(new RegExp(kelime, "i"));
-  await expect(balon.locator(".kk-tr")).not.toBeEmpty();
+  await expect(balon.locator(".kb-kelime")).toHaveText(new RegExp(kelime, "i"));
+  await expect(balon.locator(".kb-tr")).not.toBeEmpty();
   await page.keyboard.press("Escape");
   await expect(balon).toBeHidden();
   // Kapat → yeniden dokununca balon yok
@@ -67,5 +67,5 @@ test("şıkta kısa dokunuş seçer (balon açmaz)", async ({ page }) => {
   const kart = page.locator("#calc-unit1-quiz-container .question-card:visible").first();
   await kart.locator(".option-btn").first().click();
   await expect(kart.locator(".feedback-box")).toBeVisible();
-  await expect(page.locator(".kk-balon")).toHaveCount(0);
+  await expect(page.locator(".kb-balon")).toHaveCount(0);
 });

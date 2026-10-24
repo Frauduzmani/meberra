@@ -54,9 +54,10 @@ function yukle(dosya) {
   const kartBul = new Map(kartlar.map(k => [k.id, k]));
   const ucretsiz = {};
   (t.dersler || []).forEach(d => {
-    const list = (d.uniteler || []).map(u => { const m = /(\d+)/.exec(String(u.unite)); return { no: u.unite, num: m ? +m[1] : null }; });
+    // 1.25.0: "kalip: true" (Soru kalıpları) destesi her zaman ücretsizdir ve ücretsiz deste sayısına girmez
+    const list = (d.uniteler || []).filter(u => !u.kalip).map(u => { const m = /(\d+)/.exec(String(u.unite)); return { no: u.unite, num: m ? +m[1] : null }; });
     // "kartlar" sayfası AP_UCRETSIZ_KURALI'nda yok → varsayılan kural: ilk N farklı ünite numarası
-    ucretsiz[d.ders] = new Set(KURAL.apUcretsizUniteNolari("kartlar", list, UCRETSIZ_DESTE));
+    ucretsiz[d.ders] = new Set(KURAL.apUcretsizUniteNolari("kartlar", list, UCRETSIZ_DESTE).concat((d.uniteler || []).filter(u => u.kalip).map(u => u.unite)));
   });
   return { surum: t.surum || 1, dersler: t.dersler || [], kartlar, kartBul, ucretsiz };
 }

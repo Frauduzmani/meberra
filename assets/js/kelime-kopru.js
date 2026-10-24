@@ -140,16 +140,16 @@
     if (document.caretRangeFromPoint) { var r = document.caretRangeFromPoint(x, y); return r ? { dugum: r.startContainer, ofset: r.startOffset } : null; }
     return null;
   }
-  function yasakAlan(el) { return !el || !el.closest || !!el.closest("mjx-container, .MathJax, code, pre, svg, input, textarea, select, a, .kk-balon"); }
+  function yasakAlan(el) { return !el || !el.closest || !!el.closest("mjx-container, .MathJax, code, pre, svg, input, textarea, select, a, .kb-balon"); }
 
   function vurgula(dugum, bas, son) {
     try {
       if (!window.CSS || !CSS.highlights || typeof Highlight === "undefined") return;
       var r = document.createRange(); r.setStart(dugum, bas); r.setEnd(dugum, son);
-      CSS.highlights.set("kk-vurgu", new Highlight(r));
+      CSS.highlights.set("kb-vurgu", new Highlight(r));
     } catch (e) { /* desteklenmiyor */ }
   }
-  function vurguSil() { try { if (window.CSS && CSS.highlights) CSS.highlights.delete("kk-vurgu"); } catch (e) { /* yok */ } }
+  function vurguSil() { try { if (window.CSS && CSS.highlights) CSS.highlights.delete("kb-vurgu"); } catch (e) { /* yok */ } }
 
   function seslendir(metin) {
     try {
@@ -170,7 +170,7 @@
   function balonAc(s, x, y) {
     if (!balon) {
       balon = document.createElement("div");
-      balon.className = "kk-balon"; balon.setAttribute("role", "dialog"); balon.hidden = true;
+      balon.className = "kb-balon"; balon.setAttribute("role", "dialog"); balon.hidden = true;
       document.body.appendChild(balon);
       balon.addEventListener("click", function (e) {
         var b = e.target.closest("[data-kk]");
@@ -184,15 +184,15 @@
     var a = s.anlam, f = s.ifade, ses = f ? f.en : s.kelime;
     balon.setAttribute("aria-label", "Kelime: " + s.kelime);
     balon.innerHTML =
-      '<div class="kk-ust"><strong lang="en" class="kk-kelime">' + esc(s.kelime) + "</strong>" +
-        (window.speechSynthesis ? '<button type="button" class="kk-ikon" data-kk="dinle" data-metin="' + esc(s.kelime) + '" aria-label="Dinle: ' + esc(s.kelime) + '">🔊</button>' : "") +
-        '<button type="button" class="kk-ikon kk-x" data-kk="kapat" aria-label="Kapat">×</button></div>' +
-      (a ? '<p class="kk-tr">' + esc(a.tr) + "</p>" + (a.kok ? '<p class="kk-kok">kök: <span lang="en">' + esc(a.kok) + "</span></p>" : "") +
-          '<span class="kk-rozet kk-' + esc(a.t) + '">' + esc(ROZET[a.t] || "") + "</span>"
-        : (f ? "" : '<p class="kk-tr kk-yok">Bu kelime sözlükte yok. Cümlenin geri kalanından anlamı tahmin et ya da “Ne soruyor?” kutusuna bak.</p>')) +
-      (f ? '<div class="kk-ifade"><span class="kk-ifade-en" lang="en">“' + esc(f.en) + '”</span> <span aria-hidden="true">→</span> <strong>' + esc(f.tr) + "</strong>" +
-          (window.speechSynthesis && ses !== s.kelime ? ' <button type="button" class="kk-ikon" data-kk="dinle" data-metin="' + esc(ses) + '" aria-label="Dinle: ' + esc(ses) + '">🔊</button>' : "") + "</div>" : "") +
-      '<button type="button" class="kk-alt" data-kk="yardim-kapat">Kelime yardımını kapat</button>';
+      '<div class="kb-ust"><strong lang="en" class="kb-kelime">' + esc(s.kelime) + "</strong>" +
+        (window.speechSynthesis ? '<button type="button" class="kb-ikon" data-kk="dinle" data-metin="' + esc(s.kelime) + '" aria-label="Dinle: ' + esc(s.kelime) + '">🔊</button>' : "") +
+        '<button type="button" class="kb-ikon kb-x" data-kk="kapat" aria-label="Kapat">×</button></div>' +
+      (a ? '<p class="kb-tr">' + esc(a.tr) + "</p>" + (a.kok ? '<p class="kb-kok">kök: <span lang="en">' + esc(a.kok) + "</span></p>" : "") +
+          '<span class="kb-rozet kb-' + esc(a.t) + '">' + esc(ROZET[a.t] || "") + "</span>"
+        : (f ? "" : '<p class="kb-tr kb-yok">Bu kelime sözlükte yok. Cümlenin geri kalanından anlamı tahmin et ya da “Ne soruyor?” kutusuna bak.</p>')) +
+      (f ? '<div class="kb-ifade"><span class="kb-ifade-en" lang="en">“' + esc(f.en) + '”</span> <span aria-hidden="true">→</span> <strong>' + esc(f.tr) + "</strong>" +
+          (window.speechSynthesis && ses !== s.kelime ? ' <button type="button" class="kb-ikon" data-kk="dinle" data-metin="' + esc(ses) + '" aria-label="Dinle: ' + esc(ses) + '">🔊</button>' : "") + "</div>" : "") +
+      '<button type="button" class="kb-alt" data-kk="yardim-kapat">Kelime yardımını kapat</button>';
     balon.hidden = false;
     var w = balon.offsetWidth, h = balon.offsetHeight, vw = document.documentElement.clientWidth, vh = window.innerHeight;
     var left = Math.max(8, Math.min(x - w / 2, vw - w - 8)), top = y + 14;
@@ -237,11 +237,11 @@
   function ipucuGoster() {
     if (oku(IPUCU) || !acikMi()) return;
     var kart = document.querySelector(".question-card .question-body, .frq-soru");
-    if (!kart || kart.parentNode.querySelector(".kk-ipucu")) return;
+    if (!kart || kart.parentNode.querySelector(".kb-ipucu")) return;
     var p = document.createElement("p");
-    p.className = "kk-ipucu";
+    p.className = "kb-ipucu";
     p.innerHTML = '<span aria-hidden="true">💡</span> Bilmediğin İngilizce kelimeye dokun, Türkçesi çıksın. Şıklarda kelimeye <strong>basılı tut</strong>. ' +
-      '<button type="button" class="kk-ipucu-x" aria-label="İpucunu kapat">Anladım</button>';
+      '<button type="button" class="kb-ipucu-x" aria-label="İpucunu kapat">Anladım</button>';
     kart.parentNode.insertBefore(p, kart);
     p.querySelector("button").addEventListener("click", function () { yaz(IPUCU, "1"); p.remove(); });
   }
@@ -250,7 +250,7 @@
     document.documentElement.setAttribute("data-tr-yardim", acikMi() ? "acik" : "kapali");
     document.addEventListener("click", function (e) {
       if (bastirTik) { bastirTik = false; e.preventDefault(); e.stopPropagation(); return; }
-      if (balon && !balon.hidden && !e.target.closest(".kk-balon")) balonKapat();
+      if (balon && !balon.hidden && !e.target.closest(".kb-balon")) balonKapat();
       var h = e.target.closest && e.target.closest(HEDEF);
       if (!h || e.target.closest(UZUN) || (window.getSelection && String(window.getSelection()).length > 1)) return;
       dokunus(e.clientX, e.clientY);
