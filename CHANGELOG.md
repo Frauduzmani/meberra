@@ -9,6 +9,27 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.26.0] — 2026-10-25
+### Eklendi
+- **`/ap-nedir` — "10 dakikada AP"** (giriş gerekmez): AP'yi hiç bilmeyen öğrenci için 6 sahnelik yolculuk, hedef sihirbazıyla aynı kart iskeleti ve Dede Korkut. 1) AP nedir (çevrilen kartlar) 2) 1–5 puan kaydırıcısı (College Board ölçeği) 3) MCQ / FRQ bölümleri 4) Türkiye'den kayıt takvimi (13 Kasım 2026 sipariş, geç sipariş +40 $, 3–14 Mayıs 2027, Temmuz puanlar) ve canlı geri sayım 5) Meberra'da yol 6) 5 soruluk mini test → **AP Kâşifi** rozeti + konfeti. Bütün sahneler aynı yükseklikte; telefonda yatay kaydırma yok.
+- Giriş noktaları: vitrin "AP nedir? 10 dakikada öğren 🧭"; Bugün'de rozeti olmayan yeni öğrenciye tek bağlamsal kart (hiç soru çözmediyse en önde).
+
+## [1.25.0] — 2026-10-25
+### Eklendi
+- **A2 İngilizce köprüsü.** Soru kökünde (ve FRQ metninde) bilmediğin kelimeye dokun → Türkçe anlam, kök, "AP terimi / sınav kelimesi" rozeti, 🔊 sesli okunuş; çok kelimeli terimler ("instantaneous rate of change") bütün olarak bulunur. Şıklarda basılı tut. Sayfa metni değiştirilmez (formüller bozulmaz). Sözlük: 4461 kelime + 1135 terim (`data/sozluk/ap-sozluk.json`, üretici `araclar/sozluk-olustur.js`). Yardım Profil'den ya da balondan kapatılır; 40 soruda neredeyse hiç kullanmayana "kapatabilirsin" önerisi.
+- **"🔍 Ne soruyor?"** 3551 MCQ'da ve 75 yeni FRQ'nun her parçasında: sorunun ne istediğini cevabı vermeden anlatan Türkçe tek cümle. Cümleler cevabı bilmeyen yazarlarca yazıldı; doğru şıkka özgü kelime/sayı sızıntısı (`araclar/ne-soruyor-ekle.js`) ve eşitsizlik yönü ayrıca denetlendi.
+- **İngilizce kalıplar destesi**: her derste 20 kartlık, her planda açık "Soru kalıpları" (Justify your answer, Derive an expression for…, Draw a correctly labeled graph…) — Türkçe anlam + puanlayıcının beklediği + İngilizce cümle kalıbı.
+### Değişti
+- Kelime balonu sınıf öneki `kb-` (kavram kartlarının `kk-` sınıflarıyla çakışıyordu).
+
+## [1.24.0] — 2026-10-25
+### Eklendi
+- **75 yeni özgün FRQ** (toplam 32 → 107), gerçek sınav tipleri ve puanlarıyla: Calculus AB 14 · BC 8 · Physics 1 16 (4 yeni tipin hepsi) · Chemistry 17 (uzun + kısa) · Biology 17 (6 tip) · English Language 9 (sentez, retorik analiz, argüman; tam puanlık örnek deneme + cümle kalıpları) · Macro 8 · Micro 8 · CS A 10. Hepsi yazardan bağımsız ikinci denetimden geçti (sayılar yeniden hesaplandı; ders kitabıyla aynı veri taşıyan bir tablo özgünleştirildi).
+- Calculus tam deneme sınavı artık gerçek düzende (Bölüm II-B: 4 FRQ, kısaltılmış değil).
+- Araç: `araclar/frq-ekle.js` (taslak + karar → doğrulama → aktif, tohum sürümü +1; 1.24.0 FRQ'larında `ne_soruyor` zorunlu).
+### Düzeltildi
+- `frq-eng-1` sentez rubriği: üçten az kaynak kullanan yanıt kanıt satırında en çok 1 puan alır (önceden 2 yazıyordu).
+
 ## [1.23.0] — 2026-10-24
 ### Eklendi
 - **Konu modu** (ders sayfaları): ünite açılınca üstte konu yolu (CED konuları, her konuda çözülen/toplam). Konu seçilince hedefler, ayrıntılı Türkçe anlatım (AP terimleri İngilizcesiyle), çözümlü örnekler, sınav ipuçları, sık hatalar, terimler ve altında yalnız o konunun soruları. "Ünite testi" tüm soruları gösterir; adres `?unite=N&konu=N.M`. `assets/js/konu-modu.js`, `assets/css/konu-modu.css`; sunucu sorularla `konuKod` gönderir.

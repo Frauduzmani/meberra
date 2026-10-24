@@ -19,7 +19,7 @@ eq([K.secimOku("?unite=1&konu=1.6"), K.secimOku("?konu=tum"), K.secimOku("?unite
 eq([K.secimYaz("?unite=1&konu=1.2", "1.6"), K.secimYaz("", "tum"), K.secimYaz("?unite=2&konu=2.1", null)], ["?unite=1&konu=1.6", "?konu=tum", "?unite=2"], "seçim yazma");
 
 // Ders sayfaları konu modu varlıklarını yükler
-fs.readdirSync(path.join(__dirname, "..", "..")).filter(f => /^ap-.*\.html$/.test(f)).forEach(f => {
+fs.readdirSync(path.join(__dirname, "..", "..")).filter(f => /^ap-(biology|calculus|chemistry|electives|english|physics)\.html$/.test(f)).forEach(f => {
   const s = fs.readFileSync(path.join(__dirname, "..", "..", f), "utf8");
   ok(/\/assets\/js\/konu-modu\.js[^"]*" defer/.test(s) && /\/assets\/css\/konu-modu\.css/.test(s), f + ": konu-modu.js (defer) + konu-modu.css");
 });
