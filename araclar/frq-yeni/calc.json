@@ -1,0 +1,1771 @@
+[
+ {
+  "id": "frq-calc-ab-k1",
+  "sayfa": "ap-calculus",
+  "ders": "calculus-ab",
+  "tur": "Değişim oranı ve birikim (tablo)",
+  "baslik": "Grain Silo",
+  "sure_dk": 15,
+  "hesapMakinesi": true,
+  "zorluk": "easy",
+  "giris": "<p>At time \\(t = 0\\), a grain silo contains 80 tons of grain. For \\(0 \\le t \\le 10\\), grain is added to the silo by a conveyor belt at a rate modeled by a differentiable function \\(G\\), where \\(G(t)\\) is measured in tons per hour and \\(t\\) is measured in hours. Selected values of \\(G(t)\\) are given in the table below.</p><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">\\(t\\) (hours)</th><th scope=\"col\">0</th><th scope=\"col\">2</th><th scope=\"col\">5</th><th scope=\"col\">7</th><th scope=\"col\">10</th></tr></thead><tbody><tr><th scope=\"row\">\\(G(t)\\) (tons per hour)</th><td>14</td><td>20</td><td>26</td><td>20</td><td>16</td></tr></tbody></table><p>During the same time interval, grain is removed from the silo by trucks at a rate modeled by \\(D(t) = 15 + 4\\sin(0.6t)\\) tons per hour.</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "Use the data in the table to approximate \\(G'(6)\\). Using correct units, interpret the meaning of \\(G'(6)\\) in the context of the problem.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Tablodaki komşu değerlerle fark oranı: \\(\\frac{G(7)-G(5)}{7-5}=-3\\).",
+      "ornek_cevap": "\\(G'(6)\\approx\\dfrac{20-26}{7-5}=-3\\)"
+     },
+     {
+      "puan": 1,
+      "olcut": "Yorum: t = 6 saatte banda giren tahıl hızı saatte yaklaşık 3 ton/saat azalıyor — birim (ton/saat/saat) ve zamanla.",
+      "ornek_cevap": "At time t = 6 hours, the rate at which grain is added to the silo is decreasing by about 3 tons per hour per hour."
+     }
+    ],
+    "ornek_cozum": "<p>\\(t=6\\), tablodaki \\(t=5\\) ile \\(t=7\\) arasında. Bu iki değerle fark oranı kurulur:</p>\\[G'(6)\\approx\\frac{G(7)-G(5)}{7-5}=\\frac{20-26}{2}=-3\\]<p>\\(G\\) bir <em>oran</em> (ton/saat); \\(G'\\) bu oranın değişim hızıdır, birimi ton/saat/saat.</p><p><strong>Cevap (İngilizce):</strong> \\(G'(6)\\approx -3\\); at time \\(t=6\\) hours, the rate at which grain is added to the silo is decreasing by about 3 tons per hour per hour.</p>",
+    "sik_hatalar": [
+     "Yorumda ‘silodaki tahıl 3 ton azalıyor’ demek — \\(G'\\) miktarın değil, giriş hızının değişimidir.",
+     "Birimi ton/saat yazmak; doğru birim ton/saat/saat (tons per hour per hour)."
+    ],
+    "ne_soruyor": "Tablodan bir türeve yaklaşık değer bulmanı ve bu türevin bağlamdaki anlamını birimiyle açıklamanı istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "Use a left Riemann sum with the four subintervals indicated by the data in the table to approximate \\(\\displaystyle\\int_0^{10} G(t)\\,dt\\). Show the computations that lead to your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Eşit olmayan aralık genişlikleriyle (2, 3, 2, 3) sol Riemann toplamını doğru kurmak.",
+      "ornek_cevap": "\\(2(14)+3(20)+2(26)+3(20)\\)"
+     },
+     {
+      "puan": 1,
+      "olcut": "Sonuç 200 (ton).",
+      "ornek_cevap": "The integral is approximately 200 tons."
+     }
+    ],
+    "ornek_cozum": "<p>Aralıklar: \\([0,2],[2,5],[5,7],[7,10]\\); genişlikler 2, 3, 2, 3. Sol Riemann toplamında her aralığın <em>sol</em> uç değeri kullanılır:</p>\\[2\\cdot 14+3\\cdot 20+2\\cdot 26+3\\cdot 20=28+60+52+60=200\\]<p>Bu sayı, ilk 10 saatte silo'ya bantla eklenen toplam tahılın (ton) yaklaşığıdır.</p><p><strong>Cevap (İngilizce):</strong> \\(\\int_0^{10}G(t)\\,dt\\approx 2(14)+3(20)+2(26)+3(20)=200\\) tons.</p>",
+    "sik_hatalar": [
+     "Bütün aralıkları aynı genişlikte (2.5) almak.",
+     "Sol toplam yerine sağ uç değerleri (20, 26, 20, 16) kullanmak."
+    ],
+    "ne_soruyor": "Eşit olmayan aralıklı bir tablodan belirli integrale sol Riemann toplamıyla yaklaşmanı istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "Using your answer from part (b), approximate the amount of grain in the silo at time \\(t = 10\\). Show the work that leads to your answer.",
+    "puan": 3,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Kamyonların aldığı tahıl: \\(\\int_0^{10}D(t)\\,dt\\approx 150.266\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Doğru ifade: başlangıç + giren − çıkan.",
+      "ornek_cevap": "\\(80+200-\\int_0^{10}D(t)\\,dt\\)"
+     },
+     {
+      "puan": 1,
+      "olcut": "Cevap ≈ 129.734 ton (129.735 de kabul).",
+      "ornek_cevap": "There are approximately 129.734 tons of grain in the silo at t = 10."
+     }
+    ],
+    "ornek_cozum": "<p>Silodaki tahıl = başlangıç + eklenen − çıkarılan:</p>\\[A(10)\\approx 80+200-\\int_0^{10}\\big(15+4\\sin(0.6t)\\big)\\,dt\\]<p>Hesap makinesiyle \\(\\int_0^{10}D(t)\\,dt\\approx 150.266\\).</p>\\[A(10)\\approx 80+200-150.266=129.734\\]<p><strong>Cevap (İngilizce):</strong> The amount of grain in the silo at \\(t=10\\) is approximately \\(80+200-150.266=129.734\\) tons.</p>",
+    "sik_hatalar": [
+     "Başlangıçtaki 80 tonu eklemeyi unutmak.",
+     "Hesap makinesi radyan yerine derece kipindeyken \\(\\sin(0.6t)\\) integralini almak."
+    ],
+    "ne_soruyor": "Giren ve çıkan oranlarla belirli bir andaki toplam miktarı bulmanı istiyor."
+   },
+   {
+    "harf": "d",
+    "soru": "Must there be a value of \\(t\\), for \\(2 < t < 7\\), at which \\(G'(t) = 0\\)? Justify your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(G(2)=G(7)=20\\) olduğunu (ya da fark oranının 0 olduğunu) göstermek."
+     },
+     {
+      "puan": 1,
+      "olcut": "G türevlenebilir ⇒ sürekli; Ortalama Değer (Rolle) Teoremi ile ‘Evet’.",
+      "ornek_cevap": "Yes. G is differentiable, so it is continuous on [2, 7] and differentiable on (2, 7). Since (G(7) − G(2))/(7 − 2) = 0, the Mean Value Theorem guarantees a value c in (2, 7) with G′(c) = 0."
+     }
+    ],
+    "ornek_cozum": "<p>\\(G\\) türevlenebilir olduğu için \\([2,7]\\) aralığında sürekli, \\((2,7)\\) aralığında türevlenebilirdir.</p>\\[\\frac{G(7)-G(2)}{7-2}=\\frac{20-20}{5}=0\\]<p>Ortalama Değer Teoremi (burada Rolle Teoremi) bu aralıkta türevin 0 olduğu bir \\(c\\) olduğunu garanti eder.</p><p><strong>Cevap (İngilizce):</strong> <strong>Yes.</strong> Because \\(G\\) is differentiable, it is continuous on \\([2,7]\\), and \\(\\frac{G(7)-G(2)}{7-2}=0\\), so by the Mean Value Theorem there is a \\(c\\) in \\((2,7)\\) with \\(G'(c)=0\\).</p>",
+    "sik_hatalar": [
+     "Teoremin koşulunu (süreklilik ve türevlenebilirlik) yazmamak.",
+     "Ara Değer Teoremi'ni kullanmak — IVT fonksiyon değerleri içindir, türevin değeri için MVT gerekir."
+    ],
+    "ne_soruyor": "Tablodaki iki eşit değerden yola çıkıp türevin sıfır olduğu bir anın kesin var olup olmadığını teoremle gerekçelendirmeni istiyor."
+   }
+  ],
+  "toplam_puan": 9,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "6.2, 8.3",
+   "tip": "Rate In/Rate Out with Table (Calculator Active)"
+  }
+ },
+ {
+  "id": "frq-calc-ab-k2",
+  "sayfa": "ap-calculus",
+  "ders": "calculus-ab",
+  "tur": "Modelleme ve birikim (hesap makineli)",
+  "baslik": "Skaters at an Ice Rink",
+  "sure_dk": 15,
+  "hesapMakinesi": true,
+  "zorluk": "medium",
+  "giris": "<p>An indoor ice rink opens at time \\(t = 0\\), when there are 12 skaters on the ice. For \\(0 \\le t \\le 6\\), skaters arrive at the rink at a rate modeled by \\[R(t) = 30 + 20\\sin\\!\\left(\\frac{t}{2}\\right)\\] skaters per hour, and skaters leave the rink at a rate modeled by \\[T(t) = 10 + 2t^2\\] skaters per hour, where \\(t\\) is measured in hours. Let \\(N(t)\\) be the number of skaters at the rink at time \\(t\\). (The model treats the number of skaters as a continuous quantity.)</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "Find the total number of skaters who arrive at the rink during the time interval \\(0 \\le t \\le 6\\).",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Doğru integral: \\(\\int_0^6 R(t)\\,dt\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Cevap ≈ 259.600 (yaklaşık 260 patenci).",
+      "ornek_cevap": "About 259.600 skaters arrive during 0 ≤ t ≤ 6."
+     }
+    ],
+    "ornek_cozum": "<p>Gelme hızının integrali, gelen toplam kişi sayısıdır:</p>\\[\\int_0^6\\left(30+20\\sin\\frac t2\\right)dt\\approx 259.600\\]<p>(Tam değer \\(220-40\\cos 3\\).)</p><p><strong>Cevap (İngilizce):</strong> \\(\\int_0^6 R(t)\\,dt\\approx 259.600\\), so about 259.6 skaters arrive during the first 6 hours.</p>",
+    "sik_hatalar": [
+     "\\(R(t)-T(t)\\) integralini almak — soru yalnız gelenleri soruyor.",
+     "Başlangıçtaki 12 patenciyi gelenlere eklemek."
+    ],
+    "ne_soruyor": "Bir giriş hızından belirli bir zaman aralığında biriken toplam miktarı bulmanı istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "Find \\(N'(3)\\). Using correct units, interpret the meaning of \\(N'(3)\\) in the context of the problem.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(N'(3)=R(3)-T(3)\\approx 21.950\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Yorum: t = 3 saatte pistteki patenci sayısı saatte yaklaşık 21.950 kişi artıyor (birimle).",
+      "ornek_cevap": "At time t = 3 hours, the number of skaters at the rink is increasing at a rate of about 21.950 skaters per hour."
+     }
+    ],
+    "ornek_cozum": "<p>\\(N'(t)=R(t)-T(t)\\) (gelen hız − giden hız).</p>\\[N'(3)=\\big(30+20\\sin 1.5\\big)-\\big(10+18\\big)\\approx 49.950-28=21.950\\]<p>Pozitif olduğu için sayı artıyor.</p><p><strong>Cevap (İngilizce):</strong> \\(N'(3)\\approx 21.950\\). At time \\(t=3\\) hours, the number of skaters at the rink is increasing at a rate of about 21.950 skaters per hour.</p>",
+    "sik_hatalar": [
+     "\\(N'(3)\\) yerine \\(N(3)\\) hesaplamak.",
+     "Yorumda birimi (skaters per hour) ve zamanı (t = 3) yazmamak."
+    ],
+    "ne_soruyor": "Net değişim hızını hesaplamanı ve bu sayının bağlamdaki anlamını birimiyle açıklamanı istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "At what time \\(t\\), for \\(0 \\le t \\le 6\\), is the number of skaters at the rink the greatest? To the nearest whole number, how many skaters are at the rink at that time? Justify your answer.",
+    "puan": 3,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(N'(t)=R(t)-T(t)=0\\) çözümü: \\(t\\approx 4.289\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Gerekçe: aday testi (\\(N(0)=12\\), \\(N(4.289)\\approx 106.891\\), \\(N(6)\\approx 67.600\\)) ya da \\(N'\\)'nün tek kritik noktada +’dan −’ye geçmesi."
+     },
+     {
+      "puan": 1,
+      "olcut": "Cevap: t ≈ 4.289 saatte yaklaşık 107 patenci (106.891).",
+      "ornek_cevap": "The number of skaters is greatest at t ≈ 4.289 hours, when there are about 107 skaters at the rink."
+     }
+    ],
+    "ornek_cozum": "<p><strong>1. Kritik nokta:</strong> \\(N'(t)=R(t)-T(t)=0\\) denklemi hesap makinesiyle çözülür: \\(t\\approx 4.289\\). Bu aralıkta \\(N'\\)'nün tek sıfırı budur.</p><p><strong>2. Aday testi:</strong> \\(N(x)=12+\\int_0^x\\big(R(t)-T(t)\\big)dt\\).</p><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">\\(t\\)</th><th scope=\"col\">\\(N(t)\\)</th></tr></thead><tbody><tr><td>0</td><td>12</td></tr><tr><td>4.289</td><td>\\(12+\\int_0^{4.289}(R-T)\\,dt\\approx 106.891\\)</td></tr><tr><td>6</td><td>\\(12+\\int_0^{6}(R-T)\\,dt\\approx 67.600\\)</td></tr></tbody></table><p>En büyük değer \\(t\\approx 4.289\\)'da.</p><p><strong>Cevap (İngilizce):</strong> \\(N'(t)=R(t)-T(t)=0\\) at \\(t\\approx 4.289\\). By the candidates test, \\(N(0)=12\\), \\(N(4.289)\\approx 106.891\\), \\(N(6)\\approx 67.600\\), so the number of skaters is greatest at \\(t\\approx 4.289\\) hours, with about 107 skaters.</p>",
+    "sik_hatalar": [
+     "Uç noktaları (t = 0 ve t = 6) kontrol etmeden ‘kritik nokta = maksimum’ demek.",
+     "\\(R(t)\\)'nin maksimumunu aramak — soru patenci sayısının (N) maksimumunu soruyor.",
+     "Başlangıçtaki 12 kişiyi N'ye eklemeyi unutmak."
+    ],
+    "ne_soruyor": "Birikmiş miktarın hangi anda en büyük olduğunu bulmanı ve bunu aday testi ya da işaret değişimiyle gerekçelendirmeni istiyor."
+   },
+   {
+    "harf": "d",
+    "soru": "Is the rate of change of the number of skaters at the rink increasing or decreasing at time \\(t = 3\\)? Give a reason for your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(N''(3)=R'(3)-T'(3)\\approx -11.293\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Sonuç: N″(3) < 0 olduğu için değişim hızı azalıyor.",
+      "ornek_cevap": "N″(3) ≈ −11.293 < 0, so the rate of change of the number of skaters is decreasing at t = 3."
+     }
+    ],
+    "ornek_cozum": "<p>“Değişim hızı” \\(N'(t)\\)'dir; onun artıp azalmadığını \\(N''\\) söyler.</p>\\[N''(t)=R'(t)-T'(t)=10\\cos\\frac t2-4t\\]\\[N''(3)=10\\cos 1.5-12\\approx 0.707-12=-11.293\\]<p><strong>Cevap (İngilizce):</strong> \\(N''(3)=R'(3)-T'(3)\\approx -11.293<0\\), so the rate of change of the number of skaters is <strong>decreasing</strong> at \\(t=3\\).</p>",
+    "sik_hatalar": [
+     "\\(N'(3)>0\\) olduğu için ‘artıyor’ demek — bu, sayının arttığını gösterir, hızın değil.",
+     "\\(R'(t)\\) hesabında zincir kuralını unutup \\(20\\cos(t/2)\\) yazmak."
+    ],
+    "ne_soruyor": "Değişim hızının kendisinin artıp azaldığını ikinci türevle belirlemeni istiyor."
+   }
+  ],
+  "toplam_puan": 9,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "8.3, 5.5",
+   "tip": "Modeling Accumulation with Rates (Calculator Active)"
+  }
+ },
+ {
+  "id": "frq-calc-ab-k3",
+  "sayfa": "ap-calculus",
+  "ders": "calculus-ab",
+  "tur": "Doğrusal hareket (hesap makineli)",
+  "baslik": "Bead on a Straight Wire",
+  "sure_dk": 15,
+  "hesapMakinesi": true,
+  "zorluk": "medium",
+  "giris": "<p>A bead slides along a straight wire, which is modeled as the \\(x\\)-axis. The velocity of the bead at time \\(t\\) is given by \\[v(t) = e^{\\sin t} - 1.5\\] for \\(0 \\le t \\le 5\\), where \\(t\\) is measured in seconds and \\(v(t)\\) is measured in centimeters per second. At time \\(t = 0\\), the bead is at position \\(x = 2\\).</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "Find the acceleration of the bead at time \\(t = 2\\). Is the speed of the bead increasing or decreasing at time \\(t = 2\\)? Give a reason for your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(a(2)=v'(2)\\approx -1.033\\) (cm/s²)."
+     },
+     {
+      "puan": 1,
+      "olcut": "\\(v(2)\\approx 0.983>0\\) ve \\(a(2)<0\\): işaretler zıt ⇒ hız (speed) azalıyor.",
+      "ornek_cevap": "Speed is decreasing at t = 2 because v(2) > 0 and a(2) < 0 have opposite signs."
+     }
+    ],
+    "ornek_cozum": "<p>\\(a(t)=v'(t)=\\cos t\\cdot e^{\\sin t}\\). Hesap makinesiyle \\(a(2)\\approx -1.033\\).</p><p>\\(v(2)=e^{\\sin 2}-1.5\\approx 0.983>0\\). Hız (velocity) pozitif, ivme negatif → işaretler zıt → sürat (speed) azalıyor.</p><p><strong>Cevap (İngilizce):</strong> \\(a(2)=v'(2)\\approx -1.033\\) cm/s². The speed is <strong>decreasing</strong> at \\(t=2\\) because \\(v(2)\\approx 0.983>0\\) and \\(a(2)<0\\) have opposite signs.</p>",
+    "sik_hatalar": [
+     "Yalnız ivmenin negatif olmasına bakıp ‘speed decreasing’ demek; velocity'nin işaretini de belirtmek gerekir.",
+     "Velocity (hız, işaretli) ile speed (sürat, |v|) kavramlarını karıştırmak."
+    ],
+    "ne_soruyor": "Bir andaki ivmeyi bulmanı ve süratin artıp azaldığını hız ile ivmenin işaretlerini karşılaştırarak gerekçelendirmeni istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "Find all times \\(t\\), for \\(0 < t < 5\\), at which the bead changes direction. Give a reason for your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(v(t)=0\\) çözümleri: \\(t\\approx 0.417\\) ve \\(t\\approx 2.724\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Gerekçe: v her iki noktada işaret değiştirir (− → + ve + → −).",
+      "ornek_cevap": "The bead changes direction at t ≈ 0.417 and t ≈ 2.724 because v(t) changes sign at each of these times."
+     }
+    ],
+    "ornek_cozum": "<p>\\(v(t)=0 \\iff e^{\\sin t}=1.5 \\iff \\sin t=\\ln 1.5\\approx 0.405\\). \\((0,5)\\) aralığında çözümler: \\(t\\approx 0.417\\) ve \\(t\\approx 2.724\\).</p><p>İşaret: \\(0<t<0.417\\) için \\(v<0\\); \\(0.417<t<2.724\\) için \\(v>0\\); \\(2.724<t<5\\) için \\(v<0\\). Her iki sıfırda işaret değişiyor.</p><p><strong>Cevap (İngilizce):</strong> The bead changes direction at \\(t\\approx 0.417\\) and \\(t\\approx 2.724\\) because \\(v(t)\\) changes sign at each of these times.</p>",
+    "sik_hatalar": [
+     "v = 0 olan noktayı bulup işaret değişimini kontrol etmemek (yön değişimi için işaret değişmeli).",
+     "\\(t=\\pi-0.417\\) çözümünü kaçırmak."
+    ],
+    "ne_soruyor": "Hızın işaret değiştirdiği anları bulmanı ve neden yön değişimi olduğunu açıklamanı istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "Find the total distance traveled by the bead over the time interval \\(0 \\le t \\le 5\\).",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Doğru integral: \\(\\int_0^5 |v(t)|\\,dt\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Cevap ≈ 3.743 cm.",
+      "ornek_cevap": "The total distance traveled is about 3.743 centimeters."
+     }
+    ],
+    "ornek_cozum": "<p>Toplam yol, süratin integralidir:</p>\\[\\int_0^5 \\big|e^{\\sin t}-1.5\\big|\\,dt\\approx 3.743\\]<p>(İsteyen işaret aralıklarına bölerek de hesaplayabilir; sonuç aynı.)</p><p><strong>Cevap (İngilizce):</strong> Total distance \\(=\\int_0^5|v(t)|\\,dt\\approx 3.743\\) cm.</p>",
+    "sik_hatalar": [
+     "Mutlak değer olmadan \\(\\int_0^5 v(t)\\,dt\\) almak — bu yer değiştirmedir (≈ −0.311).",
+     "Birimi yazmamak."
+    ],
+    "ne_soruyor": "Yer değiştirme ile toplam yolu ayırt ederek toplam yolu bulmanı istiyor."
+   },
+   {
+    "harf": "d",
+    "soru": "Find the position of the bead at the time when it is farthest to the left over the interval \\(0 \\le t \\le 5\\). Justify your answer.",
+    "puan": 3,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Adaylar: uç noktalar ve \\(v\\)'nin −’dan +’ya geçtiği \\(t\\approx 0.417\\) (konum \\(x(T)=2+\\int_0^T v(t)\\,dt\\))."
+     },
+     {
+      "puan": 1,
+      "olcut": "Değerler: \\(x(0)=2\\), \\(x(0.417)\\approx 1.890\\), \\(x(5)\\approx 1.689\\) (ve \\(x(2.724)\\approx 3.606\\))."
+     },
+     {
+      "puan": 1,
+      "olcut": "Sonuç: en solda t = 5'te, x ≈ 1.689 (aday karşılaştırmasıyla).",
+      "ornek_cevap": "The bead is farthest to the left at t = 5, at position x ≈ 1.689."
+     }
+    ],
+    "ornek_cozum": "<p>Konum: \\(x(T)=2+\\int_0^T v(t)\\,dt\\). En sol nokta, \\(x\\)'in mutlak minimumudur. Adaylar: uç noktalar ve kritik noktalar.</p><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">\\(t\\)</th><th scope=\"col\">\\(x(t)\\)</th></tr></thead><tbody><tr><td>0</td><td>2</td></tr><tr><td>0.417</td><td>\\(\\approx 1.890\\)</td></tr><tr><td>2.724</td><td>\\(\\approx 3.606\\)</td></tr><tr><td>5</td><td>\\(\\approx 1.689\\)</td></tr></tbody></table><p>En küçük değer \\(t=5\\)'te. Dikkat: iç kritik nokta (\\(t\\approx0.417\\)) yerel minimum ama mutlak minimum değil.</p><p><strong>Cevap (İngilizce):</strong> Comparing \\(x(0)=2\\), \\(x(0.417)\\approx 1.890\\), \\(x(2.724)\\approx 3.606\\), and \\(x(5)\\approx 1.689\\), the bead is farthest to the left at \\(t=5\\), at position \\(x\\approx 1.689\\).</p>",
+    "sik_hatalar": [
+     "Yalnız iç kritik noktaya bakıp t ≈ 0.417'yi cevap vermek; uç nokta t = 5 daha küçük.",
+     "Başlangıç konumu 2'yi integrale eklemeyi unutmak."
+    ],
+    "ne_soruyor": "Hız fonksiyonundan konumu kurup en sol konumu aday testiyle bulmanı ve gerekçelendirmeni istiyor."
+   }
+  ],
+  "toplam_puan": 9,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "8.2, 4.2, 5.5",
+   "tip": "Particle Motion with a Velocity Function (Calculator Active)"
+  }
+ },
+ {
+  "id": "frq-calc-ab-k4",
+  "sayfa": "ap-calculus",
+  "ders": "calculus-ab",
+  "tur": "Türev grafiği analizi (hesap makinesiz)",
+  "baslik": "Graph of f′ with a Semicircle",
+  "sure_dk": 15,
+  "hesapMakinesi": false,
+  "zorluk": "medium",
+  "giris": "<p>Let \\(f\\) be a differentiable function on the closed interval \\([-4, 5]\\) with \\(f(0) = 3\\). The graph of \\(f'\\), the derivative of \\(f\\), consists of four pieces:</p><ul><li>the line segment from \\((-4, -2)\\) to \\((-2, 2)\\);</li><li>the line segment from \\((-2, 2)\\) to \\((0, 0)\\);</li><li>the lower half of the circle with center \\((2, 0)\\) and radius 2, from \\((0, 0)\\) to \\((4, 0)\\), that is, \\(f'(x) = -\\sqrt{4-(x-2)^2}\\) for \\(0 \\le x \\le 4\\);</li><li>the line segment from \\((4, 0)\\) to \\((5, 2)\\).</li></ul><p>Selected values of \\(f'\\) are shown in the table.</p><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">\\(x\\)</th><th scope=\"col\">−4</th><th scope=\"col\">−3</th><th scope=\"col\">−2</th><th scope=\"col\">0</th><th scope=\"col\">2</th><th scope=\"col\">4</th><th scope=\"col\">5</th></tr></thead><tbody><tr><th scope=\"row\">\\(f'(x)\\)</th><td>−2</td><td>0</td><td>2</td><td>0</td><td>−2</td><td>0</td><td>2</td></tr></tbody></table>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "Find the \\(x\\)-coordinate of each point at which \\(f\\) has a relative minimum on the open interval \\(-4 < x < 5\\). Justify your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Cevap: x = −3 ve x = 4.",
+      "ornek_cevap": "f has a relative minimum at x = −3 and at x = 4."
+     },
+     {
+      "puan": 1,
+      "olcut": "Gerekçe: f′ bu noktalarda negatiften pozitife geçer.",
+      "ornek_cevap": "f′(x) changes from negative to positive at x = −3 and at x = 4."
+     }
+    ],
+    "ornek_cozum": "<p>Göreli minimum: \\(f'\\) negatiften pozitife geçer. Grafiğe göre \\(f'<0\\) için \\(-4<x<-3\\) ve \\(0<x<4\\); \\(f'>0\\) için \\(-3<x<0\\) ve \\(4<x<5\\).</p><p>\\(x=-3\\): − → + ✔. \\(x=0\\): + → − (bu göreli maksimum). \\(x=4\\): − → + ✔.</p><p><strong>Cevap (İngilizce):</strong> \\(f\\) has a relative minimum at \\(x=-3\\) and at \\(x=4\\) because \\(f'(x)\\) changes from negative to positive at each of these values.</p>",
+    "sik_hatalar": [
+     "x = 0'ı da minimum saymak — orada f′ + → − geçer, göreli maksimumdur.",
+     "‘f′ = 0 olduğu için minimum’ demek; işaret değişimi yazılmalı."
+    ],
+    "ne_soruyor": "Türev grafiğinden göreli minimum noktalarını bulmanı ve birinci türev testiyle gerekçelendirmeni istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "Find the open interval(s) on which the graph of \\(f\\) is concave down. Give a reason for your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Cevap: (−2, 2).",
+      "ornek_cevap": "The graph of f is concave down on (−2, 2)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Gerekçe: bu aralıkta f′ azalan.",
+      "ornek_cevap": "On (−2, 2), f′ is decreasing."
+     }
+    ],
+    "ornek_cozum": "<p>\\(f\\) aşağı bükeyse \\(f''<0\\), yani \\(f'\\) azalandır.</p><p>\\(f'\\): \\((-4,-2)\\)'de artıyor (eğim 2), \\((-2,0)\\)'da azalıyor (eğim −1), \\((0,2)\\)'de yarım çemberin inen kısmı → azalıyor, \\((2,4)\\)'te çıkan kısmı → artıyor, \\((4,5)\\)'te artıyor.</p><p><strong>Cevap (İngilizce):</strong> The graph of \\(f\\) is concave down on \\((-2,2)\\) because \\(f'\\) is decreasing on that interval.</p>",
+    "sik_hatalar": [
+     "f′'nün negatif olduğu aralığı (0, 4) vermek — bükeylik f′'nün işaretine değil, artıp azalmasına bağlıdır.",
+     "Yarım çemberin yükselen kısmını (2 < x < 4) da aşağı bükey aralığa eklemek — orada f′ artıyor."
+    ],
+    "ne_soruyor": "Türev grafiğinin artan/azalan oluşundan bükeylik aralığını bulmanı ve nedenini yazmanı istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "Find \\(f(-4)\\) and \\(f(5)\\).",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(f(-4)=3-\\int_{-4}^{0}f'(x)\\,dx=1\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "\\(f(5)=3+\\int_0^5 f'(x)\\,dx=4-2\\pi\\)."
+     }
+    ],
+    "ornek_cozum": "<p>Analizin temel teoremi: \\(f(b)=f(0)+\\int_0^b f'(x)\\,dx\\).</p><p>\\(\\int_{-4}^{0}f'\\): \\([-4,-3]\\) üçgen alanı \\(-1\\) (eksen altında), \\([-3,-2]\\) üçgen \\(+1\\), \\([-2,0]\\) üçgen \\(\\tfrac12\\cdot2\\cdot2=+2\\). Toplam \\(2\\). O hâlde \\(f(-4)=3-2=1\\).</p><p>\\(\\int_0^5 f'\\): yarım çember alanı \\(\\tfrac12\\pi\\cdot 2^2=2\\pi\\) eksen altında → \\(-2\\pi\\); \\([4,5]\\) üçgeni \\(+1\\). \\(f(5)=3-2\\pi+1=4-2\\pi\\).</p><p><strong>Cevap (İngilizce):</strong> \\(f(-4)=3-\\int_{-4}^{0}f'(x)\\,dx=3-2=1\\) and \\(f(5)=3+\\int_0^5 f'(x)\\,dx=3-2\\pi+1=4-2\\pi\\).</p>",
+    "sik_hatalar": [
+     "\\(f(-4)\\) için integrali eklemek: \\(f(-4)=f(0)-\\int_{-4}^0 f'\\) (sınırların yönü).",
+     "Yarım çember alanını \\(\\pi r^2=4\\pi\\) almak."
+    ],
+    "ne_soruyor": "Türev grafiğinin altındaki işaretli alanları kullanarak fonksiyonun iki değerini bulmanı istiyor."
+   },
+   {
+    "harf": "d",
+    "soru": "Find the absolute maximum value and the absolute minimum value of \\(f\\) on the closed interval \\([-4, 5]\\). Justify your answers.",
+    "puan": 3,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Aday testi: uç noktalar ve kritik noktalar \\(x=-3,0,4\\) için \\(f\\) değerleri (\\(1, 0, 3, 3-2\\pi, 4-2\\pi\\))."
+     },
+     {
+      "puan": 1,
+      "olcut": "Mutlak maksimum 3 (x = 0'da).",
+      "ornek_cevap": "The absolute maximum value of f is 3."
+     },
+     {
+      "puan": 1,
+      "olcut": "Mutlak minimum 3 − 2π (x = 4'te).",
+      "ornek_cevap": "The absolute minimum value of f is 3 − 2π."
+     }
+    ],
+    "ornek_cozum": "<p>Kritik noktalar (\\(f'=0\\)): \\(x=-3,0,4\\). \\(f(-3)=3-\\int_{-3}^{0}f'=3-(1+2)=0\\); \\(f(4)=3+\\int_0^4 f'=3-2\\pi\\).</p><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">\\(x\\)</th><th scope=\"col\">−4</th><th scope=\"col\">−3</th><th scope=\"col\">0</th><th scope=\"col\">4</th><th scope=\"col\">5</th></tr></thead><tbody><tr><th scope=\"row\">\\(f(x)\\)</th><td>1</td><td>0</td><td>3</td><td>\\(3-2\\pi\\approx-3.28\\)</td><td>\\(4-2\\pi\\approx-2.28\\)</td></tr></tbody></table><p><strong>Cevap (İngilizce):</strong> By the candidates test, the absolute maximum value of \\(f\\) on \\([-4,5]\\) is \\(3\\) (at \\(x=0\\)) and the absolute minimum value is \\(3-2\\pi\\) (at \\(x=4\\)).</p>",
+    "sik_hatalar": [
+     "Yalnız göreli ekstremumlara bakıp uç noktaları (x = −4, x = 5) atlamak.",
+     "x-değerini (x = 0) ‘değer’ diye vermek; soru f'nin değerini istiyor."
+    ],
+    "ne_soruyor": "Kapalı aralıkta fonksiyonun en büyük ve en küçük değerini aday testiyle bulmanı istiyor."
+   }
+  ],
+  "toplam_puan": 9,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "5.4, 5.5, 5.6, 6.3",
+   "tip": "Analysis of the Graph of f′ (No Calculator)"
+  }
+ },
+ {
+  "id": "frq-calc-ab-k5",
+  "sayfa": "ap-calculus",
+  "ders": "calculus-ab",
+  "tur": "Doğrusal hareket (hesap makinesiz)",
+  "baslik": "Delivery Robot in a Hallway",
+  "sure_dk": 15,
+  "hesapMakinesi": false,
+  "zorluk": "easy",
+  "giris": "<p>A delivery robot moves back and forth along a straight hallway, modeled as the \\(x\\)-axis. Its velocity is given by \\[v(t) = 2t^2 - 10t + 8\\] for \\(0 \\le t \\le 5\\), where \\(t\\) is measured in minutes and \\(v(t)\\) is measured in meters per minute. At time \\(t = 0\\), the robot is at position \\(x = 1\\).</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "For \\(0 < t < 5\\), on what open interval(s) is the robot moving to the left? Give a reason for your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(v(t)=2(t-1)(t-4)\\) sıfırları t = 1, t = 4."
+     },
+     {
+      "puan": 1,
+      "olcut": "Cevap: 1 < t < 4, çünkü bu aralıkta v(t) < 0.",
+      "ornek_cevap": "The robot moves to the left on 1 < t < 4 because v(t) < 0 there."
+     }
+    ],
+    "ornek_cozum": "<p>\\(v(t)=2t^2-10t+8=2(t^2-5t+4)=2(t-1)(t-4)\\).</p><p>\\(1<t<4\\) için çarpanlardan biri pozitif biri negatif → \\(v(t)<0\\) → sola hareket.</p><p><strong>Cevap (İngilizce):</strong> The robot is moving to the left on \\(1<t<4\\) because \\(v(t)=2(t-1)(t-4)<0\\) on that interval.</p>",
+    "sik_hatalar": [
+     "v < 0 yerine a < 0 olan aralığı vermek.",
+     "Çarpanlara ayırırken 2 katsayısını unutup kökleri yanlış bulmak."
+    ],
+    "ne_soruyor": "Hızın işaretinden hareket yönünü belirlemeni istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "Is the speed of the robot increasing or decreasing at time \\(t = 3\\)? Give a reason for your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(v(3)=-4\\) ve \\(a(3)=v'(3)=2\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Sonuç: işaretler zıt ⇒ sürat azalıyor.",
+      "ornek_cevap": "The speed is decreasing at t = 3 because v(3) < 0 and a(3) > 0."
+     }
+    ],
+    "ornek_cozum": "<p>\\(v(3)=18-30+8=-4\\). \\(a(t)=v'(t)=4t-10\\), \\(a(3)=2\\).</p><p>Hız negatif, ivme pozitif → zıt işaret → sürat azalıyor.</p><p><strong>Cevap (İngilizce):</strong> \\(v(3)=-4<0\\) and \\(a(3)=2>0\\). Because they have opposite signs, the speed of the robot is <strong>decreasing</strong> at \\(t=3\\).</p>",
+    "sik_hatalar": [
+     "‘a > 0 olduğu için sürat artıyor’ demek.",
+     "\\(v(3)\\) değerini hesaplamadan karar vermek."
+    ],
+    "ne_soruyor": "Belirli bir anda süratin değişimini hız ve ivmenin işaretleriyle gerekçelendirmeni istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "Find the position of the robot at time \\(t = 5\\). Find the total distance the robot travels over the interval \\(0 \\le t \\le 5\\).",
+    "puan": 3,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Konum fonksiyonu \\(x(t)=1+\\tfrac23t^3-5t^2+8t\\) (ya da eşdeğer integral)."
+     },
+     {
+      "puan": 1,
+      "olcut": "\\(x(5)=-\\tfrac23\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Toplam yol \\(\\tfrac{49}{3}\\) m.",
+      "ornek_cevap": "The total distance traveled is 49/3 meters."
+     }
+    ],
+    "ornek_cozum": "<p>\\(x(t)=1+\\int_0^t v(s)\\,ds=1+\\tfrac23t^3-5t^2+8t\\).</p><p>\\(x(0)=1\\), \\(x(1)=\\tfrac{14}{3}\\), \\(x(4)=-\\tfrac{13}{3}\\), \\(x(5)=-\\tfrac23\\).</p><p>Yön t = 1 ve t = 4'te değişir; toplam yol parçaların mutlak değerleri:</p>\\[\\left|\\tfrac{14}{3}-1\\right|+\\left|-\\tfrac{13}{3}-\\tfrac{14}{3}\\right|+\\left|-\\tfrac23+\\tfrac{13}{3}\\right|=\\tfrac{11}{3}+9+\\tfrac{11}{3}=\\tfrac{49}{3}\\]<p><strong>Cevap (İngilizce):</strong> \\(x(5)=-\\tfrac23\\) and the total distance traveled is \\(\\int_0^5|v(t)|\\,dt=\\tfrac{49}{3}\\) meters.</p>",
+    "sik_hatalar": [
+     "Toplam yol yerine \\(|x(5)-x(0)|=\\tfrac53\\) vermek.",
+     "Başlangıç konumunu (1) eklemeyi unutmak."
+    ],
+    "ne_soruyor": "Hızdan konumu bulmanı ve yön değişimlerini hesaba katarak toplam yolu hesaplamanı istiyor."
+   },
+   {
+    "harf": "d",
+    "soru": "Find the average velocity of the robot over the interval \\(0 \\le t \\le 5\\). Must there be a time \\(t\\), for \\(0 < t < 5\\), at which the velocity of the robot equals this average velocity? Justify your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Ortalama hız \\(\\frac{x(5)-x(0)}{5}=-\\tfrac13\\) m/dk."
+     },
+     {
+      "puan": 1,
+      "olcut": "MVT: x türevlenebilir (polinom) ⇒ ‘Evet’.",
+      "ornek_cevap": "Yes. x(t) is differentiable (a polynomial), so by the Mean Value Theorem there is a time c in (0, 5) with v(c) = −1/3."
+     }
+    ],
+    "ornek_cozum": "<p>Ortalama hız = yer değiştirme / süre: \\(\\dfrac{x(5)-x(0)}{5-0}=\\dfrac{-\\frac23-1}{5}=-\\dfrac13\\).</p><p>\\(x(t)\\) bir polinom: \\([0,5]\\)'te sürekli, \\((0,5)\\)'te türevlenebilir. Ortalama Değer Teoremi: bir \\(c\\) için \\(x'(c)=v(c)=-\\tfrac13\\).</p><p><strong>Cevap (İngilizce):</strong> The average velocity is \\(-\\tfrac13\\) meter per minute. <strong>Yes</strong>: \\(x\\) is continuous on \\([0,5]\\) and differentiable on \\((0,5)\\), so by the Mean Value Theorem there is a \\(c\\) in \\((0,5)\\) with \\(v(c)=-\\tfrac13\\).</p>",
+    "sik_hatalar": [
+     "Ortalama hızı \\(\\frac{v(0)+v(5)}{2}\\) ile hesaplamak.",
+     "Ortalama hız yerine ortalama sürati (toplam yol / süre) kullanmak."
+    ],
+    "ne_soruyor": "Ortalama hızı bulmanı ve anlık hızın bu değere eşit olduğu bir anın varlığını teoremle gerekçelendirmeni istiyor."
+   }
+  ],
+  "toplam_puan": 9,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "4.2, 8.2, 5.1",
+   "tip": "Particle Motion (No Calculator)"
+  }
+ },
+ {
+  "id": "frq-calc-ab-k6",
+  "sayfa": "ap-calculus",
+  "ders": "calculus-ab",
+  "tur": "Örtük türev ve ilişkili oranlar (hesap makinesiz)",
+  "baslik": "A Curve Defined Implicitly",
+  "sure_dk": 15,
+  "hesapMakinesi": false,
+  "zorluk": "hard",
+  "giris": "<p>Consider the curve given by the equation \\[y^2 - 2xy - x^2 + x^3 = 4.\\]</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "Show that \\(\\dfrac{dy}{dx} = \\dfrac{2x + 2y - 3x^2}{2y - 2x}\\).",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Örtük türev: \\(2y\\frac{dy}{dx}-2y-2x\\frac{dy}{dx}-2x+3x^2=0\\) (çarpım kuralı doğru)."
+     },
+     {
+      "puan": 1,
+      "olcut": "\\(\\frac{dy}{dx}\\)'i yalnız bırakıp verilen ifadeye ulaşmak."
+     }
+    ],
+    "ornek_cozum": "<p>Her iki tarafın \\(x\\)'e göre türevi (\\(y\\), \\(x\\)'in fonksiyonu; \\(2xy\\) için çarpım kuralı):</p>\\[2y\\frac{dy}{dx}-\\left(2y+2x\\frac{dy}{dx}\\right)-2x+3x^2=0\\]\\[\\frac{dy}{dx}(2y-2x)=2y+2x-3x^2\\]<p><strong>Cevap (İngilizce):</strong> \\(2y\\,y'-2y-2x\\,y'-2x+3x^2=0\\), so \\(y'(2y-2x)=2x+2y-3x^2\\) and \\(\\dfrac{dy}{dx}=\\dfrac{2x+2y-3x^2}{2y-2x}\\).</p>",
+    "sik_hatalar": [
+     "\\(2xy\\) teriminin türevini \\(2y\\) ya da \\(2x\\,y'\\) diye tek parça almak (çarpım kuralı).",
+     "\\(y^2\\)'nin türevini \\(2y\\) yazıp \\(\\frac{dy}{dx}\\) çarpanını unutmak."
+    ],
+    "ne_soruyor": "Örtük türev alarak verilen türev ifadesine adım adım ulaşmanı istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "The point \\((0, 2)\\) is on the curve. A particle moves along the curve. At the instant the particle passes through the point \\((0, 2)\\), its \\(x\\)-coordinate is increasing at a rate of 3 units per second. Find the rate of change of the \\(y\\)-coordinate of the particle with respect to time at that instant. Is the \\(y\\)-coordinate increasing or decreasing at that instant?",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\((0,2)\\)'de \\(\\frac{dy}{dx}=1\\) ve \\(\\frac{dy}{dt}=\\frac{dy}{dx}\\cdot\\frac{dx}{dt}\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Cevap: dy/dt = 3 birim/s; y artıyor.",
+      "ornek_cevap": "dy/dt = 3 units per second, so the y-coordinate is increasing."
+     }
+    ],
+    "ornek_cozum": "<p>\\((0,2)\\) noktasında: \\(\\dfrac{dy}{dx}=\\dfrac{0+4-0}{4-0}=1\\).</p><p>Zincir kuralı: \\(\\dfrac{dy}{dt}=\\dfrac{dy}{dx}\\cdot\\dfrac{dx}{dt}=1\\cdot 3=3\\).</p><p><strong>Cevap (İngilizce):</strong> At \\((0,2)\\), \\(\\frac{dy}{dx}=1\\), so \\(\\frac{dy}{dt}=\\frac{dy}{dx}\\cdot\\frac{dx}{dt}=1\\cdot 3=3\\) units per second; the \\(y\\)-coordinate is <strong>increasing</strong>.</p>",
+    "sik_hatalar": [
+     "dx/dt'yi eğimle çarpmak yerine eğime bölmek.",
+     "Noktayı türev ifadesine yanlış sırayla (x ↔ y) koymak."
+    ],
+    "ne_soruyor": "Eğri üzerinde hareket eden bir noktanın y-koordinatının zamana göre değişim hızını zincir kuralıyla bulmanı istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "There are two points on the curve at which \\(x = 2\\). Find the \\(y\\)-coordinate of each of these points, and determine at which of these points the line tangent to the curve is horizontal. Show the work that leads to your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "x = 2 için y² − 4y = 0 ⇒ y = 0 ve y = 4."
+     },
+     {
+      "puan": 1,
+      "olcut": "Yatay teğet yalnız \\((2,4)\\)'te: pay \\(4+8-12=0\\), payda \\(4\\ne0\\); \\((2,0)\\)'da eğim 2.",
+      "ornek_cevap": "The tangent line is horizontal at (2, 4), since dy/dx = 0 there."
+     }
+    ],
+    "ornek_cozum": "<p>\\(x=2\\): \\(y^2-4y-4+8=4\\Rightarrow y^2-4y=0\\Rightarrow y=0\\) ya da \\(y=4\\).</p><p>\\((2,0)\\): \\(\\dfrac{dy}{dx}=\\dfrac{4+0-12}{0-4}=2\\) → yatay değil.</p><p>\\((2,4)\\): \\(\\dfrac{dy}{dx}=\\dfrac{4+8-12}{8-4}=\\dfrac{0}{4}=0\\) → yatay teğet.</p><p><strong>Cevap (İngilizce):</strong> The points are \\((2,0)\\) and \\((2,4)\\). At \\((2,4)\\), \\(\\frac{dy}{dx}=\\frac{0}{4}=0\\), so the tangent line is horizontal at \\((2,4)\\); at \\((2,0)\\) the slope is 2.</p>",
+    "sik_hatalar": [
+     "Yalnız payın 0 olduğunu kontrol edip paydanın 0 olmadığını yazmamak.",
+     "y² − 4y = 0 denkleminde y = 0 kökünü kaybetmek (iki tarafı y'ye bölmek)."
+    ],
+    "ne_soruyor": "Verilen x için eğri üzerindeki noktaları bulmanı ve hangisinde teğetin yatay olduğunu türevle göstermeni istiyor."
+   },
+   {
+    "harf": "d",
+    "soru": "Find the value of \\(\\dfrac{d^2y}{dx^2}\\) at the point \\((2, 4)\\). Does the curve have a relative maximum, a relative minimum, or neither at the point \\((2, 4)\\)? Justify your answer.",
+    "puan": 3,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "İkinci örtük türev: \\((2y'-2)y'+(2y-2x)y''=2+2y'-6x\\) (ya da eşdeğeri)."
+     },
+     {
+      "puan": 1,
+      "olcut": "\\((2,4)\\)'te \\(y'=0\\) ile \\(y''=-\\tfrac52\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Sonuç: y′ = 0 ve y″ < 0 ⇒ göreli maksimum (ikinci türev testi).",
+      "ornek_cevap": "Since dy/dx = 0 and d²y/dx² = −5/2 < 0 at (2, 4), the curve has a relative maximum at (2, 4)."
+     }
+    ],
+    "ornek_cozum": "<p>\\((2y-2x)\\,y'=2x+2y-3x^2\\) eşitliğinin iki tarafının \\(x\\)'e göre türevi:</p>\\[(2y'-2)\\,y'+(2y-2x)\\,y''=2+2y'-6x\\]<p>\\((2,4)\\)'te \\(y'=0\\): \\((0-2)\\cdot 0+(8-4)\\,y''=2+0-12\\Rightarrow 4y''=-10\\Rightarrow y''=-\\tfrac52\\).</p><p>Yatay teğet (\\(y'=0\\)) ve \\(y''<0\\) (aşağı bükey) → ikinci türev testi: göreli maksimum.</p><p><strong>Cevap (İngilizce):</strong> \\(\\dfrac{d^2y}{dx^2}=-\\dfrac52\\) at \\((2,4)\\). Because \\(\\frac{dy}{dx}=0\\) and \\(\\frac{d^2y}{dx^2}<0\\) there, the curve has a <strong>relative maximum</strong> at \\((2,4)\\) by the Second Derivative Test.</p>",
+    "sik_hatalar": [
+     "Bölüm kuralıyla uzun yoldan gidip işlem hatası yapmak — çarpım biçimini türevlemek daha güvenli.",
+     "y″ < 0 iken ‘minimum’ demek; ya da y′ = 0 koşulunu belirtmeden ikinci türev testi uygulamak."
+    ],
+    "ne_soruyor": "Bir noktada ikinci türevin değerini örtük olarak bulmanı ve ikinci türev testiyle eğrinin o noktadaki davranışını gerekçelendirmeni istiyor."
+   }
+  ],
+  "toplam_puan": 9,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "3.2, 3.6, 4.5, 5.12",
+   "tip": "Implicit Differentiation and Related Rates (No Calculator)"
+  }
+ },
+ {
+  "id": "frq-calc-ab-k7",
+  "sayfa": "ap-calculus",
+  "ders": "calculus-ab",
+  "tur": "Diferansiyel denklem (hesap makinesiz)",
+  "baslik": "A Separable Equation with a Restricted Domain",
+  "sure_dk": 15,
+  "hesapMakinesi": false,
+  "zorluk": "medium",
+  "giris": "<p>Consider the differential equation \\[\\frac{dy}{dx} = y^2(2x - 1).\\]</p><p>A slope field for this differential equation is to be drawn on the grid \\(-1 \\le x \\le 2\\), \\(-2 \\le y \\le 3\\). (Sketch any slope segments on paper.) Let \\(y = f(x)\\) be the particular solution to the differential equation with the initial condition \\(f(1) = \\tfrac12\\).</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "Find the value of \\(\\dfrac{dy}{dx}\\) at each of the points \\((0, 1)\\), \\((1, 1)\\), \\(\\left(\\tfrac12, 3\\right)\\), and \\((0, -2)\\). Describe the slope segments in the slope field along the \\(x\\)-axis and along the vertical line \\(x = \\tfrac12\\).",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Dört eğim: −1, 1, 0, −4."
+     },
+     {
+      "puan": 1,
+      "olcut": "Betimleme: x-ekseni (y = 0) ve x = 1/2 boyunca tüm eğimler 0 — yatay segmentler.",
+      "ornek_cevap": "Along the x-axis and along the line x = 1/2, every slope segment is horizontal (slope 0)."
+     }
+    ],
+    "ornek_cozum": "<p>\\((0,1)\\): \\(1\\cdot(0-1)=-1\\). \\((1,1)\\): \\(1\\cdot(2-1)=1\\). \\((\\tfrac12,3)\\): \\(9\\cdot 0=0\\). \\((0,-2)\\): \\(4\\cdot(-1)=-4\\).</p><p>\\(y=0\\) iken \\(y^2=0\\) → eğim 0. \\(x=\\tfrac12\\) iken \\(2x-1=0\\) → eğim 0. İki doğru boyunca da segmentler yataydır.</p><p><strong>Cevap (İngilizce):</strong> The slopes are \\(-1,\\ 1,\\ 0,\\ -4\\). Along the \\(x\\)-axis and along the line \\(x=\\tfrac12\\), all slope segments are <strong>horizontal</strong> (slope 0).</p>",
+    "sik_hatalar": [
+     "\\((0,-2)\\) noktasında \\(y^2\\)'yi \\(-4\\) almak (kare her zaman pozitif).",
+     "Yalnız sayıları verip doğrular boyunca segmentlerin yatay olduğunu yazmamak."
+    ],
+    "ne_soruyor": "Diferansiyel denklemi verilen noktalarda değerlendirmeni ve iki doğru boyunca eğim segmentlerinin nasıl göründüğünü betimlemeni istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "Find \\(y = f(x)\\), the particular solution to the differential equation with the initial condition \\(f(1) = \\tfrac12\\). State the domain of \\(f\\).",
+    "puan": 5,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Değişkenleri ayırma: dy / y² = (2x − 1) dx."
+     },
+     {
+      "puan": 1,
+      "olcut": "Ters türevler: \\(-\\frac1y=x^2-x+C\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Başlangıç koşuluyla \\(C=-2\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "\\(y=\\dfrac{1}{2+x-x^2}\\) (ya da eşdeğeri)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Tanım kümesi: −1 < x < 2 (x = 1'i içeren, paydanın sıfır olmadığı aralık).",
+      "ornek_cevap": "The domain of f is −1 < x < 2."
+     }
+    ],
+    "ornek_cozum": "<p><strong>Ayır:</strong> \\(\\dfrac{dy}{y^2}=(2x-1)\\,dx\\).</p><p><strong>İntegral al:</strong> \\(-\\dfrac1y=x^2-x+C\\).</p><p><strong>Sabit:</strong> \\(x=1,\\ y=\\tfrac12\\): \\(-2=1-1+C\\Rightarrow C=-2\\).</p><p><strong>y'yi çöz:</strong> \\(-\\dfrac1y=x^2-x-2\\Rightarrow y=\\dfrac{-1}{x^2-x-2}=\\dfrac{1}{2+x-x^2}=\\dfrac{-1}{(x-2)(x+1)}\\).</p><p><strong>Tanım kümesi:</strong> Payda \\(x=-1\\) ve \\(x=2\\)'de sıfır; çözüm, başlangıç noktası \\(x=1\\)'i içeren aralıkta tanımlıdır: \\(-1<x<2\\).</p><p><strong>Cevap (İngilizce):</strong> \\(f(x)=\\dfrac{1}{2+x-x^2}\\), with domain \\(-1<x<2\\).</p>",
+    "sik_hatalar": [
+     "Ayırmadan önce integral almak ya da \\(\\int y^{-2}dy\\)'yi \\(\\ln y^2\\) sanmak.",
+     "C'yi sona ekleyip başlangıç koşulunu kullanmamak; işaret hatası (\\(-1/y\\)).",
+     "Tanım kümesini ‘x ≠ −1, 2’ diye vermek — çözüm x = 1'i içeren tek aralıktır."
+    ],
+    "ne_soruyor": "Değişkenlerine ayrılabilir denklemi başlangıç koşuluyla çözmeni ve çözümün tanım aralığını belirlemeni istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "Find \\(\\dfrac{d^2y}{dx^2}\\) in terms of \\(x\\) and \\(y\\). Does \\(f\\) have a relative minimum, a relative maximum, or neither at \\(x = \\tfrac12\\)? Justify your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(\\dfrac{d^2y}{dx^2}=2y\\dfrac{dy}{dx}(2x-1)+2y^2=2y^3(2x-1)^2+2y^2\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "\\(x=\\tfrac12\\)'de \\(f'=0\\) ve \\(f''=2y^2>0\\) (\\(y\\neq0\\)) ⇒ göreli minimum.",
+      "ornek_cevap": "f′(1/2) = 0 and f″(1/2) = 2f(1/2)² > 0, so f has a relative minimum at x = 1/2."
+     }
+    ],
+    "ornek_cozum": "<p>Çarpım ve zincir kuralı:</p>\\[\\frac{d^2y}{dx^2}=2y\\frac{dy}{dx}(2x-1)+y^2\\cdot 2=2y^3(2x-1)^2+2y^2\\]<p>\\(x=\\tfrac12\\)'de \\(\\frac{dy}{dx}=f(\\tfrac12)^2\\cdot 0=0\\). \\(f(\\tfrac12)=\\dfrac{1}{2+\\frac12-\\frac14}=\\dfrac49\\neq0\\), bu yüzden \\(\\dfrac{d^2y}{dx^2}=2\\left(\\tfrac49\\right)^2=\\tfrac{32}{81}>0\\).</p><p><strong>Cevap (İngilizce):</strong> \\(\\dfrac{d^2y}{dx^2}=2y^3(2x-1)^2+2y^2\\). At \\(x=\\tfrac12\\), \\(f'(\\tfrac12)=0\\) and \\(f''(\\tfrac12)=2\\left(\\tfrac49\\right)^2>0\\), so \\(f\\) has a <strong>relative minimum</strong> at \\(x=\\tfrac12\\) by the Second Derivative Test.</p>",
+    "sik_hatalar": [
+     "İkinci türevde \\(y^2\\)'nin türevini \\(2y\\) yazıp \\(\\frac{dy}{dx}\\) çarpanını unutmak.",
+     "f′(1/2) = 0 olduğunu göstermeden ikinci türev testine geçmek."
+    ],
+    "ne_soruyor": "İkinci türevi x ve y cinsinden bulmanı ve kritik noktada ikinci türev testiyle karar vermeni istiyor."
+   }
+  ],
+  "toplam_puan": 9,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "7.3, 7.7, 5.7",
+   "tip": "Differential Equation, Slope Field, and Separation of Variables (No Calculator)"
+  }
+ },
+ {
+  "id": "frq-calc-ab-k8",
+  "sayfa": "ap-calculus",
+  "ders": "calculus-ab",
+  "tur": "Alan ve hacim (hesap makinesiz)",
+  "baslik": "Region Between a Root Curve and a Line",
+  "sure_dk": 15,
+  "hesapMakinesi": false,
+  "zorluk": "medium",
+  "giris": "<p>Let \\(f(x) = \\sqrt{x}\\) and \\(g(x) = \\dfrac{x}{2}\\). The graphs of \\(f\\) and \\(g\\) intersect at \\(x = 0\\) and \\(x = 4\\). Let \\(R\\) be the region enclosed by the graphs of \\(f\\) and \\(g\\). For \\(0 < x < 4\\), \\(f(x) > g(x)\\).</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "Find the area of \\(R\\).",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "İntegral: \\(\\int_0^4\\left(\\sqrt x-\\frac x2\\right)dx\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Cevap \\(\\tfrac43\\).",
+      "ornek_cevap": "The area of R is 4/3."
+     }
+    ],
+    "ornek_cozum": "<p>Üst eğri \\(\\sqrt x\\), alt eğri \\(\\tfrac x2\\):</p>\\[\\int_0^4\\left(x^{1/2}-\\frac x2\\right)dx=\\left[\\frac23x^{3/2}-\\frac{x^2}{4}\\right]_0^4=\\frac{16}{3}-4=\\frac43\\]<p><strong>Cevap (İngilizce):</strong> Area \\(=\\int_0^4\\left(\\sqrt x-\\frac x2\\right)dx=\\frac43\\).</p>",
+    "sik_hatalar": [
+     "Alt − üst sırasıyla çıkarıp negatif alan bulmak.",
+     "\\(4^{3/2}\\)'yi 6 ya da 16 hesaplamak (doğrusu 8)."
+    ],
+    "ne_soruyor": "İki eğri arasındaki bölgenin alanını belirli integralle bulmanı istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "For \\(0 \\le x \\le 4\\), let \\(h(x) = f(x) - g(x)\\) be the length of the vertical segment in \\(R\\) at \\(x\\). Find the maximum value of \\(h\\) on \\([0, 4]\\). Justify your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(h'(x)=\\frac{1}{2\\sqrt x}-\\frac12=0\\Rightarrow x=1\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Aday testi: \\(h(0)=0,\\ h(1)=\\tfrac12,\\ h(4)=0\\) ⇒ maksimum \\(\\tfrac12\\).",
+      "ornek_cevap": "By the candidates test, the maximum value of h is 1/2, at x = 1."
+     }
+    ],
+    "ornek_cozum": "<p>\\(h(x)=\\sqrt x-\\tfrac x2\\), \\(h'(x)=\\dfrac{1}{2\\sqrt x}-\\dfrac12\\). \\(h'(x)=0\\Rightarrow\\sqrt x=1\\Rightarrow x=1\\).</p><p>Aday testi: \\(h(0)=0\\), \\(h(1)=1-\\tfrac12=\\tfrac12\\), \\(h(4)=2-2=0\\).</p><p><strong>Cevap (İngilizce):</strong> \\(h'(x)=0\\) only at \\(x=1\\). Comparing \\(h(0)=0\\), \\(h(1)=\\tfrac12\\), \\(h(4)=0\\), the maximum value of \\(h\\) on \\([0,4]\\) is \\(\\tfrac12\\).</p>",
+    "sik_hatalar": [
+     "x = 1'i ‘maksimum değer’ diye vermek; istenen h(1) = 1/2.",
+     "Uç noktaları kontrol etmemek (ya da h′'nün işaret değişimini göstermemek)."
+    ],
+    "ne_soruyor": "Bölgenin dikey kalınlığının en büyük değerini türevle bulmanı ve gerekçelendirmeni istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "Region \\(R\\) is the base of a solid. For this solid, each cross section perpendicular to the \\(x\\)-axis is a semicircle whose diameter lies in \\(R\\). Find the volume of the solid.",
+    "puan": 3,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Kesit alanı: \\(\\frac{\\pi}{8}\\left(\\sqrt x-\\frac x2\\right)^2\\) (çap \\(h(x)\\), yarıçap \\(h/2\\))."
+     },
+     {
+      "puan": 1,
+      "olcut": "Doğru integral ve ters türev: \\(\\frac{\\pi}{8}\\left[\\frac{x^2}{2}-\\frac25x^{5/2}+\\frac{x^3}{12}\\right]_0^4\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Cevap \\(\\dfrac{\\pi}{15}\\).",
+      "ornek_cevap": "The volume of the solid is π/15."
+     }
+    ],
+    "ornek_cozum": "<p>Yarım dairenin çapı \\(d=\\sqrt x-\\tfrac x2\\), alanı \\(\\tfrac12\\pi\\left(\\tfrac d2\\right)^2=\\tfrac{\\pi}{8}d^2\\).</p>\\[V=\\frac{\\pi}{8}\\int_0^4\\left(x-x^{3/2}+\\frac{x^2}{4}\\right)dx=\\frac{\\pi}{8}\\left[\\frac{x^2}{2}-\\frac25x^{5/2}+\\frac{x^3}{12}\\right]_0^4\\]\\[=\\frac{\\pi}{8}\\left(8-\\frac{64}{5}+\\frac{16}{3}\\right)=\\frac{\\pi}{8}\\cdot\\frac{8}{15}=\\frac{\\pi}{15}\\]<p><strong>Cevap (İngilizce):</strong> \\(V=\\dfrac{\\pi}{8}\\displaystyle\\int_0^4\\left(\\sqrt x-\\frac x2\\right)^2dx=\\dfrac{\\pi}{15}\\).</p>",
+    "sik_hatalar": [
+     "Yarıçap yerine çapı kullanıp \\(\\frac{\\pi}{2}d^2\\) yazmak.",
+     "\\((\\sqrt x-\\tfrac x2)^2\\) açılımında orta terimi (\\(-x^{3/2}\\)) unutmak."
+    ],
+    "ne_soruyor": "Bilinen kesitli bir cismin hacmini kesit alanını integralleyerek bulmanı istiyor."
+   },
+   {
+    "harf": "d",
+    "soru": "Write, but do not evaluate, an integral expression that gives the volume of the solid generated when \\(R\\) is rotated about the horizontal line \\(y = 2\\).",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Doğru yarıçaplar: dış \\(2-\\frac x2\\), iç \\(2-\\sqrt x\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Doğru sınırlar ve sabit: \\(\\pi\\int_0^4\\left[\\left(2-\\frac x2\\right)^2-\\left(2-\\sqrt x\\right)^2\\right]dx\\)."
+     }
+    ],
+    "ornek_cozum": "<p>\\(y=2\\) doğrusu bölgenin üstünde. Pul (washer) yöntemi: dönme ekseninden uzak olan eğri \\(\\tfrac x2\\) (alt eğri) → dış yarıçap \\(2-\\tfrac x2\\); yakın olan \\(\\sqrt x\\) → iç yarıçap \\(2-\\sqrt x\\).</p>\\[V=\\pi\\int_0^4\\left[\\left(2-\\frac x2\\right)^2-\\left(2-\\sqrt x\\right)^2\\right]dx\\]<p><strong>Cevap (İngilizce):</strong> \\(V=\\pi\\displaystyle\\int_0^4\\left[\\left(2-\\frac x2\\right)^2-\\left(2-\\sqrt x\\right)^2\\right]dx\\).</p>",
+    "sik_hatalar": [
+     "Yarıçapları \\(\\sqrt x\\) ve \\(\\tfrac x2\\) almak (x-ekseni etrafında döndürme gibi).",
+     "Dış ve iç yarıçapı ters yazıp negatif hacim elde etmek."
+    ],
+    "ne_soruyor": "Yatay bir doğru etrafında döndürülen bölgenin hacmi için pul yöntemiyle integral kurmanı istiyor."
+   }
+  ],
+  "toplam_puan": 9,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "8.4, 8.8, 8.12, 5.5",
+   "tip": "Area and Volume (No Calculator)"
+  }
+ },
+ {
+  "id": "frq-calc-ab-k9",
+  "sayfa": "ap-calculus",
+  "ders": "calculus-ab",
+  "tur": "Tablo: Riemann, MVT, IVT (hesap makinesiz)",
+  "baslik": "Vertical Velocity of a Drone",
+  "sure_dk": 15,
+  "hesapMakinesi": false,
+  "zorluk": "easy",
+  "giris": "<p>A drone moves straight up and down. Its vertical velocity is modeled by a differentiable function \\(v\\), where \\(v(t)\\) is measured in meters per second and \\(t\\) is measured in seconds. Positive velocity means the drone is moving up. Selected values of \\(v(t)\\) are given in the table. At time \\(t = 0\\), the drone is at an altitude of 30 meters.</p><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">\\(t\\) (seconds)</th><th scope=\"col\">0</th><th scope=\"col\">4</th><th scope=\"col\">10</th><th scope=\"col\">16</th><th scope=\"col\">20</th></tr></thead><tbody><tr><th scope=\"row\">\\(v(t)\\) (meters per second)</th><td>2</td><td>6</td><td>9</td><td>6</td><td>−2</td></tr></tbody></table>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "Use the data in the table to approximate \\(v'(13)\\). Using correct units, interpret the meaning of \\(v'(13)\\) in the context of the problem.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(v'(13)\\approx\\frac{v(16)-v(10)}{16-10}=-\\tfrac12\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Yorum: t = 13 s'de dronun ivmesi yaklaşık −0.5 m/s² (dikey hız saniyede 0.5 m/s azalıyor).",
+      "ornek_cevap": "At t = 13 seconds, the drone's vertical velocity is decreasing at about 0.5 meter per second per second."
+     }
+    ],
+    "ornek_cozum": "<p>\\(t=13\\), tablodaki 10 ile 16 arasında:</p>\\[v'(13)\\approx\\frac{6-9}{16-10}=-\\frac12\\]<p>\\(v'\\) ivmedir; birimi m/s².</p><p><strong>Cevap (İngilizce):</strong> \\(v'(13)\\approx-0.5\\). At \\(t=13\\) seconds, the vertical velocity of the drone is decreasing at a rate of about 0.5 meter per second per second.</p>",
+    "sik_hatalar": [
+     "‘Dron 0.5 m alçalıyor’ demek — v′ konumun değil hızın değişimidir.",
+     "Birimi m/s yazmak (doğrusu m/s²)."
+    ],
+    "ne_soruyor": "Tablodan türeve yaklaşmanı ve sonucun bağlamdaki anlamını birimiyle açıklamanı istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "Use a trapezoidal sum with the four subintervals indicated by the data in the table to approximate \\(\\displaystyle\\int_0^{20} v(t)\\,dt\\). Use this approximation to estimate the altitude of the drone at time \\(t = 20\\).",
+    "puan": 3,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Eşit olmayan aralıklarla yamuk toplamı kurulumu."
+     },
+     {
+      "puan": 1,
+      "olcut": "Değer 114."
+     },
+     {
+      "puan": 1,
+      "olcut": "İrtifa ≈ 30 + 114 = 144 m.",
+      "ornek_cevap": "The altitude of the drone at t = 20 is approximately 144 meters."
+     }
+    ],
+    "ornek_cozum": "<p>Genişlikler 4, 6, 6, 4:</p>\\[4\\cdot\\frac{2+6}{2}+6\\cdot\\frac{6+9}{2}+6\\cdot\\frac{9+6}{2}+4\\cdot\\frac{6+(-2)}{2}=16+45+45+8=114\\]<p>Bu, 0–20 s arasındaki irtifa değişimidir. İrtifa \\(\\approx 30+114=144\\) m.</p><p><strong>Cevap (İngilizce):</strong> \\(\\int_0^{20}v(t)\\,dt\\approx 114\\), so the altitude at \\(t=20\\) is approximately \\(30+114=144\\) meters.</p>",
+    "sik_hatalar": [
+     "Negatif hız değerini (−2) mutlak değerle almak.",
+     "Başlangıç irtifası 30 m'yi eklemeyi unutmak."
+    ],
+    "ne_soruyor": "Yamuk toplamıyla hızın integraline yaklaşmanı ve bunu başlangıç irtifasıyla birleştirip bir andaki irtifayı tahmin etmeni istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "Must there be a value of \\(t\\), for \\(4 < t < 16\\), at which \\(v'(t) = 0\\)? Justify your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(v(4)=v(16)=6\\) (fark oranı 0)."
+     },
+     {
+      "puan": 1,
+      "olcut": "v türevlenebilir ⇒ sürekli; MVT/Rolle ile ‘Evet’.",
+      "ornek_cevap": "Yes. Since v is differentiable, it is continuous on [4, 16], and (v(16) − v(4))/(16 − 4) = 0, so by the Mean Value Theorem v′(c) = 0 for some c in (4, 16)."
+     }
+    ],
+    "ornek_cozum": "<p>\\(v\\) türevlenebilir → \\([4,16]\\)'da sürekli, \\((4,16)\\)'da türevlenebilir. \\(\\dfrac{v(16)-v(4)}{16-4}=\\dfrac{6-6}{12}=0\\).</p><p><strong>Cevap (İngilizce):</strong> <strong>Yes.</strong> \\(v\\) is differentiable, hence continuous, on \\([4,16]\\), and \\(\\frac{v(16)-v(4)}{16-4}=0\\). By the Mean Value Theorem, there is a \\(c\\) in \\((4,16)\\) with \\(v'(c)=0\\).</p>",
+    "sik_hatalar": [
+     "Koşulları (süreklilik/türevlenebilirlik) yazmamak.",
+     "v(10) = 9'un en büyük değer olduğunu varsayıp ‘maksimumda türev 0’ demek — tablo arada daha büyük değer olmadığını garanti etmez."
+    ],
+    "ne_soruyor": "Tablodaki eşit değerlerden türevin sıfır olduğu bir anın varlığını teoremle gerekçelendirmeni istiyor."
+   },
+   {
+    "harf": "d",
+    "soru": "Must there be a value of \\(t\\), for \\(16 < t < 20\\), at which the drone is momentarily at rest? Justify your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(v(16)=6>0\\) ve \\(v(20)=-2<0\\); 0 bu değerler arasında."
+     },
+     {
+      "puan": 1,
+      "olcut": "v sürekli (türevlenebilir) ⇒ Ara Değer Teoremi ile ‘Evet’.",
+      "ornek_cevap": "Yes. v is continuous on [16, 20] because it is differentiable, and v(20) < 0 < v(16), so by the Intermediate Value Theorem v(c) = 0 for some c in (16, 20)."
+     }
+    ],
+    "ornek_cozum": "<p>“Anlık olarak durgun” = \\(v(t)=0\\). \\(v\\) türevlenebilir olduğu için süreklidir; \\(v(20)=-2<0<6=v(16)\\).</p><p><strong>Cevap (İngilizce):</strong> <strong>Yes.</strong> \\(v\\) is continuous on \\([16,20]\\) because it is differentiable, and \\(v(20)=-2<0<6=v(16)\\). By the Intermediate Value Theorem, there is a \\(c\\) in \\((16,20)\\) with \\(v(c)=0\\), so the drone is momentarily at rest at \\(t=c\\).</p>",
+    "sik_hatalar": [
+     "MVT kullanmak — fonksiyonun kendisinin bir değeri soruluyor, IVT gerekir.",
+     "Sürekliliği belirtmeden IVT uygulamak."
+    ],
+    "ne_soruyor": "Hız tablosundan, dronun bir an durduğu zamanın var olup olmadığını uygun teoremle gerekçelendirmeni istiyor."
+   }
+  ],
+  "toplam_puan": 9,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "6.2, 5.1, 1.16, 8.2",
+   "tip": "Table: Riemann Sum, MVT, and IVT (No Calculator)"
+  }
+ },
+ {
+  "id": "frq-calc-ab-k10",
+  "sayfa": "ap-calculus",
+  "ders": "calculus-ab",
+  "tur": "İntegralle tanımlı fonksiyon (hesap makinesiz)",
+  "baslik": "A Function Defined by an Integral",
+  "sure_dk": 15,
+  "hesapMakinesi": false,
+  "zorluk": "hard",
+  "giris": "<p>Let \\(g\\) be the function defined by \\[g(x) = \\int_0^x \\frac{t^2 - 9}{t^2 + 1}\\,dt\\] for \\(-5 \\le x \\le 5\\).</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "Find the \\(x\\)-coordinate of each point at which \\(g\\) has a relative maximum on the open interval \\(-5 < x < 5\\). Justify your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(g'(x)=\\dfrac{x^2-9}{x^2+1}\\) (Analizin Temel Teoremi); sıfırlar \\(x=\\pm3\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Cevap x = −3: g′ orada +’dan −’ye geçer.",
+      "ornek_cevap": "g has a relative maximum at x = −3 because g′(x) changes from positive to negative there."
+     }
+    ],
+    "ornek_cozum": "<p>Analizin temel teoremi: \\(g'(x)=\\dfrac{x^2-9}{x^2+1}\\). Payda her zaman pozitif; işaret \\(x^2-9\\)'a bağlı.</p><p>\\(-5<x<-3\\): \\(g'>0\\); \\(-3<x<3\\): \\(g'<0\\); \\(3<x<5\\): \\(g'>0\\).</p><p><strong>Cevap (İngilizce):</strong> \\(g'(x)=\\frac{x^2-9}{x^2+1}\\). \\(g\\) has a relative maximum at \\(x=-3\\) because \\(g'(x)\\) changes from positive to negative at \\(x=-3\\).</p>",
+    "sik_hatalar": [
+     "x = 3'ü de maksimum saymak (orada − → +, minimum).",
+     "g′'yü bulmak için integrali hesaplamaya çalışmak — Temel Teorem yeterli."
+    ],
+    "ne_soruyor": "İntegralle tanımlı fonksiyonun türevini Temel Teorem ile bulup göreli maksimumu birinci türev testiyle gerekçelendirmeni istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "Find the open interval(s) on which the graph of \\(g\\) is concave up. Give a reason for your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(g''(x)=\\dfrac{20x}{(x^2+1)^2}\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Cevap: 0 < x < 5, çünkü orada g″ > 0.",
+      "ornek_cevap": "The graph of g is concave up on 0 < x < 5 because g″(x) > 0 there."
+     }
+    ],
+    "ornek_cozum": "<p>Bölüm kuralı:</p>\\[g''(x)=\\frac{2x(x^2+1)-(x^2-9)(2x)}{(x^2+1)^2}=\\frac{20x}{(x^2+1)^2}\\]<p>Payda pozitif; \\(g''>0\\iff x>0\\).</p><p><strong>Cevap (İngilizce):</strong> \\(g''(x)=\\frac{20x}{(x^2+1)^2}>0\\) for \\(0<x<5\\), so the graph of \\(g\\) is concave up on \\((0,5)\\).</p>",
+    "sik_hatalar": [
+     "Bölüm kuralında pay sırasını ters alıp işaret hatası yapmak.",
+     "g′ > 0 olan aralıkları bükeylik diye vermek."
+    ],
+    "ne_soruyor": "İkinci türevin işaretinden yukarı bükey olduğu aralığı bulmanı istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "Find the absolute minimum value of \\(g\\) on the closed interval \\([0, 5]\\). Justify your answer.",
+    "puan": 3,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Gerekçe: \\(g'<0\\) on \\((0,3)\\), \\(g'>0\\) on \\((3,5)\\) (tek kritik nokta) ya da aday testi ⇒ minimum \\(x=3\\)'te."
+     },
+     {
+      "puan": 1,
+      "olcut": "Ters türev: \\(\\dfrac{t^2-9}{t^2+1}=1-\\dfrac{10}{t^2+1}\\Rightarrow g(x)=x-10\\arctan x\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Cevap \\(g(3)=3-10\\arctan 3\\).",
+      "ornek_cevap": "The absolute minimum value of g on [0, 5] is 3 − 10 arctan 3."
+     }
+    ],
+    "ornek_cozum": "<p>\\([0,5]\\)'te tek kritik nokta \\(x=3\\). \\(g\\), \\((0,3)\\)'te azalıyor, \\((3,5)\\)'te artıyor → mutlak minimum \\(x=3\\)'te.</p><p>Değeri bulmak için integrandı böl: \\(\\dfrac{t^2-9}{t^2+1}=\\dfrac{(t^2+1)-10}{t^2+1}=1-\\dfrac{10}{t^2+1}\\).</p>\\[g(3)=\\int_0^3\\left(1-\\frac{10}{t^2+1}\\right)dt=\\big[t-10\\arctan t\\big]_0^3=3-10\\arctan 3\\]<p><strong>Cevap (İngilizce):</strong> \\(g\\) decreases on \\((0,3)\\) and increases on \\((3,5)\\), so the absolute minimum on \\([0,5]\\) occurs at \\(x=3\\). The minimum value is \\(g(3)=3-10\\arctan 3\\).</p>",
+    "sik_hatalar": [
+     "Yalnız x = 3'ü verip g(3) değerini hesaplamamak.",
+     "\\(\\frac{t^2-9}{t^2+1}\\) ifadesini bölmeden \\(\\ln(t^2+1)\\) gibi yanlış ters türev yazmak."
+    ],
+    "ne_soruyor": "Kapalı aralıkta mutlak minimum noktasını gerekçelendirmeni ve integrali hesaplayarak minimum değeri bulmanı istiyor."
+   },
+   {
+    "harf": "d",
+    "soru": "Find \\(\\displaystyle\\lim_{x \\to 0} \\frac{g(x)}{\\sin x}\\). Show the work that leads to your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(g(0)=0\\), \\(\\sin 0=0\\) ⇒ 0/0 belirsizliği; L'Hôpital: \\(\\lim\\frac{g'(x)}{\\cos x}\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Cevap −9.",
+      "ornek_cevap": "The limit is −9."
+     }
+    ],
+    "ornek_cozum": "<p>\\(g(0)=\\int_0^0(\\dots)\\,dt=0\\) ve \\(\\sin 0=0\\): \\(\\tfrac00\\) biçimi. L'Hôpital kuralı:</p>\\[\\lim_{x\\to0}\\frac{g(x)}{\\sin x}=\\lim_{x\\to0}\\frac{g'(x)}{\\cos x}=\\frac{\\frac{0-9}{0+1}}{1}=-9\\]<p><strong>Cevap (İngilizce):</strong> Since \\(\\lim_{x\\to0}g(x)=0\\) and \\(\\lim_{x\\to0}\\sin x=0\\), by L'Hôpital's Rule the limit equals \\(\\lim_{x\\to0}\\frac{g'(x)}{\\cos x}=\\frac{-9}{1}=-9\\).</p>",
+    "sik_hatalar": [
+     "0/0 olduğunu göstermeden L'Hôpital uygulamak (puan kaybı).",
+     "g′(0)'ı 9 almak (işaret: 0 − 9 = −9)."
+    ],
+    "ne_soruyor": "Pay ve paydanın limitlerini kontrol ederek L'Hôpital kuralıyla limiti bulmanı istiyor."
+   }
+  ],
+  "toplam_puan": 9,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "6.4, 5.4, 5.6, 4.7",
+   "tip": "Function Defined by an Integral (No Calculator)"
+  }
+ },
+ {
+  "id": "frq-calc-bc-k1",
+  "sayfa": "ap-calculus",
+  "ders": "calculus-bc",
+  "tur": "Taylor polinomu ve Lagrange hata sınırı (hesap makinesiz)",
+  "baslik": "Taylor Polynomial from Given Derivatives",
+  "sure_dk": 15,
+  "hesapMakinesi": false,
+  "zorluk": "medium",
+  "giris": "<p>Let \\(f\\) be a function that has derivatives of all orders on the interval \\(0 < x < 2\\). Selected values of \\(f\\) and its derivatives at \\(x = 1\\) are \\[f(1) = 3,\\quad f'(1) = -2,\\quad f''(1) = 4,\\quad f'''(1) = 12.\\] The fourth derivative of \\(f\\) satisfies \\(\\left|f^{(4)}(x)\\right| \\le 30\\) for \\(1 \\le x \\le 1.2\\).</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "Write the third-degree Taylor polynomial for \\(f\\) about \\(x = 1\\).",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "İlk iki terim: \\(3-2(x-1)\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Kalan terimler: \\(+2(x-1)^2+2(x-1)^3\\)."
+     }
+    ],
+    "ornek_cozum": "<p>Katsayılar \\(\\dfrac{f^{(n)}(1)}{n!}\\): \\(3,\\ -2,\\ \\dfrac42=2,\\ \\dfrac{12}{6}=2\\).</p>\\[P_3(x)=3-2(x-1)+2(x-1)^2+2(x-1)^3\\]<p><strong>Cevap (İngilizce):</strong> \\(P_3(x)=3-2(x-1)+2(x-1)^2+2(x-1)^3\\).</p>",
+    "sik_hatalar": [
+     "Faktöriyele bölmeyi unutmak (\\(4(x-1)^2\\), \\(12(x-1)^3\\) yazmak).",
+     "\\((x-1)\\) yerine \\(x\\) kuvvetleri kullanmak."
+    ],
+    "ne_soruyor": "Verilen türev değerlerinden x = 1 merkezli üçüncü dereceden Taylor polinomunu yazmanı istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "Use the polynomial from part (a) to approximate \\(f(1.2)\\). Use the Lagrange error bound to show that \\(\\left|f(1.2) - P_3(1.2)\\right| < \\tfrac{1}{400}\\).",
+    "puan": 3,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(P_3(1.2)=3-0.4+0.08+0.016=2.696\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Lagrange hata sınırı biçimi: \\(\\dfrac{\\max|f^{(4)}|}{4!}(0.2)^4=\\dfrac{30}{24}(0.2)^4\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "\\(=0.002<0.0025=\\tfrac1{400}\\) sonucu.",
+      "ornek_cevap": "The error is at most 30(0.2)^4/4! = 0.002, which is less than 1/400."
+     }
+    ],
+    "ornek_cozum": "<p>\\(P_3(1.2)=3-2(0.2)+2(0.04)+2(0.008)=3-0.4+0.08+0.016=2.696\\).</p><p>Lagrange hata sınırı: \\(\\left|f(1.2)-P_3(1.2)\\right|\\le\\dfrac{\\max_{1\\le x\\le1.2}|f^{(4)}(x)|}{4!}\\,|1.2-1|^4\\).</p>\\[\\le\\frac{30}{24}(0.2)^4=\\frac{30\\cdot 0.0016}{24}=0.002<0.0025=\\frac{1}{400}\\]<p><strong>Cevap (İngilizce):</strong> \\(f(1.2)\\approx P_3(1.2)=2.696\\), and \\(\\left|f(1.2)-P_3(1.2)\\right|\\le\\dfrac{30}{4!}(0.2)^4=0.002<\\dfrac{1}{400}\\).</p>",
+    "sik_hatalar": [
+     "Hata sınırında \\((0.2)^3\\) ve \\(3!\\) kullanmak (bir sonraki terim, yani 4. derece kullanılmalı).",
+     "Sonucu 1/400 ile açıkça karşılaştırmamak."
+    ],
+    "ne_soruyor": "Polinomla yaklaşık değer bulmanı ve Lagrange hata sınırıyla hatanın verilen sayıdan küçük olduğunu göstermeni istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "Let \\(g\\) be the function defined by \\(g(x) = \\displaystyle\\int_1^x f(t)\\,dt\\). Write the third-degree Taylor polynomial for \\(g\\) about \\(x = 1\\).",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(g(1)=0\\), \\(g'=f\\) ⇒ \\(g'(1)=3,\\ g''(1)=-2,\\ g'''(1)=4\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "\\(3(x-1)-(x-1)^2+\\tfrac23(x-1)^3\\)."
+     }
+    ],
+    "ornek_cozum": "<p>\\(g(1)=\\int_1^1 f=0\\). Temel teorem: \\(g'(x)=f(x)\\), dolayısıyla \\(g''=f'\\), \\(g'''=f''\\).</p><p>Katsayılar: \\(0,\\ 3,\\ \\dfrac{-2}{2}=-1,\\ \\dfrac{4}{6}=\\dfrac23\\). (Ya da (a)'daki polinomu terim terim integralle.)</p><p><strong>Cevap (İngilizce):</strong> The third-degree Taylor polynomial for \\(g\\) about \\(x=1\\) is \\(3(x-1)-(x-1)^2+\\tfrac23(x-1)^3\\).</p>",
+    "sik_hatalar": [
+     "Sabit terimi 3 almak (g(1) = 0).",
+     "Terim terim integralde \\((x-1)^{n+1}/(n+1)\\) bölmesini unutmak."
+    ],
+    "ne_soruyor": "İntegralle tanımlı bir fonksiyonun Taylor polinomunu, verilen fonksiyonun bilgileriyle oluşturmanı istiyor."
+   },
+   {
+    "harf": "d",
+    "soru": "Let \\(h\\) be the function defined by \\(h(x) = f(1 + x^2)\\). Write the fourth-degree Taylor polynomial for \\(h\\) about \\(x = 0\\). Does \\(h\\) have a relative minimum, a relative maximum, or neither at \\(x = 0\\)? Justify your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(3-2x^2+2x^4\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "\\(h'(0)=0\\), \\(h''(0)=-4<0\\) ⇒ göreli maksimum.",
+      "ornek_cevap": "h′(0) = 0 and h″(0) = 2(−2) = −4 < 0, so h has a relative maximum at x = 0."
+     }
+    ],
+    "ornek_cozum": "<p>(a)'daki polinomda \\(x-1\\) yerine \\(x^2\\) koy: \\(3-2x^2+2x^4+2x^6\\). Dördüncü dereceye kadar: \\(3-2x^2+2x^4\\).</p><p>Taylor katsayılarından: \\(x\\)'in katsayısı 0 ⇒ \\(h'(0)=0\\); \\(x^2\\)'nin katsayısı \\(\\frac{h''(0)}{2!}=-2\\) ⇒ \\(h''(0)=-4<0\\).</p><p><strong>Cevap (İngilizce):</strong> The fourth-degree Taylor polynomial for \\(h\\) about \\(x=0\\) is \\(3-2x^2+2x^4\\). Since \\(h'(0)=0\\) and \\(h''(0)=2!\\cdot(-2)=-4<0\\), \\(h\\) has a <strong>relative maximum</strong> at \\(x=0\\).</p>",
+    "sik_hatalar": [
+     "x² katsayısını (−2) doğrudan h″(0) sanmak; h″(0) = 2!·(−2).",
+     "\\(2x^6\\) terimini dördüncü dereceden polinoma eklemek."
+    ],
+    "ne_soruyor": "Yerine koyma ile yeni bir Taylor polinomu yazmanı ve katsayılardan ekstremum türünü gerekçelendirmeni istiyor."
+   }
+  ],
+  "toplam_puan": 9,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "10.11, 10.12, 10.14",
+   "tip": "Taylor Polynomial and Lagrange Error Bound (No Calculator)"
+  }
+ },
+ {
+  "id": "frq-calc-bc-k2",
+  "sayfa": "ap-calculus",
+  "ders": "calculus-bc",
+  "tur": "Kuvvet serisi ve yakınsaklık aralığı (hesap makinesiz)",
+  "baslik": "A Series That Converges at Both Endpoints",
+  "sure_dk": 15,
+  "hesapMakinesi": false,
+  "zorluk": "hard",
+  "giris": "<p>The function \\(f\\) is defined by the power series \\[f(x) = \\sum_{n=1}^{\\infty} \\frac{(x-1)^n}{n^2 \\cdot 5^n} = \\frac{x-1}{5} + \\frac{(x-1)^2}{4 \\cdot 25} + \\frac{(x-1)^3}{9 \\cdot 125} + \\cdots\\] for all \\(x\\) for which the series converges.</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "Find the interval of convergence of the power series for \\(f\\). Show the work that leads to your answer.",
+    "puan": 4,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Oran testi kurulumu: \\(\\left|\\dfrac{a_{n+1}}{a_n}\\right|=\\dfrac{n^2}{(n+1)^2}\\cdot\\dfrac{|x-1|}{5}\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Limit \\(\\frac{|x-1|}{5}<1\\) ⇒ \\(-4<x<6\\) (yarıçap 5)."
+     },
+     {
+      "puan": 1,
+      "olcut": "\\(x=6\\): \\(\\sum\\frac1{n^2}\\), \\(p=2>1\\) ⇒ yakınsak."
+     },
+     {
+      "puan": 1,
+      "olcut": "\\(x=-4\\): \\(\\sum\\frac{(-1)^n}{n^2}\\) mutlak yakınsak ⇒ aralık \\([-4,6]\\).",
+      "ornek_cevap": "The interval of convergence is −4 ≤ x ≤ 6."
+     }
+    ],
+    "ornek_cozum": "<p><strong>Oran testi:</strong></p>\\[\\lim_{n\\to\\infty}\\left|\\frac{(x-1)^{n+1}}{(n+1)^2 5^{n+1}}\\cdot\\frac{n^2 5^n}{(x-1)^n}\\right|=\\lim_{n\\to\\infty}\\frac{n^2}{(n+1)^2}\\cdot\\frac{|x-1|}{5}=\\frac{|x-1|}{5}\\]<p>\\(\\frac{|x-1|}{5}<1\\iff -4<x<6\\).</p><p><strong>Uç noktalar</strong> (oran testi burada karar veremez):</p><ul><li>\\(x=6\\): \\(\\sum\\dfrac{5^n}{n^25^n}=\\sum\\dfrac1{n^2}\\) — \\(p=2>1\\) olan p-serisi, yakınsak.</li><li>\\(x=-4\\): \\(\\sum\\dfrac{(-5)^n}{n^25^n}=\\sum\\dfrac{(-1)^n}{n^2}\\) — mutlak değerler serisi yakınsak, o hâlde yakınsak.</li></ul><p><strong>Cevap (İngilizce):</strong> By the ratio test the series converges for \\(|x-1|<5\\). At \\(x=6\\) it is the convergent \\(p\\)-series \\(\\sum\\frac1{n^2}\\), and at \\(x=-4\\) it is \\(\\sum\\frac{(-1)^n}{n^2}\\), which converges absolutely. The interval of convergence is \\(-4\\le x\\le 6\\).</p>",
+    "sik_hatalar": [
+     "Uç noktaları kontrol etmeden açık aralık (−4, 6) vermek.",
+     "Oran testinde \\(\\frac{n^2}{(n+1)^2}\\) limitini yazmadan doğrudan sonuca atlamak."
+    ],
+    "ne_soruyor": "Oran testiyle yakınsaklık yarıçapını bulmanı ve her iki uç noktayı ayrı testlerle incelemeni istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "The series obtained by differentiating the series for \\(f\\) term by term converges to \\(f'(x)\\) on its interval of convergence. Find the interval of convergence of this series for \\(f'\\). Justify your answer at the endpoints.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(x=6\\): \\(\\sum\\frac{1}{5n}\\) — harmonik serinin katı, ıraksak."
+     },
+     {
+      "puan": 1,
+      "olcut": "\\(x=-4\\): \\(\\sum\\frac{(-1)^{n-1}}{5n}\\) — alterne seri testiyle yakınsak ⇒ aralık \\([-4,6)\\).",
+      "ornek_cevap": "The interval of convergence for f′ is −4 ≤ x < 6."
+     }
+    ],
+    "ornek_cozum": "<p>Terim terim türev: \\(f'(x)=\\displaystyle\\sum_{n=1}^\\infty\\frac{(x-1)^{n-1}}{n\\cdot5^n}\\). Yarıçap değişmez (5); yalnız uçlar yeniden incelenir.</p><ul><li>\\(x=6\\): \\(\\sum\\dfrac{5^{n-1}}{n5^n}=\\sum\\dfrac{1}{5n}\\) — harmonik serinin \\(\\tfrac15\\) katı, ıraksak.</li><li>\\(x=-4\\): \\(\\sum\\dfrac{(-5)^{n-1}}{n5^n}=\\sum\\dfrac{(-1)^{n-1}}{5n}\\) — terimler azalarak 0'a gider, alterne seri testiyle yakınsak.</li></ul><p><strong>Cevap (İngilizce):</strong> At \\(x=6\\) the series is \\(\\sum\\frac{1}{5n}\\), which diverges (harmonic). At \\(x=-4\\) it is \\(\\sum\\frac{(-1)^{n-1}}{5n}\\), which converges by the Alternating Series Test. The interval of convergence for \\(f'\\) is \\(-4\\le x<6\\).</p>",
+    "sik_hatalar": [
+     "Türevlenmiş serinin aralığının aynı kaldığını (uç noktalar dahil) varsaymak.",
+     "Alterne seri testinin koşullarını (azalan, limit 0) belirtmemek."
+    ],
+    "ne_soruyor": "Türevi alınmış serinin uç noktalardaki davranışını yeniden incelemeni ve yeni aralığı gerekçelendirmeni istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "Use the first two nonzero terms of the series for \\(f\\) to approximate \\(f(0)\\). Show that this approximation differs from \\(f(0)\\) by less than \\(\\tfrac{1}{1000}\\).",
+    "puan": 3,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(f(0)\\approx-\\frac15+\\frac1{100}=-\\frac{19}{100}\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "İlk atlanan terim: \\(\\left|\\frac{(-1)^3}{9\\cdot125}\\right|=\\frac{1}{1125}\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Alterne seri hata sınırı (terimler azalarak 0'a gider) ve 1/1125 < 1/1000 sonucu.",
+      "ornek_cevap": "Because the series is alternating with terms decreasing in absolute value to 0, the error is at most 1/1125 < 1/1000."
+     }
+    ],
+    "ornek_cozum": "<p>\\(x=0\\): \\(f(0)=\\displaystyle\\sum\\frac{(-1)^n}{n^25^n}=-\\frac15+\\frac1{100}-\\frac1{1125}+\\cdots\\)</p><p>İki terim: \\(-\\frac15+\\frac1{100}=-0.19\\).</p><p>Seri alternedir; \\(\\frac{1}{n^25^n}\\) azalarak 0'a gider. Alterne seri hata sınırı: hata \\(\\le\\) ilk atlanan terimin mutlak değeri \\(=\\frac{1}{1125}<\\frac{1}{1000}\\).</p><p><strong>Cevap (İngilizce):</strong> \\(f(0)\\approx-\\tfrac15+\\tfrac1{100}=-0.19\\). The series for \\(f(0)\\) is alternating and its terms decrease in absolute value to 0, so \\(\\left|f(0)-(-0.19)\\right|\\le\\frac{1}{1125}<\\frac{1}{1000}\\).</p>",
+    "sik_hatalar": [
+     "x = 0'da \\((x-1)^n=(-1)^n\\) işaretini unutup serinin alterne olduğunu görmemek.",
+     "Hata sınırı için son kullanılan terimi (1/100) almak."
+    ],
+    "ne_soruyor": "Serinin ilk iki terimiyle yaklaşık değer bulmanı ve alterne seri hata sınırıyla hatanın küçük olduğunu göstermeni istiyor."
+   }
+  ],
+  "toplam_puan": 9,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "10.13, 10.8, 10.10, 10.15",
+   "tip": "Power Series: Interval of Convergence (No Calculator)"
+  }
+ },
+ {
+  "id": "frq-calc-bc-k3",
+  "sayfa": "ap-calculus",
+  "ders": "calculus-bc",
+  "tur": "Parametrik / vektör hareket (hesap makineli)",
+  "baslik": "A Remote-Controlled Boat",
+  "sure_dk": 15,
+  "hesapMakinesi": true,
+  "zorluk": "medium",
+  "giris": "<p>A remote-controlled boat moves on a lake, modeled as the \\(xy\\)-plane, so that its velocity vector at time \\(t\\) is \\[\\left\\langle \\frac{dx}{dt},\\,\\frac{dy}{dt}\\right\\rangle = \\left\\langle \\sqrt{t+1}\\,\\cos t,\\; 3e^{-0.4t} - 1\\right\\rangle\\] for \\(0 \\le t \\le 4\\), where \\(t\\) is measured in minutes and distances are measured in meters. At time \\(t = 0\\), the boat is at the point \\((1, 4)\\).</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "Find the slope of the line tangent to the path of the boat at time \\(t = 2\\). Is the boat moving to the left or to the right at time \\(t = 2\\)? Give a reason for your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(\\dfrac{dy}{dx}=\\dfrac{y'(2)}{x'(2)}\\approx\\dfrac{0.348}{-0.721}\\approx-0.483\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "\\(x'(2)<0\\) ⇒ sola.",
+      "ornek_cevap": "The boat is moving to the left at t = 2 because dx/dt < 0 at t = 2."
+     }
+    ],
+    "ornek_cozum": "<p>\\(x'(2)=\\sqrt3\\cos2\\approx-0.721\\), \\(y'(2)=3e^{-0.8}-1\\approx0.348\\).</p>\\[\\frac{dy}{dx}\\bigg|_{t=2}=\\frac{y'(2)}{x'(2)}\\approx-0.483\\]<p>Sağ/sol yönü yalnız \\(dx/dt\\)'nin işaretine bağlıdır: negatif → sola.</p><p><strong>Cevap (İngilizce):</strong> The slope is \\(\\frac{y'(2)}{x'(2)}\\approx-0.483\\). The boat is moving to the <strong>left</strong> at \\(t=2\\) because \\(x'(2)\\approx-0.721<0\\).</p>",
+    "sik_hatalar": [
+     "Eğimi \\(x'/y'\\) diye ters bölmek.",
+     "Yön için eğimin işaretine bakmak — sağ/sol kararı yalnız dx/dt ile verilir."
+    ],
+    "ne_soruyor": "Parametrik eğride teğet eğimini bulmanı ve teknenin yatay hareket yönünü hız bileşeniyle gerekçelendirmeni istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "Find the \\(x\\)-coordinate of the position of the boat at time \\(t = 4\\).",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(x(4)=1+\\int_0^4\\sqrt{t+1}\\cos t\\,dt\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Cevap ≈ −1.255.",
+      "ornek_cevap": "The x-coordinate at t = 4 is approximately −1.255."
+     }
+    ],
+    "ornek_cozum": "<p>\\(x(4)=x(0)+\\displaystyle\\int_0^4 x'(t)\\,dt=1+\\int_0^4\\sqrt{t+1}\\cos t\\,dt\\approx1+(-2.255)=-1.255\\).</p><p><strong>Cevap (İngilizce):</strong> \\(x(4)=1+\\int_0^4\\sqrt{t+1}\\cos t\\,dt\\approx-1.255\\).</p>",
+    "sik_hatalar": [
+     "Başlangıç koordinatı 1'i eklemeyi unutmak.",
+     "Hesap makinesini derece kipinde kullanmak."
+    ],
+    "ne_soruyor": "Hız bileşeninden ve başlangıç konumundan bir andaki x-koordinatını bulmanı istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "Find the total distance traveled by the boat over the time interval \\(0 \\le t \\le 4\\).",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Doğru integral: \\(\\int_0^4\\sqrt{(x'(t))^2+(y'(t))^2}\\,dt\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Cevap ≈ 5.959 m.",
+      "ornek_cevap": "The total distance traveled is approximately 5.959 meters."
+     }
+    ],
+    "ornek_cozum": "<p>Toplam yol = sürat integrali:</p>\\[\\int_0^4\\sqrt{\\big(\\sqrt{t+1}\\cos t\\big)^2+\\big(3e^{-0.4t}-1\\big)^2}\\,dt\\approx5.959\\]<p><strong>Cevap (İngilizce):</strong> Total distance \\(=\\int_0^4\\sqrt{(x'(t))^2+(y'(t))^2}\\,dt\\approx5.959\\) meters.</p>",
+    "sik_hatalar": [
+     "Başlangıç ve bitiş noktaları arasındaki düz uzaklığı (yer değiştirme büyüklüğünü) hesaplamak.",
+     "Karekök yerine \\(|x'|+|y'|\\) integrali almak."
+    ],
+    "ne_soruyor": "Hız vektöründen teknenin aldığı toplam yolu bulmanı istiyor."
+   },
+   {
+    "harf": "d",
+    "soru": "Find the greatest \\(y\\)-coordinate of the boat's position over the time interval \\(0 \\le t \\le 4\\). Justify your answer.",
+    "puan": 3,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(y'(t)=0\\Rightarrow t=\\frac{\\ln3}{0.4}\\approx2.747\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "\\(y(t)=4+\\int_0^t y'(s)\\,ds\\): \\(y(0)=4\\), \\(y(2.747)\\approx6.253\\), \\(y(4)\\approx5.986\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Sonuç: en büyük y ≈ 6.253 (aday testiyle).",
+      "ornek_cevap": "By the candidates test, the greatest y-coordinate is approximately 6.253."
+     }
+    ],
+    "ornek_cozum": "<p>\\(y'(t)=3e^{-0.4t}-1=0\\Rightarrow e^{-0.4t}=\\tfrac13\\Rightarrow t=\\dfrac{\\ln3}{0.4}\\approx2.747\\).</p><table class=\"frq-tablo\"><thead><tr><th scope=\"col\">\\(t\\)</th><th scope=\"col\">\\(y(t)=4+\\int_0^t y'(s)\\,ds\\)</th></tr></thead><tbody><tr><td>0</td><td>4</td></tr><tr><td>2.747</td><td>\\(\\approx6.253\\)</td></tr><tr><td>4</td><td>\\(\\approx5.986\\)</td></tr></tbody></table><p><strong>Cevap (İngilizce):</strong> \\(y'(t)=0\\) at \\(t\\approx2.747\\). Comparing \\(y(0)=4\\), \\(y(2.747)\\approx6.253\\), and \\(y(4)\\approx5.986\\), the greatest \\(y\\)-coordinate is approximately \\(6.253\\).</p>",
+    "sik_hatalar": [
+     "Zamanı (2.747) cevap olarak vermek; soru y-koordinatını istiyor.",
+     "Uç noktaları karşılaştırmamak ya da y'(t)'nin işaret değişimini göstermemek."
+    ],
+    "ne_soruyor": "Dikey hız bileşeninden y-koordinatının en büyük değerini aday testiyle bulmanı ve gerekçelendirmeni istiyor."
+   }
+  ],
+  "toplam_puan": 9,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "9.1, 9.3, 9.6",
+   "tip": "Parametric/Vector Motion (Calculator Active)"
+  }
+ },
+ {
+  "id": "frq-calc-bc-k4",
+  "sayfa": "ap-calculus",
+  "ders": "calculus-bc",
+  "tur": "Polar alan ve değişim oranı (hesap makineli)",
+  "baslik": "One Petal of a Rose Curve",
+  "sure_dk": 15,
+  "hesapMakinesi": true,
+  "zorluk": "hard",
+  "giris": "<p>The curve \\(C\\) is given by the polar equation \\(r = 3\\sin(2\\theta)\\) for \\(0 \\le \\theta \\le \\dfrac{\\pi}{2}\\); this is one petal of a rose curve, lying in the first quadrant. The circle \\(r = 1.5\\) intersects \\(C\\) at \\(\\theta = \\dfrac{\\pi}{12}\\) and \\(\\theta = \\dfrac{5\\pi}{12}\\).</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "Find the area of the region that lies inside the curve \\(C\\) and outside the circle \\(r = 1.5\\).",
+    "puan": 3,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Sınırlar \\(\\frac{\\pi}{12}\\) ve \\(\\frac{5\\pi}{12}\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "İntegrand: \\(\\frac12\\left[(3\\sin2\\theta)^2-1.5^2\\right]\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Cevap ≈ 2.152.",
+      "ornek_cevap": "The area is approximately 2.152."
+     }
+    ],
+    "ornek_cozum": "<p>Polar alan: \\(\\tfrac12\\int r^2\\,d\\theta\\). İki eğri arasında dıştaki \\(C\\), içteki daire:</p>\\[A=\\frac12\\int_{\\pi/12}^{5\\pi/12}\\left[(3\\sin2\\theta)^2-(1.5)^2\\right]d\\theta\\approx2.152\\]<p>(Tam değer \\(\\frac{3\\pi}{8}+\\frac{9\\sqrt3}{16}\\).)</p><p><strong>Cevap (İngilizce):</strong> \\(A=\\frac12\\int_{\\pi/12}^{5\\pi/12}\\left[(3\\sin2\\theta)^2-1.5^2\\right]d\\theta\\approx2.152\\).</p>",
+    "sik_hatalar": [
+     "\\(\\frac12(r_1-r_2)^2\\) yazmak — doğrusu \\(\\frac12(r_1^2-r_2^2)\\).",
+     "1/2 katsayısını unutmak ya da sınırları 0 ve π/2 almak."
+    ],
+    "ne_soruyor": "İki polar eğri arasındaki bölgenin alanı için integrali kurup hesaplamanı istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "Find \\(\\dfrac{dr}{d\\theta}\\) at \\(\\theta = \\dfrac{\\pi}{3}\\). As \\(\\theta\\) increases through \\(\\dfrac{\\pi}{3}\\), is the point on \\(C\\) moving toward the origin or away from the origin? Give a reason for your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(\\frac{dr}{d\\theta}=6\\cos2\\theta\\); \\(\\theta=\\frac\\pi3\\)'te \\(-3\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "\\(r(\\frac\\pi3)\\approx2.598>0\\) ve \\(\\frac{dr}{d\\theta}<0\\) ⇒ orijine yaklaşıyor.",
+      "ornek_cevap": "Because r > 0 and dr/dθ < 0 at θ = π/3, the point is moving toward the origin."
+     }
+    ],
+    "ornek_cozum": "<p>\\(\\dfrac{dr}{d\\theta}=6\\cos2\\theta\\), \\(\\theta=\\tfrac\\pi3\\): \\(6\\cos\\tfrac{2\\pi}{3}=-3\\).</p><p>\\(r(\\tfrac\\pi3)=3\\sin\\tfrac{2\\pi}{3}\\approx2.598>0\\). \\(r\\) pozitif ve azalıyor → orijine uzaklık azalıyor.</p><p><strong>Cevap (İngilizce):</strong> \\(\\frac{dr}{d\\theta}\\big|_{\\theta=\\pi/3}=-3\\). Since \\(r(\\pi/3)>0\\) and \\(\\frac{dr}{d\\theta}<0\\), the point on \\(C\\) is moving <strong>toward</strong> the origin.</p>",
+    "sik_hatalar": [
+     "r'nin işaretini kontrol etmemek (r < 0 olsaydı sonuç ters olurdu).",
+     "dr/dθ'yı dy/dx (teğet eğimi) ile karıştırmak."
+    ],
+    "ne_soruyor": "r'nin θ'ya göre türevini bulmanı ve noktanın orijine yaklaşıp uzaklaştığını r ile türevin işaretleriyle açıklamanı istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "Find the greatest distance from the \\(x\\)-axis of any point on \\(C\\).",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(y=r\\sin\\theta=3\\sin2\\theta\\sin\\theta\\) ve \\(\\frac{dy}{d\\theta}=0\\) ⇒ \\(\\theta\\approx0.955\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Cevap y ≈ 2.309.",
+      "ornek_cevap": "The greatest distance from the x-axis is approximately 2.309."
+     }
+    ],
+    "ornek_cozum": "<p>\\(x\\)-eksenine uzaklık \\(y=r\\sin\\theta=3\\sin(2\\theta)\\sin\\theta\\) (birinci bölgede \\(y\\ge0\\)).</p><p>Hesap makinesiyle \\(\\frac{dy}{d\\theta}=0\\) çözümü: \\(\\theta\\approx0.955\\) (tam: \\(\\tan\\theta=\\sqrt2\\)). Uçlarda \\(y=0\\).</p><p>\\(y(0.955)\\approx2.309\\) (tam: \\(\\tfrac{4}{\\sqrt3}\\)).</p><p><strong>Cevap (İngilizce):</strong> The distance from the \\(x\\)-axis is \\(y=3\\sin(2\\theta)\\sin\\theta\\); \\(\\frac{dy}{d\\theta}=0\\) at \\(\\theta\\approx0.955\\), and the greatest distance is approximately \\(2.309\\).</p>",
+    "sik_hatalar": [
+     "r'nin maksimumunu (3) cevap vermek — soru y'nin maksimumunu istiyor.",
+     "\\(y=r\\cos\\theta\\) kullanmak."
+    ],
+    "ne_soruyor": "Polar eğrideki noktaların x-eksenine olan en büyük uzaklığını bulmanı istiyor."
+   },
+   {
+    "harf": "d",
+    "soru": "A particle moves along \\(C\\) so that \\(\\dfrac{d\\theta}{dt} = 0.5\\) for all times \\(t\\). Find \\(\\dfrac{dx}{dt}\\) at the instant when \\(\\theta = \\dfrac{\\pi}{3}\\). Is the particle moving to the left or to the right at that instant?",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(x=3\\sin2\\theta\\cos\\theta\\) ve \\(\\frac{dx}{dt}=\\frac{dx}{d\\theta}\\cdot\\frac{d\\theta}{dt}\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "\\(\\frac{dx}{dt}\\approx-1.875\\) ⇒ sola.",
+      "ornek_cevap": "dx/dt ≈ −1.875 < 0, so the particle is moving to the left."
+     }
+    ],
+    "ornek_cozum": "<p>\\(x=r\\cos\\theta=3\\sin(2\\theta)\\cos\\theta\\). Hesap makinesiyle \\(\\frac{dx}{d\\theta}\\big|_{\\theta=\\pi/3}=-3.75\\).</p>\\[\\frac{dx}{dt}=\\frac{dx}{d\\theta}\\cdot\\frac{d\\theta}{dt}=-3.75\\cdot0.5=-1.875\\]<p><strong>Cevap (İngilizce):</strong> \\(\\frac{dx}{dt}=\\frac{dx}{d\\theta}\\cdot\\frac{d\\theta}{dt}\\approx-3.75(0.5)=-1.875\\). Since \\(\\frac{dx}{dt}<0\\), the particle is moving to the <strong>left</strong>.</p>",
+    "sik_hatalar": [
+     "x yerine r'nin türevini (dr/dθ) kullanmak.",
+     "dθ/dt = 0.5 ile çarpmayı unutmak."
+    ],
+    "ne_soruyor": "Polar eğri üzerinde hareket eden bir parçacığın yatay hızını zincir kuralıyla bulmanı istiyor."
+   }
+  ],
+  "toplam_puan": 9,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "9.7, 9.9",
+   "tip": "Polar Area and Rate of Change (Calculator Active)"
+  }
+ },
+ {
+  "id": "frq-calc-bc-k5",
+  "sayfa": "ap-calculus",
+  "ders": "calculus-bc",
+  "tur": "Euler yöntemi ve lojistik büyüme (hesap makinesiz)",
+  "baslik": "Trout in a Newly Stocked Lake",
+  "sure_dk": 15,
+  "hesapMakinesi": false,
+  "zorluk": "easy",
+  "giris": "<p>A lake is stocked with 200 trout at time \\(t = 0\\). The number of trout in the lake is modeled by a function \\(P\\) that satisfies the logistic differential equation \\[\\frac{dP}{dt} = \\frac{1}{5}P\\left(1 - \\frac{P}{1000}\\right),\\] where \\(t\\) is measured in years and \\(P(0) = 200\\).</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "Find \\(\\displaystyle\\lim_{t \\to \\infty} P(t)\\). Explain your reasoning.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Cevap 1000."
+     },
+     {
+      "puan": 1,
+      "olcut": "Gerekçe: 0 < P(0) < 1000 olduğundan dP/dt > 0; P artarak taşıma kapasitesi 1000'e yaklaşır.",
+      "ornek_cevap": "Since 0 < P(0) < 1000, dP/dt > 0 and P increases toward the carrying capacity 1000."
+     }
+    ],
+    "ornek_cozum": "<p>Lojistik denklemde taşıma kapasitesi \\(1-\\frac{P}{1000}=0\\Rightarrow P=1000\\). \\(0<P(0)=200<1000\\) olduğu için \\(\\frac{dP}{dt}>0\\); \\(P\\) artar ama 1000'i geçemez ve 1000'e yaklaşır.</p><p><strong>Cevap (İngilizce):</strong> \\(\\lim_{t\\to\\infty}P(t)=1000\\), because \\(0<P(0)<1000\\) means \\(\\frac{dP}{dt}>0\\) and the population increases toward the carrying capacity of 1000.</p>",
+    "sik_hatalar": [
+     "Limiti 500 vermek (500, büyümenin en hızlı olduğu değerdir).",
+     "Başlangıç değerinin 0 ile 1000 arasında olduğunu belirtmemek."
+    ],
+    "ne_soruyor": "Lojistik modelde uzun vadede nüfusun hangi değere yaklaştığını bulmanı ve nedenini açıklamanı istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "Use Euler's method, starting at \\(t = 0\\) with two steps of equal size, to approximate \\(P(10)\\). Show the work that leads to your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Birinci adım: \\(P(5)\\approx200+5\\cdot32=360\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "İkinci adım: \\(P(10)\\approx360+5\\cdot46.08=590.4\\).",
+      "ornek_cevap": "Euler's method gives P(10) ≈ 590.4 trout."
+     }
+    ],
+    "ornek_cozum": "<p>Adım \\(\\Delta t=5\\).</p><p>\\(t=0\\): \\(\\frac{dP}{dt}=\\frac15\\cdot200\\cdot0.8=32\\) → \\(P(5)\\approx200+5\\cdot32=360\\).</p><p>\\(t=5\\): \\(\\frac{dP}{dt}=\\frac15\\cdot360\\cdot0.64=46.08\\) → \\(P(10)\\approx360+5\\cdot46.08=590.4\\).</p><p><strong>Cevap (İngilizce):</strong> \\(P(5)\\approx200+5(32)=360\\) and \\(P(10)\\approx360+5(46.08)=590.4\\) trout.</p>",
+    "sik_hatalar": [
+     "Adım büyüklüğünü 10 ya da 1 almak (iki eşit adımda 0'dan 10'a: Δt = 5).",
+     "İkinci adımda eğimi yine P = 200 ile hesaplamak."
+    ],
+    "ne_soruyor": "Diferansiyel denklemden Euler yöntemiyle iki adımda yaklaşık değer bulmanı istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "Find \\(\\dfrac{d^2P}{dt^2}\\) in terms of \\(P\\). It is known that \\(P(t) < 500\\) for \\(0 \\le t \\le 5\\). Is the Euler approximation of \\(P(5)\\) found in part (b) an underestimate or an overestimate of \\(P(5)\\)? Justify your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(\\dfrac{d^2P}{dt^2}=\\dfrac15\\left(1-\\dfrac{P}{500}\\right)\\dfrac{dP}{dt}=\\dfrac{1}{25}P\\left(1-\\dfrac{P}{1000}\\right)\\left(1-\\dfrac{P}{500}\\right)\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "200 ≤ P < 500 için P″ > 0 ⇒ çözüm yukarı bükey ⇒ Euler (teğet doğrusu) eksik tahmin.",
+      "ornek_cevap": "For 200 ≤ P < 500, d²P/dt² > 0, so the graph of P is concave up on [0, 5] and the Euler approximation 360 is an underestimate."
+     }
+    ],
+    "ornek_cozum": "<p>Zincir kuralı: \\(\\dfrac{d^2P}{dt^2}=\\dfrac{d}{dP}\\left[\\tfrac15P-\\tfrac{P^2}{5000}\\right]\\cdot\\dfrac{dP}{dt}=\\left(\\tfrac15-\\tfrac{P}{2500}\\right)\\dfrac{dP}{dt}=\\dfrac15\\left(1-\\dfrac{P}{500}\\right)\\dfrac{dP}{dt}\\).</p><p>\\(0\\le t\\le5\\) için \\(200\\le P<500\\): \\(\\frac{dP}{dt}>0\\) ve \\(1-\\frac{P}{500}>0\\) → \\(\\frac{d^2P}{dt^2}>0\\). Grafik yukarı bükey; Euler adımı teğet doğrusu üzerinde ilerlediği için eğrinin altında kalır.</p><p><strong>Cevap (İngilizce):</strong> \\(\\frac{d^2P}{dt^2}=\\frac15\\left(1-\\frac{P}{500}\\right)\\frac{dP}{dt}\\). For \\(0\\le t\\le5\\), \\(200\\le P<500\\), so \\(\\frac{d^2P}{dt^2}>0\\) and the graph of \\(P\\) is concave up. Therefore the Euler approximation \\(P(5)\\approx360\\) is an <strong>underestimate</strong>.</p>",
+    "sik_hatalar": [
+     "İkinci türevde dP/dt çarpanını (zincir kuralı) unutmak.",
+     "Yalnız ‘P artıyor’ diyerek karar vermek — karar bükeyliğe (P″) bağlıdır."
+    ],
+    "ne_soruyor": "İkinci türevi P cinsinden bulmanı ve bükeylikten Euler tahmininin eksik mi fazla mı olduğunu gerekçelendirmeni istiyor."
+   },
+   {
+    "harf": "d",
+    "soru": "The solution to the differential equation has the form \\(P(t) = \\dfrac{1000}{1 + Ce^{-t/5}}\\) for some constant \\(C\\). Find \\(C\\). For what value of \\(P\\) is the population growing the fastest? Find the time \\(t\\) at which the population is growing the fastest.",
+    "puan": 3,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "P(0) = 200 ⇒ C = 4."
+     },
+     {
+      "puan": 1,
+      "olcut": "En hızlı büyüme P = 500'de (taşıma kapasitesinin yarısı)."
+     },
+     {
+      "puan": 1,
+      "olcut": "t = 5 ln 4 (= 10 ln 2) yıl.",
+      "ornek_cevap": "The population is growing fastest at t = 5 ln 4 years."
+     }
+    ],
+    "ornek_cozum": "<p>\\(200=\\dfrac{1000}{1+C}\\Rightarrow1+C=5\\Rightarrow C=4\\).</p><p>\\(\\frac{dP}{dt}=\\frac15P-\\frac{P^2}{5000}\\), \\(P\\)'nin ikinci dereceden fonksiyonu; tepe noktası \\(P=500\\) (ya da \\(\\frac{d^2P}{dt^2}=0\\iff P=500\\)).</p><p>\\(500=\\dfrac{1000}{1+4e^{-t/5}}\\Rightarrow4e^{-t/5}=1\\Rightarrow t=5\\ln4\\).</p><p><strong>Cevap (İngilizce):</strong> \\(C=4\\). The population is growing fastest when \\(P=500\\), which occurs at \\(t=5\\ln4\\) years.</p>",
+    "sik_hatalar": [
+     "P = 1000'i ‘en hızlı büyüme’ sanmak (orada büyüme durur).",
+     "\\(e^{-t/5}=\\tfrac14\\) denklemini çözerken eksi işaretini kaybedip negatif t bulmak."
+    ],
+    "ne_soruyor": "Çözüm biçimindeki sabiti bulmanı, büyümenin en hızlı olduğu nüfusu ve bunun gerçekleştiği zamanı belirlemeni istiyor."
+   }
+  ],
+  "toplam_puan": 9,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "7.5, 7.9",
+   "tip": "Euler's Method and Logistic Growth (No Calculator)"
+  }
+ },
+ {
+  "id": "frq-calc-bc-k6",
+  "sayfa": "ap-calculus",
+  "ders": "calculus-bc",
+  "tur": "Kısmi integrasyon ve genelleştirilmiş integral (hesap makinesiz)",
+  "baslik": "Views of a Viral Video",
+  "sure_dk": 15,
+  "hesapMakinesi": false,
+  "zorluk": "hard",
+  "giris": "<p>A video is posted online at time \\(t = 0\\). The rate at which the video is viewed is modeled by \\[V(t) = 12t\\,e^{-t/4}\\] thousand views per day, where \\(t\\) is measured in days and \\(t \\ge 0\\).</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "At what time \\(t\\), for \\(t \\ge 0\\), is the rate at which the video is viewed the greatest? Justify your answer.",
+    "puan": 2,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(V'(t)=12e^{-t/4}\\left(1-\\frac t4\\right)=0\\Rightarrow t=4\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Gerekçe: V′ > 0 (0 < t < 4), V′ < 0 (t > 4); tek kritik nokta ⇒ mutlak maksimum t = 4.",
+      "ornek_cevap": "V′(t) > 0 for 0 < t < 4 and V′(t) < 0 for t > 4, so the rate is greatest at t = 4 days."
+     }
+    ],
+    "ornek_cozum": "<p>Çarpım kuralı: \\(V'(t)=12e^{-t/4}+12t\\left(-\\tfrac14\\right)e^{-t/4}=12e^{-t/4}\\left(1-\\tfrac t4\\right)\\).</p><p>\\(e^{-t/4}>0\\) olduğundan işaret \\(1-\\tfrac t4\\)'e bağlı: \\(t<4\\) için pozitif, \\(t>4\\) için negatif. Tek kritik nokta olduğu için mutlak maksimum.</p><p><strong>Cevap (İngilizce):</strong> \\(V'(t)=12e^{-t/4}\\left(1-\\frac t4\\right)\\) is positive for \\(0<t<4\\) and negative for \\(t>4\\), so the rate at which the video is viewed is greatest at \\(t=4\\) days.</p>",
+    "sik_hatalar": [
+     "Çarpım kuralında \\(e^{-t/4}\\)'ün türevindeki \\(-\\tfrac14\\) çarpanını unutmak.",
+     "Yalnız V′(4) = 0 deyip işaret değişimini göstermemek."
+    ],
+    "ne_soruyor": "İzlenme hızının en büyük olduğu anı türevle bulmanı ve birinci türev testiyle gerekçelendirmeni istiyor."
+   },
+   {
+    "harf": "b",
+    "soru": "Use integration by parts to find the total number of views, in thousands, during the first 4 days, \\(0 \\le t \\le 4\\).",
+    "puan": 3,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Kısmi integrasyon: \\(u=t,\\ dv=e^{-t/4}dt,\\ v=-4e^{-t/4}\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Ters türev: \\(-48te^{-t/4}-192e^{-t/4}\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Cevap \\(192-\\dfrac{384}{e}\\) bin görüntülenme.",
+      "ornek_cevap": "The video receives 192 − 384/e thousand views during the first 4 days."
+     }
+    ],
+    "ornek_cozum": "<p>\\(\\int t\\,e^{-t/4}dt\\): \\(u=t\\), \\(dv=e^{-t/4}dt\\) ⇒ \\(du=dt\\), \\(v=-4e^{-t/4}\\).</p>\\[\\int te^{-t/4}dt=-4te^{-t/4}+4\\int e^{-t/4}dt=-4te^{-t/4}-16e^{-t/4}+C\\]<p>12 ile çarp: \\(\\int V\\,dt=-48te^{-t/4}-192e^{-t/4}\\).</p>\\[\\int_0^4V(t)\\,dt=\\left(-\\frac{192}{e}-\\frac{192}{e}\\right)-(0-192)=192-\\frac{384}{e}\\]<p><strong>Cevap (İngilizce):</strong> \\(\\int_0^4 12te^{-t/4}\\,dt=\\left[-48te^{-t/4}-192e^{-t/4}\\right]_0^4=192-\\dfrac{384}{e}\\) thousand views.</p>",
+    "sik_hatalar": [
+     "u ve dv'yi ters seçip integrali zorlaştırmak.",
+     "\\(\\int e^{-t/4}dt\\)'yi \\(-\\tfrac14e^{-t/4}\\) yazmak (doğrusu \\(-4e^{-t/4}\\))."
+    ],
+    "ne_soruyor": "Kısmi integrasyonla belirli bir sürede biriken toplam izlenmeyi tam değer olarak bulmanı istiyor."
+   },
+   {
+    "harf": "c",
+    "soru": "According to the model, the total number of views over all time is \\(\\displaystyle\\int_0^{\\infty} V(t)\\,dt\\). Evaluate this improper integral, showing the work that leads to your answer. According to the model, will the video ever reach 200 thousand views? Justify your answer.",
+    "puan": 4,
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Limit gösterimi: \\(\\lim_{b\\to\\infty}\\int_0^b V(t)\\,dt\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "\\(\\lim_{b\\to\\infty}be^{-b/4}=0\\) (L'Hôpital ya da eşdeğeri) ve \\(\\lim e^{-b/4}=0\\)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Değer 192 (bin)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Sonuç: Hayır — toplam izlenme her zaman 192 binden az (V > 0 olduğundan artarak 192'ye yaklaşır).",
+      "ornek_cevap": "No. The total number of views is always less than 192 thousand, so the video never reaches 200 thousand views."
+     }
+    ],
+    "ornek_cozum": "<p>\\[\\int_0^\\infty V(t)\\,dt=\\lim_{b\\to\\infty}\\left[-48te^{-t/4}-192e^{-t/4}\\right]_0^b=\\lim_{b\\to\\infty}\\left(-48be^{-b/4}-192e^{-b/4}+192\\right)\\]</p><p>\\(\\lim_{b\\to\\infty}be^{-b/4}=\\lim_{b\\to\\infty}\\dfrac{b}{e^{b/4}}\\) (\\(\\tfrac\\infty\\infty\\)); L'Hôpital: \\(\\lim\\dfrac{1}{\\frac14e^{b/4}}=0\\). Ayrıca \\(e^{-b/4}\\to0\\). Sonuç \\(192\\).</p><p>\\(V(t)>0\\) olduğundan birikmiş izlenme sürekli artar ama hiçbir zaman 192 bini aşmaz.</p><p><strong>Cevap (İngilizce):</strong> \\(\\int_0^\\infty V(t)\\,dt=\\lim_{b\\to\\infty}\\left(192-48be^{-b/4}-192e^{-b/4}\\right)=192\\) thousand views. <strong>No</strong>: the total number of views is always less than 192 thousand, so it never reaches 200 thousand.</p>",
+    "sik_hatalar": [
+     "∞'u doğrudan yerine koymak (‘∞·0 = 0’) — limit gösterimi ve L'Hôpital gerekçesi yazılmalı.",
+     "Belirsizliği \\(\\infty\\cdot0\\) biçiminden bölüm biçimine çevirmeden L'Hôpital uygulamak."
+    ],
+    "ne_soruyor": "Genelleştirilmiş integrali limitle hesaplamanı ve sonucu bağlamda bir eşikle karşılaştırarak yorumlamanı istiyor."
+   }
+  ],
+  "toplam_puan": 9,
+  "kaynak": "AP-style original (Meberra 1.24.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.24.0",
+   "cedKonu": "6.11, 6.13, 5.5, 4.7",
+   "tip": "Integration by Parts and Improper Integral in Context (No Calculator)"
+  }
+ }
+]
