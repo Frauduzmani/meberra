@@ -1,0 +1,981 @@
+{
+ "ders": "calculus",
+ "unite": 10,
+ "baslik": "Infinite Sequences and Series",
+ "baslikTr": "Sonsuz Diziler ve Seriler",
+ "konular": [
+  {
+   "kod": "10.1",
+   "baslik": "Defining Convergent and Divergent Infinite Series",
+   "baslikTr": "Yakınsak ve ıraksak sonsuz serilerin tanımı",
+   "sadeceBC": true,
+   "hedefler": [
+    "Bir dizinin (sequence) limitini bularak yakınsak (convergent) mı ıraksak (divergent) mı olduğunu belirlemek.",
+    "Sonsuz seriyi (infinite series) kısmi toplamlar dizisinin (sequence of partial sums) limiti olarak tanımlamak.",
+    "Kısmi toplam formülünden ya da teleskopik (telescoping) yapıdan bir serinin toplamını bulmak."
+   ],
+   "anlatim": "<p>Ünite 10'un tamamı tek bir soruya cevap arar: <strong>sonsuz sayıda sayıyı toplamak anlamlı mıdır?</strong> Bunun için önce iki kavramı ayırmak gerekir: <em>dizi</em> ve <em>seri</em>.</p>\n<h4>Dizi (sequence) ve dizinin limiti</h4>\n<p>Bir dizi sıralı bir sayı listesidir: \\(a_1, a_2, a_3, \\dots\\). Örneğin \\(a_n=\\dfrac{3n+1}{n+2}\\) dizisinin terimleri \\(\\tfrac43, \\tfrac74, \\tfrac{10}{5}, \\dots\\) olur. \\(\\lim_{n\\to\\infty} a_n = L\\) (sonlu bir sayı) ise dizi <strong>yakınsaktır (converges)</strong>; limit yoksa ya da sonsuzsa <strong>ıraksaktır (diverges)</strong>. Dizinin limiti, Ünite 1'deki sonsuzda limit tekniğiyle bulunur: \\(\\dfrac{3n+1}{n+2}\\to 3\\).</p>\n<table><thead><tr><th>Dizi</th><th>Limit</th><th>Sonuç</th></tr></thead>\n<tbody>\n<tr><td>\\(\\dfrac{5n^2}{2n^2+7}\\)</td><td>\\(\\tfrac52\\)</td><td>yakınsak</td></tr>\n<tr><td>\\(\\dfrac{\\ln n}{n}\\)</td><td>0 (L'Hospital)</td><td>yakınsak</td></tr>\n<tr><td>\\((-1)^n\\)</td><td>yok (1, −1 arasında gidip gelir)</td><td>ıraksak</td></tr>\n<tr><td>\\(\\left(1+\\tfrac{2}{n}\\right)^n\\)</td><td>\\(e^2\\)</td><td>yakınsak</td></tr>\n</tbody></table>\n<h4>Seri (series) ve kısmi toplamlar</h4>\n<p>Seri, dizinin terimlerinin <em>toplamıdır</em>: \\(\\sum_{n=1}^{\\infty} a_n = a_1+a_2+a_3+\\cdots\\). Sonsuz toplamayı doğrudan yapamayız; bunun yerine <strong>n. kısmi toplamı (nth partial sum)</strong> tanımlarız:</p>\n<div class=\"formul\">\\[ S_n = a_1 + a_2 + \\cdots + a_n = \\sum_{k=1}^{n} a_k \\]</div>\n<div class=\"kn-tanim\"><strong>Tanım:</strong> \\(\\lim_{n\\to\\infty} S_n = S\\) sonlu bir sayı ise seri <strong>yakınsaktır</strong> ve toplamı \\(S\\)'dir. Limit yoksa ya da \\(\\pm\\infty\\) ise seri <strong>ıraksaktır</strong>.</div>\n<p>Yani bir serinin yakınsaklığı aslında <em>başka bir dizinin</em> (\\(S_n\\)) yakınsaklığıdır. Bu ünitedeki bütün testler (n. terim, integral, karşılaştırma, oran…) \\(S_n\\)'yi hesaplamadan bu limit hakkında bilgi verme yollarıdır.</p>\n<div class=\"kn-dikkat\">İki farklı limit vardır ve karıştırılmamalıdır: \\(\\lim a_n\\) (terimlerin limiti) ve \\(\\lim S_n\\) (serinin toplamı). Örneğin \\(S_n=\\dfrac{4n}{n+1}\\) ise serinin toplamı \\(4\\)'tür; ama terimler \\(a_n=S_n-S_{n-1}\\to 0\\)'dır.</div>\n<h4>Kısmi toplamdan terim, terimden kısmi toplam</h4>\n<p>\\(S_n\\) formülü verilirse: \\(a_1=S_1\\) ve \\(n\\ge2\\) için \\(a_n=S_n-S_{n-1}\\). Serinin toplamı ise doğrudan \\(\\lim S_n\\)'dir.</p>\n<h4>Teleskopik seriler (telescoping series)</h4>\n<p>Terim iki parçanın farkı olarak yazılabiliyorsa ara terimler birbirini götürür. Örnek: \\(\\sum_{n=1}^{\\infty}\\left(\\dfrac{1}{n}-\\dfrac{1}{n+1}\\right)\\).</p>\n<div class=\"formul\">\\[ S_n = \\left(1-\\tfrac12\\right)+\\left(\\tfrac12-\\tfrac13\\right)+\\cdots+\\left(\\tfrac1n-\\tfrac{1}{n+1}\\right) = 1-\\frac{1}{n+1} \\to 1 \\]</div>\n<p>Kayma 2 ise (\\(\\tfrac1n-\\tfrac1{n+2}\\)) baştan <em>iki</em> terim kalır: \\(1+\\tfrac12\\). Çoğu zaman önce kısmi kesirlere ayırma (partial fractions) gerekir: \\(\\dfrac{1}{n(n+1)}=\\dfrac1n-\\dfrac1{n+1}\\).</p>\n<h4>Seri cebiri</h4>\n<p>Yakınsak iki seri için \\(\\sum (a_n+b_n)=\\sum a_n+\\sum b_n\\) ve \\(\\sum c\\,a_n = c\\sum a_n\\). Bir seriden sonlu sayıda terim atmak ya da eklemek yakınsaklığı <strong>değiştirmez</strong>, yalnız toplamı değiştirir.</p>\n<p><strong>FRQ dili:</strong> “Since \\(\\lim_{n\\to\\infty} S_n = 4\\), the series converges and its sum is 4.” Yakınsak denir; toplam ayrıca belirtilir.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\sum_{n=1}^{\\infty} a_n\\) serisinin n. kısmi toplamı \\(S_n=\\dfrac{6n-1}{2n+3}\\) olsun. \\(a_3\\)'ü ve serinin toplamını bulun.",
+     "cozum": [
+      "\\(a_3=S_3-S_2=\\dfrac{17}{9}-\\dfrac{11}{7}=\\dfrac{119-99}{63}=\\dfrac{20}{63}\\).",
+      "Toplam: \\(\\lim_{n\\to\\infty}\\dfrac{6n-1}{2n+3}=3\\). “Since \\(\\lim S_n=3\\), the series converges to 3.”"
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{2}{n(n+2)}\\) serisinin toplamını bulun.",
+     "cozum": [
+      "Kısmi kesirler: \\(\\dfrac{2}{n(n+2)}=\\dfrac1n-\\dfrac{1}{n+2}\\).",
+      "\\(S_n=\\left(1+\\tfrac12\\right)-\\left(\\tfrac{1}{n+1}+\\tfrac{1}{n+2}\\right)\\); iki terim kaydığı için baştan \\(1\\) ve \\(\\tfrac12\\) kalır.",
+      "\\(n\\to\\infty\\): \\(S_n\\to \\tfrac32\\). Seri yakınsar, toplamı \\(\\tfrac32\\)."
+     ]
+    },
+    {
+     "soru": "\\(a_n=\\dfrac{n}{\\sqrt{4n^2+1}}\\) dizisi yakınsak mı? \\(\\sum a_n\\) serisi için ne söylenebilir?",
+     "cozum": [
+      "Dizi: pay ve paydayı \\(n\\)'ye böl: \\(\\dfrac{1}{\\sqrt{4+1/n^2}}\\to\\dfrac12\\). Dizi \\(\\tfrac12\\)'ye yakınsar.",
+      "Seri: terimler 0'a değil \\(\\tfrac12\\)'ye gidiyor; her terim yaklaşık \\(\\tfrac12\\) eklediği için \\(S_n\\to\\infty\\). Seri ıraksar (10.3'teki n. terim testi).",
+      "Ders: dizinin yakınsaması serinin yakınsaması değildir."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Soru “sequence” mı “series” mi diyor? Önce bunu belirle; dizi için lim a_n, seri için lim S_n aranır.",
+    "S_n verildiyse toplam doğrudan lim S_n'dir; ayrıca test uygulamaya gerek yok.",
+    "Teleskopik seride birkaç terimi açıkça yaz; hangi terimlerin kaldığını ancak böyle görürsün.",
+    "FRQ'da “converges” demek yetmez; istenirse toplamı ve gerekçeyi (lim S_n = ...) yaz."
+   ],
+   "sikHatalar": [
+    "lim a_n = 0 olduğu için serinin toplamını 0 sanmak.",
+    "Teleskopik seride kayma 2 iken yalnız ilk terimi bırakmak.",
+    "Dizi limiti ile seri toplamını aynı sayı sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "sequence",
+     "tr": "dizi"
+    },
+    {
+     "en": "series",
+     "tr": "seri"
+    },
+    {
+     "en": "partial sum",
+     "tr": "kısmi toplam"
+    },
+    {
+     "en": "converge / diverge",
+     "tr": "yakınsamak / ıraksamak"
+    },
+    {
+     "en": "telescoping series",
+     "tr": "teleskopik seri"
+    }
+   ]
+  },
+  {
+   "kod": "10.2",
+   "baslik": "Working with Geometric Series",
+   "baslikTr": "Geometrik serilerle çalışmak",
+   "sadeceBC": true,
+   "hedefler": [
+    "Bir serinin geometrik (geometric) olduğunu tanıyıp ilk terimini ve ortak oranını (common ratio) belirlemek.",
+    "|r| < 1 koşuluyla yakınsaklığı gerekçelendirmek ve toplamı a/(1 − r) ile hesaplamak.",
+    "Başlangıç indisi farklı ya da birleşik geometrik serilerin toplamını bulmak."
+   ],
+   "anlatim": "<p>Geometrik seri, toplamını <strong>kesin olarak</strong> bulabildiğimiz az sayıdaki seriden biridir; ayrıca 10.15'te kuvvet serilerinin temelidir.</p>\n<div class=\"kn-tanim\"><strong>Geometrik seri:</strong> Her terim bir öncekinin sabit bir \\(r\\) katıdır: \\(a + ar + ar^2 + ar^3+\\cdots=\\sum_{n=0}^{\\infty} a r^n\\). \\(a\\) ilk terim, \\(r\\) <em>common ratio</em>.</div>\n<h4>Kısmi toplam ve limit</h4>\n<p>\\(S_n = a + ar + \\cdots + ar^{n-1}\\) olsun. \\(rS_n\\)'yi çıkarırsak \\(S_n(1-r)=a(1-r^n)\\), yani</p>\n<div class=\"formul\">\\[ S_n = \\frac{a(1-r^n)}{1-r}\\quad (r\\ne1) \\]</div>\n<p>\\(|r|\\lt1\\) ise \\(r^n\\to0\\) ve \\(S_n\\to\\dfrac{a}{1-r}\\). \\(|r|\\ge1\\) ise \\(r^n\\) sıfıra gitmez, terimler sıfıra gitmez ve seri ıraksar.</p>\n<div class=\"kn-kural\"><strong>Kural:</strong> \\(\\sum a r^n\\) (\\(a\\ne0\\)) yakınsar \\(\\iff |r|\\lt1\\). Yakınsadığında toplam \\(=\\dfrac{\\text{ilk terim}}{1-r}\\).</div>\n<h4>İlk terimi doğru bulmak</h4>\n<p>Formüldeki \\(a\\), serinin <strong>ilk yazılan terimidir</strong>, \\(n=0\\)'daki değer değil. En güvenli yol: başlangıç indisini yerine koy.</p>\n<table><thead><tr><th>Seri</th><th>İlk terim</th><th>\\(r\\)</th><th>Toplam</th></tr></thead>\n<tbody>\n<tr><td>\\(\\sum_{n=0}^{\\infty} 4\\left(\\tfrac13\\right)^n\\)</td><td>4</td><td>\\(\\tfrac13\\)</td><td>\\(\\dfrac{4}{2/3}=6\\)</td></tr>\n<tr><td>\\(\\sum_{n=1}^{\\infty} 4\\left(\\tfrac13\\right)^n\\)</td><td>\\(\\tfrac43\\)</td><td>\\(\\tfrac13\\)</td><td>\\(\\dfrac{4/3}{2/3}=2\\)</td></tr>\n<tr><td>\\(\\sum_{n=2}^{\\infty} \\dfrac{(-2)^n}{5^n}\\)</td><td>\\(\\tfrac{4}{25}\\)</td><td>\\(-\\tfrac25\\)</td><td>\\(\\dfrac{4/25}{7/5}=\\dfrac{4}{35}\\)</td></tr>\n<tr><td>\\(\\sum_{n=0}^{\\infty} \\dfrac{3^{n}}{2^{n}}\\)</td><td>1</td><td>\\(\\tfrac32\\)</td><td>ıraksak</td></tr>\n</tbody></table>\n<h4>Oranı bulma</h4>\n<p>Terimi \\(a\\cdot r^n\\) biçimine getir: \\(\\dfrac{2^{n+1}}{3^{n-1}} = 2\\cdot 3\\cdot\\left(\\tfrac23\\right)^n = 6\\left(\\tfrac23\\right)^n\\). Ardışık iki terimin oranı (\\(a_{n+1}/a_n\\)) da \\(r\\)'yi verir.</p>\n<h4>Birleşik seriler</h4>\n<p>\\(\\sum\\left(\\dfrac{1}{2^n}+\\dfrac{2}{3^n}\\right)\\) gibi bir seri, iki yakınsak geometrik serinin toplamıdır; toplamlar ayrı ayrı bulunup eklenir. Ama parçalardan biri ıraksaksa toplam seri de ıraksar.</p>\n<h4>Değişkenli geometrik seri</h4>\n<p>\\(\\sum_{n=0}^{\\infty}\\left(\\dfrac{x-1}{3}\\right)^n\\) için \\(r=\\dfrac{x-1}{3}\\). Yakınsaklık \\(|x-1|\\lt3\\), yani \\(-2\\lt x\\lt4\\); toplam \\(\\dfrac{1}{1-\\frac{x-1}{3}}=\\dfrac{3}{4-x}\\). Bu, 10.13–10.15'e köprüdür.</p>\n<p><strong>FRQ dili:</strong> “The series is geometric with ratio \\(r=-\\tfrac25\\). Since \\(|r|\\lt1\\), the series converges, and its sum is \\(\\dfrac{a}{1-r}\\).”</p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{3^{n+1}}{5^{n}}\\) serisinin toplamını bulun.",
+     "cozum": [
+      "İlk terim (\\(n=1\\)): \\(\\dfrac{9}{5}\\). Oran: \\(r=\\dfrac35\\), \\(|r|\\lt1\\) olduğundan yakınsar.",
+      "Toplam \\(=\\dfrac{9/5}{1-3/5}=\\dfrac{9/5}{2/5}=\\dfrac92\\)."
+     ]
+    },
+    {
+     "soru": "Bir top 6 m yükseklikten bırakılıyor; her sekmede bir önceki yüksekliğin \\(\\tfrac23\\)'üne çıkıyor. Topun aldığı toplam düşey yol nedir?",
+     "cozum": [
+      "İnişler: \\(6+4+\\tfrac83+\\cdots=\\dfrac{6}{1-2/3}=18\\).",
+      "Çıkışlar: \\(4+\\tfrac83+\\cdots=\\dfrac{4}{1-2/3}=12\\).",
+      "Toplam \\(=18+12=30\\) m. (Her yükseklik, ilk iniş hariç, iki kez sayılır.)"
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=0}^{\\infty} (2x)^n\\) hangi \\(x\\) değerleri için yakınsar ve toplamı nedir? Justify.",
+     "cozum": [
+      "Geometrik seri, \\(r=2x\\). Yakınsaklık için \\(|2x|\\lt1\\iff -\\tfrac12\\lt x\\lt\\tfrac12\\).",
+      "Bu aralıkta toplam \\(\\dfrac{1}{1-2x}\\). \\(|2x|\\ge1\\) ise terimler 0'a gitmez, seri ıraksar."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "İlk terimi daima başlangıç indisini yerine koyarak bul; n = 0 ile n = 1 arasındaki fark en sık tuzaktır.",
+    "Toplamı yazmadan önce |r| < 1 olduğunu açıkça belirt; puanlayıcı gerekçeyi arar.",
+    "(−1)^n içeren geometrik serilerde r negatiftir; işareti kaybetme.",
+    "Ardışık terim oranı sabit değilse seri geometrik değildir; formülü uygulama."
+   ],
+   "sikHatalar": [
+    "n = 1'den başlayan seride ilk terim yerine a·r^0 kullanmak.",
+    "|r| > 1 olduğu halde a/(1 − r) formülüyle negatif bir 'toplam' yazmak.",
+    "Payda 1 − r yerine 1 + r yazmak (özellikle r negatifken)."
+   ],
+   "terimler": [
+    {
+     "en": "geometric series",
+     "tr": "geometrik seri"
+    },
+    {
+     "en": "common ratio",
+     "tr": "ortak oran"
+    },
+    {
+     "en": "first term",
+     "tr": "ilk terim"
+    },
+    {
+     "en": "sum of the series",
+     "tr": "serinin toplamı"
+    }
+   ]
+  },
+  {
+   "kod": "10.3",
+   "baslik": "The nth Term Test for Divergence",
+   "baslikTr": "Iraksaklık için n. terim testi",
+   "sadeceBC": true,
+   "hedefler": [
+    "n. terim testini (nth term test) uygulayarak bir serinin ıraksadığını göstermek.",
+    "lim a_n = 0 olmasının yakınsaklık için yeterli olmadığını açıklamak.",
+    "Testi doğru FRQ diliyle yazmak."
+   ],
+   "anlatim": "<p>Bir seri yakınsıyorsa kısmi toplamlar bir \\(S\\) sayısına yerleşir; o zaman \\(a_n=S_n-S_{n-1}\\to S-S=0\\). Bunun karşıtı (contrapositive) ıraksaklık için çok kullanışlı bir testtir.</p>\n<div class=\"kn-kural\"><strong>nth Term Test for Divergence:</strong> \\(\\lim_{n\\to\\infty} a_n\\ne0\\) ise (ya da limit yoksa) \\(\\sum a_n\\) <strong>ıraksar</strong>.</div>\n<h4>Test neyi söylemez?</h4>\n<p>\\(\\lim a_n = 0\\) ise test <strong>hiçbir şey söylemez (inconclusive)</strong>. En ünlü örnek harmonik seridir: \\(\\tfrac1n\\to0\\) ama \\(\\sum\\tfrac1n\\) ıraksar (10.5). Öte yandan \\(\\tfrac{1}{n^2}\\to0\\) ve \\(\\sum\\tfrac1{n^2}\\) yakınsar. Yani “terimler sıfıra gidiyor, demek ki yakınsar” cümlesi <em>yanlıştır</em>.</p>\n<table><thead><tr><th>Durum</th><th>Sonuç</th></tr></thead>\n<tbody>\n<tr><td>\\(\\sum a_n\\) yakınsak</td><td>\\(\\lim a_n=0\\) <strong>kesin</strong></td></tr>\n<tr><td>\\(\\lim a_n\\ne0\\) ya da yok</td><td>\\(\\sum a_n\\) <strong>ıraksak</strong></td></tr>\n<tr><td>\\(\\lim a_n=0\\)</td><td>karar yok; başka test gerekir</td></tr>\n</tbody></table>\n<h4>Limit hesaplama araçları</h4>\n<ul>\n<li><strong>Rasyonel ifadeler:</strong> en yüksek dereceye bak. \\(\\dfrac{n^2+1}{3n^2-n}\\to\\tfrac13\\ne0\\) ⇒ ıraksar.</li>\n<li><strong>Büyüme sırası:</strong> \\(\\ln n \\ll n^p \\ll b^n \\ll n!\\). Örneğin \\(\\dfrac{2^n}{n^3}\\to\\infty\\) ⇒ ıraksar.</li>\n<li><strong>L'Hospital:</strong> \\(\\dfrac{n}{\\ln n}\\) için \\(x\\)'li fonksiyona geçip türev al: \\(\\to\\infty\\).</li>\n<li><strong>Özel limitler:</strong> \\(\\left(1+\\tfrac{k}{n}\\right)^n\\to e^k\\); \\(n\\sin\\tfrac1n\\to1\\); \\(\\sqrt[n]{n}\\to1\\).</li>\n<li><strong>Salınım:</strong> \\((-1)^n\\dfrac{n}{n+1}\\) limitsizdir (±1'e yaklaşır) ⇒ ıraksar.</li>\n</ul>\n<div class=\"kn-dikkat\">Test yalnız <strong>ıraksaklık</strong> kanıtlar. “By the nth term test, the series converges” ifadesi her zaman yanlıştır ve FRQ'da puan kaybettirir.</div>\n<h4>Neden ilk bakılan test?</h4>\n<p>Bir seri karşısında ilk soru: “terimler sıfıra gidiyor mu?” Gitmiyorsa iş biter. Bu kontrol, uç nokta analizinde (10.13) de çok işe yarar: \\(\\sum (-1)^n\\) ya da \\(\\sum 1\\) gibi uç nokta serileri bu testle elenir.</p>\n<h4>Geometrik seriyle bağlantı</h4>\n<p>\\(|r|\\ge1\\) olan geometrik serinin neden ıraksadığını da bu test açıklar: \\(|ar^n|\\ge|a|\\gt0\\), terimler sıfıra gitmez. Örneğin \\(\\sum\\left(-\\tfrac54\\right)^n\\) için \\(|a_n|\\to\\infty\\). Aynı şekilde \\(\\sum\\cos\\tfrac1n\\) ıraksar çünkü \\(\\cos\\tfrac1n\\to1\\); ama \\(\\sum\\sin\\tfrac1n\\) için test sonuçsuzdur (\\(\\sin\\tfrac1n\\to0\\)) ve karşılaştırma gerekir (10.6).</p>\n<p><strong>FRQ dili:</strong> “\\(\\lim_{n\\to\\infty}\\dfrac{n^2+1}{3n^2-n}=\\dfrac13\\ne0\\). Therefore, by the nth term test, the series diverges.”</p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=1}^{\\infty}\\left(1+\\frac{3}{n}\\right)^{n}\\) serisinin ıraksadığını gösterin.",
+     "cozum": [
+      "\\(\\lim_{n\\to\\infty}\\left(1+\\tfrac3n\\right)^n=e^3\\ne0\\).",
+      "“Since \\(\\lim a_n=e^3\\ne0\\), the series diverges by the nth term test.”"
+     ]
+    },
+    {
+     "soru": "\\(\\lim_{n\\to\\infty} a_n = 0\\) olduğu biliniyor. \\(\\sum a_n\\) için hangi sonuç çıkarılabilir?",
+     "cozum": [
+      "n. terim testi yalnız limit sıfırdan farklıysa sonuç verir; burada sonuçsuzdur.",
+      "Örnek: \\(a_n=\\tfrac1n\\) (ıraksak seri) ve \\(a_n=\\tfrac1{n^2}\\) (yakınsak seri) ikisi de \\(\\lim a_n=0\\) sağlar. Hiçbir sonuç çıkarılamaz."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{5^n}\\) yakınsak mı?",
+     "cozum": [
+      "Faktöriyel üstelden hızlı büyür: \\(\\dfrac{n!}{5^n}\\to\\infty\\).",
+      "Terimler sıfıra gitmediği için n. terim testine göre seri ıraksar. (Oran testi de \\(L=\\infty\\) verir.)"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her seri sorusunda ilk adım: lim a_n'yi zihinden hesapla. Sıfır değilse cevap “diverges”.",
+    "FRQ'da limitin değerini yaz ve “≠ 0” de; yalnızca “terms don't go to zero” yazmak eksik sayılabilir.",
+    "Şıklarda “converges by the nth term test” görürsen ele: test asla yakınsaklık kanıtlamaz.",
+    "Uç nokta serisi Σ(−1)^n ya da Σ c (c ≠ 0) ise bu testle ıraksadığını söyle."
+   ],
+   "sikHatalar": [
+    "lim a_n = 0 ⇒ seri yakınsar sanmak.",
+    "Serinin toplamını terimlerin limitiyle karıştırmak (lim a_n = 3 ⇒ toplam 3 sanmak).",
+    "Salınan (−1)^n çarpanlı terimlerde limitin var olmadığını gözden kaçırmak."
+   ],
+   "terimler": [
+    {
+     "en": "nth term test for divergence",
+     "tr": "ıraksaklık için n. terim testi"
+    },
+    {
+     "en": "inconclusive",
+     "tr": "sonuçsuz"
+    },
+    {
+     "en": "contrapositive",
+     "tr": "karşıt ters önerme"
+    }
+   ]
+  },
+  {
+   "kod": "10.4",
+   "baslik": "Integral Test for Convergence",
+   "baslikTr": "Yakınsaklık için integral testi",
+   "sadeceBC": true,
+   "hedefler": [
+    "İntegral testinin koşullarını (pozitif, sürekli, azalan) doğrulamak.",
+    "Bir serinin yakınsaklığını ilgili improper integralin yakınsaklığına bağlamak.",
+    "Serinin toplamı ile integralin değerinin genelde eşit olmadığını açıklamak."
+   ],
+   "anlatim": "<p>Terimleri \\(a_n=f(n)\\) olan bir seriyi, \\(f\\)'nin grafiğinin altındaki alanla karşılaştırabiliriz. Her terim, genişliği 1 ve yüksekliği \\(f(n)\\) olan bir dikdörtgenin alanıdır.</p>\n<div class=\"kn-kural\"><strong>Integral Test:</strong> \\(f\\), \\([k,\\infty)\\) üzerinde <strong>pozitif, sürekli ve azalan</strong> bir fonksiyon ve \\(a_n=f(n)\\) olsun. O zaman\n\\[ \\sum_{n=k}^{\\infty} a_n \\ \\text{ ve } \\ \\int_k^{\\infty} f(x)\\,dx \\]\nya <strong>ikisi birlikte yakınsar</strong> ya da <strong>ikisi birlikte ıraksar</strong>.</div>\n<h4>Neden çalışır? (resim)</h4>\n<p>\\(f\\) azalan olduğu için, sağ uç noktalı dikdörtgenler eğrinin <em>altında</em>, sol uç noktalılar <em>üstünde</em> kalır:</p>\n<div class=\"formul\">\\[ \\sum_{n=2}^{N} f(n) \\le \\int_1^{N} f(x)\\,dx \\le \\sum_{n=1}^{N-1} f(n) \\]</div>\n<p>İntegral sonluysa, altındaki toplam da sınırlıdır (artan ve sınırlı ⇒ yakınsak). İntegral sonsuzsa, üstündeki toplam da sonsuzdur.</p>\n<h4>Koşulları kontrol etmek</h4>\n<table><thead><tr><th>Koşul</th><th>Nasıl gösterilir?</th></tr></thead>\n<tbody>\n<tr><td>Pozitif</td><td>\\(x\\ge k\\) için \\(f(x)\\gt0\\)</td></tr>\n<tr><td>Sürekli</td><td>Tanım kümesinde payda sıfır değil, kök/log tanımlı</td></tr>\n<tr><td>Azalan</td><td>\\(f'(x)\\lt0\\) (en azından bir noktadan sonra)</td></tr>\n</tbody></table>\n<p>Örnek: \\(f(x)=xe^{-x^2}\\). \\(f'(x)=e^{-x^2}(1-2x^2)\\lt0\\) for \\(x\\ge1\\). Koşullar sağlanır; \\(\\int_1^\\infty xe^{-x^2}dx=\\lim_{b\\to\\infty}\\left[-\\tfrac12e^{-x^2}\\right]_1^b=\\dfrac{1}{2e}\\) sonlu ⇒ \\(\\sum ne^{-n^2}\\) yakınsar.</p>\n<div class=\"kn-dikkat\">Integral test yakınsaklığı söyler, <strong>toplamı vermez</strong>. Yukarıdaki serinin toplamı \\(\\tfrac1{2e}\\) <em>değildir</em>. (İlk terim tek başına \\(e^{-1}\\approx0.368\\), integralin değeri \\(\\approx0.184\\)'ten büyüktür.)</div>\n<h4>Tipik seriler</h4>\n<ul>\n<li>\\(\\sum\\dfrac{1}{n\\ln n}\\) (\\(n\\ge2\\)): \\(u=\\ln x\\) ⇒ \\(\\int\\dfrac{dx}{x\\ln x}=\\ln(\\ln x)\\to\\infty\\) ⇒ ıraksar.</li>\n<li>\\(\\sum\\dfrac{1}{n(\\ln n)^2}\\): \\(\\int\\dfrac{du}{u^2}\\) sonlu ⇒ yakınsar.</li>\n<li>\\(\\sum\\dfrac{1}{n^2+1}\\): \\(\\int_1^\\infty\\dfrac{dx}{x^2+1}=\\dfrac{\\pi}{2}-\\dfrac{\\pi}{4}=\\dfrac\\pi4\\) ⇒ yakınsar.</li>\n</ul>\n<p>Improper integralin limit olarak yazılması (Ünite 6.13) zorunludur: \\(\\int_1^\\infty f\\,dx=\\lim_{b\\to\\infty}\\int_1^b f\\,dx\\).</p>\n<p><strong>FRQ dili:</strong> “\\(f(x)=\\dfrac{1}{x^2+1}\\) is positive, continuous, and decreasing for \\(x\\ge1\\). Since \\(\\int_1^{\\infty}f(x)\\,dx=\\dfrac{\\pi}{4}\\) converges, \\(\\sum_{n=1}^{\\infty}\\dfrac{1}{n^2+1}\\) converges by the Integral Test.”</p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=2}^{\\infty}\\frac{1}{n\\ln n}\\) serisinin ıraksadığını integral testiyle gösterin.",
+     "cozum": [
+      "\\(f(x)=\\dfrac1{x\\ln x}\\), \\(x\\ge2\\) için pozitif, sürekli ve azalandır (payda artar).",
+      "\\(\\int_2^b\\dfrac{dx}{x\\ln x}=\\ln(\\ln b)-\\ln(\\ln 2)\\to\\infty\\) (\\(b\\to\\infty\\)).",
+      "İntegral ıraksadığından, Integral Test'e göre seri de ıraksar."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\int_1^{\\infty}\\frac{4}{x^3}\\,dx = 2\\) olduğu biliniyor. Bir öğrenci “\\(\\sum_{n=1}^{\\infty}\\frac{4}{n^3}=2\\)” diyor. Değerlendirin.",
+     "cozum": [
+      "Integral test yalnız yakınsaklığı söyler: seri yakınsaktır.",
+      "Ama toplam 2 değildir: ilk terim tek başına 4'tür. Gerçekte toplam \\(4\\sum\\tfrac1{n^3}\\approx4.808\\). Öğrenci hatalı."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n}{e^{n^2}}\\) yakınsak mı? Koşulları göstererek gerekçelendirin.",
+     "cozum": [
+      "\\(f(x)=xe^{-x^2}\\gt0\\), sürekli; \\(f'(x)=e^{-x^2}(1-2x^2)\\lt0\\) for \\(x\\ge1\\) ⇒ azalan.",
+      "\\(\\int_1^\\infty xe^{-x^2}dx=\\lim_{b\\to\\infty}\\left(\\tfrac12e^{-1}-\\tfrac12e^{-b^2}\\right)=\\dfrac1{2e}\\).",
+      "İntegral yakınsadığından seri yakınsar (Integral Test)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Üç koşulu (positive, continuous, decreasing) adlarıyla yaz; FRQ'da biri eksikse gerekçe puanı gider.",
+    "Azalanlığı türevle göster; “clearly decreasing” demek çoğu zaman yeterli sayılmaz.",
+    "Improper integrali mutlaka lim_{b→∞} ile yaz.",
+    "İntegralin değeri serinin toplamı değildir; şıklarda bu tuzağa dikkat."
+   ],
+   "sikHatalar": [
+    "İntegralin değerini serinin toplamı sanmak.",
+    "Azalan olmayan (ör. sin içeren) fonksiyona integral testi uygulamak.",
+    "Integral alt sınırını serinin başlangıç indisinden farklı seçip koşulların sağlanmadığı bölgeyi dahil etmek."
+   ],
+   "terimler": [
+    {
+     "en": "integral test",
+     "tr": "integral testi"
+    },
+    {
+     "en": "improper integral",
+     "tr": "genelleştirilmiş integral"
+    },
+    {
+     "en": "positive, continuous, decreasing",
+     "tr": "pozitif, sürekli, azalan"
+    }
+   ]
+  },
+  {
+   "kod": "10.5",
+   "baslik": "Harmonic Series and p-Series",
+   "baslikTr": "Harmonik seri ve p-serileri",
+   "sadeceBC": true,
+   "hedefler": [
+    "Harmonik serinin (harmonic series) ıraksadığını bilmek ve gerekçelendirmek.",
+    "p-serisi (p-series) testiyle Σ 1/n^p serisinin yakınsaklığını p'ye göre belirlemek.",
+    "Kökler, kesirli üsler ve sabit çarpanlarla yazılmış p-serilerini tanımak."
+   ],
+   "anlatim": "<div class=\"kn-tanim\"><strong>p-serisi:</strong> \\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n^p}\\), \\(p\\) sabit bir gerçel sayı. \\(p=1\\) için \\(\\sum\\tfrac1n\\) <strong>harmonik seri</strong>dir.</div>\n<div class=\"kn-kural\"><strong>p-Series Test:</strong> \\(\\sum\\dfrac1{n^p}\\) seri <strong>\\(p\\gt1\\)</strong> ise yakınsar, <strong>\\(p\\le1\\)</strong> ise ıraksar.</div>\n<h4>Neden? (integral testi)</h4>\n<p>\\(p\\gt0\\) için \\(f(x)=x^{-p}\\) pozitif, sürekli, azalandır. \\(\\int_1^\\infty x^{-p}dx\\) integrali \\(p\\gt1\\) ise \\(\\dfrac{1}{p-1}\\)'e eşittir, \\(p\\le1\\) ise sonsuzdur. \\(p\\le0\\) ise terimler sıfıra bile gitmez (n. terim testi).</p>\n<h4>Harmonik seri: neden ıraksar?</h4>\n<p>Terimler sıfıra gider ama çok yavaş. Gruplayarak görebiliriz:</p>\n<div class=\"formul\">\\[ 1+\\tfrac12+\\underbrace{\\tfrac13+\\tfrac14}_{\\gt\\frac12}+\\underbrace{\\tfrac15+\\cdots+\\tfrac18}_{\\gt\\frac12}+\\cdots \\]</div>\n<p>Her grup en az \\(\\tfrac12\\) ekler; sonsuz tane grup olduğu için toplam sınırsız büyür. Yine de büyüme çok yavaştır: \\(S_n\\approx\\ln n+0.577\\). İlk bir milyon terimin toplamı ancak yaklaşık 14.4'tür.</p>\n<h4>Gizlenmiş p-serileri</h4>\n<table><thead><tr><th>Seri</th><th>\\(p\\)</th><th>Sonuç</th></tr></thead>\n<tbody>\n<tr><td>\\(\\sum\\dfrac{1}{\\sqrt n}\\)</td><td>\\(\\tfrac12\\)</td><td>ıraksak</td></tr>\n<tr><td>\\(\\sum\\dfrac{1}{n\\sqrt n}\\)</td><td>\\(\\tfrac32\\)</td><td>yakınsak</td></tr>\n<tr><td>\\(\\sum\\dfrac{5}{\\sqrt[3]{n^4}}\\)</td><td>\\(\\tfrac43\\)</td><td>yakınsak (sabit çarpan değiştirmez)</td></tr>\n<tr><td>\\(\\sum n^{-0.99}\\)</td><td>0.99</td><td>ıraksak</td></tr>\n<tr><td>\\(\\sum\\dfrac{1}{n^{1.01}}\\)</td><td>1.01</td><td>yakınsak</td></tr>\n<tr><td>\\(\\sum\\dfrac{n}{n^3}\\)</td><td>2</td><td>yakınsak (önce sadeleştir)</td></tr>\n</tbody></table>\n<div class=\"kn-dikkat\">\\(\\sum\\dfrac{1}{2^n}\\) bir p-serisi <strong>değildir</strong> — üs \\(n\\)'dedir, taban sabittir; bu geometrik seridir. p-serisinde taban \\(n\\), üs sabittir.</div>\n<h4>Neden önemli?</h4>\n<p>p-serileri, 10.6'daki karşılaştırma testlerinin “ölçü serileri”dir. \\(\\dfrac{3n+2}{n^3-1}\\) gibi bir terim büyük \\(n\\) için \\(\\dfrac{3}{n^2}\\) gibi davranır; p-serisi testini bildiğimiz için hemen yakınsak olduğunu tahmin ederiz. Ayrıca alterne harmonik seri \\(\\sum\\tfrac{(-1)^{n+1}}{n}\\) (10.7, 10.9) ve uç nokta analizleri (10.13) hep bu bilgiye dayanır.</p>\n<h4>Kaydırılmış ve ölçeklenmiş harmonik seriler</h4>\n<p>Harmonik seriye benzeyen birçok seri de ıraksar. \\(\\sum\\dfrac{1}{n+3}=\\tfrac14+\\tfrac15+\\cdots\\), harmonik serinin ilk üç terimi atılmış hâlidir (kuyruğu); sonlu sayıda terim atmak yakınsaklığı değiştirmediği için ıraksar. \\(\\sum\\dfrac{1}{5n}=\\tfrac15\\sum\\tfrac1n\\) de ıraksar (sıfırdan farklı sabit çarpan). \\(\\sum\\dfrac{1}{2n+1}\\) ise tam bir p-serisi değildir; LCT ile \\(\\tfrac1n\\)'e karşı limit \\(\\tfrac12\\) çıkar ve seri ıraksar (10.6).</p>\n<h4>p-serisi testi toplam vermez</h4>\n<p>Test yalnız “yakınsak mı, ıraksak mı?” sorusunu cevaplar. \\(\\sum\\tfrac1{n^2}=\\tfrac{\\pi^2}{6}\\) gibi bazı toplamlar bilinir ama AP bunları ezber olarak istemez. Toplam için bir aralık gerekiyorsa integral testindeki dikdörtgen eşitsizliği kullanılır: \\(p\\gt1\\) için</p>\n<div class=\"formul\">\\[ \\int_1^\\infty\\frac{dx}{x^p}\\lt\\sum_{n=1}^\\infty\\frac1{n^p}\\lt1+\\int_1^\\infty\\frac{dx}{x^p}\\quad\\Longrightarrow\\quad\\frac{1}{p-1}\\lt S\\lt\\frac{p}{p-1} \\]</div>\n<p>Ör. \\(p=2\\): \\(1\\lt S\\lt2\\) (gerçek değer \\(\\approx1.645\\)).</p>\n<h4>Hızlı karar: p-serisi mi, geometrik mi?</h4>\n<p>Taban değişken \\(n\\), üs sabitse (\\(n^3\\), \\(\\sqrt n\\), \\(n^{\\ln3}\\)) p-serisidir; taban sabit, üs \\(n\\) ise (\\(3^n\\), \\(\\left(\\tfrac12\\right)^n\\)) geometrik seridir. Üs alışılmadık bir sabit olabilir: \\(\\sum\\dfrac{1}{n^{\\ln3}}\\) için \\(\\ln3\\approx1.099\\gt1\\) ⇒ yakınsar.</p>\n<p><strong>FRQ dili:</strong> “\\(\\sum\\dfrac{1}{n^{3/2}}\\) is a p-series with \\(p=\\tfrac32\\gt1\\), so it converges.” / “\\(\\sum\\dfrac1n\\) is the harmonic series, which diverges.”</p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{\\sqrt{n}}{n^2}\\) yakınsak mı?",
+     "cozum": [
+      "Sadeleştir: \\(\\dfrac{n^{1/2}}{n^2}=\\dfrac{1}{n^{3/2}}\\).",
+      "p-serisi, \\(p=\\tfrac32\\gt1\\) ⇒ yakınsar."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n^{3-2k}}\\) serisi hangi \\(k\\) değerleri için yakınsar?",
+     "cozum": [
+      "p-serisi, \\(p=3-2k\\). Yakınsaklık: \\(3-2k\\gt1\\).",
+      "\\(2\\gt2k\\Rightarrow k\\lt1\\). \\(k\\ge1\\) için \\(p\\le1\\), seri ıraksar."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n^{2}}\\) yakınsaktır. Bunu kullanarak \\(\\displaystyle\\int_1^\\infty\\frac{dx}{x^2}\\) ile serinin toplamı \\(S\\) arasında bir eşitsizlik yazın.",
+     "cozum": [
+      "Sağ uç noktalı dikdörtgenler eğrinin altında: \\(\\sum_{n=2}^\\infty\\tfrac1{n^2}\\le\\int_1^\\infty\\tfrac{dx}{x^2}=1\\).",
+      "İlk terimi ekleyerek \\(S\\le 1+1=2\\). (Gerçek değer \\(\\pi^2/6\\approx1.645\\).)"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "p'yi bulmadan önce terimi tek bir n^p kuvvetine sadeleştir: kökleri kesirli üsse çevir.",
+    "Sınır durumu: p = 1 ıraksar. “p ≥ 1” ile “p > 1” şıklarını dikkatle ayır.",
+    "Sabit çarpan (5/n²) yakınsaklığı değiştirmez; ama toplamı değiştirir.",
+    "FRQ'da “p-series with p = … > 1” ifadesini mutlaka yaz."
+   ],
+   "sikHatalar": [
+    "Harmonik seriyi, terimler sıfıra gittiği için yakınsak sanmak.",
+    "Σ 1/2^n gibi geometrik seriyi p-serisi sanmak.",
+    "√n'yi n^2 sanıp p'yi yanlış hesaplamak; p = 1'i yakınsak saymak."
+   ],
+   "terimler": [
+    {
+     "en": "harmonic series",
+     "tr": "harmonik seri"
+    },
+    {
+     "en": "p-series",
+     "tr": "p-serisi"
+    },
+    {
+     "en": "p-series test",
+     "tr": "p-serisi testi"
+    }
+   ]
+  },
+  {
+   "kod": "10.6",
+   "baslik": "Comparisons of Series",
+   "baslikTr": "Serilerin karşılaştırılması",
+   "sadeceBC": true,
+   "hedefler": [
+    "Doğrudan karşılaştırma testini (Direct Comparison Test) doğru yönlü eşitsizlikle uygulamak.",
+    "Limit karşılaştırma testini (Limit Comparison Test) uygun bir p-serisi ya da geometrik seri seçerek uygulamak.",
+    "Hangi karşılaştırmanın sonuç verdiğini, hangisinin sonuçsuz kaldığını ayırt etmek."
+   ],
+   "anlatim": "<p>Çoğu serinin toplamını hesaplayamayız; ama onu davranışını bildiğimiz bir seriyle (p-serisi ya da geometrik seri) <strong>karşılaştırabiliriz</strong>. Her iki test de <strong>pozitif terimli</strong> seriler içindir.</p>\n<h4>1) Direct Comparison Test (DCT)</h4>\n<div class=\"kn-kural\">Her \\(n\\) (bir noktadan sonra) için \\(0\\le a_n\\le b_n\\) olsun.\n<ul><li>\\(\\sum b_n\\) <strong>yakınsıyorsa</strong>, \\(\\sum a_n\\) de yakınsar (“küçük olan, büyük yakınsak serinin altında kalır”).</li>\n<li>\\(\\sum a_n\\) <strong>ıraksıyorsa</strong>, \\(\\sum b_n\\) de ıraksar (“büyük olan, ıraksak serinin üstünde kalır”).</li></ul></div>\n<p>Örnek: \\(\\dfrac{1}{n^2+5}\\lt\\dfrac1{n^2}\\) ve \\(\\sum\\tfrac1{n^2}\\) yakınsar ⇒ \\(\\sum\\dfrac1{n^2+5}\\) yakınsar. Örnek: \\(\\dfrac{1}{\\sqrt n-0.5}\\gt\\dfrac1{\\sqrt n}\\) ve \\(\\sum\\tfrac1{\\sqrt n}\\) ıraksar ⇒ seri ıraksar.</p>\n<div class=\"kn-dikkat\"><strong>Yanlış yönlü karşılaştırma hiçbir şey söylemez.</strong> \\(\\dfrac{1}{n^2-0.5}\\gt\\dfrac1{n^2}\\) ve \\(\\sum\\tfrac1{n^2}\\) yakınsak: “büyük olan, yakınsak bir seriden büyük” — sonuç yok. Bu durumda Limit Comparison kullan.</div>\n<h4>2) Limit Comparison Test (LCT)</h4>\n<div class=\"kn-kural\">\\(a_n\\gt0,\\ b_n\\gt0\\) ve \\(\\displaystyle\\lim_{n\\to\\infty}\\frac{a_n}{b_n}=c\\), \\(0\\lt c\\lt\\infty\\) olsun. O zaman \\(\\sum a_n\\) ve \\(\\sum b_n\\) <strong>ya birlikte yakınsar ya birlikte ıraksar</strong>.</div>\n<p>\\(b_n\\) seçimi: \\(a_n\\)'nin pay ve paydasındaki <strong>baskın terimleri</strong> al.</p>\n<table><thead><tr><th>\\(a_n\\)</th><th>Seçilen \\(b_n\\)</th><th>\\(\\lim a_n/b_n\\)</th><th>Sonuç</th></tr></thead>\n<tbody>\n<tr><td>\\(\\dfrac{3n+1}{n^3+2}\\)</td><td>\\(\\dfrac1{n^2}\\)</td><td>3</td><td>yakınsak</td></tr>\n<tr><td>\\(\\dfrac{n^2}{\\sqrt{n^5+4}}\\)</td><td>\\(\\dfrac1{\\sqrt n}\\)</td><td>1</td><td>ıraksak</td></tr>\n<tr><td>\\(\\dfrac{1}{3^n-n}\\)</td><td>\\(\\dfrac1{3^n}\\)</td><td>1</td><td>yakınsak</td></tr>\n<tr><td>\\(\\sin\\dfrac1n\\)</td><td>\\(\\dfrac1n\\)</td><td>1</td><td>ıraksak</td></tr>\n</tbody></table>\n<h4>Limit 0 ya da ∞ çıkarsa</h4>\n<p>\\(c=0\\) ya da \\(c=\\infty\\) ise LCT (AP formunda) <strong>sonuçsuzdur</strong>; muhtemelen yanlış \\(b_n\\) seçtin. Ör. \\(a_n=\\dfrac1{n^2}\\), \\(b_n=\\dfrac1n\\): limit 0 — hiçbir şey söylemez.</p>\n<h4>Logaritmalı terimler</h4>\n<p>\\(\\ln n\\) her pozitif kuvvetten yavaş büyür. \\(\\dfrac{\\ln n}{n}\\gt\\dfrac1n\\) (\\(n\\ge3\\)) ⇒ DCT ile ıraksak. \\(\\dfrac{\\ln n}{n^3}\\lt\\dfrac{n}{n^3}=\\dfrac1{n^2}\\) ⇒ yakınsak.</p>\n<p><strong>FRQ dili (DCT):</strong> “For all \\(n\\ge1\\), \\(0\\lt\\dfrac{1}{n^2+5}\\lt\\dfrac{1}{n^2}\\). Since \\(\\sum\\dfrac{1}{n^2}\\) is a convergent p-series (\\(p=2\\gt1\\)), \\(\\sum\\dfrac{1}{n^2+5}\\) converges by the Direct Comparison Test.”<br>\n<strong>FRQ dili (LCT):</strong> “\\(\\lim_{n\\to\\infty}\\dfrac{a_n}{1/n^2}=3\\), which is finite and positive. Since \\(\\sum\\dfrac1{n^2}\\) converges, \\(\\sum a_n\\) converges by the Limit Comparison Test.”</p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{2n^2-1}{n^4+3n}\\) yakınsak mı? LCT ile gerekçelendirin.",
+     "cozum": [
+      "Baskın terimler: \\(\\dfrac{2n^2}{n^4}=\\dfrac2{n^2}\\). \\(b_n=\\dfrac1{n^2}\\) seç.",
+      "\\(\\lim\\dfrac{a_n}{b_n}=\\lim\\dfrac{2n^4-n^2}{n^4+3n}=2\\), sonlu ve pozitif.",
+      "\\(\\sum\\tfrac1{n^2}\\) yakınsak p-serisi (\\(p=2\\)) ⇒ LCT'ye göre seri yakınsar."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{2+\\cos n}{n}\\) yakınsak mı?",
+     "cozum": [
+      "\\(\\cos n\\ge-1\\) ⇒ \\(\\dfrac{2+\\cos n}{n}\\ge\\dfrac1n\\gt0\\).",
+      "\\(\\sum\\tfrac1n\\) harmonik seri, ıraksar. Büyük olan seri ıraksak bir serinin üstünde ⇒ DCT'ye göre ıraksar."
+     ]
+    },
+    {
+     "soru": "Bir öğrenci \\(\\sum\\dfrac{1}{n^2-0.5}\\) için “\\(\\dfrac{1}{n^2-0.5}\\gt\\dfrac1{n^2}\\) ve \\(\\sum\\dfrac{1}{n^2}\\) yakınsak, öyleyse seri yakınsar” yazıyor. Hata nedir, doğru gerekçe nedir?",
+     "cozum": [
+      "Yakınsak bir seriden <em>büyük</em> olmak hiçbir şey kanıtlamaz; DCT yanlış yönde kullanılmış.",
+      "Doğrusu: \\(\\lim\\dfrac{1/(n^2-0.5)}{1/n^2}=1\\), sonlu ve pozitif; \\(\\sum\\tfrac1{n^2}\\) yakınsak ⇒ LCT ile yakınsar."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Önce “gibi davranır” tahmini yap (baskın terimler), sonra hangi testin eşitsizliği doğru yönde verdiğine karar ver.",
+    "Eşitsizlik zor kuruluyorsa LCT'ye geç; LCT'de yalnız limitin 0 < c < ∞ olduğunu göstermek yeter.",
+    "FRQ'da karşılaştırılan serinin neden yakınsak/ıraksak olduğunu da yaz (p-series, p = 2 > 1).",
+    "Her iki test de pozitif terim ister; alterne serilere doğrudan uygulanmaz (önce mutlak değere bak, 10.9)."
+   ],
+   "sikHatalar": [
+    "Yakınsak seriden büyük ya da ıraksak seriden küçük olan seri için sonuç çıkarmak.",
+    "LCT'de limit 0 çıkınca “birlikte yakınsar” demek.",
+    "Karşılaştırma serisinin kendisinin yakınsak olduğunu gerekçelendirmeyi unutmak."
+   ],
+   "terimler": [
+    {
+     "en": "direct comparison test",
+     "tr": "doğrudan karşılaştırma testi"
+    },
+    {
+     "en": "limit comparison test",
+     "tr": "limit karşılaştırma testi"
+    },
+    {
+     "en": "dominant term",
+     "tr": "baskın terim"
+    },
+    {
+     "en": "finite and positive",
+     "tr": "sonlu ve pozitif"
+    }
+   ]
+  },
+  {
+   "kod": "10.7",
+   "baslik": "Alternating Series Test for Convergence",
+   "baslikTr": "Alterne seri testi",
+   "sadeceBC": true,
+   "hedefler": [
+    "Bir serinin alterne (alternating) olduğunu tanımak ve b_n'yi ayırmak.",
+    "Alterne seri testinin (Alternating Series Test) iki koşulunu doğrulayarak yakınsaklık göstermek.",
+    "Koşullardan biri sağlanmadığında hangi sonucun çıkarılabileceğini bilmek."
+   ],
+   "anlatim": "<div class=\"kn-tanim\"><strong>Alterne seri:</strong> Terimlerin işareti sırayla değişir: \\(\\sum(-1)^{n+1}b_n=b_1-b_2+b_3-\\cdots\\) ya da \\(\\sum(-1)^n b_n\\), burada \\(b_n\\gt0\\). Ör. \\(\\cos(n\\pi)=(-1)^n\\) de bir alterne çarpandır.</div>\n<div class=\"kn-kural\"><strong>Alternating Series Test (AST):</strong> \\(b_n\\gt0\\) olmak üzere\n<ol><li>\\(b_{n+1}\\le b_n\\) (bir noktadan sonra \\(b_n\\) <strong>azalan</strong>), ve</li>\n<li>\\(\\displaystyle\\lim_{n\\to\\infty} b_n = 0\\)</li></ol>\nise \\(\\sum(-1)^n b_n\\) <strong>yakınsar</strong>.</div>\n<h4>Neden çalışır?</h4>\n<p>\\(b_1-b_2+b_3-\\cdots\\) kısmi toplamları bir ileri bir geri sallanır: \\(S_1=b_1\\), \\(S_2=b_1-b_2\\) (geri), \\(S_3=S_2+b_3\\) (ileri ama \\(S_1\\)'i geçemez çünkü \\(b_3\\le b_2\\))... Adımlar küçüldüğü ve sıfıra gittiği için salınım bir \\(S\\) sayısına yerleşir. Tek indisli kısmi toplamlar yukarıdan, çift indisliler aşağıdan \\(S\\)'ye yaklaşır.</p>\n<h4>Örnekler</h4>\n<table><thead><tr><th>Seri</th><th>\\(b_n\\)</th><th>Azalan?</th><th>\\(b_n\\to0\\)?</th><th>Sonuç</th></tr></thead>\n<tbody>\n<tr><td>\\(\\sum\\dfrac{(-1)^{n+1}}{n}\\)</td><td>\\(\\tfrac1n\\)</td><td>evet</td><td>evet</td><td>yakınsar (alternating harmonic)</td></tr>\n<tr><td>\\(\\sum\\dfrac{(-1)^n}{\\sqrt{n}}\\)</td><td>\\(\\tfrac{1}{\\sqrt n}\\)</td><td>evet</td><td>evet</td><td>yakınsar</td></tr>\n<tr><td>\\(\\sum(-1)^n\\dfrac{n}{2n+1}\\)</td><td>\\(\\tfrac{n}{2n+1}\\)</td><td>hayır</td><td>\\(\\to\\tfrac12\\)</td><td>ıraksar (n. terim testi)</td></tr>\n<tr><td>\\(\\sum\\dfrac{(-1)^n\\ln n}{n}\\)</td><td>\\(\\tfrac{\\ln n}{n}\\)</td><td>\\(n\\ge3\\)'ten sonra</td><td>evet</td><td>yakınsar</td></tr>\n</tbody></table>\n<h4>Azalanlığı göstermek</h4>\n<p>Üç yol: (1) \\(b_{n+1}\\le b_n\\) eşitsizliğini doğrudan göster; (2) \\(f(x)=b(x)\\) fonksiyonu için \\(f'(x)\\lt0\\); (3) \\(\\dfrac{b_{n+1}}{b_n}\\le1\\). Örneğin \\(b_n=\\dfrac{\\ln n}{n}\\): \\(f'(x)=\\dfrac{1-\\ln x}{x^2}\\lt0\\) for \\(x\\gt e\\), yani \\(n\\ge3\\)'ten sonra azalandır — “eventually decreasing” yeterlidir.</p>\n<div class=\"kn-dikkat\">AST <strong>yalnız yakınsaklık</strong> gösterir. Koşullardan biri sağlanmazsa AST “ıraksar” demez; sadece kullanılamaz. Iraksaklığı göstermek için genelde n. terim testi gerekir: \\(\\lim b_n\\ne0\\) ise seri ıraksar.</div>\n<p>Ayrıca AST yakınsaklığın <em>türünü</em> söylemez: \\(\\sum\\tfrac{(-1)^n}{n}\\) yakınsar ama mutlak değerleri ıraksar (koşullu yakınsaklık, 10.9).</p>\n<p><strong>FRQ dili:</strong> “The series \\(\\sum\\dfrac{(-1)^n}{\\sqrt n}\\) is alternating, the terms \\(\\dfrac1{\\sqrt n}\\) decrease in absolute value, and \\(\\lim_{n\\to\\infty}\\dfrac{1}{\\sqrt n}=0\\). Therefore the series converges by the Alternating Series Test.”</p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(-1)^{n}\\,n}{n^2+4}\\) yakınsak mı? AST koşullarını gösterin.",
+     "cozum": [
+      "\\(b_n=\\dfrac{n}{n^2+4}\\gt0\\). \\(f(x)=\\dfrac{x}{x^2+4}\\) ⇒ \\(f'(x)=\\dfrac{4-x^2}{(x^2+4)^2}\\lt0\\) for \\(x\\gt2\\): \\(n\\ge3\\)'ten sonra azalan.",
+      "\\(\\lim\\dfrac{n}{n^2+4}=0\\).",
+      "Seri alterne, \\(b_n\\) eventually decreasing ve \\(b_n\\to0\\) ⇒ AST'ye göre yakınsar."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=1}^{\\infty}(-1)^{n}\\frac{3n}{n+5}\\) için AST kullanılabilir mi? Seri yakınsak mı?",
+     "cozum": [
+      "\\(b_n=\\dfrac{3n}{n+5}\\to3\\ne0\\): AST'nin ikinci koşulu sağlanmıyor, AST kullanılamaz.",
+      "Terimler \\(\\pm3\\) civarında salınır, \\(\\lim a_n\\) yok (\\(\\ne0\\)) ⇒ n. terim testine göre ıraksar."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{\\cos(n\\pi)}{n^{1/3}}\\) yakınsak mı?",
+     "cozum": [
+      "\\(\\cos(n\\pi)=(-1)^n\\); seri \\(\\sum\\dfrac{(-1)^n}{n^{1/3}}\\) alternedir, \\(b_n=n^{-1/3}\\).",
+      "\\(b_n\\) azalan ve \\(\\to0\\) ⇒ AST ile yakınsar. (Mutlak değer serisi \\(p=\\tfrac13\\) ile ıraksar; koşullu yakınsak.)"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "FRQ'da üç şeyi yaz: (1) alternating, (2) |terms| decreasing, (3) limit 0. Puanlayıcı üçünü de arar.",
+    "Azalanlığı türev ya da b_{n+1} ≤ b_n ile göster; “eventually” (bir noktadan sonra) yeterlidir.",
+    "lim b_n ≠ 0 ise AST değil, n. terim testiyle “diverges” de.",
+    "cos(nπ) = (−1)^n ve sin((2n+1)π/2) = (−1)^n kılık değiştirmiş alterne çarpanlardır."
+   ],
+   "sikHatalar": [
+    "AST koşulu sağlanmayınca doğrudan “AST'ye göre ıraksar” demek.",
+    "Azalanlık koşulunu kontrol etmeden yalnız limiti göstermek.",
+    "AST ile yakınsayan seriyi otomatik olarak mutlak yakınsak saymak."
+   ],
+   "terimler": [
+    {
+     "en": "alternating series",
+     "tr": "alterne seri"
+    },
+    {
+     "en": "alternating series test",
+     "tr": "alterne seri testi"
+    },
+    {
+     "en": "decreasing in absolute value",
+     "tr": "mutlak değerce azalan"
+    },
+    {
+     "en": "alternating harmonic series",
+     "tr": "alterne harmonik seri"
+    }
+   ]
+  },
+  {
+   "kod": "10.8",
+   "baslik": "Ratio Test for Convergence",
+   "baslikTr": "Oran testi",
+   "sadeceBC": true,
+   "hedefler": [
+    "Oran testinde (Ratio Test) L = lim |a_{n+1}/a_n| limitini faktöriyel ve üstel ifadelerle hesaplamak.",
+    "L < 1, L > 1 ve L = 1 durumlarının sonuçlarını doğru yorumlamak.",
+    "Oran testinin hangi serilerde etkili olduğunu tanımak."
+   ],
+   "anlatim": "<p>Oran testi, terimleri geometrik bir seriyle karşılaştırmanın otomatik yoludur: ardışık terimlerin oranı sonunda \\(L\\)'ye yaklaşıyorsa, seri büyük \\(n\\) için oranı \\(L\\) olan geometrik seri gibi davranır.</p>\n<div class=\"kn-kural\"><strong>Ratio Test:</strong> \\(\\displaystyle L=\\lim_{n\\to\\infty}\\left|\\frac{a_{n+1}}{a_n}\\right|\\) olsun.\n<ul><li>\\(L\\lt1\\) ⇒ \\(\\sum a_n\\) <strong>mutlak yakınsar</strong> (dolayısıyla yakınsar).</li>\n<li>\\(L\\gt1\\) (ya da \\(L=\\infty\\)) ⇒ \\(\\sum a_n\\) <strong>ıraksar</strong>.</li>\n<li>\\(L=1\\) ⇒ test <strong>sonuçsuz</strong>.</li></ul></div>\n<h4>Ne zaman oran testi?</h4>\n<p>Terimde <strong>faktöriyel</strong> (\\(n!\\), \\((2n)!\\)) ya da <strong>\\(n\\)'inci kuvvetler</strong> (\\(3^n\\), \\(x^n\\)) varsa. p-serisi benzeri rasyonel terimlerde (\\(\\tfrac{1}{n^2}\\), \\(\\tfrac{n}{n^3+1}\\)) \\(L=1\\) çıkar; işe yaramaz.</p>\n<h4>Cebir araçları</h4>\n<table><thead><tr><th>İfade</th><th>Sadeleşmiş oran</th></tr></thead>\n<tbody>\n<tr><td>\\(\\dfrac{(n+1)!}{n!}\\)</td><td>\\(n+1\\)</td></tr>\n<tr><td>\\(\\dfrac{(2n+2)!}{(2n)!}\\)</td><td>\\((2n+2)(2n+1)\\)</td></tr>\n<tr><td>\\(\\dfrac{3^{n+1}}{3^n}\\)</td><td>\\(3\\)</td></tr>\n<tr><td>\\(\\dfrac{(n+1)^2}{n^2}\\)</td><td>\\(\\to1\\)</td></tr>\n<tr><td>\\(\\dfrac{(n+1)^{n+1}}{n^n}\\cdot\\dfrac{n!}{(n+1)!}\\)</td><td>\\(\\left(1+\\tfrac1n\\right)^n\\to e\\)</td></tr>\n</tbody></table>\n<h4>Örnek hesap</h4>\n<p>\\(a_n=\\dfrac{n^2\\,2^n}{n!}\\):</p>\n<div class=\"formul\">\\[ \\left|\\frac{a_{n+1}}{a_n}\\right|=\\frac{(n+1)^2 2^{n+1}}{(n+1)!}\\cdot\\frac{n!}{n^2 2^n}=\\frac{2(n+1)^2}{(n+1)\\,n^2}=\\frac{2(n+1)}{n^2}\\to0 \\]</div>\n<p>\\(L=0\\lt1\\) ⇒ seri yakınsar.</p>\n<h4>\\(L=1\\) olduğunda</h4>\n<p>\\(\\sum\\tfrac1n\\) (ıraksak) ve \\(\\sum\\tfrac1{n^2}\\) (yakınsak) ikisinde de \\(L=1\\)'dir. Yani \\(L=1\\) çıkınca başka teste geç (p-serisi, karşılaştırma, AST). Bu durum kuvvet serilerinin <strong>uç noktalarında</strong> (10.13) her zaman yaşanır.</p>\n<div class=\"kn-dikkat\">\\(L\\gt1\\) ise terimler büyüyor demektir; aslında n. terim testi de ıraksaklığı verir. \\(L=1\\) ise “diverges” ya da “converges” demek yanlıştır.</div>\n<h4>Kuvvet serilerine köprü</h4>\n<p>Terimde \\(x\\) varsa oran testi bir eşitsizlik verir: \\(\\sum\\dfrac{x^n}{4^n}\\) için \\(L=\\dfrac{|x|}{4}\\), yani seri \\(|x|\\lt4\\) iken yakınsar, \\(|x|\\gt4\\) iken ıraksar; \\(|x|=4\\) için karar yoktur. 10.13'teki yarıçap hesabı tam olarak budur.</p>\n<p><strong>FRQ dili:</strong> “\\(\\lim_{n\\to\\infty}\\left|\\dfrac{a_{n+1}}{a_n}\\right|=\\lim_{n\\to\\infty}\\dfrac{2(n+1)}{n^2}=0\\lt1\\). Therefore the series converges by the Ratio Test.” Limit yazımını atlama: oranı yaz, sadeleştir, limiti al.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{n^n}\\) yakınsak mı?",
+     "cozum": [
+      "\\(\\dfrac{a_{n+1}}{a_n}=\\dfrac{(n+1)!}{(n+1)^{n+1}}\\cdot\\dfrac{n^n}{n!}=\\dfrac{n^n}{(n+1)^n}=\\dfrac{1}{(1+1/n)^n}\\).",
+      "\\(L=\\dfrac1e\\lt1\\) ⇒ Ratio Test'e göre yakınsar."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(2n)!}{(n!)^2\\,3^n}\\) yakınsak mı?",
+     "cozum": [
+      "\\(\\dfrac{a_{n+1}}{a_n}=\\dfrac{(2n+2)(2n+1)}{(n+1)^2}\\cdot\\dfrac13\\).",
+      "\\(\\dfrac{(2n+2)(2n+1)}{(n+1)^2}\\to\\dfrac{4n^2}{n^2}=4\\) ⇒ \\(L=\\dfrac43\\gt1\\).",
+      "Ratio Test'e göre ıraksar."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{5n+2}{n^3}\\) için oran testi ne verir? Seri yakınsak mı?",
+     "cozum": [
+      "Oran: \\(\\dfrac{5n+7}{(n+1)^3}\\cdot\\dfrac{n^3}{5n+2}\\to1\\). \\(L=1\\): sonuçsuz.",
+      "LCT ile \\(b_n=\\tfrac1{n^2}\\): limit 5, sonlu ve pozitif; \\(\\sum\\tfrac1{n^2}\\) yakınsak ⇒ seri yakınsar."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Oranı “a_{n+1} çarpı 1/a_n” olarak yaz; kesir bölmesinde ters çevirme hatası en sık hatadır.",
+    "(n+1)! = (n+1)·n! ve (2n+2)! = (2n+2)(2n+1)(2n)! açılımlarını ezberle.",
+    "L = 1 çıktığında şıklarda “inconclusive” seçeneğini ara ya da başka teste geç.",
+    "Mutlak değeri unutma: (−1)^n ve negatif x değerleri oran testinde mutlak değerle yok olur."
+   ],
+   "sikHatalar": [
+    "L = 1 iken seriyi yakınsak ya da ıraksak ilan etmek.",
+    "(2n)! oranını yalnız (2n+1) ya da (n+1) ile sadeleştirmek.",
+    "a_n/a_{n+1} oranını kullanıp L'yi ters bulmak."
+   ],
+   "terimler": [
+    {
+     "en": "ratio test",
+     "tr": "oran testi"
+    },
+    {
+     "en": "factorial",
+     "tr": "faktöriyel"
+    },
+    {
+     "en": "absolutely convergent",
+     "tr": "mutlak yakınsak"
+    },
+    {
+     "en": "inconclusive",
+     "tr": "sonuçsuz"
+    }
+   ]
+  },
+  {
+   "kod": "10.9",
+   "baslik": "Determining Absolute or Conditional Convergence",
+   "baslikTr": "Mutlak ve koşullu yakınsaklık",
+   "sadeceBC": true,
+   "hedefler": [
+    "Mutlak yakınsaklık (absolute convergence) ile koşullu yakınsaklığı (conditional convergence) tanımlamak ve ayırt etmek.",
+    "Bir seriyi “mutlak yakınsak / koşullu yakınsak / ıraksak” olarak sınıflandırmak için doğru test sırasını kullanmak.",
+    "Mutlak yakınsaklığın yakınsaklığı gerektirdiğini kullanmak."
+   ],
+   "anlatim": "<p>İşaretleri karışık bir seride iki soru sorulur: seri yakınsıyor mu? Yakınsıyorsa, <em>işaretler olmasa da</em> yakınsar mıydı?</p>\n<div class=\"kn-tanim\"><ul>\n<li><strong>Absolutely convergent:</strong> \\(\\sum|a_n|\\) yakınsar.</li>\n<li><strong>Conditionally convergent:</strong> \\(\\sum a_n\\) yakınsar ama \\(\\sum|a_n|\\) ıraksar.</li>\n<li><strong>Divergent:</strong> \\(\\sum a_n\\) ıraksar.</li></ul></div>\n<div class=\"kn-kural\"><strong>Teorem:</strong> \\(\\sum|a_n|\\) yakınsıyorsa \\(\\sum a_n\\) de yakınsar. (Mutlak yakınsak ⇒ yakınsak.) Tersi doğru değildir.</div>\n<h4>Sınıflandırma algoritması</h4>\n<ol>\n<li><strong>n. terim:</strong> \\(\\lim a_n\\ne0\\) ⇒ ıraksak, bitti.</li>\n<li><strong>Mutlak değer serisi</strong> \\(\\sum|a_n|\\): pozitif terimli testlerden biriyle (p-serisi, karşılaştırma, oran, integral) incele. Yakınsıyorsa ⇒ <strong>mutlak yakınsak</strong>.</li>\n<li>\\(\\sum|a_n|\\) ıraksıyorsa, \\(\\sum a_n\\)'yi kendi başına (genelde AST ile) incele. Yakınsıyorsa ⇒ <strong>koşullu yakınsak</strong>; değilse ıraksak.</li>\n</ol>\n<table><thead><tr><th>Seri</th><th>\\(\\sum|a_n|\\)</th><th>\\(\\sum a_n\\)</th><th>Sınıf</th></tr></thead>\n<tbody>\n<tr><td>\\(\\sum\\dfrac{(-1)^n}{n^2}\\)</td><td>p = 2, yakınsak</td><td>yakınsak</td><td>mutlak</td></tr>\n<tr><td>\\(\\sum\\dfrac{(-1)^n}{\\sqrt n}\\)</td><td>p = ½, ıraksak</td><td>AST: yakınsak</td><td>koşullu</td></tr>\n<tr><td>\\(\\sum\\dfrac{(-1)^n n}{n+1}\\)</td><td>—</td><td>\\(\\lim a_n\\ne0\\)</td><td>ıraksak</td></tr>\n<tr><td>\\(\\sum\\dfrac{\\sin n}{n^2}\\)</td><td>\\(\\le\\tfrac1{n^2}\\), yakınsak (DCT)</td><td>yakınsak</td><td>mutlak</td></tr>\n<tr><td>\\(\\sum\\dfrac{(-3)^n}{n!}\\)</td><td>Ratio: L = 0</td><td>yakınsak</td><td>mutlak</td></tr>\n</tbody></table>\n<h4>Neden fark önemli?</h4>\n<p>Mutlak yakınsak bir serinin terimlerinin sırası değiştirilse de toplam değişmez. Koşullu yakınsak serilerde sıralama değişirse toplam değişebilir (Riemann) — sınavda yalnız tanım düzeyinde bilinir. Asıl önemli kullanım: <strong>kuvvet serisinin uç noktaları</strong>. Bir uç noktada seri koşullu, diğerinde mutlak yakınsak ya da ıraksak olabilir.</p>\n<div class=\"kn-dikkat\">Oran testi \\(L\\lt1\\) verdiğinde zaten <strong>mutlak</strong> yakınsaklık kanıtlanmış olur. AST ise yalnız yakınsaklık verir; mutlak mı koşullu mu olduğunu ayrıca \\(\\sum|a_n|\\)'ye bakarak söylemelisin.</div>\n<h4>İşaretleri düzensiz seriler</h4>\n<p>\\(\\sum\\dfrac{\\sin n}{n^2}\\) ya da \\(\\sum\\dfrac{\\cos n}{n^3}\\) gibi serilerde işaretler sırayla değişmez; bu yüzden AST <strong>uygulanamaz</strong>. Çıkış yolu mutlak değerdir: \\(\\left|\\dfrac{\\sin n}{n^2}\\right|\\le\\dfrac1{n^2}\\) ve \\(\\sum\\tfrac1{n^2}\\) yakınsak ⇒ DCT ile \\(\\sum|a_n|\\) yakınsar ⇒ seri mutlak yakınsaktır, dolayısıyla yakınsaktır. Bu tür serilerde “mutlak yakınsak ⇒ yakınsak” teoremi en pratik araçtır.</p>\n<h4>Kuvvet serisinin uç noktalarında sınıflandırma</h4>\n<p>\\(\\sum\\dfrac{x^n}{n}\\) ve \\(\\sum\\dfrac{x^n}{n^2}\\) serilerinin yarıçapı 1'dir. Uç noktalarda üç farklı sınıf görülür:</p>\n<table><thead><tr><th>Seri ve uç nokta</th><th>Elde edilen sayı serisi</th><th>Sınıf</th></tr></thead>\n<tbody>\n<tr><td>\\(\\sum\\tfrac{x^n}{n}\\), \\(x=1\\)</td><td>\\(\\sum\\tfrac1n\\)</td><td>ıraksak</td></tr>\n<tr><td>\\(\\sum\\tfrac{x^n}{n}\\), \\(x=-1\\)</td><td>\\(\\sum\\tfrac{(-1)^n}{n}\\)</td><td>koşullu yakınsak</td></tr>\n<tr><td>\\(\\sum\\tfrac{x^n}{n^2}\\), \\(x=\\pm1\\)</td><td>\\(\\sum\\tfrac{(\\pm1)^n}{n^2}\\)</td><td>mutlak yakınsak</td></tr>\n</tbody></table>\n<p>İki uç noktanın mutlak değer serisi aynıdır (\\(\\sum|c_n|R^n\\)). Bu yüzden seri bir uçta mutlak yakınsaksa diğer uçta da mutlak yakınsaktır; iki ucun farklı sınıflarda çıkması ancak mutlak değer serisi ıraksadığında mümkündür.</p>\n<p><strong>FRQ dili:</strong> “\\(\\sum\\left|\\dfrac{(-1)^n}{\\sqrt n}\\right|=\\sum\\dfrac{1}{n^{1/2}}\\) is a p-series with \\(p=\\tfrac12\\le1\\), so it diverges. The original series converges by the Alternating Series Test (terms decrease to 0). Therefore the series converges conditionally.”</p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=2}^{\\infty}\\frac{(-1)^n}{n\\ln n}\\) serisini sınıflandırın.",
+     "cozum": [
+      "\\(\\sum\\dfrac1{n\\ln n}\\): integral testiyle \\(\\ln(\\ln x)\\to\\infty\\) ⇒ ıraksak. Mutlak yakınsak değil.",
+      "Seri alterne; \\(b_n=\\dfrac1{n\\ln n}\\) azalan ve \\(\\to0\\) ⇒ AST ile yakınsar.",
+      "Sonuç: koşullu yakınsak (conditionally convergent)."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(-1)^{n}\\,n}{n^3+1}\\) serisini sınıflandırın.",
+     "cozum": [
+      "\\(|a_n|=\\dfrac{n}{n^3+1}\\lt\\dfrac{n}{n^3}=\\dfrac{1}{n^2}\\); \\(\\sum\\tfrac1{n^2}\\) yakınsak ⇒ DCT ile \\(\\sum|a_n|\\) yakınsar.",
+      "Mutlak yakınsak ⇒ yakınsak. Sınıf: absolutely convergent."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(-1)^n}{n^p}\\) serisi hangi \\(p\\) değerleri için koşullu yakınsaktır?",
+     "cozum": [
+      "\\(\\sum\\tfrac1{n^p}\\) ıraksak olmalı: \\(p\\le1\\).",
+      "AST için \\(\\tfrac1{n^p}\\) azalan ve \\(\\to0\\) olmalı: \\(p\\gt0\\).",
+      "Sonuç: \\(0\\lt p\\le1\\). (\\(p\\gt1\\): mutlak; \\(p\\le0\\): ıraksak.)"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Sınıflandırma sorusunda sırayı koru: n. terim → |a_n| serisi → AST.",
+    "“Converges conditionally” demek için iki şey gerekir: Σ|a_n| ıraksak VE Σa_n yakınsak. İkisini de yaz.",
+    "Ratio Test'te L < 1 ise doğrudan “converges absolutely” de.",
+    "Şıklarda “mutlak yakınsak ama yakınsak değil” gibi imkânsız ifadeleri ele."
+   ],
+   "sikHatalar": [
+    "Σ|a_n| ıraksadığı için orijinal serinin de ıraksadığını sanmak.",
+    "AST ile yakınsayan her seriyi koşullu yakınsak saymak (mutlak olabilir).",
+    "Koşullu yakınsaklığı gerekçelendirirken yalnız tek yarıyı (ya AST ya |a_n|) yazmak."
+   ],
+   "terimler": [
+    {
+     "en": "absolutely convergent",
+     "tr": "mutlak yakınsak"
+    },
+    {
+     "en": "conditionally convergent",
+     "tr": "koşullu yakınsak"
+    },
+    {
+     "en": "series of absolute values",
+     "tr": "mutlak değerler serisi"
+    }
+   ]
+  },
+  {
+   "kod": "10.10",
+   "baslik": "Alternating Series Error Bound",
+   "baslikTr": "Alterne seri hata sınırı",
+   "sadeceBC": true,
+   "hedefler": [
+    "AST koşullarını sağlayan bir seride S − S_n hatasını ilk atılan terimle sınırlamak.",
+    "İstenen doğruluk için gereken terim sayısını bulmak.",
+    "Kısmi toplamın gerçek toplamdan büyük mü küçük mü olduğunu belirlemek."
+   ],
+   "anlatim": "<p>AST koşullarını sağlayan bir seride toplamı \\(S_n\\) ile tahmin edersek hatanın ne kadar olduğunu da biliriz. Bu, ünitenin en çok puan getiren kısa hesaplarından biridir.</p>\n<div class=\"kn-kural\"><strong>Alternating Series Error Bound:</strong> \\(\\sum(-1)^{n+1}b_n\\) AST koşullarını sağlıyorsa (\\(b_n\\) azalan, \\(b_n\\to0\\)) ve \\(S\\) toplamı, \\(S_n\\) n. kısmi toplamsa\n\\[ |S-S_n|\\le b_{n+1} \\]\nYani hata, <strong>ilk atılan terimin (first omitted term)</strong> mutlak değerinden küçük ya da ona eşittir.</div>\n<h4>Neden?</h4>\n<p>Kısmi toplamlar \\(S\\)'nin iki yanında salınır; \\(S_n\\)'den \\(S_{n+1}\\)'e geçerken \\(b_{n+1}\\) kadar adım atılır ve \\(S\\) bu adımın içinde kalır. Ayrıca \\(S\\), \\(S_n\\) ile \\(S_{n+1}\\) arasındadır.</p>\n<h4>Örnek</h4>\n<p>\\(S=\\sum_{n=1}^\\infty\\dfrac{(-1)^{n+1}}{n^2}=1-\\tfrac14+\\tfrac19-\\tfrac1{16}+\\cdots\\). \\(S_3=1-\\tfrac14+\\tfrac19=\\tfrac{31}{36}\\approx0.8611\\). Hata sınırı: \\(b_4=\\tfrac{1}{16}=0.0625\\). Gerçekten \\(S=\\tfrac{\\pi^2}{12}\\approx0.8225\\) ve \\(|S-S_3|\\approx0.0386\\le0.0625\\).</p>\n<h4>Fazla mı eksik mi? (over/under)</h4>\n<p>İlk atılan terimin işareti, düzeltmenin yönünü verir. \\(S_3\\)'ten sonra gelen terim \\(-\\tfrac1{16}\\) (negatif) ⇒ \\(S\\lt S_3\\): \\(S_3\\) bir <strong>overestimate</strong>'tir. Genel kural: son <em>alınan</em> terim pozitifse kısmi toplam fazla tahmindir.</p>\n<table><thead><tr><th>Kısmi toplam</th><th>Son alınan terimin işareti</th><th>Sonuç</th></tr></thead>\n<tbody>\n<tr><td>\\(S_1, S_3, S_5\\) (\\(1-\\tfrac14+\\cdots\\) serisinde)</td><td>+</td><td>overestimate</td></tr>\n<tr><td>\\(S_2, S_4, S_6\\)</td><td>−</td><td>underestimate</td></tr>\n</tbody></table>\n<h4>Kaç terim gerekir?</h4>\n<p>“Hata 0.001'den küçük olsun” ⇒ \\(b_{n+1}\\lt0.001\\) olan en küçük \\(n\\)'i bul. \\(\\sum\\tfrac{(-1)^{n+1}}{n^2}\\) için \\(\\tfrac{1}{(n+1)^2}\\lt0.001\\iff(n+1)^2\\gt1000\\iff n+1\\ge32\\iff n\\ge31\\). Dikkat: bulduğun indis atılan terimin indisi, gereken terim sayısı ondan bir eksiktir.</p>\n<h4>Taylor serileriyle bağlantı</h4>\n<p>\\(\\sin x\\), \\(\\cos x\\), \\(e^{-x}\\) gibi serileri belirli bir \\(x\\)'te değerlendirince çoğu zaman alterne seri çıkar; bu durumda Lagrange yerine bu sınır kullanılabilir (10.12 ile karşılaştır). Ör. \\(\\cos(0.5)\\approx1-\\tfrac{0.25}{2}=0.875\\), hata \\(\\le\\tfrac{0.5^4}{24}\\approx0.0026\\).</p>\n<div class=\"kn-dikkat\">Sınırı kullanmadan önce AST koşullarının sağlandığını söyle. Koşullar yoksa (ör. \\(b_n\\) azalan değil) bu sınır geçerli değildir.</div>\n<p><strong>FRQ dili:</strong> “The series is alternating with terms decreasing in absolute value to 0, so the error \\(|S-S_3|\\) is at most the first omitted term: \\(|S-S_3|\\le\\dfrac1{16}\\).”</p>",
+   "ornekler": [
+    {
+     "soru": "\\(S=\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(-1)^{n+1}}{n!}\\). \\(S_4\\)'ü bulun ve \\(|S-S_4|\\) için bir üst sınır verin.",
+     "cozum": [
+      "\\(S_4=1-\\tfrac12+\\tfrac16-\\tfrac1{24}=\\tfrac{15}{24}=0.625\\).",
+      "AST koşulları sağlanır (\\(\\tfrac1{n!}\\) azalan, \\(\\to0\\)) ⇒ \\(|S-S_4|\\le b_5=\\tfrac1{120}\\approx0.00833\\).",
+      "(Gerçek değer \\(1-e^{-1}\\approx0.6321\\), hata \\(\\approx0.0071\\).)"
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(-1)^{n+1}}{2n+1}\\) toplamını hatası \\(0.01\\)'den küçük olacak şekilde tahmin etmek için en az kaç terim gerekir?",
+     "cozum": [
+      "Hata \\(\\le b_{n+1}=\\dfrac{1}{2(n+1)+1}=\\dfrac{1}{2n+3}\\).",
+      "\\(\\dfrac{1}{2n+3}\\lt0.01\\iff 2n+3\\gt100\\iff n\\gt48.5\\).",
+      "En az \\(n=49\\) terim."
+     ]
+    },
+    {
+     "soru": "\\(f(x)=\\displaystyle\\sum_{n=0}^\\infty\\frac{(-1)^n x^{n}}{(n+1)^2}\\) olsun. \\(f(1)\\)'i ilk üç terimle tahmin edin; tahmin fazla mı eksik mi? Justify.",
+     "cozum": [
+      "\\(f(1)\\approx1-\\tfrac14+\\tfrac19=\\tfrac{31}{36}\\).",
+      "Seri alterne, \\(\\tfrac1{(n+1)^2}\\) azalan ve \\(\\to0\\). İlk atılan terim \\(-\\tfrac1{16}\\lt0\\) ⇒ \\(f(1)\\lt\\tfrac{31}{36}\\).",
+      "“The approximation is an overestimate because the first omitted term is negative.” Hata \\(\\le\\tfrac{1}{16}\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hata sınırı = ilk ATILAN terimin mutlak değeri; son alınan terimi yazma.",
+    "İndis kaymasına dikkat: seri n = 0'dan başlıyorsa S_n'nin içinde kaç terim olduğunu say.",
+    "Fazla/eksik sorusunda ilk atılan terimin işaretine bak: negatifse tahmin fazladır.",
+    "FRQ'da AST koşullarını (alternating, decreasing, limit 0) bir cümleyle belirtmeden sınırı kullanma."
+   ],
+   "sikHatalar": [
+    "Son eklenen terimi hata sınırı olarak kullanmak.",
+    "“En az kaç terim” sorusunda atılan terimin indisini cevap olarak vermek.",
+    "Over/underestimate kararını ilk terimin işaretine göre vermek."
+   ],
+   "terimler": [
+    {
+     "en": "alternating series error bound",
+     "tr": "alterne seri hata sınırı"
+    },
+    {
+     "en": "first omitted term",
+     "tr": "ilk atılan terim"
+    },
+    {
+     "en": "overestimate / underestimate",
+     "tr": "fazla / eksik tahmin"
+    }
+   ]
+  },
+  {
+   "kod": "10.11",
+   "baslik": "Finding Taylor Polynomial Approximations of Functions",
+   "baslikTr": "Taylor polinomu yaklaşımları",
+   "sadeceBC": true,
+   "hedefler": [
+    "Türev değerlerinden ya da formülden n. dereceden Taylor polinomunu (Taylor polynomial) yazmak.",
+    "Taylor polinomuyla bir fonksiyon değerini yaklaşık hesaplamak.",
+    "Bir katsayıdan türev değerini geri bulmak ve polinomun grafiksel anlamını yorumlamak."
+   ],
+   "anlatim": "<p>Teğet doğrusu (Ünite 4.6) bir fonksiyona \\(x=a\\) yakınında birinci dereceden yaklaşımdır: değer ve eğim eşleşir. Taylor polinomu bu fikri genişletir: <strong>değer, eğim, büküm (concavity) ve daha yüksek türevler</strong> \\(x=a\\)'da eşleşir.</p>\n<div class=\"kn-tanim\"><strong>Taylor polinomu:</strong> \\(f\\)'nin \\(x=a\\) merkezli (centered at \\(x=a\\)) \\(n\\). dereceden Taylor polinomu\n\\[ P_n(x)=f(a)+f'(a)(x-a)+\\frac{f''(a)}{2!}(x-a)^2+\\cdots+\\frac{f^{(n)}(a)}{n!}(x-a)^n \\]\n\\(a=0\\) ise <strong>Maclaurin polinomu</strong> denir.</div>\n<h4>Katsayı formülü</h4>\n<p>\\((x-a)^k\\)'nın katsayısı \\(c_k=\\dfrac{f^{(k)}(a)}{k!}\\). Tersten: \\(f^{(k)}(a)=k!\\,c_k\\). Bu ilişki hem polinom yazmada hem de “katsayıdan türev bul” sorularında kullanılır.</p>\n<div class=\"kn-dikkat\">\\(k!\\)'ye bölmeyi unutmak en yaygın hatadır. \\(f'''(2)=12\\) ise \\((x-2)^3\\)'ün katsayısı \\(\\dfrac{12}{3!}=2\\)'dir, 12 değil.</div>\n<h4>Tablodan polinom</h4>\n<table><thead><tr><th>\\(k\\)</th><th>0</th><th>1</th><th>2</th><th>3</th></tr></thead>\n<tbody><tr><td>\\(f^{(k)}(1)\\)</td><td>4</td><td>−2</td><td>6</td><td>−12</td></tr>\n<tr><td>\\(c_k=f^{(k)}(1)/k!\\)</td><td>4</td><td>−2</td><td>3</td><td>−2</td></tr></tbody></table>\n<p>\\(P_3(x)=4-2(x-1)+3(x-1)^2-2(x-1)^3\\). \\(f(1.1)\\approx P_3(1.1)=4-0.2+0.03-0.002=3.828\\).</p>\n<h4>Formülden polinom</h4>\n<p>\\(f(x)=\\ln x\\), \\(a=1\\): \\(f(1)=0\\), \\(f'=\\tfrac1x\\to1\\), \\(f''=-\\tfrac1{x^2}\\to-1\\), \\(f'''=\\tfrac{2}{x^3}\\to2\\). \\(P_3(x)=(x-1)-\\dfrac{(x-1)^2}{2}+\\dfrac{(x-1)^3}{3}\\).</p>\n<h4>Bilinen Maclaurin polinomları</h4>\n<table><thead><tr><th>\\(f\\)</th><th>\\(P_n\\) (ilk terimler)</th></tr></thead>\n<tbody>\n<tr><td>\\(e^x\\)</td><td>\\(1+x+\\dfrac{x^2}{2!}+\\dfrac{x^3}{3!}+\\cdots\\)</td></tr>\n<tr><td>\\(\\sin x\\)</td><td>\\(x-\\dfrac{x^3}{3!}+\\dfrac{x^5}{5!}-\\cdots\\)</td></tr>\n<tr><td>\\(\\cos x\\)</td><td>\\(1-\\dfrac{x^2}{2!}+\\dfrac{x^4}{4!}-\\cdots\\)</td></tr>\n<tr><td>\\(\\dfrac1{1-x}\\)</td><td>\\(1+x+x^2+x^3+\\cdots\\)</td></tr>\n</tbody></table>\n<p>Not: \\(\\sin x\\)'in 3. ve 4. dereceden Maclaurin polinomları aynıdır (\\(x^4\\) katsayısı 0). “Degree” en yüksek kuvveti, “number of nonzero terms” sıfır olmayan terim sayısını sorar; ikisini karıştırma.</p>\n<h4>Grafik yorumu</h4>\n<p>\\(P_2\\)'nin \\(x=a\\)'daki değeri, eğimi ve ikinci türevi \\(f\\)'ninkilerle aynıdır. Yani \\(f''(a)\\gt0\\) ise \\(P_2\\) yukarı açılan bir paraboldür. Yaklaşım \\(a\\)'ya yakın noktalarda iyidir; derece arttıkça genelde daha geniş bir aralıkta iyileşir.</p>\n<p><strong>FRQ dili:</strong> “The third-degree Taylor polynomial for \\(f\\) about \\(x=1\\) is \\(P_3(x)=4-2(x-1)+3(x-1)^2-2(x-1)^3\\). Therefore \\(f(1.1)\\approx P_3(1.1)=3.828\\).” Polinomu açıkça yaz, sonra değeri ver; sadeleştirme gerekmez.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=\\sqrt{x}\\) için \\(x=9\\) merkezli ikinci dereceden Taylor polinomunu yazın ve \\(\\sqrt{9.6}\\)'yı tahmin edin.",
+     "cozum": [
+      "\\(f(9)=3\\), \\(f'(x)=\\tfrac12x^{-1/2}\\Rightarrow f'(9)=\\tfrac16\\), \\(f''(x)=-\\tfrac14x^{-3/2}\\Rightarrow f''(9)=-\\tfrac1{108}\\).",
+      "\\(P_2(x)=3+\\tfrac16(x-9)-\\tfrac{1}{216}(x-9)^2\\).",
+      "\\(P_2(9.6)=3+0.1-\\tfrac{0.36}{216}=3.1-0.001\\overline{6}\\approx3.09833\\). (Gerçek: \\(\\approx3.09839\\).)"
+     ]
+    },
+    {
+     "soru": "\\(f\\)'nin \\(x=-1\\) merkezli Taylor polinomu \\(P_4(x)=5-3(x+1)+\\tfrac12(x+1)^2+2(x+1)^4\\). \\(f''(-1)\\), \\(f'''(-1)\\) ve \\(f^{(4)}(-1)\\)'i bulun.",
+     "cozum": [
+      "\\(f''(-1)=2!\\cdot\\tfrac12=1\\).",
+      "\\((x+1)^3\\) terimi yok ⇒ \\(f'''(-1)=0\\).",
+      "\\(f^{(4)}(-1)=4!\\cdot2=48\\)."
+     ]
+    },
+    {
+     "soru": "\\(f(x)=e^{2x}\\)'in ikinci dereceden Maclaurin polinomunu bulun. \\(P_2\\)'nin grafiği \\(x=0\\)'da hangi özellikleri \\(f\\) ile paylaşır?",
+     "cozum": [
+      "\\(f(0)=1\\), \\(f'(0)=2\\), \\(f''(0)=4\\) ⇒ \\(P_2(x)=1+2x+\\tfrac{4}{2}x^2=1+2x+2x^2\\).",
+      "\\(x=0\\)'da aynı değer (1), aynı eğim (2) ve aynı ikinci türev (4, concave up)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her katsayıyı c_k = f^{(k)}(a)/k! olarak yaz; k!'yi tabloya bir satır olarak eklemek hatayı önler.",
+    "(x − a) kuvvetlerini açma; FRQ'da genişletilmemiş biçim tam puan alır.",
+    "“Degree n” istenmişse x^n'ye kadar tüm katsayıları hesapla; bazıları sıfır çıkabilir (ör. sin x için P_4 = P_3), bu bir hata değildir.",
+    "Hesap makinesi bölümünde yaklaşık değeri üç ondalık basamakla ver."
+   ],
+   "sikHatalar": [
+    "Katsayıları k!'ye bölmemek ya da f^{(k)}(a)'yı k!'yle çarpmak.",
+    "(x − a) yerine x kuvvetleri yazmak (merkezi unutmak).",
+    "Katsayıdan türev bulurken k! ile çarpmayı unutmak."
+   ],
+   "terimler": [
+    {
+     "en": "Taylor polynomial",
+     "tr": "Taylor polinomu"
+    },
+    {
+     "en": "Maclaurin polynomial",
+     "tr": "Maclaurin polinomu"
+    },
+    {
+     "en": "centered at x = a",
+     "tr": "x = a merkezli"
+    },
+    {
+     "en": "degree",
+     "tr": "derece"
+    },
+    {
+     "en": "coefficient",
+     "tr": "katsayı"
+    }
+   ]
+  },
+  {
+   "kod": "10.12",
+   "baslik": "Lagrange Error Bound",
+   "baslikTr": "Lagrange hata sınırı",
+   "sadeceBC": true,
+   "hedefler": [
+    "Lagrange hata sınırını (Lagrange error bound) uygun M değeriyle hesaplamak.",
+    "M'yi merkez ile x arasındaki aralıkta (n+1). türevin en büyük mutlak değeri olarak seçmek.",
+    "Hata sınırını kullanarak f(x)'in bulunduğu aralığı ya da bir eşitsizliği gerekçelendirmek."
+   ],
+   "anlatim": "<p>\\(P_n(x)\\) ile \\(f(x)\\)'i tahmin ettik; hata ne kadar büyük olabilir? Hata \\(R_n(x)=f(x)-P_n(x)\\)'tir (remainder). Lagrange, bu hatayı bir sonraki türevle sınırlar.</p>\n<div class=\"kn-kural\"><strong>Lagrange Error Bound:</strong> \\(f^{(n+1)}\\), \\(a\\) ile \\(x\\) arasındaki aralıkta \\(|f^{(n+1)}(t)|\\le M\\) sağlıyorsa\n\\[ |f(x)-P_n(x)|\\le\\frac{M}{(n+1)!}\\,|x-a|^{n+1} \\]</div>\n<p>Formül, \\(P_n\\)'den sonra gelecek terimin biçimindedir; ama \\(f^{(n+1)}(a)\\) yerine aralıktaki <strong>en büyük</strong> \\(|f^{(n+1)}|\\) (\\(M\\)) kullanılır.</p>\n<h4>M'yi seçmek</h4>\n<table><thead><tr><th>Durum</th><th>M</th></tr></thead>\n<tbody>\n<tr><td>\\(f=\\sin x\\) ya da \\(\\cos x\\)</td><td>\\(M=1\\) (tüm türevler \\(\\le1\\))</td></tr>\n<tr><td>\\(f=e^x\\), \\(0\\le t\\le x\\)</td><td>\\(M=e^x\\) (artan; güvenli üst sınır olarak \\(3^x\\) da kullanılabilir)</td></tr>\n<tr><td>Soru \\(|f^{(4)}(x)|\\le 6\\) veriyor</td><td>\\(M=6\\)</td></tr>\n<tr><td>\\(f^{(n+1)}\\) aralıkta monoton</td><td>uç noktalardaki iki değerden mutlak değerce büyüğü</td></tr>\n</tbody></table>\n<div class=\"kn-dikkat\">\\(M\\) merkez \\(a\\)'daki değer <strong>değildir</strong>; \\(a\\) ile \\(x\\) arasındaki her \\(t\\) için geçerli bir üst sınırdır. Ör. \\(f(x)=\\ln x\\), \\(a=1\\), \\(x=1.5\\), \\(n=2\\): \\(f'''(t)=\\dfrac{2}{t^3}\\), \\(1\\le t\\le1.5\\)'te en büyük değer \\(t=1\\)'de: \\(M=2\\).</div>\n<h4>Tam örnek</h4>\n<p>\\(e^{0.2}\\)'yi \\(P_2(x)=1+x+\\tfrac{x^2}{2}\\) ile tahmin edelim: \\(P_2(0.2)=1.22\\). \\(f'''(t)=e^t\\le e^{0.2}\\lt e\\lt3\\), yani \\(M=3\\) seçilebilir:</p>\n<div class=\"formul\">\\[ |e^{0.2}-1.22|\\le\\frac{3}{3!}(0.2)^3=0.004 \\]</div>\n<p>Gerçek hata \\(\\approx0.00140\\); sınır doğru ama kaba. Daha iyi \\(M=e^{0.2}\\approx1.2214\\) verirse sınır \\(\\approx0.00163\\) olur.</p>\n<h4>Sınırın kullanımı</h4>\n<ul>\n<li><strong>Aralık:</strong> \\(f(x)\\in[P_n(x)-\\text{bound},\\ P_n(x)+\\text{bound}]\\).</li>\n<li><strong>Eşitsizlik kanıtı:</strong> “Show that \\(f(1.2)\\) cannot equal 5” ⇒ \\(|5-P_n(1.2)|\\)'nin sınırdan büyük olduğunu göster.</li>\n<li><strong>Derece seçimi:</strong> Sınır istenen değerin altına inene kadar \\(n\\)'i artır.</li>\n</ul>\n<h4>Alterne seri sınırıyla karşılaştırma</h4>\n<p>Seri belirli bir \\(x\\)'te alterne ve AST koşullarını sağlıyorsa “ilk atılan terim” sınırı da kullanılabilir (10.10). Soruda hangisinin istendiğine dikkat et: “Lagrange error bound” deniyorsa Lagrange formülünü yaz.</p>\n<p><strong>FRQ dili:</strong> “\\(|f^{(4)}(t)|\\le6\\) for \\(1\\le t\\le1.5\\), so by the Lagrange error bound, \\(|f(1.5)-P_3(1.5)|\\le\\dfrac{6}{4!}(0.5)^4=\\dfrac{1}{64}\\).” Sayıyı değerlendirmen gerekmez ama ifadede \\(M\\), \\((n+1)!\\) ve \\(|x-a|^{n+1}\\) açıkça görünmeli.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\cos(0.4)\\)'ü \\(P_4(x)=1-\\tfrac{x^2}{2}+\\tfrac{x^4}{24}\\) ile tahmin ediyoruz. Lagrange hata sınırını bulun.",
+     "cozum": [
+      "\\(n=4\\) ⇒ \\(f^{(5)}(t)=-\\sin t\\), \\(|f^{(5)}(t)|\\le1\\) ⇒ \\(M=1\\).",
+      "Sınır \\(=\\dfrac{1}{5!}(0.4)^5=\\dfrac{0.01024}{120}\\approx8.53\\times10^{-5}\\).",
+      "(Not: \\(x^5\\) katsayısı 0 olduğu için \\(P_4=P_5\\); \\(M=1\\) ile \\(\\tfrac{(0.4)^6}{720}\\) da geçerli daha sıkı bir sınırdır.)"
+     ]
+    },
+    {
+     "soru": "\\(f\\), \\(|f^{(3)}(x)|\\le 4\\) (\\(2\\le x\\le2.5\\)) sağlıyor; \\(f(2)=1\\), \\(f'(2)=3\\), \\(f''(2)=-2\\). \\(f(2.5)\\) için \\(P_2\\) tahminini ve \\(f(2.5)\\)'in kesin olarak bulunduğu bir aralığı verin.",
+     "cozum": [
+      "\\(P_2(x)=1+3(x-2)-(x-2)^2\\) ⇒ \\(P_2(2.5)=1+1.5-0.25=2.25\\).",
+      "Sınır: \\(\\dfrac{4}{3!}(0.5)^3=\\dfrac{4}{6}\\cdot\\dfrac18=\\dfrac1{12}\\approx0.0833\\).",
+      "\\(2.25-\\tfrac1{12}\\le f(2.5)\\le2.25+\\tfrac1{12}\\), yani \\(\\approx[2.1667,\\ 2.3333]\\)."
+     ]
+    },
+    {
+     "soru": "\\(f(x)=\\ln(1+x)\\)'in 2. dereceden Maclaurin polinomu \\(P_2(x)=x-\\tfrac{x^2}{2}\\). \\(|\\ln(1.3)-P_2(0.3)|\\) için Lagrange sınırı nedir?",
+     "cozum": [
+      "\\(f'''(t)=\\dfrac{2}{(1+t)^3}\\); \\(0\\le t\\le0.3\\)'te azalan ⇒ en büyük değer \\(t=0\\)'da: \\(M=2\\).",
+      "Sınır \\(=\\dfrac{2}{3!}(0.3)^3=\\dfrac{0.054}{6}=0.009\\).",
+      "(\\(P_2(0.3)=0.255\\), \\(\\ln1.3\\approx0.26236\\), gerçek hata \\(\\approx0.0074\\le0.009\\).)"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "M için (n+1). türev kullanılır; P_3 ise f^{(4)}. İndisi kaydırma.",
+    "M'yi merkezde değil, merkez ile x arasındaki tüm aralıkta en büyük |f^{(n+1)}| olarak seç; gerekçesini yaz (artan/azalan).",
+    "FRQ'da sayısal değeri sadeleştirmek zorunlu değil: “≤ (6/4!)(0.5)^4” tam puan alır.",
+    "Bir değerin f(x) olamayacağını göstermek için o değerin P_n(x)'ten uzaklığını sınırla karşılaştır."
+   ],
+   "sikHatalar": [
+    "(n+1)! yerine n! ya da |x − a|^n kullanmak.",
+    "M olarak f^{(n+1)}(a) değerini almak (aralıktaki en büyük değer gerekebilir).",
+    "Hata sınırını gerçek hata sanmak; sınır yalnız üst sınırdır."
+   ],
+   "terimler": [
+    {
+     "en": "Lagrange error bound",
+     "tr": "Lagrange hata sınırı"
+    },
+    {
+     "en": "remainder",
+     "tr": "kalan"
+    },
+    {
+     "en": "maximum of the (n+1)th derivative",
+     "tr": "(n+1). türevin en büyük değeri"
+    },
+    {
+     "en": "error",
+     "tr": "hata"
+    }
+   ]
+  },
+  {
+   "kod": "10.13",
+   "baslik": "Radius and Interval of Convergence of Power Series",
+   "baslikTr": "Kuvvet serilerinde yakınsaklık yarıçapı ve aralığı",
+   "sadeceBC": true,
+   "hedefler": [
+    "Oran testiyle bir kuvvet serisinin (power series) yakınsaklık yarıçapını (radius of convergence) bulmak.",
+    "Uç noktaları ayrı ayrı test ederek yakınsaklık aralığını (interval of convergence) belirlemek.",
+    "Türev ve integralin yarıçapı koruduğunu, uç nokta davranışını değiştirebildiğini bilmek."
+   ],
+   "anlatim": "<div class=\"kn-tanim\"><strong>Kuvvet serisi:</strong> \\(\\displaystyle\\sum_{n=0}^{\\infty}c_n(x-a)^n=c_0+c_1(x-a)+c_2(x-a)^2+\\cdots\\). Her \\(x\\) için ayrı bir sayı serisi elde edilir; soru “hangi \\(x\\)'lerde yakınsar?”dır.</div>\n<div class=\"kn-kural\"><strong>Üç olasılık:</strong> Seri (1) yalnız \\(x=a\\)'da yakınsar (\\(R=0\\)); (2) her \\(x\\) için yakınsar (\\(R=\\infty\\)); ya da (3) bir \\(R\\gt0\\) için \\(|x-a|\\lt R\\)'de mutlak yakınsar, \\(|x-a|\\gt R\\)'de ıraksar. \\(|x-a|=R\\) (uç noktalar) ayrıca incelenir.</div>\n<h4>Adım adım yöntem</h4>\n<ol>\n<li><strong>Oran testi:</strong> \\(\\displaystyle\\lim_{n\\to\\infty}\\left|\\frac{a_{n+1}}{a_n}\\right|\\)'i \\(x\\)'e bağlı olarak hesapla (\\(a_n\\), \\(x\\)'li tüm terim).</li>\n<li>Limit \\(\\lt1\\) koşulunu \\(|x-a|\\lt R\\) biçimine getir ⇒ <strong>yarıçap \\(R\\)</strong>.</li>\n<li><strong>Uç noktalar:</strong> \\(x=a-R\\) ve \\(x=a+R\\)'yi seriye ayrı ayrı yaz ve 10.3–10.9 testleriyle incele (oran testi uçlarda daima \\(L=1\\) verir).</li>\n<li>Aralığı yaz: \\((\\,),\\ [\\,],\\ [\\,),\\ (\\,]\\).</li>\n</ol>\n<h4>Örnek</h4>\n<p>\\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(x+1)^n}{n\\,2^n}\\):</p>\n<div class=\"formul\">\\[ \\left|\\frac{a_{n+1}}{a_n}\\right|=\\frac{|x+1|^{n+1}}{(n+1)2^{n+1}}\\cdot\\frac{n2^n}{|x+1|^n}=\\frac{n}{n+1}\\cdot\\frac{|x+1|}{2}\\to\\frac{|x+1|}{2} \\]</div>\n<p>\\(\\dfrac{|x+1|}{2}\\lt1\\iff|x+1|\\lt2\\) ⇒ \\(R=2\\), açık aralık \\((-3,1)\\).</p>\n<ul>\n<li>\\(x=1\\): \\(\\sum\\dfrac{2^n}{n2^n}=\\sum\\dfrac1n\\), harmonik ⇒ ıraksar.</li>\n<li>\\(x=-3\\): \\(\\sum\\dfrac{(-2)^n}{n2^n}=\\sum\\dfrac{(-1)^n}{n}\\), AST ⇒ yakınsar (koşullu).</li>\n</ul>\n<p>Yakınsaklık aralığı: \\([-3,1)\\).</p>\n<h4>Farklı tipler</h4>\n<table><thead><tr><th>Seri</th><th>Oran limiti</th><th>\\(R\\)</th></tr></thead>\n<tbody>\n<tr><td>\\(\\sum\\dfrac{x^n}{n!}\\)</td><td>\\(\\dfrac{|x|}{n+1}\\to0\\)</td><td>\\(\\infty\\)</td></tr>\n<tr><td>\\(\\sum n!\\,x^n\\)</td><td>\\((n+1)|x|\\to\\infty\\) (\\(x\\ne0\\))</td><td>0</td></tr>\n<tr><td>\\(\\sum\\dfrac{x^{2n}}{9^n}\\)</td><td>\\(\\dfrac{x^2}{9}\\)</td><td>3</td></tr>\n<tr><td>\\(\\sum\\dfrac{(2x-1)^n}{n^2}\\)</td><td>\\(|2x-1|\\)</td><td>\\(\\tfrac12\\) (merkez \\(\\tfrac12\\))</td></tr>\n</tbody></table>\n<div class=\"kn-dikkat\">\\((2x-1)^n=2^n\\left(x-\\tfrac12\\right)^n\\); yarıçap \\(|2x-1|\\lt1\\iff|x-\\tfrac12|\\lt\\tfrac12\\) olduğundan \\(\\tfrac12\\)'dir, 1 değil.</div>\n<h4>Türev ve integral</h4>\n<p>Bir kuvvet serisinin terim terim türevi ya da integrali <strong>aynı yarıçapa</strong> sahiptir; fakat uç noktalardaki yakınsaklık değişebilir. Ör. \\(\\sum\\tfrac{x^n}{n}\\) aralığı \\([-1,1)\\); türevi \\(\\sum x^{n-1}\\)'in aralığı \\((-1,1)\\).</p>\n<p><strong>FRQ dili:</strong> “At \\(x=1\\), the series is \\(\\sum\\dfrac1n\\), the harmonic series, which diverges. At \\(x=-3\\), the series is \\(\\sum\\dfrac{(-1)^n}{n}\\), which converges by the Alternating Series Test. The interval of convergence is \\(-3\\le x\\lt1\\).”</p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=0}^{\\infty}\\frac{(x-4)^n}{3^n}\\) serisinin yakınsaklık aralığını bulun.",
+     "cozum": [
+      "Geometrik seri, \\(r=\\dfrac{x-4}{3}\\): \\(|x-4|\\lt3\\) ⇒ \\(R=3\\), \\((1,7)\\).",
+      "\\(x=7\\): \\(\\sum1\\) ıraksar. \\(x=1\\): \\(\\sum(-1)^n\\) ıraksar (terimler 0'a gitmez).",
+      "Aralık: \\((1,7)\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(x-2)^n}{n^2\\,5^n}\\) serisinin yakınsaklık aralığını bulun.",
+     "cozum": [
+      "Oran: \\(\\dfrac{n^2}{(n+1)^2}\\cdot\\dfrac{|x-2|}{5}\\to\\dfrac{|x-2|}{5}\\lt1\\) ⇒ \\(R=5\\), \\((-3,7)\\).",
+      "\\(x=7\\): \\(\\sum\\tfrac1{n^2}\\), p = 2 ⇒ yakınsar. \\(x=-3\\): \\(\\sum\\tfrac{(-1)^n}{n^2}\\) mutlak yakınsar.",
+      "Aralık: \\([-3,7]\\)."
+     ]
+    },
+    {
+     "soru": "\\(f(x)=\\displaystyle\\sum_{n=1}^{\\infty}\\frac{x^{n}}{\\sqrt{n}}\\) için \\(f'(x)\\)'in serisinin yakınsaklık aralığını bulun.",
+     "cozum": [
+      "\\(f\\)'nin yarıçapı 1; aralığı \\([-1,1)\\) (\\(x=1\\): \\(p=\\tfrac12\\) ıraksak; \\(x=-1\\): AST).",
+      "\\(f'(x)=\\sum\\dfrac{n\\,x^{n-1}}{\\sqrt n}=\\sum\\sqrt n\\,x^{n-1}\\); yarıçap yine 1.",
+      "\\(x=\\pm1\\): terimler \\(\\sqrt n\\) büyüklüğünde, 0'a gitmez ⇒ ıraksar. Aralık: \\((-1,1)\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Oran testinde x'li çarpanları mutlak değerle bırak; |x − a| limit dışına çıkar.",
+    "Uç noktalarda oran testini tekrar kullanma: L = 1 çıkar. p-serisi, AST, n. terim testi kullan.",
+    "Uç nokta yazarken seriyi açıkça yaz (“At x = 7, the series becomes Σ1/n”); puanlayıcı bunu arar.",
+    "Aralık sorusunda R ve merkezi kontrol et: (2x − 1)^n gibi katsayılı ifadelerde 2'yi dışarı al."
+   ],
+   "sikHatalar": [
+    "Uç noktaları test etmeden açık aralık yazmak.",
+    "Uç noktada (−R)^n'nin işaretini kaybedip iki ucu aynı seri sanmak.",
+    "Türev serisinin uç noktalarını orijinal seriyle aynı saymak."
+   ],
+   "terimler": [
+    {
+     "en": "power series",
+     "tr": "kuvvet serisi"
+    },
+    {
+     "en": "radius of convergence",
+     "tr": "yakınsaklık yarıçapı"
+    },
+    {
+     "en": "interval of convergence",
+     "tr": "yakınsaklık aralığı"
+    },
+    {
+     "en": "endpoint",
+     "tr": "uç nokta"
+    },
+    {
+     "en": "center",
+     "tr": "merkez"
+    }
+   ]
+  },
+  {
+   "kod": "10.14",
+   "baslik": "Finding Taylor or Maclaurin Series for a Function",
+   "baslikTr": "Bir fonksiyonun Taylor/Maclaurin serisi",
+   "sadeceBC": true,
+   "hedefler": [
+    "e^x, sin x, cos x ve 1/(1 − x) Maclaurin serilerini genel terimleriyle yazmak.",
+    "Bir fonksiyonun Taylor serisini türev formülünden ya da genel terimden oluşturmak.",
+    "Seriden türev değerlerini okumak ve serinin genel terimini (general term) belirlemek."
+   ],
+   "anlatim": "<p>Taylor polinomunun derecesini sonsuza götürürsek <strong>Taylor serisi</strong> elde ederiz:</p>\n<div class=\"formul\">\\[ f(x)=\\sum_{n=0}^{\\infty}\\frac{f^{(n)}(a)}{n!}(x-a)^n \\]</div>\n<p>\\(a=0\\) ise <strong>Maclaurin serisi</strong>dir. Bu eşitlik serinin yakınsadığı (ve \\(f\\)'ye yakınsadığı) aralıkta geçerlidir.</p>\n<h4>Ezberlenmesi gereken dört seri</h4>\n<table><thead><tr><th>Fonksiyon</th><th>Seri</th><th>Genel terim</th><th>Aralık</th></tr></thead>\n<tbody>\n<tr><td>\\(e^x\\)</td><td>\\(1+x+\\dfrac{x^2}{2!}+\\dfrac{x^3}{3!}+\\cdots\\)</td><td>\\(\\dfrac{x^n}{n!}\\)</td><td>tüm \\(x\\)</td></tr>\n<tr><td>\\(\\sin x\\)</td><td>\\(x-\\dfrac{x^3}{3!}+\\dfrac{x^5}{5!}-\\cdots\\)</td><td>\\(\\dfrac{(-1)^n x^{2n+1}}{(2n+1)!}\\)</td><td>tüm \\(x\\)</td></tr>\n<tr><td>\\(\\cos x\\)</td><td>\\(1-\\dfrac{x^2}{2!}+\\dfrac{x^4}{4!}-\\cdots\\)</td><td>\\(\\dfrac{(-1)^n x^{2n}}{(2n)!}\\)</td><td>tüm \\(x\\)</td></tr>\n<tr><td>\\(\\dfrac{1}{1-x}\\)</td><td>\\(1+x+x^2+x^3+\\cdots\\)</td><td>\\(x^n\\)</td><td>\\(-1\\lt x\\lt1\\)</td></tr>\n</tbody></table>\n<p>Gözlem: \\(\\sin x\\) tek fonksiyondur (odd), yalnız tek kuvvetler; \\(\\cos x\\) çift (even), yalnız çift kuvvetler. \\(\\dfrac{d}{dx}\\sin x=\\cos x\\) seri düzeyinde de doğrudur.</p>\n<h4>Türevlerden seri</h4>\n<p>\\(f(x)=e^{x}\\), \\(a=2\\): her türev \\(e^2\\). Seri \\(\\displaystyle\\sum\\frac{e^2}{n!}(x-2)^n\\).<br>\nBir tabloda \\(f^{(n)}(0)=\\dfrac{(n+1)!}{2^n}\\) veriliyorsa: katsayı \\(\\dfrac{f^{(n)}(0)}{n!}=\\dfrac{n+1}{2^n}\\), seri \\(\\sum\\dfrac{(n+1)x^n}{2^n}\\).</p>\n<h4>Seriden türev okumak</h4>\n<div class=\"kn-kural\">\\(x^k\\)'nın (ya da \\((x-a)^k\\)'nın) katsayısı \\(c_k\\) ise \\(f^{(k)}(a)=k!\\,c_k\\).</div>\n<p>Ör. \\(f(x)=x^2\\cos x=x^2-\\dfrac{x^4}{2}+\\dfrac{x^6}{24}-\\cdots\\). \\(f^{(4)}(0)=4!\\cdot\\left(-\\tfrac12\\right)=-12\\); \\(f^{(5)}(0)=0\\) (tek kuvvet yok).</p>\n<h4>Genel terim bulma</h4>\n<p>Örüntüyü üç parçaya ayır: işaret (\\((-1)^n\\) ya da \\((-1)^{n+1}\\)), kuvvet (\\(x^n\\), \\(x^{2n}\\), \\(x^{2n+1}\\)), katsayı (\\(n!\\), \\(2^n\\), \\(n+1\\)…). Yazdığın formülü \\(n=0,1,2\\) koyarak ilk terimlerle kontrol et.</p>\n<h4>Bilinen sayılar</h4>\n<p>Seriler bazı toplamların kapalı biçimini verir: \\(\\sum\\dfrac{1}{n!}=e\\), \\(\\sum\\dfrac{(-1)^n\\pi^{2n}}{(2n)!}=\\cos\\pi=-1\\), \\(\\sum\\dfrac{2^n}{n!}=e^2\\). Bir toplamı tanımak için önce dört temel serinin genel terimine benzet.</p>\n<div class=\"kn-dikkat\">Taylor serisi \\(f\\)'yi yalnız yakınsaklık aralığında temsil eder. \\(\\dfrac1{1-x}\\) serisine \\(x=2\\) koymak \\(1+2+4+\\cdots\\) ıraksak serisini verir, \\(-1\\) değil.</div>\n<p><strong>FRQ dili:</strong> “The Maclaurin series for \\(f\\) is \\(1-\\dfrac{x^2}{2!}+\\dfrac{x^4}{4!}-\\cdots+\\dfrac{(-1)^n x^{2n}}{(2n)!}+\\cdots\\).” Soru “first four nonzero terms and the general term” diyorsa her ikisini de yaz.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=\\cos x\\)'in \\(x=\\pi\\) merkezli Taylor serisinin ilk üç sıfır olmayan terimini yazın.",
+     "cozum": [
+      "\\(f(\\pi)=-1\\), \\(f'(\\pi)=-\\sin\\pi=0\\), \\(f''(\\pi)=-\\cos\\pi=1\\), \\(f'''(\\pi)=\\sin\\pi=0\\), \\(f^{(4)}(\\pi)=\\cos\\pi=-1\\).",
+      "Seri: \\(-1+\\dfrac{(x-\\pi)^2}{2!}-\\dfrac{(x-\\pi)^4}{4!}+\\cdots\\)."
+     ]
+    },
+    {
+     "soru": "\\(f\\)'nin Maclaurin serisi \\(\\displaystyle\\sum_{n=0}^{\\infty}\\frac{(-1)^n x^{n}}{(n+2)\\,3^n}\\). \\(f'''(0)\\)'ı bulun.",
+     "cozum": [
+      "\\(x^3\\) katsayısı (\\(n=3\\)): \\(\\dfrac{-1}{5\\cdot27}=-\\dfrac{1}{135}\\).",
+      "\\(f'''(0)=3!\\cdot\\left(-\\dfrac1{135}\\right)=-\\dfrac{6}{135}=-\\dfrac{2}{45}\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\sum_{n=0}^{\\infty}\\frac{(-1)^n}{(2n+1)!}\\left(\\frac{\\pi}{6}\\right)^{2n+1}\\) toplamını bulun.",
+     "cozum": [
+      "Genel terim \\(\\dfrac{(-1)^n x^{2n+1}}{(2n+1)!}\\) ⇒ \\(\\sin x\\)'in serisi.",
+      "\\(x=\\tfrac\\pi6\\): toplam \\(\\sin\\tfrac\\pi6=\\tfrac12\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Dört temel seriyi genel terimleriyle birlikte ezberle; sınavda formül sayfası yok.",
+    "Genel terimi yazdıktan sonra n = 0, 1, 2 koyarak ilk terimlerle kontrol et.",
+    "“First four nonzero terms” ifadesinde sıfır katsayılı terimleri sayma.",
+    "Türev okurken: f^{(k)}(a) = k! · (katsayı). Kuvvet seride yoksa türev 0'dır."
+   ],
+   "sikHatalar": [
+    "sin x'in serisinde (2n+1)! yerine (2n)! yazmak ya da işaret düzenini kaçırmak.",
+    "Taylor serisini yakınsaklık aralığının dışında kullanmak.",
+    "Katsayıdan türev bulurken k!'yle çarpmayı unutmak."
+   ],
+   "terimler": [
+    {
+     "en": "Taylor series",
+     "tr": "Taylor serisi"
+    },
+    {
+     "en": "Maclaurin series",
+     "tr": "Maclaurin serisi"
+    },
+    {
+     "en": "general term",
+     "tr": "genel terim"
+    },
+    {
+     "en": "nonzero terms",
+     "tr": "sıfır olmayan terimler"
+    }
+   ]
+  },
+  {
+   "kod": "10.15",
+   "baslik": "Representing Functions as Power Series",
+   "baslikTr": "Fonksiyonları kuvvet serisi olarak ifade etmek",
+   "sadeceBC": true,
+   "hedefler": [
+    "Bilinen serilerde yerine koyma (substitution) ve çarpma ile yeni seriler üretmek.",
+    "Terim terim türev (term-by-term differentiation) ve integral alarak seri ve yakınsaklık aralığı bulmak.",
+    "Seri yardımıyla limit, belirli integral ve sayısal toplam hesaplamak."
+   ],
+   "anlatim": "<p>Her fonksiyon için türevleri tek tek hesaplamak yerine <strong>bilinen serileri manipüle ederiz</strong>. Bu, hem daha hızlıdır hem de AP'nin en sık sorduğu beceridir.</p>\n<h4>1) Yerine koyma (substitution)</h4>\n<table><thead><tr><th>Başlangıç</th><th>Yerine koy</th><th>Sonuç</th><th>Aralık</th></tr></thead>\n<tbody>\n<tr><td>\\(\\dfrac1{1-u}=\\sum u^n\\)</td><td>\\(u=-x^2\\)</td><td>\\(\\dfrac{1}{1+x^2}=\\sum(-1)^nx^{2n}\\)</td><td>\\(|x|\\lt1\\)</td></tr>\n<tr><td>\\(\\dfrac1{1-u}\\)</td><td>\\(u=\\dfrac{x}{3}\\)</td><td>\\(\\dfrac{3}{3-x}=\\sum\\dfrac{x^n}{3^n}\\)</td><td>\\(|x|\\lt3\\)</td></tr>\n<tr><td>\\(e^u=\\sum\\dfrac{u^n}{n!}\\)</td><td>\\(u=-x^2\\)</td><td>\\(e^{-x^2}=\\sum\\dfrac{(-1)^nx^{2n}}{n!}\\)</td><td>tüm \\(x\\)</td></tr>\n<tr><td>\\(\\sin u\\)</td><td>\\(u=3x\\)</td><td>\\(\\sin 3x=\\sum\\dfrac{(-1)^n3^{2n+1}x^{2n+1}}{(2n+1)!}\\)</td><td>tüm \\(x\\)</td></tr>\n</tbody></table>\n<p>Yeni aralık, yerine koyduğun ifadenin eski aralığı sağlamasıyla bulunur: \\(|-x^2|\\lt1\\iff|x|\\lt1\\).</p>\n<h4>2) Çarpma</h4>\n<p>\\(x^3e^{x}=x^3\\sum\\dfrac{x^n}{n!}=\\sum\\dfrac{x^{n+3}}{n!}\\). Polinomla çarpmak yarıçapı değiştirmez.</p>\n<h4>3) Terim terim türev ve integral</h4>\n<div class=\"kn-kural\">\\(f(x)=\\sum c_n(x-a)^n\\), \\(|x-a|\\lt R\\) ise\n\\[ f'(x)=\\sum n\\,c_n(x-a)^{n-1},\\qquad \\int f(x)\\,dx=C+\\sum\\frac{c_n(x-a)^{n+1}}{n+1} \\]\nve ikisi de <strong>aynı \\(R\\)</strong>'ye sahiptir (uç noktalar yeniden kontrol edilir).</div>\n<ul>\n<li>\\(\\dfrac{1}{(1-x)^2}=\\dfrac{d}{dx}\\dfrac1{1-x}=\\sum_{n=1}^\\infty n x^{n-1}\\).</li>\n<li>\\(\\ln(1+x)=\\int_0^x\\dfrac{dt}{1+t}=x-\\dfrac{x^2}{2}+\\dfrac{x^3}{3}-\\cdots=\\sum_{n=1}^\\infty\\dfrac{(-1)^{n+1}x^n}{n}\\), aralık \\((-1,1]\\).</li>\n<li>\\(\\arctan x=\\int_0^x\\dfrac{dt}{1+t^2}=x-\\dfrac{x^3}{3}+\\dfrac{x^5}{5}-\\cdots\\), aralık \\([-1,1]\\).</li>\n</ul>\n<p>İntegral alırken sabit \\(C\\)'yi \\(f(0)\\) değerinden bul: \\(\\ln(1+0)=0\\) ⇒ \\(C=0\\).</p>\n<h4>4) Uygulamalar</h4>\n<ul>\n<li><strong>Limit:</strong> \\(\\displaystyle\\lim_{x\\to0}\\frac{1-\\cos x}{x^2}=\\lim\\frac{\\tfrac{x^2}{2}-\\tfrac{x^4}{24}+\\cdots}{x^2}=\\frac12\\).</li>\n<li><strong>İntegral tahmini:</strong> \\(\\int_0^{0.5}e^{-x^2}dx\\approx\\int_0^{0.5}\\left(1-x^2\\right)dx=0.5-\\tfrac{0.125}{3}\\approx0.4583\\) (alterne seri; hata \\(\\le\\tfrac{0.5^5}{10}\\approx0.0031\\)).</li>\n<li><strong>Toplam:</strong> \\(\\sum_{n=1}^\\infty\\dfrac{n}{3^{n}}\\): \\(\\sum nx^{n}=\\dfrac{x}{(1-x)^2}\\), \\(x=\\tfrac13\\) ⇒ \\(\\dfrac{1/3}{4/9}=\\dfrac34\\).</li>\n<li><strong>Diferansiyel denklem:</strong> \\(y=\\sum c_nx^n\\) seriyi \\(y'=y\\) gibi bir denkleme koyup katsayıları eşleştirmek \\(e^x\\)'i verir.</li>\n</ul>\n<div class=\"kn-dikkat\">Kısmi kesir ya da cebir hilesi: \\(\\dfrac{x}{2+x}=\\dfrac{x}{2}\\cdot\\dfrac{1}{1-(-x/2)}=\\sum\\dfrac{(-1)^nx^{n+1}}{2^{n+1}}\\), \\(|x|\\lt2\\). Önce paydayı “\\(1-\\text{bir şey}\\)” biçimine getir.</div>\n<p><strong>FRQ dili:</strong> “Substituting \\(-x^2\\) for \\(x\\) in the Maclaurin series for \\(e^x\\) gives \\(e^{-x^2}=1-x^2+\\dfrac{x^4}{2!}-\\cdots+\\dfrac{(-1)^nx^{2n}}{n!}+\\cdots\\).” Türev/integralle elde edilen seride ilk birkaç terimi ve genel terimi ayrı ayrı yaz.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=\\dfrac{1}{1+4x}\\) için Maclaurin serisini ve yakınsaklık aralığını bulun.",
+     "cozum": [
+      "\\(\\dfrac1{1-u}\\) içinde \\(u=-4x\\): \\(f(x)=\\sum(-4x)^n=\\sum(-1)^n4^nx^n=1-4x+16x^2-\\cdots\\).",
+      "\\(|-4x|\\lt1\\iff|x|\\lt\\tfrac14\\). Uçlarda \\(\\sum(\\pm1)^n\\) türü terimler 0'a gitmez ⇒ ıraksak. Aralık: \\(\\left(-\\tfrac14,\\tfrac14\\right)\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\int_0^{x}\\frac{\\sin t}{t}\\,dt\\) fonksiyonunun Maclaurin serisinin ilk üç sıfır olmayan terimini bulun.",
+     "cozum": [
+      "\\(\\dfrac{\\sin t}{t}=1-\\dfrac{t^2}{3!}+\\dfrac{t^4}{5!}-\\cdots\\).",
+      "Terim terim integral: \\(x-\\dfrac{x^3}{3\\cdot3!}+\\dfrac{x^5}{5\\cdot5!}-\\cdots=x-\\dfrac{x^3}{18}+\\dfrac{x^5}{600}-\\cdots\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\lim_{x\\to0}\\frac{e^{x}-1-x}{x^2}\\) limitini seri kullanarak bulun.",
+     "cozum": [
+      "\\(e^x-1-x=\\dfrac{x^2}{2}+\\dfrac{x^3}{6}+\\cdots\\).",
+      "\\(x^2\\)'ye böl: \\(\\dfrac12+\\dfrac{x}{6}+\\cdots\\to\\dfrac12\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Yeni seriyi üretmeden önce hangi temel seriden geldiğini bul; sonra yalnız yerine koy, türev al ya da integre et.",
+    "Yerine koymadan sonra aralığı eski aralıktan türet: |u| < 1'i x cinsinden çöz.",
+    "Terim terim türevde sabit terim kaybolur; toplam indisi n = 1'den başlamalı.",
+    "İntegral alırken C sabitini f(0) ile bulmayı unutma."
+   ],
+   "sikHatalar": [
+    "−x² yerine koyarken işareti yalnız bazı terimlere uygulamak (her terim (−1)^n alır).",
+    "Türev/integral sonrası yakınsaklık aralığının uç noktalarını kontrol etmemek.",
+    "Paydayı 1 − u biçimine getirmeden 1/(1 − x) serisini doğrudan uygulamak."
+   ],
+   "terimler": [
+    {
+     "en": "substitution",
+     "tr": "yerine koyma"
+    },
+    {
+     "en": "term-by-term differentiation",
+     "tr": "terim terim türev"
+    },
+    {
+     "en": "term-by-term integration",
+     "tr": "terim terim integral"
+    },
+    {
+     "en": "power series representation",
+     "tr": "kuvvet serisi gösterimi"
+    }
+   ]
+  }
+ ]
+}
