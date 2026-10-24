@@ -543,6 +543,8 @@ test("PWA: sw.js ve manifest sunulur, CSP worker-src içerir; hesap silme yeni v
   assert.equal(sw.durum, 200);
   assert.match(sw.basliklar.get("cache-control"), /no-cache/);
   assert.match(sw.basliklar.get("content-security-policy"), /worker-src 'self'/);
+  // 1.26.1 sınav içi hesap makinesi: yalnız Desmos çerçeveye girebilir; diğer dış çerçeveler kapalı
+  assert.match(sw.basliklar.get("content-security-policy"), /frame-src https:\/\/www\.desmos\.com(;|$)/);
   assert.match(sw.govde, /addEventListener\("push"/);
   const m = await fetch(base + "/manifest.webmanifest");
   assert.equal(m.status, 200);

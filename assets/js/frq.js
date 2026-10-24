@@ -77,6 +77,7 @@
 
   // ---------------- 1) liste ----------------
   function listeYukle() {
+    if (window.MeberraHM) MeberraHM.kapat();
     zamanlayiciDur();
     S.aktif = null;
     adresYaz({ ders: S.ders });
@@ -158,6 +159,8 @@
     duyur("Bu FRQ Premium'da.");
   }
   // 1.24.0 A2 köprüsü: parçanın ne istediğini cevabı vermeden Türkçe açıklar (açılır kutu; MathJax içerebilir)
+  // Sınavdaki Desmos türü: Biology bilimsel, ekonomi 4 işlem, diğerleri grafik (server/tohum/sinav-formatlari.json)
+  function HM_ADRES(ders) { return { biology: "https://www.desmos.com/scientific", macroeconomics: "https://www.desmos.com/fourfunction", microeconomics: "https://www.desmos.com/fourfunction" }[ders] || "https://www.desmos.com/calculator"; }
   function neSoruyorHtml(p) {
     return p.ne_soruyor ? '<details class="frq-ne"><summary><span aria-hidden="true">🔍</span> Ne soruyor?</summary><p class="icerik">' + esc(p.ne_soruyor) + "</p></details>" : "";
   }
@@ -171,7 +174,9 @@
         '<span class="frq-sure-gosterge" id="frq-sure-g" aria-live="off" hidden>0:00 / ' + f.sure_dk + ':00</span></div></div>' +
       '<header class="frq-coz-bas" style="--frq-renk:' + renk(f.kisa) + '"><p class="frq-eyebrow">' + esc(f.dersAd) + " · " + esc(f.tur) + "</p><h1>" + esc(f.baslik) + "</h1>" +
         '<p class="frq-kart-meta"><span>' + ikon("saat") + " Önerilen " + f.sure_dk + " dk</span><span>" + f.toplam_puan + " puan</span><span>" +
-        (f.hesapMakinesi ? ikon("hesap") + " Hesap makinesi serbest" : "Hesap makinesi yok") + "</span><span>" + esc(ZORLUK[f.zorluk] || f.zorluk) + "</span></p></header>" +
+        (f.hesapMakinesi ? ikon("hesap") + " Hesap makinesi serbest" : "Hesap makinesi yok") + "</span><span>" + esc(ZORLUK[f.zorluk] || f.zorluk) + "</span></p>" +
+        // 1.26.1: Desmos bu sayfanın içinde, girişsiz (assets/js/hesap-makinesi.js); türü sınavdaki gibi
+        (f.hesapMakinesi && window.MeberraHM ? '<button type="button" class="btn-ghost btn-sm hm-dugme frq-hm" data-hm="' + HM_ADRES(f.ders) + '" aria-pressed="false">' + ikon("hesap") + " Hesap makinesini aç</button>" : "") + "</header>" +
       '<div class="frq-giris icerik">' + f.giris + "</div>" + skHtml(f.sekiller) +
       '<form id="frq-form" novalidate>' + f.parcalar.map(function (p) {
         return '<section class="frq-parca" aria-labelledby="frq-p-' + p.harf + '"><div class="frq-parca-bas"><h2 id="frq-p-' + p.harf + '">(' + p.harf + ")</h2><span class=\"frq-puan-et\">" + p.puan + " puan</span></div>" +

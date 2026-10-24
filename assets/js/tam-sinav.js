@@ -143,7 +143,7 @@
         "<li>Bölüm I ile Bölüm II arasında isteğe bağlı 10 dakikalık ara vardır.</li>" +
         "<li>Doğru cevaplar sınav bitince açılır. Serbest yanıtları rubrikle kendin puanlarsın.</li>" +
         (s.referans ? '<li>Referans: <a href="' + esc(s.referans.url) + '" target="_blank" rel="noopener">' + esc(s.referans.ad) + "</a> (sınavda da düğmeyle açılır).</li>" : "<li>Bu sınavda referans/formül sayfası verilmez.</li>") +
-        (s.hesapMakinesi ? "<li>" + esc(s.hesapMakinesi.not) + " Meberra'da Desmos yeni sekmede açılır.</li>" : "<li>Bu sınavda hesap makinesi kullanılmaz.</li>") +
+        (s.hesapMakinesi ? "<li>" + esc(s.hesapMakinesi.not) + " Meberra'da Desmos, Bluebook'taki gibi sınav ekranının içinde (girişsiz) açılır.</li>" : "<li>Bu sınavda hesap makinesi kullanılmaz.</li>") +
         "</ul>" +
         '<p class="dn-note">1–5 tahmini, bileşik puanın yaklaşık eşiklerle karşılaştırılmasıdır (resmî ölçekleme değildir). Eşikler: ' +
         s.esikler.map(function (e) { return e.puan + " → %" + e.min + "+"; }).join(" · ") + ".</p>" +
@@ -200,11 +200,13 @@
 
   function ustBar(b, ek) {
     var s = S.r.sinav, ref = s.referans, hm = s.hesapMakinesi && (b.hesapMakinesi === "gerekli" || b.hesapMakinesi === "serbest");
+    if (!hm && window.MeberraHM) MeberraHM.kapat(); // hesap makinesiz kısımda panel açık kalamaz
     return '<div class="dn-bar ts-bar"><div class="dn-bar-title"><strong>' + esc(s.ad) + '</strong><span class="dn-bar-sub">' + esc(b.ad) + "</span></div>" +
       '<div class="dn-timer-wrap"><span class="dn-timer" id="ts-timer" role="timer" aria-live="off"></span><button type="button" class="btn-ghost dn-mini" id="ts-timer-gizle" aria-pressed="false">Gizle</button></div>' +
       '<div class="dn-bar-actions ts-arac">' +
       (ref ? '<a class="btn-ghost dn-mini" href="' + esc(ref.url) + '" target="_blank" rel="noopener" title="' + esc(ref.ad) + '">' + IK.belge + " Referans</a>" : "") +
-      (hm ? '<a class="btn-ghost dn-mini" href="' + esc(s.hesapMakinesi.desmos) + '" target="_blank" rel="noopener" title="Desmos yeni sekmede">' + IK.hm + " Hesap makinesi</a>" : "") +
+      // 1.26.1: Desmos sınav ekranının içinde, girişsiz (assets/js/hesap-makinesi.js) — yeni sekme / dış site yok
+      (hm ? '<button type="button" class="btn-ghost dn-mini hm-dugme" data-hm="' + esc(s.hesapMakinesi.desmos) + '" aria-pressed="' + !!(window.MeberraHM && MeberraHM.acikMi()) + '">' + IK.hm + " Hesap makinesi</button>" : "") +
       (ek || "") + "</div></div>";
   }
   function zamanlayiciBaslat(b, bi) {

@@ -46,6 +46,7 @@ function guvenlikBasliklari(res) {
   res.setHeader("Content-Security-Policy", [
     "default-src 'self'", "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net", "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: blob:", "font-src 'self' data: https://cdn.jsdelivr.net", "connect-src 'self'", "frame-ancestors 'self'",
+    "frame-src https://www.desmos.com", // 1.26.1 sınav içi hesap makinesi (Desmos gömülü, girişsiz; Bluebook'taki gibi)
     "worker-src 'self'", "manifest-src 'self'",
     "base-uri 'self'", "form-action 'self' mailto:", "object-src 'none'"
   ].join("; "));

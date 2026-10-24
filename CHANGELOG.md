@@ -9,6 +9,10 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.26.1] — 2026-10-25
+### Düzeltildi
+- **Sınav içi hesap makinesi**: "Hesap makinesi" düğmesi artık Desmos sitesine (yeni sekme, giriş isteyen sayfa) gitmiyor. Desmos'un **College Board sürümü** — gerçek AP'de Bluebook'a yerleşik olanın aynısı, girişsiz — sınav ekranının içinde açılır: masaüstünde sağ altta sürüklenebilir pencere, telefonda alttan açılan sayfa. Tür sınavdaki gibi: Calculus/Physics/Chemistry grafik, Biology bilimsel, ekonomi 4 işlem. Tam deneme sınavında hesap makinesiz kısma geçilince panel kapanır. Hesap makineli FRQ'larda da "Hesap makinesini aç" düğmesi. CSP'ye yalnız `frame-src https://www.desmos.com` eklendi.
+
 ## [1.26.0] — 2026-10-25
 ### Eklendi
 - **`/ap-nedir` — "10 dakikada AP"** (giriş gerekmez): AP'yi hiç bilmeyen öğrenci için 6 sahnelik yolculuk, hedef sihirbazıyla aynı kart iskeleti ve Dede Korkut. 1) AP nedir (çevrilen kartlar) 2) 1–5 puan kaydırıcısı (College Board ölçeği) 3) MCQ / FRQ bölümleri 4) Türkiye'den kayıt takvimi (13 Kasım 2026 sipariş, geç sipariş +40 $, 3–14 Mayıs 2027, Temmuz puanlar) ve canlı geri sayım 5) Meberra'da yol 6) 5 soruluk mini test → **AP Kâşifi** rozeti + konfeti. Bütün sahneler aynı yükseklikte; telefonda yatay kaydırma yok.
