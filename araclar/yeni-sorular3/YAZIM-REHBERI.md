@@ -33,6 +33,7 @@ yeniden yazma (paraphrase) da yapma. Herkese açık CED konularını ve sınav f
 - **1.28.0+: `ek.neSoruyor` zorunlu** — kökün ne istediğini anlatan Türkçe tek cümle (≤ 170 karakter, HTML/`<` `>`/`$` yok;
   eşitsizlikleri sözle: "x pozitifken"). CEVABI ELE VERMEZ: doğru şıkka özgü kelime/sayı kullanma, şıkları değerlendirme.
   NOT/EXCEPT varsa "… OLMAYAN" de. Denetim: `node araclar/ne-soruyor-ekle.js` sızıntı kuralları.
+- Sorular konu anlatımındaki çözümlü örneklerin sayılarını/bağlamını TEKRAR ETMEZ (öğrenci hatırlayarak değil çözerek cevaplamalı).
 - Kök tekrarı yok. Şekil gerekiyorsa `araclar/yeni-sorular2/SEKIL-BICIMI.md` (isteğe bağlı; HTML tablo tercih edilir).
 
 ## 3. Dosya yazma uyarısı
