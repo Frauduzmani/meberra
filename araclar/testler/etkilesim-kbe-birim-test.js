@@ -165,8 +165,8 @@ ok(Object.values(K.ROL).every(r => r.yanlis.length === 2 && !r.yanlis.includes(r
 const SAYFA = {
   "ap-chemistry": { tur: ["titrasyon", "denge", "mb", "gaz", "pes"], birim: beklenenBirim.filter(k => k.startsWith("chem")), adim: 3 },
   "ap-biology": { tur: ["nufus", "hw", "enzim", "piramit"], birim: beklenenBirim.filter(k => k.startsWith("bio")), adim: 3 },
-  "ap-electives": { tur: ["arztalep", "esneklik", "adas", "para", "maliyet", "kodiz"], birim: ["eko-temel", "csa", "micro56", "macro16"], adim: 2 },
-  "ap-english": { tur: ["retorik", "tez", "akis"], birim: ["eng-temel", "eng-okuma", "eng-yazma"], adim: 2 }
+  "ap-electives": { tur: ["arztalep", "esneklik", "adas", "para", "maliyet", "kodiz"], birim: ["eko-temel", "csa", "micro56", "macro16"], adim: 1 }, // 1.22.1: Italya Esame di Stato çözümü AP dışı olduğu için kaldırıldı
+  "ap-english": { tur: ["retorik", "tez", "akis"], birim: ["eng-temel", "eng-okuma", "eng-yazma"], adim: 1 } // 1.22.1: Abitur Englisch çözümü kaldırıldı
 };
 const W = K._W;
 for (const [s, p] of Object.entries(SAYFA)) {

@@ -59,8 +59,8 @@ const yanlisOf = id => ["A", "B", "C", "D"].find(x => x !== dogruOf(id));
 test("tohum: sayılar pm-denetim ile aynı (1338 ders [1327 aktif + 11 arşiv; 1.14.0 Ekonomi + English: +82 aktif; 1.14.1 şekilli: +50 aktif] + 153 seviye + 1 vitrin; onaylardan sonra taslak yok), veritabanı dolu, upsert idempotent", () => {
   const t = JSON.parse(fs.readFileSync(TOHUM, "utf8"));
   const say = (tur, durum) => t.sorular.filter(x => x.tur === tur && (durum ? x.durum === durum : x.durum !== "taslak")).length;
-  assert.equal(say("ders", "aktif"), 1327);
-  assert.equal(say("ders", "arsiv"), 11); // 1.10.0: 2 birebir tekrar; 1.11.0: bağımsız denetimin reddettiği 9 taslak
+  assert.equal(say("ders", "aktif"), 1321);
+  assert.equal(say("ders", "arsiv"), 17); // 1.10.0: 2 birebir tekrar; 1.11.0: bağımsız denetimin reddettiği 9 taslak; 1.22.1: 6 Physics C sorusu
   assert.equal(say("ders", "taslak"), 0, "1.11.0 onayı: tohumda taslak kalmadı (araclar/onay/UYGULANAN.md)");
   assert.equal(say("ders"), 1338);
   assert.equal(say("seviye"), 153);

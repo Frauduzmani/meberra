@@ -311,7 +311,7 @@
   };
 
   // ---------------------------------------------------------------- Tarayıcı katmanı
-  if (typeof document === "undefined") { if (typeof module === "object" && module.exports) module.exports = { hesap: H, dene: DENE }; return; }
+  if (typeof document === "undefined") { if (typeof module === "object" && module.exports) module.exports = { hesap: H, dene: DENE, siraKaristir: siraKaristir }; return; }
 
   var HAREKETSIZ = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var sayac = 0;
@@ -1102,6 +1102,15 @@
   };
 
   // ---------------------------------------------------------------- Kendini dene
+  /** Şık sırası: soru metninden türetilen kararlı karıştırma (etkilesim-kbe.js siraKaristir ile aynı). Görünen sıra → asıl indis. */
+  function siraKaristir(n, anahtar) {
+    var h = 2166136261, t = String(anahtar || ""), i;
+    for (i = 0; i < t.length; i++) { h ^= t.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
+    var rnd = function () { h = (h + 0x6D2B79F5) >>> 0; var x = Math.imul(h ^ (h >>> 15), 1 | h); x = (x + Math.imul(x ^ (x >>> 7), 61 | x)) ^ x; return ((x ^ (x >>> 14)) >>> 0) / 4294967296; };
+    var p = []; for (i = 0; i < n; i++) p.push(i);
+    for (i = n - 1; i > 0; i--) { var j = Math.floor(rnd() * (i + 1)), g = p[i]; p[i] = p[j]; p[j] = g; }
+    return p;
+  }
   function dene(host) {
     var sorular = DENE[host.getAttribute("data-emf-dene")];
     if (!sorular) return;
@@ -1112,9 +1121,11 @@
       var m = el("p", "emf-soru-metin", (sorular.length > 1 ? (qi + 1) + ". " : "") + q.s); m.id = sid; kut.appendChild(m);
       var g = el("div", "emf-secenekler"); g.setAttribute("role", "group"); g.setAttribute("aria-labelledby", sid);
       var geri = el("p", "emf-geri"); geri.setAttribute("aria-live", "polite");
-      var dugmeler = q.o.map(function (s, i) {
+      var sira = siraKaristir(q.o.length, q.s); // görünen konum k → asıl şık sira[k]
+      var dugmeler = sira.map(function (i, k) {
+        var s = q.o[i];
         var b = el("button", "emf-secenek"); b.type = "button";
-        b.appendChild(el("span", "emf-harf", "ABCD"[i])); b.appendChild(el("span", null, s[0]));
+        b.appendChild(el("span", "emf-harf", "ABCD"[k])); b.appendChild(el("span", null, s[0]));
         b.addEventListener("click", function () {
           var dogru = i === q.d;
           dugmeler.forEach(function (x) { x.classList.remove("emf-dogru", "emf-yanlis"); x.removeAttribute("aria-describedby"); });
@@ -1188,6 +1199,6 @@
     if ("MutationObserver" in window) new MutationObserver(yenile).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
     if (window.matchMedia) { var mq = window.matchMedia("(prefers-color-scheme: dark)"); if (mq.addEventListener) mq.addEventListener("change", yenile); }
   }
-  kok.MF = { hesap: H, dene: DENE };
+  kok.MF = { hesap: H, dene: DENE, siraKaristir: siraKaristir };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", baslat); else baslat();
 })(typeof window !== "undefined" ? window : globalThis);
