@@ -1,5 +1,5 @@
 {
- "surum": 20,
+ "surum": 21,
  "olusturma": "2026-10-21T08:13:59.509Z",
  "aciklama": "Meberra soru bankası tohumu — tek doğruluk kaynağı. Statik olarak SUNULMAZ. Üretici: node araclar/soru-aktar.js",
  "sorular": [
@@ -157854,8 +157854,5183 @@
     }
    },
    "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_1",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 27,
+   "numara": 28,
+   "konu": "2.1 Systems and Center of Mass",
+   "zorluk": "easy",
+   "govde": "A light rod lies along the $x$-axis. A $1.0\\text{ kg}$ object is fixed at $x = 0$ and a $3.0\\text{ kg}$ object is fixed at $x = 4.0\\text{ m}$. Where is the center of mass of the two-object system?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$x = 1.0\\text{ m}$"
+    },
+    {
+     "id": "B",
+     "text": "$x = 2.0\\text{ m}$"
+    },
+    {
+     "id": "C",
+     "text": "$x = 3.0\\text{ m}$"
+    },
+    {
+     "id": "D",
+     "text": "$x = 12\\text{ m}$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $x_{cm}=\\frac{m_1x_1+m_2x_2}{m_1+m_2}=\\frac{(1.0)(0)+(3.0)(4.0)}{1.0+3.0}$.<br/>2. $x_{cm}=\\frac{12}{4.0}=3.0\\text{ m}$.<br/>3. Kontrol: sonuç büyük kütleye ($x=4.0$) daha yakın ve iki cismin arasında.",
+   "genel_hatirlatma": "Kütle merkezi, konumların kütleyle ağırlıklandırılmış ortalamasıdır ve daima büyük kütleye daha yakındır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Kütleleri yer değiştirmek",
+     "aciklama": "$1.0\\text{ kg}$'ı $4.0\\text{ m}$'ye koymuş gibi hesaplanmış: $\\frac{(1.0)(4.0)}{4.0}=1.0$. Kütle merkezi büyük kütleye yakın olmalıdır."
+    },
+    "B": {
+     "etiket": "Geometrik orta noktayı almak",
+     "aciklama": "Orta nokta yalnız kütleler eşitse kütle merkezidir. Burada ağırlıklı ortalama gerekir."
+    },
+    "D": {
+     "etiket": "Toplam kütleye bölmeyi unutmak",
+     "aciklama": "$\\sum m_ix_i = 12\\text{ kg·m}$ paydır; $4.0\\text{ kg}$'a bölünmelidir. Kütle merkezi iki cismin dışında olamaz."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Kütle merkezi ağırlıklı ortalama",
+    "ipucu": "Pay: kütle × konum toplamı; payda: toplam kütle.",
+    "sikHata": "Orta noktayı kütle merkezi sanmak",
+    "cedKonu": "2.1",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_2",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 28,
+   "numara": 29,
+   "konu": "2.1 Systems and Center of Mass",
+   "zorluk": "medium",
+   "govde": "Three small objects are fixed in the $xy$-plane as listed in the table.<br/><table class='u-table'><tr><th>Object</th><th>Mass (kg)</th><th>$x$ (m)</th><th>$y$ (m)</th></tr><tr><td>P</td><td>2.0</td><td>0</td><td>0</td></tr><tr><td>Q</td><td>2.0</td><td>4.0</td><td>0</td></tr><tr><td>S</td><td>4.0</td><td>2.0</td><td>3.0</td></tr></table>What are the coordinates of the center of mass of the three-object system?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$(2.0\\text{ m},\\ 1.0\\text{ m})$"
+    },
+    {
+     "id": "B",
+     "text": "$(1.5\\text{ m},\\ 2.0\\text{ m})$"
+    },
+    {
+     "id": "C",
+     "text": "$(2.0\\text{ m},\\ 3.0\\text{ m})$"
+    },
+    {
+     "id": "D",
+     "text": "$(2.0\\text{ m},\\ 1.5\\text{ m})$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Toplam kütle $M=8.0\\text{ kg}$.<br/>2. $x_{cm}=\\frac{(2.0)(0)+(2.0)(4.0)+(4.0)(2.0)}{8.0}=\\frac{16}{8.0}=2.0\\text{ m}$.<br/>3. $y_{cm}=\\frac{(2.0)(0)+(2.0)(0)+(4.0)(3.0)}{8.0}=\\frac{12}{8.0}=1.5\\text{ m}$.",
+   "genel_hatirlatma": "Kütle merkezi her eksen için ayrı ayrı hesaplanır; ağırlıklı ortalama kullanılır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Kütleleri eşit saymak",
+     "aciklama": "Koordinatların düz ortalaması alınmış: $\\frac{0+0+3.0}{3}=1.0$. S'nin kütlesi diğerlerinin iki katı olduğu için $y_{cm}$ daha büyük olmalı."
+    },
+    "B": {
+     "etiket": "x ve y'yi karıştırmak",
+     "aciklama": "Doğru sayılar bulunmuş ama koordinatlar yer değiştirmiş. Simetri gereği $x_{cm}=2.0\\text{ m}$ olmalıdır."
+    },
+    "C": {
+     "etiket": "Kütle merkezini en büyük kütlenin yerine koymak",
+     "aciklama": "Kütle merkezi en ağır cisme yakındır ama onun üstünde değildir; P ve Q de katkı verir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "İki boyutta kütle merkezi",
+    "ipucu": "Her koordinat için ayrı tablo sütunu kullan.",
+    "sikHata": "Düz ortalama almak",
+    "cedKonu": "2.1",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_3",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 29,
+   "numara": 30,
+   "konu": "2.1 Systems and Center of Mass",
+   "zorluk": "medium",
+   "govde": "Block A and block B rest on a frictionless horizontal table and are connected by a light string. A student pulls block B with a second rope so that both blocks accelerate. The system is chosen to be block A, block B, and the connecting string. Which of the following is an internal force for this system?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The force exerted by the student's rope on block B"
+    },
+    {
+     "id": "B",
+     "text": "The gravitational force exerted by Earth on block A"
+    },
+    {
+     "id": "C",
+     "text": "The normal force exerted by the table on block B"
+    },
+    {
+     "id": "D",
+     "text": "The force exerted by the connecting string on block A"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. İç kuvvet: kaynağı ve hedefi sistemin içinde olan kuvvet.<br/>2. Bağlantı ipi ve A bloğu ikisi de sistemdedir; ipin A'ya kuvveti iç kuvvettir. İpin B'ye kuvveti ile birlikte sistemin toplamında sıfırlanır.<br/>3. Öğrencinin ipi, Dünya ve masa çevrededir; onların kuvvetleri dış kuvvettir.",
+   "genel_hatirlatma": "Sistemin kütle merkezini yalnız dış kuvvetler ivmelendirir; iç kuvvetler çiftler hâlinde birbirini götürür.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Sistem sınırını yanlış çizmek",
+     "aciklama": "Öğrencinin ipi sistemin parçası değildir; sınırı geçen bu etkileşim dış kuvvettir ve sistemi ivmelendiren kuvvettir."
+    },
+    "B": {
+     "etiket": "Yerçekimini iç kuvvet saymak",
+     "aciklama": "Dünya sistemin dışındadır; yerçekimi dış kuvvettir (burada normal kuvvetle dengelenir)."
+    },
+    "C": {
+     "etiket": "Temas eden her kuvveti iç saymak",
+     "aciklama": "Masa sistemde değildir. Bir kuvvetin iç olması için iki ucundaki cismin de sistemde olması gerekir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "İç ve dış kuvvet",
+    "ipucu": "Kuvvetin iki tarafındaki cisim de sistemde mi? İkisi de içerideyse iç kuvvettir.",
+    "sikHata": "Gerilmeyi her zaman dış kuvvet saymak",
+    "cedKonu": "2.1",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_4",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 30,
+   "numara": 31,
+   "konu": "2.1 Systems and Center of Mass",
+   "zorluk": "hard",
+   "govde": "A $60\\text{ kg}$ person stands at the left end of a uniform $20\\text{ kg}$ plank that is $4.0\\text{ m}$ long. The plank rests on frictionless ice, and the system is initially at rest. The person walks to the right end of the plank. How far does the plank move relative to the ice?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0\\text{ m}$"
+    },
+    {
+     "id": "B",
+     "text": "$1.0\\text{ m}$"
+    },
+    {
+     "id": "C",
+     "text": "$3.0\\text{ m}$"
+    },
+    {
+     "id": "D",
+     "text": "$4.0\\text{ m}$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Sistem = kişi + tahta. Buz sürtünmesiz; yatayda net dış kuvvet sıfır, başlangıçta durgun → kütle merkezi yerinde kalır.<br/>2. Tahta $s$ kadar kayarsa kişi tahtaya göre $4.0\\text{ m}$ gidip buza göre $4.0+s$ yer değiştirir. Kütle merkezi sabit: $60(4.0+s)+20s=0$.<br/>3. $240+80s=0\\Rightarrow s=-3.0\\text{ m}$: tahta $3.0\\text{ m}$ sola, kişi $1.0\\text{ m}$ sağa gider.",
+   "genel_hatirlatma": "Net dış kuvvet sıfır ve sistem durgunsa kütle merkezi hareket etmez; parçalar zıt yönlerde, kütleleriyle ters orantılı yer değiştirir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Sürtünmesiz zeminde tahtanın kıpırdamayacağını sanmak",
+     "aciklama": "Kişi tahtayı geriye iter (iç kuvvet). Net dış kuvvet sıfır olduğu için sabit kalan şey kütle merkezidir; tahta değil."
+    },
+    "B": {
+     "etiket": "Kütleleri karıştırmak",
+     "aciklama": "$1.0\\text{ m}$, kişinin buza göre yer değiştirmesidir ($\\frac{20}{80}\\cdot4.0$). Tahta ağır kişinin aksine daha çok hareket eder."
+    },
+    "D": {
+     "etiket": "Tahtanın tüm boyu kadar kaydığını varsaymak",
+     "aciklama": "Bu, kişinin buza göre hiç hareket etmediği anlamına gelir; ancak kütle merkezi sabit kalırken ikisi de hareket eder."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Kütle merkezinin korunan konumu",
+    "ipucu": "Kütle merkezi denklemini yer değiştirmelerle yaz: Σ m·Δx = 0.",
+    "sikHata": "Tahtanın hareket etmediğini sanmak",
+    "cedKonu": "2.1",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_5",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 31,
+   "numara": 32,
+   "konu": "2.1 Systems and Center of Mass",
+   "zorluk": "easy",
+   "govde": "A thin, uniform metal ring lies flat on a table. Which statement about the location of the ring's center of mass is correct?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "It is at a point on the metal, because the center of mass must be inside the material."
+    },
+    {
+     "id": "B",
+     "text": "It is at the point of the ring closest to the edge of the table."
+    },
+    {
+     "id": "C",
+     "text": "It does not exist, because the ring has no mass at its center."
+    },
+    {
+     "id": "D",
+     "text": "It is at the geometric center of the ring, where there is no metal."
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Düzgün halkanın kütlesi merkez etrafında simetrik dağılmıştır.<br/>2. Her parçanın karşısında eşit kütleli bir parça vardır; ortalama konum merkezdir.<br/>3. Kütle merkezi bir hesap noktasıdır; orada madde olması gerekmez.",
+   "genel_hatirlatma": "Simetrik ve düzgün cisimlerde kütle merkezi geometrik merkezdedir; bu nokta cismin dışında olabilir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Kütle merkezinin maddenin içinde olması gerektiğini sanmak",
+     "aciklama": "Kütle merkezi bir ortalama konumdur; halka, bumerang gibi cisimlerde boşlukta olabilir."
+    },
+    "B": {
+     "etiket": "Kütle merkezini dış etkenlere bağlamak",
+     "aciklama": "Kütle merkezi yalnız kütlenin dağılımına bağlıdır, masanın konumuna değil."
+    },
+    "C": {
+     "etiket": "Boşlukta kütle merkezi olamayacağını sanmak",
+     "aciklama": "Her sistemin bir kütle merkezi vardır; düzgün halkada simetri onu merkeze yerleştirir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Simetri ve kütle merkezi",
+    "ipucu": "Simetri ekseni varsa kütle merkezi o eksen üzerindedir.",
+    "sikHata": "Kütle merkezinin cismin içinde olması gerektiğini düşünmek",
+    "cedKonu": "2.1",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_6",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 32,
+   "numara": 33,
+   "konu": "2.1 Systems and Center of Mass",
+   "zorluk": "medium",
+   "govde": "A firework shell is launched and follows a parabolic path. At the top of its path it explodes into two pieces of unequal mass that fly apart. Air resistance is negligible. Before either piece hits the ground, how does the center of mass of the two pieces move after the explosion?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "It stops at the explosion point and falls straight down."
+    },
+    {
+     "id": "B",
+     "text": "It moves toward the heavier piece and follows that piece's path."
+    },
+    {
+     "id": "C",
+     "text": "It moves in a straight horizontal line because the explosion cancels gravity."
+    },
+    {
+     "id": "D",
+     "text": "It continues along the same parabolic path that the shell would have followed."
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Sistem = iki parça. Patlamada parçalar arasındaki kuvvetler iç kuvvettir.<br/>2. Tek dış kuvvet yerçekimidir: $\\vec a_{cm}=\\frac{\\sum\\vec F_{ext}}{M}=\\frac{Mg}{M}=g$ (aşağı).<br/>3. Patlamadan önceki ve sonraki dış kuvvet ve kütle merkezinin hızı aynıdır → aynı parabol sürer (bir parça yere değene kadar; sonra yer de dış kuvvet uygular).",
+   "genel_hatirlatma": "İç kuvvetler kütle merkezinin hareketini değiştirmez; yalnız net dış kuvvet değiştirir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Patlamanın kütle merkezini durdurduğunu sanmak",
+     "aciklama": "Patlama kuvvetleri iç kuvvetlerdir; kütle merkezinin hızını değiştiremez."
+    },
+    "B": {
+     "etiket": "Kütle merkezini ağır parçayla eşitlemek",
+     "aciklama": "Kütle merkezi ağır parçaya yakındır ama ikisinin ağırlıklı ortalamasıdır; ağır parçanın yolunu izlemez."
+    },
+    "C": {
+     "etiket": "İç kuvvetlerin yerçekimini dengeleyeceğini sanmak",
+     "aciklama": "Tek dış kuvvet yerçekimidir ve patlamadan sonra da aynen etkir; kütle merkezi $g$ ile ivmelenmeye devam eder."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Kütle merkezinin dış kuvvetle hareketi",
+    "ipucu": "Patlama, çarpışma, itişme: hepsi iç kuvvettir.",
+    "sikHata": "Patlamanın kütle merkezinin yolunu değiştirdiğini sanmak",
+    "cedKonu": "2.1",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_7",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 33,
+   "numara": 34,
+   "konu": "2.1 Systems and Center of Mass",
+   "zorluk": "medium",
+   "govde": "A ball is dropped from rest above the ground. Air resistance is negligible. For which choice of system is the net external force on the system equal to zero while the ball falls?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The ball alone"
+    },
+    {
+     "id": "B",
+     "text": "Earth alone"
+    },
+    {
+     "id": "C",
+     "text": "The ball and the air around it"
+    },
+    {
+     "id": "D",
+     "text": "The ball and Earth together"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Top ile Dünya arasındaki çekim bir üçüncü yasa çiftidir: $F_{E\\text{ on }b}=F_{b\\text{ on }E}$.<br/>2. İki cisim de sistemdeyse bu çift iç kuvvettir ve toplamı sıfırdır.<br/>3. Başka kayda değer dış kuvvet yoktur → top + Dünya sisteminde net dış kuvvet sıfır; kütle merkezi ivmelenmez.",
+   "genel_hatirlatma": "Bir etkileşimin iki ucunu da sisteme alırsan o kuvvet iç kuvvet olur.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yerçekimini görmezden gelmek",
+     "aciklama": "Top tek başına sistemse Dünya'nın topa uyguladığı yerçekimi dış kuvvettir; net dış kuvvet $mg$ olur."
+    },
+    "B": {
+     "etiket": "Tepki kuvvetini unutmak",
+     "aciklama": "Top da Dünya'ya eşit büyüklükte yukarı bir çekim uygular; Dünya tek başına sistemse bu dış kuvvettir."
+    },
+    "C": {
+     "etiket": "Hava ihmal edilmişken havayı yardımcı saymak",
+     "aciklama": "Hava direnci ihmal edilmiştir; Dünya'nın topa uyguladığı çekim yine dış kuvvettir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Sistem seçimi ve net dış kuvvet",
+    "ipucu": "Bir kuvvetin iç olup olmadığını iki cismi de listeleyerek kontrol et.",
+    "sikHata": "Sistemi yalnız ilgi çeken cisimle sınırlamak",
+    "cedKonu": "2.1",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_8",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 34,
+   "numara": 35,
+   "konu": "2.1 Systems and Center of Mass",
+   "zorluk": "hard",
+   "govde": "A $3.0\\text{ kg}$ object is fixed at $x = 0$ and a $1.0\\text{ kg}$ object is fixed at $x = 2.0\\text{ m}$. Where on the $x$-axis must a third object of mass $2.0\\text{ kg}$ be placed so that the center of mass of the three-object system is at $x = 1.0\\text{ m}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$x = 1.0\\text{ m}$"
+    },
+    {
+     "id": "B",
+     "text": "$x = 2.0\\text{ m}$"
+    },
+    {
+     "id": "C",
+     "text": "$x = 3.0\\text{ m}$"
+    },
+    {
+     "id": "D",
+     "text": "$x = 4.0\\text{ m}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Toplam kütle $6.0\\text{ kg}$; istenen $x_{cm}=1.0\\text{ m}$ → $\\sum m_ix_i=6.0\\text{ kg·m}$.<br/>2. Mevcut katkı: $(3.0)(0)+(1.0)(2.0)=2.0\\text{ kg·m}$.<br/>3. $2.0x=6.0-2.0=4.0\\Rightarrow x=2.0\\text{ m}$. Kontrol: $\\frac{0+2.0+4.0}{6.0}=1.0$ ✓.",
+   "genel_hatirlatma": "Kütle merkezi sorusunu tersine çözerken önce hedef toplamı (M·x_cm) bul, mevcut katkıları çıkar.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yeni cismi istenen kütle merkezine koymak",
+     "aciklama": "Cisim $x=1.0$'a konursa $x_{cm}=\\frac{2.0+2.0}{6.0}\\approx0.67\\text{ m}$ olur; mevcut cisimler kütle merkezini sola çeker."
+    },
+    "C": {
+     "etiket": "1.0 kg'lık cismin katkısını unutmak",
+     "aciklama": "$2.0x=6.0$ yazılmış; paydaki $(1.0)(2.0)=2.0\\text{ kg·m}$ terimi atlanmış."
+    },
+    "D": {
+     "etiket": "İşaret hatası",
+     "aciklama": "$2.0x=6.0+2.0$ yazılmış; mevcut katkı çıkarılacağı yerde eklenmiş."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Kütle merkezinden konum bulmak",
+    "ipucu": "Önce M·x_cm, sonra eksik terim.",
+    "sikHata": "Mevcut cisimlerin katkısını unutmak",
+    "cedKonu": "2.1",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_9",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 35,
+   "numara": 36,
+   "konu": "2.2 Forces and Free-Body Diagrams",
+   "zorluk": "easy",
+   "govde": "A box is pulled across a rough, horizontal floor at constant speed by a rope that is parallel to the floor. How many forces should be drawn on a correct free-body diagram of the box?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "2"
+    },
+    {
+     "id": "B",
+     "text": "3"
+    },
+    {
+     "id": "C",
+     "text": "4"
+    },
+    {
+     "id": "D",
+     "text": "5"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Etkileşimler: Dünya (yerçekimi $F_g$), zemin (normal $F_N$ ve kinetik sürtünme $F_f$), ip (gerilme $F_T$).<br/>2. Toplam 4 kuvvet. Sabit hız → $F_T=F_f$ ve $F_N=F_g$; oklar çiftler hâlinde eşit uzunlukta çizilir.",
+   "genel_hatirlatma": "FBD'de cisme dokunan her şey ve yerçekimi yer alır; net kuvvet veya hareket kuvveti çizilmez.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yalnız yatay kuvvetleri saymak",
+     "aciklama": "Dikey kuvvetler (yerçekimi ve normal kuvvet) dengede olsalar da FBD'de çizilmelidir."
+    },
+    "B": {
+     "etiket": "Sürtünmeyi unutmak",
+     "aciklama": "Zemin pürüzlüdür; normal kuvvetin yanında yüzeye paralel bir kinetik sürtünme kuvveti de vardır."
+    },
+    "D": {
+     "etiket": "Hareket yönünde bir \"hareket kuvveti\" eklemek",
+     "aciklama": "Sabit hız için ayrı bir ileri kuvvet gerekmez; ileri yöndeki tek kuvvet ip gerilmesidir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "FBD'deki kuvvet sayısı",
+    "ipucu": "Önce cisme dokunan her şeyi listele, sonra yerçekimini ekle.",
+    "sikHata": "Hareket yönünde ekstra kuvvet çizmek",
+    "cedKonu": "2.2",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_10",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 36,
+   "numara": 37,
+   "konu": "2.2 Forces and Free-Body Diagrams",
+   "zorluk": "medium",
+   "govde": "A ball is thrown straight upward. Air resistance is negligible. Which of the following best describes a correct free-body diagram of the ball at the instant it reaches its highest point?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "No arrows, because the ball is momentarily at rest"
+    },
+    {
+     "id": "B",
+     "text": "A downward arrow for gravity and an equal upward arrow for the force of the throw"
+    },
+    {
+     "id": "C",
+     "text": "A downward arrow for gravity and a shorter upward arrow for the ball's remaining upward motion"
+    },
+    {
+     "id": "D",
+     "text": "A single downward arrow labeled as the gravitational force exerted by Earth on the ball"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Hava direnci yok; topa temas eden hiçbir şey yok → tek etkileşim Dünya ile yerçekimi.<br/>2. FBD: noktadan aşağı tek ok, $F_g=mg$.<br/>3. Net kuvvet $mg$ aşağı → $a=g$ aşağı; tepedeki anlık durgunluk bunu değiştirmez.",
+   "genel_hatirlatma": "FBD hız değil kuvvet gösterir. Havadaki bir cisme (hava direnci yoksa) yalnız yerçekimi etkir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Anlık durgunluğu dengeyle karıştırmak",
+     "aciklama": "Tepede hız sıfırdır ama ivme $g$ (aşağı) olarak sürer; yerçekimi hiçbir an kaybolmaz."
+    },
+    "B": {
+     "etiket": "El bırakıldıktan sonra atış kuvvetinin sürdüğünü sanmak",
+     "aciklama": "El topla temastan çıkınca kuvvet uygulamayı bırakır. Topun yukarı hareketi eylemsizlikten gelir, kuvvetten değil."
+    },
+    "C": {
+     "etiket": "Hızı kuvvet okuyla göstermek",
+     "aciklama": "Hareket veya hız FBD'ye çizilmez. Tepede hız zaten sıfırdır; yukarı hiçbir etkileşim yoktur."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Serbest düşmede FBD",
+    "ipucu": "\"Kim dokunuyor?\" sorusu: hiçbir şey dokunmuyorsa yalnız yerçekimi kalır.",
+    "sikHata": "Tepe noktasında net kuvveti sıfır sanmak",
+    "cedKonu": "2.2",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_11",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 37,
+   "numara": 38,
+   "konu": "2.2 Forces and Free-Body Diagrams",
+   "zorluk": "medium",
+   "govde": "A $2.0\\text{ kg}$ block slides down a frictionless ramp inclined at $30^\\circ$ above the horizontal. What is the magnitude of the normal force exerted by the ramp on the block?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$10\\text{ N}$"
+    },
+    {
+     "id": "B",
+     "text": "$17\\text{ N}$"
+    },
+    {
+     "id": "C",
+     "text": "$20\\text{ N}$"
+    },
+    {
+     "id": "D",
+     "text": "$23\\text{ N}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Eksenler: $x$ rampa boyunca, $y$ rampaya dik.<br/>2. Dik yönde ivme yok: $F_N-mg\\cos\\theta=0$.<br/>3. $F_N=(2.0)(10)\\cos30^\\circ=20(0.866)\\approx17\\text{ N}$.",
+   "genel_hatirlatma": "Eğik düzlemde normal kuvvet mg cos θ'dır; mg değildir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "sin ve cos'u karıştırmak",
+     "aciklama": "$mg\\sin30^\\circ=10\\text{ N}$ yüzeye paralel bileşendir; normal kuvvet dik bileşenle dengelenir: $mg\\cos\\theta$."
+    },
+    "C": {
+     "etiket": "Normal kuvveti her zaman mg almak",
+     "aciklama": "Eğik düzlemde yerçekiminin yalnız yüzeye dik bileşeni normal kuvvetle dengelenir."
+    },
+    "D": {
+     "etiket": "cos'a bölmek",
+     "aciklama": "$\\frac{mg}{\\cos\\theta}$ yazılmış; bu, normal kuvvetin dikey bileşeninin $mg$'yi dengelediği varsayımıdır. Blok yüzey boyunca ivmelendiği için bu yanlıştır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Eğik düzlemde normal kuvvet",
+    "ipucu": "Açı yataydan ölçülüyorsa dik bileşen cos, paralel bileşen sin.",
+    "sikHata": "Normal kuvveti mg almak",
+    "cedKonu": "2.2",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_12",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 38,
+   "numara": 39,
+   "konu": "2.2 Forces and Free-Body Diagrams",
+   "zorluk": "medium",
+   "govde": "A student pushes a box across a rough, horizontal floor at constant velocity by applying a force directed $30^\\circ$ below the horizontal. On a correct free-body diagram of the box drawn with relative lengths, how should the normal force arrow compare to the gravitational force arrow?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The normal force arrow should be longer than the gravitational force arrow."
+    },
+    {
+     "id": "B",
+     "text": "The two arrows should be the same length, because the box does not accelerate vertically."
+    },
+    {
+     "id": "C",
+     "text": "The normal force arrow should be shorter, because the push helps support the box."
+    },
+    {
+     "id": "D",
+     "text": "The normal force arrow should be omitted, because the push replaces it."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Dikey ivme sıfır: $F_N=F_g+F\\sin30^\\circ$.<br/>2. $F\\sin30^\\circ\\gt0$ olduğundan $F_N\\gt F_g$; FBD'de normal ok daha uzun olmalı.<br/>3. Yatayda: $F\\cos30^\\circ=F_f$ (sabit hız).",
+   "genel_hatirlatma": "Aşağı doğru açılı itme normal kuvveti artırır; yukarı doğru açılı çekme azaltır.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "İtme kuvvetinin dikey bileşenini unutmak",
+     "aciklama": "Dikeyde denge vardır ama aşağı yönde iki kuvvet vardır: $F_g$ ve itmenin dikey bileşeni. Normal kuvvet ikisini birden dengeler."
+    },
+    "C": {
+     "etiket": "Bileşenin yönünü ters almak",
+     "aciklama": "Kuvvet yatayın altına doğrudur; dikey bileşeni kutuyu yere bastırır, kaldırmaz."
+    },
+    "D": {
+     "etiket": "Kuvvetleri birleştirmek",
+     "aciklama": "Zemin kutuyla temas hâlindedir; normal kuvvet her zaman ayrı bir kuvvet olarak çizilir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Göreli ok uzunlukları",
+    "ipucu": "Dikey denklemi yaz, ok uzunluklarını ona göre ayarla.",
+    "sikHata": "F_N = mg varsaymak",
+    "cedKonu": "2.2",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_13",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 39,
+   "numara": 40,
+   "konu": "2.2 Forces and Free-Body Diagrams",
+   "zorluk": "hard",
+   "govde": "Block A sits on top of block B, which rests on a frictionless horizontal floor. A horizontal force is applied to block B, and the two blocks accelerate together without A slipping on B. How many forces should be drawn on a correct free-body diagram of block B?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "3"
+    },
+    {
+     "id": "B",
+     "text": "4"
+    },
+    {
+     "id": "C",
+     "text": "5"
+    },
+    {
+     "id": "D",
+     "text": "6"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. B'ye dokunanlar: zemin (yalnız normal, zemin sürtünmesiz), A (normal + sürtünme), uygulanan kuvvet; artı Dünya'nın yerçekimi.<br/>2. Liste: $F_g$ (aşağı), $F_{N,\\text{floor}}$ (yukarı), $F_{N,A\\text{ on }B}$ (aşağı), $F_{f,A\\text{ on }B}$ (geri), $F_{app}$ (ileri) = 5.<br/>3. A, B ile birlikte ivmelendiği için statik sürtünme vardır; üçüncü yasa çifti B'ye geri yönde etki eder.",
+   "genel_hatirlatma": "Her temas yüzeyi en fazla bir normal ve bir sürtünme kuvveti verir; başka bir cismin ağırlığı doğrudan çizilmez.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Üstteki bloğun kuvvetlerini unutmak",
+     "aciklama": "Yalnız $F_g$, zeminin normal kuvveti ve uygulanan kuvvet sayılmış; A da B'ye hem aşağı normal kuvvet hem de sürtünme uygular."
+    },
+    "B": {
+     "etiket": "A'nın B'ye sürtünmesini unutmak",
+     "aciklama": "A, B ile birlikte ivmelendiği için B'nin A'ya ileri statik sürtünme uygulaması gerekir; üçüncü yasaya göre A da B'ye geriye sürtünme uygular."
+    },
+    "D": {
+     "etiket": "A'nın ağırlığını B'nin üzerine ayrıca çizmek",
+     "aciklama": "A'nın ağırlığı Dünya ile A arasındadır, B'ye etki etmez. A'nın B'ye etkisi A'nın normal kuvvetiyle temsil edilir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Çok cisimli FBD",
+    "ipucu": "Her temas yüzeyini ayrı ayrı say: zemin–B ve A–B.",
+    "sikHata": "Üstteki cismin ağırlığını alttaki cisme çizmek",
+    "cedKonu": "2.2",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_14",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 40,
+   "numara": 41,
+   "konu": "2.2 Forces and Free-Body Diagrams",
+   "zorluk": "easy",
+   "govde": "A force of magnitude $50\\text{ N}$ is directed $37^\\circ$ above the positive $x$-axis. Use $\\sin37^\\circ \\approx 0.60$ and $\\cos37^\\circ \\approx 0.80$. What are the $x$- and $y$-components of the force?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$F_x = 30\\text{ N}$, $F_y = 40\\text{ N}$"
+    },
+    {
+     "id": "B",
+     "text": "$F_x = 25\\text{ N}$, $F_y = 25\\text{ N}$"
+    },
+    {
+     "id": "C",
+     "text": "$F_x = 40\\text{ N}$, $F_y = 10\\text{ N}$"
+    },
+    {
+     "id": "D",
+     "text": "$F_x = 40\\text{ N}$, $F_y = 30\\text{ N}$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $F_x=F\\cos37^\\circ=50(0.80)=40\\text{ N}$.<br/>2. $F_y=F\\sin37^\\circ=50(0.60)=30\\text{ N}$.<br/>3. Kontrol: $\\sqrt{40^2+30^2}=50\\text{ N}$ ✓.",
+   "genel_hatirlatma": "Açı x ekseninden ölçülüyorsa: x bileşeni F cos θ, y bileşeni F sin θ.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "sin ve cos'u yer değiştirmek",
+     "aciklama": "Açı $x$ ekseninden ölçüldüğü için $x$ bileşeni $F\\cos\\theta$, $y$ bileşeni $F\\sin\\theta$'dır."
+    },
+    "B": {
+     "etiket": "Kuvveti eşit paylaştırmak",
+     "aciklama": "Bileşenler açıya bağlıdır; ayrıca $25^2+25^2\\neq50^2$ olduğundan bu bileşenler büyüklükle tutarsızdır."
+    },
+    "C": {
+     "etiket": "y bileşenini fark olarak bulmak",
+     "aciklama": "Bileşenler cebirsel olarak toplanmaz; $\\sqrt{F_x^2+F_y^2}=F$ olmalıdır: $\\sqrt{40^2+30^2}=50$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Kuvvet bileşenleri",
+    "ipucu": "Bileşenlerin karelerinin toplamı büyüklüğün karesine eşit olmalı.",
+    "sikHata": "sin ve cos'u karıştırmak",
+    "cedKonu": "2.2",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_15",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 41,
+   "numara": 42,
+   "konu": "2.2 Forces and Free-Body Diagrams",
+   "zorluk": "hard",
+   "govde": "A block slides down a rough ramp. A student draws the following free-body diagram of the block: a downward arrow labeled $F_g$, an arrow perpendicular to the ramp labeled $F_N$, an arrow up the ramp labeled $F_f$, and an arrow down the ramp labeled $mg\\sin\\theta$. Which change would make the diagram fully correct?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "Remove the arrow labeled $mg\\sin\\theta$, because it is a component of the gravitational force already shown."
+    },
+    {
+     "id": "B",
+     "text": "Remove the arrow labeled $F_f$, because friction is already included in $mg\\sin\\theta$."
+    },
+    {
+     "id": "C",
+     "text": "Add an arrow labeled $ma$ down the ramp to show the net force."
+    },
+    {
+     "id": "D",
+     "text": "Add an arrow labeled $mg\\cos\\theta$ into the ramp to balance $F_N$."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. FBD'de yalnız gerçek kuvvetler bulunur: Dünya ($F_g$), rampa ($F_N$ ve $F_f$).<br/>2. $mg\\sin\\theta$, $F_g$'nin bileşenidir; ayrı ok çizmek yerçekimini iki kez saymaktır ve AP puanlamasında fazladan kuvvet sayılır.<br/>3. Doğru diyagram: üç ok, $F_g$, $F_N$, $F_f$.",
+   "genel_hatirlatma": "Bileşenler, net kuvvet ve ma, FBD'de ayrı ok olarak yer almaz.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Sürtünmeyi bileşenle karıştırmak",
+     "aciklama": "Sürtünme rampanın uyguladığı gerçek ve ayrı bir kuvvettir; $mg\\sin\\theta$ ise yerçekiminin bileşenidir."
+    },
+    "C": {
+     "etiket": "Net kuvvet okunu FBD'ye eklemek",
+     "aciklama": "$ma$ bir kuvvet değil, kuvvetlerin sonucudur; FBD'ye çizilmez."
+    },
+    "D": {
+     "etiket": "Diğer bileşeni de eklemek",
+     "aciklama": "Bu da yerçekimini ikinci kez saymak olur. Bileşenler FBD'nin dışında, gerekirse kesik çizgiyle gösterilir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "FBD'de bileşen çizmemek",
+    "ipucu": "Her okun bir kaynağı olmalı: \"exerted by ... on the block\".",
+    "sikHata": "Bileşenleri ayrı kuvvet olarak çizmek",
+    "cedKonu": "2.2",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_16",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 42,
+   "numara": 43,
+   "konu": "2.2 Forces and Free-Body Diagrams",
+   "zorluk": "medium",
+   "govde": "A small magnet holds a sheet of paper at rest against the vertical door of a refrigerator. Considering only the paper as the system, which force exerted on the paper prevents the paper from sliding down?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The normal force exerted by the door on the paper"
+    },
+    {
+     "id": "B",
+     "text": "The magnetic force exerted by the magnet on the paper"
+    },
+    {
+     "id": "C",
+     "text": "No force is needed, because the paper is very light"
+    },
+    {
+     "id": "D",
+     "text": "The upward static friction force exerted by the door on the paper"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Kâğıda etkiyen kuvvetler: yerçekimi (aşağı), kapının normal kuvveti (yatay, dışarı), mıknatısın bastırma kuvveti (yatay, kapıya doğru), mıknatısın sürtünmesi (aşağı; mıknatısın kendi ağırlığı yüzünden) ve kapının sürtünmesi.<br/>2. Normal ve bastırma kuvvetleri yataydır. Kâğıda etkiyen tek yukarı kuvvet kapının statik sürtünmesidir; kâğıt durgun olduğundan $F_{f,\\text{door}}=m_{paper}g+F_{f,\\text{magnet}}$.<br/>3. Mıknatıs normal kuvveti artırarak bu sürtünmenin oluşmasını mümkün kılar.",
+   "genel_hatirlatma": "Her kuvvetin yönünü kaynağından belirle: normal yüzeye dik, sürtünme yüzeye paralel.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Normal kuvvetin yönünü yanlış almak",
+     "aciklama": "Normal kuvvet yüzeye diktir, yani yataydır; dikey yerçekimini dengeleyemez."
+    },
+    "B": {
+     "etiket": "Mıknatısın kâğıdı doğrudan tuttuğunu sanmak",
+     "aciklama": "Mıknatıs kâğıda temas kuvveti uygular ve bu kuvvet kâğıdı kapıya doğru (yatay) bastırır; dikey dengeyi sürtünme sağlar."
+    },
+    "C": {
+     "etiket": "Küçük kütleli cisimlerde dengeyi gereksiz saymak",
+     "aciklama": "Kâğıt durgunsa net kuvvet sıfırdır; ne kadar hafif olursa olsun ağırlığı yukarı bir kuvvetle dengelenmelidir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Dikey yüzeyde sürtünme ile denge",
+    "ipucu": "Dikey ve yatay kuvvetleri ayrı listele.",
+    "sikHata": "Normal kuvvetin her zaman yukarı olduğunu sanmak",
+    "cedKonu": "2.2",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_17",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 43,
+   "numara": 44,
+   "konu": "2.3 Newton's Third Law",
+   "zorluk": "easy",
+   "govde": "An apple falls from a tree toward the ground. Air resistance is negligible. How does the magnitude of the force exerted by the apple on Earth compare with the magnitude of the force exerted by Earth on the apple, and which object has the greater magnitude of acceleration?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The forces are equal in magnitude; the apple has the greater acceleration."
+    },
+    {
+     "id": "B",
+     "text": "The force on the apple is greater; the apple has the greater acceleration."
+    },
+    {
+     "id": "C",
+     "text": "The forces are equal in magnitude; both objects have the same acceleration."
+    },
+    {
+     "id": "D",
+     "text": "The apple exerts no force on Earth; only Earth exerts a force."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Etkileşim: Dünya–elma kütle çekimi. Üçüncü yasa: $F_{E\\text{ on }a}=F_{a\\text{ on }E}$.<br/>2. İvmeler: $a_a=\\frac{F}{m_a}$, $a_E=\\frac{F}{M_E}$. $M_E\\gg m_a$ olduğundan $a_E$ ölçülemeyecek kadar küçüktür.",
+   "genel_hatirlatma": "Üçüncü yasa kuvvetleri eşittir; ivmeler kütleyle ters orantılıdır.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Büyük cismin daha büyük kuvvet uyguladığını sanmak",
+     "aciklama": "Kütle çekimi bir üçüncü yasa çiftidir; iki kuvvet daima eşit büyüklüktedir. İvme farkı kütle farkından gelir."
+    },
+    "C": {
+     "etiket": "Eşit kuvveti eşit ivme sanmak",
+     "aciklama": "$a=\\frac{F}{m}$: aynı kuvvet devasa kütleli Dünya'da ihmal edilebilir bir ivme verir."
+    },
+    "D": {
+     "etiket": "Çekimi tek yönlü sanmak",
+     "aciklama": "Her etkileşim iki yönlüdür; elma da Dünya'yı aynı büyüklükte bir kuvvetle çeker."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Eşit kuvvet, farklı ivme",
+    "ipucu": "Önce kuvvetleri karşılaştır (eşit), sonra a = F/m ile ivmeleri.",
+    "sikHata": "Büyük kütlenin büyük kuvvet uyguladığını sanmak",
+    "cedKonu": "2.3",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_18",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 44,
+   "numara": 45,
+   "konu": "2.3 Newton's Third Law",
+   "zorluk": "medium",
+   "govde": "A student presses a book against a vertical wall with a horizontal push, and the book remains at rest. Which force forms a Newton's third law pair with the upward static friction force exerted by the wall on the book?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The gravitational force exerted by Earth on the book"
+    },
+    {
+     "id": "B",
+     "text": "The horizontal push exerted by the student on the book"
+    },
+    {
+     "id": "C",
+     "text": "The normal force exerted by the wall on the book"
+    },
+    {
+     "id": "D",
+     "text": "The downward friction force exerted by the book on the wall"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Kuvveti yaz: \"duvarın kitaba uyguladığı sürtünme (yukarı)\".<br/>2. İsimleri değiştir: \"kitabın duvara uyguladığı sürtünme\". Aynı tür, eşit büyüklük, zıt yön (aşağı), farklı cisim.<br/>3. Yerçekimi ile sürtünme yalnız dengededir; üçüncü yasa çifti değildir.",
+   "genel_hatirlatma": "Üçüncü yasa eşi: aynı etkileşim, aynı tür, isimler yer değiştirmiş.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Dengelenmiş kuvveti üçüncü yasa çifti sanmak",
+     "aciklama": "Bu iki kuvvet aynı cisme (kitaba) etki eder ve türleri farklıdır; kitap durgun olduğu için yalnızca dengelenirler."
+    },
+    "B": {
+     "etiket": "Farklı etkileşimden kuvvet seçmek",
+     "aciklama": "Öğrencinin itmesi öğrenci–kitap etkileşimidir; eşi kitabın öğrenciye uyguladığı kuvvettir."
+    },
+    "C": {
+     "etiket": "Aynı kaynaktan gelen kuvvetleri eşleştirmek",
+     "aciklama": "Normal kuvvet ve sürtünme aynı yüzeyden gelir ama ikisi de duvarın kitaba uyguladığı kuvvetlerdir; çift olamazlar."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Üçüncü yasa eşini bulma",
+    "ipucu": "\"X'in Y'ye\" → \"Y'nin X'e\"; tür değişmez.",
+    "sikHata": "Dengelenmiş kuvvetleri çift sanmak",
+    "cedKonu": "2.3",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_19",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 45,
+   "numara": 46,
+   "konu": "2.3 Newton's Third Law",
+   "zorluk": "medium",
+   "govde": "Block A ($2.0\\text{ kg}$) and block B ($6.0\\text{ kg}$) are in contact on a frictionless horizontal floor. A horizontal force of $16\\text{ N}$ is applied to block B, pushing B into A, so that both blocks accelerate together. What is the magnitude of the force exerted by block A on block B?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$4.0\\text{ N}$"
+    },
+    {
+     "id": "B",
+     "text": "$8.0\\text{ N}$"
+    },
+    {
+     "id": "C",
+     "text": "$12\\text{ N}$"
+    },
+    {
+     "id": "D",
+     "text": "$16\\text{ N}$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Sistem = A + B: $a=\\frac{16}{8.0}=2.0\\text{ m/s}^2$.<br/>2. Sistem = A: tek yatay kuvvet B'nin A'ya kuvveti: $F_{B\\text{ on }A}=m_Aa=(2.0)(2.0)=4.0\\text{ N}$.<br/>3. Üçüncü yasa: $F_{A\\text{ on }B}=F_{B\\text{ on }A}=4.0\\text{ N}$.",
+   "genel_hatirlatma": "Temas kuvvetini, o kuvvetin tek yatay kuvvet olduğu bloğu sistem seçerek bul; sonra üçüncü yasayı uygula.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Kuvveti ikiye bölmek",
+     "aciklama": "Temas kuvveti blok sayısına göre değil, öndeki bloğun kütlesine göre belirlenir."
+    },
+    "C": {
+     "etiket": "Yanlış bloğun kütlesini kullanmak",
+     "aciklama": "$m_Ba=(6.0)(2.0)=12\\text{ N}$, B üzerindeki net kuvvettir; A'yı ivmelendiren temas kuvveti ise $m_Aa$'dır."
+    },
+    "D": {
+     "etiket": "Uygulanan kuvvetin olduğu gibi iletildiğini sanmak",
+     "aciklama": "Kuvvetin bir kısmı B'yi ivmelendirmeye harcanır; A'ya yalnız A'yı ivmelendirecek kadarı düşer."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Temas kuvveti ve üçüncü yasa",
+    "ipucu": "Önce ortak ivme, sonra itilen (öndeki) blok.",
+    "sikHata": "Uygulanan kuvvetin tamamen iletildiğini sanmak",
+    "cedKonu": "2.3",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_20",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 46,
+   "numara": 47,
+   "konu": "2.3 Newton's Third Law",
+   "zorluk": "medium",
+   "govde": "An astronaut of mass $100\\text{ kg}$ floats at rest next to a $400\\text{ kg}$ satellite in deep space. She pushes on the satellite, and during the push the satellite has an acceleration of magnitude $0.50\\text{ m/s}^2$. What is the magnitude of the astronaut's acceleration during the push?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0.13\\text{ m/s}^2$"
+    },
+    {
+     "id": "B",
+     "text": "$0.50\\text{ m/s}^2$"
+    },
+    {
+     "id": "C",
+     "text": "$2.0\\text{ m/s}^2$"
+    },
+    {
+     "id": "D",
+     "text": "$4.0\\text{ m/s}^2$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. İtme kuvveti: $F=m_sa_s=(400)(0.50)=200\\text{ N}$.<br/>2. Üçüncü yasa: uydu da astronota $200\\text{ N}$ uygular.<br/>3. $a_{astr}=\\frac{200}{100}=2.0\\text{ m/s}^2$, zıt yönde.",
+   "genel_hatirlatma": "Üçüncü yasa çiftinde kuvvetler eşit; ivme oranı kütle oranının tersidir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Kütle oranını ters kullanmak",
+     "aciklama": "$0.50\\times\\frac{100}{400}$ hesaplanmış. Hafif olan astronot daha büyük ivme kazanmalıdır."
+    },
+    "B": {
+     "etiket": "Eşit kuvveti eşit ivme sanmak",
+     "aciklama": "Kuvvetler eşittir ama kütleler farklıdır; ivmeler eşit olamaz."
+    },
+    "D": {
+     "etiket": "Kütle oranını ivme sanmak",
+     "aciklama": "$\\frac{400}{100}=4$ yalnız kütle oranıdır. Astronotun ivmesi bu oranın uydunun ivmesiyle çarpımıdır: $0.50\\times4=2.0\\text{ m/s}^2$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Etki-tepki ile ivme oranı",
+    "ipucu": "Bilinen ivmeden kuvveti bul, aynı kuvveti diğer cisme uygula.",
+    "sikHata": "Eşit ivme varsaymak",
+    "cedKonu": "2.3",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_21",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 47,
+   "numara": 48,
+   "konu": "2.3 Newton's Third Law",
+   "zorluk": "medium",
+   "govde": "A person starts walking forward from rest on a level floor. Which force is directly responsible for the person's forward acceleration?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The forward static friction force exerted by the floor on the person's shoe"
+    },
+    {
+     "id": "B",
+     "text": "The backward force exerted by the person's shoe on the floor"
+    },
+    {
+     "id": "C",
+     "text": "The force exerted by the person's leg muscles on the person"
+    },
+    {
+     "id": "D",
+     "text": "The normal force exerted by the floor on the person"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Kişi ayağıyla zemini geriye iter (statik sürtünme, ayakkabı kaymıyor).<br/>2. Üçüncü yasa: zemin ayakkabıyı ileri iter.<br/>3. Kişiye etkiyen tek ileri yatay dış kuvvet budur → ikinci yasaya göre ileri ivmenin nedenidir.",
+   "genel_hatirlatma": "Bir cismi ivmelendiren, o cisme başka bir cismin uyguladığı dış kuvvettir.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Kişinin kendi uyguladığı kuvveti kendi ivmesine bağlamak",
+     "aciklama": "Bu kuvvet zemine etki eder; kişinin ivmesini yalnız kişiye etkiyen kuvvetler belirler."
+    },
+    "C": {
+     "etiket": "İç kuvvetle cismin kendini ivmelendirebileceğini sanmak",
+     "aciklama": "Kaslar vücut içindedir (iç kuvvet); bir sistem kendi iç kuvvetleriyle kütle merkezini ivmelendiremez."
+    },
+    "D": {
+     "etiket": "Normal kuvvetin yönünü unutmak",
+     "aciklama": "Normal kuvvet zemine diktir (yukarı); yatay ivme sağlayamaz."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Yürümede ileri sürtünme",
+    "ipucu": "\"Kime etki ediyor?\" sorusunu her kuvvet için sor.",
+    "sikHata": "Sürtünmenin daima harekete zıt olduğunu sanmak",
+    "cedKonu": "2.3",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_22",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 48,
+   "numara": 49,
+   "konu": "2.3 Newton's Third Law",
+   "zorluk": "hard",
+   "govde": "Two magnets are placed on a frictionless horizontal surface and released from rest. Magnet X has twice the mass of magnet Y. The magnets attract each other. Which statement correctly compares the magnitudes of the forces and accelerations at the instant of release?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "X exerts twice as much force on Y, and the accelerations are equal."
+    },
+    {
+     "id": "B",
+     "text": "The forces are equal, and X's acceleration is twice Y's acceleration."
+    },
+    {
+     "id": "C",
+     "text": "The forces are equal, and Y's acceleration is twice X's acceleration."
+    },
+    {
+     "id": "D",
+     "text": "Y exerts twice as much force on X, and the accelerations are equal."
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $F_{X\\text{ on }Y}=F_{Y\\text{ on }X}=F$ (üçüncü yasa).<br/>2. $a_X=\\frac{F}{2m}$, $a_Y=\\frac{F}{m}$ → $a_Y=2a_X$.<br/>3. Sistem X + Y için net dış kuvvet sıfır; kütle merkezi durgun kalır, mıknatıslar kütle merkezinde buluşur.",
+   "genel_hatirlatma": "Etkileşimin türü (çekim, manyetik, temas) ne olursa olsun üçüncü yasa kuvvetleri eşittir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Kütle iki katı ise kuvvetin de iki katı olduğunu sanmak",
+     "aciklama": "Manyetik etkileşim de bir üçüncü yasa çiftidir; kuvvetler eşit olmak zorundadır."
+    },
+    "B": {
+     "etiket": "Kütle-ivme ilişkisini ters kurmak",
+     "aciklama": "$a=\\frac{F}{m}$: kütlesi büyük olan X daha küçük ivme kazanır."
+    },
+    "D": {
+     "etiket": "Hafif cismin daha çok kuvvet uyguladığını sanmak",
+     "aciklama": "Kuvvetler cisimlerin kütlesinden bağımsız olarak eşittir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Alan kuvvetlerinde üçüncü yasa",
+    "ipucu": "Kuvvet karşılaştırması → eşit; ivme karşılaştırması → kütle oranının tersi.",
+    "sikHata": "Güçlü/ağır olanın daha çok kuvvet uyguladığını sanmak",
+    "cedKonu": "2.3",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_23",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 49,
+   "numara": 50,
+   "konu": "2.3 Newton's Third Law",
+   "zorluk": "hard",
+   "govde": "A box rests on the floor of an elevator that is accelerating upward. Consider the following statements.<br/>I. The normal force exerted by the floor on the box equals the normal force exerted by the box on the floor in magnitude.<br/>II. The normal force exerted by the floor on the box equals the gravitational force exerted by Earth on the box in magnitude.<br/>III. The gravitational force exerted by Earth on the box and the normal force exerted by the floor on the box form a Newton's third law pair.<br/>Which statements are true?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "I only"
+    },
+    {
+     "id": "B",
+     "text": "I and II only"
+    },
+    {
+     "id": "C",
+     "text": "II and III only"
+    },
+    {
+     "id": "D",
+     "text": "I, II, and III"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. I: Zemin–kutu temas etkileşimi; üçüncü yasa çifti → her zaman eşit. Doğru.<br/>2. II: İkinci yasa (yukarı +): $F_N=m(g+a)\\gt mg$. Yanlış.<br/>3. III: Yerçekiminin eşi kutunun Dünya'ya uyguladığı çekimdir. Yanlış.",
+   "genel_hatirlatma": "Üçüncü yasa eşitliği ivmeden bağımsızdır; aynı cisme etkiyen kuvvetlerin eşitliği ise yalnız dengede geçerlidir.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "İvmeli durumda dengeyi varsaymak",
+     "aciklama": "Kutu yukarı ivmelendiği için $F_N-mg=ma\\gt0$; $F_N\\gt mg$. II yanlıştır."
+    },
+    "C": {
+     "etiket": "Ağırlık ve normali çift sanmak",
+     "aciklama": "İki kuvvet aynı cisme etki eder; üçüncü yasa çifti olamaz. Ayrıca ivme varken eşit de değildir."
+    },
+    "D": {
+     "etiket": "Tüm \"eşit\" ifadelerini doğru saymak",
+     "aciklama": "Yalnız üçüncü yasa çiftinin büyüklükleri her koşulda eşittir; II ve III yanlıştır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Üçüncü yasa ile ikinci yasayı ayırmak",
+    "ipucu": "Her ifade için sor: iki kuvvet aynı cisme mi etki ediyor?",
+    "sikHata": "Normal kuvvet = ağırlık sanmak",
+    "cedKonu": "2.3",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_24",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 50,
+   "numara": 51,
+   "konu": "2.4 Newton's First Law",
+   "zorluk": "easy",
+   "govde": "A space probe far from all stars and planets moves in a straight line at $200\\text{ m/s}$ with its engines off. What is required to keep the probe moving at $200\\text{ m/s}$ in the same direction?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "A constant forward force from its engines"
+    },
+    {
+     "id": "B",
+     "text": "A gradually increasing forward force to overcome inertia"
+    },
+    {
+     "id": "C",
+     "text": "A force directed toward the nearest star"
+    },
+    {
+     "id": "D",
+     "text": "Nothing; with zero net force its velocity stays constant."
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Uzakta, ihmal edilebilir dış kuvvet → net kuvvet sıfır.<br/>2. Birinci yasa: net kuvvet sıfırsa hız (büyüklük ve yön) değişmez.<br/>3. Sonda $200\\text{ m/s}$ ile aynı yönde gitmeye devam eder.",
+   "genel_hatirlatma": "Kuvvet hızı değiştirmek için gerekir, sürdürmek için gerekmez.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Hareket için kuvvet gerektiğini sanmak",
+     "aciklama": "Kuvvet hızı korumak için değil değiştirmek için gerekir. İleri net kuvvet sondayı hızlandırırdı."
+    },
+    "B": {
+     "etiket": "Eylemsizliği bir kuvvet gibi düşünmek",
+     "aciklama": "Eylemsizlik kuvvet değil, cismin hız değişimine direnme özelliğidir; aşılması gereken bir şey değildir."
+    },
+    "C": {
+     "etiket": "Bir çekim kuvveti gerektiğini sanmak",
+     "aciklama": "Böyle bir kuvvet sondanın yolunu bükerdi; düz çizgide sabit hız için net kuvvet sıfır olmalıdır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Birinci yasa: sabit hız",
+    "ipucu": "\"Keep moving\" sorularında önce net kuvvetin sıfır olup olmadığına bak.",
+    "sikHata": "Hareket yönünde kuvvet gerektiğini sanmak",
+    "cedKonu": "2.4",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_25",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 51,
+   "numara": 52,
+   "konu": "2.4 Newton's First Law",
+   "zorluk": "hard",
+   "govde": "A lamp hangs at rest from two ropes attached to the ceiling. Rope 1 makes an angle of $30^\\circ$ with the horizontal, and rope 2 makes an angle of $60^\\circ$ with the horizontal. Which statement about the tensions $T_1$ and $T_2$ is correct?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$T_1 \\gt T_2$, because rope 1 is closer to horizontal and so it supports more of the weight."
+    },
+    {
+     "id": "B",
+     "text": "$T_1 = T_2$, because the lamp is in equilibrium."
+    },
+    {
+     "id": "C",
+     "text": "$T_2 \\gt T_1$, because the horizontal components must be equal and rope 2 has the smaller horizontal fraction."
+    },
+    {
+     "id": "D",
+     "text": "$T_1 + T_2$ equals the weight of the lamp, so neither can be greater than the weight."
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Yatay denge: $T_1\\cos30^\\circ=T_2\\cos60^\\circ\\Rightarrow T_2=T_1\\frac{0.866}{0.5}\\approx1.7\\,T_1$.<br/>2. Yani dikliğe yakın ip 2 daha büyük gerilme taşır.<br/>3. Dikey denge ile birlikte: $T_1=\\frac{mg}{2}$, $T_2\\approx0.87\\,mg$.",
+   "genel_hatirlatma": "İki ipli dengede yatay bileşenler eşit olmak zorundadır; dikey ipe yakın olan daha çok yük taşır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yataya yakın ipin ağırlığı daha çok taşıdığını sanmak",
+     "aciklama": "Ağırlığı dikey bileşenler taşır; yataya yakın ipin dikey payı küçüktür. Yatay denge $T_1\\cos30^\\circ=T_2\\cos60^\\circ$ verir."
+    },
+    "B": {
+     "etiket": "Dengede tüm gerilmelerin eşit olduğunu sanmak",
+     "aciklama": "Denge net kuvvetin sıfır olmasıdır; gerilmeler yalnız simetrik düzenekte eşittir."
+    },
+    "D": {
+     "etiket": "Gerilmeleri skaler toplamak",
+     "aciklama": "Kuvvetler vektördür; yalnız dikey bileşenlerin toplamı ağırlığa eşittir ($T_1\\sin30^\\circ+T_2\\sin60^\\circ=mg$)."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Açılı iplerde denge",
+    "ipucu": "Önce yatay denklem: hangi gerilmenin büyük olduğunu hemen verir.",
+    "sikHata": "Gerilmeleri skaler olarak toplamak",
+    "cedKonu": "2.4",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_26",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 52,
+   "numara": 53,
+   "konu": "2.4 Newton's First Law",
+   "zorluk": "medium",
+   "govde": "A wet towel hangs at rest from the middle of a clothesline, making the line sag into a shallow V shape. The ends of the line are then pulled so the line becomes tighter and the sag becomes smaller, while the towel stays at the middle. What happens to the tension in the line?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "It decreases, because a tighter line is closer to horizontal and does less work."
+    },
+    {
+     "id": "B",
+     "text": "It stays the same, because the towel's weight does not change."
+    },
+    {
+     "id": "C",
+     "text": "It becomes zero, because the line becomes horizontal."
+    },
+    {
+     "id": "D",
+     "text": "It increases, because each half of the line has a smaller vertical component per unit tension."
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Simetrik düzenek, her yarıda gerilme $T$, yatayla açı $\\theta$. Dikey denge: $2T\\sin\\theta=mg$.<br/>2. $T=\\frac{mg}{2\\sin\\theta}$. Sarkma azalınca $\\theta$ küçülür, $\\sin\\theta$ küçülür, $T$ artar.",
+   "genel_hatirlatma": "Bir yükü taşıyan ipler yataylaştıkça gerilme artar.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yataya yakın ipin daha az gerildiğini sanmak",
+     "aciklama": "Havlunun ağırlığı hep aynıdır; ip yatay olmaya yaklaştıkça bu ağırlığı karşılamak için daha büyük gerilme gerekir."
+    },
+    "B": {
+     "etiket": "Gerilmeyi yalnız ağırlığa bağlamak",
+     "aciklama": "Ağırlık sabit ama ipin açısı değişti; $2T\\sin\\theta=mg$ ilişkisinde $\\theta$ küçülünce $T$ büyür."
+    },
+    "C": {
+     "etiket": "Sınır durumunu ters yorumlamak",
+     "aciklama": "İp tam yatay olsaydı dikey bileşen hiç olmazdı ve ağırlık dengelenemezdi; gerilme sonsuza giderdi, sıfıra değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Açı–gerilme ilişkisi",
+    "ipucu": "Formülü yaz, sonra hangi değişkenin değiştiğine bak.",
+    "sikHata": "Gerilmenin yalnız ağırlığa bağlı olduğunu sanmak",
+    "cedKonu": "2.4",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_27",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 53,
+   "numara": 54,
+   "konu": "2.4 Newton's First Law",
+   "zorluk": "medium",
+   "govde": "A $10\\text{ kg}$ crate is pushed at constant velocity across a rough, horizontal floor by a force of $50\\text{ N}$ directed $37^\\circ$ below the horizontal. Use $\\sin37^\\circ \\approx 0.60$ and $\\cos37^\\circ \\approx 0.80$. What is the magnitude of the normal force exerted by the floor on the crate?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$70\\text{ N}$"
+    },
+    {
+     "id": "B",
+     "text": "$100\\text{ N}$"
+    },
+    {
+     "id": "C",
+     "text": "$130\\text{ N}$"
+    },
+    {
+     "id": "D",
+     "text": "$140\\text{ N}$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Sabit hız → dikey ve yatay net kuvvet sıfır.<br/>2. Dikey: $F_N=mg+F\\sin37^\\circ=100+50(0.60)$.<br/>3. $F_N=130\\text{ N}$.",
+   "genel_hatirlatma": "Sabit hızda her eksende ΣF = 0; aşağı açılı itme normal kuvveti artırır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Dikey bileşenin yönünü ters almak",
+     "aciklama": "Kuvvet yatayın altına doğru olduğu için kasayı yere bastırır; normal kuvvet azalmaz, artar."
+    },
+    "B": {
+     "etiket": "Normal kuvveti mg almak",
+     "aciklama": "Dikey denge iki aşağı kuvvet içerir: $mg$ ve $F\\sin37^\\circ$."
+    },
+    "D": {
+     "etiket": "Yanlış bileşeni eklemek",
+     "aciklama": "$F\\cos37^\\circ=40\\text{ N}$ yatay bileşendir; dikey bileşen $F\\sin37^\\circ=30\\text{ N}$'dir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Bileşenlerle denge",
+    "ipucu": "Dikey denklemde aşağı yönlü tüm kuvvetleri topla.",
+    "sikHata": "Normal kuvveti mg almak",
+    "cedKonu": "2.4",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_28",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 54,
+   "numara": 55,
+   "konu": "2.4 Newton's First Law",
+   "zorluk": "easy",
+   "govde": "A passenger is seated in a bus that is moving forward. The driver suddenly brakes, and the passenger lurches forward relative to the bus. Which explanation is correct?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The passenger tends to keep moving forward at the original velocity while the bus slows down."
+    },
+    {
+     "id": "B",
+     "text": "A forward force from the brakes pushes the passenger."
+    },
+    {
+     "id": "C",
+     "text": "The passenger's inertia is a forward force that acts during braking."
+    },
+    {
+     "id": "D",
+     "text": "Gravity pulls the passenger forward when the bus decelerates."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Fren otobüse geri yönde net kuvvet uygular; otobüs yavaşlar.<br/>2. Yolcu koltukla sıkı bağlı değilse onu yavaşlatacak yeterli kuvvet yoktur; birinci yasaya göre hızını korumaya devam eder.<br/>3. Otobüse göre öne kayar; yere göre ise sadece eski hızını sürdürür.",
+   "genel_hatirlatma": "Eylemsizlik: cisimler net kuvvet olmadıkça hızlarını korur. Hissedilen \"öne itilme\" bir kuvvet değildir.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Frenin yolcuya ileri kuvvet uyguladığını sanmak",
+     "aciklama": "Fren otobüsü yavaşlatır; yolcuyu ileri iten bir kuvvet yoktur."
+    },
+    "C": {
+     "etiket": "Eylemsizliği kuvvet saymak",
+     "aciklama": "Eylemsizlik bir özelliktir, kuvvet değildir; FBD'de çizilmez."
+    },
+    "D": {
+     "etiket": "Yerçekiminin yönünü değiştirmek",
+     "aciklama": "Yerçekimi daima aşağıdır; yatay harekete katkı vermez."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Eylemsizlik",
+    "ipucu": "Yere göre (eylemsiz çerçeve) düşün: yolcunun hızı değişti mi?",
+    "sikHata": "Eylemsizliği kuvvet saymak",
+    "cedKonu": "2.4",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_29",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 55,
+   "numara": 56,
+   "konu": "2.4 Newton's First Law",
+   "zorluk": "hard",
+   "govde": "An object is in equilibrium under three forces. One force is $3.0\\text{ N}$ directed east, and a second force is $4.0\\text{ N}$ directed north. Which of the following describes the third force?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$5.0\\text{ N}$, directed $53^\\circ$ north of east"
+    },
+    {
+     "id": "B",
+     "text": "$7.0\\text{ N}$, directed $53^\\circ$ south of west"
+    },
+    {
+     "id": "C",
+     "text": "$5.0\\text{ N}$, directed $53^\\circ$ south of west"
+    },
+    {
+     "id": "D",
+     "text": "$1.0\\text{ N}$, directed south"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Denge: $\\vec F_3=-(\\vec F_1+\\vec F_2)$, yani $3.0\\text{ N}$ batı ve $4.0\\text{ N}$ güney bileşenleri.<br/>2. Büyüklük: $\\sqrt{3.0^2+4.0^2}=5.0\\text{ N}$.<br/>3. Yön: batıdan güneye $\\tan^{-1}\\frac{4.0}{3.0}\\approx53^\\circ$.",
+   "genel_hatirlatma": "Dengede kuvvetlerin vektör toplamı sıfırdır; eksik kuvvet, diğerlerinin bileşkesinin tersidir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Bileşkeyi dengeleyen kuvvet yerine bileşkeyi vermek",
+     "aciklama": "İlk iki kuvvetin bileşkesi kuzeydoğuya doğrudur; denge için üçüncü kuvvet bunun tam tersi olmalıdır."
+    },
+    "B": {
+     "etiket": "Dik kuvvetleri skaler toplamak",
+     "aciklama": "Dik kuvvetlerin bileşkesi Pisagor ile bulunur: $\\sqrt{3^2+4^2}=5\\text{ N}$."
+    },
+    "D": {
+     "etiket": "Kuvvetleri çıkarmak",
+     "aciklama": "Dik kuvvetler birbirinden çıkarılmaz; ayrıca doğu bileşenini dengeleyen bir batı bileşeni de gerekir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Üç kuvvetli denge",
+    "ipucu": "Bileşenler: ΣFx = 0 ve ΣFy = 0 ayrı ayrı.",
+    "sikHata": "Kuvvetleri skaler toplamak",
+    "cedKonu": "2.4",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_30",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 56,
+   "numara": 57,
+   "konu": "2.4 Newton's First Law",
+   "zorluk": "easy",
+   "govde": "A cart moves along a straight, horizontal track. Its velocity is recorded in the table below.<br/><table class='u-table'><tr><th>$t$ (s)</th><td>0</td><td>1.0</td><td>2.0</td><td>3.0</td><td>4.0</td><td>5.0</td><td>6.0</td></tr><tr><th>$v$ (m/s)</th><td>0</td><td>2.0</td><td>4.0</td><td>4.0</td><td>4.0</td><td>4.0</td><td>1.0</td></tr></table>During which time interval is the net force on the cart zero?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "From $t = 2.0\\text{ s}$ to $t = 5.0\\text{ s}$"
+    },
+    {
+     "id": "B",
+     "text": "From $t = 0$ to $t = 2.0\\text{ s}$"
+    },
+    {
+     "id": "C",
+     "text": "From $t = 5.0\\text{ s}$ to $t = 6.0\\text{ s}$"
+    },
+    {
+     "id": "D",
+     "text": "Only at $t = 0$, when the cart is at rest"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Net kuvvet sıfır ⇔ ivme sıfır ⇔ hız sabit.<br/>2. Tabloda hız $t=2.0$–$5.0\\text{ s}$ arasında $4.0\\text{ m/s}$'de sabit.<br/>3. Diğer aralıklarda hız değişiyor → net kuvvet var.",
+   "genel_hatirlatma": "Net kuvvet hızın değil hız değişiminin nedenidir; sabit hız = sıfır net kuvvet.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Düzgün değişen hızı sabit sanmak",
+     "aciklama": "Bu aralıkta hız her saniye $2.0\\text{ m/s}$ artıyor; ivme var, net kuvvet sıfır değil."
+    },
+    "C": {
+     "etiket": "Yavaşlamayı kuvvetsizlik sanmak",
+     "aciklama": "Hız azalıyor; yavaşlamak da ivmedir ve geri yönde net kuvvet gerektirir."
+    },
+    "D": {
+     "etiket": "Durgun anı dengeyle karıştırmak",
+     "aciklama": "$t=0$'da hız sıfır ama hemen artmaya başlıyor; ivme sıfır değil, net kuvvet sıfır değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Hız verisinden denge",
+    "ipucu": "Tabloda ardışık hız farklarına bak: fark sıfırsa ivme sıfır.",
+    "sikHata": "Hareketin sürmesi için kuvvet gerektiğini sanmak",
+    "cedKonu": "2.4",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_31",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 57,
+   "numara": 58,
+   "konu": "2.5 Newton's Second Law",
+   "zorluk": "easy",
+   "govde": "A $4.0\\text{ kg}$ block is pulled across a horizontal surface by a horizontal force of $20\\text{ N}$. The friction force on the block is $8.0\\text{ N}$. What is the magnitude of the block's acceleration?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$2.0\\text{ m/s}^2$"
+    },
+    {
+     "id": "B",
+     "text": "$3.0\\text{ m/s}^2$"
+    },
+    {
+     "id": "C",
+     "text": "$5.0\\text{ m/s}^2$"
+    },
+    {
+     "id": "D",
+     "text": "$7.0\\text{ m/s}^2$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Net kuvvet: $20-8.0=12\\text{ N}$ (ileri).<br/>2. $a=\\frac{F_{net}}{m}=\\frac{12}{4.0}=3.0\\text{ m/s}^2$.",
+   "genel_hatirlatma": "İkinci yasa net kuvvetle çalışır: önce kuvvetleri yönleriyle topla, sonra kütleye böl.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yalnız sürtünmeyi kütleye bölmek",
+     "aciklama": "$\\frac{8.0}{4.0}=2.0$ yalnız sürtünmenin tek başına vereceği ivmedir. İvmeyi net kuvvet belirler: $\\frac{20-8.0}{4.0}=3.0\\text{ m/s}^2$."
+    },
+    "C": {
+     "etiket": "Sürtünmeyi yok saymak",
+     "aciklama": "$\\frac{20}{4.0}=5.0$; ivmeyi net kuvvet belirler, uygulanan kuvvet değil."
+    },
+    "D": {
+     "etiket": "Sürtünmeyi eklemek",
+     "aciklama": "Sürtünme harekete zıttır; uygulanan kuvvetten çıkarılmalıdır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.5)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Net kuvvet ve ivme",
+    "ipucu": "İvme yönündeki kuvvetler +, zıt olanlar −.",
+    "sikHata": "Uygulanan kuvveti net kuvvet sanmak",
+    "cedKonu": "2.5",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_32",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 58,
+   "numara": 59,
+   "konu": "2.5 Newton's Second Law",
+   "zorluk": "easy",
+   "govde": "In an experiment, different net forces are applied to a cart and its acceleration is measured. A graph of acceleration (vertical axis) versus net force (horizontal axis) is a straight line through the origin. The point $(4.0\\text{ N},\\ 2.0\\text{ m/s}^2)$ lies on the line. What is the mass of the cart?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0.50\\text{ kg}$"
+    },
+    {
+     "id": "B",
+     "text": "$2.0\\text{ kg}$"
+    },
+    {
+     "id": "C",
+     "text": "$6.0\\text{ kg}$"
+    },
+    {
+     "id": "D",
+     "text": "$8.0\\text{ kg}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. İkinci yasa: $a=\\frac{1}{m}F_{net}$ → grafiğin eğimi $\\frac1m$.<br/>2. Eğim $=\\frac{2.0}{4.0}=0.50\\text{ kg}^{-1}$.<br/>3. $m=\\frac{1}{0.50}=2.0\\text{ kg}$.",
+   "genel_hatirlatma": "a–F grafiğinde eğim 1/m, F–a grafiğinde eğim m'dir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Eğimi kütle sanmak",
+     "aciklama": "$a$–$F$ grafiğinin eğimi $\\frac{a}{F}=\\frac1m=0.50\\text{ kg}^{-1}$'dir; kütle bunun tersidir."
+    },
+    "C": {
+     "etiket": "Değerleri toplamak",
+     "aciklama": "Kuvvet ve ivme farklı birimdedir, toplanamaz. Eğimin birimi (kg⁻¹) neyin bulunduğunu gösterir."
+    },
+    "D": {
+     "etiket": "Kuvvet ile ivmeyi çarpmak",
+     "aciklama": "$F\\cdot a$ fiziksel bir kütle vermez; $m=\\frac{F}{a}$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.5)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Grafikten kütle",
+    "ipucu": "Eğimin birimini yaz; kg⁻¹ ise tersini al.",
+    "sikHata": "Eğimi doğrudan kütle sanmak",
+    "cedKonu": "2.5",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_33",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 59,
+   "numara": 60,
+   "konu": "2.5 Newton's Second Law",
+   "zorluk": "hard",
+   "govde": "A student applies the same constant net force to carts of different masses and records each cart's acceleration.<br/><table class='u-table'><tr><th>$m$ (kg)</th><td>0.50</td><td>1.0</td><td>2.0</td><td>4.0</td></tr><tr><th>$a$ (m/s²)</th><td>4.0</td><td>2.0</td><td>1.0</td><td>0.50</td></tr></table>The student wants a graph that is a straight line and whose slope gives the net force. Which graph should the student make?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "Acceleration versus $m$"
+    },
+    {
+     "id": "B",
+     "text": "Acceleration versus $m^2$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{1}{a}$ versus $\\frac{1}{m}$"
+    },
+    {
+     "id": "D",
+     "text": "Acceleration versus $\\frac{1}{m}$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Tablo: $m\\cdot a=2.0\\text{ N}$ her satırda sabit → $a=\\frac{F}{m}$, ters orantı.<br/>2. $a$'yı $x=\\frac1m$'ye karşı çizersek $a=F\\cdot x$: orijinden geçen doğru.<br/>3. Eğim $=F=2.0\\text{ N}$.",
+   "genel_hatirlatma": "Doğrusallaştırma: denklemi y = (eğim)·x biçimine sok; x olarak 1/m seçilir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Ters orantıyı doğrusal sanmak",
+     "aciklama": "$a=\\frac{F}{m}$ ilişkisinde $a$–$m$ grafiği hiperboldür; doğru değildir."
+    },
+    "B": {
+     "etiket": "Yanlış üs seçmek",
+     "aciklama": "Veride $m$ iki katına çıkınca $a$ yarıya iniyor; bu $\\frac1m$ ilişkisidir, $m^2$ ile doğrusallaşmaz."
+    },
+    "C": {
+     "etiket": "İki ekseni birden ters çevirmek",
+     "aciklama": "$\\frac1a=\\frac{m}{F}$; $\\frac1a$–$\\frac1m$ grafiği doğru olmaz."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.5)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Ters orantıyı doğrusallaştırmak",
+    "ipucu": "Önce satırların çarpımına bak: sabitse ters orantı vardır.",
+    "sikHata": "a–m grafiğinden eğim almak",
+    "cedKonu": "2.5",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_34",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 60,
+   "numara": 61,
+   "konu": "2.5 Newton's Second Law",
+   "zorluk": "hard",
+   "govde": "In an Atwood machine, two blocks of masses $m_1$ and $m_2$ (with $m_2 \\gt m_1$) hang from a light string over an ideal pulley. A student adds the same extra mass $\\Delta m$ to each block. What happens to the magnitude of the acceleration of the blocks, and why?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "It stays the same, because the difference between the masses is unchanged."
+    },
+    {
+     "id": "B",
+     "text": "It increases, because both blocks are now heavier and gravity pulls harder."
+    },
+    {
+     "id": "C",
+     "text": "It decreases, because the net external force on the system stays the same while the total mass increases."
+    },
+    {
+     "id": "D",
+     "text": "It decreases to zero, because the system is now balanced."
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Sistem = iki blok + ip: $a=\\frac{(m_2-m_1)g}{m_1+m_2}$.<br/>2. Her bloğa $\\Delta m$ eklenince pay değişmez: $((m_2+\\Delta m)-(m_1+\\Delta m))g$.<br/>3. Payda $2\\Delta m$ büyür → ivme azalır. Gerekçede hem net kuvvet hem toplam kütle anılmalıdır.",
+   "genel_hatirlatma": "Nitel ikinci yasa sorularında pay (net kuvvet) ve payda (kütle) ayrı ayrı değerlendirilir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yalnız kütle farkına bakmak",
+     "aciklama": "Pay ($m_2-m_1)g$ aynı kalır ama payda $m_1+m_2+2\\Delta m$ büyür; ivme azalır."
+    },
+    "B": {
+     "etiket": "Ağırlık artışının ivmeyi artıracağını sanmak",
+     "aciklama": "Eklenen ağırlıklar ipin iki yanında eşittir ve birbirini dengeler; yalnız eylemsizliği artırırlar."
+    },
+    "D": {
+     "etiket": "Eşit eklemeyi dengeyle karıştırmak",
+     "aciklama": "Kütleler hâlâ farklıdır; net kuvvet $(m_2-m_1)g$ sıfır değildir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.5)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Atwood makinesinde nitel akıl yürütme",
+    "ipucu": "Denklemi sembolik yaz, değişikliği pay ve paydada izle.",
+    "sikHata": "Yalnız kütle farkına bakmak",
+    "cedKonu": "2.5",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_35",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 61,
+   "numara": 62,
+   "konu": "2.5 Newton's Second Law",
+   "zorluk": "medium",
+   "govde": "An elevator car of total mass $800\\text{ kg}$ is moving upward and slowing down at a rate of $1.5\\text{ m/s}^2$. What is the tension in the supporting cable?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$1200\\text{ N}$"
+    },
+    {
+     "id": "B",
+     "text": "$6800\\text{ N}$"
+    },
+    {
+     "id": "C",
+     "text": "$8000\\text{ N}$"
+    },
+    {
+     "id": "D",
+     "text": "$9200\\text{ N}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Yukarı giderken yavaşlama → ivme aşağı, $a=-1.5\\text{ m/s}^2$ (yukarı +).<br/>2. $T-mg=ma\\Rightarrow T=m(g+a)=800(10-1.5)$.<br/>3. $T=6800\\text{ N}$, ağırlıktan ($8000\\text{ N}$) küçük.",
+   "genel_hatirlatma": "Asansörde gerilme veya normal kuvveti ivmenin yönü belirler, hızın yönü değil.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yalnız ma'yı hesaplamak",
+     "aciklama": "$ma=1200\\text{ N}$ net kuvvettir; gerilmeyi bulmak için yerçekimi de hesaba katılmalıdır."
+    },
+    "C": {
+     "etiket": "Sabit hız varsaymak",
+     "aciklama": "Asansör yavaşladığı için ivme vardır; $T=mg$ yalnız sabit hızda geçerlidir."
+    },
+    "D": {
+     "etiket": "İvme yönünü hız yönü sanmak",
+     "aciklama": "Yukarı giderken yavaşlamak aşağı ivme demektir; $T=m(g+a)$ değil $T=m(g-a)$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.5)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Asansör kablosu gerilmesi",
+    "ipucu": "\"Slowing down\" → ivme hıza zıt.",
+    "sikHata": "Hız yönünü ivme yönü sanmak",
+    "cedKonu": "2.5",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_36",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 62,
+   "numara": 63,
+   "konu": "2.5 Newton's Second Law",
+   "zorluk": "hard",
+   "govde": "Three blocks rest on a frictionless horizontal surface in a line and are connected by light strings: block A ($1.0\\text{ kg}$) is tied to block B ($2.0\\text{ kg}$), and block B is tied to block C ($3.0\\text{ kg}$). A horizontal force of $12\\text{ N}$ pulls block C away from the others. What is the tension in the string connecting B and C?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$2.0\\text{ N}$"
+    },
+    {
+     "id": "B",
+     "text": "$6.0\\text{ N}$"
+    },
+    {
+     "id": "C",
+     "text": "$10\\text{ N}$"
+    },
+    {
+     "id": "D",
+     "text": "$12\\text{ N}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Sistem = A + B + C: $a=\\frac{12}{6.0}=2.0\\text{ m/s}^2$.<br/>2. Sistem = A + B (B–C ipi tek dış yatay kuvvet): $T_{BC}=(1.0+2.0)(2.0)=6.0\\text{ N}$.<br/>3. Kontrol (C): $12-6.0=(3.0)(2.0)$ ✓.",
+   "genel_hatirlatma": "Bir ipin gerilmesi, o ipin arkasında kalan tüm kütleleri ivmelendirecek kadardır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yalnız A'yı hesaba katmak",
+     "aciklama": "$2.0\\text{ N}$, A ile B arasındaki ipin gerilmesidir. B–C ipi hem A'yı hem B'yi çeker."
+    },
+    "C": {
+     "etiket": "Yanlış bloğu çıkarmak",
+     "aciklama": "$12-m_Aa$ hesaplanmış. C için doğru denklem: $12-T_{BC}=m_Ca=6.0$."
+    },
+    "D": {
+     "etiket": "Gerilmenin tüm iplerde uygulanan kuvvete eşit olduğunu sanmak",
+     "aciklama": "Kuvvetin bir kısmı C'yi ivmelendirmeye harcanır; arkadaki ipler daha az gerilir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.5)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Bağlı bloklarda gerilme",
+    "ipucu": "İpi kes; arkada kalan bloklar sistemini seç.",
+    "sikHata": "Her ipte gerilmeyi uygulanan kuvvete eşit almak",
+    "cedKonu": "2.5",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_37",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 63,
+   "numara": 64,
+   "konu": "2.5 Newton's Second Law",
+   "zorluk": "medium",
+   "govde": "A $60\\text{ kg}$ student stands on a scale in an elevator that starts at rest. The scale reading is recorded during three successive time intervals: interval 1, $720\\text{ N}$; interval 2, $600\\text{ N}$; interval 3, $480\\text{ N}$. At the end of interval 3 the elevator is at rest again. Which description of the elevator's motion is consistent with these readings?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "It speeds up moving downward, moves at constant speed, then slows down while moving downward."
+    },
+    {
+     "id": "B",
+     "text": "It moves upward during interval 1, stops during interval 2, and moves downward during interval 3."
+    },
+    {
+     "id": "C",
+     "text": "It moves upward faster and faster during all three intervals."
+    },
+    {
+     "id": "D",
+     "text": "It speeds up moving upward, moves upward at constant speed, then slows down while moving upward."
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $mg=600\\text{ N}$. Aralık 1: $a=\\frac{720-600}{60}=+2.0\\text{ m/s}^2$ (yukarı) → durgundan yukarı hızlanma.<br/>2. Aralık 2: $a=0$ → sabit hız (yukarı).<br/>3. Aralık 3: $a=\\frac{480-600}{60}=-2.0\\text{ m/s}^2$ → yukarı giderken yavaşlama ve durma.",
+   "genel_hatirlatma": "Terazi okuması ivmenin işaretini verir; hareketin yönünü başlangıç koşulu ile birleştirerek bulursun.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Okuma artışını aşağı hareketle eşlemek",
+     "aciklama": "İlk aralıkta $F_N\\gt mg$, ivme yukarıdır. Durgun başlayan asansör için bu yukarı hızlanmadır."
+    },
+    "B": {
+     "etiket": "Okumanın hızı gösterdiğini sanmak",
+     "aciklama": "Terazi ivmeyi gösterir. $600\\text{ N}$ sıfır ivmedir; asansör durmuş değil, sabit hızla gidiyor olabilir."
+    },
+    "C": {
+     "etiket": "Her ivmeyi hızlanma sanmak",
+     "aciklama": "Üçüncü aralıkta $F_N\\lt mg$, ivme aşağıdır; yukarı giden asansör yavaşlar."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.5)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Görünür ağırlık verisini yorumlamak",
+    "ipucu": "Her aralık için F_N − mg = ma ile ivme işaretini bul.",
+    "sikHata": "Terazi okumasını hızla ilişkilendirmek",
+    "cedKonu": "2.5",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_38",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 64,
+   "numara": 65,
+   "konu": "2.5 Newton's Second Law",
+   "zorluk": "hard",
+   "govde": "A student wants to test whether the acceleration of a system is directly proportional to the net force when the system's mass is constant. A cart on a level, low-friction track is connected by a string over a pulley to a hanging mass holder. The student has a set of small slotted masses. Which procedure best tests the relationship?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "Start with all slotted masses on the cart, then move them one at a time from the cart to the hanger, measuring the acceleration each time."
+    },
+    {
+     "id": "B",
+     "text": "Add slotted masses one at a time to the hanger from the table, measuring the acceleration each time."
+    },
+    {
+     "id": "C",
+     "text": "Keep the hanging mass constant and add slotted masses to the cart, measuring the acceleration each time."
+    },
+    {
+     "id": "D",
+     "text": "Measure the acceleration once with the largest hanging mass and compare it to the value of g."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Sistem = araba + asılı kütle + ip. Net dış kuvvet (sürtünme ihmal) $=m_{hang}g$; toplam kütle $M$.<br/>2. Kütleleri arabadan askıya taşımak $M$'yi sabit tutar ve yalnız net kuvveti değiştirir.<br/>3. $a$'yı $m_{hang}g$'ye karşı çiz; orijinden geçen doğru orantıyı doğrular, eğim $\\frac1M$.",
+   "genel_hatirlatma": "Deney tasarımında yalnız bir bağımsız değişken değiştirilir; diğerleri (burada toplam kütle) sabit tutulur.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Sistem kütlesini sabit tutmayı unutmak",
+     "aciklama": "Her ekleme hem net kuvveti hem toplam kütleyi artırır; iki değişken birlikte değişir ve doğrudan orantı test edilemez."
+    },
+    "C": {
+     "etiket": "Bağımsız değişkeni karıştırmak",
+     "aciklama": "Bu deney sabit kuvvette kütlenin etkisini ölçer; soru kuvvetin etkisini istiyor."
+    },
+    "D": {
+     "etiket": "Tek ölçümle orantı test etmek",
+     "aciklama": "Orantıyı test etmek için birden çok kuvvet değeri ve bir grafik (a–F) gerekir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.5)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "İkinci yasa deney tasarımı",
+    "ipucu": "\"Neyi sabit tutuyorum?\" sorusunu sor.",
+    "sikHata": "Asılı kütle eklemenin yalnız kuvveti değiştirdiğini sanmak",
+    "cedKonu": "2.5",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_39",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 65,
+   "numara": 66,
+   "konu": "2.5 Newton's Second Law",
+   "zorluk": "medium",
+   "govde": "Two horizontal forces act on a $2.0\\text{ kg}$ object on a frictionless surface: $6.0\\text{ N}$ directed east and $8.0\\text{ N}$ directed north. What is the magnitude of the object's acceleration?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$1.0\\text{ m/s}^2$"
+    },
+    {
+     "id": "B",
+     "text": "$5.0\\text{ m/s}^2$"
+    },
+    {
+     "id": "C",
+     "text": "$7.0\\text{ m/s}^2$"
+    },
+    {
+     "id": "D",
+     "text": "$10\\text{ m/s}^2$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Net kuvvet: $\\sqrt{6.0^2+8.0^2}=10\\text{ N}$ (kuzeydoğu yönünde).<br/>2. $a=\\frac{10}{2.0}=5.0\\text{ m/s}^2$, net kuvvet yönünde.",
+   "genel_hatirlatma": "İvme net kuvvet vektörünün yönündedir; dik kuvvetler Pisagor ile birleşir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Dik kuvvetleri çıkarmak",
+     "aciklama": "$\\frac{8.0-6.0}{2.0}$ hesaplanmış; dik kuvvetler zıt yönlü değildir, çıkarılmaz."
+    },
+    "C": {
+     "etiket": "Dik kuvvetleri doğrudan toplamak",
+     "aciklama": "$\\frac{6.0+8.0}{2.0}$; dik vektörlerin bileşkesi Pisagor ile bulunur."
+    },
+    "D": {
+     "etiket": "Kütleye bölmeyi unutmak",
+     "aciklama": "Bileşke kuvvet $10\\text{ N}$'dir; ivme için $2.0\\text{ kg}$'a bölünmelidir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.5)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Vektörel net kuvvet",
+    "ipucu": "Önce bileşke kuvvet, sonra kütleye böl.",
+    "sikHata": "Vektörleri skaler toplamak",
+    "cedKonu": "2.5",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_40",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 66,
+   "numara": 67,
+   "konu": "2.6 Gravitational Force",
+   "zorluk": "easy",
+   "govde": "Two asteroids exert a gravitational force of magnitude $F$ on each other. If the distance between their centers is tripled and nothing else changes, what is the new magnitude of the gravitational force?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{F}{3}$"
+    },
+    {
+     "id": "B",
+     "text": "$3F$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{F}{9}$"
+    },
+    {
+     "id": "D",
+     "text": "$9F$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $F=\\frac{Gm_1m_2}{r^2}$.<br/>2. $r\\to3r$: $F'=\\frac{Gm_1m_2}{9r^2}=\\frac{F}{9}$.",
+   "genel_hatirlatma": "Ters kare yasası: uzaklık k katına çıkınca kuvvet k² ile bölünür.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Ters kareyi ters orantı sanmak",
+     "aciklama": "Kuvvet $r^2$ ile ters orantılıdır; uzaklık 3 katına çıkınca kuvvet $3^2=9$'a bölünür."
+    },
+    "B": {
+     "etiket": "Uzaklıkla doğru orantı kurmak",
+     "aciklama": "Uzaklık arttıkça çekim azalır, artmaz."
+    },
+    "D": {
+     "etiket": "Kareyi doğru alıp yönü ters çevirmek",
+     "aciklama": "Kare doğru ama $r^2$ paydadadır; kuvvet 9 kat azalır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.6)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Ters kare yasası",
+    "ipucu": "Değişen çarpanları formüle koy ve sadeleştir.",
+    "sikHata": "Uzaklıkla ters (kare değil) orantı kurmak",
+    "cedKonu": "2.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_41",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 67,
+   "numara": 68,
+   "konu": "2.6 Gravitational Force",
+   "zorluk": "medium",
+   "govde": "A planet has half the mass of Earth and half the radius of Earth. The gravitational field strength at Earth's surface is $10\\text{ N/kg}$. What is the gravitational field strength at the surface of the planet?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$5.0\\text{ N/kg}$"
+    },
+    {
+     "id": "B",
+     "text": "$10\\text{ N/kg}$"
+    },
+    {
+     "id": "C",
+     "text": "$20\\text{ N/kg}$"
+    },
+    {
+     "id": "D",
+     "text": "$40\\text{ N/kg}$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $g=\\frac{GM}{R^2}$.<br/>2. $g_P=\\frac{G(M/2)}{(R/2)^2}=\\frac{1/2}{1/4}\\cdot\\frac{GM}{R^2}=2g_E$.<br/>3. $g_P=20\\text{ N/kg}$.",
+   "genel_hatirlatma": "Yüzey alan şiddeti kütleyle doğru, yarıçapın karesiyle ters orantılıdır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yalnız kütleyi hesaba katmak",
+     "aciklama": "Kütle yarıya inince alan yarıya iner, ama yarıçap yarıya inince alan 4 katına çıkar."
+    },
+    "B": {
+     "etiket": "Değişikliklerin birbirini götürdüğünü sanmak",
+     "aciklama": "Kütle ve yarıçap aynı oranda değişse de yarıçap karesiyle girer: $\\frac{1/2}{(1/2)^2}=2$."
+    },
+    "D": {
+     "etiket": "Kütle çarpanını unutmak",
+     "aciklama": "$\\frac{1}{(1/2)^2}=4$ yalnız yarıçap etkisidir; kütlenin $\\frac12$ çarpanı da eklenmelidir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.6)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Gezegen yüzeyinde g",
+    "ipucu": "Oranı tek kesirde yaz: (kütle çarpanı)/(yarıçap çarpanı)².",
+    "sikHata": "Yarıçap etkisinin karesini unutmak",
+    "cedKonu": "2.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_42",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 68,
+   "numara": 69,
+   "konu": "2.6 Gravitational Force",
+   "zorluk": "medium",
+   "govde": "An astronaut weighs $900\\text{ N}$ on Earth's surface. What is the magnitude of the gravitational force exerted by Earth on the astronaut when she is at a height of $2R_E$ above Earth's surface, where $R_E$ is Earth's radius?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0\\text{ N}$"
+    },
+    {
+     "id": "B",
+     "text": "$100\\text{ N}$"
+    },
+    {
+     "id": "C",
+     "text": "$225\\text{ N}$"
+    },
+    {
+     "id": "D",
+     "text": "$300\\text{ N}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Merkezden uzaklık $r=R_E+2R_E=3R_E$.<br/>2. $F\\propto\\frac1{r^2}$: $F=\\frac{900}{3^2}=100\\text{ N}$.",
+   "genel_hatirlatma": "Kütle çekimi formülündeki r, merkezden merkeze uzaklıktır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Uzayda yerçekimi olmadığını sanmak",
+     "aciklama": "Kütle çekimi sonsuz menzillidir; uzaklık arttıkça azalır ama sıfır olmaz."
+    },
+    "C": {
+     "etiket": "Yüksekliği merkezden uzaklık sanmak",
+     "aciklama": "$r=2R_E$ alınmış. Merkezden uzaklık $R_E+2R_E=3R_E$'dir."
+    },
+    "D": {
+     "etiket": "Ters kare yerine ters orantı",
+     "aciklama": "Doğru uzaklık ($3R_E$) bulunmuş ama kare alınmamış: $\\frac{900}{9}$ olmalı."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.6)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Yükseklikle ağırlık değişimi",
+    "ipucu": "Yükseklik verilince r = R + h yaz.",
+    "sikHata": "h'yi r yerine kullanmak",
+    "cedKonu": "2.6",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_43",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 69,
+   "numara": 70,
+   "konu": "2.6 Gravitational Force",
+   "zorluk": "medium",
+   "govde": "A space probe measures the gravitational field strength $g$ at several distances $r$ from the center of a planet of radius $R$.<br/><table class='u-table'><tr><th>$r$</th><td>$R$</td><td>$2R$</td><td>$3R$</td><td>$4R$</td></tr><tr><th>$g$ (N/kg)</th><td>12</td><td>3.0</td><td>1.3</td><td>0.75</td></tr></table>Which graph of the data would be a straight line through the origin?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$g$ versus $r$"
+    },
+    {
+     "id": "B",
+     "text": "$g$ versus $\\frac{1}{r}$"
+    },
+    {
+     "id": "C",
+     "text": "$g$ versus $\\frac{1}{r^2}$"
+    },
+    {
+     "id": "D",
+     "text": "$g$ versus $r^2$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $R\\to2R$: $g$ $12\\to3.0$ (dörtte bir); $R\\to4R$: $12\\to0.75$ (on altıda bir).<br/>2. Bu, $g\\propto\\frac{1}{r^2}$ demektir ($g=\\frac{GM}{r^2}$).<br/>3. $x=\\frac1{r^2}$ seçilirse $g=GM\\cdot x$ → orijinden geçen doğru, eğim $GM$.",
+   "genel_hatirlatma": "Veriden üs bulmak: r k katına çıkınca g kaç katına iniyor? k² ise ters kare.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Azalan her ilişkiyi doğrusal sanmak",
+     "aciklama": "$r$ iki katına çıkınca $g$ dörtte birine iniyor; bu doğrusal değildir."
+    },
+    "B": {
+     "etiket": "Ters orantı varsaymak",
+     "aciklama": "$\\frac1r$ iki katına çıkınca $g$ dört katına çıkıyor; $g\\propto\\frac1r$ değildir."
+    },
+    "D": {
+     "etiket": "Üssün işaretini karıştırmak",
+     "aciklama": "$g$, $r^2$ ile azalır; $g$–$r^2$ grafiği azalan bir eğridir, orijinden geçen doğru değildir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.6)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Ters kare verisini doğrusallaştırma",
+    "ipucu": "İki noktayı oranla karşılaştır: 2 kat uzaklık → 1/4 alan.",
+    "sikHata": "Ters orantıyı ters kare ile karıştırmak",
+    "cedKonu": "2.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_44",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 70,
+   "numara": 71,
+   "konu": "2.6 Gravitational Force",
+   "zorluk": "easy",
+   "govde": "Astronauts aboard a space station in a circular orbit a few hundred kilometers above Earth's surface float freely inside the cabin. Which statement best explains why they feel weightless?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The astronauts and the station are both in free fall toward Earth, so the floor exerts no normal force on them."
+    },
+    {
+     "id": "B",
+     "text": "There is no gravitational force on objects that are outside Earth's atmosphere."
+    },
+    {
+     "id": "C",
+     "text": "The gravitational force exerted by the Moon cancels the gravitational force exerted by Earth."
+    },
+    {
+     "id": "D",
+     "text": "The station's motion creates an outward force that balances gravity."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. İstasyon ve astronotlar aynı ivmeyle ($g$ yerel) Dünya'ya doğru düşer; yana hızları onları yörüngede tutar.<br/>2. Aynı ivmeyle düştükleri için zemin astronota bastırmaz: $F_N=0$.<br/>3. Ağırlık hissi normal kuvvetten gelir; normal kuvvet sıfır → ağırlıksızlık hissi.",
+   "genel_hatirlatma": "Ağırlıksızlık = normal kuvvetin sıfır olması; yerçekiminin yokluğu değil.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Uzayda yerçekimi olmadığını sanmak",
+     "aciklama": "İstasyon yüksekliğinde $g$, yüzeydeki değerin yaklaşık %90'ıdır; yerçekimi hâlâ çok büyüktür."
+    },
+    "C": {
+     "etiket": "Ay'ın çekimini abartmak",
+     "aciklama": "Ay'ın oradaki çekimi Dünya'nınkinden çok küçüktür; ikisi birbirini dengelemez."
+    },
+    "D": {
+     "etiket": "Merkezkaç kuvveti varsaymak",
+     "aciklama": "Eylemsiz çerçevede dışarı doğru bir kuvvet yoktur; net kuvvet (yerçekimi) merkeze doğrudur ve çembersel hareketi sağlar."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.6)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Görünür ağırlıksızlık",
+    "ipucu": "\"Feel weight\" ifadesi normal kuvveti anlatır.",
+    "sikHata": "Yörüngede yerçekimi olmadığını sanmak",
+    "cedKonu": "2.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_45",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 71,
+   "numara": 72,
+   "konu": "2.6 Gravitational Force",
+   "zorluk": "medium",
+   "govde": "On the Moon, where air resistance is absent, an astronaut drops a $2.0\\text{ kg}$ hammer and a $0.030\\text{ kg}$ feather from the same height at the same time. They hit the ground together. Which reasoning best explains this result?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The gravitational forces on the two objects are equal, so their accelerations are equal."
+    },
+    {
+     "id": "B",
+     "text": "The Moon's gravitational field is too weak to produce different accelerations."
+    },
+    {
+     "id": "C",
+     "text": "Objects on the Moon have no inertia, so mass does not matter."
+    },
+    {
+     "id": "D",
+     "text": "The gravitational force on each object is proportional to its mass, and so is its resistance to acceleration, so the ratio is the same for both."
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Her cisme etkiyen çekim: $F_g=mg_{Moon}$ — kütleyle orantılı.<br/>2. İvme: $a=\\frac{F_g}{m}=\\frac{mg_{Moon}}{m}=g_{Moon}$ — kütle sadeleşir.<br/>3. Bunun nedeni çekim kütlesi ile eylemsizlik kütlesinin eşit olmasıdır; her iki cisim aynı ivmeyle düşer.",
+   "genel_hatirlatma": "Serbest düşmede ivme kütleden bağımsızdır, çünkü kuvvet ve eylemsizlik kütleyle aynı oranda artar.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Kuvvetleri eşit sanmak",
+     "aciklama": "Çekim kuvveti kütleyle orantılıdır; çekiç üzerindeki kuvvet tüyünkinden çok büyüktür."
+    },
+    "B": {
+     "etiket": "Zayıf alanın farkı yok ettiğini sanmak",
+     "aciklama": "Dünya'da da hava olmasa aynı sonuç çıkar; sebep alanın zayıflığı değil, $\\frac{F_g}{m}$ oranının sabitliğidir."
+    },
+    "C": {
+     "etiket": "Eylemsizliğin konuma bağlı olduğunu sanmak",
+     "aciklama": "Kütle (eylemsizlik) her yerde aynıdır; yalnız ağırlık konuma göre değişir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.6)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Çekim kütlesi = eylemsizlik kütlesi",
+    "ipucu": "Gerekçede hem F ∝ m hem a = F/m ifadesini kullan.",
+    "sikHata": "Ağır cismin daha hızlı düştüğünü sanmak",
+    "cedKonu": "2.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_46",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 72,
+   "numara": 73,
+   "konu": "2.6 Gravitational Force",
+   "zorluk": "hard",
+   "govde": "A student stands on a bathroom scale inside an elevator. The elevator's cable suddenly breaks, and the elevator falls freely (ignore air resistance and safety brakes). During the fall, which statement is correct?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The scale reads zero, but the gravitational force exerted by Earth on the student is unchanged."
+    },
+    {
+     "id": "B",
+     "text": "The scale reads zero because the gravitational force on the student becomes zero."
+    },
+    {
+     "id": "C",
+     "text": "The scale reads the student's normal weight because the student's mass has not changed."
+    },
+    {
+     "id": "D",
+     "text": "The scale reads twice the student's weight because the elevator is accelerating."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Öğrenci için (yukarı +): $F_N-mg=ma$, $a=-g$.<br/>2. $F_N=m(g-g)=0$: terazi sıfır okur.<br/>3. Yerçekimi kuvveti $mg$ değişmez; tek kuvvet odur ve serbest düşmeyi sağlar.",
+   "genel_hatirlatma": "Gerçek ağırlık (mg) konuma bağlıdır; görünür ağırlık (normal kuvvet) ivmeye bağlıdır.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Terazinin yerçekimini ölçtüğünü sanmak",
+     "aciklama": "Terazi normal kuvveti ölçer. Yerçekimi $mg$ olarak aynen sürer; öğrenciyi aşağı ivmelendiren de odur."
+    },
+    "C": {
+     "etiket": "Görünür ağırlığı gerçek ağırlıkla eşitlemek",
+     "aciklama": "Öğrenci ve terazi aynı ivmeyle düştüğü için terazi öğrenciye kuvvet uygulamaz: $F_N=m(g-g)=0$."
+    },
+    "D": {
+     "etiket": "İvmenin okumayı daima artırdığını sanmak",
+     "aciklama": "Okuma yalnız ivme yukarıysa artar; burada ivme aşağı ve $g$'ye eşit."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.6)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Serbest düşmede görünür ağırlık",
+    "ipucu": "Terazi sorularında FBD çiz ve F_N'i çöz.",
+    "sikHata": "Terazinin yerçekimini ölçtüğünü sanmak",
+    "cedKonu": "2.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_47",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 73,
+   "numara": 74,
+   "konu": "2.6 Gravitational Force",
+   "zorluk": "medium",
+   "govde": "The mass of Earth is about 81 times the mass of the Moon. How do the magnitude of the gravitational force exerted by Earth on the Moon and the magnitude of the acceleration of the Moon compare with the corresponding quantities for Earth?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "Earth exerts 81 times as much force on the Moon; the accelerations are equal."
+    },
+    {
+     "id": "B",
+     "text": "The forces are equal; the accelerations are equal."
+    },
+    {
+     "id": "C",
+     "text": "Earth exerts 81 times as much force on the Moon; the Moon's acceleration is 81 times Earth's."
+    },
+    {
+     "id": "D",
+     "text": "The forces are equal; the Moon's acceleration is about 81 times Earth's acceleration."
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $F_{E\\text{ on }M}=F_{M\\text{ on }E}=\\frac{GM_EM_M}{r^2}$ (aynı formül, aynı büyüklük).<br/>2. $\\frac{a_M}{a_E}=\\frac{F/M_M}{F/M_E}=\\frac{M_E}{M_M}\\approx81$.",
+   "genel_hatirlatma": "Kütle çekimi kuvvetleri her zaman eşit çiftlerdir; ivmeler kütlelerle ters orantılıdır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Kütle oranını kuvvete uygulamak",
+     "aciklama": "Kütle çekimi bir üçüncü yasa çiftidir; iki kuvvet eşittir."
+    },
+    "B": {
+     "etiket": "Eşit kuvveti eşit ivme sanmak",
+     "aciklama": "Kuvvet eşit, kütleler farklı: $a=\\frac{F}{m}$ olduğundan Ay'ın ivmesi 81 kat büyüktür."
+    },
+    "C": {
+     "etiket": "Kuvvet ve ivmeyi birlikte orantılamak",
+     "aciklama": "Kuvvetler eşittir; ivme farkının tamamı kütle farkından gelir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.6)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Kütle çekimi ve üçüncü yasa",
+    "ipucu": "Formülde iki kütle simetriktir: kuvvet iki cisim için aynıdır.",
+    "sikHata": "Büyük kütlenin daha büyük kuvvet uyguladığını sanmak",
+    "cedKonu": "2.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_48",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 74,
+   "numara": 75,
+   "konu": "2.6 Gravitational Force",
+   "zorluk": "hard",
+   "govde": "A planet has a mass of $6.4\\times10^{23}\\text{ kg}$ and a radius of $3.4\\times10^{6}\\text{ m}$. Use $G = 6.67\\times10^{-11}\\text{ N·m}^2/\\text{kg}^2$. What is the gravitational field strength at the planet's surface?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0.92\\text{ N/kg}$"
+    },
+    {
+     "id": "B",
+     "text": "$3.7\\text{ N/kg}$"
+    },
+    {
+     "id": "C",
+     "text": "$13\\text{ N/kg}$"
+    },
+    {
+     "id": "D",
+     "text": "$1.3\\times10^{7}\\text{ N/kg}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $GM=(6.67\\times10^{-11})(6.4\\times10^{23})\\approx4.27\\times10^{13}\\text{ N·m}^2/\\text{kg}$.<br/>2. $R^2=(3.4\\times10^6)^2\\approx1.16\\times10^{13}\\text{ m}^2$.<br/>3. $g=\\frac{4.27\\times10^{13}}{1.16\\times10^{13}}\\approx3.7\\text{ N/kg}$.",
+   "genel_hatirlatma": "g = GM/R²; bilimsel gösterimi hesap makinesine dikkatle gir ve sonucun gerçekçi olup olmadığını kontrol et.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yarıçap yerine çap kullanmak",
+     "aciklama": "$r=6.8\\times10^6\\text{ m}$ alınmış. Formüldeki $r$ merkezden yüzeye uzaklıktır, yani yarıçap."
+    },
+    "C": {
+     "etiket": "Yarıçapın yalnız 10'luk kuvvetinin karesini almak",
+     "aciklama": "$R^2=3.4\\times10^{12}\\text{ m}^2$ yazılmış ($3.4$'ün karesi alınmamış): $\\frac{4.27\\times10^{13}}{3.4\\times10^{12}}\\approx13$. Doğrusu $(3.4)^2\\times10^{12}\\approx1.16\\times10^{13}\\text{ m}^2$."
+    },
+    "D": {
+     "etiket": "Yarıçapın karesini almamak",
+     "aciklama": "$\\frac{GM}{R}$ hesaplanmış; alan $\\frac{GM}{R^2}$'dir. Sonucun gerçekçi olmadığı da bir uyarıdır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.6)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Yüzey alan şiddetini hesaplamak",
+    "ipucu": "Üsleri ayrı hesapla: 10⁻¹¹·10²³ / 10¹² ≈ 10⁰.",
+    "sikHata": "Yarıçapın karesini unutmak",
+    "cedKonu": "2.6",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_49",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 75,
+   "numara": 76,
+   "konu": "2.7 Kinetic and Static Friction",
+   "zorluk": "easy",
+   "govde": "A $10\\text{ kg}$ crate rests on a horizontal floor. The coefficient of static friction between the crate and floor is $0.60$, and the coefficient of kinetic friction is $0.40$. A worker pushes horizontally on the crate with a force of $35\\text{ N}$, and the crate does not move. What is the magnitude of the friction force on the crate?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0\\text{ N}$"
+    },
+    {
+     "id": "B",
+     "text": "$35\\text{ N}$"
+    },
+    {
+     "id": "C",
+     "text": "$40\\text{ N}$"
+    },
+    {
+     "id": "D",
+     "text": "$60\\text{ N}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. En büyük statik sürtünme: $\\mu_sF_N=0.60(100)=60\\text{ N}$.<br/>2. İtme $35\\text{ N}\\lt60\\text{ N}$ → kasa kaymaz.<br/>3. Yatay denge: $F_f=35\\text{ N}$, itmeye zıt yönde.",
+   "genel_hatirlatma": "Statik sürtünme bir eşitsizliktir: 0 ≤ f_s ≤ μ_s F_N; durgun cisimde uygulanan kuvveti dengeler.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Hareketsiz cisimde sürtünme olmadığını sanmak",
+     "aciklama": "Kasa itildiği hâlde durgunsa itmeyi dengeleyen bir statik sürtünme vardır."
+    },
+    "C": {
+     "etiket": "Kinetik sürtünmeyi kullanmak",
+     "aciklama": "$\\mu_kF_N=40\\text{ N}$ yalnız kasa kayarken geçerlidir; kasa kaymıyor."
+    },
+    "D": {
+     "etiket": "Statik sürtünmeyi daima en büyük değerde almak",
+     "aciklama": "$\\mu_sF_N=60\\text{ N}$ yalnız üst sınırdır. Durgun kasada sürtünme gerektiği kadardır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.7)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Statik sürtünmenin değeri",
+    "ipucu": "Önce kaymayı kontrol et: uygulanan kuvvet en büyük statik sürtünmeden küçük mü?",
+    "sikHata": "f_s = μ_s F_N'i her zaman kullanmak",
+    "cedKonu": "2.7",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_50",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 76,
+   "numara": 77,
+   "konu": "2.7 Kinetic and Static Friction",
+   "zorluk": "medium",
+   "govde": "A force sensor pulls horizontally on a $2.0\\text{ kg}$ block resting on a level table. The pulling force is increased slowly from zero. The graph of sensor force versus time rises linearly to a peak of $8.0\\text{ N}$, then drops suddenly and remains nearly constant at $5.0\\text{ N}$ while the block slides at constant speed. What are the coefficients of static and kinetic friction?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\mu_s = 0.25$ and $\\mu_k = 0.40$"
+    },
+    {
+     "id": "B",
+     "text": "$\\mu_s = 0.40$ and $\\mu_k = 0.25$"
+    },
+    {
+     "id": "C",
+     "text": "$\\mu_s = 4.0$ and $\\mu_k = 2.5$"
+    },
+    {
+     "id": "D",
+     "text": "$\\mu_s = 0.15$ and $\\mu_k = 0.25$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $F_N=mg=20\\text{ N}$.<br/>2. Tepe (kaymanın eşiği): $\\mu_s=\\frac{8.0}{20}=0.40$.<br/>3. Sabit hızda kayarken çekme = kinetik sürtünme: $\\mu_k=\\frac{5.0}{20}=0.25$.",
+   "genel_hatirlatma": "Kuvvet-zaman grafiğinde tepe statik, sonraki düz kısım kinetik sürtünmedir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Statik ve kinetiği yer değiştirmek",
+     "aciklama": "Tepe değer harekete başlamadan önceki en büyük statik sürtünmedir; sabit değer kayma sırasındaki kinetik sürtünmedir."
+    },
+    "C": {
+     "etiket": "Kütleye bölmek",
+     "aciklama": "$\\mu=\\frac{F_f}{F_N}$; normal kuvvet $mg=20\\text{ N}$'dir, kütle $2.0\\text{ kg}$ değil."
+    },
+    "D": {
+     "etiket": "Tepe ile sabit değerin farkını almak",
+     "aciklama": "$\\frac{8.0-5.0}{20}=0.15$ anlamlı bir katsayı değildir; her katsayı kendi kuvvetini normal kuvvete bölerek bulunur."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.7)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Kuvvet sensörü grafiğinden μ",
+    "ipucu": "μ = (sürtünme kuvveti) / (normal kuvvet), kütle değil.",
+    "sikHata": "Statik ve kinetik değerleri karıştırmak",
+    "cedKonu": "2.7",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_51",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 77,
+   "numara": 78,
+   "konu": "2.7 Kinetic and Static Friction",
+   "zorluk": "medium",
+   "govde": "A student drags a block at constant speed across a board while adding weights on top of the block to change the normal force. The kinetic friction force is measured each time.<br/><table class='u-table'><tr><th>Normal force (N)</th><td>10</td><td>20</td><td>30</td><td>40</td></tr><tr><th>Friction force (N)</th><td>3.0</td><td>6.0</td><td>9.0</td><td>12</td></tr></table>What is the coefficient of kinetic friction between the block and the board?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0.30$"
+    },
+    {
+     "id": "B",
+     "text": "$1.2$"
+    },
+    {
+     "id": "C",
+     "text": "$3.0$"
+    },
+    {
+     "id": "D",
+     "text": "$3.3$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $F_f=\\mu_kF_N$ → sürtünme–normal kuvvet grafiği orijinden geçen doğru, eğim $\\mu_k$.<br/>2. Eğim: $\\frac{12-3.0}{40-10}=\\frac{9.0}{30}=0.30$.",
+   "genel_hatirlatma": "Sürtünme kuvvetini normal kuvvete karşı çiz; eğim sürtünme katsayısıdır.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Tablo değerlerini yanlış eşleştirmek",
+     "aciklama": "Son sürtünme değeri ($12\\text{ N}$) ilk normal kuvvete ($10\\text{ N}$) bölünmüş. Aynı sütundaki değerler ya da eğim kullanılmalı: $\\frac{12}{40}=0.30$."
+    },
+    "C": {
+     "etiket": "Tek bir sürtünme değerini katsayı sanmak",
+     "aciklama": "Katsayı birimsiz bir orandır; tablodaki ilk sürtünme değeri $3.0\\text{ N}$ bir kuvvettir."
+    },
+    "D": {
+     "etiket": "Oranı ters almak",
+     "aciklama": "$\\frac{F_N}{F_f}$ hesaplanmış. Tanım $\\mu_k=\\frac{F_f}{F_N}$; katsayı genellikle 1'den küçüktür."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.7)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Veriden sürtünme katsayısı",
+    "ipucu": "Eğim için tablonun uç noktalarını kullan.",
+    "sikHata": "Oranı ters almak",
+    "cedKonu": "2.7",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_52",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 78,
+   "numara": 79,
+   "konu": "2.7 Kinetic and Static Friction",
+   "zorluk": "hard",
+   "govde": "A block slides down a ramp inclined at $37^\\circ$ above the horizontal. The coefficient of kinetic friction between the block and the ramp is $0.50$. Use $\\sin37^\\circ \\approx 0.60$ and $\\cos37^\\circ \\approx 0.80$. What is the magnitude of the block's acceleration?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$2.0\\text{ m/s}^2$"
+    },
+    {
+     "id": "B",
+     "text": "$3.0\\text{ m/s}^2$"
+    },
+    {
+     "id": "C",
+     "text": "$6.0\\text{ m/s}^2$"
+    },
+    {
+     "id": "D",
+     "text": "$10\\text{ m/s}^2$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Rampa boyunca (aşağı +): $mg\\sin\\theta-\\mu_kmg\\cos\\theta=ma$.<br/>2. $a=g(\\sin\\theta-\\mu_k\\cos\\theta)=10(0.60-0.50\\times0.80)=10(0.20)$.<br/>3. $a=2.0\\text{ m/s}^2$, rampa boyunca aşağı. Kütle sadeleşir.",
+   "genel_hatirlatma": "Eğik düzlemde: paralel kuvvet mg sin θ, normal kuvvet mg cos θ, sürtünme μ mg cos θ.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Sürtünmede normal kuvvet için sin kullanmak",
+     "aciklama": "Sürtünme $\\mu_kmg\\sin\\theta$ alınmış. Normal kuvvet $mg\\cos\\theta$'dır: $F_f=\\mu_kmg\\cos\\theta$."
+    },
+    "C": {
+     "etiket": "Sürtünmeyi unutmak",
+     "aciklama": "$g\\sin\\theta=6.0$ sürtünmesiz rampanın ivmesidir."
+    },
+    "D": {
+     "etiket": "Sürtünmeyi aşağı yönde eklemek",
+     "aciklama": "Blok aşağı kayarken sürtünme rampa boyunca yukarıdır; çıkarılmalıdır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.7)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Sürtünmeli eğik düzlem",
+    "ipucu": "Önce F_N'i dik denklemden bul, sonra sürtünmeyi hesapla.",
+    "sikHata": "Sürtünmede sin kullanmak",
+    "cedKonu": "2.7",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_53",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 79,
+   "numara": 80,
+   "konu": "2.7 Kinetic and Static Friction",
+   "zorluk": "hard",
+   "govde": "A child moves a sled across level snow at constant velocity. In trial 1 the child pulls with a rope at $30^\\circ$ above the horizontal. In trial 2 the child pushes with a pole at $30^\\circ$ below the horizontal. Which trial requires the smaller magnitude of applied force, and why?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "Trial 2, because pushing transfers force to the sled more directly than pulling."
+    },
+    {
+     "id": "B",
+     "text": "Both trials require the same force, because the angle is the same."
+    },
+    {
+     "id": "C",
+     "text": "Trial 1, because the upward component of the pull reduces the normal force and therefore the kinetic friction."
+    },
+    {
+     "id": "D",
+     "text": "Trial 2, because the downward component increases the normal force, which helps the sled move."
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Deneme 1: $F_N=mg-F\\sin30^\\circ$; Deneme 2: $F_N=mg+F\\sin30^\\circ$.<br/>2. Sabit hız: $F\\cos30^\\circ=\\mu_kF_N$.<br/>3. Deneme 1'de $F_N$ ve sürtünme daha küçüktür → gereken $F$ daha küçüktür.",
+   "genel_hatirlatma": "Açılı kuvvetlerin dikey bileşeni normal kuvveti, dolayısıyla kinetik sürtünmeyi değiştirir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Çekme ve itmeyi doğrudan karşılaştırmak",
+     "aciklama": "Fark yatay bileşende değil dikey bileşendedir; aşağı itme normal kuvveti ve sürtünmeyi artırır."
+    },
+    "B": {
+     "etiket": "Dikey bileşenin etkisini unutmak",
+     "aciklama": "Açılar eşit ama dikey bileşenler zıt yönlüdür; normal kuvvetler ve sürtünmeler farklıdır."
+    },
+    "D": {
+     "etiket": "Normal kuvvetin hareketi kolaylaştırdığını sanmak",
+     "aciklama": "Daha büyük normal kuvvet daha büyük kinetik sürtünme demektir ($F_f=\\mu_kF_N$); hareketi zorlaştırır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.7)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Açılı kuvvet ve sürtünme",
+    "ipucu": "Önce F_N'i karşılaştır, sonra sürtünmeyi.",
+    "sikHata": "Normal kuvveti her durumda mg almak",
+    "cedKonu": "2.7",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_54",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 80,
+   "numara": 81,
+   "konu": "2.7 Kinetic and Static Friction",
+   "zorluk": "medium",
+   "govde": "A crate sits on the flat bed of a truck. The coefficient of static friction between the crate and the bed is $0.40$. What is the maximum forward acceleration the truck can have without the crate slipping?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0.40\\text{ m/s}^2$"
+    },
+    {
+     "id": "B",
+     "text": "$25\\text{ m/s}^2$"
+    },
+    {
+     "id": "C",
+     "text": "$4.0\\text{ m/s}^2$"
+    },
+    {
+     "id": "D",
+     "text": "$10\\text{ m/s}^2$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Sandığa tek yatay kuvvet statik sürtünmedir (ileri).<br/>2. Kaymanın eşiğinde: $\\mu_smg=ma_{max}$.<br/>3. $a_{max}=\\mu_sg=0.40(10)=4.0\\text{ m/s}^2$. Sandığın kütlesi sonucu etkilemez.",
+   "genel_hatirlatma": "Bir cismi yalnız sürtünme ivmelendiriyorsa en büyük ivme μ_s·g'dir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "g ile çarpmayı unutmak",
+     "aciklama": "$a_{max}=\\mu_sg$; katsayı birimsizdir, ivme için $g$ ile çarpılmalıdır."
+    },
+    "B": {
+     "etiket": "g'yi katsayıya bölmek",
+     "aciklama": "$\\frac{g}{\\mu_s}=\\frac{10}{0.40}=25$ hesaplanmış; doğru ilişki $\\mu_smg=ma$, yani $a_{max}=\\mu_sg$."
+    },
+    "D": {
+     "etiket": "İvme sınırını g sanmak",
+     "aciklama": "Sandığı ivmelendiren tek kuvvet statik sürtünmedir ve en fazla $\\mu_smg$ olabilir; bu da $g$'nin yalnız $0.40$ katı kadar ivme verir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.7)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Statik sürtünmeyle ivme sınırı",
+    "ipucu": "Kaymanın eşiği = statik sürtünme en büyük değerde.",
+    "sikHata": "Sürtünmenin hep geri yönde olduğunu sanmak",
+    "cedKonu": "2.7",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_55",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 81,
+   "numara": 82,
+   "konu": "2.7 Kinetic and Static Friction",
+   "zorluk": "hard",
+   "govde": "A $4.0\\text{ kg}$ block on a horizontal table is connected by a light string over an ideal pulley to a hanging $2.0\\text{ kg}$ block. The coefficient of kinetic friction between the table and the $4.0\\text{ kg}$ block is $0.20$. Once the blocks are moving, what is the magnitude of their acceleration?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$2.0\\text{ m/s}^2$"
+    },
+    {
+     "id": "B",
+     "text": "$3.0\\text{ m/s}^2$"
+    },
+    {
+     "id": "C",
+     "text": "$3.3\\text{ m/s}^2$"
+    },
+    {
+     "id": "D",
+     "text": "$6.0\\text{ m/s}^2$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Sistem = iki blok + ip. Hareket yönündeki dış kuvvet: $m_hg=20\\text{ N}$. Karşı kuvvet: $\\mu_km_tg=0.20(40)=8.0\\text{ N}$.<br/>2. $a=\\frac{20-8.0}{4.0+2.0}=\\frac{12}{6.0}=2.0\\text{ m/s}^2$.<br/>3. Gerilme iç kuvvettir; bu sistem seçiminde görünmez.",
+   "genel_hatirlatma": "Bağlı sistemlerde ivme = (hareket yönündeki net dış kuvvet) / (toplam kütle).",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Yalnız masadaki kütleye bölmek",
+     "aciklama": "$\\frac{12}{4.0}$; iki blok birlikte ivmelendiği için toplam kütleye ($6.0\\text{ kg}$) bölünmelidir."
+    },
+    "C": {
+     "etiket": "Sürtünmeyi unutmak",
+     "aciklama": "$\\frac{20}{6.0}$ sürtünmesiz durumun ivmesidir."
+    },
+    "D": {
+     "etiket": "Yalnız asılı kütleye bölmek",
+     "aciklama": "$\\frac{12}{2.0}$; ip iki bloğu birlikte hareket ettirir, tek bloğa bölmek yanlıştır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.7)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Sürtünmeli bağlı sistem",
+    "ipucu": "Önce tüm sistemi al; ip gerilmesi hesaba girmez.",
+    "sikHata": "Yalnız bir bloğun kütlesine bölmek",
+    "cedKonu": "2.7",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_56",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 82,
+   "numara": 83,
+   "konu": "2.7 Kinetic and Static Friction",
+   "zorluk": "easy",
+   "govde": "A student slides a rectangular brick at constant speed across a table, first on its large face and then on its small face, using a spring scale pulling horizontally. The brick and table surfaces are the same in both trials. According to the standard model of kinetic friction, how do the two spring scale readings compare?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "They are equal, because kinetic friction depends on the normal force and the surfaces, not on the contact area."
+    },
+    {
+     "id": "B",
+     "text": "The large-face reading is greater, because more area is in contact with the table."
+    },
+    {
+     "id": "C",
+     "text": "The small-face reading is greater, because the pressure on the table is greater."
+    },
+    {
+     "id": "D",
+     "text": "The readings cannot be compared without knowing the mass of the brick."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Sabit hız: terazi okuması = kinetik sürtünme.<br/>2. İki denemede $F_N=mg$ ve yüzey çifti aynı → $\\mu_k$ aynı.<br/>3. $F_f=\\mu_kF_N$ aynı → okumalar eşit.",
+   "genel_hatirlatma": "Basit sürtünme modelinde sürtünme kuvveti temas alanından bağımsızdır.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Sürtünmeyi temas alanına bağlamak",
+     "aciklama": "AP modelinde $F_f=\\mu_kF_N$; temas alanı formülde yoktur."
+    },
+    "C": {
+     "etiket": "Basıncı sürtünmeyle karıştırmak",
+     "aciklama": "Basınç artsa da toplam normal kuvvet aynıdır ($mg$); sürtünme normal kuvvete bağlıdır."
+    },
+    "D": {
+     "etiket": "Kütlenin karşılaştırma için gerekli olduğunu sanmak",
+     "aciklama": "Aynı tuğla, aynı kütle: iki denemede de $F_N=mg$. Karşılaştırma kütle bilinmeden yapılabilir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.7)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Sürtünme ve temas alanı",
+    "ipucu": "Formülde olmayan değişken sonucu değiştirmez (model içinde).",
+    "sikHata": "Geniş yüzeyin daha çok sürtüneceğini sanmak",
+    "cedKonu": "2.7",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_57",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 83,
+   "numara": 84,
+   "konu": "2.8 Spring Forces",
+   "zorluk": "easy",
+   "govde": "An ideal spring with spring constant $400\\text{ N/m}$ is stretched $5.0\\text{ cm}$ from its natural length. What is the magnitude of the force exerted by the spring?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$2.0\\text{ N}$"
+    },
+    {
+     "id": "B",
+     "text": "$20\\text{ N}$"
+    },
+    {
+     "id": "C",
+     "text": "$80\\text{ N}$"
+    },
+    {
+     "id": "D",
+     "text": "$2000\\text{ N}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $\\Delta x=5.0\\text{ cm}=0.050\\text{ m}$.<br/>2. $F_s=k\\Delta x=(400)(0.050)=20\\text{ N}$.",
+   "genel_hatirlatma": "Hooke yasası: F = kΔx; Δx daima metre cinsinden.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Birim dönüşümünde ondalık hatası",
+     "aciklama": "$5.0\\text{ cm}=0.050\\text{ m}$'dir, $0.0050\\text{ m}$ değil."
+    },
+    "C": {
+     "etiket": "Yay sabitini uzamaya bölmek",
+     "aciklama": "$\\frac{400}{5.0}$ hesaplanmış. Hooke yasası çarpımdır: $F=k\\Delta x$."
+    },
+    "D": {
+     "etiket": "Santimetreyi metreye çevirmemek",
+     "aciklama": "$400\\times5.0$: $k$ N/m biriminde olduğundan $\\Delta x$ metre olmalıdır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.8)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Hooke yasası",
+    "ipucu": "Birimleri önce SI'ya çevir.",
+    "sikHata": "cm'yi metreye çevirmemek",
+    "cedKonu": "2.8",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_58",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 84,
+   "numara": 85,
+   "konu": "2.8 Spring Forces",
+   "zorluk": "medium",
+   "govde": "A student hangs different weights from a vertical spring and records the total length of the spring.<br/><table class='u-table'><tr><th>Force (N)</th><td>0</td><td>2.0</td><td>4.0</td><td>6.0</td></tr><tr><th>Total length (m)</th><td>0.20</td><td>0.25</td><td>0.30</td><td>0.35</td></tr></table>What is the spring constant?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0.025\\text{ N/m}$"
+    },
+    {
+     "id": "B",
+     "text": "$17\\text{ N/m}$"
+    },
+    {
+     "id": "C",
+     "text": "$40\\text{ N/m}$"
+    },
+    {
+     "id": "D",
+     "text": "$120\\text{ N/m}$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Doğal uzunluk $0.20\\text{ m}$ (kuvvet sıfırken). Uzamalar: $0,\\ 0.05,\\ 0.10,\\ 0.15\\text{ m}$.<br/>2. $k=\\frac{\\Delta F}{\\Delta x}=\\frac{6.0}{0.15}=40\\text{ N/m}$ (her aralıkta $\\frac{2.0}{0.05}=40$).",
+   "genel_hatirlatma": "Yay sabiti, kuvvet–uzama grafiğinin eğimidir; uzama doğal uzunluktan ölçülür.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Eğimi ters almak",
+     "aciklama": "$\\frac{\\Delta x}{F}$ hesaplanmış; bu $\\frac1k$'dir (birimi m/N)."
+    },
+    "B": {
+     "etiket": "Uzama yerine toplam uzunluğu kullanmak",
+     "aciklama": "$\\frac{6.0}{0.35}$; Hooke yasasında $\\Delta x$ doğal uzunluktan ($0.20\\text{ m}$) farktır."
+    },
+    "D": {
+     "etiket": "Toplam kuvveti tek aralık uzamasına bölmek",
+     "aciklama": "$\\frac{6.0}{0.05}$; $6.0\\text{ N}$'luk kuvvete karşılık gelen uzama $0.15\\text{ m}$'dir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.8)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Veriden yay sabiti",
+    "ipucu": "Önce kuvvet sıfırken uzunluğu bul ve tüm değerlerden çıkar.",
+    "sikHata": "Toplam uzunluğu uzama sanmak",
+    "cedKonu": "2.8",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_59",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 85,
+   "numara": 86,
+   "konu": "2.8 Spring Forces",
+   "zorluk": "medium",
+   "govde": "Two ideal springs hang side by side from a ceiling and are attached to the same light bar, so they stretch by the same amount. Their spring constants are $100\\text{ N/m}$ and $300\\text{ N/m}$. An $80\\text{ N}$ weight is hung from the middle of the bar so the bar stays horizontal. How far does each spring stretch?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0.20\\text{ m}$"
+    },
+    {
+     "id": "B",
+     "text": "$0.27\\text{ m}$"
+    },
+    {
+     "id": "C",
+     "text": "$0.80\\text{ m}$"
+    },
+    {
+     "id": "D",
+     "text": "$1.1\\text{ m}$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Paralel bağlantı: uzamalar eşit, kuvvetler toplanır → $k_{eq}=100+300=400\\text{ N/m}$.<br/>2. $\\Delta x=\\frac{80}{400}=0.20\\text{ m}$.<br/>3. Kontrol: $100(0.20)+300(0.20)=20+60=80\\text{ N}$ ✓.",
+   "genel_hatirlatma": "Paralel yaylarda yay sabitleri toplanır; seri yaylarda tersleri toplanır.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Yalnız sert yayı hesaba katmak",
+     "aciklama": "$\\frac{80}{300}$; iki yay yükü birlikte taşır, sabitleri toplanır."
+    },
+    "C": {
+     "etiket": "Yalnız yumuşak yayı hesaba katmak",
+     "aciklama": "$\\frac{80}{100}$; paralel bağlantıda $k_{eq}=k_1+k_2=400\\text{ N/m}$."
+    },
+    "D": {
+     "etiket": "Seri bağlantı formülünü kullanmak",
+     "aciklama": "$\\frac{1}{k}=\\frac1{100}+\\frac1{300}$ seri bağlantı içindir; burada yaylar yan yana (paralel) ve uzamaları eşit."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.8)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Paralel yaylar",
+    "ipucu": "Uzamalar eşitse paralel, kuvvetler eşitse seri.",
+    "sikHata": "Paralel ve seri formülleri karıştırmak",
+    "cedKonu": "2.8",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_60",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 86,
+   "numara": 87,
+   "konu": "2.8 Spring Forces",
+   "zorluk": "hard",
+   "govde": "A $2.0\\text{ kg}$ block hangs at rest relative to an elevator from an ideal spring with spring constant $200\\text{ N/m}$ attached to the elevator ceiling. The elevator is accelerating upward at $2.0\\text{ m/s}^2$. By how much is the spring stretched?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0.020\\text{ m}$"
+    },
+    {
+     "id": "B",
+     "text": "$0.080\\text{ m}$"
+    },
+    {
+     "id": "C",
+     "text": "$0.10\\text{ m}$"
+    },
+    {
+     "id": "D",
+     "text": "$0.12\\text{ m}$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Blok FBD'si: yukarı yay kuvveti $k\\Delta x$, aşağı $mg$. Blok asansörle birlikte yukarı ivmeli.<br/>2. $k\\Delta x-mg=ma\\Rightarrow\\Delta x=\\frac{m(g+a)}{k}=\\frac{2.0(12)}{200}$.<br/>3. $\\Delta x=0.12\\text{ m}$.",
+   "genel_hatirlatma": "Yay sorularında da önce FBD ve ikinci yasa; dengede değilse k·Δx ≠ mg.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yalnız ma'yı yaya yüklemek",
+     "aciklama": "Yay hem ağırlığı dengelemeli hem ivmeyi sağlamalı: $k\\Delta x=m(g+a)$."
+    },
+    "B": {
+     "etiket": "İvme yönünü ters almak",
+     "aciklama": "$m(g-a)$ aşağı ivme içindir. Yukarı ivmede yay daha çok uzar."
+    },
+    "C": {
+     "etiket": "Durgun asansör varsaymak",
+     "aciklama": "$\\frac{mg}{k}$ ivmesiz durum içindir; ivme yukarı olduğundan yay kuvveti $mg$'den büyük olmalı."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.8)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "İvmeli sistemde yay",
+    "ipucu": "İvme yukarı → yay kuvveti ağırlıktan büyük.",
+    "sikHata": "Her durumda kΔx = mg yazmak",
+    "cedKonu": "2.8",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_61",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 87,
+   "numara": 88,
+   "konu": "2.8 Spring Forces",
+   "zorluk": "easy",
+   "govde": "Two students hold opposite ends of a horizontal spring scale and pull on it, each with a force of $30\\text{ N}$, so the scale is at rest. What does the spring scale read?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0\\text{ N}$"
+    },
+    {
+     "id": "B",
+     "text": "$15\\text{ N}$"
+    },
+    {
+     "id": "C",
+     "text": "$30\\text{ N}$"
+    },
+    {
+     "id": "D",
+     "text": "$60\\text{ N}$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Yay durgun ve kütlesiz → iki uçtaki kuvvetler eşit ve zıt.<br/>2. Yayın içindeki gerilme (ve göstergedeki okuma) bir uçtaki kuvvete eşittir: $30\\text{ N}$.<br/>3. Duvar örneği: duvar da yaya $30\\text{ N}$ uygular; ikinci öğrenci duvarın yerini alır.",
+   "genel_hatirlatma": "Kütlesiz yay veya ip, iki ucunda aynı kuvveti taşır; okuma bu kuvvettir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Zıt kuvvetlerin yayı etkisiz bıraktığını sanmak",
+     "aciklama": "Net kuvvet sıfırdır ama yay gerilir; bir ucu duvara bağlı yayı $30\\text{ N}$ ile çekmekle aynı durumdur."
+    },
+    "B": {
+     "etiket": "Kuvveti ikiye bölmek",
+     "aciklama": "Kütlesiz yaydaki gerilme her uçtaki kuvvete eşittir; paylaştırılmaz."
+    },
+    "D": {
+     "etiket": "İki ucun kuvvetini toplamak",
+     "aciklama": "Yay gerilmesi uçlardaki kuvvetlerin toplamı değildir; tek bir ucun kuvvetidir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.8)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Yay terazisinde gerilme",
+    "ipucu": "Bir ucu duvara bağlıymış gibi düşün.",
+    "sikHata": "Uçlardaki kuvvetleri toplamak",
+    "cedKonu": "2.8",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_62",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 88,
+   "numara": 89,
+   "konu": "2.8 Spring Forces",
+   "zorluk": "hard",
+   "govde": "A graph shows the magnitude of spring force versus stretch for two ideal springs, A and B. Both graphs are straight lines through the origin. Line A passes through $(0.10\\text{ m},\\ 20\\text{ N})$, and line B passes through $(0.10\\text{ m},\\ 10\\text{ N})$. The same $6.0\\text{ N}$ weight is hung at rest from each spring in turn. What is the ratio of the stretch of spring A to the stretch of spring B?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{1}{4}$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "id": "C",
+     "text": "$2$"
+    },
+    {
+     "id": "D",
+     "text": "$4$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Eğimler: $k_A=\\frac{20}{0.10}=200\\text{ N/m}$, $k_B=\\frac{10}{0.10}=100\\text{ N/m}$.<br/>2. Aynı yük: $\\Delta x=\\frac{F}{k}$ → $\\Delta x_A=0.030\\text{ m}$, $\\Delta x_B=0.060\\text{ m}$.<br/>3. Oran $\\frac{0.030}{0.060}=\\frac12$.",
+   "genel_hatirlatma": "F–Δx grafiğinde daha dik doğru daha sert yaydır; aynı kuvvette daha az uzar.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Orantıyı kare ile kurmak",
+     "aciklama": "Uzama yay sabitiyle ters orantılıdır (birinci kuvvet): $\\frac{\\Delta x_A}{\\Delta x_B}=\\frac{k_B}{k_A}=\\frac12$."
+    },
+    "C": {
+     "etiket": "Oranı ters kurmak",
+     "aciklama": "Sert yay (A) daha az uzar; oran 1'den küçük olmalıdır."
+    },
+    "D": {
+     "etiket": "Ters ve kare hatası birlikte",
+     "aciklama": "Hem oran ters çevrilmiş hem karesi alınmış; Hooke yasası doğrusaldır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.8)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Grafikten yay karşılaştırması",
+    "ipucu": "Önce iki eğimi bul, sonra aynı kuvvet için uzamaları karşılaştır.",
+    "sikHata": "Dik doğrunun daha çok uzama gösterdiğini sanmak",
+    "cedKonu": "2.8",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_63",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 89,
+   "numara": 90,
+   "konu": "2.8 Spring Forces",
+   "zorluk": "hard",
+   "govde": "An ideal spring with spring constant $k$ is cut into two pieces of equal length. The two pieces are then attached side by side (in parallel) to support a load. What is the equivalent spring constant of the parallel pair?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{k}{2}$"
+    },
+    {
+     "id": "B",
+     "text": "$k$"
+    },
+    {
+     "id": "C",
+     "text": "$2k$"
+    },
+    {
+     "id": "D",
+     "text": "$4k$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Orijinal yay iki yarının seri bağlantısıdır: $\\frac1k=\\frac1{k'}+\\frac1{k'}\\Rightarrow k'=2k$.<br/>2. Paralel bağlantı: $k_{eq}=k'+k'=4k$.",
+   "genel_hatirlatma": "Bir yayı n eşit parçaya kesmek her parçanın sabitini n katına çıkarır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Kesilen parçanın yumuşadığını sanmak",
+     "aciklama": "Kısa yay daha serttir: aynı kuvvette uzamaya katkı veren sargı sayısı yarıya iner, uzama yarıya iner → her yarı $2k$."
+    },
+    "B": {
+     "etiket": "Kesme ve paralel bağlamanın birbirini götürdüğünü sanmak",
+     "aciklama": "Her yarı $2k$ olur; paralel bağlantı sabitleri toplar: $2k+2k$."
+    },
+    "C": {
+     "etiket": "Yalnız kesme etkisini almak",
+     "aciklama": "$2k$ tek bir yarının sabitidir; iki yarı paralel bağlandığında $4k$ olur."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.8)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Kesilmiş yay ve eşdeğer sabit",
+    "ipucu": "Orijinal yayı parçalarının seri bağlantısı olarak düşün.",
+    "sikHata": "Kısa yayın daha yumuşak olduğunu sanmak",
+    "cedKonu": "2.8",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_64",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 90,
+   "numara": 91,
+   "konu": "2.8 Spring Forces",
+   "zorluk": "medium",
+   "govde": "A student hangs weights from a spring and measures the stretch.<br/><table class='u-table'><tr><th>Force (N)</th><td>1.0</td><td>2.0</td><td>3.0</td><td>4.0</td><td>5.0</td><td>6.0</td></tr><tr><th>Stretch (m)</th><td>0.020</td><td>0.040</td><td>0.060</td><td>0.080</td><td>0.13</td><td>0.20</td></tr></table>Which conclusion is best supported by the data?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The spring obeys Hooke's law for all the data, with $k = 30\\text{ N/m}$ found from the last data point."
+    },
+    {
+     "id": "B",
+     "text": "Up to about $4.0\\text{ N}$ the spring obeys Hooke's law with $k = 50\\text{ N/m}$; for larger forces it stretches more than Hooke's law predicts."
+    },
+    {
+     "id": "C",
+     "text": "The spring constant increases at larger forces, so the spring becomes stiffer as it is stretched."
+    },
+    {
+     "id": "D",
+     "text": "The data show that the spring force is inversely proportional to the stretch."
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. İlk dört satır: $\\frac{F}{\\Delta x}=\\frac{1.0}{0.020}=\\dots=\\frac{4.0}{0.080}=50\\text{ N/m}$ sabit → Hooke yasası geçerli.<br/>2. $5.0\\text{ N}$'da Hooke tahmini $0.10\\text{ m}$, ölçülen $0.13\\text{ m}$; $6.0\\text{ N}$'da tahmin $0.12\\text{ m}$, ölçülen $0.20\\text{ m}$.<br/>3. Yay doğrusal (elastik) sınırını aşmıştır; $k$ yalnız doğrusal bölgeden hesaplanır.",
+   "genel_hatirlatma": "Hooke yasası yalnız doğrusal bölgede geçerlidir; veride sapma, ideal yay modelinin sınırını gösterir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Doğrusal olmayan bölgeyi görmezden gelmek",
+     "aciklama": "Son noktadan $\\frac{6.0}{0.20}=30$ hesaplanmış; ama ilk dört noktada oran $50\\text{ N/m}$ ve son iki nokta bu doğrudan sapıyor."
+    },
+    "C": {
+     "etiket": "Eğimi ters yorumlamak",
+     "aciklama": "Büyük kuvvetlerde birim kuvvet başına uzama artıyor; yani yay daha yumuşak davranıyor, sertleşmiyor."
+    },
+    "D": {
+     "etiket": "Ters orantı yorumu",
+     "aciklama": "Kuvvet arttıkça uzama da artıyor; ters orantı olsaydı biri artarken diğeri azalırdı."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.8)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Hooke yasasının geçerlilik sınırı",
+    "ipucu": "Her satır için F/Δx oranını hesapla; sabit kalan bölge doğrusal bölgedir.",
+    "sikHata": "Tek bir veri noktasından k hesaplamak",
+    "cedKonu": "2.8",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_65",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 91,
+   "numara": 92,
+   "konu": "2.9 Circular Motion",
+   "zorluk": "easy",
+   "govde": "A toy car moves at a constant speed of $6.0\\text{ m/s}$ around a circular track of radius $3.0\\text{ m}$. What is the magnitude of the car's acceleration?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$2.0\\text{ m/s}^2$"
+    },
+    {
+     "id": "B",
+     "text": "$12\\text{ m/s}^2$"
+    },
+    {
+     "id": "C",
+     "text": "$18\\text{ m/s}^2$"
+    },
+    {
+     "id": "D",
+     "text": "$36\\text{ m/s}^2$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Sabit sürat ama yön değişiyor → merkezcil ivme var.<br/>2. $a_c=\\frac{v^2}{r}=\\frac{36}{3.0}=12\\text{ m/s}^2$, merkeze doğru.",
+   "genel_hatirlatma": "Sabit süratli çembersel harekette ivme sıfır değildir: a = v²/r, merkeze doğru.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Hızı karesini almadan yarıçapa bölmek",
+     "aciklama": "$\\frac{v}{r}$ hesaplanmış; merkezcil ivme $\\frac{v^2}{r}$'dir."
+    },
+    "C": {
+     "etiket": "Hız ile yarıçapı çarpmak",
+     "aciklama": "$v\\cdot r$ ivme birimi vermez (m²/s)."
+    },
+    "D": {
+     "etiket": "Yarıçapa bölmeyi unutmak",
+     "aciklama": "$v^2=36$; ivme için $r=3.0\\text{ m}$'ye bölünür."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.9)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Merkezcil ivme",
+    "ipucu": "\"Constant speed\" ivmenin sıfır olduğu anlamına gelmez.",
+    "sikHata": "Sabit süratte ivmeyi sıfır sanmak",
+    "cedKonu": "2.9",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_66",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 92,
+   "numara": 93,
+   "konu": "2.9 Circular Motion",
+   "zorluk": "medium",
+   "govde": "A small object on a turntable moves in a circle of radius $1.0\\text{ m}$ and completes one revolution every $2.0\\text{ s}$. What is the magnitude of the object's centripetal acceleration?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$3.1\\text{ m/s}^2$"
+    },
+    {
+     "id": "B",
+     "text": "$9.9\\text{ m/s}^2$"
+    },
+    {
+     "id": "C",
+     "text": "$20\\text{ m/s}^2$"
+    },
+    {
+     "id": "D",
+     "text": "$39\\text{ m/s}^2$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $v=\\frac{2\\pi r}{T}=\\frac{2\\pi(1.0)}{2.0}=\\pi\\approx3.14\\text{ m/s}$.<br/>2. $a_c=\\frac{v^2}{r}=\\frac{\\pi^2}{1.0}\\approx9.9\\text{ m/s}^2$.",
+   "genel_hatirlatma": "Periyot verilirse önce v = 2πr/T, sonra a = v²/r (ya da doğrudan a = 4π²r/T²).",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Sürati ivme sanmak",
+     "aciklama": "$v=\\frac{2\\pi r}{T}=3.1\\text{ m/s}$ sürattir; ivme $\\frac{v^2}{r}$ ile bulunur."
+    },
+    "C": {
+     "etiket": "Periyodun karesini almamak",
+     "aciklama": "$\\frac{4\\pi^2r}{T}$ hesaplanmış; doğru ifade $\\frac{4\\pi^2r}{T^2}$."
+    },
+    "D": {
+     "etiket": "Periyoda hiç bölmemek",
+     "aciklama": "$4\\pi^2r$ hesaplanmış; $T^2=4.0\\text{ s}^2$'ye bölünmelidir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.9)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Periyottan merkezcil ivme",
+    "ipucu": "İki adımlı çöz: sürat, sonra ivme.",
+    "sikHata": "T²'yi T almak",
+    "cedKonu": "2.9",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_67",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 93,
+   "numara": 94,
+   "konu": "2.9 Circular Motion",
+   "zorluk": "medium",
+   "govde": "A roller coaster car moves through the bottom of a circular dip in the track at constant speed. Which statement correctly describes the free-body diagram of the car at the lowest point, drawn with relative lengths?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "An upward normal force arrow equal in length to the downward gravitational force arrow"
+    },
+    {
+     "id": "B",
+     "text": "An upward normal force arrow shorter than the downward gravitational force arrow"
+    },
+    {
+     "id": "C",
+     "text": "An upward normal force arrow longer than the downward gravitational force arrow"
+    },
+    {
+     "id": "D",
+     "text": "Upward normal force, downward gravitational force, and a third upward arrow for the centripetal force"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. En alt noktada çemberin merkezi yukarıdadır.<br/>2. Merkeze doğru net kuvvet: $F_N-mg=\\frac{mv^2}{r}\\gt0$.<br/>3. $F_N\\gt mg$ → normal ok daha uzun; yalnız iki ok.",
+   "genel_hatirlatma": "Çembersel harekette FBD'de yalnız gerçek kuvvetler; merkeze doğru olanlar daha baskındır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Sabit süratte net kuvveti sıfır sanmak",
+     "aciklama": "Çembersel harekette net kuvvet merkeze (burada yukarı) doğrudur; oklar eşit olsaydı net kuvvet sıfır olurdu."
+    },
+    "B": {
+     "etiket": "Merkezin yönünü ters almak",
+     "aciklama": "Bu durum tepe noktası içindir. Çukurun dibinde merkez yukarıdadır; net kuvvet yukarı olmalıdır."
+    },
+    "D": {
+     "etiket": "Merkezcil kuvveti ayrı ok çizmek",
+     "aciklama": "Merkezcil kuvvet gerçek kuvvetlerin net sonucudur; FBD'ye ayrı ok olarak eklenmez."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.9)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Çukurun dibinde FBD",
+    "ipucu": "Önce merkezin hangi yönde olduğunu belirle.",
+    "sikHata": "FBD'ye merkezcil kuvvet eklemek",
+    "cedKonu": "2.9",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_68",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 94,
+   "numara": 95,
+   "konu": "2.9 Circular Motion",
+   "zorluk": "hard",
+   "govde": "A cart moves around the inside of a vertical circular loop of radius $2.5\\text{ m}$ on a frictionless track. What is the minimum speed the cart must have at the top of the loop to stay in contact with the track?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0\\text{ m/s}$"
+    },
+    {
+     "id": "B",
+     "text": "$5.0\\text{ m/s}$"
+    },
+    {
+     "id": "C",
+     "text": "$7.1\\text{ m/s}$"
+    },
+    {
+     "id": "D",
+     "text": "$25\\text{ m/s}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Tepede merkez aşağıda; merkeze doğru kuvvetler $F_N$ ve $mg$: $F_N+mg=\\frac{mv^2}{r}$.<br/>2. Temasın sınırı $F_N=0$: $mg=\\frac{mv^2}{r}\\Rightarrow v=\\sqrt{gr}$.<br/>3. $v=\\sqrt{(10)(2.5)}=5.0\\text{ m/s}$.",
+   "genel_hatirlatma": "\"Minimum speed at the top\": normal kuvvet (veya gerilme) sıfır, yerçekimi tek başına merkezcil kuvveti sağlar.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Tepede durabileceğini sanmak",
+     "aciklama": "Sürat sıfır olursa merkezcil ivme olmaz; yerçekimi arabayı raydan ayırıp düşürür."
+    },
+    "C": {
+     "etiket": "Enerji ifadesini karıştırmak",
+     "aciklama": "$\\sqrt{2gr}$ hesaplanmış; tepe koşulu $mg=\\frac{mv^2}{r}$, yani $v=\\sqrt{gr}$."
+    },
+    "D": {
+     "etiket": "Karekökü almayı unutmak",
+     "aciklama": "$gr=25\\text{ m}^2/\\text{s}^2$ $v^2$'dir; sürat için karekök alınır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.9)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Dikey çemberde en küçük sürat",
+    "ipucu": "Sınır koşulunda bir kuvvet sıfır olur.",
+    "sikHata": "Tepede sıfır süratin yeterli olduğunu sanmak",
+    "cedKonu": "2.9",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_69",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 95,
+   "numara": 96,
+   "konu": "2.9 Circular Motion",
+   "zorluk": "hard",
+   "govde": "A $0.20\\text{ kg}$ ball on a string moves in a vertical circle of radius $0.50\\text{ m}$. At the top of the circle, the ball's speed is $3.0\\text{ m/s}$. What is the tension in the string at that instant?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$1.6\\text{ N}$"
+    },
+    {
+     "id": "B",
+     "text": "$2.0\\text{ N}$"
+    },
+    {
+     "id": "C",
+     "text": "$3.6\\text{ N}$"
+    },
+    {
+     "id": "D",
+     "text": "$5.6\\text{ N}$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Tepede merkez aşağıda: $T+mg=\\frac{mv^2}{r}$.<br/>2. $\\frac{mv^2}{r}=\\frac{(0.20)(9.0)}{0.50}=3.6\\text{ N}$; $mg=2.0\\text{ N}$.<br/>3. $T=3.6-2.0=1.6\\text{ N}$.",
+   "genel_hatirlatma": "Tepe noktasında yerçekimi merkeze doğrudur ve gerilmeye yardım eder; en altta karşı koyar.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Gerilmeyi ağırlığa eşitlemek",
+     "aciklama": "Tepede gerilme ve ağırlık birlikte merkezcil kuvveti sağlar; gerilme $mg$ değildir."
+    },
+    "C": {
+     "etiket": "Ağırlığın katkısını unutmak",
+     "aciklama": "$\\frac{mv^2}{r}=3.6\\text{ N}$ net merkezcil kuvvettir; tepede yerçekimi de merkeze doğru olduğu için çıkarılmalı."
+    },
+    "D": {
+     "etiket": "En alt nokta formülünü kullanmak",
+     "aciklama": "$T=mg+\\frac{mv^2}{r}$ en alt nokta içindir; tepede yerçekimi merkeze doğrudur."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.9)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Dikey çemberin tepesinde gerilme",
+    "ipucu": "Merkez yönünü + al; merkeze doğru kuvvetleri topla.",
+    "sikHata": "Tepe ve dip formüllerini karıştırmak",
+    "cedKonu": "2.9",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_70",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 96,
+   "numara": 97,
+   "konu": "2.9 Circular Motion",
+   "zorluk": "medium",
+   "govde": "A car rounds an unbanked curve of radius $20\\text{ m}$. The coefficient of static friction between the tires and the road is $0.50$. What is the maximum speed at which the car can round the curve without slipping?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$7.1\\text{ m/s}$"
+    },
+    {
+     "id": "B",
+     "text": "$10\\text{ m/s}$"
+    },
+    {
+     "id": "C",
+     "text": "$14\\text{ m/s}$"
+    },
+    {
+     "id": "D",
+     "text": "$100\\text{ m/s}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Merkezcil kuvveti statik sürtünme sağlar: $F_f=\\frac{mv^2}{r}\\le\\mu_smg$.<br/>2. Sınır: $v_{max}=\\sqrt{\\mu_sgr}=\\sqrt{(0.50)(10)(20)}=\\sqrt{100}$.<br/>3. $v_{max}=10\\text{ m/s}$; kütle sadeleşir.",
+   "genel_hatirlatma": "Düz virajda en büyük sürat √(μ_s g r); arabanın kütlesine bağlı değildir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Katsayıyı karekökün dışında çarpmak",
+     "aciklama": "$\\mu_s\\sqrt{gr}$ hesaplanmış; doğru ifade $\\sqrt{\\mu_sgr}$."
+    },
+    "C": {
+     "etiket": "Sürtünme katsayısını unutmak",
+     "aciklama": "$\\sqrt{gr}$; merkezcil kuvveti sağlayan sürtünme en fazla $\\mu_smg$'dir."
+    },
+    "D": {
+     "etiket": "Karekökü almamak",
+     "aciklama": "$\\mu_sgr=100$ $v^2$'dir; sürat $10\\text{ m/s}$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.9)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Düz virajda en büyük sürat",
+    "ipucu": "Sürtünmeyi merkezcil kuvvete eşitle.",
+    "sikHata": "Karekök almayı unutmak",
+    "cedKonu": "2.9",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_71",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 97,
+   "numara": 98,
+   "konu": "2.9 Circular Motion",
+   "zorluk": "hard",
+   "govde": "A car rounds a flat, unbanked curve at constant speed without slipping. The driver then rounds the same curve at twice the speed. Which statement correctly describes the required friction force and the possible outcome?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The required static friction doubles; if that exceeds the maximum, the car slides toward the center of the curve."
+    },
+    {
+     "id": "B",
+     "text": "The required static friction is unchanged, because the radius and mass are unchanged."
+    },
+    {
+     "id": "C",
+     "text": "The required static friction becomes four times as large; if that exceeds the maximum, an outward centrifugal force throws the car straight away from the center."
+    },
+    {
+     "id": "D",
+     "text": "The required static friction becomes four times as large; if that exceeds the maximum static friction, the car slides toward the outside of the curve."
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Gereken merkezcil kuvvet: $F_f=\\frac{mv^2}{r}$; $v\\to2v$ ise $F_f\\to4F_f$.<br/>2. Statik sürtünme en fazla $\\mu_smg$; gereken değer bunu aşarsa lastikler kayar.<br/>3. İçe doğru kuvvet yetersiz kalınca araba eğri yarıçapını koruyamaz, daha geniş (dışa doğru, teğete yakın) bir yolda kayar.",
+   "genel_hatirlatma": "Merkezcil kuvvet v² ile artar; yetersiz kalırsa cisim dışa doğru kayar ama bunu bir \"dış kuvvet\" yapmaz.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Doğrusal orantı ve yanlış yön",
+     "aciklama": "$F=\\frac{mv^2}{r}$: sürat iki katı → kuvvet dört katı. Yeterli sürtünme yoksa araba yolunu yeterince bükemez ve dışa doğru kayar."
+    },
+    "B": {
+     "etiket": "Süratin etkisini unutmak",
+     "aciklama": "Gereken merkezcil kuvvet süratin karesiyle artar."
+    },
+    "C": {
+     "etiket": "Merkezkaç kuvveti varsaymak",
+     "aciklama": "Dışa doğru bir kuvvet yoktur. Araba, yeterli içe doğru kuvvet olmadığı için yaklaşık teğet bir yolda, virajın dışına doğru kayar."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.9)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Viraj süratı ve sürtünme sınırı",
+    "ipucu": "v iki katı → v² dört katı.",
+    "sikHata": "Merkezkaç kuvveti gerçek kuvvet sanmak",
+    "cedKonu": "2.9",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_72",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 98,
+   "numara": 99,
+   "konu": "2.9 Circular Motion",
+   "zorluk": "easy",
+   "govde": "A ball tied to a string moves counterclockwise in a horizontal circle on a frictionless table, as viewed from above. At the instant the ball is at the northernmost point of the circle, the string breaks. As viewed from above, in which direction does the ball move immediately after the string breaks?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "West"
+    },
+    {
+     "id": "B",
+     "text": "North"
+    },
+    {
+     "id": "C",
+     "text": "South"
+    },
+    {
+     "id": "D",
+     "text": "East"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Hız her an çembere teğettir. Yukarıdan bakınca saat yönünün tersine: doğu → kuzey → batı → güney.<br/>2. En kuzey noktada teğet doğrultu doğu–batıdır; dönüş yönü batıya doğrudur.<br/>3. İp kopunca masa sürtünmesiz → net kuvvet sıfır, top batıya düz gider (birinci yasa).",
+   "genel_hatirlatma": "Merkezcil kuvvet kalkınca cisim teğet doğrultuda düz gider.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Topun dışarı doğru radyal fırladığını sanmak",
+     "aciklama": "İp koptuğunda top dışarı itilmez; o anki hız vektörüyle (çembere teğet) düz gider."
+    },
+    "C": {
+     "etiket": "Merkeze doğru gideceğini sanmak",
+     "aciklama": "İp koptuktan sonra merkeze doğru kuvvet kalmaz; top merkeze yönelmez."
+    },
+    "D": {
+     "etiket": "Dönme yönünü ters okumak",
+     "aciklama": "Saat yönünün tersinde (yukarıdan) en kuzey noktada hareket batıya doğrudur; doğu saat yönündeki dönüş için geçerlidir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.9)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "İp kopunca hareket yönü",
+    "ipucu": "Önce o noktadaki hız vektörünü çiz.",
+    "sikHata": "Topun merkezden dışarı fırladığını sanmak",
+    "cedKonu": "2.9",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_73",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 99,
+   "numara": 100,
+   "konu": "2.9 Circular Motion",
+   "zorluk": "easy",
+   "govde": "Two satellites orbit Earth in circular orbits of the same radius. Satellite 2 has twice the mass of satellite 1. How do their orbital speeds compare?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "Satellite 2 is faster, because the gravitational force on it is twice as large."
+    },
+    {
+     "id": "B",
+     "text": "Satellite 1 is faster, because it has less inertia."
+    },
+    {
+     "id": "C",
+     "text": "The speeds are equal."
+    },
+    {
+     "id": "D",
+     "text": "Satellite 1 is faster by a factor of $\\sqrt{2}$."
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Kütle çekimi merkezcil kuvveti sağlar: $\\frac{GMm}{r^2}=\\frac{mv^2}{r}$.<br/>2. $v=\\sqrt{\\frac{GM}{r}}$ — uydu kütlesi $m$ sadeleşir.<br/>3. Aynı $r$ → aynı sürat (ve aynı periyot).",
+   "genel_hatirlatma": "Yörünge sürati yalnız merkezdeki cismin kütlesine ve yörünge yarıçapına bağlıdır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Kuvveti ivmeyle karıştırmak",
+     "aciklama": "Kuvvet iki katı ama eylemsizlik de iki katı; $\\frac{GMm}{r^2}=\\frac{mv^2}{r}$ denkleminde $m$ sadeleşir."
+    },
+    "B": {
+     "etiket": "Yalnız eylemsizliğe bakmak",
+     "aciklama": "Az eylemsizlik, aynı oranda az kuvvetle birlikte gelir; sürat değişmez."
+    },
+    "D": {
+     "etiket": "Kütleyi formülde bırakmak",
+     "aciklama": "$v=\\sqrt{\\frac{GM}{r}}$; $M$ Dünya'nın kütlesidir, uydunun kütlesi formülde yoktur."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.9)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Yörünge sürati ve uydu kütlesi",
+    "ipucu": "Kuvvet ve eylemsizlik aynı m ile ölçeklenir.",
+    "sikHata": "Ağır uydunun daha hızlı olduğunu sanmak",
+    "cedKonu": "2.9",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_74",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 100,
+   "numara": 101,
+   "konu": "2.9 Circular Motion",
+   "zorluk": "hard",
+   "govde": "A rubber stopper on a string moves in a horizontal circle of radius $0.80\\text{ m}$ on a frictionless table. A force sensor measures the tension for several speeds.<br/><table class='u-table'><tr><th>$v^2$ (m²/s²)</th><td>4.0</td><td>8.0</td><td>12</td><td>16</td></tr><tr><th>Tension (N)</th><td>1.0</td><td>2.0</td><td>3.0</td><td>4.0</td></tr></table>What is the mass of the stopper?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$0.20\\text{ kg}$"
+    },
+    {
+     "id": "B",
+     "text": "$0.25\\text{ kg}$"
+    },
+    {
+     "id": "C",
+     "text": "$0.31\\text{ kg}$"
+    },
+    {
+     "id": "D",
+     "text": "$3.2\\text{ kg}$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Yatay çember: gerilme tek merkezcil kuvvet → $T=\\frac{m}{r}v^2$; $T$–$v^2$ grafiği doğru, eğim $\\frac{m}{r}$.<br/>2. Eğim $=\\frac{4.0-1.0}{16-4.0}=0.25\\text{ kg/m}$.<br/>3. $m=(0.25)(0.80)=0.20\\text{ kg}$.",
+   "genel_hatirlatma": "Doğrusallaştırılmış grafikte eğimi formüldeki katsayıyla eşleştir: T = (m/r)·v².",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Eğimi doğrudan kütle sanmak",
+     "aciklama": "Eğim $\\frac{m}{r}=0.25\\text{ kg/m}$'dir; kütle için $r$ ile çarpılmalıdır."
+    },
+    "C": {
+     "etiket": "Eğimi yarıçapa bölmek",
+     "aciklama": "$\\frac{0.25}{0.80}$ hesaplanmış; $T=\\frac{m}{r}v^2$ olduğundan $m=\\text{eğim}\\times r$."
+    },
+    "D": {
+     "etiket": "Eğimi ters almak",
+     "aciklama": "$\\frac{r}{\\text{eğim}}$ hesaplanmış; eğim $\\frac{\\Delta T}{\\Delta v^2}$'dir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.9)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Merkezcil kuvvet verisinden kütle",
+    "ipucu": "Denklemi y = (eğim)·x biçimine yaz, eğimin neye karşılık geldiğini oku.",
+    "sikHata": "Eğimi doğrudan kütle sanmak",
+    "cedKonu": "2.9",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u2_75",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "phys-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Force & Dynamics",
+   "dizi": "PHYS_UNIT2_QUESTIONS",
+   "sira": 101,
+   "numara": 102,
+   "konu": "2.9 Circular Motion",
+   "zorluk": "medium",
+   "govde": "A car travels counterclockwise around a circular track and is speeding up. Which statement best describes the direction of the car's acceleration?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "It points exactly toward the center of the circle."
+    },
+    {
+     "id": "B",
+     "text": "It points partly toward the center of the circle and partly in the direction of the car's velocity."
+    },
+    {
+     "id": "C",
+     "text": "It points exactly in the direction of the car's velocity."
+    },
+    {
+     "id": "D",
+     "text": "It points partly away from the center and partly in the direction of the car's velocity."
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Radyal bileşen: $a_c=\\frac{v^2}{r}$, merkeze doğru (yön değişimi).<br/>2. Teğetsel bileşen: sürat arttığı için hız yönünde.<br/>3. Toplam ivme iki dik bileşenin vektör toplamıdır; merkez ile hız yönü arasında bir yöne bakar.",
+   "genel_hatirlatma": "Sürati değişen çembersel harekette ivme = merkezcil + teğetsel bileşen.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Her çembersel harekette ivmenin merkeze olduğunu sanmak",
+     "aciklama": "Bu yalnız sabit süratte doğrudur. Sürat artıyorsa hızla aynı yönde teğetsel bir bileşen de vardır."
+    },
+    "C": {
+     "etiket": "Merkezcil bileşeni unutmak",
+     "aciklama": "Yön değiştiği sürece merkeze doğru $\\frac{v^2}{r}$ bileşeni de vardır."
+    },
+    "D": {
+     "etiket": "Merkezkaç yönünü kullanmak",
+     "aciklama": "Radyal bileşen her zaman merkeze doğrudur; dışarı doğru ivme yoktur."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.9)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Teğetsel ve merkezcil ivme",
+    "ipucu": "Önce yön değişimi (merkezcil), sonra sürat değişimi (teğetsel) sor.",
+    "sikHata": "İvmenin daima merkeze doğru olduğunu sanmak",
+    "cedKonu": "2.9",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
   }
  ],
  "icerikGuncelleme": "2026-10-24T14:48:10.000Z",
- "yeniSoruEkleme": "2026-10-24T16:51:06.431Z"
+ "yeniSoruEkleme": "2026-10-24T16:55:01.385Z"
 }
