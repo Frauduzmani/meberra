@@ -1,0 +1,999 @@
+{
+ "ders": "precalculus",
+ "unite": 1,
+ "baslik": "Polynomial and Rational Functions",
+ "baslikTr": "Polinom ve rasyonel fonksiyonlar",
+ "konular": [
+  {
+   "kod": "1.1",
+   "baslik": "Change in Tandem",
+   "baslikTr": "Birlikte değişim: girdi ve çıktı birlikte nasıl değişir?",
+   "hedefler": [
+    "Fonksiyonu (function) girdi–çıktı eşlemesi olarak tanımlamak ve tablo, grafik, formül ve sözel gösterimler arasında geçiş yapmak.",
+    "Bir fonksiyonun bir aralıkta artan (increasing) ya da azalan (decreasing) olduğunu girdi–çıktı değerlerini karşılaştırarak gerekçelendirmek.",
+    "Grafikte sıfırları (zeros), kesişim noktalarını (intercepts) ve pozitif/negatif aralıkları okumak."
+   ],
+   "anlatim": "<p>Precalculus'un ilk fikri şudur: iki büyüklük <strong>birlikte (in tandem)</strong> değişir. Bir fonksiyon (function), her <strong>girdi değerine (input value)</strong> tam olarak <strong>bir</strong> <strong>çıktı değeri (output value)</strong> atayan kuraldır. Girdi kümesine <strong>tanım kümesi (domain)</strong>, çıktıların oluşturduğu kümeye <strong>değer kümesi (range)</strong> denir.</p>\n<div class=\"kn-tanim\"><strong>Fonksiyon (function):</strong> \\(y=f(x)\\) yazınca \\(x\\) girdidir (bağımsız değişken, independent variable), \\(y\\) çıktıdır (bağımlı değişken, dependent variable). Aynı girdi iki farklı çıktı veremez.</div>\n<h4>Dört gösterim</h4>\n<p>AP Precalculus her fonksiyonu dört biçimde görmenizi ister: <strong>grafik (graphical)</strong>, <strong>sayısal/tablo (numerical)</strong>, <strong>cebirsel/formül (analytical)</strong> ve <strong>sözel (verbal)</strong>. Sınavda en çok puan kaybı, bir gösterimden diğerine geçerken olur. Örneğin “sıcaklık zamanla azalıyor” cümlesi, grafikte soldan sağa inen bir eğridir.</p>\n<h4>Artan ve azalan</h4>\n<div class=\"kn-kural\"><strong>Artan (increasing):</strong> Bir aralıkta girdi değerleri artarken çıktı değerleri de artıyorsa: \\(a\\lt b\\) için \\(f(a)\\lt f(b)\\).<br><strong>Azalan (decreasing):</strong> Girdi artarken çıktı azalıyorsa: \\(a\\lt b\\) için \\(f(a)\\gt f(b)\\).</div>\n<p>Dikkat: Bu tanım <em>aralıktaki her</em> iki nokta için geçerli olmalıdır. Bir tabloda yalnızca birkaç değer görüyorsanız, “verilen değerlere göre artan görünüyor” diyebilirsiniz; tablonun arasında ne olduğunu bilemezsiniz.</p>\n<table><thead><tr><th>\\(x\\)</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th></tr></thead><tbody><tr><td>\\(f(x)\\)</td><td>5</td><td>3</td><td>2</td><td>4</td><td>9</td></tr></tbody></table>\n<p>Bu tabloda \\(x\\) 0'dan 2'ye artarken çıktılar 5, 3, 2 diye azalır; 2'den 4'e artarken 2, 4, 9 diye artar. Yani veriler, fonksiyonun önce azalıp sonra arttığını gösterir.</p>\n<h4>Sıfırlar ve işaret</h4>\n<p>\\(f(x)=0\\) yapan girdiye <strong>sıfır (zero)</strong> ya da <strong>kök (root)</strong> denir; grafikte bu nokta <strong>x-kesişimidir (x-intercept)</strong>. \\(f(0)\\) değeri <strong>y-kesişimidir (y-intercept)</strong>. Sürekli bir fonksiyon pozitiften negatife geçiyorsa arada bir sıfırdan geçmek zorundadır; bu yüzden işaret değişimi sıfır avının ilk ipucudur.</p>\n<h4>Grafiği okumak: hangi soru, hangi bakış?</h4>\n<table><thead><tr><th>Soru</th><th>Grafikte neye bakılır?</th></tr></thead><tbody>\n<tr><td>Artan mı?</td><td>Soldan sağa yükseliyor mu</td></tr>\n<tr><td>Pozitif mi?</td><td>Eğri x-ekseninin üstünde mi</td></tr>\n<tr><td>Sıfırı nerede?</td><td>Eğri x-eksenini nerede kesiyor</td></tr>\n<tr><td>Çıktı aralığı?</td><td>En alt ve en üst y-değerleri (range)</td></tr></tbody></table>\n<div class=\"kn-dikkat\">“Artan” ile “pozitif” farklıdır! Bir fonksiyon negatif değerlerde artabilir (ör. \\(-5\\)'ten \\(-1\\)'e çıkan eğri). Artanlık çıktının <em>değişimine</em>, pozitiflik çıktının <em>kendisine</em> bakar.</div>\n<h4>FRQ dili</h4>\n<p>Q1 (Function Concepts) sık sık “Is \\(f\\) increasing on the interval …? Give a reason for your answer.” diye sorar. Puan getiren kalıp: <em>“f is increasing on (a, b) because as the input values increase, the output values increase.”</em> Yalnızca “yes” yazmak puan getirmez; gerekçe (reason) zorunludur.</p>",
+   "ornekler": [
+    {
+     "soru": "Bir kafe, sabah açıldıktan \\(t\\) saat sonra içerideki müşteri sayısını \\(C(t)\\) ile modelliyor. Değerler: \\(C(0)=4,\\ C(1)=12,\\ C(2)=20,\\ C(3)=17,\\ C(4)=9\\). Verilere göre \\(C\\) hangi aralıkta artıyor, hangi aralıkta azalıyor?",
+     "cozum": [
+      "\\(t\\) 0'dan 2'ye artarken \\(C\\) değerleri 4, 12, 20: çıktılar artıyor.",
+      "\\(t\\) 2'den 4'e artarken \\(C\\) değerleri 20, 17, 9: çıktılar azalıyor.",
+      "Sonuç: verilere göre \\(C\\) yaklaşık \\([0,2]\\) aralığında artan, \\([2,4]\\) aralığında azalan. Tepe noktası verilere göre \\(t=2\\) civarındadır (ama tablo aralarındaki değerleri göstermez)."
+     ]
+    },
+    {
+     "soru": "\\(f(x)=x^2-6x+5\\) fonksiyonunun sıfırlarını bulun ve \\(f\\)'nin negatif olduğu aralığı belirleyin.",
+     "cozum": [
+      "Çarpanlara ayırın: \\(x^2-6x+5=(x-1)(x-5)\\). Sıfırlar \\(x=1\\) ve \\(x=5\\).",
+      "\\(x=3\\) deneyin: \\(f(3)=9-18+5=-4\\lt 0\\). Demek ki iki sıfır arasında fonksiyon negatif.",
+      "\\(f(x)\\lt 0\\) aralığı: \\((1,5)\\). Dışında (\\(x\\lt 1\\) ya da \\(x\\gt 5\\)) pozitif."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(g\\) fonksiyonu için \\(g(-2)=-7\\) ve \\(g(3)=-1\\) veriliyor. Bir öğrenci “\\(g\\) negatif olduğu için \\([-2,3]\\) aralığında azalandır” diyor. Bu gerekçeyi değerlendirin.",
+     "cozum": [
+      "Azalanlık çıktının işaretine değil, girdi artarken çıktının nasıl değiştiğine bağlıdır.",
+      "Girdi \\(-2\\)'den \\(3\\)'e artarken çıktı \\(-7\\)'den \\(-1\\)'e <em>artmıştır</em>. Bu iki değer azalanlıkla çelişir.",
+      "Cevap: “The reasoning is incorrect. Being negative does not imply decreasing; since \\(g(-2)\\lt g(3)\\), \\(g\\) is not decreasing on \\([-2,3]\\).”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi kuralı: Bölüm I Part A (28 soru) ve FRQ Part B (Q3, Q4) hesap makinesizdir; Bölüm I Part B (12 soru) ve FRQ Part A (Q1 Function Concepts, Q2 Modeling a Non-Periodic Context) grafik hesap makinesi ister.",
+    "“Give a reason” gördüğünüzde girdi ve çıktıyı birlikte anın: “as the input values increase, the output values decrease”.",
+    "Tablodan yalnızca verilen noktalar hakkında kesin konuşabilirsiniz; aradaki davranış için “based on the data” ifadesini kullanın.",
+    "Aralık yazarken girdi (x) değerlerini yazın, çıktıları değil: “increasing on (2, 5)” — burada 2 ve 5 x-değerleridir."
+   ],
+   "sikHatalar": [
+    "Artanlık ile pozitifliği karıştırmak: negatif ama artan bir fonksiyon olabilir.",
+    "Artan/azalan aralığını y-değerleriyle yazmak.",
+    "Tabloda birkaç değer artıyor diye fonksiyonun aradaki her noktada arttığından emin olmak."
+   ],
+   "terimler": [
+    {
+     "en": "function",
+     "tr": "fonksiyon"
+    },
+    {
+     "en": "input / output value",
+     "tr": "girdi / çıktı değeri"
+    },
+    {
+     "en": "domain",
+     "tr": "tanım kümesi"
+    },
+    {
+     "en": "range",
+     "tr": "değer kümesi"
+    },
+    {
+     "en": "increasing / decreasing",
+     "tr": "artan / azalan"
+    },
+    {
+     "en": "zero (root)",
+     "tr": "sıfır (kök)"
+    },
+    {
+     "en": "x-intercept / y-intercept",
+     "tr": "x-kesişimi / y-kesişimi"
+    }
+   ]
+  },
+  {
+   "kod": "1.2",
+   "baslik": "Rates of Change",
+   "baslikTr": "Değişim hızları",
+   "hedefler": [
+    "Bir aralıkta ortalama değişim hızını (average rate of change) hesaplamak ve birimiyle yorumlamak.",
+    "Bir noktadaki değişim hızını (rate of change at a point) küçülen aralıklardaki ortalama hızlarla tahmin etmek.",
+    "Değişim hızının işaretini fonksiyonun artan/azalan olmasıyla ilişkilendirmek."
+   ],
+   "anlatim": "<p>1.1'de “çıktı artıyor mu?” diye sorduk. Şimdi “<strong>ne kadar hızlı</strong> artıyor?” diye soruyoruz. Bunun ölçüsü <strong>değişim hızıdır (rate of change)</strong>.</p>\n<div class=\"kn-tanim\"><strong>Ortalama değişim hızı (average rate of change, AROC):</strong> \\(f\\)'nin \\([a,b]\\) aralığındaki ortalama değişim hızı\n\\[ \\frac{f(b)-f(a)}{b-a} \\]\ndir. Grafikte bu sayı, \\((a,f(a))\\) ve \\((b,f(b))\\) noktalarını birleştiren <strong>kesen doğrusunun (secant line)</strong> eğimidir (slope).</div>\n<p>Birim her zaman “çıktı birimi / girdi birimi”dir. Örneğin \\(h(t)\\) metre, \\(t\\) saniye ise AROC'un birimi metre/saniyedir. AP sınavı “interpret” dediğinde birimi ve aralığı mutlaka yazın.</p>\n<h4>Örnek hesap</h4>\n<p>\\(f(x)=x^3\\) için \\([1,3]\\) aralığında: \\(\\dfrac{27-1}{3-1}=13\\). Yani \\(x\\) 1'den 3'e giderken, \\(x\\)'teki her 1 birimlik artış için \\(f\\) <em>ortalamada</em> 13 birim artar.</p>\n<h4>Bir noktadaki değişim hızı</h4>\n<p>Tek bir noktada aralık uzunluğu sıfırdır, formül \\(\\frac{0}{0}\\) olur. Çözüm: noktayı içeren <strong>giderek küçülen aralıklarda</strong> ortalama hızları hesaplamak. Bu ortalamalar bir sayıya yaklaşıyorsa, o sayı <strong>o noktadaki değişim hızının (rate of change at a point)</strong> tahminidir. Grafikte bu, o noktadaki teğet doğrusunun eğimidir.</p>\n<table><thead><tr><th>Aralık</th><th>\\([2,3]\\)</th><th>\\([2,2.1]\\)</th><th>\\([2,2.01]\\)</th><th>\\([1.99,2]\\)</th></tr></thead><tbody><tr><td>\\(x^2\\) için AROC</td><td>5</td><td>4.1</td><td>4.01</td><td>3.99</td></tr></tbody></table>\n<p>İki taraftan da değerler 4'e yaklaşıyor: \\(x^2\\)'nin \\(x=2\\)'deki değişim hızı yaklaşık 4'tür. (Calculus'ta buna türev denir; Precalculus'ta yalnızca <em>tahmin</em> yapılır.)</p>\n<h4>İşaret ne anlatır?</h4>\n<div class=\"kn-kural\">Bir aralıkta değişim hızı pozitifse fonksiyon orada artan, negatifse azalandır. Bir noktadaki değişim hızı pozitifse, o noktanın çevresinde çıktılar artmaktadır.</div>\n<div class=\"kn-dikkat\">AROC'un pozitif olması, aralıkta fonksiyonun <em>her yerde</em> arttığını göstermez! \\([0,4]\\)'te AROC pozitif olabilir ama fonksiyon arada inip çıkmış olabilir. AROC yalnızca iki uç noktayı karşılaştırır.</div>\n<h4>FRQ dili</h4>\n<p>Q1 sık sorar: “Find the average rate of change of \\(f\\) on \\([a,b]\\). Interpret it.” Puan getiren kalıp: <em>“On the interval from t = 2 to t = 5 hours, the temperature decreases by an average of 3 degrees per hour.”</em> Üç öğe: aralık, yön (increases/decreases), birimli miktar. “Average” kelimesini unutmayın.</p>",
+   "ornekler": [
+    {
+     "soru": "Bir tankın su seviyesi \\(W(t)\\) cm (\\(t\\) dakika): \\(W(0)=80,\\ W(5)=65,\\ W(10)=58\\). \\([0,10]\\) aralığındaki ortalama değişim hızını bulun ve yorumlayın.",
+     "cozum": [
+      "\\(\\dfrac{W(10)-W(0)}{10-0}=\\dfrac{58-80}{10}=-2.2\\) cm/dakika.",
+      "Yorum: \\(t=0\\) ile \\(t=10\\) dakika arasında su seviyesi dakikada ortalama 2.2 cm azalır."
+     ]
+    },
+    {
+     "soru": "\\(g(x)=\\sqrt{x}\\) için \\([4,4.01]\\) ve \\([3.99,4]\\) aralıklarında AROC'u hesaplayıp \\(x=4\\)'teki değişim hızını tahmin edin.",
+     "cozum": [
+      "\\(\\dfrac{\\sqrt{4.01}-2}{0.01}\\approx\\dfrac{0.0024984}{0.01}\\approx 0.2498\\).",
+      "\\(\\dfrac{2-\\sqrt{3.99}}{0.01}\\approx 0.2502\\).",
+      "İki taraftan değerler 0.25'e yaklaşır; \\(x=4\\)'teki değişim hızı yaklaşık \\(0.25\\)'tir."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(f(1)=3\\) ve \\(f(6)=13\\) veriliyor. “\\(f\\), \\([1,6]\\) aralığında artandır” sonucuna varılabilir mi? Açıklayın.",
+     "cozum": [
+      "AROC \\(=\\dfrac{13-3}{6-1}=2\\gt 0\\); yani uç noktalar arasında net artış vardır.",
+      "Ancak AROC yalnızca uçları karşılaştırır; fonksiyon arada azalmış olabilir.",
+      "Cevap: “No. A positive average rate of change only shows \\(f(6)\\gt f(1)\\); it does not guarantee \\(f\\) is increasing at every point of the interval.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi kuralı: Bölüm I Part A (28 soru) ve FRQ Part B (Q3, Q4) hesap makinesizdir; Bölüm I Part B (12 soru) ve FRQ Part A (Q1 Function Concepts, Q2 Modeling a Non-Periodic Context) grafik hesap makinesi ister.",
+    "Yorum cümlesine üç şey koyun: aralık, “on average”, birim (output units per input unit).",
+    "Bir noktadaki hızı tahmin ederken noktanın iki tarafından da küçük aralık kullanın; sınav tablosunda en yakın iki noktayı seçin.",
+    "Kesen doğrusu eğimi = AROC. Grafik sorusunda iki noktanın koordinatını okuyup eğim hesaplayın."
+   ],
+   "sikHatalar": [
+    "Payı ve paydayı ters sırada yazmak (\\(f(a)-f(b)\\) üstte, \\(b-a\\) altta): işaret ters çıkar.",
+    "AROC'u “değişim miktarı” (\\(f(b)-f(a)\\)) ile karıştırmak; aralık uzunluğuna bölmeyi unutmak.",
+    "Pozitif AROC'tan fonksiyonun aralığın her yerinde arttığı sonucunu çıkarmak."
+   ],
+   "terimler": [
+    {
+     "en": "rate of change",
+     "tr": "değişim hızı"
+    },
+    {
+     "en": "average rate of change",
+     "tr": "ortalama değişim hızı"
+    },
+    {
+     "en": "secant line",
+     "tr": "kesen doğrusu"
+    },
+    {
+     "en": "slope",
+     "tr": "eğim"
+    },
+    {
+     "en": "rate of change at a point",
+     "tr": "bir noktadaki değişim hızı"
+    },
+    {
+     "en": "interpret",
+     "tr": "yorumlamak"
+    }
+   ]
+  },
+  {
+   "kod": "1.3",
+   "baslik": "Rates of Change in Linear and Quadratic Functions",
+   "baslikTr": "Doğrusal ve ikinci dereceden fonksiyonlarda değişim hızları",
+   "hedefler": [
+    "Doğrusal fonksiyonun (linear function) ortalama değişim hızının sabit olduğunu ve eğime eşit olduğunu göstermek.",
+    "İkinci dereceden fonksiyonda (quadratic function) eşit uzunluktaki ardışık aralıkların AROC'larının sabit miktarda değiştiğini kullanmak.",
+    "Değişim hızlarının artması/azalmasını içbükeylikle (concave up / concave down) ilişkilendirmek."
+   ],
+   "anlatim": "<p>Bu konu iki temel modeli değişim hızı üzerinden tanır: <strong>doğrusal (linear)</strong> ve <strong>ikinci dereceden (quadratic)</strong> fonksiyonlar. Tablo verilip “hangi model uyar?” diye sorulduğunda kullanacağınız test budur.</p>\n<h4>Doğrusal: sabit hız</h4>\n<div class=\"kn-kural\">\\(f(x)=mx+b\\) doğrusal fonksiyonunun her aralıktaki ortalama değişim hızı aynıdır ve eğim \\(m\\)'ye eşittir: \\(\\dfrac{f(b)-f(a)}{b-a}=m\\).</div>\n<p>Tabloda eşit aralıklı girdiler için çıktı farkları (birinci farklar, first differences) sabitse veriler doğrusaldır.</p>\n<h4>İkinci dereceden: hızın hızı sabit</h4>\n<p>\\(f(x)=x^2\\) için girdiler 0, 1, 2, 3, 4 iken çıktılar 0, 1, 4, 9, 16; ardışık AROC'lar 1, 3, 5, 7. Bunlar sabit değil ama <em>her seferinde 2 artıyor</em>. İşte ikinci dereceden fonksiyonun imzası:</p>\n<div class=\"kn-kural\">İkinci dereceden bir fonksiyonda, eşit uzunluktaki ardışık aralıkların ortalama değişim hızları <strong>doğrusal olarak</strong> değişir; yani AROC'ların değişim hızı sabittir. Tabloda: ikinci farklar (second differences) sabittir.</div>\n<table><thead><tr><th>\\(x\\)</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th></tr></thead><tbody>\n<tr><td>\\(q(x)=2x^2-3x+1\\)</td><td>1</td><td>0</td><td>3</td><td>10</td><td>21</td></tr>\n<tr><td>birinci farklar</td><td></td><td>−1</td><td>3</td><td>7</td><td>11</td></tr>\n<tr><td>ikinci farklar</td><td></td><td></td><td>4</td><td>4</td><td>4</td></tr></tbody></table>\n<p>Adım 1 iken ikinci fark \\(2a\\)'dır (burada \\(2\\cdot2=4\\)). İkinci fark pozitifse \\(a\\gt0\\), parabol yukarı açılır.</p>\n<h4>İçbükeylik (concavity)</h4>\n<div class=\"kn-tanim\"><strong>Yukarı içbükey (concave up):</strong> Bir aralıkta değişim hızı artıyorsa grafik yukarı doğru kıvrılır (kâse gibi).<br><strong>Aşağı içbükey (concave down):</strong> Değişim hızı azalıyorsa grafik aşağı doğru kıvrılır (kubbe gibi).</div>\n<p>\\(a\\gt0\\) olan parabol her yerde yukarı içbükeydir; \\(a\\lt0\\) ise aşağı içbükeydir. Doğrusal fonksiyonun içbükeyliği yoktur, çünkü hızı sabittir.</p>\n<div class=\"kn-dikkat\">“Artan” ile “yukarı içbükey” farklı şeylerdir. Azalan bir fonksiyon yukarı içbükey olabilir: ör. çıktılar 20, 12, 6, 2 — azalıyor, ama düşüş miktarları (−8, −6, −4) artıyor, yani hız artıyor: concave up.</div>\n<h4>Tepe noktası</h4>\n<p>\\(f(x)=ax^2+bx+c\\)'nin tepe noktası (vertex) \\(x=-\\dfrac{b}{2a}\\)'dadır. Burada fonksiyon artandan azalana (ya da tersine) döner ve değişim hızı işaret değiştirir.</p>\n<h4>FRQ dili</h4>\n<p>Q1/Q2'de: “The graph of f is concave down on (a,b) because the average rates of change over consecutive equal-length intervals are decreasing.” Modeli seçerken: “A quadratic model is appropriate because the second differences are constant (approximately constant).”</p>",
+   "ornekler": [
+    {
+     "soru": "Tablo: \\(x=1,2,3,4,5\\) için \\(y=7,11,15,19,23\\). Hangi model uygundur? Formülü yazın.",
+     "cozum": [
+      "Birinci farklar: 4, 4, 4, 4 — sabit. Model doğrusaldır, eğim \\(m=4\\).",
+      "\\(y=4x+b\\); \\(x=1\\)'de \\(7=4+b\\Rightarrow b=3\\). Model: \\(y=4x+3\\)."
+     ]
+    },
+    {
+     "soru": "Bir ikinci dereceden fonksiyon için \\([0,1]\\), \\([1,2]\\), \\([2,3]\\) aralıklarının AROC'ları sırasıyla 5, 1, \\(k\\). \\(k\\)'yi bulun ve içbükeyliği belirtin.",
+     "cozum": [
+      "İkinci dereceden fonksiyonda eşit aralık AROC'ları sabit miktarda değişir: \\(5\\to1\\) farkı \\(-4\\).",
+      "\\(k=1-4=-3\\).",
+      "AROC'lar azalıyor, yani grafik aşağı içbükeydir (concave down) ve \\(a=-2\\) (çünkü \\(2a=-4\\))."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir şehrin nüfusu (bin kişi) yıllar 0, 2, 4, 6 için 50, 58, 70, 86. Grafik yukarı mı aşağı mı içbükeydir? Gerekçelendirin.",
+     "cozum": [
+      "Eşit uzunlukta (2 yıllık) aralıkların AROC'ları: \\(8/2=4\\), \\(12/2=6\\), \\(16/2=8\\) bin kişi/yıl.",
+      "AROC'lar artıyor.",
+      "“The graph is concave up on \\([0,6]\\) because the average rates of change over consecutive equal-length intervals are increasing.” Ayrıca artış 2'şer olduğu için ikinci dereceden model uygundur."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi kuralı: Bölüm I Part A (28 soru) ve FRQ Part B (Q3, Q4) hesap makinesizdir; Bölüm I Part B (12 soru) ve FRQ Part A (Q1 Function Concepts, Q2 Modeling a Non-Periodic Context) grafik hesap makinesi ister.",
+    "Tablo sorusunda önce girdilerin eşit aralıklı olduğunu kontrol edin; değilse farkları değil AROC'ları karşılaştırın.",
+    "İkinci farkların sabit olması ikinci derece; birinci farkların sabit olması doğrusal model için gerekçedir — FRQ'da bu cümleyi yazın.",
+    "İçbükeylik gerekçesinde “rates of change are increasing/decreasing” deyin; “the function is increasing” demek puan getirmez."
+   ],
+   "sikHatalar": [
+    "Azalan fonksiyonun mutlaka aşağı içbükey olduğunu sanmak.",
+    "Eşit olmayan aralıklarda çıktı farklarını doğrudan karşılaştırmak.",
+    "İkinci farkın \\(a\\) değil \\(2a\\) (adım 1 iken) olduğunu unutmak."
+   ],
+   "terimler": [
+    {
+     "en": "linear function",
+     "tr": "doğrusal fonksiyon"
+    },
+    {
+     "en": "quadratic function",
+     "tr": "ikinci dereceden fonksiyon"
+    },
+    {
+     "en": "first / second differences",
+     "tr": "birinci / ikinci farklar"
+    },
+    {
+     "en": "concave up",
+     "tr": "yukarı içbükey"
+    },
+    {
+     "en": "concave down",
+     "tr": "aşağı içbükey"
+    },
+    {
+     "en": "vertex",
+     "tr": "tepe noktası"
+    }
+   ]
+  },
+  {
+   "kod": "1.4",
+   "baslik": "Polynomial Functions and Rates of Change",
+   "baslikTr": "Polinom fonksiyonları ve değişim hızları",
+   "hedefler": [
+    "Polinom fonksiyonunu (polynomial function), derecesini (degree) ve baş katsayısını (leading coefficient) tanımlamak.",
+    "Yerel (relative) ve mutlak (absolute) ekstremumları değişim hızının işaret değiştirmesiyle açıklamak.",
+    "Dönüm noktalarını (points of inflection) değişim hızının artandan azalana geçtiği yer olarak tanımak."
+   ],
+   "anlatim": "<p>Doğrusal ve ikinci dereceden fonksiyonlar, daha büyük bir ailenin ilk iki üyesidir: <strong>polinom fonksiyonları (polynomial functions)</strong>.</p>\n<div class=\"kn-tanim\"><strong>Polinom:</strong> \\(p(x)=a_nx^n+a_{n-1}x^{n-1}+\\dots+a_1x+a_0\\), burada \\(n\\) negatif olmayan bir tam sayı ve \\(a_n\\neq0\\). \\(n\\) <strong>derece (degree)</strong>, \\(a_n\\) <strong>baş katsayı (leading coefficient)</strong>, \\(a_nx^n\\) <strong>baş terim (leading term)</strong>dir.</div>\n<p>Örnek: \\(p(x)=-3x^4+2x^2-x+7\\) için derece 4, baş katsayı \\(-3\\). \\(\\sqrt{x}\\) ya da \\(x^{-1}\\) içeren ifadeler polinom değildir.</p>\n<h4>Ekstremumlar (extrema)</h4>\n<div class=\"kn-kural\"><strong>Yerel maksimum (relative maximum):</strong> Fonksiyon artandan azalana döner; değişim hızı pozitiften negatife geçer.<br><strong>Yerel minimum (relative minimum):</strong> Fonksiyon azalandan artana döner; değişim hızı negatiften pozitife geçer.<br><strong>Mutlak (global/absolute) maksimum:</strong> Tüm tanım kümesindeki en büyük çıktı.</div>\n<p>Kapalı bir aralıkta (ör. \\([a,b]\\)) mutlak ekstremumu ararken <strong>uç noktaları da</strong> kontrol edin; mutlak maksimum bir uçta olabilir.</p>\n<h4>Dönüm noktası (point of inflection)</h4>\n<p>Grafiğin içbükeyliğinin değiştiği noktadır: değişim hızı artmaktan azalmaya (ya da tersine) geçer. Kâse şeklinden kubbeye ya da kubbeden kâseye geçiş.</p>\n<table><thead><tr><th>Grafik davranışı</th><th>Değişim hızı ne yapıyor?</th></tr></thead><tbody>\n<tr><td>Artan, yukarı içbükey</td><td>pozitif ve artıyor</td></tr>\n<tr><td>Artan, aşağı içbükey</td><td>pozitif ama azalıyor</td></tr>\n<tr><td>Yerel maksimum</td><td>pozitiften negatife geçiyor</td></tr>\n<tr><td>Dönüm noktası</td><td>artmaktan azalmaya (ya da tersi) geçiyor</td></tr></tbody></table>\n<h4>Kaç tepe olabilir?</h4>\n<div class=\"kn-kural\">\\(n\\). dereceden bir polinomun en çok \\(n-1\\) yerel ekstremumu ve en çok \\(n-2\\) dönüm noktası olabilir (\\(n\\ge2\\)).</div>\n<p>Örneğin bir grafikte 4 tepe/çukur görüyorsanız, polinomun derecesi en az 5'tir. Bu kural “hangi derece olabilir?” sorularının anahtarıdır.</p>\n<div class=\"kn-dikkat\">Kübik \\(x^3\\)'ün hiç yerel ekstremumu yoktur (en çok 2 olabilir ama 0 da olabilir). “En çok” sınırdır, zorunluluk değildir.</div>\n<h4>FRQ dili</h4>\n<p>“f has a relative maximum at x = 2 because the rate of change of f changes from positive to negative at x = 2” ya da tabloyla: “because f changes from increasing to decreasing at x = 2.” Grafikten okuyorsanız hangi noktanın en yüksek olduğunu söyleyip uç değerlerle karşılaştırın.</p>",
+   "ornekler": [
+    {
+     "soru": "Bir polinomun grafiği x-eksenini 4 kez kesiyor ve 3 yerel ekstremumu (2 minimum, 1 maksimum) var. Derecesi en az kaçtır? Baş katsayının işareti hakkında ne söylenebilir?",
+     "cozum": [
+      "3 yerel ekstremum için \\(n-1\\ge3\\Rightarrow n\\ge4\\). 4 sıfır da \\(n\\ge4\\) gerektirir.",
+      "2 minimum ve 1 maksimum (min–max–min deseni) grafiğin iki ucunun da yukarı gittiğini gösterir; bu derece 4 için baş katsayının pozitif olmasıyla uyumludur."
+     ]
+    },
+    {
+     "soru": "\\(h\\) polinomu için değerler: \\(h(-2)=1,\\ h(-1)=5,\\ h(0)=3,\\ h(1)=-2,\\ h(2)=0\\) ve \\(h\\) her ardışık noktada tek yönlü değişiyor. \\([-2,2]\\)'de mutlak maksimum ve minimumun nerede olduğunu tahmin edin.",
+     "cozum": [
+      "Çıktılar artıyor (\\(-2\\to-1\\)), sonra azalıyor (\\(-1\\to1\\)), sonra artıyor (\\(1\\to2\\)).",
+      "Yerel maksimum \\(x=-1\\) civarında (değer 5), yerel minimum \\(x=1\\) civarında (değer \\(-2\\)).",
+      "Uç değerler: \\(h(-2)=1,\\ h(2)=0\\). Karşılaştırınca mutlak maksimum \\(x=-1\\)'de 5, mutlak minimum \\(x=1\\)'de \\(-2\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(f\\)'nin \\([0,6]\\) aralığında değişim hızı \\(x\\lt3\\) iken artıyor, \\(x\\gt3\\) iken azalıyor ve hep pozitif. \\(x=3\\)'te \\(f\\)'nin grafiği hakkında ne söylenir? Açıklayın.",
+     "cozum": [
+      "Hız pozitif olduğu için \\(f\\) tüm aralıkta artandır; \\(x=3\\)'te ekstremum yoktur.",
+      "Hız artmaktan azalmaya geçtiği için grafik yukarı içbükeyden aşağı içbükeye geçer.",
+      "“The graph of f has a point of inflection at x = 3 because the rate of change of f changes from increasing to decreasing there.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi kuralı: Bölüm I Part A (28 soru) ve FRQ Part B (Q3, Q4) hesap makinesizdir; Bölüm I Part B (12 soru) ve FRQ Part A (Q1 Function Concepts, Q2 Modeling a Non-Periodic Context) grafik hesap makinesi ister.",
+    "Part B'de grafik hesap makinesiyle yerel max/min bulmak serbesttir (maximum/minimum komutu); sonucu en az 3 ondalık basamakla yazın.",
+    "Mutlak ekstremum sorusunda uç noktaları her zaman listeye ekleyin.",
+    "Derece sorusunda iki ölçü kullanın: ekstremum sayısı + 1 ve x-kesişim sayısı; büyük olanı alt sınırdır."
+   ],
+   "sikHatalar": [
+    "\\(n\\). dereceden polinomun tam olarak \\(n-1\\) ekstremumu olması gerektiğini sanmak.",
+    "Dönüm noktasını ekstremumla karıştırmak.",
+    "Kapalı aralıkta uç noktaları kontrol etmeden mutlak maksimuma karar vermek."
+   ],
+   "terimler": [
+    {
+     "en": "polynomial function",
+     "tr": "polinom fonksiyonu"
+    },
+    {
+     "en": "degree",
+     "tr": "derece"
+    },
+    {
+     "en": "leading coefficient",
+     "tr": "baş katsayı"
+    },
+    {
+     "en": "relative (local) maximum / minimum",
+     "tr": "yerel maksimum / minimum"
+    },
+    {
+     "en": "absolute (global) extremum",
+     "tr": "mutlak ekstremum"
+    },
+    {
+     "en": "point of inflection",
+     "tr": "dönüm noktası"
+    }
+   ]
+  },
+  {
+   "kod": "1.5",
+   "baslik": "Polynomial Functions and Complex Zeros",
+   "baslikTr": "Polinom fonksiyonları ve karmaşık sıfırlar",
+   "hedefler": [
+    "Sıfır (zero), çarpan (factor) ve x-kesişimi arasındaki bağı kurmak; katlılığın (multiplicity) grafiğe etkisini açıklamak.",
+    "Karmaşık sıfırların eşlenik çiftler (conjugate pairs) halinde geldiğini kullanarak polinom kurmak.",
+    "Bir fonksiyonun tek (odd) ya da çift (even) olduğunu cebirsel ve grafiksel olarak belirlemek."
+   ],
+   "anlatim": "<p>Polinomun sıfırları, onun <strong>çarpanlarını (factors)</strong> verir. Bu konu, grafikteki x-kesişimlerini cebirle birleştirir.</p>\n<div class=\"kn-kural\"><strong>Çarpan teoremi:</strong> \\(p(a)=0\\) ise \\((x-a)\\), \\(p(x)\\)'in bir çarpanıdır; tersi de doğrudur. Gerçel (real) bir sıfır \\(a\\), grafikte \\((a,0)\\) x-kesişimidir.</div>\n<h4>Katlılık (multiplicity)</h4>\n<p>\\((x-a)^k\\) çarpanı varsa \\(a\\), <strong>\\(k\\) katlı</strong> sıfırdır.</p>\n<table><thead><tr><th>Katlılık</th><th>Grafik x-ekseninde</th><th>İşaret</th></tr></thead><tbody>\n<tr><td>Tek (1, 3, …)</td><td>Ekseni keser (crosses)</td><td>Değişir</td></tr>\n<tr><td>Çift (2, 4, …)</td><td>Eksene değer, geri döner (touches/bounces)</td><td>Değişmez</td></tr></tbody></table>\n<p>Katlılık 3 ise grafik keser ama sıfırın yanında düzleşir (S şekli).</p>\n<h4>Karmaşık sıfırlar</h4>\n<div class=\"kn-tanim\"><strong>Cebirin temel teoremi (Fundamental Theorem of Algebra):</strong> \\(n\\). dereceden bir polinomun, katlılıklarıyla sayıldığında, karmaşık sayılar (complex numbers) içinde tam \\(n\\) sıfırı vardır.</div>\n<p>Bazı sıfırlar gerçel olmayabilir: \\(x^2+9=0\\Rightarrow x=\\pm3i\\). Bu sıfırlar grafikte x-kesişimi <em>oluşturmaz</em>.</p>\n<div class=\"kn-kural\"><strong>Eşlenik çiftler:</strong> Katsayıları gerçel olan bir polinomda \\(a+bi\\) sıfırsa \\(a-bi\\) de sıfırdır.</div>\n<p>Örnek: Gerçel katsayılı, derecesi 3 olan ve sıfırları 2 ile \\(1+i\\) olan polinom: \\(1-i\\) de sıfırdır. \\((x-(1+i))(x-(1-i))=x^2-2x+2\\), yani \\(p(x)=a(x-2)(x^2-2x+2)\\).</p>\n<h4>Gerçel sıfır sayısı</h4>\n<p>Derece \\(n\\) ise gerçel sıfır sayısı en çok \\(n\\)'dir. Karmaşık sıfırlar çift geldiği için tek dereceli bir polinomun en az bir gerçel sıfırı vardır.</p>\n<h4>Çift ve tek fonksiyonlar</h4>\n<div class=\"kn-tanim\"><strong>Çift (even):</strong> her \\(x\\) için \\(f(-x)=f(x)\\); grafik y-eksenine göre simetriktir.<br><strong>Tek (odd):</strong> her \\(x\\) için \\(f(-x)=-f(x)\\); grafik orijine göre simetriktir.</div>\n<p>Polinomda: yalnız çift kuvvetler (sabit dahil) varsa çift; yalnız tek kuvvetler varsa tek. \\(x^3+x\\) tek, \\(x^4-2x^2+5\\) çift, \\(x^3+1\\) ikisi de değil.</p>\n<div class=\"kn-dikkat\">Sabit terim \\(x^0\\) çift kuvvettir. \\(x^3+1\\)'deki 1, tekliği bozar.</div>\n<h4>FRQ dili</h4>\n<p>Q4 (Symbolic Manipulations, hesap makinesiz) çarpanlara ayırma ve sıfır bulmayı sorar. Gerekçe: “Since \\(p(3)=0\\), \\((x-3)\\) is a factor of \\(p(x)\\).” Simetri gerekçesi: “f is even because \\(f(-x)=f(x)\\) for all x in the domain.”</p>",
+   "ornekler": [
+    {
+     "soru": "\\(p(x)=(x+1)^2(x-3)\\). Sıfırları, katlılıklarını ve her sıfırda grafiğin davranışını yazın.",
+     "cozum": [
+      "\\(x=-1\\): katlılık 2 (çift) — grafik x-eksenine değer ve geri döner; işaret değişmez.",
+      "\\(x=3\\): katlılık 1 (tek) — grafik ekseni keser.",
+      "Derece 3, baş katsayı pozitif: sağ uç yukarı, sol uç aşağı."
+     ]
+    },
+    {
+     "soru": "Gerçel katsayılı, derecesi 4 olan \\(q\\) polinomunun sıfırlarından üçü \\(3i\\), \\(-2\\) ve \\(1\\). \\(q(0)=36\\) ise \\(q(x)\\)'i yazın.",
+     "cozum": [
+      "Gerçel katsayı olduğu için eşlenik \\(-3i\\) de sıfırdır. Böylece dört sıfırın hepsi bilinir: \\(3i,\\ -3i,\\ -2,\\ 1\\).",
+      "\\((x-3i)(x+3i)=x^2+9\\), yani \\(q(x)=a(x+2)(x-1)(x^2+9)\\).",
+      "\\(q(0)=a(2)(-1)(9)=-18a=36\\Rightarrow a=-2\\). Sonuç: \\(q(x)=-2(x+2)(x-1)(x^2+9)\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(f(x)=x^5-4x^3\\). \\(f\\) tek mi, çift mi? Cebirle gerekçelendirin ve gerçel sıfırları bulun.",
+     "cozum": [
+      "\\(f(-x)=(-x)^5-4(-x)^3=-x^5+4x^3=-(x^5-4x^3)=-f(x)\\). Bu yüzden \\(f\\) tektir; grafik orijine göre simetriktir.",
+      "\\(f(x)=x^3(x^2-4)=x^3(x-2)(x+2)\\). Gerçel sıfırlar: \\(0\\) (3 katlı), \\(2\\), \\(-2\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi kuralı: Bölüm I Part A (28 soru) ve FRQ Part B (Q3, Q4) hesap makinesizdir; Bölüm I Part B (12 soru) ve FRQ Part A (Q1 Function Concepts, Q2 Modeling a Non-Periodic Context) grafik hesap makinesi ister.",
+    "Karmaşık sıfır verilince ilk iş eşleniğini yazın; sonra \\((x-(a+bi))(x-(a-bi))=x^2-2ax+(a^2+b^2)\\) kısayolunu kullanın.",
+    "Grafikten katlılık okurken: kesiyorsa tek, değip dönüyorsa çift; düzleşip kesiyorsa 3 gibi tek ve 1'den büyük.",
+    "Tek/çift gerekçesinde \\(f(-x)\\)'i hesaplayıp tam olarak \\(f(x)\\) ya da \\(-f(x)\\)'e eşitlendiğini gösterin."
+   ],
+   "sikHatalar": [
+    "Karmaşık sıfırları x-kesişimi saymak.",
+    "Sabit terimli tek kuvvetli polinomu (ör. \\(x^3+1\\)) tek sanmak.",
+    "Derece \\(n\\) olunca tam \\(n\\) tane x-kesişimi olacağını sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "factor",
+     "tr": "çarpan"
+    },
+    {
+     "en": "multiplicity",
+     "tr": "katlılık"
+    },
+    {
+     "en": "complex zero",
+     "tr": "karmaşık sıfır"
+    },
+    {
+     "en": "conjugate pair",
+     "tr": "eşlenik çift"
+    },
+    {
+     "en": "Fundamental Theorem of Algebra",
+     "tr": "Cebirin temel teoremi"
+    },
+    {
+     "en": "even function / odd function",
+     "tr": "çift fonksiyon / tek fonksiyon"
+    }
+   ]
+  },
+  {
+   "kod": "1.6",
+   "baslik": "Polynomial Functions and End Behavior",
+   "baslikTr": "Polinom fonksiyonları ve uç davranış",
+   "hedefler": [
+    "Polinomun uç davranışını (end behavior) derece ve baş katsayıdan belirlemek.",
+    "Uç davranışı limit gösterimiyle (limit notation) yazmak ve okumak."
+   ],
+   "anlatim": "<p><strong>Uç davranış (end behavior)</strong>, girdi değerleri çok büyük pozitif ya da çok büyük negatif olduğunda çıktıların ne yaptığıdır. Polinomlarda bunu tek bir terim belirler: <strong>baş terim (leading term)</strong>.</p>\n<div class=\"kn-kural\">\\(|x|\\) çok büyükken \\(p(x)=a_nx^n+\\dots\\) yaklaşık \\(a_nx^n\\) gibi davranır. Alt dereceli terimler baş terimin yanında önemsizleşir.</div>\n<p>Örnek: \\(x=100\\) için \\(x^3=1\\,000\\,000\\), \\(50x^2=500\\,000\\); \\(x=1000\\) olunca \\(x^3=10^9\\), \\(50x^2=5\\cdot10^7\\). Baş terim giderek baskın olur (dominates).</p>\n<h4>Dört durum</h4>\n<table><thead><tr><th></th><th>\\(a_n\\gt0\\)</th><th>\\(a_n\\lt0\\)</th></tr></thead><tbody>\n<tr><td>\\(n\\) çift</td><td>iki uç yukarı (↑ ↑)</td><td>iki uç aşağı (↓ ↓)</td></tr>\n<tr><td>\\(n\\) tek</td><td>sol aşağı, sağ yukarı (↓ ↑)</td><td>sol yukarı, sağ aşağı (↑ ↓)</td></tr></tbody></table>\n<h4>Limit gösterimi</h4>\n<p>AP Precalculus uç davranışı limitle yazar:</p>\n<div class=\"formul\">\\[ \\lim_{x\\to\\infty}p(x)=\\infty \\quad\\text{“x sonsuza giderken p(x) sınırsız artar”} \\]</div>\n<p>Örnek: \\(p(x)=-2x^3+5x\\) için \\(\\lim_{x\\to\\infty}p(x)=-\\infty\\) ve \\(\\lim_{x\\to-\\infty}p(x)=\\infty\\). İngilizce okunuşu: “the limit of p of x as x approaches infinity is negative infinity”.</p>\n<div class=\"kn-tanim\">\\(\\lim_{x\\to\\infty}f(x)=\\infty\\): \\(x\\) yeterince büyüdükçe \\(f(x)\\) istenen her sayıyı aşar (increases without bound).</div>\n<h4>Çarpanlı biçimden uç davranış</h4>\n<p>\\(p(x)=-(x-1)^2(x+3)^3\\): baş terimi bulmak için her çarpanın en yüksek terimini çarpın: \\(-x^2\\cdot x^3=-x^5\\). Derece 5 (tek), baş katsayı negatif: sol uç yukarı, sağ uç aşağı. Tamamen açmanıza gerek yok!</p>\n<div class=\"kn-dikkat\">Uç davranış yalnızca baş terime bağlıdır; sıfırlar ya da sabit terim uç davranışı değiştirmez. \\(x^4-1000x^3\\) de sonunda iki ucu yukarı gider (ama çok sonra).</div>\n<h4>Grafikten okumak</h4>\n<p>Bir grafiğin iki ucu aynı yöne gidiyorsa derece çifttir; zıt yönlere gidiyorsa tektir. Sağ uç yukarıysa baş katsayı pozitiftir. Bunu 1.4'teki “en çok \\(n-1\\) ekstremum” kuralıyla birleştirerek grafiğe uyan polinomu seçersiniz.</p>\n<h4>FRQ dili</h4>\n<p>Q1'de “Write the end behavior using limit notation” istenir. Tam cevap iki limit içerir: \\(\\lim_{x\\to-\\infty}\\) ve \\(\\lim_{x\\to\\infty}\\). Gerekçe: “because the leading term \\(-2x^3\\) has odd degree and a negative coefficient.”</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=3x^4-7x^3+2\\) için uç davranışı limit gösterimiyle yazın.",
+     "cozum": [
+      "Baş terim \\(3x^4\\): derece 4 (çift), katsayı pozitif.",
+      "\\(\\lim_{x\\to-\\infty}f(x)=\\infty\\) ve \\(\\lim_{x\\to\\infty}f(x)=\\infty\\)."
+     ]
+    },
+    {
+     "soru": "\\(g(x)=(2-x)(x+1)^2(x-4)^2\\) için uç davranışı belirleyin.",
+     "cozum": [
+      "Baş terimler çarpımı: \\((-x)(x^2)(x^2)=-x^5\\).",
+      "Derece 5 tek, katsayı negatif: \\(\\lim_{x\\to-\\infty}g(x)=\\infty\\), \\(\\lim_{x\\to\\infty}g(x)=-\\infty\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir grafiğin sol ucu aşağı, sağ ucu aşağı gidiyor ve 3 yerel ekstremumu var. \\(p(x)=-x^4+\\dots\\) ile \\(p(x)=x^5+\\dots\\) adaylarından hangisi uyabilir? Açıklayın.",
+     "cozum": [
+      "İki uç aynı yöne (aşağı) gidiyor: derece çift, baş katsayı negatif.",
+      "\\(x^5\\) tek dereceli ve pozitif: uçlar zıt yönde olurdu, uymaz.",
+      "\\(-x^4\\): çift ve negatif, en çok 3 ekstremum mümkün. “The fourth-degree candidate fits because its leading term \\(-x^4\\) gives \\(p(x)\\to-\\infty\\) at both ends.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi kuralı: Bölüm I Part A (28 soru) ve FRQ Part B (Q3, Q4) hesap makinesizdir; Bölüm I Part B (12 soru) ve FRQ Part A (Q1 Function Concepts, Q2 Modeling a Non-Periodic Context) grafik hesap makinesi ister.",
+    "Çarpanlı biçimde polinomu açmayın; yalnızca her çarpanın baş terimini çarpın.",
+    "Limit gösteriminde her iki ucu ayrı yazın; yalnız bir limit yazmak eksik cevaptır.",
+    "“Increases without bound” = \\(\\infty\\); “decreases without bound” = \\(-\\infty\\). Sözel ifade de kabul edilir."
+   ],
+   "sikHatalar": [
+    "Çarpanlı biçimdeki eksi işaretlerini (ör. \\((2-x)\\)) baş katsayıya katmayı unutmak.",
+    "Uç davranışı sabit terime ya da en büyük katsayıya göre belirlemek.",
+    "\\(x\\to-\\infty\\) iken çift dereceli terimin negatif olacağını sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "end behavior",
+     "tr": "uç davranış"
+    },
+    {
+     "en": "leading term",
+     "tr": "baş terim"
+    },
+    {
+     "en": "limit notation",
+     "tr": "limit gösterimi"
+    },
+    {
+     "en": "increases without bound",
+     "tr": "sınırsız artar"
+    },
+    {
+     "en": "dominates",
+     "tr": "baskın olur"
+    }
+   ]
+  },
+  {
+   "kod": "1.7",
+   "baslik": "Rational Functions and End Behavior",
+   "baslikTr": "Rasyonel fonksiyonlar ve uç davranış",
+   "hedefler": [
+    "Rasyonel fonksiyonu (rational function) iki polinomun oranı olarak tanımak.",
+    "Pay ve payda derecelerini karşılaştırarak uç davranışı ve yatay asimptotu (horizontal asymptote) bulmak.",
+    "Pay derecesi bir fazla olduğunda eğik asimptotu (slant asymptote) bölmeyle bulmak."
+   ],
+   "anlatim": "<div class=\"kn-tanim\"><strong>Rasyonel fonksiyon (rational function):</strong> \\(r(x)=\\dfrac{p(x)}{q(x)}\\), burada \\(p\\) ve \\(q\\) polinom, \\(q\\) sıfır polinomu değil. Tanım kümesi \\(q(x)\\neq0\\) olan tüm gerçel sayılardır.</div>\n<p>Uç davranışta yine baş terimler baskındır: \\(|x|\\) büyükken \\(r(x)\\approx\\dfrac{a_nx^n}{b_mx^m}\\). Bu oranın ne yaptığı, derecelerin karşılaştırmasına bağlıdır.</p>\n<h4>Üç durum</h4>\n<table><thead><tr><th>Dereceler</th><th>Uç davranış</th><th>Örnek</th></tr></thead><tbody>\n<tr><td>\\(n\\lt m\\) (pay küçük)</td><td>\\(r(x)\\to0\\); yatay asimptot \\(y=0\\)</td><td>\\(\\frac{3x+1}{x^2+4}\\)</td></tr>\n<tr><td>\\(n=m\\)</td><td>\\(r(x)\\to\\frac{a_n}{b_m}\\); yatay asimptot \\(y=\\frac{a_n}{b_m}\\)</td><td>\\(\\frac{6x^2-1}{2x^2+x}\\to3\\)</td></tr>\n<tr><td>\\(n\\gt m\\)</td><td>yatay asimptot yok; baş terimlerin oranı gibi davranır</td><td>\\(\\frac{x^3}{x-1}\\approx x^2\\)</td></tr></tbody></table>\n<div class=\"kn-kural\"><strong>Yatay asimptot (horizontal asymptote):</strong> \\(\\lim_{x\\to\\pm\\infty}r(x)=b\\) ise \\(y=b\\) yatay asimptottur. Grafik büyük \\(|x|\\) için bu doğruya yaklaşır.</div>\n<h4>Eğik asimptot (slant asymptote)</h4>\n<p>Pay derecesi paydanınkinden tam <strong>bir</strong> fazlaysa, polinom bölmesi (long division) yapılır: \\(r(x)=(\\text{bölüm})+\\dfrac{\\text{kalan}}{q(x)}\\). Kalan kesri 0'a gider, grafik \\(y=\\text{bölüm}\\) doğrusuna yaklaşır.</p>\n<p>Örnek: \\(\\dfrac{x^2+3x+1}{x+1}\\). Bölme: \\(x^2+3x+1=(x+1)(x+2)-1\\), yani \\(r(x)=x+2-\\dfrac{1}{x+1}\\). Eğik asimptot \\(y=x+2\\).</p>\n<h4>Neden baş terimler?</h4>\n<p>Pay ve paydayı \\(x\\)'in en yüksek kuvvetine bölün: \\(\\dfrac{6x^2-1}{2x^2+x}=\\dfrac{6-1/x^2}{2+1/x}\\). \\(x\\to\\infty\\) iken \\(1/x\\to0\\), oran \\(6/2=3\\)'e gider. Bu, FRQ'da gerekçe olarak yazılabilecek temiz bir yöntemdir.</p>\n<div class=\"kn-dikkat\">Grafik yatay asimptotunu <em>kesebilir</em>! Yatay asimptot yalnızca uçlardaki davranışı anlatır; ortada grafik o doğruyu geçebilir. (Dikey asimptot ise asla kesilmez — 1.9.)</div>\n<h4>Limit gösterimi</h4>\n<p>\\(\\lim_{x\\to\\infty}\\dfrac{4x-5}{2x+7}=2\\) ve \\(\\lim_{x\\to-\\infty}\\dfrac{4x-5}{2x+7}=2\\). Pay derecesi büyükse limit sonlu değildir (\\(\\infty\\) ya da \\(-\\infty\\)), örneğin \\(\\lim_{x\\to\\infty}\\dfrac{x^3}{x-1}=\\infty\\).</p>\n<h4>FRQ dili</h4>\n<p>“\\(\\lim_{x\\to\\infty} r(x) = 3\\) because the degrees of the numerator and denominator are equal, so r(x) behaves like the ratio of the leading terms, \\(6x^2/2x^2 = 3\\).”</p>",
+   "ornekler": [
+    {
+     "soru": "\\(r(x)=\\dfrac{5-2x^2}{4x^2+x-3}\\) için yatay asimptotu bulun.",
+     "cozum": [
+      "Dereceler eşit (2 ve 2). Baş katsayılar \\(-2\\) ve \\(4\\).",
+      "\\(\\lim_{x\\to\\pm\\infty}r(x)=-\\dfrac{2}{4}=-\\dfrac12\\). Yatay asimptot \\(y=-\\tfrac12\\)."
+     ]
+    },
+    {
+     "soru": "\\(f(x)=\\dfrac{2x^2-x+3}{x-1}\\) için eğik asimptotu bulun.",
+     "cozum": [
+      "Bölme: \\(2x^2-x+3=(x-1)(2x+1)+4\\).",
+      "\\(f(x)=2x+1+\\dfrac{4}{x-1}\\); \\(|x|\\to\\infty\\) iken kesir 0'a gider.",
+      "Eğik asimptot: \\(y=2x+1\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir ilaç derişimi \\(C(t)=\\dfrac{40t}{t^2+4}\\) mg/L. Uzun dönemde (\\(t\\to\\infty\\)) derişim ne olur? Gerekçelendirin.",
+     "cozum": [
+      "Pay derecesi 1, payda derecesi 2: pay daha küçük.",
+      "\\(C(t)\\approx\\dfrac{40t}{t^2}=\\dfrac{40}{t}\\to0\\).",
+      "“\\(\\lim_{t\\to\\infty}C(t)=0\\) because the degree of the denominator is greater than the degree of the numerator; in the long run the concentration approaches 0 mg/L.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi kuralı: Bölüm I Part A (28 soru) ve FRQ Part B (Q3, Q4) hesap makinesizdir; Bölüm I Part B (12 soru) ve FRQ Part A (Q1 Function Concepts, Q2 Modeling a Non-Periodic Context) grafik hesap makinesi ister.",
+    "Uç davranış için yalnızca pay ve paydanın baş terimlerine bakın: “behaves like \\(a_nx^n/b_mx^m\\)”.",
+    "Eğik asimptot için bölmenin bölümünü (quotient) alın, kalanı (remainder) atın.",
+    "Bağlamlı sorularda limiti birimiyle yorumlayın: “approaches 0 mg/L in the long run”."
+   ],
+   "sikHatalar": [
+    "Dereceler eşitken yatay asimptotu \\(y=0\\) sanmak ya da sabit terimleri bölmek.",
+    "Grafiğin yatay asimptotu asla kesmediğini sanmak.",
+    "Pay derecesi büyükken yatay asimptotu baş katsayı oranı sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "rational function",
+     "tr": "rasyonel fonksiyon"
+    },
+    {
+     "en": "horizontal asymptote",
+     "tr": "yatay asimptot"
+    },
+    {
+     "en": "slant (oblique) asymptote",
+     "tr": "eğik asimptot"
+    },
+    {
+     "en": "numerator / denominator",
+     "tr": "pay / payda"
+    },
+    {
+     "en": "long division",
+     "tr": "polinom bölmesi"
+    },
+    {
+     "en": "quotient / remainder",
+     "tr": "bölüm / kalan"
+    }
+   ]
+  },
+  {
+   "kod": "1.8",
+   "baslik": "Rational Functions and Zeros",
+   "baslikTr": "Rasyonel fonksiyonlar ve sıfırlar",
+   "hedefler": [
+    "Rasyonel fonksiyonun sıfırlarını, payın paydayla ortak olmayan sıfırları olarak bulmak.",
+    "İşaret tablosuyla (sign chart) rasyonel eşitsizlikleri (rational inequalities) çözmek."
+   ],
+   "anlatim": "<p>Bir kesir ancak <strong>payı sıfır</strong> ve paydası sıfırdan farklıyken sıfırdır. Bu basit fikir, rasyonel fonksiyonların sıfırlarını (zeros) verir.</p>\n<div class=\"kn-kural\">\\(r(x)=\\dfrac{p(x)}{q(x)}\\) için: \\(p(a)=0\\) ve \\(q(a)\\neq0\\) ise \\(a\\), \\(r\\)'nin bir sıfırıdır ve grafikte \\((a,0)\\) x-kesişimidir. \\(p(a)=0\\) <em>ve</em> \\(q(a)=0\\) ise \\(a\\) sıfır değildir; orada delik (hole) ya da dikey asimptot vardır (1.9, 1.10).</div>\n<p>Örnek: \\(r(x)=\\dfrac{x^2-9}{x^2-x-6}=\\dfrac{(x-3)(x+3)}{(x-3)(x+2)}\\). Pay sıfırları 3 ve \\(-3\\). Ama \\(x=3\\) paydayı da sıfırlar, bu yüzden \\(r\\)'nin <strong>tek</strong> sıfırı \\(x=-3\\)'tür.</p>\n<h4>Önce sadeleştirin, sonra okuyun</h4>\n<p>Pay ve paydayı tamamen çarpanlara ayırın. Ortak çarpanları işaretleyin. Kalan pay çarpanları sıfırları, kalan payda çarpanları dikey asimptotları verir.</p>\n<h4>İşaret tablosu (sign chart)</h4>\n<p>Rasyonel fonksiyon yalnızca <strong>sıfırlarda</strong> ve <strong>tanımsız olduğu noktalarda</strong> işaret değiştirebilir. Bu noktalar sayı doğrusunu aralıklara böler; her aralıktan bir deneme noktası seçilir.</p>\n<p>\\(r(x)=\\dfrac{(x-1)(x+4)}{x-2}\\) için kritik noktalar: \\(-4,\\ 1,\\ 2\\).</p>\n<table><thead><tr><th>Aralık</th><th>\\(x\\lt-4\\)</th><th>\\(-4\\lt x\\lt1\\)</th><th>\\(1\\lt x\\lt2\\)</th><th>\\(x\\gt2\\)</th></tr></thead><tbody>\n<tr><td>Deneme</td><td>\\(-5\\)</td><td>\\(0\\)</td><td>\\(1.5\\)</td><td>\\(3\\)</td></tr>\n<tr><td>\\(r\\)'nin işareti</td><td>−</td><td>+</td><td>−</td><td>+</td></tr></tbody></table>\n<p>Kontrol: \\(r(0)=\\frac{(-1)(4)}{-2}=2\\gt0\\). Böylece \\(r(x)\\ge0\\) çözümü: \\([-4,1]\\cup(2,\\infty)\\). Sıfırlar eşitliği sağlar (köşeli parantez), ama \\(x=2\\) tanımsız olduğu için asla dahil edilmez (normal parantez).</p>\n<div class=\"kn-dikkat\">Eşitsizlikte paydayla çarpmayın! Payda negatif olabilir ve eşitsizlik yön değiştirir. Bunun yerine her şeyi tek tarafa toplayıp tek kesir yapın, sonra işaret tablosu kurun.</div>\n<h4>Katlılık işareti etkiler</h4>\n<p>Pay ya da paydadaki çift katlı çarpan (ör. \\((x-1)^2\\)) o noktada işaret değiştirmez. İşaret tablosunda bu noktanın iki yanında aynı işaret görülür.</p>\n<h4>FRQ dili</h4>\n<p>Q4 (hesap makinesiz) “Solve \\(r(x)\\gt0\\). Show the work that leads to your answer.” diye sorabilir. Puan için: kritik noktaları yazın, işaret analizini gösterin ve aralık gösterimiyle cevap verin. Gerekçe cümlesi: “x = −3 is a zero of r because it is a zero of the numerator and not a zero of the denominator.”</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=\\dfrac{x^2+2x-8}{x^2-4}\\) fonksiyonunun sıfırlarını bulun.",
+     "cozum": [
+      "Pay: \\((x+4)(x-2)\\). Payda: \\((x-2)(x+2)\\).",
+      "\\(x=2\\) ortak çarpan: sıfır değil (delik).",
+      "Tek sıfır: \\(x=-4\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\dfrac{x+3}{x-1}\\le0\\) eşitsizliğini çözün.",
+     "cozum": [
+      "Kritik noktalar: \\(x=-3\\) (pay sıfır), \\(x=1\\) (tanımsız).",
+      "Denemeler: \\(x=-4\\Rightarrow\\frac{-1}{-5}\\gt0\\); \\(x=0\\Rightarrow\\frac{3}{-1}\\lt0\\); \\(x=2\\Rightarrow\\frac{5}{1}\\gt0\\).",
+      "Çözüm: \\([-3,1)\\). \\(-3\\) dahil (eşitlik), \\(1\\) hariç (tanımsız)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Öğrenci \\(\\dfrac{2}{x-3}\\gt1\\) eşitsizliğini “iki tarafı \\(x-3\\) ile çarpar” ve \\(x\\lt5\\) buluyor. Hatasını açıklayıp doğru çözümü verin.",
+     "cozum": [
+      "\\(x-3\\) negatif olduğunda eşitsizlik yön değiştirir; öğrenci bunu ihmal etti. Ayrıca \\(x=3\\)'te ifade tanımsızdır.",
+      "Doğru yol: \\(\\dfrac{2}{x-3}-1\\gt0\\Rightarrow\\dfrac{5-x}{x-3}\\gt0\\). Kritik noktalar 3 ve 5.",
+      "Deneme: \\(x=4\\Rightarrow\\frac{1}{1}\\gt0\\); \\(x=0\\Rightarrow\\frac{5}{-3}\\lt0\\); \\(x=6\\Rightarrow\\frac{-1}{3}\\lt0\\). Çözüm: \\((3,5)\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi kuralı: Bölüm I Part A (28 soru) ve FRQ Part B (Q3, Q4) hesap makinesizdir; Bölüm I Part B (12 soru) ve FRQ Part A (Q1 Function Concepts, Q2 Modeling a Non-Periodic Context) grafik hesap makinesi ister.",
+    "Sıfır sorusunda payın her sıfırını paydada test edin; ortak olanları eleyin.",
+    "Eşitsizlik cevabında uç noktaları dikkatle seçin: sıfırlar \\(\\le,\\ge\\) için dahil, tanımsız noktalar asla dahil değil.",
+    "Part B'de grafik çizip x-eksenine göre konumu kontrol edebilirsiniz; ama Q4'te işaret analizi elle gösterilmelidir."
+   ],
+   "sikHatalar": [
+    "Payın paydayla ortak sıfırını da sıfır saymak.",
+    "Eşitsizliği payda ile çarpıp yön değişimini unutmak.",
+    "Tanımsız noktayı köşeli parantezle çözüme katmak."
+   ],
+   "terimler": [
+    {
+     "en": "zero of a rational function",
+     "tr": "rasyonel fonksiyonun sıfırı"
+    },
+    {
+     "en": "sign chart",
+     "tr": "işaret tablosu"
+    },
+    {
+     "en": "rational inequality",
+     "tr": "rasyonel eşitsizlik"
+    },
+    {
+     "en": "interval notation",
+     "tr": "aralık gösterimi"
+    },
+    {
+     "en": "undefined",
+     "tr": "tanımsız"
+    }
+   ]
+  },
+  {
+   "kod": "1.9",
+   "baslik": "Rational Functions and Vertical Asymptotes",
+   "baslikTr": "Rasyonel fonksiyonlar ve dikey asimptotlar",
+   "hedefler": [
+    "Dikey asimptotları (vertical asymptotes) sadeleştirilmiş biçimdeki payda sıfırlarından bulmak.",
+    "Dikey asimptot yakınındaki davranışı tek taraflı limitlerle (one-sided limits) yazmak."
+   ],
+   "anlatim": "<div class=\"kn-kural\"><strong>Dikey asimptot (vertical asymptote):</strong> \\(r(x)=\\dfrac{p(x)}{q(x)}\\) için, ortak çarpanlar sadeleştirildikten sonra paydada kalan bir \\((x-a)\\) çarpanı varsa \\(x=a\\) dikey asimptottur. Daha genel olarak: \\(a\\), paydada (denominator), payda (numerator) olduğundan <em>daha yüksek</em> katlılıkla sıfırsa \\(x=a\\) dikey asimptottur.</div>\n<p>Asimptot yakınında payda sıfıra yaklaşır, pay sıfırdan uzak kalır; bu yüzden kesir sınırsız büyür (pozitif ya da negatif).</p>\n<h4>Tek taraflı limitler</h4>\n<p>\\(x\\to a^+\\) “\\(a\\)'ya sağdan (büyük değerlerden)”, \\(x\\to a^-\\) “soldan (küçük değerlerden)” yaklaşmak demektir.</p>\n<div class=\"formul\">\\[ \\lim_{x\\to2^+}\\frac{1}{x-2}=\\infty,\\qquad \\lim_{x\\to2^-}\\frac{1}{x-2}=-\\infty \\]</div>\n<p>Neden? \\(x=2.001\\) iken payda \\(0.001\\) (küçük pozitif), kesir 1000. \\(x=1.999\\) iken payda \\(-0.001\\), kesir \\(-1000\\).</p>\n<h4>İşareti bulmak: deneme yöntemi</h4>\n<p>\\(r(x)=\\dfrac{x+1}{(x-3)^2}\\) için \\(x\\to3\\): payda her iki taraftan küçük <em>pozitif</em> (kare), pay \\(4\\)'e yaklaşır. Sonuç: iki taraftan da \\(+\\infty\\). Çift katlı payda çarpanı, asimptotun iki yanında aynı yön verir.</p>\n<table><thead><tr><th>Payda çarpanı</th><th>Asimptotun iki yanı</th></tr></thead><tbody>\n<tr><td>\\((x-a)\\) tek katlı</td><td>Zıt yönler (bir taraf \\(\\infty\\), diğeri \\(-\\infty\\))</td></tr>\n<tr><td>\\((x-a)^2\\) çift katlı</td><td>Aynı yön</td></tr></tbody></table>\n<h4>Örnek: tam analiz</h4>\n<p>\\(r(x)=\\dfrac{2x}{x^2-1}=\\dfrac{2x}{(x-1)(x+1)}\\). Ortak çarpan yok; dikey asimptotlar \\(x=1\\) ve \\(x=-1\\). \\(x\\to1^+\\): pay \\(\\approx2\\), \\((x-1)\\) küçük pozitif, \\((x+1)\\approx2\\): \\(+\\infty\\). \\(x\\to1^-\\): \\((x-1)\\) küçük negatif: \\(-\\infty\\).</p>\n<div class=\"kn-dikkat\">Paydanın her sıfırı dikey asimptot değildir! Payla ortak sıfırsa (ve katlılığı payda daha düşük değilse) orada delik vardır. Önce sadeleştirin.</div>\n<p>Grafik dikey asimptotu asla kesmez, çünkü \\(x=a\\) tanım kümesinde değildir.</p>\n<h4>Bağlamda dikey asimptot</h4>\n<p>Modellerde dikey asimptot genelde “sınır” anlamı taşır. Örneğin dakikada 4 litre sızdıran 120 litrelik bir tank dakikada \\(r\\) litre hızla doldurulursa dolma süresi \\(T(r)=\\dfrac{120}{r-4}\\) dakikadır. \\(r\\to4^+\\) iken \\(T\\to\\infty\\): dolum hızı sızıntı hızına yaklaştıkça tankın dolması sınırsız uzar. Bu tür yorumlarda hangi taraftan yaklaşıldığını ve çıktının birimini mutlaka yazın.</p>\n<h4>FRQ dili</h4>\n<p>“The graph of r has a vertical asymptote at x = 1 because \\(\\lim_{x\\to1^+} r(x)=\\infty\\).” ya da “because x − 1 is a factor of the denominator but not of the numerator.” Limit sorusunda her iki tarafı ayrı yazın.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=\\dfrac{x^2-4}{x^2-5x+6}\\) için dikey asimptotları bulun.",
+     "cozum": [
+      "\\(\\dfrac{(x-2)(x+2)}{(x-2)(x-3)}\\). \\((x-2)\\) sadeleşir.",
+      "Kalan payda \\((x-3)\\): dikey asimptot yalnızca \\(x=3\\). (\\(x=2\\)'de delik vardır.)"
+     ]
+    },
+    {
+     "soru": "\\(g(x)=\\dfrac{x-5}{x+2}\\) için \\(\\lim_{x\\to-2^-}g(x)\\) ve \\(\\lim_{x\\to-2^+}g(x)\\) değerlerini bulun.",
+     "cozum": [
+      "\\(x\\to-2\\) iken pay \\(\\to-7\\) (negatif).",
+      "Soldan (\\(x=-2.01\\)): payda \\(-0.01\\) (negatif); negatif/negatif = pozitif büyük: \\(\\infty\\).",
+      "Sağdan (\\(x=-1.99\\)): payda \\(+0.01\\); negatif/pozitif: \\(-\\infty\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(h(x)=\\dfrac{3}{(x-4)^2}\\). Bir öğrenci “\\(x\\) 4'ün iki yanında \\(h\\) zıt yönlere gider” diyor. Doğru mu? Açıklayın.",
+     "cozum": [
+      "\\((x-4)^2\\) her iki tarafta da pozitiftir ve 0'a yaklaşır; pay 3 pozitiftir.",
+      "\\(\\lim_{x\\to4^-}h(x)=\\infty\\) ve \\(\\lim_{x\\to4^+}h(x)=\\infty\\).",
+      "“The claim is incorrect. Because the factor \\((x-4)\\) appears with even multiplicity, h(x) increases without bound on both sides of x = 4.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi kuralı: Bölüm I Part A (28 soru) ve FRQ Part B (Q3, Q4) hesap makinesizdir; Bölüm I Part B (12 soru) ve FRQ Part A (Q1 Function Concepts, Q2 Modeling a Non-Periodic Context) grafik hesap makinesi ister.",
+    "Tek taraflı limit işaretini bulmak için asimptota çok yakın bir sayı (ör. \\(a+0.01\\)) koyup her çarpanın işaretine bakın.",
+    "Asimptot cevabını denklem olarak yazın: “x = 3”, sadece “3” değil.",
+    "Grafik hesap makinesi asimptotta dikey çizgi çizebilir; bu çizgi grafiğin parçası değildir."
+   ],
+   "sikHatalar": [
+    "Sadeleştirmeden paydanın tüm sıfırlarını dikey asimptot saymak.",
+    "Çift katlı payda çarpanında iki yanın zıt işaretli olduğunu sanmak.",
+    "Pay negatifken işaret kuralını ters uygulamak."
+   ],
+   "terimler": [
+    {
+     "en": "vertical asymptote",
+     "tr": "dikey asimptot"
+    },
+    {
+     "en": "one-sided limit",
+     "tr": "tek taraflı limit"
+    },
+    {
+     "en": "approaches from the right / left",
+     "tr": "sağdan / soldan yaklaşır"
+    },
+    {
+     "en": "without bound",
+     "tr": "sınırsız"
+    }
+   ]
+  },
+  {
+   "kod": "1.10",
+   "baslik": "Rational Functions and Holes",
+   "baslikTr": "Rasyonel fonksiyonlar ve delikler",
+   "hedefler": [
+    "Pay ve paydanın ortak sıfırının deliğe (hole) yol açtığı durumu tanımak.",
+    "Deliğin koordinatlarını sadeleştirilmiş ifadeyle ve limitle bulmak."
+   ],
+   "anlatim": "<p>Bazen pay ve payda aynı \\((x-a)\\) çarpanını içerir. O zaman \\(x=a\\)'da fonksiyon tanımsızdır ama grafik patlamaz: sadece tek bir nokta eksiktir. Buna <strong>delik (hole)</strong> denir.</p>\n<div class=\"kn-kural\"><strong>Delik:</strong> \\(a\\), payın sıfırı olup paydada <em>eşit ya da daha düşük</em> katlılıkla sıfırsa (yani sadeleştirince paydada \\((x-a)\\) kalmıyorsa), grafikte \\(x=a\\)'da bir delik vardır.</div>\n<h4>Deliğin y-koordinatı</h4>\n<p>Ortak çarpanı sadeleştirip kalan ifadede \\(x=a\\) yazın. Bu değer, \\(\\lim_{x\\to a}r(x)\\)'tir.</p>\n<p>Örnek: \\(r(x)=\\dfrac{x^2-x-6}{x-3}=\\dfrac{(x-3)(x+2)}{x-3}\\). \\(x\\neq3\\) için \\(r(x)=x+2\\). Delik: \\((3,\\,5)\\). Grafik \\(y=x+2\\) doğrusudur ama \\((3,5)\\) noktası boş daireyle (open circle) gösterilir.</p>\n<div class=\"formul\">\\[ \\lim_{x\\to3}r(x)=5,\\quad\\text{ama } r(3) \\text{ tanımsız.} \\]</div>\n<h4>Katlılık karşılaştırması</h4>\n<table><thead><tr><th>Paydaki katlılık</th><th>Paydadaki katlılık</th><th>Sonuç</th></tr></thead><tbody>\n<tr><td>1</td><td>1</td><td>Delik, y-değeri sıfırdan farklı olabilir</td></tr>\n<tr><td>2</td><td>1</td><td>Delik, y-değeri 0 (delik x-ekseninde)</td></tr>\n<tr><td>1</td><td>2</td><td>Dikey asimptot (paydada \\((x-a)\\) kalır)</td></tr></tbody></table>\n<p>Örnek: \\(\\dfrac{(x-1)^2}{(x-1)(x+3)}=\\dfrac{x-1}{x+3}\\) (\\(x\\neq1\\)): delik \\((1,0)\\). Dikkat: \\(x=1\\) yine de sıfır <em>değildir</em>, çünkü \\(r(1)\\) tanımsızdır.</p>\n<h4>Tam analiz sırası</h4>\n<ol><li>Pay ve paydayı tamamen çarpanlara ayırın.</li><li>Ortak çarpanları sadeleştirin → delikler (x-değerleri).</li><li>Sadeleşmiş ifadede deliğin y-değerini hesaplayın.</li><li>Kalan pay sıfırları → sıfırlar; kalan payda sıfırları → dikey asimptotlar.</li><li>Derece karşılaştırması → yatay/eğik asimptot.</li></ol>\n<div class=\"kn-dikkat\">Grafik hesap makinesi delikleri genelde göstermez; ekran düz bir çizgi çizer. Deliği cebirle bulmak zorundasınız.</div>\n<h4>Delik ile asimptotu limitle ayırmak</h4>\n<p>İkisi de paydanın sıfır olduğu yerde ortaya çıkar; fark limittedir. Delikte \\(\\lim_{x\\to a}r(x)\\) <strong>sonlu bir sayıdır</strong> (iki taraftan aynı değere yaklaşılır). Dikey asimptotta ise en az bir taraftan limit \\(\\infty\\) ya da \\(-\\infty\\)'dur. Bu yüzden “delik mi asimptot mu?” sorusuna en sağlam gerekçe, limiti hesaplayıp göstermektir: \\(\\lim_{x\\to3}\\frac{x^2-x-6}{x-3}=5\\) sonlu olduğu için \\(x=3\\)'te delik vardır.</p>\n<h4>FRQ dili</h4>\n<p>“The graph of r has a hole at x = 3 because \\((x-3)\\) is a factor of both the numerator and the denominator with equal multiplicity; \\(\\lim_{x\\to3}r(x)=5\\), so the hole is at (3, 5).”</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=\\dfrac{x^2+5x+4}{x^2-1}\\) için delik(ler)i ve dikey asimptot(lar)ı bulun.",
+     "cozum": [
+      "\\(\\dfrac{(x+1)(x+4)}{(x+1)(x-1)}\\). Ortak \\((x+1)\\): delik \\(x=-1\\).",
+      "Sadeleşmiş: \\(\\dfrac{x+4}{x-1}\\); \\(x=-1\\)'de \\(\\dfrac{3}{-2}=-\\dfrac32\\). Delik \\(\\left(-1,-\\tfrac32\\right)\\).",
+      "Kalan payda \\((x-1)\\): dikey asimptot \\(x=1\\)."
+     ]
+    },
+    {
+     "soru": "\\(g(x)=\\dfrac{x^3-8}{x-2}\\) için \\(\\lim_{x\\to2}g(x)\\)'i bulun.",
+     "cozum": [
+      "\\(x^3-8=(x-2)(x^2+2x+4)\\) (küp farkı).",
+      "\\(x\\neq2\\) için \\(g(x)=x^2+2x+4\\); \\(x=2\\): \\(4+4+4=12\\).",
+      "\\(\\lim_{x\\to2}g(x)=12\\); grafikte \\((2,12)\\) delik."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(r(x)=\\dfrac{(x-2)(x+1)}{(x-2)^2}\\). Öğrenci “\\(x=2\\)'de delik var” diyor. Değerlendirin.",
+     "cozum": [
+      "\\((x-2)\\) payda 1, paydada 2 katlı. Sadeleşince \\(\\dfrac{x+1}{x-2}\\) kalır; paydada \\((x-2)\\) hâlâ var.",
+      "\\(\\lim_{x\\to2^+}r(x)=\\infty\\).",
+      "“The claim is incorrect. Since the multiplicity of 2 as a zero of the denominator is greater than in the numerator, x = 2 is a vertical asymptote, not a hole.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi kuralı: Bölüm I Part A (28 soru) ve FRQ Part B (Q3, Q4) hesap makinesizdir; Bölüm I Part B (12 soru) ve FRQ Part A (Q1 Function Concepts, Q2 Modeling a Non-Periodic Context) grafik hesap makinesi ister.",
+    "Delik sorusunda iki koordinatı da verin: \\((a,\\ \\text{sadeleşmiş ifadenin } a\\text{'daki değeri})\\).",
+    "Ortak çarpanların katlılığını sayın: paydadaki daha büyükse asimptot, değilse delik.",
+    "Hesap makinesi deliği göstermez; Part B'de bile cebirle doğrulayın."
+   ],
+   "sikHatalar": [
+    "Deliğin y-koordinatını orijinal (sadeleşmemiş) ifadeye koyup \\(\\frac{0}{0}\\) bulup “yok” demek.",
+    "Delik olan noktayı fonksiyonun sıfırı saymak.",
+    "Paydada katlılık daha büyükken deliği asimptot yerine yazmak."
+   ],
+   "terimler": [
+    {
+     "en": "hole (removable discontinuity)",
+     "tr": "delik (kaldırılabilir süreksizlik)"
+    },
+    {
+     "en": "common factor",
+     "tr": "ortak çarpan"
+    },
+    {
+     "en": "open circle",
+     "tr": "boş daire"
+    },
+    {
+     "en": "simplify",
+     "tr": "sadeleştirmek"
+    }
+   ]
+  },
+  {
+   "kod": "1.11",
+   "baslik": "Equivalent Representations of Polynomial and Rational Expressions",
+   "baslikTr": "Polinom ve rasyonel ifadelerin denk gösterimleri",
+   "hedefler": [
+    "Polinomları standart (standard) ve çarpanlı (factored) biçimler arasında dönüştürmek ve her biçimin hangi bilgiyi açıkça verdiğini söylemek.",
+    "Polinom bölmesiyle (polynomial long division) rasyonel ifadeyi bölüm + kalan/bölen biçiminde yazmak.",
+    "Binom teoremini (binomial theorem) ve Pascal üçgenini (Pascal's triangle) kullanarak \\((a+b)^n\\) açmak."
+   ],
+   "anlatim": "<p>Aynı fonksiyon farklı biçimlerde yazılabilir. Her biçim farklı bir özelliği <strong>görünür</strong> kılar. AP sınavı “Which form reveals …?” diye sorar.</p>\n<table><thead><tr><th>Biçim</th><th>Örnek</th><th>Doğrudan gösterdiği</th></tr></thead><tbody>\n<tr><td>Standart (standard form)</td><td>\\(x^3-2x^2-5x+6\\)</td><td>Derece, baş katsayı, y-kesişimi (\\(6\\)), uç davranış</td></tr>\n<tr><td>Çarpanlı (factored form)</td><td>\\((x-1)(x+2)(x-3)\\)</td><td>Sıfırlar ve katlılıklar, işaret analizi</td></tr>\n<tr><td>Tepe noktası (vertex form, ikinci derece)</td><td>\\(2(x-3)^2-5\\)</td><td>Tepe noktası \\((3,-5)\\), simetri ekseni</td></tr>\n<tr><td>Bölüm + kalan (rasyonel)</td><td>\\(x+2+\\frac{3}{x-1}\\)</td><td>Eğik/yatay asimptot</td></tr></tbody></table>\n<h4>Polinom bölmesi (long division)</h4>\n<div class=\"kn-kural\">\\(p(x)=d(x)\\,q(x)+r(x)\\); burada \\(r\\)'nin derecesi \\(d\\)'ninkinden küçüktür. Rasyonel biçimde: \\(\\dfrac{p(x)}{d(x)}=q(x)+\\dfrac{r(x)}{d(x)}\\).</div>\n<p>Örnek: \\((2x^3+3x^2-x+5)\\div(x+2)\\).</p>\n<ol><li>\\(2x^3\\div x=2x^2\\); \\(2x^2(x+2)=2x^3+4x^2\\); çıkarınca \\(-x^2-x\\).</li><li>\\(-x^2\\div x=-x\\); \\(-x(x+2)=-x^2-2x\\); çıkarınca \\(x+5\\).</li><li>\\(x\\div x=1\\); \\(1(x+2)=x+2\\); çıkarınca \\(3\\).</li></ol>\n<p>Sonuç: \\(\\dfrac{2x^3+3x^2-x+5}{x+2}=2x^2-x+1+\\dfrac{3}{x+2}\\).</p>\n<div class=\"kn-tanim\"><strong>Kalan teoremi (Remainder Theorem):</strong> \\(p(x)\\), \\((x-a)\\)'ya bölündüğünde kalan \\(p(a)\\)'dır. Yukarıda \\(p(-2)=-16+12+2+5=3\\) ✓.</div>\n<h4>Binom teoremi ve Pascal üçgeni</h4>\n<p>\\((a+b)^n\\) açılımındaki katsayılar Pascal üçgeninin \\(n\\). satırıdır:</p>\n<table><tbody><tr><td>\\(n=0\\)</td><td>1</td></tr><tr><td>\\(n=1\\)</td><td>1 1</td></tr><tr><td>\\(n=2\\)</td><td>1 2 1</td></tr><tr><td>\\(n=3\\)</td><td>1 3 3 1</td></tr><tr><td>\\(n=4\\)</td><td>1 4 6 4 1</td></tr></tbody></table>\n<div class=\"formul\">\\[ (a+b)^n=\\sum_{k=0}^{n}\\binom{n}{k}a^{n-k}b^k \\]</div>\n<p>Örnek: \\((x-2)^3=x^3+3x^2(-2)+3x(-2)^2+(-2)^3=x^3-6x^2+12x-8\\). İşaretli \\(b\\)'yi parantez içinde kuvvetlendirin!</p>\n<div class=\"kn-dikkat\">Bölmede eksik dereceli terimlere 0 katsayı koyun: \\(x^3-1\\) için \\(x^3+0x^2+0x-1\\). Unutursanız sütunlar kayar.</div>\n<h4>Sentetik bölme (synthetic division) kısayolu</h4>\n<p>Bölen \\((x-a)\\) biçimindeyse yalnız katsayılarla çalışabilirsiniz. \\((x^3-4x+7)\\div(x-2)\\) için \\(a=2\\) ve katsayılar 1, 0, −4, 7: ilk katsayıyı indirin (1); \\(1\\cdot2=2\\), \\(0+2=2\\); \\(2\\cdot2=4\\), \\(-4+4=0\\); \\(0\\cdot2=0\\), \\(7+0=7\\). Bölüm \\(x^2+2x+0\\), kalan 7. Dikkat: bölen \\(x+2\\) ise \\(a=-2\\) kullanılır; en sık hata budur.</p>\n<h4>FRQ dili</h4>\n<p>Q4 (Symbolic Manipulations) bu konunun asıl evidir: “Rewrite \\(h(x)\\) as a polynomial in standard form” ya da “Find the quotient and remainder.” Her adımı gösterin; yalnız sonuç tam puan getirmez.</p>",
+   "ornekler": [
+    {
+     "soru": "\\((x^3-4x+7)\\div(x-2)\\) bölümünü ve kalanı bulun.",
+     "cozum": [
+      "\\(x^3+0x^2-4x+7\\). \\(x^2(x-2)=x^3-2x^2\\); fark \\(2x^2-4x\\).",
+      "\\(2x(x-2)=2x^2-4x\\); fark \\(0x+7\\). Bölüm \\(x^2+2x\\), kalan 7.",
+      "Kontrol (kalan teoremi): \\(p(2)=8-8+7=7\\) ✓."
+     ]
+    },
+    {
+     "soru": "\\((2x+1)^4\\) açılımında \\(x^2\\)'li terimin katsayısını bulun.",
+     "cozum": [
+      "\\(\\binom{4}{k}(2x)^{4-k}(1)^k\\); \\(x^2\\) için \\(4-k=2\\Rightarrow k=2\\).",
+      "\\(\\binom42(2x)^2=6\\cdot4x^2=24x^2\\). Katsayı 24."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(f(x)=x^2-6x+11\\). Hangi biçim \\(f\\)'nin en küçük değerini doğrudan gösterir? O biçimi yazın ve en küçük değeri belirtin.",
+     "cozum": [
+      "Tepe noktası biçimi (vertex form) minimumu doğrudan gösterir.",
+      "Kareye tamamlama: \\(x^2-6x+9+2=(x-3)^2+2\\).",
+      "\\((x-3)^2\\ge0\\) olduğundan en küçük değer \\(2\\), \\(x=3\\)'te alınır."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi kuralı: Bölüm I Part A (28 soru) ve FRQ Part B (Q3, Q4) hesap makinesizdir; Bölüm I Part B (12 soru) ve FRQ Part A (Q1 Function Concepts, Q2 Modeling a Non-Periodic Context) grafik hesap makinesi ister.",
+    "“Which form reveals the zeros?” → factored; “y-intercept / end behavior?” → standard; “maximum/minimum?” → vertex.",
+    "Bölmeden sonra kalan teoremiyle 10 saniyelik kontrol yapın.",
+    "Binom açılımında negatif terimi parantezli yazın: \\((-2)^3=-8\\)."
+   ],
+   "sikHatalar": [
+    "Bölmede eksik terimlere 0 koymamak.",
+    "Binom açılımında \\(b\\)'nin kuvvetini yalnızca katsayıya uygulayıp işareti unutmak.",
+    "Kalanı bölenin üstüne yazmayı unutup yalnız bölümü vermek."
+   ],
+   "terimler": [
+    {
+     "en": "standard form",
+     "tr": "standart biçim"
+    },
+    {
+     "en": "factored form",
+     "tr": "çarpanlı biçim"
+    },
+    {
+     "en": "vertex form",
+     "tr": "tepe noktası biçimi"
+    },
+    {
+     "en": "polynomial long division",
+     "tr": "polinom bölmesi"
+    },
+    {
+     "en": "Remainder Theorem",
+     "tr": "Kalan teoremi"
+    },
+    {
+     "en": "binomial theorem",
+     "tr": "binom teoremi"
+    },
+    {
+     "en": "Pascal's triangle",
+     "tr": "Pascal üçgeni"
+    }
+   ]
+  },
+  {
+   "kod": "1.12",
+   "baslik": "Transformations of Functions",
+   "baslikTr": "Fonksiyonların dönüşümleri",
+   "hedefler": [
+    "Toplamsal (additive) ve çarpımsal (multiplicative) dönüşümlerle grafiğin öteleme (translation), genişleme/daralma (dilation) ve yansımasını (reflection) belirlemek.",
+    "Dönüşümün tanım ve değer kümesine etkisini açıklamak."
+   ],
+   "anlatim": "<p>Bir fonksiyonu bildiğinizde, ona sabit ekleyerek ya da sabitle çarparak bütün bir aileyi elde edersiniz. AP Precalculus bunu \\(g(x)=a\\,f\\big(b(x+h)\\big)+k\\) biçiminde düşünür.</p>\n<h4>Dışarıdaki değişiklikler: çıktıyı etkiler (dikey)</h4>\n<table><thead><tr><th>Dönüşüm</th><th>Etki</th></tr></thead><tbody>\n<tr><td>\\(f(x)+k\\)</td><td>Dikey öteleme (vertical translation): \\(k\\gt0\\) yukarı, \\(k\\lt0\\) aşağı</td></tr>\n<tr><td>\\(a\\,f(x)\\)</td><td>Dikey genişleme (vertical dilation) çarpanı \\(|a|\\); \\(a\\lt0\\) ise x-eksenine göre yansıma</td></tr></tbody></table>\n<h4>İçerideki değişiklikler: girdiyi etkiler (yatay) — ters yönde!</h4>\n<table><thead><tr><th>Dönüşüm</th><th>Etki</th></tr></thead><tbody>\n<tr><td>\\(f(x+h)\\)</td><td>Yatay öteleme: \\(h\\gt0\\) ise <strong>sola</strong> \\(h\\) birim</td></tr>\n<tr><td>\\(f(bx)\\)</td><td>Yatay genişleme çarpanı \\(\\frac{1}{|b|}\\); \\(b\\lt0\\) ise y-eksenine göre yansıma</td></tr></tbody></table>\n<div class=\"kn-kural\">İçerideki işlemler “girdinin ne olması gerektiğini” değiştirir; bu yüzden ters çalışır. \\(f(x-3)\\)'te eski \\(x=0\\) noktasına ulaşmak için yeni girdi \\(x=3\\) olmalıdır: grafik <strong>sağa</strong> 3 kayar.</div>\n<h4>Nokta takibi</h4>\n<p>\\(f\\)'nin grafiğinde \\((x_0,y_0)\\) varsa, \\(g(x)=a\\,f(b(x+h))+k\\) grafiğinde \\(\\left(\\dfrac{x_0}{b}-h,\\ a y_0+k\\right)\\) vardır.</p>\n<p>Örnek: \\(f\\) üzerinde \\((4,6)\\). \\(g(x)=-\\tfrac12 f(2x)+1\\): yeni nokta \\(\\left(\\tfrac42,\\ -\\tfrac12\\cdot6+1\\right)=(2,-2)\\).</p>\n<h4>Tanım ve değer kümesi</h4>\n<p>Yatay dönüşümler tanım kümesini (domain), dikey dönüşümler değer kümesini (range) değiştirir. \\(f\\)'nin tanım kümesi \\([0,6]\\) ise \\(f(2x)\\)'in tanım kümesi \\([0,3]\\); \\(f(x-1)\\)'inki \\([1,7]\\). \\(f\\)'nin değer kümesi \\([-2,4]\\) ise \\(-f(x)\\)'inki \\([-4,2]\\); \\(3f(x)+1\\)'inki \\([-5,13]\\).</p>\n<div class=\"kn-dikkat\">Sıra önemlidir: önce genişleme/yansıma, sonra öteleme (çıktıda). \\(2f(x)+3\\) ile \\(2(f(x)+3)=2f(x)+6\\) farklıdır.</div>\n<h4>Dönüşümler ve özellikler</h4>\n<p>Dikey öteleme sıfırları değiştirir ama x-değerli özellikleri (ekstremumun x-konumu) değiştirmez. Yatay öteleme dikey asimptotu kaydırır: \\(\\frac{1}{x}\\) için \\(x=0\\) olan asimptot, \\(\\frac{1}{x-2}\\) için \\(x=2\\) olur. Dikey öteleme yatay asimptotu kaydırır: \\(\\frac1x+3\\)'ün yatay asimptotu \\(y=3\\).</p>\n<h4>FRQ dili</h4>\n<p>“The graph of g is the graph of f horizontally translated 3 units to the right and vertically dilated by a factor of 2.” Yön ve çarpanı birlikte yazın.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(g(x)=f(x+4)-2\\). \\(f\\)'nin yerel maksimumu \\((1,5)\\)'te ise \\(g\\)'nin yerel maksimumu nerededir?",
+     "cozum": [
+      "\\(+4\\) içeride: sola 4 birim. \\(x=1-4=-3\\).",
+      "\\(-2\\) dışarıda: aşağı 2. \\(y=5-2=3\\).",
+      "Yerel maksimum \\((-3,3)\\)."
+     ]
+    },
+    {
+     "soru": "\\(f(x)=x^2\\). Grafiği x-eksenine göre yansıtılıp dikey olarak 3 çarpanıyla gerilen, sonra sağa 1 ve yukarı 4 ötelenen fonksiyonu yazın.",
+     "cozum": [
+      "Yansıma ve germe: \\(-3x^2\\).",
+      "Sağa 1: \\(-3(x-1)^2\\); yukarı 4: \\(g(x)=-3(x-1)^2+4\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(f\\)'nin tanım kümesi \\([-2,8]\\), değer kümesi \\([1,5]\\). \\(h(x)=-2f\\!\\left(\\tfrac12x\\right)\\) için tanım ve değer kümesini bulup açıklayın.",
+     "cozum": [
+      "\\(\\tfrac12x\\in[-2,8]\\Rightarrow x\\in[-4,16]\\): yatay genişleme çarpanı 2.",
+      "\\(-2f\\): \\(f\\in[1,5]\\Rightarrow -2f\\in[-10,-2]\\) (yansıma sırayı çevirir).",
+      "“The domain of h is \\([-4,16]\\) because the input is horizontally dilated by a factor of 2; the range is \\([-10,-2]\\) because outputs are multiplied by −2.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi kuralı: Bölüm I Part A (28 soru) ve FRQ Part B (Q3, Q4) hesap makinesizdir; Bölüm I Part B (12 soru) ve FRQ Part A (Q1 Function Concepts, Q2 Modeling a Non-Periodic Context) grafik hesap makinesi ister.",
+    "İçerideki sayılar için soru sorun: “eski girdiyi elde etmek için yeni \\(x\\) ne olmalı?” Bu, ters yön hatasını önler.",
+    "Nokta takibinde x'e içerideki dönüşümün tersini, y'ye dışarıdakini uygulayın.",
+    "Part B'de grafik hesap makinesinde \\(f\\) ve \\(g\\)'yi birlikte çizerek kaymayı doğrulayabilirsiniz."
+   ],
+   "sikHatalar": [
+    "\\(f(x-3)\\)'ü sola kayma sanmak.",
+    "\\(f(2x)\\)'i yatay olarak 2 kat genişletme sanmak (aslında yarıya daralma).",
+    "Negatif çarpanla değer kümesini dönüştürürken uçların yerini değiştirmeyi unutmak."
+   ],
+   "terimler": [
+    {
+     "en": "transformation",
+     "tr": "dönüşüm"
+    },
+    {
+     "en": "translation",
+     "tr": "öteleme"
+    },
+    {
+     "en": "dilation",
+     "tr": "genişleme / daralma"
+    },
+    {
+     "en": "reflection",
+     "tr": "yansıma"
+    },
+    {
+     "en": "additive / multiplicative transformation",
+     "tr": "toplamsal / çarpımsal dönüşüm"
+    }
+   ]
+  },
+  {
+   "kod": "1.13",
+   "baslik": "Function Model Selection and Assumption Articulation",
+   "baslikTr": "Fonksiyon modeli seçimi ve varsayımların açıklanması",
+   "hedefler": [
+    "Veri ya da bağlamın özelliklerine göre doğrusal, ikinci dereceden, kübik, parçalı (piecewise) ya da rasyonel model seçmek ve gerekçelendirmek.",
+    "Modelin dayandığı varsayımları (assumptions) ve kısıtlı tanım kümesini (restricted domain) açıkça ifade etmek."
+   ],
+   "anlatim": "<p>Gerçek dünyada fonksiyon size formülle gelmez; veri ya da bir hikâye gelir. <strong>Modelleme (modeling)</strong>, uygun fonksiyon türünü seçip varsayımlarını söylemektir. FRQ Q2 (Modeling a Non-Periodic Context) bu becerileri doğrudan puanlar.</p>\n<h4>Hangi model, hangi işaret?</h4>\n<table><thead><tr><th>Veri/bağlam özelliği</th><th>Uygun model</th></tr></thead><tbody>\n<tr><td>Eşit girdi adımlarında sabit birinci farklar; sabit hız</td><td>Doğrusal (linear)</td></tr>\n<tr><td>Sabit ikinci farklar; tek tepe ya da çukur; simetri</td><td>İkinci dereceden (quadratic)</td></tr>\n<tr><td>Sabit üçüncü farklar; artış–azalış–artış</td><td>Kübik (cubic)</td></tr>\n<tr><td>Farklı aralıklarda farklı kural (ör. ücret tarifesi)</td><td>Parçalı (piecewise)</td></tr>\n<tr><td>Ters orantı; bir değere yaklaşma; payda sıfırlanınca patlama</td><td>Rasyonel (rational)</td></tr></tbody></table>\n<div class=\"kn-kural\">Geometrik bağlamlar: uzunluk doğrusal, alan ikinci derece, hacim üçüncü derece model ister. Örnek: kenarı \\(x\\) olan kare tabanlı kutunun hacmi \\(x^2h\\).</div>\n<h4>Varsayımlar (assumptions)</h4>\n<p>Her model bir varsayım taşır: “Fiyat sabit kalırsa satış doğrusal artar.” “Hava direnci yoksa top parabolik yol izler.” AP sınavı sizden bu varsayımı <em>bağlamın diliyle</em> yazmanızı ister.</p>\n<div class=\"kn-tanim\"><strong>Kısıtlı tanım kümesi (restricted domain):</strong> Bağlamın anlamlı olduğu girdi aralığı. Örneğin bir topun yüksekliği modeli \\(h(t)=-4.9t^2+20t+1\\) yalnızca top havadayken (\\(h(t)\\ge0\\)) geçerlidir. Zaman negatif olamaz, uzunluk negatif olamaz.</div>\n<h4>Modelin sınırları</h4>\n<p>İkinci dereceden bir kâr modeli belli bir fiyattan sonra negatif kâr verir; bu, modelin o bölgede geçersiz olabileceğini ya da gerçekten zararı gösterdiğini tartışmanızı gerektirir. Rasyonel bir model bir değere yaklaşıyorsa (ör. öğrenme eğrisi %100'e yaklaşır), bu yatay asimptot bağlamdaki bir <strong>üst sınırdır (limit / cap)</strong>.</p>\n<div class=\"kn-dikkat\">Model seçimi gerekçesinde sadece “the data looks like a parabola” yazmak zayıftır. Sayısal kanıt verin: “the second differences are approximately constant” ya da “the rates of change are increasing then decreasing”.</div>\n<h4>Parçalı modeller</h4>\n<p>Bir taksi ücreti ilk 2 km için sabit 50 TL, sonra km başına 20 TL ise: \\(C(d)=50\\) (\\(0\\lt d\\le2\\)), \\(C(d)=50+20(d-2)\\) (\\(d\\gt2\\)). Her parça kendi alt tanım kümesinde geçerlidir.</p>\n<h4>FRQ dili</h4>\n<p>“A quadratic model is appropriate because the average rates of change over equal intervals change at a constant rate.” Varsayım: “This model assumes the rate at which the population grows changes at a constant rate.” Tanım kümesi: “The model is valid for \\(0\\le t\\le 4.1\\) seconds because the ball is in the air.”</p>",
+   "ornekler": [
+    {
+     "soru": "Tablo: \\(x=0,1,2,3,4\\) için \\(y=2,3,10,29,66\\). Doğrusal, ikinci derece ve kübik modellerden hangisi uygundur?",
+     "cozum": [
+      "Birinci farklar: 1, 7, 19, 37 (sabit değil). İkinci farklar: 6, 12, 18 (sabit değil).",
+      "Üçüncü farklar: 6, 6 — sabit. Kübik model uygundur (gerçekten \\(y=x^3+2\\))."
+     ]
+    },
+    {
+     "soru": "Açık bir kutu, \\(20\\times20\\) cm kartonun köşelerinden kenarı \\(x\\) cm kareler kesilerek yapılıyor. Hacim modelini ve bağlamsal tanım kümesini yazın.",
+     "cozum": [
+      "Taban \\((20-2x)\\times(20-2x)\\), yükseklik \\(x\\): \\(V(x)=x(20-2x)^2\\). Bu kübik bir modeldir (hacim).",
+      "Kenarlar pozitif olmalı: \\(x\\gt0\\) ve \\(20-2x\\gt0\\Rightarrow x\\lt10\\). Tanım kümesi \\(0\\lt x\\lt10\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir fabrikanın üretim maliyeti \\(C(n)\\) ile ortalama birim maliyet \\(A(n)=\\dfrac{C(n)}{n}\\). \\(C(n)=500+4n\\) dolar ise \\(A\\) hangi model türüdür? Uzun dönem davranışını bağlamda açıklayın.",
+     "cozum": [
+      "\\(A(n)=\\dfrac{500+4n}{n}\\): iki polinomun oranı — rasyonel model.",
+      "Dereceler eşit, baş katsayı oranı \\(4/1=4\\): \\(\\lim_{n\\to\\infty}A(n)=4\\).",
+      "“As the number of units produced increases, the average cost per unit approaches 4 dollars, because the fixed cost of 500 dollars is spread over more units.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi kuralı: Bölüm I Part A (28 soru) ve FRQ Part B (Q3, Q4) hesap makinesizdir; Bölüm I Part B (12 soru) ve FRQ Part A (Q1 Function Concepts, Q2 Modeling a Non-Periodic Context) grafik hesap makinesi ister.",
+    "Q2'de üç parça puanlanır: model türü + gerekçe, varsayım, tanım kümesi/sınırlama. Üçünü ayrı cümlelerle yazın.",
+    "Gerekçeyi sayısal kanıtla yazın (farklar, AROC'lar, simetri); “looks like” yetmez.",
+    "Bağlam birimini her zaman yazın: saniye, metre, dolar, bin kişi."
+   ],
+   "sikHatalar": [
+    "Bağlamın imkânsız kıldığı girdileri (negatif zaman/uzunluk) tanım kümesinde bırakmak.",
+    "Model seçimini sayısal kanıt olmadan yalnızca grafik görüntüsüyle gerekçelendirmek.",
+    "Hacim gibi üç boyutlu bir büyüklüğe doğrusal ya da ikinci dereceden model seçmek."
+   ],
+   "terimler": [
+    {
+     "en": "model",
+     "tr": "model"
+    },
+    {
+     "en": "assumption",
+     "tr": "varsayım"
+    },
+    {
+     "en": "restricted domain",
+     "tr": "kısıtlı tanım kümesi"
+    },
+    {
+     "en": "piecewise function",
+     "tr": "parçalı fonksiyon"
+    },
+    {
+     "en": "cubic",
+     "tr": "kübik (üçüncü dereceden)"
+    },
+    {
+     "en": "context",
+     "tr": "bağlam"
+    }
+   ]
+  },
+  {
+   "kod": "1.14",
+   "baslik": "Function Model Construction and Application",
+   "baslikTr": "Fonksiyon modeli kurma ve uygulama",
+   "hedefler": [
+    "Verilen noktalardan ya da bağlamdan doğrusal, ikinci dereceden, polinom ya da rasyonel model kurmak; gerektiğinde regresyon (regression) kullanmak.",
+    "Modelle tahmin yapmak, sonuçları birimiyle yorumlamak ve modelin uygunluğunu artıklarla (residuals) değerlendirmek."
+   ],
+   "anlatim": "<p>1.13'te model <em>türünü</em> seçtik; şimdi modeli <strong>kurup kullanıyoruz</strong>. Üç yol vardır: noktalardan cebirle, bağlam bilgisinden ve <strong>regresyonla (regression)</strong>.</p>\n<h4>1. Noktalardan cebirle</h4>\n<p>İkinci dereceden model için 3 nokta yeterlidir. Örnek: \\((0,3),\\ (1,6),\\ (2,11)\\). \\(y=ax^2+bx+c\\): \\(c=3\\); \\(a+b=3\\); \\(4a+2b=8\\Rightarrow 2a+b=4\\). Çıkarınca \\(a=1,\\ b=2\\): \\(y=x^2+2x+3\\).</p>\n<p>Sıfırlar biliniyorsa çarpanlı biçim kullanın: sıfırları \\(-1\\) ve 4 olan, \\((0,8)\\)'den geçen parabol: \\(y=a(x+1)(x-4)\\), \\(8=a(1)(-4)\\Rightarrow a=-2\\).</p>\n<h4>2. Bağlamdan</h4>\n<p>“Bir ışık kaynağından uzaklık iki katına çıkınca parlaklık dörtte birine iner” → \\(B(d)=\\dfrac{k}{d^2}\\) (ters kare, rasyonel model). Bir veri noktası \\(k\\)'yi bulur.</p>\n<h4>3. Regresyon (graphing calculator)</h4>\n<div class=\"kn-kural\">Bölüm I Part B ve FRQ Q2'de grafik hesap makinesiyle doğrusal (LinReg), ikinci dereceden (QuadReg), kübik (CubicReg) ve dördüncü dereceden (QuartReg) regresyon yapılabilir. Katsayıları en az 3 ondalık basamakla yazın.</div>\n<p>Veri listelerini girin (L1 girdi, L2 çıktı), regresyon türünü seçin, denklemi kaydedin ve tahmin için kullanın. Part A'da ve Q3–Q4'te hesap makinesi yoktur, bu yüzden 3 noktadan elle kurma becerisi de gereklidir.</p>\n<h4>Tahmin ve yorum</h4>\n<p>Model \\(P(t)=0.5t^2+2t+40\\) (bin kişi, \\(t\\) yıl). \\(P(6)=18+12+40=70\\): “6 yıl sonra nüfus yaklaşık 70 bin kişidir.” Veri aralığının dışında tahmin (extrapolation) daha az güvenilirdir; bunu belirtin.</p>\n<h4>Artıklar (residuals) — ön bilgi</h4>\n<p>Not: CED'de artıklarla model doğrulama Unit 2'deki 2.6 konusunda (Competing Function Model Validation) ayrıntılı işlenir; burada kısa bir ön bilgi veriyoruz.</p>\n<div class=\"kn-tanim\"><strong>Artık (residual):</strong> gerçek değer − tahmin edilen değer. Pozitif artık: model az tahmin etmiş (underestimate); negatif artık: fazla tahmin etmiş (overestimate).</div>\n<p>Artıkların grafiğinde belirgin bir desen (ör. U şekli) varsa model türü uygun değildir; artıklar 0 çevresinde rastgele dağılıyorsa model uygundur.</p>\n<h4>Ortalama değişim hızı ile model kullanımı</h4>\n<p>Q2 sık sorar: “Use the model to find the average rate of change of P from t = 2 to t = 6. Interpret.” \\(\\dfrac{P(6)-P(2)}{4}=\\dfrac{70-46}{4}=6\\): “Between years 2 and 6, the population increases by an average of 6 thousand people per year.”</p>\n<div class=\"kn-dikkat\">Model bir <em>tahmin</em>dir. “The model predicts…” ya da “According to the model…” deyin; “the population will be exactly 70,000” demeyin.</div>",
+   "ornekler": [
+    {
+     "soru": "Sıfırları \\(x=1\\) ve \\(x=5\\) olan ve \\((3,-8)\\) noktasından geçen ikinci dereceden modeli yazın.",
+     "cozum": [
+      "\\(y=a(x-1)(x-5)\\).",
+      "\\(-8=a(2)(-2)=-4a\\Rightarrow a=2\\). Model: \\(y=2(x-1)(x-5)=2x^2-12x+10\\)."
+     ]
+    },
+    {
+     "soru": "Bir modele göre \\(t=4\\) saatte tahmini sıcaklık 18.6 °C, ölçülen sıcaklık 17.9 °C. Artığı hesaplayıp yorumlayın.",
+     "cozum": [
+      "Artık \\(=17.9-18.6=-0.7\\) °C.",
+      "Negatif artık: model \\(t=4\\)'te sıcaklığı 0.7 °C fazla tahmin etmiştir (overestimate)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Ses şiddeti \\(I\\), kaynaktan uzaklığın karesiyle ters orantılıdır. 2 m'de \\(I=45\\) birim. Modeli kurun, 6 m'deki şiddeti bulun ve bağlamda yorumlayın.",
+     "cozum": [
+      "\\(I(d)=\\dfrac{k}{d^2}\\); \\(45=\\dfrac{k}{4}\\Rightarrow k=180\\).",
+      "\\(I(6)=\\dfrac{180}{36}=5\\) birim.",
+      "“According to the model, the intensity at 6 m is 5 units; tripling the distance divides the intensity by 9.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi kuralı: Bölüm I Part A (28 soru) ve FRQ Part B (Q3, Q4) hesap makinesizdir; Bölüm I Part B (12 soru) ve FRQ Part A (Q1 Function Concepts, Q2 Modeling a Non-Periodic Context) grafik hesap makinesi ister.",
+    "Regresyon sonucunu yazarken denklemi ve katsayıları en az 3 ondalıkla verin; yuvarlama hatası tahmini bozabilir — denklemi hesap makinesinde kaydedin.",
+    "Yorum kalıbı: “According to the model, … at t = … (birim).”",
+    "Veri aralığı dışında tahmin isteniyorsa bir cümleyle güvenilirliğin azaldığını söyleyin."
+   ],
+   "sikHatalar": [
+    "Artığı tahmin − gerçek olarak ters hesaplamak.",
+    "Regresyon katsayılarını erken yuvarlayıp tahminde hata yapmak.",
+    "Modelin çıktısını kesin gerçek gibi sunmak; birim ve bağlamı unutmak."
+   ],
+   "terimler": [
+    {
+     "en": "regression",
+     "tr": "regresyon"
+    },
+    {
+     "en": "residual",
+     "tr": "artık"
+    },
+    {
+     "en": "underestimate / overestimate",
+     "tr": "az tahmin / fazla tahmin"
+    },
+    {
+     "en": "extrapolation",
+     "tr": "veri aralığı dışında tahmin"
+    },
+    {
+     "en": "inverse square",
+     "tr": "ters kare"
+    }
+   ]
+  }
+ ]
+}
