@@ -1,0 +1,309 @@
+{
+ "ders": "physics",
+ "unite": 7,
+ "baslik": "Oscillations",
+ "baslikTr": "Salınımlar",
+ "konular": [
+  {
+   "kod": "7.1",
+   "baslik": "Defining Simple Harmonic Motion (SHM)",
+   "baslikTr": "Basit harmonik hareketin tanımı",
+   "hedefler": [
+    "Bir hareketin basit harmonik hareket (simple harmonic motion, SHM) olması için geri getirici kuvvetin (restoring force) sağlaması gereken iki koşulu açıklamak.",
+    "Kuvvet–yer değiştirme (force vs. displacement) verisinden bir sistemin SHM yapıp yapmadığına karar vermek ve eğimden \\(k\\)'yi bulmak.",
+    "Düşey yay ve basit sarkaç (simple pendulum) için denge konumunu ve SHM yaklaşımının geçerlilik sınırını açıklamak."
+   ],
+   "anlatim": "<p>Unit 7'de tek bir hareket türünü derinlemesine inceliyoruz: <strong>salınım (oscillation)</strong>. Bir cisim aynı hareketi eşit zaman aralıklarıyla tekrar ediyorsa hareket <strong>periyodiktir (periodic)</strong>. Her periyodik hareket basit harmonik değildir; SHM, çok özel bir kuvvet yasasının sonucudur.</p>\n<div class=\"kn-tanim\"><strong>Denge konumu (equilibrium position):</strong> Cisme etki eden net kuvvetin sıfır olduğu konum. <strong>Yer değiştirme (displacement)</strong> \\(x\\) bu konumdan ölçülür. <strong>Geri getirici kuvvet (restoring force):</strong> Cismi her zaman dengeye doğru iten net kuvvet.</div>\n<h4>SHM'nin iki koşulu</h4>\n<p>Bir sistem, net kuvvet aşağıdaki biçimde olduğunda basit harmonik hareket yapar:</p>\n<div class=\"formul\">\\[ F_{\\text{net}} = -kx \\]</div>\n<ol><li><strong>Yön:</strong> Eksi işareti, kuvvetin yer değiştirmeye <em>zıt</em> yönde, yani dengeye doğru olduğunu söyler. Cisim sağdaysa kuvvet sola, soldaysa sağa doğrudur.</li>\n<li><strong>Orantılılık (proportionality):</strong> Kuvvetin büyüklüğü \\(|x|\\) ile doğru orantılıdır. Yer değiştirme iki katına çıkarsa geri getirici kuvvet de tam iki katına çıkar.</li></ol>\n<p>Newton'un ikinci yasasından \\(a = F_{\\text{net}}/m = -\\frac{k}{m}x\\). Yani SHM'de <strong>ivme de yer değiştirmeyle orantılı ve zıt yönlüdür</strong>. Dengede (\\(x=0\\)) ivme sıfırdır; uç noktalarda (\\(x=\\pm A\\)) ivmenin büyüklüğü en fazladır. Dikkat: dengede ivme sıfırdır ama hız sıfır değildir; cisim eylemsizliği (inertia) nedeniyle dengeyi geçip öbür tarafa gider.</p>\n<h4>Hooke yasası ve ideal yay</h4>\n<p>İdeal bir yay (ideal spring) için yay kuvveti \\(F_s = -k\\Delta x\\) (Hooke's law) olur; \\(k\\) yay sabitidir (spring constant, birimi N/m). Bu yüzden sürtünmesiz yatay yüzeydeki blok–yay sistemi SHM'nin örnek modelidir.</p>\n<h4>Veriyle SHM testi</h4>\n<p>Laboratuvarda net kuvveti (ya da ivmeyi) farklı \\(x\\) değerlerinde ölçüp \\(F\\)–\\(x\\) grafiği çizeriz:</p>\n<table><thead><tr><th>Grafiğin görünümü</th><th>Sonuç</th></tr></thead>\n<tbody><tr><td>Orijinden geçen, eğimi negatif doğru</td><td>SHM; eğim \\(= -k\\)</td></tr>\n<tr><td>Orijinden geçen, eğimi pozitif doğru</td><td>Kuvvet dengeden uzaklaştırır, salınım yok</td></tr>\n<tr><td>Eğri (ör. \\(F\\propto -x^3\\)) ya da sabit büyüklük</td><td>Periyodik olabilir ama SHM değil</td></tr>\n<tr><td>Küçük \\(x\\)'te doğrusal, büyük \\(x\\)'te eğri</td><td>Yalnız küçük genlikte yaklaşık SHM</td></tr></tbody></table>\n<p>İvme–yer değiştirme grafiği de aynı işi görür: eğim \\(-k/m\\)'dir, dolayısıyla \\(k = m \\times |\\text{eğim}|\\).</p>\n<h4>Düşey yay</h4>\n<p>Düşey asılı bir blokta yer çekimi denge konumunu aşağı kaydırır: dengede \\(k\\,\\Delta y_0 = mg\\), yani yay \\(\\Delta y_0 = mg/k\\) kadar uzamıştır. Blok bu yeni dengeden \\(y\\) kadar daha aşağı çekilirse yay kuvveti \\(k(\\Delta y_0 + y)\\) yukarı, ağırlık \\(mg\\) aşağıdır; net kuvvet \\(k y\\) yukarı olur. Yani net kuvvet yine \\(-ky\\) biçimindedir: düşey sistem de <strong>aynı \\(k\\) ile, yeni denge konumu etrafında</strong> SHM yapar. Eğik düzlemdeki yay için de aynı mantık geçerlidir.</p>\n<h4>Basit sarkaç: küçük açı yaklaşımı</h4>\n<p>Sarkaç ipine dik (yörüngeye teğet) geri getirici kuvvet \\(mg\\sin\\theta\\)'dır. Küçük açılarda \\(\\sin\\theta \\approx \\theta\\) (radyan), yay uzunluğu \\(s = L\\theta\\) olduğundan \\(F \\approx -\\frac{mg}{L}s\\): kuvvet yer değiştirmeyle orantılıdır. Büyük açılarda \\(\\sin\\theta\\), \\(\\theta\\)'dan belirgin şekilde küçük kalır:</p>\n<table><thead><tr><th>\\(\\theta\\) (derece)</th><th>\\(\\theta\\) (rad)</th><th>\\(\\sin\\theta\\)</th><th>Fark</th></tr></thead>\n<tbody><tr><td>10°</td><td>0.175</td><td>0.174</td><td>%0.5</td></tr><tr><td>20°</td><td>0.349</td><td>0.342</td><td>%2</td></tr><tr><td>60°</td><td>1.047</td><td>0.866</td><td>%17</td></tr></tbody></table>\n<p>Bu yüzden sarkaç yalnız <strong>küçük genlikte (small amplitude)</strong> SHM ile modellenir.</p>\n<h4>SHM olmayan periyodik hareketler</h4>\n<p>Yerde esnek zıplayan top periyodiktir ama havadayken net kuvvet sabittir (\\(mg\\)); \\(x\\)'e bağlı değildir. İki duvar arasında sürtünmesiz kayan disk de böyledir: duvarlar dışında net kuvvet sıfırdır. İkisi de SHM değildir.</p>\n<div class=\"kn-kural\"><strong>Özet:</strong> SHM ⇔ \\(F_{\\text{net}} = -kx\\): dengeye doğru <em>ve</em> yer değiştirmeyle orantılı. \\(F\\)–\\(x\\) grafiği orijinden geçen negatif eğimli doğrudur.</div>\n<div class=\"kn-dikkat\">FRQ'da “Is the motion simple harmonic?” sorusuna iki koşulu da yazın: “The net force is always directed toward equilibrium <em>and</em> its magnitude is proportional to the displacement, so the motion is simple harmonic.” Yalnız “restoring force” demek tam puan getirmez.</div>",
+   "ornekler": [
+    {
+     "soru": "Bir arabaya etki eden net kuvvet ölçülüyor: \\(x = +0.04\\text{ m}\\)'de \\(F = -1.2\\text{ N}\\), \\(x = +0.08\\text{ m}\\)'de \\(F = -2.4\\text{ N}\\), \\(x = -0.04\\text{ m}\\)'de \\(F = +1.2\\text{ N}\\). Araba SHM yapar mı? Yapıyorsa \\(k\\) nedir?",
+     "cozum": [
+      "Yön: \\(x\\) pozitifken \\(F\\) negatif, \\(x\\) negatifken \\(F\\) pozitif; kuvvet her zaman dengeye doğrudur.",
+      "Orantılılık: \\(x\\) iki katına çıkınca (\\(0.04 \\to 0.08\\)) \\(|F|\\) da iki katına çıkıyor (\\(1.2 \\to 2.4\\)). Oran sabit: \\(|F|/|x| = 1.2/0.04 = 30\\text{ N/m}\\).",
+      "İki koşul sağlandığı için hareket SHM'dir ve \\(k = 30\\text{ N/m}\\)."
+     ]
+    },
+    {
+     "soru": "Kütlesi \\(0.40\\text{ kg}\\) olan bir blok, yay sabiti \\(20\\text{ N/m}\\) olan düşey bir yaydan asılıyor (\\(g = 10\\text{ m/s}^2\\)). (a) Dengede yay ne kadar uzamıştır? (b) Blok dengeden \\(0.05\\text{ m}\\) aşağı çekilip bırakılıyor. Bırakıldığı anda net kuvvet nedir?",
+     "cozum": [
+      "(a) Dengede \\(k\\Delta y_0 = mg\\): \\(\\Delta y_0 = (0.40)(10)/20 = 0.20\\text{ m}\\).",
+      "(b) Yay kuvveti \\(k(\\Delta y_0 + 0.05) = 20(0.25) = 5.0\\text{ N}\\) yukarı; ağırlık \\(4.0\\text{ N}\\) aşağı.",
+      "Net kuvvet \\(5.0 - 4.0 = 1.0\\text{ N}\\) yukarı \\(= k(0.05)\\). Net kuvvet yeni dengeden yer değiştirmeyle orantılı ve ona zıt: düşey sistem SHM yapar."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir öğrenci “Yerde esnek zıplayan top her zaman aynı yüksekliğe çıkıp aynı sürede döndüğü için basit harmonik hareket yapar” diyor. İddiayı değerlendirin.",
+     "cozum": [
+      "<strong>Claim:</strong> The motion is periodic but not simple harmonic.",
+      "<strong>Evidence:</strong> While the ball is in the air, the only force on it is gravity, \\(mg\\), which is constant and does not depend on the ball's position.",
+      "<strong>Reasoning:</strong> SHM requires a net force proportional to the displacement from equilibrium and directed toward it (\\(F = -kx\\)). A constant force does not satisfy this, so the motion is not SHM."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "SHM testinde önce yön (işaret), sonra orantı (oran sabit mi?) kontrol edin; tablo verisinde \\(F/x\\) oranını her satır için hesaplayın.",
+    "Hesap makinesi Physics 1'in tüm bölümlerinde serbesttir; ama \\(x\\) cm verildiyse metreye çevirmeden \\(k\\) hesaplamayın.",
+    "Puanlayıcı “toward equilibrium” ve “proportional to displacement” ifadelerinin ikisini birden arar.",
+    "Düşey yayda \\(x\\)'i yeni denge konumundan ölçün; ağırlık yalnız dengeyi kaydırır, \\(k\\)'yi değiştirmez."
+   ],
+   "sikHatalar": [
+    "Dengeye doğru olan her kuvvetin SHM ürettiğini sanmak (orantılılık koşulunu unutmak).",
+    "Dengede net kuvvet sıfır olduğu için hızın da sıfır olduğunu düşünmek.",
+    "Düşey yayda net kuvvet yerine yalnız yay kuvvetini kullanmak.",
+    "Sarkacın büyük açılarda da tam SHM yaptığını varsaymak."
+   ],
+   "terimler": [
+    {
+     "en": "simple harmonic motion (SHM)",
+     "tr": "basit harmonik hareket"
+    },
+    {
+     "en": "periodic motion",
+     "tr": "periyodik hareket"
+    },
+    {
+     "en": "restoring force",
+     "tr": "geri getirici kuvvet"
+    },
+    {
+     "en": "equilibrium position",
+     "tr": "denge konumu"
+    },
+    {
+     "en": "displacement",
+     "tr": "yer değiştirme"
+    },
+    {
+     "en": "spring constant",
+     "tr": "yay sabiti"
+    },
+    {
+     "en": "small-angle approximation",
+     "tr": "küçük açı yaklaşımı"
+    }
+   ]
+  },
+  {
+   "kod": "7.2",
+   "baslik": "Frequency and Period of SHM",
+   "baslikTr": "Basit harmonik hareketin frekansı ve periyodu",
+   "hedefler": [
+    "Periyot (period) ve frekans (frequency) arasındaki \\(T = 1/f\\) ilişkisini kullanmak ve zamanlama verisinden \\(T\\)'yi bulmak.",
+    "Blok–yay ve basit sarkaç periyotlarının hangi niceliklere bağlı olduğunu (ve olmadığını) oran akıl yürütmesiyle açıklamak.",
+    "Periyot verisini doğrusallaştırmak (\\(T^2\\)–\\(m\\), \\(T^2\\)–\\(L\\)) ve eğim ile kesişimden \\(k\\), \\(g\\) ya da sistematik etkileri yorumlamak."
+   ],
+   "anlatim": "<div class=\"kn-tanim\"><strong>Periyot (period) \\(T\\):</strong> Bir tam salınımın süresi (s). <strong>Frekans (frequency) \\(f\\):</strong> Saniyedeki salınım sayısı (Hz \\(= \\text{s}^{-1}\\)). \\[ T = \\frac{1}{f} \\]</div>\n<p>20 salınım 8.0 s sürüyorsa \\(T = 8.0/20 = 0.40\\text{ s}\\) ve \\(f = 2.5\\text{ Hz}\\)'dir. Birçok salınımı birlikte zamanlayıp bölmek, tepki süresi (reaction time) hatasını salınım sayısına böler; bu yüzden deneyde tek salınım değil 10–20 salınım ölçülür.</p>\n<h4>İki temel periyot bağıntısı</h4>\n<div class=\"formul\">\\[ T_s = 2\\pi\\sqrt{\\frac{m}{k}} \\qquad\\qquad T_p = 2\\pi\\sqrt{\\frac{L}{g}} \\]</div>\n<p>Birincisi blok–yay (spring–object) sistemi, ikincisi küçük genlikli basit sarkaç (simple pendulum) içindir. İkisi de AP formül sayfasında verilir; asıl puan <strong>neye bağlı olduklarını</strong> bilmekten gelir:</p>\n<table><thead><tr><th>Değişiklik</th><th>Blok–yay \\(T_s\\)</th><th>Sarkaç \\(T_p\\)</th></tr></thead>\n<tbody><tr><td>Kütle 4 katı</td><td>2 katı</td><td>değişmez</td></tr>\n<tr><td>\\(k\\) 4 katı</td><td>yarısı</td><td>—</td></tr>\n<tr><td>Uzunluk 4 katı</td><td>—</td><td>2 katı</td></tr>\n<tr><td>\\(g\\) dörtte biri (başka gezegen)</td><td>değişmez</td><td>2 katı</td></tr>\n<tr><td>Genlik 2 katı (küçük kalırsa)</td><td>değişmez</td><td>değişmez</td></tr></tbody></table>\n<p>Genlikten bağımsızlığın nedeni: genlik artınca cisim daha uzun yol alır ama geri getirici kuvvet de orantılı büyüdüğü için daha hızlı gider; iki etki tam dengelenir. Sarkacın kütleden bağımsızlığının nedeni: geri getirici kuvvet (\\(mg\\sin\\theta\\)) ve eylemsizlik (\\(m\\)) aynı oranda büyür.</p>\n<h4>Yay sistemi yer çekimine bağlı değildir</h4>\n<p>Düşey yayda yer çekimi yalnız denge konumunu kaydırır; periyot yatay durumdakiyle aynıdır. İlginç bir sonuç: dengede \\(k\\,\\Delta y_0 = mg\\) olduğundan \\(m/k = \\Delta y_0/g\\) ve \\[ T = 2\\pi\\sqrt{\\frac{\\Delta y_0}{g}} \\] Yani yalnız dengedeki uzamayı ölçerek periyodu bulabilirsiniz (\\(\\Delta y_0 = 0.10\\text{ m}\\) ise \\(T \\approx 0.63\\text{ s}\\)).</p>\n<h4>Oran akıl yürütmesi</h4>\n<p>Sayı vermeyen sorularda bağıntıyı oran olarak yazın: \\(\\dfrac{T_2}{T_1} = \\sqrt{\\dfrac{m_2}{m_1}\\cdot\\dfrac{k_1}{k_2}}\\). Kütle 4 katı ve \\(k\\) 2 katı ise \\(T_2/T_1 = \\sqrt{4/2} = \\sqrt2\\). Frekans periyodun tersidir: \\(k\\) 4 katı ise \\(f\\) 2 katı olur.</p>\n<h4>Deney tasarımı: doğrusallaştırma (linearization)</h4>\n<p>\\(T\\)–\\(m\\) grafiği eğridir (\\(T \\propto \\sqrt m\\)). Doğru elde etmek için her iki tarafın karesini alın: \\[ T^2 = \\frac{4\\pi^2}{k}\\,m \\] \\(T^2\\)'yi düşey eksene, \\(m\\)'yi yatay eksene koyarsanız orijinden geçen doğru elde edilir: <strong>eğim \\(= 4\\pi^2/k\\)</strong>, yani \\(k = 4\\pi^2/\\text{eğim}\\). Sarkaç için aynı işlem: \\(T^2 = \\frac{4\\pi^2}{g}L\\), eğim \\(4\\pi^2/g\\), \\(g = 4\\pi^2/\\text{eğim}\\).</p>\n<table><thead><tr><th>Ölçülen</th><th>Düşey eksen</th><th>Yatay eksen</th><th>Eğim</th></tr></thead>\n<tbody><tr><td>Yay, kütle değiştiriliyor</td><td>\\(T^2\\)</td><td>\\(m\\)</td><td>\\(4\\pi^2/k\\)</td></tr>\n<tr><td>Sarkaç, uzunluk değiştiriliyor</td><td>\\(T^2\\)</td><td>\\(L\\)</td><td>\\(4\\pi^2/g\\)</td></tr>\n<tr><td>Alternatif</td><td>\\(T\\)</td><td>\\(\\sqrt{m}\\)</td><td>\\(2\\pi/\\sqrt{k}\\)</td></tr></tbody></table>\n<p><strong>Kesişim (intercept):</strong> \\(T^2\\)–\\(m\\) doğrusu küçük pozitif bir düşey kesişim veriyorsa, en olası neden yayın kendi kütlesinin de salınıma katılmasıdır (asılı kütleye sabit bir “ek kütle” eklenmiş gibi). Eğim yine \\(4\\pi^2/k\\)'yi verir; kesişim \\(k\\) hesabını bozmaz.</p>\n<div class=\"kn-kural\"><strong>Özet:</strong> \\(T = 1/f\\); \\(T_s \\propto \\sqrt{m/k}\\) (\\(g\\)'ye ve genliğe bağlı değil); \\(T_p \\propto \\sqrt{L/g}\\) (kütleye ve küçük genliğe bağlı değil); doğrusal grafik için \\(T^2\\) çizilir.</div>\n<div class=\"kn-dikkat\">FRQ'da “Describe a procedure” denince: bağımsız değişkeni (ör. kütle) en az 5 değerde değiştirin, her biri için 10 salınımı zamanlayıp 10'a bölün, \\(T^2\\)–\\(m\\) grafiğini çizip eğimden \\(k\\)'yi hesaplayın. Kullanılan aleti (stopwatch, meter stick) adlandırın.</div>",
+   "ornekler": [
+    {
+     "soru": "Bir blok–yay sistemi \\(0.50\\text{ s}\\) periyotla salınıyor. Blok, kütlesi 9 katı olan bir blokla, yay ise sabiti 4 katı olan bir yayla değiştiriliyor. Yeni periyot nedir?",
+     "cozum": [
+      "\\(T \\propto \\sqrt{m/k}\\), dolayısıyla \\(T_2/T_1 = \\sqrt{9/4} = 3/2\\).",
+      "\\(T_2 = 1.5 \\times 0.50 = 0.75\\text{ s}\\)."
+     ]
+    },
+    {
+     "soru": "Öğrenciler bir yaya farklı kütleler asıp periyotları ölçüyor ve \\(T^2\\)'yi \\(m\\)'ye karşı çiziyor. En iyi doğrunun eğimi \\(0.20\\text{ s}^2/\\text{kg}\\), düşey kesişimi \\(0.004\\text{ s}^2\\). (a) \\(k\\) nedir? (b) Kesişimin olası nedeni nedir?",
+     "cozum": [
+      "(a) Eğim \\(= 4\\pi^2/k\\) olduğundan \\(k = 4\\pi^2/0.20 \\approx 39.5/0.20 \\approx 2.0\\times10^2\\text{ N/m}\\).",
+      "(b) Kesişim pozitif ve küçüktür: \\(m = 0\\)'da bile \\(T^2 \\ne 0\\). Bu, yayın kendi kütlesinin de salınması gibi sabit bir ek kütle ile açıklanır.",
+      "Kesişim eğimi değiştirmediği için (a)'daki \\(k\\) değeri geçerlidir."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Dünya'da periyodu \\(1.0\\text{ s}\\) olan bir sarkaç ve periyodu \\(1.0\\text{ s}\\) olan bir blok–yay sistemi, \\(g\\)'nin Dünya'dakinin dörtte biri olduğu bir gezegene götürülüyor. Hangisinin periyodu değişir? Açıklayın.",
+     "cozum": [
+      "Sarkaç: \\(T_p = 2\\pi\\sqrt{L/g}\\); \\(g\\) dörtte birine inince \\(T_p\\) \\(\\sqrt4 = 2\\) katına çıkar: \\(2.0\\text{ s}\\).",
+      "Yay: \\(T_s = 2\\pi\\sqrt{m/k}\\) ifadesinde \\(g\\) yoktur; periyot \\(1.0\\text{ s}\\) kalır.",
+      "<strong>Reasoning:</strong> The pendulum's restoring force is provided by gravity, so weaker gravity gives a smaller restoring force for the same displacement and a longer period. The spring's restoring force comes from the spring, which is unchanged; gravity only shifts the equilibrium position."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Oran sorularında sayı uydurmayın: \\(T_2/T_1\\) oranını bağıntıdan yazın ve karekökü unutmayın.",
+    "Hesap makinesi serbesttir; \\(4\\pi^2 \\approx 39.5\\) değerini akılda tutmak tahmin kontrolünü hızlandırır.",
+    "Doğrusallaştırma sorularında puanlayıcı eksenleri ve eğimin fiziksel anlamını (\\(4\\pi^2/k\\)) açıkça yazmanızı ister.",
+    "Zamanlama hatasını azaltmak için çok sayıda salınımı ölçüp bölün; genliği büyütmek sarkaçta SHM yaklaşımını bozar."
+   ],
+   "sikHatalar": [
+    "Sarkaç periyodunun kütleye, blok–yay periyodunun \\(g\\)'ye bağlı olduğunu sanmak.",
+    "Periyodun genlikle arttığını düşünmek.",
+    "Kütle 4 katı olunca periyodun 4 katı olduğunu söylemek (karekökü unutmak).",
+    "\\(T^2\\)–\\(m\\) grafiğinde \\(k\\)'yi eğimin kendisi ya da tersi olarak almak (\\(4\\pi^2\\)'yi unutmak)."
+   ],
+   "terimler": [
+    {
+     "en": "period",
+     "tr": "periyot"
+    },
+    {
+     "en": "frequency",
+     "tr": "frekans"
+    },
+    {
+     "en": "hertz (Hz)",
+     "tr": "hertz, frekans birimi"
+    },
+    {
+     "en": "simple pendulum",
+     "tr": "basit sarkaç"
+    },
+    {
+     "en": "linearization",
+     "tr": "doğrusallaştırma"
+    },
+    {
+     "en": "slope / intercept",
+     "tr": "eğim / kesişim"
+    }
+   ]
+  },
+  {
+   "kod": "7.3",
+   "baslik": "Representing and Analyzing SHM",
+   "baslikTr": "Basit harmonik hareketin gösterimi ve analizi",
+   "hedefler": [
+    "SHM'yi \\(x(t) = A\\cos(2\\pi f t)\\) ya da \\(A\\sin(2\\pi f t)\\) ile yazmak ve başlangıç koşuluna göre doğru fonksiyonu seçmek.",
+    "Konum–zaman grafiği ya da tablosundan genlik (amplitude), periyot, hız ve ivmenin yönünü ve büyüklüğünü okumak.",
+    "Maksimum hız ve maksimum ivmeyi \\(A\\) ve \\(T\\) (ya da \\(k\\), \\(m\\)) cinsinden hesaplamak ve iki osilatörü karşılaştırmak."
+   ],
+   "anlatim": "<p>SHM'deki konum zamanla bir kosinüs (ya da sinüs) eğrisi çizer. Cisim \\(t = 0\\)'da \\(x = +A\\)'dan durgun halden bırakılırsa:</p>\n<div class=\"formul\">\\[ x(t) = A\\cos(2\\pi f t) = A\\cos\\!\\left(\\frac{2\\pi t}{T}\\right) \\]</div>\n<p>Burada \\(A\\) <strong>genlik (amplitude)</strong>: dengeden en büyük uzaklık (uçtan uca mesafenin <em>yarısı</em>). Cisim \\(t = 0\\)'da dengeden \\(+x\\) yönünde geçiyorsa \\(x(t) = A\\sin(2\\pi f t)\\) yazılır; \\(x = -A\\)'dan bırakılıyorsa \\(x(t) = -A\\cos(2\\pi f t)\\). <strong>Hesap makinesi radyan modunda olmalıdır.</strong></p>\n<h4>Bir periyot boyunca anahtar anlar</h4>\n<table><thead><tr><th>\\(t\\)</th><th>\\(x\\)</th><th>\\(v\\)</th><th>\\(a\\)</th></tr></thead>\n<tbody><tr><td>0</td><td>\\(+A\\)</td><td>0</td><td>en büyük, \\(-x\\) yönünde</td></tr>\n<tr><td>\\(T/4\\)</td><td>0</td><td>en büyük, \\(-x\\) yönünde</td><td>0</td></tr>\n<tr><td>\\(T/2\\)</td><td>\\(-A\\)</td><td>0</td><td>en büyük, \\(+x\\) yönünde</td></tr>\n<tr><td>\\(3T/4\\)</td><td>0</td><td>en büyük, \\(+x\\) yönünde</td><td>0</td></tr>\n<tr><td>\\(T\\)</td><td>\\(+A\\)</td><td>0</td><td>en büyük, \\(-x\\) yönünde</td></tr></tbody></table>\n<p>İki kalıp her şeyi özetler: (1) <strong>ivme her zaman yer değiştirmeye zıttır</strong> (\\(a = -\\frac{k}{m}x\\)); (2) <strong>uç noktalarda hız sıfır, dengede hız en büyüktür</strong>. Konum–zaman grafiğinde hız eğimdir (slope): tepe ve çukurlarda eğim sıfırdır, eksen geçişlerinde eğim en diktir.</p>\n<h4>Grafik ve tablolardan okumak</h4>\n<p>Bir konum–zaman tablosunda: genlik = en büyük \\(|x|\\); periyot = aynı konum ve aynı hareket yönüne dönüş süresi (ör. iki ardışık tepe arası). Sık hata: \\(+A\\)'dan \\(-A\\)'ya gitme süresini periyot sanmak; bu yalnız \\(T/2\\)'dir. Hızın işaretini komşu satırlardan bulun: \\(x\\) artıyorsa \\(v \\gt 0\\).</p>\n<h4>Maksimum hız ve maksimum ivme</h4>\n<p>Uç noktada net kuvvetin büyüklüğü \\(kA\\)'dır, dolayısıyla \\[ a_{\\max} = \\frac{k}{m}A = \\frac{4\\pi^2}{T^2}A \\] (çünkü \\(T = 2\\pi\\sqrt{m/k}\\) ise \\(k/m = 4\\pi^2/T^2\\)). Enerjiden (Topic 7.4) \\(\\tfrac12 m v_{\\max}^2 = \\tfrac12 kA^2\\) çıkar: \\[ v_{\\max} = A\\sqrt{\\frac{k}{m}} = \\frac{2\\pi A}{T} \\] Bu bağıntılarla iki osilatör karşılaştırılır: genliği 2 katı ve periyodu 2 katı olan osilatörün \\(v_{\\max}\\)'ı aynı, \\(a_{\\max}\\)'ı yarısıdır.</p>\n<h4>Zaman doğrusal değil</h4>\n<p>Cisim dengeye yakınken hızlı, uçlarda yavaştır; bu yüzden konum zamanla doğrusal değişmez. \\(t = T/8\\)'de konum \\(A/2\\) değil \\(A\\cos(\\pi/4) \\approx 0.71A\\)'dır. \\(x = +A\\)'dan \\(x = +A/2\\)'ye gitmek \\(T/8\\) değil \\(T/6\\) sürer (\\(\\cos(2\\pi t/T) = 1/2 \\Rightarrow t = T/6\\)); kalan yarı yol (\\(A/2 \\to 0\\)) yalnız \\(T/12\\) sürer.</p>\n<h4>Düşey osilatör verisi</h4>\n<p>Hareket sensörü (motion detector) yükseklik verirse denge konumu en büyük ve en küçük değerlerin ortalamasıdır; genlik bunların farkının yarısıdır. Örneğin \\(y\\) 0.20 m ile 0.30 m arasında gidip geliyorsa denge 0.25 m, genlik 0.05 m'dir.</p>\n<div class=\"kn-kural\"><strong>Özet:</strong> \\(x = A\\cos(2\\pi f t)\\); hız uçlarda 0, dengede en büyük; ivme dengede 0, uçlarda en büyük ve daima \\(x\\)'e zıt; \\(v_{\\max} = 2\\pi A/T\\), \\(a_{\\max} = 4\\pi^2A/T^2\\).</div>\n<div class=\"kn-dikkat\">FRQ'da grafik çizerken (sketch) \\(v\\)–\\(t\\) eğrisinin sıfırlarını \\(x\\)–\\(t\\) eğrisinin tepeleriyle, \\(a\\)–\\(t\\) eğrisini \\(x\\)–\\(t\\)'nin ters çevrilmiş haliyle hizalayın. Gerekçe: “The velocity is the slope of the position–time graph, so it is zero at the maximum displacement.”</div>",
+   "ornekler": [
+    {
+     "soru": "Bir cismin konumu \\(x = (0.060\\text{ m})\\cos(4\\pi t)\\) ile veriliyor (\\(t\\) saniye). (a) Genlik, frekans ve periyot nedir? (b) \\(t = 0.125\\text{ s}\\)'de cisim nerededir ve hangi yönde hareket eder?",
+     "cozum": [
+      "(a) \\(A = 0.060\\text{ m}\\); \\(2\\pi f = 4\\pi \\Rightarrow f = 2.0\\text{ Hz}\\); \\(T = 1/f = 0.50\\text{ s}\\).",
+      "(b) \\(t = 0.125\\text{ s} = T/4\\): \\(x = 0.060\\cos(\\pi/2) = 0\\). Cisim \\(+A\\)'dan başladığı için ilk çeyrek periyotta \\(-x\\) yönünde hareket eder; şimdi dengeden \\(-x\\) yönünde en büyük hızla geçer."
+     ]
+    },
+    {
+     "soru": "Bir blok \\(A = 0.050\\text{ m}\\) genlik ve \\(T = 0.40\\text{ s}\\) periyotla salınıyor. \\(v_{\\max}\\) ve \\(a_{\\max}\\) nedir?",
+     "cozum": [
+      "\\(v_{\\max} = 2\\pi A/T = 2\\pi(0.050)/0.40 \\approx 0.79\\text{ m/s}\\).",
+      "\\(a_{\\max} = 4\\pi^2A/T^2 = 39.5(0.050)/0.16 \\approx 12\\text{ m/s}^2\\).",
+      "Kontrol: \\(a_{\\max} = v_{\\max}\\cdot(2\\pi/T) = 0.79 \\times 15.7 \\approx 12\\text{ m/s}^2\\). Tutarlı."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir öğrenci, \\(x = +A\\)'dan bırakılan bir bloğun ilk \\(T/8\\) sürede \\(A/2\\) yol aldığını iddia ediyor. Değerlendirin.",
+     "cozum": [
+      "<strong>Claim:</strong> The claim is incorrect; the block travels less than \\(A/2\\) in the first \\(T/8\\).",
+      "<strong>Evidence:</strong> \\(x(T/8) = A\\cos(\\pi/4) \\approx 0.71A\\), so the block has moved only about \\(0.29A\\).",
+      "<strong>Reasoning:</strong> The block starts from rest and speeds up as it approaches equilibrium, so it covers less distance in the first eighth of a period than in the second; position does not change linearly with time."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Kosinüs/sinüs hesaplarında hesap makinesini radyana alın; \\(\\cos(2\\pi t/T)\\) için \\(t/T\\) oranını önce bulmak hatayı azaltır.",
+    "Tablodan periyot okurken “aynı konum <em>ve</em> aynı hareket yönü”ne dönüşü arayın; \\(+A\\)'dan \\(-A\\)'ya süre \\(T/2\\)'dir.",
+    "İvmenin yönünü sorulduğunda hıza değil konuma bakın: \\(a\\) her zaman \\(x\\)'in tersi yöndedir.",
+    "Puanlayıcı grafik çiziminde sıfır geçişlerinin ve tepelerin doğru zamanlarda hizalanmasını kontrol eder."
+   ],
+   "sikHatalar": [
+    "Uçtan uca mesafeyi genlik sanmak.",
+    "\\(+A\\)'dan \\(-A\\)'ya gitme süresini tam periyot sanmak.",
+    "İvmenin hızla aynı yönde olduğunu varsaymak (ivmeyi hızdan çıkarmak).",
+    "Konumun zamanla doğrusal değiştiğini düşünüp \\(t = T/8\\)'de \\(x = A/2\\) demek."
+   ],
+   "terimler": [
+    {
+     "en": "amplitude",
+     "tr": "genlik"
+    },
+    {
+     "en": "position–time graph",
+     "tr": "konum–zaman grafiği"
+    },
+    {
+     "en": "maximum speed",
+     "tr": "en büyük sürat"
+    },
+    {
+     "en": "turning point",
+     "tr": "dönüş noktası (uç nokta)"
+    },
+    {
+     "en": "radian mode",
+     "tr": "radyan modu"
+    },
+    {
+     "en": "motion detector",
+     "tr": "hareket sensörü"
+    }
+   ]
+  },
+  {
+   "kod": "7.4",
+   "baslik": "Energy of Simple Harmonic Oscillators",
+   "baslikTr": "Basit harmonik osilatörlerin enerjisi",
+   "hedefler": [
+    "Blok–yay sisteminin toplam mekanik enerjisini \\(E = \\tfrac12 kA^2\\) ile hesaplamak ve kinetik ile potansiyel enerji arasındaki alışverişi açıklamak.",
+    "Herhangi bir konumdaki hızı enerji korunumu ile bulmak ve konumlara göre enerji tabloları ile çubuk grafikleri (energy bar charts) oluşturmak.",
+    "Genlik, \\(k\\) ve \\(m\\) değiştiğinde enerji, maksimum hız ve periyodun nasıl değiştiğini; sarkaçta enerji alışverişini ve sürtünmenin etkisini açıklamak."
+   ],
+   "anlatim": "<p>Sürtünmesiz bir blok–yay sistemi (block–spring system) salınırken enerji iki biçim arasında sürekli el değiştirir: bloğun <strong>kinetik enerjisi (kinetic energy)</strong> \\(K = \\tfrac12 mv^2\\) ve yayın <strong>esneklik potansiyel enerjisi (elastic potential energy)</strong> \\(U_s = \\tfrac12 kx^2\\). Dış iş ve sürtünme yoksa toplam mekanik enerji korunur.</p>\n<div class=\"formul\">\\[ E = K + U_s = \\tfrac12 mv^2 + \\tfrac12 kx^2 = \\tfrac12 kA^2 = \\tfrac12 m v_{\\max}^2 \\]</div>\n<p>Uç noktada (\\(x = \\pm A\\)) blok anlık durur: tüm enerji potansiyeldir. Dengede (\\(x = 0\\)) yatay sistemde yay ne gergin ne sıkışıktır: tüm enerji kinetiktir. Buradan \\(v_{\\max} = A\\sqrt{k/m}\\) çıkar.</p>\n<h4>Konumlara göre enerji tablosu</h4>\n<p>\\(U_s \\propto x^2\\) olduğu için enerji paylaşımı konumla doğrusal değildir:</p>\n<table><thead><tr><th>\\(|x|\\)</th><th>\\(U_s\\)</th><th>\\(K\\)</th><th>Sürat</th></tr></thead>\n<tbody><tr><td>0</td><td>0</td><td>\\(E\\)</td><td>\\(v_{\\max}\\)</td></tr>\n<tr><td>\\(A/2\\)</td><td>\\(E/4\\)</td><td>\\(3E/4\\)</td><td>\\(0.87\\,v_{\\max}\\)</td></tr>\n<tr><td>\\(A/\\sqrt2 \\approx 0.71A\\)</td><td>\\(E/2\\)</td><td>\\(E/2\\)</td><td>\\(0.71\\,v_{\\max}\\)</td></tr>\n<tr><td>\\(0.87A\\)</td><td>\\(3E/4\\)</td><td>\\(E/4\\)</td><td>\\(v_{\\max}/2\\)</td></tr>\n<tr><td>\\(A\\)</td><td>\\(E\\)</td><td>0</td><td>0</td></tr></tbody></table>\n<p>Herhangi bir konumdaki hız için: \\(\\tfrac12 mv^2 = \\tfrac12 k(A^2 - x^2)\\), yani \\(v = \\sqrt{\\tfrac{k}{m}(A^2 - x^2)}\\). Enerji çubuk grafiğinde (energy bar chart) \\(K\\) ve \\(U_s\\) çubuklarının toplamı her konumda aynı yükseklikte olmalıdır.</p>\n<h4>Ölçekleme (scaling)</h4>\n<table><thead><tr><th>Değişiklik</th><th>\\(E\\)</th><th>\\(v_{\\max}\\)</th><th>\\(T\\)</th></tr></thead>\n<tbody><tr><td>Genlik 2 katı</td><td>4 katı</td><td>2 katı</td><td>aynı</td></tr>\n<tr><td>Kütle 4 katı (aynı \\(A\\), aynı yay)</td><td>aynı</td><td>yarısı</td><td>2 katı</td></tr>\n<tr><td>\\(k\\) 4 katı (aynı \\(A\\), aynı kütle)</td><td>4 katı</td><td>2 katı</td><td>yarısı</td></tr></tbody></table>\n<p>Dikkat: aynı yay ve aynı genlikte toplam enerji <strong>kütleden bağımsızdır</strong>; ağır blok aynı enerjiyi daha küçük süratle taşır.</p>\n<h4>Zamana göre enerji</h4>\n<p>\\(K\\) bir periyotta iki kez en büyük olur (dengeden her iki yönde geçişte). Bu yüzden \\(K\\)–\\(t\\) ve \\(U_s\\)–\\(t\\) grafiklerinin periyodu \\(T/2\\)'dir; ikisi de hiçbir zaman negatif olmaz ve toplamları sabit bir yatay çizgidir.</p>\n<h4>Sarkaçta enerji</h4>\n<p>Sarkaçta potansiyel enerji yer çekimidir: \\(U_g = mgh\\) (\\(h\\), en alt noktadan yükseklik). En alt noktada \\(v_{\\max} = \\sqrt{2gh_{\\max}}\\); bu sürat kütleye bağlı değildir. Yarı yükseklikte \\(K = U_g\\) olur ve sürat \\(v_{\\max}/\\sqrt2\\)'dir (yarısı değil).</p>\n<h4>Düşey yay</h4>\n<p>Düşey yayda yay enerjisi ve yer çekimi enerjisinin ikisi de değişir. Ancak \\(y\\) <em>yeni denge konumundan</em> ölçülürse ikisinin toplamı \\(\\tfrac12 ky^2\\) + sabit gibi davranır; bu yüzden \\(E = \\tfrac12 kA^2\\) ve \\(v_{\\max} = A\\sqrt{k/m}\\) düşey osilatörde de geçerlidir.</p>\n<h4>Sürtünme ve deney</h4>\n<p>Gerçek sistemde sürtünme mekanik enerjiyi iç enerjiye (internal energy) dönüştürür; \\(E = \\tfrac12 kA^2\\) azaldıkça genlik küçülür. Deneyde \\(k/m\\)'yi bulmak için farklı genliklerde dengedeki sürati (ör. ışık kapısı, photogate) ölçüp \\(v_{\\max}\\)–\\(A\\) grafiği çizilir: doğru orijinden geçer, <strong>eğim \\(= \\sqrt{k/m}\\)</strong>, yani \\(k = m\\cdot(\\text{eğim})^2\\).</p>\n<div class=\"kn-kural\"><strong>Özet:</strong> \\(E = \\tfrac12 kA^2\\) korunur; \\(U_s = \\tfrac12 kx^2\\), \\(K = E - U_s\\); \\(|x| = A/\\sqrt2\\)'de enerjiler eşit; \\(E \\propto A^2\\), aynı \\(A\\) ve \\(k\\) için kütleden bağımsız.</div>\n<div class=\"kn-dikkat\">FRQ'da enerji gerekçesi: “Since the surface is frictionless, the mechanical energy of the block–spring system is conserved, so \\(\\tfrac12 kA^2 = \\tfrac12 mv^2 + \\tfrac12 kx^2\\).” Sistemi (block–spring system) adlandırmak ve korunum koşulunu belirtmek puan getirir.</div>",
+   "ornekler": [
+    {
+     "soru": "Kütlesi \\(0.50\\text{ kg}\\) olan blok, \\(k = 200\\text{ N/m}\\) yaya bağlı ve \\(A = 0.10\\text{ m}\\) genlikle salınıyor. (a) Toplam enerji nedir? (b) \\(x = 0.060\\text{ m}\\)'de sürat nedir?",
+     "cozum": [
+      "(a) \\(E = \\tfrac12(200)(0.10)^2 = 1.0\\text{ J}\\).",
+      "(b) \\(U_s = \\tfrac12(200)(0.060)^2 = 0.36\\text{ J}\\), dolayısıyla \\(K = 1.0 - 0.36 = 0.64\\text{ J}\\).",
+      "\\(v = \\sqrt{2K/m} = \\sqrt{2(0.64)/0.50} = \\sqrt{2.56} = 1.6\\text{ m/s}\\)."
+     ]
+    },
+    {
+     "soru": "Bir blok–yay sisteminde kinetik enerji hangi konumda toplam enerjinin dörtte biridir?",
+     "cozum": [
+      "\\(K = E/4 \\Rightarrow U_s = 3E/4\\), yani \\(\\tfrac12 kx^2 = \\tfrac34\\cdot\\tfrac12 kA^2\\).",
+      "\\(x^2 = \\tfrac34 A^2 \\Rightarrow |x| = \\tfrac{\\sqrt3}{2}A \\approx 0.87A\\). Bu konumda sürat \\(v_{\\max}/2\\)'dir."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Aynı yaya önce \\(m\\), sonra \\(4m\\) kütleli blok bağlanıp ikisi de aynı genlikle salındırılıyor. Bir öğrenci “ağır blok daha fazla enerjiye sahiptir” diyor. Değerlendirin.",
+     "cozum": [
+      "<strong>Claim:</strong> The claim is incorrect; both systems have the same total energy.",
+      "<strong>Evidence:</strong> At the turning point all energy is elastic potential energy, \\(E = \\tfrac12 kA^2\\), which depends only on \\(k\\) and \\(A\\), and both are the same.",
+      "<strong>Reasoning:</strong> The heavier block has the same maximum kinetic energy, so its maximum speed is smaller: \\(v_{\\max} \\propto 1/\\sqrt m\\), i.e., half as large. Its period is twice as long."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Enerji sorularında önce \\(E = \\tfrac12 kA^2\\)'yi bulun; sonra her konumda \\(K = E - \\tfrac12 kx^2\\) yazın.",
+    "Hesap makinesi serbesttir; cm'yi metreye çevirmeyi ve karekökü almayı unutmayın.",
+    "Puanlayıcı sistemi adlandırmanızı ve enerjinin neden korunduğunu (frictionless, no external work) belirtmenizi ister.",
+    "Yarı genlikte enerjinin yarısı değil dörtte biri potansiyeldir; \\(x^2\\) ilişkisini kullanın."
+   ],
+   "sikHatalar": [
+    "\\(x = A/2\\)'de enerjilerin eşit olduğunu sanmak (doğrusu \\(A/\\sqrt2\\)).",
+    "Toplam enerjinin kütleye bağlı olduğunu düşünmek (aynı yay ve genlik için değildir).",
+    "\\(K\\)–\\(t\\) grafiğinin periyodunu konumun periyoduyla aynı sanmak (doğrusu \\(T/2\\)).",
+    "\\(U_s = \\tfrac12 kx^2\\) yerine \\(kx\\) ya da \\(\\tfrac12 kx\\) kullanmak."
+   ],
+   "terimler": [
+    {
+     "en": "elastic potential energy",
+     "tr": "esneklik potansiyel enerjisi"
+    },
+    {
+     "en": "mechanical energy",
+     "tr": "mekanik enerji"
+    },
+    {
+     "en": "energy bar chart",
+     "tr": "enerji çubuk grafiği"
+    },
+    {
+     "en": "conservation of energy",
+     "tr": "enerjinin korunumu"
+    },
+    {
+     "en": "internal energy",
+     "tr": "iç enerji"
+    },
+    {
+     "en": "photogate",
+     "tr": "ışık kapısı"
+    }
+   ]
+  }
+ ]
+}
