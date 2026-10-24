@@ -1,0 +1,715 @@
+{
+ "ders": "statistics",
+ "unite": 4,
+ "baslik": "Inference for Quantitative Data: Means",
+ "baslikTr": "Nicel veriler için çıkarım: Ortalamalar",
+ "konular": [
+  {
+   "kod": "4.1",
+   "baslik": "Sampling Distributions for Sample Means",
+   "baslikTr": "Örneklem ortalamalarının örneklem dağılımı",
+   "hedefler": [
+    "Örneklem ortalamasının dağılımının ortalamasını \\(\\mu_{\\bar{x}} = \\mu\\) ve standart sapmasını \\(\\sigma_{\\bar{x}} = \\sigma/\\sqrt{n}\\) hesaplamak.",
+    "Formülün ve normal modelin koşullarını (randomization, 10% condition, normal popülasyon ya da n ≥ 30) gerekçelendirmek.",
+    "Örneklem ortalaması için olasılık hesaplamak ve sonuçları bağlam içinde yorumlamak."
+   ],
+   "anlatim": "<p>Ünite 3'te bir örneklem oranının (\\(\\hat{p}\\)) örneklemden örnekleme değiştiğini gördük. Aynı fikir nicel (quantitative) veriler için de geçerlidir: aynı popülasyondan 36 kişilik birçok rastgele örneklem alıp her birinin ortalamasını (\\(\\bar{x}\\)) hesaplarsak, bu ortalamalar birbirinden farklı çıkar. Bütün olası \\(\\bar{x}\\) değerlerinin dağılımına <strong>örneklem ortalamasının örneklem dağılımı (sampling distribution of the sample mean)</strong> denir.</p>\n<h4>Üç farklı dağılımı ayırın</h4>\n<table><thead><tr><th>Dağılım</th><th>Neyin dağılımı?</th><th>Merkez / yayılım</th></tr></thead><tbody>\n<tr><td>Popülasyon (population distribution)</td><td>Tüm bireylerin değerleri</td><td>\\(\\mu\\), \\(\\sigma\\)</td></tr>\n<tr><td>Örneklem verisi (sample data)</td><td>Tek bir örneklemdeki \\(n\\) değer</td><td>\\(\\bar{x}\\), \\(s\\)</td></tr>\n<tr><td>Örneklem dağılımı (sampling distribution)</td><td>Birçok örneklemin \\(\\bar{x}\\) değerleri</td><td>\\(\\mu_{\\bar{x}}\\), \\(\\sigma_{\\bar{x}}\\)</td></tr>\n</tbody></table>\n<div class=\"kn-kural\"><strong>Formüller (formula sheet):</strong> Gözlemler bağımsızsa \\[ \\mu_{\\bar{x}} = \\mu \\qquad \\sigma_{\\bar{x}} = \\frac{\\sigma}{\\sqrt{n}} \\] Yani \\(\\bar{x}\\) <strong>yansız (unbiased)</strong> bir tahmin edicidir ve örneklem büyüdükçe yayılımı \\(\\sqrt{n}\\) oranında küçülür. Yayılımı yarıya indirmek için \\(n\\) dört katına çıkmalıdır.</div>\n<h4>Koşullar (conditions)</h4>\n<ol>\n<li><strong>Randomization condition:</strong> veriler rastgele bir örneklemden (random sample) gelmeli.</li>\n<li><strong>10% condition:</strong> iadesiz (without replacement) seçimde \\(n \\le 0.10N\\) olmalı. Bu koşul gözlemlerin yaklaşık bağımsız olmasını, dolayısıyla \\(\\sigma/\\sqrt{n}\\) formülünün doğru olmasını sağlar. Şekil hakkında hiçbir şey söylemez.</li>\n<li><strong>Normallik (shape):</strong> popülasyon normal ise \\(\\bar{x}\\) <em>her</em> \\(n\\) için normaldir. Popülasyon normal değilse <strong>Merkezi Limit Teoremi (central limit theorem, CLT)</strong> devreye girer: \\(n \\ge 30\\) olduğunda \\(\\bar{x}\\)'in dağılımı yaklaşık normaldir. Popülasyon aşırı çarpıksa (ör. gelirler) 30'dan çok daha büyük \\(n\\) gerekebilir.</li>\n</ol>\n<div class=\"kn-dikkat\">CLT örneklem <em>verisini</em> normal yapmaz. Sağa çarpık bir popülasyondan 100 kişilik örneklemin histogramı yine sağa çarpıktır; normale yaklaşan, birçok örneklemin <em>ortalamalarının</em> dağılımıdır.</div>\n<h4>Olasılık hesabı</h4>\n<p>Örnek: Puanlar \\(N(500, 80)\\), \\(n = 16\\). \\(\\sigma_{\\bar{x}} = 80/4 = 20\\). \\(P(\\bar{x} \\gt 520)\\): \\(z = (520-500)/20 = 1\\), olasılık \\(\\approx 0.1587\\). Hesap makinesinde <code>normalcdf(520, 1E99, 500, 20)</code>. Tek bir öğrenci için \\(\\sigma = 80\\) kullanılırdı; ortalama için mutlaka \\(\\sigma/\\sqrt{n}\\).</p>\n<p>Toplam sorularını ortalamaya çevirin: 25 torbanın toplamı 1260 g'dan fazla ⇔ \\(\\bar{x} \\gt 1260/25 = 50.4\\).</p>\n<h4>FRQ dili</h4>\n<p><em>\"Because the population distribution is approximately normal, the sampling distribution of \\(\\bar{x}\\) is approximately normal with mean 500 and standard deviation \\(80/\\sqrt{16} = 20\\).\"</em> — Yorum: <em>\"In repeated random samples of 16 students, the sample mean score typically varies from the population mean of 500 by about 20 points.\"</em> Dağılımı adlandırın (normal), parametreleri yazın (mean, SD) ve gerekçeyi belirtin (normal population ya da \\(n \\ge 30\\)).</p>",
+   "ornekler": [
+    {
+     "soru": "Bir fabrikada üretilen ampullerin ömrü sağa çarpık, \\(\\mu = 1200\\) saat, \\(\\sigma = 300\\) saat. 64 ampullük rastgele bir örneklem seçiliyor. \\(\\bar{x}\\)'in örneklem dağılımını tanımlayın ve \\(P(\\bar{x} \\lt 1150)\\)'yi bulun.",
+     "cozum": [
+      "Merkez ve yayılım: \\(\\mu_{\\bar{x}} = 1200\\), \\(\\sigma_{\\bar{x}} = 300/\\sqrt{64} = 37.5\\) saat (64 ampul, üretimin %10'undan çok az).",
+      "Şekil: popülasyon çarpık ama \\(n = 64 \\ge 30\\) → CLT ile yaklaşık normal.",
+      "\\(z = (1150 - 1200)/37.5 \\approx -1.33\\) → \\(P \\approx 0.0912\\) (<code>normalcdf(-1E99, 1150, 1200, 37.5)</code>)."
+     ]
+    },
+    {
+     "soru": "Bir okulda 500 öğrenci var. 80 öğrencilik iadesiz rastgele örneklem alınıyor. \\(\\sigma_{\\bar{x}} = \\sigma/\\sqrt{80}\\) formülünü kullanmak uygun mu? Açıklayın (explain).",
+     "cozum": [
+      "10% koşulu: \\(0.10 \\times 500 = 50\\), ama \\(n = 80 \\gt 50\\).",
+      "Koşul sağlanmıyor: iadesiz seçimde gözlemler bağımsız sayılamaz ve \\(\\sigma/\\sqrt{n}\\) gerçek yayılımı abartır.",
+      "FRQ cümlesi: <em>\"The 10% condition is not met because 80 is more than 10% of the 500 students, so \\(\\sigma/\\sqrt{80}\\) may not be an accurate standard deviation of \\(\\bar{x}\\).\"</em>"
+     ]
+    },
+    {
+     "soru": "Bir popülasyonun \\(\\sigma = 18\\). Araştırmacı \\(\\sigma_{\\bar{x}}\\)'in en çok 2 olmasını istiyor. En küçük örneklem büyüklüğü nedir?",
+     "cozum": [
+      "\\(18/\\sqrt{n} \\le 2 \\Rightarrow \\sqrt{n} \\ge 9 \\Rightarrow n \\ge 81\\).",
+      "En küçük \\(n = 81\\). Kontrol: \\(18/9 = 2\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi: <code>normalcdf(alt, üst, μ, σ/√n)</code>. Yalnızca \"calculator syntax\" yazmak FRQ'da yeterli değildir; dağılımı, ortalamayı ve SD'yi etiketleyin.",
+    "Soruda \"a randomly selected individual\" mi yoksa \"the mean of a sample\" mı geçtiğine bakın; σ ile σ/√n arasındaki seçim buna bağlıdır.",
+    "Normallik gerekçesini açıkça yazın: \"population is normal\" ya da \"\\(n = 64 \\ge 30\\), so by the CLT…\". \"Because it is random\" normallik gerekçesi değildir.",
+    "10% koşulunu her zaman sayıyla gösterin: \"80 > 0.10(500) = 50\"."
+   ],
+   "sikHatalar": [
+    "\\(\\sigma/\\sqrt{n}\\) yerine \\(\\sigma\\) ya da \\(\\sigma/n\\) kullanmak.",
+    "CLT'nin örneklem verisini normal yaptığını sanmak.",
+    "10% koşulunu normallik koşulu sanmak (ya da tam tersi)."
+   ],
+   "terimler": [
+    {
+     "en": "sampling distribution",
+     "tr": "örneklem dağılımı"
+    },
+    {
+     "en": "sample mean",
+     "tr": "örneklem ortalaması"
+    },
+    {
+     "en": "central limit theorem (CLT)",
+     "tr": "merkezi limit teoremi"
+    },
+    {
+     "en": "unbiased estimator",
+     "tr": "yansız tahmin edici"
+    },
+    {
+     "en": "10% condition",
+     "tr": "%10 koşulu"
+    },
+    {
+     "en": "without replacement",
+     "tr": "iadesiz"
+    }
+   ]
+  },
+  {
+   "kod": "4.2",
+   "baslik": "Constructing a Confidence Interval for a Population Mean or Population Mean Difference",
+   "baslikTr": "Popülasyon ortalaması ya da ortalama fark için güven aralığı kurma",
+   "hedefler": [
+    "t dağılımlarını tanımak ve doğru serbestlik derecesiyle t* bulmak.",
+    "Tek örneklem ve eşleştirilmiş (matched pairs) durumlar için doğru aralık yöntemini ve parametreyi belirlemek.",
+    "Koşulları kontrol edip one-sample t-interval hesaplamak (SE, ME, aralık)."
+   ],
+   "anlatim": "<p>Gerçek hayatta popülasyon standart sapması \\(\\sigma\\) neredeyse hiç bilinmez. Bu yüzden onun yerine örneklem standart sapması \\(s\\) kullanılır. \\(\\sigma\\) yerine \\(s\\) koymak ek bir belirsizlik getirir ve standartlaştırılmış istatistik artık \\(z\\) değil, <strong>t</strong> olur.</p>\n<h4>t dağılımları (t-distributions)</h4>\n<ul>\n<li>Simetrik, çan biçimli, merkezi 0.</li>\n<li>Kuyrukları standart normalden <strong>daha kalın (heavier tails)</strong>; bu yüzden aynı güven düzeyinde \\(t^* \\gt z^*\\).</li>\n<li>Her t dağılımı bir <strong>serbestlik derecesi (degrees of freedom, df)</strong> ile belirlenir. Tek örneklemde \\(df = n - 1\\). df büyüdükçe t, standart normale yaklaşır.</li>\n</ul>\n<table><thead><tr><th>df</th><th>\\(t^*\\) (95%)</th></tr></thead><tbody><tr><td>5</td><td>2.571</td></tr><tr><td>14</td><td>2.145</td></tr><tr><td>29</td><td>2.045</td></tr><tr><td>99</td><td>1.984</td></tr><tr><td>∞</td><td>1.960 (= \\(z^*\\))</td></tr></tbody></table>\n<h4>Yöntemi seçmek</h4>\n<p><strong>Tek örneklem:</strong> bir popülasyonun ortalamasını tahmin ediyorsak → <strong>one-sample t-interval for \\(\\mu\\)</strong>.</p>\n<p><strong>Eşleştirilmiş veri (matched pairs):</strong> aynı birey iki kez ölçülüyorsa (önce–sonra, iki ayakkabı, iki el) ya da doğal çiftler varsa (ikizler), her çift için fark \\(d\\) hesaplanır ve bu farklar <em>tek bir örneklem</em> gibi işlenir → <strong>one-sample t-interval for \\(\\mu_d\\)</strong>. Çıkarma sırasını (ör. after − before) mutlaka yazın.</p>\n<div class=\"kn-tanim\"><strong>Parametre tanımı:</strong> \"\\(\\mu\\) = the true mean commute time for all commuters in the city\" ya da \"\\(\\mu_d\\) = the true mean difference in score (after − before) for all students like these\". Parametre her zaman popülasyon hakkındadır; \"in the sample\" yazılmaz.</div>\n<h4>Koşullar</h4>\n<ol><li><strong>Randomization:</strong> rastgele örneklem ya da randomize deney.</li>\n<li><strong>10%:</strong> iadesiz örneklemde \\(n \\le 0.10N\\).</li>\n<li><strong>Sample data condition (normal/large sample):</strong> popülasyonun normal olduğu belirtilmiş ya da \\(n \\ge 30\\); \\(n \\lt 30\\) ise örneklem verisinin grafiğinde (dotplot, boxplot, histogram) <em>güçlü çarpıklık ve aykırı değer (outlier) olmamalı</em>. Eşleştirilmiş veride bu kontrol <em>farklar</em> için yapılır.</li></ol>\n<div class=\"kn-kural formul\">\\[ \\bar{x} \\pm t^* \\frac{s}{\\sqrt{n}}, \\qquad SE_{\\bar{x}} = \\frac{s}{\\sqrt{n}}, \\qquad ME = t^* \\cdot SE, \\qquad df = n - 1 \\]</div>\n<p>Örnek: \\(n = 25\\), \\(\\bar{x} = 48.2\\), \\(s = 6.5\\). \\(SE = 1.3\\), \\(t^* = 2.064\\) (df 24), \\(ME \\approx 2.68\\), aralık \\((45.52, 50.88)\\). Hesap makinesi: <code>TInterval</code> (Stats ya da Data).</p>\n<h4>FRQ şablonu (4 adım)</h4>\n<p><strong>State:</strong> \"We want to estimate \\(\\mu\\) = … with 95% confidence.\" <strong>Plan:</strong> \"One-sample t-interval for \\(\\mu\\). Random: … 10%: 25 &lt; 10% of all commuters. Normal/large sample: \\(n \\lt 30\\) but the dotplot shows no strong skewness or outliers.\" <strong>Do:</strong> formül + sayılar + aralık. <strong>Conclude:</strong> \"We are 95% confident that the interval from 45.52 to 50.88 minutes captures the true mean commute time for all commuters in the city.\"</p>",
+   "ornekler": [
+    {
+     "soru": "Rastgele seçilmiş 20 öğrencinin günlük uyku süreleri: \\(\\bar{x} = 6.8\\) saat, \\(s = 1.1\\) saat; dotplot çarpıklık ve aykırı değer göstermiyor. %90 güven aralığını kurun.",
+     "cozum": [
+      "Yöntem: one-sample t-interval for \\(\\mu\\); \\(df = 19\\), \\(t^* \\approx 1.729\\).",
+      "\\(SE = 1.1/\\sqrt{20} \\approx 0.246\\); \\(ME \\approx 1.729 \\times 0.246 \\approx 0.425\\).",
+      "Aralık: \\(6.8 \\pm 0.425 = (6.375,\\ 7.225)\\) saat."
+     ]
+    },
+    {
+     "soru": "10 sporcunun dinlenme nabzı yeni bir antrenman programından önce ve sonra ölçülüyor. Farklar (önce − sonra) için \\(\\bar{x}_d = 3.2\\), \\(s_d = 2.5\\). Hangi yöntem uygundur ve neden iki örneklem yöntemi uygun değildir? %95 aralığı bulun.",
+     "cozum": [
+      "Aynı sporcular iki kez ölçüldüğü için veri eşleştirilmiştir; iki örneklem yöntemi bağımsız gruplar ister. Yöntem: one-sample t-interval for \\(\\mu_d\\).",
+      "\\(df = 9\\), \\(t^* \\approx 2.262\\); \\(SE = 2.5/\\sqrt{10} \\approx 0.791\\); \\(ME \\approx 1.79\\).",
+      "Aralık: \\(3.2 \\pm 1.79 = (1.41,\\ 4.99)\\) atım/dakika (önce − sonra). Koşul: 10 farkın grafiği çarpıklık/aykırı değer göstermemeli."
+     ]
+    },
+    {
+     "soru": "(Justify) 14 kişilik rastgele örneklemin boxplot'unda belirgin bir yüksek aykırı değer var. Bir t-aralığı kurmak uygun mu? Gerekçelendirin.",
+     "cozum": [
+      "Randomization ve 10% koşulları sağlanabilir; sorun şekil koşuludur.",
+      "\\(n = 14 \\lt 30\\) ve popülasyonun normal olduğu bilinmiyor; aykırı değer \\(\\bar{x}\\) ve \\(s\\)'yi güçlü etkiler.",
+      "Cevap: <em>\"No. Because \\(n = 14 \\lt 30\\) and the boxplot shows an outlier, the normal/large sample condition is not met, so a t-interval may not be reliable.\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "<code>invT(0.975, df)</code> %95 için \\(t^*\\) verir; %90 için <code>invT(0.95, df)</code>. AP sınavında tüm bölümlerde grafik hesap makinesi serbesttir.",
+    "Koşul cümlesini her zaman veriye bağlayın: \"the dotplot of the 14 differences shows no strong skewness or outliers\" gibi.",
+    "Eşleştirilmiş veride önce fark sütununu oluşturun (L3 = L2 − L1), sonra <code>TInterval</code>'ı L3 ile çalıştırın.",
+    "\\(z^*\\) kullanmak, \\(\\sigma\\) bilinmediği sürece puan kaybettirir: ortalamalar için neredeyse her zaman \\(t\\)."
+   ],
+   "sikHatalar": [
+    "df = n almak (doğrusu n − 1).",
+    "Eşleştirilmiş veriyi iki bağımsız örneklem gibi analiz etmek.",
+    "Parametreyi örneklem için tanımlamak (\"the mean of the 25 commuters\")."
+   ],
+   "terimler": [
+    {
+     "en": "t-distribution",
+     "tr": "t dağılımı"
+    },
+    {
+     "en": "degrees of freedom (df)",
+     "tr": "serbestlik derecesi"
+    },
+    {
+     "en": "critical value",
+     "tr": "kritik değer"
+    },
+    {
+     "en": "standard error (SE)",
+     "tr": "standart hata"
+    },
+    {
+     "en": "margin of error (ME)",
+     "tr": "hata payı"
+    },
+    {
+     "en": "matched pairs",
+     "tr": "eşleştirilmiş çiftler"
+    },
+    {
+     "en": "one-sample t-interval",
+     "tr": "tek örneklem t-aralığı"
+    }
+   ]
+  },
+  {
+   "kod": "4.3",
+   "baslik": "Justifying a Claim Based on a Confidence Interval for a Population Mean or Population Mean Difference",
+   "baslikTr": "Ortalama ya da ortalama fark güven aralığına dayalı iddia değerlendirme",
+   "hedefler": [
+    "Güven aralığını ve güven düzeyini bağlam içinde doğru yorumlamak.",
+    "Aralığı kullanarak bir iddia hakkında gerekçeli karar vermek.",
+    "Güven düzeyi, örneklem büyüklüğü, hata payı ve genişlik arasındaki ilişkileri açıklamak."
+   ],
+   "anlatim": "<p>Aralığı hesaplamak işin yarısıdır; AP puanlarının önemli kısmı <strong>yorum</strong> ve <strong>gerekçe</strong> için verilir. Bu konuda iki farklı yorum ve bir karar kuralı öğreneceğiz.</p>\n<h4>1. Aralığın yorumu (interpreting the interval)</h4>\n<div class=\"kn-tanim\">\"We are <strong>C%</strong> confident that the interval from <strong>a</strong> to <strong>b</strong> captures the true mean <strong>[değişken]</strong> for all <strong>[popülasyon]</strong>.\"</div>\n<p>Dört parça: güven düzeyi, uç değerler, <em>parametre</em> (true mean / true mean difference) ve bağlam. Eşleştirilmiş veride çıkarma sırası da yazılır: \"the true mean difference in sales (new − old) for all stores in the chain\".</p>\n<h4>2. Güven düzeyinin yorumu (interpreting the confidence level)</h4>\n<div class=\"kn-tanim\">\"If we took many random samples of the same size from the same population and built a C% interval from each, about C% of those intervals would capture the true mean.\"</div>\n<p>Güven düzeyi <em>yöntemin</em> başarı oranıdır. Hesaplanmış tek bir aralık parametreyi ya içerir ya içermez; \"there is a 95% probability that the interval contains \\(\\mu\\)\" ifadesi AP'de kabul edilmez.</p>\n<h4>Yanlış yorumlar tablosu</h4>\n<table><thead><tr><th>Yanlış ifade</th><th>Neden yanlış?</th></tr></thead><tbody>\n<tr><td>\"95% of the students exercise 3.1–4.7 hours.\"</td><td>Aralık ortalama içindir, bireyler için değil.</td></tr>\n<tr><td>\"95% chance that \\(\\bar{x}\\) is in the interval.\"</td><td>\\(\\bar{x}\\) biliniyor ve her zaman merkezdedir.</td></tr>\n<tr><td>\"The mean of the sampled students is between…\"</td><td>Tahmin edilen örneklem değil, popülasyondur.</td></tr>\n</tbody></table>\n<h4>3. İddia değerlendirme (justifying a claim)</h4>\n<p>Aralıktaki değerler parametre için <strong>makul (plausible)</strong> değerlerdir.</p>\n<ul><li>İddia edilen değer aralığın <em>dışındaysa</em> → iddiaya karşı ikna edici kanıt (convincing evidence) vardır.</li>\n<li>İçindeyse → iddiaya karşı ikna edici kanıt yoktur; ama bu iddianın <em>doğru olduğunu kanıtlamaz</em> (başka değerler de makuldür).</li>\n<li>Eşleştirilmiş farkta 0 önemli değerdir: \\(\\mu_d\\) aralığı 0'ı içeriyorsa fark için kanıt yoktur.</li></ul>\n<h4>4. İlişkiler</h4>\n<table><thead><tr><th>Değişiklik (diğerleri sabit)</th><th>\\(t^*\\)</th><th>SE</th><th>ME / genişlik</th></tr></thead><tbody>\n<tr><td>Güven düzeyi ↑</td><td>↑</td><td>aynı</td><td>↑</td></tr>\n<tr><td>\\(n\\) ↑</td><td>biraz ↓</td><td>↓</td><td>↓ (yaklaşık \\(1/\\sqrt{n}\\))</td></tr>\n</tbody></table>\n<p>\\(n\\)'yi 4 katına çıkarmak genişliği yaklaşık yarıya indirir. Merkez (\\(\\bar{x}\\)) güven düzeyiyle değişmez; aynı veriden %90 ve %95 aralıkları aynı merkezlidir.</p>\n<div class=\"kn-dikkat\">Güven aralığı yalnızca <em>örnekleme değişkenliğini</em> hesaba katar. Yanlı (biased) örnekleme ya da ölçüm hatası bir aralığı düzeltemez.</div>\n<p>FRQ kalıbı: <em>\"Because all values in the interval (31.2, 35.8) are greater than 30, the interval provides convincing evidence that the true mean lifetime of all batteries is greater than 30 hours.\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "Bir firma ortalama teslim süresinin 3 gün olduğunu iddia ediyor. Rastgele örneklemden %95 aralık: (2.4, 2.9) gün. İddia hakkında ne söylenebilir?",
+     "cozum": [
+      "3 aralığın dışında; tüm makul değerler 3'ten küçük.",
+      "Sonuç: gerçek ortalama teslim süresinin 3 günden farklı (daha kısa) olduğuna dair ikna edici kanıt var; iddia edilen değer makul değil."
+     ]
+    },
+    {
+     "soru": "(Explain) Eşleştirilmiş bir çalışmada \\(\\mu_d\\) (yeni − eski) için %95 aralık (−1.5, 4.0). Bir yönetici \"yeni yöntem işe yaramıyor, aralık bunu kanıtlıyor\" diyor. Yanıt verin.",
+     "cozum": [
+      "0 aralıkta → ortalama farkın olduğuna dair ikna edici kanıt yok.",
+      "Ama 4.0'a kadar pozitif farklar da makul; aralık \"fark yok\" olduğunu kanıtlamaz.",
+      "Cevap: <em>\"The interval does not provide convincing evidence of a difference because 0 is plausible, but it also does not show the methods are equally effective; mean improvements of up to 4.0 are plausible.\"</em>"
+     ]
+    },
+    {
+     "soru": "\\(n = 50\\) ile %95 aralığın genişliği 6 birim. Aynı güven düzeyinde genişliği yaklaşık 3 birime indirmek için kaç gözlem gerekir?",
+     "cozum": [
+      "Genişlik \\(\\propto 1/\\sqrt{n}\\): yarı genişlik için \\(\\sqrt{n}\\) iki katına, \\(n\\) dört katına çıkmalı.",
+      "\\(n \\approx 4 \\times 50 = 200\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Yorumda \"true mean\" ya da \"population mean\" sözcükleri olmazsa puan alınmaz; ayrıca bağlamı (değişken + popülasyon) yazın.",
+    "İddia sorularında karar cümlesine aralığı sayıyla bağlayın: \"Because 30 is not in the interval (31.2, 35.8)…\".",
+    "\"Prove\", \"definitely\" gibi kesin sözcükler kullanmayın; \"convincing evidence\", \"plausible\" deyin.",
+    "Hesap makinesinden okunan aralığı yazarken en az iki ondalık basamak kullanın; \\(\\bar{x}\\) ve ME'yi göstermek ara puan getirir."
+   ],
+   "sikHatalar": [
+    "0 (ya da iddia değeri) aralıktaysa iddianın kanıtlandığını söylemek.",
+    "Güven düzeyini tek aralığın olasılığı olarak yorumlamak.",
+    "Daha yüksek güven düzeyinin aralığı daralttığını sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "confidence level",
+     "tr": "güven düzeyi"
+    },
+    {
+     "en": "plausible value",
+     "tr": "makul değer"
+    },
+    {
+     "en": "convincing evidence",
+     "tr": "ikna edici kanıt"
+    },
+    {
+     "en": "capture",
+     "tr": "yakalamak / içermek"
+    },
+    {
+     "en": "repeated random sampling",
+     "tr": "tekrarlı rastgele örnekleme"
+    },
+    {
+     "en": "width",
+     "tr": "genişlik"
+    }
+   ]
+  },
+  {
+   "kod": "4.4",
+   "baslik": "Setting Up a Test for a Population Mean or Population Mean Difference",
+   "baslikTr": "Ortalama ya da ortalama fark için test kurma",
+   "hedefler": [
+    "Bir araştırma sorusu için one-sample t-test ya da eşleştirilmiş t-test seçmek ve parametreyi bağlamda tanımlamak.",
+    "Sıfır ve alternatif hipotezleri doğru sembollerle ve doğru yönle yazmak.",
+    "Testin koşullarını verilere dayanarak kontrol etmek."
+   ],
+   "anlatim": "<p>Bir FRQ \"Do the data provide <strong>convincing evidence</strong> that…?\" diye soruyorsa, bu bir <strong>anlamlılık testi (significance test)</strong> istemektir; yalnızca örneklem ortalamasını iddia değeriyle karşılaştırmak yetmez. Testin ilk yarısı <em>kurulum</em>dur: yöntem, parametre, hipotezler ve koşullar.</p>\n<h4>Yöntem seçimi</h4>\n<table><thead><tr><th>Durum</th><th>Test</th><th>Parametre</th></tr></thead><tbody>\n<tr><td>Tek popülasyon, nicel veri, \\(\\sigma\\) bilinmiyor</td><td>one-sample t-test for a population mean</td><td>\\(\\mu\\)</td></tr>\n<tr><td>Aynı birimden iki ölçüm ya da doğal çiftler</td><td>one-sample t-test for a population mean difference (paired t-test)</td><td>\\(\\mu_d\\)</td></tr>\n</tbody></table>\n<p>Eşleştirilmiş tasarımı tanımak kritik: önce–sonra ölçümleri, aynı kişinin iki koşulda ölçülmesi, ikizler, aynı arabada iki lastik markası… Bu durumlarda iki sütun olsa bile analiz <em>farklar</em> üzerinde tek örneklem testidir.</p>\n<h4>Hipotezler (hypotheses)</h4>\n<div class=\"kn-kural\">\\[ H_0: \\mu = \\mu_0 \\qquad H_a: \\mu \\lt \\mu_0 \\ \\text{ ya da } \\ \\mu \\gt \\mu_0 \\ \\text{ ya da } \\ \\mu \\ne \\mu_0 \\] Eşleştirilmiş: \\(H_0: \\mu_d = 0\\), \\(H_a: \\mu_d \\gt 0\\) (ya da \\(\\lt 0\\), \\(\\ne 0\\)).</div>\n<ul>\n<li>Hipotezler <strong>parametre</strong> ile yazılır; \\(\\bar{x}\\) ile yazmak puan kaybettirir.</li>\n<li>\\(H_0\\) her zaman eşitlik içerir; \\(H_a\\), araştırmacının kanıt aradığı iddiadır.</li>\n<li>Yön kelimeleri: \"less / decrease / underfilled\" → \\(\\lt\\); \"greater / increase / longer\" → \\(\\gt\\); \"different / changed\" → \\(\\ne\\).</li>\n<li>Eşleştirilmiş veride yön <em>fark tanımına</em> bağlıdır: \\(d\\) = after − before ve \"scores increase\" ise \\(H_a: \\mu_d \\gt 0\\); \\(d\\) = before − after ise \\(H_a: \\mu_d \\lt 0\\).</li>\n</ul>\n<div class=\"kn-tanim\">Parametre cümlesi: \"\\(\\mu\\) = the true mean sodium content (mg) of all cans of this soup.\" / \"\\(\\mu_d\\) = the true mean difference in reading score (new − standard) for twin pairs like these.\"</div>\n<h4>Koşullar (4.2 ile aynı)</h4>\n<ol><li><strong>Random:</strong> rastgele örneklem ya da randomize deney.</li>\n<li><strong>10%:</strong> iadesiz örneklemde \\(n \\le 0.10N\\). Küçük popülasyonlarda (ör. 300 öğrencilik okul, \\(n = 40\\)) bozulabilir.</li>\n<li><strong>Normal/large sample:</strong> popülasyon normal ya da \\(n \\ge 30\\); \\(n \\lt 30\\) ise grafik güçlü çarpıklık ve aykırı değer göstermemeli. Eşleştirilmiş testte bu, farkların grafiği içindir.</li></ol>\n<div class=\"kn-dikkat\">CED'nin uyardığı sık hata: 10% koşulunu \"randomization condition\" ile karıştırmak, ya da \"the data are normal\" gibi belirsiz ifadeler yazmak. Her koşulu adıyla ve veriye bağlı bir cümleyle yazın.</div>\n<p>FRQ kalıbı: <em>\"\\(H_0: \\mu = 12\\), \\(H_a: \\mu \\lt 12\\), where \\(\\mu\\) is the true mean weight (oz) of cereal in all boxes of this brand. One-sample t-test for \\(\\mu\\). Random: random sample of 40 boxes. 10%: 40 is less than 10% of all boxes. Large sample: \\(n = 40 \\ge 30\\).\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "Bir pil üreticisi ortalama ömrün en az 500 şarj döngüsü olduğunu iddia ediyor. Tüketici derneği iddiadan kuşkulanıyor ve 35 pillik rastgele örneklem test ediyor. Hipotezleri ve parametreyi yazın.",
+     "cozum": [
+      "Parametre: \\(\\mu\\) = bu markanın tüm pillerinin gerçek ortalama ömrü (şarj döngüsü).",
+      "Kuşku daha az olduğu yönünde: \\(H_0: \\mu = 500\\), \\(H_a: \\mu \\lt 500\\)."
+     ]
+    },
+    {
+     "soru": "(Justify) 12 öğrenci aynı testi müzikli ve müziksiz ortamda (rastgele sırayla) çözüyor. Araştırmacı iki örneklem t-testi planlıyor. Bu doğru mu? Doğru kurulumu yazın.",
+     "cozum": [
+      "Aynı öğrenciler iki koşulda ölçülüyor: veriler eşleştirilmiş, gruplar bağımsız değil.",
+      "Doğru yöntem: \\(d\\) = (müzikli − müziksiz) farkları üzerinde one-sample t-test for \\(\\mu_d\\).",
+      "Hipotezler (fark olup olmadığı soruluyorsa): \\(H_0: \\mu_d = 0\\), \\(H_a: \\mu_d \\ne 0\\). Koşul: \\(n = 12 \\lt 30\\), 12 farkın grafiği çarpıklık ve aykırı değer göstermemeli."
+     ]
+    },
+    {
+     "soru": "1,200 öğrencili bir okuldan 25 öğrencilik rastgele örneklem; ödev sürelerinin dotplot'u hafif sağa çarpık, aykırı değer yok. Koşulları kontrol edin.",
+     "cozum": [
+      "Random: rastgele örneklem ✓. 10%: \\(25 \\le 0.10(1200) = 120\\) ✓.",
+      "Normal/large sample: \\(n = 25 \\lt 30\\), ama dotplot güçlü çarpıklık ya da aykırı değer göstermiyor ✓. Tüm koşullar sağlanıyor."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Parametreyi tanımlamadan yazılan hipotezler eksik sayılır: sembol + \"true mean\" + değişken + popülasyon.",
+    "Hesap makinesinde <code>T-Test</code> menüsünde \\(\\mu_0\\) ve \\(H_a\\) yönünü (\\(\\ne\\), \\(\\lt\\), \\(\\gt\\)) doğru seçmek p-değerini belirler.",
+    "\"Convincing evidence\" geçen her FRQ maddesi tam test (hipotez, koşul, hesap, sonuç) bekler.",
+    "Koşulları liste hâlinde, her biri adıyla yazmak puanlayıcının işini kolaylaştırır."
+   ],
+   "sikHatalar": [
+    "Hipotezlerde \\(\\bar{x}\\) kullanmak.",
+    "Fark tanımını yazmadan μ_d için yön seçmek.",
+    "Eşleştirilmiş tasarımı iki bağımsız örneklem sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "null hypothesis",
+     "tr": "sıfır hipotezi"
+    },
+    {
+     "en": "alternative hypothesis",
+     "tr": "alternatif hipotez"
+    },
+    {
+     "en": "one-sided / two-sided",
+     "tr": "tek yönlü / iki yönlü"
+    },
+    {
+     "en": "paired t-test",
+     "tr": "eşleştirilmiş t-testi"
+    },
+    {
+     "en": "parameter",
+     "tr": "parametre"
+    },
+    {
+     "en": "significance test",
+     "tr": "anlamlılık testi"
+    }
+   ]
+  },
+  {
+   "kod": "4.5",
+   "baslik": "Carrying Out a Test for a Population Mean or Population Mean Difference",
+   "baslikTr": "Ortalama ya da ortalama fark için testi uygulama",
+   "hedefler": [
+    "t test istatistiğini ve p-değerini (df = n − 1) hesaplamak.",
+    "p-değerini H₀ doğru varsayımıyla bağlam içinde yorumlamak.",
+    "p-değerini α ile karşılaştırıp kararı ve sonucu Hₐ cinsinden yazmak."
+   ],
+   "anlatim": "<p>Kurulumdan sonra testi uygularız: veriyi \\(H_0\\)'ın öngördüğü değerle karşılaştıran bir <strong>test istatistiği (test statistic)</strong> hesaplar, bu değerin \\(H_0\\) doğruyken ne kadar şaşırtıcı olduğunu <strong>p-değeri (p-value)</strong> ile ölçeriz.</p>\n<div class=\"kn-kural formul\">\\[ t = \\frac{\\bar{x} - \\mu_0}{s/\\sqrt{n}}, \\qquad df = n - 1 \\] Eşleştirilmiş: \\( t = \\dfrac{\\bar{x}_d - 0}{s_d/\\sqrt{n}} \\), \\(n\\) = çift sayısı.</div>\n<p>Genel yapı: \\(\\dfrac{\\text{statistic} - \\text{parameter}}{\\text{standard error}}\\). \\(t = 1.60\\), \"örneklem ortalaması \\(H_0\\) değerinin 1.6 standart hata üzerinde\" demektir.</p>\n<h4>p-değeri</h4>\n<table><thead><tr><th>\\(H_a\\)</th><th>p-değeri</th><th>Hesap makinesi</th></tr></thead><tbody>\n<tr><td>\\(\\mu \\gt \\mu_0\\)</td><td>\\(P(t \\ge t_{obs})\\)</td><td><code>tcdf(t, 1E99, df)</code></td></tr>\n<tr><td>\\(\\mu \\lt \\mu_0\\)</td><td>\\(P(t \\le t_{obs})\\)</td><td><code>tcdf(-1E99, t, df)</code></td></tr>\n<tr><td>\\(\\mu \\ne \\mu_0\\)</td><td>\\(2 \\cdot P(t \\ge |t_{obs}|)\\)</td><td>tek kuyruk × 2</td></tr>\n</tbody></table>\n<p>Örnek: \\(n = 16\\), \\(\\bar{x} = 103.2\\), \\(s = 8\\), \\(H_0: \\mu = 100\\), \\(H_a: \\mu \\gt 100\\). \\(SE = 2\\), \\(t = 1.60\\), \\(df = 15\\), p-değeri \\(\\approx 0.065\\). Normal dağılım kullanılsaydı 0.055 bulunurdu; küçük örneklemde fark önemlidir.</p>\n<div class=\"kn-tanim\"><strong>p-değeri yorumu:</strong> \"Assuming the true mean is 100 [\\(H_0\\) bağlamda], there is a 0.065 probability of getting a sample mean of 103.2 or greater [Hₐ yönünde, gözlenen kadar ya da daha uç] by chance alone in a random sample of 16.\"</div>\n<p>p-değeri \\(H_0\\)'ın doğru olma olasılığı <em>değildir</em>; \\(H_0\\) doğru varsayılarak hesaplanan, verinin (ya da daha ucunun) olasılığıdır.</p>\n<h4>Karar ve sonuç</h4>\n<ul><li><strong>p ≤ α</strong> → reject \\(H_0\\): \"there is convincing evidence that [\\(H_a\\) bağlamda]\".</li>\n<li><strong>p &gt; α</strong> → fail to reject \\(H_0\\): \"there is not convincing evidence that [\\(H_a\\) bağlamda]\". Asla \"accept \\(H_0\\)\" demeyin.</li></ul>\n<p>Karar cümlesi sayısal karşılaştırmayı içermeli: \"Because the p-value of 0.031 &gt; α = 0.01…\". Verilen α'yı kullanın; verilmemişse 0.05 alınır ve bu belirtilir.</p>\n<h4>Güven aralığı ile bağlantı</h4>\n<p>%95 t-aralığı ile α = 0.05 iki yönlü t-testi aynı bilgiyi verir: aralığın dışındaki \\(\\mu_0\\) değerleri reddedilir, içindekiler reddedilmez.</p>\n<div class=\"kn-dikkat\">Sonuç parametre ve popülasyon hakkındadır: \"the true mean commute time for all adults in the town\". \"The sample mean is greater than 40\" yazmak, zaten bilinen bir şeyi söylemektir.</div>\n<p>FRQ \"Do\" kısmı: \\(t = \\dfrac{4.62 - 4.4}{0.55/\\sqrt{20}} \\approx 1.79\\), \\(df = 19\\), p-value ≈ 0.045. \"Conclude\": \"Because 0.045 &lt; 0.05, we reject \\(H_0\\). There is convincing evidence that the true mean wait time at this stop is greater than 4.4 minutes.\"</p>",
+   "ornekler": [
+    {
+     "soru": "22 kişilik rastgele örneklem: \\(\\bar{x} = 71.4\\), \\(s = 5.0\\). \\(H_0: \\mu = 74\\), \\(H_a: \\mu \\lt 74\\), α = 0.01. Testi uygulayın (koşullar sağlanmış).",
+     "cozum": [
+      "\\(SE = 5.0/\\sqrt{22} \\approx 1.066\\); \\(t = (71.4 - 74)/1.066 \\approx -2.44\\); \\(df = 21\\).",
+      "p-değeri \\(= P(t \\le -2.44) \\approx 0.012\\).",
+      "\\(0.012 \\gt 0.01\\) → fail to reject \\(H_0\\). α = 0.01 düzeyinde gerçek ortalamanın 74'ten küçük olduğuna dair ikna edici kanıt yok. (α = 0.05 olsaydı karar değişirdi.)"
+     ]
+    },
+    {
+     "soru": "(Interpret) Önceki örnekteki p-değerini (≈ 0.012) yorumlayın.",
+     "cozum": [
+      "\\(H_0\\)'ı bağlamda varsayın: \"Assuming the true mean is 74…\"",
+      "\"…there is about a 0.012 probability of getting a sample mean of 71.4 or less by chance in a random sample of 22.\""
+     ]
+    },
+    {
+     "soru": "15 çiftlik eşleştirilmiş veride farklar (sonra − önce): \\(\\bar{x}_d = 2.1\\), \\(s_d = 3.4\\). \\(H_a: \\mu_d \\gt 0\\), α = 0.05. Karar verin.",
+     "cozum": [
+      "\\(t = 2.1/(3.4/\\sqrt{15}) \\approx 2.39\\), \\(df = 14\\).",
+      "p-değeri \\(\\approx 0.016 \\lt 0.05\\) → reject \\(H_0\\).",
+      "Sonuç: gerçek ortalama farkın (sonra − önce) 0'dan büyük olduğuna, yani ortalama artış olduğuna dair ikna edici kanıt var."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi: <code>T-Test</code> (Stats ya da Data). FRQ'da sonuç değerlerinin yanında test adını, \\(t\\), df ve p-değerini yazın.",
+    "İki yönlü testte p-değerini ikiyle çarpmayı unutmayın; tek yönlüde çarpmayın.",
+    "Sonucu her zaman Hₐ diliyle yazın ve kesin olmayan ifade kullanın: \"convincing evidence\".",
+    "p-değeri çok küçükse \"p ≈ 0.000\" yerine \"p < 0.001\" yazmak daha doğrudur."
+   ],
+   "sikHatalar": [
+    "\"Accept H₀\" ya da \"the true mean is 74\" demek.",
+    "p-değerini H₀'ın doğru olma olasılığı olarak yorumlamak.",
+    "Verilen α yerine alışkanlıkla 0.05 kullanmak."
+   ],
+   "terimler": [
+    {
+     "en": "test statistic",
+     "tr": "test istatistiği"
+    },
+    {
+     "en": "p-value",
+     "tr": "p-değeri"
+    },
+    {
+     "en": "significance level (α)",
+     "tr": "anlamlılık düzeyi"
+    },
+    {
+     "en": "reject / fail to reject",
+     "tr": "reddetmek / reddedememek"
+    },
+    {
+     "en": "by chance alone",
+     "tr": "yalnızca şans eseri"
+    },
+    {
+     "en": "two-sided test",
+     "tr": "iki yönlü test"
+    }
+   ]
+  },
+  {
+   "kod": "4.6",
+   "baslik": "Sampling Distributions for the Difference Between Two Sample Means",
+   "baslikTr": "İki örneklem ortalaması farkının örneklem dağılımı",
+   "hedefler": [
+    "\\(\\bar{x}_1 - \\bar{x}_2\\) dağılımının ortalamasını ve standart sapmasını hesaplamak.",
+    "Bağımsızlık (iki bağımsız rastgele örneklem ya da rastgele atama) ve normallik koşullarını gerekçelendirmek.",
+    "Ortalamalar farkı için olasılık hesaplamak ve standart sapmayı bağlamda yorumlamak."
+   ],
+   "anlatim": "<p>İki popülasyonu karşılaştırmak istediğimizde (A okulu ile B okulu, yeni ilaç ile plasebo) doğal istatistik <strong>örneklem ortalamaları farkı \\(\\bar{x}_1 - \\bar{x}_2\\)</strong>'dir. Her yeni örneklem çifti farklı bir fark verir; bu farkların dağılımına \\(\\bar{x}_1 - \\bar{x}_2\\)'nin örneklem dağılımı denir.</p>\n<div class=\"kn-kural formul\">\\[ \\mu_{\\bar{x}_1 - \\bar{x}_2} = \\mu_1 - \\mu_2 \\qquad \\sigma_{\\bar{x}_1 - \\bar{x}_2} = \\sqrt{\\frac{\\sigma_1^2}{n_1} + \\frac{\\sigma_2^2}{n_2}} \\]</div>\n<h4>Neden varyanslar toplanır?</h4>\n<p>İki bağımsız kaynaktan gelen değişkenlik birbirini götürmez; fark alınsa bile belirsizlik <em>artar</em>. Bu yüzden önce her grubun \\(\\sigma^2/n\\) değeri bulunur, bunlar <strong>toplanır</strong>, sonra karekök alınır. Standart sapmaları doğrudan toplamak ya da varyansları çıkarmak yanlıştır.</p>\n<p>Örnek: \\(\\sigma_1 = 10, n_1 = 25\\); \\(\\sigma_2 = 12, n_2 = 36\\). \\(\\sigma_{\\bar{x}_1 - \\bar{x}_2} = \\sqrt{4 + 4} \\approx 2.83\\).</p>\n<table><thead><tr><th>Yanlış yol</th><th>Sonuç</th><th>Hata</th></tr></thead><tbody>\n<tr><td>\\(2 + 2\\)</td><td>4</td><td>SD'leri toplamak</td></tr>\n<tr><td>\\(\\sqrt{4 - 4}\\)</td><td>0</td><td>varyansları çıkarmak</td></tr>\n<tr><td>\\(\\sqrt{100 + 144}\\)</td><td>15.6</td><td>\\(n\\)'lere bölmemek</td></tr>\n</tbody></table>\n<h4>Koşullar</h4>\n<ol><li><strong>Randomization:</strong> iki <em>bağımsız</em> rastgele örneklem; ya da deneyde tedavilerin rastgele atanması (random assignment). Deneyde yalnızca bu koşul gerekir.</li>\n<li><strong>10%:</strong> örnekleme yapılıyorsa her örneklem kendi popülasyonunun %10'undan küçük: \\(n_1 \\le 0.10N_1\\), \\(n_2 \\le 0.10N_2\\).</li>\n<li><strong>Normallik:</strong> iki popülasyon da normalse fark normaldir (her \\(n\\) için). Değilse \\(n_1 \\ge 30\\) <em>ve</em> \\(n_2 \\ge 30\\) gerekir (her biri ayrı ayrı).</li></ol>\n<div class=\"kn-dikkat\">Bu formül <strong>bağımsız</strong> örneklemler içindir. Evli çiftler, ikizler, önce–sonra ölçümleri gibi eşleştirilmiş verilerde kullanılmaz; orada farklar alınır (Konu 4.2).</div>\n<h4>Olasılık hesabı</h4>\n<p>\"\\(\\bar{x}_1\\)'in \\(\\bar{x}_2\\)'den küçük olma olasılığı\" sorusunu \\(P(\\bar{x}_1 - \\bar{x}_2 \\lt 0)\\) biçimine çevirin. Örnek: \\(\\mu_1 - \\mu_2 = 4\\), SD \\(\\approx 1.768\\) → \\(z = -2.26\\), olasılık \\(\\approx 0.012\\).</p>\n<h4>Yorum</h4>\n<p><em>\"In repeated random samples of 40 students from each school, the difference in sample mean scores (A − B) typically varies from the true difference in means by about 1.5 points.\"</em> Bu, iki okul arasındaki fark değildir; fark <em>tahmininin</em> ne kadar oynadığıdır.</p>",
+   "ornekler": [
+    {
+     "soru": "Erkek öğrencilerin boyu \\(N(176, 7)\\), kız öğrencilerin \\(N(163, 6)\\) (cm). Bağımsız rastgele örneklemler: 10 erkek, 12 kız. \\(\\bar{x}_E - \\bar{x}_K\\)'nın dağılımını tanımlayın.",
+     "cozum": [
+      "Merkez: \\(176 - 163 = 13\\) cm.",
+      "SD: \\(\\sqrt{49/10 + 36/12} = \\sqrt{4.9 + 3} \\approx 2.81\\) cm.",
+      "Şekil: iki popülasyon da normal → fark normal (küçük \\(n\\)'ler sorun değil)."
+     ]
+    },
+    {
+     "soru": "Aynı dağılımla \\(P(\\bar{x}_E - \\bar{x}_K \\gt 18)\\)'i bulun.",
+     "cozum": [
+      "\\(z = (18 - 13)/2.81 \\approx 1.78\\).",
+      "\\(P \\approx 0.038\\) (<code>normalcdf(18, 1E99, 13, 2.81)</code>)."
+     ]
+    },
+    {
+     "soru": "(Explain) 30 araba için sol ve sağ ön lastiklerin aşınması ölçülüyor. \\(\\sqrt{\\sigma_1^2/n_1 + \\sigma_2^2/n_2}\\) formülü kullanılabilir mi?",
+     "cozum": [
+      "Sol ve sağ lastik aynı arabaya ait: ölçümler eşleştirilmiş, örneklemler bağımsız değil.",
+      "Formül bağımsızlık gerektirdiği için kullanılamaz; her araba için fark \\(d\\) alınıp tek örneklem yöntemi uygulanmalı."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesinde önce σ₁²/n₁ ve σ₂²/n₂'yi ayrı ayrı yazın, sonra toplamın karekökünü alın; ara sonuçları FRQ'da göstermek puan getirir.",
+    "Çıkarma sırasını sorudakiyle aynı tutun; merkez işareti buna bağlıdır.",
+    "Normallik gerekçesini her grup için ayrı yazın: \"n₁ = 32 ≥ 30 and n₂ = 32 ≥ 30\".",
+    "Deney sorularında 10% koşulunu yazmak gerekmez; rastgele atamayı belirtin."
+   ],
+   "sikHatalar": [
+    "Standart sapmaları toplamak ya da varyansları çıkarmak.",
+    "n₁ + n₂ ≥ 30 ile yetinmek.",
+    "Eşleştirilmiş veriye bağımsız örneklem formülünü uygulamak."
+   ],
+   "terimler": [
+    {
+     "en": "difference in sample means",
+     "tr": "örneklem ortalamaları farkı"
+    },
+    {
+     "en": "independent samples",
+     "tr": "bağımsız örneklemler"
+    },
+    {
+     "en": "random assignment",
+     "tr": "rastgele atama"
+    },
+    {
+     "en": "variance",
+     "tr": "varyans"
+    },
+    {
+     "en": "dependent samples",
+     "tr": "bağımlı örneklemler"
+    }
+   ]
+  },
+  {
+   "kod": "4.7",
+   "baslik": "Constructing a Confidence Interval for the Difference Between Two Population Means",
+   "baslikTr": "İki popülasyon ortalaması farkı için güven aralığı kurma",
+   "hedefler": [
+    "İki bağımsız örneklem için two-sample t-interval'ı seçmek ve parametreyi çıkarma sırasıyla tanımlamak.",
+    "Koşulları (bağımsız rastgele örneklem/rastgele atama, 10%, her grup için normal/large sample) kontrol etmek.",
+    "SE, df (teknoloji ya da muhafazakâr), ME ve aralığı hesaplamak."
+   ],
+   "anlatim": "<p>İki popülasyonun ortalamalarının <em>ne kadar</em> farklı olduğunu tahmin etmek için <strong>two-sample t-interval for \\(\\mu_1 - \\mu_2\\)</strong> kullanılır. Yapı, tüm güven aralıklarındaki gibidir: <em>point estimate ± margin of error</em>.</p>\n<div class=\"kn-kural formul\">\\[ (\\bar{x}_1 - \\bar{x}_2) \\pm t^* \\sqrt{\\frac{s_1^2}{n_1} + \\frac{s_2^2}{n_2}} \\qquad SE_{\\bar{x}_1 - \\bar{x}_2} = \\sqrt{\\frac{s_1^2}{n_1} + \\frac{s_2^2}{n_2}} \\]</div>\n<h4>Serbestlik derecesi (df)</h4>\n<p>İki örneklem t dağılımının df'si teknolojiyle (Welch yaklaşımı) bulunur ve genelde ondalıklıdır. Her zaman \\[ \\min(n_1 - 1,\\ n_2 - 1) \\le df \\le n_1 + n_2 - 2 \\] arasındadır. Teknoloji kullanmıyorsanız <strong>muhafazakâr (conservative)</strong> seçim \\(df = \\min(n_1 - 1, n_2 - 1)\\)'dir: daha büyük \\(t^*\\), biraz daha geniş aralık. AP her iki yolu da kabul eder; hangisini kullandığınızı yazın.</p>\n<table><thead><tr><th>\\(n_1, n_2\\)</th><th>muhafazakâr df</th><th>üst sınır</th></tr></thead><tbody><tr><td>14, 20</td><td>13</td><td>32</td></tr><tr><td>18, 22</td><td>17</td><td>38</td></tr><tr><td>30, 35</td><td>29</td><td>63</td></tr></tbody></table>\n<h4>Koşullar</h4>\n<ol><li><strong>Randomization:</strong> iki bağımsız rastgele örneklem ya da randomize deney.</li>\n<li><strong>10%:</strong> örneklemede \\(n_1 \\le 0.10N_1\\) ve \\(n_2 \\le 0.10N_2\\). Randomize deneyde gereksiz.</li>\n<li><strong>Sample data condition:</strong> her iki örneklem için \\(n \\ge 30\\) ya da popülasyonlar normal; bir grupta \\(n \\lt 30\\) ise o grubun grafiği güçlü çarpıklık ve aykırı değer göstermemeli. Kontrol <em>her grup için ayrı</em> yapılır; \\(n_1 + n_2\\) kullanılmaz.</li></ol>\n<div class=\"kn-tanim\">Parametre: \"\\(\\mu_1 - \\mu_2\\), where \\(\\mu_1\\) = the true mean weekly walking distance of all adults who use the app and \\(\\mu_2\\) = the true mean for all adults who do not.\" Çıkarma sırası, değişken ve iki popülasyon yazılır.</div>\n<h4>Çözümlü hesap</h4>\n<p>\\(n_1 = 18, \\bar{x}_1 = 24.6, s_1 = 4.2\\); \\(n_2 = 22, \\bar{x}_2 = 21.3, s_2 = 5.0\\). Nokta tahmini 3.3. \\(SE = \\sqrt{0.98 + 1.136} \\approx 1.455\\). Teknoloji: \\(df \\approx 37.96\\), \\(t^* \\approx 2.024\\), \\(ME \\approx 2.95\\) → \\((0.35, 6.25)\\). Muhafazakâr: \\(df = 17\\), \\(t^* = 2.110\\) → \\((0.23, 6.37)\\).</p>\n<div class=\"kn-dikkat\">Hesap makinesinde <code>2-SampTInt</code> kullanırken <strong>Pooled: No</strong> seçin. AP Statistics'te ortalamalar için havuzlanmış (pooled) SD kullanılmaz.</div>\n<p>FRQ kalıbı: <em>\"Two-sample t-interval for \\(\\mu_1 - \\mu_2\\). Random: independent random samples. 10%: 18 &lt; 10% of all app users and 22 &lt; 10% of all non-users. Normal/large sample: both \\(n \\lt 30\\), but dotplots of both samples show no strong skewness or outliers.\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "İki fabrikadan bağımsız rastgele örneklemler: A: \\(n = 35, \\bar{x} = 52.1, s = 4.8\\); B: \\(n = 40, \\bar{x} = 49.6, s = 5.5\\). Muhafazakâr df ile %95 aralığı kurun.",
+     "cozum": [
+      "Nokta tahmini: \\(52.1 - 49.6 = 2.5\\). \\(SE = \\sqrt{4.8^2/35 + 5.5^2/40} = \\sqrt{0.658 + 0.756} \\approx 1.189\\).",
+      "Muhafazakâr df = 34, \\(t^* \\approx 2.032\\); \\(ME \\approx 2.42\\).",
+      "Aralık: \\((0.08,\\ 4.92)\\) (A − B)."
+     ]
+    },
+    {
+     "soru": "(Justify) Bir deneyde 24 gönüllü rastgele iki gruba (12 + 12) ayrılıyor. Grupların dotplot'ları simetrik, aykırı değer yok. İki örneklem t-aralığının koşulları sağlanıyor mu?",
+     "cozum": [
+      "Random: tedaviler rastgele atandı ✓. 10%: randomize deney olduğu için gerekmez.",
+      "Normal/large sample: her iki grupta \\(n = 12 \\lt 30\\), ama iki dotplot da güçlü çarpıklık/aykırı değer göstermiyor ✓.",
+      "Tüm koşullar sağlanıyor; sonuçlar bu gönüllülere benzer kişilere genellenebilir."
+     ]
+    },
+    {
+     "soru": "\\(\\mu_1 - \\mu_2\\) için aralık \\((-0.8, 5.2)\\). Nokta tahmini ve hata payı nedir?",
+     "cozum": [
+      "Nokta tahmini = orta nokta: \\((-0.8 + 5.2)/2 = 2.2\\).",
+      "Hata payı = yarı genişlik: \\((5.2 - (-0.8))/2 = 3.0\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Teknoloji df'sini kullanıyorsanız ondalıklı değeri (ör. df ≈ 37.96) yazın; muhafazakâr df kullanıyorsanız \"conservative df = 17\" diye belirtin.",
+    "<code>2-SampTInt</code>: Pooled: No. Çıkarma sırası, girdiğiniz grup sırasıyla aynıdır (1 − 2).",
+    "Her grubun koşulunu ayrı bir cümleyle yazın; puanlayıcı iki grubun da kontrol edildiğini görmek ister.",
+    "Nokta tahminini ve SE'yi ayrı yazmak, son aralık yanlış olsa bile kısmi puan getirir."
+   ],
+   "sikHatalar": [
+    "Pooled seçmek ya da SD'leri toplamak.",
+    "Toplam n ile sample data koşulunu geçmek.",
+    "Parametrede çıkarma sırasını belirtmemek."
+   ],
+   "terimler": [
+    {
+     "en": "two-sample t-interval",
+     "tr": "iki örneklem t-aralığı"
+    },
+    {
+     "en": "point estimate",
+     "tr": "nokta tahmini"
+    },
+    {
+     "en": "conservative degrees of freedom",
+     "tr": "muhafazakâr serbestlik derecesi"
+    },
+    {
+     "en": "pooled",
+     "tr": "havuzlanmış"
+    },
+    {
+     "en": "order of subtraction",
+     "tr": "çıkarma sırası"
+    }
+   ]
+  },
+  {
+   "kod": "4.8",
+   "baslik": "Justifying a Claim Based on a Confidence Interval for the Difference Between Two Population Means",
+   "baslikTr": "İki ortalama farkı güven aralığına dayalı iddia değerlendirme",
+   "hedefler": [
+    "İki ortalama farkı için güven aralığını ve güven düzeyini bağlamda yorumlamak.",
+    "Aralığın 0'ı içerip içermemesine göre fark hakkında karar vermek; yönü çıkarma sırasından okumak.",
+    "Rastgele seçim ve rastgele atamaya göre genelleme ve nedensellik sınırlarını belirtmek."
+   ],
+   "anlatim": "<p>Fark aralığında en önemli değer <strong>0</strong>'dır: \\(\\mu_1 - \\mu_2 = 0\\), \"iki ortalama eşit\" demektir.</p>\n<table><thead><tr><th>Aralık (\\(\\mu_1 - \\mu_2\\))</th><th>Karar</th></tr></thead><tbody>\n<tr><td>Tamamen pozitif, ör. (2.1, 6.3)</td><td>\\(\\mu_1 \\gt \\mu_2\\) için ikna edici kanıt</td></tr>\n<tr><td>Tamamen negatif, ör. (−8.4, −2.0)</td><td>\\(\\mu_1 \\lt \\mu_2\\) için ikna edici kanıt</td></tr>\n<tr><td>0'ı içeriyor, ör. (−1.2, 3.5)</td><td>Fark için ikna edici kanıt yok (ama eşitlik de kanıtlanmaz)</td></tr>\n</tbody></table>\n<div class=\"kn-kural\">Karar <em>0'ın aralıkta olup olmamasına</em> göre verilir; aralığın \"çoğunun\" pozitif olması kanıt değildir.</div>\n<h4>Yorumlar</h4>\n<p><strong>Aralık:</strong> \"We are 95% confident that the interval from 4.2 to 19.8 ms captures the true difference in mean reaction time (morning − evening) for all morning-class and all evening-class students.\"</p>\n<p><strong>Güven düzeyi:</strong> \"If we repeatedly took independent random samples of the same sizes from these populations and built a 95% interval each time, about 95% of the intervals would capture the true difference in means.\"</p>\n<h4>Çıkarma sırası</h4>\n<p>\\(\\mu_1 - \\mu_2\\) için \\((a, b)\\) ise \\(\\mu_2 - \\mu_1\\) için aralık \\((-b, -a)\\) olur. Örneğin \\((-4.1, 1.3) \\to (-1.3, 4.1)\\). Sonuç değişmez; yalnızca yön ifadesi ters okunur.</p>\n<h4>Büyüklük iddiaları</h4>\n<p>\"Yeni ilaç süreyi <em>en az 5 dakika</em> azaltır\" iddiası, \\(\\mu_{new} - \\mu_{old} \\le -5\\) demektir. Aralık (−8.4, −2.0) ise azalma için kanıt vardır, ama −5 ile −2.0 arasındaki (5 dakikadan küçük) azalmalar da makul olduğu için \"en az 5\" için ikna edici kanıt yoktur.</p>\n<h4>Kapsam: genelleme ve nedensellik (scope of inference)</h4>\n<table><thead><tr><th></th><th>Rastgele atama var</th><th>Rastgele atama yok</th></tr></thead><tbody>\n<tr><td>Rastgele seçim var</td><td>Nedensellik + popülasyona genelleme</td><td>Yalnızca genelleme</td></tr>\n<tr><td>Rastgele seçim yok</td><td>Nedensellik, yalnızca benzer deneklere</td><td>Ne nedensellik ne genelleme</td></tr>\n</tbody></table>\n<div class=\"kn-dikkat\">Gönüllülerle yapılan randomize deneyde \"causes\" denebilir ama \"for volunteers like these\" diye sınırlanır. Gözlemsel çalışmada (iki grubun rastgele örneklemleri) \"causes\" denmez.</div>\n<p>FRQ kalıbı: <em>\"Because 0 is not in the interval (1.5, 7.9) and all plausible values are positive, there is convincing evidence that studying with music causes a higher mean score for volunteers like these.\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\mu_A - \\mu_B\\) için %99 aralık: (−0.6, 4.4). Bir öğrenci \"A daha iyi çünkü aralığın çoğu pozitif\" diyor. Değerlendirin.",
+     "cozum": [
+      "0 aralıkta → \\(\\mu_A - \\mu_B = 0\\) makul.",
+      "Bu yüzden A'nın ortalamasının daha yüksek olduğuna dair ikna edici kanıt yok; aralığın çoğunun pozitif olması karar ölçütü değildir."
+     ]
+    },
+    {
+     "soru": "(Explain) Rastgele seçilmiş 50 şehir ve 50 köy hanesinin elektrik kullanımı karşılaştırılıyor. \\(\\mu_{şehir} - \\mu_{köy}\\) için %95 aralık (12, 40) kWh. \"Şehirde yaşamak elektrik kullanımını artırır\" denebilir mi?",
+     "cozum": [
+      "0 aralıkta değil → şehir hanelerinin ortalamasının daha yüksek olduğuna dair ikna edici kanıt var; rastgele seçim olduğu için tüm şehir ve köy hanelerine genellenebilir.",
+      "Ama rastgele atama yok (gözlemsel çalışma): ev büyüklüğü, gelir gibi karıştırıcı değişkenler (confounding variables) olabilir. \"Causes\" denemez."
+     ]
+    },
+    {
+     "soru": "Aynı veriden %90 aralık (1.0, 5.0). %95 aralığın 0'ı içerip içermeyeceği kesin mi?",
+     "cozum": [
+      "%95 aralığı aynı merkezli (3.0) ve daha geniştir: ME yaklaşık \\(2.0 \\times 1.96/1.645 \\approx 2.38\\) (büyük df için).",
+      "\\(3.0 - 2.38 = 0.62 \\gt 0\\): büyük olasılıkla 0'ı içermez; ama genel olarak daha yüksek güven düzeyi sınırdaki kararları değiştirebilir, bu yüzden her zaman hesaplayarak kontrol edin."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Karar cümlesinde 0'ı ve aralığı açıkça yazın: \"Because 0 is not contained in the interval (2.1, 6.3)…\".",
+    "Yönü yazarken çıkarma sırasına bakın: pozitif aralık → ilk grubun ortalaması büyük.",
+    "Nedensellik için \"randomly assigned\", genelleme için \"randomly selected\" ifadelerini soruda arayın.",
+    "Hesap makinesi aralığı verir; yorumu ve kapsamı siz yazmalısınız, puanın çoğu oradadır."
+   ],
+   "sikHatalar": [
+    "0 içeren aralıktan \"ortalamalar eşit\" sonucu çıkarmak.",
+    "Gönüllü deneyinden tüm popülasyona genelleme yapmak.",
+    "Sıra değişince aralığı (−b, −a) yerine (−a, −b) ya da işaretsiz yazmak."
+   ],
+   "terimler": [
+    {
+     "en": "scope of inference",
+     "tr": "çıkarımın kapsamı"
+    },
+    {
+     "en": "cause-and-effect",
+     "tr": "neden–sonuç"
+    },
+    {
+     "en": "generalize",
+     "tr": "genellemek"
+    },
+    {
+     "en": "observational study",
+     "tr": "gözlemsel çalışma"
+    },
+    {
+     "en": "confounding variable",
+     "tr": "karıştırıcı değişken"
+    }
+   ]
+  },
+  {
+   "kod": "4.9",
+   "baslik": "Setting Up a Test for the Difference Between Two Population Means",
+   "baslikTr": "İki popülasyon ortalaması farkı için test kurma",
+   "hedefler": [
+    "Bağımsız iki grup için two-sample t-test'i eşleştirilmiş testten ayırt etmek.",
+    "Hipotezleri iki eşdeğer biçimde (μ₁ = μ₂ ya da μ₁ − μ₂ = 0) ve doğru yönle yazmak.",
+    "İki örneklem testinin koşullarını her grup için ayrı kontrol etmek."
+   ],
+   "anlatim": "<p>\"Do the data provide convincing evidence that the mean … is different/greater for group 1 than group 2?\" sorusu, iki grup bağımsızsa bir <strong>two-sample t-test for \\(\\mu_1 - \\mu_2\\)</strong> ister.</p>\n<h4>Bağımsız mı, eşleştirilmiş mi?</h4>\n<table><thead><tr><th>Tasarım</th><th>Örnek</th><th>Test</th></tr></thead><tbody>\n<tr><td>İki ayrı rastgele örneklem</td><td>İki şehirden 50'şer yolcu</td><td>two-sample t-test</td></tr>\n<tr><td>Rastgele atanmış iki grup</td><td>40 hasta → ilaç / plasebo</td><td>two-sample t-test</td></tr>\n<tr><td>Aynı birim iki kez</td><td>Aynı öğrencilerin önce–sonra nabzı</td><td>paired t-test (\\(\\mu_d\\))</td></tr>\n<tr><td>Doğal çiftler</td><td>İkizler, evli çiftler, aynı kişinin iki eli</td><td>paired t-test (\\(\\mu_d\\))</td></tr>\n</tbody></table>\n<p>Soru şu: \"Birinci gruptaki bir değer, ikinci gruptaki belirli bir değerle eşleşiyor mu?\" Evet ise eşleştirilmiştir.</p>\n<h4>Hipotezler</h4>\n<div class=\"kn-kural\">\\[ H_0: \\mu_1 = \\mu_2 \\ \\ (\\text{ya da } \\mu_1 - \\mu_2 = 0) \\] \\[ H_a: \\mu_1 \\gt \\mu_2,\\ \\ \\mu_1 \\lt \\mu_2 \\ \\text{ ya da } \\ \\mu_1 \\ne \\mu_2 \\] Eşdeğerlik: \\(\\mu_1 - \\mu_2 \\lt 0 \\iff \\mu_1 \\lt \\mu_2\\).</div>\n<ul><li>Her iki parametreyi bağlamda tanımlayın: \"\\(\\mu_{new}\\) = the true mean height of tomato plants like these grown with the new fertilizer; \\(\\mu_{std}\\) = … with the standard fertilizer.\"</li>\n<li>Sıra değişirse eşitsizlik de döner: \\(\\mu_B - \\mu_A \\gt 0\\), \\(\\mu_A \\lt \\mu_B\\) ile aynıdır.</li>\n<li>\"Differ\" → \\(\\ne\\); \"increase / higher\" → \\(\\gt\\) (yeni − eski sırasıyla).</li></ul>\n<h4>Koşullar</h4>\n<ol><li><strong>Randomization:</strong> iki bağımsız rastgele örneklem ya da randomize deney.</li>\n<li><strong>10%:</strong> örneklemede her grup için ayrı; randomize deneyde gerekmez.</li>\n<li><strong>Normal/large sample:</strong> her iki grup için \\(n \\ge 30\\) ya da normal popülasyon; \\(n \\lt 30\\) olan grubun grafiği güçlü çarpıklık ve aykırı değer göstermemeli.</li></ol>\n<div class=\"kn-dikkat\">Bir grup büyük (\\(n_1 = 40\\)), diğeri küçük ve çarpıksa (\\(n_2 = 12\\), aykırı değerli) koşul <em>küçük grup için</em> bozulur. Toplam \\(n_1 + n_2\\) bu sorunu çözmez.</div>\n<h4>Örnek kurulum (FRQ)</h4>\n<p><em>\"\\(H_0: \\mu_{new} - \\mu_{std} = 0\\), \\(H_a: \\mu_{new} - \\mu_{std} \\gt 0\\), where \\(\\mu_{new}\\) and \\(\\mu_{std}\\) are the true mean heights of plants like these with the new and standard fertilizers. Two-sample t-test for \\(\\mu_{new} - \\mu_{std}\\). Random: plants were randomly assigned to fertilizers. Normal/large sample: both groups have \\(n = 20 \\lt 30\\), but dotplots of both groups show no strong skewness or outliers.\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "Bir araştırmacı rastgele seçilmiş 35 lise öğrencisi ve 35 üniversite öğrencisinin günlük telefon kullanımını karşılaştırıyor; üniversitelilerin daha fazla kullandığından şüpheleniyor. Hipotezleri yazın.",
+     "cozum": [
+      "Parametreler: \\(\\mu_L\\), \\(\\mu_U\\) = tüm lise / tüm üniversite öğrencilerinin gerçek ortalama günlük kullanımı.",
+      "\\(H_0: \\mu_U = \\mu_L\\), \\(H_a: \\mu_U \\gt \\mu_L\\) (eşdeğer: \\(\\mu_U - \\mu_L \\gt 0\\))."
+     ]
+    },
+    {
+     "soru": "(Justify) 20 kişinin sağ ve sol el kavrama gücü ölçülüyor. Neden iki örneklem testi uygun değildir?",
+     "cozum": [
+      "Sağ ve sol el ölçümleri aynı kişiye aittir; değerler eşleşir ve güçlü biçimde ilişkilidir.",
+      "İki örneklem testi bağımsızlık ister. Doğrusu: her kişi için \\(d\\) = sağ − sol, one-sample t-test for \\(\\mu_d\\)."
+     ]
+    },
+    {
+     "soru": "Bağımsız rastgele örneklemler: \\(n_1 = 45\\) (histogram orta derecede sağa çarpık), \\(n_2 = 18\\) (dotplot simetrik, aykırı değer yok). Normal/large sample koşulu sağlanıyor mu?",
+     "cozum": [
+      "Grup 1: \\(n_1 = 45 \\ge 30\\) → orta çarpıklık sorun değil ✓.",
+      "Grup 2: \\(n_2 = 18 \\lt 30\\), ama dotplot güçlü çarpıklık/aykırı değer göstermiyor ✓. Koşul sağlanıyor."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hipotezlerde iki parametreyi de tanımlayın; tek bir \"μ\" yazmak puan kaybettirir.",
+    "Hesap makinesinde <code>2-SampTTest</code> (Pooled: No) için \\(H_a\\) yönü \"μ1 > μ2\" biçimindedir; grup sırasını hipotezinizle aynı girin.",
+    "Deneyde \"randomly assigned\" yazın; 10% koşulunu yazmaya gerek yoktur ama yanlış uygulamak puan kaybettirir.",
+    "Önce tasarımı (bağımsız mı eşleştirilmiş mi) bir cümleyle belirtmek doğru test seçimini gösterir."
+   ],
+   "sikHatalar": [
+    "Önce–sonra verisine two-sample t-test uygulamak.",
+    "Hipotezleri \\(\\bar{x}_1\\), \\(\\bar{x}_2\\) ile yazmak.",
+    "Sıra değişince eşitsizliği çevirmemek."
+   ],
+   "terimler": [
+    {
+     "en": "two-sample t-test",
+     "tr": "iki örneklem t-testi"
+    },
+    {
+     "en": "independent groups",
+     "tr": "bağımsız gruplar"
+    },
+    {
+     "en": "paired data",
+     "tr": "eşleştirilmiş veri"
+    },
+    {
+     "en": "equivalent hypotheses",
+     "tr": "eşdeğer hipotezler"
+    },
+    {
+     "en": "randomized experiment",
+     "tr": "randomize deney"
+    }
+   ]
+  },
+  {
+   "kod": "4.10",
+   "baslik": "Carrying Out a Test for the Difference Between Two Population Means",
+   "baslikTr": "İki popülasyon ortalaması farkı için testi uygulama",
+   "hedefler": [
+    "İki örneklem t istatistiğini, df'yi ve p-değerini hesaplamak.",
+    "p-değerini 'ortalamalar eşit' varsayımıyla bağlam içinde yorumlamak.",
+    "Karar ve sonucu Hₐ cinsinden, kapsamı (nedensellik/genelleme) belirterek yazmak."
+   ],
+   "anlatim": "<p>Kurulum tamamsa test istatistiğini hesaplarız. \\(H_0\\) altında \\(\\mu_1 - \\mu_2 = 0\\) olduğu için pay, gözlenen farkın 0'dan uzaklığıdır.</p>\n<div class=\"kn-kural formul\">\\[ t = \\frac{(\\bar{x}_1 - \\bar{x}_2) - 0}{\\sqrt{\\dfrac{s_1^2}{n_1} + \\dfrac{s_2^2}{n_2}}} \\] df teknolojiyle bulunur ve \\(\\min(n_1 - 1, n_2 - 1)\\) ile \\(n_1 + n_2 - 2\\) arasındadır.</div>\n<h4>Çözümlü örnek</h4>\n<p>Mağaza 1: \\(n = 30, \\bar{x} = 71.5, s = 8.2\\); mağaza 2: \\(n = 35, \\bar{x} = 67.0, s = 9.4\\); \\(H_a: \\mu_1 \\gt \\mu_2\\).</p>\n<ol><li>\\(SE = \\sqrt{8.2^2/30 + 9.4^2/35} = \\sqrt{2.241 + 2.525} \\approx 2.183\\).</li>\n<li>\\(t = 4.5/2.183 \\approx 2.06\\); teknoloji df \\(\\approx 62.97\\).</li>\n<li>p-değeri \\(= P(t \\ge 2.06) \\approx 0.022\\). (İki yönlü olsaydı \\(\\approx 0.043\\).)</li>\n<li>α = 0.05: \\(0.022 \\lt 0.05\\) → reject \\(H_0\\).</li></ol>\n<p>Muhafazakâr df (\\(\\min(29, 34) = 29\\)) ile p-değeri biraz daha büyük çıkar (\\(\\approx 0.024\\)); sınırdaki durumlarda karar değişebilir, bu yüzden hangi df'yi kullandığınızı yazın.</p>\n<h4>p-değeri yorumu</h4>\n<div class=\"kn-tanim\">\"Assuming there is no difference in the true mean shopping times at the two stores, there is a 0.022 probability of getting a difference in sample means (store 1 − store 2) of 4.5 minutes or more by chance alone.\"</div>\n<h4>Sonuç ve kapsam</h4>\n<p>\"Because 0.022 &lt; 0.05, we reject \\(H_0\\). There is convincing evidence that the true mean shopping time is greater for all customers at store 1 than for all customers at store 2.\"</p>\n<ul><li>Randomize deney → \"causes\" denebilir (deneklere benzer bireyler için).</li>\n<li>İki rastgele örneklem (gözlemsel) → popülasyonlara genellenir ama nedensellik yoktur.</li></ul>\n<h4>Eşleştirilmiş veriye yanlış test uygulamak</h4>\n<p>Önce–sonra verisini iki örneklem testiyle analiz etmek payı değiştirmez (\\(\\bar{x}_d = \\bar{x}_1 - \\bar{x}_2\\)), ama önce ve sonra değerleri pozitif ilişkili olduğunda (genelde öyledir) paydayı büyütür: kişiler arası büyük farklılık SE'ye girer. Sonuç: daha küçük \\(|t|\\), daha büyük p-değeri ve gerçek bir etkiyi kaçırma riski. Doğru test, farklar üzerinde one-sample t-test'tir.</p>\n<div class=\"kn-dikkat\">Tek yönlü testte p-değerini ikiyle çarpmayın; iki yönlüde çarpın. <code>2-SampTTest</code> doğru yönü seçerseniz bunu sizin yerinize yapar.</div>",
+   "ornekler": [
+    {
+     "soru": "Bağımsız rastgele örneklemler: \\(n_1 = 25, \\bar{x}_1 = 18.4, s_1 = 3.1\\); \\(n_2 = 28, \\bar{x}_2 = 16.9, s_2 = 3.6\\). \\(H_a: \\mu_1 \\ne \\mu_2\\), α = 0.05. Test istatistiğini ve kararı bulun (koşullar sağlanmış).",
+     "cozum": [
+      "\\(SE = \\sqrt{3.1^2/25 + 3.6^2/28} = \\sqrt{0.384 + 0.463} \\approx 0.920\\); \\(t = 1.5/0.920 \\approx 1.63\\).",
+      "Teknoloji df ≈ 50.9; iki yönlü p-değeri ≈ 0.11.",
+      "\\(0.11 \\gt 0.05\\) → fail to reject \\(H_0\\): iki popülasyonun gerçek ortalamalarının farklı olduğuna dair ikna edici kanıt yok."
+     ]
+    },
+    {
+     "soru": "(Interpret) Bir deneyde \\(H_a: \\mu_{ilaç} \\lt \\mu_{plasebo}\\) (günlük hapşırık) için p = 0.008. p-değerini yorumlayın ve sonucu yazın.",
+     "cozum": [
+      "Yorum: \"Assuming the medicine and placebo have the same true mean number of sneezes, there is a 0.008 probability of getting a difference in sample means (medicine − placebo) as low as or lower than the one observed by chance alone.\"",
+      "Sonuç: \\(0.008 \\lt 0.05\\) → reject \\(H_0\\). Rastgele atama olduğu için ilacın ortalama hapşırık sayısını <em>azalttığına</em> (causes) dair ikna edici kanıt var; genelleme deneklere benzer kişilerle sınırlıdır."
+     ]
+    },
+    {
+     "soru": "\\(n_1 = 12, n_2 = 15\\), \\(t = 2.10\\), iki yönlü test. Muhafazakâr df ile karar verin (α = 0.05).",
+     "cozum": [
+      "df = \\(\\min(11, 14) = 11\\); p = \\(2P(t_{11} \\ge 2.10) \\approx 0.060\\).",
+      "\\(0.060 \\gt 0.05\\) → fail to reject \\(H_0\\). Normal dağılım kullanılsaydı p ≈ 0.036 bulunup yanlış karar verilirdi."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "<code>2-SampTTest</code> çıktısından t, p ve df'yi yazın; FRQ'da formülü sayılarla birlikte göstermek \"Do\" puanını garantiler.",
+    "Sonuç cümlesinde iki popülasyonu ve değişkeni adlandırın; \"group 1\" demek yerine bağlamı kullanın.",
+    "Nedensellik iddiası için rastgele atamayı, genelleme için rastgele seçimi gerekçe olarak yazın.",
+    "p-değeri sınırdaysa (ör. 0.048 / 0.052) kararı yine kesin eşiğe göre verin; \"almost significant\" demeyin."
+   ],
+   "sikHatalar": [
+    "SE'leri toplamak ya da n'lere bölmemek.",
+    "Gözlemsel çalışmadan \"causes\" sonucu çıkarmak.",
+    "Sonucu örneklem ortalamaları hakkında yazmak."
+   ],
+   "terimler": [
+    {
+     "en": "difference in sample means",
+     "tr": "örneklem ortalamaları farkı"
+    },
+    {
+     "en": "technology df",
+     "tr": "teknolojinin verdiği serbestlik derecesi"
+    },
+    {
+     "en": "two-sided p-value",
+     "tr": "iki yönlü p-değeri"
+    },
+    {
+     "en": "statistically significant",
+     "tr": "istatistiksel olarak anlamlı"
+    },
+    {
+     "en": "power",
+     "tr": "güç (gerçek etkiyi yakalama olasılığı)"
+    }
+   ]
+  }
+ ]
+}
