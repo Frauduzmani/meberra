@@ -1,0 +1,834 @@
+{
+ "ders": "statistics",
+ "unite": 2,
+ "baslik": "Probability, Random Variables, and Probability Distributions",
+ "baslikTr": "Olasılık, Rastgele Değişkenler ve Olasılık Dağılımları",
+ "konular": [
+  {
+   "kod": "2.1",
+   "baslik": "Tabular and Graphical Representations for the Distributions of Two Categorical Variables",
+   "baslikTr": "İki kategorik değişkenin dağılımlarının tablo ve grafikle gösterimi",
+   "hedefler": [
+    "İki kategorik değişkeni iki yönlü tabloda (two-way table) sayı ya da oranla özetlemek.",
+    "Yan yana çubuk grafik (side-by-side bar chart), parçalı çubuk grafik (segmented bar chart) ve mozaik grafiği (mosaic plot) okumak ve karşılaştırmak.",
+    "Grafik ve tablolardan iki değişken arasında ilişki (association) olup olmadığına dair bağlamlı bir iddiayı gerekçelendirmek."
+   ],
+   "anlatim": "<p>Unit 1'de tek bir kategorik değişkeni (ör. \"en sevilen ders\") inceledik. Şimdi aynı bireyler üzerinde ölçülen <strong>iki kategorik değişkeni (two categorical variables)</strong> birlikte inceliyoruz: örneğin öğrencinin <em>sınıf düzeyi</em> ve <em>ders çalışma yöntemi</em>. Asıl soru şudur: <strong>Bir değişkenin dağılımı, diğer değişkenin düzeyine (level) göre değişiyor mu?</strong> Değişiyorsa iki değişken arasında <strong>ilişki (association)</strong> vardır.</p>\n<h4>İki yönlü tablo (two-way table)</h4>\n<div class=\"kn-tanim\"><strong>İki yönlü tablo / olumsallık tablosu (two-way table / contingency table):</strong> Satırlarda bir değişkenin, sütunlarda diğerinin kategorileri bulunur. Hücreler <strong>sayı (frequency, count)</strong> ya da <strong>oran (relative frequency, proportion)</strong> olabilir. Kenarlardaki toplamlar <strong>marjinal toplamlar (marginal totals)</strong>dır.</div>\n<table><thead><tr><th></th><th>Spor yapıyor</th><th>Spor yapmıyor</th><th>Toplam</th></tr></thead>\n<tbody><tr><td>9. sınıf</td><td>60</td><td>40</td><td>100</td></tr>\n<tr><td>12. sınıf</td><td>45</td><td>105</td><td>150</td></tr>\n<tr><td>Toplam</td><td>105</td><td>145</td><td>250</td></tr></tbody></table>\n<p>Ham sayılara bakıp \"12. sınıflarda 45, 9. sınıflarda 60 sporcu var\" demek <strong>yanıltıcıdır</strong>, çünkü grup büyüklükleri farklı (100 ve 150). Doğru karşılaştırma <strong>grup içi yüzdelerle</strong> yapılır: 9. sınıfların \\(60/100 = 60\\%\\)'ı, 12. sınıfların \\(45/150 = 30\\%\\)'u spor yapıyor. Fark büyük olduğu için bu örneklemde sınıf düzeyi ile spor yapma arasında ilişki vardır.</p>\n<h4>Üç grafik türü</h4>\n<table><thead><tr><th>Grafik</th><th>Ne gösterir?</th><th>Dikkat</th></tr></thead>\n<tbody><tr><td><strong>Side-by-side bar chart</strong> (yan yana çubuk)</td><td>Her grup için kategorilerin sayısı ya da yüzdesi yan yana çubuklarla</td><td>Sayı (count) kullanılırsa farklı grup büyüklükleri karşılaştırmayı bozar</td></tr>\n<tr><td><strong>Segmented bar chart</strong> (parçalı çubuk)</td><td>Her grup tek çubuk, yüksekliği %100; parçalar kategorilerin grup içi yüzdesi</td><td>Grup büyüklüğünü göstermez; yalnızca koşullu dağılımları karşılaştırır</td></tr>\n<tr><td><strong>Mosaic plot</strong> (mozaik)</td><td>Parçalı çubuk gibi, ama çubuk <em>genişliği</em> grubun büyüklüğüyle orantılı</td><td>Hem grup büyüklüğü (genişlik) hem grup içi yüzdeler (yükseklik) okunur</td></tr></tbody></table>\n<h4>İlişki var mı? Grafikten karar</h4>\n<div class=\"kn-kural\"><strong>Kural:</strong> Parçalı çubuklarda (ya da mozaik grafiğinde) parçaların yükseklikleri <strong>gruplar arasında aynıysa</strong> ilişki yoktur. Parçalar belirgin biçimde <strong>farklıysa</strong> ilişki vardır. Ham sayılar değil, <strong>yüzdeler</strong> karşılaştırılır.</div>\n<p>Yukarıdaki örnekte segmented bar chart çizseydik, 9. sınıf çubuğunun \"spor yapıyor\" parçası %60, 12. sınıf çubuğunun %30 olurdu. Mozaik grafiğinde ise 12. sınıf çubuğu daha geniş olurdu (150 &gt; 100), çünkü daha çok 12. sınıf öğrencisi var.</p>\n<h4>FRQ'da puan getiren ifade</h4>\n<blockquote><em>\"Because the proportion of 9th graders who play a sport (0.60) is greater than the proportion of 12th graders who play a sport (0.30), there is an association between grade level and playing a sport for these students.\"</em></blockquote>\n<p>Üç unsura dikkat: (1) iki <strong>koşullu oran</strong> sayıyla verilmiş, (2) hangi grubun daha yüksek olduğu söylenmiş, (3) sonuç <strong>bağlam içinde (in context)</strong> ve yalnızca bu bireyler için söylenmiş. İlişki <strong>nedensellik (causation)</strong> değildir: \"Sınıf düzeyi spor yapmayı azaltır\" demek bir gözlemsel çalışmadan çıkarılamaz.</p>",
+   "ornekler": [
+    {
+     "soru": "Bir kafede 200 müşteri incelendi. Sabah gelen 80 müşterinin 56'sı kahve, akşam gelen 120 müşterinin 48'i kahve aldı. Parçalı çubuk grafik (segmented bar chart) çizilirse her çubuktaki \"kahve\" parçasının yüksekliği ne olur? İlişki var mı?",
+     "cozum": [
+      "Sabah: \\(56/80 = 0.70\\) yani %70. Akşam: \\(48/120 = 0.40\\) yani %40.",
+      "Her çubuk %100 yüksekliğindedir; kahve parçaları %70 ve %40, kalan parçalar %30 ve %60 olur.",
+      "Yüzdeler belirgin biçimde farklı olduğu için bu müşterilerde gün zamanı ile kahve alma arasında ilişki vardır."
+     ]
+    },
+    {
+     "soru": "Bir öğrenci aynı veriler için yan yana çubuk grafiğini <em>sayılarla</em> çiziyor ve \"akşam kahve alan sayısı (48) sabaha (56) çok yakın, demek ki fark yok\" diyor. Bu yorum neden yanıltıcıdır?",
+     "cozum": [
+      "Gruplar farklı büyüklükte: 80 sabah, 120 akşam müşterisi. Sayılar grup büyüklüğünden etkilenir.",
+      "Karşılaştırma grup içi oranlarla yapılmalı: %70 ve %40. Oranlar arasındaki 30 puanlık fark ilişkiyi gösterir; sayı grafiği bunu gizler."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir mozaik grafiğinde \"Online\" çubuğu \"Yüz yüze\" çubuğunun iki katı genişliktedir ve her iki çubukta \"Memnun\" parçası yaklaşık %75'tir. Ne sonuç çıkarırsınız? Justify your answer.",
+     "cozum": [
+      "Genişlik grup büyüklüğünü gösterir: online ders alan öğrenci sayısı yüz yüze alanların yaklaşık iki katıdır.",
+      "Yükseklikler (koşullu yüzdeler) iki grupta da yaklaşık %75 olduğundan memnuniyet oranı ders biçimine göre değişmiyor.",
+      "Sonuç: <em>\"Because the proportion of satisfied students is about 0.75 in both groups, there is little or no association between course format and satisfaction for these students.\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Karşılaştırma her zaman yüzdelerle yapılır; soruda gruplar farklı büyüklükteyse sayı grafiği tuzaktır.",
+    "Mozaik grafiğinde <strong>genişlik = grup büyüklüğü</strong>, <strong>yükseklik = grup içi yüzde</strong>. Bu iki bilgiyi karıştırma.",
+    "İlişki iddiasında en az iki koşullu oranı sayıyla yaz ve bağlamı (değişken adları) kullan.",
+    "Bu konuda hesap makinesi yalnızca bölme için gerekir; asıl puan yorumdadır."
+   ],
+   "sikHatalar": [
+    "Ham sayıları karşılaştırıp ilişki hakkında karar vermek.",
+    "Parçalı çubuk grafiğinin grup büyüklüğünü gösterdiğini sanmak (her çubuk %100'dür).",
+    "İlişkiyi nedensellik gibi yorumlamak: \"X, Y'ye yol açar\"."
+   ],
+   "terimler": [
+    {
+     "en": "two-way table / contingency table",
+     "tr": "iki yönlü tablo / olumsallık tablosu"
+    },
+    {
+     "en": "side-by-side bar chart",
+     "tr": "yan yana çubuk grafik"
+    },
+    {
+     "en": "segmented bar chart",
+     "tr": "parçalı çubuk grafik"
+    },
+    {
+     "en": "mosaic plot",
+     "tr": "mozaik grafiği"
+    },
+    {
+     "en": "association",
+     "tr": "ilişki"
+    },
+    {
+     "en": "relative frequency",
+     "tr": "göreli sıklık (oran)"
+    }
+   ]
+  },
+  {
+   "kod": "2.2",
+   "baslik": "Summary Statistics for Two Categorical Variables",
+   "baslikTr": "İki kategorik değişken için özet istatistikler",
+   "hedefler": [
+    "İki yönlü tablodan ortak (joint), marjinal (marginal) ve koşullu (conditional) göreli sıklıkları hesaplamak.",
+    "Koşullu göreli sıklıkları karşılaştırarak ilişki hakkında karar vermek.",
+    "Özet istatistiklerle bağlamlı bir iddiayı gerekçelendirmek."
+   ],
+   "anlatim": "<p>İki yönlü tablodaki sayıları üç farklı biçimde orana çevirebiliriz. Hangi paydayı kullandığınız, sorunun ne sorduğunu belirler. AP sınavında bu konudaki hataların neredeyse tamamı <strong>yanlış payda</strong> hatasıdır.</p>\n<table><thead><tr><th></th><th>Online</th><th>TV</th><th>Basılı</th><th>Toplam</th></tr></thead>\n<tbody><tr><td>18–34 yaş</td><td>130</td><td>50</td><td>20</td><td>200</td></tr>\n<tr><td>35+ yaş</td><td>70</td><td>90</td><td>40</td><td>200</td></tr>\n<tr><td>Toplam</td><td>200</td><td>140</td><td>60</td><td>400</td></tr></tbody></table>\n<h4>1. Ortak göreli sıklık (joint relative frequency)</h4>\n<div class=\"kn-tanim\">Bir hücre sayısı ÷ <strong>tablonun genel toplamı</strong>. \"Hem … hem …\" sorusunu cevaplar.</div>\n<p>\"35+ yaşta olup TV tercih edenlerin oranı\" \\(= 90/400 = 0.225\\).</p>\n<h4>2. Marjinal göreli sıklık (marginal relative frequency)</h4>\n<div class=\"kn-tanim\">Bir satır ya da sütun toplamı ÷ <strong>genel toplam</strong>. Tek bir değişkenin dağılımını verir.</div>\n<p>\"Online tercih edenlerin oranı\" \\(= 200/400 = 0.50\\). Tüm marjinal oranlar toplanınca 1 eder: \\(0.50 + 0.35 + 0.15 = 1\\).</p>\n<h4>3. Koşullu göreli sıklık (conditional relative frequency)</h4>\n<div class=\"kn-tanim\">Bir hücre sayısı ÷ <strong>o hücrenin satır toplamı</strong> (ya da <strong>sütun toplamı</strong>). Bir gruba \"kısıtlanarak\" hesaplanır: \"… olanlar arasında, …\".</div>\n<p>\"18–34 yaştakiler <em>arasında</em> online tercih edenlerin oranı\" \\(= 130/200 = 0.65\\). Burada payda satır toplamıdır.<br>\"Online tercih edenler <em>arasında</em> 18–34 yaştakilerin oranı\" \\(= 130/200 = 0.65\\) — bu örnekte rakamlar tesadüfen aynı; ama mantık farklıdır: payda <em>sütun</em> toplamıdır. \"TV tercih edenler arasında 35+ olanlar\" \\(= 90/140 \\approx 0.643\\), \"35+ olanlar arasında TV\" \\(= 90/200 = 0.45\\). İkisi farklı sorulardır!</p>\n<div class=\"kn-kural\"><strong>Payda bulma kuralı:</strong> Cümlede \"among / of those who / given\" geçen grup <strong>paydadır</strong>. \"Proportion of all respondents\" geçerse payda genel toplamdır.</div>\n<h4>İlişki için koşullu dağılımları karşılaştır</h4>\n<p>Yaş grubu ile haber kaynağı arasında ilişki var mı? Her yaş grubu için <strong>koşullu dağılımı (conditional distribution)</strong> hesaplayın:</p>\n<table><thead><tr><th></th><th>Online</th><th>TV</th><th>Basılı</th></tr></thead>\n<tbody><tr><td>18–34</td><td>0.65</td><td>0.25</td><td>0.10</td></tr>\n<tr><td>35+</td><td>0.35</td><td>0.45</td><td>0.20</td></tr></tbody></table>\n<p>Dağılımlar belirgin biçimde farklıdır; yani bu örneklemde yaş ile haber kaynağı arasında ilişki vardır. <strong>İlişki olmasaydı</strong> her satırdaki koşullu dağılım, marjinal dağılımla (0.50, 0.35, 0.15) aynı olurdu. Bu durumda örneğin 18–34 satırında online sayısı \\(200 \\times 0.50 = 100\\) olurdu. Genel formül: <strong>satır toplamı × sütun toplamı ÷ genel toplam</strong>.</p>\n<h4>FRQ dili</h4>\n<blockquote><em>\"Among respondents aged 18–34, 65% prefer online news, compared with 35% of respondents aged 35 and older. Because these conditional relative frequencies differ substantially, the data suggest an association between age group and preferred news source.\"</em></blockquote>\n<p>Puan kazanmak için: hangi oranın hangi gruba ait olduğunu açıkça yazın (\"among …\"), iki sayıyı karşılaştırın ve sonucu bağlamda verin.</p>",
+   "ornekler": [
+    {
+     "soru": "Yukarıdaki tabloda rastgele seçilen bir katılımcının basılı (print) haber tercih ettiği bilindiğine göre, 35+ yaşta olma oranı nedir?",
+     "cozum": [
+      "\"Basılı tercih edenler arasında\" → payda basılı sütun toplamı: 60.",
+      "Pay: hem basılı hem 35+ olanlar: 40. Oran \\(= 40/60 \\approx 0.667\\)."
+     ]
+    },
+    {
+     "soru": "Bir okulda 250 öğrencinin 100'ü tiyatro kulübüne üye. Toplamda 80 öğrenci akşam çalışmayı tercih ediyor. Kulüp üyeliği ile çalışma zamanı arasında <strong>hiç ilişki olmasaydı</strong>, kulüp üyelerinden kaçının akşamı tercih etmesi beklenirdi?",
+     "cozum": [
+      "İlişki yoksa kulüp üyeleri arasındaki akşam oranı genel orana eşittir: \\(80/250 = 0.32\\).",
+      "Beklenen sayı \\(= 100 \\times 0.32 = 32\\). (Formül: satır toplamı × sütun toplamı ÷ genel toplam \\(= 100 \\cdot 80 / 250\\).)"
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir okulda kahvaltı yapan 300 öğrencinin 15'i, kahvaltı yapmayan 100 öğrencinin 18'i ilk derse geç kaldı. Bu veriler kahvaltı ile geç kalma arasında ilişki olduğunu destekler mi? Explain.",
+     "cozum": [
+      "Koşullu oranlar: kahvaltı yapanlarda \\(15/300 = 0.05\\), yapmayanlarda \\(18/100 = 0.18\\).",
+      "Kahvaltı yapmayanlarda geç kalma oranı çok daha yüksek; koşullu dağılımlar belirgin biçimde farklı.",
+      "<em>\"Yes. Because 18% of students who skip breakfast were late compared with 5% of students who eat breakfast, there is an association between eating breakfast and being late for these students.\"</em> (Gözlemsel veri olduğu için neden-sonuç iddia edilmez.)"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Önce cümledeki \"among / of those / given\" grubunu daire içine al: payda odur.",
+    "Marjinal oranlar ve her koşullu dağılım ayrı ayrı 1'e toplanır; sağlama olarak kullan.",
+    "İlişki sorusunda <strong>aynı yöndeki</strong> koşullu oranları karşılaştır (ör. iki satırın \"online\" oranı), sütun ve satır oranlarını karıştırma.",
+    "Hesaplarda en az üç ondalık yaz; FRQ'da kesri de göster: \\(130/200 = 0.65\\)."
+   ],
+   "sikHatalar": [
+    "Koşullu oran yerine ortak oranı hesaplamak (genel toplama bölmek).",
+    "\"A olanlar arasında B\" ile \"B olanlar arasında A\" oranlarını aynı sanmak.",
+    "İlişkiyi ham sayılarla değerlendirmek."
+   ],
+   "terimler": [
+    {
+     "en": "joint relative frequency",
+     "tr": "ortak göreli sıklık"
+    },
+    {
+     "en": "marginal relative frequency",
+     "tr": "marjinal göreli sıklık"
+    },
+    {
+     "en": "conditional relative frequency",
+     "tr": "koşullu göreli sıklık"
+    },
+    {
+     "en": "conditional distribution",
+     "tr": "koşullu dağılım"
+    },
+    {
+     "en": "marginal distribution",
+     "tr": "marjinal dağılım"
+    }
+   ]
+  },
+  {
+   "kod": "2.3",
+   "baslik": "Estimating Probabilities Using Simulation",
+   "baslikTr": "Simülasyonla olasılık tahmini",
+   "hedefler": [
+    "Rastgele süreç (random process), sonuç (outcome) ve olay (event) kavramlarını ayırt etmek.",
+    "Rastgele rakamlar ya da teknolojiyle bir simülasyon tasarlamak ve yürütmek.",
+    "Olasılığı uzun dönem göreli sıklık (long-run relative frequency) olarak yorumlamak ve büyük sayılar yasasını (law of large numbers) açıklamak."
+   ],
+   "anlatim": "<h4>Temel kavramlar</h4>\n<ul><li><strong>Rastgele süreç (random process):</strong> Sonucu şansla belirlenen süreç (zar atmak, rastgele müşteri seçmek).</li>\n<li><strong>Sonuç (outcome):</strong> Sürecin bir denemesinin (trial) sonucu: \"zar 4 geldi\".</li>\n<li><strong>Olay (event):</strong> Sonuçlardan oluşan küme: \"zar çift geldi\" = {2, 4, 6}.</li></ul>\n<div class=\"kn-tanim\"><strong>Olasılık (probability):</strong> Bir olayın, süreç <strong>çok sayıda</strong> tekrarlandığında gerçekleşme oranının yaklaştığı değer, yani <strong>uzun dönem göreli sıklığı (long-run relative frequency)</strong>.</div>\n<h4>Büyük sayılar yasası (law of large numbers)</h4>\n<p>Bağımsız denemeler (independent trials) arttıkça, bir olayın göreli sıklığı tek bir sabit değere (gerçek olasılığa) giderek yaklaşır. Önemli: Yasa <strong>kısa dönem</strong> hakkında bir şey söylemez. Yazı-tura 5 kez tura geldiyse 6. atışta yazı gelme olasılığı yine 0.5'tir. \"Artık yazı gelmesi gerekir\" düşüncesi <strong>kumarbaz yanılgısıdır (gambler's fallacy)</strong>: oran uzun dönemde dengelenir, çünkü sonraki çok sayıda deneme ilk sapmayı \"seyreltir\", geçmişi \"telafi ettiği\" için değil.</p>\n<h4>Simülasyon (simulation) nasıl yapılır? — 4 adım</h4>\n<ol><li><strong>Modeli kur (assign):</strong> Her sonuca rakam ata; atama gerçek olasılıklarla eşleşmeli. Örn. \\(p = 0.35\\) için iki basamaklı sayılar: 00–34 = başarı (35 sayı), 35–99 = başarısız (65 sayı).</li>\n<li><strong>Bir denemeyi tanımla:</strong> \"Bir deneme = 5 adet iki basamaklı sayı okumak (5 müşteri).\" Örneklem büyük bir topluluktan değilse ve yerine koyma yoksa (without replacement) <strong>tekrar eden sayıyı atla</strong>.</li>\n<li><strong>Kaydet:</strong> Her denemede ilgilendiğin değeri (ör. başarı sayısı) yaz. Çok sayıda deneme yap.</li>\n<li><strong>Sonuç:</strong> Tahmini olasılık = olayın gerçekleştiği deneme sayısı ÷ toplam deneme sayısı.</li></ol>\n<table><thead><tr><th>Durum</th><th>Atama</th></tr></thead>\n<tbody><tr><td>\\(p = 0.2\\)</td><td>Tek rakam: 0–1 başarı, 2–9 başarısız</td></tr>\n<tr><td>\\(p = 0.35\\)</td><td>İki rakam: 00–34 başarı, 35–99 başarısız</td></tr>\n<tr><td>\\(p = 1/6\\) (zar)</td><td>Rakam 1–6 kullan, 0, 7, 8, 9'u atla; 6 = başarı</td></tr>\n<tr><td>20 kişiden 3'ünü seçmek</td><td>01–20 ata, 00 ve 21–99'u atla, tekrarları atla</td></tr></tbody></table>\n<h4>Simülasyon sonucunu kullanmak</h4>\n<p>Bir otobüs şirketi \"seferlerimizin %60'ı zamanında\" diyor. 25 seferlik rastgele örneklemde yalnızca 10 sefer zamanında. Bu şaşırtıcı mı? \\(p=0.6\\) varsayımıyla 25 seferlik örneklemi 400 kez simüle ettik; yalnızca 14 denemede 10 ya da daha az sefer zamanında çıktı. Tahmini olasılık \\(14/400 = 0.035\\). İddia doğru olsaydı böyle bir sonuç oldukça nadir olurdu; bu yüzden şirketin iddiasına karşı kanıt vardır. (Bu, Unit 3'teki hipotez testinin sezgisel temelidir.)</p>\n<div class=\"kn-dikkat\">Simülasyonda tahmin, deneme sayısı arttıkça gerçek olasılığa yaklaşır; az denemeyle elde edilen tahmin kaba bir yaklaşımdır. FRQ'da simülasyon tarifi, bir başkasının aynen tekrar edebileceği kadar açık olmalıdır: <em>\"Let the digits 0–1 represent a defective item and 2–9 a non-defective item…\"</em></div>",
+   "ornekler": [
+    {
+     "soru": "Bir basketbolcunun serbest atış isabet oranı %70. Rastgele rakamlarla 4 atışlık bir serideki isabet sayısını simüle etmek için bir atama yazın.",
+     "cozum": [
+      "Tek rakam kullan: 0–6 = isabet (7 rakam, %70), 7–9 = ıska (3 rakam, %30).",
+      "Bir deneme = 4 rakam oku; 0–6 aralığındakileri say. Atışlar bağımsız kabul edildiği için tekrar eden rakam atlanmaz.",
+      "Çok sayıda deneme yap; örn. \"en az 3 isabet\" olasılığı = bu olayın gerçekleştiği deneme oranı."
+     ]
+    },
+    {
+     "soru": "\\(p=0.2\\) olan bir olay için 0–1 = başarı ataması yapıldı. Rakamlar beşerli gruplara ayrıldı: <code>52918 70364 11827 49205</code>. Kaç denemede en az 2 başarı var?",
+     "cozum": [
+      "52918: 1 → 1 başarı. 70364: 0 → 1. 11827: 1 ve 1 → 2. 49205: 0 → 1.",
+      "En az 2 başarı yalnızca üçüncü denemede: 4 denemeden 1'i. Tahmin \\(1/4 = 0.25\\) (çok az deneme olduğu için kaba bir tahmin)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir öğrenci \"Bir para 10 kez atıldı ve 7 tura geldi; büyük sayılar yasasına göre sonraki atışlarda yazı gelme olasılığı artar\" diyor. Bu ifadeyi değerlendirin.",
+     "cozum": [
+      "Atışlar bağımsızdır; her atışta yazı olasılığı 0.5'tir ve geçmiş sonuçlar bunu değiştirmez.",
+      "Büyük sayılar yasası, deneme sayısı çok arttıkça tura <em>oranının</em> 0.5'e yaklaşacağını söyler; bunun nedeni yeni denemelerin ilk sapmayı seyreltmesidir.",
+      "Sonuç: İfade yanlıştır; bu, kumarbaz yanılgısıdır (gambler's fallacy)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Simülasyon tarifinde dört şey yaz: atama (hangi rakam neyi temsil eder), bir denemenin tanımı, neyin kaydedildiği, olasılığın nasıl tahmin edildiği.",
+    "Yerine koymadan seçimde (without replacement) tekrar eden rakamları/sayıları atla; bağımsız denemelerde atlama.",
+    "Hesap makinesinde <code>randInt(0,9)</code> ya da <code>randBin</code> simülasyon yapabilir; FRQ'da yine de atamayı sözle açıkla.",
+    "\"Probability = 0.3\" yorumu: <em>\"In the long run, about 30% of …\"</em> — kısa dönem için kesinlik iddia etme."
+   ],
+   "sikHatalar": [
+    "Atamada olasılıkları yanlış eşleştirmek (ör. \\(p=0.35\\) için 0–35 kullanmak: 36 sayı).",
+    "Kumarbaz yanılgısı: geçmiş sonuçların bağımsız bir sonraki denemeyi etkilediğini sanmak.",
+    "Birkaç denemelik bir simülasyonun gerçek olasılığı kesin verdiğini düşünmek."
+   ],
+   "terimler": [
+    {
+     "en": "random process",
+     "tr": "rastgele süreç"
+    },
+    {
+     "en": "outcome",
+     "tr": "sonuç"
+    },
+    {
+     "en": "event",
+     "tr": "olay"
+    },
+    {
+     "en": "simulation",
+     "tr": "simülasyon (benzetim)"
+    },
+    {
+     "en": "long-run relative frequency",
+     "tr": "uzun dönem göreli sıklık"
+    },
+    {
+     "en": "law of large numbers",
+     "tr": "büyük sayılar yasası"
+    }
+   ]
+  },
+  {
+   "kod": "2.4",
+   "baslik": "Introduction to Probability",
+   "baslikTr": "Olasılığa giriş",
+   "hedefler": [
+    "Bir rastgele sürecin örnek uzayını (sample space) yazmak.",
+    "Eşit olasılıklı sonuçlarda olasılık hesaplamak.",
+    "Tümleyen kuralını (complement rule) kullanmak ve geçerli bir olasılık modelini tanımak."
+   ],
+   "anlatim": "<h4>Örnek uzay (sample space)</h4>\n<div class=\"kn-tanim\"><strong>Örnek uzay \\(S\\):</strong> Bir rastgele sürecin tüm olası, birbiriyle örtüşmeyen (nonoverlapping) sonuçlarının kümesi. \\(P(S) = 1\\).</div>\n<p>Bir para ve bir zar atılırsa: \\(S = \\{Y1, Y2, \\ldots, Y6, T1, \\ldots, T6\\}\\), 12 sonuç. İki zar atılırsa \\(6 \\times 6 = 36\\) sonuç vardır. Sonuçları listelemek için <strong>tablo</strong> ya da <strong>ağaç diyagramı (tree diagram)</strong> kullanılır.</p>\n<h4>Eşit olasılıklı sonuçlar (equally likely outcomes)</h4>\n<div class=\"formul\">\\[ P(E) = \\frac{\\text{E olayındaki sonuç sayısı}}{\\text{örnek uzaydaki toplam sonuç sayısı}} \\]</div>\n<p>İki zarın toplamının 9 olması: (3,6), (4,5), (5,4), (6,3) → 4 sonuç. \\(P(\\text{toplam}=9) = 4/36 \\approx 0.111\\). <strong>Dikkat:</strong> (4,5) ve (5,4) farklı sonuçlardır; birini unutmak en sık hatadır. Bu formül <strong>yalnızca</strong> sonuçlar eşit olasılıklıysa geçerlidir; \"toplam 2'den 12'ye kadar 11 değer alır, her biri 1/11\" demek yanlıştır.</p>\n<h4>Olasılığın temel kuralları</h4>\n<table><thead><tr><th>Kural</th><th>Anlamı</th></tr></thead>\n<tbody><tr><td>\\(0 \\le P(E) \\le 1\\)</td><td>Olasılık negatif ya da 1'den büyük olamaz</td></tr>\n<tr><td>\\(P(S) = 1\\)</td><td>Tüm sonuçların olasılıkları toplamı 1</td></tr>\n<tr><td>\\(P(E^C) = 1 - P(E)\\)</td><td><strong>Tümleyen kuralı (complement rule)</strong></td></tr></tbody></table>\n<p><strong>Tümleyen (complement)</strong> \\(E^C\\) (ya da \\(E'\\), \\(\\bar{E}\\)): \"E olmaz\" olayı. \"En az bir (at least one)\" içeren sorularda tümleyen çok işe yarar: \\(P(\\text{en az bir}) = 1 - P(\\text{hiç})\\).</p>\n<h4>Geçerli olasılık modeli (valid probability model)</h4>\n<p>Bir model geçerlidir ancak ve ancak (1) her olasılık 0 ile 1 arasında ve (2) toplam tam olarak 1 ise. Örnek: bir çarkta kırmızı 0.30, mavi 0.50, yeşil ve sarı eşit olasılıklı. Yeşil = sarı = \\((1 - 0.80)/2 = 0.10\\).</p>\n<div class=\"kn-kural\"><strong>Sırasız seçim örneği:</strong> A, B, C, D, E kişilerinden rastgele 2'si seçilir. \\(S = \\{AB, AC, AD, AE, BC, BD, BE, CD, CE, DE\\}\\), 10 eşit olasılıklı sonuç. A'nın seçilmesi: {AB, AC, AD, AE} → \\(4/10 = 0.4\\).</div>\n<p>Olasılık ölçeğini sözle de okuyun: 0 imkânsız (impossible), 1 kesin (certain), 0.5 civarı \"yarı yarıya\"; 0.05'in altı genellikle \"olağan dışı (unusual)\" sayılır.</p>\n<h4>FRQ'da hesap gösterimi</h4>\n<p>AP puanlayıcıları \"formülün yapısı + yerine koyma + sonuç\" görmek ister: <em>\"P(at least one) = 1 − P(none) = 1 − 0.62 = 0.38.\"</em> Yalnız \"0.38\" yazmak çoğu zaman tam puan almaz. Olasılığı bağlamda yorumlamak için: <em>\"In the long run, about 38% of such days will have at least one late bus.\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "Bir ailenin 3 çocuğu var; her doğumda kız (K) ve erkek (E) eşit olasılıklı kabul ediliyor. En az 2 kız olma olasılığı nedir?",
+     "cozum": [
+      "Örnek uzay: KKK, KKE, KEK, EKK, KEE, EKE, EEK, EEE → 8 eşit olasılıklı sonuç.",
+      "En az 2 kız: KKK, KKE, KEK, EKK → 4 sonuç. \\(P = 4/8 = 0.5\\)."
+     ]
+    },
+    {
+     "soru": "Bir durakta sabah saatlerinde otobüslerin hiçbirinin gecikmeme olasılığı \\(0.62\\). Bir sabah en az bir otobüsün gecikme olasılığı nedir? Yorumlayın.",
+     "cozum": [
+      "\"En az bir\" = \"hiç değil\"in tümleyeni. \\(P(\\text{en az 1}) = 1 - P(\\text{hiç}) = 1 - 0.62 = 0.38\\).",
+      "Yorum: Uzun dönemde sabahların yaklaşık %38'inde en az bir otobüs gecikir."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir öğrenci üç sonuçlu bir model öneriyor: \\(P(A)=0.5\\), \\(P(B)=0.4\\), \\(P(C)=0.2\\). Bu model geçerli mi? Justify.",
+     "cozum": [
+      "Her olasılık 0 ile 1 arasında; bu koşul sağlanıyor.",
+      "Toplam \\(0.5 + 0.4 + 0.2 = 1.1 \\ne 1\\). Örnek uzayın olasılığı 1 olmalıdır.",
+      "<em>\"The model is not valid because the probabilities of all outcomes in the sample space sum to 1.1, not 1.\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "\"At least one\" gördüğün anda tümleyeni düşün: \\(1 - P(\\text{none})\\).",
+    "Eşit olasılık formülünü kullanmadan önce sonuçların gerçekten eşit olasılıklı olduğundan emin ol.",
+    "Sıralı sonuçları (zar 1 ve zar 2) tablo ile listele; tekrar ya da eksik olmasın.",
+    "FRQ'da kesir ya da ondalık ikisi de kabul edilir; ama hesabı (yapı + sayılar) göster."
+   ],
+   "sikHatalar": [
+    "Eşit olmayan olasılıklı sonuçlara (ör. iki zarın toplamı) eşit olasılık vermek.",
+    "(3,5) ile (5,3) gibi sıralı sonuçlardan birini saymamak.",
+    "Toplamı 1 olmayan bir modeli geçerli sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "sample space",
+     "tr": "örnek uzay"
+    },
+    {
+     "en": "equally likely outcomes",
+     "tr": "eşit olasılıklı sonuçlar"
+    },
+    {
+     "en": "complement",
+     "tr": "tümleyen"
+    },
+    {
+     "en": "probability model",
+     "tr": "olasılık modeli"
+    },
+    {
+     "en": "tree diagram",
+     "tr": "ağaç diyagramı"
+    }
+   ]
+  },
+  {
+   "kod": "2.5",
+   "baslik": "Mutually Exclusive Events",
+   "baslikTr": "Ayrık (birbirini dışlayan) olaylar",
+   "hedefler": [
+    "Ortak olasılığı (joint probability) \\(P(A \\cap B)\\) yorumlamak.",
+    "İki olayın ayrık (mutually exclusive / disjoint) olup olmadığını ortak olasılıkla gerekçelendirmek.",
+    "Ayrık olaylar ile bağımsız olayları birbirinden ayırt etmek."
+   ],
+   "anlatim": "<h4>Ortak olasılık (joint probability)</h4>\n<div class=\"kn-tanim\"><strong>\\(P(A \\cap B)\\)</strong> (\"A kesişim B\", \"A and B\"): A ve B olaylarının <strong>ikisinin birlikte</strong> gerçekleşme olasılığı.</div>\n<p>İki yönlü tabloda ortak olasılık bir <strong>hücre</strong> ÷ genel toplamdır. Venn şemasında iki dairenin <strong>kesişim bölgesidir</strong>.</p>\n<h4>Ayrık olaylar (mutually exclusive / disjoint events)</h4>\n<div class=\"kn-kural\"><strong>Tanım:</strong> A ve B aynı anda gerçekleşemiyorsa ayrıktır. Matematiksel karşılığı: \\[ P(A \\cap B) = 0 \\]</div>\n<p>Örnekler: Bir zar atışında \"çift sayı\" ve \"5 gelmesi\" ayrıktır (5 tektir). \"Çift sayı\" ve \"3'ten büyük\" ayrık <strong>değildir</strong>: 4 ve 6 ikisini de sağlar.</p>\n<table><thead><tr><th></th><th>Kedi var</th><th>Kedi yok</th><th>Toplam</th></tr></thead>\n<tbody><tr><td>Köpek var</td><td>18</td><td>62</td><td>80</td></tr>\n<tr><td>Köpek yok</td><td>35</td><td>85</td><td>120</td></tr>\n<tr><td>Toplam</td><td>53</td><td>147</td><td>200</td></tr></tbody></table>\n<p>\"Köpek var\" ve \"kedi var\" olayları ayrık değildir, çünkü \\(P(\\text{köpek} \\cap \\text{kedi}) = 18/200 = 0.09 \\ne 0\\). Tabloda ayrıklığı anlamanın yolu: ilgili hücre <strong>0</strong> mı?</p>\n<h4>Ayrık olayların olasılıkları</h4>\n<p>Ayrık olaylarda \"A ya da B\" olasılığı basitçe toplanır: \\(P(A \\cup B) = P(A) + P(B)\\) (genel kural 2.7'de). Bu yüzden ayrık iki olayda \\(P(A) + P(B) \\le 1\\) olmak <strong>zorundadır</strong>. \\(P(A) = 0.7\\) ve \\(P(B) = 0.4\\) ise A ve B ayrık olamaz: toplam 1.1 olurdu, oysa hiçbir olasılık 1'i geçemez. Bu durumda \\(P(A \\cap B) \\ge 0.1\\) olmalıdır.</p>\n<h4>Venn şemasında bölgeler</h4>\n<p>İki olayın Venn şemasında dört bölge vardır: yalnız A, yalnız B, A ve B (kesişim), hiçbiri. \\(P(A) = 0.5\\), \\(P(B) = 0.4\\), \\(P(A \\cup B) = 0.7\\) ise kesişim \\(0.5 + 0.4 - 0.7 = 0.2\\); yalnız A \\(= 0.5 - 0.2 = 0.3\\); yalnız B \\(= 0.4 - 0.2 = 0.2\\); hiçbiri \\(= 1 - 0.7 = 0.3\\). Kesişim 0 çıkmadığı için A ve B ayrık değildir. Ayrık olaylarda daireler hiç örtüşmez.</p>\n<h4>Ayrık ≠ bağımsız</h4>\n<p>Öğrencilerin en çok karıştırdığı iki kavram:</p>\n<ul><li><strong>Ayrık (disjoint):</strong> Birlikte olamazlar; \\(P(A \\cap B) = 0\\).</li>\n<li><strong>Bağımsız (independent, 2.7):</strong> Birinin olması diğerinin olasılığını değiştirmez; \\(P(A \\cap B) = P(A)\\cdot P(B)\\).</li></ul>\n<p>\\(P(A) \\gt 0\\) ve \\(P(B) \\gt 0\\) olan iki ayrık olay <strong>asla bağımsız olamaz</strong>: A olursa B'nin olasılığı 0'a düşer, yani A bilgisi B'nin olasılığını değiştirir. Ayrıca \\(P(A)P(B) \\gt 0 = P(A \\cap B)\\).</p>\n<h4>FRQ dili</h4>\n<blockquote><em>\"Events A and B are not mutually exclusive because P(A and B) = 0.09, which is not 0; it is possible for a household to own both a dog and a cat.\"</em></blockquote>\n<p>Gerekçede hem <strong>sayısal kanıt</strong> (ortak olasılık) hem de <strong>bağlam</strong> bulunmalıdır.</p>",
+   "ornekler": [
+    {
+     "soru": "Bir desteden tek kart çekiliyor. A = \"kart kupa\", B = \"kart papaz\", C = \"kart maça\". Hangi çiftler ayrıktır?",
+     "cozum": [
+      "A ve B: kupa papazı her ikisidir, \\(P(A\\cap B) = 1/52 \\ne 0\\) → ayrık değil.",
+      "A ve C: bir kart hem kupa hem maça olamaz → \\(P(A \\cap C) = 0\\) → ayrık. B ve C: maça papazı var → ayrık değil."
+     ]
+    },
+    {
+     "soru": "\\(P(A) = 0.35\\), \\(P(B) = 0.40\\) ve A ile B ayrık. \\(P(A \\cap B)\\) ve \\(P(A \\cup B)\\) nedir?",
+     "cozum": [
+      "Ayrık olduğu için \\(P(A \\cap B) = 0\\).",
+      "\\(P(A \\cup B) = 0.35 + 0.40 - 0 = 0.75\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(P(A) = 0.3\\), \\(P(B) = 0.5\\) ve \\(P(A \\cap B) = 0\\). Bir öğrenci \"A ve B ayrık olduğuna göre bağımsızdır\" diyor. Doğru mu? Explain.",
+     "cozum": [
+      "Bağımsız olsalardı \\(P(A \\cap B) = P(A)P(B) = 0.3 \\times 0.5 = 0.15\\) olmalıydı.",
+      "Oysa \\(P(A \\cap B) = 0 \\ne 0.15\\). Ayrıca A olursa B'nin olasılığı 0'a düşer: \\(P(B|A) = 0 \\ne 0.5\\).",
+      "<em>\"The student is incorrect. Because A and B are mutually exclusive with nonzero probabilities, knowing A occurred changes the probability of B to 0, so they are not independent.\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Ayrıklık sorusunda tek kontrol: \\(P(A \\cap B) = 0\\) mı? Tabloda ilgili hücre 0 mı?",
+    "\\(P(A) + P(B) \\gt 1\\) ise olaylar kesinlikle ayrık değildir.",
+    "Gerekçeyi bağlamla yaz: \"It is possible for a student to be both …\" ya da \"cannot be both …\".",
+    "Ayrık ve bağımsız kelimeleri FRQ'da birbirinin yerine kullanılırsa puan kaybedilir."
+   ],
+   "sikHatalar": [
+    "Ayrık olayları bağımsız sanmak (pozitif olasılıklı ayrık olaylar bağımsız olamaz).",
+    "Ortak olasılık yerine \\(P(A)+P(B)\\)'ye bakıp ayrıklığa karar vermek.",
+    "Tablodaki sıfır olmayan hücreye rağmen \"farklı kategoriler, o yüzden ayrık\" demek."
+   ],
+   "terimler": [
+    {
+     "en": "joint probability",
+     "tr": "ortak olasılık"
+    },
+    {
+     "en": "intersection",
+     "tr": "kesişim"
+    },
+    {
+     "en": "mutually exclusive / disjoint",
+     "tr": "ayrık / birbirini dışlayan"
+    },
+    {
+     "en": "Venn diagram",
+     "tr": "Venn şeması"
+    }
+   ]
+  },
+  {
+   "kod": "2.6",
+   "baslik": "Conditional Probability",
+   "baslikTr": "Koşullu olasılık",
+   "hedefler": [
+    "\\(P(A|B)\\) gösterimini okumak ve tablodan, formülden ya da ağaç diyagramından hesaplamak.",
+    "Genel çarpma kuralını (general multiplication rule) kullanmak.",
+    "\\(P(A|B)\\) ile \\(P(B|A)\\) arasındaki farkı açıklamak; ağaç diyagramıyla ters koşullu olasılık bulmak."
+   ],
+   "anlatim": "<h4>Tanım</h4>\n<div class=\"kn-tanim\"><strong>Koşullu olasılık (conditional probability):</strong> B olayının gerçekleştiği bilindiğinde A'nın olasılığı: \\[ P(A|B) = \\frac{P(A \\cap B)}{P(B)}, \\quad P(B) \\gt 0 \\] Okunuşu: \"probability of A given B\".</div>\n<p>Sezgisi: B olduğu bilindiğinde örnek uzay <strong>B'ye daralır</strong>. B'nin içinde A'nın payı ne kadar? İki yönlü tabloda bu, 2.2'deki koşullu göreli sıklığın aynısıdır.</p>\n<table><thead><tr><th></th><th>Geç kaldı</th><th>Zamanında</th><th>Toplam</th></tr></thead>\n<tbody><tr><td>Yağmurlu gün</td><td>12</td><td>18</td><td>30</td></tr>\n<tr><td>Kuru gün</td><td>10</td><td>60</td><td>70</td></tr>\n<tr><td>Toplam</td><td>22</td><td>78</td><td>100</td></tr></tbody></table>\n<p>\\(P(\\text{geç} | \\text{yağmur}) = 12/30 = 0.40\\). Buna karşılık \\(P(\\text{yağmur} | \\text{geç}) = 12/22 \\approx 0.545\\). <strong>İkisi farklıdır!</strong> Dikey çizginin sağındaki olay \"bilinen\", yani paydadır.</p>\n<h4>Genel çarpma kuralı (general multiplication rule)</h4>\n<div class=\"formul\">\\[ P(A \\cap B) = P(A) \\cdot P(B|A) \\]</div>\n<p>Yerine koymadan çekilişlerde çok kullanılır. Kutuda 5 kırmızı, 3 yeşil top var; iki top yerine koymadan çekiliyor: \\[ P(\\text{ikisi kırmızı}) = \\frac{5}{8} \\cdot \\frac{4}{7} = \\frac{20}{56} \\approx 0.357 \\] İkinci çekilişte payda ve pay birer azalır, çünkü ilk top geri konmadı.</p>\n<h4>Ağaç diyagramı (tree diagram) ve toplam olasılık</h4>\n<p>Bir fabrikada parçaların %60'ı Makine 1'den (kusur oranı %2), %40'ı Makine 2'den (kusur oranı %5) geliyor.</p>\n<ul><li>M1 ve kusurlu: \\(0.60 \\times 0.02 = 0.012\\)</li>\n<li>M2 ve kusurlu: \\(0.40 \\times 0.05 = 0.020\\)</li></ul>\n<p>\\(P(\\text{kusurlu}) = 0.012 + 0.020 = 0.032\\). Ağaçta dallar boyunca <strong>çarp</strong>, aynı sonuca giden dalları <strong>topla</strong>.</p>\n<p><strong>Ters soru:</strong> Rastgele seçilen parça kusurlu çıktı; Makine 2'den gelme olasılığı? \\[ P(M2|\\text{kusurlu}) = \\frac{P(M2 \\cap \\text{kusurlu})}{P(\\text{kusurlu})} = \\frac{0.020}{0.032} = 0.625 \\] Makine 2 parçaların yalnızca %40'ını üretse de kusurluların %62.5'ini üretiyor.</p>\n<div class=\"kn-dikkat\">Tıbbi test soruları klasiktir: hastalık nadirse (ör. %1), doğruluk oranı yüksek bir testte bile pozitif sonuç alanların çoğu hasta <em>olmayabilir</em>. Sebep: sağlam kişi sayısı çok fazla olduğundan küçük yanlış pozitif oranı bile çok sayıda yanlış pozitif üretir. Ağacı çizip iki \"pozitif\" dalını toplamadan oran vermeyin.</div>\n<h4>FRQ dili</h4>\n<blockquote><em>\"P(defective | Machine 2) = 0.05, but P(Machine 2 | defective) = 0.020/0.032 = 0.625. Given that a part is defective, the probability it came from Machine 2 is 0.625.\"</em></blockquote>",
+   "ornekler": [
+    {
+     "soru": "\\(P(A \\cap B) = 0.18\\) ve \\(P(B) = 0.45\\). \\(P(A|B)\\) nedir?",
+     "cozum": [
+      "Formül: \\(P(A|B) = P(A \\cap B)/P(B)\\).",
+      "\\(= 0.18 / 0.45 = 0.40\\)."
+     ]
+    },
+    {
+     "soru": "Bir hastalık nüfusun %1'inde var. Test hastaların %95'inde pozitif, sağlam kişilerin %8'inde (yanlış) pozitif sonuç veriyor. Pozitif sonuç alan birinin gerçekten hasta olma olasılığı nedir?",
+     "cozum": [
+      "Hasta ve pozitif: \\(0.01 \\times 0.95 = 0.0095\\). Sağlam ve pozitif: \\(0.99 \\times 0.08 = 0.0792\\).",
+      "\\(P(\\text{pozitif}) = 0.0095 + 0.0792 = 0.0887\\).",
+      "\\(P(\\text{hasta}|\\text{pozitif}) = 0.0095/0.0887 \\approx 0.107\\). Pozitif sonuç alanların yalnızca yaklaşık %10.7'si hasta."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Yukarıdaki yağmur tablosuna göre bir öğrenci \"Geç kalan günlerin %40'ı yağmurlu\" diyor. Bu ifade doğru mu? Explain.",
+     "cozum": [
+      "%40 değeri \\(P(\\text{geç}|\\text{yağmur}) = 12/30\\)'dur: yağmurlu günlerin %40'ında geç kalınmıştır.",
+      "\"Geç kalan günlerin yüzde kaçı yağmurlu\" sorusu \\(P(\\text{yağmur}|\\text{geç}) = 12/22 \\approx 0.545\\)'tir.",
+      "<em>\"The statement is incorrect: 40% of rainy days had a late arrival, but about 54.5% of late days were rainy.\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "\"Given\", \"if\", \"among those who\" kelimelerinden sonra gelen olay paydadır.",
+    "Ağaç diyagramında her düğümden çıkan dalların olasılıkları toplamı 1 olmalı; sağlama yap.",
+    "Yerine koymadan çekilişte ikinci kesrin hem payını hem paydasını güncelle.",
+    "FRQ'da formülü yaz, sayıları yerine koy, sonucu bağlamla yorumla: üç adım üç ayrı puan kriteri olabilir."
+   ],
+   "sikHatalar": [
+    "\\(P(A|B)\\) ile \\(P(B|A)\\)'yı karıştırmak (ters koşul hatası).",
+    "Koşullu olasılık yerine ortak olasılığı \\(P(A \\cap B)\\) vermek.",
+    "Ağaç diyagramında yalnızca bir dalı alıp toplam olasılığı eksik hesaplamak."
+   ],
+   "terimler": [
+    {
+     "en": "conditional probability",
+     "tr": "koşullu olasılık"
+    },
+    {
+     "en": "general multiplication rule",
+     "tr": "genel çarpma kuralı"
+    },
+    {
+     "en": "without replacement",
+     "tr": "yerine koymadan"
+    },
+    {
+     "en": "tree diagram",
+     "tr": "ağaç diyagramı"
+    },
+    {
+     "en": "false positive",
+     "tr": "yanlış pozitif"
+    }
+   ]
+  },
+  {
+   "kod": "2.7",
+   "baslik": "Independent Events and Unions of Events",
+   "baslikTr": "Bağımsız olaylar ve olayların birleşimi",
+   "hedefler": [
+    "İki olayın bağımsız (independent) olup olmadığını koşullu olasılık ya da çarpım kuralıyla kontrol etmek.",
+    "Bağımsız olaylar için çarpma kuralını, \"en az bir\" sorularında tümleyenle birlikte kullanmak.",
+    "Genel toplama kuralıyla (general addition rule) \\(P(A \\cup B)\\) hesaplamak."
+   ],
+   "anlatim": "<h4>Bağımsızlık (independence)</h4>\n<div class=\"kn-tanim\"><strong>A ve B bağımsızdır</strong> ancak ve ancak A'nın olup olmadığını bilmek B'nin olasılığını değiştirmiyorsa: \\[ P(B|A) = P(B) \\quad \\text{ve} \\quad P(A|B) = P(A) \\] Buna denk olarak: \\[ P(A \\cap B) = P(A) \\cdot P(B) \\]</div>\n<p>Bu üç eşitlikten <strong>biri</strong> sağlanıyorsa hepsi sağlanır (olasılıklar pozitifken). Biri sağlanmıyorsa olaylar <strong>bağımlıdır (dependent)</strong>.</p>\n<h4>Tablodan bağımsızlık kontrolü</h4>\n<table><thead><tr><th></th><th>Kahve içer</th><th>İçmez</th><th>Toplam</th></tr></thead>\n<tbody><tr><td>Sabah vardiyası</td><td>72</td><td>48</td><td>120</td></tr>\n<tr><td>Akşam vardiyası</td><td>48</td><td>32</td><td>80</td></tr>\n<tr><td>Toplam</td><td>120</td><td>80</td><td>200</td></tr></tbody></table>\n<p>\\(P(\\text{kahve}) = 120/200 = 0.60\\). \\(P(\\text{kahve}|\\text{sabah}) = 72/120 = 0.60\\). Eşit → \"kahve içme\" ile \"sabah vardiyası\" <strong>bağımsızdır</strong>. Kontrol: \\(P(\\text{kahve} \\cap \\text{sabah}) = 72/200 = 0.36 = 0.60 \\times 0.60\\). ✓</p>\n<div class=\"kn-dikkat\">Gerçek veride oranlar nadiren tam eşit çıkar (ör. 0.60 ve 0.58). Unit 2'de bağımsızlık soruları <strong>tam eşitlik</strong> üzerinden sorulur: eşit değilse olaylar (bu veride) bağımsız değildir. \"Fark anlamlı mı?\" sorusu çıkarım (inference) konusudur ve Unit 3'te gelir.</div>\n<h4>Bağımsız olaylarda çarpma ve \"en az bir\"</h4>\n<p>Bir sistemin 4 bağımsız parçası var; her biri bir günde %10 olasılıkla arızalanıyor. En az birinin arızalanma olasılığı: \\[ P(\\text{en az bir}) = 1 - P(\\text{hiçbiri}) = 1 - (0.90)^4 = 1 - 0.6561 = 0.3439 \\] \\(4 \\times 0.10 = 0.40\\) yazmak yanlıştır (olaylar ayrık değil, kesişimler iki kez sayılır).</p>\n<h4>Birleşim (union) ve genel toplama kuralı</h4>\n<div class=\"kn-kural\"><strong>General addition rule:</strong> \\[ P(A \\cup B) = P(A) + P(B) - P(A \\cap B) \\] \"A ya da B (ya da ikisi)\" olasılığı. Kesişim çıkarılır, çünkü \\(P(A) + P(B)\\) toplamında iki kez sayılmıştır.</div>\n<table><thead><tr><th>Durum</th><th>\\(P(A \\cap B)\\)</th><th>\\(P(A \\cup B)\\)</th></tr></thead>\n<tbody><tr><td>Genel</td><td>verilir ya da \\(P(A)P(B|A)\\)</td><td>\\(P(A) + P(B) - P(A \\cap B)\\)</td></tr>\n<tr><td>Ayrık (disjoint)</td><td>0</td><td>\\(P(A) + P(B)\\)</td></tr>\n<tr><td>Bağımsız</td><td>\\(P(A)P(B)\\)</td><td>\\(P(A) + P(B) - P(A)P(B)\\)</td></tr></tbody></table>\n<p>Örnek: \\(P(A) = 0.45\\), \\(P(B) = 0.30\\), \\(P(A \\cap B) = 0.12\\) → \\(P(A \\cup B) = 0.63\\). Ne A ne B: \\(1 - 0.63 = 0.37\\).</p>\n<h4>FRQ dili</h4>\n<blockquote><em>\"Because P(coffee | morning shift) = 0.60 = P(coffee), knowing that an employee works the morning shift does not change the probability that the employee drinks coffee, so the events are independent.\"</em></blockquote>\n<p>Bağımsızlığı gerekçelendirirken iki sayıyı yan yana yaz ve eşit olup olmadıklarını açıkça söyle; \"bağımsız görünüyor\" gibi belirsiz ifadeler puan almaz.</p>",
+   "ornekler": [
+    {
+     "soru": "A ve B bağımsız; \\(P(A) = 0.3\\), \\(P(B) = 0.4\\). \\(P(A \\cup B)\\) nedir?",
+     "cozum": [
+      "Bağımsız: \\(P(A \\cap B) = 0.3 \\times 0.4 = 0.12\\).",
+      "\\(P(A \\cup B) = 0.3 + 0.4 - 0.12 = 0.58\\)."
+     ]
+    },
+    {
+     "soru": "A ve B bağımsız, \\(P(A) = 0.5\\) ve \\(P(A \\cup B) = 0.8\\). \\(P(B)\\) nedir?",
+     "cozum": [
+      "\\(P(A \\cup B) = P(A) + P(B) - P(A)P(B)\\) → \\(0.8 = 0.5 + P(B) - 0.5P(B)\\).",
+      "\\(0.3 = 0.5 P(B)\\) → \\(P(B) = 0.6\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir okulda öğrencilerin %40'ı bisikletle geliyor; bisikletle gelenlerin %25'i, diğerlerinin %25'i de kahvaltı yapmıyor. \"Bisikletle gelmek\" ve \"kahvaltı yapmamak\" bağımsız mı? Justify.",
+     "cozum": [
+      "\\(P(\\text{kahvaltı yok}|\\text{bisiklet}) = 0.25\\) ve \\(P(\\text{kahvaltı yok}|\\text{bisiklet değil}) = 0.25\\).",
+      "Toplam olasılık: \\(P(\\text{kahvaltı yok}) = 0.4(0.25) + 0.6(0.25) = 0.25\\), yani koşullu olasılık marjinal olasılığa eşit.",
+      "<em>\"Yes. Because P(no breakfast | bike) = 0.25 = P(no breakfast), knowing a student bikes does not change the probability of skipping breakfast.\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Bağımsızlık kontrolünde en kolayı: bir koşullu olasılığı hesapla, marjinal olasılıkla karşılaştır.",
+    "\"At least one\" + bağımsız denemeler = \\(1 - (1-p)^n\\).",
+    "\"or\" gördüğünde kesişimi çıkarmayı unutma; olaylar ayrıksa kesişim 0'dır.",
+    "Problem bağımsızlığı varsaymanı söylemiyorsa ve veri yoksa, bağımsızlık varsayımını açıkça yaz: \"assuming the components fail independently\"."
+   ],
+   "sikHatalar": [
+    "Bağımsız olaylar için olasılıkları toplamak (\\(4 \\times 0.10\\)) ya da ayrık olaylar için çarpmak.",
+    "\\(P(A \\cup B)\\) hesabında kesişimi çıkarmamak.",
+    "Bağımsızlığı ayrıklıkla karıştırmak."
+   ],
+   "terimler": [
+    {
+     "en": "independent events",
+     "tr": "bağımsız olaylar"
+    },
+    {
+     "en": "dependent events",
+     "tr": "bağımlı olaylar"
+    },
+    {
+     "en": "union",
+     "tr": "birleşim"
+    },
+    {
+     "en": "general addition rule",
+     "tr": "genel toplama kuralı"
+    },
+    {
+     "en": "multiplication rule for independent events",
+     "tr": "bağımsız olaylar için çarpma kuralı"
+    }
+   ]
+  },
+  {
+   "kod": "2.8",
+   "baslik": "Introduction to Random Variables and Probability Distributions",
+   "baslikTr": "Rastgele değişkenlere ve olasılık dağılımlarına giriş",
+   "hedefler": [
+    "Rastgele değişkeni (random variable) tanımlamak ve kesikli (discrete) olanı tanımak.",
+    "Olasılık kurallarıyla ya da simülasyonla kesikli bir olasılık dağılımı (probability distribution) oluşturmak.",
+    "Birikimli olasılık dağılımını (cumulative probability distribution) okumak ve kullanmak."
+   ],
+   "anlatim": "<h4>Rastgele değişken (random variable)</h4>\n<div class=\"kn-tanim\"><strong>Rastgele değişken \\(X\\):</strong> Değerleri rastgele bir sürecin <strong>sayısal</strong> sonuçları olan değişken. <strong>Kesikli (discrete)</strong> rastgele değişken sayılabilir (genellikle sonlu) sayıda değer alır: 0, 1, 2, …</div>\n<p>Örnekler: \"3 atışta isabet sayısı\", \"bir saatte gelen müşteri sayısı\". Buna karşılık \"bir öğrencinin boyu\" herhangi bir değer alabilen <strong>sürekli (continuous)</strong> bir değişkendir (2.11). Büyük harf \\(X\\) değişkeni, küçük harf \\(x\\) belirli bir değeri gösterir: \\(P(X = 2)\\).</p>\n<h4>Olasılık dağılımı (probability distribution)</h4>\n<p>Kesikli bir \\(X\\)'in olasılık dağılımı, <strong>her olası değeri</strong> ve olasılığını verir. Tablo, grafik (olasılık histogramı) ya da formül olabilir.</p>\n<div class=\"kn-kural\"><strong>Geçerli dağılım:</strong> (1) Her \\(P(x_i)\\) 0 ile 1 arasında. (2) \\(\\sum P(x_i) = 1\\).</div>\n<table><thead><tr><th>\\(x\\)</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th></tr></thead>\n<tbody><tr><td>\\(P(X=x)\\)</td><td>0.15</td><td>0.25</td><td>0.30</td><td>0.20</td><td>0.10</td></tr></tbody></table>\n<p>\\(P(X \\ge 2) = 0.30 + 0.20 + 0.10 = 0.60\\). \\(P(X \\gt 2) = 0.30\\). <strong>Eşitlik işaretine dikkat:</strong> kesikli değişkende \\(\\ge\\) ile \\(\\gt\\) farklı sonuç verir. \"At least 2\" = \\(\\ge 2\\), \"more than 2\" = \\(\\gt 2\\), \"at most 2\" = \\(\\le 2\\), \"fewer than 2\" = \\(\\lt 2\\).</p>\n<h4>Dağılımı kurallarla oluşturmak</h4>\n<p>Torbada 3 kırmızı, 2 mavi top var; yerine koymadan 2 top çekiliyor. \\(X\\) = kırmızı sayısı. Toplam \\(\\binom{5}{2} = 10\\) eşit olasılıklı çift var:</p>\n<table><thead><tr><th>\\(x\\)</th><th>0</th><th>1</th><th>2</th></tr></thead>\n<tbody><tr><td>Çift sayısı</td><td>1 (MM)</td><td>3 × 2 = 6</td><td>3</td></tr>\n<tr><td>\\(P(X=x)\\)</td><td>0.1</td><td>0.6</td><td>0.3</td></tr></tbody></table>\n<p>Toplam 1 → geçerli. Aynı dağılım simülasyonla da <strong>tahmin</strong> edilebilir: süreci çok kez tekrarlayıp her değerin göreli sıklığını kaydetmek.</p>\n<h4>Birikimli olasılık dağılımı (cumulative probability distribution)</h4>\n<div class=\"kn-tanim\">\\(F(x) = P(X \\le x)\\): \\(X\\)'in \\(x\\)'e eşit ya da küçük olma olasılığı. Değerler soldan sağa artar ve son değer 1'dir.</div>\n<table><thead><tr><th>\\(x\\)</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th></tr></thead>\n<tbody><tr><td>\\(P(X \\le x)\\)</td><td>0.10</td><td>0.35</td><td>0.70</td><td>0.90</td><td>1.00</td></tr></tbody></table>\n<p>Tek değer: \\(P(X = 2) = F(2) - F(1) = 0.70 - 0.35 = 0.35\\). Aralık: \\(P(2 \\le X \\le 4) = F(4) - F(1) = 1 - 0.35 = 0.65\\). Kural: \\(P(a \\le X \\le b) = F(b) - F(a-1)\\) (tam sayı değerli \\(X\\) için).</p>\n<h4>FRQ dili</h4>\n<p>Dağılım tablosu istenirse <strong>tüm</strong> değerleri ve olasılıkları yazın ve hesap yolunu gösterin: <em>\"P(X = 1) = P(RB) + P(BR) = (3/5)(2/4) + (2/5)(3/4) = 0.6.\"</em> Toplamın 1 olduğunu kontrol etmek hatayı yakalar.</p>",
+   "ornekler": [
+    {
+     "soru": "Bir çark %40 olasılıkla \"kazan\" gösteriyor ve iki kez bağımsız çevriliyor. \\(X\\) = kazanma sayısı. Olasılık dağılımını yazın.",
+     "cozum": [
+      "\\(P(X=0) = 0.6 \\times 0.6 = 0.36\\). \\(P(X=2) = 0.4 \\times 0.4 = 0.16\\).",
+      "\\(P(X=1) = 0.4(0.6) + 0.6(0.4) = 0.48\\) (iki sıra: KY ve YK).",
+      "Kontrol: \\(0.36 + 0.48 + 0.16 = 1\\). ✓"
+     ]
+    },
+    {
+     "soru": "Bir dağılımda \\(P(X=1) = 0.2\\), \\(P(X=2) = 0.35\\), \\(P(X=4) = 0.15\\) ve \\(X\\) yalnızca 1, 2, 3, 4 değerlerini alıyor. \\(P(X = 3)\\) ve \\(P(X \\lt 3)\\) nedir?",
+     "cozum": [
+      "Toplam 1 olmalı: \\(P(X=3) = 1 - (0.2 + 0.35 + 0.15) = 0.30\\).",
+      "\\(P(X \\lt 3) = P(1) + P(2) = 0.55\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir öğrenci birikimli tabloda \\(P(X \\le 3) = 0.90\\) gördüğü için \"\\(P(X = 3) = 0.90\\)\" diyor. Hatasını açıklayın.",
+     "cozum": [
+      "0.90, \\(X\\)'in 3 <em>ya da daha küçük</em> olma olasılığıdır (0, 1, 2, 3 değerlerinin toplamı).",
+      "Tek değerin olasılığı ardışık birikimli değerlerin farkıdır: \\(P(X=3) = F(3) - F(2) = 0.90 - 0.70 = 0.20\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Sözel eşitsizlikleri sembole çevir: at least ≥, at most ≤, more than >, fewer than <.",
+    "Bir dağılım tablosu yazdıktan sonra olasılıkları topla; 1 değilse hata var.",
+    "Birikimli tabloda tek değer = ardışık iki birikimli değerin farkı.",
+    "FRQ'da \"define the random variable\" istenirse: <em>\"Let X = the number of … in …\"</em> — birim ve bağlamla."
+   ],
+   "sikHatalar": [
+    "\\(P(X \\ge 2)\\) yerine \\(P(X \\gt 2)\\) hesaplamak (sınır değeri unutmak).",
+    "Birikimli olasılığı tek değerin olasılığı sanmak.",
+    "İki sıralı sonucu (KY, YK) tek sayıp \\(P(X=1)\\)'i yarıya düşürmek."
+   ],
+   "terimler": [
+    {
+     "en": "random variable",
+     "tr": "rastgele değişken"
+    },
+    {
+     "en": "discrete random variable",
+     "tr": "kesikli rastgele değişken"
+    },
+    {
+     "en": "probability distribution",
+     "tr": "olasılık dağılımı"
+    },
+    {
+     "en": "cumulative probability distribution",
+     "tr": "birikimli olasılık dağılımı"
+    },
+    {
+     "en": "probability histogram",
+     "tr": "olasılık histogramı"
+    }
+   ]
+  },
+  {
+   "kod": "2.9",
+   "baslik": "Parameters of Random Variables",
+   "baslikTr": "Rastgele değişkenlerin parametreleri",
+   "hedefler": [
+    "Kesikli bir rastgele değişkenin beklenen değerini (expected value, \\(\\mu_X\\)) ve standart sapmasını (\\(\\sigma_X\\)) hesaplamak.",
+    "Beklenen değeri uzun dönem ortalaması olarak, standart sapmayı ortalamadan tipik uzaklık olarak bağlam içinde yorumlamak.",
+    "Parametre (parameter) kavramını açıklamak."
+   ],
+   "anlatim": "<h4>Parametre (parameter)</h4>\n<p>Bir olasılık dağılımını ya da bir popülasyonu (population) özetleyen sayıya <strong>parametre</strong> denir. Parametre <strong>sabittir</strong>: dağılım değişmedikçe değişmez. (Örneklemden hesaplanan sayılar ise <em>istatistiktir (statistic)</em> ve örneklemden örnekleme değişir.)</p>\n<h4>Beklenen değer (expected value / mean)</h4>\n<div class=\"formul\">\\[ E(X) = \\mu_X = \\sum x_i \\, P(x_i) \\]</div>\n<table><thead><tr><th>\\(x\\)</th><th>0</th><th>1</th><th>2</th><th>3</th></tr></thead>\n<tbody><tr><td>\\(P(x)\\)</td><td>0.1</td><td>0.3</td><td>0.4</td><td>0.2</td></tr>\n<tr><td>\\(x \\cdot P(x)\\)</td><td>0</td><td>0.3</td><td>0.8</td><td>0.6</td></tr></tbody></table>\n<p>\\(\\mu_X = 0 + 0.3 + 0.8 + 0.6 = 1.7\\). <strong>Yorum:</strong> Bu süreç çok kez tekrarlanırsa \\(X\\)'in ortalaması yaklaşık 1.7 olur. \\(X\\) hiçbir zaman tam 1.7 değerini almaz; beklenen değer <strong>alınabilen bir değer olmak zorunda değildir</strong>. Ayrıca dağılımın en olası değeri (burada 2) ile karıştırılmamalıdır.</p>\n<h4>Standart sapma (standard deviation)</h4>\n<div class=\"formul\">\\[ \\sigma_X = \\sqrt{\\sum (x_i - \\mu_X)^2 \\, P(x_i)}, \\qquad \\text{Var}(X) = \\sigma_X^2 \\]</div>\n<p>Örnek: \\(X\\) = 1, 2, 3 değerlerini 0.2, 0.5, 0.3 olasılıkla alıyor. \\(\\mu_X = 0.2 + 1.0 + 0.9 = 2.1\\).</p>\n<table><thead><tr><th>\\(x\\)</th><th>\\(x - \\mu\\)</th><th>\\((x-\\mu)^2\\)</th><th>\\(\\times P(x)\\)</th></tr></thead>\n<tbody><tr><td>1</td><td>−1.1</td><td>1.21</td><td>0.242</td></tr>\n<tr><td>2</td><td>−0.1</td><td>0.01</td><td>0.005</td></tr>\n<tr><td>3</td><td>0.9</td><td>0.81</td><td>0.243</td></tr></tbody></table>\n<p>\\(\\text{Var}(X) = 0.49\\), \\(\\sigma_X = \\sqrt{0.49} = 0.7\\). <strong>Karekökü almayı unutmak</strong> (varyansı standart sapma diye vermek) en sık hatadır.</p>\n<p><strong>Yorum:</strong> <em>\"Over many repetitions, the value of X typically differs from the mean of 2.1 by about 0.7.\"</em> Değerler ortalamanın etrafında ne kadar yayılıyorsa (uç değerlerin olasılığı ne kadar yüksekse) \\(\\sigma_X\\) o kadar büyüktür.</p>\n<h4>Oyunlar ve kararlar: beklenen kazanç</h4>\n<p>Bir oyuna girmek 5 TL; zar 6 gelirse 20 TL ödül alınıyor. <strong>Net kazanç</strong> \\(W\\): 6 gelirse \\(20 - 5 = 15\\), değilse \\(-5\\). \\[ E(W) = 15 \\cdot \\tfrac{1}{6} + (-5) \\cdot \\tfrac{5}{6} = \\tfrac{15 - 25}{6} \\approx -1.67 \\text{ TL} \\] Uzun dönemde oyuncu oyun başına ortalama yaklaşık 1.67 TL kaybeder. Beklenen değer 0 olan oyuna <strong>adil oyun (fair game)</strong> denir. Oyunu adil yapmak için giriş ücreti beklenen ödüle eşitlenir: burada \\(20 \\cdot \\tfrac{1}{6} \\approx 3.33\\) TL.</p>\n<div class=\"kn-dikkat\">Hesap makinesinde değerleri L1'e, olasılıkları L2'ye girip <code>1-Var Stats L1, L2</code> ile \\(\\bar{x}\\) (= \\(\\mu_X\\)) ve \\(\\sigma x\\) (= \\(\\sigma_X\\)) alınabilir. FRQ'da yine de \\(\\sum x_i P(x_i)\\) yapısını en az bir-iki terimle yazın.</div>",
+   "ornekler": [
+    {
+     "soru": "Bir sigorta şirketi yıllık 300 TL prim alıyor. Poliçe sahibine %1 olasılıkla 10 000 TL, %3 olasılıkla 4 000 TL ödüyor; aksi halde ödeme yok. Şirketin poliçe başına beklenen kârı nedir?",
+     "cozum": [
+      "Beklenen ödeme: \\(10\\,000(0.01) + 4\\,000(0.03) + 0(0.96) = 100 + 120 = 220\\) TL.",
+      "Beklenen kâr \\(= 300 - 220 = 80\\) TL. Yorum: Çok sayıda poliçede şirket poliçe başına ortalama yaklaşık 80 TL kazanır."
+     ]
+    },
+    {
+     "soru": "\\(X\\) 0, 2, 5 değerlerini alıyor; \\(P(X=2) = 0.5\\) ve \\(\\mu_X = 2.5\\). \\(P(X=0)\\) ve \\(P(X=5)\\) nedir?",
+     "cozum": [
+      "\\(P(0) = a\\), \\(P(5) = b\\): \\(a + b = 0.5\\).",
+      "\\(\\mu_X = 0(a) + 2(0.5) + 5b = 1 + 5b = 2.5\\) → \\(b = 0.3\\), \\(a = 0.2\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir dükkânda günlük iade sayısı \\(X\\) için \\(\\mu_X = 1.7\\) ve \\(\\sigma_X = 0.9\\). Bu iki değeri bağlam içinde yorumlayın.",
+     "cozum": [
+      "Ortalama: <em>\"Over many days, the store averages about 1.7 returns per day.\"</em>",
+      "Standart sapma: <em>\"The number of returns on a day typically varies from the mean of 1.7 by about 0.9 returns.\"</em>",
+      "İki yorumda da \"uzun dönem / tipik\" ve bağlam (iade, gün) bulunmalı; \"her gün 1.7 iade olur\" demek yanlıştır."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "\\(\\sigma_X\\) için önce varyansı bul, sonra <strong>karekök</strong> al.",
+    "Beklenen değer yorumu her zaman \"long run / over many trials\" içerir.",
+    "Kazanç sorularında net kazancı (ödül − ücret) tanımla; ücret kaybı da bir değerdir.",
+    "Hesap makinesi: <code>1-Var Stats L1, L2</code> (değerler, olasılıklar). Çıktıda \\(\\sigma x\\)'i kullan, \\(Sx\\)'i değil."
+   ],
+   "sikHatalar": [
+    "Varyansı standart sapma olarak vermek.",
+    "Beklenen değeri \"en olası değer\" ya da \"her seferinde çıkacak değer\" diye yorumlamak.",
+    "Değerlerin basit ortalamasını (\\(\\sum x_i / n\\)) almak; olasılıklarla ağırlıklandırmamak."
+   ],
+   "terimler": [
+    {
+     "en": "parameter",
+     "tr": "parametre"
+    },
+    {
+     "en": "expected value",
+     "tr": "beklenen değer"
+    },
+    {
+     "en": "standard deviation of a random variable",
+     "tr": "rastgele değişkenin standart sapması"
+    },
+    {
+     "en": "variance",
+     "tr": "varyans"
+    },
+    {
+     "en": "fair game",
+     "tr": "adil oyun"
+    }
+   ]
+  },
+  {
+   "kod": "2.10",
+   "baslik": "The Binomial Distribution",
+   "baslikTr": "Binom dağılımı",
+   "hedefler": [
+    "Bir rastgele değişkenin binom (binomial) olup olmadığını dört koşulla gerekçelendirmek.",
+    "Binom olasılıklarını formülle ve hesap makinesiyle (binompdf, binomcdf) hesaplamak.",
+    "Binom dağılımının ortalamasını \\(np\\) ve standart sapmasını \\(\\sqrt{np(1-p)}\\) hesaplayıp bağlamda yorumlamak."
+   ],
+   "anlatim": "<h4>Binom ortamı (binomial setting) — BINS</h4>\n<div class=\"kn-tanim\"><strong>Binom rastgele değişkeni \\(X\\):</strong> Sabit sayıda \\(n\\) bağımsız denemede, her denemede başarı olasılığı \\(p\\) iken, <strong>başarı sayısını</strong> sayan kesikli rastgele değişken.</div>\n<table><thead><tr><th>Harf</th><th>Koşul</th><th>İhlal örneği</th></tr></thead>\n<tbody><tr><td><strong>B</strong>inary</td><td>Her denemede iki sonuç: başarı / başarısızlık</td><td>Zarın üç farklı sonucu ayrı ayrı sayılıyor</td></tr>\n<tr><td><strong>I</strong>ndependent</td><td>Denemeler bağımsız</td><td>Küçük bir gruptan yerine koymadan seçim</td></tr>\n<tr><td><strong>N</strong>umber</td><td>Deneme sayısı \\(n\\) önceden sabit</td><td>\"İlk başarıya kadar\" deneme yapılıyor</td></tr>\n<tr><td><strong>S</strong>ame \\(p\\)</td><td>Her denemede başarı olasılığı aynı</td><td>Yorulan oyuncunun isabet olasılığı düşüyor</td></tr></tbody></table>\n<p><strong>Yerine koymadan seçim:</strong> Denemeler teknik olarak bağımsız değildir; ama örneklem popülasyonun %10'undan küçükse (\\(n \\le 0.10N\\), <strong>10% condition</strong>) bağımlılık ihmal edilebilir ve binom kullanılır. 20 kişilik sınıftan 8 kişi seçmek bu koşulu sağlamaz.</p>\n<h4>Binom olasılık fonksiyonu</h4>\n<div class=\"formul\">\\[ P(X = x) = \\binom{n}{x} p^x (1-p)^{n-x}, \\qquad x = 0, 1, \\ldots, n \\]</div>\n<p>\\(\\binom{n}{x}\\), \\(n\\) denemeden hangi \\(x\\) tanesinin başarı olacağının sayısıdır. Örnek: Bir öğrencinin her soruyu doğru tahmin etme olasılığı 0.3; 10 soruda tam 4 doğru: \\[ P(X=4) = \\binom{10}{4}(0.3)^4(0.7)^6 = 210 \\times 0.0081 \\times 0.117649 \\approx 0.2001 \\]</p>\n<h4>Hesap makinesi</h4>\n<table><thead><tr><th>İstenen</th><th>Komut</th></tr></thead>\n<tbody><tr><td>\\(P(X = x)\\)</td><td><code>binompdf(n, p, x)</code></td></tr>\n<tr><td>\\(P(X \\le x)\\)</td><td><code>binomcdf(n, p, x)</code></td></tr>\n<tr><td>\\(P(X \\ge x)\\)</td><td><code>1 − binomcdf(n, p, x − 1)</code></td></tr></tbody></table>\n<p>Örnek: \\(n=12\\), \\(p=0.25\\), \\(P(X \\ge 5) = 1 - P(X \\le 4) \\approx 1 - 0.8424 = 0.1576\\). <strong>\\(x-1\\)'e dikkat:</strong> \\(1 - \\text{binomcdf}(12, 0.25, 5)\\) yazmak \\(P(X \\ge 6)\\)'yı verir.</p>\n<h4>Ortalama ve standart sapma</h4>\n<div class=\"formul\">\\[ \\mu_X = np, \\qquad \\sigma_X = \\sqrt{np(1-p)} \\]</div>\n<p>40 müşterinin her biri bağımsız olarak 0.15 olasılıkla ek ürün alıyorsa \\(\\mu_X = 40(0.15) = 6\\), \\(\\sigma_X = \\sqrt{40(0.15)(0.85)} = \\sqrt{5.1} \\approx 2.26\\). <strong>Yorum:</strong> <em>\"If we observed many groups of 40 customers, the mean number buying the add-on would be about 6, and the number buying would typically vary from 6 by about 2.26 customers.\"</em></p>\n<h4>Olasılıkla karar verme</h4>\n<p>Bir firma \"ürünlerin %10'u kusurludur\" diyor. 30 ürünlük rastgele örneklemde 8 kusurlu var. \\(p = 0.1\\) doğru olsaydı \\(P(X \\ge 8) \\approx 0.0078\\). Bu kadar küçük bir olasılık, gerçek kusur oranının %10'dan yüksek olduğuna dair <strong>güçlü kanıttır</strong>. (Bu mantık Unit 3'te p-değeri olarak resmîleşir.)</p>\n<div class=\"kn-dikkat\">FRQ'da yalnız \"binomcdf(30, 0.1, 7)\" yazmak (calculator speak) tam puan almaz. Dağılımı ve parametreleri adlandırın: <em>\"X = number of defective items, X ~ Binomial(n = 30, p = 0.1); P(X ≥ 8) = 1 − P(X ≤ 7) ≈ 0.0078.\"</em></div>",
+   "ornekler": [
+    {
+     "soru": "Bir tohumun çimlenme olasılığı 0.8. 6 tohum ekiliyor (bağımsız). Tam 5'inin çimlenme olasılığı nedir?",
+     "cozum": [
+      "\\(X \\sim B(n=6, p=0.8)\\). \\(P(X=5) = \\binom{6}{5}(0.8)^5(0.2)^1\\).",
+      "\\(= 6 \\times 0.32768 \\times 0.2 \\approx 0.3932\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) 12 kişilik bir kulüpten 5 kişi rastgele (yerine koymadan) seçiliyor; kulübün 7 üyesi kız. \\(X\\) = seçilen kız sayısı binom mudur? Justify.",
+     "cozum": [
+      "İki sonuç (kız/değil) ve sabit \\(n = 5\\) var; ama seçim yerine koymadan yapılıyor.",
+      "Örneklem popülasyonun %10'undan küçük değil (\\(5 \\gt 0.10 \\times 12 = 1.2\\)); ilk seçimden sonra kız olma olasılığı değişir (ör. 7/12'den 6/11'e).",
+      "<em>\"X is not binomial because the trials are not independent: the probability of selecting a girl changes after each selection, and the sample is more than 10% of the population.\"</em>"
+     ]
+    },
+    {
+     "soru": "Bir kargo firmasında paketlerin %40'ı ertesi gün teslim ediliyor. 25 pakette ertesi gün teslim edilenlerin sayısının ortalaması ve standart sapması nedir?",
+     "cozum": [
+      "\\(\\mu_X = 25(0.40) = 10\\) paket.",
+      "\\(\\sigma_X = \\sqrt{25(0.40)(0.60)} = \\sqrt{6} \\approx 2.45\\) paket."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Binom gerekçesi istenirse dört koşulu (BINS) bağlam içinde tek tek yaz.",
+    "\"At least x\" → \\(1 - \\text{binomcdf}(n, p, x-1)\\); \"more than x\" → \\(1 - \\text{binomcdf}(n, p, x)\\).",
+    "FRQ'da dağılımı adlandır ve parametreleri etiketle: X ~ B(n = …, p = …). Tek başına hesap makinesi komutu yetmez.",
+    "Ortalama \\(np\\) bir tam sayı olmak zorunda değildir; yorumu \"over many samples\" ile yap."
+   ],
+   "sikHatalar": [
+    "\\(P(X \\ge x)\\) için \\(1 - \\text{binomcdf}(n,p,x)\\) yazmak (sınır değeri kaybetmek).",
+    "\\(\\sigma_X\\) yerine varyansı \\(np(1-p)\\) vermek.",
+    "Sabit deneme sayısı olmayan (ilk başarıya kadar) durumları binom sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "binomial random variable",
+     "tr": "binom rastgele değişkeni"
+    },
+    {
+     "en": "trial",
+     "tr": "deneme"
+    },
+    {
+     "en": "probability of success",
+     "tr": "başarı olasılığı"
+    },
+    {
+     "en": "binomial coefficient",
+     "tr": "binom katsayısı"
+    },
+    {
+     "en": "10% condition",
+     "tr": "%10 koşulu"
+    }
+   ]
+  },
+  {
+   "kod": "2.11",
+   "baslik": "The Normal Distribution",
+   "baslikTr": "Normal dağılım",
+   "hedefler": [
+    "Normal dağılımı (normal distribution) tanımlamak ve \\(\\mu\\), \\(\\sigma\\) parametrelerinin eğrinin biçimini nasıl etkilediğini açıklamak.",
+    "Ampirik kuralla (68–95–99.7) ve z-skoru / teknolojiyle normal olasılıkları hesaplamak.",
+    "Verilen bir alana (yüzdelik) karşılık gelen değeri ya da aralığı bulmak; farklı normal dağılımlarda göreli konumları karşılaştırmak."
+   ],
+   "anlatim": "<h4>Sürekli rastgele değişken ve normal eğri</h4>\n<p><strong>Sürekli (continuous)</strong> bir rastgele değişken bir aralıktaki her değeri alabilir (süre, uzunluk, ağırlık). Olasılık, eğrinin altındaki <strong>alan (area)</strong> ile verilir; tek bir değerin olasılığı 0'dır, bu yüzden \\(P(X \\lt a) = P(X \\le a)\\). Eğrinin altındaki toplam alan 1'dir.</p>\n<div class=\"kn-tanim\"><strong>Normal dağılım \\(N(\\mu, \\sigma)\\):</strong> Sürekli, tek tepeli (unimodal), çan biçimli (bell-shaped) ve ortalama etrafında simetrik (symmetric) bir eğri. İki parametresi vardır: ortalama \\(\\mu\\) (merkez) ve standart sapma \\(\\sigma\\) (yayılım). \\(\\sigma\\) küçüldükçe eğri <strong>daha dar ve daha yüksek</strong>, büyüdükçe <strong>daha geniş ve daha basık</strong> olur.</div>\n<p><strong>Standart normal dağılım (standard normal distribution):</strong> \\(\\mu = 0\\), \\(\\sigma = 1\\). Her normal değer \\(z\\)-skoruna çevrilebilir: \\[ z = \\frac{x - \\mu}{\\sigma} \\]</p>\n<h4>Ampirik kural (empirical rule, 68–95–99.7)</h4>\n<table><thead><tr><th>Aralık</th><th>Yaklaşık alan</th></tr></thead>\n<tbody><tr><td>\\(\\mu \\pm 1\\sigma\\)</td><td>%68</td></tr>\n<tr><td>\\(\\mu \\pm 2\\sigma\\)</td><td>%95</td></tr>\n<tr><td>\\(\\mu \\pm 3\\sigma\\)</td><td>%99.7</td></tr></tbody></table>\n<p>Simetri kullanılarak parçalara bölünür: \\(\\mu\\) ile \\(\\mu + 1\\sigma\\) arası %34, \\(\\mu + 1\\sigma\\) ile \\(\\mu + 2\\sigma\\) arası %13.5, \\(\\mu + 2\\sigma\\)'nın üstü %2.5. Örnek: \\(N(50, 5)\\)'te 40 ile 55 arası: \\(47.5\\% + 34\\% = 81.5\\%\\).</p>\n<h4>Teknolojiyle alan ve değer</h4>\n<table><thead><tr><th>İstenen</th><th>Komut</th></tr></thead>\n<tbody><tr><td>\\(P(a \\lt X \\lt b)\\)</td><td><code>normalcdf(lower=a, upper=b, μ, σ)</code></td></tr>\n<tr><td>Sol kuyruğu \\(p\\) olan değer</td><td><code>invNorm(area=p, μ, σ)</code></td></tr></tbody></table>\n<p><strong>Örnek 1 (alan):</strong> Ayçiçeği boyları \\(N(180, 12)\\) cm. \\(P(X \\lt 165)\\): \\(z = (165-180)/12 = -1.25\\), alan \\(\\approx 0.1056\\).<br>\n<strong>Örnek 2 (değer):</strong> Sınav puanları \\(N(72, 9)\\). 85. yüzdelik (85th percentile): sol alan 0.85 → \\(z \\approx 1.036\\) → \\(x = 72 + 1.036(9) \\approx 81.3\\).<br>\n<strong>Örnek 3 (orta %90):</strong> \\(N(34, 6)\\) için uçlarda %5'er kalır: \\(z = \\pm 1.645\\) → \\(34 \\pm 9.87\\) → yaklaşık 24.1 ile 43.9 arası.</p>\n<div class=\"kn-kural\"><strong>Yüzdelik ve kuyruk dili:</strong> \"\\(P(X \\lt x_a) = 0.20\\)\" en alttaki %20'nin \\(x_a\\)'nın solunda olduğunu; \"\\(P(X \\gt x_b) = 0.10\\)\" en üstteki %10'un \\(x_b\\)'nin sağında olduğunu söyler. \"En uç %p\" iki kuyruğa yarı yarıya bölünür.</div>\n<h4>Göreli konum karşılaştırma</h4>\n<p>Farklı ölçeklerdeki iki değeri z-skoru ya da yüzdelikle karşılaştırın: Sınav A'da 1340 (\\(\\mu=1100, \\sigma=200\\)) → \\(z = 1.2\\); Sınav B'de 31 (\\(\\mu=25, \\sigma=4\\)) → \\(z = 1.5\\). B'deki sonuç, kendi dağılımında görece daha yüksektir.</p>\n<h4>FRQ'da tam puan için</h4>\n<p>CED'e göre dağılım hesabında dört şey gösterilmeli: <strong>(1)</strong> dağılımın adı, <strong>(2)</strong> parametreler, <strong>(3)</strong> sınır ve yön, <strong>(4)</strong> doğru sonuç. Örnek: <em>\"X ~ N(μ = 180, σ = 12); P(X &lt; 165) = P(z &lt; −1.25) ≈ 0.1056.\"</em> Etiketli bir normal eğri çizimi (ortalama işaretli, ilgili bölge taralı) de kabul edilir.</p>",
+   "ornekler": [
+    {
+     "soru": "Pil ömrü \\(N(40, 5)\\) saat. Rastgele bir pilin 35 ile 52 saat arasında dayanma olasılığı nedir?",
+     "cozum": [
+      "\\(z_1 = (35-40)/5 = -1\\), \\(z_2 = (52-40)/5 = 2.4\\).",
+      "\\(P(-1 \\lt Z \\lt 2.4) = 0.9918 - 0.1587 \\approx 0.8331\\) (ya da <code>normalcdf(35, 52, 40, 5)</code>)."
+     ]
+    },
+    {
+     "soru": "Bir makine şişeleri \\(\\sigma = 4\\) mL standart sapmayla dolduruyor ve dolum miktarı normal dağılıyor. Şişelerin yalnızca %2'si 500 mL'nin altında kalsın isteniyor. Ortalama \\(\\mu\\) kaç olmalı?",
+     "cozum": [
+      "Sol alan 0.02 → \\(z = \\text{invNorm}(0.02) \\approx -2.054\\).",
+      "\\(\\frac{500 - \\mu}{4} = -2.054\\) → \\(\\mu = 500 + 2.054(4) \\approx 508.2\\) mL."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Ali boy dağılımı \\(N(176, 7)\\) olan bir grupta 185 cm; Can \\(N(162, 6)\\) olan bir grupta 172 cm. Kendi grubunda görece daha uzun olan hangisi? Justify.",
+     "cozum": [
+      "Ali: \\(z = (185-176)/7 \\approx 1.29\\). Can: \\(z = (172-162)/6 \\approx 1.67\\).",
+      "<em>\"Can is relatively taller because his height is about 1.67 standard deviations above the mean of his group, compared with about 1.29 for Ali.\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her normal soruda önce eğriyi çiz: ortalamayı işaretle, sınırı yaz, istenen bölgeyi tara.",
+    "Hesap makinesi komutunda parametre etiketlerini FRQ'ya yaz: normalcdf(lower = 35, upper = 52, μ = 40, σ = 5).",
+    "\"Middle 90%\" → her kuyrukta %5; invNorm(0.05) ve invNorm(0.95).",
+    "Sürekli dağılımda \\(\\lt\\) ile \\(\\le\\) aynı sonucu verir; kesikli dağılımda (binom) vermez."
+   ],
+   "sikHatalar": [
+    "z-skorunda \\(\\sigma\\) yerine varyansla bölmek ya da işareti ters almak.",
+    "\"Üstteki %10\" için invNorm(0.10) kullanmak (doğrusu sol alan 0.90).",
+    "Ampirik kuralı normal olmayan (çarpık) bir dağılıma uygulamak."
+   ],
+   "terimler": [
+    {
+     "en": "normal distribution",
+     "tr": "normal dağılım"
+    },
+    {
+     "en": "standard normal distribution",
+     "tr": "standart normal dağılım"
+    },
+    {
+     "en": "z-score",
+     "tr": "z-skoru"
+    },
+    {
+     "en": "empirical rule",
+     "tr": "ampirik kural (68–95–99.7)"
+    },
+    {
+     "en": "percentile",
+     "tr": "yüzdelik"
+    },
+    {
+     "en": "continuous random variable",
+     "tr": "sürekli rastgele değişken"
+    }
+   ]
+  },
+  {
+   "kod": "2.12",
+   "baslik": "Sampling Distributions and the Central Limit Theorem",
+   "baslikTr": "Örnekleme dağılımları ve merkezi limit teoremi",
+   "hedefler": [
+    "Bir istatistiğin örnekleme dağılımını (sampling distribution) tanımlamak ve simülasyonla nasıl elde edildiğini açıklamak.",
+    "Randomizasyon dağılımını (randomization distribution) yorumlamak ve gözlenen sonucun olağan dışı olup olmadığına karar vermek.",
+    "Merkezi limit teoremini (central limit theorem, CLT) örneklem büyüklüğüyle ilişkilendirerek açıklamak."
+   ],
+   "anlatim": "<h4>Üç farklı dağılım — karıştırmayın</h4>\n<table><thead><tr><th>Dağılım</th><th>Neyin dağılımı?</th><th>Örnek</th></tr></thead>\n<tbody><tr><td><strong>Popülasyon dağılımı (population distribution)</strong></td><td>Popülasyondaki tüm bireylerin değerleri</td><td>Ülkedeki tüm öğrencilerin uyku süreleri</td></tr>\n<tr><td><strong>Örneklem verisinin dağılımı (distribution of sample data)</strong></td><td>Tek bir örneklemdeki bireylerin değerleri</td><td>Seçilen 50 öğrencinin uyku süreleri</td></tr>\n<tr><td><strong>Örnekleme dağılımı (sampling distribution)</strong></td><td>Aynı büyüklükteki <em>tüm olası örneklemlerden</em> hesaplanan istatistiğin değerleri</td><td>Her biri 50 kişilik çok sayıda örneklemin ortalamaları \\(\\bar{x}\\)</td></tr></tbody></table>\n<div class=\"kn-tanim\"><strong>Örnekleme dağılımı:</strong> Bir istatistiğin (\\(\\bar{x}\\), \\(\\hat{p}\\) gibi) belirli büyüklükteki tüm olası örneklemler üzerindeki dağılımı. Her nokta <strong>bir örneklemi</strong> temsil eder, bir bireyi değil.</div>\n<h4>Simülasyonla örnekleme dağılımı</h4>\n<p>Parametre biliniyormuş gibi varsayılır (ör. \\(p = 0.40\\)). Sonra: (1) bu popülasyondan \\(n\\) büyüklüğünde rastgele örneklem üret, (2) istatistiği (\\(\\hat{p}\\)) hesapla ve kaydet, (3) bunu çok sayıda (ör. 1000) tekrarla. Kaydedilen değerlerin dağılımı örnekleme dağılımına yaklaşır. Gerçek örneklemimizden gelen istatistik bu dağılımın kuyruğundaysa, varsayılan parametre değeri şüphelidir.</p>\n<h4>Randomizasyon dağılımı (randomization distribution)</h4>\n<p>Deneylerde kullanılır. Gözlenen yanıt değerleri sabit tutulur, ama gruplara <strong>rastgele yeniden dağıtılır (reallocated)</strong>; her dağıtımda istatistik (ör. ortalamalar farkı) kaydedilir. Bu, \"tedavi hiçbir şeyi değiştirmeseydi farklar şans eseri ne kadar olurdu?\" sorusuna cevap verir.</p>\n<p>Örnek: Yeni gübre grubu ortalama 8 cm daha uzun bitkiler verdi. 200 rastgele yeniden dağıtımın yalnızca 6'sında fark 8 cm ya da daha büyük çıktı: \\(6/200 = 0.03\\). Yalnız şansla bu kadar büyük fark nadir olduğundan, gübrenin etkisi olduğuna dair <strong>kanıt vardır</strong>. Eğer 200'ün 70'inde olsaydı (0.35), fark şansla kolayca açıklanabilirdi.</p>\n<h4>Merkezi limit teoremi (central limit theorem, CLT)</h4>\n<div class=\"kn-kural\"><strong>CLT:</strong> Rastgele bir örneklemin ortalamasının (\\(\\bar{x}\\)) örnekleme dağılımı yaklaşık normal bir şekle sahiptir; <strong>örneklem büyüdükçe yaklaşım daha iyi olur</strong>. Bu, popülasyon normal olmasa (ör. sağa çarpık) bile geçerlidir.</div>\n<ul><li>Popülasyon normalse: \\(\\bar{x}\\)'in dağılımı her \\(n\\) için normaldir.</li>\n<li>Popülasyon çarpıksa: küçük \\(n\\)'de (ör. 4) \\(\\bar{x}\\)'in dağılımı hâlâ çarpıktır; \\(n\\) büyüdükçe (ör. 50) yaklaşık normale döner. (Unit 4'te pratik ölçüt \\(n \\ge 30\\) olarak kullanılacak.)</li>\n<li>CLT <strong>örneklem verisinin</strong> normal olacağını söylemez: büyük bir örneklemin verisi popülasyona benzer, yani çarpık popülasyondan gelen örneklem verisi de çarpıktır.</li></ul>\n<p>Ayrıca örneklem büyüdükçe istatistiğin örnekleme dağılımının <strong>yayılımı azalır</strong>: büyük örneklemlerin ortalamaları birbirine ve gerçek ortalamaya daha yakındır.</p>\n<h4>FRQ dili</h4>\n<blockquote><em>\"Because the sample size is large, the central limit theorem says the sampling distribution of the sample mean will be approximately normal, even though the population distribution of wait times is skewed right.\"</em></blockquote>",
+   "ornekler": [
+    {
+     "soru": "Bir öğrenci \"Popülasyon sağa çarpık ama 100 kişilik bir örneklem aldım; CLT'ye göre bu 100 kişinin verisi normal dağılır\" diyor. Doğru mu?",
+     "cozum": [
+      "CLT örneklem <em>ortalamalarının</em> dağılımı (örnekleme dağılımı) hakkındadır.",
+      "Tek bir örneklemin verisi popülasyonun şeklini yansıtır; büyük örneklemde veri yine sağa çarpık olur. İfade yanlıştır."
+     ]
+    },
+    {
+     "soru": "\\(p = 0.40\\) varsayımıyla 25 kişilik örneklemler 500 kez simüle edildi; \\(\\hat{p}\\) değerlerinin yalnızca 4'ü 0.64 ya da daha büyük. Gerçek bir 25 kişilik örneklemde \\(\\hat{p} = 0.64\\) bulundu. Ne sonuç çıkarırsınız?",
+     "cozum": [
+      "Tahmini olasılık: \\(4/500 = 0.008\\). \\(p = 0.40\\) doğru olsaydı \\(\\hat{p} \\ge 0.64\\) çok nadir olurdu.",
+      "Bu sonuç, gerçek oranın 0.40'tan büyük olduğuna dair güçlü kanıt sağlar."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bekleme süreleri popülasyonu sağa çarpık. \\(n = 4\\) ve \\(n = 60\\) için örneklem ortalamalarının örnekleme dağılımlarının şeklini karşılaştırın. Explain.",
+     "cozum": [
+      "\\(n = 4\\): örneklem küçük, ortalamaların dağılımı hâlâ belirgin biçimde sağa çarpık olur.",
+      "\\(n = 60\\): CLT gereği ortalamaların dağılımı yaklaşık normaldir ve yayılımı \\(n=4\\)'e göre daha küçüktür.",
+      "<em>\"The larger the sample size, the closer the sampling distribution of the sample mean is to a normal distribution, by the central limit theorem.\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Grafikteki her nokta neyi temsil ediyor? Bir birey mi, bir örneklemin istatistiği mi? Önce bunu belirle.",
+    "Simülasyon / randomizasyon sonucunu yorumlarken: \"gözlenen kadar ya da daha uç\" (as extreme as or more extreme than) değerlerin oranını hesapla.",
+    "CLT'yi kullanırken popülasyon şeklini ve örneklem büyüklüğünü birlikte an.",
+    "Küçük oran (ör. 0.03) → şansla açıklamak zor → kanıt var; büyük oran (ör. 0.35) → şansla açıklanabilir."
+   ],
+   "sikHatalar": [
+    "CLT'nin örneklem verisini ya da popülasyonu normal yaptığını sanmak.",
+    "Örnekleme dağılımındaki bir noktayı tek bir birey sanmak.",
+    "Randomizasyon dağılımında yalnızca gözlenenle tam eşit değerleri saymak (\"ya da daha uç\" değerleri unutmak)."
+   ],
+   "terimler": [
+    {
+     "en": "sampling distribution",
+     "tr": "örnekleme dağılımı"
+    },
+    {
+     "en": "statistic",
+     "tr": "istatistik (örneklem değeri)"
+    },
+    {
+     "en": "randomization distribution",
+     "tr": "randomizasyon (yeniden dağıtım) dağılımı"
+    },
+    {
+     "en": "central limit theorem (CLT)",
+     "tr": "merkezi limit teoremi"
+    },
+    {
+     "en": "population distribution",
+     "tr": "popülasyon dağılımı"
+    }
+   ]
+  }
+ ]
+}
