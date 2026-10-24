@@ -42,6 +42,8 @@ const ci = args.indexOf("--cikti");
 const CIKTI = ci >= 0 && args[ci + 1] ? path.resolve(args[ci + 1]) : path.join(ROOT, "data", "mevzuat");
 
 const sorunlar = [];
+const ISTER = require(path.join(ROOT, "araclar", "isterler-denetim.js"));
+const ISTER_BAGLAM = ISTER.baglam(KAYNAK);
 const uyar = (dosya, list) => list.forEach(s => sorunlar.push(dosya + ": " + s));
 function oku(ad) {
   const f = path.join(KAYNAK, ad);
@@ -112,7 +114,7 @@ function maddeSay(o) {
 
 const META = JSON.parse(fs.readFileSync(META_DOSYA, "utf8"));
 const dosyalar = fs.existsSync(KAYNAK) ? fs.readdirSync(KAYNAK) : [];
-const tanimsiz = dosyalar.filter(f => /\.json$/.test(f) && !/^(ulkeler-meta|yl-genel|duyurular|mezun-notlari|bulgular-[a-z]{2}|(lisans|yl|uni)-[a-z]{2})\.json$/.test(f));
+const tanimsiz = dosyalar.filter(f => /\.json$/.test(f) && !/^(ulkeler-meta|yl-genel|duyurular|mezun-notlari|bulgular-[a-z]{2}|(lisans|yl|uni|isterler)-[a-z]{2})\.json$/.test(f));
 if (tanimsiz.length) console.log("Bilgi: tanınmayan dosyalar atlandı: " + tanimsiz.join(", "));
 // Not: kaynak dosyalardaki teyitTaslaklari, mevcutSiniflandirma, _meta, kural, motorEslemesi gibi alanlar sayfalara taşınmaz.
 
@@ -137,6 +139,12 @@ for (const mu of META.ulkeler) {
       ozet: Y.ozet || "", ortak: arr(Y.ortak), en: dilBlok(Y.en), yerel: dilBlok(Y.yerel),
       burslar: arr(Y.burslar), uyarilar: arr(Y.uyarilar), ornekProgramlar: arr(Y.ornekProgramlar)
     };
+  }
+  // 1.22.0: yapılandırılmış şart tablosu (hedef sihirbazı); denetim araclar/isterler-denetim.js
+  const I = oku("isterler-" + cc + ".json");
+  if (I) {
+    uyar("isterler-" + cc + ".json", ISTER.isterlerDenetle(I, cc, ISTER_BAGLAM));
+    v.isterler = { sonKontrol: I.sonKontrol || null, varsayilan: I.varsayilan || {}, alanlar: I.alanlar || {}, universite: I.universite || {} };
   }
   if (U) v.universiteler = { siralama: U.siralama || null, qsToplam: U.qsToplam != null ? U.qsToplam : null, kural: U.kural || null, liste: arr(U.universiteler || U.liste).map(uniNorm) };
   // Rozet: meta (PM kararı) önce gelir; meta'da alan yoksa kaynak dosyadaki rozet

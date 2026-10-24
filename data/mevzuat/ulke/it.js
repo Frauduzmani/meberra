@@ -2695,6 +2695,147 @@
    }
   ]
  },
+ "isterler": {
+  "sonKontrol": "2026-10-24",
+  "varsayilan": {
+   "diploma": {
+    "durum": "ok",
+    "metin": "En az 12 yıllık lise diploması yeter; hazırlık sınıfı 12 yıla sayılmaz. Belgelerin aslı ve apostili istenir.",
+    "kaynak": [
+     {
+      "ad": "MUR genelgesi 2026/27",
+      "url": "https://www.unife.it/it/internazionale/venire/iscriversi/informazioni/circolare_2026-2027_studenti_internazionali.pdf"
+     },
+     {
+      "ad": "İstanbul Başkonsolosluğu",
+      "url": "https://consistanbul.esteri.it/it/servizi-consolari-e-visti/servizi-per-il-cittadino-straniero/studiare-in-italia/universita/laurea-triennale-e-laurea-magistrale-a-ciclo-unico/"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   },
+   "yks": {
+    "durum": "uyari",
+    "metin": "YKS'ye girip geçtiğini gösteren sonuç belgesi istenir (yerleşme gerekmez). YKS Haziran'da, sonuç Temmuz'da.",
+    "kaynak": [
+     {
+      "ad": "MUR genelgesi 2026/27",
+      "url": "https://www.unife.it/it/internazionale/venire/iscriversi/informazioni/circolare_2026-2027_studenti_internazionali.pdf"
+     },
+     {
+      "ad": "Universitaly",
+      "url": "https://www.universitaly.it/it/studenti-stranieri"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   },
+   "ap": {
+    "durum": "ok",
+    "metin": "Türk diploması sahibi için AP kabul şartı değildir ve resmî bir avantaj sağlamaz. Konuları giriş testine (CEnT-S, TOL) hazırlar.",
+    "sayi": 0,
+    "dersler": [],
+    "kaynak": [
+     {
+      "ad": "PoliMi Engineering BSc çağrısı 2026/27",
+      "url": "https://www.polimi.it/fileadmin/user_upload/futuri_studenti/Engineering_BSc_call_for_admission_2026-27__English_.pdf"
+     },
+     {
+      "ad": "PoliTo Engineering çağrısı 2026/27",
+      "url": "https://www.polito.it/sites/default/files/2025-12/Call%20for%20applications%20for%20admissions%20Engineering%20_%20LP%202026-27.pdf"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   },
+   "sinav": {
+    "durum": "uyari",
+    "metin": "Üniversitenin giriş testi şart: programa göre CEnT-S, TIL-I, TOL, TOLC ya da SAT. Test sonucu bir kayıt yılı için geçerli.",
+    "sinavlar": [
+     "cent-s"
+    ],
+    "kaynak": [
+     {
+      "ad": "MUR genelgesi 2026/27",
+      "url": "https://www.unife.it/it/internazionale/venire/iscriversi/informazioni/circolare_2026-2027_studenti_internazionali.pdf"
+     },
+     {
+      "ad": "CISIA CEnT kuralları",
+      "url": "https://www.cisiaonline.it/en/cent/all-about-CEnT/CEnT-rules"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   },
+   "dil": {
+    "durum": "uyari",
+    "metin": "Programın öğretim dilinde en az B2: İngilizce programda IELTS Academic ya da TOEFL iBT. Eşik puanı okula göre değişir.",
+    "belge": "IELTS",
+    "kaynak": [
+     {
+      "ad": "MUR genelgesi 2026/27",
+      "url": "https://www.unife.it/it/internazionale/venire/iscriversi/informazioni/circolare_2026-2027_studenti_internazionali.pdf"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   },
+   "donem": {
+    "durum": "teyit",
+    "metin": "AB dışı aday pencereleri çoğunlukla Ocak–Mayıs; mezuniyet yılının çağrıları henüz yayımlanmadı. Kabulden sonra Universitaly ön başvurusu."
+   }
+  },
+  "alanlar": {
+   "tip": {
+    "sinav": {
+     "durum": "teyit",
+     "metin": "Tıp, diş ve veteriner beş-altı yıllık programlardır; İngilizce tıp programlarının giriş yolu farklıdır. Programın çağrısını kontrol et."
+    }
+   }
+  },
+  "universite": {
+   "it-politecnico-di-milano": {
+    "sinav": {
+     "durum": "uyari",
+     "metin": "Sıralama yalnızca test puanına göre: TOL ya da alternatif olarak CEnT-S, TOLC-I veya SAT (puan TOL ölçeğine çevrilir).",
+     "sinavlar": [
+      "polimi-tol",
+      "cent-s"
+     ],
+     "kaynak": [
+      {
+       "ad": "PoliMi Engineering BSc çağrısı 2026/27",
+       "url": "https://www.polimi.it/fileadmin/user_upload/futuri_studenti/Engineering_BSc_call_for_admission_2026-27__English_.pdf"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "dil": {
+     "durum": "uyari",
+     "metin": "İngilizce programda B2 İngilizce; ayrıca İtalyanca OFA verilir ve mezuniyetten önce B2 İtalyanca ile kapatılır.",
+     "belge": "IELTS",
+     "kaynak": [
+      {
+       "ad": "PoliMi Engineering BSc çağrısı 2026/27",
+       "url": "https://www.polimi.it/fileadmin/user_upload/futuri_studenti/Engineering_BSc_call_for_admission_2026-27__English_.pdf"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    }
+   },
+   "it-politecnico-di-torino": {
+    "sinav": {
+     "durum": "uyari",
+     "metin": "Kabul TIL-I ya da SAT'a dayanır. TIL-I İngilizce veya İtalyanca yapılır; puanı o yılın çağrısı için geçerli.",
+     "sinavlar": [
+      "til-i"
+     ],
+     "kaynak": [
+      {
+       "ad": "PoliTo Engineering çağrısı 2026/27",
+       "url": "https://www.polito.it/sites/default/files/2025-12/Call%20for%20applications%20for%20admissions%20Engineering%20_%20LP%202026-27.pdf"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    }
+   }
+  }
+ },
  "universiteler": {
   "siralama": {
    "ad": "QS World University Rankings 2027",
