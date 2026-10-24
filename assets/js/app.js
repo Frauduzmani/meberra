@@ -1718,6 +1718,8 @@ function initUniteGorunumuKur() {
       goster([ust, alt].concat(u.bloklar.map(i => els[i])));
       konulariKatla(u);
       apSbKutulariYukle(kutularOf(u));
+      // 1.23.0 konu modu (assets/js/konu-modu.js): ünite açıldı — konu yolu, konu anlatımı ve konuya göre süzülen sorular
+      try { document.dispatchEvent(new CustomEvent("meberra:unite-acildi", { detail: { sayfa: apCurrentPage(), num: u.num || null, no: u.no, bloklar: u.bloklar.map(i => els[i]), kutular: kutularOf(u) } })); } catch (e) { /* eski tarayıcı */ }
       document.title = apUniteGorunenAd(u.baslik) + " — " + baslik0;
     } else if (mod === "bolum") {
       const e = g.ekler[n - 1];
@@ -2436,6 +2438,7 @@ function apBuildQuestionCard(containerId, q, qIndex) {
   card.className = "question-card";
   card.id = `q-card-${q.id}`;
   card.dataset.qid = q.id;
+  if (q.konuKod) card.dataset.konu = q.konuKod; // 1.23.0 konu modu süzgeci
   card.setAttribute("aria-labelledby", `q-title-${q.id}`);
 
   const optionsHtml = q.options.map(opt => `

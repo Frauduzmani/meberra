@@ -54,7 +54,7 @@ test("kayıt → 5 adımlı sihirbaz → Bugün ekranında bugünkü görev", as
 test("ders sayfası: Calculus ünite 1'de soru cevaplanır, XP artar, açıklama görünür", async ({ page }) => {
   await ogrenciGiris(page, "/ders/calculus?unite=1");
   await expect(page).toHaveURL(/\/ders\/calculus\?unite=1/);
-  const kart = page.locator(".question-card").first();
+  const kart = page.locator(".question-card:visible").first(); // 1.23.0: konu modu ilk konuya süzer
   await expect(kart).toBeVisible();
   const once = await xpOku(page);
   await kart.locator('.option-btn[data-opt="A"]').click();
@@ -99,7 +99,7 @@ test("/frq: FRQ listesi yüklenir ve ders süzgeci çalışır", async ({ page }
 
 test("Sorularım: soru kartından soru sorulur → yönetici API ile yanıtlar → zilde bildirim", async ({ page }) => {
   await ogrenciGiris(page, "/ders/calculus?unite=1");
-  const kart = page.locator(".question-card").first();
+  const kart = page.locator(".question-card:visible").first(); // 1.23.0: konu modu ilk konuya süzer
   await kart.locator('.option-btn[data-opt="A"]').click();
   await kart.getByRole("button", { name: "Bu soruyu anlamadım" }).click();
   const pencere = page.getByRole("dialog", { name: "Bu soruyu anlamadım" });

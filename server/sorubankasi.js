@@ -163,6 +163,15 @@ function tohumEsitle(db, dosya, gunluk) {
 }
 
 // --- öğrenciye giden biçimler (eski istemci şemasıyla aynı alan adları; doğru şık / çözüm YOK) -------------------
+/** 1.23.0: makinece okunur CED konu numarası ("1.6"); önce ek.cedKonu, yoksa konu metni. Numara yoksa null (English beceri kodları). */
+function konuKodu(r) {
+  const kaynaklar = [r && r.ek && r.ek.cedKonu, r && r.konu];
+  for (const k of kaynaklar) {
+    const m = /(?:^|[^\d.])(\d{1,2}\.\d{1,2})(?![\d.])/.exec(String(k || ""));
+    if (m) return m[1];
+  }
+  return null;
+}
 function acikSoru(r) {
   const options = (r.secenekler || []).map(sekilM.acikSecenek);
   // v1.13.0: kök şekilleri (konum "govde") — konum "aciklama" olanlar yalnız çözümde (cozumOf)
@@ -172,7 +181,7 @@ function acikSoru(r) {
     const ek = r.ek || {};
     o = { id: r.id, unite: r.unite, beceri: ek.beceri || r.konu, zorluk: r.zorluk, sureSn: ek.sureSn || 90, hesapMakinesi: !!ek.hesapMakinesi,
       source: r.kaynak, question: r.govde, options };
-  } else o = { id: r.id, number: r.numara, topic: r.konu, difficulty: r.zorluk, source: r.kaynak, question: r.govde, options };
+  } else o = { id: r.id, number: r.numara, topic: r.konu, konuKod: konuKodu(r), difficulty: r.zorluk, source: r.kaynak, question: r.govde, options };
   if (sk.length) o.sekiller = sk;
   return o;
 }
@@ -918,5 +927,5 @@ function soruBankasiRotalari(r, bag) {
   return { sinir };
 }
 
-module.exports = { soruBankasiRotalari, tohumUpsert, tohumSekilleri, tohumYukleGerekirse, tohumEsitle, tohumSurumOku, yoneticiDuzenledi, acikSoru, cozumOf, ogrenciEk, soruSec, satirCoz,
+module.exports = { soruBankasiRotalari, konuKodu, tohumUpsert, tohumSekilleri, tohumYukleGerekirse, tohumEsitle, tohumSurumOku, yoneticiDuzenledi, acikSoru, cozumOf, ogrenciEk, soruSec, satirCoz,
   TOHUM, TOHUM_AYAR, DEMO_ID };

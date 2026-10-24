@@ -23,7 +23,7 @@ test("mobil: giriş → Bugün, yatay kaydırma yok", async ({ page }) => {
 
 test("mobil: ders sayfasında soru cevaplanır, yatay kaydırma yok", async ({ page }) => {
   await ogrenciGiris(page, "/ders/calculus?unite=1");
-  const kart = page.locator(".question-card").first();
+  const kart = page.locator(".question-card:visible").first(); // 1.23.0: konu modu ilk konuya süzer
   await kart.locator('.option-btn[data-opt="B"]').tap();
   await expect(kart.locator(".feedback-box")).toBeVisible();
   await yatayKaydirmaYok(page);

@@ -1,0 +1,71 @@
+/* ==========================================================================
+   KONU MODU (ünite sayfası) — 1.23.0 · Betik: assets/js/konu-modu.js
+   Konu yolu (yatay kaydırmalı düğümler) · konu paneli (hedef, anlatım, örnek, ipucu, hata) · konuya göre süzülen sorular.
+   Renkler site belirteçlerinden; açık/koyu tema kendiliğinden.
+   ========================================================================== */
+.kn-gizli, .kn-eski-gizli { display: none !important; }
+
+.kn { margin: 0 0 var(--sp-5, 20px); }
+.kn-ust-bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.kn-baslik { margin: 0; font-size: clamp(1.2rem, 1rem + 1vw, 1.5rem); font-weight: 900; }
+.kn-tum-anlatim { border: 1px solid var(--border, #e3defa); background: var(--surface, #fff); color: var(--text-muted, #6b6790); border-radius: 99px; padding: 6px 12px; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; }
+
+/* Konu yolu: telefonda yatay kaydırma, masaüstünde sarar */
+.kn-yol { overflow-x: auto; margin: 0 calc(-1 * var(--sp-2, 8px)); padding: 4px var(--sp-2, 8px) 10px; scrollbar-width: thin; }
+.kn-yol ol { list-style: none; margin: 0; padding: 0; display: flex; gap: 8px; }
+@media (min-width: 900px) { .kn-yol { overflow: visible; } .kn-yol ol { flex-wrap: wrap; } }
+.kn-dugum {
+  display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: 8px; align-items: center; text-align: left;
+  min-width: 150px; max-width: 220px; padding: 8px 12px; border-radius: 16px; cursor: pointer; font: inherit;
+  background: var(--surface, #fff); color: var(--text, #1a1033); border: 2px solid var(--border, #ece8ff); box-shadow: 0 3px 0 var(--border, #e3defa);
+  transition: transform .12s, border-color .12s;
+}
+.kn-dugum:hover { transform: translateY(-2px); }
+.kn-dugum:focus-visible { outline: 3px solid #ffc83d; outline-offset: 2px; }
+.kn-kod { grid-row: 1 / span 2; width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; font-weight: 1000; font-size: 13px;
+  background: color-mix(in srgb, var(--hero-a, #5b3df5) 12%, transparent); color: var(--hero-a, #5b3df5); }
+.kn-ad { font-size: 13px; font-weight: 800; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.kn-say { font-size: 11px; font-weight: 800; color: var(--text-muted, #6b6790); }
+.kn-dugum.is-secili { border-color: var(--hero-a, #5b3df5); box-shadow: 0 3px 0 var(--hero-a, #5b3df5); background: color-mix(in srgb, var(--hero-a, #5b3df5) 8%, var(--surface, #fff)); }
+.kn-dugum.is-secili .kn-kod { background: var(--hero-a, #5b3df5); color: #fff; }
+.kn-dugum.is-bitti .kn-kod { background: #16a34a; color: #fff; }
+.kn-test .kn-kod { background: color-mix(in srgb, var(--energy, #ff6b2c) 18%, transparent); color: var(--energy, #ff6b2c); }
+
+/* Konu paneli */
+.kn-panel { margin-top: 8px; padding: clamp(16px, 2vw + 8px, 28px); border-radius: 24px; background: var(--surface, #fff); border: 1px solid var(--border, #ece8ff);
+  box-shadow: 0 18px 40px -28px rgba(40, 20, 120, .45); }
+.kn-bas { margin-bottom: 14px; }
+.kn-ust { margin: 0; font-size: 12px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: var(--hero-a, #5b3df5); }
+.kn-bc { background: var(--energy, #ff6b2c); color: #fff; border-radius: 6px; padding: 0 5px; }
+.kn-h { margin: 4px 0 2px; font-size: clamp(1.3rem, 1rem + 1.4vw, 1.9rem); font-weight: 1000; line-height: 1.15; outline: none; }
+.kn-en { margin: 0; color: var(--text-muted, #6b6790); font-weight: 700; }
+.kn-not { margin: 0; color: var(--text-muted, #6b6790); font-weight: 600; }
+.kn-anlatim { font-size: 1.02rem; line-height: 1.7; }
+.kn-anlatim h4 { font-size: 1.1rem; margin: 1.2em 0 .4em; }
+.kn-anlatim table { border-collapse: collapse; margin: .8em 0; max-width: 100%; display: block; overflow-x: auto; }
+.kn-anlatim th, .kn-anlatim td { border: 1px solid var(--border, #e3defa); padding: 6px 10px; }
+.kn-anlatim .kn-tanim, .kn-anlatim .kn-kural { border-left: 4px solid var(--hero-a, #5b3df5); background: color-mix(in srgb, var(--hero-a, #5b3df5) 6%, transparent); padding: 10px 14px; border-radius: 0 12px 12px 0; margin: .8em 0; }
+.kn-anlatim .kn-dikkat { border-left: 4px solid #f59e0b; background: color-mix(in srgb, #f59e0b 9%, transparent); padding: 10px 14px; border-radius: 0 12px 12px 0; margin: .8em 0; }
+.kn-kutu { border-radius: 18px; padding: 12px 16px; margin: 14px 0; border: 1px solid var(--border, #ece8ff); }
+.kn-kutu h4 { margin: 0 0 6px; font-size: 1rem; font-weight: 900; }
+.kn-kutu ul { margin: 0; padding-left: 1.2em; } .kn-kutu li { margin: 4px 0; }
+.kn-hedef { background: color-mix(in srgb, var(--hero-a, #5b3df5) 7%, var(--surface, #fff)); }
+.kn-ipucu { background: color-mix(in srgb, #22c55e 9%, var(--surface, #fff)); }
+.kn-hata { background: color-mix(in srgb, #f59e0b 10%, var(--surface, #fff)); }
+.kn-terim dl { margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 6px 14px; }
+.kn-terim dt { font-weight: 900; } .kn-terim dd { margin: 0; color: var(--text-muted, #6b6790); }
+.kn-iki { display: grid; gap: 0 14px; } @media (min-width: 900px) { .kn-iki { grid-template-columns: 1fr 1fr; } }
+.kn-ornekler h4 { margin: 18px 0 8px; font-size: 1.05rem; font-weight: 900; }
+.kn-ornek { border-radius: 18px; padding: 12px 16px; margin: 10px 0; border: 2px dashed color-mix(in srgb, var(--hero-a, #5b3df5) 30%, transparent); }
+.kn-ornek-no { margin: 0 0 4px; font-size: 12px; font-weight: 900; color: var(--hero-a, #5b3df5); text-transform: uppercase; letter-spacing: .06em; }
+.kn-cozum summary { cursor: pointer; font-weight: 900; color: var(--hero-a, #5b3df5); margin-top: 6px; }
+.kn-cozum ol { margin: 8px 0 0; padding-left: 1.3em; } .kn-cozum li { margin: 6px 0; }
+.kn-sorular-bas h3 { margin: 22px 0 6px; font-size: 1.2rem; font-weight: 900; }
+.kn-sorular-bos { color: var(--text-muted, #6b6790); font-weight: 700; }
+
+/* Alt geçiş */
+.kn-alt { display: flex; justify-content: space-between; gap: 10px; margin: 18px 0 8px; }
+.kn-alt button { border: 0; border-radius: 16px; padding: 12px 16px; font: inherit; font-weight: 900; cursor: pointer; }
+.kn-onceki { background: var(--surface, #fff); color: var(--text, #1a1033); box-shadow: inset 0 0 0 2px var(--border, #e3defa); }
+.kn-sonraki { background: linear-gradient(180deg, #ff8a4c, var(--energy, #ff6b2c)); color: #1a1033; box-shadow: 0 5px 0 #c94a14; margin-left: auto; }
+.kn-sonraki:active { transform: translateY(3px); box-shadow: 0 2px 0 #c94a14; }
