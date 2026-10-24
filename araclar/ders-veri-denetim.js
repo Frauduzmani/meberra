@@ -35,7 +35,7 @@ function htmlDenetle(h, yer, s) {
   const ac2 = (h.match(/\\\[/g) || []).length, kap2 = (h.match(/\\\]/g) || []).length;
   if (ac2 !== kap2) s.push(yer + ": \\[ \\] dengesiz");
   if ((h.replace(/\\\$/g, "").match(/\$/g) || []).length % 2) s.push(yer + ": $ sayısı tek");
-  if (/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(h)) s.push(yer + ": kontrol karakteri (tek ters bölü kaçışı?)");
+  if (/[\u0000-\u0009\u000b\u000c\u000e-\u001f]/.test(h)) s.push(yer + ": kontrol karakteri ya da sekme (tek ters bölü kaçışı? \\text → sekme+ext)");
   // Ters bölüsü kaybolmuş LaTeX komutu (matematik içinde "frac{" ya da "lim_"): öğrenci bozuk formül görür
   String(h).replace(/\\\((.*?)\\\)|\\\[(.*?)\\\]/gs, (m, a, b) => {
     const k = /(^|[^\\a-zA-Z])(frac|dfrac|tfrac|sqrt|cdot|infty|theta|Delta|text|lim|int)(?=[{_^])/.exec(a || b || "");

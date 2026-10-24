@@ -52,7 +52,7 @@ function checkQuestions(qs, fields, seen, issues) {
     for (const o of opts) if (!o.isCorrect && (!o.errorTag || !o.remediation)) issues.push(`${tag}: ${o.id} şıkkında errorTag/remediation eksik`);
     if (FORBIDDEN_SOURCE.test(q.source || "")) issues.push(`${tag}: yanıltıcı source "${q.source}"`);
     if (/\*\*[^*]+\*\*/.test(JSON.stringify(q))) issues.push(`${tag}: ham Markdown **`);
-    if (/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(Object.values(q).filter(v => typeof v === "string").join("") + opts.map(o => o.text + (o.remediation || "")).join(""))) issues.push(`${tag}: kontrol karakteri (tek ters bölü kaçışı?)`);
+    if (/[\u0000-\u0009\u000b\u000c\u000e-\u001f]/.test(Object.values(q).filter(v => typeof v === "string").join("") + opts.map(o => o.text + (o.remediation || "")).join(""))) issues.push(`${tag}: kontrol karakteri (tek ters bölü kaçışı?)`);
     for (const field of [q.question, q.stepByStepSolution, q.generalRemediation]) {
       const dollars = (String(field).replace(/\\\$/g, "").match(/\$/g) || []).length;
       if (dollars % 2) { issues.push(`${tag}: tek sayıda $`); break; }
