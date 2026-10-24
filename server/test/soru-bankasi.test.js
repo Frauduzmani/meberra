@@ -7,6 +7,13 @@ const fs = require("fs");
 const path = require("path");
 const { olustur } = require("../uygulama");
 const { tohumUpsert, TOHUM } = require("../sorubankasi");
+// 1.23.0: beklenen sayılar tohumdan hesaplanır (her içerik partisinde sabitleri elle güncellemek gerekmesin)
+const TV = JSON.parse(fs.readFileSync(TOHUM, "utf8"));
+const AKTIF_DERS = TV.sorular.filter(x => x.tur === "ders" && x.durum === "aktif").length;
+const DERS_SAYI = TV.sorular.filter(x => x.tur === "ders" && x.durum !== "taslak").length;
+const CALC1 = TV.sorular.filter(x => x.kutu === "calc-unit1-quiz-container" && x.durum === "aktif").length;
+const AB_HAVUZ = TV.sorular.filter(x => x.tur === "ders" && x.durum === "aktif" && (x.deneme_kodlari || []).includes("calculus-ab")).length;
+const KATALOG = TV.sorular.filter(x => x.tur === "ders" && x.durum === "aktif" && (x.deneme_kodlari || []).length).length;
 
 let app, base;
 before(async () => {
@@ -59,15 +66,16 @@ const yanlisOf = id => ["A", "B", "C", "D"].find(x => x !== dogruOf(id));
 test("tohum: sayılar pm-denetim ile aynı (1338 ders [1327 aktif + 11 arşiv; 1.14.0 Ekonomi + English: +82 aktif; 1.14.1 şekilli: +50 aktif] + 153 seviye + 1 vitrin; onaylardan sonra taslak yok), veritabanı dolu, upsert idempotent", () => {
   const t = JSON.parse(fs.readFileSync(TOHUM, "utf8"));
   const say = (tur, durum) => t.sorular.filter(x => x.tur === tur && (durum ? x.durum === durum : x.durum !== "taslak")).length;
-  assert.equal(say("ders", "aktif"), 1321);
+  assert.equal(say("ders", "aktif"), AKTIF_DERS); // 1.23.0: tohumdan; konu modu partileri (ek.uretim "1.23.0") ekledikçe büyür
+  assert.ok(AKTIF_DERS >= 1321);
   assert.equal(say("ders", "arsiv"), 17); // 1.10.0: 2 birebir tekrar; 1.11.0: bağımsız denetimin reddettiği 9 taslak; 1.22.1: 6 Physics C sorusu
   assert.equal(say("ders", "taslak"), 0, "1.11.0 onayı: tohumda taslak kalmadı (araclar/onay/UYGULANAN.md)");
-  assert.equal(say("ders"), 1338);
+  assert.equal(say("ders"), DERS_SAYI);
   assert.equal(say("seviye"), 153);
   assert.equal(say("vitrin"), 1);
   assert.equal(new Set(t.sorular.map(x => x.id)).size, t.sorular.length, "kimlikler benzersiz");
   const n = db().prepare("SELECT tur, COUNT(*) AS n FROM questions_bank WHERE durum != 'taslak' GROUP BY tur").all().reduce((a, x) => (a[x.tur] = x.n, a), {});
-  assert.deepEqual(n, { ders: 1338, seviye: 153, vitrin: 1 });
+  assert.deepEqual(n, { ders: DERS_SAYI, seviye: 153, vitrin: 1 });
   const s = tohumUpsert(db(), t.sorular, { guncelleyen: "test" });
   assert.equal(s.eklenen, 0); assert.equal(s.guncellenen, 0); assert.equal(s.ayni, t.sorular.length);
   // Tohum statik olarak sunulmaz (server/ klasörü açık değil)
@@ -110,10 +118,10 @@ test("ücretsiz kullanıcı: açık ünite listesinde cevap yok; kilitli ünite 
   let r = await o("GET", "/api/sorular-bankasi/ap-calculus");
   assert.equal(r.durum, 200);
   const k1 = r.govde.kutular.find(k => k.kutu === "calc-unit1-quiz-container"), k3 = r.govde.kutular.find(k => k.kutu === "calc-unit3-quiz-container");
-  assert.equal(k1.kilitli, false); assert.equal(k3.kilitli, true); assert.equal(k1.toplam, 37); // 1.11.0: +10 onaylı yeni soru; 1.14.1: +5 şekilli
+  assert.equal(k1.kilitli, false); assert.equal(k3.kilitli, true); assert.equal(k1.toplam, CALC1); // 1.11.0: +10 onaylı yeni soru; 1.14.1: +5 şekilli
   r = await o("GET", "/api/sorular-bankasi/ap-calculus/1");
   assert.equal(r.durum, 200);
-  assert.equal(r.govde.kutular[0].sorular.length, 37);
+  assert.equal(r.govde.kutular[0].sorular.length, CALC1);
   assert.equal(cevapAlaniVar(r.govde), false, "liste yanıtında doğru şık / çözüm yok");
   assert.match(r.basliklar.get("cache-control"), /private/); assert.match(r.basliklar.get("cache-control"), /no-store/);
   r = await o("GET", "/api/sorular-bankasi/ap-calculus/calc-unit1-quiz-container");
@@ -152,7 +160,7 @@ test("cevap kontrolü sunucuda: sonuç + açıklama döner, answers tablosuna ve
   assert.equal(rows[0].zaman, t, "istemci aynı zaman damgasını yazınca tekrar satır oluşmaz");
   const st = JSON.parse(db().prepare("SELECT deger FROM user_state WHERE user_id = ? AND anahtar = 'apmeberra:quiz:v1'").get(o.uid).deger);
   assert.equal(st.pages["ap-calculus"].units["calc-unit1-quiz-container"].answers[id].c, false);
-  assert.equal(st.pages["ap-calculus"].units["calc-unit1-quiz-container"].total, 37);
+  assert.equal(st.pages["ap-calculus"].units["calc-unit1-quiz-container"].total, CALC1);
   // İstemci aynı kaydı eşitlerse (aynı t) yinelenen cevap satırı oluşmaz
   await o("PUT", "/api/state", { degisiklikler: { "apmeberra:quiz:v1": JSON.stringify(st) } });
   assert.equal(db().prepare("SELECT COUNT(*) AS n FROM answers WHERE user_id = ?").get(o.uid).n, 2);
@@ -177,8 +185,8 @@ test("deneme: ücretsiz hak sunucuda — aynı ders sayfasında ikinci deneme 40
   const o = await ogrenci(false);
   let r = await o("GET", "/api/deneme/katalog");
   assert.equal(r.durum, 200);
-  assert.equal(r.govde.kodlar["calculus-ab"].soruSayisi, 235);
-  assert.equal(r.govde.sorular.length, 1321); // v1.10.0: 2 birebir tekrar arşivlendi; v1.11.0: 220 onaylı yeni soru; v1.14.0: 82 onaylı Ekonomi + English; v1.14.1: 50 onaylı şekilli (arşiv deneme havuzunda yok)
+  assert.equal(r.govde.kodlar["calculus-ab"].soruSayisi, AB_HAVUZ);
+  assert.equal(r.govde.sorular.length, KATALOG); // v1.10.0: 2 birebir tekrar arşivlendi; v1.11.0: 220 onaylı yeni soru; v1.14.0: 82 onaylı Ekonomi + English; v1.14.1: 50 onaylı şekilli (arşiv deneme havuzunda yok)
   assert.equal(cevapAlaniVar(r.govde.sorular), false);
   assert.equal(r.govde.sorular.some(x => "question" in x || "options" in x), false, "katalogda soru kökü/şık yok");
   assert.equal(r.govde.haklar["ap-calculus"], false);
@@ -285,7 +293,7 @@ test("yönetici: liste + istatistik (şüpheli), düzenleme yeni sürüm, doğru
   for (let i = 0; i < 5; i++) { const o = await ogrenci(false); await o("POST", "/api/sorular-bankasi/cevap", { soruId: id, secim: dogruOf(id) }); }
   let r = await y("GET", "/api/admin/soru-bankasi?sayfa=ap-calculus&unite=1&durum=aktif");
   assert.equal(r.durum, 200);
-  assert.equal(r.govde.toplam, 37);
+  assert.equal(r.govde.toplam, CALC1);
   const satir = r.govde.sorular.find(x => x.id === id);
   assert.equal(satir.istatistik.cevap >= 5, true); assert.equal(satir.istatistik.supheli, true);
   r = await y("GET", "/api/admin/soru-bankasi?supheli=1");

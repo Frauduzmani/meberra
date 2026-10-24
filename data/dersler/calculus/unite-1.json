@@ -1,0 +1,1166 @@
+{
+ "ders": "calculus",
+ "unite": 1,
+ "baslik": "Limits and Continuity",
+ "baslikTr": "Limitler ve Süreklilik",
+ "konular": [
+  {
+   "kod": "1.1",
+   "baslik": "Introducing Calculus: Can Change Occur at an Instant?",
+   "baslikTr": "Calculus'a giriş: Değişim bir anda olabilir mi?",
+   "sadeceBC": false,
+   "hedefler": [
+    "Ortalama değişim hızı (average rate of change) ile anlık değişim hızı (instantaneous rate of change) arasındaki farkı açıklamak.",
+    "Anlık hızın, aralık küçüldükçe ortalama hızların yaklaştığı değer, yani bir limit olduğunu yorumlamak.",
+    "Kesen doğrusu (secant line) eğimini hesaplayıp küçülen h değerleriyle teğet eğimini (slope of the tangent line) tahmin etmek."
+   ],
+   "anlatim": "<p>Calculus iki büyük soruyla başlar: <strong>Bir şey tam bir anda ne kadar hızlı değişiyor?</strong> ve <strong>Sürekli değişen bir büyüklük toplamda ne kadar birikir?</strong> Bu ünite, her ikisinin de temelindeki aracı öğretir: <strong>limit (limit)</strong>.</p>\n<h4>Ortalama değişim hızı</h4>\n<p>Bir arabanın konumu \\(s(t)\\) metre, zaman \\(t\\) saniye olsun. \\(t=a\\) ile \\(t=b\\) arasındaki <strong>ortalama değişim hızı (average rate of change)</strong>:</p>\n<div class=\"formul\">\\[ \\text{ortalama hız} = \\frac{s(b)-s(a)}{b-a} \\]</div>\n<p>Bu sayı grafikte \\((a, s(a))\\) ve \\((b, s(b))\\) noktalarını birleştiren <strong>kesen doğrusunun (secant line)</strong> eğimidir. Ortalama hız iki zaman arasındaki <em>toplam</em> davranışı anlatır; tam \\(t=a\\) anındaki hızı söylemez.</p>\n<h4>Sorun: “Bir anda” değişim</h4>\n<p>Tek bir anda (instant) zaman aralığı sıfırdır. \\(b=a\\) koyarsak formül \\(\\frac{0}{0}\\) olur ve anlamsızdır. Calculus'un çözümü şudur: aralığı sıfır yapmayız, ama <strong>giderek küçültürüz</strong> ve ortalama hızların hangi sayıya yaklaştığına bakarız.</p>\n<p>Örnek: \\(s(t)=t^2\\) olsun ve \\(t=3\\) anındaki hızı arayalım. \\([3, 3+h]\\) aralığındaki ortalama hız:</p>\n<div class=\"formul\">\\[ \\frac{s(3+h)-s(3)}{h} = \\frac{(3+h)^2-9}{h} = \\frac{6h+h^2}{h} = 6+h \\quad (h\\neq 0) \\]</div>\n<table><thead><tr><th>\\(h\\)</th><th>1</th><th>0.1</th><th>0.01</th><th>0.001</th><th>−0.001</th><th>−0.01</th></tr></thead>\n<tbody><tr><td>ortalama hız</td><td>7</td><td>6.1</td><td>6.01</td><td>6.001</td><td>5.999</td><td>5.99</td></tr></tbody></table>\n<p>\\(h\\) sıfıra hangi taraftan yaklaşırsa yaklaşsın, ortalama hızlar <strong>6</strong>'ya yaklaşır. Bu yüzden \\(t=3\\) anındaki <strong>anlık hız (instantaneous velocity)</strong> 6 m/s'dir. Matematik diliyle:</p>\n<div class=\"kn-tanim\"><strong>Anlık değişim hızı (instantaneous rate of change):</strong> \\[ \\lim_{h \\to 0} \\frac{f(a+h)-f(a)}{h} \\] Bu limit, kesen doğrularının eğimlerinin yaklaştığı değerdir ve grafikte \\(x=a\\) noktasındaki <strong>teğet doğrusunun (tangent line)</strong> eğimidir.</div>\n<h4>Neden limit gerekiyor?</h4>\n<p>Limit, “değere ulaşmadan ona ne kadar yaklaşabiliyoruz?” sorusunun cevabıdır. \\(h=0\\) koyamayız (bölme tanımsız), ama \\(h\\neq 0\\) olan her değer için ifadeyi hesaplayabiliriz. Limit, bu değerlerin davranışından bir tek sayı çıkarır. Unit 2'de bu limite <strong>türev (derivative)</strong> diyeceğiz; Unit 6'da toplam birikim için yine limit kullanacağız (Riemann toplamları).</p>\n<div class=\"kn-kural\"><strong>Özet:</strong> Ortalama hız = kesen eğimi (iki nokta). Anlık hız = teğet eğimi (tek nokta) = kesen eğimlerinin limiti. Aralık küçüldükçe kesen doğrusu teğete döner.</div>\n<div class=\"kn-dikkat\">AP sınavında 1.1 kavramsal sorulur: “Hangi ifade \\(t=2\\) anındaki hızı temsil eder?” gibi. Doğru cevapta mutlaka \\(\\lim_{h\\to 0}\\) bulunur; limitsiz bir fark bölümü yalnızca <em>ortalama</em> hızdır.</div>\n<p><small>İleri okuma: Limitin kesin tanımı (ε–δ tanımı) üniversite derslerinde işlenir; AP sınavında sorulmaz.</small></p>",
+   "ornekler": [
+    {
+     "soru": "Bir topun yüksekliği \\(y(t) = 20t - 5t^2\\) metredir (\\(t\\) saniye). \\([1, 1+h]\\) aralığındaki ortalama hızı \\(h\\) cinsinden bulun ve \\(t=1\\) anındaki anlık hızı tahmin edin.",
+     "cozum": [
+      "\\(y(1) = 20 - 5 = 15\\). \\(y(1+h) = 20(1+h) - 5(1+h)^2 = 20+20h-5-10h-5h^2 = 15+10h-5h^2\\).",
+      "Ortalama hız \\(= \\dfrac{y(1+h)-y(1)}{h} = \\dfrac{10h-5h^2}{h} = 10-5h\\) (\\(h\\neq0\\)).",
+      "\\(h \\to 0\\) iken \\(10-5h \\to 10\\). Anlık hız: \\(\\lim_{h\\to0}(10-5h) = 10\\) m/s."
+     ]
+    },
+    {
+     "soru": "\\(f(x)=\\sqrt{x}\\) için aşağıdaki tablo \\(\\dfrac{f(4+h)-f(4)}{h}\\) değerlerini verir. \\(x=4\\)'teki teğet eğimini tahmin edin.<table><thead><tr><th>\\(h\\)</th><th>0.1</th><th>0.01</th><th>−0.01</th><th>−0.1</th></tr></thead><tbody><tr><td>eğim</td><td>0.2485</td><td>0.2498</td><td>0.2502</td><td>0.2516</td></tr></tbody></table>",
+     "cozum": [
+      "Tablo, kesen doğrularının eğimlerini verir: her satır \\((4, 2)\\) ile \\((4+h, f(4+h))\\) noktalarını birleştirir.",
+      "\\(h\\) iki taraftan 0'a yaklaşırken eğimler 0.2498 ve 0.2502 arasına sıkışıyor; ikisi de 0.25'e yaklaşıyor.",
+      "Teğet eğimi tahmini: \\(0.25 = \\tfrac14\\). (Unit 2'de türevle tam olarak \\(\\tfrac{1}{2\\sqrt4}=\\tfrac14\\) bulunur.)"
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir tankın içindeki su miktarı \\(W(t)\\) litredir (\\(t\\) dakika). Öğrenci “\\(\\dfrac{W(5)-W(3)}{2}\\), \\(t=4\\) anında suyun değişim hızıdır” diyor. Bu ifade doğru mu? Açıklayın.",
+     "cozum": [
+      "\\(\\dfrac{W(5)-W(3)}{5-3}\\), \\([3,5]\\) aralığındaki <strong>ortalama</strong> değişim hızıdır (litre/dakika birimiyle).",
+      "\\(t=4\\) anındaki anlık hız \\(\\lim_{h\\to0}\\dfrac{W(4+h)-W(4)}{h}\\) limitidir. Ortalama hız bunun bir <em>tahminidir</em>, kendisi değildir.",
+      "Doğru cümle: “\\(\\dfrac{W(5)-W(3)}{2}\\), \\(3\\le t\\le 5\\) aralığında suyun ortalama değişim hızıdır ve \\(t=4\\)'teki anlık hızın bir yaklaşık değeridir.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "“Rate at an instant” ifadesini görünce \\(\\lim_{h\\to 0}\\) ara; limitsiz fark bölümü yalnızca <strong>average rate of change</strong>'dir.",
+    "Birim yaz: konum metre, zaman saniye ise hız <strong>m/s</strong>. FRQ'larda birimsiz cevaba puan kesilebilir.",
+    "Tablodan anlık hız tahmini isteniyorsa hem pozitif hem negatif \\(h\\) değerlerine bak; iki taraf aynı sayıya yaklaşmalı.",
+    "“Estimate” kelimesi geçerse kesen eğimini (iki komşu veri) kullanmak yeterlidir; “find exactly” geçerse limit gerekir."
+   ],
+   "sikHatalar": [
+    "\\(h=0\\)'ı doğrudan koymak: \\(\\frac{f(a)-f(a)}{0}\\) tanımsızdır. Önce sadeleştir, sonra limit al.",
+    "Ortalama hız ile anlık hızı eş tutmak: \\(\\frac{s(4)-s(2)}{2}\\) “\\(t=3\\)'teki hız” değildir, sadece tahminidir.",
+    "Kesen (secant, iki nokta) ile teğeti (tangent, tek nokta) karıştırmak."
+   ],
+   "terimler": [
+    {
+     "en": "average rate of change",
+     "tr": "ortalama değişim hızı"
+    },
+    {
+     "en": "instantaneous rate of change",
+     "tr": "anlık değişim hızı"
+    },
+    {
+     "en": "secant line",
+     "tr": "kesen doğrusu"
+    },
+    {
+     "en": "tangent line",
+     "tr": "teğet doğrusu"
+    },
+    {
+     "en": "limit",
+     "tr": "limit"
+    },
+    {
+     "en": "difference quotient",
+     "tr": "fark bölümü"
+    }
+   ]
+  },
+  {
+   "kod": "1.2",
+   "baslik": "Defining Limits and Using Limit Notation",
+   "baslikTr": "Limitin tanımı ve limit gösterimi",
+   "sadeceBC": false,
+   "hedefler": [
+    "\\(\\lim_{x\\to c} f(x) = L\\) gösterimini doğru okumak ve sözel olarak ifade etmek.",
+    "Tek taraflı limitleri (one-sided limits) gösterimle yazmak ve iki taraflı limitle ilişkisini kurmak.",
+    "Limit değerinin fonksiyon değerinden \\(f(c)\\) bağımsız olduğunu açıklamak."
+   ],
+   "anlatim": "<h4>Limit gösterimi (limit notation)</h4>\n<div class=\"kn-tanim\">\\[ \\lim_{x \\to c} f(x) = L \\] okunuşu: “\\(x\\), \\(c\\)'ye yaklaşırken \\(f(x)\\)'in limiti \\(L\\)'dir.” Anlamı: \\(x\\)'i \\(c\\)'ye yeterince yakın (ama \\(c\\)'ye eşit olmayan) değerler seçerek \\(f(x)\\)'i \\(L\\)'ye istediğimiz kadar yaklaştırabiliriz.</div>\n<p>İngilizce sınav dili: <em>“The limit of f of x as x approaches c equals L.”</em> Burada üç önemli nokta var:</p>\n<ol>\n<li><strong>\\(x\\) hiçbir zaman \\(c\\)'ye eşit olmaz.</strong> Limit, \\(c\\)'nin <em>etrafındaki</em> değerlerle ilgilidir. \\(f(c)\\) tanımsız olabilir, farklı olabilir; limit değişmez.</li>\n<li><strong>\\(L\\) gerçek bir sayı olmalıdır.</strong> Değerler sınırsız büyüyorsa limit “yoktur” (does not exist); bunu \\(\\infty\\) ile göstermek davranışı anlatır ama limit bir sayı olarak var olmaz.</li>\n<li><strong>İki taraftan da yaklaşılır.</strong> \\(x\\), \\(c\\)'nin hem solundan hem sağından gelir.</li>\n</ol>\n<h4>Tek taraflı limitler (one-sided limits)</h4>\n<table><thead><tr><th>Gösterim</th><th>Okunuş</th><th>Anlam</th></tr></thead><tbody>\n<tr><td>\\(\\lim_{x\\to c^-} f(x)\\)</td><td>left-hand limit</td><td>\\(x\\lt c\\) değerleriyle, soldan yaklaşma</td></tr>\n<tr><td>\\(\\lim_{x\\to c^+} f(x)\\)</td><td>right-hand limit</td><td>\\(x\\gt c\\) değerleriyle, sağdan yaklaşma</td></tr>\n<tr><td>\\(\\lim_{x\\to c} f(x)\\)</td><td>two-sided limit</td><td>iki taraf birlikte</td></tr></tbody></table>\n<div class=\"kn-kural\"><strong>Temel kural:</strong> \\[ \\lim_{x\\to c} f(x) = L \\iff \\lim_{x\\to c^-} f(x) = L \\text{ ve } \\lim_{x\\to c^+} f(x) = L \\] İki tek taraflı limit eşit değilse (veya biri yoksa) iki taraflı limit <strong>yoktur (does not exist, DNE)</strong>.</div>\n<h4>Örnekle anlamak</h4>\n<p>\\(g(x) = \\dfrac{|x|}{x}\\) olsun. \\(x\\gt 0\\) için \\(g(x)=1\\), \\(x\\lt 0\\) için \\(g(x)=-1\\). O halde \\(\\lim_{x\\to0^+}g(x)=1\\), \\(\\lim_{x\\to0^-}g(x)=-1\\). İki değer farklı olduğu için \\(\\lim_{x\\to0}g(x)\\) yoktur. \\(g(0)\\) da tanımsızdır, ama bu limitin olmamasının sebebi değildir; sebep, iki tarafın farklı sayılara gitmesidir.</p>\n<p>Başka bir örnek: \\(h(x) = \\dfrac{x^2-1}{x-1}\\). \\(h(1)\\) tanımsızdır, ama \\(x\\neq1\\) için \\(h(x)=x+1\\) ve \\(\\lim_{x\\to1}h(x)=2\\). Limit var, fonksiyon değeri yok. Bu, limitin “orada ne olduğu” değil “oraya giderken ne olduğu” sorusu olduğunu gösterir.</p>\n<h4>Limitin olmadığı üç tipik durum</h4>\n<ul>\n<li><strong>Sıçrama (jump):</strong> sol ve sağ limit farklı sayılar.</li>\n<li><strong>Sınırsız büyüme (unbounded behavior):</strong> \\(\\lim_{x\\to0}\\frac{1}{x^2}=\\infty\\) — değerler hiçbir sayıya yaklaşmaz.</li>\n<li><strong>Salınım (oscillation):</strong> \\(\\sin\\left(\\frac1x\\right)\\), \\(x\\to0\\) iken \\(-1\\) ile \\(1\\) arasında sonsuz kez gidip gelir; tek bir sayıya yaklaşmaz.</li>\n</ul>\n<div class=\"kn-dikkat\">“\\(\\lim_{x\\to c}f(x)=f(c)\\)” her zaman doğru <strong>değildir</strong>. Bu eşitlik yalnızca \\(f\\), \\(c\\)'de <strong>sürekli (continuous)</strong> ise geçerlidir (Konu 1.11).</div>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=\\begin{cases} 2x+1, & x\\lt 3 \\\\ 4, & x=3 \\\\ x^2-2, & x\\gt 3\\end{cases}\\). \\(\\lim_{x\\to3^-}f(x)\\), \\(\\lim_{x\\to3^+}f(x)\\), \\(\\lim_{x\\to3}f(x)\\) ve \\(f(3)\\)'ü bulun.",
+     "cozum": [
+      "Soldan (\\(x\\lt 3\\)): \\(2(3)+1=7\\). Sağdan (\\(x\\gt 3\\)): \\(3^2-2=7\\).",
+      "İki tek taraflı limit eşit, o halde \\(\\lim_{x\\to3}f(x)=7\\).",
+      "\\(f(3)=4\\) (tanım satırı). Limit 7, değer 4: limit var ama fonksiyon değerine eşit değil."
+     ]
+    },
+    {
+     "soru": "“\\(\\lim_{x\\to 2^+} f(x) = -1\\)” ifadesini sözel olarak yazın ve hangi \\(x\\) değerlerinin kullanıldığını belirtin.",
+     "cozum": [
+      "Sözel: “\\(x\\), 2'ye sağdan yaklaşırken \\(f(x)\\)'in limiti \\(-1\\)'dir.” (The limit of f(x) as x approaches 2 from the right is −1.)",
+      "Kullanılan değerler: 2'den büyük ve 2'ye çok yakın sayılar, örneğin 2.1, 2.01, 2.001. \\(x=2\\) asla kullanılmaz; \\(x\\lt 2\\) değerleri bu limiti etkilemez."
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(k(x)=\\dfrac{x-5}{|x-5|}\\) için \\(\\lim_{x\\to5}k(x)\\) var mı? Gerekçelendirin.",
+     "cozum": [
+      "\\(x\\gt 5\\) iken \\(|x-5|=x-5\\), yani \\(k(x)=1\\); \\(\\lim_{x\\to5^+}k(x)=1\\).",
+      "\\(x\\lt 5\\) iken \\(|x-5|=-(x-5)\\), yani \\(k(x)=-1\\); \\(\\lim_{x\\to5^-}k(x)=-1\\).",
+      "Gerekçe: “\\(\\lim_{x\\to5^-}k(x) = -1 \\neq 1 = \\lim_{x\\to5^+}k(x)\\), bu nedenle \\(\\lim_{x\\to5}k(x)\\) yoktur.” Her iki tek taraflı limiti sayıyla yazmak tam puan için gerekir."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Limit yok diyorsan <strong>nedenini</strong> yaz: “because the left-hand limit and the right-hand limit are not equal” ya da “because f(x) increases without bound”.",
+    "Soru \\(f(c)\\) ve \\(\\lim_{x\\to c}f(x)\\) ikisini birden soruyorsa iki ayrı cevap ver; biri tanımsız, diğeri bir sayı olabilir.",
+    "\\(c^-\\) ve \\(c^+\\) üst işaretleri küçük ama çok önemlidir; soruyu okurken mutlaka daire içine al.",
+    "Değerler sınırsız büyüyorsa limit bir <strong>sayı</strong> olarak yoktur; AP bu davranışı \\(\\lim_{x\\to c}f(x)=\\infty\\) diye yazar. Şıklarda hem “\\(\\infty\\)” hem “does not exist” varsa iki tarafın aynı işaretle sonsuza gidip gitmediğine bak."
+   ],
+   "sikHatalar": [
+    "Limiti bulmak için her zaman \\(x=c\\) koymak. \\(f(c)\\) farklı tanımlanmış olabilir; limit \\(c\\)'nin çevresine bakar.",
+    "“\\(f(c)\\) tanımsız, o halde limit yok” demek. \\(\\frac{x^2-1}{x-1}\\) örneğinde limit 2'dir.",
+    "Yalnızca bir taraftan bakıp iki taraflı limit hakkında karar vermek."
+   ],
+   "terimler": [
+    {
+     "en": "limit notation",
+     "tr": "limit gösterimi"
+    },
+    {
+     "en": "approaches",
+     "tr": "yaklaşır"
+    },
+    {
+     "en": "one-sided limit",
+     "tr": "tek taraflı limit"
+    },
+    {
+     "en": "left-hand limit",
+     "tr": "soldan limit"
+    },
+    {
+     "en": "right-hand limit",
+     "tr": "sağdan limit"
+    },
+    {
+     "en": "does not exist (DNE)",
+     "tr": "yoktur / mevcut değil"
+    },
+    {
+     "en": "oscillation",
+     "tr": "salınım"
+    }
+   ]
+  },
+  {
+   "kod": "1.3",
+   "baslik": "Estimating Limit Values from Graphs",
+   "baslikTr": "Grafiklerden limit tahmini",
+   "sadeceBC": false,
+   "hedefler": [
+    "Grafikten soldan, sağdan ve iki taraflı limitleri okumak.",
+    "Açık daire (open circle) ile dolu dairenin (closed/filled circle) limit ve fonksiyon değeri için anlamını ayırt etmek.",
+    "Grafiğe bakarak limitin olmadığı durumları (sıçrama, dikey asimptot, salınım) tanımak."
+   ],
+   "anlatim": "<p>AP sınavındaki limit sorularının önemli bir kısmı bir grafikle verilir. Grafikten limit okumak için tek bir soru sorarız: <strong>“\\(x\\), \\(c\\)'ye yaklaşırken eğri hangi yüksekliğe (y değerine) gidiyor?”</strong></p>\n<h4>Okuma yöntemi</h4>\n<ol>\n<li>Parmağını \\(x=c\\)'nin <strong>solundaki</strong> eğri parçasına koy ve \\(c\\)'ye doğru kaydır. Ulaştığın y değeri: \\(\\lim_{x\\to c^-}f(x)\\).</li>\n<li>Aynısını <strong>sağdan</strong> yap: \\(\\lim_{x\\to c^+}f(x)\\).</li>\n<li>İki değer eşitse iki taraflı limit o değerdir; değilse limit yoktur.</li>\n<li>\\(f(c)\\) için yalnızca \\(x=c\\) dikey doğrusu üzerindeki <strong>dolu noktaya</strong> bak.</li>\n</ol>\n<div class=\"kn-tanim\"><strong>Açık daire (open circle):</strong> o nokta grafiğe ait değil; eğri oraya yaklaşır ama ulaşmaz. Limit okurken açık dairenin yüksekliği önemlidir.<br><strong>Dolu daire (closed circle):</strong> fonksiyonun o \\(x\\)'teki gerçek değeri, \\(f(c)\\).</div>\n<h4>Örnek grafik (sözel)</h4>\n<p>Bir \\(f\\) grafiği şöyle olsun: \\(x\\lt 2\\) için eğri yükselerek \\((2, 3)\\) noktasındaki <em>açık daireye</em> gelir. \\(x=2\\)'de \\((2, 1)\\)'de <em>dolu bir nokta</em> var. \\(x\\gt 2\\) için eğri \\((2, 3)\\) açık dairesinden başlayıp aşağı iner. \\(x=4\\)'te eğri soldan \\((4, 0)\\)'a gelir, sağdan ise \\((4, 2)\\)'den başlar ve \\((4,2)\\) doludur. \\(x=6\\)'da dikey asimptot var; eğri soldan yukarı, sağdan aşağı sonsuza gider.</p>\n<table><thead><tr><th>\\(c\\)</th><th>\\(\\lim_{x\\to c^-}\\)</th><th>\\(\\lim_{x\\to c^+}\\)</th><th>\\(\\lim_{x\\to c}\\)</th><th>\\(f(c)\\)</th></tr></thead><tbody>\n<tr><td>2</td><td>3</td><td>3</td><td>3</td><td>1</td></tr>\n<tr><td>4</td><td>0</td><td>2</td><td>yok (DNE)</td><td>2</td></tr>\n<tr><td>6</td><td>\\(\\infty\\)</td><td>\\(-\\infty\\)</td><td>yok</td><td>tanımsız</td></tr></tbody></table>\n<p>\\(x=2\\)'de limit 3'tür çünkü iki taraftan eğri aynı yüksekliğe gider; dolu noktanın 1'de olması limiti değiştirmez. Bu tür noktaya <strong>kaldırılabilir süreksizlik (removable discontinuity)</strong> denir. \\(x=4\\)'te sıçrama (jump) var. \\(x=6\\)'da <strong>dikey asimptot (vertical asymptote)</strong>.</p>\n<div class=\"kn-kural\"><strong>Kural:</strong> Grafikten limit okurken \\(x=c\\)'deki noktayı “örter” gibi düşün. Nokta ne olursa olsun, eğri parçalarının uç yükseklikleri limiti belirler.</div>\n<h4>Tahmin (estimate) ve okuma dikkatleri</h4>\n<ul>\n<li>Izgara (grid) çizgileri yoksa değer tam sayı olmayabilir; AP bu durumda şıklarda net farklı değerler verir.</li>\n<li>Eğri \\(c\\)'nin yalnızca bir tarafında tanımlıysa (örneğin aralığın uç noktası) yalnızca o taraftaki tek taraflı limit konuşulur.</li>\n<li>Eğri \\(x\\to c\\) iken sonsuz sıklıkta salınıyorsa (giderek sıkışan dalgalar, ama genlik sabit) limit yoktur.</li>\n</ul>\n<div class=\"kn-dikkat\">İki grafikle verilen sorularda (\\(f\\) ve \\(g\\)), önce her birinin limitini ayrı ayrı oku, sonra işlemi uygula. Ancak biri yoksa, toplamın limiti de yok diye hemen karar verme; tek taraflı limitleri toplayarak kontrol et (Konu 1.9).</div>",
+   "ornekler": [
+    {
+     "soru": "Bir \\(g\\) grafiği: \\(x\\to1^-\\) iken eğri \\((1, -2)\\) açık dairesine, \\(x\\to1^+\\) iken \\((1, 4)\\) açık dairesine gider; \\(x=1\\)'deki tek dolu nokta \\((1, 0)\\)'dır. \\(\\lim_{x\\to1^-}g(x)+\\lim_{x\\to1^+}g(x)+g(1)\\) değerini bulun.",
+     "cozum": [
+      "Soldan limit: \\(-2\\). Sağdan limit: \\(4\\). \\(g(1)\\): dolu nokta \\(0\\).",
+      "Toplam \\(= -2 + 4 + 0 = 2\\). Not: \\(\\lim_{x\\to1}g(x)\\) yoktur, ama soru tek taraflı limitleri istediği için sorun yok."
+     ]
+    },
+    {
+     "soru": "Grafik, \\([0,5]\\) üzerinde tanımlı bir \\(h\\) gösteriyor: \\(x=3\\)'te eğri iki taraftan \\(y=2\\)'ye gidiyor ama \\(x=3\\)'te hiçbir nokta yok (sadece açık daire). \\(\\lim_{x\\to3}h(x)\\) ve \\(h(3)\\) hakkında ne söylenebilir?",
+     "cozum": [
+      "İki taraflı yaklaşım aynı yükseklik: \\(\\lim_{x\\to3}h(x)=2\\).",
+      "\\(x=3\\)'te dolu nokta olmadığı için \\(h(3)\\) tanımsızdır.",
+      "Sonuç: limit var, fonksiyon değeri yok. Bu, limitin fonksiyon değerinden bağımsız olduğunu gösterir."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) Bir \\(f\\) grafiğinde \\(x=-1\\)'de eğri soldan \\(y=5\\)'e, sağdan \\(y=5\\)'e gidiyor; \\(f(-1)=5\\) dolu nokta. Öğrenci “açık daire olmadığı için limit yoktur” diyor. Düzeltin.",
+     "cozum": [
+      "Limitin varlığı için dairenin türü değil, iki taraftan yaklaşılan yükseklikler önemlidir.",
+      "\\(\\lim_{x\\to-1^-}f(x)=5=\\lim_{x\\to-1^+}f(x)\\) olduğundan \\(\\lim_{x\\to-1}f(x)=5\\) vardır; ayrıca \\(f(-1)=5\\) olduğundan \\(f\\), \\(x=-1\\)'de süreklidir."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Tablo yap: her kritik \\(x\\) için sol limit, sağ limit, iki taraflı limit, \\(f(c)\\). Bu dört sütun neredeyse tüm grafik sorularını çözer.",
+    "Soru “\\(f(c)\\)” diyorsa sadece dolu noktaya, “limit” diyorsa sadece eğrinin uçlarına bak.",
+    "Dikey asimptotta tek taraflı limitler \\(\\infty\\) veya \\(-\\infty\\) olarak yazılabilir; iki taraflı limit için “does not exist” veya, iki taraf da aynı işaretle sonsuza gidiyorsa “\\(\\infty\\)” (unbounded) denir.",
+    "AP grafik sorularında ölçeğe (scale) bak: bir kare 1 birim olmayabilir."
+   ],
+   "sikHatalar": [
+    "Dolu noktanın yüksekliğini limit sanmak.",
+    "Sıçramada sol ve sağ değerleri karıştırmak (soldaki parçanın ucu sol limittir).",
+    "Grafikte uç nokta olan \\(x\\) değerinde iki taraflı limit aramak."
+   ],
+   "terimler": [
+    {
+     "en": "open circle",
+     "tr": "açık daire (noktayı içermez)"
+    },
+    {
+     "en": "closed circle",
+     "tr": "dolu daire (fonksiyon değeri)"
+    },
+    {
+     "en": "jump discontinuity",
+     "tr": "sıçrama süreksizliği"
+    },
+    {
+     "en": "vertical asymptote",
+     "tr": "dikey asimptot"
+    },
+    {
+     "en": "estimate",
+     "tr": "tahmin etmek"
+    },
+    {
+     "en": "unbounded",
+     "tr": "sınırsız"
+    }
+   ]
+  },
+  {
+   "kod": "1.4",
+   "baslik": "Estimating Limit Values from Tables",
+   "baslikTr": "Tablolardan limit tahmini",
+   "sadeceBC": false,
+   "hedefler": [
+    "Sayısal bir tabloda \\(x\\) değerleri \\(c\\)'ye yaklaşırken \\(f(x)\\) değerlerinin eğilimini okumak.",
+    "Tablodan sol ve sağ limitleri ayrı tahmin etmek ve iki taraflı limit hakkında karar vermek.",
+    "Tablonun limit hakkında kesin kanıt değil, tahmin (estimate) verdiğini açıklamak."
+   ],
+   "anlatim": "<p>Bir fonksiyonun formülü olmasa bile, \\(c\\)'ye yakın \\(x\\) değerlerinde \\(f(x)\\)'i hesaplayıp bir <strong>tablo (table of values)</strong> oluşturabiliriz. Limit, tablodaki değerlerin hangi sayıya <strong>yaklaştığıdır</strong>.</p>\n<h4>Klasik örnek</h4>\n<p>\\(f(x)=\\dfrac{\\sin x}{x}\\), \\(x=0\\)'da tanımsız. \\(x\\) radyan cinsinden:</p>\n<table><thead><tr><th>\\(x\\)</th><th>−0.1</th><th>−0.01</th><th>−0.001</th><th>0</th><th>0.001</th><th>0.01</th><th>0.1</th></tr></thead>\n<tbody><tr><td>\\(f(x)\\)</td><td>0.99833</td><td>0.99998</td><td>0.9999998</td><td>tanımsız</td><td>0.9999998</td><td>0.99998</td><td>0.99833</td></tr></tbody></table>\n<p>İki taraftan da değerler 1'e yaklaşıyor. Tahmin: \\(\\lim_{x\\to0}\\dfrac{\\sin x}{x}=1\\). (Bu limit Konu 1.8'de sıkıştırma teoremiyle kanıtlanır.)</p>\n<h4>Adım adım tablo okuma</h4>\n<ol>\n<li>Tablonun <strong>sol yarısını</strong> (\\(x\\lt c\\)) oku: değerler hangi sayıya gidiyor? Bu sol limit tahminidir.</li>\n<li><strong>Sağ yarısını</strong> (\\(x\\gt c\\)) oku: sağ limit tahmini.</li>\n<li>İkisi aynı sayıya gidiyorsa iki taraflı limit o sayıdır. Farklıysa limit yoktur.</li>\n<li>Değerler hızla büyüyorsa (10, 100, 1000…) <strong>sınırsız (unbounded)</strong> davranış vardır; limit yoktur.</li>\n<li>\\(x=c\\) sütunundaki değer (varsa) yalnızca \\(f(c)\\)'dir; limiti etkilemez.</li>\n</ol>\n<div class=\"kn-kural\">Tablo limit için <strong>kanıt değildir</strong>, bir tahmindir. AP'de doğru ifade: “The table <em>suggests</em> that the limit is…” ya da “the best estimate is…”.</div>\n<h4>Tek taraflı farklılık örneği</h4>\n<table><thead><tr><th>\\(x\\)</th><th>1.9</th><th>1.99</th><th>1.999</th><th>2.001</th><th>2.01</th><th>2.1</th></tr></thead>\n<tbody><tr><td>\\(g(x)\\)</td><td>4.81</td><td>4.98</td><td>4.998</td><td>-1.003</td><td>-1.03</td><td>-1.3</td></tr></tbody></table>\n<p>Soldan değerler 5'e, sağdan \\(-1\\)'e gidiyor. \\(\\lim_{x\\to2^-}g(x)\\approx5\\), \\(\\lim_{x\\to2^+}g(x)\\approx-1\\). Farklı olduğundan \\(\\lim_{x\\to2}g(x)\\) yoktur.</p>\n<h4>Hesap makinesi (graphing calculator) kullanımı</h4>\n<p>Calculator-active bölümde (MCQ Part B, FRQ Part A) hesap makinesinin TABLE özelliği ile \\(c\\)'ye yakın değerleri hızla hesaplayabilirsin. Trigonometrik ifadelerde <strong>radyan modu (radian mode)</strong> kullanmayı unutma; derece modunda \\(\\frac{\\sin x}{x}\\) tablosu yaklaşık 0.01745'e gider ve yanlış sonuç verir.</p>\n<div class=\"kn-dikkat\">Çok küçük \\(x\\) değerlerinde (örneğin \\(10^{-12}\\)) hesap makinesi yuvarlama hatası (round-off error) yapabilir ve saçma değerler gösterebilir. 0.001 civarı genellikle yeterlidir. Ayrıca tablo yalnızca seçilen noktalarda bilgi verir; arada fonksiyon farklı davranabilir.</div>",
+   "ornekler": [
+    {
+     "soru": "Tablo: \\(x\\): 2.9, 2.99, 2.999, 3.001, 3.01, 3.1; \\(f(x)\\): 5.71, 5.97, 5.997, 6.003, 6.03, 6.31. Ayrıca \\(f(3)=2\\). \\(\\lim_{x\\to3}f(x)\\)'i tahmin edin.",
+     "cozum": [
+      "Soldan: 5.71, 5.97, 5.997 → 6'ya yaklaşıyor. Sağdan: 6.31, 6.03, 6.003 → 6'ya yaklaşıyor.",
+      "İki taraf da 6 → \\(\\lim_{x\\to3}f(x)\\approx 6\\).",
+      "\\(f(3)=2\\) bilgisi limiti etkilemez; sadece \\(f\\)'nin \\(x=3\\)'te sürekli olmadığını gösterir."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi) \\(h(x)=\\dfrac{e^{2x}-1}{x}\\) için \\(x=\\pm0.01\\) ve \\(x=\\pm0.001\\) değerlerini hesaplayıp \\(\\lim_{x\\to0}h(x)\\)'i tahmin edin.",
+     "cozum": [
+      "\\(h(0.01)=\\dfrac{e^{0.02}-1}{0.01}\\approx2.0201\\); \\(h(-0.01)\\approx1.9801\\).",
+      "\\(h(0.001)\\approx2.0020\\); \\(h(-0.001)\\approx1.9980\\).",
+      "Değerler iki taraftan 2'ye sıkışıyor: \\(\\lim_{x\\to0}h(x)\\approx 2\\)."
+     ]
+    },
+    {
+     "soru": "Tablo: \\(x\\): −0.1, −0.01, −0.001, 0.001, 0.01, 0.1; \\(k(x)\\): −10, −100, −1000, 1000, 100, 10. \\(\\lim_{x\\to0^+}k(x)\\) ve \\(\\lim_{x\\to0}k(x)\\) hakkında ne söylenebilir?",
+     "cozum": [
+      "Sağdan değerler 10, 100, 1000 diye artıyor: \\(\\lim_{x\\to0^+}k(x)=\\infty\\) gibi görünüyor (sınırsız artış).",
+      "Soldan \\(-\\infty\\)'a gidiyor. Ne bir sayıya yaklaşıyor ne de iki taraf aynı; \\(\\lim_{x\\to0}k(x)\\) yoktur. Muhtemelen \\(x=0\\)'da dikey asimptot var."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Tabloda \\(c\\)'ye en yakın değerlere odaklan; uzak değerler (\\(x=1.9\\)) yanıltıcı olabilir.",
+    "Şıklarda hem “5” hem “4.998” varsa: limit yaklaşılan değerdir (5), tablodaki son sayı değil.",
+    "Trigonometri + hesap makinesi = radyan modu. AP sınavında her zaman radyan kullanılır.",
+    "FRQ'da tablodan limit isteniyorsa “the values of f(x) appear to approach …” ifadesini kullan."
+   ],
+   "sikHatalar": [
+    "Tablodaki \\(x=c\\) değerini limit olarak almak.",
+    "Yalnızca bir tarafa bakmak; diğer taraf farklı bir sayıya gidebilir.",
+    "Tabloyu kesin kanıt gibi sunmak (“the table proves”)."
+   ],
+   "terimler": [
+    {
+     "en": "table of values",
+     "tr": "değer tablosu"
+    },
+    {
+     "en": "approach",
+     "tr": "yaklaşmak"
+    },
+    {
+     "en": "estimate",
+     "tr": "tahmin"
+    },
+    {
+     "en": "radian mode",
+     "tr": "radyan modu"
+    },
+    {
+     "en": "round-off error",
+     "tr": "yuvarlama hatası"
+    },
+    {
+     "en": "graphing calculator",
+     "tr": "grafik hesap makinesi"
+    }
+   ]
+  },
+  {
+   "kod": "1.5",
+   "baslik": "Determining Limits Using Algebraic Properties of Limits",
+   "baslikTr": "Limitlerin cebirsel özellikleriyle limit bulma",
+   "sadeceBC": false,
+   "hedefler": [
+    "Toplam, fark, sabitle çarpım, çarpım, bölüm ve kuvvet limit kurallarını uygulamak.",
+    "Polinom ve rasyonel fonksiyonlarda doğrudan yerine koymanın (direct substitution) ne zaman geçerli olduğunu bilmek.",
+    "Verilen limit değerlerinden bileşik ifadelerin limitini hesaplamak ve kuralların koşullarını kontrol etmek."
+   ],
+   "anlatim": "<p>Her limiti tablo veya grafikle bulmak zorunda değiliz. Bilinen limitlerden yeni limitler hesaplamak için <strong>limit özellikleri (properties of limits)</strong> kullanılır.</p>\n<div class=\"kn-kural\"><strong>Limit özellikleri.</strong> \\(\\lim_{x\\to c}f(x)=L\\) ve \\(\\lim_{x\\to c}g(x)=M\\) (her ikisi de gerçek sayı) ise:\n<ul>\n<li><strong>Toplam/fark (sum/difference):</strong> \\(\\lim [f(x)\\pm g(x)] = L\\pm M\\)</li>\n<li><strong>Sabitle çarpım (constant multiple):</strong> \\(\\lim [k\\,f(x)] = kL\\)</li>\n<li><strong>Çarpım (product):</strong> \\(\\lim [f(x)\\,g(x)] = LM\\)</li>\n<li><strong>Bölüm (quotient):</strong> \\(\\lim \\dfrac{f(x)}{g(x)} = \\dfrac{L}{M}\\), <strong>yalnızca \\(M\\neq0\\) ise</strong></li>\n<li><strong>Kuvvet/kök (power/root):</strong> \\(\\lim [f(x)]^n = L^n\\); \\(\\lim \\sqrt[n]{f(x)} = \\sqrt[n]{L}\\) (çift \\(n\\) için \\(L\\gt 0\\))</li>\n</ul></div>\n<p>Kuralların hepsi tek taraflı limitler için de geçerlidir.</p>\n<h4>Doğrudan yerine koyma (direct substitution)</h4>\n<p>Bu kurallar şunu verir: <strong>polinomlar</strong> için \\(\\lim_{x\\to c}p(x)=p(c)\\). <strong>Rasyonel fonksiyonlarda</strong> payda \\(c\\)'de sıfır değilse yine yerine koyarız. Aynı durum \\(\\sin x, \\cos x, e^x\\), \\(\\ln x\\) (\\(x\\gt 0\\)) ve \\(\\sqrt{x}\\) (\\(x\\gt 0\\)) gibi temel fonksiyonların tanım kümesi içinde de geçerlidir; çünkü bu fonksiyonlar tanım kümelerinde süreklidir.</p>\n<p>Örnek: \\(\\lim_{x\\to2}\\dfrac{x^3+1}{x+4} = \\dfrac{8+1}{6}=\\dfrac{3}{2}\\) (payda \\(6\\neq0\\)).</p>\n<h4>Verilen limitlerle hesap (AP'nin sevdiği tür)</h4>\n<p>\\(\\lim_{x\\to4}f(x)=-3\\) ve \\(\\lim_{x\\to4}g(x)=2\\) olsun.</p>\n<div class=\"formul\">\\[ \\lim_{x\\to4}\\frac{f(x)+2g(x)}{x\\,g(x)} = \\frac{-3+2(2)}{4\\cdot 2} = \\frac{1}{8} \\]</div>\n<p>Her parçanın limitini yerine yazdık; \\(x\\)'in limiti 4, paydanın limiti \\(8\\neq0\\).</p>\n<h4>Bileşke (composition)</h4>\n<p>\\(\\lim_{x\\to c}f(g(x))\\) için: \\(\\lim_{x\\to c}g(x)=M\\) ve \\(f\\), \\(M\\)'de sürekli ise sonuç \\(f(M)\\)'dir. Örneğin \\(\\lim_{x\\to1}\\sqrt{x^2+8}=\\sqrt{9}=3\\).</p>\n<div class=\"kn-dikkat\"><strong>Koşulları unutma:</strong> Bölüm kuralı \\(M=0\\) iken kullanılamaz. Pay da sıfıra gidiyorsa (\\(\\frac00\\)) cebirsel düzenleme (1.6) gerekir. Pay sıfır değil, payda sıfıra gidiyorsa limit genellikle sonsuz veya yoktur (1.14). Ayrıca \\(\\lim f\\) ya da \\(\\lim g\\) yoksa kurallar doğrudan uygulanamaz; bu durumda sonuç bazen var bazen yoktur.</div>\n<h4>Tek taraflı limitlerle birlikte</h4>\n<p>Parçalı bir \\(f\\) için \\(\\lim_{x\\to1^-}f(x)=2\\), \\(\\lim_{x\\to1^+}f(x)=5\\) ise \\(\\lim_{x\\to1^+}[3f(x)-x] = 3(5)-1=14\\). Hangi tarafı istediğine dikkat et.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\lim_{x\\to-1}f(x)=4\\), \\(\\lim_{x\\to-1}g(x)=-2\\). \\(\\displaystyle\\lim_{x\\to-1}\\frac{[f(x)]^2 - 3g(x)}{f(x)\\,g(x)+x}\\) değerini bulun.",
+     "cozum": [
+      "Pay: \\(4^2-3(-2)=16+6=22\\).",
+      "Payda: \\(4\\cdot(-2)+(-1) = -9\\neq0\\), bölüm kuralı uygulanabilir.",
+      "Limit \\(= -\\dfrac{22}{9}\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\lim_{x\\to3}\\left(x^2 - 2x\\right)\\cos(\\pi x)\\) değerini bulun.",
+     "cozum": [
+      "Polinom kısmı: \\(9-6=3\\). \\(\\cos(\\pi x)\\) sürekli: \\(\\cos(3\\pi)=-1\\).",
+      "Çarpım kuralı: \\(3\\cdot(-1)=-3\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(\\lim_{x\\to2}f(x)=5\\) ve \\(\\lim_{x\\to2}g(x)=0\\) veriliyor. Öğrenci \\(\\lim_{x\\to2}\\frac{f(x)}{g(x)}=\\frac50\\) yazıp “limit 0'dır” diyor. Hata nedir?",
+     "cozum": [
+      "Bölüm kuralı yalnızca paydanın limiti sıfır değilken geçerlidir; burada \\(M=0\\).",
+      "Pay 5'e, payda 0'a gidiyor: oran mutlak değerce sınırsız büyür. Limit bir sayı olarak <strong>yoktur</strong> (işarete göre \\(\\pm\\infty\\)); kesinlikle 0 değildir."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Paydanın limitini <strong>önce</strong> kontrol et. Sıfır değilse doğrudan yerine koy ve bitir.",
+    "Verilen limit tablosu varsa her terimi sırayla değiştir; parantezleri kaybetme, özellikle \\([g(x)]^2\\) ile \\(g(x^2)\\) farklıdır.",
+    "Kuralları kullandığını FRQ'da göstermek için ara adım yaz: “\\(= \\frac{\\lim (\\ldots)}{\\lim(\\ldots)}\\)”."
+   ],
+   "sikHatalar": [
+    "\\(\\lim[f(x)]^2\\) yerine \\(f\\)'nin limitini karelemeyi unutmak ya da \\(-2\\)'nin karesini \\(-4\\) yazmak.",
+    "Paydanın limiti 0 iken bölüm kuralını uygulamak.",
+    "Bir terimdeki tek başına \\(x\\)'i yerine koymayı unutmak (örneğin \\(f(x)g(x)+x\\) ifadesindeki \\(x\\))."
+   ],
+   "terimler": [
+    {
+     "en": "properties of limits",
+     "tr": "limit özellikleri"
+    },
+    {
+     "en": "direct substitution",
+     "tr": "doğrudan yerine koyma"
+    },
+    {
+     "en": "sum rule",
+     "tr": "toplam kuralı"
+    },
+    {
+     "en": "product rule (limits)",
+     "tr": "çarpım kuralı (limit)"
+    },
+    {
+     "en": "quotient rule (limits)",
+     "tr": "bölüm kuralı (limit)"
+    },
+    {
+     "en": "composition",
+     "tr": "bileşke"
+    }
+   ]
+  },
+  {
+   "kod": "1.6",
+   "baslik": "Determining Limits Using Algebraic Manipulation",
+   "baslikTr": "Cebirsel düzenlemeyle limit bulma",
+   "sadeceBC": false,
+   "hedefler": [
+    "\\(\\frac00\\) belirsiz biçimini (indeterminate form) tanımak ve cebirsel düzenlemeye ihtiyaç olduğunu anlamak.",
+    "Çarpanlara ayırma, eşlenikle çarpma, payda eşitleme ve mutlak değer açma yöntemleriyle limiti hesaplamak.",
+    "Sadeleştirmenin neden limit değerini değiştirmediğini açıklamak."
+   ],
+   "anlatim": "<p>Doğrudan yerine koyma \\(\\frac00\\) verdiğinde bu bir sonuç değil, bir <strong>belirsiz biçimdir (indeterminate form)</strong>: limit 0, 5, \\(-\\frac13\\) ya da yok olabilir. Fonksiyonu, \\(x\\neq c\\) için aynı değerleri veren daha basit bir ifadeye dönüştürürüz.</p>\n<div class=\"kn-tanim\"><strong>Temel fikir:</strong> İki fonksiyon \\(c\\) dışında her yerde (c'nin çevresinde) aynıysa, \\(c\\)'deki limitleri de aynıdır. \\(\\dfrac{(x-2)(x+3)}{x-2}\\) ile \\(x+3\\), \\(x\\neq2\\) için eşittir; bu yüzden limitleri aynıdır.</div>\n<h4>Yöntem 1: Çarpanlara ayırma (factoring)</h4>\n<div class=\"formul\">\\[ \\lim_{x\\to2}\\frac{x^2+x-6}{x^2-4} = \\lim_{x\\to2}\\frac{(x-2)(x+3)}{(x-2)(x+2)} = \\lim_{x\\to2}\\frac{x+3}{x+2} = \\frac54 \\]</div>\n<p>Kullanışlı kalıplar: \\(a^2-b^2=(a-b)(a+b)\\), \\(a^3-b^3=(a-b)(a^2+ab+b^2)\\), \\(a^3+b^3=(a+b)(a^2-ab+b^2)\\). Pay ve payda \\(x=c\\)'de sıfırsa, ikisinde de \\((x-c)\\) çarpanı vardır (polinomlar için).</p>\n<h4>Yöntem 2: Eşlenikle çarpma (multiplying by the conjugate)</h4>\n<p>Kök içeren ifadelerde \\(\\sqrt{A}-B\\)'nin eşleniği \\(\\sqrt{A}+B\\)'dir.</p>\n<div class=\"formul\">\\[ \\lim_{x\\to9}\\frac{\\sqrt{x}-3}{x-9}\\cdot\\frac{\\sqrt{x}+3}{\\sqrt{x}+3} = \\lim_{x\\to9}\\frac{x-9}{(x-9)(\\sqrt{x}+3)} = \\frac{1}{6} \\]</div>\n<h4>Yöntem 3: Karmaşık kesir (complex fraction) — payda eşitleme</h4>\n<div class=\"formul\">\\[ \\lim_{h\\to0}\\frac{\\frac{1}{2+h}-\\frac12}{h} = \\lim_{h\\to0}\\frac{\\frac{2-(2+h)}{2(2+h)}}{h} = \\lim_{h\\to0}\\frac{-h}{2h(2+h)} = \\lim_{h\\to0}\\frac{-1}{2(2+h)} = -\\frac14 \\]</div>\n<h4>Yöntem 4: Mutlak değeri parçalı yazma</h4>\n<p>\\(|x-c|\\) varsa \\(x\\gt c\\) ve \\(x\\lt c\\) için ayrı yaz. \\(\\lim_{x\\to-4}\\dfrac{|x+4|}{x+4}\\): sağdan \\(+1\\), soldan \\(-1\\) → limit yok.</p>\n<h4>Yöntem 5: Trigonometrik özdeşlikler</h4>\n<p>\\(\\sin^2x+\\cos^2x=1\\), \\(\\sin 2x = 2\\sin x\\cos x\\) gibi özdeşliklerle sadeleştirme yapılabilir. Örnek: \\(\\lim_{x\\to0}\\dfrac{\\sin 2x}{\\sin x}=\\lim_{x\\to0}2\\cos x = 2\\). Bilinen özel limitler: \\(\\lim_{x\\to0}\\dfrac{\\sin x}{x}=1\\), \\(\\lim_{x\\to0}\\dfrac{1-\\cos x}{x}=0\\).</p>\n<div class=\"kn-kural\"><strong>Neden “\\(x\\neq c\\)” yazıyoruz?</strong> \\((x-2)\\)'yi sadeleştirmek yalnızca \\(x-2\\neq0\\) iken geçerlidir. Limit zaten \\(x=c\\)'yi kullanmadığından sadeleştirme limiti değiştirmez. FRQ'da “for \\(x\\neq 2\\)” notu iyi bir alışkanlıktır.</div>\n<div class=\"kn-dikkat\">Sadeleştirdikten sonra tekrar yerine koy. Hâlâ \\(\\frac00\\) çıkıyorsa bir çarpan daha var demektir (örneğin \\((x-1)^2\\)). Pay sıfırdan farklı, payda sıfır çıkıyorsa limit sonsuz/yoktur.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\lim_{x\\to-2}\\frac{x^3+8}{x+2}\\) değerini bulun.",
+     "cozum": [
+      "Yerine koyma: \\(\\frac{-8+8}{0}=\\frac00\\) → düzenleme gerekli.",
+      "Küp toplamı: \\(x^3+8=(x+2)(x^2-2x+4)\\). \\(x\\neq-2\\) için ifade \\(x^2-2x+4\\)'tür.",
+      "\\(\\lim_{x\\to-2}(x^2-2x+4) = 4+4+4 = 12\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\lim_{x\\to0}\\frac{\\sqrt{x+16}-4}{x}\\) değerini bulun.",
+     "cozum": [
+      "Yerine koyma \\(\\frac{4-4}{0}=\\frac00\\).",
+      "Eşlenikle çarp: \\(\\dfrac{(x+16)-16}{x(\\sqrt{x+16}+4)} = \\dfrac{1}{\\sqrt{x+16}+4}\\) (\\(x\\neq0\\)).",
+      "\\(x\\to0\\): \\(\\dfrac{1}{4+4}=\\dfrac18\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(f(x)=\\dfrac{x^2-5x+6}{x-3}\\) için \\(\\lim_{x\\to3}f(x)\\)'i bulun ve işlemin neden geçerli olduğunu açıklayın.",
+     "cozum": [
+      "\\(x^2-5x+6=(x-2)(x-3)\\). \\(x\\neq3\\) için \\(f(x)=x-2\\).",
+      "\\(f\\) ve \\(x-2\\), \\(x=3\\) dışında aynı değerleri aldığından limitleri aynıdır: \\(\\lim_{x\\to3}f(x)=\\lim_{x\\to3}(x-2)=1\\).",
+      "Not: \\(f(3)\\) tanımsızdır; limit yine de 1'dir. Grafikte \\((3,1)\\)'de bir delik (hole) vardır."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "\\(\\frac00\\) görünce panik yok: “factor, conjugate, common denominator, identity” sırasını dene.",
+    "Payda \\(h\\), pay \\(f(c+h)-f(c)\\) biçimindeyse (ya da payda \\(x-c\\), pay \\(f(x)-f(c)\\)) bu bir türev tanımıdır; Unit 2'den sonra bu yolla da çözülebilir.",
+    "Şıklarda “0” ve “does not exist” \\(\\frac00\\) için tuzaktır; düzenlemeden karar verme."
+   ],
+   "sikHatalar": [
+    "\\(\\frac00\\)'ı 0, 1 veya “tanımsız, limit yok” diye okumak.",
+    "Eşlenikle çarparken paydayı da çarpmayı unutmak ya da \\((\\sqrt{x}-3)(\\sqrt{x}+3)=x-3\\) yazmak (doğrusu \\(x-9\\)).",
+    "Karmaşık kesirde payda eşitlerken işaret hatası: \\(\\frac{1}{2+h}-\\frac12 = \\frac{2-(2+h)}{2(2+h)}\\), \\(-h\\) çıkar."
+   ],
+   "terimler": [
+    {
+     "en": "indeterminate form",
+     "tr": "belirsiz biçim"
+    },
+    {
+     "en": "factoring",
+     "tr": "çarpanlara ayırma"
+    },
+    {
+     "en": "conjugate",
+     "tr": "eşlenik"
+    },
+    {
+     "en": "rationalize",
+     "tr": "kökten kurtarmak"
+    },
+    {
+     "en": "common denominator",
+     "tr": "ortak payda"
+    },
+    {
+     "en": "hole",
+     "tr": "delik (kaldırılabilir nokta)"
+    }
+   ]
+  },
+  {
+   "kod": "1.7",
+   "baslik": "Selecting Procedures for Determining Limits",
+   "baslikTr": "Limit bulmak için yöntem seçimi",
+   "sadeceBC": false,
+   "hedefler": [
+    "Bir limit ifadesine bakarak hangi yöntemin (yerine koyma, çarpanlara ayırma, eşlenik, özdeşlik, sıkıştırma) uygun olduğunu seçmek.",
+    "Yerine koyma sonucuna göre (sayı, \\(\\frac{k}{0}\\), \\(\\frac00\\)) karar akışı uygulamak.",
+    "Özel trigonometrik limitleri dönüşümle kullanmak."
+   ],
+   "anlatim": "<p>AP sınavında zaman sınırlı olduğu için doğru yöntemi hızlı seçmek gerekir. İşte <strong>karar akışı (procedure selection)</strong>:</p>\n<div class=\"kn-kural\"><strong>Adım 1 — Her zaman önce yerine koy (direct substitution).</strong>\n<ul>\n<li>Sonuç bir <strong>sayı</strong> ise (payda sıfır değil): cevap budur.</li>\n<li>Sonuç \\(\\dfrac{k}{0}\\) (\\(k\\neq0\\)) ise: limit sonsuz veya yoktur → tek taraflı işaret analizi yap (1.14).</li>\n<li>Sonuç \\(\\dfrac{0}{0}\\) ise: belirsiz → Adım 2.</li>\n</ul></div>\n<p><strong>Adım 2 — İfadenin “şekline” bak:</strong></p>\n<table><thead><tr><th>İfadede ne var?</th><th>Yöntem</th><th>Örnek</th></tr></thead><tbody>\n<tr><td>Polinom/polinom</td><td>Çarpanlara ayır, sadeleştir</td><td>\\(\\frac{x^2-1}{x-1}\\)</td></tr>\n<tr><td>Karekök ± sayı</td><td>Eşlenikle çarp</td><td>\\(\\frac{\\sqrt{x+1}-2}{x-3}\\)</td></tr>\n<tr><td>Kesir içinde kesir</td><td>Ortak payda</td><td>\\(\\frac{\\frac1x-\\frac13}{x-3}\\)</td></tr>\n<tr><td>\\(\\sin(ax)\\), \\(\\tan(ax)\\), \\(x\\to0\\)</td><td>\\(\\frac{\\sin u}{u}\\to1\\) kalıbı</td><td>\\(\\frac{\\sin 4x}{x}\\)</td></tr>\n<tr><td>\\(\\sin^2\\), \\(\\cos^2\\), \\(\\sin2x\\)</td><td>Trigonometrik özdeşlik</td><td>\\(\\frac{1-\\cos^2x}{\\sin x}\\)</td></tr>\n<tr><td>\\(|x-c|\\)</td><td>Parçalı yaz, iki taraf ayrı</td><td>\\(\\frac{|x-1|}{x-1}\\)</td></tr>\n<tr><td>Sınırlı × sıfıra giden (\\(\\sin\\frac1x\\), \\(\\cos\\frac1x\\))</td><td>Sıkıştırma teoremi (1.8)</td><td>\\(x\\sin\\frac1x\\)</td></tr>\n<tr><td>Parçalı fonksiyon</td><td>Doğru parçayı kullan, tek taraflı limitler</td><td>—</td></tr></tbody></table>\n<h4>Özel trigonometrik kalıplar</h4>\n<div class=\"formul\">\\[ \\lim_{x\\to0}\\frac{\\sin x}{x}=1,\\qquad \\lim_{x\\to0}\\frac{1-\\cos x}{x}=0,\\qquad \\lim_{x\\to0}\\frac{\\tan x}{x}=1 \\]</div>\n<p>Değişken farklıysa kalıbı tamamla: \\(\\displaystyle\\lim_{x\\to0}\\frac{\\sin 5x}{2x} = \\lim_{x\\to0}\\frac{5}{2}\\cdot\\frac{\\sin 5x}{5x} = \\frac52\\). Genel: \\(\\displaystyle\\lim_{x\\to0}\\frac{\\sin ax}{bx}=\\frac ab\\). Ayrıca \\(\\displaystyle\\lim_{x\\to0}\\frac{\\sin ax}{\\sin bx}=\\frac ab\\).</p>\n<p>Dikkat: kalıp, açının sıfıra gittiği durumda geçerlidir. \\(\\lim_{x\\to\\pi}\\frac{\\sin x}{x}=\\frac{0}{\\pi}=0\\) (yerine koyma yeterli).</p>\n<h4>Örnek çözüm: yöntemi gerekçelendirmek</h4>\n<p>\\(\\displaystyle\\lim_{x\\to0}\\frac{x^2}{1-\\cos x}\\): yerine koyma \\(\\frac00\\). Eşlenik kullan: \\(\\dfrac{x^2(1+\\cos x)}{1-\\cos^2x}=\\dfrac{x^2(1+\\cos x)}{\\sin^2x} = \\left(\\dfrac{x}{\\sin x}\\right)^2(1+\\cos x)\\to 1\\cdot2=2\\).</p>\n<div class=\"kn-dikkat\">Hesap makinesiz bölümde (calculator-inactive) bu yöntemler zorunludur. Calculator-active bölümde bile sonucu tabloyla <em>kontrol</em> etmek iyidir ama FRQ'da tablo yöntemi “justification” sayılmaz.</div>\n<p>Unit 4'te öğrenilecek <strong>L'Hospital kuralı (L'Hospital's Rule)</strong> \\(\\frac00\\) için başka bir yoldur; Unit 1 sorularını bu kurala gerek kalmadan cebirle çözebilmelisin.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\lim_{x\\to0}\\frac{\\tan 3x}{\\sin 2x}\\) değerini bulun.",
+     "cozum": [
+      "Yerine koyma \\(\\frac00\\). Trigonometrik kalıp seç.",
+      "\\(\\dfrac{\\tan3x}{\\sin2x} = \\dfrac{\\tan3x}{3x}\\cdot\\dfrac{2x}{\\sin2x}\\cdot\\dfrac{3x}{2x}\\).",
+      "\\(x\\to0\\): \\(1\\cdot1\\cdot\\frac32=\\frac32\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\lim_{x\\to4}\\frac{\\frac1x-\\frac14}{x-4}\\) değerini bulun.",
+     "cozum": [
+      "Yerine koyma \\(\\frac00\\); kesir içinde kesir → ortak payda.",
+      "\\(\\frac1x-\\frac14=\\frac{4-x}{4x}=-\\frac{x-4}{4x}\\). Bölü \\((x-4)\\): \\(-\\frac{1}{4x}\\) (\\(x\\neq4\\)).",
+      "\\(x\\to4\\): \\(-\\frac1{16}\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\lim_{x\\to1}\\frac{x^2+3}{x-1}\\) için hangi sonuç doğru?",
+     "cozum": [
+      "Yerine koyma \\(\\frac{4}{0}\\): pay sıfır değil → \\(\\frac00\\) değil, düzenleme işe yaramaz.",
+      "\\(x\\to1^+\\): payda küçük pozitif → \\(+\\infty\\). \\(x\\to1^-\\): payda küçük negatif → \\(-\\infty\\).",
+      "İki taraf farklı: \\(\\lim_{x\\to1}\\) yoktur; \\(x=1\\) dikey asimptottur."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "İlk 10 saniye: yerine koy. Sonucu yaz (sayı / \\(\\frac k0\\) / \\(\\frac00\\)). Bu tek adım yöntemi seçer.",
+    "\\(\\frac{\\sin(ax)}{bx}\\) kalıbında cevap \\(\\frac ab\\); \\(\\frac{\\sin(ax)}{\\tan(bx)}\\) de \\(\\frac ab\\). Ezberle ama nedenini bil.",
+    "Kalıp \\(x\\to0\\) için; açı sıfıra gitmiyorsa (örneğin \\(x\\to\\frac{\\pi}{2}\\)) normal yerine koyma yap.",
+    "AP çoktan seçmelide “does not exist” şıkkı varsa \\(\\frac k0\\) durumlarında iki tarafın işaretini kontrol et."
+   ],
+   "sikHatalar": [
+    "\\(\\frac{\\sin 5x}{2x}\\) için “\\(\\sin\\) ile \\(x\\) sadeleşir” deyip \\(\\frac{5}{2}\\) yerine 1 yazmak ya da \\(\\frac25\\) yazmak.",
+    "\\(\\frac{k}{0}\\) durumunu \\(\\frac00\\) sanıp çarpanlara ayırmaya çalışmak.",
+    "\\(\\lim_{x\\to0}\\frac{1-\\cos x}{x}\\)'i 1 sanmak (doğrusu 0)."
+   ],
+   "terimler": [
+    {
+     "en": "procedure",
+     "tr": "yöntem"
+    },
+    {
+     "en": "direct substitution",
+     "tr": "doğrudan yerine koyma"
+    },
+    {
+     "en": "trigonometric identity",
+     "tr": "trigonometrik özdeşlik"
+    },
+    {
+     "en": "special trigonometric limits",
+     "tr": "özel trigonometrik limitler"
+    },
+    {
+     "en": "calculator-inactive",
+     "tr": "hesap makinesiz bölüm"
+    }
+   ]
+  },
+  {
+   "kod": "1.8",
+   "baslik": "Determining Limits Using the Squeeze Theorem",
+   "baslikTr": "Sıkıştırma teoremiyle limit bulma",
+   "sadeceBC": false,
+   "hedefler": [
+    "Sıkıştırma teoreminin (Squeeze Theorem) koşullarını ve sonucunu ifade etmek.",
+    "\\(\\sin\\), \\(\\cos\\) sınırlılığını kullanarak uygun alt ve üst sınır fonksiyonları kurmak.",
+    "Teoremi kullanırken gerekçeyi AP'nin istediği dille yazmak."
+   ],
+   "anlatim": "<p>Bazı limitler cebirle bulunamaz. Örneğin \\(\\lim_{x\\to0}x^2\\sin\\!\\left(\\frac1x\\right)\\): \\(\\sin\\frac1x\\)'in kendi limiti yoktur (salınır), bu yüzden çarpım kuralı uygulanamaz. Burada <strong>sıkıştırma teoremi (Squeeze Theorem / Sandwich Theorem)</strong> devreye girer.</p>\n<div class=\"kn-tanim\"><strong>Sıkıştırma Teoremi.</strong> \\(c\\)'yi içeren bir açık aralıkta (\\(c\\)'nin kendisi hariç olabilir) \\[ g(x) \\le f(x) \\le h(x) \\] ise ve \\[ \\lim_{x\\to c}g(x) = \\lim_{x\\to c}h(x) = L \\] ise, o zaman \\[ \\lim_{x\\to c}f(x)=L. \\]</div>\n<p>Anlamı: \\(f\\), iki fonksiyonun arasında sıkışmıştır. Alt ve üst sınır aynı noktaya gidiyorsa \\(f\\)'nin kaçacak yeri yoktur.</p>\n<h4>Klasik uygulama: sınırlı × sıfıra giden</h4>\n<p>Her \\(x\\neq0\\) için \\(-1\\le\\sin\\frac1x\\le1\\). \\(x^2\\ge0\\) ile çarp (eşitsizlik yönü değişmez):</p>\n<div class=\"formul\">\\[ -x^2 \\le x^2\\sin\\!\\left(\\tfrac1x\\right) \\le x^2 \\]</div>\n<p>\\(\\lim_{x\\to0}(-x^2)=0\\) ve \\(\\lim_{x\\to0}x^2=0\\). Sıkıştırma teoremine göre \\(\\lim_{x\\to0}x^2\\sin\\frac1x=0\\).</p>\n<p>Benzer şekilde \\(x\\cos\\frac1x\\) için \\(x\\) negatif olabileceğinden mutlak değer kullanılır: \\(-|x|\\le x\\cos\\frac1x\\le|x|\\) ve iki sınır da 0'a gider.</p>\n<h4>Verilen eşitsizlikle uygulama</h4>\n<p>AP sorusu sık sık şöyle gelir: “Her \\(x\\) için \\(4x-9\\le f(x)\\le x^2-2x\\)...”. Sınırlarda \\(c\\)'yi yerine koy: iki taraf aynı sayıysa limit odur. Aynı değilse teorem <strong>sonuç vermez</strong> (limit yine de var olabilir ama bu bilgiyle bulunamaz).</p>\n<h4>Önemli sonuç: \\(\\frac{\\sin x}{x}\\)</h4>\n<p>Birim çember üzerinde alan karşılaştırmasıyla, \\(0\\lt |x|\\lt \\frac\\pi2\\) için \\(\\cos x \\le \\dfrac{\\sin x}{x}\\le 1\\) gösterilir. \\(\\cos x\\to1\\) ve \\(1\\to1\\) olduğundan \\(\\displaystyle\\lim_{x\\to0}\\frac{\\sin x}{x}=1\\). Bu, Konu 1.7'deki kalıbın kanıtıdır.</p>\n<div class=\"kn-kural\"><strong>Tam puan gerekçesi (FRQ dili):</strong> “Since \\(g(x)\\le f(x)\\le h(x)\\) for \\(x\\) near \\(c\\), and \\(\\lim_{x\\to c}g(x)=\\lim_{x\\to c}h(x)=L\\), by the Squeeze Theorem \\(\\lim_{x\\to c}f(x)=L\\).” Üç parça şart: (1) eşitsizlik, (2) iki sınırın limiti <em>eşit</em>, (3) teoremin adı.</div>\n<div class=\"kn-dikkat\">Eşitsizliğin <strong>\\(c\\)'nin çevresinde</strong> geçerli olması yeterlidir; her yerde olmak zorunda değil. Ama alt sınırın limiti ile üst sınırın limiti farklıysa (örneğin 2 ve 5) teorem kullanılamaz; “limit 2 ile 5 arasında” bile kesin değildir, sadece limit varsa o aralıktadır.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\lim_{x\\to0} x^4\\cos\\!\\left(\\frac{3}{x}\\right)\\) değerini bulun ve gerekçelendirin.",
+     "cozum": [
+      "\\(-1\\le\\cos\\frac3x\\le1\\); \\(x^4\\ge0\\) ile çarp: \\(-x^4\\le x^4\\cos\\frac3x\\le x^4\\).",
+      "\\(\\lim_{x\\to0}(-x^4)=0=\\lim_{x\\to0}x^4\\).",
+      "Sıkıştırma teoremine göre limit \\(0\\)'dır."
+     ]
+    },
+    {
+     "soru": "\\(1 \\le f(x) \\le x^2-4x+5\\) her \\(x\\) için. \\(\\lim_{x\\to2}f(x)\\) nedir?",
+     "cozum": [
+      "Alt sınır: \\(\\lim_{x\\to2}1=1\\). Üst sınır: \\(4-8+5=1\\).",
+      "İki sınır da 1 → \\(\\lim_{x\\to2}f(x)=1\\) (Squeeze Theorem). Not: \\(x=2\\)'den başka bir noktada, örneğin \\(x=3\\)'te, üst sınır 2 olduğundan bu bilgiyle limit bulunamaz."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Fonksiyon \\(g\\), \\(x=1\\)'i içeren bir aralıkta \\(3x-1\\le g(x)\\le x^3+1\\) koşulunu sağlıyor. \\(\\lim_{x\\to1}g(x)\\) var mıdır? Gerekçelendirin.",
+     "cozum": [
+      "\\(\\lim_{x\\to1}(3x-1)=2\\), \\(\\lim_{x\\to1}(x^3+1)=2\\).",
+      "“Since \\(3x-1\\le g(x)\\le x^3+1\\) near \\(x=1\\) and both bounding functions have limit 2 as \\(x\\to1\\), by the Squeeze Theorem \\(\\lim_{x\\to1}g(x)=2\\).” Limit vardır ve 2'dir."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "\\(\\sin(\\text{çılgın şey})\\) veya \\(\\cos(\\text{çılgın şey})\\) × (sıfıra giden şey) görünce Squeeze düşün.",
+    "Çarpan negatif olabiliyorsa (\\(x\\), \\(x^3\\)) sınırları \\(\\pm|x|\\) ile kur.",
+    "Gerekçede teoremin adını yaz: “by the Squeeze Theorem”. Adı yazmayan cevaplar AP rubriklerinde puan kaybedebilir.",
+    "Eşitsizlik “for all \\(x\\)” diye verilmişse \\(x=c\\)'de de geçerlidir: sınırlar \\(c\\)'de aynı değeri alıyorsa \\(f(c)\\) de o değere eşit olmak zorundadır (ör. \\(2x\\le f(x)\\le x^2+1\\) ise \\(f(1)=2\\)). Yalnızca “near \\(c\\)” deniyorsa \\(f(c)\\) hakkında bilgi yoktur."
+   ],
+   "sikHatalar": [
+    "\\(\\lim x^2\\cdot\\lim\\sin\\frac1x\\) diye çarpım kuralı uygulamak; ikinci limit yoktur.",
+    "Sınırların limitleri farklıyken teoremi kullanmak.",
+    "Negatif bir çarpanla çarparken eşitsizlik yönünü çevirmeyi unutmak."
+   ],
+   "terimler": [
+    {
+     "en": "Squeeze Theorem",
+     "tr": "Sıkıştırma teoremi"
+    },
+    {
+     "en": "bounded",
+     "tr": "sınırlı"
+    },
+    {
+     "en": "inequality",
+     "tr": "eşitsizlik"
+    },
+    {
+     "en": "upper bound",
+     "tr": "üst sınır"
+    },
+    {
+     "en": "lower bound",
+     "tr": "alt sınır"
+    },
+    {
+     "en": "oscillate",
+     "tr": "salınmak"
+    }
+   ]
+  },
+  {
+   "kod": "1.9",
+   "baslik": "Connecting Multiple Representations of Limits",
+   "baslikTr": "Limitin farklı gösterimlerini ilişkilendirme",
+   "sadeceBC": false,
+   "hedefler": [
+    "Aynı limiti grafik, tablo, cebirsel ifade ve sözel açıklama arasında çevirmek.",
+    "Farklı gösterimlerle verilen iki fonksiyonun toplam, çarpım ve bileşke limitlerini hesaplamak.",
+    "Bir limit için hangi gösterimin daha güvenilir bilgi verdiğini değerlendirmek."
+   ],
+   "anlatim": "<p>AP sınavı limitleri dört biçimde verir: <strong>grafik (graphical)</strong>, <strong>sayısal tablo (numerical)</strong>, <strong>cebirsel formül (analytical)</strong> ve <strong>sözel açıklama (verbal)</strong>. 1.9'un amacı bu gösterimler arasında rahatça geçiş yapmaktır. Sorular genellikle iki gösterimi birleştirir: “\\(f\\) grafikle, \\(g\\) formülle verilmiştir; \\(\\lim_{x\\to2}[f(x)\\,g(x)]\\) nedir?”</p>\n<h4>Gösterimlerin güçlü ve zayıf yanları</h4>\n<table><thead><tr><th>Gösterim</th><th>Ne verir?</th><th>Dikkat</th></tr></thead><tbody>\n<tr><td>Grafik</td><td>Tek taraflı davranışı görsel olarak gösterir</td><td>Okuma hassasiyeti sınırlı</td></tr>\n<tr><td>Tablo</td><td>Sayısal eğilim</td><td>Sadece tahmin; aradaki davranışı göstermez</td></tr>\n<tr><td>Formül</td><td>Kesin değer (cebirle)</td><td>Doğru yöntemi seçmek gerekir</td></tr>\n<tr><td>Sözel</td><td>Tanımı ve koşulları</td><td>“approaches”, “from the left” gibi kelimeleri doğru çevir</td></tr></tbody></table>\n<h4>İki fonksiyonla işlem</h4>\n<p>Strateji: <strong>her fonksiyonun tek taraflı limitlerini ayrı ayrı bul, sonra birleştir.</strong> Özellikle bir fonksiyonun limiti yoksa bu yöntem şarttır.</p>\n<p>Örnek: \\(f\\)'nin grafiğinde \\(x=1\\)'de sıçrama var: \\(\\lim_{x\\to1^-}f(x)=2\\), \\(\\lim_{x\\to1^+}f(x)=-1\\). \\(g(x)=x^2-1\\) ise \\(g\\)'nin her iki taraflı limiti \\(0\\)'dır.</p>\n<ul>\n<li>\\(\\lim_{x\\to1}[f(x)+g(x)]\\): soldan \\(2+0=2\\), sağdan \\(-1+0=-1\\) → yok.</li>\n<li>\\(\\lim_{x\\to1}[f(x)\\,g(x)]\\): soldan \\(2\\cdot0=0\\), sağdan \\(-1\\cdot0=0\\) → <strong>0, vardır!</strong></li>\n</ul>\n<p>Yani \\(\\lim f\\) olmasa bile çarpımın limiti var olabilir. Benzer şekilde iki fonksiyonun da limiti yokken toplamın limiti olabilir: \\(\\lim_{x\\to c^-}f=3, \\lim_{x\\to c^+}f=1\\) ve \\(\\lim_{x\\to c^-}g=1, \\lim_{x\\to c^+}g=3\\) ise toplam iki taraftan 4'e gider.</p>\n<h4>Bileşke limit (composite limit) — grafik + grafik</h4>\n<div class=\"kn-kural\">\\(\\lim_{x\\to c}f(g(x))\\) için: (1) iç fonksiyonun limitini bul: \\(g(x)\\to M\\). (2) \\(g(x)\\)'in \\(M\\)'ye <strong>hangi taraftan</strong> yaklaştığını belirle. (3) \\(f\\)'nin o taraftaki limitini al: \\(\\lim_{u\\to M^{\\pm}}f(u)\\). Eğer \\(g(x)\\) \\(c\\)'nin çevresinde tam olarak \\(M\\) sabitine eşitse, sonuç \\(f(M)\\) olur.</div>\n<p>Örnek: \\(g(x)=1-x^2\\) ve \\(x\\to0\\) iken \\(g(x)\\to1\\), ama her zaman 1'in <strong>altından</strong> (\\(g(x)\\lt 1\\)). \\(f\\)'nin \\(u=1\\)'de sıçraması varsa \\(\\lim_{x\\to0}f(g(x))=\\lim_{u\\to1^-}f(u)\\) olur.</p>\n<h4>Sözelden cebire</h4>\n<p>“As \\(x\\) approaches 3 from the right, the values of \\(f(x)\\) increase without bound” → \\(\\lim_{x\\to3^+}f(x)=\\infty\\). “\\(f(x)\\) can be made arbitrarily close to 7 by taking \\(x\\) sufficiently close to 2” → \\(\\lim_{x\\to2}f(x)=7\\).</p>\n<div class=\"kn-dikkat\">Tablo ile formül çelişiyor gibi görünürse formüle güven; tablo yalnızca birkaç noktadan tahmindir. Grafikte değerler belirsizse şıklarda genellikle yalnızca bir tutarlı seçenek vardır; tüm verilen bilgileri birlikte kontrol et.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(f\\) grafiği: \\(\\lim_{x\\to2^-}f(x)=3\\), \\(\\lim_{x\\to2^+}f(x)=1\\), \\(f(2)=1\\). \\(g(x)=\\dfrac{x^2-4}{x-2}\\). \\(\\lim_{x\\to2^+}[f(x)\\,g(x)]\\) ve \\(\\lim_{x\\to2}[f(x)+g(x)]\\) nedir?",
+     "cozum": [
+      "\\(x\\neq2\\) için \\(g(x)=x+2\\) → \\(\\lim_{x\\to2}g(x)=4\\).",
+      "Sağdan çarpım: \\(1\\cdot4=4\\).",
+      "Toplam: soldan \\(3+4=7\\), sağdan \\(1+4=5\\) → \\(\\lim_{x\\to2}[f+g]\\) yoktur."
+     ]
+    },
+    {
+     "soru": "\\(g(x)=x^2+2\\). \\(f\\) grafiği \\(u=2\\)'de: \\(\\lim_{u\\to2^-}f(u)=-3\\), \\(\\lim_{u\\to2^+}f(u)=5\\), \\(f(2)=0\\). \\(\\lim_{x\\to0}f(g(x))\\) nedir?",
+     "cozum": [
+      "\\(x\\to0\\) iken \\(g(x)=x^2+2\\to2\\) ve \\(x\\neq0\\) için \\(g(x)\\gt 2\\): \\(g\\), 2'ye <strong>yukarıdan</strong> yaklaşır.",
+      "O halde \\(\\lim_{x\\to0}f(g(x))=\\lim_{u\\to2^+}f(u)=5\\).",
+      "Tuzak: \\(f(2)=0\\) ya da sol limit \\(-3\\) kullanılmaz."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Tablo: \\(x\\): 0.9, 0.99, 1.01, 1.1; \\(h(x)\\): 2.71, 2.97, 3.03, 3.31. Öğrenci “\\(\\lim_{x\\to1}h(x)=3\\) olduğu kesindir” diyor. Bu ifadeyi değerlendirin.",
+     "cozum": [
+      "Tablo, \\(h(x)\\)'in \\(x=1\\) civarında 3'e yaklaştığını <em>önerir (suggests)</em>; ama sadece dört noktayı gösterir.",
+      "Kesin sonuç için formül (veya grafik) gerekir. Doğru ifade: “The table suggests that \\(\\lim_{x\\to1}h(x)\\) is approximately 3.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "İki fonksiyonlu sorularda dört sayıyı yaz: \\(f\\) sol/sağ, \\(g\\) sol/sağ. Sonra işlemi her taraf için ayrı yap.",
+    "Bileşkede iç fonksiyonun hangi taraftan yaklaştığı belirleyicidir; \\(x^2\\), \\(1-x^2\\), \\(|x|\\) gibi ifadelerin işaretine bak.",
+    "Limiti olmayan ama <strong>sınırlı</strong> bir fonksiyon ile 0'a giden bir fonksiyonun çarpımının limiti 0'dır (ör. sıçramalı \\(f\\) × \\((x-1)^2\\)); çarpım limitini hemen “yok” diye işaretleme. Çarpan sınırsızsa bu kural geçerli değildir."
+   ],
+   "sikHatalar": [
+    "Bir fonksiyonun limiti yok diye toplam/çarpım limitinin de olmadığını varsaymak.",
+    "Bileşkede \\(f(M)\\)'yi kullanmak; doğrusu \\(f\\)'nin \\(M\\)'deki uygun tek taraflı limitidir.",
+    "Tabloyu kesin kanıt gibi kullanmak."
+   ],
+   "terimler": [
+    {
+     "en": "representation",
+     "tr": "gösterim"
+    },
+    {
+     "en": "graphical / numerical / analytical / verbal",
+     "tr": "grafik / sayısal / cebirsel / sözel"
+    },
+    {
+     "en": "composite function",
+     "tr": "bileşke fonksiyon"
+    },
+    {
+     "en": "increase without bound",
+     "tr": "sınırsız artmak"
+    },
+    {
+     "en": "arbitrarily close",
+     "tr": "istenildiği kadar yakın"
+    }
+   ]
+  },
+  {
+   "kod": "1.10",
+   "baslik": "Exploring Types of Discontinuities",
+   "baslikTr": "Süreksizlik türlerini inceleme",
+   "sadeceBC": false,
+   "hedefler": [
+    "Kaldırılabilir (removable), sıçrama (jump) ve sonsuz (infinite) süreksizlikleri grafik ve formülde tanımak.",
+    "Rasyonel fonksiyonda sadeleşen çarpanın delik, sadeleşmeyenin dikey asimptot verdiğini açıklamak.",
+    "Süreksizlik türünü limitler cinsinden (tek taraflı limitlerle) ifade etmek."
+   ],
+   "anlatim": "<p>Bir fonksiyon bir noktada <strong>süreksiz (discontinuous)</strong> ise grafiği orada “kopar”. AP üç temel türü ister:</p>\n<table><thead><tr><th>Tür</th><th>Limitlerle tanım</th><th>Grafikte</th></tr></thead><tbody>\n<tr><td><strong>Kaldırılabilir (removable)</strong></td><td>\\(\\lim_{x\\to c}f(x)\\) <em>var</em>, ama \\(f(c)\\) tanımsız ya da limite eşit değil</td><td>Delik (hole); belki ayrı bir dolu nokta</td></tr>\n<tr><td><strong>Sıçrama (jump)</strong></td><td>Sol ve sağ limitler var (sonlu) ama farklı</td><td>Eğri bir yükseklikten diğerine atlar</td></tr>\n<tr><td><strong>Sonsuz (infinite)</strong></td><td>En az bir tek taraflı limit \\(\\pm\\infty\\)</td><td>Dikey asimptot</td></tr></tbody></table>\n<p>Jump ve infinite türlerine birlikte <strong>kaldırılamaz (non-removable)</strong> süreksizlik denir: tek bir nokta değeri değiştirerek düzeltilemezler. Ayrıca salınım (oscillating) süreksizliği de vardır, örneğin \\(\\sin\\frac1x\\), \\(x=0\\)'da; AP'de nadir sorulur.</p>\n<h4>Rasyonel fonksiyonlarda tür belirleme</h4>\n<ol>\n<li>Pay ve paydayı tamamen çarpanlara ayır.</li>\n<li>Paydayı sıfır yapan her \\(x=c\\) bir süreksizliktir.</li>\n<li>\\((x-c)\\) çarpanı sadeleşiyor ve sadeleşmiş ifadenin paydası \\(c\\)'de sıfır olmuyorsa: <strong>kaldırılabilir</strong> (delik). Deliğin y değeri, sadeleşmiş ifadeye \\(c\\) konarak bulunur.</li>\n<li>Sadeleştikten sonra payda hâlâ \\(c\\)'de sıfırsa: <strong>sonsuz süreksizlik</strong> (dikey asimptot).</li>\n</ol>\n<div class=\"formul\">\\[ f(x)=\\frac{x^2-x-6}{x^2-9} = \\frac{(x-3)(x+2)}{(x-3)(x+3)} = \\frac{x+2}{x+3}\\quad(x\\neq3) \\]</div>\n<p>\\(x=3\\): sadeleşti → delik, konumu \\(\\left(3, \\frac{5}{6}\\right)\\). \\(x=-3\\): payda hâlâ sıfır, pay \\(-1\\neq0\\) → dikey asimptot (infinite discontinuity).</p>\n<h4>Parçalı fonksiyonlarda</h4>\n<p>Sınır noktasında iki parçanın değerlerini karşılaştır. \\(f(x)=\\begin{cases}x+1,&x\\lt 2\\\\ x^2-3,&x\\ge2\\end{cases}\\): soldan \\(3\\), sağdan \\(1\\) → sıçrama. Eğer iki değer eşit ama \\(f(c)\\) farklı tanımlanmışsa → kaldırılabilir.</p>\n<h4>Diğer tipik örnekler</h4>\n<ul>\n<li>\\(\\dfrac{|x|}{x}\\), \\(x=0\\): sıçrama (\\(-1\\) ve \\(1\\)).</li>\n<li>\\(\\tan x\\), \\(x=\\frac{\\pi}{2}\\): sonsuz.</li>\n<li>\\(\\dfrac{\\sin x}{x}\\), \\(x=0\\): kaldırılabilir (limit 1).</li>\n<li>\\(\\ln|x|\\), \\(x=0\\): sonsuz (\\(-\\infty\\)).</li>\n</ul>\n<div class=\"kn-dikkat\">Paydanın sıfır olduğu her nokta asimptot <strong>değildir</strong>. Önce sadeleştir! Ayrıca bir süreksizliğin türünü yazarken kanıt olarak limitleri ver: “removable because \\(\\lim_{x\\to3}f(x)=\\frac56\\) exists but \\(f(3)\\) is undefined.”</div>",
+   "ornekler": [
+    {
+     "soru": "\\(g(x)=\\dfrac{x^2-4x}{x^2-16}\\)'nın süreksizliklerini sınıflandırın.",
+     "cozum": [
+      "\\(g(x)=\\dfrac{x(x-4)}{(x-4)(x+4)}=\\dfrac{x}{x+4}\\), \\(x\\neq4\\).",
+      "\\(x=4\\): sadeleşti, \\(\\lim_{x\\to4}g(x)=\\frac48=\\frac12\\) → kaldırılabilir; delik \\(\\left(4,\\tfrac12\\right)\\).",
+      "\\(x=-4\\): payda sıfır, pay \\(-4\\neq0\\) → sonsuz süreksizlik (dikey asimptot \\(x=-4\\))."
+     ]
+    },
+    {
+     "soru": "\\(h(x)=\\begin{cases}\\dfrac{\\sin(2x)}{x}, & x\\neq0\\\\ 1, & x=0\\end{cases}\\). \\(x=0\\)'daki süreksizliğin türü nedir?",
+     "cozum": [
+      "\\(\\lim_{x\\to0}\\frac{\\sin2x}{x}=2\\): limit vardır.",
+      "\\(h(0)=1\\neq2\\). Limit var ama değere eşit değil → kaldırılabilir süreksizlik. \\(h(0)=2\\) tanımlanırsa süreksizlik giderilir."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(k(x)=\\begin{cases}3-x, & x\\lt 1\\\\ 4, & x=1 \\\\ x+1, & x\\gt 1\\end{cases}\\). \\(k\\), \\(x=1\\)'de sürekli midir? Süreksizse türünü gerekçeyle yazın.",
+     "cozum": [
+      "\\(\\lim_{x\\to1^-}k(x)=3-1=2\\); \\(\\lim_{x\\to1^+}k(x)=1+1=2\\). Limit 2'dir.",
+      "\\(k(1)=4\\neq2=\\lim_{x\\to1}k(x)\\) → sürekli değil.",
+      "Tür: kaldırılabilir; çünkü limit vardır (sonludur), sadece fonksiyon değeri farklıdır. (Sıçrama değildir; sol ve sağ limitler eşittir.)"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Rasyonel fonksiyonda <strong>önce çarpanlara ayır, sonra karar ver</strong>. Sadeleşen = delik, kalan = asimptot.",
+    "Delik sorulursa koordinatı ver: y değeri sadeleşmiş ifadeden gelir.",
+    "Türü yazarken tek taraflı limitleri sayıyla yaz; rubrik “because …” kısmını puanlar."
+   ],
+   "sikHatalar": [
+    "Paydayı sıfır yapan her noktayı dikey asimptot saymak.",
+    "Limit var ama \\(f(c)\\) farklı olan durumu “sıçrama” sanmak.",
+    "Deliğin y değerini orijinal (sadeleşmemiş) ifadeden hesaplamaya çalışmak (\\(\\frac00\\) çıkar)."
+   ],
+   "terimler": [
+    {
+     "en": "removable discontinuity",
+     "tr": "kaldırılabilir süreksizlik"
+    },
+    {
+     "en": "jump discontinuity",
+     "tr": "sıçrama süreksizliği"
+    },
+    {
+     "en": "infinite discontinuity",
+     "tr": "sonsuz süreksizlik"
+    },
+    {
+     "en": "hole",
+     "tr": "delik"
+    },
+    {
+     "en": "non-removable",
+     "tr": "kaldırılamaz"
+    },
+    {
+     "en": "vertical asymptote",
+     "tr": "dikey asimptot"
+    }
+   ]
+  },
+  {
+   "kod": "1.11",
+   "baslik": "Defining Continuity at a Point",
+   "baslikTr": "Bir noktada süreklilik tanımı",
+   "sadeceBC": false,
+   "hedefler": [
+    "Bir noktada sürekliliğin üç koşulunu ifade etmek ve uygulamak.",
+    "Süreklilik gerekçesini AP rubriğinin istediği dille yazmak.",
+    "Parçalı ve rasyonel fonksiyonlarda sürekliliği kontrol etmek."
+   ],
+   "anlatim": "<p>Sezgisel olarak, bir fonksiyon \\(x=c\\)'de grafiği kalemi kaldırmadan çizilebiliyorsa orada süreklidir. AP ise kesin tanım ister.</p>\n<div class=\"kn-tanim\"><strong>Süreklilik tanımı (definition of continuity).</strong> \\(f\\), \\(x=c\\)'de <strong>süreklidir (continuous at \\(x=c\\))</strong> ancak ve ancak şu üç koşul sağlanırsa:\n<ol>\n<li>\\(f(c)\\) tanımlıdır (defined).</li>\n<li>\\(\\lim_{x\\to c}f(x)\\) vardır (exists).</li>\n<li>\\(\\lim_{x\\to c}f(x)=f(c)\\).</li>\n</ol></div>\n<p>Kısa hali: \\(\\lim_{x\\to c}f(x)=f(c)\\). Bu tek eşitlik aslında üç koşulu da içerir; çünkü eşitliğin anlamlı olması için iki tarafın da var olması gerekir.</p>\n<h4>Koşulların hangisi bozuluyor?</h4>\n<table><thead><tr><th>Durum</th><th>Bozulan koşul</th><th>Tür</th></tr></thead><tbody>\n<tr><td>\\(\\frac{x^2-1}{x-1}\\), \\(x=1\\)</td><td>1 (\\(f(1)\\) tanımsız)</td><td>kaldırılabilir</td></tr>\n<tr><td>Sıçrama</td><td>2 (limit yok)</td><td>jump</td></tr>\n<tr><td>Delik + ayrı nokta</td><td>3 (limit ≠ değer)</td><td>kaldırılabilir</td></tr>\n<tr><td>Dikey asimptot</td><td>1 ve 2</td><td>infinite</td></tr></tbody></table>\n<h4>Parçalı fonksiyonda kontrol</h4>\n<p>\\(f(x)=\\begin{cases}x^2+1,&x\\le 2\\\\ 3x-1,&x\\gt 2\\end{cases}\\) için \\(x=2\\):</p>\n<ol>\n<li>\\(f(2)=2^2+1=5\\) (tanımlı).</li>\n<li>\\(\\lim_{x\\to2^-}f(x)=5\\), \\(\\lim_{x\\to2^+}f(x)=3(2)-1=5\\) → \\(\\lim_{x\\to2}f(x)=5\\).</li>\n<li>\\(\\lim_{x\\to2}f(x)=5=f(2)\\) → <strong>süreklidir</strong>.</li>\n</ol>\n<div class=\"kn-kural\"><strong>FRQ'da tam puanlık gerekçe kalıbı:</strong><br>“\\(\\lim_{x\\to2^-}f(x) = 5\\) and \\(\\lim_{x\\to2^+}f(x)=5\\), so \\(\\lim_{x\\to2}f(x)=5\\). Since \\(f(2)=5\\), \\(\\lim_{x\\to2}f(x)=f(2)\\). Therefore \\(f\\) is continuous at \\(x=2\\).”<br>Sürekli değilse: hangi koşulun bozulduğunu sayılarla yaz.</div>\n<h4>Bilinen sürekli fonksiyonlar</h4>\n<p>Polinomlar, \\(\\sin x\\), \\(\\cos x\\), \\(e^x\\) her yerde; rasyonel fonksiyonlar, \\(\\ln x\\), \\(\\sqrt x\\), \\(\\tan x\\) <strong>tanım kümelerinde</strong> süreklidir. Sürekli fonksiyonların toplamı, farkı, çarpımı, bileşkesi süreklidir; bölümü, paydanın sıfır olmadığı yerde süreklidir.</p>\n<div class=\"kn-dikkat\">Grader'lar (değerlendiriciler) “the limit equals the function value” cümlesinin sayılarla birlikte yazılmasını ister. Sadece “the graph has no break” yazmak puan almaz. Ayrıca süreklilik, türevlenebilirlik (differentiability) değildir: \\(|x|\\), \\(x=0\\)'da süreklidir ama köşelidir (Unit 2).</div>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=\\begin{cases}\\dfrac{x^2-16}{x-4}, & x\\neq4\\\\ 8, & x=4\\end{cases}\\). \\(f\\), \\(x=4\\)'te sürekli midir?",
+     "cozum": [
+      "(1) \\(f(4)=8\\) tanımlı.",
+      "(2) \\(x\\neq4\\): \\(\\frac{(x-4)(x+4)}{x-4}=x+4\\) → \\(\\lim_{x\\to4}f(x)=8\\).",
+      "(3) \\(8=8\\). Üç koşul da sağlanır → süreklidir."
+     ]
+    },
+    {
+     "soru": "\\(g(x)=\\begin{cases}\\sqrt{x+5}, & x\\lt 4\\\\ x-1, & x\\ge4\\end{cases}\\). \\(x=4\\)'te süreklilik?",
+     "cozum": [
+      "\\(g(4)=3\\). Soldan: \\(\\sqrt{9}=3\\). Sağdan: \\(4-1=3\\).",
+      "\\(\\lim_{x\\to4}g(x)=3=g(4)\\) → süreklidir."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(h(x)=\\begin{cases}\\cos x, & x\\lt 0\\\\ 1-x, & x\\ge0\\end{cases}\\). \\(h\\)'nin \\(x=0\\)'da sürekli olduğunu gösterin.",
+     "cozum": [
+      "\\(\\lim_{x\\to0^-}h(x)=\\cos0=1\\); \\(\\lim_{x\\to0^+}h(x)=1-0=1\\). O halde \\(\\lim_{x\\to0}h(x)=1\\).",
+      "\\(h(0)=1-0=1\\).",
+      "“Since \\(\\lim_{x\\to0}h(x)=1=h(0)\\), \\(h\\) is continuous at \\(x=0\\).”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Üç koşulu numaralandırarak yaz; okuyucuya (grader) hangi adımı kontrol ettiğini göster.",
+    "Parçalı fonksiyonda \\(f(c)\\)'yi bulmak için eşitsizlik işaretine (\\(\\le\\) / \\(\\lt \\)) dikkat et.",
+    "Süreksizlik gerekçesi: “\\(f\\) is not continuous at \\(x=c\\) because \\(\\lim_{x\\to c}f(x)\\neq f(c)\\)” + sayılar."
+   ],
+   "sikHatalar": [
+    "Yalnızca \\(f(c)\\)'nin tanımlı olmasına bakıp “sürekli” demek.",
+    "Sadece iki tek taraflı limitin eşit olduğunu gösterip \\(f(c)\\) ile karşılaştırmayı unutmak.",
+    "Süreklilik ile türevlenebilirliği karıştırmak."
+   ],
+   "terimler": [
+    {
+     "en": "continuous at a point",
+     "tr": "bir noktada sürekli"
+    },
+    {
+     "en": "defined",
+     "tr": "tanımlı"
+    },
+    {
+     "en": "exists",
+     "tr": "var / mevcut"
+    },
+    {
+     "en": "justification",
+     "tr": "gerekçe"
+    },
+    {
+     "en": "piecewise-defined function",
+     "tr": "parçalı fonksiyon"
+    }
+   ]
+  },
+  {
+   "kod": "1.12",
+   "baslik": "Confirming Continuity over an Interval",
+   "baslikTr": "Bir aralıkta sürekliliği doğrulama",
+   "sadeceBC": false,
+   "hedefler": [
+    "Açık ve kapalı aralıklarda sürekliliği tanımlamak (uç noktalarda tek taraflı süreklilik).",
+    "Temel fonksiyonların tanım kümesine bakarak süreklilik aralıklarını belirlemek.",
+    "Bileşik fonksiyonların hangi aralıklarda sürekli olduğunu bulmak."
+   ],
+   "anlatim": "<p>Bir fonksiyon bir aralıktaki her noktada sürekli ise o aralıkta süreklidir. Ama kapalı aralığın uç noktalarında özel bir tanım gerekir.</p>\n<div class=\"kn-tanim\"><strong>Açık aralıkta (open interval) süreklilik:</strong> \\(f\\), \\((a,b)\\)'deki her noktada süreklidir.<br><strong>Kapalı aralıkta (closed interval) süreklilik:</strong> \\(f\\), \\((a,b)\\)'de süreklidir <em>ve</em> uçlarda tek taraflı süreklidir: \\[ \\lim_{x\\to a^+}f(x)=f(a),\\qquad \\lim_{x\\to b^-}f(x)=f(b). \\]</div>\n<p>Örnek: \\(f(x)=\\sqrt{x}\\), \\(x\\lt 0\\) için tanımsız. \\(x=0\\)'da iki taraflı limit yoktur ama \\(\\lim_{x\\to0^+}\\sqrt x=0=f(0)\\). Bu yüzden \\(\\sqrt x\\), \\([0,\\infty)\\) aralığında süreklidir.</p>\n<h4>Temel fonksiyonların süreklilik aralıkları</h4>\n<table><thead><tr><th>Fonksiyon</th><th>Sürekli olduğu küme</th></tr></thead><tbody>\n<tr><td>Polinom, \\(\\sin x\\), \\(\\cos x\\), \\(e^x\\), \\(a^x\\)</td><td>\\((-\\infty,\\infty)\\)</td></tr>\n<tr><td>Rasyonel \\(\\frac{p(x)}{q(x)}\\)</td><td>\\(q(x)\\neq0\\) olan her yer</td></tr>\n<tr><td>\\(\\sqrt{x}\\) (çift kök)</td><td>\\([0,\\infty)\\)</td></tr>\n<tr><td>\\(\\sqrt[3]{x}\\) (tek kök)</td><td>\\((-\\infty,\\infty)\\)</td></tr>\n<tr><td>\\(\\ln x\\)</td><td>\\((0,\\infty)\\)</td></tr>\n<tr><td>\\(\\tan x\\)</td><td>\\(x\\neq\\frac{\\pi}{2}+k\\pi\\)</td></tr></tbody></table>\n<h4>Bileşik ifadeler</h4>\n<p>Sürekli fonksiyonların toplamı, çarpımı ve bileşkesi süreklidir. Bölümde payda sıfır olamaz. Pratik yöntem: <strong>her parçanın tanım kümesini yaz, kesişimlerini al, paydayı sıfır yapan noktaları çıkar.</strong></p>\n<p>Örnek: \\(f(x)=\\dfrac{\\sqrt{x-1}}{x-5}\\).</p>\n<ul>\n<li>\\(\\sqrt{x-1}\\): \\(x\\ge1\\).</li>\n<li>Payda: \\(x\\neq5\\).</li>\n<li>Sonuç: \\(f\\), \\([1,5)\\cup(5,\\infty)\\) üzerinde süreklidir. Örneğin \\([1,4]\\) aralığında süreklidir, \\([3,6]\\) aralığında değildir.</li>\n</ul>\n<p>Örnek: \\(g(x)=\\ln(9-x^2)\\): \\(9-x^2\\gt 0 \\iff -3\\lt x\\lt 3\\). \\(g\\), \\((-3,3)\\) üzerinde süreklidir.</p>\n<h4>Parçalı fonksiyonlar</h4>\n<p>Her parça kendi aralığında sürekliyse geriye sadece <strong>sınır noktaları</strong> kalır; onları 1.11'deki üç koşulla kontrol et.</p>\n<div class=\"kn-kural\">Neden önemli? <strong>Ara Değer Teoremi (IVT, 1.16)</strong> ve sonraki ünitelerde Ortalama Değer Teoremi, Ekstremum Değer Teoremi gibi teoremlerin hepsi “\\(f\\) is continuous on \\([a,b]\\)” koşulu ister. Bu koşulu doğrulamak FRQ'da puanlıdır.</div>\n<div class=\"kn-dikkat\">“\\(f\\) is differentiable on \\([a,b]\\)” verilmişse süreklilik de garanti edilir (türevlenebilirlik ⇒ süreklilik). Ama tersi doğru değildir.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=\\dfrac{x+2}{x^2-x-6}\\) hangi aralıklarda süreklidir?",
+     "cozum": [
+      "Payda: \\(x^2-x-6=(x-3)(x+2)=0 \\Rightarrow x=3, x=-2\\).",
+      "Rasyonel fonksiyon tanım kümesinde süreklidir: \\((-\\infty,-2)\\cup(-2,3)\\cup(3,\\infty)\\). (\\(x=-2\\) bir delik olsa da \\(f(-2)\\) tanımsız olduğu için orada sürekli değildir.)"
+     ]
+    },
+    {
+     "soru": "\\(g(x)=\\sqrt{4-x}+\\ln(x+1)\\). \\(g\\)'nin sürekli olduğu en geniş aralığı bulun.",
+     "cozum": [
+      "\\(\\sqrt{4-x}\\): \\(x\\le4\\). \\(\\ln(x+1)\\): \\(x\\gt -1\\).",
+      "Kesişim: \\((-1,4]\\). \\(x=4\\)'te soldan süreklidir: \\(\\lim_{x\\to4^-}g(x)=0+\\ln5=g(4)\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(h(x)=\\begin{cases}x^2, & 0\\le x\\le1\\\\ 2-x, & 1\\lt x\\le3\\end{cases}\\). \\(h\\), \\([0,3]\\) üzerinde sürekli midir? Gerekçelendirin.",
+     "cozum": [
+      "Her parça polinom olduğundan kendi açık aralığında süreklidir.",
+      "\\(x=1\\): \\(\\lim_{x\\to1^-}h=1\\), \\(\\lim_{x\\to1^+}h=2-1=1\\), \\(h(1)=1\\) → sürekli.",
+      "Uçlar: \\(\\lim_{x\\to0^+}h=0=h(0)\\), \\(\\lim_{x\\to3^-}h=-1=h(3)\\). Dolayısıyla \\(h\\), \\([0,3]\\) üzerinde süreklidir."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Çoktan seçmeli “on which interval is \\(f\\) continuous?” sorularında: kök → içi \\(\\ge0\\), \\(\\ln\\) → içi \\(\\gt 0\\), payda → \\(\\neq0\\).",
+    "Kapalı aralık sorulduğunda uç noktalarda yalnızca içeri doğru tek taraflı limit kontrol edilir.",
+    "IVT/MVT kullanacaksan FRQ'da önce “\\(f\\) is continuous on \\([a,b]\\) because …” cümlesini yaz."
+   ],
+   "sikHatalar": [
+    "\\(\\ln x\\)'in \\(x=0\\)'da da sürekli olduğunu sanmak (\\(\\ln 0\\) tanımsız).",
+    "Delik olan noktayı süreklilik aralığına dahil etmek.",
+    "Kapalı aralığın uç noktasında iki taraflı limit aramak."
+   ],
+   "terimler": [
+    {
+     "en": "open interval",
+     "tr": "açık aralık"
+    },
+    {
+     "en": "closed interval",
+     "tr": "kapalı aralık"
+    },
+    {
+     "en": "endpoint",
+     "tr": "uç nokta"
+    },
+    {
+     "en": "domain",
+     "tr": "tanım kümesi"
+    },
+    {
+     "en": "continuous from the right",
+     "tr": "sağdan sürekli"
+    },
+    {
+     "en": "continuous from the left",
+     "tr": "soldan sürekli"
+    }
+   ]
+  },
+  {
+   "kod": "1.13",
+   "baslik": "Removing Discontinuities",
+   "baslikTr": "Süreksizlikleri giderme",
+   "sadeceBC": false,
+   "hedefler": [
+    "Kaldırılabilir süreksizliği, fonksiyonu limit değeriyle yeniden tanımlayarak gidermek.",
+    "Parçalı fonksiyonlarda bilinmeyen sabitleri süreklilik koşuluyla bulmak.",
+    "İki bilinmeyenli süreklilik (ve gerekirse ek koşul) problemlerini sistem kurarak çözmek."
+   ],
+   "anlatim": "<p>Kaldırılabilir süreksizlikte limit vardır; sorun sadece \\(f(c)\\)'nin eksik ya da yanlış olmasıdır. Çözüm: <strong>\\(f(c)\\)'yi limite eşit tanımlamak</strong>.</p>\n<div class=\"kn-kural\">\\(\\lim_{x\\to c}f(x)=L\\) varsa, \\[ g(x)=\\begin{cases}f(x), & x\\neq c\\\\ L, & x=c\\end{cases} \\] fonksiyonu \\(c\\)'de süreklidir. Bu \\(g\\)'ye \\(f\\)'nin <strong>sürekli uzantısı (continuous extension)</strong> denir.</div>\n<h4>Örnek 1: rasyonel</h4>\n<p>\\(f(x)=\\dfrac{x^2-2x-8}{x-4}\\). \\(x\\neq4\\) için \\(f(x)=x+2\\); \\(\\lim_{x\\to4}f(x)=6\\). \\(f(4)=6\\) tanımlanırsa süreksizlik giderilir. Dikkat: \\(x=c\\)'de sonsuz veya sıçrama süreksizliği varsa bu yöntem işe yaramaz; tek bir değer o kopukluğu kapatamaz.</p>\n<h4>Örnek 2: parçalı fonksiyonda tek sabit</h4>\n<p>\\(f(x)=\\begin{cases}kx^2-1, & x\\lt 2\\\\ 3x+k, & x\\ge2\\end{cases}\\) için \\(x=2\\)'de süreklilik:</p>\n<div class=\"formul\">\\[ \\lim_{x\\to2^-}f(x)=4k-1,\\quad \\lim_{x\\to2^+}f(x)=f(2)=6+k \\] \\[ 4k-1=6+k \\Rightarrow 3k=7 \\Rightarrow k=\\tfrac73 \\]</div>\n<h4>Örnek 3: iki sabit, iki sınır noktası</h4>\n<p>\\(f(x)=\\begin{cases}ax+b, & x\\lt 1\\\\ x^2+2, & 1\\le x\\le 3\\\\ bx-a, & x\\gt 3\\end{cases}\\) her yerde sürekli olsun.</p>\n<ul>\n<li>\\(x=1\\): \\(a+b=1+2=3\\).</li>\n<li>\\(x=3\\): \\(9+2=11=3b-a\\).</li>\n<li>Toplayarak: \\(a+b+3b-a=14 \\Rightarrow 4b=14\\Rightarrow b=\\tfrac72\\), \\(a=3-\\tfrac72=-\\tfrac12\\).</li>\n</ul>\n<h4>Örnek 4: limit hesabı gerektiren sabit</h4>\n<p>\\(f(x)=\\begin{cases}\\dfrac{\\sqrt{x+9}-3}{x}, & x\\neq0\\\\ k, & x=0\\end{cases}\\): eşlenikle \\(\\lim_{x\\to0}f(x)=\\frac{1}{\\sqrt9+3}=\\frac16\\), yani \\(k=\\frac16\\).</p>\n<p>Benzer şekilde \\(\\dfrac{x^2+ax-6}{x-2}\\) türü sorularda limitin var olması için payın da \\(x=2\\)'de sıfır olması gerekir: \\(4+2a-6=0\\Rightarrow a=1\\). Sonra limit hesaplanır: \\(\\frac{(x-2)(x+3)}{x-2}\\to5\\).</p>\n<div class=\"kn-dikkat\"><strong>Önemli mantık:</strong> Payda \\(x\\to c\\) iken sıfıra gidiyor ve limit sonlu olacaksa, payın da sıfıra gitmesi <em>zorunludur</em>. Aksi halde oran sınırsız büyür. Bu fikir, bilinmeyen katsayı bulmada güçlü bir araçtır.</div>\n<p>Unit 2'de “hem sürekli hem türevlenebilir” koşuluyla iki denklem kurulan sorular gelecek; bugünkü süreklilik denklemi onların ilk adımıdır.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=\\begin{cases}x^2+c, & x\\le-1\\\\ 2cx+5, & x\\gt -1\\end{cases}\\) her yerde sürekli olacak şekilde \\(c\\)'yi bulun.",
+     "cozum": [
+      "\\(x=-1\\)'de soldan ve \\(f(-1)\\): \\(1+c\\). Sağdan: \\(-2c+5\\).",
+      "\\(1+c=-2c+5 \\Rightarrow 3c=4 \\Rightarrow c=\\tfrac43\\).",
+      "Kontrol: \\(1+\\tfrac43=\\tfrac73\\); \\(-\\tfrac83+5=\\tfrac73\\). Eşit."
+     ]
+    },
+    {
+     "soru": "\\(g(x)=\\dfrac{1-\\cos(2x)}{x^2}\\), \\(x\\neq0\\). \\(g(0)\\) ne olmalı ki \\(g\\), \\(x=0\\)'da sürekli olsun?",
+     "cozum": [
+      "Özdeşlik: \\(1-\\cos2x=2\\sin^2x\\). \\(g(x)=2\\left(\\frac{\\sin x}{x}\\right)^2\\).",
+      "\\(\\lim_{x\\to0}g(x)=2\\cdot1^2=2\\). \\(g(0)=2\\) olmalı."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(f(x)=\\begin{cases}\\dfrac{x^2+ax+12}{x-3}, & x\\neq3\\\\ b, & x=3\\end{cases}\\) \\(x=3\\)'te sürekli ise \\(a\\) ve \\(b\\)'yi bulun.",
+     "cozum": [
+      "Limitin sonlu olması için pay \\(x=3\\)'te sıfır olmalı: \\(9+3a+12=0\\Rightarrow a=-7\\).",
+      "\\(x^2-7x+12=(x-3)(x-4)\\) → \\(x\\neq3\\) için \\(f(x)=x-4\\), \\(\\lim_{x\\to3}f(x)=-1\\).",
+      "Süreklilik: \\(b=f(3)=\\lim_{x\\to3}f(x)=-1\\). Cevap: \\(a=-7\\), \\(b=-1\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Parçalı fonksiyonda: sınır noktasını <strong>her iki</strong> parçaya koy ve eşitle. Hangisinin \\(f(c)\\) olduğu (\\(\\le\\) işareti) sonucu değiştirmez ama yazmak iyidir.",
+    "İki bilinmeyen varsa iki denklem lazım: iki sınır noktası, ya da süreklilik + başka bir koşul.",
+    "Cevabını mutlaka geri koyup kontrol et; işaret hataları en sık puan kaybıdır."
+   ],
+   "sikHatalar": [
+    "Sonsuz süreksizliği \\(f(c)\\)'yi değiştirerek gidermeye çalışmak.",
+    "Sınır noktasında yanlış parçayı kullanmak veya sabitin katsayısını kaybetmek (\\(kx^2\\)'de \\(x=2\\) için \\(4k\\)).",
+    "“Payın da sıfır olması gerekir” adımını atlayıp \\(a\\)'yı bulamamak."
+   ],
+   "terimler": [
+    {
+     "en": "removable discontinuity",
+     "tr": "kaldırılabilir süreksizlik"
+    },
+    {
+     "en": "redefine",
+     "tr": "yeniden tanımlamak"
+    },
+    {
+     "en": "continuous extension",
+     "tr": "sürekli uzantı"
+    },
+    {
+     "en": "constant",
+     "tr": "sabit"
+    },
+    {
+     "en": "system of equations",
+     "tr": "denklem sistemi"
+    }
+   ]
+  },
+  {
+   "kod": "1.14",
+   "baslik": "Connecting Infinite Limits and Vertical Asymptotes",
+   "baslikTr": "Sonsuz limitler ve dikey asimptotlar",
+   "sadeceBC": false,
+   "hedefler": [
+    "Sonsuz limitleri (infinite limits) tek taraflı işaret analiziyle belirlemek.",
+    "Dikey asimptotu (vertical asymptote) limit tanımıyla ifade etmek.",
+    "Rasyonel, logaritmik ve trigonometrik fonksiyonlarda dikey asimptotları bulmak."
+   ],
+   "anlatim": "<p>\\(x\\to c\\) iken \\(f(x)\\) değerleri sınırsız büyüyorsa (veya küçülüyorsa) bunu <strong>sonsuz limit (infinite limit)</strong> olarak yazarız: \\(\\lim_{x\\to c^+}f(x)=\\infty\\). Dikkat: \\(\\infty\\) bir sayı değildir; bu yazım limitin <em>nasıl</em> var olmadığını anlatır.</p>\n<div class=\"kn-tanim\"><strong>Dikey asimptot (vertical asymptote):</strong> \\(x=c\\) doğrusu, \\(f\\)'nin dikey asimptotudur eğer \\[ \\lim_{x\\to c^-}f(x)=\\pm\\infty \\quad\\text{veya}\\quad \\lim_{x\\to c^+}f(x)=\\pm\\infty \\] (en az biri) ise.</div>\n<h4>\\(\\frac{k}{0}\\) durumunda işaret analizi</h4>\n<p>Yerine koyma \\(\\dfrac{k}{0}\\) (\\(k\\neq0\\)) verirse oran sınırsız büyür. İşareti bulmak için:</p>\n<ol>\n<li>Payın \\(c\\)'deki işaretini bul.</li>\n<li>Paydanın \\(c\\)'nin hemen sağında/solunda işaretini bul (bir test değeri koy: \\(c+0.001\\)).</li>\n<li>İşaretleri böl: (+)/(+)=\\(+\\infty\\), (+)/(−)=\\(-\\infty\\) vb.</li>\n</ol>\n<p>Örnek: \\(\\displaystyle\\lim_{x\\to2^-}\\frac{x+3}{x-2}\\). Pay \\(\\to5\\gt 0\\). \\(x\\lt 2\\) iken \\(x-2\\lt 0\\) (küçük negatif). Sonuç: \\(\\frac{+}{-}\\to-\\infty\\). Sağdan \\(+\\infty\\). İki taraflı limit yoktur; \\(x=2\\) dikey asimptottur.</p>\n<table><thead><tr><th>Payda biçimi</th><th>Soldan</th><th>Sağdan</th></tr></thead><tbody>\n<tr><td>\\(\\frac{1}{x-c}\\)</td><td>\\(-\\infty\\)</td><td>\\(+\\infty\\)</td></tr>\n<tr><td>\\(\\frac{1}{(x-c)^2}\\)</td><td>\\(+\\infty\\)</td><td>\\(+\\infty\\)</td></tr>\n<tr><td>\\(\\frac{-1}{(x-c)^2}\\)</td><td>\\(-\\infty\\)</td><td>\\(-\\infty\\)</td></tr></tbody></table>\n<p>Çift kuvvetli çarpanda iki taraf aynı işaretlidir; bu durumda \\(\\lim_{x\\to c}f(x)=\\infty\\) yazılabilir (yine de sayı olarak limit yoktur).</p>\n<h4>Rasyonel fonksiyonda asimptot bulma</h4>\n<p>Önce sadeleştir. Sadeleştikten sonra paydayı sıfır yapan değerler dikey asimptottur. \\(f(x)=\\dfrac{x^2-1}{x^2+x-2}=\\dfrac{(x-1)(x+1)}{(x-1)(x+2)}\\): \\(x=1\\) delik, yalnızca \\(x=-2\\) dikey asimptot.</p>\n<h4>Diğer fonksiyonlar</h4>\n<ul>\n<li>\\(\\ln x\\): \\(\\lim_{x\\to0^+}\\ln x=-\\infty\\) → \\(x=0\\) dikey asimptot.</li>\n<li>\\(\\tan x\\): \\(\\lim_{x\\to\\frac{\\pi}{2}^-}\\tan x=+\\infty\\), \\(\\lim_{x\\to\\frac{\\pi}{2}^+}\\tan x=-\\infty\\).</li>\n<li>\\(\\dfrac{1}{e^x-1}\\): \\(x=0\\)'da dikey asimptot.</li>\n</ul>\n<div class=\"kn-kural\">FRQ'da dikey asimptot iddiası için gerekçe: “\\(x=2\\) is a vertical asymptote because \\(\\lim_{x\\to2^+}f(x)=\\infty\\).” Bir tek taraflı sonsuz limit yazmak yeterlidir.</div>\n<div class=\"kn-dikkat\">\\(\\frac00\\) durumunda sonsuz limit olduğunu varsayma; önce sadeleştir. Ayrıca parçalı bir fonksiyon \\(x=c\\)'de tek bir nokta olarak tanımlı olsa bile, eğri o doğruya yaklaşırken sınırsız büyüyorsa \\(x=c\\) yine dikey asimptottur.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\lim_{x\\to-3^+}\\frac{2x}{x^2-9}\\) nedir?",
+     "cozum": [
+      "Yerine koyma: \\(\\frac{-6}{0}\\) → sonsuz limit; işaret analizi.",
+      "\\(x^2-9=(x-3)(x+3)\\). \\(x\\to-3^+\\): \\(x+3\\) küçük pozitif, \\(x-3\\approx-6\\) negatif → payda küçük negatif.",
+      "Pay \\(-6\\) (negatif). \\(\\frac{-}{-}\\to+\\infty\\)."
+     ]
+    },
+    {
+     "soru": "\\(f(x)=\\dfrac{x^2+x-6}{x^2-4x+4}\\)'ün dikey asimptotlarını ve \\(x\\to2\\) davranışını bulun.",
+     "cozum": [
+      "\\(f(x)=\\dfrac{(x+3)(x-2)}{(x-2)^2}=\\dfrac{x+3}{x-2}\\), \\(x\\neq2\\).",
+      "Sadeleştikten sonra payda yine \\(x=2\\)'de sıfır → \\(x=2\\) dikey asimptot.",
+      "\\(x\\to2^+\\): \\(\\frac{5}{0^+}\\to+\\infty\\); \\(x\\to2^-\\): \\(-\\infty\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(g(x)=\\dfrac{(x-1)\\ln x}{x^2-1}\\) (\\(x\\gt 0\\), \\(x\\neq1\\)). \\(x=1\\) dikey asimptot mudur? \\(x=0\\)? Gerekçelendirin.",
+     "cozum": [
+      "\\(x=1\\): yerine koyma \\(\\frac{0\\cdot0}{0}=\\frac00\\) → önce sadeleştir. \\(x^2-1=(x-1)(x+1)\\) olduğundan \\(x\\neq1\\) için \\(g(x)=\\dfrac{\\ln x}{x+1}\\) ve \\(\\lim_{x\\to1}g(x)=\\dfrac{\\ln1}{2}=0\\). Sonlu limit → asimptot <strong>değil</strong>, delik: \\((1,0)\\).",
+      "\\(x=0\\): \\(x\\to0^+\\) iken \\(\\ln x\\to-\\infty\\), \\(x+1\\to1\\). \\(\\frac{-\\infty}{1}\\to-\\infty\\). “\\(x=0\\) is a vertical asymptote because \\(\\lim_{x\\to0^+}g(x)=-\\infty\\).”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "\\(\\frac{k}{0}\\) gördüğünde mutlaka iki taraf için test değeri koy; şıklarda \\(+\\infty\\), \\(-\\infty\\), DNE birlikte olur.",
+    "Asimptot sorularında “all vertical asymptotes” denirse sadeleştirdikten sonra kalan tüm sıfırları listele.",
+    "Gerekçede limit gösterimini kullan; “the denominator is zero” tek başına yeterli değildir."
+   ],
+   "sikHatalar": [
+    "Paydayı sıfır yapan her değeri asimptot saymak (delikleri unutmak).",
+    "İşaret analizinde \\(x\\to c^-\\) için paydayı pozitif almak.",
+    "\\(\\lim_{x\\to c}f(x)=\\infty\\) yazıp limitin “var” olduğunu sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "infinite limit",
+     "tr": "sonsuz limit"
+    },
+    {
+     "en": "vertical asymptote",
+     "tr": "dikey asimptot"
+    },
+    {
+     "en": "increases without bound",
+     "tr": "sınırsız artar"
+    },
+    {
+     "en": "decreases without bound",
+     "tr": "sınırsız azalır"
+    },
+    {
+     "en": "sign analysis",
+     "tr": "işaret analizi"
+    }
+   ]
+  },
+  {
+   "kod": "1.15",
+   "baslik": "Connecting Limits at Infinity and Horizontal Asymptotes",
+   "baslikTr": "Sonsuzda limitler ve yatay asimptotlar",
+   "sadeceBC": false,
+   "hedefler": [
+    "\\(x\\to\\pm\\infty\\) iken limitleri (limits at infinity) baskın terim (dominant term) analiziyle hesaplamak.",
+    "Yatay asimptotu (horizontal asymptote) limit diliyle tanımlamak.",
+    "Kök ve mutlak değer içeren ifadelerde \\(x\\to-\\infty\\) işaret tuzağını çözmek; büyüme hızlarını karşılaştırmak."
+   ],
+   "anlatim": "<div class=\"kn-tanim\"><strong>Yatay asimptot (horizontal asymptote):</strong> \\(y=L\\) doğrusu \\(f\\)'nin yatay asimptotudur eğer \\[ \\lim_{x\\to\\infty}f(x)=L \\quad\\text{veya}\\quad \\lim_{x\\to-\\infty}f(x)=L. \\] Bir fonksiyonun en fazla iki yatay asimptotu olabilir (biri sağda, biri solda).</div>\n<h4>Temel limitler</h4>\n<p>\\(\\displaystyle\\lim_{x\\to\\pm\\infty}\\frac{1}{x^n}=0\\) (\\(n\\gt 0\\)). \\(\\lim_{x\\to\\infty}e^{-x}=0\\), \\(\\lim_{x\\to-\\infty}e^{x}=0\\), \\(\\lim_{x\\to\\infty}\\ln x=\\infty\\).</p>\n<h4>Rasyonel fonksiyonlar: derece karşılaştırması</h4>\n<p>Pay ve paydayı paydanın en yüksek kuvvetine böl. Kısayol:</p>\n<table><thead><tr><th>Durum</th><th>\\(\\lim_{x\\to\\pm\\infty}\\frac{p(x)}{q(x)}\\)</th><th>Örnek</th></tr></thead><tbody>\n<tr><td>derece pay &lt; derece payda</td><td>0</td><td>\\(\\frac{3x+1}{x^2-5}\\to0\\)</td></tr>\n<tr><td>dereceler eşit</td><td>baş katsayılar oranı</td><td>\\(\\frac{6x^2-x}{2x^2+7}\\to3\\)</td></tr>\n<tr><td>derece pay &gt; derece payda</td><td>\\(\\pm\\infty\\) (yatay asimptot yok)</td><td>\\(\\frac{x^3}{x^2+1}\\to\\pm\\infty\\)</td></tr></tbody></table>\n<h4>Kök içeren ifadeler ve \\(-\\infty\\) tuzağı</h4>\n<p>\\(\\sqrt{x^2}=|x|\\). \\(x\\to-\\infty\\) iken \\(|x|=-x\\)! Örnek:</p>\n<div class=\"formul\">\\[ \\lim_{x\\to-\\infty}\\frac{\\sqrt{9x^2+1}}{2x-3}=\\lim_{x\\to-\\infty}\\frac{|x|\\sqrt{9+\\frac1{x^2}}}{x\\left(2-\\frac3x\\right)}=\\frac{-3}{2} \\]</div>\n<p>\\(x\\to+\\infty\\) iken aynı ifade \\(\\frac32\\) verir. Bu fonksiyonun iki yatay asimptotu vardır: \\(y=\\frac32\\) ve \\(y=-\\frac32\\).</p>\n<h4>Büyüme hızları (rates of growth)</h4>\n<div class=\"kn-kural\">\\(x\\to\\infty\\) iken büyüme sıralaması: \\[ \\ln x \\ll x^p \\ (p\\gt 0) \\ll a^x\\ (a\\gt 1) \\] Daha hızlı büyüyen pay ise limit \\(\\infty\\), payda ise 0. Örnek: \\(\\lim_{x\\to\\infty}\\frac{x^{10}}{e^x}=0\\), \\(\\lim_{x\\to\\infty}\\frac{\\ln x}{\\sqrt x}=0\\).</div>\n<h4>Üstel kesirler</h4>\n<p>\\(f(x)=\\dfrac{4e^x+1}{e^x-3}\\): \\(x\\to\\infty\\) iken \\(e^x\\)'e böl: \\(\\frac{4+e^{-x}}{1-3e^{-x}}\\to4\\). \\(x\\to-\\infty\\) iken \\(e^x\\to0\\): \\(\\frac{0+1}{0-3}=-\\frac13\\). İki yatay asimptot: \\(y=4\\) ve \\(y=-\\frac13\\).</p>\n<h4>Salınan terimler</h4>\n<p>\\(\\lim_{x\\to\\infty}\\frac{\\sin x}{x}=0\\) (sıkıştırma: \\(-\\frac1x\\le\\frac{\\sin x}{x}\\le\\frac1x\\)). Ama \\(\\lim_{x\\to\\infty}\\sin x\\) yoktur. Grafik yatay asimptotunu kesebilir: \\(\\frac{\\sin x}{x}\\), \\(y=0\\)'ı sonsuz kez keser.</p>\n<div class=\"kn-dikkat\">\\(\\infty-\\infty\\) biçimi (örneğin \\(\\sqrt{x^2+4x}-x\\)) belirsizdir; eşlenikle çarp: \\(\\frac{4x}{\\sqrt{x^2+4x}+x}\\to\\frac{4}{2}=2\\).</div>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\lim_{x\\to\\infty}\\frac{5x^3-2x}{1-4x^3}\\) nedir?",
+     "cozum": [
+      "Dereceler eşit (3). Baş katsayılar: \\(5\\) ve \\(-4\\).",
+      "Limit \\(=-\\frac54\\). Yatay asimptot \\(y=-\\frac54\\)."
+     ]
+    },
+    {
+     "soru": "\\(f(x)=\\dfrac{\\sqrt{4x^2+x}}{x+1}\\) fonksiyonunun tüm yatay asimptotlarını bulun.",
+     "cozum": [
+      "\\(\\sqrt{4x^2+x}=|x|\\sqrt{4+\\frac1x}\\); \\(x+1=x\\left(1+\\frac1x\\right)\\).",
+      "\\(x\\to\\infty\\): \\(|x|/x=1\\) → \\(\\frac{2}{1}=2\\).",
+      "\\(x\\to-\\infty\\): \\(|x|/x=-1\\) → \\(-2\\). Yatay asimptotlar: \\(y=2\\) ve \\(y=-2\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Öğrenci “\\(g(x)=\\dfrac{x^2+3}{x-1}\\)'in yatay asimptotu \\(y=1\\)'dir çünkü baş katsayılar 1 ve 1” diyor. Hata nedir?",
+     "cozum": [
+      "Baş katsayı oranı kuralı yalnızca dereceler eşitken geçerlidir; burada pay 2., payda 1. derece.",
+      "\\(x\\to\\infty\\) iken \\(g(x)\\approx x\\to\\infty\\); \\(x\\to-\\infty\\) iken \\(-\\infty\\). Yatay asimptot yoktur. (Eğik asimptot \\(y=x+1\\) vardır ama AP Calculus'ta genellikle sorulmaz.)"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Rasyonel limitte sadece baş terimlere bak: \\(\\frac{ax^n}{bx^m}\\). Diğer terimler sonsuzda önemsizdir.",
+    "\\(x\\to-\\infty\\) ve karekök birlikteyse \\(\\sqrt{x^2}=-x\\) olduğunu yaz; şıklarda hem \\(L\\) hem \\(-L\\) olacaktır.",
+    "Yatay asimptot iki yön için ayrı ayrı istenebilir: “all horizontal asymptotes” = iki limiti de hesapla.",
+    "Büyüme sıralamasını ezberle: log &lt; kuvvet &lt; üstel."
+   ],
+   "sikHatalar": [
+    "\\(x\\to-\\infty\\) iken \\(\\sqrt{x^2}=x\\) almak (işaret hatası).",
+    "Dereceler farklıyken baş katsayı oranını kullanmak.",
+    "Grafiğin yatay asimptotu kesemeyeceğini sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "limit at infinity",
+     "tr": "sonsuzda limit"
+    },
+    {
+     "en": "horizontal asymptote",
+     "tr": "yatay asimptot"
+    },
+    {
+     "en": "dominant term",
+     "tr": "baskın terim"
+    },
+    {
+     "en": "leading coefficient",
+     "tr": "baş katsayı"
+    },
+    {
+     "en": "rate of growth",
+     "tr": "büyüme hızı"
+    },
+    {
+     "en": "end behavior",
+     "tr": "uç davranışı"
+    }
+   ]
+  },
+  {
+   "kod": "1.16",
+   "baslik": "Working with the Intermediate Value Theorem (IVT)",
+   "baslikTr": "Ara Değer Teoremi (IVT) ile çalışma",
+   "sadeceBC": false,
+   "hedefler": [
+    "Ara Değer Teoreminin (Intermediate Value Theorem) koşullarını ve sonucunu doğru ifade etmek.",
+    "Tablo veya formülle verilen fonksiyonda belirli bir değerin alındığını IVT ile gerekçelendirmek.",
+    "Bir aralıkta en az kaç kök olduğunu IVT ile belirlemek ve teoremin ne söylemediğini bilmek."
+   ],
+   "anlatim": "<div class=\"kn-tanim\"><strong>Ara Değer Teoremi (Intermediate Value Theorem, IVT).</strong> \\(f\\), kapalı aralık \\([a,b]\\) üzerinde <strong>sürekli</strong> ise ve \\(k\\), \\(f(a)\\) ile \\(f(b)\\) arasında herhangi bir sayı ise, o zaman \\(f(c)=k\\) olacak şekilde <strong>en az bir</strong> \\(c\\in(a,b)\\) vardır. (\\(k\\) uç değerlerden birine eşitse \\(c\\) uçta olabilir; tipik kullanımda \\(k\\) kesin olarak arasındadır.)</div>\n<p>Sezgi: Kalemi kaldırmadan \\(y=f(a)\\) yüksekliğinden \\(y=f(b)\\) yüksekliğine giden bir eğri, aradaki her yatay çizgiyi en az bir kez keser.</p>\n<h4>İki koşul</h4>\n<ol>\n<li><strong>Süreklilik:</strong> \\(f\\), \\([a,b]\\) üzerinde süreklidir. (Türevlenebilir verilmişse süreklilik de vardır.)</li>\n<li><strong>Arada olma:</strong> \\(f(a) \\lt  k \\lt  f(b)\\) veya \\(f(b) \\lt  k \\lt  f(a)\\).</li>\n</ol>\n<p>Süreklilik yoksa teorem bir şey garanti etmez. Örneğin \\(f(x)=\\frac1x\\), \\([-1,1]\\)'de: \\(f(-1)=-1\\), \\(f(1)=1\\), ama \\(f(x)=0\\) hiç olmaz; çünkü \\(x=0\\)'da süreksizdir.</p>\n<h4>Kök bulma (existence of a root)</h4>\n<p>\\(f(x)=x^3+2x-5\\) için \\(f(1)=-2\\lt 0\\), \\(f(2)=7\\gt 0\\). \\(f\\) bir polinom olduğu için süreklidir. IVT'ye göre \\(f(c)=0\\) olan bir \\(c\\in(1,2)\\) vardır.</p>\n<div class=\"kn-kural\"><strong>FRQ tam puan kalıbı:</strong><br>“\\(f\\) is continuous on \\([1,2]\\) because it is a polynomial (or: because \\(f\\) is differentiable). \\(f(1) = -2 \\lt  0 \\lt  7 = f(2)\\). By the Intermediate Value Theorem, there is a value \\(c\\) in \\((1,2)\\) such that \\(f(c)=0\\).”<br>Üç parça: (1) süreklilik + nedeni, (2) \\(k\\)'nin arada olduğunu gösteren eşitsizlik (sayılarla), (3) teoremin adı ve sonuç.</div>\n<h4>Tablo ile minimum kök sayısı</h4>\n<table><thead><tr><th>\\(x\\)</th><th>0</th><th>2</th><th>5</th><th>7</th><th>9</th></tr></thead><tbody><tr><td>\\(g(x)\\)</td><td>3</td><td>−1</td><td>−4</td><td>2</td><td>−2</td></tr></tbody></table>\n<p>\\(g\\) sürekli ise işaret değişimleri: \\([0,2]\\) (+ → −), \\([5,7]\\) (− → +), \\([7,9]\\) (+ → −). <strong>En az 3</strong> kök vardır. IVT tam sayıyı söylemez; daha fazla kök olabilir.</p>\n<p>Aynı tabloda “\\(g(x)=1\\) en az kaç kez?” sorulursa 1'in arada kaldığı aralıkları say: \\([0,2]\\) (3 → −1), \\([5,7]\\) (−4 → 2), \\([7,9]\\) (2 → −2): en az 3.</p>\n<h4>IVT ne söylemez?</h4>\n<ul>\n<li>\\(c\\)'nin <strong>tam değerini</strong> vermez.</li>\n<li>Kaç tane \\(c\\) olduğunu söylemez, sadece “en az bir”.</li>\n<li>\\(f(a)\\) ve \\(f(b)\\) aynı işaretliyse kök olmadığını söylemez (olabilir de, olmayabilir de).</li>\n<li>Türev hakkında bir şey söylemez (o, Ortalama Değer Teoremi'dir, Unit 5).</li>\n</ul>\n<div class=\"kn-dikkat\">Calculator-active FRQ'larda IVT sıkça bir alt soru olur (örneğin “Is there a time \\(t\\) when the temperature is 70°?”). Hesaplamaları yap, ama gerekçede teoremi ve sürekliliği mutlaka yaz. Bölüm başına bir “justify” puanı genelde bu cümleye bağlıdır.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=\\cos x - x\\) denkleminin \\(\\left[0,\\frac{\\pi}{2}\\right]\\)'de bir çözümü olduğunu gösterin (\\(f(x)=0\\)).",
+     "cozum": [
+      "\\(f\\), \\(\\cos x\\) ve \\(x\\) sürekli olduğu için \\(\\left[0,\\frac\\pi2\\right]\\)'de süreklidir.",
+      "\\(f(0)=1\\gt 0\\); \\(f\\left(\\frac\\pi2\\right)=0-\\frac\\pi2\\lt 0\\).",
+      "\\(f\\left(\\frac\\pi2\\right)\\lt 0\\lt f(0)\\). IVT'ye göre \\(f(c)=0\\) olan \\(c\\in\\left(0,\\frac\\pi2\\right)\\) vardır."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir odanın sıcaklığı \\(T(t)\\) (°C) türevlenebilir bir fonksiyondur. \\(T(0)=18\\), \\(T(3)=25\\), \\(T(5)=21\\), \\(T(8)=16\\). \\(0\\lt t\\lt 8\\) arasında \\(T(t)=20\\) olan en az kaç an vardır? Gerekçelendirin.",
+     "cozum": [
+      "\\(T\\) türevlenebilir, dolayısıyla süreklidir.",
+      "\\([0,3]\\): \\(18\\lt 20\\lt 25\\) → en az bir \\(t\\). \\([5,8]\\): \\(16\\lt 20\\lt 21\\) → en az bir \\(t\\). (\\([3,5]\\): 25 ve 21; ikisi de 20'nin üstünde, IVT bir şey garanti etmez.)",
+      "IVT'ye göre en az <strong>2</strong> an vardır: biri \\((0,3)\\), diğeri \\((5,8)\\) içinde."
+     ]
+    },
+    {
+     "soru": "\\(g(x)=\\dfrac{1}{x-2}\\), \\(g(1)=-1\\), \\(g(3)=1\\). “IVT'ye göre \\((1,3)\\)'te \\(g(c)=0\\) vardır” ifadesi doğru mu?",
+     "cozum": [
+      "IVT'nin ilk koşulu: \\(g\\), \\([1,3]\\)'te sürekli olmalı. Ama \\(g\\), \\(x=2\\)'de tanımsız (dikey asimptot).",
+      "Koşul sağlanmadığı için IVT uygulanamaz. Gerçekten de \\(\\frac{1}{x-2}=0\\) hiçbir \\(x\\) için sağlanmaz. İfade yanlıştır."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "IVT gerekçesinde eşitsizliği sayılarla yaz: “\\(f(1)=-2\\lt 0\\lt 7=f(2)\\)”. Sadece “işaret değişiyor” yazmak bazen yetmez.",
+    "Süreklilik nedenini belirt: “because \\(f\\) is differentiable” veya “because \\(f\\) is a polynomial”.",
+    "“At least how many” soruları için tabloda ardışık sütunları tek tek kontrol et; her uygun aralık en az bir değer verir.",
+    "IVT ile MVT'yi karıştırma: IVT fonksiyon değeri (\\(f(c)=k\\)), MVT türev değeri (\\(f'(c)=\\ldots\\)) hakkındadır."
+   ],
+   "sikHatalar": [
+    "Sürekliliği kontrol etmeden IVT uygulamak.",
+    "IVT'nin “tam olarak bir” kök garanti ettiğini sanmak.",
+    "Aynı işaretli uç değerlerden “kök yoktur” sonucunu çıkarmak."
+   ],
+   "terimler": [
+    {
+     "en": "Intermediate Value Theorem (IVT)",
+     "tr": "Ara Değer Teoremi"
+    },
+    {
+     "en": "at least one",
+     "tr": "en az bir"
+    },
+    {
+     "en": "guarantee",
+     "tr": "garanti etmek"
+    },
+    {
+     "en": "existence",
+     "tr": "varlık"
+    },
+    {
+     "en": "root / zero",
+     "tr": "kök / sıfır"
+    },
+    {
+     "en": "justify",
+     "tr": "gerekçelendirmek"
+    }
+   ]
+  }
+ ]
+}
