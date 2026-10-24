@@ -1,0 +1,1372 @@
+[
+ {
+  "id": "frq-stat-k1",
+  "sayfa": "ap-statistics",
+  "ders": "statistics",
+  "tur": "Çok odaklı: soru kurma ve veri toplama (Uygulama 1–2)",
+  "baslik": "Household Water-Use Survey",
+  "sure_dk": 20,
+  "hesapMakinesi": true,
+  "zorluk": "easy",
+  "giris": "<p>A regional water company serves about 84,000 households in three types of neighborhoods: city-center apartments, suburban houses, and rural homes. The company wants to collect data on each household's <strong>average daily water use</strong>, in liters, and on <strong>whether the household waters a garden</strong> (yes or no). Three sampling plans are proposed.</p><ul><li><strong>Plan 1:</strong> The households are separated into the three neighborhood types. A simple random sample of 150 households is selected from each type.</li><li><strong>Plan 2:</strong> One household is chosen at random from the first 200 households on the company's alphabetical customer list. Then every 200th household on the list after it is selected.</li><li><strong>Plan 3:</strong> A link to an online form is posted on the company's website. Any household that wants to can report its water use.</li></ul><p>The company used Plan 1. The table summarizes the average daily water use of the 450 selected households.</p><table class=\"frq-tablo\"><tr><th>n</th><th>Mean</th><th>Min</th><th>Q1</th><th>Median</th><th>Q3</th><th>Max</th></tr><tr><td>450</td><td>268</td><td>61</td><td>212</td><td>259</td><td>318</td><td>512</td></tr></table><p>All values are in liters per day.</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "<p>(i) Identify the sampling method used in Plan 1.</p><p>(ii) Identify the sampling method used in Plan 2.</p>",
+    "puan": 2,
+    "ne_soruyor": "Plan 1 ve Plan 2'deki örnekleme yöntemlerinin adını vermeni istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) Plan 1: tabakalı rastgele örnekleme (stratified random sample); tabakalar = mahalle türleri.",
+      "ornek_cevap": "Plan 1 is a stratified random sample, with the three neighborhood types as strata."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) Plan 2: sistematik rastgele örnekleme (systematic random sample). Yalnız \"random sample\" ya da \"SRS\" puan almaz.",
+      "ornek_cevap": "Plan 2 is a systematic random sample."
+     }
+    ],
+    "ornek_cozum": "<p>Plan 1'de nüfus önce benzer gruplara (tabaka, <em>strata</em>) ayrılıyor, sonra <strong>her tabakadan</strong> ayrı bir basit rastgele örneklem alınıyor: bu tabakalı örneklemedir. Plan 2'de rastgele bir başlangıç noktası ve sabit bir aralık (her 200. hane) var: bu sistematik örneklemedir.</p><p><strong>Model answer:</strong> (i) <strong>Stratified random sample</strong> (strata = neighborhood types). (ii) <strong>Systematic random sample</strong>.</p>",
+    "sik_hatalar": [
+     "Plan 1'i küme (cluster) örneklemesi sanmak: kümede rastgele seçilen grupların <em>tamamı</em> alınır; burada her gruptan örneklem alınıyor.",
+     "Plan 2'ye yalnızca \"random sample\" demek: yöntemin adı istenir."
+    ]
+   },
+   {
+    "harf": "b",
+    "soru": "<p>(i) Explain why the results from Plan 3 cannot be generalized to all households the company serves.</p><p>(ii) Explain one statistical advantage of separating the households by neighborhood type in Plan 1.</p>",
+    "puan": 2,
+    "ne_soruyor": "Plan 3'ün neden genellenemediğini ve Plan 1'deki gruplara ayırmanın istatistiksel faydasını açıklamanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) Plan 3 gönüllü yanıt (voluntary response) örneklemidir: haneler kendini seçer, rastgele seçim yoktur; katılmayı seçen haneler (ör. su faturasıyla ilgilenenler) diğerlerinden su kullanımı bakımından farklı olabilir. Bağlam (hane / su kullanımı) gerekir.",
+      "ornek_cevap": "Plan 3 is a voluntary response sample: households choose themselves, so those who respond (for example, households worried about their water bills) may use water differently from other households. The sample does not represent all households."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) Mahalle türü su kullanımıyla ilişkilidir (ör. bahçeli banliyö evleri daha çok su kullanır); tabakalar kendi içinde benzer olduğu için tahmin daha kesin (daha az değişken) olur ya da her mahalle türü örneklemde temsil edilir.",
+      "ornek_cevap": "Water use is likely similar within a neighborhood type but different between types, so stratifying gives a more precise estimate of mean water use and guarantees every type is represented."
+     }
+    ],
+    "ornek_cozum": "<p>(i) Genelleme için örneklem <strong>rastgele</strong> seçilmiş olmalıdır. Plan 3'te web sitesine girip formu doldurmayı seçen haneler kendi kendini seçer (<em>voluntary response</em>). Bu haneler sistematik olarak farklı olabilir: ör. faturası yüksek olduğu için şikâyetçi olanlar ya da suyu çok dikkatli kullananlar.</p><p>(ii) Tabakalar içi benzerlik yüksekse (ör. apartmanlar az, bahçeli evler çok su kullanır) tabakalı örnekleme, örneklem ortalamasının değişkenliğini azaltır.</p><p><strong>Model answer:</strong> (i) <strong>Plan 3 is a voluntary response sample</strong>; households that choose to respond may differ in water use from those that do not, so the results do not represent all households. (ii) Because water use is likely <strong>similar within each neighborhood type</strong>, stratifying gives a <strong>more precise estimate</strong> of mean daily water use.</p>",
+    "sik_hatalar": [
+     "\"The sample is too small\" demek: sorun boyut değil, kendi kendini seçme.",
+     "Tabakalamanın yanlılığı (bias) ortadan kaldırdığını söylemek: asıl fayda kesinlik (precision) ve temsil."
+    ]
+   },
+   {
+    "harf": "c",
+    "soru": "<p>Classify each of the two variables, average daily water use and whether the household waters a garden, as categorical or quantitative.</p>",
+    "puan": 1,
+    "ne_soruyor": "İki değişkenin türünü (kategorik mi nicel mi) belirtmeni istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "İkisi de doğru: günlük su kullanımı nicel (quantitative); bahçe sulama (evet/hayır) kategorik (categorical).",
+      "ornek_cevap": "Average daily water use is quantitative; whether the household waters a garden is categorical."
+     }
+    ],
+    "ornek_cozum": "<p>Litre cinsinden ölçülen ve ortalaması alınabilen değer nicel; \"evet/hayır\" gibi grup bildiren değer kategoriktir.</p><p><strong>Model answer:</strong> Average daily water use is <strong>quantitative</strong>; whether the household waters a garden is <strong>categorical</strong>.</p>",
+    "sik_hatalar": [
+     "Yalnız birini doğru sınıflandırmak (puan için ikisi de doğru olmalı)."
+    ]
+   },
+   {
+    "harf": "d",
+    "soru": "<p>Use the 1.5 × IQR rule to determine whether there are any outliers in the Plan 1 data. Show the work that leads to your answer.</p>",
+    "puan": 2,
+    "ne_soruyor": "Tablodaki çeyreklerle aykırı değer sınırlarını hesaplayıp aykırı değer olup olmadığına karar vermeni istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "IQR = 318 − 212 = 106 ve sınırlar doğru: alt sınır 212 − 1.5(106) = 53, üst sınır 318 + 1.5(106) = 477.",
+      "ornek_cevap": "IQR = 318 − 212 = 106; lower fence = 212 − 159 = 53; upper fence = 318 + 159 = 477."
+     },
+     {
+      "puan": 1,
+      "olcut": "Karar min ve max ile karşılaştırılarak: max = 512 > 477 olduğundan en az bir yüksek aykırı değer var; min = 61 > 53 olduğundan düşük aykırı değer yok.",
+      "ornek_cevap": "Because the maximum, 512 liters, is greater than 477, there is at least one high outlier. Because the minimum, 61 liters, is greater than 53, there are no low outliers."
+     }
+    ],
+    "ornek_cozum": "<p>\\(IQR = Q_3 - Q_1 = 318 - 212 = 106\\) ve \\(1.5 \\times 106 = 159\\).</p><p>Alt sınır: \\(212 - 159 = 53\\). Üst sınır: \\(318 + 159 = 477\\).</p><p>En küçük değer 61 > 53 → düşük aykırı yok. En büyük değer 512 > 477 → en az bir yüksek aykırı değer var.</p><p><strong>Model answer:</strong> The fences are 53 and 477 liters. <strong>The maximum of 512 liters is above 477, so there is at least one high outlier; the minimum of 61 liters is above 53, so there are no low outliers.</strong></p>",
+    "sik_hatalar": [
+     "Sınırları bulup min/max ile karşılaştırmayı yazmamak.",
+     "\"Kaç tane\" aykırı değer olduğunu söylemek: özet tablodan yalnız \"en az bir\" çıkar."
+    ]
+   },
+   {
+    "harf": "e",
+    "soru": "<p>The company wants to know whether, among all households it serves, households that water a garden use more water per day, on average, than households that do not. Determine a valid investigative question for this study. Make sure all three components of a valid investigative question are included in your response.</p>",
+    "puan": 3,
+    "ne_soruyor": "Değişkenleri, analiz türünü (parametre ve yön) ve nüfusu içeren geçerli bir araştırma sorusu yazmanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "1. bileşen (veri toplama): soru ilgili değişkenlerle kurulmuş — günlük su kullanımı (litre) ve bahçe sulama durumu.",
+      "ornek_cevap": "...the mean daily water use, in liters, of households that water a garden ... households that do not water a garden..."
+     },
+     {
+      "puan": 1,
+      "olcut": "2. bileşen (analiz): parametre (ortalama, mean) ve karşı hipotezin yönü (greater than) açık; \"convincing statistical evidence\" gibi test dili.",
+      "ornek_cevap": "Is there convincing statistical evidence that the mean ... is greater than the mean ...?"
+     },
+     {
+      "puan": 1,
+      "olcut": "3. bileşen (sonuç): sonuçların geçerli olduğu nüfus — şirketin hizmet verdiği tüm haneler.",
+      "ornek_cevap": "...of all households served by the water company..."
+     }
+    ],
+    "ornek_cozum": "<p>Geçerli bir araştırma sorusunun üç bileşeni: (1) <strong>değişkenler</strong> (neyi ölçeceğiz?), (2) <strong>analiz</strong> (hangi parametre, hangi yön?), (3) <strong>nüfus</strong> (sonuç kimin için geçerli?).</p><p><strong>Model answer:</strong> <strong>Is there convincing statistical evidence that the mean daily water use, in liters, of all households served by the company that water a garden is greater than the mean daily water use of all households served by the company that do not water a garden?</strong></p>",
+    "sik_hatalar": [
+     "\"Do people with gardens use more water?\" gibi parametresi ve nüfusu belirsiz soru yazmak.",
+     "Ortalama yerine örneklem değerlerinden söz etmek (\"in the sample\")."
+    ]
+   }
+  ],
+  "toplam_puan": 10,
+  "kaynak": "AP-style original (Meberra 1.28.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.28.0",
+   "cedKonu": "1.2, 1.7, 1.10, 1.11, 1.12",
+   "tip": "Question 1: Multi-Focus on Practices 1 and 2"
+  }
+ },
+ {
+  "id": "frq-stat-k2",
+  "sayfa": "ap-statistics",
+  "ders": "statistics",
+  "tur": "Çok odaklı: soru kurma ve veri toplama (Uygulama 1–2)",
+  "baslik": "Stretching Before Sleep",
+  "sure_dk": 22,
+  "hesapMakinesi": true,
+  "zorluk": "medium",
+  "giris": "<p>A sleep researcher recruits 48 adult volunteers who say they often have trouble falling asleep. She wants to know whether a short stretching routine done right before bed reduces the time it takes to fall asleep.</p><p>Each volunteer will follow one of two routines every night for two weeks:</p><ul><li><strong>Routine S:</strong> 10 minutes of guided stretching</li><li><strong>Routine R:</strong> 10 minutes of quietly reading a printed book</li></ul><p>A wrist sensor records each volunteer's average time to fall asleep, in minutes, over the two weeks. Of the 48 volunteers, 20 drink coffee after 4 p.m. on most days and 28 do not.</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "<p>(i) Identify the experimental units in this study.</p><p>(ii) Identify the response variable and classify it as categorical or quantitative.</p>",
+    "puan": 2,
+    "ne_soruyor": "Deneyde kimin üzerinde çalışıldığını ve ölçülen sonucu (türüyle birlikte) belirtmeni istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) Deney birimleri: 48 yetişkin gönüllü.",
+      "ornek_cevap": "The experimental units are the 48 adult volunteers."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) Yanıt değişkeni: iki haftalık ortalama uykuya dalma süresi (dakika) ve nicel olduğu.",
+      "ornek_cevap": "The response variable is the average time to fall asleep, in minutes; it is quantitative."
+     }
+    ],
+    "ornek_cozum": "<p>Deney birimi, tedavinin uygulandığı bireydir: burada gönüllüler. Yanıt değişkeni ölçülen sonuçtur: sensörün kaydettiği ortalama uykuya dalma süresi (dakika) — sayısal ve ortalaması alınabilir, yani nicel.</p><p><strong>Model answer:</strong> (i) <strong>The 48 adult volunteers.</strong> (ii) <strong>Average time to fall asleep, in minutes — a quantitative variable.</strong></p>",
+    "sik_hatalar": [
+     "Yanıt değişkeni olarak rutini (S/R) yazmak: rutin açıklayıcı değişkendir (tedavi).",
+     "Birimi \"wrist sensors\" ya da \"nights\" olarak yazmak."
+    ]
+   },
+   {
+    "harf": "b",
+    "soru": "<p>Describe how the researcher could randomly assign the 48 volunteers to the two routines so that each routine has 24 volunteers.</p>",
+    "puan": 2,
+    "ne_soruyor": "48 gönüllüyü iki rutine 24'er kişi olacak şekilde rastgele atamanın adımlarını tarif etmeni istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Rastgele mekanizma açık: gönüllüleri 1–48 numaralamak ve rastgele sayı üreteci (tekrarları atlayarak) ya da 48 eş kâğıt/kartla rastgele seçim.",
+      "ornek_cevap": "Number the volunteers 1 to 48. Use a random number generator to select 24 different numbers, ignoring repeats."
+     },
+     {
+      "puan": 1,
+      "olcut": "Atama tamamlanmış: seçilen 24 kişi Routine S'ye, kalan 24 kişi Routine R'ye (ya da eşdeğeri); her grupta 24 kişi garanti.",
+      "ornek_cevap": "The 24 volunteers with the selected numbers follow Routine S, and the remaining 24 volunteers follow Routine R."
+     }
+    ],
+    "ornek_cozum": "<p>İyi bir rastgele atama tarifinde iki şey vardır: (1) <strong>nasıl</strong> rastgele seçileceği (numaralama + üreteç ya da kura), (2) seçilenlerin <strong>hangi gruba</strong> gideceği ve grupların 24–24 olacağı.</p><p>Not: Her gönüllü için yazı-tura atmak 24–24'ü garanti etmez.</p><p><strong>Model answer:</strong> <strong>Number the volunteers from 1 to 48. Use a random number generator to choose 24 different integers from 1 to 48, ignoring repeats. Those 24 volunteers follow Routine S; the other 24 follow Routine R.</strong></p>",
+    "sik_hatalar": [
+     "Her gönüllü için yazı-tura atmak (gruplar eşit olmayabilir).",
+     "Tekrarlanan sayıları atlamayı söylememek.",
+     "Gönüllülerin kendi rutinlerini seçmesine izin vermek."
+    ]
+   },
+   {
+    "harf": "c",
+    "soru": "<p>The researcher considers using a randomized block design with blocks based on whether a volunteer drinks coffee after 4 p.m. on most days. Explain why blocking in this way could be beneficial.</p>",
+    "puan": 1,
+    "ne_soruyor": "Akşam kahvesine göre blok oluşturmanın deneyin karşılaştırmasına nasıl yardım edeceğini açıklamanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Kahve (kafein) uykuya dalma süresini etkileyebilir; blok, bu kaynaktan gelen değişkenliği ayırır ve rutinlerin karşılaştırmasını daha kesin yapar. Hem kahve–yanıt bağlantısı hem \"daha kesin karşılaştırma / değişkenliği azaltma\" gerekir.",
+      "ornek_cevap": "Late coffee drinking likely increases the time to fall asleep. Blocking separates this source of variation from the effect of the routines, so the comparison of Routine S and Routine R is more precise."
+     }
+    ],
+    "ornek_cozum": "<p>Bloklama, yanıtı etkileyen ama bizim çalışmadığımız bir değişkenin (burada akşam kahvesi) etkisini ayırmak içindir. Kahve içenler muhtemelen daha geç uykuya dalar; her blok içinde rastgele atama yaparsak, rutinler arasındaki fark kahve farkıyla karışmaz.</p><p><strong>Model answer:</strong> <strong>Volunteers who drink coffee late in the day probably take longer to fall asleep. Blocking separates that variation from the effect of the routine, giving a more precise comparison of the two routines.</strong></p>",
+    "sik_hatalar": [
+     "Kahvenin uykuyu nasıl etkilediğini söylemeden yalnızca \"to reduce variability\" yazmak.",
+     "Bloklamanın yanlılığı (bias) giderdiğini söylemek."
+    ]
+   },
+   {
+    "harf": "d",
+    "soru": "<p>Suppose the volunteers were randomly assigned, and the mean time to fall asleep for Routine S was lower than for Routine R by a statistically significant amount.</p><p>(i) Can the researcher conclude that the stretching routine causes a reduction in the time to fall asleep? Explain.</p><p>(ii) To what population can the results be generalized? Explain.</p>",
+    "puan": 2,
+    "ne_soruyor": "Sonuçtan neden-sonuç çıkarılıp çıkarılamayacağını ve sonucun hangi nüfusa genellenebileceğini açıklamanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) Evet: tedaviler rastgele atandığı için neden-sonuç sonucu kurulabilir.",
+      "ornek_cevap": "Yes. Because the routines were randomly assigned to the volunteers, a cause-and-effect conclusion is reasonable."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) Yalnız gönüllülere benzer yetişkinlere (uykuya dalmakta zorlananlar); çünkü gönüllüler rastgele seçilmedi, tüm yetişkinlere genellenemez.",
+      "ornek_cevap": "Only to adults similar to these volunteers, who have trouble falling asleep, because the volunteers were not randomly selected from a larger population."
+     }
+    ],
+    "ornek_cozum": "<p><strong>Rastgele atama</strong> → neden-sonuç. <strong>Rastgele seçim</strong> → nüfusa genelleme. Bu deneyde ilki var, ikincisi yok.</p><p><strong>Model answer:</strong> (i) <strong>Yes, because the routines were randomly assigned</strong>, the difference can be attributed to the routine. (ii) <strong>Only to adults like these volunteers</strong> (who have trouble falling asleep), <strong>because the volunteers were not a random sample</strong>.</p>",
+    "sik_hatalar": [
+     "\"Correlation does not imply causation\" diyerek neden-sonucu reddetmek: bu bir deneydir.",
+     "Sonucu \"all adults\" için genellemek."
+    ]
+   },
+   {
+    "harf": "e",
+    "soru": "<p>The researcher wants to use a confidence interval to estimate how much Routine S changes the mean time to fall asleep compared with Routine R. Determine a valid investigative question for this study. Make sure all three components of a valid investigative question are included in your response.</p>",
+    "puan": 3,
+    "ne_soruyor": "Güven aralığına uygun, değişkenleri, parametreyi ve nüfusu/neden-sonuç türünü içeren bir araştırma sorusu yazmanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "1. bileşen: değişkenler — rutin (S ya da R) ve uykuya dalma süresi (dakika).",
+      "ornek_cevap": "...time to fall asleep, in minutes, ... Routine S instead of Routine R..."
+     },
+     {
+      "puan": 1,
+      "olcut": "2. bileşen: parametre (ortalamalar farkı) ve tahmin amacı (makul değerler aralığı / \"how much\"), test dili değil.",
+      "ornek_cevap": "What is an interval of plausible values for the difference in mean time to fall asleep..."
+     },
+     {
+      "puan": 1,
+      "olcut": "3. bileşen: nüfus (gönüllülere benzer yetişkinler) ve neden-sonuç türü sonuç (\"caused by\" ya da eşdeğeri).",
+      "ornek_cevap": "...for adults similar to the volunteers who have trouble falling asleep, caused by using Routine S instead of Routine R?"
+     }
+    ],
+    "ornek_cozum": "<p>Güven aralığı için soru \"Is there evidence…?\" değil, \"what range of values / how much\" biçiminde olmalı. Deney rastgele atamalı olduğu için üçüncü bileşen neden-sonuç türünü ve doğru nüfusu (gönüllülere benzer kişiler) içerir.</p><p><strong>Model answer:</strong> <strong>For adults similar to the volunteers who have trouble falling asleep, what is an interval of plausible values for the difference in mean time to fall asleep, in minutes, caused by following Routine S instead of Routine R for two weeks?</strong></p>",
+    "sik_hatalar": [
+     "Güven aralığı istenirken hipotez testi dili kullanmak (\"Is there convincing evidence that…\").",
+     "Nüfusu \"all adults\" yazmak."
+    ]
+   }
+  ],
+  "toplam_puan": 10,
+  "kaynak": "AP-style original (Meberra 1.28.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.28.0",
+   "cedKonu": "1.10, 1.13",
+   "tip": "Question 1: Multi-Focus on Practices 1 and 2"
+  }
+ },
+ {
+  "id": "frq-stat-k3",
+  "sayfa": "ap-statistics",
+  "ders": "statistics",
+  "tur": "Çok odaklı: soru kurma ve veri toplama (Uygulama 1–2)",
+  "baslik": "Plant-Based Meal Plan Survey",
+  "sure_dk": 22,
+  "hesapMakinesi": true,
+  "zorluk": "hard",
+  "giris": "<p>A university has 4,800 students living in campus dormitories. The dormitories have 60 floors, with about 80 students on each floor, and each floor houses a mix of first-year and upper-year students. The dining service wants to estimate the proportion of all dormitory students who would sign up for a new plant-based meal plan. Two sampling options are considered.</p><ul><li><strong>Option A:</strong> Randomly select 6 of the 60 floors and give the survey to every student who lives on those 6 floors.</li><li><strong>Option B:</strong> A staff member stands at the entrance of the campus fitness center for one afternoon and surveys the first 480 dormitory students who enter.</li></ul><p>The dining service used Option A. Of the 480 students who received the survey, 312 returned it. Their responses are summarized in the table.</p><table class=\"frq-tablo\"><tr><th></th><th>Would sign up</th><th>Would not sign up</th><th>Total</th></tr><tr><td>First-year</td><td>58</td><td>62</td><td>120</td></tr><tr><td>Upper-year</td><td>71</td><td>121</td><td>192</td></tr><tr><td>Total</td><td>129</td><td>183</td><td>312</td></tr></table>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "<p>(i) Identify the sampling method in Option A.</p><p>(ii) Explain one practical advantage of Option A compared with taking a simple random sample of 480 dormitory students.</p>",
+    "puan": 2,
+    "ne_soruyor": "Option A'nın örnekleme yöntemini adlandırmanı ve basit rastgele örnekleme göre pratik bir avantajını açıklamanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) Küme rastgele örneklemesi (cluster random sample); kümeler = katlar.",
+      "ornek_cevap": "Option A is a cluster random sample, with the floors as clusters."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) Pratik avantaj bağlamla: anketleri yalnız 6 kata dağıtmak (480 öğrenciyi 60 kata dağılmış hâlde aramak yerine) daha kolay, hızlı ya da ucuz.",
+      "ornek_cevap": "Surveyors only need to visit 6 floors instead of finding 480 students spread over all 60 floors, so Option A is faster and cheaper."
+     }
+    ],
+    "ornek_cozum": "<p>Rastgele seçilen grupların (katlar) <strong>tamamı</strong> ankete alınıyor: bu küme örneklemesidir. Avantajı genellikle maliyet ve kolaylıktır. Katlar karışık (birinci yıl + üst yıl) olduğu için her kat nüfusun küçük bir kopyası gibidir; bu da küme örneklemesini makul kılar.</p><p><strong>Model answer:</strong> (i) <strong>Cluster random sample</strong> (floors are the clusters). (ii) <strong>It is cheaper and faster to survey everyone on 6 floors than to locate 480 randomly chosen students across all 60 floors.</strong></p>",
+    "sik_hatalar": [
+     "Option A'yı tabakalı örnekleme sanmak: tabakalıda her gruptan örneklem alınır.",
+     "Avantaj olarak \"less bias\" yazmak."
+    ]
+   },
+   {
+    "harf": "b",
+    "soru": "<p>Explain how Option B could lead to an estimate that is systematically too high or too low. Identify the direction of the bias in your explanation.</p>",
+    "puan": 2,
+    "ne_soruyor": "Option B'deki sorunun tahmini hangi yöne ve neden saptıracağını açıklamanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Sorun açık: spor merkezine gelen öğrenciler bir kolayda örneklem (convenience sample) oluşturur ve tüm yurt öğrencilerini temsil etmez.",
+      "ornek_cevap": "Students entering the fitness center are a convenience sample and are not representative of all dormitory students."
+     },
+     {
+      "puan": 1,
+      "olcut": "Yön + gerekçe bağlamla: spor merkezine gidenler sağlıklı beslenmeye daha ilgili olabilir → bitki bazlı plana katılma oranını fazla tahmin (overestimate). (Gerekçeli ters yön de kabul.)",
+      "ornek_cevap": "These students may care more about healthy eating, so they are more likely to sign up for a plant-based plan; the sample proportion would likely overestimate the true proportion."
+     }
+    ],
+    "ornek_cozum": "<p>Yanlılık açıklamasında üç halka olmalı: (1) kimler seçiliyor, (2) bu kişiler yanıt değişkeni bakımından nasıl farklı, (3) bu yüzden tahmin hangi yöne kayar.</p><p><strong>Model answer:</strong> <strong>Students entering a fitness center are more likely to be health-conscious, so they are more likely than other dormitory students to want a plant-based meal plan. Option B would tend to overestimate the proportion of all dormitory students who would sign up.</strong></p>",
+    "sik_hatalar": [
+     "Yön belirtmeden yalnız \"it is biased\" demek.",
+     "Yanlılığı örneklem büyüklüğüne bağlamak."
+    ]
+   },
+   {
+    "harf": "c",
+    "soru": "<p>Only 312 of the 480 students who received the survey returned it. Explain how this could bias the estimate of the proportion of all dormitory students who would sign up for the plan.</p>",
+    "puan": 1,
+    "ne_soruyor": "Ankete yanıt vermeyenlerin tahmini nasıl yanlı yapabileceğini açıklamanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Yanıt vermeme (nonresponse) yanlılığı, yanıt değişkeniyle bağlantılı: yanıt vermeyenler plana ilgide yanıt verenlerden farklı olabilir (ör. ilgisizler anketi geri vermez → oran fazla tahmin edilir).",
+      "ornek_cevap": "Students who did not return the survey may be less interested in a plant-based plan than those who did, so the sample proportion would likely overestimate the true proportion (nonresponse bias)."
+     }
+    ],
+    "ornek_cozum": "<p>%35 yanıt vermedi (\\(168/480\\)). Konuyla ilgilenen öğrencilerin anketi doldurma olasılığı daha yüksektir; ilgisizler dışarıda kalırsa \"would sign up\" oranı şişer.</p><p><strong>Model answer:</strong> <strong>Students who did not respond may be less interested in the plan, so the 312 respondents may overstate interest; the estimate would be too high (nonresponse bias).</strong></p>",
+    "sik_hatalar": [
+     "Yanıt vermeyenlerin nasıl farklı olabileceğini söylemeden \"the sample is smaller\" demek."
+    ]
+   },
+   {
+    "harf": "d",
+    "soru": "<p>(i) Calculate the proportion of first-year respondents and the proportion of upper-year respondents who would sign up for the plan.</p><p>(ii) Identify a graphical representation that would be appropriate for comparing these two groups.</p>",
+    "puan": 2,
+    "ne_soruyor": "İki sınıf düzeyi için koşullu oranları hesaplamanı ve karşılaştırma için uygun bir grafik türü söylemeni istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) Doğru koşullu oranlar: birinci yıl \\(58/120 \\approx 0.483\\), üst yıl \\(71/192 \\approx 0.370\\) (iş gösterilmiş).",
+      "ornek_cevap": "First-year: 58/120 ≈ 0.483; upper-year: 71/192 ≈ 0.370."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) Segmentli (yığılmış %100) çubuk grafik ya da yan yana çubuk grafik (koşullu oranlarla) ya da mozaik grafik. Histogram/kutu grafiği puan almaz.",
+      "ornek_cevap": "A segmented (stacked) bar chart of the conditional proportions for each class year."
+     }
+    ],
+    "ornek_cozum": "<p>Koşullu oran: satır toplamına böl. Birinci yıl: \\(58/120 \\approx 0.483\\). Üst yıl: \\(71/192 \\approx 0.370\\). İki kategorik değişkeni karşılaştırmak için segmentli çubuk grafik uygundur.</p><p><strong>Model answer:</strong> (i) <strong>0.483 of first-year respondents and 0.370 of upper-year respondents</strong> would sign up. (ii) <strong>A segmented bar chart</strong> (or side-by-side bar chart) of the conditional proportions.</p>",
+    "sik_hatalar": [
+     "Sütun toplamına bölmek (\\(58/129\\)): bu \"plana katılacakların içinde birinci yıl oranı\"dır.",
+     "Kategorik veri için histogram ya da kutu grafiği önermek."
+    ]
+   },
+   {
+    "harf": "e",
+    "soru": "<p>The dining service believes that, among all dormitory students at the university, first-year students are more likely than upper-year students to sign up for the plan. Determine a valid investigative question that could be answered with a hypothesis test. Make sure all three components of a valid investigative question are included in your response.</p>",
+    "puan": 3,
+    "ne_soruyor": "Hipotez testiyle yanıtlanabilecek, değişkenleri, parametreyi ve yönü, nüfusu içeren bir araştırma sorusu yazmanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "1. bileşen: değişkenler — sınıf düzeyi (birinci yıl / üst yıl) ve plana katılma isteği.",
+      "ornek_cevap": "...the proportion of first-year students who would sign up for the plant-based meal plan ... upper-year students..."
+     },
+     {
+      "puan": 1,
+      "olcut": "2. bileşen: parametre (iki nüfus oranı) ve yön (greater than) + test dili.",
+      "ornek_cevap": "Is there convincing statistical evidence that the proportion ... is greater than the proportion ...?"
+     },
+     {
+      "puan": 1,
+      "olcut": "3. bileşen: nüfus — üniversitenin tüm yurt öğrencileri (birinci yıl ve üst yıl).",
+      "ornek_cevap": "...of all first-year dormitory students at the university ... all upper-year dormitory students at the university?"
+     }
+    ],
+    "ornek_cozum": "<p>Test sorusu \"convincing statistical evidence\" ve yön içermeli. Parametre oran (proportion), nüfus örneklem değil tüm yurt öğrencileridir.</p><p><strong>Model answer:</strong> <strong>Is there convincing statistical evidence that the proportion of all first-year dormitory students at the university who would sign up for the plant-based meal plan is greater than the proportion of all upper-year dormitory students at the university who would sign up?</strong></p>",
+    "sik_hatalar": [
+     "\"Different\" yazmak: inanç yönlüdür (more likely → greater than).",
+     "Ortalama (mean) kullanmak: değişken kategorik, parametre orandır."
+    ]
+   }
+  ],
+  "toplam_puan": 10,
+  "kaynak": "AP-style original (Meberra 1.28.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.28.0",
+   "cedKonu": "1.10, 1.11, 1.12, 2.1, 2.2",
+   "tip": "Question 1: Multi-Focus on Practices 1 and 2"
+  }
+ },
+ {
+  "id": "frq-stat-k4",
+  "sayfa": "ap-statistics",
+  "ders": "statistics",
+  "tur": "Çok odaklı: veri analizi ve yorum (Uygulama 3–4)",
+  "baslik": "Earbud Battery Life",
+  "sure_dk": 22,
+  "hesapMakinesi": true,
+  "zorluk": "easy",
+  "giris": "<p>A technology reviewer tested 16 randomly selected earbuds of Brand P and 16 randomly selected earbuds of Brand Q. Each earbud was fully charged and played the same music at the same volume until it shut off. The battery life, in hours, of each earbud is listed in order.</p><table class=\"frq-tablo\"><tr><th>Brand</th><th>Battery life (hours)</th></tr><tr><td>P</td><td>6.1, 6.4, 6.5, 6.6, 6.7, 6.8, 6.8, 6.9, 7.0, 7.0, 7.1, 7.2, 7.3, 7.4, 7.6, 7.8</td></tr><tr><td>Q</td><td>5.2, 6.9, 7.1, 7.3, 7.4, 7.6, 7.7, 7.8, 7.9, 8.0, 8.1, 8.2, 8.3, 8.4, 8.6, 9.0</td></tr></table><p>Use the median of the lower 8 values as Q1 and the median of the upper 8 values as Q3.</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "<p>Calculate the median and the interquartile range (IQR) of battery life for each brand.</p>",
+    "puan": 2,
+    "ne_soruyor": "Her marka için ortanca ve çeyrekler açıklığını hesaplamanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Brand P: medyan 6.95 saat, IQR = 7.25 − 6.65 = 0.60 saat.",
+      "ornek_cevap": "Brand P: median = 6.95 hours; Q1 = 6.65, Q3 = 7.25, IQR = 0.60 hours."
+     },
+     {
+      "puan": 1,
+      "olcut": "Brand Q: medyan 7.85 saat, IQR = 8.25 − 7.35 = 0.90 saat.",
+      "ornek_cevap": "Brand Q: median = 7.85 hours; Q1 = 7.35, Q3 = 8.25, IQR = 0.90 hours."
+     }
+    ],
+    "ornek_cozum": "<p>16 değer var; medyan 8. ve 9. değerin ortalaması. Alt yarı ilk 8 değer, üst yarı son 8 değer.</p><p>P: medyan \\((6.9+7.0)/2 = 6.95\\); \\(Q_1 = (6.6+6.7)/2 = 6.65\\), \\(Q_3 = (7.2+7.3)/2 = 7.25\\), IQR = 0.60.</p><p>Q: medyan \\((7.8+7.9)/2 = 7.85\\); \\(Q_1 = (7.3+7.4)/2 = 7.35\\), \\(Q_3 = (8.2+8.3)/2 = 8.25\\), IQR = 0.90.</p><p><strong>Model answer:</strong> <strong>Brand P: median 6.95 hours, IQR 0.60 hours. Brand Q: median 7.85 hours, IQR 0.90 hours.</strong></p>",
+    "sik_hatalar": [
+     "IQR yerine yalnız Q1 ve Q3'ü yazmak.",
+     "Medyanı tek bir değer (8. değer) olarak almak."
+    ]
+   },
+   {
+    "harf": "b",
+    "soru": "<p>Use the 1.5 × IQR rule to determine whether there are any outliers in the Brand Q data. Show the work that leads to your answer.</p>",
+    "puan": 2,
+    "ne_soruyor": "Brand Q için aykırı değer sınırlarını hesaplayıp hangi değerlerin aykırı olduğunu bulmanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Sınırlar doğru: \\(7.35 - 1.5(0.90) = 6.0\\) ve \\(8.25 + 1.5(0.90) = 9.6\\) saat ((a)'daki IQR ile tutarlı da kabul).",
+      "ornek_cevap": "Lower fence = 7.35 − 1.35 = 6.0 hours; upper fence = 8.25 + 1.35 = 9.6 hours."
+     },
+     {
+      "puan": 1,
+      "olcut": "Karar: 5.2 < 6.0 olduğundan 5.2 saat bir aykırı değerdir; 9.0 < 9.6 olduğundan yüksek aykırı değer yok.",
+      "ornek_cevap": "5.2 hours is below 6.0, so it is an outlier. No value is above 9.6, so there are no high outliers."
+     }
+    ],
+    "ornek_cozum": "<p>\\(1.5 \\times 0.90 = 1.35\\). Alt sınır \\(7.35 - 1.35 = 6.0\\), üst sınır \\(8.25 + 1.35 = 9.6\\).</p><p>5.2 alt sınırın altında → aykırı. En büyük değer 9.0 üst sınırın altında → yüksek aykırı yok.</p><p><strong>Model answer:</strong> The fences are 6.0 and 9.6 hours. <strong>The earbud that lasted 5.2 hours is an outlier; there are no other outliers.</strong></p>",
+    "sik_hatalar": [
+     "Sınırları hesaplayıp hangi değerin aykırı olduğunu söylememek.",
+     "IQR'nin 1.5 katını medyandan çıkarmak (doğrusu Q1'den)."
+    ]
+   },
+   {
+    "harf": "c",
+    "soru": "<p>Compare the distributions of battery life for Brand P and Brand Q.</p>",
+    "puan": 3,
+    "ne_soruyor": "İki markanın dağılımlarını merkez, yayılım ve şekil bakımından bağlam içinde karşılaştırmanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Merkez karşılaştırması değerlerle ve bağlamla: Brand Q'nun medyan pil ömrü (7.85 s) Brand P'ninkinden (6.95 s) daha uzun.",
+      "ornek_cevap": "The median battery life for Brand Q (7.85 hours) is greater than the median for Brand P (6.95 hours)."
+     },
+     {
+      "puan": 1,
+      "olcut": "Yayılım karşılaştırması: Brand Q'nun IQR'si (0.90 s) ya da aralığı (3.8 s) Brand P'ninkinden (0.60 s; 1.7 s) büyük — Q daha değişken.",
+      "ornek_cevap": "Brand Q's battery lives are more variable: IQR 0.90 hours versus 0.60 hours for Brand P."
+     },
+     {
+      "puan": 1,
+      "olcut": "Şekil karşılaştırması: P yaklaşık simetrik; Q sola çarpık ya da düşük aykırı değer (5.2 s) içeriyor. Karşılaştırmalı dil gerekir.",
+      "ornek_cevap": "Brand P is roughly symmetric, while Brand Q is skewed left with a low outlier at 5.2 hours."
+     }
+    ],
+    "ornek_cozum": "<p>Karşılaştırma = <strong>merkez + yayılım + şekil (ve aykırı)</strong>, her biri <em>iki markayı da</em> anarak ve bağlamla (battery life, hours).</p><ul><li>Merkez: 7.85 > 6.95.</li><li>Yayılım: IQR 0.90 > 0.60; aralık 3.8 > 1.7.</li><li>Şekil: P'de ortalama ≈ medyan (6.95), simetrik; Q'da ortalama (≈ 7.72) < medyan, 5.2'deki aykırı değer sola çarpıklık yaratıyor.</li></ul><p><strong>Model answer:</strong> <strong>Brand Q earbuds tend to last longer (median 7.85 vs. 6.95 hours), but Brand Q battery lives are more variable (IQR 0.90 vs. 0.60 hours). Brand P's distribution is roughly symmetric, while Brand Q's is skewed left with a low outlier at 5.2 hours.</strong></p>",
+    "sik_hatalar": [
+     "Her markayı ayrı ayrı betimleyip karşılaştırma sözcüğü (greater, more variable) kullanmamak.",
+     "Bağlam (battery life, hours) olmadan yalnız sayıları yazmak.",
+     "\"Q is skewed right\": kuyruk düşük değerlere doğru, yani sola çarpık."
+    ]
+   },
+   {
+    "harf": "d",
+    "soru": "<p>The reviewer wants to report one measure of center for Brand Q. Justify whether the median or the mean is the better choice.</p>",
+    "puan": 1,
+    "ne_soruyor": "Brand Q için ortanca mı ortalama mı daha uygun olduğuna gerekçeyle karar vermeni istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Medyan seçilmiş ve gerekçe: medyan aykırı değere (5.2 s) / çarpıklığa dirençli; ortalama bu değerle aşağı çekilir.",
+      "ornek_cevap": "The median is better because Brand Q has a low outlier (5.2 hours) that pulls the mean down, while the median is resistant to outliers."
+     }
+    ],
+    "ornek_cozum": "<p>Brand Q'nun ortalaması \\(\\bar{x} \\approx 7.72\\) saat, medyanı 7.85 saat. Fark aykırı değerden kaynaklanır. Medyan aykırı değerden etkilenmez (resistant).</p><p><strong>Model answer:</strong> <strong>The median, because the outlier at 5.2 hours pulls the mean down (mean ≈ 7.72 < median 7.85), while the median is resistant to outliers.</strong></p>",
+    "sik_hatalar": [
+     "\"Mean is more accurate\" gibi gerekçesiz seçim.",
+     "Aykırı değerin varlığını söyleyip ortalamaya etkisini açıklamamak."
+    ]
+   },
+   {
+    "harf": "e",
+    "soru": "<p>The manufacturers report that, for all earbuds, Brand P battery life has mean 6.9 hours and standard deviation 0.45 hours, and Brand Q battery life has mean 7.8 hours and standard deviation 0.70 hours. In a different test, one Brand P earbud lasted 7.9 hours and one Brand Q earbud lasted 8.9 hours. Which earbud had a more unusually long battery life relative to its own brand? Justify your answer.</p>",
+    "puan": 2,
+    "ne_soruyor": "İki kulaklığın kendi markasına göre konumunu standart puanla karşılaştırmanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "İki z-skoru doğru: \\(z_P = (7.9-6.9)/0.45 \\approx 2.22\\) ve \\(z_Q = (8.9-7.8)/0.70 \\approx 1.57\\).",
+      "ornek_cevap": "z_P = (7.9 − 6.9)/0.45 ≈ 2.22; z_Q = (8.9 − 7.8)/0.70 ≈ 1.57."
+     },
+     {
+      "puan": 1,
+      "olcut": "Sonuç z-skorlarına dayanarak: Brand P kulaklığı daha olağandışı, çünkü kendi markasının ortalamasının daha çok standart sapma üstünde.",
+      "ornek_cevap": "The Brand P earbud is more unusual because its battery life is 2.22 standard deviations above its brand's mean, compared with 1.57 for the Brand Q earbud."
+     }
+    ],
+    "ornek_cozum": "<p>Farklı ortalama ve yayılımı olan dağılımları karşılaştırmak için z-skoru kullanılır: \\(z = (x - \\mu)/\\sigma\\).</p>\\[z_P = \\frac{7.9 - 6.9}{0.45} \\approx 2.22, \\qquad z_Q = \\frac{8.9 - 7.8}{0.70} \\approx 1.57\\]<p><strong>Model answer:</strong> <strong>The Brand P earbud: its battery life is about 2.22 standard deviations above the Brand P mean, while the Brand Q earbud is only about 1.57 standard deviations above the Brand Q mean.</strong></p>",
+    "sik_hatalar": [
+     "Ham farkları (1.0 ve 1.1 saat) karşılaştırıp Brand Q demek.",
+     "z-skorunun anlamını (\"standard deviations above the mean\") yazmamak."
+    ]
+   }
+  ],
+  "toplam_puan": 10,
+  "kaynak": "AP-style original (Meberra 1.28.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.28.0",
+   "cedKonu": "1.6, 1.7, 1.9",
+   "tip": "Question 2: Multi-Focus on Practices 3 and 4"
+  }
+ },
+ {
+  "id": "frq-stat-k5",
+  "sayfa": "ap-statistics",
+  "ders": "statistics",
+  "tur": "Çok odaklı: veri analizi ve yorum (Uygulama 3–4)",
+  "baslik": "Used Bicycle Prices",
+  "sure_dk": 24,
+  "hesapMakinesi": true,
+  "zorluk": "medium",
+  "giris": "<p>A student collected data on 10 used bicycles of the same model listed for sale online. For each bicycle, she recorded its age, in years, and its asking price, in dollars.</p><table class=\"frq-tablo\"><tr><th>Age (years)</th><td>1</td><td>2</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr><tr><th>Price (dollars)</th><td>820</td><td>730</td><td>775</td><td>665</td><td>640</td><td>560</td><td>520</td><td>430</td><td>405</td><td>310</td></tr></table>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "<p>Calculate the equation of the least-squares regression line for predicting price from age. Define any variables you use.</p>",
+    "puan": 2,
+    "ne_soruyor": "Hesap makinesiyle en küçük kareler doğrusunun denklemini bulup değişkenleri tanımlamanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Katsayılar doğru: kesim ≈ 873.5, eğim ≈ −61.28 (yuvarlama farkı kabul).",
+      "ornek_cevap": "predicted price = 873.5 − 61.28(age)"
+     },
+     {
+      "puan": 1,
+      "olcut": "Değişkenler bağlamla tanımlı ve yanıt \"tahmin\" olarak işaretli (ŷ / \"predicted price\"); x = yaş (yıl), ŷ = tahmini fiyat (dolar).",
+      "ornek_cevap": "where ŷ is the predicted asking price in dollars and x is the age of the bicycle in years: ŷ = 873.5 − 61.28x."
+     }
+    ],
+    "ornek_cozum": "<p>Hesap makinesinde: listeleri gir, <em>LinReg(a+bx)</em> çalıştır. Sonuç: \\(a \\approx 873.54\\), \\(b \\approx -61.28\\), \\(r \\approx -0.994\\).</p>\\[\\widehat{\\text{price}} = 873.5 - 61.28(\\text{age})\\]<p><strong>Model answer:</strong> <strong>\\(\\hat{y} = 873.5 - 61.28x\\), where \\(\\hat{y}\\) is the predicted price in dollars and \\(x\\) is the age in years.</strong></p>",
+    "sik_hatalar": [
+     "Şapkasız \\(y\\) yazmak: denklem tahmin verir.",
+     "Değişkenleri tanımlamamak (\"y = 873.5 − 61.28x\" tek başına yeterli değil).",
+     "x ve y'yi ters girmek (yaşı fiyattan tahmin etmek)."
+    ]
+   },
+   {
+    "harf": "b",
+    "soru": "<p>Interpret the slope of the least-squares regression line in context.</p>",
+    "puan": 1,
+    "ne_soruyor": "Eğimin bu bağlamda ne anlama geldiğini açıklamanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Tahmin dili + yön + miktar + birim + bağlam: yaş 1 yıl arttıkça tahmini fiyat yaklaşık 61.28 dolar azalır.",
+      "ornek_cevap": "For each additional year of age, the predicted asking price of this bicycle model decreases by about 61.28 dollars."
+     }
+    ],
+    "ornek_cozum": "<p>Eğim, x bir birim arttığında <strong>tahmini</strong> y'deki değişimdir. Negatif eğim azalış demektir.</p><p><strong>Model answer:</strong> <strong>For each additional year of age, the predicted asking price decreases by about 61.28 dollars.</strong></p>",
+    "sik_hatalar": [
+     "\"The price decreases by 61.28\" demek: \"predicted\" (ya da \"on average\") olmadan kesin iddia puan almaz.",
+     "Birimi (dollars, year) atlamak."
+    ]
+   },
+   {
+    "harf": "c",
+    "soru": "<p>Calculate the correlation coefficient, and describe the direction and strength of the linear association between age and price.</p>",
+    "puan": 1,
+    "ne_soruyor": "Korelasyon katsayısını hesaplamanı ve doğrusal ilişkinin yönünü ve gücünü bağlamla betimlemeni istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "r ≈ −0.994 ve bağlamla \"güçlü, negatif doğrusal\" ilişki: daha yaşlı bisikletlerin fiyatı daha düşük olma eğiliminde.",
+      "ornek_cevap": "r ≈ −0.994. There is a strong, negative linear association: older bicycles tend to have lower asking prices."
+     }
+    ],
+    "ornek_cozum": "<p>Hesap makinesi (DiagnosticOn) \\(r \\approx -0.994\\) verir. \\(|r|\\) 1'e çok yakın → güçlü; işaret negatif → yaş arttıkça fiyat azalma eğiliminde.</p><p><strong>Model answer:</strong> <strong>r ≈ −0.994: a strong, negative linear association — older bicycles tend to have lower prices.</strong></p>",
+    "sik_hatalar": [
+     "Yalnızca \"negative\" yazıp bağlamı (older bikes → lower prices) vermemek.",
+     "r'yi \\(r^2\\) ile karıştırmak."
+    ]
+   },
+   {
+    "harf": "d",
+    "soru": "<p>Interpret the coefficient of determination, \\(r^2\\), in context.</p>",
+    "puan": 1,
+    "ne_soruyor": "Belirlilik katsayısını bu verilerde yorumlamanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "\\(r^2 \\approx 0.989\\): fiyattaki değişkenliğin yaklaşık %98.9'u yaşla olan doğrusal ilişkiyle açıklanır (bağlam + \"variation in price\").",
+      "ornek_cevap": "About 98.9% of the variation in asking price is explained by the linear relationship with age."
+     }
+    ],
+    "ornek_cozum": "<p>\\(r^2 = (-0.994)^2 \\approx 0.989\\). Kalıp: \"…% of the variation in [y] is explained by the linear relationship with [x].\"</p><p><strong>Model answer:</strong> <strong>About 98.9% of the variation in the asking prices of these bicycles is explained by the linear relationship between price and age.</strong></p>",
+    "sik_hatalar": [
+     "\"98.9% of the data is on the line\" ya da \"the model is 98.9% accurate\" demek.",
+     "Hangi değişkendeki değişkenliğin açıklandığını söylememek."
+    ]
+   },
+   {
+    "harf": "e",
+    "soru": "<p>Calculate and interpret the residual for the 5-year-old bicycle with a price of 560 dollars.</p>",
+    "puan": 2,
+    "ne_soruyor": "5 yaşındaki bisiklet için kalıntıyı hesaplayıp anlamını bağlamla açıklamanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Kalıntı doğru: \\(\\hat{y} = 873.5 - 61.28(5) \\approx 567.1\\), kalıntı \\(= 560 - 567.1 \\approx -7.1\\) dolar.",
+      "ornek_cevap": "predicted = 873.5 − 61.28(5) ≈ 567.1; residual = 560 − 567.1 ≈ −7.1 dollars."
+     },
+     {
+      "puan": 1,
+      "olcut": "Yorum: bu bisikletin gerçek fiyatı, modelin tahmininden yaklaşık 7.1 dolar düşük (model fazla tahmin ediyor).",
+      "ornek_cevap": "The actual price of this bicycle is about 7.1 dollars less than the price predicted by the regression line for a 5-year-old bicycle."
+     }
+    ],
+    "ornek_cozum": "<p>Kalıntı = gözlenen − tahmin edilen. \\(\\hat{y} = 873.5 - 61.28(5) = 567.1\\). Kalıntı \\(= 560 - 567.1 \\approx -7.1\\).</p><p>Negatif kalıntı: model bu bisiklet için fiyatı fazla tahmin etmiş.</p><p><strong>Model answer:</strong> <strong>Residual ≈ −7.1 dollars: this bicycle's actual price is about 7.1 dollars lower than the predicted price for a 5-year-old bicycle.</strong></p>",
+    "sik_hatalar": [
+     "Tahmin − gözlenen yapmak (işaret ters çıkar).",
+     "Yorumda \"lower than predicted\" yerine yalnız sayıyı vermek."
+    ]
+   },
+   {
+    "harf": "f",
+    "soru": "<p>A residual plot for the least-squares regression line shows the residuals scattered randomly above and below 0, with no curved pattern. Explain what this residual plot indicates about using a linear model for these data.</p>",
+    "puan": 1,
+    "ne_soruyor": "Kalıntı grafiğindeki örüntüsüzlüğün doğrusal model hakkında ne söylediğini açıklamanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Rastgele dağılım (eğrilik yok) doğrusal biçimi destekler → doğrusal model yaş–fiyat ilişkisi için uygundur.",
+      "ornek_cevap": "Because there is no curved pattern in the residual plot, a linear model is appropriate for describing the relationship between age and price."
+     }
+    ],
+    "ornek_cozum": "<p>Kalıntı grafiğinde eğrilik olsaydı doğrusal model uygun olmazdı. Rastgele saçılım, doğrusal biçimin uygun olduğunu gösterir.</p><p><strong>Model answer:</strong> <strong>The random scatter with no curvature indicates that a linear model is appropriate for the relationship between age and price.</strong></p>",
+    "sik_hatalar": [
+     "\"r çok yüksek, o yüzden doğrusal\" demek: yüksek r tek başına doğrusal modelin uygunluğunu göstermez."
+    ]
+   },
+   {
+    "harf": "g",
+    "soru": "<p>A seller uses the regression line to predict the price of a 15-year-old bicycle of this model. Calculate the predicted price and explain why this prediction is not reliable.</p>",
+    "puan": 1,
+    "ne_soruyor": "15 yaş için tahmini hesaplamanı ve neden güvenilir olmadığını açıklamanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Tahmin \\(\\approx 873.5 - 61.28(15) \\approx -45.7\\) dolar ve gerekçe: 15 yıl, verideki 1–9 yıl aralığının dışında (dış değerleme / extrapolation); negatif fiyat da anlamsız.",
+      "ornek_cevap": "Predicted price ≈ −45.7 dollars. This is extrapolation: 15 years is outside the ages of 1 to 9 years in the data, and a negative price is impossible."
+     }
+    ],
+    "ornek_cozum": "<p>\\(873.5 - 61.28(15) = 873.5 - 919.2 \\approx -45.7\\) dolar. Veri aralığının dışında tahmin yapmak <strong>extrapolation</strong>dır; ilişkinin bu aralığın dışında da doğrusal kalacağını bilmiyoruz.</p><p><strong>Model answer:</strong> <strong>About −45.7 dollars. It is not reliable because 15 years is outside the range of ages in the data (1 to 9 years) — extrapolation — and a negative price makes no sense.</strong></p>",
+    "sik_hatalar": [
+     "Hesabı yapıp yalnızca \"negatif olamaz\" demek: asıl kavram dış değerlemedir.",
+     "\"Örneklem küçük\" gerekçesi vermek."
+    ]
+   },
+   {
+    "harf": "h",
+    "soru": "<p>Interpret the y-intercept of the least-squares regression line in context, and explain whether the interpretation is reasonable for these data.</p>",
+    "puan": 1,
+    "ne_soruyor": "Kesim noktasını bağlamla yorumlamanı ve bu yorumun verilere göre makul olup olmadığını söylemeni istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Yorum + değerlendirme: 0 yaşındaki (yeni) bisikletin tahmini fiyatı ≈ 873.5 dolar; ancak 0 yıl veri aralığının (1–9) dışında olduğundan bu bir dış değerlemedir ve dikkatle kullanılmalıdır.",
+      "ornek_cevap": "The predicted price of a 0-year-old (new) bicycle is about 873.5 dollars. Because age 0 is outside the 1–9 years in the data, this is extrapolation and may not be reliable."
+     }
+    ],
+    "ornek_cozum": "<p>Kesim, x = 0 iken tahmini y'dir. Burada yaş 0 = yeni bisiklet. Mantıklı bir sayı olsa da veride hiç 0 yaşında bisiklet yok.</p><p><strong>Model answer:</strong> <strong>A bicycle of age 0 years is predicted to cost about 873.5 dollars; since no bicycle in the data is younger than 1 year, this is an extrapolation and should be used with caution.</strong></p>",
+    "sik_hatalar": [
+     "\"Predicted\" demeden \"a new bike costs 873.5 dollars\" yazmak.",
+     "Yaş 0'ın veri aralığı dışında olduğunu fark etmemek."
+    ]
+   }
+  ],
+  "toplam_puan": 10,
+  "kaynak": "AP-style original (Meberra 1.28.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.28.0",
+   "cedKonu": "5.1, 5.2, 5.3, 5.4, 5.5",
+   "tip": "Question 2: Multi-Focus on Practices 3 and 4"
+  }
+ },
+ {
+  "id": "frq-stat-k6",
+  "sayfa": "ap-statistics",
+  "ders": "statistics",
+  "tur": "Çıkarım: hipotez testi (tek oran z-testi)",
+  "baslik": "On-Time Ferry Departures",
+  "sure_dk": 22,
+  "hesapMakinesi": true,
+  "zorluk": "medium",
+  "giris": "<p>A ferry company operates more than 20,000 trips each year and advertises that 85% of its trips depart on time. A consumer group suspects that the true proportion of trips that depart on time is less than 0.85. The group obtained the company's records for last year and selected a random sample of 260 trips. Of these trips, 207 departed on time.</p><p>At the 0.05 level of significance, complete the appropriate inference procedure to determine whether there is convincing statistical evidence that the proportion of all of the company's trips last year that departed on time is less than 0.85.</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "<p>Identify and classify the variable in this study.</p>",
+    "puan": 2,
+    "ne_soruyor": "Çalışmadaki değişkeni adlandırıp türünü belirtmeni istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Değişken bağlamla belirtilmiş: bir seferin zamanında kalkıp kalkmadığı.",
+      "ornek_cevap": "The variable is whether a ferry trip departed on time."
+     },
+     {
+      "puan": 1,
+      "olcut": "Sınıflama: kategorik (evet/hayır).",
+      "ornek_cevap": "This variable is categorical (yes or no)."
+     }
+    ],
+    "ornek_cozum": "<p>Her sefer için kaydedilen şey \"zamanında kalktı mı?\" sorusunun yanıtıdır: evet/hayır → kategorik değişken. 207 ve 260 sayılar değişken değil, sayımdır.</p><p><strong>Model answer:</strong> <strong>Whether a trip departed on time; it is a categorical variable.</strong></p>",
+    "sik_hatalar": [
+     "Değişkeni \"the proportion of trips on time\" olarak yazmak: oran bir istatistik/parametredir, değişken değil.",
+     "Değişkeni nicel sanmak."
+    ]
+   },
+   {
+    "harf": "b",
+    "soru": "<p>Identify the appropriate inference procedure.</p>",
+    "puan": 1,
+    "ne_soruyor": "Bu soruya uygun çıkarım yönteminin adını vermeni istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Tek örneklem z-testi, bir nüfus oranı için (one-sample z-test for a population proportion). Yalnız \"z-test\" puan almaz.",
+      "ornek_cevap": "A one-sample z-test for a population proportion."
+     }
+    ],
+    "ornek_cozum": "<p>Tek nüfus, kategorik değişken, iddia edilen bir değer (0.85) ile karşılaştırma → bir oran için tek örneklem z-testi.</p><p><strong>Model answer:</strong> <strong>A one-sample z-test for a population proportion.</strong></p>",
+    "sik_hatalar": [
+     "t-testi seçmek (t-testleri ortalamalar içindir).",
+     "Güven aralığı önermek: soru kanıt (test) istiyor."
+    ]
+   },
+   {
+    "harf": "c",
+    "soru": "<p>Complete the inference procedure, including stating hypotheses, defining the parameter, checking conditions, and calculating the appropriate test statistic and p-value.</p>",
+    "puan": 5,
+    "ne_soruyor": "Hipotezleri, parametreyi, koşulları, test istatistiğini ve p-değerini eksiksiz yazmanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Hipotezler: \\(H_0: p = 0.85\\), \\(H_a: p < 0.85\\).",
+      "ornek_cevap": "H₀: p = 0.85, Hₐ: p < 0.85"
+     },
+     {
+      "puan": 1,
+      "olcut": "Parametre bağlamla: p = şirketin geçen yılki TÜM seferlerinden zamanında kalkanların gerçek oranı.",
+      "ornek_cevap": "where p is the true proportion of all of the company's trips last year that departed on time."
+     },
+     {
+      "puan": 1,
+      "olcut": "Rastgelelik + %10 koşulu: seferler rastgele seçildi; 260 ≤ 0.10(20,000) = 2,000.",
+      "ornek_cevap": "The trips were randomly selected, and 260 is less than 10% of the more than 20,000 trips last year."
+     },
+     {
+      "puan": 1,
+      "olcut": "Normallik (büyük sayım) koşulu \\(p_0\\) ile: \\(260(0.85) = 221 \\ge 10\\) ve \\(260(0.15) = 39 \\ge 10\\). (Gözlenen 207 ve 53 ile kontrol de kabul.)",
+      "ornek_cevap": "np₀ = 260(0.85) = 221 and n(1 − p₀) = 260(0.15) = 39 are both at least 10."
+     },
+     {
+      "puan": 1,
+      "olcut": "Test istatistiği ve p-değeri: \\(\\hat{p} = 207/260 \\approx 0.796\\), \\(z = \\dfrac{0.796 - 0.85}{\\sqrt{0.85(0.15)/260}} \\approx -2.43\\), p-değeri ≈ 0.0075.",
+      "ornek_cevap": "z = (0.796 − 0.85)/√(0.85·0.15/260) ≈ −2.43; p-value ≈ 0.0075."
+     }
+    ],
+    "ornek_cozum": "<p><strong>Hipotezler ve parametre:</strong> \\(H_0: p = 0.85\\), \\(H_a: p < 0.85\\); p = şirketin geçen yılki tüm seferlerinden zamanında kalkanların gerçek oranı.</p><p><strong>Koşullar:</strong> rastgele örneklem ✓; \\(260 < 0.10 \\times 20{,}000\\) ✓; \\(np_0 = 221\\), \\(n(1-p_0) = 39\\), ikisi de ≥ 10 ✓.</p><p><strong>Hesap:</strong> \\(\\hat{p} = 207/260 \\approx 0.796\\).</p>\\[z = \\frac{0.796 - 0.85}{\\sqrt{\\dfrac{0.85(0.15)}{260}}} = \\frac{-0.054}{0.0221} \\approx -2.43, \\qquad \\text{p-value} = P(Z \\le -2.43) \\approx 0.0075\\]<p><strong>Model answer:</strong> <strong>H₀: p = 0.85, Hₐ: p < 0.85, where p is the true proportion of all the company's trips last year that departed on time. Conditions: random sample; 260 < 10% of 20,000 trips; 221 and 39 are at least 10. z ≈ −2.43, p-value ≈ 0.0075.</strong></p>",
+    "sik_hatalar": [
+     "Hipotezleri \\(\\hat{p}\\) ile yazmak (\\(H_0: \\hat{p} = 0.85\\)): hipotezler parametre hakkındadır.",
+     "Standart hatada \\(p_0\\) yerine \\(\\hat{p}\\) kullanmak (testte \\(p_0\\) kullanılır).",
+     "Koşulları yalnız listeleyip bu verilerle kontrol etmemek (\"n is large\").",
+     "\"Calculator speak\": yalnız \"1-PropZTest\" yazıp hipotez/sayı vermemek puan almaz."
+    ]
+   },
+   {
+    "harf": "d",
+    "soru": "<p>Justify a conclusion in context.</p>",
+    "puan": 2,
+    "ne_soruyor": "p-değerini anlamlılık düzeyiyle karşılaştırıp sonucu bağlam içinde yazmanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Karşılaştırma ve karar: p-değeri 0.0075 < α = 0.05 olduğundan \\(H_0\\) reddedilir.",
+      "ornek_cevap": "Because the p-value of 0.0075 is less than α = 0.05, we reject H₀."
+     },
+     {
+      "puan": 1,
+      "olcut": "Bağlamda sonuç, Hₐ cinsinden ve parametre/nüfus diliyle: geçen yılki tüm seferlerde zamanında kalkış oranının 0.85'ten küçük olduğuna dair ikna edici istatistiksel kanıt vardır.",
+      "ornek_cevap": "There is convincing statistical evidence that the proportion of all of the company's trips last year that departed on time is less than 0.85."
+     }
+    ],
+    "ornek_cozum": "<p>Karar kuralı: p-değeri ≤ α ise \\(H_0\\) reddedilir. Sonuç <strong>kanıt dili</strong> ile ve nüfus parametresi hakkında yazılır, örnek hakkında değil.</p><p><strong>Model answer:</strong> <strong>Because the p-value (0.0075) is less than 0.05, we reject H₀. There is convincing statistical evidence that the true proportion of all of the company's trips last year that departed on time is less than 0.85.</strong></p>",
+    "sik_hatalar": [
+     "\"We proved that p < 0.85\" demek: istatistik kanıt sunar, ispat etmez.",
+     "Sonucu örneklem için yazmak (\"the sample proportion is less than 0.85\")."
+    ]
+   }
+  ],
+  "toplam_puan": 10,
+  "kaynak": "AP-style original (Meberra 1.28.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.28.0",
+   "cedKonu": "3.5, 3.6, 3.7",
+   "tip": "Question 3: Inference (Hypothesis Test)"
+  }
+ },
+ {
+  "id": "frq-stat-k7",
+  "sayfa": "ap-statistics",
+  "ders": "statistics",
+  "tur": "Çıkarım: hipotez testi (ki-kare bağımsızlık testi)",
+  "baslik": "Payment Method and Age Group",
+  "sure_dk": 24,
+  "hesapMakinesi": true,
+  "zorluk": "hard",
+  "giris": "<p>A regional bank wants to know whether the way adults usually pay at stores is related to their age. The region has more than 2 million adults. The bank selected a random sample of 450 adults from the region and recorded each adult's age group and the payment method the adult uses most often at stores. The results are shown in the table.</p><table class=\"frq-tablo\"><tr><th>Age group</th><th>Cash</th><th>Card</th><th>Phone</th><th>Total</th></tr><tr><td>18–34</td><td>20</td><td>52</td><td>78</td><td>150</td></tr><tr><td>35–54</td><td>28</td><td>56</td><td>76</td><td>160</td></tr><tr><td>55 and older</td><td>34</td><td>54</td><td>52</td><td>140</td></tr><tr><td>Total</td><td>82</td><td>162</td><td>206</td><td>450</td></tr></table><p>At the 0.05 level of significance, complete the appropriate inference procedure to determine whether there is convincing statistical evidence of an association between age group and most-used payment method for adults in the region.</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "<p>Identify and classify the variables in this study.</p>",
+    "puan": 2,
+    "ne_soruyor": "Çalışmadaki iki değişkeni adlandırıp türlerini belirtmeni istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "İki değişken bağlamla: yaş grubu ve mağazada en sık kullanılan ödeme yöntemi.",
+      "ornek_cevap": "The variables are age group and the payment method used most often at stores."
+     },
+     {
+      "puan": 1,
+      "olcut": "İkisinin de kategorik olduğu.",
+      "ornek_cevap": "Both variables are categorical."
+     }
+    ],
+    "ornek_cozum": "<p>Yaş burada sayı olarak değil, <strong>grup</strong> (18–34, 35–54, 55+) olarak kaydedildi → kategorik. Ödeme yöntemi (nakit/kart/telefon) → kategorik.</p><p><strong>Model answer:</strong> <strong>Age group and most-used payment method; both are categorical.</strong></p>",
+    "sik_hatalar": [
+     "Yaş grubunu nicel saymak.",
+     "Tek bir değişken adlandırmak."
+    ]
+   },
+   {
+    "harf": "b",
+    "soru": "<p>Identify the appropriate inference procedure.</p>",
+    "puan": 1,
+    "ne_soruyor": "Uygun testin adını vermeni istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Ki-kare bağımsızlık testi (chi-square test for independence). Homojenlik testi puan almaz: tek bir rastgele örneklem, iki değişken.",
+      "ornek_cevap": "A chi-square test for independence."
+     }
+    ],
+    "ornek_cozum": "<p>Tek nüfustan <strong>bir</strong> rastgele örneklem alınıp her kişide <strong>iki</strong> kategorik değişken kaydedildiyse → bağımsızlık testi. (Homojenlik: birden çok nüfustan ayrı örneklemler, tek değişken.)</p><p><strong>Model answer:</strong> <strong>A chi-square test for independence.</strong></p>",
+    "sik_hatalar": [
+     "Homojenlik testini seçmek.",
+     "İki oran z-testi önermek (3 × 3 tablo için uygun değil)."
+    ]
+   },
+   {
+    "harf": "c",
+    "soru": "<p>Complete the inference procedure, including stating hypotheses, identifying the population, checking conditions, and calculating the appropriate test statistic, degrees of freedom, and p-value.</p>",
+    "puan": 5,
+    "ne_soruyor": "Hipotezleri, nüfusu, koşulları (beklenen sayımlar dahil), test istatistiğini, serbestlik derecesini ve p-değerini eksiksiz yazmanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Hipotezler bağlamla: \\(H_0\\): yaş grubu ile ödeme yöntemi arasında ilişki yoktur (bağımsızdır); \\(H_a\\): ilişki vardır.",
+      "ornek_cevap": "H₀: There is no association between age group and most-used payment method. Hₐ: There is an association between age group and most-used payment method."
+     },
+     {
+      "puan": 1,
+      "olcut": "Nüfus açık: bölgedeki tüm yetişkinler (hipotezlerde ya da sonuçta).",
+      "ornek_cevap": "...for all adults in the region."
+     },
+     {
+      "puan": 1,
+      "olcut": "Rastgelelik + %10: rastgele örneklem; 450 ≤ 0.10(2,000,000).",
+      "ornek_cevap": "The data come from a random sample, and 450 is less than 10% of the more than 2 million adults in the region."
+     },
+     {
+      "puan": 1,
+      "olcut": "Beklenen sayımlar koşulu, hesapla: en az bir hesap gösterilmiş (ör. \\(150 \\cdot 82/450 \\approx 27.33\\)) ve tüm beklenen sayımlar 5'ten büyük (en küçüğü ≈ 25.51).",
+      "ornek_cevap": "Expected counts, e.g., 150(82)/450 ≈ 27.33; the smallest expected count is about 25.51, so all expected counts are greater than 5."
+     },
+     {
+      "puan": 1,
+      "olcut": "Test istatistiği, sd ve p-değeri: \\(\\chi^2 \\approx 8.87\\), sd = (3−1)(3−1) = 4, p-değeri ≈ 0.065.",
+      "ornek_cevap": "χ² ≈ 8.87, df = 4, p-value ≈ 0.065."
+     }
+    ],
+    "ornek_cozum": "<p><strong>Hipotezler:</strong> \\(H_0\\): bölgedeki yetişkinlerde yaş grubu ile ödeme yöntemi bağımsızdır. \\(H_a\\): ilişkilidir.</p><p><strong>Koşullar:</strong> rastgele örneklem ✓; \\(450 < 0.10 \\times 2{,}000{,}000\\) ✓. Beklenen sayım = (satır toplamı × sütun toplamı)/genel toplam:</p><table class=\"frq-tablo\"><tr><th></th><th>Cash</th><th>Card</th><th>Phone</th></tr><tr><td>18–34</td><td>27.33</td><td>54.00</td><td>68.67</td></tr><tr><td>35–54</td><td>29.16</td><td>57.60</td><td>73.24</td></tr><tr><td>55+</td><td>25.51</td><td>50.40</td><td>64.09</td></tr></table><p>Hepsi > 5 ✓.</p>\\[\\chi^2 = \\sum \\frac{(O - E)^2}{E} \\approx 8.87, \\quad df = (3-1)(3-1) = 4, \\quad \\text{p-value} = P(\\chi^2_4 \\ge 8.87) \\approx 0.065\\]<p><strong>Model answer:</strong> <strong>H₀: age group and most-used payment method are independent for adults in the region; Hₐ: they are associated. Random sample; 450 < 10% of the adults; all expected counts (smallest 25.51) are greater than 5. χ² ≈ 8.87, df = 4, p-value ≈ 0.065.</strong></p>",
+    "sik_hatalar": [
+     "Beklenen sayımlar yerine gözlenen sayımları kontrol etmek.",
+     "sd'yi \\(3 \\times 3 - 1 = 8\\) almak.",
+     "Hipotezleri oranlarla ve tek bir hücre için yazmak.",
+     "\"Calculator speak\": yalnız \"χ²-Test\" yazıp beklenen sayım ve hipotez vermemek."
+    ]
+   },
+   {
+    "harf": "d",
+    "soru": "<p>Justify a conclusion in context.</p>",
+    "puan": 2,
+    "ne_soruyor": "p-değerini 0.05 ile karşılaştırıp sonucu bağlam içinde, doğru kanıt diliyle yazmanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Karşılaştırma ve karar: p-değeri ≈ 0.065 > 0.05 olduğundan \\(H_0\\) reddedilmez.",
+      "ornek_cevap": "Because the p-value of about 0.065 is greater than α = 0.05, we fail to reject H₀."
+     },
+     {
+      "puan": 1,
+      "olcut": "Bağlamda sonuç: bölgedeki yetişkinlerde yaş grubu ile ödeme yöntemi arasında ilişki olduğuna dair ikna edici istatistiksel kanıt YOKTUR. \"H₀'ı kabul ederiz / bağımsız olduğu kanıtlandı\" puan almaz.",
+      "ornek_cevap": "There is not convincing statistical evidence of an association between age group and most-used payment method for adults in the region."
+     }
+    ],
+    "ornek_cozum": "<p>p > α ise \\(H_0\\) <strong>reddedilmez</strong>. Bu, değişkenlerin bağımsız olduğunu kanıtlamaz; yalnızca ilişki için yeterli kanıt olmadığını söyler.</p><p><strong>Model answer:</strong> <strong>Because the p-value (≈ 0.065) is greater than 0.05, we fail to reject H₀. There is not convincing statistical evidence of an association between age group and most-used payment method among adults in the region.</strong></p>",
+    "sik_hatalar": [
+     "\"We accept H₀\" ya da \"age and payment method are independent\" demek.",
+     "Kararı yazıp bağlamlı sonucu yazmamak."
+    ]
+   }
+  ],
+  "toplam_puan": 10,
+  "kaynak": "AP-style original (Meberra 1.28.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.28.0",
+   "cedKonu": "3.14, 3.15",
+   "tip": "Question 3: Inference (Hypothesis Test)"
+  }
+ },
+ {
+  "id": "frq-stat-k8",
+  "sayfa": "ap-statistics",
+  "ders": "statistics",
+  "tur": "Çıkarım: güven aralığı (eşleştirilmiş farklar için t-aralığı)",
+  "baslik": "Navigation App and Fuel Use",
+  "sure_dk": 24,
+  "hesapMakinesi": true,
+  "zorluk": "medium",
+  "giris": "<p>A delivery company has 300 drivers. To compare its old navigation app with a new one, the company randomly selected 14 drivers. Each selected driver drove the same 60-kilometer delivery route twice in the same van, once using the old app and once using the new app. A coin flip determined which app each driver used first. The fuel used, in liters, was recorded for each drive.</p><table class=\"frq-tablo\"><tr><th>Driver</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr><tr><th>Old app</th><td>18.4</td><td>21.0</td><td>16.9</td><td>19.5</td><td>22.3</td><td>17.8</td><td>20.6</td><td>18.1</td><td>23.0</td><td>19.9</td><td>17.2</td><td>20.4</td><td>21.7</td><td>18.8</td></tr><tr><th>New app</th><td>17.6</td><td>19.8</td><td>17.2</td><td>19.0</td><td>21.3</td><td>17.2</td><td>19.7</td><td>17.9</td><td>21.6</td><td>19.2</td><td>17.3</td><td>20.0</td><td>20.6</td><td>18.2</td></tr><tr><th>Old − New</th><td>0.8</td><td>1.2</td><td>−0.3</td><td>0.5</td><td>1.0</td><td>0.6</td><td>0.9</td><td>0.2</td><td>1.4</td><td>0.7</td><td>−0.1</td><td>0.4</td><td>1.1</td><td>0.6</td></tr></table><p>The company wants to estimate, with 95% confidence, the mean difference in fuel used (old app minus new app) on this route for all of its drivers.</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "<p>(i) Identify the response variable in this study and classify it as categorical or quantitative.</p><p>(ii) Explain why the data should be analyzed as paired data.</p>",
+    "puan": 2,
+    "ne_soruyor": "Yanıt değişkenini (türüyle) belirtmeni ve verinin neden eşleştirilmiş olarak çözümlenmesi gerektiğini açıklamanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) Yanıt değişkeni: bir sürüşte kullanılan yakıt (litre), nicel.",
+      "ornek_cevap": "The response variable is the fuel used on the route, in liters; it is quantitative."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) Her sürücü iki uygulamayı da kullandı; iki ölçüm aynı sürücüden geldiği için bağımsız değil, sürücü başına fark alınmalı.",
+      "ornek_cevap": "Each driver used both apps, so the two measurements for a driver are dependent; we analyze the difference for each driver."
+     }
+    ],
+    "ornek_cozum": "<p>Aynı sürücü iki kez ölçüldü: sürücünün tarzı her iki ölçümü de etkiler. Bu yüzden iki bağımsız örneklem değil, 14 farktan oluşan tek bir örneklem vardır.</p><p><strong>Model answer:</strong> (i) <strong>Fuel used, in liters — quantitative.</strong> (ii) <strong>Each driver used both apps, so the measurements are paired by driver; we analyze the 14 differences (old − new).</strong></p>",
+    "sik_hatalar": [
+     "Yanıt değişkeni olarak uygulamayı (eski/yeni) yazmak.",
+     "İki örneklem t-aralığı kullanmak."
+    ]
+   },
+   {
+    "harf": "b",
+    "soru": "<p>Identify the appropriate inference procedure.</p>",
+    "puan": 1,
+    "ne_soruyor": "Uygun güven aralığı yönteminin adını vermeni istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Tek örneklem t-aralığı, nüfus ortalama farkı için (one-sample t-interval for a population mean difference / paired t-interval).",
+      "ornek_cevap": "A one-sample t-interval for a population mean difference (paired t-interval)."
+     }
+    ],
+    "ornek_cozum": "<p>Eşleştirilmiş veri + nicel yanıt + tahmin (aralık) → farkların ortalaması için tek örneklem t-aralığı.</p><p><strong>Model answer:</strong> <strong>A one-sample t-interval for the population mean difference (matched pairs).</strong></p>",
+    "sik_hatalar": [
+     "z-aralığı seçmek (\\(\\sigma\\) bilinmiyor).",
+     "İki örneklem t-aralığı seçmek."
+    ]
+   },
+   {
+    "harf": "c",
+    "soru": "<p>Complete the inference procedure, including defining the parameter, checking conditions, and calculating the 95% confidence interval.</p>",
+    "puan": 5,
+    "ne_soruyor": "Parametreyi tanımlamanı, koşulları kontrol etmeni ve %95 güven aralığını hesaplamanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Parametre bağlamla: \\(\\mu_d\\) = şirketin tüm sürücüleri için bu güzergâhta (eski − yeni) yakıt farkının gerçek ortalaması (litre).",
+      "ornek_cevap": "μ_d = the true mean difference in fuel used (old app − new app), in liters, on this route for all of the company's drivers."
+     },
+     {
+      "puan": 1,
+      "olcut": "Rastgelelik + %10: sürücüler rastgele seçildi ve sıra yazı-turayla rastgele belirlendi; 14 ≤ 0.10(300) = 30.",
+      "ornek_cevap": "The 14 drivers were randomly selected (and the order of the apps was randomized), and 14 is less than 10% of 300 drivers."
+     },
+     {
+      "puan": 1,
+      "olcut": "Normallik: n = 14 < 30, bu yüzden farkların dağılımı kontrol edilmeli: güçlü çarpıklık ve aykırı değer yok (ör. 1.5×IQR sınırları −0.5 ve 1.9; tüm farklar içinde; ortalama 0.643 ≈ medyan 0.65).",
+      "ornek_cevap": "Because n = 14 < 30, check the differences: fences are −0.5 and 1.9, so there are no outliers, and the mean (0.643) is close to the median (0.65), so there is no strong skewness."
+     },
+     {
+      "puan": 1,
+      "olcut": "Ara değerler doğru: \\(\\bar{x}_d \\approx 0.643\\), \\(s_d \\approx 0.483\\), sd = 13, \\(t^* \\approx 2.160\\) (ya da SE ≈ 0.129).",
+      "ornek_cevap": "x̄_d ≈ 0.643 L, s_d ≈ 0.483 L, df = 13, t* = 2.160, SE = 0.483/√14 ≈ 0.129."
+     },
+     {
+      "puan": 1,
+      "olcut": "Aralık doğru: ≈ (0.364, 0.922) litre.",
+      "ornek_cevap": "0.643 ± 2.160(0.129) → (0.364, 0.922) liters."
+     }
+    ],
+    "ornek_cozum": "<p><strong>Parametre:</strong> \\(\\mu_d\\) = tüm sürücüler için (eski − yeni) yakıt farkının gerçek ortalaması.</p><p><strong>Koşullar:</strong> rastgele seçim (ve rastgele sıra) ✓; \\(14 \\le 30\\) ✓. \\(n < 30\\): farkların beş sayı özeti −0.3, 0.4, 0.65, 1.0, 1.4; IQR = 0.6; sınırlar \\(0.4 - 0.9 = -0.5\\) ve \\(1.0 + 0.9 = 1.9\\) → aykırı yok; ortalama ≈ medyan → güçlü çarpıklık yok ✓.</p>\\[\\bar{x}_d = 0.643,\\; s_d = 0.483,\\; SE = \\frac{0.483}{\\sqrt{14}} \\approx 0.129,\\; t^*_{13} = 2.160\\]\\[0.643 \\pm 2.160(0.129) = 0.643 \\pm 0.279 \\;\\Rightarrow\\; (0.364,\\ 0.922)\\]<p><strong>Model answer:</strong> <strong>μ_d = true mean difference (old − new) in fuel used on this route for all the company's drivers. Random sample, 14 < 10% of 300, and the 14 differences show no outliers or strong skew. With df = 13, the 95% interval is 0.643 ± 2.160(0.483/√14) = (0.364, 0.922) liters.</strong></p>",
+    "sik_hatalar": [
+     "Normallik için \"n ≥ 30\" demek: n = 14, farkların grafiği/özetiyle kontrol gerekir.",
+     "Normalliği ham eski ve yeni değerlerle kontrol etmek: kontrol farklar üzerindedir.",
+     "sd'yi 14 almak (doğrusu n − 1 = 13).",
+     "Parametreyi \"the mean of the 14 differences\" olarak tanımlamak (bu bir istatistiktir)."
+    ]
+   },
+   {
+    "harf": "d",
+    "soru": "<p>(i) Interpret the confidence interval in context.</p><p>(ii) The company claims that using the new app reduces the mean fuel used on this route. Justify whether the interval supports this claim.</p>",
+    "puan": 2,
+    "ne_soruyor": "Aralığı bağlamla yorumlamanı ve şirketin iddiasını destekleyip desteklemediğini gerekçelendirmeni istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) Yorum: %95 güvenle, şirketin tüm sürücüleri için bu güzergâhta ortalama yakıt farkı (eski − yeni) 0.364 ile 0.922 litre arasındadır.",
+      "ornek_cevap": "We are 95% confident that the interval from 0.364 to 0.922 liters captures the true mean difference in fuel used (old − new) on this route for all of the company's drivers."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) Gerekçe: aralığın tamamı 0'ın üzerinde (0 makul bir değer değil) → yeni uygulamanın ortalama yakıt kullanımını azalttığı iddiasını destekler; rastgele sıra ataması sayesinde uygulama ile yakıt farkı arasında neden-sonuç kurulabilir.",
+      "ornek_cevap": "Because every value in the interval is greater than 0, the interval supports the claim that the new app reduces mean fuel use on this route."
+     }
+    ],
+    "ornek_cozum": "<p>Yorum kalıbı: \"We are 95% confident that the interval from __ to __ captures the true [parameter in context].\" İddia için: 0 aralıkta mı? Değilse ve tüm değerler pozitifse eski − yeni > 0, yani yeni uygulama daha az yakıt.</p><p><strong>Model answer:</strong> (i) <strong>We are 95% confident that the interval from 0.364 to 0.922 liters captures the true mean difference in fuel used (old − new) on this route for all of the company's drivers.</strong> (ii) <strong>All plausible values are positive (0 is not in the interval), so the interval supports the claim that the new app reduces mean fuel use.</strong></p>",
+    "sik_hatalar": [
+     "\"There is a 95% probability that μ_d is in the interval\" demek.",
+     "Aralığı tek tek sürücüler için yorumlamak (\"95% of drivers save 0.364–0.922 L\").",
+     "Farkın yönünü (eski − yeni) karıştırıp yanlış sonuca varmak."
+    ]
+   }
+  ],
+  "toplam_puan": 10,
+  "kaynak": "AP-style original (Meberra 1.28.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.28.0",
+   "cedKonu": "4.2, 4.3",
+   "tip": "Question 3: Inference (Confidence Interval)"
+  }
+ },
+ {
+  "id": "frq-stat-k9",
+  "sayfa": "ap-statistics",
+  "ders": "statistics",
+  "tur": "Çok odaklı: olasılık, örneklem dağılımı ve çıkarım (Uygulama 2–4)",
+  "baslik": "Bakery Loaf Weights",
+  "sure_dk": 24,
+  "hesapMakinesi": true,
+  "zorluk": "hard",
+  "giris": "<p>A bakery's labels state that each loaf of bread weighs 500 grams. The baking machine is set so that the weights of the loaves follow an approximately normal distribution with mean 505 grams and standard deviation 8 grams. A loaf that weighs less than 495 grams is classified as <em>underweight</em>.</p>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "<p>Calculate the probability that a randomly selected loaf is underweight. Show your work.</p>",
+    "puan": 2,
+    "ne_soruyor": "Normal dağılımla rastgele bir somunun 495 gramdan hafif olma olasılığını, işini göstererek bulmanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Dağılım, parametreler, sınır ve yön açık: Normal(μ = 505, σ = 8), \\(P(X < 495)\\) (ya da \\(z = (495-505)/8 = -1.25\\)).",
+      "ornek_cevap": "X ~ Normal(mean = 505 g, SD = 8 g); P(X < 495) = P(Z < −1.25)"
+     },
+     {
+      "puan": 1,
+      "olcut": "Olasılık ≈ 0.1056.",
+      "ornek_cevap": "≈ 0.1056"
+     }
+    ],
+    "ornek_cozum": "<p>AP'de olasılık hesabı: dağılımı ve parametreleri adlandır, sınırı ve yönü göster, sonra cevabı ver. \"normalcdf(…)\" tek başına yeterli değildir; parametreler etiketli olmalı.</p>\\[z = \\frac{495 - 505}{8} = -1.25, \\qquad P(X < 495) = P(Z < -1.25) \\approx 0.1056\\]<p><strong>Model answer:</strong> <strong>For X ~ N(505, 8), P(X < 495) = P(Z < −1.25) ≈ 0.1056.</strong></p>",
+    "sik_hatalar": [
+     "Etiketsiz \"normalcdf(0, 495, 505, 8)\" yazmak (calculator speak): parametreler ve sınır adlandırılmalı.",
+     "Yönü ters almak (\\(P(X > 495)\\))."
+    ]
+   },
+   {
+    "harf": "b",
+    "soru": "<p>A box contains 12 randomly selected loaves. Let \\(U\\) be the number of underweight loaves in the box.</p><p>(i) Justify why \\(U\\) can be modeled as a binomial random variable.</p><p>(ii) Calculate the probability that the box contains at least 2 underweight loaves.</p>",
+    "puan": 2,
+    "ne_soruyor": "U'nun neden binom olduğunu gerekçelendirmeni ve en az 2 hafif somun olma olasılığını hesaplamanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) Binom koşulları bağlamla: sabit n = 12 somun; her somun ya hafif ya değil (iki sonuç); somunlar rastgele seçildiği için bağımsız; her somun için P(hafif) ≈ 0.1056 aynı.",
+      "ornek_cevap": "There is a fixed number of trials (12 loaves); each loaf is either underweight or not; the loaves are randomly selected, so they are independent; and the probability of underweight is 0.1056 for each loaf."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) \\(P(U \\ge 2) = 1 - P(U=0) - P(U=1) \\approx 1 - 0.2619 - 0.3712 \\approx 0.367\\) (n = 12, p = 0.1056 etiketli).",
+      "ornek_cevap": "U ~ Binomial(n = 12, p = 0.1056); P(U ≥ 2) = 1 − P(U = 0) − P(U = 1) ≈ 0.367."
+     }
+    ],
+    "ornek_cozum": "<p>Binom için dört şart (sabit n, iki sonuç, bağımsızlık, sabit p) hepsi bağlamla yazılmalı.</p>\\[P(U \\ge 2) = 1 - \\binom{12}{0}(0.1056)^0(0.8944)^{12} - \\binom{12}{1}(0.1056)^1(0.8944)^{11} \\approx 1 - 0.2619 - 0.3712 \\approx 0.367\\]<p><strong>Model answer:</strong> (i) <strong>Fixed n = 12 loaves, each underweight or not, independent because randomly selected, same p = 0.1056.</strong> (ii) <strong>For U ~ B(12, 0.1056), P(U ≥ 2) = 1 − P(U = 0) − P(U = 1) ≈ 0.367.</strong></p>",
+    "sik_hatalar": [
+     "\\(P(U \\ge 2)\\) yerine \\(1 - P(U \\le 2)\\) hesaplamak (\\(U = 2\\) yanlışlıkla atılır).",
+     "Bağımsızlığı söylememek."
+    ]
+   },
+   {
+    "harf": "c",
+    "soru": "<p>Let \\(\\bar{x}\\) be the mean weight of the 12 loaves in a randomly selected box. Describe the sampling distribution of \\(\\bar{x}\\), and calculate the probability that \\(\\bar{x}\\) is less than 500 grams.</p>",
+    "puan": 2,
+    "ne_soruyor": "12 somunluk kutuların ortalama ağırlığının dağılımını (şekil, merkez, yayılım) betimlemeni ve olasılığı hesaplamanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Örneklem dağılımı: yaklaşık normal (nüfus normal olduğu için), ortalama 505 g, standart sapma \\(8/\\sqrt{12} \\approx 2.31\\) g.",
+      "ornek_cevap": "The sampling distribution of x̄ is approximately normal (because the population is normal) with mean 505 g and standard deviation 8/√12 ≈ 2.31 g."
+     },
+     {
+      "puan": 1,
+      "olcut": "Olasılık: \\(P(\\bar{x} < 500) = P(Z < -2.17) \\approx 0.015\\).",
+      "ornek_cevap": "P(x̄ < 500) = P(Z < (500 − 505)/2.31) = P(Z < −2.17) ≈ 0.015."
+     }
+    ],
+    "ornek_cozum": "<p>Nüfus normal olduğu için n = 12 küçük olsa da \\(\\bar{x}\\) normaldir. \\(\\mu_{\\bar{x}} = 505\\), \\(\\sigma_{\\bar{x}} = 8/\\sqrt{12} \\approx 2.309\\).</p>\\[z = \\frac{500 - 505}{2.309} \\approx -2.17, \\qquad P(\\bar{x} < 500) \\approx 0.0152\\]<p><strong>Model answer:</strong> <strong>x̄ is approximately normal with mean 505 g and SD 8/√12 ≈ 2.31 g, so P(x̄ < 500) = P(Z < −2.17) ≈ 0.015.</strong></p>",
+    "sik_hatalar": [
+     "Standart sapma olarak 8'i kullanmak (tek somun dağılımı ile ortalamaların dağılımını karıştırmak).",
+     "n = 12 < 30 diye normalliği reddetmek: nüfus zaten normal."
+    ]
+   },
+   {
+    "harf": "d",
+    "soru": "<p>An inspector suspects that the machine has drifted so that the true mean weight is now less than 505 grams. She selects a random sample of 40 loaves from one day's production of several thousand loaves. The sample mean weight is 502.1 grams, and the sample standard deviation is 8.9 grams.</p><p>(i) Identify the appropriate inference procedure, and state the null and alternative hypotheses.</p><p>(ii) Assume the conditions for inference are met. Calculate the test statistic and p-value.</p><p>(iii) At the 0.05 level of significance, justify a conclusion in context.</p>",
+    "puan": 3,
+    "ne_soruyor": "Ortalama için uygun testi ve hipotezleri belirtmeni, test istatistiği ile p-değerini hesaplamanı ve bağlamda sonuca varmanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) Tek örneklem t-testi (bir nüfus ortalaması için); \\(H_0: \\mu = 505\\), \\(H_a: \\mu < 505\\), μ = o günkü tüm somunların gerçek ortalama ağırlığı.",
+      "ornek_cevap": "One-sample t-test for a population mean; H₀: μ = 505, Hₐ: μ < 505, where μ is the true mean weight of all loaves produced that day."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) \\(t = \\dfrac{502.1 - 505}{8.9/\\sqrt{40}} \\approx -2.06\\), sd = 39, p-değeri ≈ 0.023.",
+      "ornek_cevap": "t = (502.1 − 505)/(8.9/√40) ≈ −2.06, df = 39, p-value ≈ 0.023."
+     },
+     {
+      "puan": 1,
+      "olcut": "(iii) 0.023 < 0.05 → \\(H_0\\) reddedilir; o günkü tüm somunların gerçek ortalama ağırlığının 505 gramdan az olduğuna dair ikna edici kanıt vardır.",
+      "ornek_cevap": "Because 0.023 < 0.05, reject H₀. There is convincing statistical evidence that the true mean weight of all loaves produced that day is less than 505 grams."
+     }
+    ],
+    "ornek_cozum": "<p>\\(\\sigma\\) bilinmiyor gibi davranıp örneklem s'si kullanıldığı için t-testi uygundur (müfettiş makinenin kaydığından şüpheleniyor; eski σ artık güvenilir değil).</p>\\[t = \\frac{502.1 - 505}{8.9/\\sqrt{40}} = \\frac{-2.9}{1.407} \\approx -2.06, \\quad df = 39, \\quad \\text{p-value} = P(t_{39} \\le -2.06) \\approx 0.023\\]<p><strong>Model answer:</strong> (i) <strong>One-sample t-test for a mean; H₀: μ = 505, Hₐ: μ < 505</strong> (μ = true mean weight of all loaves that day). (ii) <strong>t ≈ −2.06, df = 39, p-value ≈ 0.023.</strong> (iii) <strong>Since 0.023 < 0.05, reject H₀; there is convincing statistical evidence that the true mean weight of that day's loaves is less than 505 grams.</strong></p>",
+    "sik_hatalar": [
+     "Hipotezi 500 gram (etiket) ile kurmak: şüphe 505 ayarından sapma.",
+     "z-testi kullanmak: örneklem standart sapması kullanılıyor.",
+     "Sonucu örneklem ortalaması için yazmak."
+    ]
+   },
+   {
+    "harf": "e",
+    "soru": "<p>Based on your conclusion in part (d), which type of error, Type I or Type II, could have been made? Describe that error in context.</p>",
+    "puan": 1,
+    "ne_soruyor": "Kararına göre hangi hata türünün olası olduğunu seçip bağlamda tarif etmeni istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Tip I hata seçilmiş (H₀ reddedildiği için) ve bağlamla tarif: aslında o günkü somunların gerçek ortalaması 505 g iken, müfettiş ortalamanın 505 g'dan az olduğu sonucuna varmış olabilir. ((d)'deki karar ile tutarlı cevap kabul.)",
+      "ornek_cevap": "A Type I error: concluding that the true mean weight of that day's loaves is less than 505 grams when the true mean is actually 505 grams."
+     }
+    ],
+    "ornek_cozum": "<p>\\(H_0\\) reddedildiyse yapılabilecek tek hata Tip I'dir: \\(H_0\\) aslında doğruyken reddetmek.</p><p><strong>Model answer:</strong> <strong>Type I error — the inspector concluded that the true mean weight is less than 505 grams when, in fact, the true mean weight of that day's loaves is 505 grams.</strong></p>",
+    "sik_hatalar": [
+     "Tip II hatayı seçmek: H₀ reddedildiyse Tip II yapılamaz.",
+     "Hatayı bağlamsız tanımlamak (\"rejecting a true null hypothesis\")."
+    ]
+   }
+  ],
+  "toplam_puan": 10,
+  "kaynak": "AP-style original (Meberra 1.28.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.28.0",
+   "cedKonu": "2.10, 2.11, 2.12, 3.8, 4.4, 4.5",
+   "tip": "Question 4: Multi-Focus on Practices 2, 3, and 4"
+  }
+ },
+ {
+  "id": "frq-stat-k10",
+  "sayfa": "ap-statistics",
+  "ders": "statistics",
+  "tur": "Çok odaklı: olasılık, rastgele değişken ve çıkarım (Uygulama 2–4)",
+  "baslik": "National Park Annual Passes",
+  "sure_dk": 22,
+  "hesapMakinesi": true,
+  "zorluk": "medium",
+  "giris": "<p>A national park selected a random sample of 500 visitors during one summer. Each visitor was classified as <em>local</em> (living within 100 kilometers of the park) or <em>non-local</em>, and the park recorded whether the visitor bought an annual pass.</p><table class=\"frq-tablo\"><tr><th></th><th>Bought pass</th><th>Did not buy pass</th><th>Total</th></tr><tr><td>Local</td><td>84</td><td>116</td><td>200</td></tr><tr><td>Non-local</td><td>72</td><td>228</td><td>300</td></tr><tr><td>Total</td><td>156</td><td>344</td><td>500</td></tr></table><p>The park also recorded the number of guided tours booked by each visitor. Based on many past summers, the number of guided tours \\(T\\) booked by a randomly selected visitor has the following probability distribution.</p><table class=\"frq-tablo\"><tr><th>Number of tours, \\(t\\)</th><td>0</td><td>1</td><td>2</td><td>3</td></tr><tr><th>\\(P(T = t)\\)</th><td>0.35</td><td>0.40</td><td>0.18</td><td>0.07</td></tr></table>",
+  "parcalar": [
+   {
+    "harf": "a",
+    "soru": "<p>One visitor from the sample will be selected at random.</p><p>(i) Calculate the probability that the visitor bought an annual pass.</p><p>(ii) Calculate the probability that the visitor bought an annual pass, given that the visitor is local.</p>",
+    "puan": 2,
+    "ne_soruyor": "Tablodan bir olasılık ve bir koşullu olasılık hesaplamanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) \\(P(\\text{pass}) = 156/500 = 0.312\\).",
+      "ornek_cevap": "P(bought pass) = 156/500 = 0.312"
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) \\(P(\\text{pass} \\mid \\text{local}) = 84/200 = 0.42\\).",
+      "ornek_cevap": "P(bought pass | local) = 84/200 = 0.42"
+     }
+    ],
+    "ornek_cozum": "<p>(i) Genel toplam paydadır: \\(156/500 = 0.312\\). (ii) \"given local\" → payda yalnız yerel ziyaretçiler: \\(84/200 = 0.42\\).</p><p><strong>Model answer:</strong> (i) <strong>156/500 = 0.312</strong>. (ii) <strong>84/200 = 0.42</strong>.</p>",
+    "sik_hatalar": [
+     "(ii)'de \\(84/156\\) hesaplamak: bu \\(P(\\text{local} \\mid \\text{pass})\\)'tır.",
+     "(ii)'de \\(84/500\\) hesaplamak: bu \"ve\" olasılığıdır."
+    ]
+   },
+   {
+    "harf": "b",
+    "soru": "<p>For a randomly selected visitor from the sample, are the events \"the visitor is local\" and \"the visitor bought an annual pass\" independent? Justify your answer.</p>",
+    "puan": 1,
+    "ne_soruyor": "İki olayın bağımsız olup olmadığına olasılıkları karşılaştırarak karar vermeni istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Bağımsız değil + sayısal gerekçe: \\(P(\\text{pass} \\mid \\text{local}) = 0.42 \\ne P(\\text{pass}) = 0.312\\) (ya da \\(P(\\text{local and pass}) = 0.168 \\ne 0.4 \\times 0.312 = 0.1248\\)).",
+      "ornek_cevap": "Not independent, because P(pass | local) = 0.42 is not equal to P(pass) = 0.312."
+     }
+    ],
+    "ornek_cozum": "<p>A ve B bağımsızsa \\(P(B \\mid A) = P(B)\\). Burada 0.42 ≠ 0.312, yani yerel olduğunu bilmek kart alma olasılığını değiştirir.</p><p><strong>Model answer:</strong> <strong>No. P(pass | local) = 0.42 is not equal to P(pass) = 0.312, so the events are not independent.</strong></p>",
+    "sik_hatalar": [
+     "Bağımsızlığı \"ayrık (mutually exclusive)\" olmakla karıştırmak.",
+     "Sayı vermeden \"they are related\" demek."
+    ]
+   },
+   {
+    "harf": "c",
+    "soru": "<p>(i) Calculate the mean and the standard deviation of \\(T\\).</p><p>(ii) Interpret the mean of \\(T\\) in context.</p>",
+    "puan": 3,
+    "ne_soruyor": "Ayrık rastgele değişkenin ortalamasını ve standart sapmasını hesaplamanı ve ortalamayı bağlamla yorumlamanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Ortalama: \\(\\mu_T = 0(0.35) + 1(0.40) + 2(0.18) + 3(0.07) = 0.97\\) tur (iş gösterilmiş).",
+      "ornek_cevap": "μ_T = 0(0.35) + 1(0.40) + 2(0.18) + 3(0.07) = 0.97 tours"
+     },
+     {
+      "puan": 1,
+      "olcut": "Standart sapma: \\(\\sigma_T = \\sqrt{\\sum (t - 0.97)^2 P(t)} \\approx 0.90\\) tur (iş gösterilmiş).",
+      "ornek_cevap": "σ_T = √[(0 − 0.97)²(0.35) + (1 − 0.97)²(0.40) + (2 − 0.97)²(0.18) + (3 − 0.97)²(0.07)] ≈ 0.90 tours"
+     },
+     {
+      "puan": 1,
+      "olcut": "Yorum: uzun vadede (çok sayıda rastgele ziyaretçi için) ziyaretçi başına ortalama rehberli tur sayısı yaklaşık 0.97'dir. \"Uzun vade/ortalama\" dili ve bağlam gerekir.",
+      "ornek_cevap": "Over many randomly selected visitors, the average number of guided tours booked per visitor will be about 0.97 tours."
+     }
+    ],
+    "ornek_cozum": "<p>\\(\\mu_T = \\sum t \\cdot P(t) = 0 + 0.40 + 0.36 + 0.21 = 0.97\\).</p>\\[\\sigma_T^2 = (0-0.97)^2(0.35) + (1-0.97)^2(0.40) + (2-0.97)^2(0.18) + (3-0.97)^2(0.07) \\approx 0.809, \\quad \\sigma_T \\approx 0.90\\]<p>Beklenen değer tek bir ziyaretçi için değil, uzun vadeli ortalama içindir (kimse 0.97 tur ayırtamaz).</p><p><strong>Model answer:</strong> <strong>μ_T = 0.97 tours and σ_T ≈ 0.90 tours. Over many randomly selected visitors, the mean number of guided tours booked per visitor would be about 0.97.</strong></p>",
+    "sik_hatalar": [
+     "Varyansı (0.809) standart sapma olarak vermek.",
+     "Ortalamayı \"a visitor books 0.97 tours\" diye tek kişi için yorumlamak.",
+     "Olasılıkları ağırlıklandırmadan 0, 1, 2, 3'ün ortalamasını (1.5) almak."
+    ]
+   },
+   {
+    "harf": "d",
+    "soru": "<p>Let \\(p_L\\) be the proportion of all local visitors to the park that summer who bought an annual pass, and let \\(p_N\\) be the proportion of all non-local visitors that summer who bought an annual pass. Assume the conditions for inference are met.</p><p>(i) Identify the appropriate inference procedure for estimating \\(p_L - p_N\\).</p><p>(ii) Calculate a 95% confidence interval for \\(p_L - p_N\\).</p><p>(iii) Interpret the interval in context.</p>",
+    "puan": 3,
+    "ne_soruyor": "İki oran farkı için uygun yöntemi adlandırmanı, %95 güven aralığını hesaplamanı ve yorumlamanı istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "(i) İki örneklem z-aralığı, iki nüfus oranı farkı için (two-sample z-interval for a difference in population proportions).",
+      "ornek_cevap": "A two-sample z-interval for the difference between two population proportions."
+     },
+     {
+      "puan": 1,
+      "olcut": "(ii) \\(0.42 - 0.24 = 0.18\\); \\(SE = \\sqrt{\\tfrac{0.42(0.58)}{200} + \\tfrac{0.24(0.76)}{300}} \\approx 0.0427\\); aralık \\(0.18 \\pm 1.96(0.0427) \\approx (0.096, 0.264)\\).",
+      "ornek_cevap": "(0.42 − 0.24) ± 1.96√(0.42·0.58/200 + 0.24·0.76/300) = 0.18 ± 0.084 → (0.096, 0.264)"
+     },
+     {
+      "puan": 1,
+      "olcut": "(iii) Yorum bağlamla: %95 güvenle, o yaz kart alan yerel ziyaretçi oranı ile yerel olmayan ziyaretçi oranı arasındaki gerçek fark (yerel − yerel olmayan) 0.096 ile 0.264 arasındadır.",
+      "ornek_cevap": "We are 95% confident that the interval from 0.096 to 0.264 captures the true difference (local − non-local) in the proportions of all visitors that summer who bought an annual pass."
+     }
+    ],
+    "ornek_cozum": "<p>\\(\\hat{p}_L = 84/200 = 0.42\\), \\(\\hat{p}_N = 72/300 = 0.24\\). Güven aralığında birleştirilmiş (pooled) oran <strong>kullanılmaz</strong>.</p>\\[SE = \\sqrt{\\frac{0.42(0.58)}{200} + \\frac{0.24(0.76)}{300}} \\approx 0.0427, \\qquad 0.18 \\pm 1.96(0.0427) = 0.18 \\pm 0.084 \\Rightarrow (0.096,\\ 0.264)\\]<p><strong>Model answer:</strong> (i) <strong>Two-sample z-interval for p_L − p_N.</strong> (ii) <strong>(0.096, 0.264).</strong> (iii) <strong>We are 95% confident that the interval from 0.096 to 0.264 captures the true difference between the proportion of all local visitors and the proportion of all non-local visitors that summer who bought an annual pass (local minus non-local).</strong></p>",
+    "sik_hatalar": [
+     "Aralıkta birleştirilmiş oran kullanmak (o yalnız testte).",
+     "\\(z^* = 1.645\\) kullanmak (o %90 için).",
+     "Yorumda \"95% of visitors\" demek."
+    ]
+   },
+   {
+    "harf": "e",
+    "soru": "<p>The park manager claims that local visitors are more likely than non-local visitors to buy an annual pass. Does the interval from part (d) support this claim? Justify your answer.</p>",
+    "puan": 1,
+    "ne_soruyor": "Güven aralığına bakarak yöneticinin iddiasının desteklenip desteklenmediğini gerekçelendirmeni istiyor.",
+    "rubrik": [
+     {
+      "puan": 1,
+      "olcut": "Evet + gerekçe: aralıktaki tüm değerler pozitif (0 aralıkta değil), yani \\(p_L - p_N > 0\\) makul; yerel ziyaretçilerin kart alma oranı daha yüksek görünür. ((d)'deki aralıkla tutarlı cevap kabul.)",
+      "ornek_cevap": "Yes. Because the entire interval is above 0, all plausible values of p_L − p_N are positive, so the interval supports the claim that local visitors are more likely to buy an annual pass."
+     }
+    ],
+    "ornek_cozum": "<p>Fark aralığında 0 yoksa ve tüm değerler pozitifse, ilk oran (yerel) daha büyüktür.</p><p><strong>Model answer:</strong> <strong>Yes. The interval (0.096, 0.264) contains only positive values and does not contain 0, so it supports the claim that a greater proportion of local visitors than non-local visitors bought an annual pass.</strong></p>",
+    "sik_hatalar": [
+     "Yalnız \"0 is not in the interval\" deyip yönü (pozitif → yerel daha yüksek) söylememek.",
+     "Örneklem oranlarını (0.42 > 0.24) tek gerekçe olarak kullanmak."
+    ]
+   }
+  ],
+  "toplam_puan": 10,
+  "kaynak": "AP-style original (Meberra 1.28.0)",
+  "durum": "taslak",
+  "ek": {
+   "uretim": "1.28.0",
+   "cedKonu": "2.2, 2.6, 2.7, 2.9, 3.10, 3.11",
+   "tip": "Question 4: Multi-Focus on Practices 2, 3, and 4"
+  }
+ }
+]
