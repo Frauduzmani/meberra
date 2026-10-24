@@ -13,7 +13,10 @@ const { dogrula, TOHUM, DERSLER } = require("../frq");
 // olan bir sınama tohumuyla sınanır.
 const klasor = fs.mkdtempSync(path.join(os.tmpdir(), "meberra-frq-"));
 const GERCEK = JSON.parse(fs.readFileSync(TOHUM, "utf8"));
-const taslakTohum = surum => { const t = JSON.parse(JSON.stringify(GERCEK)); t.surum = surum; t.frq.forEach(f => { f.durum = "taslak"; delete f.ek; }); return t; };
+const taslakTohum = surum => { const t = JSON.parse(JSON.stringify(GERCEK)); t.surum = surum; t.frq.forEach(f => { f.durum = "taslak"; delete f.ek; });
+  // 1.24.0: parça "ne_soruyor" (cevabı ele vermeyen Türkçe açıklama) çözmeden önce de gönderilir
+  t.frq.find(f => f.id === "frq-calc-ab-1").parcalar[0].ne_soruyor = "Tablodaki verilerle integrale yaklaşık değer bulmanı istiyor.";
+  return t; };
 const TASLAK_TOHUM = path.join(klasor, "frq-taslak.json");
 fs.writeFileSync(TASLAK_TOHUM, JSON.stringify(taslakTohum(1)));
 
@@ -119,6 +122,8 @@ test("yönetici onayı (taslak → aktif) sürüm + denetim; öğrenci yanıtlar
   assert.equal(s.durum, 200);
   assert.ok(s.govde.frq.giris && s.govde.frq.parcalar.length >= 3);
   assert.ok(!gizliVar(s.govde), "soru yanıtında rubrik/çözüm var");
+  assert.equal(s.govde.frq.parcalar[0].ne_soruyor, "Tablodaki verilerle integrale yaklaşık değer bulmanı istiyor.", "ne_soruyor çözmeden önce gelir");
+  assert.equal(s.govde.frq.parcalar[1].ne_soruyor, undefined);
   const ham = JSON.stringify(s.govde), tohum = JSON.parse(fs.readFileSync(TOHUM, "utf8")).frq.find(f => f.id === "frq-calc-ab-1");
   tohum.parcalar.forEach(p => assert.ok(!ham.includes(p.ornek_cozum.slice(0, 60)), "örnek çözüm metni sızdı"));
   const g = await o("GET", "/api/frq/gecmis");

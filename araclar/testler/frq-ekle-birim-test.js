@@ -8,7 +8,7 @@ const kopya = o => JSON.parse(JSON.stringify(o));
 
 const parca = h => ({ harf: h, soru: "Find \\(f'(2)\\). Justify your answer.", puan: 2,
   rubrik: [{ puan: 1, olcut: "Türev kuralı" }, { puan: 1, olcut: "Cevap", ornek_cevap: "f'(2) = 4" }],
-  ornek_cozum: "<p>\\(f'(x)=2x\\), \\(f'(2)=4\\).</p>", sik_hatalar: ["Zincir kuralını unutmak."] });
+  ornek_cozum: "<p>\\(f'(x)=2x\\), \\(f'(2)=4\\).</p>", sik_hatalar: ["Zincir kuralını unutmak."], ne_soruyor: "Türevi bir noktada hesaplamanı istiyor." });
 const frq = id => ({ id, sayfa: "ap-calculus", ders: "calculus-ab", tur: "Türev", baslik: "Test " + id, sure_dk: 15, hesapMakinesi: false,
   zorluk: "medium", giris: "<p>Let \\(f(x)=x^2\\).</p>", parcalar: [parca("a"), parca("b")], toplam_puan: 4,
   kaynak: "AP-style original (Meberra 1.24.0)", durum: "taslak", ek: { uretim: "1.24.0", cedKonu: "2.5" } });
@@ -41,6 +41,7 @@ hata([frq("frq-calc-ab-k1")], [{ id: "frq-calc-ab-k1", karar: "duzelt", duzeltme
 hata([Object.assign(frq("frq-calc-ab-k1"), { giris: "<p>\\(\text{x}\\)</p>".replace("\\t", "\t") })], [{ id: "frq-calc-ab-k1", karar: "onay" }], /kontrol karakteri/, "kontrol karakteri");
 hata([Object.assign(frq("frq-calc-ab-k1"), { giris: "<p>\\(frac{1}{2}\\)</p>" })], [{ id: "frq-calc-ab-k1", karar: "onay" }], /ters bölüsü eksik/, "ters bölüsü eksik LaTeX");
 hata([frq("frq-calc-ab-1")], [{ id: "frq-calc-ab-1", karar: "onay" }], /zaten var/, "tohumda farklı içerikle var olan id");
+{ const f = frq("frq-calc-ab-k1"); delete f.parcalar[1].ne_soruyor; hata([f], [{ id: "frq-calc-ab-k1", karar: "onay" }], /ne_soruyor/, "1.24.0 FRQ parçasında ne_soruyor zorunlu"); }
 hata([Object.assign(frq("frq-calc-ab-k1"), { durum: "aktif" })], [{ id: "frq-calc-ab-k1", karar: "onay" }], /taslak olmalı/, "taslak dışı girdi");
 // 3) Herhangi bir hata varsa hiçbir şey eklenmez (parti bütün)
 {

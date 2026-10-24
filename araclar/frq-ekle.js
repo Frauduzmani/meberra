@@ -67,6 +67,9 @@ function uygula(tohum0, taslaklar, kararlar, secenek) {
     f.durum = "aktif";
     f.ek = Object.assign({}, f.ek, { onay: { tarih: secenek.tarih, kaynak: secenek.kaynak } });
     const s = dogrula(f).concat(icerikDenetle(f));
+    // 1.24.0 FRQ'larında her parçada ne_soruyor: A2 öğrencisi için cevabı ele vermeyen Türkçe tek cümle (HTML yok)
+    f.parcalar.forEach(p => { if (typeof p.ne_soruyor !== "string" || !p.ne_soruyor.trim() || /[<>]/.test(p.ne_soruyor) || p.ne_soruyor.length > 300)
+      s.push(id + " (" + p.harf + "): ne_soruyor zorunlu (Türkçe tek cümle, HTML yok, ≤ 300 karakter)"); });
     if (s.length) { s.forEach(x => hatalar.push(x)); continue; }
     if (mevcut.has(id)) {
       if (esit(onaysiz(mevcut.get(id)), onaysiz(f))) continue; // zaten eklenmiş

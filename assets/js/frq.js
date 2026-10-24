@@ -157,6 +157,10 @@
     if (M && m) m.innerHTML = M.html("dusunen", { boyut: 96 });
     duyur("Bu FRQ Premium'da.");
   }
+  // 1.24.0 A2 köprüsü: parçanın ne istediğini cevabı vermeden Türkçe açıklar (açılır kutu; MathJax içerebilir)
+  function neSoruyorHtml(p) {
+    return p.ne_soruyor ? '<details class="frq-ne"><summary><span aria-hidden="true">🔍</span> Ne soruyor?</summary><p class="icerik">' + esc(p.ne_soruyor) + "</p></details>" : "";
+  }
   function cozCiz() {
     var f = S.aktif.frq, taslak = sget(TASLAK_KEY + f.id) || {};
     var c = taslak.cevaplar || {};
@@ -171,7 +175,7 @@
       '<div class="frq-giris icerik">' + f.giris + "</div>" + skHtml(f.sekiller) +
       '<form id="frq-form" novalidate>' + f.parcalar.map(function (p) {
         return '<section class="frq-parca" aria-labelledby="frq-p-' + p.harf + '"><div class="frq-parca-bas"><h2 id="frq-p-' + p.harf + '">(' + p.harf + ")</h2><span class=\"frq-puan-et\">" + p.puan + " puan</span></div>" +
-          '<div class="frq-soru icerik">' + p.soru + "</div>" + skHtml(p.sekiller) +
+          '<div class="frq-soru icerik">' + p.soru + "</div>" + skHtml(p.sekiller) + neSoruyorHtml(p) +
           '<label class="visually-hidden" for="frq-c-' + p.harf + '">(' + p.harf + ") cevabın</label>" +
           '<textarea id="frq-c-' + p.harf + '" class="text-input frq-cevap" data-harf="' + p.harf + '" rows="5" spellcheck="false" placeholder="Cevabını buraya yaz (kâğıtta çözdüysen boş bırakabilirsin)">' + esc(c[p.harf] || "") + "</textarea></section>";
       }).join("") +

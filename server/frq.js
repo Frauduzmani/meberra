@@ -117,7 +117,8 @@ function ozet(f) {
 }
 /** Soru (çözmeye başlarken) — rubrik/çözüm yok */
 function acik(f) {
-  return sekilAlanlari(Object.assign(ozet(f), { giris: f.giris, kaynak: f.kaynak, parcalar: (f.parcalar || []).map(p => sekilAlanlari({ harf: p.harf, soru: p.soru, puan: p.puan }, p, false)) }), f, false);
+  return sekilAlanlari(Object.assign(ozet(f), { giris: f.giris, kaynak: f.kaynak, parcalar: (f.parcalar || []).map(p => sekilAlanlari(Object.assign({ harf: p.harf, soru: p.soru, puan: p.puan },
+    p.ne_soruyor ? { ne_soruyor: p.ne_soruyor } : {}), p, false)) }), f, false); // 1.24.0: ne_soruyor cevabı vermez, önceden gider
 }
 /** Teslimden sonra: rubrik + örnek çözüm + sık hatalar */
 function tam(f) {
