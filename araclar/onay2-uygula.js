@@ -37,6 +37,11 @@ function yolAta(o, yol, deger) {
 }
 
 function main() {
+  // 1.28.0: argümansız çalıştırma eski 1.14.0 partisini yeniden uygulayıp onay tarihlerini değiştiriyordu → --taslak ve --karar zorunlu
+  if (!argDeger("--taslak") || !argDeger("--karar")) {
+    console.error("Kullanım: node araclar/onay2-uygula.js --taslak <dosya> --karar <dosya> [--uretim X] [--kuru]");
+    process.exit(2);
+  }
   const t0 = JSON.parse(fs.readFileSync(TASLAK, "utf8"));
   const t = Array.isArray(t0) ? { sorular: t0, pasajlar: {} } : t0; // girdi dizi ya da { sorular, pasajlar }
   if (!argDeger("--uretim")) { const u = [...new Set(t.sorular.map(q => q.ek && q.ek.uretim))]; if (u.length === 1 && u[0]) URETIM = u[0]; }
