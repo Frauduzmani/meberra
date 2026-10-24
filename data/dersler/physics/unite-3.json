@@ -1,0 +1,383 @@
+{
+ "ders": "physics",
+ "unite": 3,
+ "baslik": "Work, Energy, and Power",
+ "baslikTr": "İş, Enerji ve Güç",
+ "konular": [
+  {
+   "kod": "3.1",
+   "baslik": "Translational Kinetic Energy",
+   "baslikTr": "Öteleme kinetik enerjisi",
+   "hedefler": [
+    "Bir cismin öteleme kinetik enerjisini (translational kinetic energy) \\(K=\\tfrac12 mv^2\\) ile hesaplamak ve birimini (joule) yorumlamak.",
+    "Kinetik enerjinin skaler (scalar) olduğunu, yöne değil yalnız hızın büyüklüğüne (speed) bağlı olduğunu açıklamak.",
+    "Kütle ve hız değiştiğinde kinetik enerjinin nasıl ölçeklendiğini (oran akıl yürütmesi) ve referans çerçevesine (reference frame) bağlılığını açıklamak."
+   ],
+   "anlatim": "<p>Unit 3 boyunca tek bir büyük fikirle çalışacağız: <strong>enerji (energy)</strong> bir sistemin sahip olduğu, biçim değiştirebilen ama toplamı korunan bir niceliktir. İlk biçim hareket enerjisidir: <strong>öteleme kinetik enerjisi (translational kinetic energy)</strong>.</p>\n<div class=\"kn-tanim\"><strong>Tanım:</strong> Kütlesi \\(m\\), hızının büyüklüğü (speed) \\(v\\) olan bir cismin öteleme kinetik enerjisi \\[ K = \\tfrac12 m v^2 \\] Birim: \\(\\text{kg}\\cdot\\text{m}^2/\\text{s}^2 = \\text{J}\\) (joule).</div>\n<h4>Kinetik enerji skalerdir</h4>\n<p>\\(v^2\\) her zaman pozitiftir; bu yüzden \\(K \\ge 0\\) olur ve <strong>yönü yoktur</strong>. Kuzeye 5 m/s ile giden araba ile güneye 5 m/s ile giden aynı araba aynı \\(K\\)'ye sahiptir. Sabit süratle (constant speed) dairesel yolda dönen bir cismin hızı (velocity) sürekli değişir, ama kinetik enerjisi <strong>sabittir</strong>. AP sorularında bu ayrım sık sınanır: hız vektörü değişebilir, \\(K\\) değişmeyebilir.</p>\n<h4>Oranlarla düşünmek (scaling)</h4>\n<p>AP Physics 1 çoğu zaman sayı yerine <strong>oran</strong> sorar. \\(K \\propto m\\) ve \\(K \\propto v^2\\):</p>\n<table><thead><tr><th>Değişiklik</th><th>Yeni \\(K\\)</th></tr></thead>\n<tbody><tr><td>Kütle 2 katı, hız aynı</td><td>\\(2K\\)</td></tr>\n<tr><td>Hız 2 katı, kütle aynı</td><td>\\(4K\\)</td></tr>\n<tr><td>Hız 3 katı</td><td>\\(9K\\)</td></tr>\n<tr><td>Kütle yarı, hız 2 katı</td><td>\\(\\tfrac12 \\cdot 4 = 2K\\)</td></tr></tbody></table>\n<p>Ters yönde de kullanılır: aynı \\(K\\)'ye sahip iki cisimden kütlesi 4 kat olanın hızı \\(\\sqrt{1/4} = 1/2\\) katıdır.</p>\n<h4>Kinetik enerji değişimi</h4>\n<p>Bir cismin hızı \\(v_i\\)'den \\(v_f\\)'ye değişirse \\[ \\Delta K = \\tfrac12 m v_f^2 - \\tfrac12 m v_i^2 \\] Dikkat: bu \\(\\tfrac12 m (\\Delta v)^2\\) <strong>değildir</strong>. 2 m/s'den 4 m/s'ye hızlanan 3 kg'lık araba için \\(\\Delta K = \\tfrac12(3)(16-4) = 18\\text{ J}\\), oysa \\(\\tfrac12(3)(2)^2 = 6\\text{ J}\\) yanlış sonuçtur. Unit 3.2'de göreceğimiz <strong>iş–enerji teoremi (work–energy theorem)</strong> bu \\(\\Delta K\\)'yi net işe bağlar.</p>\n<h4>Referans çerçevesine bağlılık</h4>\n<p>Hız gözlemciye göre değiştiği için \\(K\\) de <strong>referans çerçevesine bağlıdır (depends on the reference frame)</strong>. Trende oturan yolcunun trene göre \\(K\\)'si sıfırdır, yere göre çok büyüktür. Bir problemde tüm enerjileri <em>aynı</em> çerçevede (genellikle yer) hesaplayın.</p>\n<h4>Verilerle kütle bulmak (deney tasarımı)</h4>\n<p>Laboratuvar FRQ'larında “hangi niceliği hangisine karşı çizersiniz?” sorulur. \\(K = \\tfrac12 m v^2\\) olduğu için \\(K\\)'yi \\(v^2\\)'ye karşı çizerseniz <strong>doğrusal (linear)</strong> grafik elde edersiniz ve <strong>eğim (slope) \\(= \\tfrac12 m\\)</strong> olur; kütle \\(m = 2 \\times \\text{eğim}\\). \\(K\\)'yi \\(v\\)'ye karşı çizmek parabol verir; eğimi sabit değildir.</p>\n<div class=\"kn-kural\"><strong>Özet:</strong> \\(K=\\tfrac12 mv^2\\); skaler, daima \\(\\ge 0\\); \\(m\\) ile doğru, \\(v^2\\) ile doğru orantılı; çerçeveye bağlı.</div>\n<div class=\"kn-dikkat\">FRQ'da oran sorusu cevaplarken önce bağıntıyı yazın: “Since \\(K = \\tfrac12 mv^2\\), doubling \\(v\\) quadruples \\(K\\).” Sadece “4 times” yazmak gerekçe puanını kaçırır.</div>",
+   "ornekler": [
+    {
+     "soru": "Kütlesi \\(1500\\text{ kg}\\) olan bir araba \\(20\\text{ m/s}\\) hızla gidiyor. (a) Kinetik enerjisi nedir? (b) Hızı \\(10\\text{ m/s}\\)'ye düşerse kinetik enerjisi ne kadar değişir?",
+     "cozum": [
+      "(a) \\(K = \\tfrac12 (1500)(20)^2 = 750 \\times 400 = 3.0\\times10^5\\text{ J}\\).",
+      "(b) \\(K_f = \\tfrac12(1500)(10)^2 = 7.5\\times10^4\\text{ J}\\).",
+      "\\(\\Delta K = K_f - K_i = 7.5\\times10^4 - 3.0\\times10^5 = -2.25\\times10^5\\text{ J}\\). Hız yarıya inince \\(K\\) dörtte birine düşer; enerjinin \\(3/4\\)'ü başka biçime (fren ısısı) geçmiştir."
+     ]
+    },
+    {
+     "soru": "A cismi \\(m\\) kütleli ve \\(3v\\) hızlı, B cismi \\(9m\\) kütleli ve \\(v\\) hızlıdır. \\(K_A/K_B\\) nedir?",
+     "cozum": [
+      "\\(K_A = \\tfrac12 m (3v)^2 = \\tfrac92 m v^2\\).",
+      "\\(K_B = \\tfrac12 (9m) v^2 = \\tfrac92 m v^2\\).",
+      "\\(K_A/K_B = 1\\). Kütledeki 9 katlık fark, hızın karesindeki 9 katlık farkla tam dengelenir."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir öğrenci “Sabit süratle dairesel pistte dönen araba ivmelendiği için kinetik enerjisi artmaktadır” diyor. Bu iddiayı değerlendirin.",
+     "cozum": [
+      "<strong>Claim:</strong> The claim is incorrect; the car's kinetic energy is constant.",
+      "<strong>Evidence:</strong> \\(K = \\tfrac12 mv^2\\) depends only on the speed \\(v\\), and the speed is constant.",
+      "<strong>Reasoning:</strong> Araba ivmelenir çünkü hızın <em>yönü</em> değişir (merkezcil ivme). Yön değişimi \\(v^2\\)'yi değiştirmez; bu yüzden \\(K\\) sabit kalır. (Unit 3.2'de: merkezcil kuvvet harekete dik olduğu için iş yapmaz.)"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Oran sorularında önce \\(K=\\tfrac12 mv^2\\) yazın, sonra her değişkeni çarpanıyla yerine koyun; sayı uydurmaya gerek yoktur.",
+    "Hesap makinesi Physics 1'in tüm bölümlerinde serbesttir, ama \\(\\tfrac12\\) ve kare almayı unutmak hesap makinesiyle düzelmez; birimi (J) kontrol edin.",
+    "Puanlayıcı “kinetic energy depends on speed, not direction” gibi açık bir gerekçe cümlesi arar.",
+    "Deney sorularında doğrusal grafik için \\(K\\)'ye karşı \\(v^2\\) çizin; eğim \\(\\tfrac12 m\\)'dir."
+   ],
+   "sikHatalar": [
+    "\\(K = mv\\) ya da \\(K=\\tfrac12 mv\\) yazmak (hızın karesini almamak).",
+    "\\(\\Delta K\\)'yi \\(\\tfrac12 m(\\Delta v)^2\\) ile hesaplamak.",
+    "Yön değiştiren (dairesel hareket yapan) cismin kinetik enerjisinin değiştiğini sanmak.",
+    "Farklı referans çerçevelerindeki hızları aynı enerji hesabında karıştırmak."
+   ],
+   "terimler": [
+    {
+     "en": "translational kinetic energy",
+     "tr": "öteleme kinetik enerjisi"
+    },
+    {
+     "en": "scalar",
+     "tr": "skaler (yönsüz) nicelik"
+    },
+    {
+     "en": "speed",
+     "tr": "sürat, hızın büyüklüğü"
+    },
+    {
+     "en": "reference frame",
+     "tr": "referans çerçevesi"
+    },
+    {
+     "en": "joule (J)",
+     "tr": "joule, enerji birimi"
+    }
+   ]
+  },
+  {
+   "kod": "3.2",
+   "baslik": "Work",
+   "baslikTr": "İş",
+   "hedefler": [
+    "Sabit bir kuvvetin işini \\(W = Fd\\cos\\theta\\) ile hesaplamak ve işaretini (pozitif, negatif, sıfır) yorumlamak.",
+    "Kuvvet–yer değiştirme (force–displacement) grafiğinin altındaki alanı iş olarak hesaplamak (işaretli alan).",
+    "İş–enerji teoremini (work–energy theorem) \\(W_{net} = \\Delta K\\) kullanarak hız, mesafe ve kuvvet bulmak."
+   ],
+   "anlatim": "<p><strong>İş (work)</strong>, bir kuvvetin bir sisteme ya da sistemden enerji aktarma yoludur. İş yapılması için iki şart vardır: bir kuvvet olmalı ve kuvvetin uygulandığı nokta <strong>kuvvete paralel bir bileşeni olan yer değiştirme (displacement)</strong> yapmalıdır.</p>\n<div class=\"kn-tanim\"><strong>Sabit kuvvetin işi:</strong> \\[ W = F_{\\parallel}\\, d = F d \\cos\\theta \\] \\(\\theta\\): kuvvet ile yer değiştirme arasındaki açı. Birim: \\(\\text{N}\\cdot\\text{m} = \\text{J}\\). İş skalerdir ama <strong>işaretlidir</strong>.</div>\n<table><thead><tr><th>Açı \\(\\theta\\)</th><th>İşin işareti</th><th>Anlamı</th><th>Örnek</th></tr></thead>\n<tbody><tr><td>\\(0^\\circ \\le \\theta \\lt 90^\\circ\\)</td><td>pozitif</td><td>cisme enerji aktarılır</td><td>arabayı iten el</td></tr>\n<tr><td>\\(\\theta = 90^\\circ\\)</td><td>sıfır</td><td>enerji aktarılmaz</td><td>yatay harekette normal kuvvet, dairesel harekette merkezcil kuvvet</td></tr>\n<tr><td>\\(90^\\circ \\lt \\theta \\le 180^\\circ\\)</td><td>negatif</td><td>cisimden enerji alınır</td><td>kayan bloğa kinetik sürtünme, yukarı fırlatılan topa yer çekimi</td></tr></tbody></table>\n<h4>Grafikten iş: alan</h4>\n<p>Kuvvet konumla değişiyorsa (yay gibi) \\(Fd\\) doğrudan kullanılamaz. Physics 1'de yöntem şudur: <strong>kuvvet–konum grafiğinin (F vs. x graph) altında kalan işaretli alan = iş</strong>. Grafiği dikdörtgen ve üçgenlere bölün; eksenin altındaki alan negatif iştir.</p>\n<p>Örnek: Kuvvet 0–2 m arası sabit 4 N, 2–4 m arası doğrusal olarak 0'a iniyor. İş \\(= (4)(2) + \\tfrac12(2)(4) = 8 + 4 = 12\\text{ J}\\).</p>\n<p>Yay için \\(F = kx\\) doğrusu bir üçgen verir: doğal uzunluktan \\(x\\) kadar germe işi \\(\\tfrac12 (x)(kx) = \\tfrac12 kx^2\\). Zaten gerilmiş bir yayı \\(x_1\\)'den \\(x_2\\)'ye germek için alan bir yamuktur: \\(\\tfrac12 k(x_2^2 - x_1^2)\\); \\(\\tfrac12 k(x_2-x_1)^2\\) <em>değildir</em>.</p>\n<h4>İş–enerji teoremi</h4>\n<div class=\"kn-kural\"><strong>Work–energy theorem:</strong> Bir cisim (tek parçacık gibi davranan sistem) üzerindeki tüm kuvvetlerin işlerinin toplamı, kinetik enerji değişimine eşittir: \\[ W_{net} = \\sum W_i = \\Delta K = \\tfrac12 m v_f^2 - \\tfrac12 m v_i^2 \\]</div>\n<p>Çözüm adımları: (1) cisim üzerindeki kuvvetleri listeleyin (serbest cisim diyagramı), (2) her kuvvetin işini işaretiyle bulun, (3) toplayın, (4) \\(\\Delta K\\)'ye eşitleyin. Sabit hızla hareket varsa \\(\\Delta K = 0\\) olduğundan net iş sıfırdır; bu, hiçbir kuvvetin iş yapmadığı anlamına <strong>gelmez</strong>: iten kuvvetin pozitif işi sürtünmenin negatif işini tam dengeler.</p>\n<p>Fren mesafesi örneği: sabit sürtünme \\(f\\) ile duran araba için \\(-fd = 0 - \\tfrac12 m v^2\\), yani \\(d = \\dfrac{mv^2}{2f}\\). Hız iki katına çıkarsa durma mesafesi <strong>dört katına</strong> çıkar.</p>\n<div class=\"kn-dikkat\">“Ağır kutuyu sabit hızla yatay taşımak” örneğinde elin dikey kuvveti yer değiştirmeye diktir: bu kuvvetin işi sıfırdır. Günlük dildeki “yorulmak” fizikteki iş değildir.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(5.0\\text{ kg}\\)'lık bir blok sürtünmesiz yatay zeminde durgun hâldedir. Üzerine etkiyen yatay net kuvvet konumla şöyle değişir (doğru parçalarıyla birleştirilmiş noktalar):<table><thead><tr><th>\\(x\\) (m)</th><th>0</th><th>2</th><th>4</th><th>6</th></tr></thead><tbody><tr><td>\\(F\\) (N)</td><td>10</td><td>10</td><td>0</td><td>−5</td></tr></tbody></table> \\(x = 6\\text{ m}\\)'deki hızı bulun.",
+     "cozum": [
+      "Alanlar: 0–2 m dikdörtgen \\(10 \\times 2 = 20\\text{ J}\\); 2–4 m üçgen \\(\\tfrac12(2)(10) = 10\\text{ J}\\); 4–6 m eksenin altında üçgen \\(\\tfrac12(2)(-5) = -5\\text{ J}\\).",
+      "\\(W_{net} = 20 + 10 - 5 = 25\\text{ J} = \\Delta K = K_f - 0\\).",
+      "\\(\\tfrac12 (5.0) v^2 = 25 \\Rightarrow v^2 = 10 \\Rightarrow v \\approx 3.2\\text{ m/s}\\)."
+     ]
+    },
+    {
+     "soru": "\\(10\\text{ kg}\\)'lık bir sandık, yatayla \\(37^\\circ\\) açı yapan \\(50\\text{ N}\\)'luk bir ip kuvvetiyle pürüzlü zeminde \\(4.0\\text{ m}\\) sabit hızla çekiliyor (\\(\\cos 37^\\circ = 0.80\\)). Sürtünmenin işi nedir?",
+     "cozum": [
+      "İpin işi: \\(W_T = (50)(4.0)(0.80) = 160\\text{ J}\\).",
+      "Sabit hız \\(\\Rightarrow \\Delta K = 0 \\Rightarrow W_{net} = 0\\). Yer çekimi ve normal kuvvet harekete dik: işleri sıfır.",
+      "\\(W_T + W_f = 0 \\Rightarrow W_f = -160\\text{ J}\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Aynı araba önce \\(v\\), sonra \\(2v\\) hızla giderken fren yapıyor; fren sürtünme kuvveti her iki durumda aynıdır. Durma mesafelerinin oranını bulun ve gerekçelendirin.",
+     "cozum": [
+      "İş–enerji teoremi: \\(-f d = 0 - \\tfrac12 m v^2 \\Rightarrow d = \\dfrac{m v^2}{2f}\\).",
+      "\\(f\\) ve \\(m\\) aynı olduğundan \\(d \\propto v^2\\): \\(d_2/d_1 = (2v)^2/v^2 = 4\\).",
+      "<strong>Reasoning (FRQ dili):</strong> “The friction force does negative work equal to the initial kinetic energy. Doubling the speed quadruples the kinetic energy, so with the same friction force the stopping distance must be four times as large.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her kuvvet için işi ayrı ayrı ve işaretiyle yazın; net işi sonra toplayın. Puanlayıcı işaret gerekçesini (açı) görmek ister.",
+    "Kuvvet–konum grafiğinde alanı şekillere bölün; eksenin altı negatif. Hesap makinesi aritmetik için yardımcıdır, alan mantığını siz kurun.",
+    "Sabit hız ⇒ \\(W_{net} = 0\\); bu, kuvvetlerin işlerinin birbirini götürdüğünü söyler, tek tek sıfır olduklarını değil.",
+    "Physics 1 cebir tabanlıdır: değişken kuvvetin işi için integral değil, grafik alanı kullanılır."
+   ],
+   "sikHatalar": [
+    "Kuvvetin dik bileşenini (\\(F\\sin\\theta\\)) iş hesabında kullanmak; açıyı yer değiştirmeye göre değil başka bir eksene göre ölçmek.",
+    "Grafikte eksenin altında kalan alanı pozitif saymak.",
+    "Zaten gerilmiş yayın işini \\(\\tfrac12 k(\\Delta x)^2\\) ile hesaplamak.",
+    "Net işi \\(\\Delta K\\) yerine son kinetik enerjiye eşitlemek (ilk hızı unutmak)."
+   ],
+   "terimler": [
+    {
+     "en": "work",
+     "tr": "iş"
+    },
+    {
+     "en": "displacement",
+     "tr": "yer değiştirme"
+    },
+    {
+     "en": "work–energy theorem",
+     "tr": "iş–enerji teoremi"
+    },
+    {
+     "en": "net work",
+     "tr": "net iş"
+    },
+    {
+     "en": "area under the force–position graph",
+     "tr": "kuvvet–konum grafiğinin altındaki alan"
+    },
+    {
+     "en": "kinetic friction",
+     "tr": "kinetik sürtünme"
+    }
+   ]
+  },
+  {
+   "kod": "3.3",
+   "baslik": "Potential Energy",
+   "baslikTr": "Potansiyel enerji",
+   "hedefler": [
+    "Potansiyel enerjinin (potential energy) tek bir cisme değil, etkileşen cisimlerden oluşan bir sisteme (system) ait olduğunu açıklamak.",
+    "Yer çekimi potansiyel enerjisi \\(\\Delta U_g = mg\\Delta y\\) ve yay potansiyel enerjisi \\(U_s = \\tfrac12 kx^2\\) ile hesap yapmak.",
+    "Korunumlu kuvvetlerin (conservative forces) işinin yoldan bağımsız olduğunu ve iki kütle sistemi için \\(U_G = -\\dfrac{Gm_1m_2}{r}\\) bağıntısını yorumlamak."
+   ],
+   "anlatim": "<p>Kinetik enerji hareketin enerjisidir. <strong>Potansiyel enerji (potential energy)</strong> ise sistemi oluşturan cisimlerin <strong>birbirine göre konumuna (configuration)</strong> bağlı olarak sistemde depolanan enerjidir.</p>\n<div class=\"kn-tanim\"><strong>Önemli:</strong> Potansiyel enerji <em>tek bir cisme</em> ait değildir; aralarında <strong>korunumlu kuvvet (conservative force)</strong> bulunan en az iki cisimden oluşan bir <strong>sisteme</strong> aittir. “Topun potansiyel enerjisi” günlük kısaltmadır; doğrusu “top–Dünya sisteminin (ball–Earth system) yer çekimi potansiyel enerjisi”dir. Sistem yalnız toptan oluşuyorsa \\(U_g\\) yoktur; Dünya'nın çekim kuvveti o zaman <em>dış kuvvettir</em> ve iş yapar.</div>\n<h4>Yer çekimi potansiyel enerjisi (Dünya yüzeyine yakın)</h4>\n<div class=\"formul\">\\[ \\Delta U_g = m g \\Delta y \\]</div>\n<p>Sıfır noktası (reference level) istediğiniz yerde seçilebilir; \\(U_g\\)'nin <em>değeri</em> seçime bağlıdır ama <strong>değişimi \\(\\Delta U_g\\) seçime bağlı değildir</strong>. Fizikte anlamlı olan daima değişimdir. Cisim yükselirse \\(\\Delta U_g \\gt 0\\), alçalırsa \\(\\Delta U_g \\lt 0\\).</p>\n<h4>Yay potansiyel enerjisi</h4>\n<div class=\"formul\">\\[ U_s = \\tfrac12 k x^2 \\]</div>\n<p>\\(k\\): yay sabiti (spring constant, N/m); \\(x\\): doğal uzunluktan (natural length) uzama ya da sıkışma. Hem germe hem sıkıştırma pozitif enerji depolar. \\(U_s \\propto x^2\\): sıkışma iki katına çıkarsa enerji dört katına çıkar. Bu formül, Unit 3.2'deki \\(F = kx\\) üçgen alanından gelir.</p>\n<table><thead><tr><th>Sistem</th><th>Kuvvet</th><th>Potansiyel enerji</th></tr></thead>\n<tbody><tr><td>cisim + Dünya (yüzeye yakın)</td><td>\\(mg\\)</td><td>\\(\\Delta U_g = mg\\Delta y\\)</td></tr>\n<tr><td>cisim + yay</td><td>\\(kx\\)</td><td>\\(U_s = \\tfrac12 kx^2\\)</td></tr>\n<tr><td>iki küresel kütle (genel)</td><td>\\(Gm_1m_2/r^2\\)</td><td>\\(U_G = -Gm_1m_2/r\\)</td></tr></tbody></table>\n<h4>Genel çekim potansiyel enerjisi</h4>\n<p>Uydu–Dünya gibi büyük mesafelerde \\(g\\) sabit değildir; \\(mgh\\) kullanılamaz. Sistemin enerjisi \\(U_G = -\\dfrac{Gm_1m_2}{r}\\)'dir (\\(r\\): merkezler arası uzaklık). Sonsuzda sıfır seçildiği için değer <strong>negatiftir</strong>; \\(r\\) büyüdükçe \\(U_G\\) sıfıra yaklaşır, yani <strong>artar</strong>. Uyduyu \\(R\\)'den \\(2R\\)'ye taşımak: \\(\\Delta U_G = -\\tfrac{GMm}{2R} - (-\\tfrac{GMm}{R}) = +\\tfrac{GMm}{2R}\\).</p>\n<h4>Korunumlu kuvvet ve yoldan bağımsızlık</h4>\n<p>Yer çekimi ve yay kuvveti korunumludur: yaptıkları iş yalnız başlangıç ve bitiş konumlarına bağlıdır, <strong>izlenen yoldan bağımsızdır (path independent)</strong>; kapalı bir yolda işleri sıfırdır. İç korunumlu kuvvetin işi \\(W = -\\Delta U\\)'dur. Sürtünme ise korunumlu <em>değildir</em>: işi yol uzadıkça büyür ve ona ait bir potansiyel enerji tanımlanamaz.</p>\n<div class=\"kn-dikkat\">FRQ'da sistemi daima açıkça adlandırın: “Choose the block–Earth system. Because Earth is inside the system, gravity is an internal force and its effect is represented by the change in gravitational potential energy.”</div>",
+   "ornekler": [
+    {
+     "soru": "Yay sabiti \\(k = 400\\text{ N/m}\\) olan bir yay \\(0.15\\text{ m}\\) sıkıştırılıyor. (a) Depolanan enerji nedir? (b) Aynı enerjiyi \\(k = 100\\text{ N/m}\\)'lik bir yayda depolamak için ne kadar sıkıştırma gerekir?",
+     "cozum": [
+      "(a) \\(U_s = \\tfrac12 (400)(0.15)^2 = 200 \\times 0.0225 = 4.5\\text{ J}\\).",
+      "(b) \\(\\tfrac12 (100) x^2 = 4.5 \\Rightarrow x^2 = 0.09 \\Rightarrow x = 0.30\\text{ m}\\).",
+      "Kontrol: \\(k\\) dörtte bire inince \\(x\\) iki katına çıkar (\\(x \\propto 1/\\sqrt{k}\\))."
+     ]
+    },
+    {
+     "soru": "\\(2.0\\text{ kg}\\)'lık bir kitap \\(1.8\\text{ m}\\) yükseklikteki raftan \\(0.60\\text{ m}\\) yükseklikteki masaya indiriliyor. Sıfır noktası (a) zeminde, (b) masada seçildiğinde kitap–Dünya sisteminin \\(\\Delta U_g\\) değerini bulun.",
+     "cozum": [
+      "(a) \\(U_i = (2)(10)(1.8) = 36\\text{ J}\\), \\(U_f = (2)(10)(0.60) = 12\\text{ J}\\), \\(\\Delta U_g = -24\\text{ J}\\).",
+      "(b) \\(U_i = (2)(10)(1.2) = 24\\text{ J}\\), \\(U_f = 0\\), \\(\\Delta U_g = -24\\text{ J}\\).",
+      "Değerler farklı, değişim aynı: \\(\\Delta U_g = mg\\Delta y\\) referans seçiminden bağımsızdır."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir öğrenci, aynı tepeden aynı alt noktaya inen kısa-dik ve uzun-yatık iki sürtünmesiz rampa için “uzun rampada yer çekimi daha çok iş yapar çünkü yol daha uzundur” diyor. Değerlendirin.",
+     "cozum": [
+      "<strong>Claim:</strong> The claim is incorrect; gravity does the same work on both ramps.",
+      "<strong>Evidence/Reasoning:</strong> Gravity is a conservative force, so its work depends only on the vertical displacement: \\(W_g = -\\Delta U_g = mg h\\) for both ramps. On the long ramp the displacement is longer but the component of gravity along the ramp (\\(mg\\sin\\theta\\)) is smaller by the same factor."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her enerji sorusunda önce sistemi yazın; \\(U\\) yalnız sistemin içinde etkileşen iki cisim varsa kullanılır.",
+    "Sıfır seviyesini işinizi kolaylaştıran yerde (genelde en alçak nokta) seçin; FRQ'da bunu bir cümleyle belirtin.",
+    "\\(U_s = \\tfrac12 kx^2\\)'de \\(x\\) yayın toplam uzunluğu değil, doğal uzunluktan farkıdır.",
+    "Uydu sorularında \\(mgh\\) değil \\(U_G = -Gm_1m_2/r\\) kullanın; sayısal değer gerekirse hesap makinesi yardımcıdır."
+   ],
+   "sikHatalar": [
+    "Potansiyel enerjiyi tek bir cisme ait saymak ve aynı zamanda yer çekiminin işini de eklemek (enerjiyi iki kez saymak).",
+    "\\(U_s\\)'de \\(\\tfrac12\\)'yi unutmak ya da \\(x\\)'in karesini almamak.",
+    "\\(U_G\\)'nin negatif işaretini görüp uzaklaşınca potansiyel enerjinin azaldığını sanmak.",
+    "Yer çekiminin işinin yol uzunluğuna bağlı olduğunu sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "potential energy",
+     "tr": "potansiyel enerji"
+    },
+    {
+     "en": "gravitational potential energy",
+     "tr": "yer çekimi (kütle çekim) potansiyel enerjisi"
+    },
+    {
+     "en": "elastic (spring) potential energy",
+     "tr": "esneklik (yay) potansiyel enerjisi"
+    },
+    {
+     "en": "spring constant",
+     "tr": "yay sabiti"
+    },
+    {
+     "en": "conservative force",
+     "tr": "korunumlu kuvvet"
+    },
+    {
+     "en": "path independent",
+     "tr": "yoldan bağımsız"
+    }
+   ]
+  },
+  {
+   "kod": "3.4",
+   "baslik": "Conservation of Energy",
+   "baslikTr": "Enerjinin korunumu",
+   "hedefler": [
+    "Bir sistem ve çevre (system and environment) seçip enerjinin sistem içinde biçim değiştirmesini ve sınırdan iş yoluyla geçmesini ayırt etmek.",
+    "Enerji çubuk grafikleri (energy bar charts) çizip yorumlamak ve bunları \\(K_i + U_i + W_{ext} = K_f + U_f + \\Delta E_{th}\\) denklemine çevirmek.",
+    "Sürtünmeli durumlarda mekanik enerjinin termal enerjiye dönüşümünü nicel ve FRQ iddia–kanıt–gerekçe (claim–evidence–reasoning) diliyle açıklamak."
+   ],
+   "anlatim": "<p>Enerjinin korunumu fizikteki en güçlü ilkedir: <strong>Enerji yoktan var edilemez, yok edilemez; yalnız biçim değiştirir ya da sistem sınırından aktarılır.</strong> AP Physics 1'de bu ilkeyi her zaman bir <strong>sistem (system)</strong> üzerinden kurarız.</p>\n<h4>1. Sistemi seçmek</h4>\n<p>Sistem, incelemeye karar verdiğimiz cisimler topluluğudur; geri kalan her şey <strong>çevredir (environment)</strong>. Seçim sonucu değiştirmez ama <em>hesabın görünüşünü</em> değiştirir:</p>\n<table><thead><tr><th>Düşen top</th><th>Sistem: yalnız top</th><th>Sistem: top + Dünya</th></tr></thead>\n<tbody><tr><td>Yer çekimi</td><td>dış kuvvet, iş yapar: \\(W = mgh\\)</td><td>iç kuvvet, iş yerine \\(\\Delta U_g\\)</td></tr>\n<tr><td>Potansiyel enerji</td><td>yok</td><td>var, azalır</td></tr>\n<tr><td>Denklem</td><td>\\(0 + W_{ext} = K_f\\)</td><td>\\(U_{g,i} = K_f\\)</td></tr></tbody></table>\n<div class=\"kn-dikkat\">Yer çekimini hem iş hem \\(\\Delta U_g\\) olarak yazmak <strong>çift saymadır (double counting)</strong> ve en sık puan kaybıdır.</div>\n<p>Dış kuvvetler sisteme iş yapmıyorsa sistem <strong>yalıtılmıştır (isolated)</strong> ve toplam enerjisi sabittir. Dış iş varsa, toplam enerji değişimi bu işe eşittir: \\(\\Delta E_{sistem} = W_{ext}\\).</p>\n<h4>2. Enerji denklemi</h4>\n<div class=\"formul\">\\[ K_i + U_{g,i} + U_{s,i} + W_{ext} = K_f + U_{g,f} + U_{s,f} + \\Delta E_{th} \\]</div>\n<p>\\(\\Delta E_{th}\\): sistem içindeki sürtünmenin ürettiği <strong>iç (termal) enerji artışı (increase in internal/thermal energy)</strong>. Her iki yüzey de sistemdeyse \\(\\Delta E_{th} = f_k d\\) (\\(d\\): kayma mesafesi). <strong>Mekanik enerji (mechanical energy)</strong> \\(K + U\\) yalnız dış iş yoksa ve sürtünme gibi korunumsuz iç kuvvetler yoksa korunur; <em>toplam</em> enerji ise yalıtılmış sistemde daima korunur.</p>\n<h4>3. Enerji çubuk grafiği</h4>\n<p>Çubuk grafik (bar chart) denklemin resmidir. Her çubuk bir enerji biçimidir; sol tarafın toplamı + dış iş = sağ tarafın toplamı. Örnek: pürüzlü rampanın tepesinden durgun bırakılan blok (sistem: blok + rampa + Dünya, 1 birim = 10 J):</p>\n<table><thead><tr><th></th><th>\\(K\\)</th><th>\\(U_g\\)</th><th>\\(U_s\\)</th><th>\\(W_{ext}\\)</th><th>\\(\\Delta E_{th}\\)</th></tr></thead>\n<tbody><tr><td>Başlangıç (tepe)</td><td>0</td><td>5</td><td>0</td><td>0 (dış iş yok)</td><td>0</td></tr>\n<tr><td>Son (dip)</td><td>3</td><td>0</td><td>0</td><td>—</td><td>2</td></tr></tbody></table>\n<p>Kontrol: \\(0 + 5 + 0 + 0 = 3 + 0 + 0 + 2\\). Çubuklar denkleşmiyorsa grafik yanlıştır. Sınavda çubuk grafiği önce çizip sonra denklemi “çubuklardan okuyarak” yazmak hatayı azaltır.</p>\n<h4>4. Sürtünme ve enerji aktarımı</h4>\n<p>Sürtünmeli bir yüzeyde kayan blokta mekanik enerji azalır. Enerji kaybolmaz: blok ve zemin ısınır. Sistemi yalnız blok seçerseniz sürtünme <em>dış kuvvettir</em> ve negatif iş yapar; blok + zemin seçerseniz sürtünme içtedir ve enerji \\(\\Delta E_{th}\\) olarak sistemde kalır.</p>\n<h4>5. FRQ: iddia–kanıt–gerekçe</h4>\n<p>“Justify” ya da “explain” istenince üç parçalı yazın:</p>\n<ul><li><strong>Claim:</strong> “The speed of the block at point B is less than at point A.”</li>\n<li><strong>Evidence:</strong> “The surface between A and B is rough, so friction acts as the block slides.”</li>\n<li><strong>Reasoning:</strong> “For the block–surface–Earth system no external work is done, so total energy is constant. Some kinetic energy is converted into thermal energy, and the gravitational potential energy is the same at A and B, so the kinetic energy at B must be smaller.”</li></ul>\n<div class=\"kn-kural\"><strong>Özet:</strong> Sistemi adlandır → başlangıç ve son çubuklarını çiz → dış işi ve termal enerjiyi yerleştir → denklemi yaz → çöz.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(0.40\\text{ kg}\\)'lık bir top \\(5.0\\text{ m}\\) yükseklikten durgun bırakılıyor; yere çarpmadan hemen önce hızı \\(9.0\\text{ m/s}\\) ölçülüyor. Hava direnciyle termal enerjiye dönüşen enerji ne kadardır? Sistemi belirtin.",
+     "cozum": [
+      "Sistem: top + Dünya + hava. Dış iş yok. Başlangıç: \\(K = 0\\), \\(U_g = (0.40)(10)(5.0) = 20\\text{ J}\\).",
+      "Son: \\(K = \\tfrac12(0.40)(9.0)^2 = 16.2\\text{ J}\\), \\(U_g = 0\\).",
+      "\\(20 = 16.2 + \\Delta E_{th} \\Rightarrow \\Delta E_{th} = 3.8\\text{ J}\\). Çubuk grafik: başta \\(U_g\\) = 20; sonda \\(K\\) = 16.2 ve \\(\\Delta E_{th}\\) = 3.8."
+     ]
+    },
+    {
+     "soru": "Yay sabiti \\(k = 500\\text{ N/m}\\) olan bir yay \\(0.20\\text{ m}\\) sıkıştırılmış, önüne \\(2.0\\text{ kg}\\)'lık blok konmuştur. Blok bırakılınca sürtünmesiz bölgede yaydan ayrılır, sonra kinetik sürtünme kuvveti \\(4.0\\text{ N}\\) olan pürüzlü zeminde durur. Pürüzlü zeminde kaç metre kayar?",
+     "cozum": [
+      "Sistem: blok + yay + zemin. \\(U_{s,i} = \\tfrac12(500)(0.20)^2 = 10\\text{ J}\\).",
+      "Son durumda \\(K = 0\\), \\(U_s = 0\\): tüm enerji termal enerjiye döner: \\(\\Delta E_{th} = f_k d = 10\\text{ J}\\).",
+      "\\(d = 10 / 4.0 = 2.5\\text{ m}\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir öğrenci, el bir kitabı sabit hızla yukarı kaldırırken “kitap–Dünya sisteminin enerjisi korunur” diyor. Değerlendirin.",
+     "cozum": [
+      "<strong>Claim:</strong> The energy of the book–Earth system is not constant; it increases.",
+      "<strong>Evidence:</strong> The hand is outside the system and exerts an upward force in the direction of the book's displacement.",
+      "<strong>Reasoning:</strong> The hand does positive external work on the system. Kinetic energy is unchanged (constant speed), and this work appears as an increase in gravitational potential energy: \\(W_{hand} = \\Delta U_g = mg\\Delta y\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her enerji FRQ'sunun ilk cümlesi sistem seçimi olsun: “Consider the system of …”. Puanlayıcı iç/dış kuvvet ayrımını bu cümleden okur.",
+    "Çubuk grafiklerde ölçek tutarlı olsun; başlangıç toplamı + dış iş = son toplam. Boş bırakılan çubuk “sıfır” demektir, açıkça sıfır gösterin.",
+    "Sürtünme varsa “mechanical energy is not conserved, but total energy is conserved” ayrımını açıkça yazın.",
+    "Sayısal sonuçta hesap makinesi yardımcıdır; ama çoğu MCQ'da kütle sadeleşir, önce sembolik çözün."
+   ],
+   "sikHatalar": [
+    "Yer çekimini hem dış iş hem potansiyel enerji olarak saymak (çift sayma).",
+    "Sürtünmeyle “enerji kayboldu” deyip termal enerjiyi çubuk grafiğe koymamak.",
+    "Mekanik enerjinin korunumunu sürtünmeli ya da dış iş yapılan sistemlerde kullanmak.",
+    "Tek cisimli sisteme potansiyel enerji çubuğu çizmek."
+   ],
+   "terimler": [
+    {
+     "en": "system",
+     "tr": "sistem"
+    },
+    {
+     "en": "environment",
+     "tr": "çevre"
+    },
+    {
+     "en": "isolated system",
+     "tr": "yalıtılmış sistem"
+    },
+    {
+     "en": "energy bar chart",
+     "tr": "enerji çubuk grafiği"
+    },
+    {
+     "en": "mechanical energy",
+     "tr": "mekanik enerji"
+    },
+    {
+     "en": "internal (thermal) energy",
+     "tr": "iç (termal) enerji"
+    },
+    {
+     "en": "external work",
+     "tr": "dış iş"
+    },
+    {
+     "en": "claim–evidence–reasoning",
+     "tr": "iddia–kanıt–gerekçe"
+    }
+   ]
+  },
+  {
+   "kod": "3.5",
+   "baslik": "Power",
+   "baslikTr": "Güç",
+   "hedefler": [
+    "Ortalama gücü (average power) \\(P_{avg} = W/\\Delta t = \\Delta E/\\Delta t\\) ile hesaplamak ve watt birimini yorumlamak.",
+    "Sabit hızla hareket eden bir cisim için anlık gücü (instantaneous power) \\(P = F_{\\parallel} v\\) ile bulmak.",
+    "Tablo ve grafik verilerinden (enerji–zaman, güç–zaman) güç ve aktarılan enerji hesaplamak."
+   ],
+   "anlatim": "<p>İki öğrenci aynı merdivenden çıkıyorsa aynı işi yaparlar; ama koşan öğrenci bu işi daha kısa sürede yapar. Bu farkı ölçen nicelik <strong>güçtür (power)</strong>: enerjinin aktarılma ya da dönüştürülme <strong>hızı (rate)</strong>.</p>\n<div class=\"kn-tanim\"><strong>Ortalama güç:</strong> \\[ P_{avg} = \\frac{W}{\\Delta t} = \\frac{\\Delta E}{\\Delta t} \\] Birim: \\(\\text{J/s} = \\text{W}\\) (watt). \\(1\\text{ kW} = 1000\\text{ W}\\). Dikkat: \\(\\text{kW}\\cdot\\text{h}\\) (kilowatt-saat) bir <strong>enerji</strong> birimidir, güç değil.</div>\n<h4>Kuvvet ve hızla güç</h4>\n<p>Sabit bir kuvvet cismi hareket yönünde iterken kısa bir \\(\\Delta t\\) süresinde \\(\\Delta x = v\\Delta t\\) yol alınır; iş \\(F\\Delta x\\) olduğundan</p>\n<div class=\"formul\">\\[ P = F_{\\parallel}\\, v = F v\\cos\\theta \\]</div>\n<p>Bu bağıntı özellikle <strong>sabit hız</strong> problemlerinde kullanışlıdır: sabit hızda net kuvvet sıfırdır, dolayısıyla motorun kuvveti dirençlerin toplamına eşittir. Örnek: eğik düzlemde sabit hızla çekilen sandık için çekme kuvveti \\(F = mg\\sin\\theta + f_k\\), güç \\(P = (mg\\sin\\theta + f_k)v\\).</p>\n<h4>Enerji aktarım hızı ve verimlilik</h4>\n<p>Bir motor elektrik enerjisini \\(P_{giriş}\\) hızıyla alır, bir kısmını yükü kaldırmaya (\\(\\Delta U_g/\\Delta t\\)) harcar, kalanı termal enerjiye dönüşür. Enerji korunumu güce de uygulanır: \\[ P_{giriş} = P_{yararlı} + P_{termal} \\]</p>\n<h4>Verilerden güç</h4>\n<table><thead><tr><th>Veri biçimi</th><th>Güç nasıl bulunur</th></tr></thead>\n<tbody><tr><td>Enerji–zaman tablosu</td><td>\\(P_{avg} = \\dfrac{E_2 - E_1}{t_2 - t_1}\\) (iki satır arası eğim)</td></tr>\n<tr><td>Güç–zaman grafiği</td><td>Altındaki alan = aktarılan enerji (sabit güçte \\(P\\Delta t\\), doğrusal değişende üçgen/yamuk alanı)</td></tr>\n<tr><td>Kuvvet ve hız</td><td>\\(P = Fv\\)</td></tr>\n<tr><td>Kütle, yükseklik, süre</td><td>\\(P = mg\\Delta y / \\Delta t\\) (sabit hızla kaldırma)</td></tr></tbody></table>\n<p>Örnek: Bir arabanın kinetik enerjisi \\(t = 2\\text{ s}\\)'de 20 kJ, \\(t = 6\\text{ s}\\)'de 180 kJ ise bu aralıktaki ortalama net güç \\(\\dfrac{160\\text{ kJ}}{4\\text{ s}} = 40\\text{ kW}\\). Kinetik enerji zamanla eşit aralıklarda giderek daha hızlı artıyorsa güç sabit değildir, artıyordur.</p>\n<h4>Oran akıl yürütmesi</h4>\n<p>Aynı işi yarı sürede yapmak gücü iki katına çıkarır. Aynı motorla (sabit \\(P\\)) iki kat ağır yükü sabit hızla kaldırmak, \\(P = mgv\\) gereği hızı yarıya indirir.</p>\n<div class=\"kn-dikkat\">“Daha çok iş yapan daha güçlüdür” yanlıştır. Güç iş ile süreyi birlikte içerir; tabloda en büyük işi değil, en büyük \\(W/\\Delta t\\) oranını arayın.</div>\n<p>FRQ dili: “The power is the rate at which energy is transferred. Both students do the same work \\(mgh\\), but student A does it in less time, so student A's average power is greater.”</p>",
+   "ornekler": [
+    {
+     "soru": "\\(70\\text{ kg}\\)'lık bir öğrenci \\(5.0\\text{ m}\\) yüksekliğindeki merdiveni \\(7.0\\text{ s}\\)'de çıkıyor. Ortalama gücü en az ne kadardır?",
+     "cozum": [
+      "Yapılan iş (en az) \\(= \\Delta U_g = mgh = (70)(10)(5.0) = 3500\\text{ J}\\).",
+      "\\(P_{avg} = 3500/7.0 = 500\\text{ W}\\). “En az” denmesinin nedeni: kinetik enerji değişimi ve vücudun iç kayıpları ihmal edilmiştir."
+     ]
+    },
+    {
+     "soru": "Bir vinç \\(50\\text{ kg}\\)'lık sandığı \\(30^\\circ\\)'lik pürüzlü eğik düzlemde sabit \\(1.5\\text{ m/s}\\) hızla çekiyor; kinetik sürtünme kuvveti \\(80\\text{ N}\\)'dur (\\(\\sin 30^\\circ = 0.50\\)). Vincin gücü nedir?",
+     "cozum": [
+      "Sabit hız \\(\\Rightarrow\\) net kuvvet sıfır: \\(F = mg\\sin\\theta + f_k = (50)(10)(0.50) + 80 = 330\\text{ N}\\).",
+      "\\(P = Fv = (330)(1.5) = 495\\text{ W} \\approx 500\\text{ W}\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir motor sabit güçle çalışıyor. Önce \\(m\\) kütleli yükü, sonra \\(2m\\) kütleli yükü sabit hızla kaldırıyor. İkinci durumda kaldırma hızı nasıl değişir? Gerekçelendirin.",
+     "cozum": [
+      "Sabit hızda motor kuvveti ağırlığa eşittir: \\(F = mg\\). Güç \\(P = Fv = mgv\\).",
+      "\\(P\\) sabit, \\(m\\) iki katı \\(\\Rightarrow v_2 = \\dfrac{P}{2mg} = \\dfrac{v_1}{2}\\).",
+      "<strong>Reasoning:</strong> “The motor transfers energy at the same rate. Raising twice the weight requires twice the energy per meter, so the load can rise only half as many meters per second.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Tablolu güç sorularında her satır için \\(W/\\Delta t\\) hesaplayın; hesap makinesi bu aritmetikte yardımcıdır.",
+    "\\(P = Fv\\) yalnız kuvvet hıza paralelse doğrudan kullanılır; değilse \\(F\\cos\\theta\\) alın.",
+    "Birimleri dönüştürün: kW → W, dakika → saniye. kW·h enerjidir.",
+    "FRQ'da gücü daima “rate of energy transfer” olarak tanımlayan bir cümleyle başlayın."
+   ],
+   "sikHatalar": [
+    "En çok işi yapanı en güçlü sanmak (süreyi hesaba katmamak).",
+    "Güç ile enerjiyi karıştırmak; ör. kW·h'yi güç birimi saymak ya da \\(P\\)'yi süreyle bölmek yerine çarpmak.",
+    "Sabit hızlı eğik düzlem problemlerinde sürtünmeyi ya da \\(mg\\sin\\theta\\)'yı kuvvetten çıkarmak."
+   ],
+   "terimler": [
+    {
+     "en": "power",
+     "tr": "güç"
+    },
+    {
+     "en": "average power",
+     "tr": "ortalama güç"
+    },
+    {
+     "en": "instantaneous power",
+     "tr": "anlık güç"
+    },
+    {
+     "en": "watt (W)",
+     "tr": "watt, güç birimi"
+    },
+    {
+     "en": "rate of energy transfer",
+     "tr": "enerji aktarım hızı"
+    },
+    {
+     "en": "kilowatt-hour",
+     "tr": "kilowatt-saat (enerji birimi)"
+    }
+   ]
+  }
+ ]
+}
