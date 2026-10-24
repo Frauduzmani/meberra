@@ -639,6 +639,20 @@
         });
       }
       var evUst = function (el) { df.insertBefore(el, df.firstChild); };
+      // 1.26.0 "10 dakikada AP" (/ap-nedir): AP Kâşifi rozeti olmayan yeni öğrencide; hiç soru çözmemişse en öne (60),
+      // 30 cevaba kadar Günün sorusundan sonra (40). Rozet alınınca bir daha görünmez.
+      try {
+        var anRoz = JSON.parse(localStorage.getItem("meberra:ap-nedir") || "null"), anCev = +s.answered || 0;
+        if (!(anRoz && anRoz.rozet) && anCev < 30) {
+          var anEl = document.createElement("a");
+          anEl.className = "surface bg-mini bg-apnedir"; anEl.id = "bg-apnedir"; anEl.href = "/ap-nedir";
+          anEl.innerHTML = '<span class="bg-mini-h"><span class="bg-ico is-mor" aria-hidden="true">🧭</span><h3>AP\'yi 10 dakikada öğren</h3></span>' +
+            '<p class="bg-mini-govde">Puanlar, sınav günü, kayıt takvimi ve mini test. Sonunda AP Kâşifi rozeti!</p>';
+          df.insertBefore(anEl, df.firstChild);
+          aday.apnedir = { el: anEl, puan: anCev === 0 ? 60 : 40, ev: evUst };
+          yerlestir();
+        }
+      } catch (e) { /* kart isteğe bağlı */ }
       var gsEl = document.getElementById("gunun-sorusu");
       if (window.apModulYukle && gsEl) apModulYukle("gunun-sorusu.js", { css: "gunun-sorusu.css", v: "1170" }).then(function () {
         // Kart kendini doldurur (hidden kalkar); bugün cevaplanmamışsa bağlamsal alana geçer, cevaplandıktan sonra yerinde kalır

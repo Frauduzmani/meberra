@@ -60,6 +60,7 @@
     { yol: "/rehber/italya", dosya: "italya-muhendislik.html", herkese: true },
     { yol: "/rehber/istanbul-sinav", dosya: "istanbul-sinav-rehberi.html", herkese: true },
     // 1.18.0 herkese açık SEO rehber makaleleri (app.js yüklemez; oturumsuz ziyaretçi tam görür)
+    { yol: "/ap-nedir", dosya: "ap-nedir.html", herkese: true }, // 1.26.0 "10 dakikada AP" etkileşimli yolculuk
     { yol: "/rehber/ap-nedir", dosya: "rehber-ap-nedir.html", herkese: true },
     { yol: "/rehber/turkiyede-ap", dosya: "rehber-turkiyede-ap.html", herkese: true },
     { yol: "/rehber/ap-ile-avrupa", dosya: "rehber-ap-ile-avrupa.html", herkese: true },
