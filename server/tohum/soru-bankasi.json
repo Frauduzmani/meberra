@@ -1,5 +1,5 @@
 {
- "surum": 23,
+ "surum": 24,
  "olusturma": "2026-10-21T08:13:59.509Z",
  "aciklama": "Meberra soru bankası tohumu — tek doğruluk kaynağı. Statik olarak SUNULMAZ. Üretici: node araclar/soru-aktar.js",
  "sorular": [
@@ -169998,8 +169998,3113 @@
     }
    },
    "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_1",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 22,
+   "numara": 23,
+   "konu": "6.1 Rotational Kinetic Energy: Ranking Wheels from a Data Table",
+   "zorluk": "easy",
+   "govde": "Four wheels, W, X, Y, and Z, rotate about fixed axles. Their rotational inertias and angular speeds are given in the table.<br/><table class='u-table'><tr><th>Wheel</th><th>$I$ (kg·m²)</th><th>$\\omega$ (rad/s)</th></tr><tr><td>W</td><td>2.0</td><td>3.0</td></tr><tr><td>X</td><td>1.0</td><td>5.0</td></tr><tr><td>Y</td><td>4.0</td><td>1.0</td></tr><tr><td>Z</td><td>0.50</td><td>6.0</td></tr></table>Which ranking of the wheels' rotational kinetic energies, from greatest to least, is correct?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "X > W = Z > Y"
+    },
+    {
+     "id": "B",
+     "text": "W > X > Y > Z"
+    },
+    {
+     "id": "C",
+     "text": "Y > W > X > Z"
+    },
+    {
+     "id": "D",
+     "text": "Z > X > W > Y"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $K_{rot} = \\frac{1}{2}I\\omega^2$ her tekerlek için ayrı hesaplanır.<br/>2. W: $\\frac{1}{2}(2.0)(3.0)^2 = 9.0$ J; X: $\\frac{1}{2}(1.0)(5.0)^2 = 12.5$ J.<br/>3. Y: $\\frac{1}{2}(4.0)(1.0)^2 = 2.0$ J; Z: $\\frac{1}{2}(0.50)(6.0)^2 = 9.0$ J.<br/>4. Sıralama: X > W = Z > Y.",
+   "genel_hatirlatma": "Dönme kinetik enerjisi hem $I$'ya hem $\\omega^2$'ye bağlıdır; tek bir sütuna bakarak sıralama yapılmaz.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Açısal momentumla sıralamak",
+     "aciklama": "$I\\omega$ değerleri (6.0, 5.0, 4.0, 3.0) açısal momentumu verir. Enerji $\\omega$'nın karesini içerir: $\\frac{1}{2}I\\omega^2$."
+    },
+    "C": {
+     "etiket": "Yalnız eylemsizlik momentine bakmak",
+     "aciklama": "En büyük $I$ Y'dedir ama Y en yavaş döner; $K$ hem $I$'ya hem $\\omega^2$'ye bağlıdır."
+    },
+    "D": {
+     "etiket": "Yalnız açısal sürate bakmak",
+     "aciklama": "Z en hızlı döner ama $I$'sı küçüktür: $K_Z = 9.0$ J, $K_X = 12.5$ J'den küçüktür."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "K_rot = ½Iω² ile sıralama",
+    "ipucu": "Her satır için ½Iω² hesapla.",
+    "sikHata": "Iω (açısal momentum) ile sıralamak.",
+    "cedKonu": "6.1",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_2",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 23,
+   "numara": 24,
+   "konu": "6.1 Rotational Kinetic Energy: Rod Rotating About One End",
+   "zorluk": "medium",
+   "govde": "A uniform rod of mass $3.0\\text{ kg}$ and length $2.0\\text{ m}$ rotates in a horizontal plane about a vertical axle through one end at $3.0\\text{ rad/s}$. The rotational inertia of a uniform rod about an axis through one end is $\\frac{1}{3}ML^2$. What is the rod's rotational kinetic energy?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "4.5 J"
+    },
+    {
+     "id": "B",
+     "text": "18 J"
+    },
+    {
+     "id": "C",
+     "text": "36 J"
+    },
+    {
+     "id": "D",
+     "text": "54 J"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Uca göre eylemsizlik momenti: $I = \\frac{1}{3}(3.0)(2.0)^2 = 4.0\\text{ kg}\\cdot\\text{m}^2$.<br/>2. $K_{rot} = \\frac{1}{2}(4.0)(3.0)^2 = \\frac{1}{2}(4.0)(9.0)$.<br/>3. $K_{rot} = 18$ J.",
+   "genel_hatirlatma": "$I$ eksene bağlıdır: çubuk ucundan dönerken merkezden dönmeye göre dört kat büyük $I$'ya sahiptir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Merkez ekseni formülünü kullanmak",
+     "aciklama": "$\\frac{1}{12}ML^2 = 1.0\\text{ kg}\\cdot\\text{m}^2$ merkezden geçen eksen içindir. Eksen uçtan geçtiği için $\\frac{1}{3}ML^2$ kullanılır."
+    },
+    "C": {
+     "etiket": "$\\frac{1}{2}$ çarpanını atlamak",
+     "aciklama": "$I\\omega^2 = 36$ J olur; dönme kinetik enerjisi $\\frac{1}{2}I\\omega^2$'dir."
+    },
+    "D": {
+     "etiket": "Çubuğu noktasal kütle gibi almak",
+     "aciklama": "$ML^2 = 12\\text{ kg}\\cdot\\text{m}^2$ tüm kütlenin uçta olduğunu varsayar. Kütle çubuk boyunca dağılmıştır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Eksene göre I ve K_rot",
+    "ipucu": "Önce uca göre I = ⅓ML².",
+    "sikHata": "Merkez formülü (1/12)ML² kullanmak.",
+    "cedKonu": "6.1",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_3",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 24,
+   "numara": 25,
+   "konu": "6.1 Rotational Kinetic Energy: Scaling with Angular Speed from Data",
+   "zorluk": "medium",
+   "govde": "A motor speeds up a flywheel. The flywheel's angular speed $\\omega$ is recorded at three times.<br/><table class='u-table'><tr><th>$t$ (s)</th><td>0</td><td>2.0</td><td>4.0</td></tr><tr><th>$\\omega$ (rad/s)</th><td>2.0</td><td>4.0</td><td>6.0</td></tr></table>At $t = 0$ the flywheel's rotational kinetic energy is $8.0\\text{ J}$. What is its rotational kinetic energy at $t = 4.0\\text{ s}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "24 J"
+    },
+    {
+     "id": "B",
+     "text": "32 J"
+    },
+    {
+     "id": "C",
+     "text": "64 J"
+    },
+    {
+     "id": "D",
+     "text": "72 J"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $I$ sabittir; $K_{rot} = \\frac{1}{2}I\\omega^2 \\propto \\omega^2$.<br/>2. $\\omega$, 2.0'dan 6.0 rad/s'ye çıkar: 3 katı.<br/>3. $K$ ise $3^2 = 9$ katı olur: $9 \\times 8.0 = 72$ J.<br/>4. (Kontrol: $8.0 = \\frac{1}{2}I(2.0)^2 \\Rightarrow I = 4.0\\text{ kg}\\cdot\\text{m}^2$; $\\frac{1}{2}(4.0)(6.0)^2 = 72$ J.)",
+   "genel_hatirlatma": "Sabit $I$ için dönme kinetik enerjisi açısal süratin karesiyle ölçeklenir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Doğrusal ölçekleme",
+     "aciklama": "$\\omega$ 3 katı olunca $K$'yi de 3 katı almak $K \\propto \\omega$ varsayar. Doğrusu $K \\propto \\omega^2$."
+    },
+    "B": {
+     "etiket": "Yanlış zamanı okumak",
+     "aciklama": "32 J, $t = 2.0$ s'deki ($\\omega = 4.0$ rad/s) enerjidir; soru $t = 4.0$ s'yi soruyor."
+    },
+    "C": {
+     "etiket": "Son enerji yerine enerji değişimini vermek",
+     "aciklama": "$72 - 8.0 = 64$ J, $\\Delta K$'dir; soru o andaki $K$'yi istiyor."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "K ∝ ω² ölçeklemesi",
+    "ipucu": "ω 3 katı → K 9 katı.",
+    "sikHata": "K'yi ω ile doğrusal ölçeklemek.",
+    "cedKonu": "6.1",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_4",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 25,
+   "numara": 26,
+   "konu": "6.1 Rotational Kinetic Energy: Effect of Radius on Two Disks",
+   "zorluk": "easy",
+   "govde": "Uniform solid disks A and B have the same mass. The radius of disk B is twice the radius of disk A. Both disks rotate about axes through their centers with the same angular speed. What is the ratio $K_B/K_A$ of their rotational kinetic energies?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "2"
+    },
+    {
+     "id": "B",
+     "text": "1"
+    },
+    {
+     "id": "C",
+     "text": "4"
+    },
+    {
+     "id": "D",
+     "text": "8"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Dolu disk: $I = \\frac{1}{2}MR^2$; kütle aynı, $R_B = 2R_A$ olduğundan $I_B = 4I_A$.<br/>2. $\\omega$ aynı, $K = \\frac{1}{2}I\\omega^2 \\propto I$.<br/>3. $K_B/K_A = 4$.",
+   "genel_hatirlatma": "$I \\propto R^2$; kütle dışa doğru yayıldıkça aynı $\\omega$'da enerji artar.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$I$'yı yarıçapla doğrusal almak",
+     "aciklama": "$I = \\frac{1}{2}MR^2$ yarıçapın karesini içerir; yarıçap 2 katı olunca $I$ 4 katı olur."
+    },
+    "B": {
+     "etiket": "Yalnız kütleye bakmak",
+     "aciklama": "Kütle aynı olsa da kütlenin eksenden uzaklığı farklıdır; $K$ kütle dağılımına bağlıdır."
+    },
+    "D": {
+     "etiket": "Hacimle ölçeklemek",
+     "aciklama": "8, $R^3$ ile ölçeklemedir. Kütle aynı verildiği için yalnız $R^2$ etkilidir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "I ∝ R², K ∝ I",
+    "ipucu": "Aynı M ve ω: K ∝ R².",
+    "sikHata": "I'yı R ile doğrusal almak.",
+    "cedKonu": "6.1",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_5",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 26,
+   "numara": 27,
+   "konu": "6.1 Rotational Kinetic Energy: Total Kinetic Energy of a Sliding, Spinning Disk",
+   "zorluk": "hard",
+   "govde": "A uniform solid disk ($I = \\frac{1}{2}MR^2$) of mass $2.0\\text{ kg}$ and radius $0.20\\text{ m}$ slides across frictionless ice. Its center moves at $3.0\\text{ m/s}$ while the disk spins about its center at $25\\text{ rad/s}$. The disk is not rolling on anything. What is the total kinetic energy of the disk?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "9.0 J"
+    },
+    {
+     "id": "B",
+     "text": "21.5 J"
+    },
+    {
+     "id": "C",
+     "text": "13.5 J"
+    },
+    {
+     "id": "D",
+     "text": "34 J"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Öteleme: $K_{tr} = \\frac{1}{2}(2.0)(3.0)^2 = 9.0$ J.<br/>2. $I = \\frac{1}{2}(2.0)(0.20)^2 = 0.040\\text{ kg}\\cdot\\text{m}^2$; dönme: $K_{rot} = \\frac{1}{2}(0.040)(25)^2 = 12.5$ J.<br/>3. Disk yuvarlanmadığı için $v$ ile $\\omega$ bağımsızdır: $K_{tot} = 9.0 + 12.5 = 21.5$ J.",
+   "genel_hatirlatma": "Toplam kinetik enerji = kütle merkezinin öteleme enerjisi + kütle merkezine göre dönme enerjisi. $v = \\omega R$ yalnız kaymadan yuvarlanmada geçerlidir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Dönme terimini unutmak",
+     "aciklama": "9.0 J yalnız $\\frac{1}{2}Mv^2$'dir; disk aynı zamanda döndüğü için $\\frac{1}{2}I\\omega^2$ eklenmelidir."
+    },
+    "C": {
+     "etiket": "Yuvarlanma koşulunu varsaymak",
+     "aciklama": "$\\omega = v/R = 15$ rad/s almak diski yuvarlanıyor sayar. Disk buzda serbestçe döner; $\\omega = 25$ rad/s verilmiştir."
+    },
+    "D": {
+     "etiket": "Disk için halka formülü",
+     "aciklama": "$I = MR^2 = 0.080$ alınırsa $K_{rot} = 25$ J ve toplam 34 J olur. Dolu disk için $I = \\frac{1}{2}MR^2$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "K_tot = ½Mv² + ½Iω²",
+    "ipucu": "Kayıyorsa v ve ω bağımsız.",
+    "sikHata": "Her dönen cisimde v = ωR varsaymak.",
+    "cedKonu": "6.1",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_6",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 27,
+   "numara": 28,
+   "konu": "6.1 Rotational Kinetic Energy: Determining Rotational Inertia from a Linearized Graph",
+   "zorluk": "hard",
+   "govde": "Students spin a wheel on a fixed axle at different angular speeds $\\omega$ and determine its rotational kinetic energy $K$ for each trial.<br/><table class='u-table'><tr><th>$\\omega$ (rad/s)</th><td>2.0</td><td>4.0</td><td>6.0</td><td>8.0</td></tr><tr><th>$K$ (J)</th><td>0.60</td><td>2.4</td><td>5.4</td><td>9.6</td></tr></table>They plot $K$ on the vertical axis against $\\omega^2$ on the horizontal axis and obtain a straight line through the origin. What is the wheel's rotational inertia?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "0.30 kg·m²"
+    },
+    {
+     "id": "B",
+     "text": "0.15 kg·m²"
+    },
+    {
+     "id": "C",
+     "text": "1.2 kg·m²"
+    },
+    {
+     "id": "D",
+     "text": "0.075 kg·m²"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $K = \\frac{1}{2}I\\omega^2$: $K$–$\\omega^2$ grafiğinde eğim $= \\frac{1}{2}I$.<br/>2. Eğim $= \\frac{9.6 - 0.60}{64 - 4.0} = \\frac{9.0}{60} = 0.15\\text{ kg}\\cdot\\text{m}^2$.<br/>3. $I = 2 \\times 0.15 = 0.30\\text{ kg}\\cdot\\text{m}^2$.",
+   "genel_hatirlatma": "Doğrusallaştırılmış grafikte eğimi fiziksel anlamıyla eşleştir: $K$–$\\omega^2$ eğimi $\\frac{1}{2}I$'dır.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Eğimi doğrudan $I$ saymak",
+     "aciklama": "Eğim $\\frac{1}{2}I$'ya eşittir; $I$ eğimin iki katıdır."
+    },
+    "C": {
+     "etiket": "$K/\\omega$ oranını almak",
+     "aciklama": "$9.6/8.0 = 1.2$ hesabı $K \\propto \\omega$ varsayar; grafik ekseni $\\omega^2$'dir."
+    },
+    "D": {
+     "etiket": "Eğimi ikiye bölmek",
+     "aciklama": "$\\frac{1}{2}I = $ eğim ise $I = 2 \\times$ eğim; bölmek değil çarpmak gerekir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "K–ω² eğimi ½I",
+    "ipucu": "Eğim × 2 = I.",
+    "sikHata": "Eğimi I sanmak.",
+    "cedKonu": "6.1",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_7",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 28,
+   "numara": 29,
+   "konu": "6.1 Rotational Kinetic Energy: Hoop and Disk with Equal Energies",
+   "zorluk": "medium",
+   "govde": "A thin hoop ($I = MR^2$) and a uniform solid disk ($I = \\frac{1}{2}MR^2$) have the same mass and the same radius. Each rotates about an axis through its center, and they have equal rotational kinetic energies. What is the ratio $\\omega_{disk}/\\omega_{hoop}$ of their angular speeds?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "id": "B",
+     "text": "$2$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{1}{\\sqrt{2}}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\sqrt{2}$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $\\frac{1}{2}(MR^2)\\omega_h^2 = \\frac{1}{2}\\left(\\frac{1}{2}MR^2\\right)\\omega_d^2$.<br/>2. Sadeleştir: $\\omega_d^2 = 2\\omega_h^2$.<br/>3. $\\omega_d/\\omega_h = \\sqrt{2}$.",
+   "genel_hatirlatma": "Aynı enerjide $I$'sı küçük olan daha hızlı döner; $\\omega \\propto 1/\\sqrt{I}$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Ters oran ve kare kökü atlamak",
+     "aciklama": "Disk daha küçük $I$'ya sahip olduğu için daha hızlı dönmeli; oran 1'den büyüktür."
+    },
+    "B": {
+     "etiket": "Karekökü unutmak",
+     "aciklama": "$I$ oranı 2'dir ama $K \\propto \\omega^2$ olduğu için $\\omega$ oranı $\\sqrt{2}$ olur."
+    },
+    "C": {
+     "etiket": "Oranı ters çevirmek",
+     "aciklama": "$1/\\sqrt{2}$, $\\omega_{hoop}/\\omega_{disk}$'tir. Disk halkadan hızlı döner."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Eşit K'de ω ∝ 1/√I",
+    "ipucu": "½I₁ω₁² = ½I₂ω₂² yaz.",
+    "sikHata": "ω oranında karekökü unutmak.",
+    "cedKonu": "6.1",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_8",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 29,
+   "numara": 30,
+   "konu": "6.1 Rotational Kinetic Energy: Same Rod, Different Axes",
+   "zorluk": "medium",
+   "govde": "The same uniform rod is spun at the same angular speed in two experiments: first about an axis through its center ($I = \\frac{1}{12}ML^2$), then about an axis through one end ($I = \\frac{1}{3}ML^2$). What is the ratio $K_{end}/K_{center}$ of the rod's rotational kinetic energies?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "2"
+    },
+    {
+     "id": "B",
+     "text": "1"
+    },
+    {
+     "id": "C",
+     "text": "4"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{1}{4}$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Aynı $\\omega$: $K = \\frac{1}{2}I\\omega^2 \\propto I$.<br/>2. $\\frac{I_{end}}{I_{center}} = \\frac{1/3}{1/12} = 4$.<br/>3. $K_{end}/K_{center} = 4$.",
+   "genel_hatirlatma": "Aynı cisim, farklı eksen → farklı $I$ → aynı $\\omega$'da farklı enerji. Kütle eksenden ne kadar uzaksa $K$ o kadar büyük.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Uzunluğun yarısını kullanmak",
+     "aciklama": "Uç eksenine göre en uzak nokta 2 kat uzaktadır ama $I$ uzaklığın karesiyle ve dağılımla ölçeklenir; oran 4'tür."
+    },
+    "B": {
+     "etiket": "Kütle aynı diye eşit saymak",
+     "aciklama": "$K$ yalnız kütleye değil kütlenin eksene göre dağılımına bağlıdır."
+    },
+    "D": {
+     "etiket": "Oranı ters çevirmek",
+     "aciklama": "$\\frac{1}{4}$, $K_{center}/K_{end}$'dir; uçtan dönen çubuğun $I$'sı daha büyüktür."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.1)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "I eksene bağlıdır",
+    "ipucu": "K oranı = I oranı.",
+    "sikHata": "Oranı ters yazmak.",
+    "cedKonu": "6.1",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_9",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 30,
+   "numara": 31,
+   "konu": "6.2 Torque and Work: Pulling a String Wrapped Around a Pulley",
+   "zorluk": "easy",
+   "govde": "A string is wrapped around a pulley of radius $0.10\\text{ m}$ that turns on a fixed axle. A student pulls the string with a constant tangential force of $20\\text{ N}$ until $1.5\\text{ m}$ of string has unwound. How much work does the string's force do on the pulley?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "30 J"
+    },
+    {
+     "id": "B",
+     "text": "3.0 J"
+    },
+    {
+     "id": "C",
+     "text": "300 J"
+    },
+    {
+     "id": "D",
+     "text": "15 J"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Tork: $\\tau = rF = (0.10)(20) = 2.0\\text{ N}\\cdot\\text{m}$.<br/>2. Açısal yer değiştirme: $\\Delta\\theta = s/r = 1.5/0.10 = 15$ rad.<br/>3. $W = \\tau\\Delta\\theta = (2.0)(15) = 30$ J. (Kısa yol: $W = Fs = (20)(1.5) = 30$ J.)",
+   "genel_hatirlatma": "$W = \\tau\\Delta\\theta$, teğet kuvvetin yay boyunca yaptığı $Fs$ işine eşittir.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Torku uzunlukla çarpmak",
+     "aciklama": "$\\tau \\cdot s = 3.0$ N·m² birimindedir, iş değildir; tork açısal yer değiştirmeyle (rad) çarpılır."
+    },
+    "C": {
+     "etiket": "Kuvveti açıyla çarpmak",
+     "aciklama": "$F\\Delta\\theta = 300$: kuvvet yol (m) ile, tork açı (rad) ile çarpılır; ikisi karıştırılmamalı."
+    },
+    "D": {
+     "etiket": "Ortalama kuvvet sanmak",
+     "aciklama": "Kuvvet sabittir; yay sorularındaki $\\frac{1}{2}$ çarpanı burada yoktur."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "W = τΔθ = Fs",
+    "ipucu": "Çekilen ip uzunluğu × kuvvet.",
+    "sikHata": "τ ile metreyi çarpmak.",
+    "cedKonu": "6.2",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_10",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 31,
+   "numara": 32,
+   "konu": "6.2 Torque and Work: Piecewise Torque–Angle Data",
+   "zorluk": "medium",
+   "govde": "A wheel with rotational inertia $0.50\\text{ kg}\\cdot\\text{m}^2$ starts from rest on a frictionless axle. The net torque on it depends on its angular position $\\theta$ as shown; the torque varies linearly between the listed points.<br/><table class='u-table'><tr><th>$\\theta$ (rad)</th><td>0</td><td>1.0</td><td>2.0</td><td>3.0</td><td>4.0</td></tr><tr><th>$\\tau$ (N·m)</th><td>6.0</td><td>6.0</td><td>6.0</td><td>3.0</td><td>0</td></tr></table>What is the wheel's angular speed at $\\theta = 4.0\\text{ rad}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "6.0 rad/s"
+    },
+    {
+     "id": "B",
+     "text": "8.5 rad/s"
+    },
+    {
+     "id": "C",
+     "text": "6.9 rad/s"
+    },
+    {
+     "id": "D",
+     "text": "9.8 rad/s"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. İş = $\\tau$–$\\theta$ grafiğinin altındaki alan: dikdörtgen $(6.0)(2.0) = 12$ J, üçgen $\\frac{1}{2}(2.0)(6.0) = 6.0$ J; toplam 18 J.<br/>2. $W = \\Delta K$: $18 = \\frac{1}{2}(0.50)\\omega^2 \\Rightarrow \\omega^2 = 72$.<br/>3. $\\omega \\approx 8.5$ rad/s.",
+   "genel_hatirlatma": "Değişken torkta iş, tork–açı grafiğinin altındaki alandır; sonra $W_{net} = \\Delta K_{rot}$ uygulanır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$\\frac{1}{2}$'yi unutmak",
+     "aciklama": "$18 = I\\omega^2$ yazılırsa $\\omega = 6.0$ çıkar; $K_{rot} = \\frac{1}{2}I\\omega^2$'dir."
+    },
+    "C": {
+     "etiket": "Yalnız sabit bölümü almak",
+     "aciklama": "0–2 rad dikdörtgeni (12 J) tek başına alınırsa $\\omega = 6.9$ rad/s olur; azalan bölümün üçgen alanı da iştir."
+    },
+    "D": {
+     "etiket": "Üçgeni dikdörtgen saymak",
+     "aciklama": "2–4 rad arasında tork 6.0'dan 0'a düşer; alan $\\frac{1}{2}$ taban × yükseklik = 6.0 J'dir, 12 J değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "τ–θ alanı = iş",
+    "ipucu": "Dikdörtgen + üçgen alanı.",
+    "sikHata": "Azalan torku sabit saymak.",
+    "cedKonu": "6.2",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_11",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 32,
+   "numara": 33,
+   "konu": "6.2 Torque and Work: Angle Turned While Braking",
+   "zorluk": "medium",
+   "govde": "A wheel with rotational inertia $2.0\\text{ kg}\\cdot\\text{m}^2$ spins at $10\\text{ rad/s}$. A brake applies a constant torque of magnitude $5.0\\text{ N}\\cdot\\text{m}$ opposite the rotation until the wheel stops. Through what angle does the wheel turn while it stops?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "4.0 rad"
+    },
+    {
+     "id": "B",
+     "text": "40 rad"
+    },
+    {
+     "id": "C",
+     "text": "20 rad"
+    },
+    {
+     "id": "D",
+     "text": "3.2 rad"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $K_i = \\frac{1}{2}(2.0)(10)^2 = 100$ J; $K_f = 0$.<br/>2. Fren torkunun işi negatif: $-\\tau\\Delta\\theta = -100$ J.<br/>3. $\\Delta\\theta = 100/5.0 = 20$ rad.",
+   "genel_hatirlatma": "Fren sorularında açıyı en hızlı veren yol $\\tau_{fren}\\Delta\\theta = K_i$ eşitliğidir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Durma süresini açı sanmak",
+     "aciklama": "$L/\\tau = 20/5.0 = 4.0$ saniyedir (açısal itme), açı değil."
+    },
+    "B": {
+     "etiket": "$\\frac{1}{2}$'yi atlamak",
+     "aciklama": "$I\\omega^2 = 200$ J alınırsa açı 40 rad olur; $K = \\frac{1}{2}I\\omega^2 = 100$ J."
+    },
+    "D": {
+     "etiket": "Devir sayısını radyan yazmak",
+     "aciklama": "$20/(2\\pi) \\approx 3.2$ devirdir; soru açıyı radyan cinsinden istiyor ve 20 rad = 3.2 rev."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Fren torkunun negatif işi",
+    "ipucu": "τΔθ = ½Iω².",
+    "sikHata": "Süre ile açıyı karıştırmak.",
+    "cedKonu": "6.2",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_12",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 33,
+   "numara": 34,
+   "konu": "6.2 Torque and Work: Ranking Final Angular Speeds from Torque Data",
+   "zorluk": "hard",
+   "govde": "Four wheels start from rest on frictionless axles. A constant net torque $\\tau$ acts on each wheel while it turns through angle $\\Delta\\theta$. The wheels have different rotational inertias $I$.<br/><table class='u-table'><tr><th>Wheel</th><th>$\\tau$ (N·m)</th><th>$\\Delta\\theta$ (rad)</th><th>$I$ (kg·m²)</th></tr><tr><td>W1</td><td>2.0</td><td>10</td><td>0.40</td></tr><tr><td>W2</td><td>4.0</td><td>6.0</td><td>0.30</td></tr><tr><td>W3</td><td>1.0</td><td>16</td><td>0.32</td></tr><tr><td>W4</td><td>6.0</td><td>2.0</td><td>0.10</td></tr></table>Which ranking of the wheels' final angular speeds, from greatest to least, is correct?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "W2 > W1 > W3 > W4"
+    },
+    {
+     "id": "B",
+     "text": "W3 > W1 > W2 > W4"
+    },
+    {
+     "id": "C",
+     "text": "W4 > W2 > W1 > W3"
+    },
+    {
+     "id": "D",
+     "text": "W4 > W2 > W1 = W3"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $W = \\tau\\Delta\\theta$: W1 = 20 J, W2 = 24 J, W3 = 16 J, W4 = 12 J.<br/>2. $\\omega^2 = 2W/I$: W1 = 100, W2 = 160, W3 = 100, W4 = 240 (rad/s)².<br/>3. $\\omega$: W1 = 10, W2 ≈ 12.6, W3 = 10, W4 ≈ 15.5 rad/s.<br/>4. Sıralama W4 > W2 > W1 = W3.",
+   "genel_hatirlatma": "Son açısal sürat hem yapılan işe hem eylemsizlik momentine bağlıdır: $\\omega = \\sqrt{2\\tau\\Delta\\theta/I}$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yalnız işe bakmak",
+     "aciklama": "İş sıralaması W2 > W1 > W3 > W4'tür; ama $I$'sı küçük olan aynı enerjiyle çok daha hızlı döner."
+    },
+    "B": {
+     "etiket": "Yalnız açıya bakmak",
+     "aciklama": "Dönme açısı büyük diye son sürat büyük olmaz; tork ve $I$ da etkilidir."
+    },
+    "C": {
+     "etiket": "Açısal ivmeye göre sıralamak",
+     "aciklama": "$\\alpha = \\tau/I$ sıralaması (W1: 5.0, W3: 3.1) açıyı yok sayar. W3 daha uzun açı boyunca hızlandığı için W1 ile eşit $\\omega$'ya ulaşır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "τΔθ = ½Iω² ile sıralama",
+    "ipucu": "ω² = 2τΔθ/I.",
+    "sikHata": "Açıyı yok sayıp yalnız α'ya bakmak.",
+    "cedKonu": "6.2",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_13",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 34,
+   "numara": 35,
+   "konu": "6.2 Torque and Work: Motor and Friction at Constant Angular Speed",
+   "zorluk": "easy",
+   "govde": "A motor keeps a grinding wheel turning at a constant angular speed while friction at the axle exerts a torque opposite the rotation. Over one minute, which statement about work done on the wheel is correct?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The motor does positive work, friction does an equal amount of negative work, and the net work is zero."
+    },
+    {
+     "id": "B",
+     "text": "Neither the motor nor friction does any work on the wheel, because its angular speed does not change at all."
+    },
+    {
+     "id": "C",
+     "text": "The motor does positive work and the net work is positive, because the wheel keeps turning."
+    },
+    {
+     "id": "D",
+     "text": "The net work is negative, because friction acts on the wheel the whole time it turns."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Motor torku dönme yönünde: $W_{motor} = \\tau\\Delta\\theta \\gt 0$.<br/>2. Sürtünme torku dönmeye zıt: $W_{f} \\lt 0$.<br/>3. $\\omega$ sabit → $\\Delta K_{rot} = 0 = W_{net}$; iki iş eşit büyüklükte, zıt işaretlidir.",
+   "genel_hatirlatma": "Sabit açısal süratte net iş sıfırdır; bu tek tek torkların iş yapmadığı anlamına gelmez.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Sabit sürati sıfır iş sanmak",
+     "aciklama": "Her tork cisim döndükçe $\\tau\\Delta\\theta$ kadar iş yapar; yalnızca <em>net</em> iş sıfırdır."
+    },
+    "C": {
+     "etiket": "Hareketi net işle karıştırmak",
+     "aciklama": "Dönmeyi sürdürmek için net iş gerekmez; net iş $K$'yi değiştirir ve $K$ sabittir."
+    },
+    "D": {
+     "etiket": "Motoru unutmak",
+     "aciklama": "Sürtünme negatif iş yapar ama motorun pozitif işi onu tam dengeler."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "W_net = ΔK_rot = 0",
+    "ipucu": "ω sabit → net iş 0.",
+    "sikHata": "Sabit ω'da hiç iş yapılmadığını sanmak.",
+    "cedKonu": "6.2",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_14",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 35,
+   "numara": 36,
+   "konu": "6.2 Torque and Work: Opposing Torque on a Spinning Disk",
+   "zorluk": "medium",
+   "govde": "A disk with rotational inertia $0.50\\text{ kg}\\cdot\\text{m}^2$ spins at $4.0\\text{ rad/s}$ on an axle. A constant torque of magnitude $1.0\\text{ N}\\cdot\\text{m}$ opposite the rotation acts on the disk while it turns through $2.0\\text{ rad}$. What is the disk's angular speed afterward?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "2.0 rad/s"
+    },
+    {
+     "id": "B",
+     "text": "4.9 rad/s"
+    },
+    {
+     "id": "C",
+     "text": "0 rad/s"
+    },
+    {
+     "id": "D",
+     "text": "2.8 rad/s"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $K_i = \\frac{1}{2}(0.50)(4.0)^2 = 4.0$ J.<br/>2. Zıt torkun işi: $W = -(1.0)(2.0) = -2.0$ J → $K_f = 2.0$ J.<br/>3. $2.0 = \\frac{1}{2}(0.50)\\omega^2 \\Rightarrow \\omega^2 = 8.0$, $\\omega \\approx 2.8$ rad/s.",
+   "genel_hatirlatma": "Dönmeye zıt tork negatif iş yapar; kalan enerjiden $\\omega$ bulunurken karekök alınmalıdır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Enerji ile sürati doğrusal ilişkilendirmek",
+     "aciklama": "$K$ yarıya indi diye $\\omega$ yarıya inmez; $\\omega \\propto \\sqrt{K}$, yani $\\omega$ $\\sqrt{2}$'ye bölünür."
+    },
+    "B": {
+     "etiket": "İşin işaretini ters almak",
+     "aciklama": "Zıt yöndeki tork enerjiyi azaltır; $K_f = 4.0 + 2.0$ yazmak işareti tersine çevirir."
+    },
+    "C": {
+     "etiket": "Zıt torkun cismi mutlaka durdurduğunu sanmak",
+     "aciklama": "Disk 4.0 J ile başlar, tork yalnız 2.0 J alır; disk dönmeye devam eder."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Negatif tork işi",
+    "ipucu": "K_f = K_i − τΔθ.",
+    "sikHata": "İşin işaretini karıştırmak.",
+    "cedKonu": "6.2",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_15",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 36,
+   "numara": 37,
+   "konu": "6.2 Torque and Work: Energy Split Between Block and Pulley",
+   "zorluk": "hard",
+   "govde": "A block hangs from a light string wrapped around a pulley that turns on a frictionless fixed axle. The string does not slip. The block is released from rest and falls $0.50\\text{ m}$ ($g = 10\\text{ m/s}^2$).<br/><table class='u-table'><tr><th>Block mass</th><td>2.0 kg</td></tr><tr><th>Pulley rotational inertia</th><td>0.10 kg·m²</td></tr><tr><th>Pulley radius</th><td>0.10 m</td></tr></table>Which correctly gives the block's translational kinetic energy and the pulley's rotational kinetic energy at that moment?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "Block 5.0 J; pulley 5.0 J"
+    },
+    {
+     "id": "B",
+     "text": "Block 1.7 J; pulley 8.3 J"
+    },
+    {
+     "id": "C",
+     "text": "Block 8.3 J; pulley 1.7 J"
+    },
+    {
+     "id": "D",
+     "text": "Block 10 J; pulley 0 J"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Sistem: blok + makara + Dünya; kaybedilen $U_g = (2.0)(10)(0.50) = 10$ J.<br/>2. $\\omega = v/R$: $K_{pulley} = \\frac{1}{2}\\frac{I}{R^2}v^2 = \\frac{1}{2}(10)v^2$, $K_{block} = \\frac{1}{2}(2.0)v^2$; oran $2.0 : 10 = 1 : 5$.<br/>3. $K_{block} = \\frac{1}{6}(10) \\approx 1.7$ J, $K_{pulley} = \\frac{5}{6}(10) \\approx 8.3$ J.<br/>4. Gerilim makaraya pozitif, bloğa eşit büyüklükte negatif iş yapar; enerji makaraya aktarılır.",
+   "genel_hatirlatma": "Kütleli makarada enerji blok ile makara arasında $m : I/R^2$ oranında paylaşılır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Eşit paylaşım varsaymak",
+     "aciklama": "Eşit paylaşım yalnız $I/R^2 = m$ ise olur; burada $I/R^2 = 10$ kg, blok kütlesinin 5 katıdır."
+    },
+    "C": {
+     "etiket": "Oranı ters çevirmek",
+     "aciklama": "Makaranın etkin kütlesi $I/R^2 = 10$ kg bloğunkinden büyük olduğundan enerjinin çoğu makaraya gider."
+    },
+    "D": {
+     "etiket": "Makarayı yok saymak",
+     "aciklama": "Gerilim makaraya tork uygular ve iş yapar; makara dönme kinetik enerjisi kazanır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Makara–blok enerji paylaşımı",
+    "ipucu": "I/R² ile m'yi karşılaştır.",
+    "sikHata": "Makaranın enerjisini unutmak.",
+    "cedKonu": "6.2",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_16",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 37,
+   "numara": 38,
+   "konu": "6.2 Torque and Work: Net Work with a Reversing Torque",
+   "zorluk": "medium",
+   "govde": "A wheel starts from rest on a frictionless axle. The net torque on the wheel as a function of its angular position is given in the table (positive means in the direction of rotation).<br/><table class='u-table'><tr><th>Interval of $\\theta$</th><th>Net torque</th></tr><tr><td>0 to 3.0 rad</td><td>+4.0 N·m (constant)</td></tr><tr><td>3.0 rad to 5.0 rad</td><td>−2.0 N·m (constant)</td></tr></table>What is the wheel's rotational kinetic energy at $\\theta = 5.0\\text{ rad}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "8.0 J"
+    },
+    {
+     "id": "B",
+     "text": "12 J"
+    },
+    {
+     "id": "C",
+     "text": "16 J"
+    },
+    {
+     "id": "D",
+     "text": "20 J"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. 0–3.0 rad: $W_1 = (4.0)(3.0) = +12$ J.<br/>2. 3.0–5.0 rad: $W_2 = (-2.0)(2.0) = -4.0$ J.<br/>3. $W_{net} = 8.0$ J; durgun başladığı için $K = 8.0$ J.",
+   "genel_hatirlatma": "Eksenin altındaki (zıt) tork alanı negatif iştir; alanlar işaretleriyle toplanır.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Negatif bölümü yok saymak",
+     "aciklama": "12 J yalnız ilk aralığın işidir; zıt tork 4.0 J'lük enerjiyi geri alır."
+    },
+    "C": {
+     "etiket": "Alanları mutlak değerle toplamak",
+     "aciklama": "$12 + 4.0 = 16$ J, zıt torkun işini pozitif sayar."
+    },
+    "D": {
+     "etiket": "İlk torku tüm açıya uygulamak",
+     "aciklama": "$(4.0)(5.0) = 20$ J, 3.0 rad'dan sonra torkun yön değiştirdiğini yok sayar."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.2)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "İşaretli alan = net iş",
+    "ipucu": "Alanları işaretiyle topla.",
+    "sikHata": "Zıt torkun işini pozitif almak.",
+    "cedKonu": "6.2",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_17",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 38,
+   "numara": 39,
+   "konu": "6.3 Angular Momentum and Angular Impulse: Angular Momentum of a Spinning Disk",
+   "zorluk": "easy",
+   "govde": "A uniform solid disk ($I = \\frac{1}{2}MR^2$) of mass $3.0\\text{ kg}$ and radius $0.40\\text{ m}$ rotates about its central axis at $10\\text{ rad/s}$. What is the magnitude of its angular momentum?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "4.8 kg·m²/s"
+    },
+    {
+     "id": "B",
+     "text": "12 kg·m²/s"
+    },
+    {
+     "id": "C",
+     "text": "2.4 kg·m²/s"
+    },
+    {
+     "id": "D",
+     "text": "6.0 kg·m²/s"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $I = \\frac{1}{2}(3.0)(0.40)^2 = 0.24\\text{ kg}\\cdot\\text{m}^2$.<br/>2. $L = I\\omega = (0.24)(10) = 2.4\\text{ kg}\\cdot\\text{m}^2/\\text{s}$.",
+   "genel_hatirlatma": "Katı cisim için $L = I\\omega$; birim kg·m²/s.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Halka formülü",
+     "aciklama": "$MR^2 = 0.48$ halka içindir; dolu disk $\\frac{1}{2}MR^2$'dir."
+    },
+    "B": {
+     "etiket": "Kinetik enerjiyi hesaplamak",
+     "aciklama": "$\\frac{1}{2}I\\omega^2 = 12$ J enerjidir; açısal momentum $I\\omega$'dır."
+    },
+    "D": {
+     "etiket": "Yarıçapın karesini almamak",
+     "aciklama": "$\\frac{1}{2}MR\\omega = 6.0$: $I$'da $R^2$ bulunur."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "L = Iω",
+    "ipucu": "I'yı bul, ω ile çarp.",
+    "sikHata": "L ile K_rot'u karıştırmak.",
+    "cedKonu": "6.3",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_18",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 39,
+   "numara": 40,
+   "konu": "6.3 Angular Momentum and Angular Impulse: Final Angular Momentum from Torque–Time Data",
+   "zorluk": "medium",
+   "govde": "A turntable has an angular momentum of $1.0\\text{ kg}\\cdot\\text{m}^2/\\text{s}$ at $t = 0$. The net torque on it during the next $5.0\\text{ s}$ is given below (positive is in the direction of the initial rotation).<br/><table class='u-table'><tr><th>Time interval</th><th>Net torque</th></tr><tr><td>0 to 2.0 s</td><td>+3.0 N·m</td></tr><tr><td>2.0 s to 3.0 s</td><td>0</td></tr><tr><td>3.0 s to 5.0 s</td><td>−1.0 N·m</td></tr></table>What is the turntable's angular momentum at $t = 5.0\\text{ s}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "4.0 kg·m²/s"
+    },
+    {
+     "id": "B",
+     "text": "9.0 kg·m²/s"
+    },
+    {
+     "id": "C",
+     "text": "7.0 kg·m²/s"
+    },
+    {
+     "id": "D",
+     "text": "5.0 kg·m²/s"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Açısal itme = $\\tau$–$t$ alanı: $(3.0)(2.0) = +6.0$, $(0)(1.0) = 0$, $(-1.0)(2.0) = -2.0$.<br/>2. $\\Delta L = +4.0\\text{ kg}\\cdot\\text{m}^2/\\text{s}$.<br/>3. $L_f = L_i + \\Delta L = 1.0 + 4.0 = 5.0\\text{ kg}\\cdot\\text{m}^2/\\text{s}$.",
+   "genel_hatirlatma": "$\\tau\\Delta t = \\Delta L$; son değer için başlangıç açısal momentumuna itmeyi ekle.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Başlangıç değerini unutmak",
+     "aciklama": "4.0 yalnız $\\Delta L$'dir; $L_f = L_i + \\Delta L$."
+    },
+    "B": {
+     "etiket": "İtmeleri mutlak değerle toplamak",
+     "aciklama": "$1.0 + 6.0 + 2.0 = 9.0$, zıt torkun itmesini pozitif sayar."
+    },
+    "C": {
+     "etiket": "Zıt torku yok saymak",
+     "aciklama": "$1.0 + 6.0 = 7.0$; 3.0–5.0 s arasındaki zıt tork $L$'yi 2.0 azaltır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "τ–t alanı = ΔL",
+    "ipucu": "L_f = L_i + Σ τΔt.",
+    "sikHata": "L_i'yi eklemeyi unutmak.",
+    "cedKonu": "6.3",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_19",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 40,
+   "numara": 41,
+   "konu": "6.3 Angular Momentum and Angular Impulse: Particle Moving at an Angle to the Position Vector",
+   "zorluk": "medium",
+   "govde": "A $0.40\\text{ kg}$ puck slides at $5.0\\text{ m/s}$ across a frictionless table. At one instant the puck is $2.0\\text{ m}$ from point $O$, and the angle between the position vector from $O$ to the puck and the puck's velocity is $30^\\circ$. What is the magnitude of the puck's angular momentum about $O$ at that instant?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "2.0 kg·m²/s"
+    },
+    {
+     "id": "B",
+     "text": "4.0 kg·m²/s"
+    },
+    {
+     "id": "C",
+     "text": "3.5 kg·m²/s"
+    },
+    {
+     "id": "D",
+     "text": "0"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $L = mvr\\sin\\theta$.<br/>2. $L = (0.40)(5.0)(2.0)\\sin 30^\\circ = (4.0)(0.50)$.<br/>3. $L = 2.0\\text{ kg}\\cdot\\text{m}^2/\\text{s}$. ($r_\\perp = r\\sin\\theta = 1.0$ m.)",
+   "genel_hatirlatma": "Parçacığın bir noktaya göre açısal momentumu $mv r_\\perp$'dir; $r_\\perp$ hız doğrultusuna dik uzaklıktır.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Açıyı yok saymak",
+     "aciklama": "$mvr = 4.0$ yalnız $\\vec v$, $\\vec r$'ye dik olduğunda geçerlidir."
+    },
+    "C": {
+     "etiket": "Sinüs yerine kosinüs",
+     "aciklama": "$\\cos 30^\\circ$ kullanmak $\\vec r$'nin hıza paralel bileşenini alır; tork kolu dik bileşendir."
+    },
+    "D": {
+     "etiket": "Dönmeyen parçacığın L'si olmaz sanmak",
+     "aciklama": "Düz giden parçacığın da, doğrultusu noktadan geçmedikçe, açısal momentumu vardır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "L = mvr sin θ",
+    "ipucu": "r⊥ = r sin θ.",
+    "sikHata": "sin yerine cos kullanmak.",
+    "cedKonu": "6.3",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_20",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 41,
+   "numara": 42,
+   "konu": "6.3 Angular Momentum and Angular Impulse: Total Angular Momentum of Several Particles",
+   "zorluk": "hard",
+   "govde": "Three small objects slide in straight lines on a horizontal frictionless surface. For each, the table gives its mass, its speed, the perpendicular distance $r_\\perp$ from point $O$ to its line of motion, and its sense of motion about $O$.<br/><table class='u-table'><tr><th>Object</th><th>$m$ (kg)</th><th>$v$ (m/s)</th><th>$r_\\perp$ (m)</th><th>Sense about $O$</th></tr><tr><td>1</td><td>1.0</td><td>2.0</td><td>3.0</td><td>counterclockwise</td></tr><tr><td>2</td><td>2.0</td><td>1.0</td><td>2.0</td><td>clockwise</td></tr><tr><td>3</td><td>0.50</td><td>4.0</td><td>1.0</td><td>counterclockwise</td></tr></table>What is the total angular momentum of the three-object system about $O$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "12 kg·m²/s counterclockwise"
+    },
+    {
+     "id": "B",
+     "text": "4.0 kg·m²/s counterclockwise"
+    },
+    {
+     "id": "C",
+     "text": "4.0 kg·m²/s clockwise"
+    },
+    {
+     "id": "D",
+     "text": "0, because none of the objects is rotating"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. CCW pozitif: $L_1 = (1.0)(2.0)(3.0) = +6.0$.<br/>2. $L_2 = -(2.0)(1.0)(2.0) = -4.0$; $L_3 = (0.50)(4.0)(1.0) = +2.0$.<br/>3. $L_{tot} = 6.0 - 4.0 + 2.0 = +4.0\\text{ kg}\\cdot\\text{m}^2/\\text{s}$, saat yönünün tersine.",
+   "genel_hatirlatma": "Açısal momentum yönlü bir niceliktir; sistemin toplamı işaretli toplamdır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Büyüklükleri toplamak",
+     "aciklama": "$6.0 + 4.0 + 2.0 = 12$ saat yönündeki 2. cismin $L$'sini pozitif sayar."
+    },
+    "C": {
+     "etiket": "İşaret kuralını ters uygulamak",
+     "aciklama": "Pozitif toplam, saat yönünün tersi olan cisimlerin katkısının büyük olduğunu gösterir."
+    },
+    "D": {
+     "etiket": "Düz giden cismin L'si olmaz sanmak",
+     "aciklama": "Her cismin $O$'ya göre $L = mvr_\\perp$'si vardır; dönmeleri gerekmez."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "İşaretli L toplamı",
+    "ipucu": "CCW +, CW −.",
+    "sikHata": "Zıt yönlü L'leri toplamak.",
+    "cedKonu": "6.3",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_21",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 42,
+   "numara": 43,
+   "konu": "6.3 Angular Momentum and Angular Impulse: Average Torque to Stop a Wheel",
+   "zorluk": "easy",
+   "govde": "A wheel with rotational inertia $0.80\\text{ kg}\\cdot\\text{m}^2$ spins at $15\\text{ rad/s}$. A brake brings it to rest in $4.0\\text{ s}$. What is the magnitude of the average torque exerted by the brake?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "12 N·m"
+    },
+    {
+     "id": "B",
+     "text": "22.5 N·m"
+    },
+    {
+     "id": "C",
+     "text": "48 N·m"
+    },
+    {
+     "id": "D",
+     "text": "3.0 N·m"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $\\Delta L = 0 - (0.80)(15) = -12\\text{ kg}\\cdot\\text{m}^2/\\text{s}$.<br/>2. $\\tau\\Delta t = \\Delta L \\Rightarrow |\\tau| = 12/4.0$.<br/>3. $|\\tau| = 3.0\\text{ N}\\cdot\\text{m}$.",
+   "genel_hatirlatma": "Açısal itme–momentum teoremi: $\\tau_{avg}\\Delta t = \\Delta L$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$\\Delta L$'yi tork sanmak",
+     "aciklama": "12 kg·m²/s açısal momentum değişimidir; süreye bölünmesi gerekir."
+    },
+    "B": {
+     "etiket": "Enerjiyi süreye bölmek",
+     "aciklama": "$K = 90$ J, $90/4.0 = 22.5$ güçtür (W), tork değil."
+    },
+    "C": {
+     "etiket": "Süreyle çarpmak",
+     "aciklama": "$\\tau = \\Delta L/\\Delta t$; $I\\omega\\Delta t = 48$ fiziksel olarak anlamsızdır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "τΔt = ΔL",
+    "ipucu": "τ = ΔL/Δt.",
+    "sikHata": "ΔL'yi süreye bölmemek.",
+    "cedKonu": "6.3",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_22",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 43,
+   "numara": 44,
+   "konu": "6.3 Angular Momentum and Angular Impulse: Interpreting Angular Momentum Data",
+   "zorluk": "hard",
+   "govde": "The angular momentum $L$ of a rotating platform about its axle is measured at one-second intervals.<br/><table class='u-table'><tr><th>$t$ (s)</th><td>0</td><td>1.0</td><td>2.0</td><td>3.0</td><td>4.0</td></tr><tr><th>$L$ (kg·m²/s)</th><td>6.0</td><td>6.0</td><td>4.0</td><td>2.0</td><td>2.0</td></tr></table>Assuming $L$ changes linearly between measurements, which statement about the net external torque on the platform is correct?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "It is zero from 0 to 1.0 s, has magnitude 2.0 N·m opposite the rotation from 1.0 s to 3.0 s, and is zero from 3.0 s to 4.0 s."
+    },
+    {
+     "id": "B",
+     "text": "It is greatest from 0 to 1.0 s, because the angular momentum is greatest then."
+    },
+    {
+     "id": "C",
+     "text": "It has magnitude 4.0 N·m opposite the rotation from 1.0 s to 3.0 s and is zero otherwise."
+    },
+    {
+     "id": "D",
+     "text": "It is zero from 3.0 s to 4.0 s, so the platform is not rotating during that interval."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $\\tau_{net} = \\Delta L/\\Delta t$ = $L$–$t$ eğimi.<br/>2. 0–1.0 s ve 3.0–4.0 s: $L$ sabit → $\\tau_{net} = 0$.<br/>3. 1.0–3.0 s: $\\tau = (2.0 - 6.0)/2.0 = -2.0\\text{ N}\\cdot\\text{m}$, dönmeye zıt.",
+   "genel_hatirlatma": "Net tork açısal momentumun değişim hızıdır; $L$'nin büyüklüğü değil eğimi önemlidir.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Değeri eğimle karıştırmak",
+     "aciklama": "Büyük $L$ büyük tork demek değildir; sabit $L$ sıfır net tork demektir."
+    },
+    "C": {
+     "etiket": "Süreye bölmemek",
+     "aciklama": "$\\Delta L = -4.0$'tür ama bu 2.0 s'de olur; $\\tau = -4.0/2.0 = -2.0$ N·m."
+    },
+    "D": {
+     "etiket": "Sıfır torku sıfır dönme sanmak",
+     "aciklama": "Net tork sıfırken platform sabit $L = 2.0$ ile dönmeye devam eder."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "L–t eğimi = τ_net",
+    "ipucu": "Eğimi oku, değeri değil.",
+    "sikHata": "L sabit → dönme yok sanmak.",
+    "cedKonu": "6.3",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_23",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 44,
+   "numara": 45,
+   "konu": "6.3 Angular Momentum and Angular Impulse: Same Torque on Two Different Wheels",
+   "zorluk": "easy",
+   "govde": "Wheel A has rotational inertia $I$ and wheel B has rotational inertia $3I$. Both start from rest, and the same constant net torque acts on each for the same time interval. Which statement is correct?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "Wheel B has 3 times the change in angular momentum of wheel A."
+    },
+    {
+     "id": "B",
+     "text": "Both have the same change in angular momentum, and wheel A has 3 times the change in angular speed of wheel B."
+    },
+    {
+     "id": "C",
+     "text": "Both have the same change in angular speed, and wheel B has 3 times the change in angular momentum."
+    },
+    {
+     "id": "D",
+     "text": "Wheel A has 3 times the change in angular momentum of wheel B."
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $\\Delta L = \\tau\\Delta t$: tork ve süre aynı → $\\Delta L_A = \\Delta L_B$.<br/>2. $\\Delta\\omega = \\Delta L/I$: $\\Delta\\omega_A = \\Delta L/I$, $\\Delta\\omega_B = \\Delta L/(3I)$.<br/>3. $\\Delta\\omega_A = 3\\Delta\\omega_B$.",
+   "genel_hatirlatma": "Açısal itme $\\Delta L$'yi belirler; aynı $\\Delta L$ küçük $I$'lı cisimde büyük $\\Delta\\omega$ verir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$L$'yi $I$ ile ölçeklemek",
+     "aciklama": "$\\Delta L$ yalnız $\\tau\\Delta t$'ye bağlıdır, $I$'ya bağlı değildir."
+    },
+    "C": {
+     "etiket": "$\\Delta\\omega$'yı eşit sanmak",
+     "aciklama": "Aynı tork büyük $I$'lı cisimde daha küçük açısal ivme oluşturur."
+    },
+    "D": {
+     "etiket": "$L$'yi $1/I$ ile ölçeklemek",
+     "aciklama": "$\\Delta L = \\tau\\Delta t$ iki çarkta aynıdır; $1/I$ ile ölçeklenen nicelik $\\Delta L$ değil $\\Delta\\omega$'dır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Aynı açısal itme → aynı ΔL",
+    "ipucu": "ΔL = τΔt, Δω = ΔL/I.",
+    "sikHata": "ΔL ile Δω'yı karıştırmak.",
+    "cedKonu": "6.3",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_24",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 45,
+   "numara": 46,
+   "konu": "6.3 Angular Momentum and Angular Impulse: Kicking a Merry-Go-Round",
+   "zorluk": "medium",
+   "govde": "A merry-go-round with rotational inertia $150\\text{ kg}\\cdot\\text{m}^2$ is at rest on a frictionless axle. A student pushes tangentially on its rim, $1.5\\text{ m}$ from the axle, with an average force of $200\\text{ N}$ for $0.10\\text{ s}$. What is the angular speed of the merry-go-round just after the push?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "2.0 rad/s"
+    },
+    {
+     "id": "B",
+     "text": "0.13 rad/s"
+    },
+    {
+     "id": "C",
+     "text": "0.20 rad/s"
+    },
+    {
+     "id": "D",
+     "text": "30 rad/s"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $\\tau = rF = (1.5)(200) = 300\\text{ N}\\cdot\\text{m}$.<br/>2. $\\Delta L = \\tau\\Delta t = (300)(0.10) = 30\\text{ kg}\\cdot\\text{m}^2/\\text{s}$.<br/>3. $\\omega = \\Delta L/I = 30/150 = 0.20$ rad/s.",
+   "genel_hatirlatma": "Teğet kuvvetin açısal itmesi $rF\\Delta t$'dir; $\\omega = \\Delta L/I$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Süreyi unutmak",
+     "aciklama": "$\\tau/I = 2.0$ açısal ivmedir (rad/s²); itme süresiyle çarpılmalıdır."
+    },
+    "B": {
+     "etiket": "Moment kolunu unutmak",
+     "aciklama": "$F\\Delta t/I$ doğrusal itmeyi $I$'ya böler; önce $\\tau = rF$ bulunmalı."
+    },
+    "D": {
+     "etiket": "$\\Delta L$'yi $\\omega$ sanmak",
+     "aciklama": "30 kg·m²/s açısal momentumdur; $\\omega$ için $I$'ya bölünür."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.3)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Açısal itme rFΔt",
+    "ipucu": "ω = rFΔt/I.",
+    "sikHata": "Moment kolunu atlamak.",
+    "cedKonu": "6.3",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_25",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 46,
+   "numara": 47,
+   "konu": "6.4 Conservation of Angular Momentum: Skater Data and Kinetic Energy Change",
+   "zorluk": "medium",
+   "govde": "A skater spins on frictionless ice. Measurements before and after she pulls her arms in are shown.<br/><table class='u-table'><tr><th></th><th>$I$ (kg·m²)</th><th>$\\omega$ (rad/s)</th></tr><tr><td>Arms out</td><td>3.6</td><td>2.0</td></tr><tr><td>Arms in</td><td>1.2</td><td>?</td></tr></table>Which correctly describes her angular speed with arms in and the change in her rotational kinetic energy?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "6.0 rad/s; her rotational kinetic energy stays the same"
+    },
+    {
+     "id": "B",
+     "text": "3.5 rad/s; her rotational kinetic energy stays the same"
+    },
+    {
+     "id": "C",
+     "text": "0.67 rad/s; her rotational kinetic energy decreases"
+    },
+    {
+     "id": "D",
+     "text": "6.0 rad/s; her rotational kinetic energy triples"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Sistem: patenci; buz dış tork uygulamaz → $L$ korunur: $(3.6)(2.0) = (1.2)\\omega_f$, $\\omega_f = 6.0$ rad/s.<br/>2. $K_i = \\frac{1}{2}(3.6)(2.0)^2 = 7.2$ J; $K_f = \\frac{1}{2}(1.2)(6.0)^2 = 21.6$ J.<br/>3. $K_f/K_i = 3$; enerji artar (kasların iç işi).",
+   "genel_hatirlatma": "Açısal momentum korunurken $K = L^2/2I$ olduğu için $I$ azalırsa kinetik enerji artar.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Enerjinin de korunduğunu sanmak",
+     "aciklama": "$L$ sabittir ama $K = L^2/2I$; $I$ üçte birine inince $K$ üç katına çıkar."
+    },
+    "B": {
+     "etiket": "Açısal momentum yerine enerji korunumu",
+     "aciklama": "$\\frac{1}{2}I\\omega^2$ eşitlenirse $\\omega = 2\\sqrt{3} \\approx 3.5$ çıkar; korunan nicelik $L$'dir."
+    },
+    "C": {
+     "etiket": "Oranı ters kurmak",
+     "aciklama": "$I$ azalınca $\\omega$ artar: $I_i\\omega_i = I_f\\omega_f$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "L korunur, K değişebilir",
+    "ipucu": "Iω sabit; K = L²/2I.",
+    "sikHata": "K'nin de korunduğunu sanmak.",
+    "cedKonu": "6.4",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_26",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 47,
+   "numara": 48,
+   "konu": "6.4 Conservation of Angular Momentum: Source of the Skater's Extra Energy",
+   "zorluk": "hard",
+   "govde": "A skater spinning on frictionless ice pulls her arms in, and her rotational kinetic energy increases while her angular momentum stays constant. Which statement best explains where the additional kinetic energy comes from?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "From the ice, because the ice exerts a torque on her skates as she pulls in her arms."
+    },
+    {
+     "id": "B",
+     "text": "From her angular momentum, part of which is converted into kinetic energy."
+    },
+    {
+     "id": "C",
+     "text": "From internal energy in her body, because her muscles do positive work pulling her arms inward."
+    },
+    {
+     "id": "D",
+     "text": "Nowhere, because angular momentum is conserved, so her rotational kinetic energy cannot change."
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Kollar dairesel yolda dönerken içe doğru çekilir; kasların kuvveti kolların içe yer değiştirmesi yönündedir → pozitif iş.<br/>2. Bu iş vücudun kimyasal (iç) enerjisinden gelir ve dönme kinetik enerjisine dönüşür.<br/>3. Buz sürtünmesiz olduğundan dış tork ve dış iş yoktur; $L$ korunur.",
+   "genel_hatirlatma": "$L$ korunumu enerjinin korunduğu anlamına gelmez; iç kuvvetler iş yapıp sistemin kinetik enerjisini değiştirebilir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Buzu dış tork kaynağı saymak",
+     "aciklama": "Sürtünmesiz buz dönme eksenine göre tork uygulamaz; aksi halde $L$ korunmazdı."
+    },
+    "B": {
+     "etiket": "Açısal momentum ile enerjiyi birbirine dönüştürmek",
+     "aciklama": "$L$ ve $K$ farklı niceliklerdir; $L$ \"harcanarak\" enerji üretilmez ve $L$ sabittir."
+    },
+    "D": {
+     "etiket": "Korunumları karıştırmak",
+     "aciklama": "$K = L^2/2I$; $L$ sabitken $I$ azalırsa $K$ mutlaka artar."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "İç iş ve K değişimi",
+    "ipucu": "Kaslar içe doğru iş yapar.",
+    "sikHata": "L korunuyorsa K da korunur sanmak.",
+    "cedKonu": "6.4",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_27",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 48,
+   "numara": 49,
+   "konu": "6.4 Conservation of Angular Momentum: Clay Striking a Pivoted Rod",
+   "zorluk": "hard",
+   "govde": "A uniform rod of length $1.0\\text{ m}$ hangs at rest from a frictionless pivot at its top end; its rotational inertia about the pivot is $0.20\\text{ kg}\\cdot\\text{m}^2$. A $0.20\\text{ kg}$ lump of clay moving horizontally at $5.0\\text{ m/s}$, perpendicular to the rod, strikes the bottom end of the rod and sticks. What is the angular speed of the rod–clay system just after the collision?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "1.25 rad/s"
+    },
+    {
+     "id": "B",
+     "text": "2.5 rad/s"
+    },
+    {
+     "id": "C",
+     "text": "4.0 rad/s"
+    },
+    {
+     "id": "D",
+     "text": "5.0 rad/s"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Sistem: kil + çubuk, pivota göre. Pivot kuvvetinin pivota göre torku sıfır; çarpışma kısa → $L$ korunur.<br/>2. $L_i = mvr = (0.20)(5.0)(1.0) = 1.0\\text{ kg}\\cdot\\text{m}^2/\\text{s}$.<br/>3. $I_f = 0.20 + (0.20)(1.0)^2 = 0.40\\text{ kg}\\cdot\\text{m}^2$; $\\omega = 1.0/0.40 = 2.5$ rad/s.",
+   "genel_hatirlatma": "Pivotlu çarpışmalarda doğrusal momentum korunmaz (pivot kuvveti), ama pivota göre açısal momentum korunur.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Doğrusal momentum korunumu",
+     "aciklama": "Pivot, çarpışma sırasında yatay kuvvet uygular; $p$ korunmaz. Çubuk kütlesini $I = \\frac{1}{3}ML^2$'den $0.60$ kg bulup $(0.20)(5.0) = (0.80)v$ ve $\\omega = v/L = 1.25$ rad/s yazmak bu hatadır."
+    },
+    "C": {
+     "etiket": "Merkez eksenine göre $I$ kullanmak",
+     "aciklama": "$\\frac{1}{12}ML^2 = 0.05$ merkez içindir; dönme pivot (uç) etrafındadır ve $I = 0.20$ verilmiştir."
+    },
+    "D": {
+     "etiket": "Kilin katkısını unutmak",
+     "aciklama": "Yapışan kil, uçta $mr^2 = 0.20\\text{ kg}\\cdot\\text{m}^2$ ekler; $I_f = 0.40$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Pivota göre L korunumu",
+    "ipucu": "L_i = mvr, I_f = I_rod + mr².",
+    "sikHata": "Pivotlu sistemde p korunumu kullanmak.",
+    "cedKonu": "6.4",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_28",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 49,
+   "numara": 50,
+   "konu": "6.4 Conservation of Angular Momentum: Walking Inward on a Rotating Platform",
+   "zorluk": "medium",
+   "govde": "A student stands at the edge of a platform that rotates freely on a frictionless vertical axle. Treat the student as a point mass. The student then walks toward the center.<br/><table class='u-table'><tr><th>Platform rotational inertia</th><td>200 kg·m²</td></tr><tr><th>Student mass</th><td>50 kg</td></tr><tr><th>Initial distance from axle</th><td>2.0 m</td></tr><tr><th>Final distance from axle</th><td>1.0 m</td></tr><tr><th>Initial angular speed</th><td>1.0 rad/s</td></tr></table>What is the angular speed when the student is $1.0\\text{ m}$ from the axle?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "4.0 rad/s"
+    },
+    {
+     "id": "B",
+     "text": "1.6 rad/s"
+    },
+    {
+     "id": "C",
+     "text": "2.0 rad/s"
+    },
+    {
+     "id": "D",
+     "text": "0.63 rad/s"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Sistem: öğrenci + platform; dış tork yok → $L$ korunur.<br/>2. $I_i = 200 + (50)(2.0)^2 = 400$; $I_f = 200 + (50)(1.0)^2 = 250\\text{ kg}\\cdot\\text{m}^2$.<br/>3. $\\omega_f = (400)(1.0)/250 = 1.6$ rad/s.",
+   "genel_hatirlatma": "Toplam $I$'ya hem platformun hem kişinin $mr^2$ katkısı girer; yalnız kişinin katkısı değişir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Platformu yok saymak",
+     "aciklama": "Yalnız öğrencinin $I$'sı 4 kat azalır; platformun 200 kg·m²'si değişmeden kalır."
+    },
+    "C": {
+     "etiket": "$\\omega \\propto 1/r$ varsaymak",
+     "aciklama": "Kişinin katkısı $r^2$ ile ölçeklenir ve platform da hesaba girmelidir."
+    },
+    "D": {
+     "etiket": "Oranı ters kurmak",
+     "aciklama": "$I$ azalınca $\\omega$ artar; $0.63 = 250/400$ ters orandır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Platform + kişi L korunumu",
+    "ipucu": "I = I_p + mr².",
+    "sikHata": "Platformun I'sını unutmak.",
+    "cedKonu": "6.4",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_29",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 50,
+   "numara": 51,
+   "konu": "6.4 Conservation of Angular Momentum: Choosing a System",
+   "zorluk": "easy",
+   "govde": "In which of the following situations is the angular momentum of the stated system about the given axis NOT conserved?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "System: child and merry-go-round. A child jumps onto the rim of a merry-go-round turning on a frictionless axle."
+    },
+    {
+     "id": "B",
+     "text": "System: fan blades only. An electric motor in the fan's housing speeds up the blades."
+    },
+    {
+     "id": "C",
+     "text": "System: both disks. Two disks on a common frictionless axle are pressed together until they spin together."
+    },
+    {
+     "id": "D",
+     "text": "System: skater. A skater on frictionless ice pulls her arms in."
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $L$, sistem üzerinde net dış tork yoksa korunur.<br/>2. B'de motor sistemin (yalnız kanatlar) dışındadır ve kanatlara tork uygular → $L$ artar.<br/>3. A, C, D'deki torklar sistem içidir ya da eksen sürtünmesizdir; $L$ korunur.",
+   "genel_hatirlatma": "Korunum sistem seçimine bağlıdır: torku uygulayan cisim sistemin dışındaysa $L$ korunmaz.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Çocuğun çarpmasını dış tork saymak",
+     "aciklama": "Çocuk sistemin içindedir; çocuk–platform kuvvetleri iç torktur."
+    },
+    "C": {
+     "etiket": "Sürtünmeyi dış tork saymak",
+     "aciklama": "İki disk arasındaki sürtünme iç torktur; enerjiyi azaltır ama toplam $L$'yi değiştirmez."
+    },
+    "D": {
+     "etiket": "Kas kuvvetini dış tork saymak",
+     "aciklama": "Patencinin kasları iç kuvvettir; buz sürtünmesiz olduğundan $L$ korunur."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Sistem seçimi ve dış tork",
+    "ipucu": "Torku kim uyguluyor, sistemde mi?",
+    "sikHata": "İç torku dış tork sanmak.",
+    "cedKonu": "6.4",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_30",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 51,
+   "numara": 52,
+   "konu": "6.4 Conservation of Angular Momentum: Coupling Disks Spinning in Opposite Directions",
+   "zorluk": "hard",
+   "govde": "Two disks on the same frictionless axle are brought together and quickly reach a common angular velocity.<br/><table class='u-table'><tr><th>Disk</th><th>$I$ (kg·m²)</th><th>Initial angular speed</th><th>Sense</th></tr><tr><td>A</td><td>0.20</td><td>10 rad/s</td><td>counterclockwise</td></tr><tr><td>B</td><td>0.30</td><td>4.0 rad/s</td><td>clockwise</td></tr></table>What is the common angular velocity of the two disks?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "1.6 rad/s counterclockwise"
+    },
+    {
+     "id": "B",
+     "text": "6.4 rad/s counterclockwise"
+    },
+    {
+     "id": "C",
+     "text": "3.0 rad/s counterclockwise"
+    },
+    {
+     "id": "D",
+     "text": "1.6 rad/s clockwise"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. CCW pozitif: $L_A = (0.20)(10) = +2.0$, $L_B = -(0.30)(4.0) = -1.2\\text{ kg}\\cdot\\text{m}^2/\\text{s}$.<br/>2. $L_{tot} = +0.80\\text{ kg}\\cdot\\text{m}^2/\\text{s}$.<br/>3. $\\omega_f = 0.80/(0.20 + 0.30) = 1.6$ rad/s, saat yönünün tersine (A'nın yönü).",
+   "genel_hatirlatma": "Zıt dönen cisimlerde $L$'ler işaretleriyle toplanır; son yön net $L$'nin yönüdür.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "İşareti yok saymak",
+     "aciklama": "$(2.0 + 1.2)/0.50 = 6.4$, B'nin zıt yönlü $L$'sini pozitif sayar."
+    },
+    "C": {
+     "etiket": "Açısal süratlerin ortalaması",
+     "aciklama": "$\\frac{10 - 4.0}{2} = 3.0$, eylemsizlik momentlerini yok sayar; korunan nicelik $I\\omega$'dır."
+    },
+    "D": {
+     "etiket": "Yönü yanlış seçmek",
+     "aciklama": "Büyüklük doğru ama net $L$ pozitiftir (A'nın $L$'si büyük), dolayısıyla son dönüş saat yönünün tersidir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.4)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "İşaretli L korunumu",
+    "ipucu": "CCW +; L_tot / I_tot.",
+    "sikHata": "Zıt L'leri toplamak.",
+    "cedKonu": "6.4",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_31",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 52,
+   "numara": 53,
+   "konu": "6.5 Rolling: Translational Fraction of Kinetic Energy for Different Shapes",
+   "zorluk": "medium",
+   "govde": "Four objects roll without slipping across a level floor. Their masses, radii, and rotational inertias about their centers are listed.<br/><table class='u-table'><tr><th>Object</th><th>Mass</th><th>Radius</th><th>$I$</th></tr><tr><td>Solid sphere</td><td>$M$</td><td>$R$</td><td>$\\frac{2}{5}mr^2$</td></tr><tr><td>Solid cylinder</td><td>$2M$</td><td>$R/2$</td><td>$\\frac{1}{2}mr^2$</td></tr><tr><td>Thin spherical shell</td><td>$M$</td><td>$2R$</td><td>$\\frac{2}{3}mr^2$</td></tr><tr><td>Thin hoop</td><td>$3M$</td><td>$R$</td><td>$mr^2$</td></tr></table>(Here $m$ and $r$ are each object's own mass and radius.) Which ranking of the fraction of each object's total kinetic energy that is translational, from greatest to least, is correct?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "Hoop > shell > cylinder > sphere"
+    },
+    {
+     "id": "B",
+     "text": "Hoop > cylinder > sphere = shell"
+    },
+    {
+     "id": "C",
+     "text": "Sphere > cylinder > shell > hoop"
+    },
+    {
+     "id": "D",
+     "text": "All four fractions are equal, because all four objects roll without slipping."
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $I = \\beta mr^2$ ve $v = \\omega r$: $K_{tot} = \\frac{1}{2}(1+\\beta)mv^2$.<br/>2. Öteleme payı $\\frac{1}{1+\\beta}$; kütle ve yarıçap sadeleşir.<br/>3. Küre $\\frac{5}{7} \\approx 0.71$, silindir $\\frac{2}{3} \\approx 0.67$, kabuk $\\frac{3}{5} = 0.60$, halka $\\frac{1}{2}$.",
+   "genel_hatirlatma": "Yuvarlanan cismin enerji paylaşımı yalnız şekil çarpanı $\\beta$'ya bağlıdır; kütle ve yarıçap etkisizdir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Dönme payıyla sıralamak",
+     "aciklama": "Bu sıralama dönme payını (büyük $\\beta$) verir; soru öteleme payını soruyor."
+    },
+    "B": {
+     "etiket": "Kütleye göre sıralamak",
+     "aciklama": "Paylaşım $\\frac{1}{1+\\beta}$'dır; $m$ ve $r$ sadeleşir."
+    },
+    "D": {
+     "etiket": "Yuvarlanma koşulunu eşit paylaşım sanmak",
+     "aciklama": "$v = \\omega r$ her cisimde geçerlidir ama $I$ dağılımı farklı olduğu için paylar farklıdır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.5)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Öteleme payı 1/(1+β)",
+    "ipucu": "Yalnız β'yı karşılaştır.",
+    "sikHata": "Kütle/yarıçapa göre sıralamak.",
+    "cedKonu": "6.5",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_32",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 53,
+   "numara": 54,
+   "konu": "6.5 Rolling: Identifying an Object from Its Energy Split",
+   "zorluk": "hard",
+   "govde": "An object of mass $2.0\\text{ kg}$ is released from rest and rolls without slipping down a ramp, descending a vertical height of $0.70\\text{ m}$ ($g = 10\\text{ m/s}^2$). Sensors find its kinetic energies at the bottom.<br/><table class='u-table'><tr><th>Translational kinetic energy</th><td>10.0 J</td></tr><tr><th>Rotational kinetic energy</th><td>4.0 J</td></tr></table>Which object is most consistent with these data?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "A thin hoop ($I = MR^2$)"
+    },
+    {
+     "id": "B",
+     "text": "A uniform solid cylinder ($I = \\frac{1}{2}MR^2$)"
+    },
+    {
+     "id": "C",
+     "text": "A thin spherical shell ($I = \\frac{2}{3}MR^2$)"
+    },
+    {
+     "id": "D",
+     "text": "A uniform solid sphere ($I = \\frac{2}{5}MR^2$)"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Kontrol: $Mgh = (2.0)(10)(0.70) = 14$ J $= 10.0 + 4.0$; statik sürtünme iş yapmamış.<br/>2. $\\frac{K_{rot}}{K_{tr}} = \\frac{\\frac{1}{2}\\beta MR^2(v/R)^2}{\\frac{1}{2}Mv^2} = \\beta$.<br/>3. $\\beta = 4.0/10.0 = 0.40 = \\frac{2}{5}$ → dolu küre.",
+   "genel_hatirlatma": "Kaymadan yuvarlanmada $K_{rot}/K_{tr} = \\beta$; bu oran cismin şeklini ortaya koyar.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Her yuvarlanan cismin enerjiyi eşit paylaştığını sanmak",
+     "aciklama": "Eşit paylaşım yalnız halkada olur ($K_{rot} = K_{tr} = 7.0$ J); veride oran 0.40'tır."
+    },
+    "B": {
+     "etiket": "Silindirin paylaşımını yanlış hatırlamak",
+     "aciklama": "Silindirde $K_{rot}/K_{tr} = 0.50$ olurdu (9.3 J öteleme, 4.7 J dönme); veri 0.40 verir."
+    },
+    "C": {
+     "etiket": "İki oranı karıştırmak",
+     "aciklama": "Kabukta dönme payı $K_{rot}/K_{tot} = 0.40$'tır; veride 0.40 olan ise $K_{rot}/K_{tr}$'dir ($K_{rot}/K_{tot} = 4.0/14 \\approx 0.29$). Kabukta $K_{rot}/K_{tr} = 0.67$ olurdu."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.5)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "K_rot/K_tr = β",
+    "ipucu": "Oranı β ile eşleştir.",
+    "sikHata": "K_rot/K_tot'u β sanmak.",
+    "cedKonu": "6.5",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_33",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 54,
+   "numara": 55,
+   "konu": "6.5 Rolling: Height Reached by a Cylinder Rolling Up a Ramp",
+   "zorluk": "medium",
+   "govde": "A uniform solid cylinder ($I = \\frac{1}{2}MR^2$) rolls without slipping across a level floor at $4.0\\text{ m/s}$ and then rolls without slipping up a ramp. Using $g = 10\\text{ m/s}^2$, what maximum vertical height does it reach?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "0.80 m"
+    },
+    {
+     "id": "B",
+     "text": "1.2 m"
+    },
+    {
+     "id": "C",
+     "text": "1.6 m"
+    },
+    {
+     "id": "D",
+     "text": "2.4 m"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $K_{tot} = \\frac{1}{2}(1 + \\frac{1}{2})Mv^2 = \\frac{3}{4}Mv^2$.<br/>2. Statik sürtünme iş yapmaz: $\\frac{3}{4}Mv^2 = Mgh$.<br/>3. $h = \\frac{3v^2}{4g} = \\frac{3(16)}{40} = 1.2$ m.",
+   "genel_hatirlatma": "Yuvarlanan cisim rampaya hem öteleme hem dönme enerjisiyle çıkar; bu yüzden kayan bir kutudan daha yükseğe çıkar.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Dönme enerjisini unutmak",
+     "aciklama": "$\\frac{v^2}{2g} = 0.80$ m yalnız öteleme enerjisini kullanır."
+    },
+    "C": {
+     "etiket": "Halka formülü kullanmak",
+     "aciklama": "$\\beta = 1$ ile $h = v^2/g = 1.6$ m olur; dolu silindirde $\\beta = \\frac{1}{2}$."
+    },
+    "D": {
+     "etiket": "$\\frac{1}{2}$'yi atlamak",
+     "aciklama": "$\\frac{3}{2}Mv^2 = Mgh$ yazmak enerjiyi iki katına çıkarır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.5)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Yuvarlanma ile rampa yüksekliği",
+    "ipucu": "½(1+β)Mv² = Mgh.",
+    "sikHata": "Dönme enerjisini unutmak.",
+    "cedKonu": "6.5",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_34",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 55,
+   "numara": 56,
+   "konu": "6.5 Rolling: A Bowling Ball That Starts by Sliding",
+   "zorluk": "hard",
+   "govde": "A bowling ball is launched along a level lane so that it initially slides without rotating. Kinetic friction from the lane acts on the ball until it begins rolling without slipping. During the sliding interval, which statement is correct?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The speed of the center decreases, the angular speed increases, and the total kinetic energy of the ball decreases."
+    },
+    {
+     "id": "B",
+     "text": "The speed of the center and the angular speed both stay constant until friction stops acting."
+    },
+    {
+     "id": "C",
+     "text": "The speed of the center decreases, the angular speed increases, and the total kinetic energy is unchanged."
+    },
+    {
+     "id": "D",
+     "text": "The speed of the center stays constant while the angular speed increases, because friction exerts a torque but no net force."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Kinetik sürtünme hareket yönüne zıttır → net kuvvet $v_{cm}$'yi azaltır.<br/>2. Aynı kuvvet merkeze göre tork uygular → $\\omega$ artar; $v_{cm} = \\omega R$ olunca kayma biter.<br/>3. Kayma sırasında değme noktası yere göre hareket eder; kinetik sürtünme mekanik enerjiyi iç enerjiye dönüştürür, $K_{tot}$ azalır.",
+   "genel_hatirlatma": "Kayarak yuvarlanmada kinetik sürtünme hem öteler hem döndürür ve enerji kaybettirir; kaymadan yuvarlanmada statik sürtünme iş yapmaz.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Sürtünmeyi yok saymak",
+     "aciklama": "Kayma varken kinetik sürtünme etkir; hem $v$ hem $\\omega$ değişir."
+    },
+    "C": {
+     "etiket": "Enerji kaybını görmemek",
+     "aciklama": "Kayan yüzeyde kinetik sürtünme termal enerji üretir; öteleme kaybı dönme kazancından büyüktür."
+    },
+    "D": {
+     "etiket": "Sürtünmenin net kuvvet olmadığını sanmak",
+     "aciklama": "Sürtünme topa etkiyen tek yatay kuvvettir; hem net kuvvet hem tork oluşturur."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.5)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Kayarak yuvarlanma",
+    "ipucu": "Kinetik sürtünme: v↓, ω↑, K↓.",
+    "sikHata": "Kayma sırasında K'nin korunduğunu sanmak.",
+    "cedKonu": "6.5",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_35",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 56,
+   "numara": 57,
+   "konu": "6.5 Rolling: Friction on a Ball Rolling at Constant Speed",
+   "zorluk": "medium",
+   "govde": "A ball rolls without slipping at constant speed across a level floor. Air resistance and rolling resistance are negligible. Which statement about the friction force exerted by the floor on the ball is correct?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "Static friction acts backward on the ball to keep it from slipping."
+    },
+    {
+     "id": "B",
+     "text": "Kinetic friction acts backward and slowly converts the ball's energy to thermal energy."
+    },
+    {
+     "id": "C",
+     "text": "No friction force is needed, so the static friction force on the ball is zero."
+    },
+    {
+     "id": "D",
+     "text": "Static friction acts forward on the ball to keep it spinning."
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Sabit $v_{cm}$ → net yatay kuvvet sıfır.<br/>2. Sabit $\\omega$ → merkeze göre net tork sıfır.<br/>3. Sürtünme olsaydı ikisinden birini değiştirirdi; bu yüzden sürtünme kuvveti sıfırdır. Top zaten $v = \\omega R$ koşulundadır.",
+   "genel_hatirlatma": "Statik sürtünme yalnız kaymayı önlemek gerektiğinde (ivmelenme, eğim) ortaya çıkar; düz zeminde sabit yuvarlanmada gerekmez.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Sürtünmeyi her durumda var saymak",
+     "aciklama": "Geri yönlü sürtünme $v$'yi azaltır, $\\omega$'yı artırırdı; sabit hızla çelişir."
+    },
+    "B": {
+     "etiket": "Kaymayı varsaymak",
+     "aciklama": "Top kaymadan yuvarlanıyor; kinetik sürtünme yalnız kayma varken etkir."
+    },
+    "D": {
+     "etiket": "Dönmeyi sürdürmek için tork gerekir sanmak",
+     "aciklama": "Sabit $\\omega$ için net tork gerekmez (eylemsizlik)."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.5)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Sabit yuvarlanmada sürtünme sıfır",
+    "ipucu": "Sabit v ve ω → F = 0, τ = 0.",
+    "sikHata": "Dönmeyi sürdürmek için kuvvet gerekir sanmak.",
+    "cedKonu": "6.5",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_36",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 57,
+   "numara": 58,
+   "konu": "6.5 Rolling: Speed of a Rolling Wheel's Center",
+   "zorluk": "easy",
+   "govde": "A wheel of radius $0.30\\text{ m}$ rolls without slipping along a straight road with an angular speed of $10\\text{ rad/s}$. What is the speed of the wheel's center relative to the road?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "33 m/s"
+    },
+    {
+     "id": "B",
+     "text": "6.0 m/s"
+    },
+    {
+     "id": "C",
+     "text": "0.90 m/s"
+    },
+    {
+     "id": "D",
+     "text": "3.0 m/s"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Kaymadan yuvarlanma koşulu: $v_{cm} = \\omega R$.<br/>2. $v_{cm} = (10)(0.30) = 3.0$ m/s.",
+   "genel_hatirlatma": "Kaymadan yuvarlanmada değme noktası anlık durgundur ve $v_{cm} = \\omega R$'dir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yarıçapa bölmek",
+     "aciklama": "$\\omega/R = 33$; doğru ilişki $v = \\omega R$ çarpımdır."
+    },
+    "B": {
+     "etiket": "Tepe noktasının süratini vermek",
+     "aciklama": "$2\\omega R = 6.0$ m/s tekerleğin en üst noktasının yere göre süratidir."
+    },
+    "C": {
+     "etiket": "Yarıçapın karesini kullanmak",
+     "aciklama": "$\\omega R^2 = 0.90$; $R^2$ eylemsizlik momentinde bulunur, $v = \\omega R$ ilişkisinde değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.5)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "v = ωR",
+    "ipucu": "Çarp: ω × R.",
+    "sikHata": "Merkez yerine tepe süratini vermek.",
+    "cedKonu": "6.5",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_37",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 58,
+   "numara": 59,
+   "konu": "6.5 Rolling: Sliding Versus Rolling Cylinders on Two Ramps",
+   "zorluk": "hard",
+   "govde": "Two identical uniform solid cylinders are released from rest at the same height on two ramps of equal height and angle.<br/><table class='u-table'><tr><th>Cylinder</th><th>Ramp surface</th><th>Motion</th></tr><tr><td>X</td><td>frictionless</td><td>slides without rotating</td></tr><tr><td>Y</td><td>rough</td><td>rolls without slipping</td></tr></table>Which statement correctly compares the cylinders at the bottom of the ramps?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "X has the greater speed, and X and Y have the same total kinetic energy."
+    },
+    {
+     "id": "B",
+     "text": "Y has the greater speed because it also rotates, and Y has the greater total kinetic energy."
+    },
+    {
+     "id": "C",
+     "text": "X and Y have the same speed and the same total kinetic energy."
+    },
+    {
+     "id": "D",
+     "text": "X has the greater speed, and Y has less total kinetic energy because friction did negative work on it."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. X: sürtünme yok; tüm $Mgh$ ötelemeye: $v_X = \\sqrt{2gh}$.<br/>2. Y: statik sürtünme iş yapmaz; $Mgh = \\frac{3}{4}Mv_Y^2$, $v_Y = \\sqrt{\\frac{4}{3}gh} \\lt v_X$.<br/>3. Her ikisinin toplam $K$'si $Mgh$'tır; Y'de enerjinin 1/3'ü dönmededir.",
+   "genel_hatirlatma": "Kaymadan yuvarlanmada mekanik enerji korunur; yuvarlanan cisim enerjisinin bir kısmını dönmeye ayırdığı için daha yavaştır.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Dönmenin enerji eklediğini sanmak",
+     "aciklama": "İki cisim aynı $Mgh$'ı kaybeder; dönme enerjisi ek enerji değil, paylaşılan enerjidir."
+    },
+    "C": {
+     "etiket": "Paylaşımı yok saymak",
+     "aciklama": "Toplam $K$'ler eşittir ama Y'nin bir kısmı dönmede olduğu için $v_Y$ daha küçüktür."
+    },
+    "D": {
+     "etiket": "Statik sürtünmenin iş yaptığını sanmak",
+     "aciklama": "Değme noktası kaymadığı için statik sürtünme iş yapmaz; Y'nin toplam enerjisi de $Mgh$'tır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.5)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Kayan vs yuvarlanan: aynı K, farklı v",
+    "ipucu": "Statik sürtünme iş yapmaz.",
+    "sikHata": "Statik sürtünmenin enerji kaybettirdiğini sanmak.",
+    "cedKonu": "6.5",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_38",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 59,
+   "numara": 60,
+   "konu": "6.6 Motion of Orbiting Satellites: Speeds at Closest and Farthest Points",
+   "zorluk": "medium",
+   "govde": "A satellite moves in an elliptical orbit around a planet. Data at the closest and farthest points of the orbit are shown.<br/><table class='u-table'><tr><th>Point</th><th>Distance from planet's center (m)</th><th>Speed (m/s)</th></tr><tr><td>Closest</td><td>$2.0\\times 10^{7}$</td><td>$6.0\\times 10^{3}$</td></tr><tr><td>Farthest</td><td>$6.0\\times 10^{7}$</td><td>?</td></tr></table>What is the satellite's speed at the farthest point?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$1.8\\times 10^{4}$ m/s"
+    },
+    {
+     "id": "B",
+     "text": "$6.0\\times 10^{3}$ m/s"
+    },
+    {
+     "id": "C",
+     "text": "$3.5\\times 10^{3}$ m/s"
+    },
+    {
+     "id": "D",
+     "text": "$2.0\\times 10^{3}$ m/s"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Kütleçekim kuvveti gezegenin merkezine yönelir → merkeze göre tork yok → $L$ korunur.<br/>2. En yakın ve en uzak noktada hız yarıçapa diktir: $mv_1r_1 = mv_2r_2$.<br/>3. $v_2 = (6.0\\times10^3)\\frac{2.0\\times10^7}{6.0\\times10^7} = 2.0\\times10^3$ m/s.",
+   "genel_hatirlatma": "Eliptik yörüngede açısal momentum korunur; uzaklık arttıkça sürat aynı oranda azalır (apsis noktalarında).",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Doğru orantı kurmak",
+     "aciklama": "Uzak noktada sürat artmaz; $vr$ sabit olduğundan $v$ azalır."
+    },
+    "B": {
+     "etiket": "Sabit sürat varsaymak",
+     "aciklama": "Sürat yalnız dairesel yörüngede sabittir."
+    },
+    "C": {
+     "etiket": "Dairesel yörünge ilişkisini uygulamak",
+     "aciklama": "$v \\propto 1/\\sqrt{r}$ farklı dairesel yörüngeleri karşılaştırır; aynı eliptik yörüngede $L$ korunumu kullanılır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.6)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Eliptik yörüngede L korunumu",
+    "ipucu": "r₁v₁ = r₂v₂.",
+    "sikHata": "v ∝ 1/√r kullanmak.",
+    "cedKonu": "6.6",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_39",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 60,
+   "numara": 61,
+   "konu": "6.6 Motion of Orbiting Satellites: Orbital Speed and Orbital Radius",
+   "zorluk": "easy",
+   "govde": "Satellites A and B move in circular orbits around the same planet. The orbital radius of B is 4 times the orbital radius of A. What is the ratio $v_B/v_A$ of their orbital speeds?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{1}{4}$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "id": "C",
+     "text": "$2$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{1}{16}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $\\frac{GMm}{r^2} = \\frac{mv^2}{r} \\Rightarrow v = \\sqrt{\\frac{GM}{r}}$.<br/>2. $v \\propto \\frac{1}{\\sqrt{r}}$; $r$ 4 katı → $v$ yarısı.<br/>3. $v_B/v_A = \\frac{1}{2}$.",
+   "genel_hatirlatma": "Dairesel yörüngede daha uzak uydu daha yavaştır: $v = \\sqrt{GM/r}$, uydunun kütlesinden bağımsız.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Karekökü unutmak",
+     "aciklama": "$v \\propto 1/r$ değil, $1/\\sqrt{r}$'dir."
+    },
+    "C": {
+     "etiket": "Uzak uydunun daha hızlı olduğunu sanmak",
+     "aciklama": "$v = \\omega r$'yi sabit $\\omega$ ile kullanmak yanlıştır; uzak uydunun periyodu çok daha uzundur."
+    },
+    "D": {
+     "etiket": "Kuvvet oranını sürat oranı sanmak",
+     "aciklama": "$\\frac{1}{16}$ kütleçekim kuvvetinin oranıdır ($1/r^2$)."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.6)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "v = √(GM/r)",
+    "ipucu": "GMm/r² = mv²/r.",
+    "sikHata": "v ∝ 1/r almak.",
+    "cedKonu": "6.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_40",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 61,
+   "numara": 62,
+   "konu": "6.6 Motion of Orbiting Satellites: Planet Mass from Moon Data",
+   "zorluk": "hard",
+   "govde": "Three moons move in circular orbits around the same planet. Their orbital radii and speeds are listed.<br/><table class='u-table'><tr><th>Moon</th><th>$r$ (m)</th><th>$v$ (m/s)</th></tr><tr><td>1</td><td>$1.0\\times 10^{7}$</td><td>$2.0\\times 10^{3}$</td></tr><tr><td>2</td><td>$4.0\\times 10^{7}$</td><td>$1.0\\times 10^{3}$</td></tr><tr><td>3</td><td>$1.6\\times 10^{8}$</td><td>$5.0\\times 10^{2}$</td></tr></table>Using $G = 6.67\\times 10^{-11}\\text{ N}\\cdot\\text{m}^2/\\text{kg}^2$, what is the mass of the planet?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$3.0\\times 10^{20}$ kg"
+    },
+    {
+     "id": "B",
+     "text": "$3.0\\times 10^{23}$ kg"
+    },
+    {
+     "id": "C",
+     "text": "$6.0\\times 10^{23}$ kg"
+    },
+    {
+     "id": "D",
+     "text": "$6.0\\times 10^{30}$ kg"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $\\frac{GMm}{r^2} = \\frac{mv^2}{r} \\Rightarrow M = \\frac{v^2 r}{G}$.<br/>2. Tüm aylar için $v^2 r = 4.0\\times10^{13}\\text{ m}^3/\\text{s}^2$ (veri tutarlı).<br/>3. $M = \\frac{4.0\\times10^{13}}{6.67\\times10^{-11}} \\approx 6.0\\times10^{23}$ kg.",
+   "genel_hatirlatma": "Dairesel yörüngede $v^2 r = GM$ sabittir; bir ayın $r$ ve $v$'si merkez kütlenin bulunmasına yeter.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Hızın karesini almamak",
+     "aciklama": "$vr/G = 3.0\\times10^{20}$; doğru ifade $v^2 r/G$'dir."
+    },
+    "B": {
+     "etiket": "Kaçış sürati formülünü kullanmak",
+     "aciklama": "$v^2 = 2GM/r$ kaçış süratini verir; dairesel yörüngede $v^2 = GM/r$."
+    },
+    "D": {
+     "etiket": "Yarıçapın karesini almak",
+     "aciklama": "$v^2r^2/G$ boyutça kütle değildir; merkezcil ilişki $v^2/r$ içerir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.6)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "M = v²r/G",
+    "ipucu": "v²r her ay için aynı mı?",
+    "sikHata": "Kaçış formülünü yörüngeye uygulamak.",
+    "cedKonu": "6.6",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_41",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 62,
+   "numara": 63,
+   "konu": "6.6 Motion of Orbiting Satellites: Explaining Faster Motion Near the Planet",
+   "zorluk": "medium",
+   "govde": "A satellite in an elliptical orbit moves fastest when it is closest to the planet. Which statement best explains this in terms of angular momentum?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "Gravity exerts no torque about the planet's center, so $L = mvr$ stays constant; a smaller $r$ requires a larger $v$."
+    },
+    {
+     "id": "B",
+     "text": "The satellite's linear momentum is conserved, so the satellite speeds up as it gets closer to the planet."
+    },
+    {
+     "id": "C",
+     "text": "At the closest point, the gravitational force points along the satellite's velocity and pushes it forward."
+    },
+    {
+     "id": "D",
+     "text": "The satellite's mechanical energy alone is conserved because no forces act on it in space."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Kütleçekim kuvveti merkeze yönelir; merkeze göre moment kolu sıfır → tork sıfır.<br/>2. $L = mvr_\\perp$ sabit; $r$ küçüldükçe $v$ büyür.<br/>3. Bu, Kepler'in ikinci yasasının (eşit zamanda eşit alan) açısal momentum ifadesidir.",
+   "genel_hatirlatma": "Merkezî kuvvet (central force) merkeze göre tork uygulamaz; bu yüzden yörüngedeki uydunun açısal momentumu korunur.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Doğrusal momentum korunumu",
+     "aciklama": "Uyduya net kuvvet (kütleçekim) etkir; doğrusal momentum yön ve büyüklük değiştirir."
+    },
+    "C": {
+     "etiket": "Kuvvet yönünü yanlış yorumlamak",
+     "aciklama": "En yakın noktada kuvvet hıza diktir; o anda sürati değiştirmez."
+    },
+    "D": {
+     "etiket": "Kuvvet yok sanmak",
+     "aciklama": "Uyduya kütleçekim kuvveti etkir; korunan enerji uydu–gezegen sisteminin enerjisidir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.6)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Merkezcil kuvvet → τ = 0 → L sabit",
+    "ipucu": "Kuvvet merkezden geçer.",
+    "sikHata": "Doğrusal momentumun korunduğunu sanmak.",
+    "cedKonu": "6.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_42",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 63,
+   "numara": 64,
+   "konu": "6.6 Motion of Orbiting Satellites: Energy Conservation Along an Elliptical Orbit",
+   "zorluk": "hard",
+   "govde": "A satellite moves in an elliptical orbit around a planet. The table gives energies of the satellite–planet system at two points of the orbit, with gravitational potential energy taken as zero at infinite separation.<br/><table class='u-table'><tr><th>Point</th><th>Kinetic energy of satellite (J)</th><th>Gravitational potential energy (J)</th></tr><tr><td>P</td><td>$6.0\\times 10^{9}$</td><td>$-1.0\\times 10^{10}$</td></tr><tr><td>Q</td><td>?</td><td>$-7.0\\times 10^{9}$</td></tr></table>What is the satellite's kinetic energy at point Q?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$9.0\\times 10^{9}$ J"
+    },
+    {
+     "id": "B",
+     "text": "$6.0\\times 10^{9}$ J"
+    },
+    {
+     "id": "C",
+     "text": "$3.5\\times 10^{9}$ J"
+    },
+    {
+     "id": "D",
+     "text": "$3.0\\times 10^{9}$ J"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Dış kuvvet yok: uydu–gezegen sisteminin mekanik enerjisi korunur.<br/>2. $E = 6.0\\times10^9 + (-10\\times10^9) = -4.0\\times10^9$ J.<br/>3. $K_Q = E - U_Q = -4.0\\times10^9 - (-7.0\\times10^9) = 3.0\\times10^9$ J. (Q, P'den uzaktadır; $U$ artmış, $K$ azalmıştır.)",
+   "genel_hatirlatma": "Eliptik yörüngede $K + U_G$ sabittir; $U_G$ negatif olduğundan \"daha büyük\" $U_G$ sıfıra daha yakın demektir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "İşareti ters kullanmak",
+     "aciklama": "$U$ $-10$'dan $-7.0$'ye çıkmıştır (artış); enerji korunumu $K$'nin aynı miktarda azalmasını gerektirir."
+    },
+    "B": {
+     "etiket": "Sabit K varsaymak",
+     "aciklama": "$K$ yalnız dairesel yörüngede sabittir."
+    },
+    "C": {
+     "etiket": "Dairesel yörünge ilişkisini uygulamak",
+     "aciklama": "$K = -U/2$ yalnız dairesel yörüngede geçerlidir; eliptik yörüngede enerji korunumu kullanılır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.6)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Eliptik yörüngede E = K + U sabit",
+    "ipucu": "E = K_P + U_P.",
+    "sikHata": "K = −U/2'yi elipse uygulamak.",
+    "cedKonu": "6.6",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_43",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 64,
+   "numara": 65,
+   "konu": "6.6 Motion of Orbiting Satellites: Work Done by Gravity in a Circular Orbit",
+   "zorluk": "easy",
+   "govde": "A satellite moves at constant speed in a circular orbit around Earth. How much work does the gravitational force from Earth do on the satellite during one quarter of an orbit?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "Positive work, because gravity continually pulls the satellite toward Earth."
+    },
+    {
+     "id": "B",
+     "text": "Negative work, because gravity opposes the satellite's tendency to move away from Earth."
+    },
+    {
+     "id": "C",
+     "text": "Zero, because the gravitational force is always perpendicular to the satellite's velocity."
+    },
+    {
+     "id": "D",
+     "text": "Zero only for a complete orbit; during a quarter orbit gravity does positive work."
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Dairesel yörüngede kuvvet merkeze, hız teğete yöneliktir: her an dik.<br/>2. Dik kuvvet iş yapmaz; her kısa parçada $W = 0$.<br/>3. Sürat ve $K$ sabittir; $W = \\Delta K = 0$ yörüngenin her bölümünde geçerlidir.",
+   "genel_hatirlatma": "Dairesel yörüngede kütleçekim kuvveti merkezcil kuvvettir; hıza dik olduğu için iş yapmaz ve sürati değiştirmez.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Kuvvet varsa iş vardır sanmak",
+     "aciklama": "İş için kuvvetin yer değiştirmeye paralel bileşeni gerekir; burada yoktur."
+    },
+    "B": {
+     "etiket": "Hayali dış kuvvet",
+     "aciklama": "Uyduyu dışa iten bir kuvvet yoktur; tek kuvvet kütleçekimidir ve hıza diktir."
+    },
+    "D": {
+     "etiket": "Eliptik yörüngeyle karıştırmak",
+     "aciklama": "Pozitif/negatif iş eliptik yörüngede olur; dairesel yörüngede uzaklık değişmez."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.6)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Dairesel yörüngede W = 0",
+    "ipucu": "F ⊥ v → W = 0.",
+    "sikHata": "Kuvvet var → iş var sanmak.",
+    "cedKonu": "6.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_44",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 65,
+   "numara": 66,
+   "konu": "6.6 Motion of Orbiting Satellites: Period from Orbital Radius Data",
+   "zorluk": "medium",
+   "govde": "Two moons orbit the same planet in circular orbits.<br/><table class='u-table'><tr><th>Moon</th><th>Orbital radius (m)</th><th>Period (days)</th></tr><tr><td>A</td><td>$1.0\\times 10^{8}$</td><td>2.0</td></tr><tr><td>B</td><td>$4.0\\times 10^{8}$</td><td>?</td></tr></table>What is the orbital period of moon B?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "4.0 days"
+    },
+    {
+     "id": "B",
+     "text": "8.0 days"
+    },
+    {
+     "id": "C",
+     "text": "16 days"
+    },
+    {
+     "id": "D",
+     "text": "32 days"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $\\frac{GMm}{r^2} = \\frac{m(2\\pi r/T)^2}{r} \\Rightarrow T^2 = \\frac{4\\pi^2}{GM}r^3$.<br/>2. $r$ 4 katı → $T^2$ $4^3 = 64$ katı → $T$ 8 katı.<br/>3. $T_B = 8 \\times 2.0 = 16$ gün.",
+   "genel_hatirlatma": "Aynı merkez cisim için $T^2 \\propto r^3$ (Kepler'in üçüncü yasası, dairesel yörüngeden türetilir).",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$T \\propto \\sqrt{r}$ almak",
+     "aciklama": "Bu, sürat ilişkisini ($v \\propto 1/\\sqrt{r}$) periyoda taşır; doğrusu $T \\propto r^{3/2}$."
+    },
+    "B": {
+     "etiket": "Oranı periyoda uygulamamak",
+     "aciklama": "8, $T_B/T_A$'dır; $T_B = 8 \\times 2.0 = 16$ gün."
+    },
+    "D": {
+     "etiket": "$T \\propto r^2$ almak",
+     "aciklama": "$4^2 = 16$ kat → 32 gün olur; doğrusu $T^2 \\propto r^3$, yani $T$ 8 katı."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.6)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "T² ∝ r³",
+    "ipucu": "r 4 kat → T 8 kat.",
+    "sikHata": "T ∝ r almak.",
+    "cedKonu": "6.6",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "phys_k_u6_45",
+   "tur": "ders",
+   "sayfa": "ap-physics",
+   "ders": null,
+   "unite_no": 7,
+   "unite": "6",
+   "kutu": "phys-unit6-rotating-quiz-container",
+   "kutu_baslik": "Unit 6 Energy and Momentum of Rotating Systems",
+   "dizi": "PHYS_UNIT6_QUESTIONS",
+   "sira": 66,
+   "numara": 67,
+   "konu": "6.6 Motion of Orbiting Satellites: Speed Increase Needed to Escape",
+   "zorluk": "hard",
+   "govde": "A satellite moves in a circular orbit at a speed of $7.0\\text{ km/s}$. A rocket burn quickly increases the satellite's speed without changing its distance from the planet. What is the minimum increase in speed that allows the satellite to escape the planet's gravity entirely?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "2.9 km/s"
+    },
+    {
+     "id": "B",
+     "text": "7.0 km/s"
+    },
+    {
+     "id": "C",
+     "text": "9.9 km/s"
+    },
+    {
+     "id": "D",
+     "text": "14 km/s"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Kaçış: sistem enerjisi $\\ge 0$: $\\frac{1}{2}mv_{esc}^2 = \\frac{GMm}{r} \\Rightarrow v_{esc} = \\sqrt{2GM/r}$.<br/>2. Dairesel yörüngede $v_{circ} = \\sqrt{GM/r}$ → $v_{esc} = \\sqrt{2}\\,v_{circ} = \\sqrt{2}(7.0) \\approx 9.9$ km/s.<br/>3. Gerekli artış: $9.9 - 7.0 = 2.9$ km/s.",
+   "genel_hatirlatma": "Aynı uzaklıkta kaçış sürati dairesel yörünge süratinin $\\sqrt{2}$ katıdır; kaçış için toplam mekanik enerji sıfıra ulaşmalıdır.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Sürati iki katına çıkarmak",
+     "aciklama": "7.0 km/s artış sürati $2v$'ye çıkarır; kaçış için $\\sqrt{2}v$ (kinetik enerjinin iki katı) yeterlidir."
+    },
+    "C": {
+     "etiket": "Artış yerine kaçış süratini vermek",
+     "aciklama": "9.9 km/s son sürattir; soru artışı soruyor."
+    },
+    "D": {
+     "etiket": "Kaçış süratini 2v alıp son sürati vermek",
+     "aciklama": "$2v = 14$ km/s hem yanlış katsayıyı ($\\sqrt{2}$ yerine 2) kullanır hem de artış değil son sürattir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 6.6)",
+   "deneme_kodlari": [
+    "physics-1"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "v_esc = √2 v_circ",
+    "ipucu": "E = 0 koşulu.",
+    "sikHata": "Kaçış için sürati iki katına çıkarmak.",
+    "cedKonu": "6.6",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
   }
  ],
  "icerikGuncelleme": "2026-10-24T14:48:10.000Z",
- "yeniSoruEkleme": "2026-10-24T17:03:24.211Z"
+ "yeniSoruEkleme": "2026-10-24T17:04:18.795Z"
 }
