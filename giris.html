@@ -263,7 +263,10 @@
     // --- 1.22.0: hedef sihirbazından gelen seçim (?hedef=… ya da aynı sekmede sessionStorage "meberra-hedef") ---
     var HEDEF = (function () {
       var Hm = window.MeberraHedef, h = params.get("hedef");
-      if (!h) { try { h = sessionStorage.getItem("meberra-hedef"); } catch (e) { h = null; } }
+      // Yedek (aynı sekme): yalnızca Bugün'e dönülecekse ve seçim 30 dk'dan yeniyse; başka bir sayfaya giriş eski seçimi uygulamaz
+      if (!h && (!donus || donus === "/bugun")) {
+        try { var kay = JSON.parse(sessionStorage.getItem("meberra-hedef") || "null"); if (kay && typeof kay.adres === "string" && Date.now() - kay.t < 30 * 60e3) h = kay.adres; } catch (e) { h = null; }
+      }
       if (!h || !Hm) return null;
       var s = Hm.secimCoz(h.charAt(0) === "?" ? h : "?" + h);
       return s.ulkeler.length ? s : null;
@@ -307,8 +310,9 @@
         UI.alert(statusEl, "Planın kaydediliyor…");
         var eski = function () { location.replace(yeniHesap ? "/profil" + SECIM : (donus || "/bugun")); };
         hedefUygula().then(function (r) {
+          if (!(r && r.ok)) return eski(); // seçim sessionStorage'da kalır; profil sihirbazından sonra tekrar denenebilir
           try { sessionStorage.removeItem("meberra-hedef"); } catch (e) { /* gizli pencere */ }
-          if (r && r.ok) location.replace("/bugun?ilk=1"); else eski();
+          location.replace("/bugun?ilk=1");
         }, eski);
         return;
       }

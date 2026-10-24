@@ -109,19 +109,50 @@ test("giriş yapmış öğrenci: mevcut profil korunur", async ({ page }) => {
   expect(r.status()).toBe(200);
   await page.context().clearCookies();
   await girisYap(page, eposta, SIFRE, "/bugun");
-  await page.goto("/ulkem?u=it&s=10");
+  await page.goto("/ulkem?u=it,de,cz,es&o=it-politecnico-di-milano&s=10");
   await page.getByRole("button", { name: /Bu planı uygula/ }).click();
-  await expect(page.getByRole("status").filter({ hasText: /eklenecek/ })).toBeVisible();
+  await expect(page.getByRole("status").filter({ hasText: /eklenecek/ })).toContainText("Avusturya listenden çıkacak");
   await page.getByRole("button", { name: "Onayla" }).click();
   await page.waitForURL(/\/bugun/);
   const me = await (await page.request.get("/api/me")).json();
   expect(me.profile).toMatchObject({ sinif: "10", aktifRota: "nl", sinavYili: 2028 });
-  expect(me.profile.ulkeler).toEqual(["it", "nl", "at"]);
+  expect(me.profile.ulkeler).toEqual(["it", "de", "cz", "es", "nl"]);
   expect(me.profile.apDersleri[0]).toEqual({ ders: "biology", hedef: 5 });
+  const listem = await page.evaluate(() => JSON.parse(localStorage.getItem("apmeberra:panel:v1") || "{}").universitelerim);
+  expect(listem).toContain("it-politecnico-di-milano");
 });
 
 test("vitrin: Ücretsiz başla sihirbazı açar", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("link", { name: /Ücretsiz başla/ }).first().click();
   await expect(page.locator("#hd-adim-1")).toBeVisible();
+});
+
+test("okul araması kartları süzer", async ({ page }) => {
+  await page.goto("/ulkem?u=it&adim=2");
+  const kartlar = page.locator("#hd-okullar .hz-u");
+  await expect(kartlar.first()).toBeVisible();
+  await page.locator("#hd-ara").fill("politecnico");
+  await expect(page.locator("#hd-okullar .hz-u:visible")).toHaveCount(await page.locator("#hd-okullar .hz-u", { hasText: "Politecnico" }).count());
+  await expect(kartlar.filter({ hasText: "Sapienza" })).toBeHidden();
+});
+
+test("eski sessionStorage seçimi ilgisiz girişte uygulanmaz", async ({ page }) => {
+  const eposta = yeniEposta("hedefs");
+  let r = await page.request.post("/api/auth/register", { headers: CSRF, data: { ad: "Ece", soyad: "Ak", eposta, sifre: SIFRE, sifre2: SIFRE, kosullar: true, kvkk: true } });
+  expect(r.status()).toBe(200);
+  r = await page.request.put("/api/profile", { headers: CSRF, data: { profile: { ogrenciModeli: "lise", sinif: "11", ulkeler: ["de"], egitimDili: "en", tamamlandi: true, aktifRota: "de", apHedefSoruldu: new Date().toISOString() } } });
+  await page.context().clearCookies();
+  await page.goto("/ulkem");
+  await page.evaluate(() => sessionStorage.setItem("meberra-hedef", "?u=nl&s=11"));
+  await girisYap(page, eposta, SIFRE, "/calis");
+  expect(page.url()).toContain("/calis");
+  const me = await (await page.request.get("/api/me")).json();
+  expect(me.profile.ulkeler).toEqual(["de"]);
+});
+
+test("YKS'si bilinmeyen ülkede 'gerekiyor' denmez", async ({ page }) => {
+  await page.goto("/ulkem?u=nl&s=11");
+  await expect(page.locator("#hd-ortak")).not.toContainText("YKS’ye girmen gerekiyor");
+  await expect(page.locator("#hd-ortak")).toContainText("teyit et");
 });

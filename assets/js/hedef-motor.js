@@ -123,16 +123,14 @@
     return c;
   }
 
-  function okulYiliSonu(bugun) { var d = new Date(bugun + "T00:00:00Z"); return d.getUTCMonth() >= 6 ? d.getUTCFullYear() + 1 : d.getUTCFullYear(); }
+  // Profil sihirbazıyla aynı kural (ap-hedef.js): 9 → +2, 10 → +1, 11/12/mezun → sıradaki Mayıs (Haziran'dan sonra ertesi yıl)
   function sinavYiliHesapla(sinif, bugun) {
-    if (sinif === "mezun") return A.siradakiSinavYili(new Date(bugun + "T12:00:00Z"));
-    var n = parseInt(sinif, 10), mezuniyet = okulYiliSonu(bugun) + (12 - n);
-    return n >= 12 ? mezuniyet : mezuniyet - 1;
+    return A.varsayilanSinavYili(sinif === "mezun" ? "" : sinif, new Date(bugun + "T12:00:00Z"));
   }
 
   function ortakYol(sut, ulkeVeri, alan, sinif, bugun) {
     alan = ALANLAR.indexOf(alan) >= 0 ? alan : "muhendislik";
-    var apSayi = 0, dersler = [], esik = null, belge = null, sinavlar = [], yks = false;
+    var apSayi = 0, dersler = [], esik = null, belge = null, sinavlar = [], yks = false, yksTeyit = false;
     (sut || []).forEach(function (c) {
       var ap = hucre(ulkeVeri, c.cc, c.uniId, alan, "ap");
       if (ap.durum !== "teyit") {
@@ -144,7 +142,8 @@
       if (dl.durum !== "teyit" && e && (esik == null || e > esik)) { esik = e; belge = dl.belge || "IELTS"; }
       var sn = hucre(ulkeVeri, c.cc, c.uniId, alan, "sinav");
       (sn.sinavlar || []).forEach(function (s) { if (sinavlar.indexOf(s) < 0) sinavlar.push(s); });
-      if (hucre(ulkeVeri, c.cc, c.uniId, alan, "yks").durum !== "ok") yks = true;
+      var yd = hucre(ulkeVeri, c.cc, c.uniId, alan, "yks").durum;
+      if (yd === "uyari" || yd === "kapali") yks = true; else if (yd === "teyit") yksTeyit = true;
     });
     var apOneri = apSayi === 0 && dersler.length === 0;
     var ap = apOneri ? VARSAYILAN_AP[alan].slice() : dersler.slice();
@@ -152,7 +151,29 @@
     var yil = sinavYiliHesapla(sinif, bugun);
     var hafta = Math.max(1, Math.ceil((Date.UTC(yil, 4, 1) - new Date(bugun + "T00:00:00Z").getTime()) / 6048e5));
     return { apDersleri: ap, apSayi: apSayi, apOneri: apOneri, dil: esik == null ? null : { belge: belge, esik: esik },
-      sinavlar: sinavlar, yksUyari: yks, sinavYili: yil, haftaKaldi: hafta };
+      sinavlar: sinavlar, yksUyari: yks, yksTeyit: !yks && yksTeyit, sinavYili: yil, haftaKaldi: hafta };
+  }
+
+  /** Tablo hücresinin kısa etiketi (ikon hariç). sinavAd: sınav kimliği → kısa ad. */
+  function hucreEtiket(satir, h, sinavAd) {
+    var d = h.durum;
+    if (d === "teyit") return "Teyit et";
+    if (satir === "yks") return d === "ok" ? "Gerekmez" : d === "kapali" ? "Yol kapalı" : "Şart";
+    if (satir === "ap") return h.sayi ? h.sayi + " AP" : d === "ok" ? "Şart değil" : d === "kapali" ? "Yol kapalı" : "Yetmez";
+    if (satir === "sinav") return (h.sinavlar || []).length ? h.sinavlar.map(sinavAd || String).join(" · ") : d === "ok" ? "Yok" : d === "kapali" ? "Yol kapalı" : "Var";
+    if (satir === "dil") {
+      if (d === "kapali") return "İngilizce program yok";
+      if (d === "ok") return "Gerekmez";
+      var e = Array.isArray(h.esik) ? h.esik.join("–") : h.esik;
+      return e ? (h.belge || "IELTS") + " " + e : "Belge gerekli";
+    }
+    if (satir === "donem") return d === "kapali" ? "Kapalı" : "Takvim";
+    return d === "ok" ? "Yeter" : d === "kapali" ? "Kapalı" : "Ek şart";
+  }
+  /** Birleştirmede profilden düşen ülkeler (en çok 5 sınırı). */
+  function cikanUlkeler(eski, yama) {
+    var once = eski && Array.isArray(eski.ulkeler) ? eski.ulkeler : [];
+    return once.filter(function (u) { return yama.ulkeler.indexOf(u) < 0; });
   }
 
   /** Profildeki görünen alan adı ("Tıp/Sağlık") → alan kodu; bilinmeyen ad mühendisliğe düşer. */
@@ -188,5 +209,5 @@
 
   return { ALANLAR: ALANLAR, ALAN_AD: ALAN_AD, SATIRLAR: SATIRLAR, SATIR_AD: SATIR_AD, SINIFLAR: SINIFLAR, EN_FAZLA: EN_FAZLA,
     VARSAYILAN_AP: VARSAYILAN_AP, secimCoz: secimCoz, secimAdres: secimAdres, sutunlar: sutunlar, hucre: hucre,
-    ortakYol: ortakYol, profilYamasi: profilYamasi, alanKodu: alanKodu, bayrak: bayrak, sinavYiliHesapla: sinavYiliHesapla };
+    ortakYol: ortakYol, profilYamasi: profilYamasi, alanKodu: alanKodu, hucreEtiket: hucreEtiket, cikanUlkeler: cikanUlkeler, bayrak: bayrak, sinavYiliHesapla: sinavYiliHesapla };
 });

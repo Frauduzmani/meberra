@@ -99,5 +99,20 @@ eq(p2.hedefOkullar, ["nl-x", "it-politecnico-di-milano"], "okullar birleşimi");
 eq(H.profilYamasi({ hedefAlan: "Mühendislik", ulkeler: ["nl"] }, Object.assign({}, sec, { alan: "fen" }), o1).hedefAlan, "Fen", "alan sihirbazdaki seçimle güncellenir");
 eq(eski.ulkeler.length, 4, "eski profil değiştirilmez");
 
+// 6) Son inceleme düzeltmeleri
+eq(H.ortakYol([], {}, "muhendislik", "11", "2027-06-15").sinavYili, 2028, "Mayıs sınavı geçtiyse 11. sınıf sonraki yıla");
+eq(H.ortakYol([], {}, "muhendislik", "10", "2027-06-15").sinavYili, 2029, "10. sınıf Haziran'da");
+const VT = { nl: { ad: "Hollanda", isterler: { varsayilan: { yks: { durum: "teyit", metin: "?" } } } } };
+const oT = H.ortakYol(H.sutunlar({ ulkeler: ["nl"], okullar: {} }, VT), VT, "muhendislik", "11", bugun);
+eq([oT.yksUyari, oT.yksTeyit], [false, true], "YKS teyit 'gerekli' sayılmaz");
+eq([o2.yksUyari, o2.yksTeyit], [true, false], "YKS uyari gerekli");
+const ET = (s, h) => H.hucreEtiket(s, h, x => x.toUpperCase());
+eq([ET("dil", { durum: "kapali" }), ET("dil", { durum: "uyari" }), ET("dil", { durum: "uyari", belge: "IELTS", esik: [6, 6.5] }), ET("dil", { durum: "ok" })],
+  ["İngilizce program yok", "Belge gerekli", "IELTS 6–6.5", "Gerekmez"], "dil etiketleri");
+eq([ET("yks", { durum: "teyit" }), ET("yks", { durum: "uyari" }), ET("ap", { durum: "ok", sayi: 0 }), ET("ap", { durum: "uyari", sayi: 4 }), ET("sinav", { durum: "uyari", sinavlar: ["cent-s"] })],
+  ["Teyit et", "Şart", "Şart değil", "4 AP", "CENT-S"], "diğer etiketler");
+eq(H.cikanUlkeler(eski, p2), ["es"], "birleştirmede düşen ülke");
+eq(H.cikanUlkeler(null, p1), [], "yeni profilde düşen yok");
+
 console.log("\n" + pass + " geçti, " + fail + " kaldı");
 process.exit(fail ? 1 : 0);

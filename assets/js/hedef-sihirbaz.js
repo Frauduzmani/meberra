@@ -113,7 +113,7 @@
           '<span class="hz-lg" style="background:' + RENKLER[i % RENKLER.length] + '" aria-hidden="true">' + esc(kisa) + '</span>' +
           '<span class="hz-u-ad">' + esc(String(u.ad).replace(/\s*\([^)]*\)\s*$/, "")) + '<small>' + esc(u.sehir || "") + (u.qsSira ? " · QS " + esc(u.qsSira) : "") + '</small></span><span class="hz-ck" aria-hidden="true"></span></label>';
       }).join("");
-      return '<div class="hz-ct">' + bayrak(cc) + esc((DK[cc] && DK[cc].ad) || cc).toLocaleUpperCase("tr-TR") + '</div>' + (kart || '<p class="hz-not">Bu ülkenin üniversite listesi hazırlanıyor.</p>');
+      return '<div class="hz-ct">' + bayrak(cc) + esc(String((DK[cc] && DK[cc].ad) || cc).toLocaleUpperCase("tr-TR")) + '</div>' + (kart || '<p class="hz-not">Bu ülkenin üniversite listesi hazırlanıyor.</p>');
     }).join("");
     return kabuk({
       baslik: "Aklında okul var mı?", alt: "Yoksa sorun değil, ülke yeter",
@@ -128,18 +128,6 @@
   function sinavAd(id) { var s = SINAV[id]; return s ? String(s.ad).split(" (")[0].split(" —")[0] : id; }
   function dersAd(d) { var x = AP && AP.dersBul ? AP.dersBul(d) : null; return x ? x.ad : d; }
   var IKON = { ok: "✅", uyari: "⚠️", kapali: "❌", teyit: "❔" };
-  function hucreKisa(satir, h) {
-    if (h.durum === "teyit") return "Teyit et";
-    if (satir === "yks") return h.durum === "ok" ? "Gerekmez" : h.durum === "kapali" ? "Yol kapalı" : "Şart";
-    if (satir === "ap") return h.sayi ? h.sayi + " AP" : h.durum === "ok" ? "Şart değil" : "Yetmez";
-    if (satir === "sinav") return (h.sinavlar || []).length ? h.sinavlar.map(sinavAd).join(" · ") : h.durum === "ok" ? "Yok" : "Var";
-    if (satir === "dil") {
-      var e = Array.isArray(h.esik) ? h.esik.join("–") : h.esik;
-      return e ? (h.belge || "IELTS") + " " + e : h.durum === "ok" ? "Gerekmez" : "B2 düzeyi";
-    }
-    if (satir === "donem") return "Takvim";
-    return h.durum === "ok" ? "Yeter" : h.durum === "kapali" ? "Kapalı" : "Ek şart";
-  }
   function radyo(ad, ad2, liste, deger, etiket) {
     return '<div class="hz-cips" role="radiogroup" aria-label="' + ad2 + '">' + liste.map(function (x) {
       return '<label class="hz-cip' + (x[0] === deger ? " on" : "") + '"><input type="radio" class="hz-gizli" name="' + ad + '" value="' + x[0] + '"' + (x[0] === deger ? " checked" : "") + '>' + esc(x[1]) + '</label>';
@@ -162,7 +150,7 @@
       return '<tr><th scope="row">' + esc(H.SATIR_AD[s]) + '</th>' + sut.map(function (c, j) {
         var h = H.hucre(veri, c.cc, c.uniId, alan, s);
         return '<td><button type="button" class="hz-hucre is-' + h.durum + '" style="--d:' + (n++ * 0.07).toFixed(2) + 's" data-hucre="' + s + '|' + j + '" aria-expanded="false" aria-controls="hd-detay">' +
-          '<span aria-hidden="true">' + IKON[h.durum] + '</span> ' + esc(hucreKisa(s, h)) + '</button></td>';
+          '<span aria-hidden="true">' + IKON[h.durum] + '</span> ' + esc(H.hucreEtiket(s, h, sinavAd)) + '</button></td>';
       }).join("") + '</tr>';
     }).join("");
     var cips = ortak.apDersleri.map(function (d) { return '<span class="hz-chip">📘 ' + esc(dersAd(d)) + '</span>'; })
@@ -173,19 +161,19 @@
       '<div class="hz-chips">' + cips + '</div>' +
       (ortak.apOneri ? '<p class="hz-yol-not">AP burada şart değil, başvurunu güçlendirir. Önerilen dersler ' + esc(H.ALAN_AD[alan]) + ' için.</p>' : "") +
       (ortak.yksUyari ? '<p class="hz-yol-uyari">⚠️ YKS’ye girmen gerekiyor: tabloda ⚠️ olan okul ya da ülke YKS sonucu istiyor.</p>' : "") +
+      (ortak.yksTeyit ? '<p class="hz-yol-not">❔ YKS’nin gerekip gerekmediğini teyit et: tabloda ❔ olan yer için doğrulanmış kaynak henüz yok.</p>' : "") +
       '<p class="hz-wk"><strong>' + ortak.haftaKaldi + '</strong> hafta · Mayıs ' + ortak.sinavYili + ' AP sınavlarına</p></section>';
     var ayr = '<p class="hz-ayrinti">Ülke ayrıntısı (tarihler, burslar, sık hatalar): ' + secim.ulkeler.map(function (cc) {
       return '<a href="' + esc(ayrintiAdresi(cc)) + '">' + esc((DK[cc] && DK[cc].ad) || cc) + ' →</a>';
     }).join(" ") + '</p>';
-    var giris = !!(ME && ME.user);
     return { ortak: ortak, sut: sut, html: kabuk({
       kutlama: !kutlandi,
       baslik: "Yolun hazır! 🎉", alt: sut.length + (sut.filter(function (c) { return c.tur === "uni"; }).length === sut.length ? " okulun" : " seçimin") + " şartları tek tabloda",
       govde: radyo("sinif", "Sınıf", [["9", "9"], ["10", "10"], ["11", "11"], ["12", "12"], ["mezun", "Mezun"]], secim.sinif) +
         radyo("alan", "Alan", H.ALANLAR.map(function (a) { return [a, H.ALAN_AD[a]]; }), alan) +
-        '<div class="hz-tablo-kap" tabindex="0" aria-label="Şart tablosu"><table class="hz-tablo" id="hd-tablo"><thead>' + bas + '</thead><tbody>' + satirlar + '</tbody></table></div>' +
-        '<div class="hz-detay" id="hd-detay" hidden></div>' + yol + ayr,
-      alt2: '<div id="hd-uygula-kap"><button type="button" class="hz-btn" data-uygula>' + (giris ? "Bu planı uygula 🚀" : "Bu planı uygula 🚀") + '</button></div>' +
+        '<div class="hz-tablo-kap" tabindex="0" role="region" aria-label="Şart tablosu"><table class="hz-tablo" id="hd-tablo"><thead>' + bas + '</thead><tbody>' + satirlar + '</tbody></table></div>' +
+        '<div class="hz-detay" id="hd-detay" aria-live="polite" hidden></div>' + yol + ayr,
+      alt2: '<div id="hd-uygula-kap"><button type="button" class="hz-btn" data-uygula>Bu planı uygula 🚀</button></div>' +
         '<button type="button" class="hz-geri" data-git="1">← Seçimi değiştir</button>'
     }) };
   }
@@ -273,24 +261,36 @@
   function uygula() {
     var adres = H.secimAdres(secim);
     if (!(ME && ME.user)) {
-      try { sessionStorage.setItem("meberra-hedef", adres); } catch (e) { /* gizli pencere */ }
+      try { sessionStorage.setItem("meberra-hedef", JSON.stringify({ adres: adres, t: Date.now() })); } catch (e) { /* gizli pencere */ }
       location.href = "/giris?donus=%2Fbugun&hedef=" + encodeURIComponent(adres) + "#kayit";
       return;
     }
     var yama = H.profilYamasi(PROF, secim, son3.ortak), eskiU = (PROF && PROF.ulkeler) || [], eskiD = ((PROF && PROF.apDersleri) || []).map(function (d) { return d.ders; });
     var yU = yama.ulkeler.filter(function (u) { return eskiU.indexOf(u) < 0; }).length;
+    var cikan = H.cikanUlkeler(PROF, yama).map(function (u) { return (DK[u] && DK[u].ad) || u; });
     var yD = yama.apDersleri.filter(function (d) { return eskiD.indexOf(d.ders) < 0; }).length;
     document.getElementById("hd-uygula-kap").innerHTML = '<p class="hz-ozet" role="status">' +
-      (yU || yD ? "Planına " + [yU ? yU + " ülke" : "", yD ? yD + " ders" : ""].filter(Boolean).join(", ") + " eklenecek." : "Bu seçim planında zaten var; okulların listene eklenecek.") + '</p>' +
+      esc((yU || yD ? "Planına " + [yU ? yU + " ülke" : "", yD ? yD + " ders" : ""].filter(Boolean).join(", ") + " eklenecek." : "Bu seçim planında zaten var; okulların listene eklenecek.") +
+        (cikan.length ? " En çok " + H.EN_FAZLA + " ülke olabildiği için " + cikan.join(", ") + " listenden çıkacak." : "")) + '</p>' +
       '<div class="hz-iki"><button type="button" class="hz-btn" data-onayla>Onayla</button><button type="button" class="hz-geri" data-vazgec>Vazgeç</button></div>';
+  }
+  /** Seçilen okulları Listem'e (apmeberra:panel:v1.universitelerim) ekler; giris.html aynı kuralı uygular. */
+  function listemeEkle(idler) {
+    if (!window.APMEBERRA || !APMEBERRA.panel || !idler || !idler.length) return;
+    APMEBERRA.panel.update(function (pn) {
+      var L = Array.isArray(pn.universitelerim) ? pn.universitelerim : [];
+      idler.forEach(function (id) { if (L.indexOf(id) < 0) L.push(id); });
+      pn.universitelerim = L;
+    });
   }
   function kaydet() {
     var AUTH = window.APMEBERRA_AUTH, yama = H.profilYamasi(PROF, secim, son3.ortak);
     var b = kok.querySelector("[data-onayla]"); if (b) { b.disabled = true; b.textContent = "Kaydediliyor…"; }
     if (!AUTH || !AUTH.saveProfile) { location.href = "/profil"; return; }
-    AUTH.saveProfile(ME.user.id, yama).then(function (r) {
-      if (r && r.ok === false) { if (b) { b.disabled = false; b.textContent = "Onayla"; } var o = kok.querySelector(".hz-ozet"); if (o) o.textContent = "Kaydedilemedi: " + (r.errors && (r.errors.genel || Object.keys(r.errors).map(function (k) { return r.errors[k]; }).join(" ")) || "tekrar dene"); return; }
-      if (window.APMEBERRA && APMEBERRA.hedefOkullariEkle) APMEBERRA.hedefOkullariEkle(yama.hedefOkullar);
+    var hata = function (m) { if (b) { b.disabled = false; b.textContent = "Onayla"; } var o = kok.querySelector(".hz-ozet"); if (o) o.textContent = "Kaydedilemedi: " + (m || "tekrar dene"); };
+    AUTH.saveProfile(ME.user.id, yama).catch(function () { return { ok: false, errors: { genel: "bağlantı sorunu, tekrar dene" } }; }).then(function (r) {
+      if (r && r.ok === false) { hata(r.errors && (r.errors.genel || Object.keys(r.errors).map(function (k) { return r.errors[k]; }).join(" "))); return; }
+      listemeEkle(yama.hedefOkullar);
       location.href = "/bugun?ilk=1";
     });
   }

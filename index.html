@@ -723,7 +723,7 @@
 
     // 7) 1.22.0: hedef sihirbazından gelen ilk ziyaret (?ilk=1) — tek büyük kutlama, sonra adres temizlenir
     (function () {
-      if (!/[?&]ilk=1/.test(location.search)) return;
+      if (!/[?&]ilk=1(&|$)/.test(location.search)) return;
       try { history.replaceState(null, "", location.pathname + location.search.replace(/([?&])ilk=1&?/, "$1").replace(/[?&]$/, "") + location.hash); } catch (e) { /* file:// */ }
       var ad = ME && ME.user && ME.user.ad ? ME.user.ad : "";
       var P = ME && ME.profile ? ME.profile : {};
