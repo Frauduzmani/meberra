@@ -1,0 +1,618 @@
+{
+ "ders": "calculus",
+ "unite": 9,
+ "baslik": "Parametric Equations, Polar Coordinates, and Vector-Valued Functions",
+ "baslikTr": "Parametrik Denklemler, Kutupsal Koordinatlar ve Vektör Değerli Fonksiyonlar",
+ "konular": [
+  {
+   "kod": "9.1",
+   "baslik": "Defining and Differentiating Parametric Equations",
+   "baslikTr": "Parametrik denklemleri tanımlama ve türevini alma",
+   "sadeceBC": true,
+   "hedefler": [
+    "Parametrik denklemlerle verilen bir eğriyi yorumlamak, yönünü (orientation) belirlemek ve gerektiğinde parametreyi yok etmek.",
+    "Parametrik eğride \\(\\frac{dy}{dx}=\\frac{dy/dt}{dx/dt}\\) formülüyle eğim ve teğet doğru denklemi bulmak.",
+    "Yatay ve dikey teğetleri bulmak; \\(x'(t)=y'(t)=0\\) olan belirsiz durumları limitle incelemek."
+   ],
+   "anlatim": "<p>Şimdiye kadar eğrileri \\(y=f(x)\\) biçiminde gördük. <strong>Parametrik denklemler (parametric equations)</strong> ise hem \\(x\\)'i hem \\(y\\)'yi üçüncü bir değişkenin, genellikle zamanı temsil eden \\(t\\) <em>parametresinin (parameter)</em> fonksiyonu olarak verir:</p>\n<div class=\"formul\">\\[x=x(t),\\qquad y=y(t),\\qquad a\\le t\\le b\\]</div>\n<p>Her \\(t\\) değeri düzlemde bir nokta \\((x(t),y(t))\\) verir. \\(t\\) arttıkça nokta hareket eder; bu hareketin yönüne eğrinin <strong>yönü (orientation)</strong> denir. Böylece eğri yalnızca bir şekil değil, bir <em>hareket</em> olarak düşünülebilir. Bu yüzden parametrik eğriler, düzlemde hareket eden parçacık sorularının (9.6) temelidir.</p>\n<h4>Neden parametrik?</h4>\n<ul>\n<li>Çember \\(x=3\\cos t,\\ y=3\\sin t\\) bir fonksiyon grafiği değildir (dikey doğru testini geçmez), ama parametrik olarak tek parça yazılır.</li>\n<li>Bir eğri kendini kesebilir (döngü yapabilir). \\(y=f(x)\\) bunu yapamaz.</li>\n<li>Zaman bilgisi korunur: “parçacık \\(t=2\\)'de nerede?” sorusu anlam kazanır.</li>\n</ul>\n<h4>Parametreyi yok etmek (eliminating the parameter)</h4>\n<p>Bazen kartezyen denklem istenir. İki yöntem vardır: (1) Birinden \\(t\\)'yi çekip diğerine koymak: \\(x=2t+1,\\ y=t^2\\) ⇒ \\(t=\\frac{x-1}{2}\\) ⇒ \\(y=\\frac{(x-1)^2}{4}\\). (2) Trigonometrik parametrede \\(\\cos^2t+\\sin^2t=1\\) özdeşliğini kullanmak: \\(x=2+3\\cos t,\\ y=-1+3\\sin t\\) ⇒ \\((x-2)^2+(y+1)^2=9\\).</p>\n<div class=\"kn-dikkat\">Parametreyi yok edince yön ve \\(t\\) aralığı bilgisi kaybolur. Örneğin \\(x=t^2\\) yalnızca \\(x\\ge0\\) verir; kartezyen denklemde bu kısıtı ayrıca yazmalısın.</div>\n<h4>Parametrik türev</h4>\n<p>Zincir kuralına göre \\(\\frac{dy}{dt}=\\frac{dy}{dx}\\cdot\\frac{dx}{dt}\\). Buradan:</p>\n<div class=\"kn-kural\">\\[\\frac{dy}{dx}=\\frac{dy/dt}{dx/dt},\\qquad \\frac{dx}{dt}\\ne0\\]</div>\n<p>Bu, eğrinin \\((x(t),y(t))\\) noktasındaki teğet doğrunun eğimidir. Teğet doğru denklemi için nokta \\((x(t_0),y(t_0))\\) ve eğim \\(m=\\frac{y'(t_0)}{x'(t_0)}\\) yeterlidir: \\(y-y(t_0)=m\\,(x-x(t_0))\\).</p>\n<h4>Yatay ve dikey teğetler</h4>\n<table><thead><tr><th>Durum</th><th>Koşul</th><th>Anlamı</th></tr></thead>\n<tbody>\n<tr><td>Yatay teğet (horizontal tangent)</td><td>\\(y'(t)=0\\) ve \\(x'(t)\\ne0\\)</td><td>eğim 0</td></tr>\n<tr><td>Dikey teğet (vertical tangent)</td><td>\\(x'(t)=0\\) ve \\(y'(t)\\ne0\\)</td><td>eğim tanımsız</td></tr>\n<tr><td>Belirsiz (0/0)</td><td>\\(x'(t)=y'(t)=0\\)</td><td>\\(\\lim\\frac{y'(t)}{x'(t)}\\) ile karar ver</td></tr>\n</tbody></table>\n<p>Belirsiz durumda iki çarpanı sadeleştir: \\(x=t^3-3t^2,\\ y=t^2-4t\\) eğrisinde \\(t=2\\)'de ikisi de sıfırdır; \\(\\frac{dy}{dx}=\\frac{2(t-2)}{3t(t-2)}=\\frac{2}{3t}\\to\\frac13\\) olur, yani teğet dikey değildir.</p>\n<h4>Hesap makinesi kısmı</h4>\n<p>Calculator-active sorularda \\(\\frac{dy}{dx}\\) değerini nDeriv ile bulursun: nDeriv\\((y(t))\\)/nDeriv\\((x(t))\\). “Eğimin \\(m\\) olduğu an” için \\(y'(t)-m\\,x'(t)=0\\) denklemini çizip kökleri bul; bu, paydayla uğraşmaktan daha güvenlidir.</p>\n<div class=\"kn-tanim\"><strong>FRQ ifade kalıbı:</strong> “The line tangent to the curve at \\(t=2\\) is horizontal because \\(\\frac{dy}{dt}=0\\) and \\(\\frac{dx}{dt}\\ne0\\) at \\(t=2\\).” İki koşulu birlikte yazmak puan getirir.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(x(t)=t^2-1,\\ y(t)=t^3-t\\) eğrisinin \\(t=2\\)'deki teğet doğrusunun denklemini yazın.",
+     "cozum": [
+      "Nokta: \\(x(2)=3,\\ y(2)=6\\).",
+      "\\(x'(t)=2t,\\ y'(t)=3t^2-1\\) ⇒ \\(\\frac{dy}{dx}\\Big|_{t=2}=\\frac{11}{4}\\).",
+      "Teğet: \\(y-6=\\frac{11}{4}(x-3)\\)."
+     ]
+    },
+    {
+     "soru": "Aynı eğri için yatay ve dikey teğetlerin olduğu noktaları bulun.",
+     "cozum": [
+      "Yatay: \\(3t^2-1=0\\Rightarrow t=\\pm\\frac{1}{\\sqrt3}\\); bu değerlerde \\(x'=2t\\ne0\\) ✓. Noktalar \\(\\left(-\\frac23,\\mp\\frac{2}{3\\sqrt3}\\right)\\).",
+      "Dikey: \\(2t=0\\Rightarrow t=0\\); \\(y'(0)=-1\\ne0\\) ✓. Nokta \\((-1,0)\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(x(t)=e^{t}\\), \\(y(t)=t^2-2t\\). Eğrinin \\(t=1\\)'deki teğetinin yatay olduğunu gerekçesiyle gösterin; ayrıca eğri kendini keser mi?",
+     "cozum": [
+      "\\(y'(1)=2-2=0\\) ve \\(x'(1)=e\\ne0\\). “Since \\(\\frac{dy}{dt}=0\\) and \\(\\frac{dx}{dt}\\ne0\\) at \\(t=1\\), the tangent line is horizontal.”",
+      "\\(x(t)=e^t\\) kesin artan olduğundan farklı \\(t\\) değerleri farklı \\(x\\) verir; eğri kendini <strong>kesemez</strong>."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Parametrik eğimde pay her zaman dy/dt, payda dx/dt'dir; kesri ters kurmak en sık puan kaybıdır.",
+    "Yatay/dikey teğet sorularında bulduğun t değerinde diğer türevin sıfır OLMADIĞINI kontrol et ve bunu yaz.",
+    "Hesap makinesinde nDeriv(y)/nDeriv(x) kullan; ara değerleri yuvarlama, cevabı üç ondalıkla ver.",
+    "Cevap bir nokta istiyorsa t değerini değil (x(t), y(t)) çiftini yaz."
+   ],
+   "sikHatalar": [
+    "dy/dx yerine dx/dy hesaplamak (kesri ters kurmak).",
+    "x'(t) = y'(t) = 0 olan noktayı limit almadan dikey teğet saymak.",
+    "Parametre değeri t'yi noktanın x koordinatı sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "parametric equations",
+     "tr": "parametrik denklemler"
+    },
+    {
+     "en": "parameter",
+     "tr": "parametre"
+    },
+    {
+     "en": "orientation",
+     "tr": "yön (eğrinin çizilme yönü)"
+    },
+    {
+     "en": "eliminate the parameter",
+     "tr": "parametreyi yok etmek"
+    },
+    {
+     "en": "horizontal / vertical tangent",
+     "tr": "yatay / dikey teğet"
+    }
+   ]
+  },
+  {
+   "kod": "9.2",
+   "baslik": "Second Derivatives of Parametric Equations",
+   "baslikTr": "Parametrik denklemlerde ikinci türev",
+   "sadeceBC": true,
+   "hedefler": [
+    "\\(\\frac{d^2y}{dx^2}=\\frac{\\frac{d}{dt}(dy/dx)}{dx/dt}\\) formülüyle parametrik eğrinin ikinci türevini hesaplamak.",
+    "İkinci türevin işaretinden bükeyliği (concavity) belirlemek ve ikinci türev testini parametrik eğride uygulamak.",
+    "\\(y''/x''\\) tuzağını tanımak ve sonucu doğrulamak."
+   ],
+   "anlatim": "<p>Parametrik bir eğride \\(\\frac{dy}{dx}\\) kendisi de \\(t\\)'nin bir fonksiyonudur. İkinci türev \\(\\frac{d^2y}{dx^2}\\), bu eğimin <strong>\\(x\\)'e göre</strong> değişim hızıdır. Elimizde \\(x\\) cinsinden ifade olmadığı için yine zincir kuralını kullanırız: herhangi bir \\(t\\)-fonksiyonu \\(g(t)\\) için \\(\\frac{dg}{dx}=\\frac{dg/dt}{dx/dt}\\). Bunu \\(g=\\frac{dy}{dx}\\) için yazınca:</p>\n<div class=\"kn-kural\">\\[\\frac{d^2y}{dx^2}=\\frac{\\dfrac{d}{dt}\\left(\\dfrac{dy}{dx}\\right)}{\\dfrac{dx}{dt}}\\]</div>\n<p>Yani üç adım vardır: (1) \\(\\frac{dy}{dx}\\)'i \\(t\\) cinsinden bul ve sadeleştir; (2) bunun \\(t\\)'ye göre türevini al; (3) sonucu <strong>\\(x'(t)\\) ile böl</strong>. Üçüncü adım en çok unutulan adımdır.</p>\n<div class=\"kn-dikkat\"><strong>Tuzak:</strong> \\(\\frac{d^2y}{dx^2}\\ne\\frac{y''(t)}{x''(t)}\\). Örneğin \\(x=e^t,\\ y=e^{2t}\\) için doğru cevap 2'dir (çünkü \\(y=x^2\\)), ama \\(\\frac{y''}{x''}=\\frac{4e^{2t}}{e^t}=4e^t\\) yanlış sonuç verir. AP çeldiricileri bu hatayı mutlaka içerir.</div>\n<h4>Eşdeğer tek satır formül</h4>\n<p>Bölüm kuralını uygularsan şu formülü elde edersin; hesap makinesinde veya tablo sorularında işe yarar:</p>\n<div class=\"formul\">\\[\\frac{d^2y}{dx^2}=\\frac{x'(t)\\,y''(t)-y'(t)\\,x''(t)}{\\left(x'(t)\\right)^3}\\]</div>\n<h4>Bükeylik ve ikinci türev testi</h4>\n<table><thead><tr><th>\\(\\frac{d^2y}{dx^2}\\)</th><th>Eğri</th></tr></thead>\n<tbody><tr><td>\\(\\gt0\\)</td><td>concave up (yukarı bükey)</td></tr>\n<tr><td>\\(\\lt0\\)</td><td>concave down (aşağı bükey)</td></tr>\n<tr><td>işaret değiştirir</td><td>bükeylik değişir (inflection)</td></tr></tbody></table>\n<p>Bir noktada \\(\\frac{dy}{dx}=0\\) ve \\(\\frac{d^2y}{dx^2}\\gt0\\) ise o nokta eğrinin yerel bir “dip” noktasıdır (relative minimum); \\(\\lt0\\) ise “tepe” noktasıdır. Bükeylik aralığı sorusunda \\(\\frac{d^2y}{dx^2}\\)'yi çarpanlarına ayırıp işaret tablosu yap. Paydadaki \\(x'(t)\\)'nin işaretini unutma: \\(x'(t)\\lt0\\) olan aralıklarda işaret ters döner.</p>\n<h4>Örnek akış</h4>\n<p>\\(x=t^2+1,\\ y=t^3-3t\\) (\\(t\\gt0\\)): \\(\\frac{dy}{dx}=\\frac{3t^2-3}{2t}=\\frac32t-\\frac{3}{2t}\\). Türev: \\(\\frac32+\\frac{3}{2t^2}\\). Böl: \\(\\frac{d^2y}{dx^2}=\\frac{3(t^2+1)}{4t^3}\\gt0\\); eğri \\(t\\gt0\\) için hep yukarı bükeydir.</p>\n<h4>Hesap makinesi</h4>\n<p>Calculator-active soruda \\(\\frac{dy}{dx}\\)'i \\(Y_1\\) olarak \\(t\\) cinsinden gir, nDeriv\\((Y_1)\\)'i hesapla ve \\(x'(t)\\)'ye böl. Bükeyliğin değiştiği \\(t\\) için payın işaret değiştirdiği kökü ara.</p>\n<div class=\"kn-tanim\"><strong>FRQ ifade kalıbı:</strong> “Since \\(\\frac{dy}{dx}=0\\) and \\(\\frac{d^2y}{dx^2}\\gt0\\) at \\(t=1\\), the curve has a relative minimum at that point.”</div>",
+   "ornekler": [
+    {
+     "soru": "\\(x=t^3,\\ y=t^2\\) (\\(t\\gt0\\)) için \\(\\frac{d^2y}{dx^2}\\)'yi bulun ve bükeyliği belirtin.",
+     "cozum": [
+      "\\(\\frac{dy}{dx}=\\frac{2t}{3t^2}=\\frac{2}{3}t^{-1}\\).",
+      "\\(\\frac{d}{dt}\\left(\\frac23t^{-1}\\right)=-\\frac23t^{-2}\\).",
+      "\\(\\frac{d^2y}{dx^2}=\\frac{-\\frac23t^{-2}}{3t^2}=-\\frac{2}{9t^4}\\lt0\\): her \\(t\\gt0\\) için concave down."
+     ]
+    },
+    {
+     "soru": "\\(x=2t-1,\\ y=t^3-6t^2\\) eğrisi hangi \\(t\\) değerlerinde yukarı bükeydir?",
+     "cozum": [
+      "\\(\\frac{dy}{dx}=\\frac{3t^2-12t}{2}\\), türevi \\(\\frac{6t-12}{2}=3t-6\\).",
+      "\\(\\frac{d^2y}{dx^2}=\\frac{3t-6}{2}\\gt0\\iff t\\gt2\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(x=\\ln t,\\ y=t^2-t\\). \\(t=\\frac12\\)'deki noktanın yerel minimum mu maksimum mu olduğunu gerekçelendirin.",
+     "cozum": [
+      "\\(\\frac{dy}{dx}=\\frac{2t-1}{1/t}=2t^2-t\\); \\(t=\\frac12\\)'de \\(0\\).",
+      "\\(\\frac{d^2y}{dx^2}=\\frac{4t-1}{1/t}=t(4t-1)\\); \\(t=\\frac12\\)'de \\(\\frac12\\gt0\\).",
+      "“Since \\(\\frac{dy}{dx}=0\\) and \\(\\frac{d^2y}{dx^2}\\gt0\\) at \\(t=\\frac12\\), the point is a relative minimum.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Son adımda MUTLAKA x'(t)'ye böl; şıklarda bölünmemiş değer hep bulunur.",
+    "dy/dx'i türev almadan önce sadeleştir (terimlere ayır); bölüm kuralı hatasını azaltır.",
+    "Sonucu parametreyi yok ederek kontrol edebiliyorsan et (ör. x = e^t, y = e^{2t} ⇒ y = x²).",
+    "Hesap makinesinde dy/dx'i fonksiyon olarak gir; nDeriv sonucu x'(t)'ye bölünür."
+   ],
+   "sikHatalar": [
+    "d²y/dx² yerine y''(t)/x''(t) hesaplamak.",
+    "d/dt(dy/dx) bulup x'(t)'ye bölmeyi unutmak.",
+    "Bükeyliği y''(t)'nin işaretinden okumak."
+   ],
+   "terimler": [
+    {
+     "en": "second derivative",
+     "tr": "ikinci türev"
+    },
+    {
+     "en": "concave up / concave down",
+     "tr": "yukarı / aşağı bükey"
+    },
+    {
+     "en": "point of inflection",
+     "tr": "büküm noktası"
+    },
+    {
+     "en": "relative minimum / maximum",
+     "tr": "yerel minimum / maksimum"
+    }
+   ]
+  },
+  {
+   "kod": "9.3",
+   "baslik": "Finding Arc Lengths of Curves Given by Parametric Equations",
+   "baslikTr": "Parametrik eğrilerin yay uzunluğu",
+   "sadeceBC": true,
+   "hedefler": [
+    "Parametrik eğri için yay uzunluğu integralini kurmak ve yorumlamak.",
+    "Tam kare veya \\(u\\)-substitution ile yay uzunluğunu elle; diğerlerini hesap makinesiyle bulmak.",
+    "Döngü ve kendini kesen eğrilerde doğru \\(t\\) sınırlarını belirlemek."
+   ],
+   "anlatim": "<p>Bir eğrinin uzunluğunu, onu çok küçük doğru parçalarına bölerek yaklaşık hesaplarız. \\(t\\)'den \\(t+\\Delta t\\)'ye giderken nokta yaklaşık \\(\\Delta x\\approx x'(t)\\Delta t\\) sağa, \\(\\Delta y\\approx y'(t)\\Delta t\\) yukarı gider. Pisagor ile parçanın uzunluğu \\(\\sqrt{(x')^2+(y')^2}\\,\\Delta t\\) olur. Bunları toplayıp limit alınca:</p>\n<div class=\"kn-kural\">\\[L=\\int_a^b\\sqrt{\\left(\\frac{dx}{dt}\\right)^2+\\left(\\frac{dy}{dt}\\right)^2}\\,dt\\]</div>\n<p>Bu formül, eğri \\(a\\le t\\le b\\) boyunca <strong>bir kez</strong> çiziliyorsa yay uzunluğunu (arc length) verir. Eğer eğri bir bölümün üzerinden iki kez geçiyorsa, integral o bölümü iki kez sayar. İntegrand \\(\\sqrt{(x')^2+(y')^2}\\), 9.4–9.6'da göreceğimiz <strong>speed</strong>'in ta kendisidir; yani yay uzunluğu = speed'in integrali.</p>\n<h4>Kartezyen formülle bağlantı</h4>\n<p>\\(y=f(x)\\) için \\(L=\\int\\sqrt{1+(f'(x))^2}\\,dx\\) formülünü biliyorsan, \\(x=t,\\ y=f(t)\\) parametrizasyonu aynı sonucu verir. Parametrik formül daha geneldir.</p>\n<h4>Elle çözülebilen tipler</h4>\n<p>No-calculator sorularda kök içi genellikle şu iki biçimden birine dönüşür:</p>\n<ol>\n<li><strong>Tam kare:</strong> \\((x')^2+(y')^2\\) bir ifadenin karesine dönüşür. Ör. \\(x'=2t,\\ y'=t^2-1\\) ⇒ \\(4t^2+t^4-2t^2+1=(t^2+1)^2\\), yani speed \\(=t^2+1\\).</li>\n<li><strong>Ortak çarpan + \\(u\\)-substitution:</strong> \\(x=3t^2,\\ y=2t^3\\) ⇒ \\(\\sqrt{36t^2+36t^4}=6t\\sqrt{1+t^2}\\); \\(u=1+t^2\\).</li>\n</ol>\n<p>Trigonometrik eğrilerde \\(\\sin^2+\\cos^2=1\\) çoğu zaman kökü sadeleştirir: \\(x=\\cos^3t,\\ y=\\sin^3t\\) için \\(\\sqrt{9\\sin^2t\\cos^2t}=3|\\sin t\\cos t|\\).</p>\n<div class=\"kn-dikkat\">\\(\\sqrt{A^2}=|A|\\)'dır. Aralıkta \\(A\\) negatif oluyorsa integrali parçala; aksi halde uzunluk sıfır ya da negatif çıkabilir (uzunluk asla negatif olmaz).</div>\n<h4>Döngüler ve sınırlar</h4>\n<p>Eğri kendini kesiyorsa, kesişim noktasını veren iki farklı \\(t\\) değeri döngünün sınırlarıdır. Ör. \\(x=t^2,\\ y=t^3-3t\\): \\(t=\\pm\\sqrt3\\) aynı nokta \\((3,0)\\)'ı verir; döngünün uzunluğu \\(\\int_{-\\sqrt3}^{\\sqrt3}\\sqrt{4t^2+(3t^2-3)^2}\\,dt\\).</p>\n<h4>Hesap makinesi</h4>\n<p>Çoğu yay uzunluğu integrali elementer değildir. Calculator-active soruda integrali kur, fnInt ile hesapla, üç ondalık ver. Kontrol: \\(L\\) en az uç noktalar arası doğru parçası kadar olmalı.</p>\n<div class=\"kn-tanim\"><strong>FRQ ifade kalıbı:</strong> “The length of the curve for \\(0\\le t\\le3\\) is \\(\\int_0^3\\sqrt{(x'(t))^2+(y'(t))^2}\\,dt\\approx3.053\\).” İntegrali yazmadan yalnız sayı vermek kurulum puanını kaybettirir.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(x=t^2,\\ y=\\frac23t^3\\) eğrisinin \\(0\\le t\\le\\sqrt3\\) arasındaki uzunluğunu bulun.",
+     "cozum": [
+      "\\(x'=2t,\\ y'=2t^2\\) ⇒ \\(\\sqrt{4t^2+4t^4}=2t\\sqrt{1+t^2}\\).",
+      "\\(\\int_0^{\\sqrt3}2t\\sqrt{1+t^2}\\,dt=\\left[\\frac23(1+t^2)^{3/2}\\right]_0^{\\sqrt3}=\\frac23(8-1)=\\frac{14}{3}\\)."
+     ]
+    },
+    {
+     "soru": "Sikloid \\(x=t-\\sin t,\\ y=1-\\cos t\\) bir kemerinin (\\(0\\le t\\le2\\pi\\)) uzunluğunu bulun.",
+     "cozum": [
+      "\\((x')^2+(y')^2=(1-\\cos t)^2+\\sin^2t=2-2\\cos t=4\\sin^2\\frac t2\\).",
+      "\\(L=\\int_0^{2\\pi}2\\sin\\frac t2\\,dt=\\left[-4\\cos\\frac t2\\right]_0^{2\\pi}=8\\) (\\(\\sin\\frac t2\\ge0\\) bu aralıkta)."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi) \\(x=t+\\cos t,\\ y=2\\ln(t+1)\\), \\(0\\le t\\le3\\). Uzunluğu bulun ve uç noktalar arası uzaklıkla karşılaştırın.",
+     "cozum": [
+      "\\(L=\\int_0^3\\sqrt{(1-\\sin t)^2+\\left(\\frac{2}{t+1}\\right)^2}\\,dt\\approx3.053\\).",
+      "Uç noktalar \\((1,0)\\) ve \\((3+\\cos3,\\,2\\ln4)\\); aradaki uzaklık \\(\\approx2.951\\lt3.053\\) ✓ (eğri düz değil)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Formülde türevler var: x'(t) ve y'(t). x(t), y(t) yazmak sık yapılan hatadır.",
+    "Elle soruda kök içini açıp tam kare veya ortak çarpan ara.",
+    "Döngü sorusunda önce aynı noktayı veren iki t değerini bul; bunlar integral sınırlarıdır.",
+    "Hesap makinesinde integrali tek seferde gir; ara sonuçları yuvarlama."
+   ],
+   "sikHatalar": [
+    "Karekökü unutup (x')² + (y')²'nin integralini almak.",
+    "Yay uzunluğu yerine uç noktalar arası uzaklığı vermek.",
+    "√(A²) = |A| olduğunu unutup işaret değiştiren ifadeyi doğrudan integrallemek."
+   ],
+   "terimler": [
+    {
+     "en": "arc length",
+     "tr": "yay uzunluğu"
+    },
+    {
+     "en": "self-intersection",
+     "tr": "kendini kesme"
+    },
+    {
+     "en": "loop",
+     "tr": "döngü"
+    },
+    {
+     "en": "cycloid",
+     "tr": "sikloid"
+    }
+   ]
+  },
+  {
+   "kod": "9.4",
+   "baslik": "Defining and Differentiating Vector-Valued Functions",
+   "baslikTr": "Vektör değerli fonksiyonları tanımlama ve türevini alma",
+   "sadeceBC": true,
+   "hedefler": [
+    "Konum vektörü \\(\\vec r(t)\\)'den hız \\(\\vec v(t)\\) ve ivme \\(\\vec a(t)\\) vektörlerini bulmak.",
+    "Speed'i \\(|\\vec v(t)|\\) olarak hesaplamak; yolun teğet eğimini ve hareket yönünü hız bileşenlerinden okumak.",
+    "Speed'in artıp azaldığını \\(\\vec v\\cdot\\vec a\\) işaretiyle belirlemek."
+   ],
+   "anlatim": "<p>Bir <strong>vektör değerli fonksiyon (vector-valued function)</strong>, her \\(t\\)'ye bir vektör karşılık getirir: \\(\\vec r(t)=\\langle x(t),\\,y(t)\\rangle\\). Bu vektörün ucu, parametrik eğri \\((x(t),y(t))\\) üzerinde dolaşır. Yani 9.1'deki parametrik eğri ile konum vektörü aynı şeyin iki yazılışıdır; vektör yazımı hız ve ivmeyi tek nesne olarak düşünmemizi sağlar.</p>\n<h4>Türev bileşen bileşen alınır</h4>\n<div class=\"kn-kural\">\\[\\vec v(t)=\\vec r\\,'(t)=\\langle x'(t),\\,y'(t)\\rangle,\\qquad \\vec a(t)=\\vec v\\,'(t)=\\langle x''(t),\\,y''(t)\\rangle\\]</div>\n<p>Her bileşende tüm türev kuralları (çarpım, bölüm, zincir) geçerlidir. Ör. \\(\\vec r(t)=\\langle te^t,\\ \\sin2t\\rangle\\) ⇒ \\(\\vec v=\\langle(t+1)e^t,\\ 2\\cos2t\\rangle\\), \\(\\vec a=\\langle(t+2)e^t,\\ -4\\sin2t\\rangle\\).</p>\n<h4>Speed ve yön</h4>\n<table><thead><tr><th>Büyüklük</th><th>Formül</th><th>Tür</th></tr></thead>\n<tbody>\n<tr><td>velocity (hız vektörü)</td><td>\\(\\langle x',y'\\rangle\\)</td><td>vektör</td></tr>\n<tr><td>speed (sürat)</td><td>\\(|\\vec v|=\\sqrt{(x')^2+(y')^2}\\)</td><td>sayı, \\(\\ge0\\)</td></tr>\n<tr><td>yolun eğimi</td><td>\\(\\frac{dy}{dx}=\\frac{y'}{x'}\\)</td><td>sayı</td></tr>\n<tr><td>acceleration</td><td>\\(\\langle x'',y''\\rangle\\)</td><td>vektör</td></tr>\n</tbody></table>\n<p>Hız vektörü yola teğettir ve hareket yönünü gösterir. Bileşenlerin işaretleri yönü verir: \\(x'\\gt0\\) sağa, \\(x'\\lt0\\) sola; \\(y'\\gt0\\) yukarı, \\(y'\\lt0\\) aşağı. “Tam aşağı hareket” için \\(x'=0\\) ve \\(y'\\lt0\\) gerekir. Parçacık <strong>durgunsa (at rest)</strong> \\(x'=0\\) ve \\(y'=0\\) aynı anda sağlanır.</p>\n<h4>Speed artıyor mu?</h4>\n<p>Speed'in türevi \\(\\frac{d}{dt}|\\vec v|=\\frac{\\vec v\\cdot\\vec a}{|\\vec v|}\\)'dir. Payda pozitif olduğundan:</p>\n<div class=\"kn-tanim\">\\(\\vec v\\cdot\\vec a\\gt0\\) ⇒ speed artıyor (speeding up); \\(\\vec v\\cdot\\vec a\\lt0\\) ⇒ speed azalıyor (slowing down).</div>\n<div class=\"kn-dikkat\">\\(|\\vec a|\\) speed'in değişim hızı <strong>değildir</strong>. Düzgün çembersel harekette \\(|\\vec a|\\gt0\\) ama speed sabittir. Speed'in türevini istiyorlarsa speed fonksiyonunu yazıp türev al ya da \\(\\frac{\\vec v\\cdot\\vec a}{|\\vec v|}\\) kullan.</div>\n<h4>Hesap makinesi</h4>\n<p>Calculator-active soruda \\(x'(t_0)\\) ve \\(y'(t_0)\\)'ı nDeriv ile bul, değişkenlere ata, sonra \\(\\sqrt{x'^2+y'^2}\\)'yi hesapla. “Speed hangi anda 5 olur?” sorusunda \\(Y_1=\\sqrt{x'(t)^2+y'(t)^2}\\) ve \\(Y_2=5\\)'i kesiştir.</p>\n<div class=\"kn-tanim\"><strong>FRQ ifade kalıbı:</strong> “At \\(t=1\\), the speed is decreasing because \\(\\vec v(1)\\cdot\\vec a(1)\\lt0\\).” Ya da bileşen bazında: “\\(x'(1)\\) and \\(x''(1)\\) have opposite signs…” yalnız tek boyutta geçerlidir; düzlemde nokta çarpımı kullan.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(\\vec r(t)=\\langle t^3-3t,\\ t^2\\rangle\\). \\(t=2\\)'de hız, speed ve ivmeyi bulun.",
+     "cozum": [
+      "\\(\\vec v=\\langle3t^2-3,\\ 2t\\rangle\\) ⇒ \\(\\vec v(2)=\\langle9,4\\rangle\\); speed \\(=\\sqrt{97}\\).",
+      "\\(\\vec a=\\langle6t,\\ 2\\rangle\\) ⇒ \\(\\vec a(2)=\\langle12,2\\rangle\\)."
+     ]
+    },
+    {
+     "soru": "Aynı parçacık hangi anlarda yalnız yatay doğrultuda hareket eder?",
+     "cozum": [
+      "Yatay hareket: \\(y'=0,\\ x'\\ne0\\). \\(2t=0\\Rightarrow t=0\\).",
+      "\\(x'(0)=-3\\ne0\\) ⇒ \\(t=0\\)'da parçacık sola doğru yatay hareket eder."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Aynı parçacığın speed'i \\(t=2\\)'de artıyor mu? Gerekçelendirin.",
+     "cozum": [
+      "\\(\\vec v(2)\\cdot\\vec a(2)=9\\cdot12+4\\cdot2=116\\).",
+      "“Since \\(\\vec v(2)\\cdot\\vec a(2)=116\\gt0\\), the speed of the particle is increasing at \\(t=2\\).”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Speed bir sayıdır; cevapta vektör yazma. Konumun büyüklüğü |r| speed değildir.",
+    "Hareket yönü sorularında iki bileşenin işaretini birlikte yaz.",
+    "Speed artıyor/azalıyor için v·a işaretini kullan; |a| kullanma.",
+    "Hesap makinesinde türev değerlerini hafızaya al; karekökü en son al."
+   ],
+   "sikHatalar": [
+    "Speed yerine |r(t)| (orijine uzaklık) hesaplamak.",
+    "Zincir veya çarpım kuralını bileşenlerden birinde unutmak.",
+    "|a|'yı speed'in değişim hızı sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "vector-valued function",
+     "tr": "vektör değerli fonksiyon"
+    },
+    {
+     "en": "position vector",
+     "tr": "konum vektörü"
+    },
+    {
+     "en": "velocity vector",
+     "tr": "hız vektörü"
+    },
+    {
+     "en": "speed",
+     "tr": "sürat (hızın büyüklüğü)"
+    },
+    {
+     "en": "acceleration vector",
+     "tr": "ivme vektörü"
+    },
+    {
+     "en": "at rest",
+     "tr": "durgun"
+    }
+   ]
+  },
+  {
+   "kod": "9.5",
+   "baslik": "Integrating Vector-Valued Functions",
+   "baslikTr": "Vektör değerli fonksiyonların integrali",
+   "sadeceBC": true,
+   "hedefler": [
+    "Vektör değerli fonksiyonların belirsiz ve belirli integrallerini bileşen bileşen hesaplamak.",
+    "Başlangıç koşuluyla ivmeden hız, hızdan konum bulmak: \\(\\vec r(b)=\\vec r(a)+\\int_a^b\\vec v\\,dt\\).",
+    "Yer değiştirme vektörü ile konumu ayırt etmek; elementer olmayan bileşenlerde hesap makinesi kullanmak."
+   ],
+   "anlatim": "<p>Türev bileşen bileşen alındığı gibi integral de bileşen bileşen alınır:</p>\n<div class=\"kn-kural\">\\[\\int_a^b\\langle f(t),\\,g(t)\\rangle\\,dt=\\left\\langle\\int_a^bf(t)\\,dt,\\ \\int_a^bg(t)\\,dt\\right\\rangle\\]</div>\n<p>Belirsiz integralde her bileşen kendi sabitini alır; bunu tek bir sabit <em>vektör</em> \\(\\vec C=\\langle C_1,C_2\\rangle\\) olarak yazarız: \\(\\int\\langle2t,\\cos t\\rangle dt=\\langle t^2,\\ \\sin t\\rangle+\\vec C\\).</p>\n<h4>İvme → hız → konum</h4>\n<p>Tek boyutlu hareketteki (Ünite 8) birikim fikri burada vektör olarak tekrar eder:</p>\n<div class=\"formul\">\\[\\vec v(b)=\\vec v(a)+\\int_a^b\\vec a(t)\\,dt,\\qquad \\vec r(b)=\\vec r(a)+\\int_a^b\\vec v(t)\\,dt\\]</div>\n<p>Her bileşen kendi başlangıç değerini kullanır. Örnek: \\(\\vec v(t)=\\langle2t,\\cos t\\rangle\\), \\(\\vec r(0)=\\langle1,2\\rangle\\) ⇒ \\(x(t)=1+t^2\\), \\(y(t)=2+\\sin t\\).</p>\n<h4>Yer değiştirme ve konum</h4>\n<table><thead><tr><th>Soru</th><th>Hesap</th><th>Sonuç</th></tr></thead>\n<tbody>\n<tr><td>Displacement (yer değiştirme)</td><td>\\(\\int_a^b\\vec v\\,dt\\)</td><td>vektör</td></tr>\n<tr><td>Position at \\(t=b\\)</td><td>\\(\\vec r(a)+\\int_a^b\\vec v\\,dt\\)</td><td>vektör / nokta</td></tr>\n<tr><td>Distance from origin</td><td>\\(|\\vec r(b)|\\)</td><td>sayı</td></tr>\n<tr><td>Distance traveled (9.6)</td><td>\\(\\int_a^b|\\vec v|\\,dt\\)</td><td>sayı</td></tr>\n</tbody></table>\n<div class=\"kn-dikkat\">Konum <strong>\\(t=1\\)</strong>'de verilmişse integral \\(\\int_1^b\\) olmalıdır; alışkanlıkla \\(\\int_0^b\\) yazmak çok sık bir hatadır. Geriye gitmek de mümkündür: \\(\\vec r(0)=\\vec r(2)-\\int_0^2\\vec v\\,dt\\).</div>\n<h4>BC integral teknikleri</h4>\n<p>Bileşenlerden biri \\(u\\)-substitution, parçalı integral (integration by parts) veya kısmi kesirler gerektirebilir. Ör. \\(\\int_0^1\\langle te^t,\\ \\frac{2t}{1+t^2}\\rangle dt\\): birinci bileşen parçalı integralle \\(\\left[te^t-e^t\\right]_0^1=1\\), ikincisi \\(u=1+t^2\\) ile \\(\\ln2\\).</p>\n<h4>Hesap makinesi</h4>\n<p>\\(\\cos(t^2)\\), \\(\\sin\\sqrt t\\) gibi ifadelerin elementer ters türevi yoktur; AP bunları calculator-active bölümde sorar. Her bileşeni fnInt ile hesapla, başlangıç değerini ekle, sonucu üç ondalıkla yaz. Orijine uzaklık istenirse önce konumu bul, sonra \\(\\sqrt{x^2+y^2}\\).</p>\n<div class=\"kn-tanim\"><strong>FRQ ifade kalıbı:</strong> “\\(x(4)=x(1)+\\int_1^4x'(t)\\,dt=-3+\\int_1^4\\ln(t+2)\\,dt\\approx1.455\\).” Başlangıç değerini integralle birlikte yazmak hem kurulum hem cevap puanı getirir.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(\\vec a(t)=\\langle6t,\\ -e^{-t}\\rangle\\), \\(\\vec v(0)=\\langle1,1\\rangle\\). \\(\\vec v(t)\\)'yi bulun.",
+     "cozum": [
+      "\\(v_x=1+\\int_0^t6u\\,du=1+3t^2\\).",
+      "\\(v_y=1+\\int_0^t-e^{-u}du=1+(e^{-t}-1)=e^{-t}\\).",
+      "\\(\\vec v(t)=\\langle1+3t^2,\\ e^{-t}\\rangle\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\vec v(t)=\\langle\\pi\\cos\\pi t,\\ 3t^2\\rangle\\) ve \\(\\vec r(2)=\\langle4,10\\rangle\\). \\(\\vec r(0)\\)'ı bulun.",
+     "cozum": [
+      "\\(\\int_0^2\\vec v\\,dt=\\langle\\sin2\\pi-\\sin0,\\ 8\\rangle=\\langle0,8\\rangle\\).",
+      "\\(\\vec r(0)=\\vec r(2)-\\langle0,8\\rangle=\\langle4,2\\rangle\\)."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi, FRQ tarzı) \\(\\vec v(t)=\\langle\\ln(t+2),\\ \\sin\\sqrt t\\rangle\\), \\(\\vec r(1)=\\langle-3,1\\rangle\\). \\(t=4\\)'te parçacığın orijine uzaklığını bulun.",
+     "cozum": [
+      "\\(x(4)=-3+\\int_1^4\\ln(t+2)\\,dt\\approx1.455\\); \\(y(4)=1+\\int_1^4\\sin\\sqrt t\\,dt\\approx3.881\\).",
+      "Uzaklık \\(=\\sqrt{1.455^2+3.881^2}\\approx4.145\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her bileşeni ayrı integralle; her bileşenin başlangıç değeri ayrıdır.",
+    "İntegralin alt sınırı, konumun BİLİNDİĞİ zamandır.",
+    "Displacement bir vektördür; 'distance traveled' ise speed'in integralidir ve bir sayıdır.",
+    "Hesap makinesi kısmında fnInt sonuçlarını hafızaya al ve başlangıç değerini ekledikten sonra yuvarla."
+   ],
+   "sikHatalar": [
+    "Başlangıç konumunu/hızını eklemeyi unutmak.",
+    "Konum t = 1'de verilmişken integrali 0'dan başlatmak.",
+    "Yer değiştirmenin büyüklüğünü, alınan yol veya orijine uzaklık sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "displacement vector",
+     "tr": "yer değiştirme vektörü"
+    },
+    {
+     "en": "initial condition",
+     "tr": "başlangıç koşulu"
+    },
+    {
+     "en": "antiderivative",
+     "tr": "ters türev"
+    },
+    {
+     "en": "distance from the origin",
+     "tr": "orijine uzaklık"
+    }
+   ]
+  },
+  {
+   "kod": "9.6",
+   "baslik": "Solving Motion Problems Using Parametric and Vector-Valued Functions",
+   "baslikTr": "Parametrik ve vektör değerli fonksiyonlarla hareket problemleri",
+   "sadeceBC": true,
+   "hedefler": [
+    "Düzlemde hareket eden parçacık için konum, hız, speed, ivme, yer değiştirme ve alınan yolu tek bir çerçevede kullanmak.",
+    "Alınan yolu \\(\\int_a^b|\\vec v(t)|\\,dt\\) ile hesaplamak ve yer değiştirmeden ayırt etmek.",
+    "Konumun uç değerlerini (en yüksek, en sol nokta vb.) Candidates Test ile bulmak; FRQ tarzı gerekçe yazmak."
+   ],
+   "anlatim": "<p>Bu konu 9.1–9.5'i birleştirir. AP sınavında BC FRQ'larından biri neredeyse her yıl “particle moving in the \\(xy\\)-plane” sorusudur. Elindeki bilgi genellikle \\(x'(t)\\), \\(y'(t)\\) ve bir başlangıç konumudur. Hangi soruya hangi aracın cevap verdiğini bilmek işin yarısıdır.</p>\n<h4>Araç tablosu</h4>\n<table><thead><tr><th>Soru</th><th>Araç</th></tr></thead>\n<tbody>\n<tr><td>Position at \\(t=b\\)</td><td>\\(x(b)=x(a)+\\int_a^bx'(t)\\,dt\\) (aynı şekilde \\(y\\))</td></tr>\n<tr><td>Speed at \\(t=c\\)</td><td>\\(\\sqrt{x'(c)^2+y'(c)^2}\\)</td></tr>\n<tr><td>Slope of the path</td><td>\\(\\frac{dy}{dx}=\\frac{y'(t)}{x'(t)}\\)</td></tr>\n<tr><td>Acceleration</td><td>\\(\\langle x''(t),\\,y''(t)\\rangle\\)</td></tr>\n<tr><td>Total distance traveled</td><td>\\(\\int_a^b\\sqrt{x'(t)^2+y'(t)^2}\\,dt\\)</td></tr>\n<tr><td>Displacement</td><td>\\(\\left\\langle\\int_a^bx'\\,dt,\\ \\int_a^by'\\,dt\\right\\rangle\\)</td></tr>\n<tr><td>Speeding up / slowing down</td><td>\\(\\vec v\\cdot\\vec a\\) işareti</td></tr>\n<tr><td>At rest</td><td>\\(x'(t)=0\\) ve \\(y'(t)=0\\)</td></tr>\n</tbody></table>\n<h4>Yer değiştirme ≠ alınan yol</h4>\n<p>Yer değiştirme (displacement) başlangıçtan bitişe giden vektördür; parçacık geri dönerse küçülür. Alınan yol (distance traveled) ise eğri boyunca gidilen toplam uzunluktur ve 9.3'teki yay uzunluğu formülüyle aynıdır. Her zaman:</p>\n<div class=\"formul\">\\[\\left|\\int_a^b\\vec v\\,dt\\right|\\ \\le\\ \\int_a^b|\\vec v|\\,dt\\]</div>\n<div class=\"kn-dikkat\">Alınan yol için \\(\\int(|x'|+|y'|)\\,dt\\) <strong>yanlıştır</strong>: bu, yatay ve dikey hareketleri ayrı ayrı toplar ve gerçek yoldan genellikle büyük çıkar (Pisagor yerine toplama yapar).</div>\n<h4>Konumun uç değerleri</h4>\n<p>“Farthest left” ⇒ \\(x(t)\\)'nin mutlak minimumu; “highest point” ⇒ \\(y(t)\\)'nin mutlak maksimumu. Adımlar: (1) \\(x'(t)=0\\) (veya \\(y'(t)=0\\)) olan kritik zamanları bul; (2) uç zamanları ekle; (3) her adayda konumu hesapla (gerekiyorsa \\(y(t)=y(0)+\\int_0^ty'\\)); (4) karşılaştır. Bu, Ünite 5'teki Candidates Test'tir.</p>\n<h4>Hesap makinesi kısmı</h4>\n<p>Tipik calculator-active akış: kökü bul (ör. \\(y'(t)=0\\)), değeri hafızaya at, integrali bu sınırla hesapla, başlangıç değerini ekle. Speed'in değişim hızı istenirse speed'i \\(Y_1\\) olarak gir ve nDeriv al; işareti \\(\\vec v\\cdot\\vec a\\) ile aynıdır.</p>\n<h4>Örnek düşünce</h4>\n<p>\\(\\vec v=\\langle2t,\\ t^2-1\\rangle\\), \\(0\\le t\\le3\\): speed \\(=\\sqrt{4t^2+(t^2-1)^2}=t^2+1\\). Yol \\(=\\int_0^3(t^2+1)dt=12\\). Yer değiştirme \\(\\langle9,6\\rangle\\), büyüklüğü \\(3\\sqrt{13}\\approx10.82\\lt12\\) ✓.</p>\n<div class=\"kn-tanim\"><strong>FRQ ifade kalıpları:</strong> “The total distance traveled by the particle from \\(t=0\\) to \\(t=3\\) is \\(\\int_0^3\\sqrt{(x'(t))^2+(y'(t))^2}\\,dt\\).” — “\\(y'(t)\\) changes sign from positive to negative at \\(t=a\\), so \\(y\\) has a relative maximum there.” — “The speed is increasing at \\(t=1\\) because \\(\\vec v(1)\\cdot\\vec a(1)\\gt0\\).”</div>",
+   "ornekler": [
+    {
+     "soru": "\\(x'(t)=t^2-4t+3,\\ y'(t)=2t-4\\). Parçacık hangi anda durgundur (at rest)?",
+     "cozum": [
+      "\\(x'=0\\Rightarrow t=1,3\\); \\(y'=0\\Rightarrow t=2\\).",
+      "İki bileşen aynı anda sıfır olmuyor ⇒ parçacık hiçbir anda durgun değildir."
+     ]
+    },
+    {
+     "soru": "\\(x(t)=t^2-4t,\\ y(t)=2t+1\\), \\(0\\le t\\le5\\). Parçacık en solda nerededir?",
+     "cozum": [
+      "\\(x'=2t-4=0\\Rightarrow t=2\\). Adaylar: \\(x(0)=0,\\ x(2)=-4,\\ x(5)=5\\).",
+      "En sol nokta \\(t=2\\)'de: \\((-4,\\,5)\\)."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi, FRQ tarzı) \\(y'(t)=2-te^{0.4t}\\), \\(y(0)=1\\), \\(0\\le t\\le3\\). Parçacığın en yüksek \\(y\\) değerini bulun ve gerekçelendirin.",
+     "cozum": [
+      "\\(y'(t)=0\\Rightarrow t\\approx1.225\\); \\(y'\\) burada pozitiften negatife geçer.",
+      "Adaylar: \\(y(0)=1\\), \\(y(1.225)=1+\\int_0^{1.225}y'\\,dt\\approx2.403\\), \\(y(3)\\approx-3.400\\).",
+      "“The maximum \\(y\\)-coordinate is approximately 2.403, at \\(t\\approx1.225\\), by the Candidates Test.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Önce sorunun ne istediğini sınıflandır: vektör mü (konum, hız, yer değiştirme), sayı mı (speed, yol, uzaklık)?",
+    "Alınan yol = speed'in integrali; yer değiştirmenin büyüklüğü ondan küçük ya da eşittir.",
+    "Uç değer sorularında uç zamanları da kontrol et; FRQ'da adayları tablo halinde göster.",
+    "Hesap makinesinde kökleri ve integralleri hafızada tut; sadece son cevabı üç ondalığa yuvarla."
+   ],
+   "sikHatalar": [
+    "Alınan yol için ∫(x' + y') dt veya ∫(|x'| + |y'|) dt kullanmak.",
+    "Konumu bulurken başlangıç değerini eklemeyi unutmak.",
+    "'At rest' için yalnız bir bileşenin sıfır olmasını yeterli saymak."
+   ],
+   "terimler": [
+    {
+     "en": "distance traveled",
+     "tr": "alınan yol"
+    },
+    {
+     "en": "displacement",
+     "tr": "yer değiştirme"
+    },
+    {
+     "en": "speeding up / slowing down",
+     "tr": "hızlanma / yavaşlama"
+    },
+    {
+     "en": "Candidates Test",
+     "tr": "aday noktalar testi"
+    },
+    {
+     "en": "particle motion in the plane",
+     "tr": "düzlemde parçacık hareketi"
+    }
+   ]
+  },
+  {
+   "kod": "9.7",
+   "baslik": "Defining Polar Coordinates and Differentiating in Polar Form",
+   "baslikTr": "Kutupsal koordinatlar ve kutupsal biçimde türev",
+   "sadeceBC": true,
+   "hedefler": [
+    "Kutupsal ve kartezyen koordinatlar arasında dönüşüm yapmak; temel kutupsal eğrileri (çember, kardioid, limaçon, gül) tanımak.",
+    "\\(x=r\\cos\\theta,\\ y=r\\sin\\theta\\) üzerinden \\(\\frac{dy}{d\\theta}\\), \\(\\frac{dx}{d\\theta}\\) ve \\(\\frac{dy}{dx}\\)'i hesaplamak.",
+    "\\(\\frac{dr}{d\\theta}\\)'yı orijine uzaklığın değişimi olarak yorumlamak ve eğimle karıştırmamak."
+   ],
+   "anlatim": "<p><strong>Kutupsal koordinatlarda (polar coordinates)</strong> bir nokta \\((r,\\theta)\\) ile verilir: \\(r\\) orijine (pole) yönlü uzaklık, \\(\\theta\\) pozitif \\(x\\)-ekseninden ölçülen açıdır (radyan). Dönüşüm formülleri:</p>\n<div class=\"kn-kural\">\\[x=r\\cos\\theta,\\qquad y=r\\sin\\theta,\\qquad r^2=x^2+y^2,\\qquad \\tan\\theta=\\frac yx\\]</div>\n<p>\\(r\\) negatif olabilir: \\((-2,\\frac{\\pi}{6})\\) noktası, \\(\\frac{\\pi}{6}\\) yönünün tam tersinde, 2 birim uzaktadır. Bir nokta sonsuz farklı kutupsal yazıma sahiptir; bu yüzden eğri kesişimlerinde dikkatli olmak gerekir (9.9).</p>\n<h4>Sık görülen kutupsal eğriler</h4>\n<table><thead><tr><th>Denklem</th><th>Şekil</th></tr></thead>\n<tbody>\n<tr><td>\\(r=a\\)</td><td>orijin merkezli çember</td></tr>\n<tr><td>\\(r=a\\cos\\theta\\), \\(r=a\\sin\\theta\\)</td><td>orijinden geçen, çapı \\(|a|\\) olan çember</td></tr>\n<tr><td>\\(r=a+a\\cos\\theta\\)</td><td>kardioid (cardioid)</td></tr>\n<tr><td>\\(r=a+b\\cos\\theta\\), \\(|a|\\lt|b|\\)</td><td>iç döngülü limaçon</td></tr>\n<tr><td>\\(r=a\\sin(n\\theta)\\)</td><td>gül (rose): \\(n\\) tekse \\(n\\), çiftse \\(2n\\) yaprak</td></tr>\n<tr><td>\\(r=\\theta\\)</td><td>Arşimet spirali</td></tr>\n</tbody></table>\n<h4>Kutupsal eğri = parametrik eğri</h4>\n<p>\\(r=f(\\theta)\\) eğrisi, \\(\\theta\\) parametreli bir parametrik eğridir: \\(x(\\theta)=f(\\theta)\\cos\\theta\\), \\(y(\\theta)=f(\\theta)\\sin\\theta\\). Türevler çarpım kuralıyla gelir:</p>\n<div class=\"formul\">\\[\\frac{dx}{d\\theta}=r'\\cos\\theta-r\\sin\\theta,\\qquad \\frac{dy}{d\\theta}=r'\\sin\\theta+r\\cos\\theta\\]</div>\n<div class=\"kn-kural\">\\[\\frac{dy}{dx}=\\frac{dy/d\\theta}{dx/d\\theta}=\\frac{r'\\sin\\theta+r\\cos\\theta}{r'\\cos\\theta-r\\sin\\theta}\\]</div>\n<p>Yatay teğet: \\(\\frac{dy}{d\\theta}=0,\\ \\frac{dx}{d\\theta}\\ne0\\). Dikey teğet: \\(\\frac{dx}{d\\theta}=0,\\ \\frac{dy}{d\\theta}\\ne0\\). Formülü ezberlemek yerine her seferinde \\(x\\) ve \\(y\\)'yi yazıp türet; işaret hatası azalır.</p>\n<h4>\\(\\frac{dr}{d\\theta}\\) ne anlatır?</h4>\n<p>\\(\\frac{dr}{d\\theta}\\) eğim değildir; noktanın <strong>orijine uzaklığının</strong> \\(\\theta\\)'ya göre değişimidir. \\(r\\gt0\\) ve \\(r'\\gt0\\) ise nokta orijinden uzaklaşıyor; \\(r\\gt0\\) ve \\(r'\\lt0\\) ise yaklaşıyor. \\(r\\lt0\\) ise uzaklık \\(|r|\\) olduğundan yorum tersine döner: \\(r\\lt0,\\ r'\\lt0\\) ⇒ uzaklaşıyor.</p>\n<div class=\"kn-dikkat\">\\(\\tan\\theta\\) orijinden noktaya giden ışının eğimidir, teğet doğrunun eğimi değil. Şıklarda bu değer sık çeldiricidir.</div>\n<h4>Hesap makinesi</h4>\n<p>Calculator-active soruda \\(x(\\theta)=r(\\theta)\\cos\\theta\\) ve \\(y(\\theta)=r(\\theta)\\sin\\theta\\)'yı ayrı ayrı nDeriv ile hesapla. “Highest point” için \\(y(\\theta)\\)'yı çizip maximum komutunu kullan.</p>\n<div class=\"kn-tanim\"><strong>FRQ ifade kalıbı:</strong> “Since \\(r(\\theta)\\gt0\\) and \\(r'(\\theta)\\lt0\\) at \\(\\theta=2\\), the point on the curve is moving closer to the origin.” — “\\(\\frac{dy}{d\\theta}\\) at \\(\\theta=1\\) is the rate of change of the \\(y\\)-coordinate with respect to \\(\\theta\\).”</div>",
+   "ornekler": [
+    {
+     "soru": "\\(r=1+2\\cos\\theta\\) eğrisinin \\(\\theta=\\frac{\\pi}{3}\\)'teki teğet eğimini bulun.",
+     "cozum": [
+      "\\(r(\\frac{\\pi}{3})=2\\), \\(r'=-2\\sin\\theta=-\\sqrt3\\).",
+      "\\(\\frac{dy}{d\\theta}=r'\\sin\\theta+r\\cos\\theta=-\\frac32+1=-\\frac12\\); \\(\\frac{dx}{d\\theta}=r'\\cos\\theta-r\\sin\\theta=-\\frac{\\sqrt3}{2}-\\sqrt3=-\\frac{3\\sqrt3}{2}\\).",
+      "\\(\\frac{dy}{dx}=\\frac{-1/2}{-3\\sqrt3/2}=\\frac{1}{3\\sqrt3}=\\frac{\\sqrt3}{9}\\)."
+     ]
+    },
+    {
+     "soru": "\\(r=4\\cos\\theta\\) çemberinin \\(0\\le\\theta\\le\\frac{\\pi}{2}\\)'de yatay teğetinin olduğu noktayı bulun.",
+     "cozum": [
+      "\\(y=4\\cos\\theta\\sin\\theta=2\\sin2\\theta\\) ⇒ \\(\\frac{dy}{d\\theta}=4\\cos2\\theta=0\\Rightarrow\\theta=\\frac{\\pi}{4}\\).",
+      "\\(\\frac{dx}{d\\theta}=-4\\sin2\\theta=-4\\ne0\\) ✓; \\(r=2\\sqrt2\\) ⇒ nokta \\((2,2)\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(r=3-2\\sin\\theta\\). \\(\\theta=\\frac{\\pi}{6}\\)'da nokta orijine yaklaşıyor mu uzaklaşıyor mu?",
+     "cozum": [
+      "\\(r(\\frac{\\pi}{6})=3-1=2\\gt0\\); \\(r'(\\theta)=-2\\cos\\theta\\) ⇒ \\(r'(\\frac{\\pi}{6})=-\\sqrt3\\lt0\\).",
+      "“Since \\(r\\gt0\\) and \\(\\frac{dr}{d\\theta}\\lt0\\) at \\(\\theta=\\frac{\\pi}{6}\\), the point is moving closer to the origin.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her türev sorusunda x = r cos θ ve y = r sin θ'yı yazarak başla; çarpım kuralı oradan gelir.",
+    "dr/dθ uzaklık hakkındadır, dy/dx eğim hakkındadır; soru hangisini istiyor, önce onu belirle.",
+    "Hesap makinesinin RADYAN modunda olduğundan emin ol.",
+    "r negatifse uzaklık |r|'dir; yaklaşma/uzaklaşma yorumunda r ve r' işaretlerini birlikte kullan."
+   ],
+   "sikHatalar": [
+    "dr/dθ'yı teğet doğrunun eğimi sanmak.",
+    "dx/dθ'da − r sin θ yerine + r sin θ yazmak.",
+    "tan θ'yı teğet eğimi sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "polar coordinates",
+     "tr": "kutupsal koordinatlar"
+    },
+    {
+     "en": "pole",
+     "tr": "kutup (orijin)"
+    },
+    {
+     "en": "cardioid",
+     "tr": "kardioid"
+    },
+    {
+     "en": "limaçon",
+     "tr": "limaçon"
+    },
+    {
+     "en": "rose curve",
+     "tr": "gül eğrisi"
+    },
+    {
+     "en": "rate of change of r",
+     "tr": "r'nin değişim hızı"
+    }
+   ]
+  },
+  {
+   "kod": "9.8",
+   "baslik": "Finding the Area of a Polar Region or the Area Bounded by a Single Polar Curve",
+   "baslikTr": "Kutupsal bölgenin ya da tek kutupsal eğrinin sınırladığı alan",
+   "sadeceBC": true,
+   "hedefler": [
+    "\\(A=\\frac12\\int_\\alpha^\\beta r^2\\,d\\theta\\) formülünü daire dilimlerinden türetmek ve uygulamak.",
+    "Eğrinin bir kez çizildiği \\(\\theta\\) aralığını ve döngülerin sınırlarını (\\(r=0\\) açıları) belirlemek.",
+    "Yarım açı özdeşlikleriyle elle, diğer durumlarda hesap makinesiyle alan hesaplamak."
+   ],
+   "anlatim": "<p>Kartezyen alanda bölgeyi ince dikdörtgenlere böleriz. Kutupsal alanda ise bölgeyi orijinden çıkan ince <strong>daire dilimlerine (sectors)</strong> böleriz. Yarıçapı \\(r\\), açısı \\(\\Delta\\theta\\) olan dilimin alanı \\(\\frac12r^2\\Delta\\theta\\)'dır. Toplayıp limit alınca:</p>\n<div class=\"kn-kural\">\\[A=\\frac12\\int_\\alpha^\\beta r^2\\,d\\theta=\\frac12\\int_\\alpha^\\beta\\left(f(\\theta)\\right)^2d\\theta\\]</div>\n<p>Bu formül, orijinden çıkan ışınların \\(\\theta=\\alpha\\)'dan \\(\\theta=\\beta\\)'ya kadar <strong>taradığı</strong> alanı verir. \\(r^2\\ge0\\) olduğundan integrand hep pozitiftir.</p>\n<h4>Sınırları seçmek</h4>\n<ul>\n<li><strong>Tüm eğri:</strong> eğrinin tam bir kez çizildiği aralık. \\(r=3+2\\cos\\theta\\) için \\(0\\)–\\(2\\pi\\); \\(r=6\\sin\\theta\\) çemberi için yalnızca \\(0\\)–\\(\\pi\\) (\\(0\\)–\\(2\\pi\\) alanı iki kez sayar).</li>\n<li><strong>Bir yaprak / bir döngü:</strong> \\(r=0\\) olan ardışık açılar. \\(r=4\\sin2\\theta\\)'nın birinci bölgedeki yaprağı \\(0\\le\\theta\\le\\frac{\\pi}{2}\\).</li>\n<li><strong>Bir bölgenin parçası:</strong> soru “first quadrant” derse \\(0\\le\\theta\\le\\frac{\\pi}{2}\\) (r pozitifken).</li>\n</ul>\n<h4>Yarım açı özdeşlikleri</h4>\n<div class=\"formul\">\\[\\sin^2\\theta=\\frac{1-\\cos2\\theta}{2},\\qquad \\cos^2\\theta=\\frac{1+\\cos2\\theta}{2}\\]</div>\n<p>Örnek: kardioid \\(r=1+\\cos\\theta\\): \\(\\frac12\\int_0^{2\\pi}(1+2\\cos\\theta+\\cos^2\\theta)d\\theta=\\frac12\\left(2\\pi+0+\\pi\\right)=\\frac{3\\pi}{2}\\).</p>\n<h4>İç döngülü limaçon</h4>\n<p>\\(r=1+2\\cos\\theta\\) için \\(r=0\\) ⇒ \\(\\theta=\\frac{2\\pi}{3},\\frac{4\\pi}{3}\\). Bu aralıkta \\(r\\lt0\\) olup iç döngü çizilir. \\(\\frac12\\int_0^{2\\pi}r^2d\\theta\\) iç döngüyü <em>iki kez</em> sayar (bir kez dış döngünün içinde, bir kez kendisi olarak). Doğru yaklaşım: iç döngü \\(=\\frac12\\int_{2\\pi/3}^{4\\pi/3}r^2d\\theta=\\pi-\\frac{3\\sqrt3}{2}\\); dış döngü \\(=\\frac12\\int_{-2\\pi/3}^{2\\pi/3}r^2d\\theta=2\\pi+\\frac{3\\sqrt3}{2}\\). Döngüler arası bölge bunların farkıdır.</p>\n<div class=\"kn-dikkat\">\\(\\frac12\\)'yi ve kareyi unutmak en sık iki hatadır. \\((2\\theta)^2=4\\theta^2\\) gibi açılımlarda katsayının karesini almayı unutma.</div>\n<h4>Hesap makinesi</h4>\n<p>Calculator-active soruda integrali \\(0.5\\cdot\\)fnInt\\((r(\\theta)^2,\\theta,\\alpha,\\beta)\\) olarak gir. “Ray \\(\\theta=k\\) bölgeyi iki eşit alana böler” tipi soruda \\(\\frac12\\int_0^kr^2d\\theta=\\frac12\\cdot\\text{toplam}\\) denklemini \\(k\\) için çöz.</p>\n<div class=\"kn-tanim\"><strong>FRQ ifade kalıbı:</strong> “Area \\(=\\frac12\\int_0^{\\pi}\\left(r(\\theta)\\right)^2d\\theta\\approx5.953\\).” Sabit \\(\\frac12\\), integrand \\(r^2\\) ve sınırlar ayrı ayrı puanlanır.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(r=4\\sin2\\theta\\) gülünün bir yaprağının alanını bulun.",
+     "cozum": [
+      "Yaprak: \\(0\\le\\theta\\le\\frac{\\pi}{2}\\) (\\(r=0\\) açıları).",
+      "\\(A=\\frac12\\int_0^{\\pi/2}16\\sin^22\\theta\\,d\\theta=8\\int_0^{\\pi/2}\\frac{1-\\cos4\\theta}{2}d\\theta=8\\cdot\\frac{\\pi}{4}=2\\pi\\)."
+     ]
+    },
+    {
+     "soru": "\\(r=2+\\sin\\theta\\) eğrisinin birinci bölgede sınırladığı alanı bulun.",
+     "cozum": [
+      "\\(A=\\frac12\\int_0^{\\pi/2}(4+4\\sin\\theta+\\sin^2\\theta)d\\theta\\).",
+      "\\(=\\frac12\\left(2\\pi+4+\\frac{\\pi}{4}\\right)=\\frac{9\\pi}{8}+2\\)."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi, FRQ tarzı) \\(r=\\theta+\\cos2\\theta\\), \\(0\\le\\theta\\le\\pi\\). Eğri ve \\(x\\)-ekseniyle sınırlı bölgenin alanını bulun; \\(r\\gt0\\) olduğunu belirtin.",
+     "cozum": [
+      "Grafikte \\(r\\)'nin en küçük değeri yaklaşık \\(0.443\\gt0\\); eğri pozitif \\(x\\)-ekseninden başlayıp negatif \\(x\\)-ekseninde biter.",
+      "\\(A=\\frac12\\int_0^{\\pi}(\\theta+\\cos2\\theta)^2d\\theta\\approx5.953\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Formülün üç parçası ayrı puanlanır: ½, r² ve doğru sınırlar.",
+    "Sınırları bulmak için eğriyi çiz (ya da r = 0 açılarını bul); eğrinin bir kez çizildiği aralığı seç.",
+    "sin² ve cos² için yarım açı özdeşliklerini kullan; ∫ sin²θ dθ (0..π/2) = π/4.",
+    "Hesap makinesinde 0.5·fnInt(r², θ, α, β) yaz; sonucu üç ondalıkla ver."
+   ],
+   "sikHatalar": [
+    "½'yi unutmak veya r'yi karesini almadan integrallemek.",
+    "r = a sin θ çemberinde 0..2π alarak alanı iki kez saymak.",
+    "İç döngülü limaçonda 0..2π integralini tek bir bölgenin alanı sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "area of a polar region",
+     "tr": "kutupsal bölgenin alanı"
+    },
+    {
+     "en": "sector",
+     "tr": "daire dilimi"
+    },
+    {
+     "en": "petal",
+     "tr": "yaprak"
+    },
+    {
+     "en": "inner loop",
+     "tr": "iç döngü"
+    },
+    {
+     "en": "half-angle identity",
+     "tr": "yarım açı özdeşliği"
+    }
+   ]
+  },
+  {
+   "kod": "9.9",
+   "baslik": "Finding the Area of the Region Bounded by Two Polar Curves",
+   "baslikTr": "İki kutupsal eğrinin sınırladığı bölgenin alanı",
+   "sadeceBC": true,
+   "hedefler": [
+    "İki kutupsal eğrinin kesişim açılarını bulmak ve her aralıkta hangi eğrinin dışta olduğunu belirlemek.",
+    "“Inside A and outside B” bölgesi için \\(\\frac12\\int(r_{dış}^2-r_{iç}^2)\\,d\\theta\\) kurmak; “inside both” bölgesini parçalı integrale ayırmak.",
+    "Sayısal kesişimli bölgelerde hesap makinesini doğru kullanmak."
+   ],
+   "anlatim": "<p>İki eğri arasındaki kutupsal alan, kartezyendeki “üst eksi alt” fikrinin kutupsal karşılığıdır: her ışın boyunca <strong>dıştaki</strong> eğrinin taradığı alandan <strong>içteki</strong> eğrinin taradığı alan çıkarılır.</p>\n<div class=\"kn-kural\">\\[A=\\frac12\\int_\\alpha^\\beta\\left(r_{\\text{dış}}^2-r_{\\text{iç}}^2\\right)d\\theta\\]</div>\n<div class=\"kn-dikkat\">\\(\\frac12\\int(r_{dış}-r_{iç})^2d\\theta\\) <strong>yanlıştır</strong>. Alanlar dilim alanlarının farkıdır: \\(\\frac12R^2\\Delta\\theta-\\frac12r^2\\Delta\\theta\\). Bu çeldirici şıklarda hemen her zaman bulunur.</div>\n<h4>Adım adım</h4>\n<ol>\n<li><strong>Kesişim açıları:</strong> \\(r_1(\\theta)=r_2(\\theta)\\) denklemini çöz. Ör. \\(3\\sin\\theta=1+\\sin\\theta\\Rightarrow\\sin\\theta=\\frac12\\Rightarrow\\theta=\\frac{\\pi}{6},\\frac{5\\pi}{6}\\).</li>\n<li><strong>Kim dışta?</strong> Aralıktan bir test açısı seç (ör. \\(\\theta=\\frac{\\pi}{2}\\): \\(3\\gt2\\)) ⇒ \\(r=3\\sin\\theta\\) dışta.</li>\n<li><strong>İntegral:</strong> \\(\\frac12\\int_{\\pi/6}^{5\\pi/6}\\left(9\\sin^2\\theta-(1+\\sin\\theta)^2\\right)d\\theta=\\pi\\).</li>\n</ol>\n<div class=\"kn-dikkat\">Kesişim denklemi orijindeki kesişimi göstermeyebilir (iki eğri orijinden farklı açılarda geçebilir). Orijin her zaman ayrıca kontrol edilir. Ayrıca bir nokta farklı \\((r,\\theta)\\) yazımlarına sahip olduğundan grafik çizmek en güvenli yoldur.</div>\n<h4>“Inside both” (ortak bölge)</h4>\n<p>Ortak bölgede her açıda sınır, <em>içteki</em> eğridir; içteki eğri kesişimde değişir, bu yüzden integral parçalanır. Ör. \\(r=1\\) ve \\(r=2\\sin\\theta\\): \\(0\\le\\theta\\le\\frac{\\pi}{6}\\)'da sınır \\(2\\sin\\theta\\), \\(\\frac{\\pi}{6}\\le\\theta\\le\\frac{\\pi}{2}\\)'de sınır \\(1\\). Simetriyle:</p>\n<div class=\"formul\">\\[A=2\\left[\\frac12\\int_0^{\\pi/6}4\\sin^2\\theta\\,d\\theta+\\frac12\\int_{\\pi/6}^{\\pi/2}1\\,d\\theta\\right]=\\frac{2\\pi}{3}-\\frac{\\sqrt3}{2}\\]</div>\n<p>“Inside A, outside B” bazen en kolay <em>Alan(A) − Alan(ortak)</em> olarak hesaplanır; özellikle B eğrisi bazı açılarda negatif \\(r\\) veriyorsa (ör. \\(r=3\\cos\\theta\\) yalnız \\(-\\frac{\\pi}{2}\\le\\theta\\le\\frac{\\pi}{2}\\)'de pozitif).</p>\n<h4>2π'yi aşan aralıklar</h4>\n<p>\\(r=4\\) içinde ve \\(r=3+2\\sin\\theta\\) dışında kalan bölgede çember, \\(\\sin\\theta\\le\\frac12\\) olduğu yerde dıştadır: \\(\\frac{5\\pi}{6}\\le\\theta\\le\\frac{13\\pi}{6}\\). Sınırların \\(2\\pi\\)'yi aşması sorun değildir; integral bölgeyi tek parçada verir.</p>\n<h4>Hesap makinesi</h4>\n<p>Kesişimler çoğu zaman elle çözülemez (ör. \\(3\\cos\\theta=\\theta\\)). Kesişimi hesap makinesinde bul, A ve B değişkenlerine sakla ve fnInt'te doğrudan kullan. Yuvarlanmış sınır, cevabın üçüncü ondalığını bozabilir.</p>\n<div class=\"kn-tanim\"><strong>FRQ ifade kalıbı:</strong> “Area \\(=\\frac12\\int_{a}^{b}\\left((3\\sin\\theta)^2-(2+\\cos\\theta)^2\\right)d\\theta\\approx2.939\\), where \\(a\\approx1.006\\) and \\(b\\approx2.779\\) are the intersection angles.”</div>",
+   "ornekler": [
+    {
+     "soru": "\\(r=2\\cos\\theta\\) çemberinin içinde ve \\(r=1\\) çemberinin dışında kalan bölgenin alanını bulun.",
+     "cozum": [
+      "Kesişim: \\(2\\cos\\theta=1\\Rightarrow\\theta=\\pm\\frac{\\pi}{3}\\).",
+      "\\(A=\\frac12\\int_{-\\pi/3}^{\\pi/3}(4\\cos^2\\theta-1)d\\theta=\\frac12\\left[\\theta+\\sin2\\theta\\right]_{-\\pi/3}^{\\pi/3}=\\frac{\\pi}{3}+\\frac{\\sqrt3}{2}\\)."
+     ]
+    },
+    {
+     "soru": "\\(r=1+\\cos\\theta\\) kardioidinin içinde, \\(r=3\\cos\\theta\\) çemberinin dışında kalan alanı bulun.",
+     "cozum": [
+      "Kesişim \\(\\theta=\\pm\\frac{\\pi}{3}\\). Ortak bölge \\(=2\\left[\\frac12\\int_0^{\\pi/3}(1+\\cos\\theta)^2d\\theta+\\frac12\\int_{\\pi/3}^{\\pi/2}9\\cos^2\\theta\\,d\\theta\\right]=\\frac{5\\pi}{4}\\).",
+      "Kardioid alanı \\(\\frac{3\\pi}{2}\\) ⇒ aranan alan \\(\\frac{3\\pi}{2}-\\frac{5\\pi}{4}=\\frac{\\pi}{4}\\)."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi) Birinci bölgede \\(r=3\\cos\\theta\\) içinde ve \\(r=\\theta\\) dışında kalan alanı bulun.",
+     "cozum": [
+      "Kesişim: \\(3\\cos\\theta=\\theta\\Rightarrow\\theta=a\\approx1.170\\); \\(0\\le\\theta\\le a\\)'da \\(3\\cos\\theta\\ge\\theta\\).",
+      "\\(A=\\frac12\\int_0^{a}(9\\cos^2\\theta-\\theta^2)d\\theta\\approx3.174\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Daima ½∫(R² − r²) yaz; ½∫(R − r)² yazma.",
+    "Kim dışta sorusunu bir test açısıyla çöz ve FRQ'da bunu belirt.",
+    "Ortak bölgede sınır eğri kesişimde değişir: integrali parçala, simetriyi kullan.",
+    "Sayısal kesişimleri hafızaya kaydet; fnInt sınırlarına yuvarlanmış sayı yazma."
+   ],
+   "sikHatalar": [
+    "Farkın karesini (R − r)² almak.",
+    "Kesişim açıları yerine 0..π veya 0..2π gibi hazır sınırlar kullanmak.",
+    "'Inside both' ile 'inside A outside B' bölgelerini karıştırmak."
+   ],
+   "terimler": [
+    {
+     "en": "points of intersection",
+     "tr": "kesişim noktaları"
+    },
+    {
+     "en": "inside both curves",
+     "tr": "iki eğrinin de içinde (ortak bölge)"
+    },
+    {
+     "en": "inside one, outside the other",
+     "tr": "birinin içinde, diğerinin dışında"
+    },
+    {
+     "en": "outer / inner curve",
+     "tr": "dış / iç eğri"
+    }
+   ]
+  }
+ ]
+}
