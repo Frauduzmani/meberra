@@ -1,5 +1,5 @@
 {
- "surum": 10,
+ "surum": 11,
  "olusturma": "2026-10-21T08:13:59.509Z",
  "aciklama": "Meberra soru bankası tohumu — tek doğruluk kaynağı. Statik olarak SUNULMAZ. Üretici: node araclar/soru-aktar.js",
  "sorular": [
@@ -109741,8 +109741,4159 @@
     }
    },
    "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_1",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 29,
+   "numara": 30,
+   "konu": "2.1 Defining Average and Instantaneous Rates of Change at a Point",
+   "zorluk": "easy",
+   "govde": "The height $h(t)$, in meters, of a weather balloon is a function of time $t$, in minutes. Selected values are shown in the table.<table class='u-table'><tr><th>$t$</th><td>$0$</td><td>$2$</td><td>$5$</td><td>$9$</td></tr><tr><th>$h(t)$</th><td>$12$</td><td>$20$</td><td>$38$</td><td>$50$</td></tr></table>What is the average rate of change of $h$ over the interval $2\\le t\\le 9$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$6$ meters per minute"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{38}{9}$ meters per minute"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{30}{7}$ meters per minute"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{7}{30}$ meters per minute"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Ortalama değişim hızı: $\\frac{h(9)-h(2)}{9-2}$.<br/>2. $\\frac{50-20}{7}=\\frac{30}{7}\\approx4.29$ m/dk.",
+   "genel_hatirlatma": "Ortalama değişim hızı = (son değer − ilk değer) / (aralık uzunluğu), birim: çıktı/girdi.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yanlış aralık: $[2,5]$ kullanmak.",
+     "aciklama": "$\\frac{38-20}{5-2}=6$, $[2,5]$ aralığının ortalama hızıdır; soru $[2,9]$ aralığını istiyor."
+    },
+    "B": {
+     "etiket": "Başlangıcı $t=0$ almak.",
+     "aciklama": "$\\frac{50-12}{9-0}$ hesabı $[0,9]$ aralığıdır; aralık $t=2$'de başlıyor."
+    },
+    "D": {
+     "etiket": "Bölümü ters çevirmek.",
+     "aciklama": "Ortalama değişim hızı $\\frac{\\Delta h}{\\Delta t}$'dir; $\\frac{\\Delta t}{\\Delta h}$ değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.1)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Tablodan ortalama değişim hızı",
+    "ipucu": "Aralığın uç noktalarındaki değerleri seç.",
+    "sikHata": "Yanlış aralık uçlarını kullanmak",
+    "cedKonu": "2.1",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_2",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 30,
+   "numara": 31,
+   "konu": "2.1 Defining Average and Instantaneous Rates of Change at a Point",
+   "zorluk": "medium",
+   "govde": "What is the average rate of change of $f(x)=\\sqrt{x+1}$ over the interval $[0,8]$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$2$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac16$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac12$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac14$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $f(8)=\\sqrt9=3$, $f(0)=\\sqrt1=1$.<br/>2. $\\frac{3-1}{8-0}=\\frac{2}{8}=\\frac14$.",
+   "genel_hatirlatma": "Ortalama değişim hızı kesen doğrunun eğimidir; türev almak gerekmez.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Aralık uzunluğuna bölmeyi unutmak.",
+     "aciklama": "$f(8)-f(0)=3-1=2$ toplam değişimdir; $8-0=8$'e bölünmelidir."
+    },
+    "B": {
+     "etiket": "Anlık hızı (uç noktadaki türevi) hesaplamak.",
+     "aciklama": "$f'(8)=\\frac{1}{2\\sqrt9}=\\frac16$ anlık değişim hızıdır; soru ortalama hızı istiyor."
+    },
+    "C": {
+     "etiket": "Başlangıç noktasındaki türevi hesaplamak.",
+     "aciklama": "$f'(0)=\\frac{1}{2\\sqrt1}=\\frac12$; ortalama değişim hızı kesen eğimidir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.1)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Formülle ortalama değişim hızı",
+    "ipucu": "Önce iki uç değeri hesapla.",
+    "sikHata": "Toplam değişimi hız sanmak",
+    "cedKonu": "2.1",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_3",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 31,
+   "numara": 32,
+   "konu": "2.1 Defining Average and Instantaneous Rates of Change at a Point",
+   "zorluk": "medium",
+   "govde": "Let $f(x)=x^3$. For $h\\neq0$, which of the following is equal to the average rate of change of $f$ over the interval $[2,2+h]$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$12$"
+    },
+    {
+     "id": "B",
+     "text": "$12+6h+h^2$"
+    },
+    {
+     "id": "C",
+     "text": "$12h+6h^2+h^3$"
+    },
+    {
+     "id": "D",
+     "text": "$h^2$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $(2+h)^3=8+12h+6h^2+h^3$.<br/>2. $\\frac{(2+h)^3-8}{h}=\\frac{12h+6h^2+h^3}{h}=12+6h+h^2$ ($h\\neq0$).",
+   "genel_hatirlatma": "Fark bölümü $\\frac{f(a+h)-f(a)}{h}$, $h\\neq0$ iken $h$'ye bağlı bir ifadedir; limiti alınca anlık hız çıkar.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Limiti erken almak.",
+     "aciklama": "$12$, $h\\to0$ iken limittir (anlık hız). $h\\neq0$ için ortalama hız $h$'ye bağlıdır."
+    },
+    "C": {
+     "etiket": "$h$'ye bölmeyi unutmak.",
+     "aciklama": "Bu, $f(2+h)-f(2)$ farkıdır; ortalama hız için $h$'ye bölünmelidir."
+    },
+    "D": {
+     "etiket": "Küp açılımında hata: $(2+h)^3=8+h^3$ sanmak.",
+     "aciklama": "$(a+b)^3\\neq a^3+b^3$. Doğrusu $(2+h)^3=8+12h+6h^2+h^3$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.1)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Fark bölümünü sadeleştirmek",
+    "ipucu": "Payı tamamen aç, sonra $h$'ye böl.",
+    "sikHata": "Binom açılımı hatası",
+    "cedKonu": "2.1",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_4",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 32,
+   "numara": 33,
+   "konu": "2.1 Defining Average and Instantaneous Rates of Change at a Point",
+   "zorluk": "hard",
+   "govde": "Let $f(x)=x^2-kx$, where $k$ is a constant. If the average rate of change of $f$ over the interval $[1,3]$ is $6$, what is the value of $k$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$1$"
+    },
+    {
+     "id": "B",
+     "text": "$-5$"
+    },
+    {
+     "id": "C",
+     "text": "$-2$"
+    },
+    {
+     "id": "D",
+     "text": "$-1$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $f(3)=9-3k$, $f(1)=1-k$.<br/>2. $f(3)-f(1)=8-2k$.<br/>3. $\\frac{8-2k}{2}=4-k=6$ ⇒ $k=-2$.",
+   "genel_hatirlatma": "Bilinmeyenli ortalama hız sorusunda önce $f(b)-f(a)$'yı parantezle yaz, sonra $b-a$'ya böl.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Aralık uzunluğuna bölmeyi unutmak.",
+     "aciklama": "$f(3)-f(1)=8-2k=6$ yazılırsa $k=1$ çıkar; fark $3-1=2$'ye bölünmelidir."
+    },
+    "B": {
+     "etiket": "Paydayı $b-a$ yerine $b$ almak.",
+     "aciklama": "$\\frac{8-2k}{3}=6$ yanlış payda kullanır; doğru payda $3-1=2$'dir."
+    },
+    "D": {
+     "etiket": "Çıkarmada işaret hatası.",
+     "aciklama": "$f(3)-f(1)=(9-3k)-(1-k)=8-2k$; $-(1-k)$ ifadesini $-1-k$ yazmak $8-4k$ verir ve $k=-1$ çıkar."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.1)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Parametreli ortalama değişim hızı",
+    "ipucu": "$f(1)$'i parantez içinde çıkar.",
+    "sikHata": "Negatif terimi dağıtırken işaret kaybı",
+    "cedKonu": "2.1",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_5",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 33,
+   "numara": 34,
+   "konu": "2.1 Defining Average and Instantaneous Rates of Change at a Point",
+   "zorluk": "medium",
+   "govde": "The population of a town, in thousands of people, is modeled by a differentiable function $P$ of time $t$, in years. Which of the following is the best interpretation of the statement $\\frac{P(10)-P(4)}{10-4}=1.2$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "At $t=7$, the population was increasing at a rate of $1.2$ thousand people per year."
+    },
+    {
+     "id": "B",
+     "text": "From $t=4$ to $t=10$, the population increased by a total of $1.2$ thousand people."
+    },
+    {
+     "id": "C",
+     "text": "From $t=4$ to $t=10$, the population increased at an average rate of $1.2$ thousand people per year."
+    },
+    {
+     "id": "D",
+     "text": "From $t=4$ to $t=10$, the population increased by exactly $1.2$ thousand people every year."
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Bölüm, $[4,10]$ aralığındaki ortalama değişim hızıdır.<br/>2. Birim: bin kişi / yıl. Yorum: bu aralıkta nüfus ortalama yılda 1.2 bin kişi arttı.",
+   "genel_hatirlatma": "Ortalama değişim hızı yorumunda aralık, birim ve 'average' sözcüğü bulunmalıdır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Ortalama hızı orta noktadaki anlık hız sanmak.",
+     "aciklama": "Ortalama hız tek bir anın hızını vermez; $P'(7)$ başka bir değer olabilir."
+    },
+    "B": {
+     "etiket": "Hızı toplam değişim sanmak.",
+     "aciklama": "Toplam değişim $P(10)-P(4)=1.2\\cdot6=7.2$ bindir; $1.2$ yılda ortalama artıştır."
+    },
+    "D": {
+     "etiket": "Ortalamayı sabit hız sanmak.",
+     "aciklama": "Ortalama hız, her yıl aynı artış olduğunu söylemez; yıllık artış değişebilir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.1)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Ortalama değişim hızını bağlamda yorumlamak",
+    "ipucu": "Aralık + birim + 'ortalama' üçlüsünü ara.",
+    "sikHata": "Ortalama ile anlık hızı karıştırmak",
+    "cedKonu": "2.1",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_6",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 34,
+   "numara": 35,
+   "konu": "2.1 Defining Average and Instantaneous Rates of Change at a Point",
+   "zorluk": "medium",
+   "govde": "<em>(Graphing calculator allowed.)</em> The temperature of a room, in degrees Fahrenheit, is modeled by $F(t)=60+15\\sin\\left(\\frac{t}{3}\\right)$, where $t$ is measured in hours. What is the average rate of change of $F$ over the interval $0\\le t\\le 6$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$2.702$ degrees Fahrenheit per hour"
+    },
+    {
+     "id": "B",
+     "text": "$13.639$ degrees Fahrenheit per hour"
+    },
+    {
+     "id": "C",
+     "text": "$2.273$ degrees Fahrenheit per hour"
+    },
+    {
+     "id": "D",
+     "text": "$0.087$ degrees Fahrenheit per hour"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $F(6)=60+15\\sin2$, $F(0)=60$.<br/>2. $\\frac{F(6)-F(0)}{6}=\\frac{15\\sin2}{6}\\approx\\frac{13.639}{6}\\approx2.273$ °F/saat (radyan modu).",
+   "genel_hatirlatma": "Hesap makinesi bölümünde de ortalama hız $\\frac{F(b)-F(a)}{b-a}$'dır; radyan modunu kontrol et.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Ortalama hız yerine orta noktadaki anlık hızı hesaplamak.",
+     "aciklama": "$F'(3)=5\\cos1\\approx2.702$ anlık hızdır; soru $\\frac{F(6)-F(0)}{6}$'yı istiyor."
+    },
+    "B": {
+     "etiket": "Aralık uzunluğuna bölmeyi unutmak.",
+     "aciklama": "$F(6)-F(0)=15\\sin2\\approx13.639$ toplam değişimdir; 6'ya bölünmelidir."
+    },
+    "D": {
+     "etiket": "Hesap makinesi derece modunda.",
+     "aciklama": "$\\sin(2^\\circ)$ kullanmak bu değeri verir; calculus'ta açılar radyandır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.1)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Hesap makinesiyle ortalama değişim hızı",
+    "ipucu": "Radyan modunda $F(6)$ ve $F(0)$'ı hesapla.",
+    "sikHata": "Derece modu / bölmeyi unutmak",
+    "cedKonu": "2.1",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_7",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 35,
+   "numara": 36,
+   "konu": "2.2 Defining the Derivative of a Function and Using Derivative Notation",
+   "zorluk": "easy",
+   "govde": "What is the value of $\\lim_{h\\to0}\\frac{(3+h)^2-9}{h}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$6$"
+    },
+    {
+     "id": "B",
+     "text": "$0$"
+    },
+    {
+     "id": "C",
+     "text": "$9$"
+    },
+    {
+     "id": "D",
+     "text": "The limit does not exist."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Kalıp: $f(x)=x^2$, $a=3$, $f(3)=9$ ⇒ limit $f'(3)$.<br/>2. $f'(x)=2x$ ⇒ $f'(3)=6$. (Cebirle: $\\frac{6h+h^2}{h}=6+h\\to6$.)",
+   "genel_hatirlatma": "$\\lim_{h\\to0}\\frac{f(a+h)-f(a)}{h}=f'(a)$.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Pay sıfıra gidiyor diye limiti 0 sanmak.",
+     "aciklama": "$h=0$'da ifade $\\frac00$ olur; bu belirsizdir, 0 değildir."
+    },
+    "C": {
+     "etiket": "Türev yerine fonksiyon değerini yazmak.",
+     "aciklama": "$9=f(3)$'tür; limit $f(x)=x^2$ için $f'(3)$'tür."
+    },
+    "D": {
+     "etiket": "$\\frac00$ biçimini 'yok' sanmak.",
+     "aciklama": "$\\frac00$ belirsizliği limitin olmadığı anlamına gelmez; sadeleşince $6+h\\to6$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.2)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Limiti türev olarak tanımak",
+    "ipucu": "$f$ ve $a$'yı bul.",
+    "sikHata": "$\\frac00$'ı 0 ya da yok sanmak",
+    "cedKonu": "2.2",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_8",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 36,
+   "numara": 37,
+   "konu": "2.2 Defining the Derivative of a Function and Using Derivative Notation",
+   "zorluk": "medium",
+   "govde": "What is the value of $\\lim_{x\\to2}\\frac{x^4-16}{x-2}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$16$"
+    },
+    {
+     "id": "B",
+     "text": "$24$"
+    },
+    {
+     "id": "C",
+     "text": "$8$"
+    },
+    {
+     "id": "D",
+     "text": "$32$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Alternatif biçim: $\\lim_{x\\to a}\\frac{f(x)-f(a)}{x-a}$, $f(x)=x^4$, $a=2$, $f(2)=16$.<br/>2. $f'(x)=4x^3$ ⇒ $f'(2)=32$.",
+   "genel_hatirlatma": "$\\lim_{x\\to a}\\frac{f(x)-f(a)}{x-a}=f'(a)$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Türev yerine $f(2)$ yazmak.",
+     "aciklama": "$16=2^4=f(2)$; limit alternatif biçimde $f'(2)$'dir."
+    },
+    "B": {
+     "etiket": "Kuvvet kuralında katsayı hatası.",
+     "aciklama": "$\\frac{d}{dx}x^4=4x^3$; $3x^3$ değil. $4\\cdot8=32$."
+    },
+    "C": {
+     "etiket": "Katsayıyı unutmak.",
+     "aciklama": "$x^3$ yalnız üssü azaltır; üs öne inmelidir: $4x^3$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.2)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Alternatif türev biçimini tanımak",
+    "ipucu": "Paydada $x-a$ görünce alternatif biçimi düşün.",
+    "sikHata": "Kuvvet kuralı katsayı hatası",
+    "cedKonu": "2.2",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_9",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 37,
+   "numara": 38,
+   "konu": "2.2 Defining the Derivative of a Function and Using Derivative Notation",
+   "zorluk": "medium",
+   "govde": "The expression $\\lim_{h\\to0}\\frac{\\sqrt{9+h}-3}{h}$ is equal to $f'(a)$ for which of the following choices of $f$ and $a$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$f(x)=\\sqrt{x}$ and $a=3$"
+    },
+    {
+     "id": "B",
+     "text": "$f(x)=\\sqrt{x}$ and $a=9$"
+    },
+    {
+     "id": "C",
+     "text": "$f(x)=\\sqrt{x+9}$ and $a=9$"
+    },
+    {
+     "id": "D",
+     "text": "$f(x)=\\sqrt{x+9}$ and $a=3$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $f(a+h)=\\sqrt{9+h}$ ⇒ $f(x)=\\sqrt x$, $a=9$.<br/>2. Kontrol: $f(9)=3$, çıkarılan sabitle aynı. (Değeri $f'(9)=\\frac{1}{2\\sqrt9}=\\frac16$.)",
+   "genel_hatirlatma": "$f(a+h)$ kısmından hem $f$'yi hem $a$'yı oku; çıkarılan sabit $f(a)$ olmalıdır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$a$'yı çıkarılan sabit sanmak.",
+     "aciklama": "$a=3$ olsaydı pay $\\sqrt{3+h}-\\sqrt3$ olurdu; 3 sayısı $f(9)=\\sqrt9$'dur."
+    },
+    "C": {
+     "etiket": "Kaydırmayı iki kez yapmak.",
+     "aciklama": "$f(9+h)=\\sqrt{18+h}$ olur; pay $\\sqrt{18+h}-\\sqrt{18}$ olurdu."
+    },
+    "D": {
+     "etiket": "Kaydırmayı ve $a$'yı karıştırmak.",
+     "aciklama": "$f(3+h)=\\sqrt{12+h}$ verir; ifadeyle uyuşmaz."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.2)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Limiti türev olarak tanımlama",
+    "ipucu": "Çıkarılan sabit $f(a)$'dır, $a$ değil.",
+    "sikHata": "$a$ ile $f(a)$'yı karıştırmak",
+    "cedKonu": "2.2",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_10",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 38,
+   "numara": 39,
+   "konu": "2.2 Defining the Derivative of a Function and Using Derivative Notation",
+   "zorluk": "hard",
+   "govde": "Let $f$ be a differentiable function with $f(1)=4$ and $f'(1)=6$. What is the value of $\\lim_{x\\to1}\\frac{f(x)-4}{x^2-1}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$6$"
+    },
+    {
+     "id": "B",
+     "text": "$3$"
+    },
+    {
+     "id": "C",
+     "text": "$12$"
+    },
+    {
+     "id": "D",
+     "text": "The limit does not exist."
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $\\frac{f(x)-4}{x^2-1}=\\frac{f(x)-f(1)}{x-1}\\cdot\\frac{1}{x+1}$.<br/>2. $x\\to1$: ilk çarpan $f'(1)=6$, ikinci çarpan $\\frac12$.<br/>3. Limit $=6\\cdot\\frac12=3$.",
+   "genel_hatirlatma": "Payda tam olarak $x-a$ değilse onu $x-a$ ve başka bir çarpana ayır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Paydayı $x-1$ sanmak.",
+     "aciklama": "Payda $x^2-1=(x-1)(x+1)$'dir; ek çarpan $\\frac{1}{x+1}\\to\\frac12$ unutulmuş."
+    },
+    "C": {
+     "etiket": "Ek çarpanla bölmek yerine çarpmak.",
+     "aciklama": "$\\frac{f(x)-4}{x-1}\\cdot\\frac{1}{x+1}$; $x+1\\to2$ ile çarpılmaz, bölünür."
+    },
+    "D": {
+     "etiket": "$\\frac00$'ı 'yok' sanmak.",
+     "aciklama": "Pay ve payda 0'a gider ama oran düzenlemeyle $f'(1)\\cdot\\frac12$'ye gider."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.2)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Değiştirilmiş türev limiti",
+    "ipucu": "$x^2-1$'i çarpanlarına ayır.",
+    "sikHata": "Paydadaki ek çarpanı unutmak",
+    "cedKonu": "2.2",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_11",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 39,
+   "numara": 40,
+   "konu": "2.2 Defining the Derivative of a Function and Using Derivative Notation",
+   "zorluk": "hard",
+   "govde": "Let $f(x)=x^3+2x$. What is the value of $\\lim_{h\\to0}\\frac{f(1+2h)-f(1)}{h}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$5$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac52$"
+    },
+    {
+     "id": "C",
+     "text": "$3$"
+    },
+    {
+     "id": "D",
+     "text": "$10$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $\\frac{f(1+2h)-f(1)}{h}=2\\cdot\\frac{f(1+2h)-f(1)}{2h}$; $k=2h\\to0$.<br/>2. Limit $=2f'(1)$. $f'(x)=3x^2+2$ ⇒ $f'(1)=5$.<br/>3. Sonuç $2\\cdot5=10$.",
+   "genel_hatirlatma": "$\\lim_{h\\to0}\\frac{f(a+ch)-f(a)}{h}=c\\,f'(a)$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$2h$ ile $h$ farkını görmemek.",
+     "aciklama": "$f'(1)=5$ olur ancak payda $2h$ olsaydı; payda $h$ olduğu için 2 ile çarpılır."
+    },
+    "B": {
+     "etiket": "2 ile çarpmak yerine bölmek.",
+     "aciklama": "$\\frac{f(1+2h)-f(1)}{h}=2\\cdot\\frac{f(1+2h)-f(1)}{2h}\\to2f'(1)$."
+    },
+    "C": {
+     "etiket": "Türev yerine fonksiyon değerini yazmak.",
+     "aciklama": "$f(1)=3$'tür; limit bir değişim hızıdır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.2)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Ölçeklenmiş fark bölümü",
+    "ipucu": "Paydayı $2h$ yapmak için 2 ile çarp ve böl.",
+    "sikHata": "Ölçek çarpanını kaybetmek",
+    "cedKonu": "2.2",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_12",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 40,
+   "numara": 41,
+   "konu": "2.2 Defining the Derivative of a Function and Using Derivative Notation",
+   "zorluk": "medium",
+   "govde": "What is the value of $\\lim_{x\\to\\pi}\\frac{\\cos x+1}{x-\\pi}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$-1$"
+    },
+    {
+     "id": "B",
+     "text": "$1$"
+    },
+    {
+     "id": "C",
+     "text": "The limit does not exist."
+    },
+    {
+     "id": "D",
+     "text": "$0$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $\\cos\\pi=-1$ olduğundan pay $\\cos x-\\cos\\pi$'dir: $f(x)=\\cos x$, $a=\\pi$.<br/>2. Limit $=f'(\\pi)=-\\sin\\pi=0$.",
+   "genel_hatirlatma": "Payda $x-a$, pay $f(x)-f(a)$ biçimindeyse limit $f'(a)$'dır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Türev yerine $f(\\pi)$ yazmak.",
+     "aciklama": "$\\cos\\pi=-1$ fonksiyon değeridir; limit $f'(\\pi)=-\\sin\\pi$'dir."
+    },
+    "B": {
+     "etiket": "Türevi $-\\cos x$ sanmak.",
+     "aciklama": "$\\frac{d}{dx}\\cos x=-\\sin x$; $-\\cos\\pi=1$ yanlış türevden gelir."
+    },
+    "C": {
+     "etiket": "$\\frac00$'ı 'yok' sanmak.",
+     "aciklama": "Limit $\\cos$'un $x=\\pi$'deki türevidir ve vardır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.2)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Trigonometrik türev limiti",
+    "ipucu": "$+1$'i $-\\cos\\pi$ olarak oku.",
+    "sikHata": "Fonksiyon değeri ile türevi karıştırmak",
+    "cedKonu": "2.2",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_13",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 41,
+   "numara": 42,
+   "konu": "2.2 Defining the Derivative of a Function and Using Derivative Notation",
+   "zorluk": "easy",
+   "govde": "A differentiable function $k$ satisfies $k(-1)=3$ and $\\lim_{h\\to0}\\frac{k(-1+h)-k(-1)}{h}=5$. Which of the following is an equation of the line tangent to the graph of $k$ at $x=-1$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$y+1=5(x-3)$"
+    },
+    {
+     "id": "B",
+     "text": "$y-3=-\\frac15(x+1)$"
+    },
+    {
+     "id": "C",
+     "text": "$y-3=5(x+1)$"
+    },
+    {
+     "id": "D",
+     "text": "$y-3=5(x-1)$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Limit $k'(-1)=5$: teğet eğimi.<br/>2. Nokta $(-1,3)$.<br/>3. $y-3=5(x-(-1))=5(x+1)$.",
+   "genel_hatirlatma": "Teğet: $y-f(a)=f'(a)(x-a)$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$a$ ile $k(a)$'nın yerini değiştirmek.",
+     "aciklama": "Nokta $(-1,3)$'tür: $x$-koordinatı $-1$, $y$-koordinatı 3."
+    },
+    "B": {
+     "etiket": "Normal doğru eğimini kullanmak.",
+     "aciklama": "$-\\frac15$ normal doğrunun eğimidir; teğet eğimi $k'(-1)=5$'tir."
+    },
+    "D": {
+     "etiket": "$x-a$'da işaret hatası.",
+     "aciklama": "$a=-1$ için $x-a=x+1$ olur."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.2)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Türev tanımından teğet doğru",
+    "ipucu": "Limit = eğim, $k(-1)$ = nokta.",
+    "sikHata": "Nokta koordinatlarını karıştırmak",
+    "cedKonu": "2.2",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_14",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 42,
+   "numara": 43,
+   "konu": "2.3 Estimating Derivatives of a Function at a Point",
+   "zorluk": "easy",
+   "govde": "The number of fish in a pond, $P(t)$, in hundreds, is a differentiable function of time $t$, in months. Selected values are shown in the table.<table class='u-table'><tr><th>$t$</th><td>$0$</td><td>$3$</td><td>$5$</td><td>$8$</td><td>$12$</td></tr><tr><th>$P(t)$</th><td>$40$</td><td>$46$</td><td>$55$</td><td>$63$</td><td>$70$</td></tr></table>Using the data in the table, what is the best estimate of $P'(4)$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$3.4$"
+    },
+    {
+     "id": "B",
+     "text": "$9$"
+    },
+    {
+     "id": "C",
+     "text": "$4.5$"
+    },
+    {
+     "id": "D",
+     "text": "$50.5$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. 4'ü içeren en dar aralık: $[3,5]$.<br/>2. $P'(4)\\approx\\frac{P(5)-P(3)}{5-3}=\\frac{55-46}{2}=4.5$ (yüz balık/ay).",
+   "genel_hatirlatma": "Tablodan türev tahmini: noktayı içeren en dar aralıktaki ortalama değişim hızı.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "En dar aralığı kullanmamak.",
+     "aciklama": "$\\frac{63-46}{8-3}=3.4$, $[3,8]$ aralığıdır; 4'ü içeren en dar aralık $[3,5]$'tir."
+    },
+    "B": {
+     "etiket": "Aralık uzunluğuna bölmeyi unutmak.",
+     "aciklama": "$55-46=9$ değişimdir; $5-3=2$'ye bölünmelidir."
+    },
+    "D": {
+     "etiket": "Türev yerine fonksiyon değerini tahmin etmek.",
+     "aciklama": "$\\frac{46+55}{2}=50.5$, $P(4)$ için bir tahmindir; $P'(4)$ değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.3)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Tablodan türev tahmini",
+    "ipucu": "4'ün iki yanındaki tablo değerlerini al.",
+    "sikHata": "Değer ile değişim hızını karıştırmak",
+    "cedKonu": "2.3",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_15",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 43,
+   "numara": 44,
+   "konu": "2.3 Estimating Derivatives of a Function at a Point",
+   "zorluk": "hard",
+   "govde": "The graph of the differentiable function $f$ is shown above for $0\\le x\\le6$. The points $(1,2.2)$, $(3,1.6)$, and $(5,1)$ are on the graph. Which of the following lists the values in increasing order?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{f(5)-f(1)}{4}\\lt f'(3)\\lt0\\lt f'(1)$"
+    },
+    {
+     "id": "B",
+     "text": "$f'(3)\\lt0\\lt\\frac{f(5)-f(1)}{4}\\lt f'(1)$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{f(5)-f(1)}{4}\\lt0\\lt f'(3)\\lt f'(1)$"
+    },
+    {
+     "id": "D",
+     "text": "$f'(3)\\lt\\frac{f(5)-f(1)}{4}\\lt0\\lt f'(1)$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $x=1$'de grafik artıyor: $f'(1)\\gt0$.<br/>2. Kesen eğimi: $\\frac{f(5)-f(1)}{5-1}=\\frac{1-2.2}{4}=-0.3\\lt0$.<br/>3. $x=3$'te grafik azalıyor ve kesen doğrudan daha dik iniyor: $f'(3)\\lt-0.3$.<br/>4. Sıra: $f'(3)\\lt-0.3\\lt0\\lt f'(1)$.",
+   "genel_hatirlatma": "Sıralama sorularında önce işaretleri, sonra aynı işaretlilerin dikliğini karşılaştır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Diklikleri karşılaştırmamak.",
+     "aciklama": "Kesen eğimi $\\frac{1-2.2}{4}=-0.3$; $x=3$'teki teğet kesenden daha diktir, yani $f'(3)\\lt-0.3$."
+    },
+    "B": {
+     "etiket": "Kesen eğiminin işaretini yanlış okumak.",
+     "aciklama": "$f(5)=1\\lt f(1)=2.2$ olduğundan kesen aşağı iner; eğimi negatiftir."
+    },
+    "C": {
+     "etiket": "$f(3)$ değerini $f'(3)$ sanmak.",
+     "aciklama": "$f(3)=1.6\\gt0$ ama grafik $x=3$'te azalıyor; $f'(3)\\lt0$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.3)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Grafikten türev ve kesen eğimi karşılaştırma",
+    "ipucu": "Negatifleri diklikle sırala.",
+    "sikHata": "Fonksiyon değerini eğim sanmak",
+    "cedKonu": "2.3",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif",
+   "sekil": {
+    "tur": "svg",
+    "svg": "<svg viewBox=\"0 0 340 230\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"34\" y1=\"16\" x2=\"34\" y2=\"204\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"82\" y1=\"16\" x2=\"82\" y2=\"204\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"130\" y1=\"16\" x2=\"130\" y2=\"204\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"178\" y1=\"16\" x2=\"178\" y2=\"204\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"226\" y1=\"16\" x2=\"226\" y2=\"204\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"274\" y1=\"16\" x2=\"274\" y2=\"204\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"322\" y1=\"16\" x2=\"322\" y2=\"204\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"34\" y1=\"204\" x2=\"322\" y2=\"204\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"34\" y1=\"141.3\" x2=\"322\" y2=\"141.3\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"34\" y1=\"78.7\" x2=\"322\" y2=\"78.7\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"34\" y1=\"16\" x2=\"322\" y2=\"16\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"34\" y1=\"204\" x2=\"330\" y2=\"204\" stroke=\"currentColor\" stroke-width=\"1.2\" class=\"sk-eksen\"/><polygon points=\"336,204 329,207.5 329,200.5\" fill=\"currentColor\" stroke=\"none\" class=\"sk-eksen\"/><line x1=\"34\" y1=\"204\" x2=\"34\" y2=\"8\" stroke=\"currentColor\" stroke-width=\"1.2\" class=\"sk-eksen\"/><polygon points=\"34,2 37.5,9 30.5,9\" fill=\"currentColor\" stroke=\"none\" class=\"sk-eksen\"/><line x1=\"82\" y1=\"201\" x2=\"82\" y2=\"207\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"82\" y=\"218\" font-size=\"11\" text-anchor=\"middle\" fill=\"currentColor\">1</text><line x1=\"130\" y1=\"201\" x2=\"130\" y2=\"207\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"130\" y=\"218\" font-size=\"11\" text-anchor=\"middle\" fill=\"currentColor\">2</text><line x1=\"178\" y1=\"201\" x2=\"178\" y2=\"207\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"178\" y=\"218\" font-size=\"11\" text-anchor=\"middle\" fill=\"currentColor\">3</text><line x1=\"226\" y1=\"201\" x2=\"226\" y2=\"207\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"226\" y=\"218\" font-size=\"11\" text-anchor=\"middle\" fill=\"currentColor\">4</text><line x1=\"274\" y1=\"201\" x2=\"274\" y2=\"207\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"274\" y=\"218\" font-size=\"11\" text-anchor=\"middle\" fill=\"currentColor\">5</text><line x1=\"322\" y1=\"201\" x2=\"322\" y2=\"207\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"322\" y=\"218\" font-size=\"11\" text-anchor=\"middle\" fill=\"currentColor\">6</text><line x1=\"31\" y1=\"141.3\" x2=\"37\" y2=\"141.3\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"28\" y=\"145.3\" font-size=\"11\" text-anchor=\"end\" fill=\"currentColor\">1</text><line x1=\"31\" y1=\"78.7\" x2=\"37\" y2=\"78.7\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"28\" y=\"82.7\" font-size=\"11\" text-anchor=\"end\" fill=\"currentColor\">2</text><line x1=\"31\" y1=\"16\" x2=\"37\" y2=\"16\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"28\" y=\"20\" font-size=\"11\" text-anchor=\"end\" fill=\"currentColor\">3</text><text x=\"28\" y=\"218\" font-size=\"11\" text-anchor=\"end\" fill=\"currentColor\">O</text><text x=\"336\" y=\"197\" font-size=\"12\" text-anchor=\"end\" fill=\"currentColor\">x</text><text x=\"42\" y=\"10\" font-size=\"12\" text-anchor=\"start\" fill=\"currentColor\">y</text><path d=\"M34 141.3L36.4 135.2L38.8 129.4L41.2 123.8L43.6 118.5L46 113.4L48.4 108.6L50.8 104.1L53.2 99.8L55.6 95.8L58 92L60.4 88.4L62.8 85.1L65.2 82L67.6 79.1L70 76.4L72.4 74L74.8 71.7L77.2 69.6L79.6 67.8L82 66.1L84.4 64.7L86.8 63.4L89.2 62.3L91.6 61.3L94 60.6L96.4 59.9L98.8 59.5L101.2 59.2L103.6 59.1L106 59.1L108.4 59.2L110.8 59.5L113.2 59.9L115.6 60.5L118 61.1L120.4 61.9L122.8 62.8L125.2 63.8L127.6 64.9L130 66.1L132.4 67.4L134.8 68.8L137.2 70.3L139.6 71.8L142 73.5L144.4 75.2L146.8 76.9L149.2 78.8L151.6 80.6L154 82.6L156.4 84.6L158.8 86.6L161.2 88.6L163.6 90.7L166 92.9L168.4 95L170.8 97.2L173.2 99.4L175.6 101.5L178 103.7L180.4 105.9L182.8 108.1L185.2 110.3L187.6 112.5L190 114.6L192.4 116.7L194.8 118.8L197.2 120.9L199.6 122.9L202 124.9L204.4 126.8L206.8 128.7L209.2 130.5L211.6 132.3L214 134L216.4 135.6L218.8 137.2L221.2 138.6L223.6 140L226 141.3L228.4 142.5L230.8 143.6L233.2 144.6L235.6 145.5L238 146.3L240.4 147L242.8 147.5L245.2 148L247.6 148.2L250 148.4L252.4 148.4L254.8 148.3L257.2 148L259.6 147.5L262 146.9L264.4 146.1L266.8 145.2L269.2 144.1L271.6 142.8L274 141.3L276.4 139.7L278.8 137.8L281.2 135.8L283.6 133.5L286 131.1L288.4 128.4L290.8 125.5L293.2 122.4L295.6 119L298 115.5L300.4 111.7L302.8 107.6L305.2 103.4L307.6 98.8L310 94L312.4 89L314.8 83.7L317.2 78.1L319.6 72.3L322 66.1\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><circle cx=\"82\" cy=\"66.1\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"178\" cy=\"103.7\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"274\" cy=\"141.3\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/></svg>",
+    "alt": "Pürüzsüz f grafiği, 0 ≤ x ≤ 6. f(0)=1'den başlar, yaklaşık x=1.5'te yaklaşık 2.3 yüksekliğinde yerel maksimuma çıkar, sonra azalır; yaklaşık x=4.5'te yaklaşık 0.9 yüksekliğinde yerel minimuma iner ve x=6'da 2.2'ye yükselir. İşaretli noktalar: (1, 2.2), (3, 1.6), (5, 1.0). x=1'de grafik artıyor, x=3'te azalıyor ve bu noktada (1, 2.2) ile (5, 1.0)'ı birleştiren kesenden daha dik iniyor.",
+    "baslik": "Graph of f",
+    "konum": "govde"
+   }
+  },
+  {
+   "id": "calc_k_u2_16",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 44,
+   "numara": 45,
+   "konu": "2.3 Estimating Derivatives of a Function at a Point",
+   "zorluk": "medium",
+   "govde": "<em>(Graphing calculator allowed.)</em> The depth of water in a reservoir, in feet, is modeled by $H(t)=20-12e^{-0.3t}$, where $t$ is measured in days. At what rate, in feet per day, is the depth changing at time $t=4$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$16.386$"
+    },
+    {
+     "id": "B",
+     "text": "$2.096$"
+    },
+    {
+     "id": "C",
+     "text": "$1.084$"
+    },
+    {
+     "id": "D",
+     "text": "$-1.084$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Hesap makinesinde sayısal türev: <code>nDeriv(20-12e^(-0.3X),X,4)</code>.<br/>2. $H'(4)\\approx1.084$ ft/gün; derinlik artıyor.",
+   "genel_hatirlatma": "'Rate of change at time t' = türevin o andaki değeri; hesap makinesinde sayısal türevle bulunur.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Değişim hızı yerine derinliği hesaplamak.",
+     "aciklama": "$H(4)\\approx16.386$ ft, derinliğin kendisidir; hız $H'(4)$'tür."
+    },
+    "B": {
+     "etiket": "Anlık hız yerine ortalama hızı hesaplamak.",
+     "aciklama": "$\\frac{H(4)-H(0)}{4}\\approx2.096$, $[0,4]$ aralığındaki ortalama hızdır."
+    },
+    "D": {
+     "etiket": "İşaret hatası.",
+     "aciklama": "$-12e^{-0.3t}$ terimi artan bir fonksiyondur; $H'(t)=3.6e^{-0.3t}\\gt0$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.3)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Hesap makinesiyle sayısal türev",
+    "ipucu": "nDeriv ya da dy/dx kullan.",
+    "sikHata": "Değer ile hızı karıştırmak",
+    "cedKonu": "2.3",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_17",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 45,
+   "numara": 46,
+   "konu": "2.3 Estimating Derivatives of a Function at a Point",
+   "zorluk": "medium",
+   "govde": "The radius $r(t)$, in centimeters, of a circular puddle is a differentiable function of time $t$, in minutes. Selected values are shown in the table.<table class='u-table'><tr><th>$t$</th><td>$0$</td><td>$3$</td><td>$8$</td><td>$10$</td></tr><tr><th>$r(t)$</th><td>$12$</td><td>$18$</td><td>$28$</td><td>$31$</td></tr></table>Which of the following is the best estimate of $r'(5)$, with correct units?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$2$ centimeters per minute"
+    },
+    {
+     "id": "B",
+     "text": "$2$ minutes per centimeter"
+    },
+    {
+     "id": "C",
+     "text": "$23$ centimeters"
+    },
+    {
+     "id": "D",
+     "text": "$10$ centimeters per minute"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. 5'i içeren en dar aralık $[3,8]$.<br/>2. $r'(5)\\approx\\frac{r(8)-r(3)}{8-3}=\\frac{28-18}{5}=2$ cm/dk.",
+   "genel_hatirlatma": "Türev tahmininin birimi çıktı birimi bölü girdi birimidir.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Birimi ters yazmak.",
+     "aciklama": "$r'$ birimi (çıktı)/(girdi) = cm/dakikadır."
+    },
+    "C": {
+     "etiket": "Değerlerin ortalamasını türev sanmak.",
+     "aciklama": "$\\frac{18+28}{2}=23$ cm, $r(5)$ için kaba bir tahmindir, $r'(5)$ değil."
+    },
+    "D": {
+     "etiket": "Aralık uzunluğuna bölmeyi unutmak.",
+     "aciklama": "$28-18=10$ cm, 5 dakikada değişimdir; $\\frac{10}{5}=2$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.3)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Tablodan türev tahmini ve birim",
+    "ipucu": "Aralık [3,8], birim cm/dk.",
+    "sikHata": "Birim ve bölme hataları",
+    "cedKonu": "2.3",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_18",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 46,
+   "numara": 47,
+   "konu": "2.3 Estimating Derivatives of a Function at a Point",
+   "zorluk": "hard",
+   "govde": "Selected values of a differentiable function $f$ are shown in the table.<table class='u-table'><tr><th>$x$</th><td>$1$</td><td>$2$</td><td>$4$</td><td>$6$</td><td>$7$</td></tr><tr><th>$f(x)$</th><td>$3$</td><td>$6$</td><td>$11$</td><td>$19$</td><td>$22$</td></tr></table>Let $g(x)=2f(x)+x^2$. Using a symmetric difference quotient with the values at $x=2$ and $x=6$ to estimate $f'(4)$, what is the resulting estimate of $g'(4)$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$6.5$"
+    },
+    {
+     "id": "B",
+     "text": "$14.5$"
+    },
+    {
+     "id": "C",
+     "text": "$22.5$"
+    },
+    {
+     "id": "D",
+     "text": "$11.25$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $f'(4)\\approx\\frac{f(6)-f(2)}{6-2}=\\frac{19-6}{4}=3.25$.<br/>2. $g'(x)=2f'(x)+2x$.<br/>3. $g'(4)\\approx2(3.25)+2(4)=6.5+8=14.5$.",
+   "genel_hatirlatma": "Önce türev formülünü kur, sonra tahmini değeri yerine koy.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$x^2$ teriminin türevini unutmak.",
+     "aciklama": "$2f'(4)\\approx6.5$ yalnız ilk terimdir; $\\frac{d}{dx}x^2=2x$, $x=4$'te 8 eklenir."
+    },
+    "C": {
+     "etiket": "$x^2$'nin türevi yerine değerini eklemek.",
+     "aciklama": "$4^2=16$ eklenmiş; türevde $2x=8$ kullanılır."
+    },
+    "D": {
+     "etiket": "Sabitle çarpımı unutmak.",
+     "aciklama": "$g'(x)=2f'(x)+2x$; $f'(4)$ 2 ile çarpılmalı: $2(3.25)+8$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.3)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Tahmin edilen türevi kurallarla birleştirmek",
+    "ipucu": "$g'(4)=2f'(4)+8$.",
+    "sikHata": "Bir terimin türevini unutmak",
+    "cedKonu": "2.3",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_19",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 47,
+   "numara": 48,
+   "konu": "2.3 Estimating Derivatives of a Function at a Point",
+   "zorluk": "medium",
+   "govde": "<em>(Graphing calculator allowed.)</em> Let $f(x)=2^x$. Which of the following is closest to the value of $f'(2)$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$4.000$"
+    },
+    {
+     "id": "B",
+     "text": "$2.773$"
+    },
+    {
+     "id": "C",
+     "text": "$5.771$"
+    },
+    {
+     "id": "D",
+     "text": "$2.000$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Hesap makinesinde <code>nDeriv(2^X,X,2)</code> ≈ $2.773$.<br/>2. (Kontrol: $\\frac{d}{dx}2^x=2^x\\ln2$, $4\\ln2\\approx2.773$.)",
+   "genel_hatirlatma": "Kuvvet kuralı yalnız $x^n$ içindir; üssü değişken fonksiyonlarda sayısal türev ya da üstel kural kullanılır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Üstel fonksiyona kuvvet kuralı uygulamak.",
+     "aciklama": "$x\\cdot2^{x-1}$ kuvvet kuralıdır ve $2^x$'e uygulanmaz; $x=2$'de 4 verir (bu ayrıca $f(2)$'dir)."
+    },
+    "C": {
+     "etiket": "ln 2 ile çarpmak yerine bölmek.",
+     "aciklama": "$\\frac{2^2}{\\ln2}\\approx5.771$; doğru sayısal türev $\\approx2^2\\ln2$'ye eşittir."
+    },
+    "D": {
+     "etiket": "Çok geniş bir kesen kullanmak.",
+     "aciklama": "$\\frac{f(2)-f(1)}{2-1}=2$, $h=1$ ile kaba bir ortalama hızdır; anlık hız değildir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.3)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Hesap makinesiyle sayısal türev",
+    "ipucu": "nDeriv kullan.",
+    "sikHata": "Kuvvet kuralını üstel fonksiyona uygulamak",
+    "cedKonu": "2.3",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_20",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 48,
+   "numara": 49,
+   "konu": "2.4 Connecting Differentiability and Continuity: Determining When Derivatives Do and Do Not Exist",
+   "zorluk": "easy",
+   "govde": "Which of the following statements must be true for any function $f$ and any real number $a$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "If $f$ is differentiable at $x=a$, then $f$ is continuous at $x=a$."
+    },
+    {
+     "id": "B",
+     "text": "If $f$ is continuous at $x=a$, then $f$ is differentiable at $x=a$."
+    },
+    {
+     "id": "C",
+     "text": "If $f$ is not differentiable at $x=a$, then $f$ is not continuous at $x=a$."
+    },
+    {
+     "id": "D",
+     "text": "If $\\lim_{x\\to a}f(x)$ exists, then $f'(a)$ exists."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Teorem: türevlenebilirlik ⇒ süreklilik.<br/>2. Tersi yanlıştır: $f(x)=|x|$, $x=0$'da süreklidir ama tek taraflı türevler $-1$ ve $1$'dir.",
+   "genel_hatirlatma": "Türevlenebilir ⇒ sürekli; sürekli ⇏ türevlenebilir.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Teoremin tersini doğru sanmak.",
+     "aciklama": "$|x|$, $x=0$'da süreklidir ama türevlenemez."
+    },
+    "C": {
+     "etiket": "Tersin kontrapozitifini doğru sanmak.",
+     "aciklama": "Bu, yanlış olan tersin eşdeğeridir; $|x|$ yine karşı örnektir."
+    },
+    "D": {
+     "etiket": "Limitin varlığını türevin varlığı sanmak.",
+     "aciklama": "Limit var olsa bile $f$ sürekli olmayabilir ya da köşesi olabilir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.4)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Türevlenebilirlik–süreklilik ilişkisi",
+    "ipucu": "Karşı örnek olarak |x|'i düşün.",
+    "sikHata": "Teoremin tersini kullanmak",
+    "cedKonu": "2.4",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_21",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 49,
+   "numara": 50,
+   "konu": "2.4 Connecting Differentiability and Continuity: Determining When Derivatives Do and Do Not Exist",
+   "zorluk": "medium",
+   "govde": "The graph of the function $f$ is shown above. On the open interval $-3\\lt x\\lt5$, at which value(s) of $x$ is $f$ continuous but not differentiable?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$x=-1$ only"
+    },
+    {
+     "id": "B",
+     "text": "$x=-1$ and $x=2$"
+    },
+    {
+     "id": "C",
+     "text": "There are no such values."
+    },
+    {
+     "id": "D",
+     "text": "$x=2$ only"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $x=-1$: soldan limit 3, $f(-1)=0$ ⇒ süreksiz ⇒ türevlenemez.<br/>2. $x=2$: iki parça $(2,3)$'te birleşir (sürekli); eğimler $1\\neq-1$ ⇒ köşe.<br/>3. Yanıt: yalnız $x=2$.",
+   "genel_hatirlatma": "Köşe: sürekli ama türevlenemez. Sıçrama: ne sürekli ne türevlenebilir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Süreksizlik noktasını 'sürekli ama türevlenemez' saymak.",
+     "aciklama": "$x=-1$'de sıçrama vardır; $f$ orada sürekli bile değildir."
+    },
+    "B": {
+     "etiket": "Türevlenemeyen tüm noktaları seçmek.",
+     "aciklama": "İki noktada da türev yok, ama yalnız $x=2$'de $f$ süreklidir."
+    },
+    "C": {
+     "etiket": "Köşeyi gözden kaçırmak.",
+     "aciklama": "$x=2$'de soldan eğim 1, sağdan eğim $-1$; sürekli ama türevlenemez."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.4)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Grafikten türevlenemezlik türü",
+    "ipucu": "Önce sürekliliği, sonra eğimleri kontrol et.",
+    "sikHata": "Sıçrama ile köşeyi karıştırmak",
+    "cedKonu": "2.4",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif",
+   "sekil": {
+    "tur": "svg",
+    "svg": "<svg viewBox=\"0 0 340 230\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"34\" y1=\"16\" x2=\"34\" y2=\"204\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"70\" y1=\"16\" x2=\"70\" y2=\"204\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"106\" y1=\"16\" x2=\"106\" y2=\"204\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"142\" y1=\"16\" x2=\"142\" y2=\"204\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"178\" y1=\"16\" x2=\"178\" y2=\"204\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"214\" y1=\"16\" x2=\"214\" y2=\"204\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"250\" y1=\"16\" x2=\"250\" y2=\"204\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"286\" y1=\"16\" x2=\"286\" y2=\"204\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"322\" y1=\"16\" x2=\"322\" y2=\"204\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"34\" y1=\"204\" x2=\"322\" y2=\"204\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"34\" y1=\"166.4\" x2=\"322\" y2=\"166.4\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"34\" y1=\"128.8\" x2=\"322\" y2=\"128.8\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"34\" y1=\"91.2\" x2=\"322\" y2=\"91.2\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"34\" y1=\"53.6\" x2=\"322\" y2=\"53.6\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"34\" y1=\"16\" x2=\"322\" y2=\"16\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"34\" y1=\"166.4\" x2=\"330\" y2=\"166.4\" stroke=\"currentColor\" stroke-width=\"1.2\" class=\"sk-eksen\"/><polygon points=\"336,166.4 329,169.9 329,162.9\" fill=\"currentColor\" stroke=\"none\" class=\"sk-eksen\"/><line x1=\"142\" y1=\"204\" x2=\"142\" y2=\"8\" stroke=\"currentColor\" stroke-width=\"1.2\" class=\"sk-eksen\"/><polygon points=\"142,2 145.5,9 138.5,9\" fill=\"currentColor\" stroke=\"none\" class=\"sk-eksen\"/><line x1=\"34\" y1=\"163.4\" x2=\"34\" y2=\"169.4\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"34\" y=\"180.4\" font-size=\"11\" text-anchor=\"middle\" fill=\"currentColor\">−3</text><line x1=\"70\" y1=\"163.4\" x2=\"70\" y2=\"169.4\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"70\" y=\"180.4\" font-size=\"11\" text-anchor=\"middle\" fill=\"currentColor\">−2</text><line x1=\"106\" y1=\"163.4\" x2=\"106\" y2=\"169.4\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"106\" y=\"180.4\" font-size=\"11\" text-anchor=\"middle\" fill=\"currentColor\">−1</text><line x1=\"178\" y1=\"163.4\" x2=\"178\" y2=\"169.4\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"178\" y=\"180.4\" font-size=\"11\" text-anchor=\"middle\" fill=\"currentColor\">1</text><line x1=\"214\" y1=\"163.4\" x2=\"214\" y2=\"169.4\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"214\" y=\"180.4\" font-size=\"11\" text-anchor=\"middle\" fill=\"currentColor\">2</text><line x1=\"250\" y1=\"163.4\" x2=\"250\" y2=\"169.4\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"250\" y=\"180.4\" font-size=\"11\" text-anchor=\"middle\" fill=\"currentColor\">3</text><line x1=\"286\" y1=\"163.4\" x2=\"286\" y2=\"169.4\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"286\" y=\"180.4\" font-size=\"11\" text-anchor=\"middle\" fill=\"currentColor\">4</text><line x1=\"322\" y1=\"163.4\" x2=\"322\" y2=\"169.4\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"322\" y=\"180.4\" font-size=\"11\" text-anchor=\"middle\" fill=\"currentColor\">5</text><line x1=\"139\" y1=\"204\" x2=\"145\" y2=\"204\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"136\" y=\"208\" font-size=\"11\" text-anchor=\"end\" fill=\"currentColor\">−1</text><line x1=\"139\" y1=\"128.8\" x2=\"145\" y2=\"128.8\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"136\" y=\"132.8\" font-size=\"11\" text-anchor=\"end\" fill=\"currentColor\">1</text><line x1=\"139\" y1=\"91.2\" x2=\"145\" y2=\"91.2\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"136\" y=\"95.2\" font-size=\"11\" text-anchor=\"end\" fill=\"currentColor\">2</text><line x1=\"139\" y1=\"53.6\" x2=\"145\" y2=\"53.6\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"136\" y=\"57.6\" font-size=\"11\" text-anchor=\"end\" fill=\"currentColor\">3</text><line x1=\"139\" y1=\"16\" x2=\"145\" y2=\"16\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"136\" y=\"20\" font-size=\"11\" text-anchor=\"end\" fill=\"currentColor\">4</text><text x=\"136\" y=\"180.4\" font-size=\"11\" text-anchor=\"end\" fill=\"currentColor\">O</text><text x=\"336\" y=\"159.4\" font-size=\"12\" text-anchor=\"end\" fill=\"currentColor\">x</text><text x=\"150\" y=\"10\" font-size=\"12\" text-anchor=\"start\" fill=\"currentColor\">y</text><path d=\"M34 128.8L106 53.6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M106 166.4L214 53.6L322 166.4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><circle cx=\"106\" cy=\"166.4\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"214\" cy=\"53.6\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"106\" cy=\"53.6\" r=\"3.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/></svg>",
+    "alt": "Parçalı doğrusal f grafiği, −3 ≤ x ≤ 5. Birinci parça (−3, 1)'den (−1, 3)'e gider; (−1, 3)'te açık nokta vardır. x = −1'de dolu nokta (−1, 0)'dadır, yani f(−1) = 0. İkinci parça (−1, 0)'dan (2, 3)'e (eğim 1), üçüncü parça (2, 3)'ten (5, 0)'a (eğim −1) gider; x = 2'de iki parça birleşir ve köşe oluşur.",
+    "baslik": "Graph of f",
+    "konum": "govde"
+   }
+  },
+  {
+   "id": "calc_k_u2_22",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 50,
+   "numara": 51,
+   "konu": "2.4 Connecting Differentiability and Continuity: Determining When Derivatives Do and Do Not Exist",
+   "zorluk": "medium",
+   "govde": "Let $g(x)=\\sqrt[3]{x}$. Which of the following is a correct justification that $g$ is not differentiable at $x=0$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$g$ is not continuous at $x=0$."
+    },
+    {
+     "id": "B",
+     "text": "The one-sided derivatives at $x=0$ are two different real numbers."
+    },
+    {
+     "id": "C",
+     "text": "$g'(0)=0$ because $g(0)=0$."
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{g(h)-g(0)}{h}=h^{-2/3}$ increases without bound as $h\\to0$, so $g'(0)$ does not exist."
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $\\frac{g(0+h)-g(0)}{h}=\\frac{h^{1/3}}{h}=h^{-2/3}=\\frac{1}{h^{2/3}}$.<br/>2. $h\\to0$ iken bu değer $+\\infty$'a gider; limit gerçek bir sayı değildir.<br/>3. Grafiğin $x=0$'da dikey teğeti vardır; $g'(0)$ yoktur.",
+   "genel_hatirlatma": "Türev gerçek bir sayı olmalıdır; fark bölümü sınırsız büyüyorsa (dikey teğet) türev yoktur.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Sürekli fonksiyonu süreksiz sanmak.",
+     "aciklama": "$\\sqrt[3]{x}$ her yerde süreklidir; türevlenemezliğin nedeni dikey teğettir."
+    },
+    "B": {
+     "etiket": "Dikey teğeti köşe sanmak.",
+     "aciklama": "Tek taraflı fark bölümleri sonlu değildir, ikisi de $+\\infty$'a gider."
+    },
+    "C": {
+     "etiket": "Fonksiyon değerini türev sanmak.",
+     "aciklama": "$g(0)=0$ yalnız noktanın yüksekliğidir; eğim hakkında bilgi vermez."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.4)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Dikey teğet ve türevlenemezlik gerekçesi",
+    "ipucu": "Fark bölümünü $h$ cinsinden yaz.",
+    "sikHata": "Dikey teğeti köşe ya da süreksizlik sanmak",
+    "cedKonu": "2.4",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_23",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 51,
+   "numara": 52,
+   "konu": "2.4 Connecting Differentiability and Continuity: Determining When Derivatives Do and Do Not Exist",
+   "zorluk": "hard",
+   "govde": "Let $f(x)=\\begin{cases}a\\sqrt{x}, & 0\\le x\\le4\\\\ bx+1, & x\\gt4\\end{cases}$, where $a$ and $b$ are constants. If $f$ is differentiable at $x=4$, what are the values of $a$ and $b$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$a=\\frac12,\\ b=0$"
+    },
+    {
+     "id": "B",
+     "text": "$a=1,\\ b=\\frac14$"
+    },
+    {
+     "id": "C",
+     "text": "$a=\\frac23,\\ b=\\frac{1}{12}$"
+    },
+    {
+     "id": "D",
+     "text": "$a=-1,\\ b=-\\frac14$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Süreklilik: $a\\sqrt4=4b+1$ ⇒ $2a=4b+1$.<br/>2. Eğimler: $\\frac{a}{2\\sqrt4}=b$ ⇒ $b=\\frac a4$.<br/>3. $2a=a+1$ ⇒ $a=1$, $b=\\frac14$.",
+   "genel_hatirlatma": "Parçalı fonksiyonda türevlenebilirlik = süreklilik denklemi + eğim denklemi.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yalnız sürekliliği sağlamak.",
+     "aciklama": "$2a=4b+1$'i sağlar ama eğimler eşit değildir: $\\frac{a}{4}=\\frac18\\neq0$."
+    },
+    "C": {
+     "etiket": "$\\sqrt x$'in türevinde hata.",
+     "aciklama": "$\\frac{d}{dx}a\\sqrt x=\\frac{a}{2\\sqrt x}$; $x=4$'te $\\frac a4$, $\\frac a8$ değil."
+    },
+    "D": {
+     "etiket": "Süreklilik denkleminde işaret hatası.",
+     "aciklama": "Sağ parça $x=4$'te $4b+1$ verir; $4b-1$ değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.4)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Parçalı fonksiyonda türevlenebilirlik koşulu",
+    "ipucu": "İki denklem kur: değer ve eğim.",
+    "sikHata": "Yalnız bir koşulu kullanmak",
+    "cedKonu": "2.4",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_24",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 52,
+   "numara": 53,
+   "konu": "2.4 Connecting Differentiability and Continuity: Determining When Derivatives Do and Do Not Exist",
+   "zorluk": "hard",
+   "govde": "Let $f(x)=x\\,|x-3|$. Which of the following statements about $f$ at $x=3$ is true?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$f$ is continuous at $x=3$, but $f'(3)$ does not exist because the one-sided derivatives are $-3$ and $3$."
+    },
+    {
+     "id": "B",
+     "text": "$f$ is not continuous at $x=3$, because $|x-3|$ has a corner there."
+    },
+    {
+     "id": "C",
+     "text": "$f'(3)=0$, because $f(3)=0$."
+    },
+    {
+     "id": "D",
+     "text": "$f$ is differentiable at $x=3$, and $f'(3)=3$."
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $x\\gt3$: $f(x)=x^2-3x$, $f'(x)=2x-3\\to3$.<br/>2. $x\\lt3$: $f(x)=3x-x^2$, $f'(x)=3-2x\\to-3$.<br/>3. $f(3)=0$ ve iki parça da 0'a gider: sürekli. Eğimler farklı ⇒ $f'(3)$ yok.",
+   "genel_hatirlatma": "Mutlak değerli fonksiyonu parçalı yaz; iki yandan sürekliliği ve eğimi kontrol et.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Köşeyi süreksizlik sanmak.",
+     "aciklama": "Köşe sürekliliği bozmaz; $\\lim_{x\\to3}f(x)=0=f(3)$."
+    },
+    "C": {
+     "etiket": "Fonksiyon değerini türev sanmak.",
+     "aciklama": "$f(3)=0$ yükseklik bilgisidir; tek taraflı eğimler $-3$ ve $3$'tür."
+    },
+    "D": {
+     "etiket": "Yalnız sağ taraflı türevi hesaplamak.",
+     "aciklama": "$x\\gt3$ için $f'(x)=2x-3\\to3$; ama $x\\lt3$ için $3-2x\\to-3$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.4)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Mutlak değerde köşe",
+    "ipucu": "$|x-3|$'ü iki parçaya ayır.",
+    "sikHata": "Tek tarafa bakıp sonuç çıkarmak",
+    "cedKonu": "2.4",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_25",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 53,
+   "numara": 54,
+   "konu": "2.5 Applying the Power Rule",
+   "zorluk": "easy",
+   "govde": "If $f(x)=\\frac{1}{x^4}$, then $f'(x)=$",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$-\\frac{4}{x^5}$"
+    },
+    {
+     "id": "B",
+     "text": "$-\\frac{4}{x^3}$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{1}{4x^3}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{4}{x^5}$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $f(x)=x^{-4}$.<br/>2. $f'(x)=-4x^{-5}=-\\frac{4}{x^5}$.",
+   "genel_hatirlatma": "Paydadaki kuvveti negatif üs olarak yaz, sonra kuvvet kuralını uygula.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Negatif üse 1 eklemek.",
+     "aciklama": "$x^{-4}$'ün üssü $-4-1=-5$ olur, $-3$ değil."
+    },
+    "C": {
+     "etiket": "Paydanın türevini alıp altta bırakmak.",
+     "aciklama": "Kural $\\frac{1}{g}$'ye böyle uygulanmaz; önce $x^{-4}$ yaz."
+    },
+    "D": {
+     "etiket": "Katsayının işaretini kaybetmek.",
+     "aciklama": "İnen üs $-4$'tür; katsayı negatiftir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.5)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Negatif üste kuvvet kuralı",
+    "ipucu": "Önce $x^{-4}$ yaz.",
+    "sikHata": "Üssü yanlış yönde değiştirmek",
+    "cedKonu": "2.5",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_26",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 54,
+   "numara": 55,
+   "konu": "2.5 Applying the Power Rule",
+   "zorluk": "easy",
+   "govde": "If $f(x)=x^{5/2}$, what is the value of $f'(4)$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$20$"
+    },
+    {
+     "id": "B",
+     "text": "$8$"
+    },
+    {
+     "id": "C",
+     "text": "$80$"
+    },
+    {
+     "id": "D",
+     "text": "$5$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $f'(x)=\\frac52x^{3/2}$.<br/>2. $4^{3/2}=(\\sqrt4)^3=8$ ⇒ $f'(4)=\\frac52\\cdot8=20$.",
+   "genel_hatirlatma": "$\\frac{d}{dx}x^n=nx^{n-1}$, kesirli $n$ için de.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Katsayıyı unutmak.",
+     "aciklama": "$4^{3/2}=8$ doğru, ama önüne $\\frac52$ gelir: $\\frac52\\cdot8=20$."
+    },
+    "C": {
+     "etiket": "Üssü azaltmayı unutmak.",
+     "aciklama": "$\\frac52\\cdot4^{5/2}=\\frac52\\cdot32=80$; üs $\\frac32$ olmalıdır."
+    },
+    "D": {
+     "etiket": "Üssü 2 azaltmak.",
+     "aciklama": "$\\frac52-1=\\frac32$'dir; $\\frac12$ değil. $\\frac52\\cdot4^{1/2}=5$ yanlış."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.5)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Kesirli üste kuvvet kuralı",
+    "ipucu": "$4^{3/2}=(\\sqrt4)^3$.",
+    "sikHata": "Üs ve katsayı hataları",
+    "cedKonu": "2.5",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_27",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 55,
+   "numara": 56,
+   "konu": "2.5 Applying the Power Rule",
+   "zorluk": "medium",
+   "govde": "If $y=\\frac{2x^3-5\\sqrt{x}}{x}$, what is the value of $\\frac{dy}{dx}$ at $x=1$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{13}{2}$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac72$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac32$"
+    },
+    {
+     "id": "D",
+     "text": "$4$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Böl: $y=2x^2-5x^{-1/2}$.<br/>2. $y'=4x+\\frac52x^{-3/2}$.<br/>3. $x=1$: $4+\\frac52=\\frac{13}{2}$.",
+   "genel_hatirlatma": "Tek terimli paydaya bölünen ifadeyi önce terim terim böl.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Pay ve paydanın türevlerini ayrı ayrı alıp bölmek.",
+     "aciklama": "$\\frac{6x^2-\\frac{5}{2\\sqrt x}}{1}$ hesabı geçersizdir; önce böl, sonra türev al."
+    },
+    "C": {
+     "etiket": "Negatif üslü terimin türevinde işaret hatası.",
+     "aciklama": "$-5x^{-1/2}$'nin türevi $-5\\cdot(-\\frac12)x^{-3/2}=+\\frac52x^{-3/2}$'dir."
+    },
+    "D": {
+     "etiket": "İkinci terimin türevini almayı unutmak.",
+     "aciklama": "$-5x^{-1/2}$ de türevlenmelidir; $x=1$'de $+\\frac52$ katkı verir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.5)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Yeniden yazıp kuvvet kuralı",
+    "ipucu": "$\\frac{\\sqrt x}{x}=x^{-1/2}$.",
+    "sikHata": "Bölümü türevlerin bölümü sanmak",
+    "cedKonu": "2.5",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_28",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 56,
+   "numara": 57,
+   "konu": "2.5 Applying the Power Rule",
+   "zorluk": "medium",
+   "govde": "Which of the following is an equation of the line tangent to the graph of $y=x^{2/3}$ at $x=8$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$y-8=\\frac13(x-4)$"
+    },
+    {
+     "id": "B",
+     "text": "$y=4+\\frac13(x-8)$"
+    },
+    {
+     "id": "C",
+     "text": "$y=4-3(x-8)$"
+    },
+    {
+     "id": "D",
+     "text": "$y=4+\\frac43(x-8)$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $y(8)=8^{2/3}=4$.<br/>2. $y'=\\frac23x^{-1/3}$ ⇒ $y'(8)=\\frac23\\cdot\\frac12=\\frac13$.<br/>3. $y=4+\\frac13(x-8)$.",
+   "genel_hatirlatma": "Teğet: nokta $(a,f(a))$ ve eğim $f'(a)$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Noktanın koordinatlarını değiştirmek.",
+     "aciklama": "Nokta $(8,4)$'tür: $8^{2/3}=4$."
+    },
+    "C": {
+     "etiket": "Normal doğruyu yazmak.",
+     "aciklama": "$-3$, teğet eğimi $\\frac13$'ün negatif tersidir; normal doğrunun eğimidir."
+    },
+    "D": {
+     "etiket": "Üs hatası: $\\frac23-1=\\frac13$ sanmak.",
+     "aciklama": "$\\frac23-1=-\\frac13$; $8^{-1/3}=\\frac12$. $\\frac23\\cdot8^{1/3}=\\frac43$ yanlış."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.5)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Kuvvet kuralıyla teğet doğru",
+    "ipucu": "$8^{1/3}=2$.",
+    "sikHata": "Kesirli üste 1 çıkarırken hata",
+    "cedKonu": "2.5",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_29",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 57,
+   "numara": 58,
+   "konu": "2.5 Applying the Power Rule",
+   "zorluk": "hard",
+   "govde": "The line $y=27x-54$ is tangent to the graph of $y=x^3$ at a point $P$. What are the coordinates of $P$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$(3,27)$"
+    },
+    {
+     "id": "B",
+     "text": "$(-3,-27)$"
+    },
+    {
+     "id": "C",
+     "text": "$(-6,-216)$"
+    },
+    {
+     "id": "D",
+     "text": "$(3\\sqrt3,81\\sqrt3)$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Eğim: $3x^2=27$ ⇒ $x=\\pm3$.<br/>2. Nokta: $x=3$'te eğri $27$, doğru $81-54=27$ ✓. $x=-3$'te eğri $-27$, doğru $-135$ ✗.<br/>3. $P=(3,27)$.",
+   "genel_hatirlatma": "Teğet noktasında hem eğim hem $y$-değeri eşit olmalıdır.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Eğim koşulunun iki kökünü de kabul etmek.",
+     "aciklama": "$x=-3$'te eğim 27'dir ama doğru $27(-3)-54=-135$ verir; eğri $-27$. Ortak nokta yok."
+    },
+    "C": {
+     "etiket": "Kesişim noktasını teğet noktası sanmak.",
+     "aciklama": "$x^3=27x-54$ ⇒ $(x-3)^2(x+6)=0$; $x=-6$'da doğru eğriyi keser ama eğim $108\\neq27$."
+    },
+    "D": {
+     "etiket": "Türevde katsayıyı unutmak.",
+     "aciklama": "$\\frac{d}{dx}x^3=3x^2$; $x^2=27$ yazmak katsayı 3'ü atlar."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.5)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Verilen teğetten nokta bulma",
+    "ipucu": "Eğim denklemi + nokta kontrolü.",
+    "sikHata": "Yalnız eğim koşulunu kullanmak",
+    "cedKonu": "2.5",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_30",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 58,
+   "numara": 59,
+   "konu": "2.5 Applying the Power Rule",
+   "zorluk": "easy",
+   "govde": "<em>(Graphing calculator allowed.)</em> What is the slope of the line tangent to the graph of $y=x^{1.4}$ at $x=3$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$4.656$"
+    },
+    {
+     "id": "B",
+     "text": "$2.173$"
+    },
+    {
+     "id": "C",
+     "text": "$6.518$"
+    },
+    {
+     "id": "D",
+     "text": "$1.552$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $y'=1.4x^{0.4}$.<br/>2. $y'(3)=1.4\\cdot3^{0.4}\\approx1.4\\cdot1.5518\\approx2.173$.",
+   "genel_hatirlatma": "Ondalık üsler için de kuvvet kuralı geçerlidir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Eğim yerine $y$-değerini hesaplamak.",
+     "aciklama": "$3^{1.4}\\approx4.656$ noktanın yüksekliğidir."
+    },
+    "C": {
+     "etiket": "Üssü azaltmayı unutmak.",
+     "aciklama": "$1.4\\cdot3^{1.4}$ yanlıştır; üs $0.4$ olmalıdır."
+    },
+    "D": {
+     "etiket": "Katsayıyı unutmak.",
+     "aciklama": "$3^{0.4}\\approx1.552$; önüne $1.4$ gelir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.5)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Ondalık üste kuvvet kuralı",
+    "ipucu": "Üs: $1.4-1=0.4$.",
+    "sikHata": "Katsayı ya da üs hatası",
+    "cedKonu": "2.5",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_31",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 59,
+   "numara": 60,
+   "konu": "2.6 Derivative Rules: Constant, Sum, Difference, and Constant Multiple",
+   "zorluk": "easy",
+   "govde": "If $g(x)=\\frac{3}{x^2}-4x+e^2$, what is the value of $g'(1)$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$2$"
+    },
+    {
+     "id": "B",
+     "text": "$-10+2e$"
+    },
+    {
+     "id": "C",
+     "text": "$-10$"
+    },
+    {
+     "id": "D",
+     "text": "$-\\frac52$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $g(x)=3x^{-2}-4x+e^2$.<br/>2. $g'(x)=-6x^{-3}-4$.<br/>3. $g'(1)=-6-4=-10$.",
+   "genel_hatirlatma": "Sabit terimlerin ($e^2$, $\\pi$, $\\ln 5$) türevi 0'dır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Negatif üslü terimde işaret hatası.",
+     "aciklama": "$3x^{-2}$'nin türevi $-6x^{-3}$'tür; $+6$ değil."
+    },
+    "B": {
+     "etiket": "Sabitin türevini sıfır almamak.",
+     "aciklama": "$e^2\\approx7.39$ bir sayıdır; türevi 0'dır."
+    },
+    "D": {
+     "etiket": "Kuvvet kuralını paydaya yanlış uygulamak.",
+     "aciklama": "$\\frac{3}{x^2}$'nin türevi $\\frac{3}{2x}$ değildir; $3x^{-2}$ → $-6x^{-3}$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.6)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Toplam/fark ve sabit kuralları",
+    "ipucu": "$e^2$ sabittir.",
+    "sikHata": "Sabitin türevini sıfır almamak",
+    "cedKonu": "2.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_32",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 60,
+   "numara": 61,
+   "konu": "2.6 Derivative Rules: Constant, Sum, Difference, and Constant Multiple",
+   "zorluk": "medium",
+   "govde": "Differentiable functions $f$ and $g$ satisfy the values in the table.<table class='u-table'><tr><th>$x$</th><th>$f(x)$</th><th>$f'(x)$</th><th>$g(x)$</th><th>$g'(x)$</th></tr><tr><td>$1$</td><td>$4$</td><td>$2$</td><td>$-1$</td><td>$5$</td></tr></table>Let $h(x)=f(x)-3g(x)+2x$. Which of the following is an equation of the line tangent to the graph of $h$ at $x=1$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$y=9-13(x-1)$"
+    },
+    {
+     "id": "B",
+     "text": "$y=3-11(x-1)$"
+    },
+    {
+     "id": "C",
+     "text": "$y=9+19(x-1)$"
+    },
+    {
+     "id": "D",
+     "text": "$y=9-11(x-1)$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $h(1)=f(1)-3g(1)+2=4+3+2=9$.<br/>2. $h'(x)=f'(x)-3g'(x)+2$ ⇒ $h'(1)=2-15+2=-11$.<br/>3. $y=9-11(x-1)$.",
+   "genel_hatirlatma": "Değer için $f$, $g$ sütunları; eğim için $f'$, $g'$ sütunları.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$2x$ teriminin türevini unutmak.",
+     "aciklama": "$\\frac{d}{dx}[2x]=2$; eğim $2-15+2=-11$."
+    },
+    "B": {
+     "etiket": "$h(1)$'de negatif değerin işaretini kaybetmek.",
+     "aciklama": "$-3g(1)=-3(-1)=+3$; $h(1)=4+3+2=9$."
+    },
+    "C": {
+     "etiket": "$-3g'(1)$'in işaretini kaybetmek.",
+     "aciklama": "$-3g'(1)=-3(5)=-15$; $+15$ değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.6)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Tablo ile doğrusal birleşimin teğeti",
+    "ipucu": "Önce $h(1)$, sonra $h'(1)$.",
+    "sikHata": "Negatif katsayıda işaret hatası",
+    "cedKonu": "2.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_33",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 61,
+   "numara": 62,
+   "konu": "2.6 Derivative Rules: Constant, Sum, Difference, and Constant Multiple",
+   "zorluk": "medium",
+   "govde": "At which values of $x$ does the graph of $y=x^3-6x^2+9x+2$ have a horizontal tangent line?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$x=0$ and $x=3$"
+    },
+    {
+     "id": "B",
+     "text": "$x=-1$ and $x=-3$"
+    },
+    {
+     "id": "C",
+     "text": "$x=1$ and $x=3$"
+    },
+    {
+     "id": "D",
+     "text": "$x=2$ only"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $y'=3x^2-12x+9=3(x^2-4x+3)=3(x-1)(x-3)$.<br/>2. $y'=0$ ⇒ $x=1$ ya da $x=3$.",
+   "genel_hatirlatma": "Yatay teğet ⇔ $y'=0$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Türev yerine fonksiyonu (sabit hariç) sıfıra eşitlemek.",
+     "aciklama": "$x^3-6x^2+9x=x(x-3)^2=0$ köklerini bulmak yatay teğet vermez; $y'=0$ çözülmeli."
+    },
+    "B": {
+     "etiket": "Çarpanlardan kök okurken işaret hatası.",
+     "aciklama": "$3(x-1)(x-3)=0$ ⇒ $x=1$, $x=3$."
+    },
+    "D": {
+     "etiket": "$6x-12=0$ çözmek (ikinci türev).",
+     "aciklama": "$y''=0$ yatay teğet değil, başka bir özelliktir; yatay teğet için $y'=0$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.6)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Polinomun yatay teğetleri",
+    "ipucu": "Türevi çarpanlarına ayır.",
+    "sikHata": "Fonksiyonu sıfıra eşitlemek",
+    "cedKonu": "2.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_34",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 62,
+   "numara": 63,
+   "konu": "2.6 Derivative Rules: Constant, Sum, Difference, and Constant Multiple",
+   "zorluk": "hard",
+   "govde": "Let $f(x)=ax^2+bx$, where $a$ and $b$ are constants. The line $y=3x+2$ is tangent to the graph of $f$ at $x=1$. What are the values of $a$ and $b$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$a=-2,\\ b=7$"
+    },
+    {
+     "id": "B",
+     "text": "$a=2,\\ b=1$"
+    },
+    {
+     "id": "C",
+     "text": "$a=\\frac32,\\ b=\\frac72$"
+    },
+    {
+     "id": "D",
+     "text": "$a=3,\\ b=2$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Nokta: $f(1)=a+b=3(1)+2=5$.<br/>2. Eğim: $f'(x)=2ax+b$ ⇒ $2a+b=3$.<br/>3. Çıkar: $a=-2$, $b=7$.",
+   "genel_hatirlatma": "Teğet doğru iki koşul verir: aynı değer ve aynı eğim.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Değer ve eğimi karıştırmak.",
+     "aciklama": "$f(1)=3$ ve $f'(1)=5$ yazılmış; doğrusu $f(1)=3(1)+2=5$, $f'(1)=3$."
+    },
+    "C": {
+     "etiket": "Türevde $bx$ terimini unutmak.",
+     "aciklama": "$f'(x)=2ax+b$'dir; $2a=3$ yazmak $b$'yi atlar."
+    },
+    "D": {
+     "etiket": "Doğrunun katsayılarını doğrudan almak.",
+     "aciklama": "Doğru $y=3x+2$, parabolün katsayılarını vermez; yalnız $x=1$'deki değer ve eğimi verir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.6)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Teğetten katsayı bulma",
+    "ipucu": "İki denklem: $f(1)=5$, $f'(1)=3$.",
+    "sikHata": "Değer ile eğimi karıştırmak",
+    "cedKonu": "2.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_35",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 63,
+   "numara": 64,
+   "konu": "2.6 Derivative Rules: Constant, Sum, Difference, and Constant Multiple",
+   "zorluk": "medium",
+   "govde": "The graph of the piecewise linear function $f$ is shown above. Let $k(x)=3f(x)-2x$. What is the value of $k'(4)$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$1$"
+    },
+    {
+     "id": "B",
+     "text": "$3$"
+    },
+    {
+     "id": "C",
+     "text": "$-8$"
+    },
+    {
+     "id": "D",
+     "text": "$-2$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $x=4$, $(2,0)$–$(6,4)$ parçasında: $f'(4)=\\frac{4-0}{6-2}=1$.<br/>2. $k'(x)=3f'(x)-2$ ⇒ $k'(4)=3(1)-2=1$.",
+   "genel_hatirlatma": "Parçalı doğrusal grafikte türev, noktayı içeren parçanın eğimidir.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "$-2x$ teriminin türevini unutmak.",
+     "aciklama": "$3f'(4)=3$; $\\frac{d}{dx}[-2x]=-2$ eklenmeli: $3-2=1$."
+    },
+    "C": {
+     "etiket": "Yanlış parçanın eğimini okumak.",
+     "aciklama": "$-2$ eğimi $0\\lt x\\lt2$ parçasınındır; $x=4$ ikinci parçadadır (eğim 1)."
+    },
+    "D": {
+     "etiket": "Türev yerine $k(4)$'ü hesaplamak.",
+     "aciklama": "$k(4)=3f(4)-8=3(2)-8=-2$ fonksiyon değeridir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.6)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Grafikten türev ve sabitle çarpım",
+    "ipucu": "Doğru parçayı seç, eğimini hesapla.",
+    "sikHata": "Değer ile türevi karıştırmak",
+    "cedKonu": "2.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif",
+   "sekil": {
+    "tur": "svg",
+    "svg": "<svg viewBox=\"0 0 320 240\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><line x1=\"34\" y1=\"16\" x2=\"34\" y2=\"214\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"78.7\" y1=\"16\" x2=\"78.7\" y2=\"214\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"123.3\" y1=\"16\" x2=\"123.3\" y2=\"214\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"168\" y1=\"16\" x2=\"168\" y2=\"214\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"212.7\" y1=\"16\" x2=\"212.7\" y2=\"214\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"257.3\" y1=\"16\" x2=\"257.3\" y2=\"214\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"302\" y1=\"16\" x2=\"302\" y2=\"214\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"34\" y1=\"214\" x2=\"302\" y2=\"214\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"34\" y1=\"181\" x2=\"302\" y2=\"181\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"34\" y1=\"148\" x2=\"302\" y2=\"148\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"34\" y1=\"115\" x2=\"302\" y2=\"115\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"34\" y1=\"82\" x2=\"302\" y2=\"82\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"34\" y1=\"49\" x2=\"302\" y2=\"49\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"34\" y1=\"16\" x2=\"302\" y2=\"16\" stroke=\"currentColor\" stroke-width=\"0.5\" class=\"sk-izgara\" opacity=\"0.4\"/><line x1=\"34\" y1=\"181\" x2=\"310\" y2=\"181\" stroke=\"currentColor\" stroke-width=\"1.2\" class=\"sk-eksen\"/><polygon points=\"316,181 309,184.5 309,177.5\" fill=\"currentColor\" stroke=\"none\" class=\"sk-eksen\"/><line x1=\"34\" y1=\"214\" x2=\"34\" y2=\"8\" stroke=\"currentColor\" stroke-width=\"1.2\" class=\"sk-eksen\"/><polygon points=\"34,2 37.5,9 30.5,9\" fill=\"currentColor\" stroke=\"none\" class=\"sk-eksen\"/><line x1=\"78.7\" y1=\"178\" x2=\"78.7\" y2=\"184\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"78.7\" y=\"195\" font-size=\"11\" text-anchor=\"middle\" fill=\"currentColor\">1</text><line x1=\"123.3\" y1=\"178\" x2=\"123.3\" y2=\"184\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"123.3\" y=\"195\" font-size=\"11\" text-anchor=\"middle\" fill=\"currentColor\">2</text><line x1=\"168\" y1=\"178\" x2=\"168\" y2=\"184\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"168\" y=\"195\" font-size=\"11\" text-anchor=\"middle\" fill=\"currentColor\">3</text><line x1=\"212.7\" y1=\"178\" x2=\"212.7\" y2=\"184\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"212.7\" y=\"195\" font-size=\"11\" text-anchor=\"middle\" fill=\"currentColor\">4</text><line x1=\"257.3\" y1=\"178\" x2=\"257.3\" y2=\"184\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"257.3\" y=\"195\" font-size=\"11\" text-anchor=\"middle\" fill=\"currentColor\">5</text><line x1=\"302\" y1=\"178\" x2=\"302\" y2=\"184\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"302\" y=\"195\" font-size=\"11\" text-anchor=\"middle\" fill=\"currentColor\">6</text><line x1=\"31\" y1=\"214\" x2=\"37\" y2=\"214\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"28\" y=\"218\" font-size=\"11\" text-anchor=\"end\" fill=\"currentColor\">−1</text><line x1=\"31\" y1=\"148\" x2=\"37\" y2=\"148\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"28\" y=\"152\" font-size=\"11\" text-anchor=\"end\" fill=\"currentColor\">1</text><line x1=\"31\" y1=\"115\" x2=\"37\" y2=\"115\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"28\" y=\"119\" font-size=\"11\" text-anchor=\"end\" fill=\"currentColor\">2</text><line x1=\"31\" y1=\"82\" x2=\"37\" y2=\"82\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"28\" y=\"86\" font-size=\"11\" text-anchor=\"end\" fill=\"currentColor\">3</text><line x1=\"31\" y1=\"49\" x2=\"37\" y2=\"49\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"28\" y=\"53\" font-size=\"11\" text-anchor=\"end\" fill=\"currentColor\">4</text><line x1=\"31\" y1=\"16\" x2=\"37\" y2=\"16\" stroke=\"currentColor\" stroke-width=\"1\" class=\"sk-eksen\"/><text x=\"28\" y=\"20\" font-size=\"11\" text-anchor=\"end\" fill=\"currentColor\">5</text><text x=\"28\" y=\"195\" font-size=\"11\" text-anchor=\"end\" fill=\"currentColor\">O</text><text x=\"316\" y=\"174\" font-size=\"12\" text-anchor=\"end\" fill=\"currentColor\">x</text><text x=\"42\" y=\"10\" font-size=\"12\" text-anchor=\"start\" fill=\"currentColor\">y</text><path d=\"M34 49L123.3 181L302 49\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><circle cx=\"34\" cy=\"49\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"123.3\" cy=\"181\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"302\" cy=\"49\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/></svg>",
+    "alt": "Parçalı doğrusal f grafiği: (0, 4)'ten (2, 0)'a (eğim −2) ve (2, 0)'dan (6, 4)'e (eğim 1) iki doğru parçası. x = 4'te grafik (4, 2) noktasından geçer.",
+    "baslik": "Graph of f",
+    "konum": "govde"
+   }
+  },
+  {
+   "id": "calc_k_u2_36",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 64,
+   "numara": 65,
+   "konu": "2.7 Derivatives of cos x, sin x, e^x, and ln x",
+   "zorluk": "easy",
+   "govde": "If $f(x)=4\\sin x-3e^x+\\ln x$, then $f'(x)=$",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$-4\\cos x-3e^x+\\frac1x$"
+    },
+    {
+     "id": "B",
+     "text": "$4\\cos x-3e^x+\\frac1x$"
+    },
+    {
+     "id": "C",
+     "text": "$4\\cos x-3xe^{x-1}+\\frac1x$"
+    },
+    {
+     "id": "D",
+     "text": "$4\\cos x-3e^x-\\frac{1}{x^2}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $\\frac{d}{dx}[4\\sin x]=4\\cos x$.<br/>2. $\\frac{d}{dx}[-3e^x]=-3e^x$.<br/>3. $\\frac{d}{dx}[\\ln x]=\\frac1x$.",
+   "genel_hatirlatma": "sin → cos, cos → −sin, eˣ → eˣ, ln x → 1/x.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$\\sin x$'in türevinde işaret hatası.",
+     "aciklama": "$\\frac{d}{dx}\\sin x=\\cos x$ (eksi yok); eksi işareti $\\cos x$'in türevindedir."
+    },
+    "C": {
+     "etiket": "$e^x$'e kuvvet kuralı uygulamak.",
+     "aciklama": "$e^x$'in türevi kendisidir; kuvvet kuralı yalnız $x^n$ içindir."
+    },
+    "D": {
+     "etiket": "$\\ln x$'in türevi yerine $\\frac1x$'in türevini yazmak.",
+     "aciklama": "$\\frac{d}{dx}\\ln x=\\frac1x$; $-\\frac{1}{x^2}$, $\\frac1x$'in türevidir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.7)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Temel transandant türevler",
+    "ipucu": "Dört kuralı terim terim uygula.",
+    "sikHata": "Kuralları karıştırmak",
+    "cedKonu": "2.7",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_37",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 65,
+   "numara": 66,
+   "konu": "2.7 Derivatives of cos x, sin x, e^x, and ln x",
+   "zorluk": "easy",
+   "govde": "What is the slope of the line tangent to the graph of $y=2\\cos x+x$ at $x=\\frac{\\pi}{2}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$-1$"
+    },
+    {
+     "id": "B",
+     "text": "$3$"
+    },
+    {
+     "id": "C",
+     "text": "$1$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{\\pi}{2}$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $y'=-2\\sin x+1$.<br/>2. $x=\\frac\\pi2$: $-2(1)+1=-1$.",
+   "genel_hatirlatma": "Teğet eğimi = türevin o noktadaki değeri.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "$\\cos x$'in türevini $\\sin x$ sanmak.",
+     "aciklama": "$\\frac{d}{dx}\\cos x=-\\sin x$; $2\\sin\\frac\\pi2+1=3$ işaret hatasıdır."
+    },
+    "C": {
+     "etiket": "Türevde $\\sin$ yerine $\\cos$ değerini kullanmak.",
+     "aciklama": "$-2\\cos\\frac\\pi2+1=1$ yanlış; türev $-2\\sin x+1$'dir."
+    },
+    "D": {
+     "etiket": "Eğim yerine $y$-değerini hesaplamak.",
+     "aciklama": "$y\\left(\\frac\\pi2\\right)=0+\\frac\\pi2$ noktanın yüksekliğidir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.7)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Trigonometrik teğet eğimi",
+    "ipucu": "$\\sin\\frac\\pi2=1$.",
+    "sikHata": "cos türevinde işaret",
+    "cedKonu": "2.7",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_38",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 66,
+   "numara": 67,
+   "konu": "2.7 Derivatives of cos x, sin x, e^x, and ln x",
+   "zorluk": "medium",
+   "govde": "What is the value of $\\lim_{h\\to0}\\frac{\\ln(e+h)-1}{h}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$1$"
+    },
+    {
+     "id": "B",
+     "text": "$e$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac1e$"
+    },
+    {
+     "id": "D",
+     "text": "$0$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $1=\\ln e$: limit $\\lim_{h\\to0}\\frac{\\ln(e+h)-\\ln e}{h}$, $f(x)=\\ln x$, $a=e$.<br/>2. $f'(e)=\\frac1e$.",
+   "genel_hatirlatma": "Sabiti $f(a)$ olarak yeniden yaz, limit kalıbını tanı.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Türev yerine $\\ln e$ değerini yazmak.",
+     "aciklama": "$\\ln e=1$ fonksiyon değeridir; limit türevin $x=e$'deki değeridir."
+    },
+    "B": {
+     "etiket": "$\\frac1x$ yerine $x$ yazmak.",
+     "aciklama": "$\\frac{d}{dx}\\ln x=\\frac1x$; $x=e$'de $\\frac1e$."
+    },
+    "D": {
+     "etiket": "$\\frac00$'ı 0 sanmak.",
+     "aciklama": "Pay ve payda 0'a gider; oranın limiti türevdir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.7)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "ln x türev limiti",
+    "ipucu": "$1=\\ln e$.",
+    "sikHata": "Fonksiyon değeri ile türevi karıştırmak",
+    "cedKonu": "2.7",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_39",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 67,
+   "numara": 68,
+   "konu": "2.7 Derivatives of cos x, sin x, e^x, and ln x",
+   "zorluk": "medium",
+   "govde": "At what value of $x$ does the graph of $f(x)=e^x-5x$ have a horizontal tangent line?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$x=e^5$"
+    },
+    {
+     "id": "B",
+     "text": "$x=5$"
+    },
+    {
+     "id": "C",
+     "text": "There is no such value of $x$."
+    },
+    {
+     "id": "D",
+     "text": "$x=\\ln5$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $f'(x)=e^x-5$.<br/>2. $e^x-5=0$ ⇒ $e^x=5$ ⇒ $x=\\ln5\\approx1.609$.",
+   "genel_hatirlatma": "$e^x=k$ ($k\\gt0$) ⇒ $x=\\ln k$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Üstel ve logaritmayı ters uygulamak.",
+     "aciklama": "$e^x=5$ ⇒ $x=\\ln5$; $e^5$ değil."
+    },
+    "B": {
+     "etiket": "$e^x=5$'ten $x=5$ çıkarmak.",
+     "aciklama": "$e^5\\approx148\\neq5$; tersini almak için ln kullanılır."
+    },
+    "C": {
+     "etiket": "$e^x\\gt0$ olduğu için türevin sıfır olamayacağını sanmak.",
+     "aciklama": "$e^x$ hiç sıfır olmaz, ama $f'(x)=e^x-5$ sıfır olabilir: $e^x=5$ ⇒ $x=\\ln5$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.7)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Üstel fonksiyonda yatay teğet",
+    "ipucu": "Türevi sıfıra eşitle, ln al.",
+    "sikHata": "e ve ln'i ters kullanmak",
+    "cedKonu": "2.7",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_40",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 68,
+   "numara": 69,
+   "konu": "2.7 Derivatives of cos x, sin x, e^x, and ln x",
+   "zorluk": "hard",
+   "govde": "Let $f(x)=a\\sin x+b\\cos x$, where $a$ and $b$ are constants. If $f(0)=3$ and $f'(0)=-2$, what is the value of $f'\\left(\\frac{\\pi}{2}\\right)$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$3$"
+    },
+    {
+     "id": "B",
+     "text": "$-3$"
+    },
+    {
+     "id": "C",
+     "text": "$-2$"
+    },
+    {
+     "id": "D",
+     "text": "$0$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $f(0)=b=3$.<br/>2. $f'(x)=a\\cos x-b\\sin x$ ⇒ $f'(0)=a=-2$.<br/>3. $f'\\left(\\frac\\pi2\\right)=a(0)-b(1)=-3$.",
+   "genel_hatirlatma": "Önce koşullardan sabitleri bul, sonra türevi istenen noktada hesapla.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$\\cos x$'in türevinde işaret hatası.",
+     "aciklama": "$f'(x)=a\\cos x-b\\sin x$; $+b\\sin x$ yazılırsa $f'\\left(\\frac\\pi2\\right)=3$ çıkar."
+    },
+    "C": {
+     "etiket": "$f'(\\frac\\pi2)$ yerine $f(\\frac\\pi2)$ hesaplamak.",
+     "aciklama": "$f\\left(\\frac\\pi2\\right)=a=-2$ fonksiyon değeridir."
+    },
+    "D": {
+     "etiket": "$\\sin\\frac\\pi2$'yi 0 sanmak.",
+     "aciklama": "$\\sin\\frac\\pi2=1$, $\\cos\\frac\\pi2=0$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.7)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Koşullardan katsayı ve trigonometrik türev",
+    "ipucu": "$f(0)$ $b$'yi, $f'(0)$ $a$'yı verir.",
+    "sikHata": "cos türevinde işaret",
+    "cedKonu": "2.7",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_41",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 69,
+   "numara": 70,
+   "konu": "2.7 Derivatives of cos x, sin x, e^x, and ln x",
+   "zorluk": "hard",
+   "govde": "<em>(Graphing calculator allowed.)</em> Let $f(x)=3\\ln x+\\cos x$. For how many values of $x$ in the open interval $0\\lt x\\lt6$ is the line tangent to the graph of $f$ parallel to the line $y=x$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "One"
+    },
+    {
+     "id": "B",
+     "text": "Three"
+    },
+    {
+     "id": "C",
+     "text": "Two"
+    },
+    {
+     "id": "D",
+     "text": "Zero"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Paralel ⇒ eğim 1: $f'(x)=\\frac3x-\\sin x=1$.<br/>2. Hesap makinesinde $y_1=\\frac3x-\\sin x$ ve $y_2=1$ grafikleri $(0,6)$'da $x\\approx1.502$, $3.206$, $5.781$'de kesişir.<br/>3. Üç değer.",
+   "genel_hatirlatma": "Paralel doğrular eşit eğimlidir; $f'(x)=m$ denklemini hesap makinesiyle çöz.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Türevde işaret hatası.",
+     "aciklama": "$\\frac{d}{dx}\\cos x=-\\sin x$. $\\frac3x+\\sin x=1$ çözülürse tek kök çıkar; doğru denklem $\\frac3x-\\sin x=1$."
+    },
+    "C": {
+     "etiket": "Grafik penceresini dar seçmek.",
+     "aciklama": "$x\\approx5.781$ kökü de $(0,6)$'dadır; pencereyi aralığın tamamına aç."
+    },
+    "D": {
+     "etiket": "Paralellik yerine yatay teğet aramak.",
+     "aciklama": "$y=x$'e paralel teğetin eğimi 1'dir; $f'(x)=0$ değil $f'(x)=1$ çözülür."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.7)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Hesap makinesiyle $f'(x)=m$ çözmek",
+    "ipucu": "Türevi elle bul, kesişimleri hesap makinesinde say.",
+    "sikHata": "Eğimi yanlış seçmek",
+    "cedKonu": "2.7",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_42",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 70,
+   "numara": 71,
+   "konu": "2.8 The Product Rule",
+   "zorluk": "easy",
+   "govde": "If $y=x^3\\cos x$, then $\\frac{dy}{dx}=$",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$-3x^2\\sin x$"
+    },
+    {
+     "id": "B",
+     "text": "$3x^2\\cos x-x^3\\sin x$"
+    },
+    {
+     "id": "C",
+     "text": "$3x^2\\cos x+x^3\\sin x$"
+    },
+    {
+     "id": "D",
+     "text": "$3x^2\\cos x$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $f=x^3$, $f'=3x^2$; $g=\\cos x$, $g'=-\\sin x$.<br/>2. $y'=f'g+fg'=3x^2\\cos x-x^3\\sin x$.",
+   "genel_hatirlatma": "$(fg)'=f'g+fg'$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Türevlerin çarpımını almak.",
+     "aciklama": "$(fg)'\\neq f'g'$; çarpım kuralı iki terim verir."
+    },
+    "C": {
+     "etiket": "$\\cos x$'in türevinde işaret hatası.",
+     "aciklama": "$\\frac{d}{dx}\\cos x=-\\sin x$."
+    },
+    "D": {
+     "etiket": "İkinci terimi unutmak.",
+     "aciklama": "$f\\,g'=x^3(-\\sin x)$ terimi eksik."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.8)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Çarpım kuralı",
+    "ipucu": "İki terim yaz.",
+    "sikHata": "Türevlerin çarpımı",
+    "cedKonu": "2.8",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_43",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 71,
+   "numara": 72,
+   "konu": "2.8 The Product Rule",
+   "zorluk": "medium",
+   "govde": "Differentiable functions $f$ and $g$ satisfy the values in the table.<table class='u-table'><tr><th>$x$</th><th>$f(x)$</th><th>$f'(x)$</th><th>$g(x)$</th><th>$g'(x)$</th></tr><tr><td>$3$</td><td>$2$</td><td>$-1$</td><td>$4$</td><td>$5$</td></tr></table>Let $h(x)=f(x)g(x)-2x$. What is the value of $h'(3)$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$-7$"
+    },
+    {
+     "id": "B",
+     "text": "$6$"
+    },
+    {
+     "id": "C",
+     "text": "$-16$"
+    },
+    {
+     "id": "D",
+     "text": "$4$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $h'(x)=f'(x)g(x)+f(x)g'(x)-2$.<br/>2. $h'(3)=(-1)(4)+(2)(5)-2=-4+10-2=4$.",
+   "genel_hatirlatma": "Tablo sorusunda çarpım kuralı: dört değerin dördü de kullanılır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Türevlerin çarpımını almak.",
+     "aciklama": "$f'(3)g'(3)-2=-5-2=-7$; çarpım kuralı $f'g+fg'$'dür."
+    },
+    "B": {
+     "etiket": "$-2x$ teriminin türevini unutmak.",
+     "aciklama": "$f'g+fg'=6$; $\\frac{d}{dx}[-2x]=-2$ eklenmeli."
+    },
+    "C": {
+     "etiket": "Çarpım kuralında artı yerine eksi kullanmak.",
+     "aciklama": "$f'g-fg'$ bölüm kuralının payıdır; çarpımda iki terim toplanır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.8)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Tabloyla çarpım kuralı",
+    "ipucu": "Sembolik formülü önce yaz.",
+    "sikHata": "Çarpım kuralını yanlış hatırlamak",
+    "cedKonu": "2.8",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_44",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 72,
+   "numara": 73,
+   "konu": "2.8 The Product Rule",
+   "zorluk": "medium",
+   "govde": "At which values of $x$ does the graph of $y=x^2e^x$ have a horizontal tangent line?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$x=0$ and $x=-2$"
+    },
+    {
+     "id": "B",
+     "text": "$x=0$ only"
+    },
+    {
+     "id": "C",
+     "text": "$x=0$ and $x=2$"
+    },
+    {
+     "id": "D",
+     "text": "$x=-2$ only"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $y'=2xe^x+x^2e^x=xe^x(x+2)$.<br/>2. $e^x\\gt0$ ⇒ $x=0$ ya da $x=-2$.",
+   "genel_hatirlatma": "Çarpım kuralından sonra ortak çarpanı paranteze al; $e^x$ hiç sıfır olmaz.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Türev yerine fonksiyonu sıfıra eşitlemek.",
+     "aciklama": "$x^2e^x=0$ yalnız $x=0$ verir; yatay teğet için $y'=0$ çözülmeli."
+    },
+    "C": {
+     "etiket": "Çarpandan kök okurken işaret hatası.",
+     "aciklama": "$x(x+2)=0$ ⇒ $x=-2$; $+2$ değil."
+    },
+    "D": {
+     "etiket": "$x$'e bölerek $x=0$ kökünü kaybetmek.",
+     "aciklama": "$xe^x(x+2)=0$ denkleminde $x=0$ da köktür."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.8)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Çarpım kuralıyla yatay teğet",
+    "ipucu": "Ortak çarpan $xe^x$.",
+    "sikHata": "Kök kaybetmek",
+    "cedKonu": "2.8",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_45",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 73,
+   "numara": 74,
+   "konu": "2.8 The Product Rule",
+   "zorluk": "hard",
+   "govde": "Let $g(x)=f(x)\\sin x$, where $f$ is a differentiable function with $f(\\pi)=2$ and $f'(\\pi)=-3$. Which of the following is an equation of the line tangent to the graph of $g$ at $x=\\pi$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$y=3(x-\\pi)$"
+    },
+    {
+     "id": "B",
+     "text": "$y=2(x-\\pi)$"
+    },
+    {
+     "id": "C",
+     "text": "$y=-2(x-\\pi)$"
+    },
+    {
+     "id": "D",
+     "text": "$y-2=-2(x-\\pi)$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $g(\\pi)=2\\sin\\pi=0$.<br/>2. $g'(x)=f'(x)\\sin x+f(x)\\cos x$ ⇒ $g'(\\pi)=(-3)(0)+(2)(-1)=-2$.<br/>3. $y-0=-2(x-\\pi)$.",
+   "genel_hatirlatma": "Teğet için hem $g(a)$ hem $g'(a)$ çarpım olarak hesaplanır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Türevlerin çarpımını almak.",
+     "aciklama": "$f'(\\pi)\\cos\\pi=(-3)(-1)=3$, $f'g'$ çarpımıdır; çarpım kuralı değildir."
+    },
+    "B": {
+     "etiket": "$\\cos\\pi$'yi 1 sanmak.",
+     "aciklama": "$\\cos\\pi=-1$; $f(\\pi)\\cos\\pi=-2$."
+    },
+    "D": {
+     "etiket": "$g(\\pi)$'yi $f(\\pi)$ sanmak.",
+     "aciklama": "$g(\\pi)=f(\\pi)\\sin\\pi=2\\cdot0=0$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.8)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Çarpım kuralıyla teğet doğru",
+    "ipucu": "$\\sin\\pi=0$, $\\cos\\pi=-1$.",
+    "sikHata": "Değer ya da türevde çarpanı unutmak",
+    "cedKonu": "2.8",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_46",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 74,
+   "numara": 75,
+   "konu": "2.8 The Product Rule",
+   "zorluk": "hard",
+   "govde": "Let $h(x)=f(x)g(x)$, where $f$ and $g$ are differentiable. If $h'(1)=10$, $f(1)=2$, $f'(1)=3$, and $g(1)=4$, what is the value of $g'(1)$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{10}{3}$"
+    },
+    {
+     "id": "B",
+     "text": "$1$"
+    },
+    {
+     "id": "C",
+     "text": "$-1$"
+    },
+    {
+     "id": "D",
+     "text": "$5$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $h'(1)=f'(1)g(1)+f(1)g'(1)=3(4)+2g'(1)$.<br/>2. $12+2g'(1)=10$ ⇒ $g'(1)=-1$.",
+   "genel_hatirlatma": "Çarpım kuralını ters yönde kullan: bilinmeyeni yalnız bırak.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$h'=f'g'$ sanmak.",
+     "aciklama": "$3\\,g'(1)=10$ yanlış kuraldan gelir; $h'=f'g+fg'$."
+    },
+    "B": {
+     "etiket": "Çarpım kuralında eksi kullanmak.",
+     "aciklama": "$f'g-fg'=12-2g'(1)=10$ yanlış formüldür."
+    },
+    "D": {
+     "etiket": "$f'g$ terimini unutmak.",
+     "aciklama": "$2g'(1)=10$ yalnız $fg'$'yü kullanır; $f'(1)g(1)=12$ eksik."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.8)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Çarpım kuralından bilinmeyen türev",
+    "ipucu": "Formüle koy, $g'(1)$'i çöz.",
+    "sikHata": "Kuralın yanlış biçimi",
+    "cedKonu": "2.8",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_47",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 75,
+   "numara": 76,
+   "konu": "2.8 The Product Rule",
+   "zorluk": "medium",
+   "govde": "<em>(Graphing calculator allowed.)</em> The length of a rectangle is $L(t)=2+0.5t$ centimeters and its width is $W(t)=4e^{-0.1t}$ centimeters, where $t$ is time in seconds. At what rate, in square centimeters per second, is the area of the rectangle changing at time $t=3$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$-0.148$"
+    },
+    {
+     "id": "B",
+     "text": "$10.371$"
+    },
+    {
+     "id": "C",
+     "text": "$0.444$"
+    },
+    {
+     "id": "D",
+     "text": "$1.482$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $A(t)=L(t)W(t)$ ⇒ $A'=L'W+LW'$.<br/>2. $L(3)=3.5$, $L'=0.5$, $W(3)=4e^{-0.3}\\approx2.963$, $W'(3)=-0.4e^{-0.3}\\approx-0.296$.<br/>3. $A'(3)\\approx0.5(2.963)+3.5(-0.296)\\approx0.444$ cm²/s. (Hesap makinesinde nDeriv de aynı sonucu verir.)",
+   "genel_hatirlatma": "Alan = uzunluk × genişlik ⇒ değişim hızı için çarpım kuralı.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Türevlerin çarpımını almak.",
+     "aciklama": "$L'(3)W'(3)=0.5\\cdot(-0.4e^{-0.3})\\approx-0.148$; çarpım kuralı $L'W+LW'$."
+    },
+    "B": {
+     "etiket": "Alanın değişim hızı yerine alanı hesaplamak.",
+     "aciklama": "$L(3)W(3)\\approx10.371$ cm²'dir; hız $A'(3)$'tür."
+    },
+    "D": {
+     "etiket": "Yalnız $L'W$ terimini kullanmak.",
+     "aciklama": "$LW'=3.5\\cdot(-0.4e^{-0.3})\\approx-1.037$ terimi eklenmeli."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.8)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Bağlamda çarpım kuralı",
+    "ipucu": "$A'=L'W+LW'$.",
+    "sikHata": "Türevlerin çarpımını almak",
+    "cedKonu": "2.8",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_48",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 76,
+   "numara": 77,
+   "konu": "2.9 The Quotient Rule",
+   "zorluk": "easy",
+   "govde": "If $f(x)=\\frac{x}{x+1}$, then $f'(x)=$",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$1$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{1}{(x+1)^2}$"
+    },
+    {
+     "id": "C",
+     "text": "$-\\frac{1}{(x+1)^2}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{2x+1}{(x+1)^2}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $f'(x)=\\frac{1\\cdot(x+1)-x\\cdot1}{(x+1)^2}$.<br/>2. $=\\frac{1}{(x+1)^2}$.",
+   "genel_hatirlatma": "Bölüm kuralı: $\\frac{f'g-fg'}{g^2}$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Pay ve paydanın türevlerini bölmek.",
+     "aciklama": "$\\frac{(x)'}{(x+1)'}=\\frac11$; bölüm kuralı böyle değildir."
+    },
+    "C": {
+     "etiket": "Paydaki terimlerin sırasını ters yazmak.",
+     "aciklama": "Doğru sıra $f'g-fg'$: $1(x+1)-x(1)=1$."
+    },
+    "D": {
+     "etiket": "Paydaki eksiyi artı yazmak.",
+     "aciklama": "$1(x+1)+x(1)=2x+1$ işaret hatasıdır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.9)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Bölüm kuralı",
+    "ipucu": "low d-high minus high d-low.",
+    "sikHata": "Sıra ya da işaret hatası",
+    "cedKonu": "2.9",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_49",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 77,
+   "numara": 78,
+   "konu": "2.9 The Quotient Rule",
+   "zorluk": "medium",
+   "govde": "If $f(x)=\\frac{x^2}{e^x}$, what is the value of $f'(1)$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$-\\frac1e$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac1e$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac2e$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac3e$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $f'(x)=\\frac{2x\\,e^x-x^2e^x}{(e^x)^2}=\\frac{2x-x^2}{e^x}$.<br/>2. $f'(1)=\\frac{2-1}{e}=\\frac1e$.",
+   "genel_hatirlatma": "Bölüm kuralından sonra ortak çarpanı sadeleştir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Paydaki terimlerin sırasını ters yazmak.",
+     "aciklama": "$\\frac{x^2e^x-2xe^x}{e^{2x}}$ ters sıradır; $x=1$'de işaret değişir."
+    },
+    "C": {
+     "etiket": "$fg'$ terimini unutmak.",
+     "aciklama": "$\\frac{2x\\,e^x}{e^{2x}}$ yalnız ilk terimdir; $-x^2e^x$ eksik."
+    },
+    "D": {
+     "etiket": "Paydaki eksiyi artı yazmak.",
+     "aciklama": "$2xe^x+x^2e^x$ toplamı çarpım kuralının payıdır; bölümde eksi kullanılır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.9)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Bölüm kuralı ve eˣ",
+    "ipucu": "$e^x$ sadeleşir.",
+    "sikHata": "Sıra ya da işaret hatası",
+    "cedKonu": "2.9",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_50",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 78,
+   "numara": 79,
+   "konu": "2.9 The Quotient Rule",
+   "zorluk": "medium",
+   "govde": "Differentiable functions $f$ and $g$ satisfy the values in the table.<table class='u-table'><tr><th>$x$</th><th>$f(x)$</th><th>$f'(x)$</th><th>$g(x)$</th><th>$g'(x)$</th></tr><tr><td>$1$</td><td>$3$</td><td>$-2$</td><td>$2$</td><td>$4$</td></tr></table>If $k(x)=\\frac{g(x)}{f(x)}$, what is the value of $k'(1)$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$-\\frac{16}{9}$"
+    },
+    {
+     "id": "B",
+     "text": "$4$"
+    },
+    {
+     "id": "C",
+     "text": "$-2$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{16}{9}$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $k'=\\frac{g'f-gf'}{f^2}$ (pay $g$, payda $f$).<br/>2. $k'(1)=\\frac{4(3)-2(-2)}{3^2}=\\frac{12+4}{9}=\\frac{16}{9}$.",
+   "genel_hatirlatma": "Bölüm kuralında 'üst' paydaki, 'alt' paydadaki fonksiyondur; harflere değil konuma bak.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Paydaki terimlerin sırasını ters yazmak.",
+     "aciklama": "Pay $g'f-gf'$'dir: $4(3)-2(-2)=16$; ters sıra $-16$ verir."
+    },
+    "B": {
+     "etiket": "Paydada yanlış fonksiyonun karesini almak.",
+     "aciklama": "Payda $[f(1)]^2=9$'dur; $[g(1)]^2=4$ değil."
+    },
+    "C": {
+     "etiket": "Türevleri bölmek.",
+     "aciklama": "$\\frac{g'(1)}{f'(1)}=\\frac{4}{-2}$ bölüm kuralı değildir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.9)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Tabloyla bölüm kuralı",
+    "ipucu": "Pay $g$, payda $f$.",
+    "sikHata": "Fonksiyonların rolünü karıştırmak",
+    "cedKonu": "2.9",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_51",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 79,
+   "numara": 80,
+   "konu": "2.9 The Quotient Rule",
+   "zorluk": "hard",
+   "govde": "Let $f(x)=\\frac{ax+1}{x-2}$, where $a$ is a constant. If the slope of the line tangent to the graph of $f$ at $x=3$ is $-7$, what is the value of $a$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$3$"
+    },
+    {
+     "id": "B",
+     "text": "$-4$"
+    },
+    {
+     "id": "C",
+     "text": "$-7$"
+    },
+    {
+     "id": "D",
+     "text": "$4$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $f'(x)=\\frac{a(x-2)-(ax+1)(1)}{(x-2)^2}=\\frac{-2a-1}{(x-2)^2}$.<br/>2. $x=3$: $\\frac{-2a-1}{1}=-7$ ⇒ $a=3$.",
+   "genel_hatirlatma": "Paydaki ikinci terimi parantez içinde çıkar: $-(ax+1)$.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Paydaki terimlerin sırasını ters yazmak.",
+     "aciklama": "Ters sıra $\\frac{(ax+1)-a(x-2)}{(x-2)^2}$ verir; $x=3$'te $2a+1=-7$ ⇒ $a=-4$."
+    },
+    "C": {
+     "etiket": "Türevleri bölmek.",
+     "aciklama": "$\\frac{(ax+1)'}{(x-2)'}=a$; bölüm kuralı böyle değildir."
+    },
+    "D": {
+     "etiket": "Paydaki parantezi açarken işaret hatası.",
+     "aciklama": "$-(ax+1)=-ax-1$; $-ax+1$ yazılırsa $-2a+1=-7$ ⇒ $a=4$ çıkar."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.9)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Bölüm kuralıyla parametre bulma",
+    "ipucu": "Payı tam sadeleştir.",
+    "sikHata": "Parantez/işaret hatası",
+    "cedKonu": "2.9",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_52",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 80,
+   "numara": 81,
+   "konu": "2.9 The Quotient Rule",
+   "zorluk": "hard",
+   "govde": "At which points does the graph of $y=\\frac{x^2}{x-1}$ have a horizontal tangent line?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$(2,4)$ only"
+    },
+    {
+     "id": "B",
+     "text": "$(0,0)$ only"
+    },
+    {
+     "id": "C",
+     "text": "$(0,0)$ and $\\left(\\frac23,-\\frac43\\right)$"
+    },
+    {
+     "id": "D",
+     "text": "$(0,0)$ and $(2,4)$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $y'=\\frac{2x(x-1)-x^2}{(x-1)^2}=\\frac{x^2-2x}{(x-1)^2}$.<br/>2. Pay $x(x-2)=0$ ⇒ $x=0$, $x=2$ (payda sıfır değil).<br/>3. $y(0)=0$, $y(2)=\\frac41=4$.",
+   "genel_hatirlatma": "Bölümün türevi, payı sıfır ve paydası sıfırdan farklı olan noktalarda sıfırdır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$x$'e bölerek $x=0$ kökünü kaybetmek.",
+     "aciklama": "$x^2-2x=x(x-2)=0$ iki kök verir; $x=0$'da $y=0$."
+    },
+    "B": {
+     "etiket": "Türevleri bölmek.",
+     "aciklama": "$\\frac{2x}{1}=0$ hesabı bölüm kuralı değildir."
+    },
+    "C": {
+     "etiket": "Paydaki eksiyi artı yazmak.",
+     "aciklama": "$2x(x-1)+x^2=3x^2-2x$ yanlış paydır; doğrusu $x^2-2x$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.9)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Bölüm kuralıyla yatay teğet",
+    "ipucu": "Payı çarpanlarına ayır.",
+    "sikHata": "Kök kaybetmek / işaret",
+    "cedKonu": "2.9",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_53",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 81,
+   "numara": 82,
+   "konu": "2.9 The Quotient Rule",
+   "zorluk": "medium",
+   "govde": "<em>(Graphing calculator allowed.)</em> The concentration of a drug in the bloodstream is modeled by $C(t)=\\frac{8t}{t^2+9}$ milligrams per liter, where $t$ is measured in hours. What is the rate of change of the concentration, in milligrams per liter per hour, at time $t=4$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$1.280$"
+    },
+    {
+     "id": "B",
+     "text": "$0.090$"
+    },
+    {
+     "id": "C",
+     "text": "$-0.090$"
+    },
+    {
+     "id": "D",
+     "text": "$1.000$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $C'(t)=\\frac{8(t^2+9)-8t(2t)}{(t^2+9)^2}=\\frac{8(9-t^2)}{(t^2+9)^2}$.<br/>2. $C'(4)=\\frac{8(-7)}{625}=-\\frac{56}{625}\\approx-0.090$ mg/L/saat. Konsantrasyon azalıyor.",
+   "genel_hatirlatma": "Bağlamda 'rate of change at t' = türevin o andaki değeri; işareti artış/azalışı söyler.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Değişim hızı yerine konsantrasyonu hesaplamak.",
+     "aciklama": "$C(4)=\\frac{32}{25}=1.28$ mg/L değerdir, hız değil."
+    },
+    "B": {
+     "etiket": "Paydaki terimlerin sırasını ters yazmak.",
+     "aciklama": "$\\frac{8t(2t)-8(t^2+9)}{(t^2+9)^2}$ ters sıradır; işaret değişir."
+    },
+    "D": {
+     "etiket": "Türevleri bölmek.",
+     "aciklama": "$\\frac{8}{2t}$, $t=4$'te 1 verir; bölüm kuralı değildir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.9)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Bağlamda bölüm kuralı",
+    "ipucu": "nDeriv ile kontrol et.",
+    "sikHata": "Değer ile hızı karıştırmak",
+    "cedKonu": "2.9",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_54",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 82,
+   "numara": 83,
+   "konu": "2.10 Finding the Derivatives of Tangent, Cotangent, Secant, and/or Cosecant Functions",
+   "zorluk": "easy",
+   "govde": "If $y=\\tan x-\\sec x$, then $\\frac{dy}{dx}=$",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\sec^2x+\\sec x\\tan x$"
+    },
+    {
+     "id": "B",
+     "text": "$\\sec x\\tan x-\\sec^2x$"
+    },
+    {
+     "id": "C",
+     "text": "$-\\csc^2x-\\sec x\\tan x$"
+    },
+    {
+     "id": "D",
+     "text": "$\\sec^2x-\\sec x\\tan x$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $\\frac{d}{dx}\\tan x=\\sec^2x$.<br/>2. $\\frac{d}{dx}\\sec x=\\sec x\\tan x$.<br/>3. $y'=\\sec^2x-\\sec x\\tan x$.",
+   "genel_hatirlatma": "tan → sec², sec → sec·tan.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Fark kuralında işareti kaybetmek.",
+     "aciklama": "$-\\sec x$'in türevi $-\\sec x\\tan x$'tir."
+    },
+    "B": {
+     "etiket": "tan ve sec türevlerini karıştırmak.",
+     "aciklama": "$\\frac{d}{dx}\\tan x=\\sec^2x$, $\\frac{d}{dx}\\sec x=\\sec x\\tan x$."
+    },
+    "C": {
+     "etiket": "tan türevini cot türeviyle karıştırmak.",
+     "aciklama": "$-\\csc^2x$, $\\cot x$'in türevidir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.10)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "tan ve sec türevleri",
+    "ipucu": "İki kuralı ayrı yaz.",
+    "sikHata": "Kuralları karıştırmak",
+    "cedKonu": "2.10",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_55",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 83,
+   "numara": 84,
+   "konu": "2.10 Finding the Derivatives of Tangent, Cotangent, Secant, and/or Cosecant Functions",
+   "zorluk": "medium",
+   "govde": "If $f(x)=x\\cot x$, what is the value of $f'\\left(\\frac{\\pi}{4}\\right)$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$1+\\frac{\\pi}{2}$"
+    },
+    {
+     "id": "B",
+     "text": "$-\\frac{\\pi}{2}$"
+    },
+    {
+     "id": "C",
+     "text": "$1-\\frac{\\pi}{4}$"
+    },
+    {
+     "id": "D",
+     "text": "$1-\\frac{\\pi}{2}$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $f'(x)=\\cot x+x(-\\csc^2x)$.<br/>2. $\\cot\\frac\\pi4=1$, $\\csc^2\\frac\\pi4=2$.<br/>3. $f'\\left(\\frac\\pi4\\right)=1-\\frac\\pi4\\cdot2=1-\\frac\\pi2$.",
+   "genel_hatirlatma": "Çarpım kuralı + cot türevi: $-\\csc^2x$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$\\cot x$ türevinde eksi işaretini unutmak.",
+     "aciklama": "$\\frac{d}{dx}\\cot x=-\\csc^2x$."
+    },
+    "B": {
+     "etiket": "Çarpım kuralında ilk terimi unutmak.",
+     "aciklama": "$f'g$ terimi $1\\cdot\\cot\\frac\\pi4=1$ eksik."
+    },
+    "C": {
+     "etiket": "$\\csc^2\\frac\\pi4$'ü 1 sanmak.",
+     "aciklama": "$\\csc\\frac\\pi4=\\sqrt2$, karesi 2'dir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.10)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "cot türevi ve çarpım kuralı",
+    "ipucu": "$\\csc^2\\frac\\pi4=2$.",
+    "sikHata": "cot türevinde eksi",
+    "cedKonu": "2.10",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_56",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 84,
+   "numara": 85,
+   "konu": "2.10 Finding the Derivatives of Tangent, Cotangent, Secant, and/or Cosecant Functions",
+   "zorluk": "medium",
+   "govde": "A student uses the quotient rule to find the derivative of $\\csc x=\\frac{1}{\\sin x}$. Which of the following shows a correct computation?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{1\\cdot\\cos x-0\\cdot\\sin x}{\\sin^2x}=\\csc x\\cot x$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{0\\cdot\\sin x-1\\cdot\\cos x}{\\sin^2x}=-\\csc x\\cot x$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{0}{\\cos x}=0$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{-\\cos x}{\\sin x}=-\\cot x$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $f=1$, $f'=0$; $g=\\sin x$, $g'=\\cos x$.<br/>2. $\\frac{0\\cdot\\sin x-1\\cdot\\cos x}{\\sin^2x}=-\\frac{\\cos x}{\\sin^2x}=-\\frac{1}{\\sin x}\\cdot\\frac{\\cos x}{\\sin x}=-\\csc x\\cot x$.",
+   "genel_hatirlatma": "csc türevi: $-\\csc x\\cot x$; bölüm kuralıyla çıkarılabilir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Paydaki terimlerin sırasını ters yazmak.",
+     "aciklama": "Doğru sıra $f'g-fg'$: $0\\cdot\\sin x-1\\cdot\\cos x$."
+    },
+    "C": {
+     "etiket": "Türevleri bölmek.",
+     "aciklama": "$\\frac{(1)'}{(\\sin x)'}$ bölüm kuralı değildir; pay sabit olsa da türev 0 olmaz."
+    },
+    "D": {
+     "etiket": "Paydanın karesini almayı unutmak.",
+     "aciklama": "Payda $\\sin^2x$'tir; sonuç $-\\frac{\\cos x}{\\sin^2x}$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.10)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "csc türevini çıkarmak",
+    "ipucu": "Payda $\\sin^2x$.",
+    "sikHata": "Bölüm kuralı hataları",
+    "cedKonu": "2.10",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_57",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 85,
+   "numara": 86,
+   "konu": "2.10 Finding the Derivatives of Tangent, Cotangent, Secant, and/or Cosecant Functions",
+   "zorluk": "hard",
+   "govde": "Which of the following is an equation of the line tangent to the graph of $y=\\sec x$ at $x=\\frac{\\pi}{3}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$y=2+2\\sqrt3\\left(x-\\frac{\\pi}{3}\\right)$"
+    },
+    {
+     "id": "B",
+     "text": "$y=2+4\\left(x-\\frac{\\pi}{3}\\right)$"
+    },
+    {
+     "id": "C",
+     "text": "$y=\\frac12+2\\sqrt3\\left(x-\\frac{\\pi}{3}\\right)$"
+    },
+    {
+     "id": "D",
+     "text": "$y=2+\\sqrt3\\left(x-\\frac{\\pi}{3}\\right)$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $y\\left(\\frac\\pi3\\right)=\\sec\\frac\\pi3=2$.<br/>2. $y'=\\sec x\\tan x$ ⇒ $2\\cdot\\sqrt3=2\\sqrt3$.<br/>3. $y=2+2\\sqrt3\\left(x-\\frac\\pi3\\right)$.",
+   "genel_hatirlatma": "Özel açılarda sec = 1/cos; teğet için değer ve eğim ayrı hesaplanır.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "sec türevi yerine tan türevini ($\\sec^2x$) kullanmak.",
+     "aciklama": "$\\sec^2\\frac\\pi3=4$, $\\tan x$'in türevidir; $\\frac{d}{dx}\\sec x=\\sec x\\tan x$."
+    },
+    "C": {
+     "etiket": "$\\sec\\frac\\pi3$ yerine $\\cos\\frac\\pi3$ kullanmak.",
+     "aciklama": "$\\sec\\frac\\pi3=\\frac{1}{\\cos(\\pi/3)}=2$."
+    },
+    "D": {
+     "etiket": "Türevde sec çarpanını unutmak.",
+     "aciklama": "Eğim $\\sec\\frac\\pi3\\tan\\frac\\pi3=2\\sqrt3$; yalnız $\\tan\\frac\\pi3=\\sqrt3$ değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.10)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "sec türeviyle teğet doğru",
+    "ipucu": "$\\sec\\frac\\pi3=2$, $\\tan\\frac\\pi3=\\sqrt3$.",
+    "sikHata": "sec ile cos değerini karıştırmak",
+    "cedKonu": "2.10",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_58",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 86,
+   "numara": 87,
+   "konu": "2.10 Finding the Derivatives of Tangent, Cotangent, Secant, and/or Cosecant Functions",
+   "zorluk": "hard",
+   "govde": "How many points on the graph of $y=2x+\\cot x$ in the open interval $0\\lt x\\lt2\\pi$ have a horizontal tangent line?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "Four"
+    },
+    {
+     "id": "B",
+     "text": "Two"
+    },
+    {
+     "id": "C",
+     "text": "One"
+    },
+    {
+     "id": "D",
+     "text": "Zero"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $y'=2-\\csc^2x=0$ ⇒ $\\csc^2x=2$ ⇒ $\\sin^2x=\\frac12$.<br/>2. $\\sin x=\\pm\\frac{\\sqrt2}{2}$ ⇒ $x=\\frac\\pi4,\\frac{3\\pi}{4},\\frac{5\\pi}{4},\\frac{7\\pi}{4}$.<br/>3. Hepsinde $\\cot x$ tanımlıdır ($\\sin x\\neq0$): dört nokta.",
+   "genel_hatirlatma": "Trigonometrik denklemde karekök alınca $\\pm$ iki işaret de çözüm verir; aralıktaki tüm çözümleri say.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Kare kök alırken $\\pm$'yi unutmak.",
+     "aciklama": "$\\sin^2x=\\frac12$ ⇒ $\\sin x=\\pm\\frac{\\sqrt2}{2}$; yalnız pozitif kök $\\frac\\pi4$ ve $\\frac{3\\pi}{4}$'ü verir, negatif kök iki çözüm daha ekler."
+    },
+    "C": {
+     "etiket": "Yalnız birinci çeyreğe bakmak.",
+     "aciklama": "$(0,2\\pi)$ aralığı dört çeyreği kapsar; $\\frac\\pi4$ tek çözüm değildir."
+    },
+    "D": {
+     "etiket": "$\\cot x$ türevinde eksi işaretini unutmak.",
+     "aciklama": "$2+\\csc^2x=0$ çözümsüzdür; doğrusu $y'=2-\\csc^2x$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.10)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "cot türeviyle yatay teğet",
+    "ipucu": "$\\csc^2x=2$ ⇒ $\\sin x=\\pm\\frac{\\sqrt2}{2}$.",
+    "sikHata": "$\\pm$ ve işaret hataları",
+    "cedKonu": "2.10",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u2_59",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 2,
+   "unite": "2",
+   "kutu": "calc-unit2-quiz-container",
+   "kutu_baslik": "Unit 2 Differentiation",
+   "dizi": "CALC_UNIT2_QUESTIONS",
+   "sira": 87,
+   "numara": 88,
+   "konu": "2.10 Finding the Derivatives of Tangent, Cotangent, Secant, and/or Cosecant Functions",
+   "zorluk": "easy",
+   "govde": "<em>(Graphing calculator allowed.)</em> Let $f(x)=\\tan x$. Which of the following is closest to the value of $f'(1.2)$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$2.572$"
+    },
+    {
+     "id": "B",
+     "text": "$7.098$"
+    },
+    {
+     "id": "C",
+     "text": "$7.616$"
+    },
+    {
+     "id": "D",
+     "text": "$1.000$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $f'(x)=\\sec^2x=\\frac{1}{\\cos^2x}$.<br/>2. Radyan modunda $\\cos1.2\\approx0.3624$ ⇒ $\\frac{1}{0.3624^2}\\approx7.616$ (ya da nDeriv(tan(X),X,1.2)).",
+   "genel_hatirlatma": "Hesap makinesi sorularında radyan modu; tan türevi sec².",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Türev yerine fonksiyon değerini hesaplamak.",
+     "aciklama": "$\\tan1.2\\approx2.572$ noktanın yüksekliğidir; eğim $\\sec^21.2$'dir."
+    },
+    "B": {
+     "etiket": "tan türevini $\\sec x\\tan x$ sanmak.",
+     "aciklama": "$\\sec x\\tan x$, $\\sec x$'in türevidir; $\\frac{d}{dx}\\tan x=\\sec^2x$."
+    },
+    "D": {
+     "etiket": "Hesap makinesi derece modunda.",
+     "aciklama": "$\\sec^2(1.2^\\circ)\\approx1.000$; açı radyan olmalıdır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 2.10)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "tan türevinin sayısal değeri",
+    "ipucu": "$\\sec^2x=1/\\cos^2x$.",
+    "sikHata": "Derece modu / kural karışıklığı",
+    "cedKonu": "2.10",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
   }
  ],
  "icerikGuncelleme": "2026-10-24T14:48:10.000Z",
- "yeniSoruEkleme": "2026-10-24T15:53:21.503Z"
+ "yeniSoruEkleme": "2026-10-24T16:03:51.511Z"
 }

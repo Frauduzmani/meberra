@@ -1,0 +1,696 @@
+{
+ "ders": "calculus",
+ "unite": 2,
+ "baslik": "Differentiation: Definition and Fundamental Properties",
+ "baslikTr": "Türev: Tanım ve Temel Özellikler",
+ "konular": [
+  {
+   "kod": "2.1",
+   "baslik": "Defining Average and Instantaneous Rates of Change at a Point",
+   "baslikTr": "Bir noktada ortalama ve anlık değişim hızı",
+   "sadeceBC": false,
+   "hedefler": [
+    "Bir aralıktaki ortalama değişim hızını (average rate of change) kesen doğrunun eğimi olarak hesaplamak ve birimleriyle yorumlamak.",
+    "Fark bölümünü (difference quotient) kurmak ve sadeleştirmek.",
+    "Anlık değişim hızını (instantaneous rate of change) ortalama hızların limiti olarak tanımlamak."
+   ],
+   "anlatim": "<p>Unit 1'de limitleri öğrendik. Unit 2 bu aracı tek bir soruya uygular: <strong>bir büyüklük tam şu anda ne hızla değişiyor?</strong> Bunu yanıtlamak için önce bir aralıktaki ortalama değişimi ölçeriz, sonra aralığı sıfıra doğru küçültürüz.</p>\n<div class=\"kn-tanim\"><strong>Ortalama değişim hızı (average rate of change).</strong> \\(f\\)'nin \\([a,b]\\) aralığındaki ortalama değişim hızı\n\\[ \\frac{\\Delta y}{\\Delta x}=\\frac{f(b)-f(a)}{b-a} \\]\ndir. Geometrik olarak bu sayı, grafikte \\((a,f(a))\\) ve \\((b,f(b))\\) noktalarından geçen <strong>kesen doğrunun (secant line)</strong> eğimidir.</div>\n<p>Örnek: \\(f(x)=x^2\\) için \\([1,3]\\) aralığında ortalama değişim hızı \\(\\frac{9-1}{3-1}=4\\)'tür.</p>\n<h4>Birimler (units)</h4>\n<p>Ortalama değişim hızının birimi \"çıktı birimi / girdi birimi\"dir. \\(V(t)\\) litre ve \\(t\\) dakika ise \\(\\frac{V(8)-V(2)}{8-2}\\) değerinin birimi litre/dakikadır (liters per minute). Sınavda birimi yazmak çoğu zaman ayrı bir puandır.</p>\n<h4>Fark bölümü (difference quotient)</h4>\n<p>Aralığı \\([a,a+h]\\) olarak yazarsak ortalama hız\n\\[ \\frac{f(a+h)-f(a)}{h}\\qquad (h\\neq0) \\]\nolur. Bu ifadeye <strong>fark bölümü</strong> denir. \\(h\\) negatif de olabilir; o zaman aralık \\([a+h,a]\\) olur ama formül değişmez.</p>\n<h4>Anlık değişim hızı (instantaneous rate of change)</h4>\n<p>\\(h\\) küçüldükçe kesen doğru, \\(x=a\\)'daki <strong>teğet doğruya (tangent line)</strong> yaklaşır. Bu limit varsa ona \\(x=a\\)'daki <strong>anlık değişim hızı</strong> denir:\n\\[ \\lim_{h\\to0}\\frac{f(a+h)-f(a)}{h}. \\]</p>\n<p>\\(f(x)=x^2\\) ve \\(a=3\\) için kesen eğimleri:</p>\n<table><thead><tr><th>\\(h\\)</th><th>\\(1\\)</th><th>\\(0.1\\)</th><th>\\(0.01\\)</th><th>\\(-0.01\\)</th><th>\\(-0.1\\)</th></tr></thead><tbody><tr><td>\\(\\frac{(3+h)^2-9}{h}\\)</td><td>\\(7\\)</td><td>\\(6.1\\)</td><td>\\(6.01\\)</td><td>\\(5.99\\)</td><td>\\(5.9\\)</td></tr></tbody></table>\n<p>Cebirle: \\(\\frac{(3+h)^2-9}{h}=\\frac{6h+h^2}{h}=6+h\\to6\\). Yani \\(x=3\\)'te anlık değişim hızı 6'dır. Sadeleştirme \\(h\\neq0\\) olduğu için yapılabilir; limit \\(h\\)'nin 0'a <em>yaklaşmasıyla</em> ilgilidir, \\(h=0\\) olmasıyla değil.</p>\n<div class=\"kn-kural\"><strong>Karşılaştırma</strong>\n<table><thead><tr><th></th><th>Ortalama değişim hızı</th><th>Anlık değişim hızı</th></tr></thead><tbody><tr><td>Ne ölçer?</td><td>Bir aralık boyunca</td><td>Tek bir anda</td></tr><tr><td>Grafikte</td><td>Kesen doğrunun eğimi</td><td>Teğet doğrunun eğimi</td></tr><tr><td>Formül</td><td>\\(\\frac{f(b)-f(a)}{b-a}\\)</td><td>\\(\\lim_{h\\to0}\\frac{f(a+h)-f(a)}{h}\\)</td></tr></tbody></table></div>\n<h4>Hareket bağlamı</h4>\n<p>\\(s(t)\\) bir cismin konumu ise \\(\\frac{s(t_2)-s(t_1)}{t_2-t_1}\\) <strong>ortalama hız (average velocity)</strong>, anlık değişim hızı ise <strong>anlık hız (instantaneous velocity)</strong> olur. Bu bağlam Unit 4'te genişler.</p>\n<div class=\"kn-dikkat\"><strong>Yorum yazarken:</strong> Ortalama hız, aralıktaki her anın hızı değildir. \"The average rate of change of \\(W\\) over \\(2\\le t\\le6\\) is \\(-3.5\\) gallons per hour\" doğrudur; \"at \\(t=4\\) the rate is \\(-3.5\\)\" yanlıştır. Toplam değişimi (\\(W(6)-W(2)\\)) hızla da karıştırma.</div>\n<p>FRQ kalıbı: <em>\"The average rate of change of \\(f\\) over the interval \\([a,b]\\) is \\(\\frac{f(b)-f(a)}{b-a}=\\ldots\\) (units of \\(f\\)) per (unit of \\(x\\)).\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=x^2+1\\) fonksiyonunun \\([1,4]\\) aralığındaki ortalama değişim hızını bulun.",
+     "cozum": [
+      "\\(f(4)=17\\), \\(f(1)=2\\).",
+      "\\(\\frac{17-2}{4-1}=\\frac{15}{3}=5\\). Bu, \\((1,2)\\) ve \\((4,17)\\) noktalarından geçen kesen doğrunun eğimidir."
+     ]
+    },
+    {
+     "soru": "\\(g(x)=\\frac1x\\) için \\([2,2+h]\\) aralığındaki ortalama değişim hızını \\(h\\) cinsinden sadeleştirin ve \\(x=2\\)'deki anlık değişim hızını bulun.",
+     "cozum": [
+      "\\(\\dfrac{\\frac{1}{2+h}-\\frac12}{h}=\\dfrac{\\frac{2-(2+h)}{2(2+h)}}{h}=\\dfrac{-h}{2h(2+h)}\\).",
+      "\\(h\\neq0\\) iken sadeleşir: \\(-\\dfrac{1}{2(2+h)}\\).",
+      "\\(h\\to0\\): anlık değişim hızı \\(-\\dfrac14\\)'tür."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Bir tanktaki su miktarı \\(W(t)\\) galon, \\(t\\) saattir. \\(W(2)=150\\) ve \\(W(6)=136\\). \\(\\frac{W(6)-W(2)}{6-2}\\) değerini hesaplayın ve bağlam içinde yorumlayın.",
+     "cozum": [
+      "\\(\\frac{136-150}{4}=-3.5\\) galon/saat.",
+      "Puan getiren yorum: <em>\"Over the time interval \\(2\\le t\\le6\\) hours, the amount of water in the tank decreases at an average rate of 3.5 gallons per hour.\"</em> Aralık, birim ve \"average\" sözcüğü şarttır."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Ortalama değişim hızında bölümü açıkça yaz: \\(\\frac{f(b)-f(a)}{b-a}\\). FRQ'da yalnız sayı yazmak puan kaybettirebilir.",
+    "Birimi her zaman ekle: çıktı birimi / girdi birimi (ör. <em>meters per second</em>, <em>gallons per hour</em>).",
+    "Fark bölümünü sadeleştirirken payı aç, \\(h\\)'yi ortak çarpan yap, sadeleştir; limiti en son al."
+   ],
+   "sikHatalar": [
+    "Paydayı \\(b-a\\) yerine \\(b\\) ya da \\(a\\) almak.",
+    "Ortalama değişim hızını aralığın ortasındaki anlık hız gibi yorumlamak.",
+    "Toplam değişim \\(f(b)-f(a)\\) ile ortalama değişim hızını karıştırmak."
+   ],
+   "terimler": [
+    {
+     "en": "average rate of change",
+     "tr": "ortalama değişim hızı"
+    },
+    {
+     "en": "instantaneous rate of change",
+     "tr": "anlık değişim hızı"
+    },
+    {
+     "en": "secant line",
+     "tr": "kesen doğru"
+    },
+    {
+     "en": "tangent line",
+     "tr": "teğet doğru"
+    },
+    {
+     "en": "difference quotient",
+     "tr": "fark bölümü"
+    },
+    {
+     "en": "average velocity",
+     "tr": "ortalama hız"
+    }
+   ]
+  },
+  {
+   "kod": "2.2",
+   "baslik": "Defining the Derivative of a Function and Using Derivative Notation",
+   "baslikTr": "Türevin tanımı ve türev gösterimi",
+   "sadeceBC": false,
+   "hedefler": [
+    "Bir noktadaki türevi (derivative) fark bölümünün limiti olarak tanımlamak ve iki eşdeğer biçimi kullanmak.",
+    "Türevi teğet doğrunun eğimi ve anlık değişim hızı olarak yorumlamak; teğet doğru denklemini yazmak.",
+    "Bir limit ifadesini belirli bir fonksiyonun belirli bir noktadaki türevi olarak tanımak; \\(f'(x)\\), \\(y'\\), \\(\\frac{dy}{dx}\\) gösterimlerini kullanmak."
+   ],
+   "anlatim": "<p>2.1'deki anlık değişim hızının matematikteki adı <strong>türevdir (derivative)</strong>.</p>\n<div class=\"kn-tanim\"><strong>Bir noktadaki türev.</strong> \\(f\\)'nin \\(x=a\\)'daki türevi, limit varsa,\n\\[ f'(a)=\\lim_{h\\to0}\\frac{f(a+h)-f(a)}{h} \\]\ndir. Eşdeğer biçim (<strong>alternate form</strong>):\n\\[ f'(a)=\\lim_{x\\to a}\\frac{f(x)-f(a)}{x-a}. \\]\nBu limit (gerçek bir sayı olarak) varsa \\(f\\), \\(x=a\\)'da <strong>türevlenebilirdir (differentiable)</strong>.</div>\n<p>İki biçim aynı şeyi söyler: ikincisinde \\(x=a+h\\) yazınca birincisi çıkar. Sınavda ikisi de görünür.</p>\n<h4>Türevin anlamı</h4>\n<ul><li><strong>Geometrik:</strong> \\(f'(a)\\), grafiğin \\((a,f(a))\\) noktasındaki teğet doğrusunun eğimidir.</li><li><strong>Bağlamsal:</strong> \\(f'(a)\\), \\(f\\)'nin \\(x=a\\)'daki anlık değişim hızıdır; birimi çıktı birimi / girdi birimidir.</li></ul>\n<div class=\"kn-kural\"><strong>Teğet doğru (tangent line) denklemi.</strong>\n\\[ y=f(a)+f'(a)(x-a)\\quad\\text{ya da}\\quad y-f(a)=f'(a)(x-a). \\]\n<strong>Normal doğru (normal line)</strong> teğete diktir; eğimi \\(-\\frac{1}{f'(a)}\\)'dır (\\(f'(a)\\neq0\\)).</div>\n<h4>Türev fonksiyonu</h4>\n<p>\\(a\\) yerine değişken \\(x\\) yazarsak <strong>türev fonksiyonu</strong> elde edilir: \\(f'(x)=\\lim_{h\\to0}\\frac{f(x+h)-f(x)}{h}\\). Örnek \\(f(x)=x^2\\): \\(\\frac{(x+h)^2-x^2}{h}=\\frac{2xh+h^2}{h}=2x+h\\to2x\\). Yani \\(f'(x)=2x\\); her noktadaki eğimi tek formül verir.</p>\n<h4>Gösterimler (notation)</h4>\n<table><thead><tr><th>Gösterim</th><th>Okunuşu</th><th>\\(x=a\\)'daki değer</th></tr></thead><tbody><tr><td>\\(f'(x)\\)</td><td>\"f prime of x\"</td><td>\\(f'(a)\\)</td></tr><tr><td>\\(y'\\)</td><td>\"y prime\"</td><td>\\(y'(a)\\)</td></tr><tr><td>\\(\\frac{dy}{dx}\\)</td><td>\"dy dx\" (Leibniz)</td><td>\\(\\left.\\frac{dy}{dx}\\right|_{x=a}\\)</td></tr><tr><td>\\(\\frac{d}{dx}[f(x)]\\)</td><td>\"the derivative of f(x) with respect to x\"</td><td>—</td></tr></tbody></table>\n<h4>Limiti türev olarak tanıma</h4>\n<p>AP sınavı sık sık bir limiti verir ve değerini sorar. Limiti cebirle açmak yerine <strong>kalıbı tanı</strong>:</p>\n<div class=\"formul\">\\[ \\lim_{h\\to0}\\frac{(2+h)^5-32}{h} \\]</div>\n<p>Burada \\(f(x)=x^5\\), \\(a=2\\) ve \\(f(2)=32\\). Limit \\(f'(2)\\)'dir. (Kuvvet kuralıyla, 2.5: \\(f'(x)=5x^4\\), \\(f'(2)=80\\).)</p>\n<p>Adımlar: (1) \\(f(a+h)\\) ya da \\(f(x)\\) kısmından \\(f\\)'yi oku. (2) Çıkarılan sabitin \\(f(a)\\) olduğunu kontrol et. (3) Paydanın \\(h\\) ya da \\(x-a\\) olduğunu kontrol et. (4) Değeri \\(f'(a)\\) olarak hesapla.</p>\n<div class=\"kn-dikkat\"><strong>Dikkat:</strong> Bu limitler \\(\\frac00\\) biçimindedir; \"0\" ya da \"yok\" demek tipik tuzaktır. Payda farklıysa düzenleme gerekir: \\(\\lim_{h\\to0}\\frac{f(a+2h)-f(a)}{h}=2f'(a)\\), \\(\\lim_{x\\to a}\\frac{f(x)-f(a)}{x^2-a^2}=\\frac{f'(a)}{2a}\\).</div>",
+   "ornekler": [
+    {
+     "soru": "Tanımı kullanarak \\(f(x)=x^2-3x\\) için \\(f'(x)\\)'i bulun.",
+     "cozum": [
+      "\\(f(x+h)-f(x)=(x+h)^2-3(x+h)-x^2+3x=2xh+h^2-3h\\).",
+      "Bölüm: \\(\\frac{2xh+h^2-3h}{h}=2x+h-3\\) (\\(h\\neq0\\)).",
+      "\\(h\\to0\\): \\(f'(x)=2x-3\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\lim_{x\\to\\pi}\\frac{\\sin x}{x-\\pi}\\) limitinin değerini türev tanımıyla bulun.",
+     "cozum": [
+      "\\(\\sin\\pi=0\\) olduğundan pay \\(\\sin x-\\sin\\pi\\) olarak yazılabilir: alternatif biçim, \\(f(x)=\\sin x\\), \\(a=\\pi\\).",
+      "Limit \\(=f'(\\pi)=\\cos\\pi=-1\\) (\\(\\sin x\\)'in türevi \\(\\cos x\\), bkz. 2.7)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(\\displaystyle\\lim_{h\\to0}\\frac{g(4+h)-g(4)}{h}=-2\\) ve \\(g(4)=7\\) veriliyor. Limit neyi temsil eder? \\(x=4\\)'teki teğet doğrunun denklemini yazın.",
+     "cozum": [
+      "Limit \\(g'(4)\\)'tür: grafiğin \\(x=4\\)'teki teğet eğimi ve \\(g\\)'nin \\(x=4\\)'teki anlık değişim hızı.",
+      "Nokta \\((4,7)\\), eğim \\(-2\\): <em>\"\\(g'(4)=-2\\), so an equation of the tangent line is \\(y=7-2(x-4)\\).\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Limit kalıbını görünce önce \\(f\\)'yi ve \\(a\\)'yı yaz, sonra türev kuralıyla değeri bul. Limiti cebirle açmaya çalışmak zaman kaybıdır.",
+    "Teğet doğru için iki şey gerekir: nokta \\((a,f(a))\\) ve eğim \\(f'(a)\\). FRQ'da nokta-eğim biçimi (point-slope form) yeterlidir; sadeleştirmek gerekmez.",
+    "\\(\\left.\\frac{dy}{dx}\\right|_{x=a}\\) gösterimi \"türevin \\(x=a\\)'daki değeri\" demektir; \\(f'(a)\\) ile aynıdır."
+   ],
+   "sikHatalar": [
+    "\\(\\lim_{h\\to0}\\frac{f(a+h)-f(a)}{h}\\) ifadesini \\(f(a)\\) ya da 0 sanmak.",
+    "\\(\\frac{\\sqrt{9+h}-3}{h}\\) gibi bir ifadede \\(a\\)'yı 3 sanmak; doğru okuma \\(f(x)=\\sqrt x\\), \\(a=9\\)'dur.",
+    "Teğet denkleminde \\(a\\) ile \\(f(a)\\)'nın yerini karıştırmak: \\(y-a=f'(a)(x-f(a))\\) yanlıştır."
+   ],
+   "terimler": [
+    {
+     "en": "derivative",
+     "tr": "türev"
+    },
+    {
+     "en": "differentiable",
+     "tr": "türevlenebilir"
+    },
+    {
+     "en": "tangent line",
+     "tr": "teğet doğru"
+    },
+    {
+     "en": "normal line",
+     "tr": "normal doğru"
+    },
+    {
+     "en": "alternate form of the derivative",
+     "tr": "türevin alternatif biçimi"
+    },
+    {
+     "en": "Leibniz notation",
+     "tr": "Leibniz gösterimi"
+    },
+    {
+     "en": "point-slope form",
+     "tr": "nokta-eğim biçimi"
+    }
+   ]
+  },
+  {
+   "kod": "2.3",
+   "baslik": "Estimating Derivatives of a Function at a Point",
+   "baslikTr": "Bir noktada türevi tahmin etme",
+   "sadeceBC": false,
+   "hedefler": [
+    "Tablodaki verilerden bir noktadaki türevi fark bölümüyle tahmin etmek ve birimleriyle yorumlamak.",
+    "Grafikten teğet eğimini okumak; türev değerlerini ve kesen eğimlerini karşılaştırmak.",
+    "Grafik hesap makinesiyle sayısal türev (numerical derivative) bulmak."
+   ],
+   "anlatim": "<p>Formül her zaman verilmez. AP sınavında fonksiyon çoğu zaman bir <strong>tablo</strong> ya da <strong>grafik</strong> olarak gelir. O zaman \\(f'(a)\\)'yı <strong>tahmin ederiz (estimate)</strong>.</p>\n<h4>Tablodan tahmin</h4>\n<p>Fikir: \\(f'(a)\\) bir anlık değişim hızıdır; \\(a\\)'ya yakın bir aralıktaki ortalama değişim hızı onun iyi bir tahminidir.</p>\n<div class=\"kn-kural\"><strong>Kural.</strong> \\(a\\) tabloda yoksa, \\(a\\)'yı <strong>içeren en dar aralığı</strong> seç: \\(x_1\\lt a\\lt x_2\\) için\n\\[ f'(a)\\approx\\frac{f(x_2)-f(x_1)}{x_2-x_1}. \\]\n\\(a\\) tabloda varsa genellikle iki yanındaki komşu değerler kullanılır (<strong>simetrik fark bölümü, symmetric difference quotient</strong>):\n\\[ f'(a)\\approx\\frac{f(a+k)-f(a-k)}{2k}. \\]</div>\n<p>Örnek tablo:</p>\n<table><thead><tr><th>\\(t\\) (dakika)</th><th>0</th><th>4</th><th>10</th><th>16</th></tr></thead><tbody><tr><td>\\(T(t)\\) (°C)</td><td>90</td><td>74</td><td>60</td><td>53</td></tr></tbody></table>\n<p>\\(T'(7)\\)'yi tahmin edelim: 7, \\([4,10]\\) aralığındadır. \\(T'(7)\\approx\\frac{60-74}{10-4}=-\\frac{14}{6}\\approx-2.33\\) °C/dakika. Yorum: <em>\"At time \\(t=7\\) minutes, the temperature is decreasing at approximately 2.33 degrees Celsius per minute.\"</em></p>\n<h4>Grafikten tahmin</h4>\n<ul><li>Teğet doğru çizilmişse üzerindeki iki okunaklı noktadan eğimi hesapla.</li><li>İşaret: grafik o noktada artıyorsa \\(f'\\gt0\\), azalıyorsa \\(f'\\lt0\\); tepe ya da dipte yatay teğet varsa \\(f'=0\\).</li><li>Diklik: grafik ne kadar dikse \\(|f'|\\) o kadar büyüktür.</li></ul>\n<p>Karşılaştırma soruları AP'de sıktır: \"\\(f'(1)\\), \\(f'(3)\\) ve \\(\\frac{f(5)-f(1)}{5-1}\\) değerlerini sırala.\" Önce işaretleri ayır (negatifler, 0, pozitifler), sonra aynı işaretlileri diklikle karşılaştır. Kesen eğimi için iki noktayı birleştiren doğruyu hayal et.</p>\n<h4>Hesap makinesiyle sayısal türev</h4>\n<p>Hesap makinesi izinli bölümde grafik hesap makinesi bir noktadaki türevi doğrudan verir (TI-84: <code>MATH → 8:nDeriv(</code> ya da grafik ekranında <code>CALC → dy/dx</code>). AP kuralı: sonuçlar <strong>üç ondalık basamağa doğru</strong> verilir (correct to three decimal places). Trigonometrik fonksiyonlarda hesap makinesi <strong>radyan</strong> modunda olmalıdır.</p>\n<div class=\"kn-dikkat\"><strong>Tahmin ≠ değer.</strong> FRQ'da \"estimate\" dendiğinde hesaplama ifadesini yaz: \\(\\frac{f(x_2)-f(x_1)}{x_2-x_1}\\). Yalnız sayı yazmak çoğu zaman yeterli değildir. Ayrıca iki tablo değerinin ortalaması \\(f(a)\\) için bir tahmin olabilir, \\(f'(a)\\) için değil.</div>",
+   "ornekler": [
+    {
+     "soru": "Türevlenebilir \\(f\\) için tablo: <table><thead><tr><th>\\(x\\)</th><th>1</th><th>3</th><th>4</th><th>7</th></tr></thead><tbody><tr><td>\\(f(x)\\)</td><td>5</td><td>9</td><td>12</td><td>21</td></tr></tbody></table> \\(f'(5)\\)'i tahmin edin.",
+     "cozum": [
+      "5'i içeren en dar aralık \\([4,7]\\)'dir.",
+      "\\(f'(5)\\approx\\frac{f(7)-f(4)}{7-4}=\\frac{21-12}{3}=3\\)."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi) \\(f(x)=e^{\\sin x}\\) için \\(f'(2)\\)'yi üç ondalık basamakla bulun.",
+     "cozum": [
+      "Radyan modunda <code>nDeriv(e^(sin(X)),X,2)</code> gir.",
+      "\\(f'(2)\\approx-1.033\\). Değer negatif: \\(x=2\\)'de \\(f\\) azalıyor."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Bir cismin hızı \\(v(t)\\) m/s: \\(v(0)=4\\), \\(v(2)=10\\), \\(v(5)=13\\). \\(v'(3.5)\\)'i tahmin edin; hesabı gösterin ve birimiyle yorumlayın.",
+     "cozum": [
+      "3.5, \\([2,5]\\) aralığındadır: \\(v'(3.5)\\approx\\frac{v(5)-v(2)}{5-2}=\\frac{13-10}{3}=1\\) m/s².",
+      "<em>\"At time \\(t=3.5\\) seconds, the velocity of the object is increasing at approximately 1 meter per second per second.\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Tahmin için tahmin edilen noktayı içeren en dar aralığı kullan; daha geniş aralık genelde kabul edilmez.",
+    "Hesap makinesi sorularında radyan modunu kontrol et ve cevabı üç ondalık basamağa yuvarla; ara adımlarda yuvarlama yapma.",
+    "Grafik sıralama sorularında önce işarete, sonra dikliğe bak; kesen eğimini iki uç noktayı birleştirerek bul."
+   ],
+   "sikHatalar": [
+    "Tablodaki iki \\(f\\) değerinin ortalamasını \\(f'(a)\\) sanmak.",
+    "Farkı aralık uzunluğuna bölmeyi unutmak.",
+    "Hesap makinesi derece modundayken trigonometrik türev hesaplamak."
+   ],
+   "terimler": [
+    {
+     "en": "estimate",
+     "tr": "tahmin etmek"
+    },
+    {
+     "en": "symmetric difference quotient",
+     "tr": "simetrik fark bölümü"
+    },
+    {
+     "en": "numerical derivative",
+     "tr": "sayısal türev"
+    },
+    {
+     "en": "slope of the tangent line",
+     "tr": "teğet doğrunun eğimi"
+    },
+    {
+     "en": "correct to three decimal places",
+     "tr": "üç ondalık basamağa doğru"
+    }
+   ]
+  },
+  {
+   "kod": "2.4",
+   "baslik": "Connecting Differentiability and Continuity: Determining When Derivatives Do and Do Not Exist",
+   "baslikTr": "Türevlenebilirlik ve süreklilik: türevin var olup olmadığını belirleme",
+   "sadeceBC": false,
+   "hedefler": [
+    "Türevlenebilirliğin sürekliliği gerektirdiğini, tersinin doğru olmadığını açıklamak.",
+    "Köşe (corner), sivri uç (cusp), dikey teğet (vertical tangent) ve süreksizlik durumlarında türevin olmadığını göstermek.",
+    "Parçalı fonksiyonlarda türevlenebilirliği süreklilik ve tek taraflı türevlerle gerekçelendirmek."
+   ],
+   "anlatim": "<div class=\"kn-kural\"><strong>Teorem.</strong> \\(f\\), \\(x=a\\)'da türevlenebilir ise \\(x=a\\)'da süreklidir.<br><strong>Kontrapozitif:</strong> \\(f\\), \\(x=a\\)'da sürekli değilse orada türevlenebilir de değildir.<br><strong>Tersi doğru değildir:</strong> Sürekli bir fonksiyon türevlenemeyebilir.</div>\n<p>Neden? \\(x\\neq a\\) için \\(f(x)-f(a)=\\frac{f(x)-f(a)}{x-a}\\cdot(x-a)\\). \\(x\\to a\\) iken ilk çarpan \\(f'(a)\\)'ya, ikinci çarpan 0'a gider; çarpım 0'a gider. Yani \\(\\lim_{x\\to a}f(x)=f(a)\\).</p>\n<h4>Türevin olmadığı dört durum</h4>\n<table><thead><tr><th>Durum</th><th>Grafikte</th><th>Örnek</th><th>Neden</th></tr></thead><tbody>\n<tr><td>Süreksizlik (discontinuity)</td><td>Sıçrama, delik, asimptot</td><td>Basamak fonksiyonu</td><td>Türevlenebilirlik süreklilik gerektirir</td></tr>\n<tr><td>Köşe (corner)</td><td>Farklı eğimli iki kol</td><td>\\(|x|\\), \\(x=0\\)</td><td>Tek taraflı türevler farklı: \\(-1\\) ve \\(1\\)</td></tr>\n<tr><td>Sivri uç (cusp)</td><td>Kollar dikleşerek birleşir</td><td>\\(x^{2/3}\\), \\(x=0\\)</td><td>Tek taraflı türevler \\(-\\infty\\) ve \\(+\\infty\\)</td></tr>\n<tr><td>Dikey teğet (vertical tangent)</td><td>Teğet doğru dikey</td><td>\\(\\sqrt[3]{x}\\), \\(x=0\\)</td><td>Fark bölümü sınırsız büyür</td></tr>\n</tbody></table>\n<h4>Tek taraflı türevler (one-sided derivatives)</h4>\n<p>\\[ \\lim_{h\\to0^-}\\frac{f(a+h)-f(a)}{h}\\qquad\\text{ve}\\qquad\\lim_{h\\to0^+}\\frac{f(a+h)-f(a)}{h}. \\]\n\\(f'(a)\\) ancak ikisi de var (gerçek sayı) ve eşitse vardır.</p>\n<h4>Parçalı fonksiyon testi</h4>\n<p>\\(f(x)=\\begin{cases}g(x), & x\\le a\\\\ k(x), & x\\gt a\\end{cases}\\) için \\(x=a\\)'da (\\(g\\) ve \\(k\\) kendi parçalarında türevlenebilir):</p>\n<ol><li><strong>Süreklilik:</strong> \\(g(a)=\\lim_{x\\to a^+}k(x)\\) olmalı. Değilse dur: \\(f\\) türevlenemez.</li><li><strong>Eğimler:</strong> \\(g'(a)\\) ile \\(\\lim_{x\\to a^+}k'(x)\\) eşit olmalı.</li></ol>\n<p>Örnek: \\(f(x)=x^2+1\\) (\\(x\\lt2\\)), \\(f(x)=3x-1\\) (\\(x\\ge2\\)). Süreklilik: \\(4+1=5=3(2)-1\\). Eğimler: soldan \\(2x=4\\), sağdan \\(3\\). Farklı olduğundan köşe vardır: \\(f\\), \\(x=2\\)'de sürekli ama türevlenemez.</p>\n<div class=\"kn-dikkat\"><strong>Sırayı atlama.</strong> Yalnız eğimlerin eşit olması yetmez. \\(f(x)=x\\) (\\(x\\lt1\\)), \\(f(x)=x+5\\) (\\(x\\ge1\\)) için iki eğim de 1'dir ama \\(f\\) sıçrama yapar; \\(f'(1)\\) yoktur.</div>\n<p>FRQ kalıpları: <em>\"\\(f\\) is not differentiable at \\(x=2\\) because \\(\\lim_{h\\to0^-}\\frac{f(2+h)-f(2)}{h}=4\\neq3=\\lim_{h\\to0^+}\\frac{f(2+h)-f(2)}{h}\\).\"</em> — <em>\"\\(f\\) is not continuous at \\(x=1\\); therefore \\(f\\) is not differentiable at \\(x=1\\).\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=\\begin{cases}ax^2, & x\\le1\\\\ 4x+b, & x\\gt1\\end{cases}\\) fonksiyonu \\(x=1\\)'de türevlenebilir. \\(a\\) ve \\(b\\)'yi bulun.",
+     "cozum": [
+      "Süreklilik: \\(a(1)^2=4(1)+b\\) → \\(a=4+b\\).",
+      "Eğimler: soldan \\(2ax=2a\\), sağdan \\(4\\) → \\(2a=4\\), \\(a=2\\).",
+      "\\(b=a-4=-2\\). Kontrol: \\(f(1)=2\\), sağdan limit \\(4-2=2\\)."
+     ]
+    },
+    {
+     "soru": "\\(f(x)=|x-3|\\) için \\(x=3\\)'te tek taraflı türevleri bulun. \\(f'(3)\\) var mı?",
+     "cozum": [
+      "\\(\\frac{f(3+h)-f(3)}{h}=\\frac{|h|}{h}\\): \\(h\\gt0\\) için \\(1\\), \\(h\\lt0\\) için \\(-1\\).",
+      "Tek taraflı türevler \\(-1\\neq1\\): köşe. \\(f\\) sürekli ama \\(f'(3)\\) yoktur."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) \\(g(x)=\\begin{cases}x+1, & x\\lt0\\\\ \\cos x, & x\\ge0\\end{cases}\\). \\(g\\), \\(x=0\\)'da türevlenebilir mi? Gerekçelendirin.",
+     "cozum": [
+      "Süreklilik: \\(\\lim_{x\\to0^-}(x+1)=1=\\cos0=g(0)\\); \\(g\\), \\(x=0\\)'da süreklidir.",
+      "Soldan eğim \\(1\\), sağdan eğim \\(-\\sin0=0\\); eşit değil.",
+      "<em>\"\\(g\\) is continuous at \\(x=0\\) but not differentiable there, because the left-hand derivative (1) does not equal the right-hand derivative (0).\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Parçalı fonksiyonlarda iki adımı sırayla yaz: önce süreklilik, sonra tek taraflı türevler. Puanlayıcı ikisini de arar.",
+    "\"Differentiability implies continuity\" cümlesini gerekçede kullan: süreksizlik gördüğünde türevlenemezliği tek cümleyle gösterirsin.",
+    "Grafikte köşe, sivri uç, dikey teğet ve süreksizlik noktalarını işaretle; pürüzsüz kısımların her yerinde türev vardır."
+   ],
+   "sikHatalar": [
+    "Süreklilikten türevlenebilirlik çıkarmak (\\(|x|\\), \\(x=0\\)'da karşı örnektir).",
+    "Parçalı fonksiyonda yalnız eğimleri eşitleyip sürekliliği kontrol etmemek.",
+    "Dikey teğette türevin \"sonsuz olarak var\" olduğunu sanmak; türev gerçek bir sayı olmalıdır."
+   ],
+   "terimler": [
+    {
+     "en": "differentiable",
+     "tr": "türevlenebilir"
+    },
+    {
+     "en": "corner",
+     "tr": "köşe"
+    },
+    {
+     "en": "cusp",
+     "tr": "sivri uç"
+    },
+    {
+     "en": "vertical tangent",
+     "tr": "dikey teğet"
+    },
+    {
+     "en": "one-sided derivative",
+     "tr": "tek taraflı türev"
+    },
+    {
+     "en": "piecewise-defined function",
+     "tr": "parçalı tanımlı fonksiyon"
+    }
+   ]
+  },
+  {
+   "kod": "2.5",
+   "baslik": "Applying the Power Rule",
+   "baslikTr": "Kuvvet kuralını uygulama",
+   "sadeceBC": false,
+   "hedefler": [
+    "Kuvvet kuralını (power rule) her gerçek üs \\(n\\) için uygulamak.",
+    "Kök ve kesirli ifadeleri \\(x^n\\) biçimine yeniden yazmak (rewrite).",
+    "Kuvvet kuralıyla teğet doğru ve yatay teğet sorularını çözmek."
+   ],
+   "anlatim": "<p>Her türevi limitle bulmak uzun sürer. <strong>Türev kuralları (differentiation rules)</strong> bu işi kısaltır. İlki ve en çok kullanılanı kuvvet kuralıdır.</p>\n<div class=\"kn-kural\"><strong>Kuvvet kuralı (power rule).</strong> Her gerçek sayı \\(n\\) için\n\\[ \\frac{d}{dx}\\left[x^n\\right]=n\\,x^{n-1}. \\]\n\"Üssü öne indir, üsten 1 çıkar.\"</div>\n<p>Neden? \\(n=3\\) için tanımla: \\(\\frac{(x+h)^3-x^3}{h}=\\frac{3x^2h+3xh^2+h^3}{h}=3x^2+3xh+h^2\\to3x^2\\). Pozitif tam sayı \\(n\\) için binom açılımı aynı sonucu verir; kural negatif ve kesirli üsler için de geçerlidir.</p>\n<h4>Örnek tablo</h4>\n<table><thead><tr><th>Fonksiyon</th><th>Yeniden yazılış</th><th>Türev</th></tr></thead><tbody>\n<tr><td>\\(x^7\\)</td><td>\\(x^7\\)</td><td>\\(7x^6\\)</td></tr>\n<tr><td>\\(\\sqrt{x}\\)</td><td>\\(x^{1/2}\\)</td><td>\\(\\frac12x^{-1/2}=\\frac{1}{2\\sqrt x}\\)</td></tr>\n<tr><td>\\(\\frac{1}{x^3}\\)</td><td>\\(x^{-3}\\)</td><td>\\(-3x^{-4}=-\\frac{3}{x^4}\\)</td></tr>\n<tr><td>\\(\\sqrt[3]{x^2}\\)</td><td>\\(x^{2/3}\\)</td><td>\\(\\frac23x^{-1/3}\\)</td></tr>\n<tr><td>\\(\\frac{1}{\\sqrt x}\\)</td><td>\\(x^{-1/2}\\)</td><td>\\(-\\frac12x^{-3/2}\\)</td></tr>\n<tr><td>\\(x\\)</td><td>\\(x^1\\)</td><td>\\(1\\)</td></tr>\n</tbody></table>\n<h4>Önce yeniden yaz (rewrite first)</h4>\n<p>Kuralı uygulamadan önce ifadeyi \\(c\\,x^n\\) terimlerinin toplamına çevir:</p>\n<ul><li>Kökler → kesirli üs: \\(\\sqrt[m]{x^k}=x^{k/m}\\).</li><li>Paydadaki kuvvet → negatif üs: \\(\\frac{5}{x^2}=5x^{-2}\\). Dikkat: \\(\\frac{1}{3x^2}=\\frac13x^{-2}\\), \\(3x^{-2}\\) değil.</li><li>Tek terimli paydaya bölme → terim terim böl: \\(\\frac{x^3-4x}{x}=x^2-4\\) (\\(x\\neq0\\)).</li></ul>\n<div class=\"kn-dikkat\"><strong>Negatif üsten 1 çıkarırken:</strong> \\(-3-1=-4\\), \\(-2\\) değil. Kesirde: \\(\\frac12-1=-\\frac12\\). Üs her zaman 1 azalır.</div>\n<h4>Teğet doğru ve yatay teğet</h4>\n<p>\\(y=x^3\\) için \\(x=2\\)'deki teğet: nokta \\((2,8)\\), eğim \\(3(2)^2=12\\), denklem \\(y=8+12(x-2)\\). Yatay teğet (horizontal tangent), \\(y'=0\\) olan noktalardadır.</p>\n<p>Örnek (ters soru): \\(y=x^3\\) eğrisinin hangi noktadaki teğeti \\(y=12x-16\\) doğrusudur? Eğim eşitliği \\(3x^2=12\\) → \\(x=\\pm2\\). Nokta eşitliği: \\(x=2\\)'de eğri \\(8\\), doğru \\(12(2)-16=8\\) verir; \\(x=-2\\)'de eğri \\(-8\\), doğru \\(-40\\) verir. Yalnız \\((2,8)\\) teğet noktasıdır. Eğimin tutması yetmez, nokta da ortak olmalıdır.</p>\n<h4>\\(x^n\\) ile \\(n^x\\) farkı</h4>\n<p>Kuvvet kuralı yalnız <strong>taban değişken, üs sabit</strong> iken çalışır: \\(x^5\\), \\(x^{-2}\\), \\(x^{\\pi}\\). \\(2^x\\) ya da \\(e^x\\) gibi <strong>üssü değişken</strong> fonksiyonlarda kural kullanılmaz; bunların türevleri 2.7 ve Unit 3'te gelir. Örneğin \\(\\frac{d}{dx}[x^{\\pi}]=\\pi x^{\\pi-1}\\) doğrudur, ama \\(\\frac{d}{dx}[\\pi^x]\\neq x\\pi^{x-1}\\).</p>\n<p>FRQ'da ara adımı göster: <em>\"\\(f'(x)=\\frac12x^{-1/2}\\), so \\(f'(4)=\\frac12\\cdot\\frac12=\\frac14\\).\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=\\frac{4}{\\sqrt x}\\) için \\(f'(4)\\)'ü bulun.",
+     "cozum": [
+      "Yeniden yaz: \\(f(x)=4x^{-1/2}\\).",
+      "\\(f'(x)=4\\cdot\\left(-\\frac12\\right)x^{-3/2}=-2x^{-3/2}\\).",
+      "\\(4^{-3/2}=\\frac18\\) → \\(f'(4)=-\\frac14\\)."
+     ]
+    },
+    {
+     "soru": "\\(y=x\\sqrt{x}\\) eğrisinin \\(x=4\\)'teki teğet doğrusunun denklemini yazın.",
+     "cozum": [
+      "\\(y=x^{3/2}\\); \\(x=4\\)'te \\(y=8\\).",
+      "\\(y'=\\frac32x^{1/2}\\), \\(y'(4)=3\\).",
+      "Teğet: \\(y=8+3(x-4)\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Bir öğrenci \\(\\frac{d}{dx}\\left[\\frac{1}{x^2}\\right]=\\frac{1}{2x}\\) yazıyor. Hata nedir? Doğru türevi bulun.",
+     "cozum": [
+      "Öğrenci paydanın türevini alıp kesrin altında bırakmış; kuvvet kuralı bölüme böyle uygulanmaz.",
+      "Doğrusu: \\(\\frac{1}{x^2}=x^{-2}\\) → \\(-2x^{-3}=-\\frac{2}{x^3}\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Türev almadan önce her terimi \\(c\\,x^n\\) biçimine yeniden yaz; hataların çoğu bu adımın atlanmasından gelir.",
+    "Değer hesaplarken \\(x^{-3/2}=\\frac{1}{x\\sqrt x}\\) gibi biçimler işini kolaylaştırır; sonucu sadeleştirmek zorunlu değildir.",
+    "Sabitin türevi 0'dır: \\(\\frac{d}{dx}[\\pi^2]=0\\), \\(\\frac{d}{dx}[e^3]=0\\). Değişken olmayan her harf sabittir."
+   ],
+   "sikHatalar": [
+    "Negatif üse 1 eklemek: \\(\\frac{d}{dx}x^{-3}=-3x^{-2}\\) yazmak.",
+    "Üssü öne indirmeyi ya da üssü 1 azaltmayı unutmak.",
+    "Kesir biçimindeki ifadenin pay ve paydasının türevlerini ayrı ayrı alıp bölmek."
+   ],
+   "terimler": [
+    {
+     "en": "power rule",
+     "tr": "kuvvet kuralı"
+    },
+    {
+     "en": "exponent",
+     "tr": "üs"
+    },
+    {
+     "en": "rewrite",
+     "tr": "yeniden yazmak"
+    },
+    {
+     "en": "rational exponent",
+     "tr": "kesirli üs"
+    },
+    {
+     "en": "horizontal tangent",
+     "tr": "yatay teğet"
+    },
+    {
+     "en": "differentiation rules",
+     "tr": "türev kuralları"
+    }
+   ]
+  },
+  {
+   "kod": "2.6",
+   "baslik": "Derivative Rules: Constant, Sum, Difference, and Constant Multiple",
+   "baslikTr": "Türev kuralları: sabit, toplam, fark ve sabitle çarpım",
+   "sadeceBC": false,
+   "hedefler": [
+    "Sabit, toplam, fark ve sabitle çarpım kurallarını kuvvet kuralıyla birlikte kullanmak.",
+    "Tablo ya da grafikle verilen fonksiyonların doğrusal birleşimlerinin türevini bulmak.",
+    "Teğet doğru bilgisinden bilinmeyen katsayıları bulmak."
+   ],
+   "anlatim": "<div class=\"kn-kural\"><strong>Kurallar.</strong> \\(f\\) ve \\(g\\) türevlenebilir, \\(c\\) ve \\(k\\) sabit olsun.\n<ul><li><strong>Sabit (constant rule):</strong> \\(\\frac{d}{dx}[c]=0\\)</li><li><strong>Sabitle çarpım (constant multiple rule):</strong> \\(\\frac{d}{dx}[k\\,f(x)]=k\\,f'(x)\\)</li><li><strong>Toplam/fark (sum/difference rule):</strong> \\(\\frac{d}{dx}[f(x)\\pm g(x)]=f'(x)\\pm g'(x)\\)</li></ul></div>\n<p>Sezgi: sabitin grafiği yatay bir doğrudur, eğimi her yerde 0'dır. \\(k\\,f\\) grafiği \\(f\\)'yi dikey olarak \\(k\\) kat gerer; eğimler de \\(k\\) kat olur. Toplamın değişim hızı, değişim hızlarının toplamıdır.</p>\n<h4>Polinomlar</h4>\n<p>Bu kurallar ve kuvvet kuralıyla her polinomun türevi terim terim alınır:</p>\n<div class=\"formul\">\\[ \\frac{d}{dx}\\left[4x^5-3x^2+7x-9\\right]=20x^4-6x+7. \\]</div>\n<h4>Tablo ya da grafikle verilen fonksiyonlar</h4>\n<table><thead><tr><th>\\(x\\)</th><th>\\(f(x)\\)</th><th>\\(f'(x)\\)</th><th>\\(g(x)\\)</th><th>\\(g'(x)\\)</th></tr></thead><tbody><tr><td>1</td><td>2</td><td>4</td><td>5</td><td>\\(-1\\)</td></tr></tbody></table>\n<p>\\(h(x)=3f(x)-2g(x)+x^2\\) ise \\(h'(x)=3f'(x)-2g'(x)+2x\\) ve \\(h'(1)=3(4)-2(-1)+2=16\\). Sabit terimler kaybolur; \\(x^2\\) gibi açık terimleri unutma.</p>\n<p>Aynı tabloyla teğet doğru: \\(h(1)=3(2)-2(5)+1=-3\\), eğim 16 → \\(y=-3+16(x-1)\\). Değer için \\(f\\), \\(g\\) sütunlarını; eğim için \\(f'\\), \\(g'\\) sütunlarını kullandık.</p>\n<p>Grafikle verilen parçalı doğrusal (piecewise linear) bir \\(f\\) için \\(f'(a)\\), \\(a\\)'yı içeren doğru parçasının eğimidir. Köşe noktalarında \\(f'\\) yoktur.</p>\n<h4>Bilinmeyen katsayılar</h4>\n<p>\"\\(y=mx+b\\) doğrusu, \\(f\\)'nin grafiğine \\(x=a\\)'da teğettir\" cümlesi <strong>iki</strong> denklem verir: \\(f(a)=ma+b\\) (aynı nokta) ve \\(f'(a)=m\\) (aynı eğim).</p>\n<div class=\"kn-dikkat\"><strong>Dikkat:</strong> \\(e^2\\), \\(\\pi^3\\), \\(\\ln5\\) birer sayıdır; türevleri 0'dır. \\(\\frac{d}{dx}[e^2]=2e\\) yazmak sık bir hatadır. Ayrıca \\(\\frac{d}{dx}[f(x)g(x)]\\neq f'(x)g'(x)\\); çarpım için ayrı bir kural vardır (2.8).</div>\n<h4>Yatay teğetler</h4>\n<p>Polinomun yatay teğetleri \\(f'(x)=0\\) denkleminin kökleridir. \\(f(x)=x^3-3x^2-9x+1\\) için \\(f'(x)=3x^2-6x-9=3(x-3)(x+1)\\) → \\(x=3\\) ve \\(x=-1\\). Fonksiyonu sıfıra eşitlemek (\\(f(x)=0\\)) grafiğin \\(x\\)-eksenini kestiği yerleri verir; yatay teğetleri değil.</p>\n<h4>Bağlamda yorum</h4>\n<p>\\(C(x)\\) dolar, \\(x\\) ürün sayısı ise \\(C(x)=500+4x+0.01x^2\\) için \\(C'(x)=4+0.02x\\). \\(C'(100)=6\\): 100 ürün üretilirken maliyet ürün başına 6 dolar hızla artmaktadır; yani 101. ürün yaklaşık 6 dolar ek maliyet getirir. Sabit 500 (kurulum maliyeti) değişim hızını etkilemez; türevi 0'dır.</p>\n<p>FRQ kalıbı: <em>\"\\(h'(1)=3f'(1)-2g'(1)+2(1)=3(4)-2(-1)+2=16\\).\"</em> Değerleri yerine koyduğun satırı mutlaka yaz.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(y=2x^4-\\frac{6}{x}+\\sqrt{x}-\\ln3\\) için \\(\\frac{dy}{dx}\\)'i bulun.",
+     "cozum": [
+      "Yeniden yaz: \\(y=2x^4-6x^{-1}+x^{1/2}-\\ln3\\).",
+      "\\(\\frac{dy}{dx}=8x^3+6x^{-2}+\\frac12x^{-1/2}\\). \\(\\ln3\\) sabittir, türevi 0'dır."
+     ]
+    },
+    {
+     "soru": "\\(f(x)=x^3+ax^2+b\\) fonksiyonunun grafiğine \\(x=2\\)'de teğet olan doğru \\(y=4x-3\\)'tür. \\(a\\) ve \\(b\\)'yi bulun.",
+     "cozum": [
+      "Eğim: \\(f'(x)=3x^2+2ax\\), \\(f'(2)=12+4a=4\\) → \\(a=-2\\).",
+      "Nokta: \\(f(2)=8+4a+b\\) ve doğrunun \\(x=2\\)'deki değeri \\(4(2)-3=5\\). \\(8-8+b=5\\) → \\(b=5\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(f'(3)=1.5\\) ve \\(g(x)=5-2f(x)\\). \\(x=3\\)'te \\(g\\)'nin değişim hızı nedir? \\(g\\) bu noktada artıyor mu azalıyor mu?",
+     "cozum": [
+      "\\(g'(x)=-2f'(x)\\) → \\(g'(3)=-3\\).",
+      "<em>\"\\(g'(3)=-3\\lt0\\), so \\(g\\) is decreasing at \\(x=3\\).\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Polinomun türevinde her terimi ayrı yaz; sabit terimi silmeyi unutma.",
+    "Tablo sorularında önce türev formülünü sembolik yaz (\\(h'(x)=\\ldots\\)), sonra değerleri koy; hangi sütunu kullanacağın netleşir.",
+    "Teğet doğrusu verilen sorularda \"aynı nokta + aynı eğim\" iki denklem verir; iki bilinmeyen için ikisi de gerekir."
+   ],
+   "sikHatalar": [
+    "\\(e^2\\), \\(\\pi^2\\) gibi sabitlerin türevini 0 yerine başka bir şey yazmak.",
+    "Teğet eğimi ile fonksiyon değerini karıştırmak: \\(f(a)\\) yerine \\(f'(a)\\) kullanmak ya da tersi.",
+    "\\(-3g(x)\\) gibi terimlerde negatif katsayının işaretini kaybetmek."
+   ],
+   "terimler": [
+    {
+     "en": "constant rule",
+     "tr": "sabit kuralı"
+    },
+    {
+     "en": "constant multiple rule",
+     "tr": "sabitle çarpım kuralı"
+    },
+    {
+     "en": "sum rule",
+     "tr": "toplam kuralı"
+    },
+    {
+     "en": "difference rule",
+     "tr": "fark kuralı"
+    },
+    {
+     "en": "polynomial",
+     "tr": "polinom"
+    },
+    {
+     "en": "piecewise linear",
+     "tr": "parçalı doğrusal"
+    }
+   ]
+  },
+  {
+   "kod": "2.7",
+   "baslik": "Derivatives of cos x, sin x, e^x, and ln x",
+   "baslikTr": "cos x, sin x, eˣ ve ln x fonksiyonlarının türevleri",
+   "sadeceBC": false,
+   "hedefler": [
+    "\\(\\sin x\\), \\(\\cos x\\), \\(e^x\\) ve \\(\\ln x\\)'in türevlerini bilmek ve diğer kurallarla birleştirmek.",
+    "Bu türevleri limit ifadelerini tanımada, teğet ve yatay teğet sorularında kullanmak."
+   ],
+   "anlatim": "<div class=\"kn-kural\"><strong>Dört temel türev.</strong>\n\\[ \\frac{d}{dx}[\\sin x]=\\cos x\\qquad\\frac{d}{dx}[\\cos x]=-\\sin x \\]\n\\[ \\frac{d}{dx}[e^x]=e^x\\qquad\\frac{d}{dx}[\\ln x]=\\frac1x\\quad(x\\gt0) \\]</div>\n<h4>Neden böyle? (sezgi)</h4>\n<ul><li>\\(\\sin x\\) grafiği \\(x=0\\)'dan eğimi 1 olarak geçer; \\(\\cos0=1\\). Tepe noktası \\(x=\\frac\\pi2\\)'de eğim 0'dır; \\(\\cos\\frac\\pi2=0\\). Eğimlerin grafiği \\(\\cos x\\) grafiğidir. Kanıt, 1.8'deki \\(\\lim_{h\\to0}\\frac{\\sin h}{h}=1\\) limitine dayanır.</li><li>\\(\\cos x\\) grafiği \\(x=0\\)'dan sonra azalır; eğimleri \\(-\\sin x\\) grafiğini çizer.</li><li>\\(e^x\\), türevi kendisine eşit olan üstel fonksiyondur: \\(e\\approx2.718\\) sayısı tam bu özellik için seçilir. Her noktada eğim = yükseklik.</li><li>\\(\\ln x\\) yalnız \\(x\\gt0\\) için tanımlıdır; \\(x\\) büyüdükçe eğim \\(\\frac1x\\) küçülür ama pozitif kalır.</li></ul>\n<h4>Diğer kurallarla</h4>\n<p>Sabitle çarpım ve toplam kuralları aynen geçerlidir: \\(\\frac{d}{dx}[3\\sin x-4e^x+2\\ln x]=3\\cos x-4e^x+\\frac2x\\).</p>\n<h4>Özel değerler</h4>\n<table><thead><tr><th>\\(x\\)</th><th>\\(0\\)</th><th>\\(\\frac\\pi6\\)</th><th>\\(\\frac\\pi4\\)</th><th>\\(\\frac\\pi3\\)</th><th>\\(\\frac\\pi2\\)</th><th>\\(\\pi\\)</th></tr></thead><tbody><tr><td>\\(\\sin x\\)</td><td>0</td><td>\\(\\frac12\\)</td><td>\\(\\frac{\\sqrt2}{2}\\)</td><td>\\(\\frac{\\sqrt3}{2}\\)</td><td>1</td><td>0</td></tr><tr><td>\\(\\cos x\\)</td><td>1</td><td>\\(\\frac{\\sqrt3}{2}\\)</td><td>\\(\\frac{\\sqrt2}{2}\\)</td><td>\\(\\frac12\\)</td><td>0</td><td>\\(-1\\)</td></tr></tbody></table>\n<h4>Limit tanıma</h4>\n<p>\\(\\lim_{h\\to0}\\frac{e^{1+h}-e}{h}\\) ifadesi \\(e^x\\)'in \\(x=1\\)'deki türevidir: değeri \\(e\\). \\(\\lim_{h\\to0}\\frac{\\ln(2+h)-\\ln2}{h}=\\frac12\\). Bunlar 2.2'deki kalıbın bu fonksiyonlara uygulanmasıdır.</p>\n<div class=\"kn-dikkat\"><strong>Dikkat:</strong> \\(e^x\\) bir kuvvet fonksiyonu değildir; \\(\\frac{d}{dx}[e^x]\\neq xe^{x-1}\\). Kuvvet kuralı yalnız tabanı değişken, üssü sabit olan \\(x^n\\) içindir. \\(\\cos x\\)'in türevindeki eksi işaret en sık kaybedilen işarettir. Trigonometrik türev formülleri yalnız <strong>radyan</strong> ölçüsünde geçerlidir.</div>\n<h4>Teğet ve yatay teğet</h4>\n<p>\\(f(x)=e^x-2x\\) için \\(f'(x)=e^x-2=0\\) → \\(e^x=2\\) → \\(x=\\ln2\\). \\(g(x)=\\sin x+\\cos x\\) için \\(g'(x)=\\cos x-\\sin x=0\\) → \\(\\tan x=1\\) → \\([0,2\\pi)\\) içinde \\(x=\\frac\\pi4\\) ve \\(x=\\frac{5\\pi}{4}\\). Trigonometrik denklemlerde aralıktaki <strong>tüm</strong> çözümleri yaz.</p>\n<h4>Grafik eşleştirme</h4>\n<p>\\(f(x)=\\ln x\\) için \\(f'(x)=\\frac1x\\): \\(x\\to0^+\\) iken eğim çok büyük, \\(x\\) büyüdükçe eğim 0'a yaklaşır ama hiç negatif olmaz. \\(f(x)=e^x\\) için eğim her noktada yüksekliğe eşittir: \\((0,1)\\)'de eğim 1, \\((1,e)\\)'de eğim \\(e\\).</p>\n<p>Kısa hafıza: \"co-\" ile başlayan fonksiyonların (\\(\\cos\\), \\(\\cot\\), \\(\\csc\\)) türevleri eksi işaretle başlar.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=4\\sin x-e^x\\) fonksiyonunun grafiğine \\(x=0\\)'da teğet olan doğrunun denklemini yazın.",
+     "cozum": [
+      "Nokta: \\(f(0)=0-1=-1\\).",
+      "Eğim: \\(f'(x)=4\\cos x-e^x\\), \\(f'(0)=4-1=3\\).",
+      "Teğet: \\(y=-1+3x\\)."
+     ]
+    },
+    {
+     "soru": "\\(y=\\ln x-\\frac x2\\) eğrisinin yatay teğetinin olduğu noktayı bulun.",
+     "cozum": [
+      "\\(y'=\\frac1x-\\frac12=0\\) → \\(x=2\\).",
+      "\\(y(2)=\\ln2-1\\). Nokta: \\((2,\\ln2-1)\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(\\displaystyle\\lim_{x\\to0}\\frac{\\cos x-1}{x}\\) limitini bir türev olarak yorumlayın ve değerini bulun.",
+     "cozum": [
+      "\\(\\cos0=1\\) olduğundan limit \\(\\lim_{x\\to0}\\frac{\\cos x-\\cos0}{x-0}\\) biçimindedir: \\(f(x)=\\cos x\\) için \\(f'(0)\\).",
+      "\\(f'(0)=-\\sin0=0\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Dört türevi kart gibi ezberle; özellikle \\(\\cos x\\)'in türevindeki eksi işaretini.",
+    "Hesap makinesinde trigonometrik hesap yapıyorsan önce radyan modunu kontrol et.",
+    "\\(e^x\\) ve \\(\\ln x\\) birbirinin tersidir: \\(e^x=k\\) → \\(x=\\ln k\\). Yatay teğet sorularında bu adım sık gelir."
+   ],
+   "sikHatalar": [
+    "\\(\\frac{d}{dx}[\\cos x]=\\sin x\\) yazmak (işaret kaybı).",
+    "\\(e^x\\)'e kuvvet kuralı uygulamak: \\(xe^{x-1}\\).",
+    "\\(\\frac{d}{dx}[\\ln x]\\) yerine \\(\\ln x\\) ya da \\(\\frac{1}{\\ln x}\\) yazmak."
+   ],
+   "terimler": [
+    {
+     "en": "natural exponential function",
+     "tr": "doğal üstel fonksiyon"
+    },
+    {
+     "en": "natural logarithm",
+     "tr": "doğal logaritma"
+    },
+    {
+     "en": "radian",
+     "tr": "radyan"
+    },
+    {
+     "en": "sine",
+     "tr": "sinüs"
+    },
+    {
+     "en": "cosine",
+     "tr": "kosinüs"
+    }
+   ]
+  },
+  {
+   "kod": "2.8",
+   "baslik": "The Product Rule",
+   "baslikTr": "Çarpım kuralı",
+   "sadeceBC": false,
+   "hedefler": [
+    "Çarpım kuralını (product rule) uygulamak ve çarpımın türevinin türevlerin çarpımı olmadığını bilmek.",
+    "Formül, tablo ve grafikle verilen fonksiyonların çarpımlarının türevini hesaplamak."
+   ],
+   "anlatim": "<div class=\"kn-kural\"><strong>Çarpım kuralı (product rule).</strong> \\(f\\) ve \\(g\\) türevlenebilir ise\n\\[ \\frac{d}{dx}[f(x)g(x)]=f'(x)g(x)+f(x)g'(x). \\]\n\"Birincinin türevi çarpı ikinci, artı birinci çarpı ikincinin türevi.\"</div>\n<h4>Neden toplam?</h4>\n<p>Kenarları \\(f\\) ve \\(g\\) olan bir dikdörtgen düşün; alanı \\(A=fg\\). Kenarlar biraz uzayınca alan iki şerit kadar artar: \\(\\Delta f\\cdot g\\) ve \\(f\\cdot\\Delta g\\) (köşedeki küçük \\(\\Delta f\\,\\Delta g\\) parçası limitte önemsizdir). Bu yüzden \\(A'=f'g+fg'\\).</p>\n<div class=\"kn-dikkat\"><strong>En büyük tuzak:</strong> \\(\\frac{d}{dx}[fg]\\neq f'g'\\). Örnek: \\(x\\cdot x=x^2\\)'nin türevi \\(2x\\)'tir; türevlerin çarpımı \\(1\\cdot1=1\\) olurdu.</div>\n<h4>Örnekler</h4>\n<ul><li>\\(\\frac{d}{dx}[x^2\\sin x]=2x\\sin x+x^2\\cos x\\)</li><li>\\(\\frac{d}{dx}[e^x\\ln x]=e^x\\ln x+\\frac{e^x}{x}\\)</li><li>\\(\\frac{d}{dx}[(3x+1)(x^2-4)]=3(x^2-4)+(3x+1)(2x)=9x^2+2x-12\\)</li></ul>\n<p>Son örnekte önce çarpıp sonra türev almak da olur; aynı sonucu verir. Sınavda daha kısa yolu seç.</p>\n<h4>Üç çarpan</h4>\n<p>\\((fgk)'=f'gk+fg'k+fgk'\\): her terimde yalnız bir çarpanın türevi alınır.</p>\n<h4>Tablo ve grafik soruları</h4>\n<table><thead><tr><th>\\(x\\)</th><th>\\(f(x)\\)</th><th>\\(f'(x)\\)</th><th>\\(g(x)\\)</th><th>\\(g'(x)\\)</th></tr></thead><tbody><tr><td>2</td><td>\\(-1\\)</td><td>3</td><td>4</td><td>\\(-2\\)</td></tr></tbody></table>\n<p>\\(h(x)=f(x)g(x)\\) → \\(h'(2)=f'(2)g(2)+f(2)g'(2)=3(4)+(-1)(-2)=14\\). Dört değerin dördü de gerekir: iki fonksiyon değeri ve iki türev.</p>\n<p>Grafikle verilen parçalı doğrusal \\(f\\) için \\(f(a)\\)'yı grafikten, \\(f'(a)\\)'yı o parçanın eğiminden oku. Örnek: \\(f\\) grafiği \\((0,1)\\)'den \\((4,5)\\)'e giden bir doğru parçası ise \\(f(2)=3\\), \\(f'(2)=1\\); \\(h(x)=x^2f(x)\\) için \\(h'(2)=2(2)(3)+(2)^2(1)=16\\).</p>\n<h4>Yatay teğet</h4>\n<p>\\(y=xe^x\\) için \\(y'=e^x+xe^x=e^x(1+x)\\). \\(e^x\\) hiç sıfır olmadığından \\(y'=0\\) ⇔ \\(x=-1\\). Fonksiyonu sıfıra eşitlemek (\\(xe^x=0\\) → \\(x=0\\)) teğetin yatay olduğu yeri değil, grafiğin \\(x\\)-eksenini kestiği yeri verir.</p>\n<h4>Bağlamda çarpım kuralı</h4>\n<p>Gelir = fiyat × satış miktarı: \\(R(t)=p(t)q(t)\\). Fiyat artarken satış azalabilir; \\(R'(t)=p'(t)q(t)+p(t)q'(t)\\) iki etkiyi toplar. Hangi etkinin baskın olduğunu türevin işareti söyler. Benzer biçimde dikdörtgen alanı \\(A=LW\\) için \\(A'=L'W+LW'\\).</p>\n<p>FRQ kalıbı: <em>\"\\(h'(2)=f'(2)g(2)+f(2)g'(2)=(3)(4)+(-1)(-2)=14\\).\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(y=x^3e^x\\) için \\(\\frac{dy}{dx}\\)'i bulun ve \\(x=-3\\)'teki eğimi hesaplayın.",
+     "cozum": [
+      "\\(y'=3x^2e^x+x^3e^x=x^2e^x(x+3)\\).",
+      "\\(x=-3\\): \\(9e^{-3}\\cdot0=0\\); bu noktada teğet yataydır."
+     ]
+    },
+    {
+     "soru": "\\(k(x)=\\sqrt{x}\\,\\cos x\\) için \\(k'(x)\\)'i bulun.",
+     "cozum": [
+      "\\(f=x^{1/2}\\), \\(f'=\\frac{1}{2\\sqrt x}\\); \\(g=\\cos x\\), \\(g'=-\\sin x\\).",
+      "\\(k'(x)=\\frac{\\cos x}{2\\sqrt x}-\\sqrt x\\,\\sin x\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(f(1)=3\\), \\(f'(1)=-2\\), \\(g(1)=5\\), \\(g'(1)=1\\) ve \\(p(x)=f(x)g(x)\\). Bir öğrenci \\(p'(1)=(-2)(1)=-2\\) yazıyor. Hatayı açıklayın ve doğru değeri bulun.",
+     "cozum": [
+      "Öğrenci türevleri çarpmış; çarpım kuralı \\(f'g+fg'\\)'dir.",
+      "\\(p'(1)=(-2)(5)+(3)(1)=-7\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Formülü değerleri koymadan önce sembolik yaz: \\(h'=f'g+fg'\\).",
+    "Çarpanlardan biri sabitse (ör. \\(5f(x)\\)) çarpım kuralına gerek yoktur; sabitle çarpım yeter.",
+    "Yatay teğet ararken ortak çarpanı paranteze al (\\(e^x(x+1)\\)); \\(e^x\\gt0\\) olduğundan kökler parantezden gelir."
+   ],
+   "sikHatalar": [
+    "Çarpımın türevini türevlerin çarpımı sanmak.",
+    "İki terimden birini unutmak (yalnız \\(f'g\\) yazmak).",
+    "Tabloda \\(f(a)\\) ile \\(f'(a)\\) sütunlarını karıştırmak."
+   ],
+   "terimler": [
+    {
+     "en": "product rule",
+     "tr": "çarpım kuralı"
+    },
+    {
+     "en": "factor",
+     "tr": "çarpan"
+    },
+    {
+     "en": "differentiable function",
+     "tr": "türevlenebilir fonksiyon"
+    }
+   ]
+  },
+  {
+   "kod": "2.9",
+   "baslik": "The Quotient Rule",
+   "baslikTr": "Bölüm kuralı",
+   "sadeceBC": false,
+   "hedefler": [
+    "Bölüm kuralını (quotient rule) doğru sırayla uygulamak.",
+    "Bölüm kuralının gerekmediği durumları tanıyıp ifadeyi sadeleştirmek.",
+    "Tablo değerleriyle ve yatay teğet sorularında bölüm kuralını kullanmak."
+   ],
+   "anlatim": "<div class=\"kn-kural\"><strong>Bölüm kuralı (quotient rule).</strong> \\(f\\) ve \\(g\\) türevlenebilir ve \\(g(x)\\neq0\\) iken\n\\[ \\frac{d}{dx}\\left[\\frac{f(x)}{g(x)}\\right]=\\frac{f'(x)g(x)-f(x)g'(x)}{[g(x)]^2}. \\]</div>\n<p>İngilizce ezber kalıbı: <strong>\"low d-high minus high d-low, over the square of what's below\"</strong>. \"low\" payda (\\(g\\)), \"high\" pay (\\(f\\)), \"d-\" türev demektir. Sıra önemlidir: pay kısmında eksi işareti olduğundan \\(f'g\\) ile \\(fg'\\) yer değiştirirse sonucun işareti değişir.</p>\n<h4>Adım adım</h4>\n<p>\\(y=\\frac{x^2}{x+3}\\): \\(f=x^2\\), \\(f'=2x\\), \\(g=x+3\\), \\(g'=1\\).\n\\[ y'=\\frac{2x(x+3)-x^2(1)}{(x+3)^2}=\\frac{x^2+6x}{(x+3)^2}. \\]</p>\n<h4>Bölüm kuralı ne zaman gereksiz?</h4>\n<table><thead><tr><th>İfade</th><th>Daha kısa yol</th></tr></thead><tbody><tr><td>\\(\\frac{x^3+2x}{x}\\)</td><td>Böl: \\(x^2+2\\)</td></tr><tr><td>\\(\\frac{5}{x^4}\\)</td><td>\\(5x^{-4}\\), kuvvet kuralı</td></tr><tr><td>\\(\\frac{\\sin x}{7}\\)</td><td>\\(\\frac17\\sin x\\), sabitle çarpım</td></tr><tr><td>\\(\\frac{x}{x^2+1}\\)</td><td>Bölüm kuralı gerekli</td></tr></tbody></table>\n<h4>Tablo soruları</h4>\n<p>\\(f(3)=2\\), \\(f'(3)=5\\), \\(g(3)=-1\\), \\(g'(3)=4\\) ve \\(h=\\frac fg\\) ise\n\\[ h'(3)=\\frac{f'(3)g(3)-f(3)g'(3)}{[g(3)]^2}=\\frac{5(-1)-2(4)}{(-1)^2}=-13. \\]</p>\n<h4>Yatay teğet ve tanım kümesi</h4>\n<p>Bölümün türevi, payı sıfır olduğu (ve paydası sıfır olmadığı) noktalarda sıfırdır. Fonksiyonun paydasının sıfır olduğu yerlerde fonksiyon tanımsızdır; orada türev de yoktur.</p>\n<div class=\"kn-dikkat\"><strong>Dikkat:</strong> \\(\\left(\\frac fg\\right)'\\neq\\frac{f'}{g'}\\). Paydanın karesini almayı ve paydaki parantezleri unutma: \\(f(x)g'(x)\\) çarpımında \\(f\\)'nin tamamı parantez içinde olmalı.</div>\n<h4>İki yolun karşılaştırması</h4>\n<p>\\(y=\\frac{3}{x^2+1}\\) için bölüm kuralı: \\(\\frac{0\\cdot(x^2+1)-3(2x)}{(x^2+1)^2}=-\\frac{6x}{(x^2+1)^2}\\). Pay sabit olduğunda payın türevi 0'dır ve ilk terim düşer; \"pay sabit, türev de sabit\" diye 0 yazmak yanlıştır. (Unit 3'te zincir kuralıyla aynı sonuç daha kısa yoldan gelir.)</p>\n<h4>Bağlamda bölüm</h4>\n<p>Ortalama maliyet \\(A(x)=\\frac{C(x)}{x}\\), yoğunluk \\(C(t)=\\frac{m(t)}{V(t)}\\) gibi oranlar bölüm kuralıyla türetilir. Örnek: \\(C(t)=\\frac{5t}{t^2+4}\\) mg/L için \\(C'(t)=\\frac{5(t^2+4)-5t(2t)}{(t^2+4)^2}=\\frac{5(4-t^2)}{(t^2+4)^2}\\); \\(t\\lt2\\) iken pozitif, \\(t\\gt2\\) iken negatiftir.</p>\n<p>FRQ'da değerleri koyduğun satırı göster: <em>\"\\(h'(3)=\\frac{f'(3)g(3)-f(3)g'(3)}{[g(3)]^2}=\\frac{(5)(-1)-(2)(4)}{(-1)^2}=-13\\).\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(y=\\frac{2x-1}{x^2+1}\\) için \\(y'(0)\\)'ı bulun.",
+     "cozum": [
+      "\\(f=2x-1\\), \\(f'=2\\); \\(g=x^2+1\\), \\(g'=2x\\).",
+      "\\(y'=\\frac{2(x^2+1)-(2x-1)(2x)}{(x^2+1)^2}\\).",
+      "\\(x=0\\): \\(\\frac{2(1)-(-1)(0)}{1}=2\\)."
+     ]
+    },
+    {
+     "soru": "\\(y=\\frac{e^x}{x}\\) eğrisinin yatay teğetinin olduğu noktayı bulun.",
+     "cozum": [
+      "\\(y'=\\frac{e^x\\cdot x-e^x\\cdot1}{x^2}=\\frac{e^x(x-1)}{x^2}\\).",
+      "\\(e^x\\gt0\\) olduğundan \\(y'=0\\) ⇔ \\(x=1\\). Nokta: \\((1,e)\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(q(x)=\\frac{f(x)}{g(x)}\\); \\(f(0)=4\\), \\(f'(0)=-1\\), \\(g(0)=2\\), \\(g'(0)=3\\). Bir öğrenci \\(q'(0)=\\frac{4(3)-(-1)(2)}{2^2}=3.5\\) buluyor. Hatayı açıklayın ve doğru değeri bulun.",
+     "cozum": [
+      "Öğrenci paydaki terimlerin sırasını ters yazmış (\\(fg'-f'g\\)); bu, doğru cevabın işaretini değiştirir.",
+      "Doğrusu: \\(q'(0)=\\frac{(-1)(2)-(4)(3)}{2^2}=\\frac{-14}{4}=-3.5\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Bölüm kuralına geçmeden önce ifade sadeleşiyor mu ya da negatif üsle yazılabiliyor mu bak; çoğu zaman daha hızlıdır.",
+    "Paydaki sıra: önce payın türevi çarpı payda. Sırayı karıştırırsan cevabın işareti ters çıkar; AP şıklarında bu ters işaretli değer çoğu zaman vardır.",
+    "Paydayı açma; \\((x+3)^2\\) olarak bırakmak hem doğru hem daha güvenlidir."
+   ],
+   "sikHatalar": [
+    "Paydaki iki terimin sırasını ters yazmak.",
+    "Paydanın karesini almayı unutmak.",
+    "\\(\\frac{f'}{g'}\\) hesaplamak."
+   ],
+   "terimler": [
+    {
+     "en": "quotient rule",
+     "tr": "bölüm kuralı"
+    },
+    {
+     "en": "numerator",
+     "tr": "pay"
+    },
+    {
+     "en": "denominator",
+     "tr": "payda"
+    },
+    {
+     "en": "undefined",
+     "tr": "tanımsız"
+    }
+   ]
+  },
+  {
+   "kod": "2.10",
+   "baslik": "Finding the Derivatives of Tangent, Cotangent, Secant, and/or Cosecant Functions",
+   "baslikTr": "tan, cot, sec ve csc fonksiyonlarının türevleri",
+   "sadeceBC": false,
+   "hedefler": [
+    "\\(\\tan x\\), \\(\\cot x\\), \\(\\sec x\\), \\(\\csc x\\)'in türevlerini bölüm kuralıyla çıkarmak ve ezbere kullanmak.",
+    "Bu türevleri özel açılarda hesaplamak; çarpım ve bölüm kurallarıyla birleştirmek."
+   ],
+   "anlatim": "<p>Bu dört fonksiyon sinüs ve kosinüs cinsinden yazılır; türevleri bölüm kuralından çıkar.</p>\n<div class=\"formul\">\\[ \\tan x=\\frac{\\sin x}{\\cos x},\\quad\\cot x=\\frac{\\cos x}{\\sin x},\\quad\\sec x=\\frac{1}{\\cos x},\\quad\\csc x=\\frac{1}{\\sin x} \\]</div>\n<h4>tan x'in türevi</h4>\n<p>\\[ \\frac{d}{dx}\\left[\\frac{\\sin x}{\\cos x}\\right]=\\frac{\\cos x\\cdot\\cos x-\\sin x\\cdot(-\\sin x)}{\\cos^2x}=\\frac{\\cos^2x+\\sin^2x}{\\cos^2x}=\\frac{1}{\\cos^2x}=\\sec^2x. \\]\nBurada Pisagor özdeşliği (Pythagorean identity) \\(\\sin^2x+\\cos^2x=1\\) kullanıldı.</p>\n<h4>sec x'in türevi</h4>\n<p>\\[ \\frac{d}{dx}\\left[\\frac{1}{\\cos x}\\right]=\\frac{0\\cdot\\cos x-1\\cdot(-\\sin x)}{\\cos^2x}=\\frac{\\sin x}{\\cos^2x}=\\frac{1}{\\cos x}\\cdot\\frac{\\sin x}{\\cos x}=\\sec x\\tan x. \\]</p>\n<div class=\"kn-kural\"><strong>Dört türev.</strong>\n<table><thead><tr><th>Fonksiyon</th><th>Türev</th><th>\"co-\" eşi</th><th>Türev</th></tr></thead><tbody><tr><td>\\(\\tan x\\)</td><td>\\(\\sec^2x\\)</td><td>\\(\\cot x\\)</td><td>\\(-\\csc^2x\\)</td></tr><tr><td>\\(\\sec x\\)</td><td>\\(\\sec x\\tan x\\)</td><td>\\(\\csc x\\)</td><td>\\(-\\csc x\\cot x\\)</td></tr></tbody></table></div>\n<p>Kalıp: \"co-\" fonksiyonun türevi, eşinin türevinde her fonksiyonu \"co-\" eşiyle değiştirip başa eksi koymakla bulunur.</p>\n<h4>Değer hesaplama</h4>\n<p>\\(\\sec\\frac\\pi3=\\frac{1}{\\cos(\\pi/3)}=2\\) ve \\(\\tan\\frac\\pi3=\\sqrt3\\) → \\(\\frac{d}{dx}[\\sec x]\\) değeri \\(x=\\frac\\pi3\\)'te \\(2\\sqrt3\\)'tür. \\(\\sec^2\\frac\\pi4=\\frac{1}{(\\sqrt2/2)^2}=2\\).</p>\n<h4>Tanım kümesi</h4>\n<p>\\(\\tan\\) ve \\(\\sec\\), \\(\\cos x=0\\) olan yerlerde (\\(x=\\frac\\pi2+k\\pi\\)) tanımsızdır; \\(\\cot\\) ve \\(\\csc\\), \\(\\sin x=0\\) olan yerlerde (\\(x=k\\pi\\)) tanımsızdır. Bu noktalarda türev de yoktur.</p>\n<div class=\"kn-dikkat\"><strong>Dikkat:</strong> \\(\\sec^2x\\ge1\\) her zaman doğrudur; bu yüzden \\(\\tan x\\) tanımlı olduğu her aralıkta artandır. \\(\\sec^2x\\) gösterimi \\((\\sec x)^2\\) demektir, \\(\\sec(x^2)\\) değil.</div>\n<p>Sınavda bu türevler çarpım ve bölüm kurallarıyla birlikte gelir: \\(\\frac{d}{dx}[x\\tan x]=\\tan x+x\\sec^2x\\).</p>\n<h4>Altı trigonometrik türev bir arada</h4>\n<table><thead><tr><th>\\(f(x)\\)</th><th>\\(\\sin x\\)</th><th>\\(\\cos x\\)</th><th>\\(\\tan x\\)</th><th>\\(\\cot x\\)</th><th>\\(\\sec x\\)</th><th>\\(\\csc x\\)</th></tr></thead><tbody><tr><td>\\(f'(x)\\)</td><td>\\(\\cos x\\)</td><td>\\(-\\sin x\\)</td><td>\\(\\sec^2x\\)</td><td>\\(-\\csc^2x\\)</td><td>\\(\\sec x\\tan x\\)</td><td>\\(-\\csc x\\cot x\\)</td></tr></tbody></table>\n<h4>Yatay teğet örneği</h4>\n<p>\\(y=\\tan x-2x\\) için \\(y'=\\sec^2x-2=0\\) → \\(\\cos^2x=\\frac12\\) → \\(\\cos x=\\pm\\frac{\\sqrt2}{2}\\). \\((0,2\\pi)\\) aralığında \\(x=\\frac\\pi4,\\frac{3\\pi}{4},\\frac{5\\pi}{4},\\frac{7\\pi}{4}\\). Kare kök alırken \\(\\pm\\) işaretini unutursan çözümlerin yarısını kaybedersin.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\frac{d}{dx}[\\cot x]=-\\csc^2x\\) olduğunu bölüm kuralıyla gösterin.",
+     "cozum": [
+      "\\(\\cot x=\\frac{\\cos x}{\\sin x}\\): \\(\\frac{(-\\sin x)\\sin x-\\cos x\\cos x}{\\sin^2x}\\).",
+      "Pay \\(-(\\sin^2x+\\cos^2x)=-1\\); sonuç \\(-\\frac{1}{\\sin^2x}=-\\csc^2x\\)."
+     ]
+    },
+    {
+     "soru": "\\(y=\\tan x\\) eğrisinin \\(x=\\frac\\pi4\\)'teki teğet doğrusunu yazın.",
+     "cozum": [
+      "Nokta: \\(\\tan\\frac\\pi4=1\\).",
+      "Eğim: \\(\\sec^2\\frac\\pi4=2\\).",
+      "Teğet: \\(y=1+2\\left(x-\\frac\\pi4\\right)\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(g(x)=2\\csc x\\) için \\(g'\\left(\\frac\\pi3\\right)\\)'ü bulun ve işaretini yorumlayın.",
+     "cozum": [
+      "\\(g'(x)=-2\\csc x\\cot x\\); \\(\\csc\\frac\\pi3=\\frac{2}{\\sqrt3}\\), \\(\\cot\\frac\\pi3=\\frac{1}{\\sqrt3}\\).",
+      "\\(g'\\left(\\frac\\pi3\\right)=-2\\cdot\\frac{2}{\\sqrt3}\\cdot\\frac{1}{\\sqrt3}=-\\frac43\\). Negatif: \\(g\\) bu noktada azalıyor."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Dört türevi ikili gruplar halinde ezberle (tan–cot, sec–csc); \"co-\" olanlar eksi işaret alır.",
+    "Özel açılarda önce sin ve cos değerlerini yaz, sonra sec = 1/cos, tan = sin/cos hesapla.",
+    "Unutursan çıkarabilirsin: fonksiyonu sin ve cos cinsinden yaz, bölüm kuralını uygula; bu 30 saniye sürer."
+   ],
+   "sikHatalar": [
+    "\\(\\tan x\\) ile \\(\\sec x\\)'in türevlerini karıştırmak (\\(\\frac{d}{dx}\\tan x=\\sec x\\tan x\\) yazmak).",
+    "cot ve csc türevlerinde eksi işaretini unutmak.",
+    "\\(\\sec\\frac\\pi3\\) yerine \\(\\cos\\frac\\pi3\\) değerini kullanmak."
+   ],
+   "terimler": [
+    {
+     "en": "tangent (function)",
+     "tr": "tanjant"
+    },
+    {
+     "en": "cotangent",
+     "tr": "kotanjant"
+    },
+    {
+     "en": "secant (function)",
+     "tr": "sekant"
+    },
+    {
+     "en": "cosecant",
+     "tr": "kosekant"
+    },
+    {
+     "en": "Pythagorean identity",
+     "tr": "Pisagor özdeşliği"
+    }
+   ]
+  }
+ ]
+}
