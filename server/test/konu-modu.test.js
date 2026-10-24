@@ -39,5 +39,6 @@ test("acikSoru neSoruyor taşır; kavram/ipucu/sikHata taşımaz", () => {
   const o = acikSoru(q);
   assert.equal(o.neSoruyor, "Bir noktadaki anlık değişim hızını soruyor.");
   assert.ok(!JSON.stringify(o).includes("gizli"));
-  assert.equal(acikSoru(S("calc_u4_q6")).neSoruyor, undefined);
+  const bos = JSON.parse(JSON.stringify(S("calc_u4_q6"))); delete bos.ek.neSoruyor;
+  assert.equal(acikSoru(bos).neSoruyor, undefined, "alan yoksa gönderilmez");
 });
