@@ -903,6 +903,223 @@
    }
   ]
  },
+ "isterler": {
+  "sonKontrol": "2026-10-24",
+  "varsayilan": {
+   "diploma": {
+    "durum": "teyit",
+    "metin": "Flaman ve Fransız tarafı farklı: KU Leuven diploma ile YKS sonucu ister, UGent diplomayı tek tek inceler, Fransız tarafı (ULB, UCLouvain) FWB denkliği ister."
+   },
+   "yks": {
+    "durum": "teyit",
+    "metin": "KU Leuven Türk diplomasıyla birlikte YKS sonuçlarını ister; diğer üniversitelerin kuralı farklı olabilir. Hedef üniversitenin sayfasından teyit et."
+   },
+   "ap": {
+    "durum": "teyit",
+    "metin": "AP'nin YKS ya da denklik şartının yerine geçtiğine dair resmî ifade yok. KU Leuven bazı programlarda AP Calculus'u matematik kanıtı sayar."
+   },
+   "sinav": {
+    "durum": "teyit",
+    "metin": "Ortak giriş sınavı kaydı yok; Fransız tarafında ingénieur civil lisansına özel giriş sınavıyla girilir. Programın sayfasını kontrol et."
+   },
+   "dil": {
+    "durum": "teyit",
+    "metin": "İngilizce lisans az; dil belgesi ve eşik üniversitenin dil sayfasında. Başvurudan önce kontrol et."
+   },
+   "donem": {
+    "durum": "teyit",
+    "metin": "Takvim tarafa ve üniversiteye göre değişir; Fransız tarafında denklik başvurusu 15 Temmuz'dan önce yapılır."
+   }
+  },
+  "alanlar": {},
+  "universite": {
+   "be-ku-leuven": {
+    "diploma": {
+     "durum": "ok",
+     "metin": "Türk lise diploması YKS sonuçlarıyla birlikte kabul ediliyor. Türkçe belgeler İngilizce, Felemenkçe, Fransızca ya da Almancaya yeminli tercümanca çevrilir.",
+     "kaynak": [
+      {
+       "ad": "KU Leuven, lisans için asgari uygunluk (güncelleme 21 Eylül 2026)",
+       "url": "https://www.kuleuven.be/english/apply/requested-documents/eligibility-bachelor"
+      },
+      {
+       "ad": "KU Leuven, istenen belgeler",
+       "url": "https://www.kuleuven.be/english/apply/requested-documents"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "yks": {
+     "durum": "uyari",
+     "metin": "Diploma ile birlikte YKS sonuçları istenir; bazı programlar belirli bir YKS puanı ister ve puan kabul kararıyla bildirilir. Kural İngilizce programda da aynı.",
+     "kaynak": [
+      {
+       "ad": "KU Leuven, lisans için asgari uygunluk (güncelleme 21 Eylül 2026)",
+       "url": "https://www.kuleuven.be/english/apply/requested-documents/eligibility-bachelor"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "ap": {
+     "durum": "uyari",
+     "metin": "AP YKS şartının yerine geçmez. Program gerektiriyorsa AP Calculus sonucu matematik kanıtı olarak verilebilir (SAT, ACT ya da SOWISO OMPT de kabul).",
+     "sayi": 0,
+     "dersler": [],
+     "kaynak": [
+      {
+       "ad": "KU Leuven, lisans için asgari uygunluk (güncelleme 21 Eylül 2026)",
+       "url": "https://www.kuleuven.be/english/apply/requested-documents/eligibility-bachelor"
+      },
+      {
+       "ad": "KU Leuven, istenen belgeler",
+       "url": "https://www.kuleuven.be/english/apply/requested-documents"
+      }
+     ],
+     "kesinlik": "Teyit gerekir"
+    },
+    "sinav": {
+     "durum": "uyari",
+     "metin": "Program gerektiriyorsa matematik kanıtı istenir: SAT, ACT, AP Calculus ya da SOWISO OMPT sonuçlarından biri.",
+     "sinavlar": [],
+     "kaynak": [
+      {
+       "ad": "KU Leuven, istenen belgeler",
+       "url": "https://www.kuleuven.be/english/apply/requested-documents"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "dil": {
+     "durum": "uyari",
+     "metin": "İngilizce programlarda kabul edilen bir İngilizce yeterlik sınavı şart; puanlar KU Leuven'in dil sayfasında.",
+     "belge": "IELTS",
+     "kaynak": [
+      {
+       "ad": "KU Leuven, dil şartları",
+       "url": "https://www.kuleuven.be/english/apply/language-requirements"
+      }
+     ],
+     "kesinlik": "Teyit gerekir"
+    },
+    "donem": {
+     "durum": "teyit",
+     "metin": "Son tarih uyruk ve programa göre başvuru penceresi sayfasında. YKS belgesini hangi tarihe kadar verebileceğini yazılı sor."
+    }
+   },
+   "be-ghent-university": {
+    "diploma": {
+     "durum": "uyari",
+     "metin": "Yabancı diploma doğrudan kabul sağlamaz; Flaman diplomasına denklik açısından tek tek incelenir. Karar genelde başvurudan yaklaşık 3 ay sonra çıkar.",
+     "kaynak": [
+      {
+       "ad": "Ghent University, başvuru şartları",
+       "url": "https://www.ugent.be/prospect/en/administration/application/requirement"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "dil": {
+     "durum": "uyari",
+     "metin": "Lisans programları neredeyse tümüyle Felemenkçe; İngilizce yalnızca bazı yüksek lisans programlarında.",
+     "kaynak": [
+      {
+       "ad": "Ghent University, başvuru şartları",
+       "url": "https://www.ugent.be/prospect/en/administration/application/requirement"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    }
+   },
+   "be-universite-libre-de-bruxelles": {
+    "diploma": {
+     "durum": "uyari",
+     "metin": "Yabancı lise diplomasıyla her lisans adayı Fédération Wallonie-Bruxelles'ten denklik almalı. Denklik başvurusu 15 Temmuz'dan önce yapılır.",
+     "kaynak": [
+      {
+       "ad": "ULB, yabancı öğrenciler için denklik (güncelleme 8 Mayıs 2025)",
+       "url": "https://www.ulb.be/fr/informations-pour-les-etudiants-etrangers/equivalence"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "donem": {
+     "durum": "uyari",
+     "metin": "Denklik başvurusu 15 Temmuz'dan önce; üniversite başvurusu denklikten önce yapılabilir ama denklik o yılın 1 Aralık'ına kadar teslim edilir.",
+     "kaynak": [
+      {
+       "ad": "ULB, yabancı öğrenciler için denklik (güncelleme 8 Mayıs 2025)",
+       "url": "https://www.ulb.be/fr/informations-pour-les-etudiants-etrangers/equivalence"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "alanlar": {
+     "muhendislik": {
+      "sinav": {
+       "durum": "teyit",
+       "metin": "Ingénieur civil lisansına yalnızca özel giriş sınavını geçenler girer; program Fransızca. Sınav tarihini programın sayfasından kontrol et."
+      }
+     }
+    }
+   },
+   "be-universite-catholique-de-louvain-uclouvain": {
+    "diploma": {
+     "durum": "uyari",
+     "metin": "Yabancı lise diplomasıyla her lisans adayı Fédération Wallonie-Bruxelles'ten denklik almalı. Denklik başvurusu 15 Temmuz'dan önce yapılır.",
+     "kaynak": [
+      {
+       "ad": "ULB, yabancı öğrenciler için denklik (güncelleme 8 Mayıs 2025)",
+       "url": "https://www.ulb.be/fr/informations-pour-les-etudiants-etrangers/equivalence"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "donem": {
+     "durum": "uyari",
+     "metin": "Denklik başvurusu 15 Temmuz'dan önce; üniversite başvurusu denklikten önce yapılabilir ama denklik o yılın 1 Aralık'ına kadar teslim edilir.",
+     "kaynak": [
+      {
+       "ad": "ULB, yabancı öğrenciler için denklik (güncelleme 8 Mayıs 2025)",
+       "url": "https://www.ulb.be/fr/informations-pour-les-etudiants-etrangers/equivalence"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    }
+   },
+   "be-hasselt-university": {
+    "dil": {
+     "durum": "kapali",
+     "metin": "Resmî katalogda tamamen İngilizce lisans programı yok; lisanslar Felemenkçe.",
+     "kaynak": [
+      {
+       "ad": "Hasselt University — lisans katalogu",
+       "url": "https://www.uhasselt.be/en/study/programmes?Opleidingstypes=01&OnderwijstaalEngels=true"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    }
+   },
+   "be-university-of-mons": {
+    "dil": {
+     "durum": "kapali",
+     "metin": "Resmî katalogda tamamen İngilizce lisans programı yok; lisanslar Fransızca.",
+     "kaynak": [
+      {
+       "ad": "University of Mons — lisans katalogu",
+       "url": "https://web.umons.ac.be/en/training-offer/"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    }
+   },
+   "be-university-of-namur": {
+    "dil": {
+     "durum": "teyit",
+     "metin": "Resmî katalogda İngilizce lisans kaydı bulunamadı ama tam doğrulanmadı. Programın öğretim dilini üniversitenin sayfasından kontrol et."
+    }
+   }
+  }
+ },
  "universiteler": {
   "siralama": {
    "ad": "QS World University Rankings 2027",

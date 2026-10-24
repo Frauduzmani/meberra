@@ -33,5 +33,19 @@ vm.runInNewContext(fs.readFileSync(path.join(ROOT, "data", "mevzuat", "ulke", "i
 const v = ctx.window.APMEBERRA_ULKE_VERI.it;
 ok(v && v.isterler && v.isterler.varsayilan && typeof v.isterler.varsayilan.yks.durum === "string", "ulke/it.js isterler taşıyor");
 
+// 15 ülkenin hepsinde 6 satırlık varsayılan kayıt; Almanya'da YKS "ok" olamaz (giriş hakkı YKS'ye bağlı)
+const KODLAR = ["de", "it", "at", "ch", "nl", "be", "fr", "es", "se", "fi", "dk", "ie", "hu", "pl", "cz"];
+const kaynakOku = cc => { const f = path.join(ROOT, "data", "mevzuat", "kaynak", "isterler-" + cc + ".json"); return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, "utf8")) : null; };
+KODLAR.forEach(cc => {
+  const o = kaynakOku(cc);
+  if (!o) { ok(false, cc + ": isterler-" + cc + ".json var"); return; }
+  const eksik = ["diploma", "yks", "ap", "sinav", "dil", "donem"].filter(r => !(o.varsayilan && o.varsayilan[r]));
+  ok(!eksik.length, cc + ": varsayılan 6 satır", eksik);
+  const s = D.isterlerDenetle(o, cc, B);
+  ok(!s.length, cc + ": denetim 0 sorun", s);
+});
+const de = kaynakOku("de");
+ok(!!de && de.varsayilan.yks.durum !== "ok", "de: YKS ok değil");
+
 console.log("\n" + pass + " geçti, " + fail + " kaldı");
 process.exit(fail ? 1 : 0);

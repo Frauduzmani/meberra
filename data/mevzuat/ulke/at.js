@@ -1033,6 +1033,197 @@
    }
   ]
  },
+ "isterler": {
+  "sonKontrol": "2026-10-24",
+  "varsayilan": {
+   "diploma": {
+    "durum": "uyari",
+    "metin": "Türk lise diploması tek başına giriş hakkı vermez; hak YKS ile doğar. Belgeler apostilli ve yeminli tercümeli verilir.",
+    "kaynak": [
+     {
+      "ad": "BMBWF/OeAD ENIC NARIC, Türkiye kabul tavsiyesi (Stand: Ekim 2025)",
+      "url": "https://oead.at/fileadmin/Dokumente/oead.at/OeAD_Hauptmenueseiten/Studieren_Forschen_Lehren/ENIC_NARIC_PDFs/Tuerkei__Zulassung.pdf"
+     },
+     {
+      "ad": "JKU Linz, lisans başvurusu (AB dışı başvuru dönemleri)",
+      "url": "https://jku.at/en/degree-programs/prospective-students/register-to-enroll/bachelors-degree-diploma-degree"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   },
+   "yks": {
+    "durum": "uyari",
+    "metin": "YKS'de en az 180 yerleşme puanı ve bir lisans programına yerleşme şart; okuyabileceğin alanı yerleştiğin program belirler. İngilizce programda da kural aynıdır.",
+    "kaynak": [
+     {
+      "ad": "BMBWF/OeAD ENIC NARIC, Türkiye kabul tavsiyesi (Stand: Ekim 2025)",
+      "url": "https://oead.at/fileadmin/Dokumente/oead.at/OeAD_Hauptmenueseiten/Studieren_Forschen_Lehren/ENIC_NARIC_PDFs/Tuerkei__Zulassung.pdf"
+     },
+     {
+      "ad": "JKU Linz, lisans başvurusu (AB dışı başvuru dönemleri)",
+      "url": "https://jku.at/en/degree-programs/prospective-students/register-to-enroll/bachelors-degree-diploma-degree"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   },
+   "ap": {
+    "durum": "uyari",
+    "metin": "AP YKS şartının yerine geçmez; bakanlık tavsiyesinde AP'li bir yol yok. AP'yi bireysel değerlendirip değerlendirmediğini hedef üniversiteye sor.",
+    "sayi": 0,
+    "dersler": [],
+    "kaynak": [
+     {
+      "ad": "BMBWF/OeAD ENIC NARIC, Türkiye kabul tavsiyesi (Stand: Ekim 2025)",
+      "url": "https://oead.at/fileadmin/Dokumente/oead.at/OeAD_Hauptmenueseiten/Studieren_Forschen_Lehren/ENIC_NARIC_PDFs/Tuerkei__Zulassung.pdf"
+     }
+    ],
+    "kesinlik": "Teyit gerekir"
+   },
+   "sinav": {
+    "durum": "teyit",
+    "metin": "Ortak bir giriş sınavı kaydı yok; programa göre giriş sınavı ya da ek sınav olabilir. Hedef programın sayfasını kontrol et."
+   },
+   "dil": {
+    "durum": "uyari",
+    "metin": "İngilizce programlar B2 İngilizce ister. Kabul edilen sınav türü ve puan üniversitenin dil yönetmeliğinde; başvurmadan önce sor.",
+    "belge": "IELTS",
+    "kaynak": [
+     {
+      "ad": "JKU Linz, BSc Artificial Intelligence",
+      "url": "https://www.jku.at/en/degree-programs/types-of-degree-programs/bachelors-and-diploma-degree-programs/ba-artificial-intelligence/"
+     },
+     {
+      "ad": "Universität Klagenfurt (AAU), BSc Robotics and Artificial Intelligence",
+      "url": "https://www.aau.at/en/studien/bachelor-robotics-artificial-intelligence/"
+     }
+    ],
+    "kesinlik": "Teyit gerekir"
+   },
+   "donem": {
+    "durum": "uyari",
+    "metin": "YKS yerleştirmesi Ağustos'ta; AB dışı güz başvuruları daha önce kapanır (ör. TU Wien 15 Temmuz). Gerçekçi giriş yaz dönemi ya da bir sonraki güzdür.",
+    "kaynak": [
+     {
+      "ad": "ÖSYM, sınav ve yerleştirme takvimleri arşivi",
+      "url": "https://www.osym.gov.tr/arsiv-osym-sinav-ve-yerlestirme-takvimleri"
+     },
+     {
+      "ad": "TU Wien, uluslararası lise diplomasıyla lisans kabulü (2026/27 tarihleri)",
+      "url": "https://www.tuwien.at/studium/zulassung/bachelorstudien/internationales-reifezeugnis"
+     },
+     {
+      "ad": "Universität Wien, AB/AEA dışı diplomayla lisans kabulü (2026/27 ve yaz 2027)",
+      "url": "https://studieren.univie.ac.at/zulassung/bachelor-diplomstudien/zulassung-ohne-osa/nicht-euewr-mit-deutsch/"
+     }
+    ],
+    "kesinlik": "Yoruma açık"
+   }
+  },
+  "alanlar": {},
+  "universite": {
+   "at-johannes-kepler-university-linz": {
+    "donem": {
+     "durum": "uyari",
+     "metin": "AB dışı adayın güz başvurusu 6 Şubat–31 Mart arasında. Mart'ta YKS yerleşmen olmayacağı için bu pencere pratikte mezuniyetten sonraki yıl kullanılır.",
+     "kaynak": [
+      {
+       "ad": "JKU Linz, lisans başvurusu (AB dışı başvuru dönemleri)",
+       "url": "https://jku.at/en/degree-programs/prospective-students/register-to-enroll/bachelors-degree-diploma-degree"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    }
+   },
+   "at-university-of-klagenfurt": {
+    "diploma": {
+     "durum": "uyari",
+     "metin": "Eğitimini Türkiye'de tamamlayan aday başvurudan önce VFS Global'de yetkinlik kontrolünü tamamlamalı.",
+     "kaynak": [
+      {
+       "ad": "Universität Klagenfurt (AAU), BSc Robotics and Artificial Intelligence",
+       "url": "https://www.aau.at/en/studien/bachelor-robotics-artificial-intelligence/"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "sinav": {
+     "durum": "ok",
+     "metin": "Robotics and Artificial Intelligence lisansında giriş sınavı yok.",
+     "sinavlar": [],
+     "kaynak": [
+      {
+       "ad": "Universität Klagenfurt (AAU), BSc Robotics and Artificial Intelligence",
+       "url": "https://www.aau.at/en/studien/bachelor-robotics-artificial-intelligence/"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "donem": {
+     "durum": "uyari",
+     "metin": "AB dışı aday güz için 1 Nisan–30 Haziran, yaz dönemi için 1–30 Kasım arasında başvurur. YKS yerleşmesinden sonra Kasım penceresiyle yaz dönemine başvurabilirsin.",
+     "kaynak": [
+      {
+       "ad": "Universität Klagenfurt (AAU), BSc Robotics and Artificial Intelligence",
+       "url": "https://www.aau.at/en/studien/bachelor-robotics-artificial-intelligence/"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    }
+   },
+   "at-technische-universitat-wien": {
+    "dil": {
+     "durum": "kapali",
+     "metin": "Resmî katalogda tamamen İngilizce lisans programı yok; lisanslar Almanca.",
+     "kaynak": [
+      {
+       "ad": "Technische Universität Wien — lisans katalogu",
+       "url": "https://www.tuwien.at/en/studies/studies/bachelor-programmes"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    }
+   },
+   "at-universitat-innsbruck": {
+    "dil": {
+     "durum": "kapali",
+     "metin": "Resmî katalogda tamamen İngilizce lisans programı yok; lisanslar Almanca.",
+     "kaynak": [
+      {
+       "ad": "Universität Innsbruck — lisans katalogu",
+       "url": "https://www.uibk.ac.at/en/programmes/"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    }
+   },
+   "at-graz-university-of-technology": {
+    "dil": {
+     "durum": "kapali",
+     "metin": "Resmî katalogda tamamen İngilizce lisans programı yok; lisanslar Almanca.",
+     "kaynak": [
+      {
+       "ad": "Graz University of Technology — lisans katalogu",
+       "url": "https://www.tugraz.at/en/studying-and-teaching/degree-and-certificate-programmes/bachelors-degree-programmes/overview-bachelors-degree-programmes"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    }
+   },
+   "at-paris-lodron-university-of-salzburg": {
+    "dil": {
+     "durum": "kapali",
+     "metin": "Resmî katalogda tamamen İngilizce lisans programı yok; lisanslar Almanca.",
+     "kaynak": [
+      {
+       "ad": "Paris Lodron University of Salzburg — lisans katalogu",
+       "url": "https://www.plus.ac.at/studium/studienangebot/bachelors-degree-programmes/?lang=en"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    }
+   }
+  }
+ },
  "universiteler": {
   "siralama": {
    "ad": "QS World University Rankings 2027",
