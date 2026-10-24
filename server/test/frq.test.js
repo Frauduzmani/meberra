@@ -69,20 +69,18 @@ function gizliVar(o) {
 }
 const onayla = async (id) => { const y = await yonetici(); const r = await y("POST", "/api/admin/frq/" + id + "/durum", { durum: "aktif" }); assert.equal(r.durum, 200, JSON.stringify(r.govde)); return r; };
 
-test("tohum: yapı geçerli, sayılar (1.24.0: calc AB 14 + BC 8, phys 16, chem 17, bio 17, eng 9, macro 8, micro 8, csa 10), hepsi onaylı (aktif) ve özgün", () => {
+test("tohum: yapı geçerli, sayılar (1.24.0: calc AB 14 + BC 8, phys 16, chem 17, bio 17, eng 9, macro 8, micro 8, csa 10; 1.28.0: precalc 8, stats 10, phys2 12), hepsi onaylı (aktif) ve özgün", () => {
   const t = JSON.parse(fs.readFileSync(TOHUM, "utf8"));
   const say = {};
   assert.ok(t.surum >= 2, "1.11.0 onayı için FRQ tohum sürümü artırıldı");
-  t.frq.forEach(f => { say[f.ders] = (say[f.ders] || 0) + 1; assert.deepEqual(dogrula(f), [], f.id); assert.equal(f.durum, "aktif"); assert.match(f.kaynak, /^AP-style original( \(Meberra 1\.24\.0\))?$/);
+  t.frq.forEach(f => { say[f.ders] = (say[f.ders] || 0) + 1; assert.deepEqual(dogrula(f), [], f.id); assert.equal(f.durum, "aktif"); assert.match(f.kaynak, /^AP-style original( \(Meberra 1\.(24|28)\.0\))?$/);
     assert.ok(f.ek && f.ek.onay && /bağımsız denetim/.test(f.ek.onay.kaynak), f.id + " onay izi"); });
-  assert.deepEqual(say, { "calculus-ab": 14, "calculus-bc": 8, "physics-1": 16, chemistry: 17, biology: 17, "english-language": 9, macroeconomics: 8, microeconomics: 8, "computer-science-a": 10 });
+  assert.deepEqual(say, { "calculus-ab": 14, "calculus-bc": 8, "physics-1": 16, chemistry: 17, biology: 17, "english-language": 9, macroeconomics: 8, microeconomics: 8, "computer-science-a": 10, precalculus: 8, statistics: 10, "physics-2": 12 });
   assert.equal(new Set(t.frq.map(f => f.id)).size, t.frq.length);
   t.frq.filter(f => f.ders === "english-language").forEach(f => assert.deepEqual(f.parcalar[0].rubrik.map(r => r.puan), [1, 4, 1], f.id + " 6 puanlık rubrik"));
   assert.equal(db().prepare("SELECT COUNT(*) AS n FROM frq").get().n, t.frq.length, "veritabanına yüklendi");
-  // 1.28.0 yeni dersler (Precalculus, Statistics, Physics 2): FRQ içeriği sonra gelir (araclar/frq-ekle.js); diğer her derste FRQ var
-  const ICERIK_BEKLENEN = ["precalculus", "statistics", "physics-2"];
-  Object.keys(DERSLER).filter(k => ICERIK_BEKLENEN.indexOf(k) < 0).forEach(k => assert.ok(say[k], k));
-  ICERIK_BEKLENEN.forEach(k => assert.ok(DERSLER[k] && DERSLER[k].sayfa === "ap-" + k, k + " FRQ dersi tanımlı"));
+  // 1.28.0: yeni dersler (Precalculus, Statistics, Physics 2) dahil her derste FRQ var
+  Object.keys(DERSLER).forEach(k => assert.ok(say[k], k));
 });
 
 test("dogrula: rubrik toplamı ≠ parça puanı, toplam_puan hatası ve $ yakalanır", () => {
