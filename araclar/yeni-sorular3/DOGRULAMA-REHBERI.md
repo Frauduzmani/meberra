@@ -18,6 +18,10 @@ Kararları `araclar/onay3/<dosya>.json` dosyasına yaz — TÜM id'ler için:
   `node araclar/onay2-uygula.js --taslak araclar/yeni-sorular3/<dosya>.json --karar araclar/onay3/<dosya>.json --uretim 1.23.0 --kuru`
   **--kuru olmadan çalıştırma.**
 
+**Dosya yazma uyarısı:** karar dosyasını bash heredoc ya da `node -e` ile yazma — kabuk ters bölüleri yer; `\approx` "approx",
+`\Delta` "Delta", `\text` sekme+"ext" olur. Dosya yazma aracını ya da diske kaydedilmiş bir node betiğini kullan. Bitince
+duzeltme metinlerinde matematik içinde ters bölüsüz `approx|Delta|frac|sqrt|cdot|times|text` kalmadığını kontrol et.
+
 ## B — Konu anlatımı (`data/dersler/<ders>/unite-<n>.json`)
 Her konunun anlatımını, örneklerini (her örneği yeniden türet), ipuçlarını ve sık hatalarını oku. Matematik/bilim hatalarını, AP
 gelenekleriyle çelişen ifadeleri (gerekçe dili, gösterim, hesap makinesi kuralları) ve Türk bir 11. sınıf öğrencisinin anlamayacağı yerleri bul.

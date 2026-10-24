@@ -32,7 +32,11 @@ yeniden yazma (paraphrase) da yapma. Herkese açık CED konularını ve sınav f
   {etiket, aciklama} — çeldirici gerçek bir öğrenci hatasından gelir ve o hata adlandırılır.
 - Kök tekrarı yok. Şekil gerekiyorsa `araclar/yeni-sorular2/SEKIL-BICIMI.md` (isteğe bağlı; HTML tablo tercih edilir).
 
-## 3. Kendi denetimin (bitirmeden önce)
+## 3. Dosya yazma uyarısı
+JSON/JS dosyalarını **bash heredoc ya da `node -e` ile yazma**: kabuk çift ters bölüyü teke indirir; `\text` içindeki `\t` sekmeye,
+`\frac` içindeki `\f` form beslemeye döner. Dosya yazma aracını ya da diske kaydedilmiş bir node betiğini kullan.
+
+## 4. Kendi denetimin (bitirmeden önce)
 1. Her soruyu ikinci kez bağımsız çöz; sayısal cevapları node ile doğrula; uyuşmazlığı düzelt.
 2. `node araclar/ders-veri-denetim.js` → 0 sorun.
 3. `node araclar/yeni-soru-ekle.js --girdi araclar/yeni-sorular3/<dosya>.json --uretim 1.23.0 --kuru` → 0 hata. **--kuru olmadan çalıştırma.**
