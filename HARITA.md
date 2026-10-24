@@ -22,6 +22,8 @@ AP MEBERRA/              (klasör tur sonunda "AP AZRA" adından yeniden adland�
 │   ├── css/                styles.css, deneme.css
 │   └── js/                 app.js, auth.js, eposta.js, rota.js, seviye.js, deneme.js,
 │                           sartlar-motor.js (şartlar + Mezun Menüsü motoru), sartlar-ui.js (ortak madde bileşeni),
+│                           1.22.0: hedef-motor.js (hedef sihirbazı motoru: seçim, şart hücresi, ortak yol, profil yaması),
+│                           hedef-sihirbaz.js (/ulkem sihirbaz arayüzü; stil css/hedef.css)
 │                           sinav-motor.js (Tur 12: sınav süzgeci — model/ülke/dil/düzey)
 │
 ├── data/
@@ -29,7 +31,8 @@ AP MEBERRA/              (klasör tur sonunda "AP AZRA" adından yeniden adland�
 │   │   ├── kaynak/               Tur 11: TEK KAYNAK (PM onaylı JSON; sayfalar okumaz, pakete girmez)
 │   │   │                         lisans-<cc>, yl-<cc>, uni-<cc>, yl-genel, duyurular, mezun-notlari, ulkeler-meta
 │   │   ├── ulke-dizini.js        ÜRETİLİR: 15 ülke özeti (rozet, program durumu, özet uyarısı, genel yol şablonu)
-│   │   ├── ulke/<cc>.js          ÜRETİLİR: ülke başına lisans + YL + ilk 20 (seçilince dinamik yüklenir; 15 dosya)
+│   │   ├── ulke/<cc>.js          ÜRETİLİR: ülke başına lisans + YL + ilk 20 + isterler (1.22.0 şart tablosu; seçilince dinamik yüklenir; 15 dosya)
+│   │   │                         Kaynak: kaynak/isterler-<cc>.json · denetim araclar/isterler-denetim.js
 │   │   ├── yl-genel.js           ÜRETİLİR: tüm ülkeler için ortak YL notları
 │   │   ├── duyurular.js          ÜRETİLİR: model/ülke/dil hedefli duyurular (bitiş tarihine kadar)
 │   │   │                         Üretici: node araclar/ulke-veri-olustur.js (--kontrol, --kaynak, --cikti)
@@ -82,7 +85,7 @@ Her sayfa ayrıca `assets/css/styles.css` ve `assets/js/app.js` yükler (aşağ�
 
 | Sayfa | Ne gösterir | Okuduğu veri | Ek betik |
 | :--- | :--- | :--- | :--- |
-| `sartlar.html` (Tur 11) | Durum (lise / lise mezunu / üniversite mezunu) → sınıf → 15 ülke → dil seçicisi; şartlar, burslar, dil sınavları, ilk 20 önizlemesi, tarihli ya da genel yol haritası | `data/mevzuat/ulke-dizini.js`, `ulke/<cc>.js` (dinamik), `duyurular.js`, `yl-genel.js`, `sinavlar.js`, `ulke-rotalari.js` | `eposta.js`, `rota.js`, `sartlar-motor.js`, `sartlar-ui.js` |
+| `sartlar.html` (Tur 11; 1.22.0) | **Varsayılan: hedef sihirbazı** (ülkeler → okullar → şart tablosu + ortak yol → planı uygula; `hedef-motor.js`, `hedef-sihirbaz.js`, `ulke/<cc>.js` `isterler`). Adreste `dil=` varsa ülke ayrıntısı: durum → sınıf → 15 ülke → dil seçicisi; şartlar, burslar, dil sınavları, ilk 20 önizlemesi, tarihli ya da genel yol haritası | `data/mevzuat/ulke-dizini.js`, `ulke/<cc>.js` (dinamik), `duyurular.js`, `yl-genel.js`, `sinavlar.js`, `ulke-rotalari.js` | `eposta.js`, `rota.js`, `sartlar-motor.js`, `sartlar-ui.js` |
 | `mezun.html` (Tur 11: yönlendirme) | `sartlar.html?model=lise-mezun[&ulke=..]` adresine yönlendirir (eski yer imleri) | — | — |
 | `almanya-muhendislik.html` | Almanya kabul rehberi | Sayfa içi metin | — |
 | `italya-muhendislik.html` | İtalya kabul rehberi | Sayfa içi metin | — |
