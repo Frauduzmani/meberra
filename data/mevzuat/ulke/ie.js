@@ -656,6 +656,101 @@
    }
   ]
  },
+ "isterler": {
+  "sonKontrol": "2026-10-24",
+  "varsayilan": {
+   "diploma": {
+    "durum": "teyit",
+    "metin": "AB dışı aday okula doğrudan başvurur ve kabul şartını okul belirler. Türk diplomasının kabul edilip edilmediğini hedef okula sor."
+   },
+   "yks": {
+    "durum": "teyit",
+    "metin": "Taranan kaynaklarda YKS'nin istenip istenmediği yazmıyor. Hedef okula sor."
+   },
+   "ap": {
+    "durum": "teyit",
+    "metin": "Türk diplomasına eklenen AP'nin doğrudan kabul yolunu açıp açmadığı yazılı değil. Hedef okula yazılı sor."
+   },
+   "sinav": {
+    "durum": "teyit",
+    "metin": "Türk diplomasıyla başvuruda giriş sınavı istenip istenmediği taranan kaynaklarda yok. Programa sor."
+   },
+   "dil": {
+    "durum": "uyari",
+    "metin": "Öğrenim vizesi için dersi İngilizce yürütebileceğini gösteren belge istenir; eşik okula göre değişir.",
+    "belge": "IELTS",
+    "kaynak": [
+     {
+      "ad": "Irish Immigration Service Delivery — uzun dönem öğrenim vizesi",
+      "url": "https://www.irishimmigration.ie/coming-to-study-in-ireland/what-are-my-study-visa-options/how-to-apply-for-long-term-study-visa/"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   },
+   "donem": {
+    "durum": "teyit",
+    "metin": "AB dışı aday CAO'dan değil okula doğrudan başvurur; tarihler okula göre. Hedef okulun takvimini kontrol et."
+   }
+  },
+  "alanlar": {},
+  "universite": {
+   "ie-trinity-college-dublin-the-university-of-dublin": {
+    "diploma": {
+     "durum": "uyari",
+     "metin": "Rehbere göre Türk diplomasıyla doğrudan kabul yalnız belirli liselerden; okulunu study@tcd.ie'ye sor. Değilse bir yıllık International Foundation Programme var.",
+     "kaynak": [
+      {
+       "ad": "Trinity College Dublin — AB dışı lisans kabul rehberi (PDF)",
+       "url": "https://www.tcd.ie/study/assets/PDF/AdmissionGuideUGNonEUFinal.pdf"
+      },
+      {
+       "ad": "Trinity College Dublin — Türkiye sayfası",
+       "url": "https://www.tcd.ie/study/country/turkey/"
+      }
+     ],
+     "kesinlik": "Yoruma açık"
+    },
+    "ap": {
+     "durum": "teyit",
+     "metin": "Trinity ABD müfredatında AP'yi ek kanıt sayıyor; Türk diplomasına eklenen AP'nin doğrudan kabul sağlayıp sağlamadığı yazılı değil.",
+     "kaynak": [
+      {
+       "ad": "Trinity College Dublin — AB dışı lisans kabul rehberi (PDF)",
+       "url": "https://www.tcd.ie/study/assets/PDF/AdmissionGuideUGNonEUFinal.pdf"
+      }
+     ],
+     "kesinlik": "Teyit gerekir"
+    },
+    "dil": {
+     "durum": "uyari",
+     "metin": "Çoğu lisans Band B: IELTS Academic 6.5 (her bölüm 6.0), TOEFL iBT 90 ya da Duolingo 120. Bazı programlar Band C (IELTS 7.0) istiyor.",
+     "belge": "IELTS",
+     "esik": [
+      6.5,
+      7
+     ],
+     "kaynak": [
+      {
+       "ad": "Trinity College Dublin — İngilizce şartları",
+       "url": "https://www.tcd.ie/study/english-language-requirements/"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "donem": {
+     "durum": "ok",
+     "metin": "AB dışı başvurular 1 Kasım'dan Haziran'a kadar sıralı alınıyor; bazı programlar erken doluyor, Kasım–Aralık'ta başvur.",
+     "kaynak": [
+      {
+       "ad": "Trinity College Dublin — AB dışı doğrudan başvuru",
+       "url": "https://www.tcd.ie/study/apply/making-an-application/undergraduate/direct-applications/"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    }
+   }
+  }
+ },
  "universiteler": {
   "siralama": {
    "ad": "QS World University Rankings 2027",

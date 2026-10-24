@@ -2570,6 +2570,241 @@
    }
   ]
  },
+ "isterler": {
+  "sonKontrol": "2026-10-24",
+  "varsayilan": {
+   "diploma": {
+    "durum": "uyari",
+    "metin": "Türk lise diploması tek başına giriş hakkı vermez; YKS yerleşmesiyle birlikte geçerlidir. Notun Bavyera formülüyle Alman notuna çevrilir; kontenjanlı programda sıralamayı bu not belirler.",
+    "kaynak": [
+     {
+      "ad": "anabin (KMK) — Türkiye Lise Diploması",
+      "url": "https://anabin.kmk.org/api/public/certificates/6729e86b4a3c434b0b3dea1f"
+     },
+     {
+      "ad": "KMK — yabancı diploma notunun çevrilmesi kararı",
+      "url": "https://www.kmk.org/fileadmin/pdf/ZAB/Hochschulzugang_Beschluesse_der_KMK/GesNot05.pdf"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   },
+   "yks": {
+    "durum": "uyari",
+    "metin": "YKS'de puan türünde 180'in üzerinde puan ve en az 4 yıllık örgün bir lisans programına yerleşme şart. Hak yalnızca yerleştiğin alan ve yakın alanlar için geçerlidir.",
+    "kaynak": [
+     {
+      "ad": "anabin (KMK) — Türkiye Lise Diploması",
+      "url": "https://anabin.kmk.org/api/public/certificates/6729e86b4a3c434b0b3dea1f"
+     },
+     {
+      "ad": "uni-assist — Türkiye ülke bilgisi",
+      "url": "https://www.uni-assist.de/en/tools/info-country-by-country/details-country/country/tr/"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   },
+   "ap": {
+    "durum": "uyari",
+    "metin": "AP tek başına giriş hakkı vermez; Türk diploması sahibinde giriş hakkını YKS yerleşmesi sağlar. AP yalnızca dosyanı güçlendiren bir profil unsurudur.",
+    "sayi": 0,
+    "dersler": [],
+    "kaynak": [
+     {
+      "ad": "anabin (KMK) — Türkiye Lise Diploması",
+      "url": "https://anabin.kmk.org/api/public/certificates/6729e86b4a3c434b0b3dea1f"
+     },
+     {
+      "ad": "anabin (KMK) — AP kaydı, USA-BV07/08",
+      "url": "https://anabin.kmk.org/api/public/certificates/"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   },
+   "sinav": {
+    "durum": "uyari",
+    "metin": "Bazı programlar ek test ya da değerlendirme ister (ör. KIT'te SAT, ACT ya da TestAS). Bu testler YKS yerleşmesinin yerine geçmez, ona ek istenir.",
+    "sinavlar": [],
+    "kaynak": [
+     {
+      "ad": "KIT — Mechanical Engineering (International) lisansı",
+      "url": "https://www.sle.kit.edu/english/vorstudium/bachelor-mechanical-engineering-international.php"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   },
+   "dil": {
+    "durum": "uyari",
+    "metin": "İngilizce programların çoğu IELTS 6.0–6.5 ya da TOEFL 72–90 ister; eşik programa göre değişir. Bazı programlar ayrıca Almanca A2–B1 ister.",
+    "belge": "IELTS",
+    "esik": [
+     6,
+     6.5
+    ],
+    "kaynak": [
+     {
+      "ad": "DAAD — başvuru süreci",
+      "url": "https://www.daad.de/en/studying-in-germany/requirements/application-process/"
+     },
+     {
+      "ad": "uni-assist — Türkiye ülke bilgisi",
+      "url": "https://www.uni-assist.de/en/tools/info-country-by-country/details-country/country/tr/"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   },
+   "donem": {
+    "durum": "uyari",
+    "metin": "Kış dönemi başvuruları çoğunlukla 15 Temmuz'da kapanır, YKS yerleşmesi ise Ağustos'ta çıkar. Yerleşme belgesini sonradan teslim edebileceğini üniversiteye yazılı teyit ettir.",
+    "kaynak": [
+     {
+      "ad": "DAAD — başvuru süreci",
+      "url": "https://www.daad.de/en/studying-in-germany/requirements/application-process/"
+     },
+     {
+      "ad": "uni-assist — Türkiye ülke bilgisi",
+      "url": "https://www.uni-assist.de/en/tools/info-country-by-country/details-country/country/tr/"
+     },
+     {
+      "ad": "ÖSYM — duyurular",
+      "url": "https://www.osym.gov.tr/Duyurular/Index"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   }
+  },
+  "alanlar": {},
+  "universite": {
+   "de-kit-karlsruhe-institute-of-technology": {
+    "sinav": {
+     "durum": "uyari",
+     "metin": "Mechanical Engineering (International) için SAT, ACT ya da TestAS sonucu, motivasyon mektubu ve dil belgesi istenir. Bu test YKS yerleşmesine ek istenir.",
+     "sinavlar": [
+      "sat",
+      "testas"
+     ],
+     "kaynak": [
+      {
+       "ad": "KIT — Mechanical Engineering (International) lisansı",
+       "url": "https://www.sle.kit.edu/english/vorstudium/bachelor-mechanical-engineering-international.php"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "dil": {
+     "durum": "uyari",
+     "metin": "IELTS 6.5 ya da TOEFL iBT 90 istenir.",
+     "belge": "IELTS",
+     "esik": 6.5,
+     "kaynak": [
+      {
+       "ad": "KIT — Mechanical Engineering (International) lisansı",
+       "url": "https://www.sle.kit.edu/english/vorstudium/bachelor-mechanical-engineering-international.php"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "donem": {
+     "durum": "uyari",
+     "metin": "Test sonucu, motivasyon mektubu ve dil belgesi 30 Nisan'a kadar yüklenir; kış dönemi programlarından daha erken kapanır.",
+     "kaynak": [
+      {
+       "ad": "KIT — Mechanical Engineering (International) lisansı",
+       "url": "https://www.sle.kit.edu/english/vorstudium/bachelor-mechanical-engineering-international.php"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    }
+   },
+   "de-technical-university-of-munich": {
+    "sinav": {
+     "durum": "teyit",
+     "metin": "TUM programlarında yetenek değerlendirmesi ve gerekirse mülakat var. Ayrıntıyı hedef programın sayfasından kontrol et."
+    }
+   },
+   "de-ludwig-maximilians-universitat-munchen": {
+    "dil": {
+     "durum": "kapali",
+     "metin": "Resmî katalogda tamamen İngilizce lisans programı yok; lisanslar Almanca.",
+     "kaynak": [
+      {
+       "ad": "Ludwig-Maximilians-Universität München — lisans katalogu",
+       "url": "https://www.lmu.de/en/study/all-degrees-and-programs/international-degree-programs/"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    }
+   },
+   "de-rwth-aachen-university": {
+    "dil": {
+     "durum": "kapali",
+     "metin": "Resmî katalogda tamamen İngilizce lisans programı yok; lisanslar Almanca.",
+     "kaynak": [
+      {
+       "ad": "RWTH Aachen University — lisans katalogu",
+       "url": "https://www.rwth-aachen.de/cms/root/studium/Vor-dem-Studium/Studiengaenge/~yev/Liste-Aktuelle-Studiengaenge/lidx/1/"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    }
+   },
+   "de-humboldt-universitat-zu-berlin": {
+    "dil": {
+     "durum": "teyit",
+     "metin": "Resmî katalogda İngilizce lisans kaydı bulunamadı ama tam doğrulanmadı. Programın öğretim dilini üniversitenin sayfasından kontrol et."
+    }
+   },
+   "de-technische-universitat-berlin-tu-berlin": {
+    "dil": {
+     "durum": "kapali",
+     "metin": "Resmî katalogda tamamen İngilizce lisans programı yok; lisanslar Almanca.",
+     "kaynak": [
+      {
+       "ad": "Technische Universität Berlin — lisans katalogu",
+       "url": "https://www.tu.berlin/en/studying/study-programs/all-programs-offered"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    }
+   },
+   "de-technische-universitat-dresden": {
+    "dil": {
+     "durum": "teyit",
+     "metin": "Resmî katalogda İngilizce lisans kaydı bulunamadı ama tam doğrulanmadı. Programın öğretim dilini üniversitenin sayfasından kontrol et."
+    }
+   },
+   "de-rheinische-friedrich-wilhelms-universitat-bonn": {
+    "dil": {
+     "durum": "teyit",
+     "metin": "Resmî katalogda İngilizce lisans kaydı bulunamadı ama tam doğrulanmadı. Programın öğretim dilini üniversitenin sayfasından kontrol et."
+    }
+   },
+   "de-technical-university-of-darmstadt": {
+    "dil": {
+     "durum": "kapali",
+     "metin": "Resmî katalogda tamamen İngilizce lisans programı yok; lisanslar Almanca.",
+     "kaynak": [
+      {
+       "ad": "Technical University of Darmstadt — lisans katalogu",
+       "url": "https://www.tu-darmstadt.de/studieren/studieninteressierte/studienangebot_studiengaenge/index.en.jsp"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    }
+   },
+   "de-universitat-stuttgart": {
+    "dil": {
+     "durum": "teyit",
+     "metin": "Resmî katalogda İngilizce lisans kaydı bulunamadı ama tam doğrulanmadı. Programın öğretim dilini üniversitenin sayfasından kontrol et."
+    }
+   },
+   "de-goethe-university-frankfurt-am-main": {
+    "dil": {
+     "durum": "teyit",
+     "metin": "Resmî katalogda İngilizce lisans kaydı bulunamadı ama tam doğrulanmadı. Programın öğretim dilini üniversitenin sayfasından kontrol et."
+    }
+   }
+  }
+ },
  "universiteler": {
   "siralama": {
    "ad": "QS World University Rankings 2027",

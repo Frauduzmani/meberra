@@ -179,6 +179,9 @@
   <script src="/assets/js/auth.js"></script>
   <script src="/assets/js/ucretsiz-kural.js"></script>
   <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/eposta.js"></script>
+  <script src="/assets/js/ap-hedef.js"></script>
+  <script src="/assets/js/hedef-motor.js?v=1220"></script>
   <script>
   (function () {
     "use strict";
@@ -257,7 +260,62 @@
       $("auth-context").hidden = false;
     })();
 
+    // --- 1.22.0: hedef sihirbazından gelen seçim (?hedef=… ya da aynı sekmede sessionStorage "meberra-hedef") ---
+    var HEDEF = (function () {
+      var Hm = window.MeberraHedef, h = params.get("hedef");
+      // Yedek (aynı sekme): yalnızca Bugün'e dönülecekse ve seçim 30 dk'dan yeniyse; başka bir sayfaya giriş eski seçimi uygulamaz
+      if (!h && (!donus || donus === "/bugun")) {
+        try { var kay = JSON.parse(sessionStorage.getItem("meberra-hedef") || "null"); if (kay && typeof kay.adres === "string" && Date.now() - kay.t < 30 * 60e3) h = kay.adres; } catch (e) { h = null; }
+      }
+      if (!h || !Hm) return null;
+      var s = Hm.secimCoz(h.charAt(0) === "?" ? h : "?" + h);
+      return s.ulkeler.length ? s : null;
+    })();
+    if (HEDEF) {
+      $("auth-context-title").textContent = "Planın hazır";
+      $("auth-context-text").textContent = "Hesabını aç, planını kaydedelim: " + HEDEF.ulkeler.length + " ülke" + (Object.keys(HEDEF.okullar).length ? " ve seçtiğin okullar" : "") + " profiline eklenecek.";
+      $("auth-context").hidden = false;
+    }
+    function ulkeYukle(cc) {
+      return new Promise(function (coz) {
+        if ((window.APMEBERRA_ULKE_VERI || {})[cc]) return coz();
+        var sc = document.createElement("script");
+        sc.src = "/data/mevzuat/ulke/" + cc + ".js";
+        sc.onload = sc.onerror = function () { coz(); };
+        document.head.appendChild(sc);
+      });
+    }
+    /** Seçimi profile uygular (yeni hesapta da girişte de aynı birleştirme kuralı: MeberraHedef.profilYamasi). */
+    function hedefUygula() {
+      var Hm = window.MeberraHedef, d = new Date();
+      var gun = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+      return Promise.all(HEDEF.ulkeler.map(ulkeYukle)).then(function () { return AUTH.current(); }).then(function (c) {
+        if (!c || !c.user) return { ok: false };
+        var V = window.APMEBERRA_ULKE_VERI || {};
+        var ortak = Hm.ortakYol(Hm.sutunlar(HEDEF, V), V, HEDEF.alan, HEDEF.sinif, gun);
+        var yama = Hm.profilYamasi(c.profile, HEDEF, ortak);
+        return AUTH.saveProfile(c.user.id, yama).then(function (r) {
+          if (r && r.ok && window.APMEBERRA && APMEBERRA.panel) APMEBERRA.panel.update(function (pn) {
+            var L = Array.isArray(pn.universitelerim) ? pn.universitelerim : [];
+            yama.hedefOkullar.forEach(function (id) { if (L.indexOf(id) < 0) L.push(id); });
+            pn.universitelerim = L;
+          });
+          return r;
+        });
+      });
+    }
+
     function go() {
+      if (HEDEF) {
+        UI.alert(statusEl, "Planın kaydediliyor…");
+        var eski = function () { location.replace(yeniHesap ? "/profil" + SECIM : (donus || "/bugun")); };
+        hedefUygula().then(function (r) {
+          if (!(r && r.ok)) return eski(); // seçim sessionStorage'da kalır; profil sihirbazından sonra tekrar denenebilir
+          try { sessionStorage.removeItem("meberra-hedef"); } catch (e) { /* gizli pencere */ }
+          location.replace("/bugun?ilk=1");
+        }, eski);
+        return;
+      }
       if (yeniHesap) location.replace("/profil" + SECIM);
       else location.replace(donus || "/bugun");
     }

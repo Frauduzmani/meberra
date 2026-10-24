@@ -933,6 +933,151 @@
    }
   ]
  },
+ "isterler": {
+  "sonKontrol": "2026-10-24",
+  "varsayilan": {
+   "diploma": {
+    "durum": "teyit",
+    "metin": "Diploma, Türkiye'de yükseköğretime erişim hakkı vermeli; Türk diplomasının bunu YKS olmadan sağlayıp sağlamadığı yoruma açık. Programa sor."
+   },
+   "yks": {
+    "durum": "teyit",
+    "metin": "Türkiye'de yerleşme YKS ile olduğu için bazı programlar YKS sonucu isteyebilir. Aalto istemiyor; diğer üniversitelere yazılı sor."
+   },
+   "ap": {
+    "durum": "teyit",
+    "metin": "Aalto dışındaki Fin üniversitelerinde AP'nin kabulde kullanıldığına dair resmî ifade bulunamadı. Programa sor."
+   },
+   "sinav": {
+    "durum": "uyari",
+    "metin": "İngilizce lisansların bazıları ayrı başvuru ya da kendi sınavıyla seçiyor. Programın Studyinfo sayfasını kontrol et.",
+    "sinavlar": [],
+    "kaynak": [
+     {
+      "ad": "Study in Finland (EDUFI) — lisans ve yüksek lisans başvurusu",
+      "url": "https://www.studyinfinland.fi/admissions/bachelors-and-masters-admissions"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   },
+   "dil": {
+    "durum": "uyari",
+    "metin": "İngilizce dil sınavı eşikleri programa göre değişiyor; programın Studyinfo sayfasından kontrol et.",
+    "belge": "IELTS",
+    "kaynak": [
+     {
+      "ad": "Study in Finland (EDUFI) — lisans ve yüksek lisans başvurusu",
+      "url": "https://www.studyinfinland.fi/admissions/bachelors-and-masters-admissions"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   },
+   "donem": {
+    "durum": "ok",
+    "metin": "Ağustos/Eylül 2027 başlangıçlı İngilizce lisansların çoğu 7–21 Ocak 2027 ortak başvurusunda. Bir dönemde tek öğrenim yeri kabul edilebilir.",
+    "kaynak": [
+     {
+      "ad": "Study in Finland (EDUFI) — ortak başvuru duyurusu",
+      "url": "https://www.studyinfinland.fi/news-events/joint-application-autumn-2026"
+     },
+     {
+      "ad": "Study in Finland (EDUFI) — lisans ve yüksek lisans başvurusu",
+      "url": "https://www.studyinfinland.fi/admissions/bachelors-and-masters-admissions"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   }
+  },
+  "alanlar": {},
+  "universite": {
+   "fi-aalto-university": {
+    "diploma": {
+     "durum": "ok",
+     "metin": "Türk lise diplomasıyla A turundan başvurulur. Belgeler İngilizce değilse yeminli tercümesi yüklenir.",
+     "kaynak": [
+      {
+       "ad": "Aalto — İngilizce lisans, lise diplomasıyla başvuru (2027)",
+       "url": "https://www.aalto.fi/en/admission-services/english-taught-bachelors-programmes-i-am-applying-with-a-high-school-diploma"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "yks": {
+     "durum": "ok",
+     "metin": "Aalto'nun lise diplomasıyla başvuru sayfasında YKS istenmiyor.",
+     "kaynak": [
+      {
+       "ad": "Aalto — İngilizce lisans, lise diplomasıyla başvuru (2027)",
+       "url": "https://www.aalto.fi/en/admission-services/english-taught-bachelors-programmes-i-am-applying-with-a-high-school-diploma"
+      }
+     ],
+     "kesinlik": "Yoruma açık"
+    },
+    "ap": {
+     "durum": "ok",
+     "metin": "A turunda AP puanı değerlendirilmiyor; seçim yalnız SAT ya da ACT ile. AP çalışması SAT matematiğine katkı sağlar.",
+     "sayi": 0,
+     "dersler": [],
+     "kaynak": [
+      {
+       "ad": "Aalto — İngilizce lisans, lise diplomasıyla başvuru (2027)",
+       "url": "https://www.aalto.fi/en/admission-services/english-taught-bachelors-programmes-i-am-applying-with-a-high-school-diploma"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "sinav": {
+     "durum": "uyari",
+     "metin": "Sıralama yalnız SAT ya da ACT ile. Science and Technology için en az SAT 1350 ve matematik 700; sonuç 29 Ocak'a kadar test kurumundan gelmeli.",
+     "sinavlar": [
+      "sat"
+     ],
+     "kaynak": [
+      {
+       "ad": "Aalto — İngilizce lisans, lise diplomasıyla başvuru (2027)",
+       "url": "https://www.aalto.fi/en/admission-services/english-taught-bachelors-programmes-i-am-applying-with-a-high-school-diploma"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "dil": {
+     "durum": "ok",
+     "metin": "Aalto bu programlarda yeterli İngilizce bekliyor ama dil sınavı sonucu istemiyor.",
+     "kaynak": [
+      {
+       "ad": "Aalto — İngilizce lisans, lise diplomasıyla başvuru (2027)",
+       "url": "https://www.aalto.fi/en/admission-services/english-taught-bachelors-programmes-i-am-applying-with-a-high-school-diploma"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "donem": {
+     "durum": "ok",
+     "metin": "A turu 7–22 Ocak 2027 15.00. 2027 baharında mezun olan kesin diplomayı 31 Temmuz 2027'ye kadar verir.",
+     "kaynak": [
+      {
+       "ad": "Aalto — İngilizce lisans, lise diplomasıyla başvuru (2027)",
+       "url": "https://www.aalto.fi/en/admission-services/english-taught-bachelors-programmes-i-am-applying-with-a-high-school-diploma"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    }
+   },
+   "fi-abo-akademi-university": {
+    "dil": {
+     "durum": "kapali",
+     "metin": "Studyinfo'da Åbo Akademi'nin İngilizce lisans programı yok; eğitim dili İsveççe.",
+     "kaynak": [
+      {
+       "ad": "Studyinfo — İngilizce lisans araması",
+       "url": "https://opintopolku.fi/konfo-backend/search/koulutukset?koulutustyyppi=kandi,kandi-ja-maisteri&opetuskieli=oppilaitoksenopetuskieli_4&lng=en"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    }
+   }
+  }
+ },
  "universiteler": {
   "siralama": {
    "ad": "QS World University Rankings 2027",

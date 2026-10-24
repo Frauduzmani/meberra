@@ -845,6 +845,148 @@
    }
   ]
  },
+ "isterler": {
+  "sonKontrol": "2026-10-24",
+  "varsayilan": {
+   "diploma": {
+    "durum": "uyari",
+    "metin": "Türkiye anlaşmasız AB dışı sistem sayılır; Bakanlık'tan Bachiller denkliği (homologación) gerekir. Kabulden sonra denklik ilk yıl içinde teslim edilmezse kayıt iptal olur.",
+    "kaynak": [
+     {
+      "ad": "UC3M, uluslararası öğrenciler (lisans başvurusu)",
+      "url": "https://www.uc3m.es/bachelor-degree/admission/application/international-students"
+     },
+     {
+      "ad": "UC3M, Early Admission kabul sonrası (yer ayırma, denklik)",
+      "url": "https://www.uc3m.es/bachelor-degree/admission/application/international-students/early-admission/admission"
+     },
+     {
+      "ad": "UPM, yurt dışında öğrenim görmüş öğrenciler için genel bilgi (Mayıs 2023, eski)",
+      "url": "https://www.upm.es/sfs/Rectorado/Vicerrectorado%20de%20Alumnos/Informacion/Acceso/Documentos/EstudiosExtranjerosInformacionGeneral.pdf"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   },
+   "yks": {
+    "durum": "ok",
+    "metin": "UC3M'nin AB dışı süreci ve Early Admission şartlarında YKS yok; not hesabı lise ortalaması ve PCE ile yapılır.",
+    "kaynak": [
+     {
+      "ad": "UC3M, AB dışı ve anlaşmasız ülke öğrencileri",
+      "url": "https://www.uc3m.es/bachelor-degree/admission/application/international-students/non-european"
+     },
+     {
+      "ad": "UC3M, Early Admission nedir ve kimler başvurabilir",
+      "url": "https://www.uc3m.es/bachelor-degree/admission/application/international-students/early-admission/what-is"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   },
+   "ap": {
+    "durum": "ok",
+    "metin": "AP şart değil; AP'nin PCE ya da UNEDasiss akreditasyonunun yerine geçtiğine dair bir ifade de yok.",
+    "sayi": 0,
+    "dersler": [],
+    "kaynak": [
+     {
+      "ad": "UC3M, AB dışı ve anlaşmasız ülke öğrencileri",
+      "url": "https://www.uc3m.es/bachelor-degree/admission/application/international-students/non-european"
+     }
+    ],
+    "kesinlik": "Teyit gerekir"
+   },
+   "sinav": {
+    "durum": "uyari",
+    "metin": "Olağan başvuru için UNEDasiss akreditasyonu ve UNED'in PCE sınavları gerekir. Erişim notu lise ortalamasının %60'ı ile PCE'nin %40'ından oluşur.",
+    "sinavlar": [],
+    "kaynak": [
+     {
+      "ad": "UC3M, AB dışı ve anlaşmasız ülke öğrencileri",
+      "url": "https://www.uc3m.es/bachelor-degree/admission/application/international-students/non-european"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   },
+   "dil": {
+    "durum": "uyari",
+    "metin": "Derecenin dilinde B2 gerekir: İngilizce grupta B2 birinci yıl içinde belgeyle ya da üniversite testiyle kanıtlanır.",
+    "belge": "IELTS",
+    "kaynak": [
+     {
+      "ad": "UC3M, İngilizce öğrenim",
+      "url": "https://www.uc3m.es/bachelor-degree/uc3m-plus/study-in-english"
+     },
+     {
+      "ad": "UC3M, Early Admission nedir ve kimler başvurabilir",
+      "url": "https://www.uc3m.es/bachelor-degree/admission/application/international-students/early-admission/what-is"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   },
+   "donem": {
+    "durum": "teyit",
+    "metin": "Takvim üniversiteye göre değişir; UC3M örneğinde genel başvuru Haziran'da, Early Admission 5 Ekim–2 Nisan arasında."
+   }
+  },
+  "alanlar": {},
+  "universite": {
+   "es-universidad-carlos-iii-de-madrid-uc3m": {
+    "sinav": {
+     "durum": "uyari",
+     "metin": "Genel yolda UNEDasiss akreditasyonu ve PCE gerekir. Early Admission'da kararın %90'ı notlara, %10'u belgelenmiş diğer akademik başarılara dayanır.",
+     "sinavlar": [],
+     "kaynak": [
+      {
+       "ad": "UC3M, AB dışı ve anlaşmasız ülke öğrencileri",
+       "url": "https://www.uc3m.es/bachelor-degree/admission/application/international-students/non-european"
+      },
+      {
+       "ad": "UC3M, Early Admission nedir ve kimler başvurabilir",
+       "url": "https://www.uc3m.es/bachelor-degree/admission/application/international-students/early-admission/what-is"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "dil": {
+     "durum": "uyari",
+     "metin": "Early Admission başvuruda derecenin dilinde B2 kanıtı ister. İngilizce grupta B2'yi birinci yılda kanıtlamazsan İspanyolca gruba geçebilirsin.",
+     "belge": "IELTS",
+     "kaynak": [
+      {
+       "ad": "UC3M, İngilizce öğrenim",
+       "url": "https://www.uc3m.es/bachelor-degree/uc3m-plus/study-in-english"
+      },
+      {
+       "ad": "UC3M, Early Admission nedir ve kimler başvurabilir",
+       "url": "https://www.uc3m.es/bachelor-degree/admission/application/international-students/early-admission/what-is"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "donem": {
+     "durum": "uyari",
+     "metin": "Early Admission 5 Ekim 2026–2 Nisan 2027 arasında, yerler doldukça kapanır (kontenjanın %8'i). Genel başvuru Haziran'da.",
+     "kaynak": [
+      {
+       "ad": "UC3M, Early Admission başvuru dönemi (5 Ekim 2026–2 Nisan 2027)",
+       "url": "https://www.uc3m.es/bachelor-degree/admission/application/international-students/early-admission/deadline"
+      },
+      {
+       "ad": "UC3M, uluslararası öğrenciler (lisans başvurusu)",
+       "url": "https://www.uc3m.es/bachelor-degree/admission/application/international-students"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    }
+   },
+   "es-universidad-politecnica-de-madrid-upm": {
+    "dil": {
+     "durum": "teyit",
+     "metin": "Resmî katalogda İngilizce lisans kaydı bulunamadı ama tam doğrulanmadı. Programın öğretim dilini üniversitenin sayfasından kontrol et."
+    }
+   }
+  }
+ },
  "universiteler": {
   "siralama": {
    "ad": "QS World University Rankings 2027",

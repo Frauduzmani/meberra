@@ -57,7 +57,7 @@ Kullanıcı isteğiyle burada durduk. Devamda sırayla: (1) Physics 2 kararını
 - Ajan 12: soruları `data/sorular/ders/` klasörüne ayırma (HARITA.md §3, 2. aşama)
 
 ## Teknik notlar
-- **Teslim sırası:** 0 `deneme-bankasi-olustur` (soru eklendiyse) → 0b `mevzuat-aktar` + `ulke-veri-olustur` / `sinav-aktar` / `teyit-taslak-olustur` (veri değiştiyse) → 1 `pm-denetim` → 1b `ad-denetimi` → 2 birim (10 Node testi; `universite-ister-test` dahil) + tarayıcı testleri → 3 `sunum-olustur` + paket testleri → 4 `proje.md` (§ + ★ GÜNCEL DURUM) + bu dosya + `HARITA.md` → 5 `surum-arsivle`.
+- **Teslim sırası:** 0 `deneme-bankasi-olustur` (soru eklendiyse) → 0b `mevzuat-aktar` + `ulke-veri-olustur` / `sinav-aktar` / `teyit-taslak-olustur` (veri değiştiyse) → 1 `pm-denetim` → 1b `ad-denetimi` → 2 birim (10 Node testi; `universite-ister-test`, 1.22.0'dan beri `hedef-birim-test` ve `isterler-birim-test` dahil) + tarayıcı testleri → 3 `sunum-olustur` + paket testleri → 4 `proje.md` (§ + ★ GÜNCEL DURUM) + bu dosya + `HARITA.md` → 5 `surum-arsivle`.
 - **Tarayıcı testleri:** `araclar/testler` klasörünü proje dışına kopyalayıp `npm install`; Chromium yolu `C:/Users/hp/AppData/Local/ms-playwright/chromium-1243/`. Ajanlar Playwright'ı resmi sayfaları okumak için de kullanabilir (bot doğrulaması aşılmaz).
 - **Python:** proje klasöründe bozuk; `C:\Users\hp\AppData\Local\Programs\Python\Python311\python.exe -I` kullanın (pypdf, sympy kurulu).
 - **Dosya düzenleme:** Git Bash heredoc'u ve tek tırnaklı `node -e` metinleri kesme işareti (') içeren Türkçe metinlerde bozulur; Edit/Write aracını kullanın.

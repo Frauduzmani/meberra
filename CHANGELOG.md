@@ -9,6 +9,17 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.22.0] — 2026-10-24
+### Eklendi
+- **Hedef sihirbazı** (`/ulkem`): 3 ekran, her biri aynı iskelette (renkli başlık + ilerleme çubuğu, ortada tek iş, altta Dede Korkut ve tek turuncu düğme). 1) Bayraklı kartlardan en çok 5 ülke (çoklu seçim, canlı "N ülke · M üniversite" sayacı). 2) Seçilen ülkelerin üniversiteleri (arama, isteğe bağlı) ya da "🤷 Okul bilmiyorum, ülke yeter". 3) **Şart tablosu**: sütunlar okul ya da ülke (genel kural), satırlar lise diploması · YKS · AP · giriş sınavı · dil belgesi · başvuru dönemi; hücreler ✅/⚠️/❌/❔ ve dokununca açıklama + resmî kaynak. Altında "🧭 Hepsine birden yeten yol" (AP dersleri, dil eşiği, sınavlar, YKS uyarısı, Mayıs AP sınavına kalan hafta). Sınıf (9–12, Mezun) ve alan (Mühendislik · Tıp/Sağlık · İşletme/Ekonomi · Fen) çipleri tabloyu canlı değiştirir. İlk açılışta konfeti; azaltılmış harekette animasyon yok.
+- **Bu planı uygula**: misafir kayıt/giriş sayfasına seçimiyle gider; hesap açılınca profil sihirbazı atlanır, seçim profile yazılır (ülkeler, okullar, AP dersleri, sınav yılı, alan) ve **Bugün** ekranı "Plan senin, <ad>!" kutlamasıyla açılır. Giriş yapmış öğrencide özet ("Planına 2 ülke, 3 ders eklenecek") ve onay; dolu sınıf, aktif rota ve sınav yılı korunur.
+- Yapılandırılmış şart verisi: `data/mevzuat/kaynak/isterler-<cc>.json` (15 ülke + okul özel kayıtları). Her ✅/⚠️/❌ hücre kaynak bağlantısı ve kesinlik taşır; kaynağı olmayan hücre "❔ Teyit et". Denetim `araclar/isterler-denetim.js` (üretici `--kontrol` ile çalışır).
+- Motor `assets/js/hedef-motor.js`, arayüz `assets/js/hedef-sihirbaz.js`, stil `assets/css/hedef.css`. Testler: `hedef-birim-test`, `isterler-birim-test`, `e2e/hedef.spec.js`.
+### Değişti
+- Vitrindeki "Ücretsiz başla" düğmeleri kayıt formu yerine sihirbaza (`/ulkem`) gider.
+- Ülke ayrıntısı (tarihler, burslar, sık hatalar) sonuç ekranındaki "Ülke ayrıntısı" bağlantılarıyla açılır; eski tam seçim adresleri (`?model=…&ulke=…&dil=…`) aynen çalışır, `?ulke=de` gibi kısa eski adresler sihirbazın sonuç ekranını açar.
+- Profil `hedefOkullar` alanını saklar.
+
 ## [1.21.0] — 2026-10-22
 ### Değişti
 - Ülkem (`/ulkem`) giriş ekranı sadeleşti: mor hero "Nerede okumak istiyorsun?" + uçuşan bayraklar + 1-2-3 adım. Önce ülke seçilir (büyük bayraklı kartlar, tek rozet "İngilizce: Geniş/Kısıtlı", "Adım adım takvim"); soluk/kilitli görünüm ve kartlardaki uzun uyarı metinleri kaldırıldı (uyarı sonuç özetinde). Ülke seçilince tek soru kutusu: "Son bir soru: <ülke> için durumun ne?" + sınıf (yalnız lise öğrencisine). Dil seçimi girişten kalktı (sonuçta "Yerel dile geç"). Sonuç görünümünde hero sade başlık bandına döner. Stiller `assets/css/ulkem.css`.

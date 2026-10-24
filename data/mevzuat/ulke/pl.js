@@ -1049,6 +1049,154 @@
    }
   ]
  },
+ "isterler": {
+  "sonKontrol": "2026-10-24",
+  "varsayilan": {
+   "diploma": {
+    "durum": "ok",
+    "metin": "Türk lise diploması OECD kuralıyla ayrı denklik belgesi gerekmeden tanınır. Diploma için apostil gerekir; tercüme dili okula göre değişir.",
+    "kaynak": [
+     {
+      "ad": "NAWA — yurt dışı lise diplomasının tanınması",
+      "url": "https://nawa.gov.pl/en/recognition/how-to-obtain-a-recognition-statement/secondary-school-certificate"
+     },
+     {
+      "ad": "Gdańsk Teknik Üniversitesi — lisans başvuru belgeleri",
+      "url": "https://pg.edu.pl/en/admission/bachelor-studies-international-students/required-documents"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   },
+   "yks": {
+    "durum": "teyit",
+    "metin": "Türkiye'de yerleşme YKS ile olduğu için bazı üniversiteler YKS belgesi isteyebilir. Hedef üniversiteye yazılı sor.",
+    "kaynak": [
+     {
+      "ad": "NAWA — yurt dışı lise diplomasının tanınması",
+      "url": "https://nawa.gov.pl/en/recognition/how-to-obtain-a-recognition-statement/secondary-school-certificate"
+     }
+    ],
+    "kesinlik": "Teyit gerekir"
+   },
+   "ap": {
+    "durum": "teyit",
+    "metin": "Gdańsk, Rzeszów ve Varşova belgelerinde AP'nin kabulde kullanıldığına dair ifade bulunamadı. Programa sor."
+   },
+   "sinav": {
+    "durum": "teyit",
+    "metin": "Giriş sınavı üniversiteye ve aday grubuna göre değişiyor. Programın kabul sayfasını kontrol et."
+   },
+   "dil": {
+    "durum": "uyari",
+    "metin": "Yasa öğretim dilinde en az B2 seviyesi istiyor; kabul edilen sınav ve eşik programa göre.",
+    "belge": "IELTS",
+    "kaynak": [
+     {
+      "ad": "Rzeszów Teknik Üniversitesi — 2026/27 lisans başvurusu",
+      "url": "https://dwm.prz.edu.pl/en/recruitment-of-foreigners-and-poles-with-foreign-secondary-school-leaving-exams/2026-2027-foreign-candidates/application-procedures/bsc-studies"
+     },
+     {
+      "ad": "Gdańsk Teknik Üniversitesi — lisans başvuru belgeleri",
+      "url": "https://pg.edu.pl/en/admission/bachelor-studies-international-students/required-documents"
+     }
+    ],
+    "kesinlik": "Doğrulandı"
+   },
+   "donem": {
+    "durum": "teyit",
+    "metin": "Başvurular mezuniyet yılının Mayıs–Temmuz'unda; 2027/28 takvimleri henüz yayımlanmadı. Diploma çıkınca apostili hemen al.",
+    "kaynak": [
+     {
+      "ad": "Gdańsk Teknik Üniversitesi — tarihler 2026/27",
+      "url": "https://pg.edu.pl/en/admission/bachelor-studies-international-students/dates-and-deadlines"
+     }
+    ],
+    "kesinlik": "Yayımlanmadı"
+   }
+  },
+  "alanlar": {},
+  "universite": {
+   "pl-gdansk-university-of-technology": {
+    "yks": {
+     "durum": "ok",
+     "metin": "Devlet sınavı notları belge listesinde \"isteğe bağlı\"; YKS sonucu zorunlu değil.",
+     "kaynak": [
+      {
+       "ad": "Gdańsk Teknik Üniversitesi — lisans başvuru belgeleri",
+       "url": "https://pg.edu.pl/en/admission/bachelor-studies-international-students/required-documents"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "sinav": {
+     "durum": "uyari",
+     "metin": "Belirli aday grubu için matematik giriş sınavı yapılıyor (yüz yüze ve çevrim içi). Sınavlı başvuru ücreti 100 PLN.",
+     "sinavlar": [],
+     "kaynak": [
+      {
+       "ad": "Gdańsk Teknik Üniversitesi — lisans başvuru belgeleri",
+       "url": "https://pg.edu.pl/en/admission/bachelor-studies-international-students/required-documents"
+      },
+      {
+       "ad": "Gdańsk Teknik Üniversitesi — uluslararası lisans başvurusu",
+       "url": "https://pg.edu.pl/en/admission/bachelor-studies-international-students"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "dil": {
+     "durum": "uyari",
+     "metin": "IELTS en az 5.5; TOEFL iBT 72 (21 Ocak 2026 sonrası 4). Cambridge ve LanguageCert B2 de kabul ediliyor.",
+     "belge": "IELTS",
+     "esik": 5.5,
+     "kaynak": [
+      {
+       "ad": "Gdańsk Teknik Üniversitesi — lisans başvuru belgeleri",
+       "url": "https://pg.edu.pl/en/admission/bachelor-studies-international-students/required-documents"
+      }
+     ],
+     "kesinlik": "Doğrulandı"
+    },
+    "donem": {
+     "durum": "teyit",
+     "metin": "2026/27'de başvuru 26 Mayıs–9 Temmuz idi; 2027/28 takvimi henüz yayımlanmadı.",
+     "kaynak": [
+      {
+       "ad": "Gdańsk Teknik Üniversitesi — tarihler 2026/27",
+       "url": "https://pg.edu.pl/en/admission/bachelor-studies-international-students/dates-and-deadlines"
+      }
+     ],
+     "kesinlik": "Yayımlanmadı"
+    }
+   },
+   "pl-warsaw-university-of-technology": {
+    "donem": {
+     "durum": "teyit",
+     "metin": "2026/27'de yeni başvuru için son gün 21 Temmuz, belgeler 19 Ağustos idi; 2027/28 takvimi henüz yayımlanmadı.",
+     "kaynak": [
+      {
+       "ad": "Varşova Teknik Üniversitesi — Ekim 2026 kabulü",
+       "url": "https://eng.pw.edu.pl/News/Admission-for-October-2026-is-open"
+      }
+     ],
+     "kesinlik": "Yayımlanmadı"
+    }
+   },
+   "pl-poznan-university-of-technology": {
+    "donem": {
+     "durum": "teyit",
+     "metin": "2026/27'de başvuru 12 Mayıs–9 Temmuz, belge asılları 2 Eylül–2 Ekim idi; 2027/28 takvimi henüz yayımlanmadı.",
+     "kaynak": [
+      {
+       "ad": "Poznan Teknik Üniversitesi — takvim",
+       "url": "https://put.poznan.pl/en/admission-for-international/first-cycle/schedule"
+      }
+     ],
+     "kesinlik": "Yayımlanmadı"
+    }
+   }
+  }
+ },
  "universiteler": {
   "siralama": {
    "ad": "QS World University Rankings 2027",

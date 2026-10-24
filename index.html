@@ -720,6 +720,18 @@
         if (sr.bugunVar) document.getElementById("bg-seri").classList.add("is-bugun-tamam");
       }
     })();
+
+    // 7) 1.22.0: hedef sihirbazından gelen ilk ziyaret (?ilk=1) — tek büyük kutlama, sonra adres temizlenir
+    (function () {
+      if (!/[?&]ilk=1(&|$)/.test(location.search)) return;
+      try { history.replaceState(null, "", location.pathname + location.search.replace(/([?&])ilk=1&?/, "$1").replace(/[?&]$/, "") + location.hash); } catch (e) { /* file:// */ }
+      var ad = ME && ME.user && ME.user.ad ? ME.user.ad : "";
+      var P = ME && ME.profile ? ME.profile : {};
+      var metin = "Yolun belli oldu, ilk adım bugün!" + (Array.isArray(P.apDersleri) && P.apDersleri.length ? " Planında " + P.apDersleri.length + " AP dersi var." : "");
+      // kutlama.js defer ile yüklenir: bu satır içi betikten sonra, DOMContentLoaded'dan önce çalışır
+      var kutla = function () { if (window.MeberraKutlama) MeberraKutlama.kutla({ tur: "hedef", baslik: "Plan senin" + (ad ? ", " + ad : "") + "!", metin: metin, ifade: "kutlama", buyuk: true }); };
+      if (window.MeberraKutlama) kutla(); else document.addEventListener("DOMContentLoaded", kutla, { once: true });
+    })();
   })();
   </script>
 </body>
