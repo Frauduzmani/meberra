@@ -15,7 +15,13 @@ const ENCOK = 220;
 
 const duz = s => String(s == null ? "" : s).replace(/\\\(.*?\\\)|\\\[.*?\\\]/gs, " ").replace(/<[^>]+>/g, " ").replace(/&[a-z#0-9]+;/gi, " ").toLowerCase();
 const sozcukler = s => new Set((duz(s).match(/[a-zÀ-ɏ]{5,}/g) || []));
-const sayilar = s => new Set((duz(s).match(/\d+(?:[.,]\d+)?/g) || []).map(x => x.replace(",", ".")));
+// Sayılar formül içinden de alınır (kökteki $f(3)=7$ cümlede geçebilir); \tfrac12 gibi yazımlar için rakamlar ayrı ayrı da sayılır
+const sayilar = s => {
+  const t = String(s == null ? "" : s).replace(/<[^>]+>/g, " ").replace(/&[a-z#0-9]+;/gi, " ");
+  const o = new Set((t.match(/\d+(?:[.,]\d+)?/g) || []).map(x => x.replace(",", ".")));
+  (t.match(/\d/g) || []).forEach(d => o.add(d));
+  return o;
+};
 
 function sorunlar(q, cumle) {
   const s = [];

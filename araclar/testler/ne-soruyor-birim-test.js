@@ -24,6 +24,9 @@ ok(N.sorunlar(q, "").some(s => /boş/.test(s)), "boş");
 // Tam kelime eşleşir: "because" içinde "cause" sızıntı değil
 { const q2 = Object.assign({}, q, { secenekler: q.secenekler.map(o => o.id === "A" ? { id: "A", text: "each effect becomes the next cause" } : o) });
   ok(N.sorunlar(q2, "“Because … because” yapısının işlevini soruyor.").length === 0, "alt dize sızıntı sayılmaz", N.sorunlar(q2, "“Because … because” yapısının işlevini soruyor.")); }
+// Kökün formülündeki sayı (ör. $f(3)=7$, doğru şık $2$) cümlede geçebilir
+{ const q3 = { id: "c", dogru: "A", govde: "If $f(3)=7$ and $f'(3)=\\tfrac12$, find $g'(7)$.", secenekler: [{ id: "A", text: "$2$" }, { id: "B", text: "$7$" }] };
+  ok(N.sorunlar(q3, "f(3) = 7 ve f'(3) = 1/2 iken g'(7) değerini istiyor.").length === 0, "kök formülündeki sayı serbest", N.sorunlar(q3, "f(3) = 7 ve f'(3) = 1/2 iken g'(7) değerini istiyor.")); }
 // Kökte de geçen kelime sızıntı sayılmaz
 ok(N.sorunlar(q, "Örnek 1'in (sample) neden daha yüksek erime sıcaklığına sahip olduğunu soruyor.").length === 0, "kökte geçen kelime serbest");
 

@@ -29,6 +29,12 @@ test("soru kökünde kelimeye dokun → Türkçe anlam; kapatınca yardım devre
   await expect(kart).toBeVisible();
   // İlk kullanım ipucu
   await expect(page.locator(".kk-ipucu")).toBeVisible();
+  // "Ne soruyor?" Türkçe açıklaması: kapalı gelir, açılınca görünür
+  const ne = kart.locator(".q-ne");
+  await expect(ne.locator("p")).toBeHidden();
+  await ne.locator("summary").click();
+  await expect(ne.locator("p")).toBeVisible();
+  await expect(ne.locator("p")).toContainText(/soruyor|istiyor/);
   const kelime = await page.evaluate(() => {
     const el = Array.from(document.querySelectorAll("#calc-unit1-quiz-container .question-body")).find(e => e.offsetParent);
     const m = el.textContent.match(/\b(function|value|following|limit|continuous|graph|table)\b/i);
