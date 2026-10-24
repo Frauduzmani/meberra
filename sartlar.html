@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/assets/css/icerik.css">
   <link rel="stylesheet" href="/assets/css/hedefim.css">
   <link rel="stylesheet" href="/assets/css/ulkem.css?v=1210">
+  <link rel="stylesheet" href="/assets/css/hedef.css?v=1220">
   <script src="/assets/js/adresler.js"></script>
   <script>try{var t=localStorage.getItem("apmeberra:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
@@ -23,6 +24,10 @@
   </nav>
 
   <main class="main-container hd" id="main-content">
+    <!-- 1.22.0: hedef sihirbazı — ülke(ler) → okul(lar) → şart tablosu → planı uygula (assets/js/hedef-sihirbaz.js). Adreste dil= varsa gizli kalır ve aşağıdaki ülke ayrıntısı çalışır. -->
+    <section class="hz" id="hd-sihirbaz" aria-label="Hedef sihirbazı" hidden>
+      <div class="hz-aur" aria-hidden="true"><i></i><i></i><i></i></div>
+    </section>
     <!-- 1.21.0: giriş ekranı sadeleşti — mor hero, önce ülke (bayraklı kartlar), sonra tek soru (durum + sınıf); dil sonuç sayfasında -->
     <header class="page-head hd-head sr-head ulk-hero">
       <div class="ulk-hero-in">
@@ -133,10 +138,15 @@
   <script src="/assets/js/sartlar-ui.js"></script>
   <script src="/assets/js/universite-isterleri.js"></script>
   <script src="/assets/js/ucretsiz-kural.js"></script>
+  <script src="/assets/js/auth.js"></script>
   <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/ap-hedef.js"></script>
+  <script src="/assets/js/hedef-motor.js?v=1220"></script>
+  <script src="/assets/js/hedef-sihirbaz.js?v=1220"></script>
   <script>
   (function () {
     "use strict";
+    if (window.MeberraHedefSihirbaz && window.MeberraHedefSihirbaz.aktif) return; // 1.22.0: sihirbaz açık; ülke ayrıntısı yalnızca adreste dil= varken
     var M = window.APMEBERRA_SARTLAR_MOTOR, UI = window.APMEBERRA_SARTLAR_UI, A = window.APMEBERRA, ME = window.APMEBERRA_ME;
     var $ = function (id) { return document.getElementById(id); };
     var root = $("sr-root"), form = $("sr-form");

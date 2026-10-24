@@ -1,0 +1,176 @@
+/* ==========================================================================
+   HEDEF SİHİRBAZI (/ulkem, sartlar.html) — 1.22.0
+   Onaylı görsel: .superpowers/brainstorm/…/akis-v2.html. Her adım aynı iskelet: renkli başlık + ilerleme,
+   ortada tek iş, altta Dede Korkut + tek turuncu düğme. Betik: assets/js/hedef-sihirbaz.js
+   Eski ülke ayrıntısı (adreste dil=) bu dosyadan etkilenmez: kurallar .is-sihirbaz altında.
+   ========================================================================== */
+
+/* Sihirbaz açıkken eski giriş ve sonuç alanları gizlenir */
+.is-sihirbaz .sr-head, .is-sihirbaz #ul-ulkeler, .is-sihirbaz #sr-form, .is-sihirbaz #sr-kisisel, .is-sihirbaz #sr-root { display: none !important; }
+
+.hz {
+  --hz-a: var(--hero-a, #5b3df5); --hz-b: var(--hero-b, #8b5cf6); --hz-e: var(--energy, #ff6b2c);
+  --hz-y: #ffc83d; --hz-g: #16a34a; --hz-ink: #1a1033;
+  position: relative; isolation: isolate; overflow: hidden; margin: 0 0 var(--sp-6, 24px);
+  padding: clamp(14px, 3vw, 40px) clamp(10px, 3vw, 40px); border-radius: 28px; background: #140c38;
+  font-family: Nunito, var(--font-sans, system-ui), sans-serif;
+}
+.hz-aur { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.hz-aur i { position: absolute; width: 60%; aspect-ratio: 1; border-radius: 50%; filter: blur(70px); opacity: .55; }
+.hz-aur i:nth-child(1) { background: #5b3df5; left: -15%; top: -25%; }
+.hz-aur i:nth-child(2) { background: #ff6b2c; right: -20%; top: 20%; opacity: .32; }
+.hz-aur i:nth-child(3) { background: #06b6d4; left: 25%; bottom: -35%; opacity: .28; }
+@media (prefers-reduced-motion: no-preference) {
+  .hz-aur i { animation: hz-drift 18s ease-in-out infinite alternate; }
+  .hz-aur i:nth-child(2) { animation-delay: -6s; } .hz-aur i:nth-child(3) { animation-delay: -12s; }
+}
+@keyframes hz-drift { to { transform: translate(10%, 8%) scale(1.15); } }
+
+/* Kart: her adımda aynı iskelet; yükseklik içerikten bağımsız en az bir telefon boyu */
+.hz-kart {
+  position: relative; max-width: 760px; min-height: min(680px, 86vh); margin: 0 auto; display: flex; flex-direction: column;
+  border-radius: 30px; overflow: hidden; background: var(--surface, #fbfaff); color: var(--text, var(--hz-ink));
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .75), 0 0 0 1px rgba(255, 255, 255, .06);
+}
+.hz-hd {
+  position: relative; flex: none; padding: 22px clamp(16px, 3vw, 28px) 20px; color: #fff; overflow: hidden;
+  background:
+    radial-gradient(70% 100% at 100% 0%, rgba(255, 107, 44, .65), transparent 60%),
+    radial-gradient(60% 90% at 0% 100%, rgba(56, 189, 248, .45), transparent 60%),
+    linear-gradient(135deg, var(--hz-a), #6a3cf0 55%, var(--hz-b));
+}
+.hz-hd::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(115deg, rgba(255, 255, 255, .06) 0 2px, transparent 2px 14px); }
+.is-kutlama .hz-hd { background: radial-gradient(70% 100% at 100% 0%, rgba(255, 200, 61, .8), transparent 60%), linear-gradient(135deg, #ff6b2c, #ff3d7f 55%, var(--hz-b)); }
+.hz-prog { position: relative; z-index: 1; display: flex; gap: 6px; max-width: calc(100% - 96px); }
+.hz-prog i { height: 7px; flex: 1; border-radius: 9px; background: rgba(255, 255, 255, .25); overflow: hidden; }
+.hz-prog i.on, .hz-prog i.now { background: linear-gradient(90deg, var(--hz-y), #fff); }
+@media (prefers-reduced-motion: no-preference) {
+  .hz-prog i.now { background: rgba(255, 255, 255, .25); }
+  .hz-prog i.now::before { content: ""; display: block; height: 100%; background: linear-gradient(90deg, var(--hz-y), #fff); animation: hz-fill 1.2s ease-out forwards; }
+}
+@keyframes hz-fill { from { width: 0; } to { width: 100%; } }
+.hz-xp { position: absolute; right: 16px; top: 14px; z-index: 2; border-radius: 99px; padding: 3px 11px; font-weight: 900; font-size: 13px; background: rgba(255, 255, 255, .18); border: 1px solid rgba(255, 255, 255, .35); }
+.hz-ust { position: relative; z-index: 1; margin: 14px 0 0; font-size: 12px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; opacity: .8; }
+.hz-hd h1 { position: relative; z-index: 1; margin: 4px 0 4px; color: #fff; font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.3rem); line-height: 1.1; font-weight: 1000; letter-spacing: -.01em; outline: none; }
+.hz-alt { position: relative; z-index: 1; margin: 0; font-weight: 700; opacity: .92; }
+
+.hz-bd { flex: 1; min-height: 0; padding: 16px clamp(14px, 3vw, 28px); display: flex; flex-direction: column; gap: 12px; }
+.hz-ft { flex: none; padding: 12px clamp(14px, 3vw, 28px) 18px; display: grid; gap: 10px; }
+.hz-gizli { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+
+/* Turuncu 3D düğme + parıltı */
+.hz-btn {
+  position: relative; overflow: hidden; width: 100%; border: 0; border-radius: 18px; padding: 15px; cursor: pointer;
+  font: inherit; font-weight: 1000; font-size: 17px; color: var(--hz-ink);
+  background: linear-gradient(180deg, #ff8a4c, var(--hz-e)); box-shadow: 0 6px 0 #c94a14, 0 14px 24px -10px rgba(255, 107, 44, .9);
+  transition: transform .08s, box-shadow .08s;
+}
+.hz-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #c94a14; }
+.hz-btn:disabled { cursor: not-allowed; filter: grayscale(.7); opacity: .55; box-shadow: 0 6px 0 #9a9a9a; }
+.hz-btn:focus-visible, .hz-skip:focus-visible, .hz-geri:focus-visible, .hz-hucre:focus-visible { outline: 3px solid var(--hz-y); outline-offset: 3px; }
+@media (prefers-reduced-motion: no-preference) {
+  .hz-btn:not(:disabled)::after { content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .55), transparent); animation: hz-shine 2.8s infinite; }
+}
+@keyframes hz-shine { 60%, to { left: 130%; } }
+.hz-geri { justify-self: center; border: 0; background: none; color: var(--text-muted, #6b6790); font: inherit; font-weight: 800; cursor: pointer; padding: 4px 8px; }
+.hz-iki { display: grid; gap: 8px; }
+
+/* Dede Korkut balonu */
+.hz-dk { display: flex; align-items: flex-end; gap: 8px; }
+.hz-korkut { width: 56px; height: 56px; flex: none; }
+@media (prefers-reduced-motion: no-preference) { .hz-korkut { animation: hz-bob 2.6s ease-in-out infinite; } }
+@keyframes hz-bob { 50% { transform: translateY(-4px) rotate(-3deg); } }
+.hz-bub { margin: 0; position: relative; background: var(--surface, #fff); border: 2px solid color-mix(in srgb, var(--hz-a) 18%, transparent); border-radius: 16px 16px 16px 4px; padding: 8px 12px; font-size: 14px; font-weight: 800; line-height: 1.35; box-shadow: 0 6px 14px -8px rgba(60, 30, 160, .35); }
+
+/* 1: bayrak kartları */
+.hz-fl { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 10px; }
+.hz-f {
+  position: relative; display: grid; justify-items: center; gap: 4px; padding: 12px 6px 9px; cursor: pointer; text-align: center;
+  border-radius: 18px; background: var(--surface, #fff); border: 2px solid var(--border, #ece8ff); box-shadow: 0 4px 0 var(--border, #e3defa);
+  transition: transform .15s, box-shadow .15s, border-color .15s;
+}
+.hz-f:hover { transform: translateY(-3px); }
+.hz-f:focus-within { outline: 3px solid var(--hz-y); outline-offset: 2px; }
+.hz-f .hz-bayrak { width: 46px; height: 31px; border-radius: 7px; box-shadow: 0 4px 8px -3px rgba(0, 0, 0, .35); }
+.hz-f b { font-size: 13px; font-weight: 900; }
+.hz-f small { font-size: 11px; font-weight: 700; color: var(--text-muted, #6b6790); }
+.hz-f.on { border-color: var(--hz-a); background: color-mix(in srgb, var(--hz-a) 10%, var(--surface, #fff)); box-shadow: 0 4px 0 var(--hz-a); }
+.hz-f.on::after { content: "✓"; position: absolute; top: -7px; right: -6px; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--hz-g); color: #fff; font-size: 13px; font-weight: 900; box-shadow: 0 0 0 3px var(--surface, #fff); }
+.hz-f.is-pop { animation: hz-pop .35s; }
+@keyframes hz-pop { 40% { transform: scale(1.12) rotate(-3deg); } }
+@media (prefers-reduced-motion: no-preference) {
+  .hz-fl .hz-f { animation: hz-in .4s cubic-bezier(.3, 1.5, .5, 1) both; animation-delay: calc(var(--s) * 25ms); }
+}
+.hz-cnt { margin: 0; text-align: center; font-weight: 900; font-size: 14px; color: var(--hz-a); background: color-mix(in srgb, var(--hz-a) 10%, transparent); border-radius: 99px; padding: 7px 12px; }
+
+/* 2: okullar */
+.hz-srch input { width: 100%; border-radius: 14px; border: 2px solid var(--border, #ece8ff); padding: 10px 14px; font: inherit; font-weight: 700; background: var(--surface, #fff); color: inherit; }
+.hz-ul { display: grid; gap: 8px; max-height: min(52vh, 460px); overflow-y: auto; padding: 2px 2px 6px; }
+.hz-ct { display: flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 12px; font-weight: 1000; letter-spacing: .1em; color: var(--text-muted, #6b6790); }
+.hz-ct .hz-bayrak { width: 22px; height: 15px; border-radius: 4px; }
+.hz-u { position: relative; display: flex; align-items: center; gap: 10px; padding: 9px 11px; cursor: pointer; border-radius: 16px; background: var(--surface, #fff); border: 2px solid var(--border, #ece8ff); font-size: 14px; font-weight: 800; }
+.hz-u:focus-within { outline: 3px solid var(--hz-y); outline-offset: 2px; }
+.hz-u.on { border-color: var(--hz-a); background: color-mix(in srgb, var(--hz-a) 10%, var(--surface, #fff)); }
+.hz-lg { width: 36px; height: 36px; flex: none; border-radius: 11px; display: grid; place-items: center; color: #fff; font-size: 11px; font-weight: 1000; }
+.hz-u-ad { min-width: 0; flex: 1; }
+.hz-u-ad small { display: block; font-size: 12px; font-weight: 700; color: var(--text-muted, #6b6790); }
+.hz-ck { width: 26px; height: 26px; flex: none; border-radius: 8px; border: 2px solid var(--border, #d9d3f7); display: grid; place-items: center; }
+.hz-u.on .hz-ck { background: var(--hz-a); border-color: var(--hz-a); }
+.hz-u.on .hz-ck::before { content: "✓"; color: #fff; font-weight: 900; font-size: 14px; }
+.hz-not { margin: 0; color: var(--text-muted, #6b6790); font-weight: 700; }
+.hz-skip { border-radius: 16px; border: 2px dashed color-mix(in srgb, var(--hz-a) 45%, transparent); padding: 11px; font: inherit; font-weight: 900; color: var(--hz-a); background: color-mix(in srgb, var(--hz-a) 5%, transparent); cursor: pointer; }
+
+/* 3: çipler, tablo, ortak yol */
+.hz-cips { display: flex; flex-wrap: wrap; gap: 6px; }
+.hz-cip { position: relative; cursor: pointer; border-radius: 99px; padding: 6px 13px; font-size: 13px; font-weight: 900; border: 2px solid var(--border, #ece8ff); background: var(--surface, #fff); }
+.hz-cip.on { border-color: var(--hz-a); background: var(--hz-a); color: #fff; }
+.hz-cip:focus-within { outline: 3px solid var(--hz-y); outline-offset: 2px; }
+.hz-tablo-kap { overflow-x: auto; border-radius: 18px; border: 2px solid var(--border, #ece8ff); background: var(--surface, #fff); }
+.hz-tablo { width: 100%; border-collapse: collapse; font-size: 13px; }
+.hz-tablo th, .hz-tablo td { padding: 7px 6px; text-align: center; border-top: 1px solid var(--border, #f1eefc); vertical-align: middle; }
+.hz-tablo thead th { border-top: 0; background: color-mix(in srgb, var(--hz-a) 8%, var(--surface, #fff)); font-size: 12px; font-weight: 1000; min-width: 96px; }
+.hz-tablo thead th span { display: block; margin-top: 3px; }
+.hz-tablo thead th small { display: block; font-weight: 700; color: var(--text-muted, #6b6790); font-size: 10.5px; max-width: 150px; margin: 0 auto; }
+.hz-tablo thead .hz-bayrak { display: block; margin: 0 auto; width: 26px; height: 17px; border-radius: 4px; }
+.hz-tablo tbody th { text-align: left; font-weight: 900; color: var(--text-muted, #6b6790); white-space: nowrap; }
+.hz-tablo th:first-child { position: sticky; left: 0; z-index: 1; background: var(--surface, #fff); min-width: 0; }
+.hz-hucre { border: 0; border-radius: 9px; padding: 4px 7px; font: inherit; font-weight: 800; font-size: 12px; cursor: pointer; background: transparent; color: inherit; }
+.hz-hucre.is-ok { background: color-mix(in srgb, #22c55e 18%, transparent); color: color-mix(in srgb, #15803d 85%, var(--text, #000)); }
+.hz-hucre.is-uyari { background: color-mix(in srgb, #f59e0b 20%, transparent); color: color-mix(in srgb, #92400e 85%, var(--text, #000)); }
+.hz-hucre.is-kapali { background: color-mix(in srgb, #ef4444 18%, transparent); color: color-mix(in srgb, #991b1b 85%, var(--text, #000)); }
+.hz-hucre.is-teyit { background: color-mix(in srgb, var(--hz-a) 9%, transparent); color: var(--text-muted, #6b6790); }
+.hz-hucre[aria-expanded="true"] { box-shadow: 0 0 0 2px var(--hz-a); }
+@media (prefers-reduced-motion: no-preference) {
+  .hz-hucre { animation: hz-in .4s cubic-bezier(.3, 1.6, .5, 1) both; animation-delay: var(--d); }
+}
+@keyframes hz-in { from { opacity: 0; transform: scale(.5); } to { opacity: 1; transform: none; } }
+.hz-detay { border-radius: 16px; padding: 12px 14px; background: color-mix(in srgb, var(--hz-a) 7%, var(--surface, #fff)); border: 2px solid color-mix(in srgb, var(--hz-a) 20%, transparent); font-size: 14px; }
+.hz-detay p { margin: 0 0 6px; } .hz-detay p:last-child { margin: 0; }
+.hz-detay-h { font-weight: 1000; }
+.hz-kaynak { font-size: 13px; }
+.hz-kesin { font-size: 12px; font-weight: 800; color: var(--text-muted, #6b6790); }
+.hz-yol { position: relative; border-radius: 22px; padding: 14px 16px; color: #fff; background: linear-gradient(135deg, var(--hz-a), #7c3aed); box-shadow: 0 14px 26px -12px rgba(91, 61, 245, .9); }
+@media (prefers-reduced-motion: no-preference) { .is-kutlama .hz-yol { animation: hz-in .5s 1.4s cubic-bezier(.3, 1.6, .5, 1) both; } }
+.hz-yol h2 { margin: 0; color: #fff; font-size: 17px; font-weight: 1000; }
+.hz-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+.hz-chip { border-radius: 99px; padding: 4px 11px; font-size: 13px; font-weight: 900; background: rgba(255, 255, 255, .16); border: 1px solid rgba(255, 255, 255, .3); }
+.hz-yol-not, .hz-yol-uyari { margin: 9px 0 0; font-size: 13px; font-weight: 700; opacity: .95; }
+.hz-yol-uyari { font-weight: 900; color: #ffe39a; }
+.hz-wk { display: flex; align-items: baseline; gap: 7px; margin: 10px 0 0; font-weight: 800; font-size: 14px; }
+.hz-wk strong { font-size: 32px; font-weight: 1000; color: var(--hz-y); line-height: 1; }
+.hz-ayrinti { margin: 0; font-size: 13px; font-weight: 700; color: var(--text-muted, #6b6790); }
+.hz-ayrinti a { font-weight: 900; margin-right: 8px; white-space: nowrap; }
+.hz-ozet { margin: 0; text-align: center; font-weight: 900; }
+
+/* Konfeti (yalnızca sonuç ilk açıldığında; azaltılmış harekette hiç çizilmez) */
+.hz-konfeti { position: absolute; inset: 0; z-index: 5; pointer-events: none; overflow: hidden; }
+.hz-konfeti i { position: absolute; top: -14px; width: 8px; height: 12px; border-radius: 2px; animation: hz-fall 3s ease-in forwards; }
+@keyframes hz-fall { to { transform: translateY(900px) rotate(720deg); opacity: .85; } }
+
+@media (max-width: 520px) {
+  .hz { border-radius: 22px; margin-inline: calc(-1 * var(--sp-2, 8px)); }
+  .hz-kart { border-radius: 24px; min-height: 0; }
+  .hz-fl { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .hz-f .hz-bayrak { width: 38px; height: 26px; }
+  .hz-tablo thead th { min-width: 84px; }
+}
