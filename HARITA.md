@@ -24,6 +24,7 @@ AP MEBERRA/              (klasör tur sonunda "AP AZRA" adından yeniden adland�
 │                           sartlar-motor.js (şartlar + Mezun Menüsü motoru), sartlar-ui.js (ortak madde bileşeni),
 │                           1.22.0: hedef-motor.js (hedef sihirbazı motoru: seçim, şart hücresi, ortak yol, profil yaması),
 │                           hedef-sihirbaz.js (/ulkem sihirbaz arayüzü; stil css/hedef.css)
+│                           1.23.0: konu-modu.js (ünite sayfasında konu yolu + konu paneli + konuya göre soru süzgeci; stil css/konu-modu.css)
 │                           sinav-motor.js (Tur 12: sınav süzgeci — model/ülke/dil/düzey)
 │
 ├── data/
@@ -42,6 +43,8 @@ AP MEBERRA/              (klasör tur sonunda "AP AZRA" adından yeniden adland�
 │   │   ├── mezun-ulkeler.js      (Tur 10 Mezun Menüsü) — Tur 11'de kaynak/'a taşındı; aynı durum
 │   │   ├── sinavlar.js           (Tur 12: 47 kayıt, 15 ülke; aktarım: node araclar/sinav-aktar.js ← .agents/mevzuat/dogrulama/sinavlar-tur12.json)
 │   │   └── sinav-takvimi.js
+│   ├── dersler/            1.23.0: konu anlatımları <ders>/unite-<n>.json (hedefler, anlatım, örnekler, ipuçları, sık hatalar, terimler)
+│   │                         dizin.json ÜRETİLİR: node araclar/ders-veri-denetim.js --dizin (denetim aynı araçla)
 │   ├── rehber/
 │   │   └── bilgi-merkezi.js
 │   ├── kocluk/             kişisel koçluk verisi (yalnızca girişten sonra)
