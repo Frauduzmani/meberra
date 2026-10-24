@@ -21,6 +21,9 @@ ok(N.sorunlar(q, "x".repeat(230)).some(s => /uzun/.test(s)), "çok uzun");
 ok(N.sorunlar(q, "Bunu <b>soruyor</b>.").some(s => /HTML/.test(s)), "HTML yasak");
 ok(N.sorunlar(q, "Fiyatı $5 olan …").some(s => /\$/.test(s)), "$ yasak");
 ok(N.sorunlar(q, "").some(s => /boş/.test(s)), "boş");
+// Tam kelime eşleşir: "because" içinde "cause" sızıntı değil
+{ const q2 = Object.assign({}, q, { secenekler: q.secenekler.map(o => o.id === "A" ? { id: "A", text: "each effect becomes the next cause" } : o) });
+  ok(N.sorunlar(q2, "“Because … because” yapısının işlevini soruyor.").length === 0, "alt dize sızıntı sayılmaz", N.sorunlar(q2, "“Because … because” yapısının işlevini soruyor.")); }
 // Kökte de geçen kelime sızıntı sayılmaz
 ok(N.sorunlar(q, "Örnek 1'in (sample) neden daha yüksek erime sıcaklığına sahip olduğunu soruyor.").length === 0, "kökte geçen kelime serbest");
 

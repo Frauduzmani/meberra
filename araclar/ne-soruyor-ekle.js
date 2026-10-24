@@ -30,8 +30,8 @@ function sorunlar(q, cumle) {
     const kok = sozcukler(q.govde), digerleri = new Set();
     (q.secenekler || []).filter(o => o !== dogru).forEach(o => sozcukler(o.text).forEach(w => digerleri.add(w)));
     const ozel = [...sozcukler(dogru.text)].filter(w => !kok.has(w) && !digerleri.has(w));
-    const cs = duz(c);
-    const bulunan = ozel.filter(w => cs.includes(w));
+    const cs = sozcukler(c); // tam kelime: "because" içindeki "cause" sızıntı değildir
+    const bulunan = ozel.filter(w => cs.has(w));
     if (bulunan.length) s.push("sızıntı: doğru şıkka özgü kelime(ler) " + bulunan.join(", "));
     const kokSayi = sayilar(q.govde), cSayi = sayilar(c);
     const sz = [...sayilar(dogru.text)].filter(n => !kokSayi.has(n) && cSayi.has(n));

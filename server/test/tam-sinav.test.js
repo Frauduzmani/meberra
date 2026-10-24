@@ -120,7 +120,7 @@ test("aktif FRQ yoksa sınav yalnız Bölüm I; havuzu yetersiz derste kurulmaz"
 });
 
 let C, SID;
-test("kurulum: yalnız aktif sorular, Calculus kısımları doğru sayıda; Kısım A hesap makinesiz; FRQ kısaltılmış Bölüm II", async () => {
+test("kurulum: yalnız aktif sorular, Calculus kısımları doğru sayıda; Kısım A hesap makinesiz; Bölüm II tam (2 + 4 FRQ)", async () => {
   frqAktifEt("calculus-ab");
   // Taslak bir soruya ek kod ekleyip havuzu "kirletelim": yine seçilmemeli
   C = await ogrenci(true);
@@ -128,8 +128,8 @@ test("kurulum: yalnız aktif sorular, Calculus kısımları doğru sayıda; Kıs
   assert.equal(r.durum, 200, JSON.stringify(r.govde));
   SID = r.govde.sinav.id;
   const p = plan(SID);
-  assert.deepEqual(p.bolumler.map(b => [b.kod, (b.sorular || b.frq).length, b.sureSn]), [["I-A", 29, 3720], ["I-B", 13, 2280], ["II-A", 2, 1800], ["II-B", 2, 1800]]);
-  assert.equal(p.bolumler[3].kisaltilmis, true, "4 yerine 2 FRQ → süre yarıya");
+  assert.deepEqual(p.bolumler.map(b => [b.kod, (b.sorular || b.frq).length, b.sureSn]), [["I-A", 29, 3720], ["I-B", 13, 2280], ["II-A", 2, 1800], ["II-B", 4, 3600]]);
+  assert.equal(p.bolumler[3].kisaltilmis, false, "1.24.0: havuzda 4 hesap makinesiz FRQ var → gerçek sınav düzeni");
   const tum = p.bolumler[0].sorular.concat(p.bolumler[1].sorular);
   assert.equal(new Set(tum).size, 42, "yinelenen soru yok");
   tum.forEach(k => { const s = satir(k); assert.equal(s.durum, "aktif", k); assert.ok(JSON.parse(s.deneme_kodlari).includes("calculus-ab")); });
@@ -200,7 +200,7 @@ test("tam akış: Kısım B, FRQ teslim → rubrik (önce değil), öz puan, bil
   await C("POST", "/api/tam-sinav/" + SID + "/bolum-baslat", { bolum: 3 });
   SAAT += 1000;
   const t3 = await C("POST", "/api/tam-sinav/" + SID + "/bolum-teslim", { bolum: 3 });
-  assert.equal(t3.govde.rubrikler.length, 4);
+  assert.equal(t3.govde.rubrikler.length, 6); // 1.24.0: II-A 2 + II-B 4
   // Öz puanlama: ilk FRQ tam puan, diğerleri 0 (mevcut FRQ API'si)
   let frqKazanilan = 0, frqToplam = 0;
   for (const [j, rb] of t3.govde.rubrikler.entries()) {
