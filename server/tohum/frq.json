@@ -1,5 +1,5 @@
 {
- "surum": 7,
+ "surum": 8,
  "olusturma": "2026-10-21",
  "aciklama": "AP-style original FRQs (Meberra 1.11.0). Owner approves: durum taslak -> aktif via admin panel.",
  "frq": [
@@ -6724,6 +6724,1310 @@
     "uretim": "1.24.0",
     "cedKonu": "1.6 (tüketici seçimi, dolar başına marjinal fayda)",
     "tip": "Short Free-Response Question",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   }
+  },
+  {
+   "id": "frq-phys1-k1",
+   "sayfa": "ap-physics",
+   "ders": "physics-1",
+   "tur": "Matematiksel işlemler",
+   "baslik": "Ball Whirled in a Vertical Circle",
+   "sure_dk": 22,
+   "hesapMakinesi": true,
+   "zorluk": "medium",
+   "giris": "<p>A small ball of mass \\(m = 0.25\\ \\text{kg}\\) is attached to a light string of length \\(L = 0.80\\ \\text{m}\\). A student swings the ball in a vertical circle of radius \\(L\\) around a fixed point O. At the lowest point of the circle, the ball's speed is \\(v_B = 7.0\\ \\text{m/s}\\). Air resistance is negligible, and the student does no work on the ball after it passes the lowest point. Use \\(g = 9.8\\ \\text{m/s}^2\\).</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Draw (on paper) or describe a free-body diagram showing all forces exerted on the ball when it is at the <em>top</em> of the circle. Each force should be represented by a distinct arrow starting on, and pointing away from, the ball, and labeled.</p>",
+     "puan": 2,
+     "ne_soruyor": "Topa çemberin tepesindeyken etki eden kuvvetleri doğru yön ve etiketle göstermeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Yerçekimi kuvveti \\(F_g\\) (ya da \\(mg\\)) aşağı doğru, etiketli."
+      },
+      {
+       "puan": 1,
+       "olcut": "İp gerilmesi \\(F_T\\) aşağı doğru (O merkezine doğru), etiketli; başka kuvvet (ör. \"merkezcil kuvvet\" ya da hareket yönünde kuvvet) çizilmemiş.",
+       "ornek_cevap": "Two downward arrows: gravitational force mg and string tension F_T, both toward the center."
+      }
+     ],
+     "ornek_cozum": "<p>Tepede top, O noktasının tam üstündedir. İki kuvvet vardır: Dünya'nın çekim kuvveti \\(mg\\) aşağı doğru ve ip gerilmesi \\(F_T\\), ip topu merkeze doğru çektiği için yine aşağı doğru. \"Merkezcil kuvvet\" ayrı bir kuvvet değildir; bu iki kuvvetin toplamının adıdır.</p><p><strong>Model answer:</strong> Two arrows pointing down from the ball: <strong>\\(F_g = mg\\)</strong> (gravitational force by Earth) and <strong>\\(F_T\\)</strong> (tension force by the string).</p>",
+     "sik_hatalar": [
+      "Ayrı bir \"merkezcil kuvvet\" oku eklemek.",
+      "Gerilmeyi tepede yukarı doğru çizmek (ip topu her zaman merkeze doğru çeker).",
+      "Hareket yönünde (yatay) bir kuvvet oku çizmek."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Calculate the speed \\(v_T\\) of the ball at the top of the circle.</p>",
+     "puan": 3,
+     "ne_soruyor": "Alt noktadaki hızdan, yükseklik farkını kullanarak tepedeki hızı hesaplamanı istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Top–Dünya sistemi için enerji korunumu: \\(\\tfrac12 mv_B^2 = \\tfrac12 mv_T^2 + mg(2L)\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Yükseklik farkı doğru: \\(2L = 1.6\\ \\text{m}\\) (yarıçap değil çap)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(v_T \\approx 4.2\\ \\text{m/s}\\) (ya da eşdeğeri).",
+       "ornek_cevap": "\\(v_T = \\sqrt{v_B^2 - 4gL} \\approx 4.2\\ \\text{m/s}\\)"
+      }
+     ],
+     "ornek_cozum": "<p>Gerilme kuvveti harekete her an diktir, iş yapmaz; hava direnci yok. Bu yüzden top–Dünya sisteminin mekanik enerjisi korunur. Alt noktadan tepeye yükseklik artışı çap kadardır: \\(2L\\).</p>\\[\\tfrac12 mv_B^2 = \\tfrac12 mv_T^2 + mg(2L) \\Rightarrow v_T = \\sqrt{v_B^2 - 4gL}\\]\\[v_T = \\sqrt{(7.0)^2 - 4(9.8)(0.80)} = \\sqrt{49 - 31.36} = \\sqrt{17.64} = 4.2\\ \\text{m/s}\\]<p><strong>Model answer:</strong> Energy of the ball–Earth system is conserved, so <strong>\\(v_T = \\sqrt{v_B^2 - 4gL} = 4.2\\ \\text{m/s}\\)</strong>.</p>",
+     "sik_hatalar": [
+      "Yükseklik farkını \\(L\\) almak (doğrusu \\(2L\\)).",
+      "Gerilme kuvvetinin iş yaptığını düşünüp enerji korunumunu reddetmek."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>Calculate the magnitude of the tension in the string when the ball is at the top of the circle.</p>",
+     "puan": 3,
+     "ne_soruyor": "Tepedeki kuvvetlerle dairesel hareket için Newton'un ikinci yasasını kullanıp ip gerilmesini bulmanı istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Merkeze doğru Newton'un ikinci yasası: \\(F_T + mg = \\dfrac{mv_T^2}{L}\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "(b)'deki \\(v_T\\) ile doğru yerine koyma (ya da (b)'deki hatalı değerle tutarlı hesap)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(F_T \\approx 3.1\\ \\text{N}\\).",
+       "ornek_cevap": "\\(F_T = \\dfrac{mv_T^2}{L} - mg \\approx 3.1\\ \\text{N}\\)"
+      }
+     ],
+     "ornek_cozum": "<p>Tepede iki kuvvet de merkeze (aşağı) doğrudur, toplamları merkezcil ivmeyi sağlar:</p>\\[F_T + mg = \\frac{mv_T^2}{L} \\Rightarrow F_T = \\frac{(0.25)(17.64)}{0.80} - (0.25)(9.8) = 5.51 - 2.45 \\approx 3.1\\ \\text{N}\\]<p><strong>Model answer:</strong> Taking toward the center as positive, <strong>\\(F_T + mg = mv_T^2/L\\)</strong>, so <strong>\\(F_T \\approx 3.1\\ \\text{N}\\)</strong>.</p>",
+     "sik_hatalar": [
+      "\\(mg\\)'yi gerilmeden çıkarmak yerine eklemek: \\(F_T = mv^2/L + mg\\) yalnızca alt noktada doğrudur.",
+      "Alt noktadaki hızı (\\(7.0\\ \\text{m/s}\\)) kullanmak."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "<p>Derive an expression for the minimum speed \\(v_{B,\\min}\\) at the lowest point for which the string just stays taut at the top of the circle, in terms of \\(L\\) and physical constants as appropriate. Then calculate \\(v_{B,\\min}\\).</p>",
+     "puan": 2,
+     "ne_soruyor": "İpin tepede gevşemediği sınır durumunu kurup alt noktadaki en küçük hızı türetmeni ve hesaplamanı istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Sınır koşulu \\(F_T = 0\\) tepede: \\(mg = mv_T^2/L\\) ⇒ \\(v_T^2 = gL\\), enerji korunumuyla birleştirilmiş."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(v_{B,\\min} = \\sqrt{5gL} \\approx 6.3\\ \\text{m/s}\\).",
+       "ornek_cevap": "\\(v_{B,\\min} = \\sqrt{5gL} \\approx 6.3\\ \\text{m/s}\\)"
+      }
+     ],
+     "ornek_cozum": "<p>İp \"tam gergin\" sınırda tepedeki gerilme sıfırdır; merkezcil ivmeyi yalnız yerçekimi sağlar: \\(v_T^2 = gL\\). Enerji korunumundan:</p>\\[v_B^2 = v_T^2 + 4gL = gL + 4gL = 5gL \\Rightarrow v_{B,\\min} = \\sqrt{5gL} = \\sqrt{5(9.8)(0.80)} \\approx 6.3\\ \\text{m/s}\\]<p><strong>Model answer:</strong> At the top, <strong>\\(F_T = 0\\) so \\(mg = mv_T^2/L\\)</strong>; combining with energy conservation gives <strong>\\(v_{B,\\min} = \\sqrt{5gL} \\approx 6.3\\ \\text{m/s}\\)</strong>.</p>",
+     "sik_hatalar": [
+      "Tepedeki hızı sıfır almak (o zaman ip çok önce gevşer).",
+      "Sonucu \\(\\sqrt{4gL}\\) bulmak: tepedeki kinetik enerjiyi unutmak."
+     ]
+    }
+   ],
+   "toplam_puan": 10,
+   "kaynak": "AP-style original (Meberra 1.24.0)",
+   "durum": "aktif",
+   "ek": {
+    "uretim": "1.24.0",
+    "cedKonu": "2.9, 3.4",
+    "tip": "Mathematical Routines",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   }
+  },
+  {
+   "id": "frq-phys1-k2",
+   "sayfa": "ap-physics",
+   "ders": "physics-1",
+   "tur": "Matematiksel işlemler",
+   "baslik": "Coupling Railroad Cars",
+   "sure_dk": 20,
+   "hesapMakinesi": true,
+   "zorluk": "easy",
+   "giris": "<p>On a straight, level track, railroad car A of mass \\(m_A = 12{,}000\\ \\text{kg}\\) moves east at \\(3.0\\ \\text{m/s}\\) toward car B of mass \\(m_B = 8{,}000\\ \\text{kg}\\), which is at rest. The cars collide and couple together, and the coupling process lasts \\(0.40\\ \\text{s}\\). Friction is negligible during the collision.</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Calculate the velocity (magnitude and direction) of the coupled cars immediately after the collision.</p>",
+     "puan": 3,
+     "ne_soruyor": "Çarpışmada korunan niceliği kullanarak birleşik vagonların hızını yönüyle bulmanı istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "İki vagonlu sistem için momentum korunumu yazılmış (dış net kuvvet yok)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Doğru denklem: \\(m_A v_A = (m_A + m_B)v_f\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(v_f = 1.8\\ \\text{m/s}\\), doğuya.",
+       "ornek_cevap": "\\(v_f = 1.8\\ \\text{m/s}\\) east"
+      }
+     ],
+     "ornek_cozum": "<p>Çarpışma sırasında sisteme (A + B) etki eden yatay net dış kuvvet yoktur, bu yüzden toplam momentum korunur.</p>\\[m_A v_A = (m_A + m_B)v_f \\Rightarrow v_f = \\frac{(12{,}000)(3.0)}{20{,}000} = 1.8\\ \\text{m/s}\\]<p><strong>Model answer:</strong> Momentum of the two-car system is conserved, so <strong>\\(v_f = 1.8\\ \\text{m/s}\\) east</strong>.</p>",
+     "sik_hatalar": [
+      "Kinetik enerji korunumunu kullanmak (vagonlar birbirine yapıştığı için çarpışma tam esnek değildir).",
+      "Paydada yalnızca B'nin kütlesini kullanmak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Calculate the change in the total kinetic energy of the two-car system as a result of the collision. Classify the collision as elastic or inelastic.</p>",
+     "puan": 2,
+     "ne_soruyor": "Çarpışma öncesi ve sonrası toplam kinetik enerjiyi karşılaştırıp çarpışma türünü belirlemeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(\\Delta K = K_f - K_i = 32{,}400 - 54{,}000 = -21{,}600\\ \\text{J}\\) (ya da \"21,600 J azalır\").",
+       "ornek_cevap": "\\(\\Delta K \\approx -2.2 \\times 10^4\\ \\text{J}\\)"
+      },
+      {
+       "puan": 1,
+       "olcut": "Çarpışma esnek değil (inelastic; tamamen esnek olmayan) — kinetik enerji korunmadığı için."
+      }
+     ],
+     "ornek_cozum": "\\[K_i = \\tfrac12 (12{,}000)(3.0)^2 = 54{,}000\\ \\text{J}\\qquad K_f = \\tfrac12 (20{,}000)(1.8)^2 = 32{,}400\\ \\text{J}\\]\\[\\Delta K = -21{,}600\\ \\text{J}\\]<p>Kinetik enerjinin bir kısmı kuplörün deformasyonuna, ısıya ve sese dönüşür.</p><p><strong>Model answer:</strong> <strong>\\(\\Delta K = -2.16 \\times 10^4\\ \\text{J}\\)</strong>; the collision is <strong>(perfectly) inelastic</strong> because kinetic energy is not conserved.</p>",
+     "sik_hatalar": [
+      "İşareti unutmak ya da kinetik enerjinin arttığını söylemek.",
+      "Momentum korunduğu için çarpışmayı esnek saymak."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>Calculate the magnitude of the average force exerted on car B by car A during the coupling. State the magnitude of the average force exerted on car A by car B, and explain your answer.</p>",
+     "puan": 2,
+     "ne_soruyor": "Bir vagonun momentum değişimini çarpışma süresiyle ilişkilendirip ortalama kuvveti bulmanı ve diğer vagona etkiyen kuvveti gerekçelendirmeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "İtme–momentum: \\(F_{\\text{avg}}\\Delta t = m_B(v_f - 0)\\) ⇒ \\(F_{\\text{avg}} = 36{,}000\\ \\text{N}\\).",
+       "ornek_cevap": "\\(F = \\dfrac{(8{,}000)(1.8)}{0.40} = 3.6 \\times 10^4\\ \\text{N}\\)"
+      },
+      {
+       "puan": 1,
+       "olcut": "B'nin A'ya kuvveti de \\(36{,}000\\ \\text{N}\\) (zıt yönde), çünkü Newton'un üçüncü yasası: etkileşim çiftinin kuvvetleri eşit büyüklükte, zıt yönlüdür."
+      }
+     ],
+     "ornek_cozum": "<p>B'nin momentum değişimi: \\(\\Delta p_B = (8{,}000)(1.8) - 0 = 14{,}400\\ \\text{kg·m/s}\\).</p>\\[F_{\\text{avg}} = \\frac{\\Delta p_B}{\\Delta t} = \\frac{14{,}400}{0.40} = 36{,}000\\ \\text{N}\\]<p>A'nın momentum değişimi \\(12{,}000(1.8 - 3.0) = -14{,}400\\ \\text{kg·m/s}\\): aynı büyüklük, zıt işaret — üçüncü yasayla tutarlı.</p><p><strong>Model answer:</strong> <strong>\\(F_{\\text{avg}} = 3.6 \\times 10^4\\ \\text{N}\\)</strong> on B; the force on A by B is <strong>also \\(3.6 \\times 10^4\\ \\text{N}\\), directed west, by Newton's third law</strong>.</p>",
+     "sik_hatalar": [
+      "Daha büyük kütleli A'ya daha büyük (ya da küçük) kuvvet etkidiğini söylemek.",
+      "Momentum yerine hız değişimini süreye bölüp ivmeyi kuvvet sanmak."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "<p>After coupling, the cars roll onto a section of track where the brakes exert a constant total resistive force of \\(6{,}000\\ \\text{N}\\) on the coupled cars. Calculate the distance the coupled cars travel before coming to rest.</p>",
+     "puan": 3,
+     "ne_soruyor": "Fren kuvvetinin yaptığı işi kinetik enerji değişimiyle ilişkilendirip durma mesafesini hesaplamanı istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "İş–enerji teoremi: \\(W_{\\text{fren}} = \\Delta K\\), \\(-F d = 0 - K_f\\) (ya da Newton'un ikinci yasası + kinematik)."
+      },
+      {
+       "puan": 1,
+       "olcut": "(b)'deki \\(K_f = 32{,}400\\ \\text{J}\\) (ya da \\(a = 0.30\\ \\text{m/s}^2\\)) doğru kullanılmış."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(d = 5.4\\ \\text{m}\\).",
+       "ornek_cevap": "\\(d = 5.4\\ \\text{m}\\)"
+      }
+     ],
+     "ornek_cozum": "<p>Fren kuvveti hareketin tersine etki eder, negatif iş yapar ve tüm kinetik enerjiyi alır:</p>\\[-F d = 0 - \\tfrac12 (m_A+m_B)v_f^2 \\Rightarrow d = \\frac{32{,}400}{6{,}000} = 5.4\\ \\text{m}\\]<p>Kontrol: \\(a = 6{,}000/20{,}000 = 0.30\\ \\text{m/s}^2\\), \\(d = v_f^2/(2a) = 3.24/0.60 = 5.4\\ \\text{m}\\).</p><p><strong>Model answer:</strong> By the work–energy theorem, <strong>\\(Fd = \\tfrac12 (m_A+m_B)v_f^2\\), so \\(d = 5.4\\ \\text{m}\\)</strong>.</p>",
+     "sik_hatalar": [
+      "Çarpışma öncesi kinetik enerjiyi (54,000 J) kullanmak.",
+      "Toplam kütle yerine tek vagonun kütlesini kullanmak."
+     ]
+    }
+   ],
+   "toplam_puan": 10,
+   "kaynak": "AP-style original (Meberra 1.24.0)",
+   "durum": "aktif",
+   "ek": {
+    "uretim": "1.24.0",
+    "cedKonu": "4.3, 4.4, 3.2",
+    "tip": "Mathematical Routines",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   }
+  },
+  {
+   "id": "frq-phys1-k3",
+   "sayfa": "ap-physics",
+   "ders": "physics-1",
+   "tur": "Matematiksel işlemler",
+   "baslik": "Bucket Lowered from a Windlass",
+   "sure_dk": 22,
+   "hesapMakinesi": true,
+   "zorluk": "hard",
+   "giris": "<p>A well uses a windlass: a uniform solid cylinder (drum) of mass \\(M = 10\\ \\text{kg}\\) and radius \\(R = 0.15\\ \\text{m}\\) that rotates about a fixed, frictionless horizontal axle through its center. A light rope is wrapped around the drum, and a bucket of mass \\(m = 4.0\\ \\text{kg}\\) hangs from the free end. The bucket is released from rest, and the rope unwinds without slipping. The rotational inertia of the drum about its axle is \\(\\tfrac12 MR^2\\). Air resistance is negligible. Use \\(g = 9.8\\ \\text{m/s}^2\\).</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Derive an expression for the magnitude of the acceleration \\(a\\) of the bucket in terms of \\(m\\), \\(M\\), and physical constants as appropriate. Begin your derivation by writing Newton's second law for the bucket and Newton's second law in rotational form for the drum. Then calculate \\(a\\).</p>",
+     "puan": 3,
+     "ne_soruyor": "Kova için öteleme, tambur için dönme denklemini yazıp birleştirerek kovanın ivmesini türetmeni ve hesaplamanı istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Kova: \\(mg - F_T = ma\\); tambur: \\(F_T R = \\tfrac12 MR^2 \\alpha\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Kaymama koşulu \\(a = \\alpha R\\) kullanılıp \\(F_T\\) yok edilmiş."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(a = \\dfrac{mg}{m + M/2} \\approx 4.4\\ \\text{m/s}^2\\).",
+       "ornek_cevap": "\\(a = \\dfrac{mg}{m + M/2} \\approx 4.4\\ \\text{m/s}^2\\)"
+      }
+     ],
+     "ornek_cozum": "<p>Kova (aşağı pozitif): \\(mg - F_T = ma\\). Tambur: \\(\\tau = F_T R = I\\alpha = \\tfrac12 MR^2 \\alpha\\). Kaymama: \\(a = \\alpha R\\), buradan \\(F_T = \\tfrac12 M a\\).</p>\\[mg - \\tfrac12 Ma = ma \\Rightarrow a = \\frac{mg}{m + M/2} = \\frac{(4.0)(9.8)}{4.0 + 5.0} \\approx 4.36\\ \\text{m/s}^2\\]<p><strong>Model answer:</strong> <strong>\\(mg - F_T = ma\\)</strong> and <strong>\\(F_T R = \\tfrac12 MR^2(a/R)\\)</strong> give <strong>\\(a = mg/(m + M/2) \\approx 4.4\\ \\text{m/s}^2\\)</strong>.</p>",
+     "sik_hatalar": [
+      "Gerilmeyi \\(mg\\)'ye eşit almak (kova ivmeli olduğundan \\(F_T < mg\\)).",
+      "Tamburun eylemsizliğini unutup \\(a = g\\) bulmak.",
+      "\\(I = MR^2\\) (halka) kullanmak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Calculate the tension in the rope while the bucket is falling.</p>",
+     "puan": 2,
+     "ne_soruyor": "Bulduğun ivmeyi kullanarak ipteki gerilme kuvvetini hesaplamanı istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(F_T = m(g - a)\\) ya da \\(F_T = \\tfrac12 Ma\\) doğru kullanılmış ((a)'daki değerle tutarlı)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(F_T \\approx 22\\ \\text{N}\\).",
+       "ornek_cevap": "\\(F_T \\approx 22\\ \\text{N}\\)"
+      }
+     ],
+     "ornek_cozum": "\\[F_T = m(g - a) = 4.0(9.8 - 4.36) \\approx 21.8\\ \\text{N}\\]<p>Kontrol: \\(F_T = \\tfrac12 Ma = 5.0(4.36) \\approx 21.8\\ \\text{N}\\). Gerilme kovanın ağırlığından (\\(39.2\\ \\text{N}\\)) küçüktür; beklenen budur.</p><p><strong>Model answer:</strong> <strong>\\(F_T = m(g - a) \\approx 22\\ \\text{N}\\)</strong>, less than the bucket's weight.</p>",
+     "sik_hatalar": [
+      "\\(F_T = m(g + a)\\) yazmak (işaret hatası)."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>Calculate the speed of the bucket and the angular speed of the drum after the bucket has fallen \\(3.0\\ \\text{m}\\) from rest.</p>",
+     "puan": 3,
+     "ne_soruyor": "Belirli bir düşüş mesafesinden sonra kovanın hızını ve tamburun açısal hızını bulmanı istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Enerji korunumu \\(mgh = \\tfrac12 mv^2 + \\tfrac12 I\\omega^2\\) ya da kinematik \\(v^2 = 2ah\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(v \\approx 5.1\\ \\text{m/s}\\).",
+       "ornek_cevap": "\\(v \\approx 5.1\\ \\text{m/s}\\)"
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(\\omega = v/R \\approx 34\\ \\text{rad/s}\\).",
+       "ornek_cevap": "\\(\\omega \\approx 34\\ \\text{rad/s}\\)"
+      }
+     ],
+     "ornek_cozum": "<p>Kova–tambur–Dünya sistemi: sürtünme yok, mekanik enerji korunur. \\(\\omega = v/R\\) ve \\(I = \\tfrac12 MR^2\\) ile \\(\\tfrac12 I\\omega^2 = \\tfrac14 Mv^2\\):</p>\\[mgh = \\tfrac12 (m + \\tfrac12 M)v^2 \\Rightarrow v = \\sqrt{\\frac{2mgh}{m + M/2}} = \\sqrt{\\frac{2(4.0)(9.8)(3.0)}{9.0}} \\approx 5.1\\ \\text{m/s}\\]\\[\\omega = \\frac{v}{R} = \\frac{5.11}{0.15} \\approx 34\\ \\text{rad/s}\\]<p>(Kinematikle de: \\(v = \\sqrt{2ah} = \\sqrt{2(4.36)(3.0)} \\approx 5.1\\ \\text{m/s}\\).)</p><p><strong>Model answer:</strong> <strong>\\(v \\approx 5.1\\ \\text{m/s}\\)</strong> and <strong>\\(\\omega = v/R \\approx 34\\ \\text{rad/s}\\)</strong>.</p>",
+     "sik_hatalar": [
+      "Tamburun dönme kinetik enerjisini unutup \\(v = \\sqrt{2gh} \\approx 7.7\\ \\text{m/s}\\) bulmak.",
+      "\\(\\omega = vR\\) yazmak."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "<p>Calculate the fraction of the gravitational potential energy lost by the system that becomes rotational kinetic energy of the drum during the bucket's \\(3.0\\ \\text{m}\\) fall.</p>",
+     "puan": 2,
+     "ne_soruyor": "Kaybedilen potansiyel enerjinin ne kadarının tamburun dönmesine gittiğini oran olarak bulmanı istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(K_{\\text{rot}} = \\tfrac12 I\\omega^2 \\approx 65\\ \\text{J}\\) ve \\(\\Delta U_g = mgh \\approx 118\\ \\text{J}\\) (ya da sembolik oran \\(\\tfrac{M/2}{m + M/2}\\))."
+      },
+      {
+       "puan": 1,
+       "olcut": "Oran \\(\\approx 0.56\\) (5/9).",
+       "ornek_cevap": "\\(K_{\\text{rot}}/(mgh) = 5/9 \\approx 0.56\\)"
+      }
+     ],
+     "ornek_cozum": "\\[K_{\\text{rot}} = \\tfrac12\\left(\\tfrac12 MR^2\\right)\\omega^2 = \\tfrac14 Mv^2 = \\tfrac14(10)(26.1) \\approx 65.3\\ \\text{J}\\qquad mgh = (4.0)(9.8)(3.0) = 117.6\\ \\text{J}\\]\\[\\frac{K_{\\text{rot}}}{mgh} = \\frac{M/2}{m + M/2} = \\frac{5.0}{9.0} \\approx 0.56\\]<p><strong>Model answer:</strong> <strong>About 0.56 (5/9)</strong> of the lost potential energy becomes the drum's rotational kinetic energy.</p>",
+     "sik_hatalar": [
+      "Kovanın kinetik enerjisini toplam enerji sanıp oranı ters kurmak.",
+      "Dönme kinetik enerjisinde yarıçapı yanlış sadeleştirmek."
+     ]
+    }
+   ],
+   "toplam_puan": 10,
+   "kaynak": "AP-style original (Meberra 1.24.0)",
+   "durum": "aktif",
+   "ek": {
+    "uretim": "1.24.0",
+    "cedKonu": "5.6, 6.1",
+    "tip": "Mathematical Routines",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   }
+  },
+  {
+   "id": "frq-phys1-k4",
+   "sayfa": "ap-physics",
+   "ders": "physics-1",
+   "tur": "Gösterimler arası çeviri",
+   "baslik": "Riding an Elevator on a Scale",
+   "sure_dk": 22,
+   "hesapMakinesi": true,
+   "zorluk": "easy",
+   "giris": "<p>A person of mass \\(m = 60\\ \\text{kg}\\) stands on a bathroom scale on the floor of an elevator. The elevator starts at rest and moves upward as follows.</p><table class=\"frq-tablo\"><thead><tr><th>Time interval</th><th>Motion of the elevator</th></tr></thead><tbody><tr><td>0 to 2.0 s</td><td>Speed increases uniformly from 0 to 3.0 m/s (upward)</td></tr><tr><td>2.0 s to 8.0 s</td><td>Constant speed of 3.0 m/s (upward)</td></tr><tr><td>8.0 s to 11.0 s</td><td>Speed decreases uniformly from 3.0 m/s to 0 (still moving upward)</td></tr><tr><td>11.0 s to 12.0 s</td><td>At rest</td></tr></tbody></table><p>The scale reads the magnitude of the normal force it exerts on the person. Use \\(g = 9.8\\ \\text{m/s}^2\\).</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Draw (on paper) or describe a free-body diagram showing all forces exerted on the person during the interval from 0 to 2.0 s. Each force should be represented by a distinct arrow starting on, and pointing away from, the person, and labeled. The relative lengths of the arrows should reflect the relative magnitudes of the forces.</p>",
+     "puan": 2,
+     "ne_soruyor": "Kişiye ilk aralıkta etki eden kuvvetleri ve bunların göreli büyüklüklerini göstermeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "İki kuvvet doğru yön ve etiketle: yerçekimi \\(F_g\\) aşağı, normal kuvvet \\(F_N\\) yukarı; başka kuvvet yok."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(F_N\\) oku \\(F_g\\) okundan uzun (ivme yukarı).",
+       "ornek_cevap": "The upward normal force arrow is longer than the downward gravitational force arrow."
+      }
+     ],
+     "ornek_cozum": "<p>Kişiye yalnız iki cisim dokunur/etkiler: Dünya (yerçekimi, aşağı) ve tartı (normal kuvvet, yukarı). 0–2 s aralığında hız yukarı yönde artıyor, yani ivme yukarıdır; net kuvvet yukarı olmalıdır, bu yüzden \\(F_N > F_g\\).</p><p><strong>Model answer:</strong> An upward arrow labeled <strong>\\(F_N\\)</strong> (normal force by the scale) that is <strong>longer than</strong> the downward arrow labeled <strong>\\(F_g\\)</strong> (gravitational force by Earth).</p>",
+     "sik_hatalar": [
+      "Okları eşit uzunlukta çizmek (bu, ivmesiz duruma karşılık gelir).",
+      "Hareket yönünde ayrı bir \"yukarı itme\" kuvveti eklemek."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Derive an expression for the scale reading \\(F_N\\) in terms of \\(m\\), the acceleration \\(a\\) of the elevator (taken as positive when upward), and physical constants as appropriate. Begin your derivation by writing Newton's second law for the person.</p>",
+     "puan": 3,
+     "ne_soruyor": "Kişi için Newton'un ikinci yasasından başlayarak tartı okumasını ivmeye bağlayan ifadeyi türetmeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Newton'un ikinci yasası kişi için doğru: \\(F_N - mg = ma\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Kuvvetlerin işaretleri seçilen yönle tutarlı (yukarı pozitif)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(F_N = m(g + a)\\).",
+       "ornek_cevap": "\\(F_N = m(g + a)\\)"
+      }
+     ],
+     "ornek_cozum": "<p>Yukarıyı pozitif alalım. Kişinin ivmesi asansörün ivmesine eşittir:</p>\\[\\sum F = F_N - mg = ma \\Rightarrow F_N = m(g + a)\\]<p>\\(a\\) negatif (aşağı) olduğunda bu ifade otomatik olarak \\(mg\\)'den küçük bir değer verir.</p><p><strong>Model answer:</strong> <strong>\\(F_N - mg = ma\\)</strong>, so <strong>\\(F_N = m(g + a)\\)</strong>.</p>",
+     "sik_hatalar": [
+      "\\(F_N = mg\\) yazıp ivmeyi hesaba katmamak.",
+      "\\(F_N = m(g - a)\\) yazmak (yön işaretini karıştırmak)."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>On axes with time \\(t\\) from 0 to 12.0 s on the horizontal axis and scale reading \\(F_N\\) on the vertical axis, sketch (on paper) or describe the graph of the scale reading as a function of time. Calculate and label the numerical value of the scale reading for each time interval.</p>",
+     "puan": 4,
+     "ne_soruyor": "Her aralık için ivmeyi bulup tartı okumasının zamanla nasıl değiştiğini sayısal değerleriyle grafikte göstermeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "0–2.0 s: \\(a = 1.5\\ \\text{m/s}^2\\), sabit \\(F_N \\approx 680\\ \\text{N}\\) (678 N), \\(mg\\)'nin üstünde."
+      },
+      {
+       "puan": 1,
+       "olcut": "2.0–8.0 s ve 11.0–12.0 s: \\(F_N = mg \\approx 590\\ \\text{N}\\) (588 N)."
+      },
+      {
+       "puan": 1,
+       "olcut": "8.0–11.0 s: \\(a = -1.0\\ \\text{m/s}^2\\), sabit \\(F_N \\approx 530\\ \\text{N}\\) (528 N), \\(mg\\)'nin altında."
+      },
+      {
+       "puan": 1,
+       "olcut": "Her aralıkta grafik yatay (sabit) doğru parçası; geçişlerde basamak şeklinde değişim; değerler etiketli."
+      }
+     ],
+     "ornek_cozum": "<p>Her aralığın ivmesini hız değişiminden buluruz, sonra \\(F_N = m(g + a)\\) kullanırız:</p><table class=\"frq-tablo\"><thead><tr><th>Aralık</th><th>\\(a\\) (m/s²)</th><th>\\(F_N\\) (N)</th></tr></thead><tbody><tr><td>0–2.0 s</td><td>\\(3.0/2.0 = +1.5\\)</td><td>\\(60(11.3) = 678\\)</td></tr><tr><td>2.0–8.0 s</td><td>0</td><td>\\(588\\)</td></tr><tr><td>8.0–11.0 s</td><td>\\(-3.0/3.0 = -1.0\\)</td><td>\\(60(8.8) = 528\\)</td></tr><tr><td>11.0–12.0 s</td><td>0</td><td>\\(588\\)</td></tr></tbody></table><p>Grafik dört yatay basamaktan oluşur: yüksek, orta, düşük, orta.</p><p><strong>Model answer:</strong> A step graph: <strong>678 N from 0 to 2.0 s, 588 N from 2.0 to 8.0 s, 528 N from 8.0 to 11.0 s, and 588 N from 11.0 to 12.0 s</strong>.</p>",
+     "sik_hatalar": [
+      "Grafiği hız–zaman grafiği gibi eğimli çizmek.",
+      "8–11 s aralığında asansör hâlâ yukarı gittiği için okumayı \\(mg\\)'den büyük göstermek."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "<p>A student claims, \"From 2.0 s to 8.0 s the elevator is moving upward, so the scale must read more than the person's weight.\" Do you agree or disagree with the student? Support your answer by referring to your expression from part (b) and to your graph from part (c).</p>",
+     "puan": 3,
+     "ne_soruyor": "Bir öğrencinin iddiasını, türettiğin ifade ve çizdiğin grafikle tutarlı bir gerekçeyle değerlendirmeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Katılmama: bu aralıkta tartı tam olarak kişinin ağırlığını (588 N) gösterir."
+      },
+      {
+       "puan": 1,
+       "olcut": "(b)'ye dayalı: sabit hızda \\(a = 0\\) ⇒ \\(F_N = m(g + 0) = mg\\); okuma hıza değil ivmeye bağlıdır."
+      },
+      {
+       "puan": 1,
+       "olcut": "(c)'deki grafiğe dayalı: 2–8 s okuması 11–12 s (durgun) okumasıyla aynı; üstelik 8–11 s'de asansör yukarı giderken okuma ağırlıktan küçüktür."
+      }
+     ],
+     "ornek_cozum": "<p>Öğrenciye katılmıyoruz. (b)'deki ifade \\(F_N = m(g + a)\\) okumanın <em>ivmeye</em> bağlı olduğunu gösterir, hıza değil. 2–8 s aralığında hız sabittir, \\(a = 0\\), dolayısıyla \\(F_N = mg = 588\\ \\text{N}\\). (c)'deki grafikte bu aralığın değeri, asansörün durduğu 11–12 s aralığıyla aynıdır. Ayrıca 8–11 s aralığında asansör yukarı hareket ettiği halde okuma (528 N) ağırlıktan küçüktür; bu da \"yukarı hareket = büyük okuma\" fikrini çürütür.</p><p><strong>Model answer:</strong> <strong>Disagree.</strong> The scale reading depends on <strong>acceleration, not velocity</strong>: with \\(a = 0\\), \\(F_N = m(g + a) = mg\\), and the graph shows the same 588 N as when the elevator is at rest.</p>",
+     "sik_hatalar": [
+      "Yalnız \"katılmıyorum\" yazıp (b) ve (c)'ye atıf yapmamak.",
+      "Hız ile ivmeyi aynı şey saymak."
+     ]
+    }
+   ],
+   "toplam_puan": 12,
+   "kaynak": "AP-style original (Meberra 1.24.0)",
+   "durum": "aktif",
+   "ek": {
+    "uretim": "1.24.0",
+    "cedKonu": "2.5, 1.3",
+    "tip": "Translation Between Representations",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   }
+  },
+  {
+   "id": "frq-phys1-k5",
+   "sayfa": "ap-physics",
+   "ders": "physics-1",
+   "tur": "Gösterimler arası çeviri",
+   "baslik": "Glider on a Spring",
+   "sure_dk": 25,
+   "hesapMakinesi": true,
+   "zorluk": "medium",
+   "giris": "<p>A glider of mass \\(m = 0.50\\ \\text{kg}\\) on a horizontal, frictionless air track is attached to an ideal spring of spring constant \\(k = 20\\ \\text{N/m}\\). The other end of the spring is fixed to a wall. Position \\(x\\) is measured from the equilibrium position, with \\(+x\\) pointing away from the wall. The glider is pulled to \\(x = +A\\), where \\(A = 0.10\\ \\text{m}\\), and released from rest at time \\(t = 0\\).</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>On the same time axis, from \\(t = 0\\) to \\(t = 2T\\), where \\(T\\) is the period of the motion, sketch (on paper) or describe a graph of the glider's position \\(x\\) as a function of time and a graph of the glider's velocity \\(v\\) as a function of time. Calculate \\(T\\) and the maximum speed \\(v_{\\max}\\), and label these values on your graphs.</p>",
+     "puan": 3,
+     "ne_soruyor": "Konum ve hız grafiklerini aynı zaman ekseninde doğru başlangıç ve faz ilişkisiyle çizmeni, periyot ve en büyük hızı hesaplamanı istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(x(t)\\): \\(+A\\)'dan başlayan, iki tam salınım yapan kosinüs biçimli eğri."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(v(t)\\): \\(t = 0\\)'da sıfırdan başlar, önce negatif olur; \\(x = 0\\) anlarında \\(|v|\\) en büyük, \\(x = \\pm A\\) anlarında \\(v = 0\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(T = 2\\pi\\sqrt{m/k} \\approx 0.99\\ \\text{s}\\) ve \\(v_{\\max} = A\\sqrt{k/m} \\approx 0.63\\ \\text{m/s}\\) hesaplanmış ve etiketlenmiş.",
+       "ornek_cevap": "\\(T \\approx 0.99\\ \\text{s}\\), \\(v_{\\max} \\approx 0.63\\ \\text{m/s}\\)"
+      }
+     ],
+     "ornek_cozum": "\\[T = 2\\pi\\sqrt{\\frac{m}{k}} = 2\\pi\\sqrt{\\frac{0.50}{20}} \\approx 0.99\\ \\text{s}\\]<p>Enerji korunumu: \\(\\tfrac12 kA^2 = \\tfrac12 mv_{\\max}^2 \\Rightarrow v_{\\max} = A\\sqrt{k/m} = 0.10\\sqrt{40} \\approx 0.63\\ \\text{m/s}\\).</p><p>\\(x(t)\\) tepe noktasından (\\(+A\\)) başlar, \\(T/4\\)'te sıfır, \\(T/2\\)'de \\(-A\\) olur. Glider önce duvara doğru (−x) gider, bu yüzden \\(v(t)\\) sıfırdan başlayıp negatif tarafa iner; \\(T/4\\)'te \\(-v_{\\max}\\), \\(T/2\\)'de sıfır, \\(3T/4\\)'te \\(+v_{\\max}\\) olur. \\(v\\) grafiği \\(x\\) grafiğinden çeyrek periyot kaymıştır.</p><p><strong>Model answer:</strong> <strong>\\(x\\)</strong> is a cosine curve starting at \\(+0.10\\ \\text{m}\\); <strong>\\(v\\)</strong> starts at zero and first becomes negative, reaching <strong>\\(\\pm 0.63\\ \\text{m/s}\\)</strong> when \\(x = 0\\); the period is <strong>\\(T \\approx 0.99\\ \\text{s}\\)</strong>.</p>",
+     "sik_hatalar": [
+      "\\(v(t)\\)'yi de en büyük değerden başlatmak (serbest bırakılma anında hız sıfırdır).",
+      "Hızın önce pozitif olduğunu çizmek: glider önce −x yönünde hareket eder.",
+      "Periyodu genliğe bağlı sanmak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Draw (on paper) or describe a free-body diagram showing all forces exerted on the glider when it is at \\(x = +A/2\\) and moving toward the wall. Each force should be represented by a distinct arrow starting on, and pointing away from, the glider, and labeled. The relative lengths of the arrows should reflect the relative magnitudes of the forces.</p>",
+     "puan": 2,
+     "ne_soruyor": "Belirli bir konumdan geçerken glidere etkiyen kuvvetleri doğru yönleriyle göstermeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Yay kuvveti \\(F_s\\) −x yönünde (duvara doğru, denge konumuna doğru)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Düşeyde \\(F_g\\) aşağı ve \\(F_N\\) yukarı, eşit uzunlukta; hareket yönünde ayrı bir kuvvet yok."
+      }
+     ],
+     "ornek_cozum": "<p>\\(x = +A/2\\) noktasında yay gerilmiştir ve glideri denge konumuna (duvara) doğru çeker: \\(F_s = kA/2 = 1.0\\ \\text{N}\\), −x yönünde. Düşeyde ivme yoktur: hava yastığının normal kuvveti ağırlığı dengeler. Glider'in hareket yönü bir kuvvet değildir.</p><p><strong>Model answer:</strong> <strong>Spring force toward the wall (−x)</strong>, <strong>gravitational force down</strong>, and an equal <strong>normal force up</strong>.</p>",
+     "sik_hatalar": [
+      "Hareket yönünde \"hız kuvveti\" ya da \"momentum kuvveti\" çizmek.",
+      "Yay kuvvetini glider duvara doğru gittiği için +x yönünde çizmek."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>Derive an expression for the speed of the glider when it is at \\(x = +A/2\\), in terms of \\(k\\), \\(m\\), \\(A\\), and physical constants as appropriate. Then calculate this speed.</p>",
+     "puan": 3,
+     "ne_soruyor": "Yay–glider sisteminin enerjisini kullanarak ara bir konumdaki hızı türetmeni ve hesaplamanı istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Enerji korunumu: \\(\\tfrac12 kA^2 = \\tfrac12 k(A/2)^2 + \\tfrac12 mv^2\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(v = \\dfrac{\\sqrt{3}}{2}A\\sqrt{\\dfrac{k}{m}}\\) (ya da eşdeğeri).",
+       "ornek_cevap": "\\(v = \\sqrt{\\dfrac{3kA^2}{4m}}\\)"
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(v \\approx 0.55\\ \\text{m/s}\\).",
+       "ornek_cevap": "\\(v \\approx 0.55\\ \\text{m/s}\\)"
+      }
+     ],
+     "ornek_cozum": "\\[\\tfrac12 kA^2 = \\tfrac12 k\\left(\\tfrac{A}{2}\\right)^2 + \\tfrac12 mv^2 \\Rightarrow mv^2 = \\tfrac34 kA^2 \\Rightarrow v = \\frac{\\sqrt3}{2}A\\sqrt{\\frac{k}{m}}\\]\\[v = 0.866(0.10)\\sqrt{40} \\approx 0.55\\ \\text{m/s}\\]<p>Not: konum genliğin yarısı olduğunda hız en büyük hızın yarısı değil, \\(\\approx 87\\%\\)'sidir; enerji konumla karesel değişir.</p><p><strong>Model answer:</strong> <strong>\\(v = \\tfrac{\\sqrt3}{2}A\\sqrt{k/m} \\approx 0.55\\ \\text{m/s}\\)</strong>.</p>",
+     "sik_hatalar": [
+      "Hızı en büyük hızın yarısı (\\(0.32\\ \\text{m/s}\\)) almak.",
+      "Yay potansiyel enerjisini \\(\\tfrac12 kx\\) yazmak (kare unutulmuş)."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "<p>The glider is replaced by one of mass \\(4m\\). It is again pulled to \\(x = +A\\) and released from rest at \\(t = 0\\). (i) On the same axes as your position graph in part (a), sketch (on paper) or describe the position as a function of time for the new glider. (ii) A student claims, \"The heavier glider has the same maximum speed, because it starts with the same spring potential energy.\" Do you agree or disagree? Justify your answer using energy.</p>",
+     "puan": 4,
+     "ne_soruyor": "Kütle değişince konum grafiğinin nasıl değiştiğini göstermeni ve en büyük hız hakkındaki iddiayı enerjiyle değerlendirmeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Yeni grafiğin periyodu \\(2T \\approx 2.0\\ \\text{s}\\) (\\(T \\propto \\sqrt{m}\\)); \\(0\\)–\\(2T\\) aralığında yalnız bir tam salınım."
+      },
+      {
+       "puan": 1,
+       "olcut": "Genlik aynı (\\(+A\\)'dan başlar, \\(\\pm A\\) arasında); yine kosinüs biçimli."
+      },
+      {
+       "puan": 1,
+       "olcut": "Katılmama: en büyük hız yarıya iner, \\(v_{\\max}' \\approx 0.32\\ \\text{m/s}\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Gerekçe: toplam enerji \\(\\tfrac12 kA^2\\) aynı, ama \\(\\tfrac12 (4m)v'^2 = \\tfrac12 kA^2\\) ⇒ \\(v'^2 = v_{\\max}^2/4\\); aynı kinetik enerji dört kat kütleyle daha küçük hız demek."
+      }
+     ],
+     "ornek_cozum": "<p>(i) \\(T' = 2\\pi\\sqrt{4m/k} = 2T \\approx 2.0\\ \\text{s}\\). Genlik başlangıç koşuluyla belirlenir; yine \\(A\\). Yeni eğri \\(+A\\)'dan başlar ama daha yavaş salınır: (a)'daki eğri iki salınım yaparken yeni eğri bir salınım yapar.</p><p>(ii) Başlangıç enerjisi \\(\\tfrac12 kA^2 = 0.10\\ \\text{J}\\), iki durumda da aynıdır (iddianın bu kısmı doğru). Ancak dengede bu enerjinin tamamı kinetik olur: \\(\\tfrac12(4m)v'^2 = \\tfrac12 kA^2\\) ⇒ \\(v' = \\tfrac12 A\\sqrt{k/m} \\approx 0.32\\ \\text{m/s}\\).</p><p><strong>Model answer:</strong> <strong>Disagree.</strong> The total energy \\(\\tfrac12 kA^2\\) is the same, but <strong>with four times the mass, the same kinetic energy corresponds to half the speed</strong>, so \\(v_{\\max}\\) drops to about 0.32 m/s.</p>",
+     "sik_hatalar": [
+      "Yeni grafikte genliği küçültmek.",
+      "Periyodun 4 katına çıktığını söylemek (\\(T \\propto \\sqrt m\\), \\(m\\)'ye değil).",
+      "Aynı enerji ⇒ aynı hız sonucuna varmak."
+     ]
+    }
+   ],
+   "toplam_puan": 12,
+   "kaynak": "AP-style original (Meberra 1.24.0)",
+   "durum": "aktif",
+   "ek": {
+    "uretim": "1.24.0",
+    "cedKonu": "7.2, 7.3, 7.4",
+    "tip": "Translation Between Representations",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   }
+  },
+  {
+   "id": "frq-phys1-k6",
+   "sayfa": "ap-physics",
+   "ders": "physics-1",
+   "tur": "Gösterimler arası çeviri",
+   "baslik": "Lowering a Block into Water",
+   "sure_dk": 24,
+   "hesapMakinesi": true,
+   "zorluk": "medium",
+   "giris": "<p>A solid rectangular block has height \\(H = 0.080\\ \\text{m}\\) and horizontal cross-sectional area \\(A = 2.5 \\times 10^{-3}\\ \\text{m}^2\\). The block hangs from a spring scale and is lowered slowly, at constant speed, into a large tank of water of density \\(\\rho_w = 1000\\ \\text{kg/m}^3\\). The block's top and bottom faces stay horizontal. Let \\(d\\) be the depth of the block's bottom face below the water surface. When the block is completely out of the water, the scale reads \\(4.9\\ \\text{N}\\). Use \\(g = 9.8\\ \\text{m/s}^2\\).</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Draw (on paper) or describe a free-body diagram showing all forces exerted on the block when it is partially submerged. Each force should be represented by a distinct arrow starting on, and pointing away from, the block, and labeled. The relative lengths of the arrows should reflect the relative magnitudes of the forces.</p>",
+     "puan": 2,
+     "ne_soruyor": "Kısmen suya batmış bloka etkiyen kuvvetleri doğru yön ve etiketle göstermeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Üç kuvvet: yerçekimi \\(F_g\\) aşağı, kaldırma kuvveti \\(F_B\\) yukarı, ip/tartı kuvveti \\(F_T\\) yukarı."
+      },
+      {
+       "puan": 1,
+       "olcut": "Göreli uzunluklar: \\(F_T + F_B = F_g\\) (sabit hız, net kuvvet sıfır); yukarı okların toplamı aşağı oka eşit."
+      }
+     ],
+     "ornek_cozum": "<p>Blok sabit hızla indirildiği için ivmesi sıfırdır; kuvvetler dengededir. Yukarı yönde iki kuvvet (tartının kuvveti ve suyun kaldırma kuvveti), aşağı yönde bir kuvvet (yerçekimi) vardır.</p><p><strong>Model answer:</strong> <strong>\\(F_g\\) down; \\(F_T\\) (by the scale) up; \\(F_B\\) (buoyant force by the water) up</strong>, with \\(F_T + F_B = F_g\\).</p>",
+     "sik_hatalar": [
+      "Kaldırma kuvvetini unutmak.",
+      "Suyun basıncından dolayı ayrı bir \"aşağı basınç kuvveti\" ekleyip kaldırma kuvvetiyle birlikte saymak (kaldırma kuvveti zaten net basınç kuvvetidir)."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Derive an expression for the scale reading \\(F_s\\) as a function of \\(d\\) for \\(0 \\le d \\le H\\), in terms of the block's weight \\(W\\), \\(\\rho_w\\), \\(A\\), \\(d\\), and physical constants as appropriate. Begin your derivation by writing Newton's second law for the block.</p>",
+     "puan": 3,
+     "ne_soruyor": "Batma derinliğine bağlı olarak tartı okumasını veren ifadeyi kuvvet dengesinden türetmeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Newton'un ikinci yasası: \\(F_s + F_B - W = 0\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Kaldırma kuvveti (Arşimet): \\(F_B = \\rho_w g V_{\\text{batan}} = \\rho_w g A d\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(F_s = W - \\rho_w g A d\\).",
+       "ornek_cevap": "\\(F_s = W - \\rho_w g A d\\)"
+      }
+     ],
+     "ornek_cozum": "<p>Sabit hız ⇒ \\(\\sum F = 0\\): \\(F_s + F_B - W = 0\\). Batan hacim taban alanı çarpı derinliktir: \\(V = Ad\\). Arşimet ilkesine göre kaldırma kuvveti yer değiştiren suyun ağırlığıdır:</p>\\[F_B = \\rho_w g A d \\Rightarrow F_s = W - \\rho_w g A d\\]<p><strong>Model answer:</strong> <strong>\\(F_s + \\rho_w g A d - W = 0\\)</strong>, so <strong>\\(F_s = W - \\rho_w g A d\\)</strong>.</p>",
+     "sik_hatalar": [
+      "Kaldırma kuvvetinde blokun yoğunluğunu kullanmak (yer değiştiren <em>suyun</em> yoğunluğu kullanılır).",
+      "Batan hacim yerine blokun tüm hacmini \\(AH\\) kullanmak."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>On axes with \\(d\\) from 0 to \\(2H\\) on the horizontal axis and \\(F_s\\) on the vertical axis, sketch (on paper) or describe the graph of the scale reading as a function of \\(d\\). Calculate and label the scale reading at \\(d = 0\\), \\(d = H\\), and \\(d = 2H\\).</p>",
+     "puan": 4,
+     "ne_soruyor": "Blok suya girerken ve tamamen battıktan sonra tartı okumasının derinlikle nasıl değiştiğini sayısal değerlerle grafikte göstermeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(d = 0\\)'da \\(F_s = 4.9\\ \\text{N}\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(0 \\le d \\le H\\): doğrusal azalma (eğim büyüklüğü \\(\\rho_w g A = 24.5\\ \\text{N/m}\\))."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(d = H\\)'de \\(F_s = 4.9 - 1.96 \\approx 2.9\\ \\text{N}\\).",
+       "ornek_cevap": "\\(F_s(H) \\approx 2.9\\ \\text{N}\\)"
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(H \\le d \\le 2H\\): yatay doğru, \\(F_s \\approx 2.9\\ \\text{N}\\) (blok tamamen batınca kaldırma kuvveti derinlikle değişmez)."
+      }
+     ],
+     "ornek_cozum": "<p>Tamamen batmış blokun hacmi \\(V = AH = 2.0 \\times 10^{-4}\\ \\text{m}^3\\); kaldırma kuvveti \\(F_B = (1000)(9.8)(2.0 \\times 10^{-4}) = 1.96\\ \\text{N}\\).</p><ul><li>\\(d = 0\\): \\(F_s = 4.9\\ \\text{N}\\).</li><li>\\(0 \\to H\\): \\(F_s\\) doğrusal azalır, eğim \\(-\\rho_w gA = -24.5\\ \\text{N/m}\\).</li><li>\\(d = H = 0.080\\ \\text{m}\\): \\(F_s = 4.9 - 1.96 = 2.94\\ \\text{N}\\).</li><li>\\(H \\to 2H\\): batan hacim artık değişmez; \\(F_s = 2.94\\ \\text{N}\\) sabit (yatay doğru).</li></ul><p><strong>Model answer:</strong> A straight line <strong>decreasing from 4.9 N at \\(d = 0\\) to 2.94 N at \\(d = 0.080\\ \\text{m}\\)</strong>, then <strong>horizontal at 2.94 N</strong> out to \\(d = 0.16\\ \\text{m}\\).</p>",
+     "sik_hatalar": [
+      "Tamamen battıktan sonra okumanın azalmaya devam ettiğini çizmek (basınç artar ama üst ve alt yüzey arasındaki basınç farkı sabit kalır).",
+      "Azalan kısmı eğri çizmek: batan hacim d ile doğrusal artar."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "<p>The experiment is repeated with the tank filled with oil of density \\(800\\ \\text{kg/m}^3\\) instead of water. Describe how the graph for oil compares with your graph from part (c): its starting value, its slope for \\(0 \\le d \\le H\\), the value of \\(d\\) where its shape changes, and its final value. Calculate the final scale reading, and justify your answer using your expression from part (b).</p>",
+     "puan": 3,
+     "ne_soruyor": "Sıvı değişince grafiğin hangi özelliklerinin değişip hangilerinin aynı kaldığını, türettiğin ifadeyle gerekçelendirerek açıklamanı istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Aynı başlangıç (4.9 N) ve aynı kırılma noktası \\(d = H\\) (bunlar sıvıya bağlı değil)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Daha az dik eğim (\\(19.6\\ \\text{N/m}\\)), çünkü (b)'deki ifadede eğim \\(\\rho g A\\) ve \\(\\rho\\) küçüldü."
+      },
+      {
+       "puan": 1,
+       "olcut": "Son okuma \\(F_s = 4.9 - (800)(9.8)(2.0 \\times 10^{-4}) \\approx 3.3\\ \\text{N}\\), sudakinden büyük.",
+       "ornek_cevap": "\\(F_s \\approx 3.3\\ \\text{N}\\)"
+      }
+     ],
+     "ornek_cozum": "<p>(b)'deki ifade \\(F_s = W - \\rho g A d\\) olur. \\(d = 0\\)'da \\(F_s = W = 4.9\\ \\text{N}\\): sıvıdan bağımsız. Eğim \\(\\rho g A = (800)(9.8)(2.5 \\times 10^{-3}) = 19.6\\ \\text{N/m}\\): sudakinden (24.5 N/m) küçük. Biçim yine \\(d = H\\)'de değişir, çünkü blok yine o derinlikte tamamen batar. Son değer:</p>\\[F_s = 4.9 - (800)(9.8)(2.0 \\times 10^{-4}) = 4.9 - 1.57 \\approx 3.3\\ \\text{N}\\]<p><strong>Model answer:</strong> Same starting value (4.9 N) and same break point (\\(d = H\\)), but <strong>a less steep slope</strong> because \\(\\rho\\) in \\(F_s = W - \\rho g A d\\) is smaller, ending <strong>horizontal at about 3.3 N</strong>.</p>",
+     "sik_hatalar": [
+      "Yağda blokun daha derine batması gerektiğini düşünüp kırılma noktasını kaydırmak (blok tartıya asılıdır; batma derinliğini öğrenci belirler).",
+      "Daha az yoğun sıvıda kaldırma kuvvetinin arttığını söylemek."
+     ]
+    }
+   ],
+   "toplam_puan": 12,
+   "kaynak": "AP-style original (Meberra 1.24.0)",
+   "durum": "aktif",
+   "ek": {
+    "uretim": "1.24.0",
+    "cedKonu": "8.3, 8.1",
+    "tip": "Translation Between Representations",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   }
+  },
+  {
+   "id": "frq-phys1-k7",
+   "sayfa": "ap-physics",
+   "ders": "physics-1",
+   "tur": "Deney tasarımı ve analiz",
+   "baslik": "Measuring Kinetic Friction with a Force Sensor",
+   "sure_dk": 22,
+   "hesapMakinesi": true,
+   "zorluk": "easy",
+   "giris": "<p>Students want to determine the coefficient of kinetic friction \\(\\mu_k\\) between a wooden block and a long horizontal board. They have the block (mass 0.20 kg), a set of slotted masses that can be stacked on the block, a force sensor that records force continuously, a string, a meterstick, a stopwatch, and an electronic balance. They plan to pull the block horizontally along the board with the force sensor.</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Describe an experimental procedure the students could use to collect data that would allow them to determine \\(\\mu_k\\). Include what quantities they should measure, what equipment they should use to measure each, and what they should do to reduce experimental uncertainty.</p>",
+     "puan": 3,
+     "ne_soruyor": "Sürtünme katsayısını bulmak için hangi ölçümlerin hangi araçla ve nasıl alınacağını adım adım tarif etmeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Blok + üstündeki kütlelerin toplam kütlesi terazi ile ölçülür ve birkaç farklı değer için deney tekrarlanır (bağımsız değişken)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Kinetik sürtünme kuvvetine eşit kuvvetin nasıl ölçüldüğü doğru tarif edilmiş: ip yatay tutularak blok sabit hızla çekilir ve sensörün o sıradaki (ortalama) kuvveti kaydedilir, sabit hızın nasıl doğrulandığı belirtilir (ör. eşit sürede eşit mesafe — cetvel + kronometre); ya da eşdeğer geçerli yöntem: blok, sabit bir noktaya bağlı kuvvet sensörüyle yerinde tutulur ve tahta bloğun altından çekilir (bu durumda tahtanın hızı önemsizdir)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Belirsizliği azaltan adım: her kütle için birkaç deneme yapıp ortalama almak, ya da harekete başladıktan sonraki sabit kısmın ortalamasını almak (ilk tepeyi—statik sürtünmeyi—dışlamak)."
+      }
+     ],
+     "ornek_cozum": "<ol><li>Blok ve eklenen kütlelerin toplam kütlesini \\(M\\) elektronik terazide ölç.</li><li>İpi yatay tutarak bloğu kuvvet sensörüyle tahta boyunca <em>sabit hızla</em> çek. Sabit hızı doğrulamak için cetvel ile işaretlenmiş eşit aralıkları kronometreyle eşit sürelerde geçtiğini kontrol et.</li><li>Hareket başladıktan sonraki düzgün kısımda sensörün gösterdiği kuvvetin ortalamasını kaydet (ilk sıçrama statik sürtünmedir, dışla).</li><li>Her \\(M\\) için üç deneme yapıp ortalama al; en az 5 farklı \\(M\\) değeri için tekrarla.</li></ol><p>Sabit hızda net kuvvet sıfırdır, bu yüzden sensör kuvveti kinetik sürtünme kuvvetine eşittir: \\(F = \\mu_k Mg\\).</p><p><strong>Model answer:</strong> <strong>Measure the total mass with the balance, pull the block horizontally at constant speed, and record the steady force-sensor reading</strong>; repeat for several masses and <strong>average multiple trials</strong>.</p>",
+     "sik_hatalar": [
+      "Sabit hız koşulunu belirtmemek (ivmeli çekişte sensör sürtünmeden büyük kuvvet okur).",
+      "Sensörün ilk tepe değerini (statik sürtünme) kinetik sürtünme diye kaydetmek.",
+      "Yalnız tek bir kütle ile ölçüm yapmak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Indicate what quantities could be graphed to yield a straight line whose slope could be used to determine \\(\\mu_k\\). Express the slope in terms of \\(\\mu_k\\) and physical constants as appropriate.</p>",
+     "puan": 2,
+     "ne_soruyor": "Doğrusal grafik verecek nicelik çiftini seçip eğimin neye eşit olduğunu ifade etmeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Dikey eksen: çekme kuvveti \\(F\\); yatay eksen: toplam kütle \\(M\\) (ya da normal kuvvet \\(Mg\\))."
+      },
+      {
+       "puan": 1,
+       "olcut": "Eğim \\(= \\mu_k g\\) (eksen \\(Mg\\) ise eğim \\(= \\mu_k\\)).",
+       "ornek_cevap": "slope \\(= \\mu_k g\\)"
+      }
+     ],
+     "ornek_cozum": "<p>Sabit hızda \\(F = f_k = \\mu_k F_N = \\mu_k Mg\\). Bu \\(y = (\\text{eğim})x\\) biçimindedir: \\(y = F\\), \\(x = M\\), eğim \\(= \\mu_k g\\).</p><p><strong>Model answer:</strong> Graph <strong>force \\(F\\) versus total mass \\(M\\)</strong>; the slope is <strong>\\(\\mu_k g\\)</strong>.</p>",
+     "sik_hatalar": [
+      "Eksenleri belirtip eğimin fiziksel ifadesini vermemek.",
+      "Eğimi doğrudan \\(\\mu_k\\) sanmak (eksen M ise g ile bölmek gerekir)."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>The students' data are shown below.</p><table class=\"frq-tablo\"><thead><tr><th>Total mass \\(M\\) (kg)</th><th>Force \\(F\\) (N)</th></tr></thead><tbody><tr><td>0.20</td><td>0.66</td></tr><tr><td>0.40</td><td>1.21</td></tr><tr><td>0.60</td><td>1.92</td></tr><tr><td>0.80</td><td>2.47</td></tr><tr><td>1.00</td><td>3.16</td></tr></tbody></table><p>Plot the data (on paper) on the axes you chose in part (b), draw a best-fit line, and use the slope of the line to calculate \\(\\mu_k\\).</p>",
+     "puan": 3,
+     "ne_soruyor": "Verileri çizip en iyi doğrunun eğiminden sürtünme katsayısını hesaplamanı istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Noktalar doğru işaretlenmiş, ölçekli ve etiketli eksenler (birimlerle)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Noktaların arasından geçen (noktaları birleştirmeyen) en iyi doğru; eğim, veri noktaları değil doğru üzerindeki iki uzak noktadan hesaplanmış."
+      },
+      {
+       "puan": 1,
+       "olcut": "Eğim \\(\\approx 3.1\\ \\text{N/kg}\\) ve \\(\\mu_k \\approx 0.32\\) (0.30–0.34 arası kabul).",
+       "ornek_cevap": "\\(\\mu_k = \\text{slope}/g \\approx 3.13/9.8 \\approx 0.32\\)"
+      }
+     ],
+     "ornek_cozum": "<p>Doğru üzerinde iki uzak nokta seç, ör. \\((0.10\\ \\text{kg},\\ 0.32\\ \\text{N})\\) ve \\((1.00\\ \\text{kg},\\ 3.14\\ \\text{N})\\):</p>\\[\\text{eğim} = \\frac{3.14 - 0.32}{1.00 - 0.10} \\approx 3.1\\ \\text{N/kg}\\]\\[\\mu_k = \\frac{\\text{eğim}}{g} = \\frac{3.13}{9.8} \\approx 0.32\\]<p>(En küçük kareler eğimi \\(3.13\\ \\text{N/kg}\\); doğru neredeyse orijinden geçer.)</p><p><strong>Model answer:</strong> The best-fit slope is about <strong>3.1 N/kg</strong>, so <strong>\\(\\mu_k = \\text{slope}/g \\approx 0.32\\)</strong>.</p>",
+     "sik_hatalar": [
+      "Eğimi tek bir veri noktasının F/M oranından bulmak.",
+      "Noktaları zikzak çizgiyle birleştirmek.",
+      "g'ye bölmeyi unutup μ ≈ 3.1 yazmak."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "<p>Suppose that in every trial, without realizing it, the students pulled the block so that it was speeding up slightly, with the same small acceleration each time. Would the value of \\(\\mu_k\\) determined from the slope be greater than, less than, or equal to the true value? Justify your answer.</p>",
+     "puan": 2,
+     "ne_soruyor": "Ölçüm sırasında fark edilmeyen bir ivmenin sonucu hangi yönde etkileyeceğini gerekçelendirmeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Hesaplanan μ gerçek değerden BÜYÜK olur."
+      },
+      {
+       "puan": 1,
+       "olcut": "Gerekçe: \\(F - \\mu_k Mg = Ma\\) ⇒ \\(F = (\\mu_k g + a)M\\); eğim \\(\\mu_k g + a\\) olur, \\(g\\)'ye bölününce \\(\\mu_k\\)'dan büyük değer çıkar."
+      }
+     ],
+     "ornek_cozum": "<p>Blok hızlanıyorsa net kuvvet sıfır değildir: \\(F - \\mu_k Mg = Ma\\). Buradan \\(F = (\\mu_k g + a)M\\). Grafik yine orijinden geçen bir doğrudur, ama eğimi \\(\\mu_k g + a\\)'dır. Öğrenciler eğimi \\(g\\)'ye böldüğünde \\(\\mu_k + a/g\\) bulur — gerçek değerden büyük.</p><p><strong>Model answer:</strong> <strong>Greater.</strong> With acceleration, <strong>\\(F = (\\mu_k g + a)M\\)</strong>, so the slope is larger than \\(\\mu_k g\\) and dividing by \\(g\\) gives a value larger than the true \\(\\mu_k\\).</p>",
+     "sik_hatalar": [
+      "Sabit ivme her denemede aynı olduğu için etkisinin \"sadeleştiğini\" söylemek (ivme eğime eklenir).",
+      "Cevabı gerekçesiz vermek."
+     ]
+    }
+   ],
+   "toplam_puan": 10,
+   "kaynak": "AP-style original (Meberra 1.24.0)",
+   "durum": "aktif",
+   "ek": {
+    "uretim": "1.24.0",
+    "cedKonu": "2.7",
+    "tip": "Experimental Design and Analysis",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   }
+  },
+  {
+   "id": "frq-phys1-k8",
+   "sayfa": "ap-physics",
+   "ders": "physics-1",
+   "tur": "Deney tasarımı ve analiz",
+   "baslik": "Weighing an Object with a Balanced Meterstick",
+   "sure_dk": 22,
+   "hesapMakinesi": true,
+   "zorluk": "medium",
+   "giris": "<p>Students want to determine the mass \\(M_x\\) of a small object without using a balance. A uniform meterstick is supported on a narrow pivot at its 50 cm mark, where it balances horizontally on its own. The object is hung by a light string at the 30 cm mark, a distance \\(r = 0.20\\ \\text{m}\\) from the pivot. The students hang a known mass \\(m\\) on the other side of the pivot and slide it until the meterstick is horizontal and at rest, then record the distance \\(d\\) of the known mass from the pivot. They repeat this for several known masses.</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>(i) Explain why placing the pivot at the meterstick's 50 cm mark simplifies the analysis. (ii) Describe one thing the students could do to reduce the uncertainty in each measured distance \\(d\\).</p>",
+     "puan": 2,
+     "ne_soruyor": "Destek noktasının seçiminin analizi neden kolaylaştırdığını ve mesafe ölçümündeki belirsizliğin nasıl azaltılacağını açıklamanı istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "(i) Düzgün çubuğun kütle merkezi 50 cm'dedir; destek orada olunca çubuğun ağırlığı destek noktasına göre tork üretmez (moment kolu sıfır)."
+      },
+      {
+       "puan": 1,
+       "olcut": "(ii) Örn.: denge noktası civarında kütleyi iki yönden yaklaştırıp ortalamak; ipin konumunu çubuktaki ölçekten doğrudan, göz hizasından (paralaks olmadan) okumak; her kütle için birkaç kez tekrarlayıp ortalama almak."
+      }
+     ],
+     "ornek_cozum": "<p>(i) Çubuk tek başına 50 cm'de dengede kaldığına göre kütle merkezi oradadır. Ağırlığı destek noktasından geçer; moment kolu sıfır, torku sıfırdır. Böylece denge denklemine yalnız iki asılı kütle girer.</p><p>(ii) Denge konumuna sağdan ve soldan yaklaşıp iki okumanın ortalamasını almak, okumayı göz hizasında yapmak ve her kütle için tekrarlamak rastgele hatayı azaltır.</p><p><strong>Model answer:</strong> (i) <strong>The meterstick's weight acts at the pivot, so it exerts no torque about the pivot.</strong> (ii) <strong>Repeat each balance several times and average \\(d\\)</strong>, reading the scale at eye level.</p>",
+     "sik_hatalar": [
+      "Çubuğun kütlesinin ihmal edilebilir olduğunu söylemek (ihmal edilmiyor; torku sıfır olduğu için denkleme girmiyor).",
+      "Belirsizlik için yalnızca \"dikkatli ölç\" yazmak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Indicate what quantities could be graphed to yield a straight line whose slope could be used to determine \\(M_x\\). Express the slope in terms of \\(M_x\\), \\(r\\), and physical constants as appropriate.</p>",
+     "puan": 2,
+     "ne_soruyor": "Tork dengesinden yola çıkıp doğrusal grafik veren nicelikleri ve eğimin anlamını belirlemeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(m\\)'ye karşı \\(1/d\\) (ya da \\(d\\)'ye karşı \\(1/m\\))."
+      },
+      {
+       "puan": 1,
+       "olcut": "Eğim \\(= M_x r\\) (her iki seçimde de).",
+       "ornek_cevap": "slope \\(= M_x r\\)"
+      }
+     ],
+     "ornek_cozum": "<p>Destek noktasına göre tork dengesi: \\(M_x g r = m g d\\) ⇒ \\(m = M_x r \\cdot \\dfrac{1}{d}\\). Bu \\(y = (\\text{eğim})x\\) biçimindedir: \\(y = m\\), \\(x = 1/d\\), eğim \\(= M_x r\\). (\\(m\\)'ye karşı \\(d\\) grafiği hiperboldür, doğru değildir.)</p><p><strong>Model answer:</strong> Graph <strong>\\(m\\) versus \\(1/d\\)</strong>; the slope is <strong>\\(M_x r\\)</strong>.</p>",
+     "sik_hatalar": [
+      "\\(m\\)'ye karşı \\(d\\) çizmek (ters orantı doğrusal değildir).",
+      "Eğime \\(g\\) eklemek: \\(g\\) iki tarafta sadeleşir."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>The students' data are shown below.</p><table class=\"frq-tablo\"><thead><tr><th>Known mass \\(m\\) (kg)</th><th>Distance \\(d\\) (m)</th></tr></thead><tbody><tr><td>0.050</td><td>0.398</td></tr><tr><td>0.080</td><td>0.252</td></tr><tr><td>0.100</td><td>0.199</td></tr><tr><td>0.125</td><td>0.162</td></tr><tr><td>0.160</td><td>0.124</td></tr><tr><td>0.200</td><td>0.101</td></tr></tbody></table><p>Calculate the values needed for your graph in part (b), plot them (on paper), draw a best-fit line, and use the slope of the line to calculate \\(M_x\\).</p>",
+     "puan": 3,
+     "ne_soruyor": "Tabloyu doğrusallaştırıp grafiğin eğiminden bilinmeyen kütleyi hesaplamanı istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(1/d\\) değerleri doğru: yaklaşık 2.51, 3.97, 5.03, 6.17, 8.06, 9.90 \\(\\text{m}^{-1}\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Etiketli/ölçekli eksenlerde noktalar ve en iyi doğru; eğim doğru üzerindeki iki uzak noktadan."
+      },
+      {
+       "puan": 1,
+       "olcut": "Eğim \\(\\approx 0.020\\ \\text{kg·m}\\) ⇒ \\(M_x \\approx 0.10\\ \\text{kg}\\) (0.095–0.105 kabul).",
+       "ornek_cevap": "\\(M_x = \\text{slope}/r \\approx 0.020/0.20 = 0.10\\ \\text{kg}\\)"
+      }
+     ],
+     "ornek_cozum": "<table class=\"frq-tablo\"><thead><tr><th>\\(m\\) (kg)</th><th>\\(1/d\\) (m⁻¹)</th></tr></thead><tbody><tr><td>0.050</td><td>2.51</td></tr><tr><td>0.080</td><td>3.97</td></tr><tr><td>0.100</td><td>5.03</td></tr><tr><td>0.125</td><td>6.17</td></tr><tr><td>0.160</td><td>8.06</td></tr><tr><td>0.200</td><td>9.90</td></tr></tbody></table><p>Doğru üzerinden iki nokta, ör. \\((2.0,\\ 0.040)\\) ve \\((10.0,\\ 0.201)\\):</p>\\[\\text{eğim} = \\frac{0.201 - 0.040}{10.0 - 2.0} \\approx 0.020\\ \\text{kg·m}\\qquad M_x = \\frac{\\text{eğim}}{r} = \\frac{0.020}{0.20} = 0.10\\ \\text{kg}\\]<p><strong>Model answer:</strong> The slope of \\(m\\) versus \\(1/d\\) is about <strong>0.020 kg·m</strong>, so <strong>\\(M_x = \\text{slope}/r \\approx 0.10\\ \\text{kg}\\)</strong>.</p>",
+     "sik_hatalar": [
+      "Eğimi r ile bölmeyi unutmak.",
+      "Yalnızca tek bir satırdan \\(M_x = md/r\\) hesaplayıp grafiği kullanmamak."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "<p>In a second experiment, a student accidentally places the pivot at the 45 cm mark instead of the 50 cm mark. The student keeps the object a distance \\(r\\) from the new pivot on the same side as before, repeats the procedure, and analyzes the new data exactly as in part (c), still ignoring the meterstick's mass. Would the value of \\(M_x\\) obtained be greater than, less than, or equal to the true value? Justify your answer by writing the torque equation for this situation.</p>",
+     "puan": 3,
+     "ne_soruyor": "Destek noktası kaydırıldığında çubuğun kendi ağırlığının dengeyi nasıl etkilediğini tork denklemiyle göstermeni ve sonucun hangi yönde sapacağını belirlemeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Çubuğun ağırlığı artık destek noktasından \\(0.05\\ \\text{m}\\) uzakta (50 cm'de, bilinen kütle tarafında) etki eder ve tork üretir."
+      },
+      {
+       "puan": 1,
+       "olcut": "Doğru tork denklemi: \\(M_x g r = m g d + M_s g(0.05\\ \\text{m})\\) ⇒ \\(m = (M_x r - 0.05 M_s)/d\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Sonuç: eğim \\(M_x r - 0.05 M_s\\) olur (daha küçük) ⇒ hesaplanan \\(M_x\\) gerçek değerden KÜÇÜK."
+      }
+     ],
+     "ornek_cozum": "<p>Destek 45 cm'de olunca çubuğun kütle merkezi (50 cm) destek noktasının 0.05 m sağındadır — bilinen kütlenin olduğu tarafta. Çubuğun ağırlığı bilinen kütleye \"yardım eder\":</p>\\[M_x g r = m g d + M_s g(0.05) \\Rightarrow m = \\left(M_x r - 0.05M_s\\right)\\frac{1}{d}\\]<p>\\(m\\)–\\(1/d\\) grafiği yine doğrudur ama eğimi \\(M_x r - 0.05 M_s\\)'tir, yani daha küçüktür. Eğimi yine \\(r\\)'ye bölen öğrenci \\(M_x - 0.05M_s/r\\) bulur: gerçek değerden küçük. (Çubuğun ağırlığı tek başına dengeyi sağlayacak kadar büyükse, bilinen kütle karşı tarafa bile konmak zorunda kalabilir.)</p><p><strong>Model answer:</strong> <strong>Less than.</strong> The meterstick's weight now exerts a torque on the known-mass side: <strong>\\(M_x g r = mgd + M_s g(0.05\\ \\text{m})\\)</strong>, so the slope equals \\(M_x r - 0.05M_s\\), which is smaller than \\(M_x r\\).</p>",
+     "sik_hatalar": [
+      "Çubuğun ağırlığının hâlâ tork üretmediğini söylemek.",
+      "Çubuğun ağırlık torkunun yönünü (hangi tarafa döndürdüğünü) ters almak."
+     ]
+    }
+   ],
+   "toplam_puan": 10,
+   "kaynak": "AP-style original (Meberra 1.24.0)",
+   "durum": "aktif",
+   "ek": {
+    "uretim": "1.24.0",
+    "cedKonu": "5.3, 5.5",
+    "tip": "Experimental Design and Analysis",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   }
+  },
+  {
+   "id": "frq-phys1-k9",
+   "sayfa": "ap-physics",
+   "ders": "physics-1",
+   "tur": "Deney tasarımı ve analiz",
+   "baslik": "Finding a Rotational Inertia from Rolling",
+   "sure_dk": 25,
+   "hesapMakinesi": true,
+   "zorluk": "hard",
+   "giris": "<p>Students want to determine the rotational inertia of a round object of mass \\(M\\) and radius \\(R\\). They write its rotational inertia about its center as \\(I = \\beta MR^2\\), where \\(\\beta\\) is a number they want to find. They release the object from rest on a ramp so that it rolls without slipping, and a photogate at the bottom of the ramp measures the object's speed \\(v\\). They vary the vertical height \\(h\\) through which the object's center descends. Energy losses are negligible.</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Describe how the students could use the photogate to determine \\(v\\), and how they could measure \\(h\\). Identify the measuring equipment used.</p>",
+     "puan": 2,
+     "ne_soruyor": "Fotokapı ile hızın nasıl bulunacağını ve yüksekliğin nasıl ölçüleceğini araçlarıyla anlatmanı istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Hız: ışını kesen uzunluk ölçülür ve fotokapının ışının kesildiği süreye bölünür — ör. ışın cismin merkezi yüksekliğinde ayarlanıp çap kumpasla ölçülür, \\(v = 2R/\\Delta t\\); ya da cisme bağlı bilinen genişlikte bayrak kullanılır; ya da eşdeğeri (ör. alt uçta yakın iki fotokapı arası mesafe / geçiş süresi)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Yükseklik: bırakma noktası ile fotokapı noktası arasındaki düşey fark cetvel/metre ile masadan (ya da yerden) ölçülür; düşey ölçüm (rampa boyu değil)."
+      }
+     ],
+     "ornek_cozum": "<p>Fotokapı ışının ne kadar süre (\\(\\Delta t\\)) kesildiğini ölçer. Işın cismin merkezi yüksekliğine ayarlanırsa cisim ışını tam çapı \\(2R\\) boyunca keser; çap kumpasla ölçülür ve alt noktadaki hız \\(v = 2R/\\Delta t\\) olur. (Işın merkezden daha alçak ya da yüksekte olursa kesilen kiriş çaptan kısadır ve hız fazla hesaplanır; bunun yerine cisme bilinen genişlikte bir bayrak takmak da geçerlidir.) Yükseklik \\(h\\) için, cismin bırakıldığı nokta ile fotokapının olduğu nokta arasındaki <em>düşey</em> fark metre ile ölçülür (her iki noktada cismin altının ya da merkezinin masaya uzaklığı).</p><p><strong>Model answer:</strong> With the beam at the height of the object's center, <strong>\\(v = (\\text{diameter})/\\Delta t\\)</strong>, with the diameter measured by calipers and \\(\\Delta t\\) by the photogate; <strong>\\(h\\) is the vertical height difference measured with a meterstick</strong>.</p>",
+     "sik_hatalar": [
+      "Rampanın eğik uzunluğunu h diye almak.",
+      "Fotokapının doğrudan hız ölçtüğünü söyleyip hesaplamayı açıklamamak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Indicate what quantities could be graphed to yield a straight line whose slope could be used to determine \\(\\beta\\). Express the slope in terms of \\(\\beta\\) and physical constants as appropriate.</p>",
+     "puan": 2,
+     "ne_soruyor": "Enerji korunumundan doğrusal ilişki kurup grafiğin eğimini β cinsinden ifade etmeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(v^2\\)'ye karşı \\(h\\) (ya da \\(h\\)'ye karşı \\(v^2\\))."
+      },
+      {
+       "puan": 1,
+       "olcut": "Eğim \\(= \\dfrac{2g}{1 + \\beta}\\) (ters eksenlerde \\(\\dfrac{1+\\beta}{2g}\\)).",
+       "ornek_cevap": "slope \\(= \\dfrac{2g}{1+\\beta}\\)"
+      }
+     ],
+     "ornek_cozum": "<p>Kaymadan yuvarlanma: \\(\\omega = v/R\\). Enerji korunumu:</p>\\[Mgh = \\tfrac12 Mv^2 + \\tfrac12 (\\beta MR^2)\\left(\\tfrac{v}{R}\\right)^2 = \\tfrac12(1+\\beta)Mv^2 \\Rightarrow v^2 = \\frac{2g}{1+\\beta}\\,h\\]<p>\\(y = v^2\\), \\(x = h\\) seçilirse doğru orijinden geçer ve eğim \\(2g/(1+\\beta)\\) olur.</p><p><strong>Model answer:</strong> Graph <strong>\\(v^2\\) versus \\(h\\)</strong>; the slope is <strong>\\(2g/(1+\\beta)\\)</strong>.</p>",
+     "sik_hatalar": [
+      "\\(v\\)'ye karşı \\(h\\) çizmek (karekök ilişkisi doğrusal değildir).",
+      "Dönme kinetik enerjisini unutup eğimi \\(2g\\) yazmak."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>The students' data are shown below.</p><table class=\"frq-tablo\"><thead><tr><th>Height \\(h\\) (m)</th><th>Speed \\(v\\) (m/s)</th></tr></thead><tbody><tr><td>0.10</td><td>1.15</td></tr><tr><td>0.20</td><td>1.61</td></tr><tr><td>0.30</td><td>1.99</td></tr><tr><td>0.40</td><td>2.27</td></tr><tr><td>0.50</td><td>2.56</td></tr></tbody></table><p>Calculate the values needed for your graph in part (b), plot them (on paper), draw a best-fit line, and use the slope to calculate \\(\\beta\\). Based on your result, state what kind of object the students most likely used: a thin hoop (\\(\\beta = 1\\)), a solid cylinder (\\(\\beta = 1/2\\)), or a solid sphere (\\(\\beta = 2/5\\)).</p>",
+     "puan": 3,
+     "ne_soruyor": "Verileri doğrusallaştırıp eğimden β'yı hesaplamanı ve cismin türünü belirlemeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(v^2\\) değerleri: yaklaşık 1.32, 2.59, 3.96, 5.15, 6.55 \\(\\text{m}^2/\\text{s}^2\\); noktalar ve en iyi doğru."
+      },
+      {
+       "puan": 1,
+       "olcut": "Eğim \\(\\approx 13\\ \\text{m/s}^2\\) (12.5–13.5 kabul), doğru üzerinden."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(\\beta = 2g/\\text{eğim} - 1 \\approx 0.5\\) ⇒ dolu silindir.",
+       "ornek_cevap": "\\(\\beta \\approx 0.50\\): a solid cylinder"
+      }
+     ],
+     "ornek_cozum": "<table class=\"frq-tablo\"><thead><tr><th>\\(h\\) (m)</th><th>\\(v^2\\) (m²/s²)</th></tr></thead><tbody><tr><td>0.10</td><td>1.32</td></tr><tr><td>0.20</td><td>2.59</td></tr><tr><td>0.30</td><td>3.96</td></tr><tr><td>0.40</td><td>5.15</td></tr><tr><td>0.50</td><td>6.55</td></tr></tbody></table><p>Doğru üzerinden \\((0.05,\\ 0.66)\\) ve \\((0.50,\\ 6.52)\\):</p>\\[\\text{eğim} = \\frac{6.52 - 0.66}{0.50 - 0.05} \\approx 13.0\\ \\text{m/s}^2\\]\\[\\beta = \\frac{2g}{\\text{eğim}} - 1 = \\frac{19.6}{13.0} - 1 \\approx 0.51\\]<p>En yakın değer \\(1/2\\): dolu silindir (dolu küre için eğim \\(14.0\\), halka için \\(9.8\\ \\text{m/s}^2\\) olurdu).</p><p><strong>Model answer:</strong> The slope is about <strong>13 m/s²</strong>, so <strong>\\(\\beta = 2g/\\text{slope} - 1 \\approx 0.5\\)</strong>; the object is most likely <strong>a solid cylinder</strong>.</p>",
+     "sik_hatalar": [
+      "Eğimden β'ya geçerken cebir hatası: β = slope/(2g) − 1 gibi.",
+      "Dolu küre ile dolu silindiri karıştırmak (0.4 ile 0.5 arasındaki fark eğimde ≈ 1 m/s²'dir; veri bunu ayırt eder)."
+     ]
+    },
+    {
+     "harf": "d",
+     "soru": "<p>The students then repeat the experiment with a thin hoop that has twice the mass and twice the radius of the first object. Predict the slope of the new \\(v^2\\)-versus-\\(h\\) graph. A student says, \"The heavier, larger hoop will reach the bottom with a greater speed.\" Do you agree or disagree? Justify your answer.</p>",
+     "puan": 3,
+     "ne_soruyor": "Farklı bir cisim için grafiğin eğimini tahmin etmeni ve kütle ile yarıçapın hıza etkisi hakkındaki iddiayı değerlendirmeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Halka için \\(\\beta = 1\\) ⇒ eğim \\(= 2g/2 = g \\approx 9.8\\ \\text{m/s}^2\\).",
+       "ornek_cevap": "slope \\(= g \\approx 9.8\\ \\text{m/s}^2\\)"
+      },
+      {
+       "puan": 1,
+       "olcut": "Katılmama: halka aynı h için daha yavaş (eğim daha küçük)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Gerekçe: \\(v^2 = 2gh/(1+\\beta)\\) ifadesinde \\(M\\) ve \\(R\\) yok; yalnızca kütle dağılımı (\\(\\beta\\)) önemli. Halkada kütle eksenden daha uzakta, enerjinin daha büyük kısmı dönmeye gider."
+      }
+     ],
+     "ornek_cozum": "<p>Halkada tüm kütle \\(R\\) uzaklığındadır: \\(\\beta = 1\\). Eğim \\(= 2g/(1+1) = g \\approx 9.8\\ \\text{m/s}^2\\), ilk cisminkinden (≈ 13) küçüktür.</p><p>Öğrenciye katılmıyoruz. \\(v^2 = 2gh/(1+\\beta)\\) ifadesinde \\(M\\) ve \\(R\\) sadeleşmiştir; iki katı kütle ya da iki katı yarıçap hızı değiştirmez. Önemli olan kütlenin eksene göre nasıl dağıldığıdır. Halkada \\(\\beta\\) daha büyük olduğu için potansiyel enerjinin yarısı dönme kinetik enerjisine gider (silindirde üçte biri), bu yüzden halka aynı \\(h\\)'den <em>daha yavaş</em> iner.</p><p><strong>Model answer:</strong> Predicted slope <strong>\\(g \\approx 9.8\\ \\text{m/s}^2\\)</strong>. <strong>Disagree</strong>: \\(M\\) and \\(R\\) cancel in \\(v^2 = 2gh/(1+\\beta)\\); <strong>the hoop has a larger \\(\\beta\\), so a larger share of its energy is rotational and it is slower</strong>.</p>",
+     "sik_hatalar": [
+      "Büyük kütleli cismin daha hızlı yuvarlandığını düşünmek.",
+      "β'nın yarıçapla değiştiğini sanmak."
+     ]
+    }
+   ],
+   "toplam_puan": 10,
+   "kaynak": "AP-style original (Meberra 1.24.0)",
+   "durum": "aktif",
+   "ek": {
+    "uretim": "1.24.0",
+    "cedKonu": "6.5, 6.1",
+    "tip": "Experimental Design and Analysis",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   }
+  },
+  {
+   "id": "frq-phys1-k10",
+   "sayfa": "ap-physics",
+   "ders": "physics-1",
+   "tur": "Nitel/nicel çeviri",
+   "baslik": "Two Satellites at Different Altitudes",
+   "sure_dk": 20,
+   "hesapMakinesi": true,
+   "zorluk": "medium",
+   "giris": "<p>Two satellites move in circular orbits around Earth, which has mass \\(M_E\\). Satellite A orbits at radius \\(r\\) (measured from Earth's center), and satellite B orbits at radius \\(2r\\). Satellite B has three times the mass of satellite A. The only significant force on each satellite is the gravitational force exerted by Earth.</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>Which satellite, if either, has the greater orbital speed? Without deriving or manipulating equations, explain your reasoning in a clear, coherent, paragraph-length response. Your response should address the role of each satellite's mass.</p>",
+     "puan": 3,
+     "ne_soruyor": "Hangi uydunun daha hızlı olduğunu, denklem türetmeden, kuvvet ve dairesel hareket fikirleriyle paragraf hâlinde gerekçelendirmeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Doğru iddia: A (içteki uydu) daha hızlıdır."
+      },
+      {
+       "puan": 1,
+       "olcut": "Kütlenin rolü: yerçekimi kuvveti uydunun kütlesiyle orantılı, ama aynı kuvvet o kütleyi hızlandırmak zorunda; bu yüzden uydunun ivmesi (ve hızı) kendi kütlesine bağlı değil — B'nin 3 kat kütlesi sonucu değiştirmez."
+      },
+      {
+       "puan": 1,
+       "olcut": "Yarıçapın rolü: uzaklık iki katına çıkınca çekim ivmesi dörtte birine iner, ama aynı hızla iki kat büyük çemberde dönmek için gereken merkezcil ivme yalnızca yarıya inerdi; çekim ihtiyaçtan hızlı azaldığı için dış yörüngede hız daha küçük olmalı (ya da eşdeğer geçerli akıl yürütme: daha zayıf çekim, daha büyük yarıçaplı yolu ancak daha küçük hızla bükebilir)."
+      }
+     ],
+     "ornek_cozum": "<p>Model paragraf (Türkçe açıklama ile): Her uyduyu dairesel yörüngede tutan tek kuvvet Dünya'nın çekimidir. Bu kuvvet uydunun kütlesiyle orantılıdır, ama daha büyük kütle aynı oranda daha zor hızlanır; bu yüzden B'nin kütlesinin üç kat olması onun ivmesini ya da gereken hızını değiştirmez. Önemli olan yarıçaptır. B, A'nın iki katı uzaklıkta olduğundan B'deki çekim ivmesi A'dakinin dörtte biridir. Aynı hızla iki kat büyük bir çemberde dönmek için gereken merkezcil ivme ise yalnızca yarıya inerdi. Çekim, bu ihtiyaçtan daha hızlı azaldığı için B ancak daha küçük bir hızla yörüngede kalabilir. Sonuç: A daha hızlıdır.</p><p><strong>Model answer:</strong> <strong>Satellite A is faster.</strong> Earth's gravitational force on each satellite is proportional to the satellite's mass, so <strong>mass does not affect the acceleration or the required speed</strong>. At twice the distance, <strong>the gravitational acceleration is one-fourth as large</strong>, while the centripetal acceleration needed for the same speed would only be cut in half, so <strong>B must move more slowly</strong> to stay in its orbit.</p>",
+     "sik_hatalar": [
+      "B'nin kütlesi büyük olduğu için daha hızlı (ya da daha yavaş) olduğunu söylemek.",
+      "Dış yörünge daha uzun olduğu için hızın daha büyük olması gerektiğini düşünmek (uzun yol daha hızlı demek değildir).",
+      "Paragraf yerine yalnızca formül yazmak."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Derive an expression for the ratio \\(v_B / v_A\\) of the orbital speeds of the satellites. Begin your derivation by writing Newton's second law for a satellite in a circular orbit.</p>",
+     "puan": 3,
+     "ne_soruyor": "Dairesel yörüngedeki bir uydu için Newton'un ikinci yasasını yazıp iki uydunun hız oranını türetmeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "\\(\\dfrac{GM_E m}{R^2} = \\dfrac{m v^2}{R}\\) (herhangi bir yörünge yarıçapı \\(R\\) için)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(v = \\sqrt{GM_E / R}\\); uydu kütlesi sadeleşmiş."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(v_B / v_A = \\sqrt{r/(2r)} = 1/\\sqrt2 \\approx 0.71\\).",
+       "ornek_cevap": "\\(v_B/v_A = 1/\\sqrt{2} \\approx 0.71\\)"
+      }
+     ],
+     "ornek_cozum": "<p>Yarıçapı \\(R\\) olan dairesel yörüngede, çekim kuvveti merkezcil kuvveti sağlar:</p>\\[\\frac{GM_E m}{R^2} = \\frac{mv^2}{R} \\Rightarrow v = \\sqrt{\\frac{GM_E}{R}}\\]\\[\\frac{v_B}{v_A} = \\sqrt{\\frac{GM_E/(2r)}{GM_E/r}} = \\frac{1}{\\sqrt2} \\approx 0.71\\]<p><strong>Model answer:</strong> <strong>\\(GM_E m/R^2 = mv^2/R\\)</strong> gives <strong>\\(v = \\sqrt{GM_E/R}\\)</strong>, so <strong>\\(v_B/v_A = 1/\\sqrt2\\)</strong>.</p>",
+     "sik_hatalar": [
+      "Kütleleri sadeleştirmeyip oranı \\(3/\\sqrt2\\) ya da \\(1/(3\\sqrt2)\\) bulmak.",
+      "Oranı \\(1/2\\) ya da \\(1/4\\) bulmak (karekökü unutmak)."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>Explain how your expression from part (b) is consistent with your reasoning in part (a), addressing both the mass of each satellite and the orbital radius.</p>",
+     "puan": 2,
+     "ne_soruyor": "Türettiğin ifadenin, (a)'daki kütle ve yarıçap hakkındaki akıl yürütmeyle nasıl örtüştüğünü göstermeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Kütle: \\(m\\) her iki tarafta olduğundan sadeleşti; \\(v\\) ifadesinde uydu kütlesi yok — (a)'daki \"kütle önemli değil\" fikriyle tutarlı."
+      },
+      {
+       "puan": 1,
+       "olcut": "Yarıçap: \\(R\\) paydada (karekök içinde); \\(R\\) iki katına çıkınca \\(v\\) küçülür (\\(1/\\sqrt2\\) katı) — (a)'daki \"dış uydu daha yavaş\" iddiasıyla tutarlı."
+      }
+     ],
+     "ornek_cozum": "<p>(a)'da iki fikir kullandık: (1) uydunun kütlesi sonucu etkilemez; (2) uzaklık arttıkça hız azalır. (b)'deki ifadede \\(m\\) denklemin iki tarafında yer aldığı için sadeleşir — fikir (1). \\(v = \\sqrt{GM_E/R}\\)'de \\(R\\) paydadadır: \\(R\\) büyüyünce \\(v\\) küçülür; \\(2r\\)'de hız \\(1/\\sqrt2\\) katına iner — fikir (2).</p><p><strong>Model answer:</strong> <strong>The satellite mass cancels</strong>, matching the claim that mass does not matter, and <strong>\\(R\\) appears in the denominator</strong>, so the satellite at \\(2r\\) is slower, matching the claim that A is faster.</p>",
+     "sik_hatalar": [
+      "Yalnızca \"tutarlı\" yazıp ifadenin hangi özelliğinin neyi gösterdiğini belirtmemek."
+     ]
+    }
+   ],
+   "toplam_puan": 8,
+   "kaynak": "AP-style original (Meberra 1.24.0)",
+   "durum": "aktif",
+   "ek": {
+    "uretim": "1.24.0",
+    "cedKonu": "6.6, 2.6, 2.9",
+    "tip": "Qualitative/Quantitative Translation",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   }
+  },
+  {
+   "id": "frq-phys1-k11",
+   "sayfa": "ap-physics",
+   "ders": "physics-1",
+   "tur": "Nitel/nicel çeviri",
+   "baslik": "Water in a Narrowing Pipe",
+   "sure_dk": 22,
+   "hesapMakinesi": true,
+   "zorluk": "hard",
+   "giris": "<p>Water (density \\(\\rho\\)) flows steadily to the right through a horizontal pipe. The pipe narrows from a wide section 1 with cross-sectional area \\(A_1\\) to a narrow section 2 with cross-sectional area \\(A_2 = A_1/3\\). A thin vertical tube, open to the air at the top, is attached to the top of each section, and water rises in each tube to a height above the pipe's center line: \\(h_1\\) above section 1 and \\(h_2\\) above section 2. In section 1 the water moves with speed \\(v_1\\). Treat the water as an ideal fluid: incompressible, with no viscosity.</p>",
+   "parcalar": [
+    {
+     "harf": "a",
+     "soru": "<p>In which tube, if either, does the water rise higher? Without deriving or manipulating equations, explain your reasoning in a clear, coherent, paragraph-length response. Your response should refer to the speed of the water in each section and to the forces exerted on a small portion of water as it moves from section 1 to section 2.</p>",
+     "puan": 3,
+     "ne_soruyor": "Hangi tüpte suyun daha yükseğe çıkacağını, hız ve bir su parçasına etkiyen kuvvetler üzerinden paragraf hâlinde açıklamanı istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Doğru iddia: geniş kısımdaki tüp (\\(h_1\\)) daha yüksek."
+      },
+      {
+       "puan": 1,
+       "olcut": "Hız: aynı sürede her kesitten aynı hacim su geçmeli (su sıkıştırılamaz); dar kısımda su daha hızlı akar."
+      },
+      {
+       "puan": 1,
+       "olcut": "Kuvvet/basınç: su parçası 1'den 2'ye geçerken hızlanır, yani üzerine sağa doğru net kuvvet vardır; bu, arkadaki (1) basıncın öndeki (2) basınçtan büyük olmasını gerektirir. Tüpteki yükseklik o noktadaki basınçla artar."
+      }
+     ],
+     "ornek_cozum": "<p>Su sıkıştırılamadığından, her saniye geniş kısımdan geçen su hacmi dar kısımdan da geçmelidir. Dar kısım daha az kesit alanına sahip olduğu için su orada daha hızlı akar. O hâlde 1'den 2'ye geçen küçük bir su parçası <em>hızlanır</em>. Hızlanma, parçaya akış yönünde net bir kuvvet etki ettiğini gösterir. Boru yatay olduğundan bu net kuvvet yalnızca çevredeki suyun basıncından gelir: parçanın arkasındaki (geniş taraftaki) basınç, önündeki (dar taraftaki) basınçtan büyük olmalıdır. Açık tüpteki su sütununun yüksekliği o noktadaki basınçla orantılı olduğundan geniş kısımdaki tüpte su daha yükseğe çıkar.</p><p><strong>Model answer:</strong> <strong>The water rises higher in tube 1.</strong> Because the same volume of water passes each section per second, <strong>the water speeds up in the narrow section</strong>. To speed up, a portion of water <strong>needs a net force in the direction of flow</strong>, so <strong>the pressure behind it (section 1) must be greater than the pressure ahead (section 2)</strong>. Greater pressure supports a taller column, so \\(h_1 > h_2\\).</p>",
+     "sik_hatalar": [
+      "Dar kısımda su \"sıkıştığı\" için basıncın daha büyük olduğunu söylemek (yaygın sezgisel hata).",
+      "Yalnız \"Bernoulli ilkesi\" deyip hız ve kuvvet gerekçesini vermemek."
+     ]
+    },
+    {
+     "harf": "b",
+     "soru": "<p>Derive an expression for the difference \\(h_1 - h_2\\) in terms of \\(v_1\\) and physical constants as appropriate. Then calculate \\(h_1 - h_2\\) for \\(v_1 = 0.50\\ \\text{m/s}\\). Use \\(g = 9.8\\ \\text{m/s}^2\\).</p>",
+     "puan": 3,
+     "ne_soruyor": "Süreklilik ve enerji korunumunu birleştirip tüplerdeki yükseklik farkını türetmeni ve hesaplamanı istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "Süreklilik: \\(A_1 v_1 = A_2 v_2\\) ⇒ \\(v_2 = 3v_1\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "Bernoulli (yatay): \\(P_1 - P_2 = \\tfrac12\\rho(v_2^2 - v_1^2) = 4\\rho v_1^2\\), ve \\(P_1 - P_2 = \\rho g(h_1 - h_2)\\)."
+      },
+      {
+       "puan": 1,
+       "olcut": "\\(h_1 - h_2 = \\dfrac{4v_1^2}{g} \\approx 0.10\\ \\text{m}\\).",
+       "ornek_cevap": "\\(h_1 - h_2 = 4v_1^2/g \\approx 0.10\\ \\text{m}\\)"
+      }
+     ],
+     "ornek_cozum": "<p>Süreklilik: \\(A_1v_1 = (A_1/3)v_2 \\Rightarrow v_2 = 3v_1\\). Yatay boruda Bernoulli denklemi:</p>\\[P_1 + \\tfrac12\\rho v_1^2 = P_2 + \\tfrac12\\rho v_2^2 \\Rightarrow P_1 - P_2 = \\tfrac12\\rho(9v_1^2 - v_1^2) = 4\\rho v_1^2\\]<p>Açık tüplerde \\(P = P_{\\text{atm}} + \\rho g h\\) olduğundan \\(P_1 - P_2 = \\rho g(h_1 - h_2)\\):</p>\\[h_1 - h_2 = \\frac{4v_1^2}{g} = \\frac{4(0.50)^2}{9.8} \\approx 0.10\\ \\text{m}\\]<p><strong>Model answer:</strong> <strong>\\(v_2 = 3v_1\\)</strong> and <strong>\\(\\rho g(h_1 - h_2) = \\tfrac12\\rho(v_2^2 - v_1^2)\\)</strong>, so <strong>\\(h_1 - h_2 = 4v_1^2/g \\approx 0.10\\ \\text{m}\\)</strong>.</p>",
+     "sik_hatalar": [
+      "\\(v_2 = v_1/3\\) yazmak (süreklilikte oranı ters çevirmek).",
+      "\\(v_2^2 - v_1^2\\) yerine \\((v_2 - v_1)^2\\) kullanmak."
+     ]
+    },
+    {
+     "harf": "c",
+     "soru": "<p>(i) Explain how your expression from part (b) is consistent with your answer and reasoning in part (a). (ii) A student predicts that if the water were replaced by a denser liquid flowing with the same \\(v_1\\), the height difference would increase. Use your expression to evaluate this prediction.</p>",
+     "puan": 2,
+     "ne_soruyor": "Türettiğin ifadenin (a)'daki sonuçla tutarlılığını göstermeni ve sıvının yoğunluğu hakkındaki tahmini ifadeyle değerlendirmeni istiyor.",
+     "rubrik": [
+      {
+       "puan": 1,
+       "olcut": "(i) \\(4v_1^2/g\\) her zaman pozitif ⇒ \\(h_1 > h_2\\); fark akış hızına bağlı, su durursa (\\(v_1 = 0\\)) sıfır — (a)'daki \"fark hız değişiminden doğar\" akıl yürütmesiyle tutarlı."
+      },
+      {
+       "puan": 1,
+       "olcut": "(ii) Tahmin yanlış: \\(\\rho\\) ifadede yok (basınç farkı da sütun ağırlığı da \\(\\rho\\) ile orantılı, sadeleşir); yükseklik farkı aynı kalır."
+      }
+     ],
+     "ornek_cozum": "<p>(i) \\(h_1 - h_2 = 4v_1^2/g > 0\\) olduğundan geniş kısımdaki tüp daha yüksektir; bu (a)'daki cevabımızdır. Ayrıca fark yalnızca su akarken vardır (\\(v_1 = 0\\) ise fark 0): (a)'da basınç farkını suyun hızlanmasıyla açıklamıştık.</p><p>(ii) Yoğun sıvıda basınç farkı \\(4\\rho v_1^2\\) artar, ama aynı basıncı taşıyan sütunun yüksekliği \\(\\rho g\\) ile ters orantılıdır; \\(\\rho\\) sadeleşir. Fark değişmez.</p><p><strong>Model answer:</strong> (i) <strong>\\(4v_1^2/g\\) is positive, so \\(h_1 > h_2\\)</strong>, and it vanishes when the flow stops, as the reasoning in (a) requires. (ii) <strong>Disagree: \\(\\rho\\) cancels, so the height difference stays the same.</strong></p>",
+     "sik_hatalar": [
+      "Yoğunluk arttığı için basınç farkı artar ⇒ yükseklik farkı artar demek (sütunun da daha ağır olduğunu unutmak).",
+      "Tutarlılığı ifadenin işaretine ve sıfır-hız durumuna bağlamadan geçiştirmek."
+     ]
+    }
+   ],
+   "toplam_puan": 8,
+   "kaynak": "AP-style original (Meberra 1.24.0)",
+   "durum": "aktif",
+   "ek": {
+    "uretim": "1.24.0",
+    "cedKonu": "8.4, 8.2",
+    "tip": "Qualitative/Quantitative Translation",
     "onay": {
      "tarih": "2026-10-24",
      "kaynak": "bağımsız denetim (sahip yetkisiyle)"
