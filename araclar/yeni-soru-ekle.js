@@ -174,7 +174,9 @@ function calistir(secenek) {
     // LaTeX + kontrol karakteri
     const metinler = [["govde", q.govde], ["aciklama", q.aciklama], ["genel_hatirlatma", q.genel_hatirlatma]]
       .concat(sec.map(o => ["şık " + (o && o.id), o && o.text]))
-      .concat(Object.keys(ha).map(k => ["hata " + k, (ha[k] || {}).etiket + " " + (ha[k] || {}).aciklama]));
+      .concat(Object.keys(ha).map(k => ["hata " + k, (ha[k] || {}).etiket + " " + (ha[k] || {}).aciklama]))
+      // 1.28.0: ek metinleri de (precalc-u2'de ek.ipucu içinde ters bölüsü kaybolmuş LaTeX ve \t/\f vardı)
+      .concat(["kavram", "ipucu", "sikHata", "neSoruyor"].filter(k => q.ek && typeof q.ek[k] === "string").map(k => ["ek." + k, q.ek[k]]));
     metinler.forEach(([ad, v]) => { const s = latexSorunu(v) || paraSorunu(v); if (s) hata(q, `${ad}: ${s}`); });
     if (/[\u0000-\u0009\u000b\u000c\u000e-\u001f]/.test(metinler.map(x => String(x[1])).join(""))) hata(q, "kontrol karakteri ya da sekme (tek ters bölü kaçışı? \\text → sekme+ext)");
     // <code> içi hariç (Java/Javadoc yorumu /** … */ Markdown değildir)
