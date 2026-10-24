@@ -36,6 +36,12 @@ function htmlDenetle(h, yer, s) {
   if (ac2 !== kap2) s.push(yer + ": \\[ \\] dengesiz");
   if ((h.replace(/\\\$/g, "").match(/\$/g) || []).length % 2) s.push(yer + ": $ sayısı tek");
   if (/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(h)) s.push(yer + ": kontrol karakteri (tek ters bölü kaçışı?)");
+  // Ters bölüsü kaybolmuş LaTeX komutu (matematik içinde "frac{" ya da "lim_"): öğrenci bozuk formül görür
+  String(h).replace(/\\\((.*?)\\\)|\\\[(.*?)\\\]/gs, (m, a, b) => {
+    const k = /(^|[^\\a-zA-Z])(frac|dfrac|tfrac|sqrt|cdot|infty|theta|Delta|text|lim|int)(?=[{_^])/.exec(a || b || "");
+    if (k) s.push(yer + ": ters bölüsü eksik LaTeX komutu '" + k[2] + "'");
+    return m;
+  });
 }
 
 function denetle(o, dosya) {
@@ -55,6 +61,7 @@ function denetle(o, dosya) {
     if (!metin(k.baslik) || !metin(k.baslikTr)) s.push(y + ": baslik ve baslikTr zorunlu");
     if (k.sadeceBC != null && typeof k.sadeceBC !== "boolean") s.push(y + ": sadeceBC boolean olmalı");
     if (!Array.isArray(k.hedefler) || !k.hedefler.length || !k.hedefler.every(metin)) s.push(y + ": en az 1 hedef");
+    else k.hedefler.forEach((t, j) => htmlDenetle(t, y + " hedef[" + j + "]", s));
     htmlDenetle(k.anlatim, y + " anlatim", s);
     if (typeof k.anlatim === "string" && k.anlatim.replace(/<[^>]+>/g, "").length < 1200) s.push(y + ": anlatım en az 1200 karakter olmalı (" + k.anlatim.replace(/<[^>]+>/g, "").length + ")");
     if (!Array.isArray(k.ornekler) || k.ornekler.length < 2) s.push(y + ": en az 2 çözümlü örnek");

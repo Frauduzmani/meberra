@@ -24,6 +24,7 @@ bozuk(o => { o.konular[0].anlatim += "<span class='kirmizi'>"; }, /izinsiz/, "iz
 bozuk(o => { o.konular[0].anlatim += "\\(x"; }, /dengesiz/, "dengesiz MathJax");
 bozuk(o => { o.konular[0].anlatim += "\f"; }, /kontrol karakteri/, "kontrol karakteri");
 bozuk(o => { o.konular.push(konu()); }, /tekrarlanmış/, "tekrar kod");
+bozuk(o => { o.konular[0].hedefler = ["\\(frac{1}{2}\\) bul"]; o.konular[0].anlatim += "\\(lim_{x \\to 0} x\\)"; }, /ters bölüsü eksik LaTeX komutu 'lim'/, "ters bölüsü eksik LaTeX (anlatım)");
 bozuk(o => { o.konular[0].ipuclari = ["a"]; }, /3 ipucu/, "ipucu sayısı");
 bozuk(o => { o.konular[0].fazla = 1; }, /bilinmeyen alan/, "bilinmeyen alan");
 

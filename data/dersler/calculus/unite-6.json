@@ -1,0 +1,948 @@
+{
+ "ders": "calculus",
+ "unite": 6,
+ "baslik": "Integration and Accumulation of Change",
+ "baslikTr": "İntegral ve Değişimin Birikimi",
+ "konular": [
+  {
+   "kod": "6.1",
+   "baslik": "Exploring Accumulations of Change",
+   "baslikTr": "Değişimin birikimini keşfetmek",
+   "sadeceBC": false,
+   "hedefler": [
+    "Bir değişim hızının (rate of change) grafiği altındaki alanı, biriken toplam değişim (accumulated change) olarak yorumlamak.",
+    "Birim analizi yapmak: (hızın birimi) × (zamanın birimi) = biriken miktarın birimi.",
+    "Hız negatifken alanın işaretli (signed) olduğunu ve birikimi azalttığını göstermek."
+   ],
+   "anlatim": "<p>Ünite 6'nın ana fikri tek cümledir: <strong>bir hızı zamana göre toplarsan, toplam değişimi bulursun.</strong> Bir musluktan dakikada 3 litre su akıyorsa, 5 dakikada \\(3\\times5=15\\) litre su birikir. Bu çarpım, hız–zaman grafiğinde yüksekliği 3, genişliği 5 olan bir dikdörtgenin <strong>alanıdır (area)</strong>.</p>\n<h4>Sabit hızdan değişken hıza</h4>\n<p>Hız sabit değilse grafik bir eğridir. Yine de fikir değişmez: grafiğin altındaki alan, o zaman aralığında <strong>biriken değişimdir (accumulated change)</strong>. Bunu ileride \\(\\int_a^b r(t)\\,dt\\) ile yazacağız; şimdilik alanı geometriyle (dikdörtgen, üçgen, yamuk) hesaplıyoruz.</p>\n<div class=\"kn-tanim\"><strong>Birikim (accumulation):</strong> \\(r(t)\\) bir miktarın değişim hızıysa, \\(a\\le t\\le b\\) aralığında grafik ile \\(t\\)-ekseni arasındaki işaretli alan = o miktarın bu aralıktaki <em>net değişimi (net change)</em>.</div>\n<h4>Birim analizi (units)</h4>\n<table><thead><tr><th>Hız \\(r(t)\\)</th><th>\\(t\\)</th><th>Alanın birimi</th></tr></thead>\n<tbody>\n<tr><td>litre / dakika</td><td>dakika</td><td>litre</td></tr>\n<tr><td>metre / saniye (velocity)</td><td>saniye</td><td>metre (yer değiştirme)</td></tr>\n<tr><td>kişi / saat</td><td>saat</td><td>kişi</td></tr>\n<tr><td>dolar / gün</td><td>gün</td><td>dolar</td></tr>\n</tbody></table>\n<p>Kural: alan = yükseklik × genişlik olduğu için birim de <em>(dikey eksen birimi) × (yatay eksen birimi)</em> olur. “per” ifadesi çarpılınca sadeleşir.</p>\n<h4>İşaretli alan: negatif hız</h4>\n<p>Hız grafiği \\(t\\)-ekseninin altına inerse miktar azalıyordur. Eksenin altındaki alan <strong>negatif</strong> sayılır. Örneğin bir parçacığın hızı ilk 4 saniye \\(+2\\) m/s, sonraki 3 saniye \\(-1\\) m/s ise:</p>\n<ul>\n<li>yer değiştirme (displacement) \\(=2(4)+(-1)(3)=5\\) m,</li>\n<li>toplam yol (total distance) \\(=|8|+|-3|=11\\) m.</li>\n</ul>\n<div class=\"kn-dikkat\">“Net change / displacement” sorulursa işaretli alanları topla; “total distance / total amount” gibi yön bağımsız bir toplam sorulursa alanların mutlak değerlerini topla.</div>\n<h4>Biriken miktar = başlangıç + değişim</h4>\n<p>Başlangıçta tankta 40 L su varsa ve 0–10 dakikada akış grafiğinin altındaki alan 25 L ise, \\(t=10\\)'da tankta \\(40+25=65\\) L vardır. Bu “başlangıç değeri + birikim” kalıbı tüm ünitede (ve 6.7'de FTC ile) tekrar karşına çıkacak.</p>\n<div class=\"kn-kural\"><strong>FRQ kalıbı:</strong> “The area under the graph of \\(r\\) from \\(t=0\\) to \\(t=10\\) represents the total number of liters of water that flowed into the tank during the first 10 minutes.” Cevaba her zaman <strong>birim</strong> ve <strong>zaman aralığı</strong> ekle.</div>",
+   "ornekler": [
+    {
+     "soru": "Bir pompa suyu ilk 6 dakika dakikada 4 litre, sonraki 4 dakika dakikada 9 litre hızla bir havuza basıyor. 10 dakikada havuza kaç litre su girer?",
+     "cozum": [
+      "Hız–zaman grafiği iki dikdörtgenden oluşur: \\(4\\times6=24\\) L ve \\(9\\times4=36\\) L.",
+      "Toplam birikim \\(=24+36=60\\) litre. Birim: (L/dk)·(dk) = L."
+     ]
+    },
+    {
+     "soru": "Bir parçacığın hız grafiği \\((0,0)\\)'dan \\((2,6)\\)'ya, oradan \\((5,-3)\\)'e giden doğru parçalarından oluşuyor (hız m/s, zaman s). \\(0\\le t\\le5\\) için yer değiştirmeyi ve toplam yolu bulun.",
+     "cozum": [
+      "Grafik \\(t=2\\)'den sonra \\(t\\)-eksenini \\(6-3(t-2)=0\\Rightarrow t=4\\)'te keser.",
+      "Alanlar: \\([0,2]\\) üçgen \\(\\tfrac12(2)(6)=6\\); \\([2,4]\\) üçgen \\(\\tfrac12(2)(6)=6\\); \\([4,5]\\) eksen altı üçgen \\(\\tfrac12(1)(3)=1.5\\).",
+      "Yer değiştirme \\(=6+6-1.5=10.5\\) m; toplam yol \\(=6+6+1.5=13.5\\) m."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir otoparka giren arabaların hızı \\(E(t)\\) araba/saat, \\(t\\) saat. “\\(E\\) grafiğinin \\(t=1\\) ile \\(t=3\\) arasındaki alanı” bağlam içinde açıklayın.",
+     "cozum": [
+      "Birim: (araba/saat)·(saat) = araba.",
+      "“The area represents the total number of cars that entered the parking lot from \\(t=1\\) to \\(t=3\\) hours.” — birim ve aralık birlikte yazılmalı."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her birikim cevabına birim yaz: hız birimi × zaman birimi. Birimsiz cevap FRQ'da genellikle puan kaybettirir.",
+    "Grafik doğru parçalarıysa alanı dikdörtgen/üçgen/yamuk olarak böl; eksen kesişim noktalarını önce bul.",
+    "Soru “net” ya da “displacement” diyorsa işaretli alan; “total distance” diyorsa mutlak değerli alan kullan.",
+    "“Amount at time t” sorularında başlangıç miktarını eklemeyi unutma."
+   ],
+   "sikHatalar": [
+    "Eksen altındaki alanı pozitif sayıp net değişimi fazla bulmak.",
+    "Hızın kendisini (ör. 9 L/dk) biriken miktar sanmak; hız bir anlık değerdir, miktar ise alandır.",
+    "Başlangıç değerini eklemeden “tanktaki su miktarı”nı vermek."
+   ],
+   "terimler": [
+    {
+     "en": "rate of change",
+     "tr": "değişim hızı"
+    },
+    {
+     "en": "accumulated change",
+     "tr": "biriken değişim"
+    },
+    {
+     "en": "net change",
+     "tr": "net değişim"
+    },
+    {
+     "en": "displacement",
+     "tr": "yer değiştirme"
+    },
+    {
+     "en": "total distance",
+     "tr": "toplam yol"
+    },
+    {
+     "en": "signed area",
+     "tr": "işaretli alan"
+    }
+   ]
+  },
+  {
+   "kod": "6.2",
+   "baslik": "Approximating Areas with Riemann Sums",
+   "baslikTr": "Riemann toplamlarıyla alan yaklaşımı",
+   "sadeceBC": false,
+   "hedefler": [
+    "Fonksiyon formülünden, grafikten ya da (eşit olmayan aralıklı) tablodan left, right, midpoint Riemann toplamı ve trapezoidal sum hesaplamak.",
+    "Fonksiyonun artan/azalan (ve konkavlık) bilgisinden yaklaşımın fazla (overestimate) mı eksik (underestimate) mi olduğunu gerekçelendirmek.",
+    "Riemann toplamını bağlam içinde birimle yorumlamak."
+   ],
+   "anlatim": "<p>Grafiğin altındaki alanı tam hesaplayamadığımızda (ya da fonksiyonu yalnız bir tablodan bildiğimizde) alanı dikdörtgenlerle veya yamuklarla <strong>yaklaşık</strong> buluruz. AP sınavında bu konu en çok <strong>tablo</strong> ile gelir ve aralıklar çoğu zaman <strong>eşit değildir</strong>.</p>\n<h4>Dört yöntem</h4>\n<table><thead><tr><th>Yöntem</th><th>Yükseklik</th><th>Formül (alt aralık \\([x_{i-1},x_i]\\), genişlik \\(\\Delta x_i\\))</th></tr></thead>\n<tbody>\n<tr><td>Left Riemann sum</td><td>sol uç</td><td>\\(\\sum f(x_{i-1})\\,\\Delta x_i\\)</td></tr>\n<tr><td>Right Riemann sum</td><td>sağ uç</td><td>\\(\\sum f(x_{i})\\,\\Delta x_i\\)</td></tr>\n<tr><td>Midpoint Riemann sum</td><td>orta nokta</td><td>\\(\\sum f\\!\\left(\\tfrac{x_{i-1}+x_i}{2}\\right)\\Delta x_i\\)</td></tr>\n<tr><td>Trapezoidal sum</td><td>iki ucun ortalaması</td><td>\\(\\sum \\tfrac{f(x_{i-1})+f(x_i)}{2}\\,\\Delta x_i\\)</td></tr>\n</tbody></table>\n<p>Tabloda midpoint kullanmak için orta noktadaki değerin <em>tabloda olması</em> gerekir. Örneğin \\(t=0,2,4,6,8\\) verilmişse, \\([0,8]\\) üzerinde iki alt aralıklı midpoint toplamı \\(4f(2)+4f(6)\\) olur.</p>\n<h4>Eşit olmayan aralıklar</h4>\n<p>Her alt aralığın genişliğini ayrı yaz. \\(t:0,2,5,7,10\\) için genişlikler \\(2,3,2,3\\)'tür. Tek bir \\(\\Delta x\\) çarpanı kullanmak en sık puan kaybıdır.</p>\n<div class=\"kn-kural\"><strong>Fazla mı eksik mi? (over/under)</strong>\n<ul>\n<li>\\(f\\) <strong>artan</strong> (increasing): left sum eksik (under), right sum fazla (over).</li>\n<li>\\(f\\) <strong>azalan</strong> (decreasing): left sum fazla, right sum eksik.</li>\n<li>\\(f\\) <strong>konkav yukarı</strong> (concave up): trapezoid fazla, midpoint eksik.</li>\n<li>\\(f\\) <strong>konkav aşağı</strong> (concave down): trapezoid eksik, midpoint fazla.</li>\n</ul></div>\n<p>Neden? Artan bir fonksiyonda her alt aralıktaki en küçük değer sol uçtadır; sol uç yüksekliğiyle çizilen dikdörtgen eğrinin altında kalır. Konkav yukarı bir eğride yamuğun üst kenarı (kiriş, secant) eğrinin üstünde kalır.</p>\n<div class=\"kn-dikkat\">Monotonluk bilinmiyorsa (tablo yalnızca birkaç değer veriyorsa) “over/under” kararı verilemez. AP genellikle “\\(f\\) is increasing” gibi bir bilgiyi açıkça verir; gerekçede bu bilgiye atıf yap.</div>\n<h4>Bağlam ve birim</h4>\n<p>\\(r(t)\\) litre/saat ise Riemann toplamı litre cinsinden, o aralıkta akan toplam suyun <em>yaklaşığıdır</em>. FRQ'da “approximately” ve birim yaz.</p>\n<div class=\"kn-kural\"><strong>FRQ kalıbı:</strong> “The left Riemann sum is an underestimate because \\(r\\) is increasing on \\(0\\le t\\le10\\), so \\(r(t_{i-1})\\le r(t)\\) on each subinterval.” Toplamı yazarken hesap dökümünü göster: \\(2(12)+3(15)+2(20)+3(18)\\).</div>\n<h4>Özet tablo: hangi bilgi hangi kararı verir?</h4>\n<table><thead><tr><th>\\(f\\) bilgisi</th><th>Left</th><th>Right</th><th>Midpoint</th><th>Trapezoid</th></tr></thead>\n<tbody>\n<tr><td>artan</td><td>eksik</td><td>fazla</td><td>—</td><td>—</td></tr>\n<tr><td>azalan</td><td>fazla</td><td>eksik</td><td>—</td><td>—</td></tr>\n<tr><td>konkav yukarı</td><td>—</td><td>—</td><td>eksik</td><td>fazla</td></tr>\n<tr><td>konkav aşağı</td><td>—</td><td>—</td><td>fazla</td><td>eksik</td></tr>\n</tbody></table>\n<p>“—”, o bilginin tek başına karar vermediği anlamına gelir: artan bir fonksiyonda yamuk toplamı fazla da olabilir eksik de; karar konkavlığa bağlıdır. Konkavlık aralık içinde değişiyorsa (ör. \\(e^{-x^2}\\), \\(x=\\tfrac{1}{\\sqrt2}\\)'de büküm noktası) kural uygulanamaz; hesap makinesi bölümünde toplamı fnInt ile bulunan değerle karşılaştır.</p>",
+   "ornekler": [
+    {
+     "soru": "Tablo: \\(t\\) (saat) 0, 1, 3, 4, 7; \\(R(t)\\) (L/saat) 10, 14, 15, 20, 22. \\(R\\) artandır. Right Riemann toplamıyla \\(\\int_0^7 R(t)\\,dt\\)'yi yaklaşıklayın ve fazla/eksik olduğunu belirtin.",
+     "cozum": [
+      "Genişlikler: 1, 2, 1, 3. Sağ uç değerleri: 14, 15, 20, 22.",
+      "\\(1(14)+2(15)+1(20)+3(22)=14+30+20+66=130\\) litre.",
+      "\\(R\\) artan olduğundan her alt aralıkta sağ uç en büyük değerdir ⇒ right sum <strong>overestimate</strong>."
+     ]
+    },
+    {
+     "soru": "Aynı tablo için trapezoidal sum ile \\(\\int_0^7 R(t)\\,dt\\)'yi hesaplayın.",
+     "cozum": [
+      "\\(\\tfrac{10+14}{2}(1)+\\tfrac{14+15}{2}(2)+\\tfrac{15+20}{2}(1)+\\tfrac{20+22}{2}(3)\\).",
+      "\\(=12+29+17.5+63=121.5\\) litre."
+     ]
+    },
+    {
+     "soru": "\\(f(x)=\\sqrt{x}\\) için \\([0,4]\\) aralığında iki eşit alt aralıklı midpoint toplamını bulun; bu değer gerçek integralden büyük mü küçük mü?",
+     "cozum": [
+      "Orta noktalar 1 ve 3, \\(\\Delta x=2\\): \\(M=2(\\sqrt1+\\sqrt3)\\approx5.464\\).",
+      "\\(f''(x)=-\\tfrac14x^{-3/2}\\lt0\\): konkav aşağı ⇒ midpoint <strong>overestimate</strong>. (Gerçek değer \\(\\tfrac{16}{3}\\approx5.333\\).)"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Tabloda önce genişlik satırı yaz (Δt değerleri), sonra yükseklikleri seç; aralıklar eşit değilse ortak çarpan yok.",
+    "Over/under gerekçesinde “because f is increasing/decreasing” ya da “concave up/down” ifadesini mutlaka kullan.",
+    "Trapezoidal sum = (left + right)/2 yalnızca aralıklar aynı olduğunda değil, her durumda doğrudur; kontrol için kullan.",
+    "Midpoint toplamı için orta nokta değerlerinin tabloda olup olmadığını kontrol et; yoksa o aralık bölünmesiyle midpoint kullanılamaz."
+   ],
+   "sikHatalar": [
+    "Eşit olmayan aralıklarda tek Δx kullanmak.",
+    "Right sum'da ilk değeri, left sum'da son değeri de toplama katmak (n+1 terim toplamak).",
+    "Konkavlık kuralını monotonluk kuralıyla karıştırmak (trapezoid için konkavlık, left/right için monotonluk belirleyicidir)."
+   ],
+   "terimler": [
+    {
+     "en": "left/right Riemann sum",
+     "tr": "sol/sağ Riemann toplamı"
+    },
+    {
+     "en": "midpoint sum",
+     "tr": "orta nokta toplamı"
+    },
+    {
+     "en": "trapezoidal sum",
+     "tr": "yamuk toplamı"
+    },
+    {
+     "en": "subinterval",
+     "tr": "alt aralık"
+    },
+    {
+     "en": "overestimate / underestimate",
+     "tr": "fazla / eksik tahmin"
+    }
+   ]
+  },
+  {
+   "kod": "6.3",
+   "baslik": "Riemann Sums, Summation Notation, and Definite Integral Notation",
+   "baslikTr": "Riemann toplamları, toplam sembolü ve belirli integral gösterimi",
+   "sadeceBC": false,
+   "hedefler": [
+    "Bir Riemann toplamını Σ (sigma) gösterimiyle yazmak ve okumak.",
+    "\\(\\lim_{n\\to\\infty}\\sum f(x_k)\\,\\Delta x\\) biçimindeki limiti belirli integrale (definite integral) çevirmek ve tersini yapmak.",
+    "Aynı limitin farklı integral yazımlarına (farklı fonksiyon/aralık) karşılık gelebildiğini görmek."
+   ],
+   "anlatim": "<p>6.2'de birkaç dikdörtgen kullandık. Dikdörtgen sayısı \\(n\\) sonsuza giderken toplam, alanın <strong>tam</strong> değerine yaklaşır. Bu limit <strong>belirli integralin (definite integral)</strong> tanımıdır.</p>\n<div class=\"kn-tanim\">\\[\\int_a^b f(x)\\,dx=\\lim_{n\\to\\infty}\\sum_{k=1}^{n} f(x_k)\\,\\Delta x,\\qquad \\Delta x=\\frac{b-a}{n},\\quad x_k=a+k\\,\\Delta x\\]\nBu, <em>right</em> Riemann toplamının limitidir; \\(f\\) sürekli (continuous) ise left ya da midpoint toplamlarının limiti de aynı sayıyı verir.</div>\n<h4>Sigma gösterimini okumak</h4>\n<p>\\(\\sum_{k=1}^{n}\\) “k = 1'den n'e kadar topla” demektir. Bir limit verildiğinde üç parçayı ayır:</p>\n<ol>\n<li><strong>\\(\\Delta x\\)</strong>: \\(k\\)'ya bağlı olmayan çarpan, genellikle \\(\\frac{b-a}{n}\\) biçiminde (ör. \\(\\frac{3}{n}\\) ⇒ aralık uzunluğu 3).</li>\n<li><strong>\\(x_k\\)</strong>: \\(k\\)'yı içeren ifade, genellikle \\(a+\\frac{(b-a)k}{n}\\) biçiminde (ör. \\(2+\\frac{3k}{n}\\) ⇒ \\(a=2\\)).</li>\n<li><strong>\\(f\\)</strong>: \\(x_k\\)'ya uygulanan işlem (ör. \\((\\,\\cdot\\,)^2\\), \\(\\ln(\\,\\cdot\\,)\\)).</li>\n</ol>\n<table><thead><tr><th>Limit</th><th>\\(\\Delta x\\)</th><th>\\(x_k\\)</th><th>İntegral</th></tr></thead>\n<tbody>\n<tr><td>\\(\\lim\\sum\\frac{3}{n}\\left(2+\\frac{3k}{n}\\right)^2\\)</td><td>\\(\\frac3n\\)</td><td>\\(2+\\frac{3k}{n}\\)</td><td>\\(\\int_2^5 x^2\\,dx\\)</td></tr>\n<tr><td>\\(\\lim\\sum\\frac{1}{n}\\sqrt{\\frac{k}{n}}\\)</td><td>\\(\\frac1n\\)</td><td>\\(\\frac kn\\)</td><td>\\(\\int_0^1\\sqrt x\\,dx\\)</td></tr>\n<tr><td>\\(\\lim\\sum\\frac{2}{n}e^{1+\\frac{2k}{n}}\\)</td><td>\\(\\frac2n\\)</td><td>\\(1+\\frac{2k}{n}\\)</td><td>\\(\\int_1^3 e^x\\,dx\\)</td></tr>\n</tbody></table>\n<div class=\"kn-dikkat\">Aynı limit birden çok integralle yazılabilir. \\(\\lim\\sum\\frac{3}{n}\\left(2+\\frac{3k}{n}\\right)^2\\) hem \\(\\int_2^5 x^2dx\\) hem de \\(\\int_0^3 (2+x)^2dx\\)'tir (değişken kaydırma). Şıklarda “eşdeğer olanı” ara.</div>\n<h4>Gösterim ayrıntıları</h4>\n<ul>\n<li>\\(\\int_a^b f(x)\\,dx\\)'te \\(x\\) bir “kukla değişkendir (dummy variable)”: \\(\\int_a^b f(t)\\,dt\\) aynı sayıdır.</li>\n<li>\\(dx\\), \\(\\Delta x\\)'in limitteki karşılığıdır; integralin “genişlik” kısmıdır.</li>\n<li>\\(\\Delta x\\) çarpanı katsayıyla gelebilir: \\(\\frac{6}{n}=2\\cdot\\frac{3}{n}\\) ⇒ \\(\\Delta x=\\frac3n\\) ve integrand 2 ile çarpılır. Hangi parçanın \\(\\Delta x\\) olduğuna, \\(x_k\\) içindeki \\(k\\) katsayısına bakarak karar ver: \\(x_k\\)'daki \\(\\frac{3k}{n}\\) ⇒ \\(\\Delta x=\\frac3n\\).</li>\n</ul>\n<div class=\"kn-kural\"><strong>Strateji:</strong> Önce \\(x_k\\)'yı bul (\\(k\\)'nın içinde olduğu ifade), oradan \\(a\\) ve \\(\\Delta x\\)'i oku, \\(b=a+n\\Delta x\\) ile üst sınırı hesapla, sonra kalan çarpanları integranda yerleştir.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\lim_{n\\to\\infty}\\sum_{k=1}^{n}\\frac{4}{n}\\left(1+\\frac{4k}{n}\\right)^3\\) limitini belirli integral olarak yazın.",
+     "cozum": [
+      "\\(x_k=1+\\frac{4k}{n}\\) ⇒ \\(a=1\\), \\(\\Delta x=\\frac4n\\), \\(b=1+4=5\\).",
+      "\\(f(x)=x^3\\) ⇒ limit \\(=\\int_1^5 x^3\\,dx\\) (eşdeğer olarak \\(\\int_0^4(1+x)^3dx\\))."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\lim_{n\\to\\infty}\\sum_{k=1}^{n}\\frac{2}{n}\\cdot\\frac{2k}{n}\\) limitinin değerini bulun.",
+     "cozum": [
+      "\\(x_k=\\frac{2k}{n}\\), \\(\\Delta x=\\frac2n\\) ⇒ \\(\\int_0^2 x\\,dx\\).",
+      "Bu bir üçgenin alanıdır: \\(\\tfrac12(2)(2)=2\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\int_0^{\\pi}\\sin x\\,dx\\)'i right Riemann toplamının limiti olarak yazın.",
+     "cozum": [
+      "\\(\\Delta x=\\frac{\\pi}{n}\\), \\(x_k=\\frac{\\pi k}{n}\\).",
+      "\\(\\displaystyle\\lim_{n\\to\\infty}\\sum_{k=1}^{n}\\sin\\!\\left(\\frac{\\pi k}{n}\\right)\\frac{\\pi}{n}\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "x_k içindeki k'nın katsayısı Δx'tir; sabit terim alt sınır a'dır.",
+    "Üst sınır b = a + (b − a); Δx = (b − a)/n ilişkisinden aralık uzunluğunu oku.",
+    "Şıklarda kaydırılmış (shifted) integralleri de kontrol et: ∫₂⁵ x² dx = ∫₀³ (x+2)² dx.",
+    "Limit değeri isteniyorsa önce integrale çevir, sonra geometriyle ya da antitürevle hesapla."
+   ],
+   "sikHatalar": [
+    "Alt sınırı unutup x_k = 2 + 3k/n için ∫₀³ x² dx yazmak.",
+    "Δx'i yanlış seçmek (ör. 6/n çarpanını tümüyle Δx sanmak, oysa x_k'da 3k/n var).",
+    "Üst sınırı b = Δx sanmak (∫₂³ yazmak)."
+   ],
+   "terimler": [
+    {
+     "en": "summation notation",
+     "tr": "toplam (sigma) gösterimi"
+    },
+    {
+     "en": "definite integral",
+     "tr": "belirli integral"
+    },
+    {
+     "en": "limit of a Riemann sum",
+     "tr": "Riemann toplamının limiti"
+    },
+    {
+     "en": "integrand",
+     "tr": "integral alınan fonksiyon"
+    },
+    {
+     "en": "dummy variable",
+     "tr": "kukla değişken"
+    }
+   ]
+  },
+  {
+   "kod": "6.4",
+   "baslik": "The Fundamental Theorem of Calculus and Accumulation Functions",
+   "baslikTr": "Kalkülüsün temel teoremi ve birikim fonksiyonları",
+   "sadeceBC": false,
+   "hedefler": [
+    "Birikim fonksiyonu (accumulation function) \\(g(x)=\\int_a^x f(t)\\,dt\\)'yi tanımak ve değerlerini alanlardan hesaplamak.",
+    "FTC Part 1'i (\\(g'(x)=f(x)\\)) zincir kuralıyla birlikte değişken sınırlara uygulamak.",
+    "\\(g\\)'nin alt sınırda sıfır olduğunu ve alt sınırın solunda işaretin ters döndüğünü kullanmak."
+   ],
+   "anlatim": "<p>Üst sınırı değişken olan bir integral, yeni bir fonksiyon tanımlar:</p>\n<div class=\"kn-tanim\">\\[g(x)=\\int_a^x f(t)\\,dt\\]\n\\(g(x)\\) = \\(t=a\\)'dan \\(t=x\\)'e kadar \\(f\\) grafiği ile eksen arasındaki <strong>işaretli alan</strong>. Bu bir <strong>birikim fonksiyonudur (accumulation function)</strong>. Her zaman \\(g(a)=0\\).</div>\n<h4>Kalkülüsün Temel Teoremi, Kısım 1 (FTC Part 1)</h4>\n<div class=\"kn-kural\">\\(f\\) sürekli (continuous) ise \\(\\displaystyle \\frac{d}{dx}\\int_a^x f(t)\\,dt=f(x)\\).</div>\n<p>Yani birikimin değişim hızı, o anki integranddır. Sezgi: \\(x\\) biraz artarsa alana yaklaşık \\(f(x)\\cdot\\Delta x\\) eklenir, oran \\(f(x)\\)'tir. Bu teorem türev ile integrali birbirinin <strong>ters işlemi</strong> yapar.</p>\n<h4>Zincir kuralıyla (chain rule)</h4>\n<table><thead><tr><th>Fonksiyon</th><th>Türev</th></tr></thead>\n<tbody>\n<tr><td>\\(\\int_a^{x} f(t)\\,dt\\)</td><td>\\(f(x)\\)</td></tr>\n<tr><td>\\(\\int_a^{u(x)} f(t)\\,dt\\)</td><td>\\(f(u(x))\\cdot u'(x)\\)</td></tr>\n<tr><td>\\(\\int_x^{a} f(t)\\,dt\\)</td><td>\\(-f(x)\\)</td></tr>\n<tr><td>\\(\\int_{v(x)}^{u(x)} f(t)\\,dt\\)</td><td>\\(f(u(x))u'(x)-f(v(x))v'(x)\\)</td></tr>\n</tbody></table>\n<p>Örnek: \\(\\frac{d}{dx}\\int_2^{x^2}\\sqrt{1+t^3}\\,dt=\\sqrt{1+x^6}\\cdot2x\\). Sabit alt sınır (2) türevde hiç görünmez.</p>\n<h4>Grafikten değer okuma</h4>\n<p>\\(f\\)'nin grafiği verilip \\(g(x)=\\int_{-2}^{x}f(t)\\,dt\\) sorulursa:</p>\n<ul>\n<li>\\(x\\gt a\\): \\(g(x)\\) = \\(a\\)'dan \\(x\\)'e işaretli alan (eksen üstü +, altı −).</li>\n<li>\\(x\\lt a\\): \\(g(x)=\\int_a^x f=-\\int_x^a f\\). Sağdan sola gidildiği için işaret ters döner: eksenin üstündeki alan bu kez <em>negatif</em> katkı yapar.</li>\n<li>\\(g'(x)=f(x)\\) doğrudan grafikten okunur; \\(g''(x)=f'(x)\\) grafiğin eğimidir.</li>\n</ul>\n<div class=\"kn-dikkat\">\\(g(x)\\) değerini \\(f(x)\\) ile karıştırma: \\(g(3)\\) bir <em>alan</em>, \\(g'(3)=f(3)\\) ise grafikteki <em>yükseklik</em>tir.</div>\n<h4>Hesap makinesi (calculator active)</h4>\n<p>\\(g(x)=5+\\int_1^x e^{-t^2}\\,dt\\) gibi elle integrali alınamayan fonksiyonlarda \\(g(2)\\)'yi fnInt ile bulursun: \\(g(2)=5+\\int_1^2 e^{-t^2}dt\\approx5.135\\). \\(g'(2)\\) ise hiç integral gerektirmez: \\(e^{-4}\\).</p>\n<div class=\"kn-kural\"><strong>FRQ kalıbı:</strong> “By the Fundamental Theorem of Calculus, \\(g'(x)=f(x)\\).” · “\\(g(3)=\\int_{-2}^{3}f(t)\\,dt=\\) (geometrik alanlar) \\(=\\ldots\\)” — kullandığın alanları (üçgen, yarım daire) ayrı ayrı yaz.</div>\n<h4>Zincir kuralı neden gelir?</h4>\n<p>\\(F\\), \\(f\\)'nin bir antitürevi olsun. O zaman \\(H(x)=\\int_a^{u(x)}f(t)\\,dt=F(u(x))-F(a)\\). Türev alınca \\(F(a)\\) sabit olduğu için kaybolur ve zincir kuralı \\(H'(x)=F'(u(x))\\,u'(x)=f(u(x))\\,u'(x)\\) verir. İki sınır da değişkense integrali sabit bir \\(c\\) noktasında böl: \\(\\int_{v(x)}^{u(x)}f=\\int_c^{u(x)}f-\\int_c^{v(x)}f\\).</p>\n<p>Örnek: \\(\\frac{d}{dx}\\int_{3x}^{x^2}\\cos t\\,dt=\\cos(x^2)\\cdot2x-\\cos(3x)\\cdot3\\). Kontrol: integral \\(\\sin(x^2)-\\sin(3x)\\)'e eşittir ve bunun türevi aynı sonucu verir.</p>\n<h4>Grafik sorusu için dört adımlı rutin</h4>\n<ol>\n<li>Alt sınırı işaretle: orada \\(g=0\\).</li>\n<li>\\(f\\)'nin \\(t\\)-eksenini kestiği noktaları bul; alanı üçgen, dikdörtgen, yamuk ve daire parçalarına böl.</li>\n<li>Sağa giderken alanları işaretiyle ekle; sola giderken işaretleri ters çevir.</li>\n<li>\\(g'(c)=f(c)\\) ve \\(g''(c)=f'(c)\\) değerlerini grafikten oku. \\(f\\)'nin köşe yaptığı noktada \\(g''\\) tanımsızdır, ama \\(g'\\) yine vardır ve \\(f\\)'ye eşittir.</li>\n</ol>",
+   "ornekler": [
+    {
+     "soru": "\\(F(x)=\\int_{1}^{\\sin x}\\frac{dt}{1+t^2}\\) ise \\(F'(x)\\) nedir?",
+     "cozum": [
+      "FTC + zincir kuralı: integranda \\(t=\\sin x\\) yaz, \\(\\frac{d}{dx}\\sin x=\\cos x\\) ile çarp.",
+      "\\(F'(x)=\\dfrac{\\cos x}{1+\\sin^2x}\\)."
+     ]
+    },
+    {
+     "soru": "\\(f\\)'nin grafiği \\([0,6]\\)'da \\((0,2),(2,2),(4,-2),(6,-2)\\) noktalarını birleştiren doğru parçalarıdır. \\(g(x)=\\int_2^x f(t)\\,dt\\). \\(g(0)\\), \\(g(4)\\), \\(g(6)\\)'yı bulun.",
+     "cozum": [
+      "\\(g(0)=-\\int_0^2 f=-(2\\cdot2)=-4\\) (alan pozitif ama sola gidiyoruz).",
+      "\\([2,4]\\)'te \\(f\\) doğrusal, \\(t=3\\)'te sıfır: \\(+1\\) ve \\(-1\\) üçgenleri ⇒ \\(g(4)=0\\).",
+      "\\(g(6)=g(4)+\\int_4^6 f=0+(-2)(2)=-4\\)."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi) \\(h(x)=3+\\int_0^x \\cos(t^2)\\,dt\\). \\(h(1.5)\\) ve \\(h'(1.5)\\)'i bulun.",
+     "cozum": [
+      "\\(h(1.5)=3+\\int_0^{1.5}\\cos(t^2)\\,dt\\approx3+0.899=3.899\\) (fnInt, radyan).",
+      "FTC: \\(h'(1.5)=\\cos(2.25)\\approx-0.628\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Alt sınır sabitse türevde kaybolur; üst sınır x değil de u(x) ise sonucu u'(x) ile çarp.",
+    "g(a) = 0 kontrolü ile başlangıç noktası hatalarını yakala.",
+    "Alt sınırın solundaki değerlerde işareti tersine çevirmeyi unutma: g(x) = −∫ₓᵃ f(t) dt.",
+    "Calculator bölümünde g(x) için fnInt, g'(x) için yalnız FTC kullan; türevi sayısal almaya gerek yok."
+   ],
+   "sikHatalar": [
+    "d/dx ∫ₐ^{x²} f(t) dt = f(x²) yazıp 2x çarpanını unutmak.",
+    "g'(x) = f(x) − f(a) yazmak (FTC Part 1'de alt sınırın katkısı yoktur).",
+    "Grafikten g(x) isterken f(x) değerini okumak."
+   ],
+   "terimler": [
+    {
+     "en": "accumulation function",
+     "tr": "birikim fonksiyonu"
+    },
+    {
+     "en": "Fundamental Theorem of Calculus",
+     "tr": "kalkülüsün temel teoremi"
+    },
+    {
+     "en": "variable upper limit",
+     "tr": "değişken üst sınır"
+    },
+    {
+     "en": "chain rule",
+     "tr": "zincir kuralı"
+    }
+   ]
+  },
+  {
+   "kod": "6.5",
+   "baslik": "Interpreting the Behavior of Accumulation Functions Involving Area",
+   "baslikTr": "Alan içeren birikim fonksiyonlarının davranışını yorumlamak",
+   "sadeceBC": false,
+   "hedefler": [
+    "\\(g(x)=\\int_a^x f(t)\\,dt\\) için \\(f\\) grafiğinden \\(g\\)'nin artan/azalan aralıklarını, ekstremumlarını ve konkavlığını gerekçesiyle bulmak.",
+    "Mutlak (absolute) maksimum/minimumu aday testi (candidates test) ve alan karşılaştırmasıyla belirlemek.",
+    "Bağlamda (ör. tanktaki su miktarı) birikim fonksiyonunun en büyük olduğu anı açıklamak."
+   ],
+   "anlatim": "<p>Ünite 5'teki tüm analiz araçları birikim fonksiyonuna uygulanır; tek fark, türevin zaten elimizde olmasıdır: \\(g'(x)=f(x)\\), \\(g''(x)=f'(x)\\). Bu yüzden \\(f\\)'nin grafiği, \\(g\\)'nin <em>türev grafiği</em> gibi okunur.</p>\n<h4>Çeviri tablosu</h4>\n<table><thead><tr><th>\\(f\\) grafiğinde gördüğün</th><th>\\(g\\) için anlamı</th></tr></thead>\n<tbody>\n<tr><td>\\(f\\gt0\\) (eksen üstü)</td><td>\\(g\\) artan (increasing)</td></tr>\n<tr><td>\\(f\\lt0\\) (eksen altı)</td><td>\\(g\\) azalan (decreasing)</td></tr>\n<tr><td>\\(f\\) + dan − ye işaret değiştiriyor</td><td>\\(g\\)'nin yerel maksimumu (relative max)</td></tr>\n<tr><td>\\(f\\) − den + ya işaret değiştiriyor</td><td>\\(g\\)'nin yerel minimumu</td></tr>\n<tr><td>\\(f\\) artan (eğim +)</td><td>\\(g\\) konkav yukarı (concave up)</td></tr>\n<tr><td>\\(f\\) azalan (eğim −)</td><td>\\(g\\) konkav aşağı</td></tr>\n<tr><td>\\(f\\)'nin yerel ekstremumu (\\(f'\\) işaret değiştirir)</td><td>\\(g\\)'nin büküm noktası (point of inflection)</td></tr>\n</tbody></table>\n<div class=\"kn-dikkat\">\\(f\\)'nin <strong>maksimum</strong> noktası \\(g\\)'nin maksimumu değildir; \\(g\\)'nin <strong>büküm noktasıdır</strong>. \\(g\\)'nin maksimumu \\(f\\)'nin <strong>sıfır</strong> olduğu ve + dan − ye geçtiği yerdedir.</div>\n<h4>Mutlak ekstremum: aday testi</h4>\n<p>Kapalı aralıkta \\([a,b]\\) mutlak maksimum için adaylar: uç noktalar ve \\(f=0\\) (ya da tanımsız) olan kritik noktalar. Her aday için \\(g\\) değerini <strong>alanlardan</strong> hesapla ve karşılaştır. Örneğin \\(g(x)=\\int_0^x f\\) için eksen üstü alan 6, sonra eksen altı alan 4, sonra eksen üstü alan 3 ise: \\(g(0)=0\\), ilk sıfırda \\(g=6\\), ikinci sıfırda \\(g=2\\), sonda \\(g=5\\) ⇒ mutlak max 6.</p>\n<h4>Bağlamda</h4>\n<p>Tanktaki su \\(W(t)=W_0+\\int_0^t\\big(I(s)-O(s)\\big)ds\\) (giriş − çıkış) ise \\(W'(t)=I(t)-O(t)\\). Su miktarı, giriş hızının çıkış hızından büyük olduğu sürece artar; \\(I-O\\) işaret değiştirdiğinde ekstremum oluşur. Bu tip sorular genellikle hesap makinelidir: \\(I(t)=O(t)\\) denklemini grafikle çözer, adayları fnInt ile hesaplarsın.</p>\n<div class=\"kn-kural\"><strong>FRQ kalıpları:</strong> “\\(g\\) has a relative maximum at \\(x=3\\) because \\(g'(x)=f(x)\\) changes from positive to negative at \\(x=3\\).” · “The graph of \\(g\\) is concave down on \\((1,4)\\) because \\(g'=f\\) is decreasing there.” · “\\(g\\) has a point of inflection at \\(x=1\\) because \\(g'=f\\) changes from increasing to decreasing.”</div>\n<h4>\\(f\\) grafiğinden \\(g\\)'nin şeklini çizmek</h4>\n<table><thead><tr><th>\\(f\\)'nin parçası</th><th>\\(g\\)'nin parçası</th></tr></thead>\n<tbody>\n<tr><td>sabit \\(f=c\\)</td><td>eğimi \\(c\\) olan doğru parçası</td></tr>\n<tr><td>doğrusal, eğimi \\(\\ne0\\)</td><td>parabol yayı (eğim + ise konkav yukarı, − ise konkav aşağı)</td></tr>\n<tr><td>\\(f=0\\) ve işaret değişiyor</td><td>yatay teğetli tepe ya da çukur</td></tr>\n<tr><td>\\(f\\)'de köşe</td><td>\\(g\\) pürüzsüz kalır, ama konkavlık değişebilir</td></tr>\n</tbody></table>\n<p>Örnek okuma: \\(f\\), \\([0,2]\\)'de \\(-1\\)'den \\(3\\)'e doğrusal, \\([2,4]\\)'te \\(3\\)'te sabit olsun ve \\(g(x)=\\int_0^x f(t)\\,dt\\). \\(f\\), \\(x=0.5\\)'te sıfırdır. \\(g\\) önce azalır ve \\(x=0.5\\)'te yerel minimum \\(g(0.5)=-0.25\\)'e iner. Sonra konkav yukarı biçimde artar: \\(g(2)=-0.25+\\tfrac12(1.5)(3)=2\\). \\([2,4]\\)'te eğimi 3 olan bir doğru olur: \\(g(4)=2+6=8\\).</p>\n<p>Her zaman iki ayrı soru sor: “\\(g\\) artan mı?” sorusunu \\(f\\)'nin <em>işareti</em>, “\\(g\\) konkav yukarı mı?” sorusunu \\(f\\)'nin <em>eğimi</em> cevaplar.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f\\) grafiği \\((0,3),(2,-1),(5,-1),(6,1)\\) noktalarını birleştiren doğru parçaları. \\(g(x)=\\int_0^x f(t)\\,dt\\). \\(g\\) hangi \\(x\\)'te yerel maksimuma sahiptir? Gerekçelendirin.",
+     "cozum": [
+      "\\([0,2]\\)'de \\(f=3-2x\\) ⇒ \\(f(1.5)=0\\); \\(f\\) burada + dan − ye geçer.",
+      "\\([5,6]\\)'da \\(f=-1+2(x-5)\\) ⇒ \\(f(5.5)=0\\); − den + ya geçer (yerel min).",
+      "“\\(g\\) has a relative maximum at \\(x=1.5\\) because \\(g'=f\\) changes from positive to negative there.”"
+     ]
+    },
+    {
+     "soru": "Aynı \\(g\\) için \\([0,6]\\)'da mutlak minimum değer nedir?",
+     "cozum": [
+      "Adaylar: \\(x=0,1.5,5.5,6\\). \\(g(0)=0\\); \\(g(1.5)=\\tfrac12(1.5)(3)=2.25\\).",
+      "\\([1.5,2]\\): \\(-\\tfrac12(0.5)(1)=-0.25\\); \\([2,5]\\): \\(-3\\); \\([5,5.5]\\): \\(-0.25\\) ⇒ \\(g(5.5)=2.25-3.5=-1.25\\).",
+      "\\(g(6)=-1.25+\\tfrac12(0.5)(1)=-1\\). Mutlak min \\(g(5.5)=-1.25\\)."
+     ]
+    },
+    {
+     "soru": "Başka bir \\(f\\)'nin grafiği \\((0,0),(2,4),(5,-2),(6,0)\\) noktalarını birleştiren doğru parçalarıdır. \\(g(x)=\\int_0^x f(t)\\,dt\\) için \\((0,6)\\) aralığındaki büküm noktalarını gerekçesiyle bulun.",
+     "cozum": [
+      "\\(g''=f'\\): \\(f\\) \\((0,2)\\)'de artan (eğim 2), \\((2,5)\\)'te azalan (eğim −2), \\((5,6)\\)'da artan (eğim 2).",
+      "\\(g'=f\\), \\(x=2\\)'de artandan azalana, \\(x=5\\)'te azalandan artana geçer.",
+      "“\\(g\\) has points of inflection at \\(x=2\\) and \\(x=5\\) because \\(g'=f\\) changes from increasing to decreasing at \\(x=2\\) and from decreasing to increasing at \\(x=5\\).”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "g' = f ve g'' = f' yazarak başla; gerekçede “because g' = f …” kalıbını kullan.",
+    "Mutlak ekstremum sorusunda tüm adayları (uç noktalar + kritik noktalar) bir tabloya koy ve her birinin g değerini alanla hesapla.",
+    "f'nin tepe noktası → g'nin büküm noktası; f'nin sıfırı (işaret değişimiyle) → g'nin ekstremumu.",
+    "Bağlam sorularında 'rate in − rate out' farkının işaretini incele; hesap makinesinde iki eğrinin kesişimini bul."
+   ],
+   "sikHatalar": [
+    "f'nin maksimumunu g'nin maksimumu sanmak.",
+    "Mutlak maksimumu yalnızca yerel maksimumdan seçip uç noktaları kontrol etmemek.",
+    "Konkavlığı f'nin işaretinden okumak (konkavlık f'nin artan/azalan olmasına bağlıdır)."
+   ],
+   "terimler": [
+    {
+     "en": "relative maximum/minimum",
+     "tr": "yerel maksimum/minimum"
+    },
+    {
+     "en": "absolute extremum",
+     "tr": "mutlak ekstremum"
+    },
+    {
+     "en": "candidates test",
+     "tr": "aday testi"
+    },
+    {
+     "en": "point of inflection",
+     "tr": "büküm noktası"
+    },
+    {
+     "en": "concave up/down",
+     "tr": "konkav yukarı/aşağı"
+    }
+   ]
+  },
+  {
+   "kod": "6.6",
+   "baslik": "Applying Properties of Definite Integrals",
+   "baslikTr": "Belirli integralin özelliklerini uygulamak",
+   "sadeceBC": false,
+   "hedefler": [
+    "Toplamsallık (additivity), doğrusallık (linearity) ve sınır değiştirme özellikleriyle bilinen integrallerden yenilerini hesaplamak.",
+    "Parçalı (piecewise) ya da mutlak değerli fonksiyonların integralini aralıkları bölerek bulmak.",
+    "Tek/çift (odd/even) fonksiyon simetrisini ve geometrik alanları (üçgen, yarım daire) kullanmak."
+   ],
+   "anlatim": "<p>Belirli integral bir sayıdır ve bu sayılar belirli kurallarla birleşir. AP sorularında genellikle birkaç integralin değeri verilir, başka bir integral istenir; antitürev almak gerekmez.</p>\n<h4>Temel özellikler</h4>\n<table><thead><tr><th>Özellik</th><th>Kural</th></tr></thead>\n<tbody>\n<tr><td>Sıfır genişlik</td><td>\\(\\int_a^a f(x)\\,dx=0\\)</td></tr>\n<tr><td>Sınırları değiştirme (reversing limits)</td><td>\\(\\int_b^a f(x)\\,dx=-\\int_a^b f(x)\\,dx\\)</td></tr>\n<tr><td>Toplamsallık (additivity)</td><td>\\(\\int_a^b f+\\int_b^c f=\\int_a^c f\\)</td></tr>\n<tr><td>Sabit çarpan (constant multiple)</td><td>\\(\\int_a^b k\\,f(x)\\,dx=k\\int_a^b f(x)\\,dx\\)</td></tr>\n<tr><td>Toplam/fark (sum/difference)</td><td>\\(\\int_a^b (f\\pm g)=\\int_a^b f\\pm\\int_a^b g\\)</td></tr>\n<tr><td>Sabitin integrali</td><td>\\(\\int_a^b k\\,dx=k(b-a)\\)</td></tr>\n</tbody></table>\n<div class=\"kn-dikkat\">Çarpımın integrali, integrallerin çarpımı <strong>değildir</strong>: \\(\\int f g\\ne\\int f\\cdot\\int g\\). Ayrıca \\(\\int_a^b [f(x)+3]\\,dx\\)'te 3'ün katkısı \\(3(b-a)\\)'dır, sadece 3 değil.</div>\n<h4>Toplamsallık her sıralamada geçerlidir</h4>\n<p>\\(c\\), \\(a\\) ile \\(b\\) arasında olmak zorunda değildir. Örneğin \\(\\int_1^4 f=7\\) ve \\(\\int_3^4 f=2\\) ise \\(\\int_1^3 f=7-2=5\\). \\(\\int_4^1 f\\) istenirse cevap \\(-7\\)'dir.</p>\n<h4>Parçalı ve mutlak değerli fonksiyonlar</h4>\n<p>Fonksiyon parça parça tanımlıysa integrali tanımın değiştiği noktada böl. \\(|x-2|\\)'nin \\([0,5]\\)'teki integrali için \\(x=2\\)'de böl: iki üçgen, \\(\\tfrac12(2)(2)+\\tfrac12(3)(3)=6.5\\).</p>\n<h4>Geometri ile hesaplama</h4>\n<ul>\n<li>\\(\\int_{-r}^{r}\\sqrt{r^2-x^2}\\,dx=\\tfrac12\\pi r^2\\) (yarım daire, semicircle).</li>\n<li>Doğrusal integrand ⇒ yamuk/üçgen alanı.</li>\n</ul>\n<h4>Simetri (symmetry)</h4>\n<div class=\"kn-kural\"><ul>\n<li>\\(f\\) tek (odd, \\(f(-x)=-f(x)\\)): \\(\\int_{-a}^{a}f=0\\).</li>\n<li>\\(f\\) çift (even, \\(f(-x)=f(x)\\)): \\(\\int_{-a}^{a}f=2\\int_0^a f\\).</li>\n</ul></div>\n<p>Örnek: \\(\\int_{-2}^{2}(x^3+5x+4)\\,dx\\): tek kısımlar sıfırlanır, kalan \\(\\int_{-2}^2 4\\,dx=16\\).</p>\n<h4>Karşılaştırma (comparison)</h4>\n<p>\\([a,b]\\)'de \\(f(x)\\le g(x)\\) ise \\(\\int_a^b f\\le\\int_a^b g\\). Bu, bir integralin işaretini ya da kabaca büyüklüğünü hesaplamadan tahmin etmeye yarar.</p>\n<div class=\"kn-kural\"><strong>Hesap makinesi notu:</strong> Calculator bölümünde \\(\\int_0^3 |\\,\\sin(x^2)\\,|\\,dx\\) gibi bir ifadeyi doğrudan fnInt ile hesaplayabilirsin; mutlak değeri parçalamak gerekmez.</div>\n<h4>Sınırlama (bounding) ve kaydırma</h4>\n<p>\\([a,b]\\)'de \\(m\\le f(x)\\le M\\) ise \\(m(b-a)\\le\\int_a^b f(x)\\,dx\\le M(b-a)\\). Örneğin \\([0,1]\\)'de \\(\\tfrac12\\le\\frac{1}{1+x^2}\\le1\\) olduğundan \\(\\tfrac12\\le\\int_0^1\\frac{dx}{1+x^2}\\le1\\); gerçek değer \\(\\frac\\pi4\\approx0.785\\) bu aralıktadır.</p>\n<p>Grafiği yatay kaydırmak alanı değiştirmez: \\(\\int_a^b f(x-c)\\,dx=\\int_{a-c}^{b-c}f(x)\\,dx\\). Örneğin \\(\\int_0^5 f(x)\\,dx=7\\) ise \\(\\int_2^7 f(x-2)\\,dx=7\\). Dikey kaydırma ise alanı değiştirir: \\(\\int_a^b\\big(f(x)+k\\big)dx=\\int_a^b f(x)\\,dx+k(b-a)\\).</p>\n<h4>Adım adım: verilen integrallerden yenisini kurmak</h4>\n<ol>\n<li>İstenen aralığı, verilen aralıkların toplamı ya da farkı olarak yaz.</li>\n<li>Doğrusallıkla katsayıları dışarı al: \\(\\int(2f-3g)=2\\int f-3\\int g\\).</li>\n<li>Sabit terimleri \\(k(b-a)\\) olarak, \\(x\\) gibi basit terimleri geometriyle ya da antitürevle hesapla.</li>\n<li>Sınırlar ters sıradaysa en sonda eksi koy.</li>\n</ol>",
+   "ornekler": [
+    {
+     "soru": "\\(\\int_{-1}^{4} f(x)\\,dx=10\\), \\(\\int_{2}^{4} f(x)\\,dx=3\\). \\(\\int_{2}^{-1}\\big(2f(x)-1\\big)\\,dx\\) değerini bulun.",
+     "cozum": [
+      "\\(\\int_{-1}^{2}f=10-3=7\\).",
+      "\\(\\int_{-1}^{2}(2f-1)=2(7)-1\\cdot3=11\\).",
+      "Sınırlar ters ⇒ \\(\\int_2^{-1}(2f-1)\\,dx=-11\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\int_{-3}^{3}\\left(\\sqrt{9-x^2}+x\\cos x\\right)dx\\)'i hesaplayın.",
+     "cozum": [
+      "\\(x\\cos x\\) tek fonksiyon ⇒ katkısı 0.",
+      "\\(\\sqrt{9-x^2}\\) yarıçapı 3 olan yarım daire ⇒ \\(\\tfrac12\\pi(9)=\\tfrac{9\\pi}{2}\\)."
+     ]
+    },
+    {
+     "soru": "\\(f(x)=\\begin{cases}2x, & x\\le1\\\\ 3-x, & x\\gt1\\end{cases}\\) için \\(\\int_0^3 f(x)\\,dx\\)'i bulun.",
+     "cozum": [
+      "\\(\\int_0^1 2x\\,dx=1\\) (üçgen \\(\\tfrac12\\cdot1\\cdot2\\)).",
+      "\\(\\int_1^3(3-x)\\,dx\\): \\(x=1\\)'de 2, \\(x=3\\)'te 0 ⇒ üçgen \\(\\tfrac12(2)(2)=2\\).",
+      "Toplam \\(=3\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Verilen integralleri bir sayı doğrusu üzerinde göster; istenen aralığı toplama/çıkarma ile oluştur.",
+    "Sabit terimin katkısı k(b − a)'dır; aralık uzunluğuyla çarpmayı unutma.",
+    "Simetrik aralıkta (−a, a) önce tek terimleri sil, sonra kalanı hesapla.",
+    "Sınırlar ters sırada verildiyse sonuca en sonda eksi işareti koy."
+   ],
+   "sikHatalar": [
+    "∫ₐᵇ [f(x) + k] dx = ∫ₐᵇ f + k yazmak (k(b − a) yerine k).",
+    "Sınırları ters çevirince işareti değiştirmemek.",
+    "Çift fonksiyonda 2 çarpanını unutmak ya da tek fonksiyonu çift sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "additivity",
+     "tr": "toplamsallık"
+    },
+    {
+     "en": "linearity",
+     "tr": "doğrusallık"
+    },
+    {
+     "en": "odd/even function",
+     "tr": "tek/çift fonksiyon"
+    },
+    {
+     "en": "piecewise function",
+     "tr": "parçalı fonksiyon"
+    },
+    {
+     "en": "semicircle",
+     "tr": "yarım daire"
+    }
+   ]
+  },
+  {
+   "kod": "6.7",
+   "baslik": "The Fundamental Theorem of Calculus and Definite Integrals",
+   "baslikTr": "Kalkülüsün temel teoremi ve belirli integraller",
+   "sadeceBC": false,
+   "hedefler": [
+    "FTC Part 2 ile belirli integrali antitürevden hesaplamak: \\(\\int_a^b f(x)\\,dx=F(b)-F(a)\\).",
+    "Net değişim teoremini (net change theorem) kullanmak: \\(F(b)=F(a)+\\int_a^b F'(x)\\,dx\\).",
+    "Hesap makinesiyle bağlamlı birikim (giren − çıkan, konum, miktar) problemlerini çözüp birimle yorumlamak."
+   ],
+   "anlatim": "<p>FTC Part 1 “türevin integrali” ilişkisini kurdu. Part 2 bunu hesaplama aracına çevirir.</p>\n<div class=\"kn-kural\"><strong>FTC Part 2:</strong> \\(f\\) \\([a,b]\\)'de sürekli ve \\(F'=f\\) ise \\[\\int_a^b f(x)\\,dx=F(b)-F(a)=\\Big[F(x)\\Big]_a^b.\\]</div>\n<p>Örnek: \\(\\int_1^3 (3x^2-2x)\\,dx=\\big[x^3-x^2\\big]_1^3=(27-9)-(1-1)=18\\). Antitürevdeki \\(+C\\) çıkarmada sadeleşir; belirli integralde yazılmaz.</p>\n<h4>Net değişim teoremi (net change theorem)</h4>\n<p>Aynı formülü \\(F'\\) cinsinden yazarsak: \\[F(b)=F(a)+\\int_a^b F'(t)\\,dt.\\] “Son değer = ilk değer + değişim hızının integrali.” Bu cümle AP FRQ'larının en sık kullandığı fikirdir.</p>\n<table><thead><tr><th>Bilinen</th><th>İstenen</th><th>Formül</th></tr></thead>\n<tbody>\n<tr><td>\\(x(0)\\), hız \\(v(t)\\)</td><td>\\(x(5)\\)</td><td>\\(x(5)=x(0)+\\int_0^5 v(t)\\,dt\\)</td></tr>\n<tr><td>\\(W(0)\\), giriş \\(E(t)\\), çıkış \\(L(t)\\)</td><td>\\(W(8)\\)</td><td>\\(W(8)=W(0)+\\int_0^8\\big(E(t)-L(t)\\big)dt\\)</td></tr>\n<tr><td>\\(f(2)\\), \\(f'\\) grafiği</td><td>\\(f(6)\\)</td><td>\\(f(6)=f(2)+\\int_2^6 f'(x)\\,dx\\)</td></tr>\n<tr><td>\\(f(4)\\), \\(f'\\) grafiği</td><td>\\(f(1)\\)</td><td>\\(f(1)=f(4)-\\int_1^4 f'(x)\\,dx\\)</td></tr>\n</tbody></table>\n<div class=\"kn-dikkat\">Geriye gitmek: \\(f(1)=f(4)+\\int_4^1 f'=f(4)-\\int_1^4 f'\\). İşaret hatası bu tür sorularda en sık kayıptır.</div>\n<h4>Yer değiştirme ve toplam yol</h4>\n<ul>\n<li>Displacement \\(=\\int_a^b v(t)\\,dt\\)</li>\n<li>Total distance traveled \\(=\\int_a^b |v(t)|\\,dt\\) — hesap makinesinde mutlak değeri doğrudan yaz.</li>\n</ul>\n<h4>Hesap makinesi bölümü</h4>\n<p>Gerçek AP sorularında hız fonksiyonları genellikle \\(r(t)=20\\sin\\!\\left(\\tfrac{t^2}{35}\\right)\\) gibi elle integrali alınamayan ifadelerdir. Yapılacaklar:</p>\n<ol>\n<li>İntegrali kur (sınırlar + integrand + başlangıç değeri) ve kağıda yaz — puanın bir kısmı kurulum içindir.</li>\n<li>fnInt ile hesapla (radyan modu); sonucu üç ondalık basamakla yaz.</li>\n<li>Birim ve bağlamla yorumla.</li>\n</ol>\n<div class=\"kn-kural\"><strong>FRQ kalıbı:</strong> “\\(W(8)=120+\\int_0^8\\big(E(t)-L(t)\\big)\\,dt\\approx 131.274\\) gallons.” · “\\(\\int_2^6 R(t)\\,dt\\) is the total number of people who entered the line from \\(t=2\\) to \\(t=6\\) hours.” Kurulumu yazmadan yalnız sayı vermek tam puan getirmez.</div>\n<h4>\\(f'\\) grafiğinden \\(f\\) değerleri tablosu</h4>\n<p>\\(f(0)=3\\) olsun ve \\(f'\\)'nin grafiği \\((0,2)\\), \\((2,-2)\\), \\((4,-2)\\) noktalarını birleştiren doğru parçaları olsun. \\(f'\\), \\(x=1\\)'de sıfırdır. Alanları sırayla ekle:</p>\n<table><thead><tr><th>Aralık</th><th>\\(\\int f'\\) (işaretli alan)</th><th>Yeni değer</th></tr></thead>\n<tbody>\n<tr><td>\\([0,1]\\)</td><td>\\(+1\\)</td><td>\\(f(1)=4\\)</td></tr>\n<tr><td>\\([1,2]\\)</td><td>\\(-1\\)</td><td>\\(f(2)=3\\)</td></tr>\n<tr><td>\\([2,4]\\)</td><td>\\(-4\\)</td><td>\\(f(4)=-1\\)</td></tr>\n</tbody></table>\n<p>\\(f\\)'nin en büyük değeri, \\(f'\\)'nin + dan − ye geçtiği \\(x=1\\)'dedir: \\(f(1)=4\\). Bu tablo, aday testiyle yapılan mutlak ekstremum sorularını da hızlandırır.</p>\n<h4>FTC Part 1 mi, Part 2 mi?</h4>\n<table><thead><tr><th>Soru</th><th>Araç</th></tr></thead>\n<tbody>\n<tr><td>\\(\\frac{d}{dx}\\int_a^{x}f(t)\\,dt\\)</td><td>Part 1: cevap \\(f(x)\\); integral alınmaz</td></tr>\n<tr><td>\\(\\int_a^b f(x)\\,dx\\) (bir sayı)</td><td>Part 2: \\(F(b)-F(a)\\) ya da fnInt</td></tr>\n<tr><td>\\(F(a)\\) ve \\(F'\\) biliniyor, \\(F(b)\\) isteniyor</td><td>Net değişim: \\(F(b)=F(a)+\\int_a^bF'(x)\\,dx\\)</td></tr>\n</tbody></table>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\int_0^{\\pi/3}\\sec^2 x\\,dx\\) değerini bulun.",
+     "cozum": [
+      "\\(\\frac{d}{dx}\\tan x=\\sec^2x\\) ⇒ antitürev \\(\\tan x\\).",
+      "\\(\\tan\\frac{\\pi}{3}-\\tan0=\\sqrt3\\)."
+     ]
+    },
+    {
+     "soru": "\\(f(2)=5\\) ve \\(f'(x)=\\frac{6}{x}\\). \\(f(2e)\\) nedir?",
+     "cozum": [
+      "\\(f(2e)=f(2)+\\int_2^{2e}\\frac6x\\,dx=5+6\\big[\\ln x\\big]_2^{2e}\\).",
+      "\\(=5+6(\\ln 2e-\\ln2)=5+6\\ln e=11\\)."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi) Bir parçacığın hızı \\(v(t)=2\\cos(0.8t)+0.5\\) m/s, \\(x(0)=3\\). \\(x(4)\\)'ü ve \\(0\\le t\\le4\\)'teki toplam yolu bulun.",
+     "cozum": [
+      "\\(x(4)=3+\\int_0^4 v(t)\\,dt=3+\\left[\\tfrac{2}{0.8}\\sin(0.8t)+0.5t\\right]_0^4=3+2.5\\sin3.2+2\\approx4.854\\) m.",
+      "Toplam yol \\(=\\int_0^4|v(t)|\\,dt\\approx5.267\\) m (fnInt ile; \\(v\\), \\(t\\approx2.279\\)'te işaret değiştirir)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Net change sorularında formülü kelimelerle yaz: amount at b = amount at a + ∫ (rate in − rate out).",
+    "Calculator bölümünde integrali kağıda tam yaz (sınırlar, integrand, dt), sonra sayıyı ver; ara sonuçları yuvarlama.",
+    "Toplam yol için |v(t)| integrali; yer değiştirme için v(t) integrali.",
+    "Geriye doğru (b'den a'ya) değer ararken f(a) = f(b) − ∫ₐᵇ f' kullan."
+   ],
+   "sikHatalar": [
+    "Başlangıç değerini eklemeyi unutmak (yalnız ∫ değerini cevap vermek).",
+    "F(a) − F(b) sırasıyla çıkarmak.",
+    "Ara değerleri erken yuvarlayıp üçüncü ondalıkta yanlış cevap bulmak."
+   ],
+   "terimler": [
+    {
+     "en": "antiderivative",
+     "tr": "antitürev, ilkel fonksiyon"
+    },
+    {
+     "en": "net change theorem",
+     "tr": "net değişim teoremi"
+    },
+    {
+     "en": "initial condition",
+     "tr": "başlangıç koşulu"
+    },
+    {
+     "en": "total distance traveled",
+     "tr": "alınan toplam yol"
+    },
+    {
+     "en": "rate in / rate out",
+     "tr": "giriş hızı / çıkış hızı"
+    }
+   ]
+  },
+  {
+   "kod": "6.8",
+   "baslik": "Finding Antiderivatives and Indefinite Integrals: Basic Rules and Notation",
+   "baslikTr": "Antitürev ve belirsiz integral: temel kurallar ve gösterim",
+   "sadeceBC": false,
+   "hedefler": [
+    "Kuvvet, üstel, logaritmik, trigonometrik ve ters trigonometrik temel antitürev kurallarını uygulamak.",
+    "İntegrali almadan önce ifadeyi yeniden yazmak (kök → üs, bölme → terim terim).",
+    "Belirsiz integral gösterimini ve \\(+C\\) sabitinin anlamını kullanmak; başlangıç koşuluyla \\(C\\)'yi bulmak."
+   ],
+   "anlatim": "<p>Antitürev (antiderivative), türevi verilen fonksiyon olan fonksiyondur. \\(F'(x)=f(x)\\) ise \\[\\int f(x)\\,dx=F(x)+C.\\] Bu <strong>belirsiz integraldir (indefinite integral)</strong>: bir sayı değil, bir <em>fonksiyon ailesidir</em>. \\(C\\) (constant of integration) türevi sıfır olan her sabiti temsil eder.</p>\n<h4>Temel kurallar (türev kurallarını tersinden oku)</h4>\n<table><thead><tr><th>\\(f(x)\\)</th><th>\\(\\int f(x)\\,dx\\)</th></tr></thead>\n<tbody>\n<tr><td>\\(x^n\\) (\\(n\\ne-1\\))</td><td>\\(\\dfrac{x^{n+1}}{n+1}+C\\)</td></tr>\n<tr><td>\\(\\dfrac1x\\)</td><td>\\(\\ln|x|+C\\)</td></tr>\n<tr><td>\\(e^x\\)</td><td>\\(e^x+C\\)</td></tr>\n<tr><td>\\(a^x\\)</td><td>\\(\\dfrac{a^x}{\\ln a}+C\\)</td></tr>\n<tr><td>\\(\\sin x\\)</td><td>\\(-\\cos x+C\\)</td></tr>\n<tr><td>\\(\\cos x\\)</td><td>\\(\\sin x+C\\)</td></tr>\n<tr><td>\\(\\sec^2x\\)</td><td>\\(\\tan x+C\\)</td></tr>\n<tr><td>\\(\\csc^2x\\)</td><td>\\(-\\cot x+C\\)</td></tr>\n<tr><td>\\(\\sec x\\tan x\\)</td><td>\\(\\sec x+C\\)</td></tr>\n<tr><td>\\(\\csc x\\cot x\\)</td><td>\\(-\\csc x+C\\)</td></tr>\n<tr><td>\\(\\dfrac{1}{\\sqrt{1-x^2}}\\)</td><td>\\(\\arcsin x+C\\)</td></tr>\n<tr><td>\\(\\dfrac{1}{1+x^2}\\)</td><td>\\(\\arctan x+C\\)</td></tr>\n</tbody></table>\n<div class=\"kn-dikkat\">İşaretler: \\(\\sin\\)'in antitürevi \\(-\\cos\\); \\(\\cos\\)'un antitürevi \\(+\\sin\\). Kontrol yöntemi: cevabın türevini al, integrandı geri buluyor musun?</div>\n<h4>Önce yeniden yaz (rewrite first)</h4>\n<ul>\n<li>\\(\\sqrt[3]{x^2}=x^{2/3}\\) ⇒ \\(\\int x^{2/3}dx=\\tfrac35x^{5/3}+C\\).</li>\n<li>\\(\\dfrac{1}{x^3}=x^{-3}\\) ⇒ \\(\\int x^{-3}dx=-\\tfrac12x^{-2}+C\\).</li>\n<li>\\(\\dfrac{x^2+3x}{\\sqrt x}=x^{3/2}+3x^{1/2}\\) — payı terim terim böl.</li>\n<li>\\((2x+1)^2=4x^2+4x+1\\) — kısa kuvvetleri aç.</li>\n</ul>\n<p>Bölümün ya da çarpımın integrali için “kural” yoktur; ifadeyi <strong>toplam</strong>a çevirmen gerekir.</p>\n<h4>Başlangıç koşulu (initial condition)</h4>\n<p>\\(f'(x)=4x^3-6x\\) ve \\(f(1)=2\\) ise \\(f(x)=x^4-3x^2+C\\), \\(2=1-3+C\\) ⇒ \\(C=4\\). Bu, en basit <strong>diferansiyel denklem</strong> çözümüdür (Ünite 7'ye hazırlık).</p>\n<div class=\"kn-kural\"><strong>Gösterim:</strong> \\(\\int f(x)\\,dx\\) (belirsiz, cevapta \\(+C\\) var) ile \\(\\int_a^b f(x)\\,dx\\) (belirli, cevap bir sayı) farklıdır. Çoktan seçmeli sorularda \\(+C\\) genellikle bütün şıklarda yazılıdır; FRQ'da belirsiz integral cevabında \\(+C\\)'yi unutmak puan kaybettirebilir.</div>\n<h4>Neden \\(\\ln|x|\\)?</h4>\n<p>\\(\\ln x\\) yalnız \\(x\\gt0\\) için tanımlıdır, ama \\(\\frac1x\\) negatif \\(x\\)'lerde de vardır. \\(x\\lt0\\) için \\(\\frac{d}{dx}\\ln(-x)=\\frac{-1}{-x}=\\frac1x\\) olduğundan iki durum birlikte \\(\\ln|x|\\) diye yazılır.</p>\n<h4>Trigonometrik özdeşlikle yeniden yazma</h4>\n<ul>\n<li>\\(\\dfrac{1}{1-\\sin^2x}=\\dfrac{1}{\\cos^2x}=\\sec^2x\\) ⇒ \\(\\int=\\tan x+C\\).</li>\n<li>\\(\\cot^2x=\\csc^2x-1\\) ⇒ \\(\\int\\cot^2x\\,dx=-\\cot x-x+C\\).</li>\n<li>\\(\\tan x\\cos x=\\sin x\\) ⇒ \\(\\int=-\\cos x+C\\).</li>\n</ul>\n<h4>Doğrusal iç fonksiyon kısayolu</h4>\n<p>İç fonksiyon \\(ax+b\\) ise antitürevi bul ve \\(a\\)'ya böl: \\(\\int\\cos(3x)\\,dx=\\tfrac13\\sin(3x)+C\\), \\(\\int e^{5x}dx=\\tfrac15e^{5x}+C\\), \\(\\int(2x+1)^4dx=\\tfrac{(2x+1)^5}{10}+C\\). Gerekçesi 6.9'daki \\(u\\)-substitution'dır; kontrol için türev al.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\int\\left(5x^4-\\frac{3}{x^2}+2\\sqrt x\\right)dx\\)'i bulun.",
+     "cozum": [
+      "Yeniden yaz: \\(5x^4-3x^{-2}+2x^{1/2}\\).",
+      "\\(x^5+3x^{-1}+\\tfrac43x^{3/2}+C=x^5+\\dfrac3x+\\dfrac43x^{3/2}+C\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\int\\frac{4}{1+x^2}\\,dx-\\int 2\\sin x\\,dx\\) ifadesini tek bir fonksiyon olarak yazın.",
+     "cozum": [
+      "\\(\\int\\frac{4}{1+x^2}dx=4\\arctan x\\); \\(\\int2\\sin x\\,dx=-2\\cos x\\).",
+      "Fark: \\(4\\arctan x+2\\cos x+C\\)."
+     ]
+    },
+    {
+     "soru": "\\(f''(x)=6x\\), \\(f'(0)=-2\\), \\(f(1)=4\\). \\(f(x)\\)'i bulun.",
+     "cozum": [
+      "\\(f'(x)=3x^2+C_1\\), \\(f'(0)=-2\\Rightarrow C_1=-2\\).",
+      "\\(f(x)=x^3-2x+C_2\\), \\(f(1)=1-2+C_2=4\\Rightarrow C_2=5\\).",
+      "\\(f(x)=x^3-2x+5\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Kök ve kesirleri önce üslü biçime çevir; sonra kuvvet kuralını uygula.",
+    "Her cevabı türev alarak kontrol et (10 saniyelik kontrol çoğu işaret hatasını yakalar).",
+    "1/x'in antitürevi ln|x|'tir; kuvvet kuralı n = −1 için çalışmaz.",
+    "Birden fazla başlangıç koşulu varsa her integral adımından sonra hemen C'yi bul."
+   ],
+   "sikHatalar": [
+    "∫ sin x dx = cos x + C yazmak (işaret hatası).",
+    "∫ x⁻¹ dx için kuvvet kuralını uygulayıp x⁰/0 gibi anlamsız bir ifade yazmak.",
+    "Bölümün integralini pay ve paydanın ayrı ayrı integrallerinin bölümü sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "antiderivative",
+     "tr": "antitürev"
+    },
+    {
+     "en": "indefinite integral",
+     "tr": "belirsiz integral"
+    },
+    {
+     "en": "constant of integration",
+     "tr": "integrasyon sabiti"
+    },
+    {
+     "en": "power rule",
+     "tr": "kuvvet kuralı"
+    },
+    {
+     "en": "initial condition",
+     "tr": "başlangıç koşulu"
+    }
+   ]
+  },
+  {
+   "kod": "6.9",
+   "baslik": "Integrating Using Substitution",
+   "baslikTr": "Değişken değiştirme (u-substitution) ile integral",
+   "sadeceBC": false,
+   "hedefler": [
+    "İntegrandda bir iç fonksiyon ve (sabit çarpan dışında) türevini tanıyıp \\(u\\)-substitution uygulamak.",
+    "Belirli integrallerde sınırları \\(u\\) cinsine çevirmek.",
+    "Geri yerine koyma (back-substitution) gerektiren durumlarda \\(x\\)'i \\(u\\) cinsinden yazmak."
+   ],
+   "anlatim": "<p>\\(u\\)-substitution, zincir kuralının (chain rule) tersidir. \\(\\frac{d}{dx}F(g(x))=F'(g(x))\\,g'(x)\\) olduğundan \\[\\int f(g(x))\\,g'(x)\\,dx=F(g(x))+C.\\]</p>\n<h4>Adımlar</h4>\n<ol>\n<li>“İçteki” fonksiyonu \\(u\\) seç (parantez içi, kök içi, üs, payda).</li>\n<li>\\(du=u'(x)\\,dx\\) yaz.</li>\n<li>İntegrandı tamamen \\(u\\) cinsine çevir; gerekirse sabit çarpanı ayarla.</li>\n<li>İntegrali al, \\(u\\) yerine geri \\(x\\) ifadesini yaz.</li>\n</ol>\n<p>Örnek: \\(\\int x^2\\cos(x^3)\\,dx\\). \\(u=x^3\\), \\(du=3x^2dx\\) ⇒ \\(x^2dx=\\tfrac13du\\). \\(\\int\\tfrac13\\cos u\\,du=\\tfrac13\\sin(x^3)+C\\).</p>\n<h4>Tipik \\(u\\) seçimleri</h4>\n<table><thead><tr><th>İntegral</th><th>\\(u\\)</th><th>Sonuç</th></tr></thead>\n<tbody>\n<tr><td>\\(\\int\\frac{2x}{x^2+5}dx\\)</td><td>\\(x^2+5\\)</td><td>\\(\\ln(x^2+5)+C\\)</td></tr>\n<tr><td>\\(\\int e^{4x}dx\\)</td><td>\\(4x\\)</td><td>\\(\\tfrac14e^{4x}+C\\)</td></tr>\n<tr><td>\\(\\int\\tan x\\,dx=\\int\\frac{\\sin x}{\\cos x}dx\\)</td><td>\\(\\cos x\\)</td><td>\\(-\\ln|\\cos x|+C\\)</td></tr>\n<tr><td>\\(\\int\\frac{(\\ln x)^3}{x}dx\\)</td><td>\\(\\ln x\\)</td><td>\\(\\tfrac14(\\ln x)^4+C\\)</td></tr>\n<tr><td>\\(\\int\\frac{e^{\\sqrt x}}{\\sqrt x}dx\\)</td><td>\\(\\sqrt x\\)</td><td>\\(2e^{\\sqrt x}+C\\)</td></tr>\n</tbody></table>\n<h4>Belirli integralde sınırları değiştir</h4>\n<div class=\"kn-kural\">\\(\\displaystyle\\int_a^b f(g(x))\\,g'(x)\\,dx=\\int_{g(a)}^{g(b)} f(u)\\,du.\\)</div>\n<p>Örnek: \\(\\int_0^2 x\\,e^{x^2}dx\\), \\(u=x^2\\): \\(x=0\\Rightarrow u=0\\), \\(x=2\\Rightarrow u=4\\). \\(\\tfrac12\\int_0^4 e^u du=\\tfrac12(e^4-1)\\). Sınırları değiştirdiysen geri yerine koyma <em>yapmazsın</em>.</p>\n<div class=\"kn-dikkat\">En sık hata: \\(u\\)'ya geçip sınırları \\(x\\) değerlerinde bırakmak (ör. \\(\\tfrac12\\int_0^2e^u du\\)). AP şıklarında bu hata hep bir çeldiricidir.</div>\n<h4>Geri yerine koyma (back-substitution)</h4>\n<p>\\(\\int x\\sqrt{x+3}\\,dx\\): \\(u=x+3\\) ⇒ \\(x=u-3\\). \\(\\int(u-3)u^{1/2}du=\\int(u^{3/2}-3u^{1/2})du=\\tfrac25u^{5/2}-2u^{3/2}+C\\), sonra \\(u=x+3\\) yaz.</p>\n<h4>“\\(u\\)-sub gizli” sorular</h4>\n<p>AP bazen \\(\\int_1^3 f'(2x)\\,dx\\) gibi soyut bir integral sorar: \\(u=2x\\) ⇒ \\(\\tfrac12\\int_2^6 f'(u)\\,du=\\tfrac12\\big(f(6)-f(2)\\big)\\). Tablodaki değerlerle bitir.</p>\n<h4>Belirli integral: iki yolun karşılaştırması</h4>\n<p>\\(\\int_1^2\\frac{x}{(x^2+1)^2}\\,dx\\) için \\(u=x^2+1\\), \\(x\\,dx=\\tfrac12du\\).</p>\n<table><thead><tr><th>Yol A: sınırları değiştir</th><th>Yol B: \\(x\\)'e geri dön</th></tr></thead>\n<tbody>\n<tr><td>\\(x=1\\Rightarrow u=2\\), \\(x=2\\Rightarrow u=5\\)</td><td>Önce belirsiz integral: \\(-\\frac{1}{2(x^2+1)}+C\\)</td></tr>\n<tr><td>\\(\\tfrac12\\int_2^5u^{-2}du=\\tfrac12\\Big[-\\tfrac1u\\Big]_2^5\\)</td><td>\\(\\Big[-\\frac{1}{2(x^2+1)}\\Big]_1^2\\)</td></tr>\n<tr><td>\\(=\\tfrac12\\left(-\\tfrac15+\\tfrac12\\right)=\\tfrac{3}{20}\\)</td><td>\\(=-\\tfrac1{10}+\\tfrac14=\\tfrac{3}{20}\\)</td></tr>\n</tbody></table>\n<p>İki yol da aynı sonucu verir. Hata, ikisini karıştırmaktır: \\(u\\)-integralinde \\(x\\) sınırlarını kullanmak.</p>\n<h4>Eksik çarpan sabit değilse</h4>\n<p>\\(du\\)'daki çarpan integrandda yalnız <em>sabit</em> farkıyla eksikse düzeltilir (\\(x\\,dx=\\tfrac12du\\)). Eksik olan \\(x\\)'li bir çarpansa \\(u\\)-sub çalışmaz. Örneğin \\(\\int e^{x^2}dx\\)'te \\(x\\) çarpanı yoktur; bu integralin elementer antitürevi yoktur ve AP'de yalnız hesap makinesiyle sorulur.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\int\\frac{x}{\\sqrt{x^2+9}}\\,dx\\)'i bulun.",
+     "cozum": [
+      "\\(u=x^2+9\\), \\(du=2x\\,dx\\) ⇒ \\(x\\,dx=\\tfrac12du\\).",
+      "\\(\\tfrac12\\int u^{-1/2}du=u^{1/2}+C=\\sqrt{x^2+9}+C\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\int_0^{\\pi/4}\\frac{\\sec^2x}{1+\\tan x}\\,dx\\)'i hesaplayın.",
+     "cozum": [
+      "\\(u=1+\\tan x\\), \\(du=\\sec^2x\\,dx\\); sınırlar: \\(u(0)=1\\), \\(u(\\pi/4)=2\\).",
+      "\\(\\int_1^2\\frac{du}{u}=\\ln2\\)."
+     ]
+    },
+    {
+     "soru": "\\(f\\) türevlenebilir, \\(f(1)=4\\), \\(f(5)=10\\). \\(\\displaystyle\\int_0^2 f'(2x+1)\\,dx\\) nedir?",
+     "cozum": [
+      "\\(u=2x+1\\), \\(du=2dx\\); \\(x=0\\Rightarrow u=1\\), \\(x=2\\Rightarrow u=5\\).",
+      "\\(\\tfrac12\\int_1^5 f'(u)\\,du=\\tfrac12\\big(f(5)-f(1)\\big)=\\tfrac12(6)=3\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "u seçerken türevi (sabit çarpan dışında) integrandda görünen ifadeyi ara.",
+    "Belirli integralde ya sınırları u'ya çevir ya da x'e geri dönüp eski sınırları kullan; ikisini karıştırma.",
+    "Sabit çarpanı (½, ⅓) en başta integralin önüne çıkar; sonda unutulmasın.",
+    "Sonucu türev alarak kontrol et: zincir kuralı integrandı geri vermeli."
+   ],
+   "sikHatalar": [
+    "u-sub sonrası sınırları değiştirmemek.",
+    "du'daki sabit çarpanı (ör. 2x dx = du ⇒ x dx = du/2) hesaba katmamak.",
+    "x'i tamamen yok etmeden integral almak (u ve x karışık integrand)."
+   ],
+   "terimler": [
+    {
+     "en": "u-substitution",
+     "tr": "değişken değiştirme"
+    },
+    {
+     "en": "inner function",
+     "tr": "iç fonksiyon"
+    },
+    {
+     "en": "change of limits",
+     "tr": "sınırların dönüştürülmesi"
+    },
+    {
+     "en": "back-substitution",
+     "tr": "geri yerine koyma"
+    }
+   ]
+  },
+  {
+   "kod": "6.10",
+   "baslik": "Integrating Functions Using Long Division and Completing the Square",
+   "baslikTr": "Polinom bölmesi ve tam kareye tamamlama ile integral",
+   "sadeceBC": false,
+   "hedefler": [
+    "Payın derecesi paydanınkinden büyük ya da eşitken polinom bölmesi (long division) yapıp integrali terimlere ayırmak.",
+    "Paydadaki ikinci dereceden ifadeyi tam kareye tamamlayıp (completing the square) arctan biçimine getirmek.",
+    "Sonucu ln ve arctan terimleriyle doğru katsayılarla yazmak."
+   ],
+   "anlatim": "<p>Bazı rasyonel fonksiyonlar doğrudan tablodaki bir kurala uymaz. İki cebirsel araç bunları tanıdık biçimlere çevirir.</p>\n<h4>1) Polinom bölmesi (long division)</h4>\n<p>\\(\\deg(\\text{pay})\\ge\\deg(\\text{payda})\\) ise önce böl: \\[\\frac{P(x)}{Q(x)}=\\text{bölüm}+\\frac{\\text{kalan}}{Q(x)}.\\]</p>\n<p>Örnek: \\(\\dfrac{x^2+3x+5}{x+1}\\). \\(x^2+3x+5=(x+1)(x+2)+3\\) ⇒ \\(\\dfrac{x^2+3x+5}{x+1}=x+2+\\dfrac{3}{x+1}\\). \\[\\int\\frac{x^2+3x+5}{x+1}dx=\\frac{x^2}{2}+2x+3\\ln|x+1|+C.\\]</p>\n<div class=\"kn-dikkat\">Kontrol: bölüm × payda + kalan = pay olmalı. \\((x+1)(x+2)+3=x^2+3x+5\\) ✓.</div>\n<p>Payda tek terimliyse (ör. \\(\\frac{x^3+1}{x}\\)) bölme yerine terim terim ayır: \\(x^2+\\frac1x\\).</p>\n<p>Bölme \\(\\frac{x^2}{x^2+1}\\) gibi eşit dereceli kesirlerde de işe yarar: \\(\\frac{x^2}{x^2+1}=1-\\frac{1}{x^2+1}\\) ⇒ integral \\(x-\\arctan x+C\\).</p>\n<h4>2) Tam kareye tamamlama (completing the square)</h4>\n<p>Paydada çarpanlarına ayrılmayan \\(x^2+bx+c\\) varsa (\\(b^2-4c\\lt0\\)) şu biçimi hedefle: \\[\\int\\frac{dx}{(x-h)^2+k^2}=\\frac1k\\arctan\\!\\left(\\frac{x-h}{k}\\right)+C.\\]</p>\n<table><thead><tr><th>Payda</th><th>Tam kare</th><th>İntegral</th></tr></thead>\n<tbody>\n<tr><td>\\(x^2+2x+5\\)</td><td>\\((x+1)^2+4\\)</td><td>\\(\\tfrac12\\arctan\\frac{x+1}{2}+C\\)</td></tr>\n<tr><td>\\(x^2-6x+10\\)</td><td>\\((x-3)^2+1\\)</td><td>\\(\\arctan(x-3)+C\\)</td></tr>\n<tr><td>\\(x^2+4x+13\\)</td><td>\\((x+2)^2+9\\)</td><td>\\(\\tfrac13\\arctan\\frac{x+2}{3}+C\\)</td></tr>\n</tbody></table>\n<p>Nasıl: \\(x^2+bx\\) için \\(\\left(\\frac b2\\right)^2\\) ekle-çıkar. \\(x^2-6x+10=(x^2-6x+9)+1\\).</p>\n<div class=\"kn-kural\"><strong>Genel kural:</strong> \\(\\displaystyle\\int\\frac{dx}{a^2+u^2}=\\frac1a\\arctan\\frac ua+C\\). Burada \\(u=x-h\\) olduğundan \\(du=dx\\); ek çarpan gelmez. \\(\\frac1a\\) çarpanını unutma.</div>\n<h4>İkisi birlikte</h4>\n<p>Pay birinci dereceyse önce payı “paydanın türevi + sabit” olarak ayır: \\(\\dfrac{2x+5}{x^2+2x+5}=\\dfrac{2x+2}{x^2+2x+5}+\\dfrac{3}{(x+1)^2+4}\\) ⇒ \\(\\ln(x^2+2x+5)+\\tfrac32\\arctan\\frac{x+1}{2}+C\\).</p>\n<p>Not: paydadaki ikinci dereceden ifade doğrusal çarpanlara ayrılıyorsa (ör. \\(x^2-1\\)), bu yöntemler yerine kısmi kesirler (6.12, yalnız BC) kullanılır.</p>\n<h4>Baş katsayı 1 değilse</h4>\n<p>\\(\\int\\frac{dx}{9x^2+6x+5}\\): \\(9x^2+6x+5=(3x+1)^2+4\\). \\(u=3x+1\\), \\(du=3\\,dx\\):</p>\n\\[\\frac13\\int\\frac{du}{u^2+2^2}=\\frac13\\cdot\\frac12\\arctan\\frac u2+C=\\frac16\\arctan\\frac{3x+1}{2}+C.\\]\n<p>İki çarpanı ayrı ayrı izle: \\(du\\)'dan gelen \\(\\tfrac13\\) ve arctan formülünden gelen \\(\\tfrac1k=\\tfrac12\\). \\(k\\) değeri \\(k^2=4\\)'ün karekökü olan 2'dir, 4 değil.</p>\n<h4>Kök içinde tam kare: arcsin</h4>\n<p>\\(\\int\\frac{dx}{\\sqrt{3+2x-x^2}}\\): önce \\(-x^2\\)'nin eksisini parantez dışına al: \\(3+2x-x^2=-(x^2-2x)+3=-(x-1)^2+4\\). Böylece \\(\\int\\frac{dx}{\\sqrt{2^2-(x-1)^2}}=\\arcsin\\frac{x-1}{2}+C\\).</p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\int\\frac{2x^2-x+3}{x-1}\\,dx\\)'i bulun.",
+     "cozum": [
+      "Bölme: \\(2x^2-x+3=(x-1)(2x+1)+4\\) ⇒ \\(2x+1+\\dfrac{4}{x-1}\\).",
+      "\\(\\int=x^2+x+4\\ln|x-1|+C\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\int_1^{3}\\frac{dx}{x^2-2x+5}\\)'i hesaplayın.",
+     "cozum": [
+      "\\(x^2-2x+5=(x-1)^2+4\\).",
+      "\\(\\left[\\tfrac12\\arctan\\tfrac{x-1}{2}\\right]_1^3=\\tfrac12(\\arctan1-\\arctan0)=\\tfrac{\\pi}{8}\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\int\\frac{x^3}{x^2+1}\\,dx\\)'i bulun.",
+     "cozum": [
+      "Bölme: \\(x^3=x(x^2+1)-x\\) ⇒ \\(x-\\dfrac{x}{x^2+1}\\).",
+      "\\(\\int=\\dfrac{x^2}{2}-\\dfrac12\\ln(x^2+1)+C\\) (ikinci terim \\(u=x^2+1\\) ile)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Rasyonel integrandda ilk soru: payın derecesi ≥ paydanın derecesi mi? Evetse önce böl.",
+    "Tam kareye tamamlarken (b/2)² ekleyip çıkar; sabiti k² olarak yaz ve 1/k çarpanını unutma.",
+    "Pay doğrusalsa, payı (paydanın türevi) + sabit olarak ayır: ln terimi + arctan terimi.",
+    "Sonucu türev alarak kontrol etmek uzun sürebilir; en azından bölmeyi (bölüm·payda + kalan) kontrol et."
+   ],
+   "sikHatalar": [
+    "Bölme yapmadan ∫ (x²+1)/(x+1) dx = ln|x+1| · (…) gibi uydurma kurallar uygulamak.",
+    "∫ dx/((x+1)² + 4) = arctan(x+1) yazmak (½ çarpanı ve /2 eksik).",
+    "Kalanı unutup yalnız bölümün integralini almak."
+   ],
+   "terimler": [
+    {
+     "en": "long division",
+     "tr": "polinom bölmesi"
+    },
+    {
+     "en": "quotient / remainder",
+     "tr": "bölüm / kalan"
+    },
+    {
+     "en": "completing the square",
+     "tr": "tam kareye tamamlama"
+    },
+    {
+     "en": "inverse tangent",
+     "tr": "ters tanjant (arctan)"
+    }
+   ]
+  },
+  {
+   "kod": "6.11",
+   "baslik": "Integrating Using Integration by Parts",
+   "baslikTr": "Kısmi integrasyon (integration by parts)",
+   "sadeceBC": true,
+   "hedefler": [
+    "\\(\\int u\\,dv=uv-\\int v\\,du\\) formülünü uygun \\(u\\) ve \\(dv\\) seçerek uygulamak.",
+    "Tekrarlı kısmi integrasyon ve tablo yöntemi (tabular method) ile polinom × üstel/trigonometrik integralleri almak.",
+    "Belirli integrallerde \\(\\big[uv\\big]_a^b-\\int_a^b v\\,du\\) biçimini ve tablo/grafik verili soyut soruları çözmek."
+   ],
+   "anlatim": "<p>Kısmi integrasyon, çarpım kuralının (product rule) tersidir. \\((uv)'=u'v+uv'\\) eşitliğini integre edip düzenlersek:</p>\n<div class=\"kn-kural\">\\[\\int u\\,dv=uv-\\int v\\,du\\qquad\\qquad \\int_a^b u\\,dv=\\Big[uv\\Big]_a^b-\\int_a^b v\\,du\\]</div>\n<p>Amaç: \\(\\int v\\,du\\) integralinin başlangıçtakinden <em>daha kolay</em> olması. Bunun için \\(u\\) türevi alınınca basitleşen, \\(dv\\) ise kolay integre edilen parça olmalıdır.</p>\n<h4>u seçimi: LIATE sırası</h4>\n<table><thead><tr><th>Öncelik</th><th>Tür</th><th>Örnek</th></tr></thead>\n<tbody>\n<tr><td>L</td><td>Logaritmik</td><td>\\(\\ln x\\)</td></tr>\n<tr><td>I</td><td>Ters trigonometrik (inverse trig)</td><td>\\(\\arctan x\\)</td></tr>\n<tr><td>A</td><td>Cebirsel (algebraic, polinom)</td><td>\\(x^2\\)</td></tr>\n<tr><td>T</td><td>Trigonometrik</td><td>\\(\\sin x\\)</td></tr>\n<tr><td>E</td><td>Üstel (exponential)</td><td>\\(e^{2x}\\)</td></tr>\n</tbody></table>\n<p>Listede önce gelen \\(u\\) olur. \\(\\int x\\cos x\\,dx\\): \\(u=x\\), \\(dv=\\cos x\\,dx\\) ⇒ \\(du=dx\\), \\(v=\\sin x\\). \\[\\int x\\cos x\\,dx=x\\sin x-\\int\\sin x\\,dx=x\\sin x+\\cos x+C.\\]</p>\n<h4>Gizli dv = dx</h4>\n<p>\\(\\int\\ln x\\,dx\\): \\(u=\\ln x\\), \\(dv=dx\\) ⇒ \\(du=\\frac1x dx\\), \\(v=x\\). Sonuç: \\(x\\ln x-x+C\\). Aynı fikir \\(\\int\\arctan x\\,dx\\) için de çalışır.</p>\n<h4>Tablo yöntemi (tabular integration)</h4>\n<p>\\(u\\) bir polinomsa ve tekrar tekrar türevi alınınca 0 oluyorsa: sol sütunda \\(u\\)'nun türevleri, sağ sütunda \\(dv\\)'nin art arda integralleri, işaretler \\(+,-,+,\\dots\\).</p>\n<table><thead><tr><th>İşaret</th><th>\\(u\\) ve türevleri</th><th>\\(dv\\) ve integralleri</th></tr></thead>\n<tbody>\n<tr><td>+</td><td>\\(x^2\\)</td><td>\\(e^{x}\\)</td></tr>\n<tr><td>−</td><td>\\(2x\\)</td><td>\\(e^{x}\\)</td></tr>\n<tr><td>+</td><td>\\(2\\)</td><td>\\(e^{x}\\)</td></tr>\n<tr><td></td><td>\\(0\\)</td><td>\\(e^{x}\\)</td></tr>\n</tbody></table>\n<p>Çapraz çarp: \\(\\int x^2e^x dx=x^2e^x-2xe^x+2e^x+C\\).</p>\n<div class=\"kn-dikkat\">Formüldeki <strong>eksi</strong> işareti en sık unutulan parçadır; ikinci kısmi integrasyonda işaretler birikir. Tablo yöntemi bunu otomatik yönetir.</div>\n<h4>Soyut (tablo verili) sorular</h4>\n<p>AP BC şu tip soruyu sever: \\(f(0)=2, f(3)=5, f'(0)=1, f'(3)=4\\) verilir, \\(\\int_0^3 x f''(x)\\,dx\\) istenir. \\(u=x\\), \\(dv=f''dx\\) ⇒ \\(v=f'\\): \\[\\Big[xf'(x)\\Big]_0^3-\\int_0^3 f'(x)\\,dx=(3\\cdot4-0)-(5-2)=9.\\]</p>\n<div class=\"kn-kural\"><strong>Strateji:</strong> İntegrand iki farklı türden fonksiyonun çarpımıysa ve \\(u\\)-sub çalışmıyorsa kısmi integrasyon düşün. Önce \\(u\\)-sub dene: \\(\\int xe^{x^2}dx\\) kısmi değil, \\(u=x^2\\) ile çözülür.</div>\n<h4>Döngüsel (cyclic) kısmi integrasyon</h4>\n<p>\\(I=\\int e^x\\cos x\\,dx\\) iki kısmi integrasyondan sonra kendine döner. \\(u=\\cos x\\), \\(dv=e^xdx\\): \\(I=e^x\\cos x+\\int e^x\\sin x\\,dx\\). İkinci kez \\(u=\\sin x\\): \\(\\int e^x\\sin x\\,dx=e^x\\sin x-I\\). Böylece \\(I=e^x\\cos x+e^x\\sin x-I\\) ⇒ \\(2I=e^x(\\sin x+\\cos x)\\) ⇒ \\(I=\\tfrac12e^x(\\sin x+\\cos x)+C\\). İki adımda da aynı türden \\(u\\) seç (ikisinde de trigonometrik); türü değiştirirsen başa dönersin.</p>\n<h4>Tablo yöntemi ne zaman yetmez?</h4>\n<p>Tablo, \\(u\\)'nun türevleri 0'a ulaşınca biter. \\(\\int x^3\\ln x\\,dx\\)'te LIATE gereği \\(u=\\ln x\\) seçilir ve türevleri sıfıra gitmez; tek bir kısmi integrasyon yeter: \\(\\frac{x^4}{4}\\ln x-\\int\\frac{x^4}{4}\\cdot\\frac1x\\,dx=\\frac{x^4}{4}\\ln x-\\frac{x^4}{16}+C\\).</p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\int x e^{-2x}\\,dx\\)'i bulun.",
+     "cozum": [
+      "\\(u=x\\), \\(dv=e^{-2x}dx\\) ⇒ \\(du=dx\\), \\(v=-\\tfrac12e^{-2x}\\).",
+      "\\(-\\tfrac12xe^{-2x}+\\tfrac12\\int e^{-2x}dx=-\\tfrac12xe^{-2x}-\\tfrac14e^{-2x}+C\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\int_1^{e} \\ln x\\,dx\\)'i hesaplayın.",
+     "cozum": [
+      "\\(u=\\ln x\\), \\(dv=dx\\) ⇒ antitürev \\(x\\ln x-x\\).",
+      "\\([e\\cdot1-e]-[0-1]=0+1=1\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\int x^2\\sin x\\,dx\\)'i tablo yöntemiyle bulun.",
+     "cozum": [
+      "\\(u\\): \\(x^2, 2x, 2, 0\\); \\(dv\\) integralleri: \\(-\\cos x, -\\sin x, \\cos x\\).",
+      "İşaretler \\(+,-,+\\): \\(-x^2\\cos x+2x\\sin x+2\\cos x+C\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "LIATE ile u seç; dv kalan her şeydir (dx dahil).",
+    "v'yi bulurken sabit çarpanları dikkatle yaz: ∫ e^{3x} dx = e^{3x}/3.",
+    "Polinom × eˣ/sin/cos için tablo yöntemi en hızlı ve en güvenlisidir.",
+    "Belirli integralde [uv] terimini sınırlarda hemen hesapla; integral kısmını ayrı bitir."
+   ],
+   "sikHatalar": [
+    "uv − ∫ v du formülündeki eksiyi unutmak ya da ikinci adımda işareti yanlış dağıtmak.",
+    "u ve dv'yi ters seçip daha zor bir integrale ulaşmak (ör. u = eˣ, dv = x dx).",
+    "Belirli integralde [uv]ₐᵇ terimini hesaplamayı unutmak."
+   ],
+   "terimler": [
+    {
+     "en": "integration by parts",
+     "tr": "kısmi integrasyon"
+    },
+    {
+     "en": "product rule",
+     "tr": "çarpım kuralı"
+    },
+    {
+     "en": "tabular method",
+     "tr": "tablo yöntemi"
+    },
+    {
+     "en": "LIATE",
+     "tr": "u seçimi öncelik sırası"
+    }
+   ]
+  },
+  {
+   "kod": "6.12",
+   "baslik": "Integrating Using Linear Partial Fractions",
+   "baslikTr": "Doğrusal kısmi kesirlerle integral",
+   "sadeceBC": true,
+   "hedefler": [
+    "Paydası farklı doğrusal çarpanlara ayrılan bir rasyonel fonksiyonu kısmi kesirlere (partial fractions) ayırmak.",
+    "Katsayıları (A, B) kök yerine koyma (cover-up / Heaviside) yöntemiyle hızlıca bulmak.",
+    "Sonucu ln terimleriyle yazmak ve logaritma özellikleriyle sadeleştirmek; belirli integrali hesaplamak."
+   ],
+   "anlatim": "<p>\\(\\dfrac{1}{x-1}-\\dfrac{1}{x+1}=\\dfrac{2}{x^2-1}\\). Kısmi kesirler bu toplamayı <strong>tersine</strong> yapar: karmaşık bir kesri, her biri \\(\\ln\\) ile integre edilebilen basit kesirlere ayırır.</p>\n<h4>Ne zaman?</h4>\n<ul>\n<li>İntegrand rasyonel: \\(\\frac{P(x)}{Q(x)}\\).</li>\n<li>\\(\\deg P\\lt\\deg Q\\) (değilse önce polinom bölmesi, 6.10).</li>\n<li>AP BC kapsamında \\(Q\\) <strong>farklı doğrusal çarpanlara</strong> ayrılır: \\((x-a)(x-b)\\). (Tekrarlanan veya ikinci dereceden çarpanlar sınav dışıdır.)</li>\n</ul>\n<h4>Ayırma</h4>\n<div class=\"kn-kural\">\\[\\frac{px+q}{(x-a)(x-b)}=\\frac{A}{x-a}+\\frac{B}{x-b}\\]\nHer iki tarafı \\((x-a)(x-b)\\) ile çarp: \\(px+q=A(x-b)+B(x-a)\\).</div>\n<p><strong>Kök koyma (cover-up):</strong> \\(x=a\\) yaz ⇒ \\(B\\)'li terim sıfırlanır: \\(pa+q=A(a-b)\\). \\(x=b\\) yaz ⇒ \\(pb+q=B(b-a)\\).</p>\n<p>Örnek: \\(\\dfrac{x+7}{(x-1)(x+3)}\\). \\(x+7=A(x+3)+B(x-1)\\). \\(x=1\\): \\(8=4A\\Rightarrow A=2\\). \\(x=-3\\): \\(4=-4B\\Rightarrow B=-1\\).</p>\n\\[\\int\\frac{x+7}{(x-1)(x+3)}dx=2\\ln|x-1|-\\ln|x+3|+C=\\ln\\frac{(x-1)^2}{|x+3|}+C.\\]\n<h4>Önce çarpanlara ayır</h4>\n<table><thead><tr><th>Payda</th><th>Çarpanlar</th></tr></thead>\n<tbody>\n<tr><td>\\(x^2-4\\)</td><td>\\((x-2)(x+2)\\)</td></tr>\n<tr><td>\\(x^2+x-6\\)</td><td>\\((x+3)(x-2)\\)</td></tr>\n<tr><td>\\(x^2-3x\\)</td><td>\\(x(x-3)\\)</td></tr>\n<tr><td>\\(2x^2+5x-3\\)</td><td>\\((2x-1)(x+3)\\)</td></tr>\n</tbody></table>\n<div class=\"kn-dikkat\">\\(\\int\\frac{A}{2x-1}dx=\\frac{A}{2}\\ln|2x-1|+C\\): doğrusal çarpanın \\(x\\) katsayısı 1 değilse \\(\\frac1{\\text{katsayı}}\\) gelir (gizli \\(u\\)-sub).</div>\n<h4>Belirli integral</h4>\n<p>\\(\\int_2^4\\frac{dx}{x^2-1}=\\tfrac12\\int_2^4\\left(\\frac{1}{x-1}-\\frac1{x+1}\\right)dx=\\tfrac12\\Big[\\ln\\frac{x-1}{x+1}\\Big]_2^4=\\tfrac12\\left(\\ln\\tfrac35-\\ln\\tfrac13\\right)=\\tfrac12\\ln\\tfrac95=\\ln\\tfrac{3}{\\sqrt5}.\\) Logaritma özellikleriyle sadeleştirmek, şıklarla eşleştirmek için gereklidir.</p>\n<p>Kısmi kesirler Ünite 7'de lojistik (logistic) diferansiyel denklemi çözerken de kullanılır.</p>\n<div class=\"kn-kural\"><strong>Kontrol:</strong> Bulduğun kesirleri tekrar topla; pay geri gelmeli. \\(\\frac{2}{x-1}-\\frac{1}{x+3}=\\frac{2(x+3)-(x-1)}{(x-1)(x+3)}=\\frac{x+7}{(x-1)(x+3)}\\) ✓.</div>\n<h4>Neden kök koymak işe yarar?</h4>\n<p>\\(px+q=A(x-b)+B(x-a)\\) bir polinom eşitliğidir, bu yüzden <em>her</em> \\(x\\) için doğrudur. \\(x=a\\) koymak \\(B\\)'li terimi yok eder ve \\(A=\\frac{pa+q}{a-b}\\) bulunur. Paydaki değeri <strong>kalan çarpanın değerine bölmeyi</strong> unutma.</p>\n<h4>Katsayı eşitleme (kontrol yöntemi)</h4>\n<p>Aynı eşitlikte \\(x\\)'in katsayıları ve sabitler eşitlenir: \\(A+B=p\\) ve \\(-Ab-Ba=q\\). Yukarıdaki örnekte \\(A+B=2+(-1)=1\\), payın \\(x\\) katsayısıyla aynı ✓. Bu kısa kontrol, kök koyarken yapılan işaret hatalarını yakalar.</p>\n<h4>Cevap biçimleri</h4>\n<p>\\(\\ln|x-1|-\\ln|x+3|\\), \\(\\ln\\left|\\frac{x-1}{x+3}\\right|\\) ve \\(-\\ln\\left|\\frac{x+3}{x-1}\\right|\\) aynı fonksiyondur; şıklarda bu biçimlerden herhangi biri çıkabilir.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\int\\frac{3x+1}{x^2+x-2}\\,dx\\)'i bulun.",
+     "cozum": [
+      "\\(x^2+x-2=(x+2)(x-1)\\); \\(3x+1=A(x-1)+B(x+2)\\).",
+      "\\(x=1\\): \\(4=3B\\Rightarrow B=\\tfrac43\\). \\(x=-2\\): \\(-5=-3A\\Rightarrow A=\\tfrac53\\).",
+      "\\(\\tfrac53\\ln|x+2|+\\tfrac43\\ln|x-1|+C\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\int_3^5\\frac{4}{x^2-4}\\,dx\\)'i hesaplayın.",
+     "cozum": [
+      "\\(\\frac{4}{(x-2)(x+2)}=\\frac{1}{x-2}-\\frac{1}{x+2}\\) (\\(x=2\\): \\(A=1\\); \\(x=-2\\): \\(B=-1\\)).",
+      "\\(\\Big[\\ln\\frac{x-2}{x+2}\\Big]_3^5=\\ln\\tfrac37-\\ln\\tfrac15=\\ln\\tfrac{15}{7}\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\int\\frac{x^2+1}{x^2-x}\\,dx\\)'i bulun.",
+     "cozum": [
+      "Dereceler eşit ⇒ böl: \\(\\frac{x^2+1}{x^2-x}=1+\\frac{x+1}{x(x-1)}\\).",
+      "\\(\\frac{x+1}{x(x-1)}=\\frac{-1}{x}+\\frac{2}{x-1}\\).",
+      "\\(x-\\ln|x|+2\\ln|x-1|+C\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Önce derece kontrolü: pay ≥ payda ise polinom bölmesi.",
+    "Katsayılar için köklerini yerine koy (cover-up); denklem sistemi kurmaktan çok daha hızlı.",
+    "Şıklar ln birleşimiyle yazılmış olabilir: a ln|x−1| − b ln|x+2| = ln(|x−1|ᵃ / |x+2|ᵇ).",
+    "Belirli integralde sınırların paydanın köklerini içermediğini kontrol et; içeriyorsa integral improper olur (6.13)."
+   ],
+   "sikHatalar": [
+    "Katsayıları ters eşleştirmek (A'yı x − b'nin üstüne yazmak).",
+    "(2x − 1) gibi çarpanda 1/2 çarpanını unutmak.",
+    "Derece eşitken bölmeden kısmi kesir kurmaya çalışmak."
+   ],
+   "terimler": [
+    {
+     "en": "partial fraction decomposition",
+     "tr": "kısmi kesirlere ayırma"
+    },
+    {
+     "en": "linear factor",
+     "tr": "doğrusal çarpan"
+    },
+    {
+     "en": "distinct factors",
+     "tr": "farklı çarpanlar"
+    },
+    {
+     "en": "cover-up method",
+     "tr": "kök yerine koyma yöntemi"
+    }
+   ]
+  },
+  {
+   "kod": "6.13",
+   "baslik": "Evaluating Improper Integrals",
+   "baslikTr": "Has olmayan (improper) integralleri hesaplamak",
+   "sadeceBC": true,
+   "hedefler": [
+    "Sonsuz sınırlı ya da integrandın sınırsız olduğu (unbounded) integralleri limit olarak yazmak.",
+    "Limiti hesaplayıp integralin yakınsadığını (converges) ya da ıraksadığını (diverges) belirlemek.",
+    "\\(\\int_1^\\infty\\frac{1}{x^p}\\,dx\\) kuralını ve aralık içi süreksizlikte integrali bölmeyi kullanmak."
+   ],
+   "anlatim": "<p>Belirli integral tanımı sonlu bir aralık ve sınırlı bir fonksiyon ister. İkisinden biri bozulursa integral <strong>improper</strong> olur ve bir <strong>limit</strong> olarak tanımlanır.</p>\n<h4>Tür 1: Sonsuz sınır (infinite limit of integration)</h4>\n<div class=\"kn-tanim\">\\[\\int_a^{\\infty}f(x)\\,dx=\\lim_{b\\to\\infty}\\int_a^b f(x)\\,dx\\]\nLimit sonlu bir sayıysa integral <strong>yakınsar (converges)</strong>; sonsuz ya da yoksa <strong>ıraksar (diverges)</strong>.</div>\n<p>Örnek: \\(\\int_1^\\infty\\frac{dx}{x^2}=\\lim_{b\\to\\infty}\\Big[-\\frac1x\\Big]_1^b=\\lim_{b\\to\\infty}\\left(1-\\frac1b\\right)=1\\). Sonsuz uzunlukta bir bölgenin alanı sonlu olabilir.</p>\n<h4>Tür 2: Sınırsız integrand (infinite discontinuity)</h4>\n<p>\\(f\\), bir uç noktada (ya da aralık içinde) dikey asimptota sahipse:</p>\n<div class=\"kn-tanim\">\\[\\int_0^{1}\\frac{dx}{\\sqrt x}=\\lim_{a\\to0^+}\\int_a^1 x^{-1/2}dx=\\lim_{a\\to0^+}\\big(2-2\\sqrt a\\big)=2.\\]</div>\n<div class=\"kn-dikkat\">Süreksizlik aralığın <strong>içinde</strong> ise integrali o noktada böl: \\(\\int_{-1}^{2}\\frac{dx}{x^2}=\\int_{-1}^{0}+\\int_0^2\\). Parçalardan biri ıraksarsa tüm integral ıraksar. Bölmeden “\\([-\\frac1x]_{-1}^2=-\\frac32\\)” yazmak yanlıştır (pozitif bir fonksiyonun integrali negatif çıkamaz!).</div>\n<h4>p-integrali kuralı</h4>\n<table><thead><tr><th>İntegral</th><th>Yakınsar</th><th>Iraksar</th></tr></thead>\n<tbody>\n<tr><td>\\(\\int_1^\\infty\\frac{dx}{x^p}\\)</td><td>\\(p\\gt1\\) (değer \\(\\frac{1}{p-1}\\))</td><td>\\(p\\le1\\)</td></tr>\n<tr><td>\\(\\int_0^1\\frac{dx}{x^p}\\)</td><td>\\(p\\lt1\\) (değer \\(\\frac{1}{1-p}\\))</td><td>\\(p\\ge1\\)</td></tr>\n</tbody></table>\n<p>Özellikle \\(\\int_1^\\infty\\frac1x dx=\\lim\\ln b=\\infty\\) ıraksar. Bu kural Ünite 10'da integral testi (integral test) ve p-serileri için temel oluşturur.</p>\n<h4>Gerekli limitler</h4>\n<ul>\n<li>\\(\\lim_{b\\to\\infty}e^{-b}=0\\), \\(\\lim_{b\\to\\infty}\\arctan b=\\frac\\pi2\\), \\(\\lim_{b\\to\\infty}\\ln b=\\infty\\).</li>\n<li>\\(\\lim_{b\\to\\infty}be^{-b}=0\\) (L'Hospital) — kısmi integrasyonlu improper sorularda gerekir.</li>\n</ul>\n<div class=\"kn-kural\"><strong>FRQ yazımı:</strong> Limit gösterimini mutlaka yaz: “\\(\\int_0^\\infty xe^{-x}dx=\\lim_{b\\to\\infty}\\int_0^b xe^{-x}dx=\\lim_{b\\to\\infty}\\left(1-be^{-b}-e^{-b}\\right)=1\\).” \\(\\infty\\)'u sanki sayıymış gibi yerine koymak (\\(-e^{-\\infty}\\)) puan kaybettirir.</div>\n<h4>Yakınsaklık muhakemesi: sınırsız ≠ ıraksak</h4>\n<table><thead><tr><th>İntegral</th><th>Neden</th><th>Sonuç</th></tr></thead>\n<tbody>\n<tr><td>\\(\\int_0^1x^{-1/2}dx\\)</td><td>sınırsız ama \\(p=\\tfrac12\\lt1\\)</td><td>yakınsar (2)</td></tr>\n<tr><td>\\(\\int_0^1x^{-2}dx\\)</td><td>\\(p=2\\ge1\\)</td><td>ıraksar</td></tr>\n<tr><td>\\(\\int_1^\\infty x^{-1}dx\\)</td><td>\\(\\ln b\\to\\infty\\)</td><td>ıraksar</td></tr>\n<tr><td>\\(\\int_0^\\infty e^{-x}dx\\)</td><td>\\(1-e^{-b}\\to1\\)</td><td>yakınsar (1)</td></tr>\n</tbody></table>\n<p>Yalnız integrandın davranışına bakıp karar verme; limiti hesapla. Aralık içindeki bir asimptotta iki parçanın <em>her biri</em> ayrı ayrı yakınsamalıdır; ancak o zaman değerler toplanır. Örnek: \\(\\int_{-1}^{8}x^{-1/3}dx\\), antitürev \\(\\tfrac32x^{2/3}\\). \\(\\int_{-1}^{0}=0-\\tfrac32=-\\tfrac32\\) ve \\(\\int_0^8=\\tfrac32\\cdot4=6\\); ikisi de sonlu ⇒ integral yakınsar ve değeri \\(\\tfrac92\\)'dir.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\int_0^\\infty e^{-3x}\\,dx\\)'i hesaplayın ya da ıraksadığını gösterin.",
+     "cozum": [
+      "\\(\\lim_{b\\to\\infty}\\Big[-\\tfrac13e^{-3x}\\Big]_0^b=\\lim_{b\\to\\infty}\\left(-\\tfrac13e^{-3b}+\\tfrac13\\right)\\).",
+      "\\(e^{-3b}\\to0\\) ⇒ değer \\(\\tfrac13\\); yakınsar."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\int_1^\\infty\\frac{dx}{1+x^2}\\)'i hesaplayın.",
+     "cozum": [
+      "\\(\\lim_{b\\to\\infty}\\big(\\arctan b-\\arctan1\\big)\\).",
+      "\\(=\\frac\\pi2-\\frac\\pi4=\\frac\\pi4\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\int_0^{3}\\frac{dx}{(x-1)^{2/3}}\\) yakınsar mı?",
+     "cozum": [
+      "\\(x=1\\)'de integrand sınırsız ⇒ \\(\\int_0^1+\\int_1^3\\) olarak böl. Antitürev \\(3(x-1)^{1/3}\\).",
+      "\\(\\lim_{b\\to1^-}[3(x-1)^{1/3}]_0^b=0-3(-1)=3\\); \\(\\lim_{a\\to1^+}[3(x-1)^{1/3}]_a^3=3\\sqrt[3]2\\).",
+      "İki parça da sonlu ⇒ yakınsar, değer \\(3+3\\sqrt[3]{2}\\approx6.780\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Önce integrandın aralıkta tanımsız olduğu bir nokta var mı kontrol et; görünüşte normal integraller de improper olabilir.",
+    "Her zaman lim gösterimini yaz; ∞'u doğrudan yerine koyma.",
+    "p-kuralını şıklarda hızlı eleme için kullan: 1/x ve 1/√x [1, ∞)'da ıraksar.",
+    "Bir parça ıraksadıysa diğer parçayı hesaplamaya gerek yok: integral ıraksar."
+   ],
+   "sikHatalar": [
+    "Aralık içindeki dikey asimptotu görmeyip FTC'yi doğrudan uygulamak.",
+    "İntegrandın limiti 0'a gidiyorsa integralin yakınsadığını sanmak (1/x → 0 ama ∫₁^∞ 1/x dx ıraksar).",
+    "∞ − ∞ gibi belirsizlikleri iki parçayı birleştirerek “iptal etmek”."
+   ],
+   "terimler": [
+    {
+     "en": "improper integral",
+     "tr": "has olmayan integral"
+    },
+    {
+     "en": "converge / diverge",
+     "tr": "yakınsamak / ıraksamak"
+    },
+    {
+     "en": "infinite discontinuity",
+     "tr": "sonsuz süreksizlik"
+    },
+    {
+     "en": "p-integral",
+     "tr": "p-integrali"
+    }
+   ]
+  },
+  {
+   "kod": "6.14",
+   "baslik": "Selecting Techniques for Antidifferentiation",
+   "baslikTr": "Antitürev için uygun tekniği seçmek",
+   "sadeceBC": false,
+   "hedefler": [
+    "Bir integralin biçimine bakarak en uygun tekniği (temel kural, yeniden yazma, \\(u\\)-sub, bölme, tam kare; BC'de kısmi integrasyon ve kısmi kesirler) seçmek.",
+    "Birbirine benzeyen integralleri (ör. \\(\\int\\frac{x}{x^2+1}\\,dx\\) ve \\(\\int\\frac{1}{x^2+1}\\,dx\\)) ayırt etmek.",
+    "Seçilen tekniği uygulayıp sonucu türevle kontrol etmek."
+   ],
+   "anlatim": "<p>Sınavda integral, hangi bölümden geldiğini söylemez. Bu konu, önceki tüm teknikleri <strong>tanıma</strong> becerisidir. Küçük bir değişiklik tekniği tamamen değiştirebilir.</p>\n<h4>Karar sırası (decision checklist)</h4>\n<ol>\n<li><strong>Temel kural mı?</strong> Tablodaki bir biçim (kuvvet, \\(e^x\\), \\(\\frac1x\\), trig, \\(\\frac1{1+x^2}\\)).</li>\n<li><strong>Yeniden yazılabilir mi?</strong> Kök → üs, payı terim terim böl, çarpımı aç, trig özdeşliği (\\(\\tan^2x=\\sec^2x-1\\)).</li>\n<li><strong>\\(u\\)-sub var mı?</strong> Bir iç fonksiyon ve türevi (sabit çarpan farkıyla) görünüyor mu?</li>\n<li><strong>Rasyonel mi?</strong> Derece ≥ ise bölme; payda tam kare/çarpanlanamaz ise tam kareye tamamlama (arctan); payda doğrusal çarpanlara ayrılıyorsa kısmi kesirler (BC).</li>\n<li><strong>Farklı türden çarpım mı?</strong> (polinom × üstel, polinom × trig, \\(\\ln x\\), \\(\\arctan x\\)) ⇒ kısmi integrasyon (BC).</li>\n</ol>\n<h4>Benzer görünen, farklı çözülen</h4>\n<table><thead><tr><th>İntegral</th><th>Teknik</th><th>Sonuç</th></tr></thead>\n<tbody>\n<tr><td>\\(\\int\\frac{x}{x^2+4}dx\\)</td><td>\\(u\\)-sub (\\(u=x^2+4\\))</td><td>\\(\\tfrac12\\ln(x^2+4)+C\\)</td></tr>\n<tr><td>\\(\\int\\frac{1}{x^2+4}dx\\)</td><td>arctan biçimi</td><td>\\(\\tfrac12\\arctan\\frac x2+C\\)</td></tr>\n<tr><td>\\(\\int\\frac{1}{x^2-4}dx\\)</td><td>kısmi kesirler (BC)</td><td>\\(\\tfrac14\\ln\\left|\\frac{x-2}{x+2}\\right|+C\\)</td></tr>\n<tr><td>\\(\\int\\frac{x^3}{x^2+4}dx\\)</td><td>bölme + \\(u\\)-sub</td><td>\\(\\tfrac{x^2}2-2\\ln(x^2+4)+C\\)</td></tr>\n<tr><td>\\(\\int xe^{x^2}dx\\)</td><td>\\(u\\)-sub</td><td>\\(\\tfrac12e^{x^2}+C\\)</td></tr>\n<tr><td>\\(\\int xe^{x}dx\\)</td><td>kısmi integrasyon (BC)</td><td>\\(xe^x-e^x+C\\)</td></tr>\n</tbody></table>\n<div class=\"kn-dikkat\">AB öğrencisi için: AB sınavında kısmi integrasyon ve kısmi kesirler <strong>sorulmaz</strong>. AB'de bir integral bu tekniklere ihtiyaç duyuyor gibi görünüyorsa, genellikle bir \\(u\\)-sub ya da yeniden yazma gözden kaçmıştır.</div>\n<h4>Yeniden yazmanın gücü</h4>\n<ul>\n<li>\\(\\int\\tan^2x\\,dx=\\int(\\sec^2x-1)dx=\\tan x-x+C\\).</li>\n<li>\\(\\int\\frac{e^{2x}+1}{e^x}dx=\\int(e^{x}+e^{-x})dx=e^x-e^{-x}+C\\).</li>\n<li>\\(\\int\\sin x\\cos x\\,dx\\): \\(u=\\sin x\\) ⇒ \\(\\tfrac12\\sin^2x+C\\) (ya da \\(-\\tfrac14\\cos2x+C\\); ikisi de doğru, sabitle farklılar).</li>\n</ul>\n<p>Son örnek önemlidir: farklı yöntemler farklı <em>görünen</em> cevaplar verebilir; aralarındaki fark sabitse ikisi de doğrudur. Şıklarda böyle bir eşdeğerlik aranabilir.</p>\n<div class=\"kn-kural\"><strong>Sınav taktiği:</strong> “Which technique would be most appropriate?” sorularında integralleri çözmeden yapıyı oku: paydanın türevi payda mı (\\(\\ln\\))? Payda \\(1+(\\cdot)^2\\) mi (arctan)? Çarpanlara ayrılıyor mu (kısmi kesir)? İki farklı tür çarpılıyor mu (kısmi integrasyon)?</div>",
+   "ornekler": [
+    {
+     "soru": "\\(\\displaystyle\\int\\frac{2x+3}{x^2+3x+7}\\,dx\\) için uygun teknik nedir? İntegrali bulun.",
+     "cozum": [
+      "Pay, paydanın türevidir: \\(\\frac{d}{dx}(x^2+3x+7)=2x+3\\) ⇒ \\(u\\)-sub.",
+      "\\(\\ln|x^2+3x+7|+C=\\ln(x^2+3x+7)+C\\) (payda her zaman pozitif)."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\int\\frac{dx}{\\sqrt{9-x^2}}\\) ve \\(\\displaystyle\\int\\frac{x\\,dx}{\\sqrt{9-x^2}}\\) integrallerini bulun.",
+     "cozum": [
+      "Birincisi arcsin biçimi: \\(\\arcsin\\frac x3+C\\).",
+      "İkincisinde \\(u=9-x^2\\), \\(du=-2x\\,dx\\): \\(-\\tfrac12\\int u^{-1/2}du=-\\sqrt{9-x^2}+C\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\displaystyle\\int\\frac{\\cos x}{\\sin^2x}\\,dx\\)'i iki farklı biçimde ifade edin.",
+     "cozum": [
+      "\\(u=\\sin x\\): \\(\\int u^{-2}du=-u^{-1}=-\\frac1{\\sin x}+C\\).",
+      "Yeniden yazma: \\(\\frac{\\cos x}{\\sin x}\\cdot\\frac1{\\sin x}=\\cot x\\csc x\\) ⇒ \\(-\\csc x+C\\). İki cevap aynıdır."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Önce paydanın türevi payda mı diye bak: evetse ln(payda).",
+    "Payda 1 + (…)² ya da tam kareye tamamlanabiliyorsa arctan; √(1 − (…)²) ise arcsin.",
+    "Cevabın türevini almak her teknik için en güvenilir kontroldür.",
+    "Şıklardaki cevaplar sabit farkıyla eşdeğer olabilir (½sin²x ve −¼cos 2x gibi)."
+   ],
+   "sikHatalar": [
+    "∫ x/(x² + 4) dx için arctan kullanmak (pay x olduğunda u-sub gerekir).",
+    "AB'de gerek olmadığı halde karmaşık teknik aramak; basit yeniden yazmayı gözden kaçırmak.",
+    "Eşdeğer ama farklı görünen iki cevaptan birinin yanlış olduğunu sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "technique of integration",
+     "tr": "integral tekniği"
+    },
+    {
+     "en": "rewrite",
+     "tr": "yeniden yazma"
+    },
+    {
+     "en": "trigonometric identity",
+     "tr": "trigonometrik özdeşlik"
+    },
+    {
+     "en": "equivalent antiderivatives",
+     "tr": "eşdeğer antitürevler"
+    }
+   ]
+  }
+ ]
+}
