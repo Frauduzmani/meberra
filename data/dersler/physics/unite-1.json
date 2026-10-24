@@ -1,0 +1,399 @@
+{
+ "ders": "physics",
+ "unite": 1,
+ "baslik": "Kinematics",
+ "baslikTr": "Kinematik",
+ "konular": [
+  {
+   "kod": "1.1",
+   "baslik": "Scalars and Vectors in One Dimension",
+   "baslikTr": "Bir boyutta skalerler ve vektörler",
+   "hedefler": [
+    "Skaler (scalar) ve vektör (vector) nicelikleri ayırt etmek; mesafe–yer değiştirme ve sürat–hız çiftlerini doğru kullanmak.",
+    "Bir boyutta yönü işaretle (+/−) göstermek ve bir koordinat sistemini (coordinate system) açıkça seçip korumak.",
+    "Bir boyutlu vektörleri işaretli toplama ile birleştirmek ve değişimi \\(\\Delta = \\text{son} - \\text{ilk}\\) olarak hesaplamak."
+   ],
+   "anlatim": "<h4>Fizikte iki tür nicelik</h4>\n<div class=\"kn-tanim\"><strong>Skaler (scalar):</strong> yalnızca büyüklüğü (magnitude) olan nicelik: zaman, mesafe (distance), sürat (speed), kütle.<br><strong>Vektör (vector):</strong> hem büyüklüğü hem yönü (direction) olan nicelik: yer değiştirme (displacement), hız (velocity), ivme (acceleration), kuvvet.</div>\n<p>AP Physics 1 kinematiğe bu ayrımla başlar, çünkü sınavdaki pek çok çeldirici “speed” ile “velocity”yi ya da “distance” ile “displacement”ı karıştıran öğrenciyi hedefler.</p>\n<table><thead><tr><th>Skaler</th><th>Vektör karşılığı</th><th>Fark</th></tr></thead><tbody>\n<tr><td>distance (mesafe) — gidilen toplam yol</td><td>displacement (yer değiştirme) \\(\\Delta x = x_f - x_i\\)</td><td>Geri dönüşte mesafe artmaya devam eder; yer değiştirme azalabilir, sıfır ya da negatif olabilir.</td></tr>\n<tr><td>speed (sürat) — hızın büyüklüğü</td><td>velocity (hız) \\(v\\)</td><td>Sürat asla negatif değildir; hızın işareti yönü gösterir.</td></tr>\n<tr><td>average speed = distance / time</td><td>average velocity = \\(\\Delta x / \\Delta t\\)</td><td>Her zaman \\(|\\bar v| \\le\\) average speed; eşitlik yalnız yön değiştirmeyen düz çizgi harekette.</td></tr>\n</tbody></table>\n<h4>Bir boyutta yön = işaret</h4>\n<p>Cisim bir doğru üzerinde hareket ediyorsa yön yalnızca iki seçenektir. Bu yüzden vektörü bir <strong>bileşen (component)</strong> ile, yani işaretli bir sayıyla yazarız. Önce bir <strong>koordinat sistemi</strong> seçilir: bir başlangıç noktası (origin) ve bir pozitif yön. Seçim keyfidir ama <em>bir kez seçilince problem boyunca değişmez</em>.</p>\n<div class=\"kn-kural\"><strong>Kural:</strong> Doğu (+) seçildiyse \\(v = -4\\text{ m/s}\\) “batıya 4 m/s” demektir. Eksi işareti “küçük” değil, “ters yön” anlamına gelir. \\(-8\\text{ m/s}\\)'lik hız, \\(+3\\text{ m/s}\\)'lik hızdan daha <em>büyük</em> bir sürattir.</div>\n<h4>Bir boyutta vektör toplama ve değişim</h4>\n<p>Aynı doğru üzerindeki vektörler işaretleriyle toplanır: \\(+12\\text{ m}\\), \\(-20\\text{ m}\\), \\(+5\\text{ m}\\) yer değiştirmelerinin toplamı \\(-3\\text{ m}\\)'dir; gidilen mesafe ise \\(12+20+5 = 37\\text{ m}\\)'dir. Bir niceliğin <strong>değişimi</strong> her zaman \\(\\Delta Q = Q_f - Q_i\\) (son eksi ilk) şeklinde hesaplanır. Örneğin sağa \\(6\\text{ m/s}\\) giden top duvara çarpıp sola \\(4\\text{ m/s}\\) ile dönerse (sağ +): \\(\\Delta v = (-4) - (+6) = -10\\text{ m/s}\\). Süratteki değişim yalnız \\(-2\\text{ m/s}\\) olurdu; bu iki sonuç farklı sorulara cevaptır.</p>\n<h4>Nesne modeli (object model) ve sistem</h4>\n<p>AP Physics 1, kinematikte cismi çoğunlukla bir <strong>nokta cisim (object / point particle)</strong> olarak modeller: boyutu ve dönmesi ihmal edilir, yalnız konumu izlenir. Bu, gerçek arabanın ya da topun tek bir \\(x\\) değeriyle anlatılabilmesini sağlar.</p>\n<div class=\"kn-dikkat\">Ölçümün de bir belirsizliği (uncertainty) vardır. İki konumu \\(\\pm 0.02\\text{ m}\\) belirsizlikle ölçtüysen farklarının belirsizliği en kötü durumda \\(\\pm 0.04\\text{ m}\\) olur: farkı alınca belirsizlikler <strong>toplanır</strong>, birbirini götürmez.</div>\n<h4>FRQ'da puan getiren dil</h4>\n<ul>\n<li>“Taking <em>east</em> as the positive direction, the displacement is −8 m, so the object ends up 8 m west of where it started.”</li>\n<li>“The average speed is greater than the magnitude of the average velocity <em>because</em> the object reversed direction, so the distance traveled is greater than the magnitude of the displacement.”</li>\n<li>Her sayının yanına birim ve gerekirse yön yaz: “4 m/s to the west”. Yönsüz hız cevabı genellikle tam puan almaz.</li>\n</ul>",
+   "ornekler": [
+    {
+     "soru": "Bir yürüyüşçü bir patika üzerinde \\(x = +2\\text{ m}\\)'den \\(x = +9\\text{ m}\\)'ye, sonra \\(x = -4\\text{ m}\\)'ye yürüyor (doğu +). Toplam mesafeyi, yer değiştirmeyi ve yer değiştirmenin yönünü bulun.",
+     "cozum": [
+      "Mesafe parçaları: \\(|9-2| = 7\\text{ m}\\) ve \\(|-4-9| = 13\\text{ m}\\). Toplam mesafe (distance) \\(= 20\\text{ m}\\).",
+      "Yer değiştirme yalnız ilk ve son konuma bakar: \\(\\Delta x = x_f - x_i = -4 - 2 = -6\\text{ m}\\).",
+      "Yorum: “The displacement is 6 m to the west.” Mesafe (20 m), yer değiştirmenin büyüklüğünden (6 m) büyüktür çünkü yürüyüşçü yön değiştirmiştir."
+     ]
+    },
+    {
+     "soru": "Bir araba batıya \\(15\\text{ m/s}\\) ile giderken frene basıyor ve \\(3.0\\text{ s}\\) sonra batıya \\(6\\text{ m/s}\\) ile gidiyor. Doğuyu pozitif alarak hızdaki değişimi ve ortalama ivmenin yönünü bulun.",
+     "cozum": [
+      "İşaretlerle yaz: \\(v_i = -15\\text{ m/s}\\), \\(v_f = -6\\text{ m/s}\\).",
+      "\\(\\Delta v = v_f - v_i = -6 - (-15) = +9\\text{ m/s}\\). Ortalama ivme \\(\\bar a = \\Delta v/\\Delta t = +3\\text{ m/s}^2\\), yani <strong>doğuya</strong>.",
+      "Yorum: araba yavaşlıyor çünkü ivme ile hız <em>zıt</em> işaretli. “Positive acceleration” her zaman “hızlanıyor” demek değildir."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Bir koşucu 400 m'lik pistte bir tam turu 80 s'de tamamlıyor. Ortalama sürat ile ortalama hızın büyüklüğünü karşılaştırın ve gerekçelendirin.",
+     "cozum": [
+      "Ortalama sürat \\(= \\dfrac{400\\text{ m}}{80\\text{ s}} = 5\\text{ m/s}\\).",
+      "Koşucu başladığı noktada bitirdiği için yer değiştirme sıfırdır; ortalama hız \\(= 0\\).",
+      "Gerekçe: “The average speed (5 m/s) is greater than the magnitude of the average velocity (0) because the runner returns to the starting point, so the displacement is zero while the distance traveled is 400 m.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her kinematik problemine bir cümleyle başla: “Let east (or up) be positive.” Puanlayıcı işaret tutarlılığını bu cümleden izler.",
+    "Şıkta hem “10 m/s” hem “−10 m/s” varsa soru büyük olasılıkla yön soruyor; yalnız büyüklük isteniyorsa “magnitude” kelimesi geçer.",
+    "Değişim her zaman son eksi ilk: \\(\\Delta v = v_f - v_i\\). Zıt yönlü hızlarda büyüklükler <strong>toplanır</strong>.",
+    "Ölçülmüş iki değerin farkını alırken belirsizlikleri topla; sonucu belirsizlikle aynı ondalık basamağa yuvarla."
+   ],
+   "sikHatalar": [
+    "Yer değiştirmeyi gidilen toplam yolla karıştırmak; geri dönüş içeren harekette ikisi farklıdır.",
+    "Negatif hızı “yavaş” sanmak. İşaret yalnızca yönü gösterir; \\(-8\\text{ m/s}\\), \\(+3\\text{ m/s}\\)'den daha hızlıdır.",
+    "Problemin ortasında pozitif yönü sessizce değiştirmek (örneğin yukarı +, sonra g'yi +10 almak)."
+   ],
+   "terimler": [
+    {
+     "en": "scalar",
+     "tr": "skaler (yalnız büyüklük)"
+    },
+    {
+     "en": "vector",
+     "tr": "vektör (büyüklük + yön)"
+    },
+    {
+     "en": "magnitude",
+     "tr": "büyüklük"
+    },
+    {
+     "en": "displacement",
+     "tr": "yer değiştirme"
+    },
+    {
+     "en": "distance",
+     "tr": "mesafe, alınan yol"
+    },
+    {
+     "en": "speed / velocity",
+     "tr": "sürat / hız"
+    },
+    {
+     "en": "coordinate system",
+     "tr": "koordinat sistemi"
+    },
+    {
+     "en": "uncertainty",
+     "tr": "belirsizlik"
+    }
+   ]
+  },
+  {
+   "kod": "1.2",
+   "baslik": "Displacement, Velocity, and Acceleration",
+   "baslikTr": "Yer değiştirme, hız ve ivme",
+   "hedefler": [
+    "Ortalama ve anlık hız ile ortalama ivmeyi tanımlamak ve hesaplamak.",
+    "Sabit ivmeli hareket için kinematik denklemlerden doğru olanı seçmek (serbest düşmede \\(g \\approx 10\\text{ m/s}^2\\)).",
+    "Hız ve ivmenin işaretlerinden cismin hızlandığını ya da yavaşladığını belirlemek; oran–orantı (proportional reasoning) ile sonuç tahmin etmek."
+   ],
+   "anlatim": "<h4>Tanımlar</h4>\n<div class=\"kn-tanim\">\\[ \\bar v = \\frac{\\Delta x}{\\Delta t} \\qquad \\bar a = \\frac{\\Delta v}{\\Delta t} \\]<strong>Ortalama hız (average velocity)</strong> birim zamandaki yer değiştirme, <strong>ortalama ivme (average acceleration)</strong> birim zamandaki hız değişimidir. <strong>Anlık (instantaneous)</strong> değerler çok kısa bir zaman aralığı için aynı oranlardır; grafikte teğetin eğimi olarak okunur (Konu 1.3).</div>\n<p>Birimler: hız m/s, ivme m/s². “\\(a = 3\\text{ m/s}^2\\)” demek: hız her saniye \\(3\\text{ m/s}\\) değişiyor demektir.</p>\n<h4>Hızlanıyor mu, yavaşlıyor mu?</h4>\n<table><thead><tr><th>\\(v\\) işareti</th><th>\\(a\\) işareti</th><th>Sonuç</th></tr></thead><tbody>\n<tr><td>+</td><td>+</td><td>hızlanıyor (speeding up)</td></tr>\n<tr><td>−</td><td>−</td><td>hızlanıyor</td></tr>\n<tr><td>+</td><td>−</td><td>yavaşlıyor (slowing down)</td></tr>\n<tr><td>−</td><td>+</td><td>yavaşlıyor</td></tr></tbody></table>\n<div class=\"kn-kural\"><strong>Kural:</strong> Aynı işaret → sürat artar; zıt işaret → sürat azalır. “Negatif ivme” tek başına yavaşlama demek değildir.</div>\n<h4>Sabit ivmeli hareket (constant acceleration)</h4>\n<p>AP Physics 1 formül sayfasında (equation sheet) şu üç denklem vardır; yalnız ivme sabitken geçerlidir:</p>\n<div class=\"formul\">\\[ v_x = v_{x0} + a_x t \\]\\[ x = x_0 + v_{x0}t + \\tfrac12 a_x t^2 \\]\\[ v_x^2 = v_{x0}^2 + 2a_x(x - x_0) \\]</div>\n<table><thead><tr><th>Bilinmeyen / verilmeyen</th><th>Kullanılacak denklem</th></tr></thead><tbody>\n<tr><td>yer değiştirme yok</td><td>\\(v = v_0 + at\\)</td></tr>\n<tr><td>son hız yok</td><td>\\(x - x_0 = v_0 t + \\frac12 a t^2\\)</td></tr>\n<tr><td>zaman yok</td><td>\\(v^2 = v_0^2 + 2a\\Delta x\\)</td></tr></tbody></table>\n<p>Sabit ivmede ayrıca \\(\\bar v = \\dfrac{v_0 + v}{2}\\) olur; bu, “\\(\\Delta x = \\bar v\\, t\\)” kısayolunu verir.</p>\n<h4>Serbest düşme (free fall)</h4>\n<p>Hava direnci ihmal edilirse Dünya yüzeyine yakın her cisim aşağı doğru \\(g \\approx 9.8\\text{ m/s}^2\\) ile ivmelenir; AP sınavı hesap kolaylığı için <strong>\\(g \\approx 10\\text{ m/s}^2\\)</strong> kullanmana izin verir ve biz de öyle yapacağız. Yukarı + seçersen \\(a = -10\\text{ m/s}^2\\) olur — top yükselirken, tepedeyken ve inerken <em>aynı</em>. Tepede \\(v = 0\\) ama \\(a \\neq 0\\).</p>\n<h4>Oran–orantı ile akıl yürütme</h4>\n<p>AP sık sık “hız iki katına çıkarsa…” diye sorar. Duran bir araba için \\(0 = v_0^2 - 2ad\\), yani \\(d = \\dfrac{v_0^2}{2a}\\). Fren mesafesi \\(v_0^2\\) ile orantılıdır: hız 2 kat → mesafe 4 kat. Önce sembolik ilişkiyi yaz, sonra oranı kur.</p>\n<div class=\"kn-dikkat\">Ortalama hız iki süratin aritmetik ortalaması <em>değildir</em>, eğer süreler eşit değilse. Yolun yarısı \\(20\\), yarısı \\(30\\text{ m/s}\\) ise zamanlar farklıdır ve \\(\\bar v = 24\\text{ m/s}\\) çıkar (25 değil).</div>\n<h4>FRQ'da puan getiren dil</h4>\n<ul>\n<li>“The object is slowing down <em>because</em> its velocity and acceleration have opposite signs.”</li>\n<li>“Since the acceleration is constant, the kinematic equation \\(v^2 = v_0^2 + 2a\\Delta x\\) applies.” — denklemin neden geçerli olduğunu yazmak puan getirir.</li>\n<li>Türetme (derivation) isteniyorsa sayı koymadan önce sembolik sonucu yaz: “\\(d = v_0^2/(2a)\\), so doubling \\(v_0\\) quadruples \\(d\\).”</li>\n</ul>",
+   "ornekler": [
+    {
+     "soru": "Bir top yerden yukarı doğru \\(20\\text{ m/s}\\) ile atılıyor (\\(g = 10\\text{ m/s}^2\\), hava direnci yok). Çıkabileceği en yüksek noktayı ve tepeye çıkış süresini bulun.",
+     "cozum": [
+      "Yukarı + seç: \\(v_0 = +20\\), \\(a = -10\\text{ m/s}^2\\), tepede \\(v = 0\\).",
+      "Zaman: \\(0 = 20 - 10t \\Rightarrow t = 2.0\\text{ s}\\).",
+      "Yükseklik (zamansız denklem): \\(0 = 20^2 + 2(-10)\\Delta y \\Rightarrow \\Delta y = 20\\text{ m}\\). Kontrol: \\(\\bar v\\, t = 10 \\cdot 2 = 20\\text{ m}\\)."
+     ]
+    },
+    {
+     "soru": "Durgun hâlden sabit \\(a\\) ile hızlanan bir kızak ilk \\(2\\text{ s}\\)'de \\(d\\) yol alıyor. İlk \\(6\\text{ s}\\)'de kaç \\(d\\) yol alır?",
+     "cozum": [
+      "Durgun başlangıç: \\(x = \\frac12 a t^2\\), yani \\(x \\propto t^2\\).",
+      "Zaman 3 katına çıkıyor: yol \\(3^2 = 9\\) kat. Cevap \\(9d\\).",
+      "Yorum: eşit zaman aralıklarında alınan yollar 1 : 3 : 5 … oranında artar; toplamlar 1 : 4 : 9."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) Bir cisim için \\(t = 2\\text{ s}\\)'de \\(v = -5\\text{ m/s}\\) ve \\(a = -2\\text{ m/s}^2\\). Cisim hızlanıyor mu, yavaşlıyor mu? Gerekçelendirin.",
+     "cozum": [
+      "Hız ve ivme aynı (negatif) işaretlidir.",
+      "Gerekçe: “The object is speeding up because its velocity and acceleration are in the same direction (both negative), so the magnitude of the velocity increases.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Kinematik denklem kullanmadan önce kendine sor: ivme sabit mi? Değilse (örneğin grafik eğri), denklemler değil grafik yöntemleri kullanılır.",
+    "Beş nicelikten (\\(\\Delta x, v_0, v, a, t\\)) üçünü bil, dördüncüsünü iste, beşincisi hangisi eksikse o denklemi seç.",
+    "Hesap makinesi tüm sınavda serbesttir; ama oran sorularında önce sembolik ilişkiyi kur, makine yalnız son adım içindir.",
+    "\\(g = 10\\text{ m/s}^2\\) kullan; şıklar genellikle buna göre hazırlanır. \\(g\\) her zaman pozitif bir büyüklüktür; yönü ivmenin işaretiyle göster (yukarı + ise \\(a = -10\\text{ m/s}^2\\))."
+   ],
+   "sikHatalar": [
+    "Tepe noktasında ivmenin sıfır olduğunu sanmak; \\(v = 0\\) olur, \\(a = -g\\) olarak kalır.",
+    "\\(x = \\frac12 at^2\\) yazarken \\(\\frac12\\)'yi ya da karesini unutmak.",
+    "Farklı sürelerle gidilen iki parçanın ortalama hızını iki hızın aritmetik ortalaması olarak almak."
+   ],
+   "terimler": [
+    {
+     "en": "average velocity",
+     "tr": "ortalama hız"
+    },
+    {
+     "en": "instantaneous velocity",
+     "tr": "anlık hız"
+    },
+    {
+     "en": "acceleration",
+     "tr": "ivme"
+    },
+    {
+     "en": "constant acceleration",
+     "tr": "sabit ivme"
+    },
+    {
+     "en": "free fall",
+     "tr": "serbest düşme"
+    },
+    {
+     "en": "speeding up / slowing down",
+     "tr": "hızlanma / yavaşlama"
+    },
+    {
+     "en": "proportional reasoning",
+     "tr": "oran–orantı ile akıl yürütme"
+    }
+   ]
+  },
+  {
+   "kod": "1.3",
+   "baslik": "Representing Motion",
+   "baslikTr": "Hareketin gösterimleri",
+   "hedefler": [
+    "Konum–zaman, hız–zaman ve ivme–zaman grafiklerinde eğim (slope) ve alanın (area under the curve) fiziksel anlamını kullanmak.",
+    "Hareket diyagramı (motion diagram), veri tablosu, grafik ve sözel betim arasında tutarlı çeviri yapmak.",
+    "Deneysel veriyi doğrusallaştırarak (linearization) eğimden fiziksel bir nicelik bulmak ve sonucu “because the slope…” diliyle gerekçelendirmek."
+   ],
+   "anlatim": "<h4>Dört gösterim, tek hareket</h4>\n<p>AP Physics 1 aynı hareketi sözel betim, hareket diyagramı, veri tablosu ve grafik olarak verir ve senden bunlar arasında çeviri yapmanı ister. Kuvvet diyagramı gerekmez; yalnızca eğim ve alan mantığı yeter.</p>\n<table><thead><tr><th>Grafik</th><th>Eğim (slope) =</th><th>Alan (area) =</th></tr></thead><tbody>\n<tr><td>\\(x\\)–\\(t\\) (position–time)</td><td>hız \\(v\\)</td><td>fiziksel anlamı yok</td></tr>\n<tr><td>\\(v\\)–\\(t\\) (velocity–time)</td><td>ivme \\(a\\)</td><td>yer değiştirme \\(\\Delta x\\)</td></tr>\n<tr><td>\\(a\\)–\\(t\\) (acceleration–time)</td><td>(sınav dışı)</td><td>hız değişimi \\(\\Delta v\\)</td></tr></tbody></table>\n<h4>Konum–zaman grafiği</h4>\n<ul>\n<li>Doğru çizgi → sabit hız. Eğim negatifse cisim negatif yönde gidiyor.</li>\n<li>Eğri çizgi → hız değişiyor. Yukarı bükük (concave up) → \\(a \\gt 0\\); aşağı bükük (concave down) → \\(a \\lt 0\\).</li>\n<li>Bir andaki hız = o noktadaki <strong>teğetin eğimi (slope of the tangent line)</strong>. Tablodan tahmin ederken o anın iki yanındaki noktaları kullan: sabit ivmede \\(\\frac{x(t+\\Delta t) - x(t-\\Delta t)}{2\\Delta t}\\) tam olarak anlık hızı verir.</li>\n</ul>\n<h4>Hız–zaman grafiği</h4>\n<p>En çok bilgi taşıyan grafiktir. Eğim ivmeyi, işaretli alan yer değiştirmeyi verir. Eksenin altındaki alan <em>negatif</em> yer değiştirmedir; mesafe (distance) için alanların mutlak değerleri toplanır. Grafiğin \\(t\\)-eksenini kestiği an cisim <strong>yön değiştirir</strong>; bu anda hız sıfırdır ama eğim (ivme) sıfır olmak zorunda değildir.</p>\n<div class=\"kn-kural\"><strong>Konum hesabı:</strong> \\(x(t) = x_0 + \\) (\\(v\\)–\\(t\\) grafiğinin \\(0\\) ile \\(t\\) arasındaki işaretli alanı). Hızın işaret değiştirdiği anlar konumun yerel en büyük/en küçük değerleridir; başlangıçtan en uzak noktayı bulmak için bu anlardaki ve aralık sonundaki konumları karşılaştır.</div>\n<h4>Hareket diyagramı (motion diagram)</h4>\n<p>Eşit zaman aralıklarında cismin konumunu noktalarla gösterir. Noktalar arası mesafe artıyorsa cisim hızlanıyordur. Ardışık aralıklar sabit bir farkla artıyorsa (ör. 1, 3, 5, 7 cm) ivme <strong>sabittir</strong>: fark sabit ↔ \\(a\\) sabit. Hız okları noktalar arası mesafeyle, ivme oku ise hız oklarının değişimiyle aynı yöndedir.</p>\n<h4>Veriden grafiğe: doğrusallaştırma (linearization)</h4>\n<p>Durgun hâlden sabit ivmeyle harekette \\(d = \\frac12 a t^2\\). \\(d\\)'yi \\(t\\)'ye karşı çizersen parabol elde edersin; \\(d\\)'yi <strong>\\(t^2\\)'ye</strong> karşı çizersen doğru elde edersin ve <strong>eğim \\(= a/2\\)</strong>. Benzer şekilde fren mesafesi \\(d = v_0^2/(2a)\\) için \\(d\\)–\\(v_0^2\\) grafiğinin eğimi \\(1/(2a)\\)'dır. Genel yöntem: denklemi \\(y = (\\text{eğim})\\,x + b\\) biçimine sok, \\(y\\) ve \\(x\\) eksenlerine ne koyacağını buradan oku.</p>\n<div class=\"kn-dikkat\">Eğimi her zaman <strong>en iyi uyum doğrusundan (best-fit line)</strong> hesapla, tek bir veri noktasından değil; iki uzak nokta seç ve birimleri yaz (ör. m/s²).</div>\n<h4>FRQ'da puan getiren dil</h4>\n<ul>\n<li>“The acceleration is constant and negative <em>because the slope of the velocity–time graph is constant and negative</em>.”</li>\n<li>“The cart reverses direction at t = 4 s because the velocity changes sign there.”</li>\n<li>“The displacement from 0 to 6 s equals the area between the velocity–time graph and the time axis.”</li>\n<li>Grafik çizerken (sketch): eğimin işaretini, sıfır geçişlerini ve kırılma anlarını doğru zamanlarda göster; ölçek kesinliği değil <em>şekil</em> puanlanır.</li>\n</ul>",
+   "ornekler": [
+    {
+     "soru": "Bir arabanın hızı tabloda verilmiştir (her aralıkta hız doğrusal değişir).<table><thead><tr><th>\\(t\\) (s)</th><th>0</th><th>2</th><th>4</th><th>6</th></tr></thead><tbody><tr><td>\\(v\\) (m/s)</td><td>8</td><td>8</td><td>0</td><td>−4</td></tr></tbody></table>\\(x_0 = 0\\) ise \\(t = 6\\text{ s}\\)'deki konumu ve 0–6 s arasındaki mesafeyi bulun.",
+     "cozum": [
+      "Alanlar: 0–2 s dikdörtgen \\(8 \\cdot 2 = 16\\text{ m}\\); 2–4 s üçgen \\(\\frac12 \\cdot 2 \\cdot 8 = 8\\text{ m}\\); 4–6 s üçgen \\(\\frac12 \\cdot 2 \\cdot (-4) = -4\\text{ m}\\).",
+      "Konum: \\(x(6) = 0 + 16 + 8 - 4 = 20\\text{ m}\\).",
+      "Mesafe: \\(16 + 8 + 4 = 28\\text{ m}\\). Fark, 4 s'den sonra cismin geri gelmesinden kaynaklanır."
+     ]
+    },
+    {
+     "soru": "Bir hareket diyagramında eşit zaman aralıklarıyla çekilmiş noktalar arası mesafeler soldan sağa 9 cm, 7 cm, 5 cm, 3 cm'dir ve cisim sağa gidiyor. İvme hakkında ne söylenebilir?",
+     "cozum": [
+      "Aralıklar azalıyor → cisim sağa giderken yavaşlıyor; hız sağa, ivme sola.",
+      "Ardışık farklar sabit (−2 cm) → ivmenin büyüklüğü sabittir. Sonuç: “constant acceleration directed to the left.”"
+     ]
+    },
+    {
+     "soru": "(Deney tasarımı) Bir öğrenci rampadan durgun bırakılan arabanın aldığı yolu \\(d\\) ve süreyi \\(t\\) ölçüyor. İvmeyi bir grafiğin eğiminden bulmak için hangi değişkenleri çizmeli? Eğim neye eşittir?",
+     "cozum": [
+      "Model: \\(d = \\frac12 a t^2\\). Bu \\(y = mx\\) biçimine \\(y = d\\), \\(x = t^2\\) seçilerek uyar.",
+      "\\(d\\)'yi düşey eksene, \\(t^2\\)'yi yatay eksene çiz. Eğim \\(m = a/2\\), dolayısıyla \\(a = 2m\\).",
+      "Gerekçe: “Plotting d versus t² gives a straight line through the origin if the acceleration is constant; the slope equals a/2.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Bir grafik sorusunda önce eksenleri oku: \\(x\\)–\\(t\\) mi, \\(v\\)–\\(t\\) mi? Aynı şekil farklı eksende tamamen farklı hareket anlatır.",
+    "“Which graph” sorularında üç kontrol yap: eğimin işareti, eğimin değişimi (bükülme), sıfır geçiş anları.",
+    "Tablodan anlık hız tahmin ederken o anı ortalayan iki noktayı kullan (simetrik aralık).",
+    "Doğrusallaştırmada eğimin birimini de yaz: \\(d\\)–\\(t^2\\) için m/s², bu bir ivme olduğunu doğrular."
+   ],
+   "sikHatalar": [
+    "\\(v\\)–\\(t\\) grafiğinin eksenle kesiştiği anda ivmenin de sıfır olduğunu sanmak.",
+    "Konum–zaman grafiğinin yüksekliğini hız gibi okumak; hız yükseklik değil eğimdir.",
+    "Eksenin altındaki alanı pozitif saymak (yer değiştirme sorusunda) ya da mesafe sorusunda negatif alanı çıkarmak."
+   ],
+   "terimler": [
+    {
+     "en": "slope",
+     "tr": "eğim"
+    },
+    {
+     "en": "area under the curve",
+     "tr": "eğri altındaki alan"
+    },
+    {
+     "en": "tangent line",
+     "tr": "teğet doğrusu"
+    },
+    {
+     "en": "motion diagram",
+     "tr": "hareket diyagramı"
+    },
+    {
+     "en": "concave up / concave down",
+     "tr": "yukarı / aşağı bükük"
+    },
+    {
+     "en": "best-fit line",
+     "tr": "en iyi uyum doğrusu"
+    },
+    {
+     "en": "linearization",
+     "tr": "doğrusallaştırma"
+    }
+   ]
+  },
+  {
+   "kod": "1.4",
+   "baslik": "Reference Frames and Relative Motion",
+   "baslikTr": "Referans sistemleri ve bağıl hareket",
+   "hedefler": [
+    "Bir cismin konum, hız ve yörüngesinin gözlemcinin referans sistemine (reference frame) bağlı olduğunu açıklamak.",
+    "Bağıl hız (relative velocity) bağıntısıyla bir ve iki boyutta hız hesaplamak (nehir, rüzgâr, yağmur problemleri).",
+    "Birbirine göre sabit hızla hareket eden gözlemcilerin aynı ivmeyi ölçtüğünü gerekçelendirmek."
+   ],
+   "anlatim": "<h4>Hareket kime göre?</h4>\n<div class=\"kn-tanim\"><strong>Referans sistemi (reference frame):</strong> ölçümlerin yapıldığı koordinat sistemi ve ona bağlı gözlemci. Bir trende oturan yolcu kendi sistemine göre durgundur; yerdeki gözlemciye göre \\(30\\text{ m/s}\\) ile hareket eder. İkisi de haklıdır.</div>\n<p>Konum ve hız <strong>göreli (relative)</strong> niceliklerdir: değerleri gözlemciye bağlıdır. Bu yüzden AP soruları “relative to the ground”, “relative to the water”, “relative to the train” gibi ifadeleri dikkatle kullanır. Bu ifadeyi gördüğünde altını çiz.</p>\n<h4>Bağıl hız bağıntısı</h4>\n<div class=\"formul\">\\[ \\vec v_{\\text{A, yer}} = \\vec v_{\\text{A, B}} + \\vec v_{\\text{B, yer}} \\]</div>\n<p>Okunuşu: A'nın yere göre hızı = A'nın B'ye göre hızı + B'nin yere göre hızı. İç alt indisler “zincir” gibi birleşir. Ters çevirmek işareti değiştirir: \\(\\vec v_{\\text{B, A}} = -\\vec v_{\\text{A, B}}\\).</p>\n<table><thead><tr><th>Durum</th><th>Bağıl hız (A'nın B'ye göre)</th></tr></thead><tbody>\n<tr><td>Aynı yönde: A 30 m/s doğu, B 25 m/s doğu</td><td>\\(30 - 25 = 5\\text{ m/s}\\) doğu</td></tr>\n<tr><td>Zıt yönde: A 20 m/s doğu, B 15 m/s batı</td><td>\\(20 - (-15) = 35\\text{ m/s}\\) doğu</td></tr></tbody></table>\n<h4>İki boyutta: nehir ve rüzgâr</h4>\n<p>Tekne suya göre \\(\\vec v_{\\text{t,s}}\\), su yere göre \\(\\vec v_{\\text{s,y}}\\) ile hareket ediyorsa teknenin yere göre hızı bu iki vektörün toplamıdır. İki tipik soru vardır:</p>\n<ul>\n<li><strong>Tekne karşıya doğru dik yönelirse:</strong> karşıya geçiş süresi yalnızca dik bileşene bağlıdır: \\(t = \\text{genişlik} / v_{\\text{t,s}}\\). Akıntı süreyi değiştirmez, sadece tekneyi aşağı sürükler.</li>\n<li><strong>Tekne tam karşıya varmak isterse:</strong> burnunu akıntıya karşı çevirmelidir; yere göre hız \\(\\sqrt{v_{\\text{t,s}}^2 - v_{\\text{s,y}}^2}\\) olur ve geçiş daha uzun sürer.</li>\n</ul>\n<p>Aynı mantık rüzgârdaki uçak ve hareketli arabadan görülen yağmur için geçerlidir: dikey düşen yağmur, \\(6\\text{ m/s}\\) ile giden sürücüye göre öne doğru eğik gelir; \\(\\vec v_{\\text{yağmur, araba}} = \\vec v_{\\text{yağmur, yer}} - \\vec v_{\\text{araba, yer}}\\).</p>\n<h4>Sabit hızlı sistemler ve ivme</h4>\n<div class=\"kn-kural\">Birbirine göre <strong>sabit hızla</strong> hareket eden iki gözlemci (iki <strong>eylemsiz sistem, inertial frames</strong>) bir cismin hızını farklı ölçer ama <strong>ivmesini aynı</strong> ölçer, çünkü hızlar arasındaki fark sabittir ve \\(\\Delta v\\) her iki sistemde eşittir.</div>\n<p>Örnek: sabit hızla giden trende yolcu topu düşey yukarı atıyor. Yolcu topun düz yukarı çıkıp eline düştüğünü görür. Yerdeki gözlemci ise topun parabol çizdiğini görür, çünkü topun yere göre trenle aynı yatay hızı da vardır. Yörüngeler farklı, ivme (\\(10\\text{ m/s}^2\\) aşağı) ve uçuş süresi aynıdır.</p>\n<div class=\"kn-dikkat\">“Moving observer measures the ball's acceleration as smaller” türü şıklar tuzaktır: sabit hızlı bir gözlemci için ivme değişmez. İvmeli bir sistemden (fren yapan araba) yapılan ölçümler AP Physics 1 kapsamı dışındadır.</div>\n<h4>FRQ'da puan getiren dil</h4>\n<ul>\n<li>“Relative to the ground, the velocity of the ball is the vector sum of its velocity relative to the train and the train's velocity relative to the ground.”</li>\n<li>“Both observers measure the same acceleration because their relative velocity is constant.”</li>\n<li>Hesabın başında hangi sisteme göre çalıştığını yaz: “In the ground frame, …”.</li>\n</ul>",
+   "ornekler": [
+    {
+     "soru": "Bir yolcu, doğuya \\(20\\text{ m/s}\\) ile giden bir trende batıya (trenin arkasına) doğru trene göre \\(2\\text{ m/s}\\) ile yürüyor. Yolcunun yere göre hızı nedir?",
+     "cozum": [
+      "Doğu +: \\(v_{\\text{y,tren}} = -2\\text{ m/s}\\), \\(v_{\\text{tren,yer}} = +20\\text{ m/s}\\).",
+      "\\(v_{\\text{y,yer}} = -2 + 20 = +18\\text{ m/s}\\): yere göre doğuya \\(18\\text{ m/s}\\)."
+     ]
+    },
+    {
+     "soru": "\\(60\\text{ m}\\) genişliğinde, \\(2\\text{ m/s}\\) akan bir nehirde suya göre \\(3\\text{ m/s}\\) hızlı bir tekne burnunu doğrudan karşı kıyıya tutuyor. Geçiş süresi ve tekne ne kadar aşağı sürüklenir?",
+     "cozum": [
+      "Kıyıya dik bileşen yalnız teknenin kendi hızıdır: \\(t = 60/3 = 20\\text{ s}\\).",
+      "Bu sürede akıntı tekneyi \\(2 \\cdot 20 = 40\\text{ m}\\) aşağı taşır.",
+      "Yere göre sürat: \\(\\sqrt{3^2 + 2^2} \\approx 3.6\\text{ m/s}\\); ama süre yine 20 s'dir çünkü dik ve paralel hareketler bağımsızdır."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) Sabit hızla giden bir otobüsteki öğrenci ile duraktaki öğrenci, otobüste düşey bırakılan bir anahtarın ivmesini ölçüyor. Sonuçları karşılaştırın.",
+     "cozum": [
+      "İki gözlemcinin anahtarın hızı için ölçtüğü değerler her an sabit bir miktar (otobüsün hızı) kadar farklıdır.",
+      "Bu fark sabit olduğundan hız değişimleri, dolayısıyla ivmeler eşittir: ikisi de \\(\\approx 10\\text{ m/s}^2\\) aşağı ölçer.",
+      "Gerekçe: “Because the bus moves at constant velocity relative to the ground, the observers' velocity measurements differ by a constant, so they measure the same change in velocity and thus the same acceleration.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her hız için alt indis yaz: “neyin, neye göre”. Alt indisler zincir gibi birleşmiyorsa denklem yanlış kurulmuştur.",
+    "Karşıya geçiş süresi yalnızca kıyıya dik hız bileşenine bağlıdır; akıntı süreyi değil, varış noktasını değiştirir.",
+    "Dik bileşenler için Pisagor; 3–4–5 ve 6–8–10 üçgenleri sınavda çok sık çıkar.",
+    "Hesap makinesi serbest, ama önce vektör diyagramı çiz: hangi vektör hipotenüs?"
+   ],
+   "sikHatalar": [
+    "Zıt yönlü hızlarda bağıl hızı büyüklüklerin farkı olarak almak (doğrusu toplam).",
+    "Tam karşıya varmak için akıntıya karşı yönelen teknenin yere göre hızını \\(\\sqrt{v_1^2 + v_2^2}\\) ile hesaplamak; burada teknenin hızı hipotenüstür.",
+    "Farklı gözlemcilerin farklı ivme ölçeceğini sanmak (sabit hızlı sistemlerde ivme aynıdır)."
+   ],
+   "terimler": [
+    {
+     "en": "reference frame",
+     "tr": "referans sistemi"
+    },
+    {
+     "en": "relative velocity",
+     "tr": "bağıl hız"
+    },
+    {
+     "en": "relative to the ground",
+     "tr": "yere göre"
+    },
+    {
+     "en": "inertial frame",
+     "tr": "eylemsiz (sabit hızlı) sistem"
+    },
+    {
+     "en": "observer",
+     "tr": "gözlemci"
+    },
+    {
+     "en": "downstream / upstream",
+     "tr": "akıntı yönünde / akıntıya karşı"
+    },
+    {
+     "en": "trajectory",
+     "tr": "yörünge"
+    }
+   ]
+  },
+  {
+   "kod": "1.5",
+   "baslik": "Vectors and Motion in Two Dimensions",
+   "baslikTr": "İki boyutta vektörler ve hareket",
+   "hedefler": [
+    "Bir vektörü dik bileşenlerine (components) ayırmak ve bileşenlerden büyüklük ile yön bulmak.",
+    "Dik doğrultulardaki hareketlerin bağımsız olduğunu kullanarak eğik ve yatay atış (projectile motion) problemlerini çözmek.",
+    "Atış verilerini (tablo, grafik) yorumlamak ve “because the horizontal velocity is constant…” diliyle gerekçelendirmek."
+   ],
+   "anlatim": "<h4>Bileşenlere ayırma (resolving into components)</h4>\n<p>Büyüklüğü \\(A\\), yatayla açısı \\(\\theta\\) olan bir vektörün bileşenleri:</p>\n<div class=\"formul\">\\[ A_x = A\\cos\\theta \\qquad A_y = A\\sin\\theta \\qquad A = \\sqrt{A_x^2 + A_y^2} \\qquad \\tan\\theta = \\frac{A_y}{A_x} \\]</div>\n<p>\\(\\cos\\), açının <em>komşusu</em> olan bileşene gider. Açı düşeyle verildiyse sin ve cos yer değiştirir; ezberlemek yerine küçük bir üçgen çiz. Vektörler bileşen bileşen toplanır: önce tüm \\(x\\)'leri, sonra tüm \\(y\\)'leri topla, sonra Pisagor uygula. Hız değişimi de vektörel bir farktır: doğuya \\(6\\text{ m/s}\\)'den kuzeye \\(8\\text{ m/s}\\)'ye dönen cismin \\(|\\Delta \\vec v| = \\sqrt{6^2 + 8^2} = 10\\text{ m/s}\\)'dir (sadece \\(8 - 6 = 2\\) değil).</p>\n<h4>Bağımsızlık ilkesi (independence of motion)</h4>\n<div class=\"kn-kural\">Yatay ve düşey hareketler birbirinden <strong>bağımsızdır</strong>; onları bağlayan tek şey <strong>zaman</strong>dır. Hava direnci yoksa bir atışta: \\(a_x = 0\\) (yatay hız sabit), \\(a_y = -g \\approx -10\\text{ m/s}^2\\) (düşeyde serbest düşme).</div>\n<table><thead><tr><th></th><th>Yatay (\\(x\\))</th><th>Düşey (\\(y\\), yukarı +)</th></tr></thead><tbody>\n<tr><td>Başlangıç hızı</td><td>\\(v_0\\cos\\theta\\)</td><td>\\(v_0\\sin\\theta\\)</td></tr>\n<tr><td>İvme</td><td>0</td><td>\\(-10\\text{ m/s}^2\\)</td></tr>\n<tr><td>Denklem</td><td>\\(x = v_{x}t\\)</td><td>\\(y = v_{y0}t - 5t^2\\), \\(v_y = v_{y0} - 10t\\)</td></tr></tbody></table>\n<h4>Çözüm stratejisi</h4>\n<ol>\n<li>Başlangıç hızını bileşenlerine ayır.</li>\n<li><strong>Süreyi düşey hareketten</strong> bul (yükseklik ya da tepe koşulu \\(v_y = 0\\)).</li>\n<li>Bu süreyi yatay harekete koy: \\(x = v_x t\\).</li>\n<li>Gerekirse son hızı bileşenlerden birleştir: \\(v = \\sqrt{v_x^2 + v_y^2}\\).</li>\n</ol>\n<h4>Yatay atış ve önemli sonuçlar</h4>\n<ul>\n<li>Yatay atılan ve aynı anda aynı yükseklikten bırakılan iki top yere <strong>aynı anda</strong> düşer; düşme süresi \\(t = \\sqrt{2h/g}\\) yatay hıza bağlı değildir.</li>\n<li>Tepede \\(v_y = 0\\) ama \\(v_x\\) sıfır değildir; sürat tepede en küçüktür ama sıfır olmaz (dik atış hariç).</li>\n<li>Düz zeminde aynı süratle \\(30^\\circ\\) ve \\(60^\\circ\\) atılan cisimler aynı menzile (range) ulaşır; \\(60^\\circ\\) olan daha yükseğe çıkar ve daha uzun süre havada kalır.</li>\n<li>Düz zeminde atış simetriktir: çıkış süresi = iniş süresi; aynı yükseklikteki iki noktada sürat aynıdır.</li>\n</ul>\n<div class=\"kn-dikkat\">Menzil formülü \\(R = v_0^2\\sin 2\\theta / g\\) formül sayfasında yoktur ve yalnızca <em>aynı yüksekliğe</em> düşen atışlar için geçerlidir. Uçurumdan ya da masadan atışta kullanılamaz; adım adım bileşen yöntemiyle çöz.</div>\n<h4>Veriden okuma</h4>\n<p>Bir video analizinde \\(x\\) değerleri eşit zaman aralıklarında eşit artıyorsa yatay hız sabittir (\\(v_x = \\Delta x / \\Delta t\\)). \\(y\\) değerlerinin ardışık farkları sabit bir miktar (\\(g\\,\\Delta t^2\\)) kadar azalıyorsa düşey ivme sabittir. Bu iki gözlem, bağımsızlık ilkesinin deneysel kanıtıdır.</p>\n<h4>FRQ'da puan getiren dil</h4>\n<ul>\n<li>“Both balls hit the floor at the same time because their vertical motions are identical: same initial vertical velocity (zero) and same vertical acceleration g.”</li>\n<li>“The horizontal component of velocity remains constant because there is no horizontal acceleration (air resistance is negligible).”</li>\n<li>“At the highest point, the vertical velocity is zero but the horizontal velocity is \\(v_0\\cos\\theta\\), so the speed is not zero.”</li>\n</ul>",
+   "ornekler": [
+    {
+     "soru": "Bir top düz zeminden \\(25\\text{ m/s}\\) ile, \\(\\sin\\theta = 0.6\\) ve \\(\\cos\\theta = 0.8\\) olacak açıyla atılıyor (\\(g = 10\\text{ m/s}^2\\)). Uçuş süresini ve menzili bulun.",
+     "cozum": [
+      "Bileşenler: \\(v_x = 25 \\cdot 0.8 = 20\\text{ m/s}\\), \\(v_{y0} = 25 \\cdot 0.6 = 15\\text{ m/s}\\).",
+      "Düşey: tepeye \\(15/10 = 1.5\\text{ s}\\); düz zeminde simetri → toplam \\(3.0\\text{ s}\\).",
+      "Yatay: \\(R = v_x t = 20 \\cdot 3.0 = 60\\text{ m}\\)."
+     ]
+    },
+    {
+     "soru": "Bir bilye \\(0.80\\text{ m}\\) yüksekliğindeki masadan yatay olarak \\(2.5\\text{ m/s}\\) ile çıkıyor. Masanın ayağından ne kadar uzağa düşer ve yere çarpma sürati nedir?",
+     "cozum": [
+      "Düşey (\\(v_{y0} = 0\\)): \\(0.80 = 5t^2 \\Rightarrow t = 0.40\\text{ s}\\).",
+      "Yatay: \\(x = 2.5 \\cdot 0.40 = 1.0\\text{ m}\\).",
+      "Çarpma anında \\(v_y = 10 \\cdot 0.40 = 4.0\\text{ m/s}\\); sürat \\(\\sqrt{2.5^2 + 4.0^2} \\approx 4.7\\text{ m/s}\\)."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) Aynı yükseklikten biri bırakılan, diğeri yatay \\(10\\text{ m/s}\\) ile atılan iki top var. Hangisinin yere çarpma sürati daha büyüktür, hangisi önce düşer? Gerekçelendirin.",
+     "cozum": [
+      "Düşey hareketler aynıdır (\\(v_{y0} = 0\\), \\(a_y = -g\\)), bu yüzden ikisi aynı anda düşer ve çarpma anında aynı \\(v_y\\)'ye sahiptir.",
+      "Atılan topun ek olarak \\(v_x = 10\\text{ m/s}\\) yatay bileşeni vardır; \\(v = \\sqrt{v_x^2 + v_y^2}\\) olduğu için onun sürati daha büyüktür.",
+      "Gerekçe dili: “same vertical motion, so same time; the thrown ball has an additional horizontal velocity component, so its speed at impact is greater.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her atış probleminde iki sütunlu bir tablo kur (x | y); süre iki sütunun ortak satırıdır.",
+    "Süreyi neredeyse her zaman düşey hareketten bulursun; yatay hareket süreyi bilmeden çözülmez.",
+    "Hesap makinesini derece (degree) modunda kullan; sınav açıları dereceyle verir.",
+    "“Speed at the top” sorulursa cevap \\(v_0\\cos\\theta\\)'dır, sıfır değil."
+   ],
+   "sikHatalar": [
+    "Yatay hızın da yerçekimiyle azaldığını sanmak; hava direnci yoksa \\(v_x\\) sabittir.",
+    "Uçurumdan atışta düz zemin menzil formülünü kullanmak.",
+    "Bileşen yerine toplam süratle düşey ya da yatay denklemi kurmak (ör. \\(x = v_0 t\\))."
+   ],
+   "terimler": [
+    {
+     "en": "component",
+     "tr": "bileşen"
+    },
+    {
+     "en": "resultant",
+     "tr": "bileşke"
+    },
+    {
+     "en": "projectile",
+     "tr": "atılan cisim, mermi"
+    },
+    {
+     "en": "horizontal / vertical",
+     "tr": "yatay / düşey"
+    },
+    {
+     "en": "range",
+     "tr": "menzil"
+    },
+    {
+     "en": "maximum height",
+     "tr": "en yüksek nokta"
+    },
+    {
+     "en": "independence of motion",
+     "tr": "hareketlerin bağımsızlığı"
+    }
+   ]
+  }
+ ]
+}
