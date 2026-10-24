@@ -6,6 +6,9 @@
 const zaman = require("./zaman");
 const ADRES = require("./adresler");
 const AP = require("../assets/js/ap-hedef");
+const PT = require("../assets/js/puan-tahmin");
+const { konuKodu } = require("./sorubankasi");
+const PLANLAR = (() => { try { return require("./tohum/sinav-formatlari.json").sinavlar || {}; } catch (e) { return {}; } })();
 
 const GUN_SAYISI = 90;          // günlük etkinlik penceresi
 const HAFTA_SAYISI = 12;        // haftalık XP penceresi
@@ -108,9 +111,56 @@ function dersOzeti(db, uid, x) {
   const sd = db.prepare("SELECT tahmini_band, tarih FROM exams WHERE user_id = ? AND kod = ? AND tahmini_band IS NOT NULL ORDER BY tarih DESC LIMIT 1").get(uid, x.deneme);
   const denemePuan = sd ? puanOku(sd.tahmini_band) : null;
   const tahmini = denemePuan !== null ? denemePuan : top >= 10 ? AP.tahminiPuan(dg) : null;
+  const tahminModel = top >= 10 ? modelTahmini(db, uid, x, uygun, temel, sd) : null;
+  // 1.27.0: model varsa tek doğru kaynak odur (Bugün, İlerleme ve veli paneli aynı sayıyı gösterir)
+  const mt = tahminModel ? { tahmini: tahminModel.puan, tahminiInce: tahminModel.ince, tahminKaynagi: tahminModel.kaynak } : {};
   return { ders: x.ders, ad: "AP " + x.ad, kisa: x.kisa || x.ad, sayfa: x.sayfa, link: temel, hedef: x.hedef || null, cevap: top, dogru, dogruluk: dg,
     cozulen, bankada: bankaTop, kapsam: bankaTop ? Math.min(100, Math.round(cozulen / bankaTop * 100)) : null,
-    tahmini, tahminiInce: denemePuan !== null ? denemePuan : tahmini !== null ? Math.min(inceTahmin(dg), tahmini + 0.9) : null, tahminKaynagi: denemePuan !== null ? "deneme" : tahmini !== null ? "sorular" : null, uniteler };
+    tahmini, tahminiInce: denemePuan !== null ? denemePuan : tahmini !== null ? Math.min(inceTahmin(dg), tahmini + 0.9) : null, tahminKaynagi: denemePuan !== null ? "deneme" : tahmini !== null ? "sorular" : null, uniteler,
+    tahminModel, ...mt };
+}
+
+function jsonCoz(v) { if (v && typeof v === "object") return v; try { return JSON.parse(v || "{}"); } catch (e) { return {}; } }
+
+/**
+ * 1.27.0 Tahmini AP puanı modeli (assets/js/puan-tahmin.js): cevaplar soru bankasındaki CED konu kodundan üniteye bağlanır
+ * (kutu numarası CED ünitesiyle her derste örtüşmez), sınav planındaki ünite/bölüm ağırlıkları ve eşiklerle hesaplanır;
+ * son 5 FRQ öz puanı ve son 30 gündeki deneme eklenir. Kaldıraç ünitesinin bağlantısı o üniteye en çok soru veren görünümdür.
+ */
+function modelTahmini(db, uid, x, uygun, temel, sonDeneme) {
+  const plan = PLANLAR[x.ders];
+  if (!plan) return null;
+  const onek = plan.uniteOnek ? plan.uniteOnek + " " : "";
+  const anahtar = r => { const k = konuKodu({ konu: r.konu, ek: jsonCoz(r.ek) }); return k ? onek + k.split(".")[0] : null; };
+  const uniteler = {}, genel = { cevap: 0, dogru: 0 };
+  db.prepare("SELECT a.unite, a.dogru, q.konu, q.ek FROM answers a LEFT JOIN questions_bank q ON q.id = a.soru WHERE a.user_id = ? AND a.sayfa = ?")
+    .all(uid, x.sayfa).filter(r => uygun(r.unite)).forEach(r => {
+      genel.cevap++; if (r.dogru) genel.dogru++;
+      const k = anahtar(r);
+      if (!k) return;
+      const u = uniteler[k] || (uniteler[k] = { cevap: 0, dogru: 0 });
+      u.cevap++; if (r.dogru) u.dogru++;
+    });
+  const frqDers = plan.frqDersleri || [x.ders];
+  const frq = db.prepare("SELECT toplam, toplam_puan FROM frq_denemeleri WHERE user_id = ? AND ders IN (" + frqDers.map(() => "?").join(",") +
+      ") AND toplam IS NOT NULL AND toplam_puan > 0 ORDER BY COALESCE(puanlama, created) DESC LIMIT 5").all(uid, ...frqDers).map(f => f.toplam / f.toplam_puan * 100);
+  const dp = sonDeneme ? puanOku(sonDeneme.tahmini_band) : null, dt = sonDeneme ? Date.parse(sonDeneme.tarih) : NaN;
+  const deneme = dp !== null && isFinite(dt) ? { puan: dp, gunOnce: Math.max(0, Math.floor((Date.now() - dt) / 864e5)) } : null;
+  const t = PT.tahmin({ agirlik: plan.agirlik, uniteAgirlik: plan.uniteAgirlik || null, esikler: plan.esikler }, { uniteler, genel, frq, deneme });
+  t.cevap = genel.cevap;
+  if (t.kaldirac) {
+    // Kaldıraç ünitesine en çok soru veren ünite görünümü (bağlantı) ve başlığı
+    const say = {};
+    db.prepare("SELECT unite_no, kutu, kutu_baslik, konu, ek FROM questions_bank WHERE tur = 'ders' AND durum = 'aktif' AND sayfa = ?").all(x.sayfa)
+      .filter(r => uygun(r.kutu) && anahtar(r) === t.kaldirac.unite).forEach(r => {
+        const k = r.unite_no + "|" + r.kutu; (say[k] = say[k] || { n: 0, r }).n++;
+      });
+    const en = Object.keys(say).map(k => say[k]).sort((p, q) => q.n - p.n)[0];
+    t.kaldirac.link = en && en.r.unite_no != null ? temel + "?unite=" + en.r.unite_no : temel;
+    t.kaldirac.ad = en ? String(en.r.kutu_baslik || "").replace(/\s+/g, " ").trim() : "";
+    t.kaldirac.etiket = /^(Micro|Macro) /.test(t.kaldirac.unite) ? t.kaldirac.unite : "Unit " + t.kaldirac.unite;
+  }
+  return t;
 }
 
 /** Öğrencinin tüm grafik verisi (salt okunur). */

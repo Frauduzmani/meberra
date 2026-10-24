@@ -430,7 +430,7 @@
           '<h3 id="il-h-' + i + '">' + esc(x.ad) + '</h3>' +
           '<p class="il-halka-sayi">' + (x.tahminiInce == null ? "Tahmin yok" : "Tahmini <b>" + sayi(x.tahminiInce, 1) + "</b>") + (x.hedef ? " · hedef <b>" + x.hedef + "</b>" : "") + '</p>' +
           '<p class="il-yorum">' + esc(G.puanYorumu(x.tahminiInce, x.hedef)) + '</p>' +
-          '<p class="il-halka-kaynak">' + esc(x.tahminKaynagi === "deneme" ? "Son denemenden" : x.tahminKaynagi === "sorular" ? x.cevap + " sorunun doğruluğundan (%" + x.dogruluk + ")" : x.cevap + " cevap · en az 10 gerekli") + '</p>' +
+          '<p class="il-halka-kaynak">' + esc(x.tahminKaynagi === "model+deneme" ? "Ünite ağırlıkları, FRQ'ların ve son denemen" : x.tahminKaynagi === "model" ? "Sınavdaki ünite ağırlıkları ve FRQ öz puanların (" + x.cevap + " cevap)" : x.tahminKaynagi === "deneme" ? "Son denemenden" : x.tahminKaynagi === "sorular" ? x.cevap + " sorunun doğruluğundan (%" + x.dogruluk + ")" : x.cevap + " cevap · en az 10 gerekli") + '</p>' +
           '</div></article>';
       }).join("");
       d.dersler.forEach(function (x, i) {

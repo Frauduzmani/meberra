@@ -9,6 +9,11 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.27.0] — 2026-10-25
+### Eklendi
+- **Bugün'de tahmini AP puanı** (karşılama kartının parçası): ders başına 1–5 halka, "Mayıs'a N hafta" ve tek somut sonraki adım — "Calculus AB: Unit 6'yı %85'e çıkar → tahminin 3 olur" (o üniteye bağlantı). Bant yükselince kutlama. "Tahminidir" notu.
+- **Yeni tahmin modeli** (`assets/js/puan-tahmin.js`): sınavdaki CED ünite ağırlıkları × ünite doğruluğu (şansa doğru büzülmüş; hiç çalışılmamış ünite %25 sayılır, böylece tek üniteyi iyi bilen 5 görmez) + son FRQ öz puanları (yoksa tahmin) + son 30 gündeki deneme harmanı; dersin 1–5 eşikleri. Cevaplar soru bankasındaki CED konu koduyla üniteye bağlanır. Aynı sayı Bugün'de, İlerleme'de ve veli panelinde görünür.
+
 ## [1.26.1] — 2026-10-25
 ### Düzeltildi
 - **Sınav içi hesap makinesi**: "Hesap makinesi" düğmesi artık Desmos sitesine (yeni sekme, giriş isteyen sayfa) gitmiyor. Desmos'un **College Board sürümü** — gerçek AP'de Bluebook'a yerleşik olanın aynısı, girişsiz — sınav ekranının içinde açılır: masaüstünde sağ altta sürüklenebilir pencere, telefonda alttan açılan sayfa. Tür sınavdaki gibi: Calculus/Physics/Chemistry grafik, Biology bilimsel, ekonomi 4 işlem. Tam deneme sınavında hesap makinesiz kısma geçilince panel kapanır. Hesap makineli FRQ'larda da "Hesap makinesini aç" düğmesi. CSP'ye yalnız `frame-src https://www.desmos.com` eklendi.

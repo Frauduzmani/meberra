@@ -93,7 +93,16 @@ test("etkinlik, ünite ustalığı, zayıf üniteler, puan geçmişi, XP", async
   assert.ok(o.haftalar.reduce((s, h) => s + h.deneme, 0) === 2);
 
   const d = o.dersler[0];
-  assert.equal(d.tahmini, 4); assert.equal(d.tahminKaynagi, "deneme"); assert.equal(d.tahminiInce, 4);
+  // 1.27.0: model varsa (≥ 10 cevap) her ekranda aynı tahmin (Bugün, İlerleme, veli): tahmini = tahminModel
+  assert.equal(d.tahmini, d.tahminModel.puan); assert.equal(d.tahminKaynagi, "model+deneme"); assert.equal(d.tahminiInce, d.tahminModel.ince);
+  // 1.27.0 tahmin modeli: CED ünite ağırlıkları + FRQ öz puanı (6/9) + 2 gün önceki deneme (4) harmanı; kaldıraç en ağır çalışılmamış ünite
+  const tm = d.tahminModel;
+  assert.ok(tm && tm.puan >= 1 && tm.puan <= 5, JSON.stringify(tm));
+  assert.equal(tm.kaynak, "model+deneme"); assert.equal(tm.frqKaynak, "oz"); assert.ok(Math.abs(tm.frq - 66.7) < 0.1, String(tm.frq));
+  assert.equal(tm.guven, "dusuk", "20 cevap → düşük güven");
+  assert.equal(tm.cevap, 20);
+  assert.equal(tm.kaldirac.unite, "6"); assert.equal(tm.kaldirac.link, "/ders/calculus?unite=6"); assert.match(tm.kaldirac.ad, /Integration/);
+  assert.ok(tm.oranlar["1"] > tm.oranlar["2"] && tm.oranlar["8"] === 25, JSON.stringify(tm.oranlar));
   const un1 = d.uniteler.find(u => u.kutu === "calc-unit1-quiz-container"), un2 = d.uniteler.find(u => u.kutu === "calc-unit2-quiz-container");
   assert.equal(un1.dogruluk, 83); assert.equal(un1.cozulen, 12); assert.equal(un1.kapsam, Math.round(12 / un1.bankada * 100));
   assert.equal(un2.dogruluk, 25); assert.equal(un2.zayif, true); assert.equal(un1.zayif, false, "%75 üstü zayıf sayılmaz");
