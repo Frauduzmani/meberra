@@ -1,0 +1,988 @@
+{
+ "ders": "precalculus",
+ "unite": 4,
+ "baslik": "Functions Involving Parameters, Vectors, and Matrices",
+ "baslikTr": "Parametreli fonksiyonlar, vektörler ve matrisler",
+ "konular": [
+  {
+   "kod": "4.1",
+   "baslik": "Parametric Functions",
+   "baslikTr": "Parametrik fonksiyonlar",
+   "hedefler": [
+    "Parametrik fonksiyonu (parametric function) \\(t\\)'ye bağlı \\((x(t), y(t))\\) nokta çifti olarak tanımak.",
+    "Değer tablosundan parametrik eğriyi çizmek ve yönünü (orientation) belirtmek.",
+    "Parametrik eğrinin \\(y\\)'yi \\(x\\)'in fonksiyonu olarak verip vermediğini gerekçelendirmek."
+   ],
+   "anlatim": "<div class=\"kn-dikkat\"><strong>Sınav notu:</strong> Unit 4 konuları AP Precalculus sınavında <strong>ölçülmez</strong> (Unit 4 is not assessed on the AP Exam). Okullar bu üniteyi yine öğretir; parametre, vektör ve matris fikirleri AP Calculus BC ve üniversite matematiğinin temelidir. Sınav hazırlığında öncelik Unit 1–3'tür.</div>\n<h4>Parametrik fonksiyon nedir?</h4>\n<div class=\"kn-tanim\">Bir <strong>parametrik fonksiyon (parametric function)</strong>, her \\(t\\) girdisine bir düzlem noktası \\((x(t), y(t))\\) atar. \\(t\\)'ye <strong>parametre (parameter)</strong> denir; çoğu zaman zamanı temsil eder. \\(x(t)\\) ve \\(y(t)\\) iki ayrı fonksiyondur (component functions).</div>\n<p>Normal fonksiyonda \\(y=f(x)\\) yazarız: girdi \\(x\\), çıktı \\(y\\). Parametrik gösterimde ise hem \\(x\\) hem \\(y\\) üçüncü bir değişkene, \\(t\\)'ye bağlıdır. Bu sayede bir eğrinin <em>hangi sırayla</em> çizildiğini de anlatabiliriz: \\(t\\) arttıkça nokta eğri üzerinde belli bir yönde ilerler. Bu yöne <strong>yönelim (orientation)</strong> denir ve grafikte okla gösterilir.</p>\n<h4>Tabloyla çizim</h4>\n<p>Örnek: \\(x(t)=t^2-1,\\; y(t)=2t+1,\\; -2\\le t\\le 2\\).</p>\n<table><thead><tr><th>\\(t\\)</th><th>\\(-2\\)</th><th>\\(-1\\)</th><th>\\(0\\)</th><th>\\(1\\)</th><th>\\(2\\)</th></tr></thead><tbody>\n<tr><td>\\(x(t)\\)</td><td>3</td><td>0</td><td>\\(-1\\)</td><td>0</td><td>3</td></tr>\n<tr><td>\\(y(t)\\)</td><td>\\(-3\\)</td><td>\\(-1\\)</td><td>1</td><td>3</td><td>5</td></tr></tbody></table>\n<p>Noktaları \\(t\\) sırasıyla birleştiririz: \\((3,-3)\\to(0,-1)\\to(-1,1)\\to(0,3)\\to(3,5)\\). Eğri sağa açılan bir parabol parçasıdır; nokta önce sola, sonra sağa giderken \\(y\\) hep artar. Dikkat: grafikte \\(t\\) ekseni yoktur; \\(t\\) yalnızca noktaların sırasını ve konumunu belirler.</p>\n<h4>Bileşen fonksiyonlarını ayrı okumak</h4>\n<ul>\n<li>\\(x(t)\\) artıyorsa nokta <strong>sağa</strong>, azalıyorsa <strong>sola</strong> gider.</li>\n<li>\\(y(t)\\) artıyorsa nokta <strong>yukarı</strong>, azalıyorsa <strong>aşağı</strong> gider.</li>\n<li>İkisini birlikte söylemek gerekir: “moving left and upward”.</li>\n</ul>\n<h4>Parametrik eğri bir fonksiyon grafiği mi?</h4>\n<div class=\"kn-kural\">Parametrik eğri, aynı \\(x\\) değerine iki farklı \\(y\\) değeri karşılık geliyorsa \\(y\\)'yi \\(x\\)'in fonksiyonu olarak <strong>vermez</strong> (dikey doğru testi, vertical line test). Yukarıdaki örnekte \\(x=0\\) için \\(t=-1\\) ve \\(t=1\\) sırasıyla \\(y=-1\\) ve \\(y=3\\) verir; bu yüzden eğri \\(y=f(x)\\) grafiği değildir.</div>\n<p>Bazen parametreyi yok ederek (eliminating the parameter) tanıdık bir denklem elde ederiz: \\(y=2t+1\\Rightarrow t=\\frac{y-1}{2}\\), o halde \\(x=\\left(\\frac{y-1}{2}\\right)^2-1\\). Bu, \\(x\\)'in \\(y\\)'nin fonksiyonu olduğunu gösterir (Konu 4.7'de ayrıntılı).</p>\n<p>FRQ dili örneği: <em>“Because x(−1) = x(1) = 0 but y(−1) ≠ y(1), the curve fails the vertical line test, so y is not a function of x.”</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(x(t)=t^2-1,\\; y(t)=2t+1\\). \\(t=-2\\)'den \\(t=2\\)'ye giderken eğrinin başlangıç ve bitiş noktalarını bulun ve hareket yönünü anlatın.",
+     "cozum": [
+      "Başlangıç: \\(t=-2\\Rightarrow (4-1,\\,-4+1)=(3,-3)\\). Bitiş: \\(t=2\\Rightarrow (3,5)\\).",
+      "\\(x(t)=t^2-1\\), \\(t\\lt 0\\) iken azalır, \\(t\\gt 0\\) iken artar; \\(y(t)=2t+1\\) hep artar.",
+      "Nokta önce sola ve yukarı, \\((-1,1)\\)'den sonra sağa ve yukarı gider."
+     ]
+    },
+    {
+     "soru": "\\(x(t)=3\\cos t,\\; y(t)=3\\sin t,\\; 0\\le t\\le\\pi\\) eğrisini tanımlayın.",
+     "cozum": [
+      "\\(t=0:(3,0)\\), \\(t=\\frac{\\pi}{2}:(0,3)\\), \\(t=\\pi:(-3,0)\\).",
+      "\\(x^2+y^2=9\\cos^2t+9\\sin^2t=9\\): nokta merkezi orijin, yarıçapı 3 olan çember üzerindedir.",
+      "\\(0\\le t\\le \\pi\\) yalnız üst yarıyı verir; yön saat yönünün tersidir (counterclockwise)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(x(t)=t^2,\\; y(t)=t^3\\) eğrisi \\(y\\)'yi \\(x\\)'in fonksiyonu olarak verir mi? Gerekçelendirin.",
+     "cozum": [
+      "\\(x=t^2\\) her \\(x\\gt 0\\) değerini iki kez alır: \\(t\\) ve \\(-t\\).",
+      "\\(x=1\\): \\(t=1\\Rightarrow y=1\\), \\(t=-1\\Rightarrow y=-1\\).",
+      "“Since the x-value 1 corresponds to two different y-values, 1 and −1, y is not a function of x.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Tablo kurarken \\(t\\) değerlerini <strong>artan sırayla</strong> yaz; yönü oklarla göster.",
+    "Hareketi anlatırken iki bileşeni ayrı ayrı söyle: “x(t) is decreasing, so the point moves left; y(t) is increasing, so it moves up.”",
+    "Hesap makinesi kuralı (sınavın genel yapısı): Section I Part A ve FRQ 3–4 hesap makinesizdir; Part B ile FRQ 1–2'de grafik hesap makinesi (graphing calculator) kullanılır. Bu konu sınavda yok, ama alışkanlık olarak önce elle kur, sonra hesap makinesiyle kontrol et."
+   ],
+   "sikHatalar": [
+    "\\((x,y)\\) yerine \\((y,x)\\) yazmak ya da \\(t\\)'yi grafikte bir eksen sanmak.",
+    "Yalnız uç noktaları birleştirip aradaki dönüşü (ör. \\(x\\)'in en küçük değeri) kaçırmak."
+   ],
+   "terimler": [
+    {
+     "en": "parametric function",
+     "tr": "parametrik fonksiyon"
+    },
+    {
+     "en": "parameter",
+     "tr": "parametre"
+    },
+    {
+     "en": "orientation",
+     "tr": "yönelim / çizim yönü"
+    },
+    {
+     "en": "component function",
+     "tr": "bileşen fonksiyonu"
+    },
+    {
+     "en": "eliminate the parameter",
+     "tr": "parametreyi yok etmek"
+    },
+    {
+     "en": "vertical line test",
+     "tr": "dikey doğru testi"
+    }
+   ]
+  },
+  {
+   "kod": "4.2",
+   "baslik": "Parametric Functions Modeling Planar Motion",
+   "baslikTr": "Düzlemde hareketi modelleyen parametrik fonksiyonlar",
+   "hedefler": [
+    "Bir parçacığın konumunu (position) \\((x(t),y(t))\\) ile modellemek ve yorumlamak.",
+    "Hangi zaman aralığında parçacığın sağa/sola, yukarı/aşağı gittiğini belirlemek.",
+    "Eğik atış (projectile) modelinde yere çarpma zamanı, yatay mesafe ve en büyük yüksekliği bulmak."
+   ],
+   "anlatim": "<div class=\"kn-dikkat\"><strong>Sınav notu:</strong> Unit 4 konuları AP Precalculus sınavında <strong>ölçülmez</strong> (Unit 4 is not assessed on the AP Exam). Okullar bu üniteyi yine öğretir; parametre, vektör ve matris fikirleri AP Calculus BC ve üniversite matematiğinin temelidir. Sınav hazırlığında öncelik Unit 1–3'tür.</div>\n<h4>Konum = iki bileşen</h4>\n<p>Düzlemde hareket eden bir parçacığın (particle) \\(t\\) anındaki konumu \\((x(t), y(t))\\) ile verilir. \\(x(t)\\) yatay konum (horizontal position), \\(y(t)\\) dikey konumdur (vertical position). Her bileşen kendi başına bir tek değişkenli fonksiyondur; Unit 1–2'deki artma/azalma, tepe noktası ve sıfır bulma bilgilerini <strong>ayrı ayrı</strong> uygularız.</p>\n<table><thead><tr><th>Bileşen davranışı</th><th>Hareket</th></tr></thead><tbody>\n<tr><td>\\(x(t)\\) artan (increasing)</td><td>sağa (to the right)</td></tr>\n<tr><td>\\(x(t)\\) azalan (decreasing)</td><td>sola (to the left)</td></tr>\n<tr><td>\\(y(t)\\) artan</td><td>yukarı (upward)</td></tr>\n<tr><td>\\(y(t)\\) azalan</td><td>aşağı (downward)</td></tr></tbody></table>\n<div class=\"kn-kural\">Yön değişimi: \\(x(t)\\) bir yerel en küçük/en büyük değerden geçtiğinde parçacık yatay yönünü değiştirir; \\(y(t)\\) için aynısı dikey yönde geçerlidir. Kuadratik bileşende bu an tepe noktasının (vertex) zamanı \\(t=-\\frac{b}{2a}\\)'dır.</div>\n<h4>Eğik atış modeli (projectile motion)</h4>\n<p>Yerden \\(h\\) metre yükseklikten, yatayla \\(\\theta\\) açısı yapacak şekilde \\(v_0\\) m/s hızla atılan cisim için (hava direnci yok):</p>\n\\[x(t)=(v_0\\cos\\theta)\\,t,\\qquad y(t)=h+(v_0\\sin\\theta)\\,t-4.9t^2\\]\n<ul>\n<li><strong>Yere çarpma:</strong> \\(y(t)=0\\) denkleminin pozitif kökü.</li>\n<li><strong>Yatay mesafe (horizontal distance):</strong> bu \\(t\\)'yi \\(x(t)\\)'ye koy.</li>\n<li><strong>En büyük yükseklik:</strong> \\(y(t)\\)'nin tepe noktası, \\(t=\\frac{v_0\\sin\\theta}{9.8}\\).</li>\n</ul>\n<p>Örnek: \\(x(t)=12t,\\; y(t)=1.5+16t-4.9t^2\\). Tepe: \\(t=\\frac{16}{9.8}\\approx1.633\\) s, \\(y\\approx 14.56\\) m. Yere çarpma: \\(4.9t^2-16t-1.5=0\\Rightarrow t\\approx3.357\\) s, yatay mesafe \\(x\\approx 40.3\\) m. Tepe zamanını yere çarpma zamanıyla karıştırmak en sık hatadır.</p>\n<h4>Dairesel hareket</h4>\n<p>\\(x(t)=r\\cos(\\omega t),\\; y(t)=r\\sin(\\omega t)\\) parçacığı yarıçapı \\(r\\) olan çember üzerinde saat yönünün tersine döndürür; bir tur süresi \\(\\frac{2\\pi}{\\omega}\\)'dır. Çemberin en altında saat yönü tersine giden parçacık sağa, en üstünde sola gider.</p>\n<p>FRQ dili: <em>“On the interval 0 &lt; t &lt; 2, x(t) is decreasing and y(t) is increasing, so the particle is moving to the left and upward.”</em> Birimleri (meters, seconds) cevaba yazmak iyi bir alışkanlıktır.</p>",
+   "ornekler": [
+    {
+     "soru": "Parçacık: \\(x(t)=t^2-6t,\\; y(t)=2t+1,\\; t\\ge 0\\). Parçacık hangi aralıkta sola gider? Bu aralıkta dikey hareketi nedir?",
+     "cozum": [
+      "\\(x(t)=t^2-6t\\) parabolünün tepe zamanı \\(t=\\frac{6}{2}=3\\); \\(0\\lt t\\lt 3\\) iken \\(x\\) azalır.",
+      "\\(y(t)=2t+1\\) hep artar.",
+      "Sonuç: \\(0\\lt t\\lt 3\\) aralığında parçacık sola ve yukarı gider."
+     ]
+    },
+    {
+     "soru": "Top: \\(x(t)=12t,\\; y(t)=1.5+16t-4.9t^2\\) (metre, saniye). Top yere düştüğünde yatayda ne kadar gitmiştir? (grafik hesap makinesi)",
+     "cozum": [
+      "\\(y(t)=0\\Rightarrow 4.9t^2-16t-1.5=0\\Rightarrow t=\\frac{16+\\sqrt{256+29.4}}{9.8}\\approx 3.357\\).",
+      "\\(x(3.357)=12(3.357)\\approx 40.3\\) m.",
+      "Negatif kök fiziksel değildir (atıştan önce); yalnız \\(t\\gt 0\\) kök alınır."
+     ]
+    },
+    {
+     "soru": "(Gerekçelendirin) Tablo: \\(t=1\\): \\((4,2)\\); \\(t=2\\): \\((1,5)\\). \\(x\\) ve \\(y\\) bu aralıkta monoton (tek yönlü) ise parçacığın hareketini açıklayın.",
+     "cozum": [
+      "\\(x(1)=4\\gt x(2)=1\\) ve \\(x\\) monoton olduğu için \\(x\\) azalır: sola.",
+      "\\(y(1)=2\\lt y(2)=5\\): \\(y\\) artar, yukarı.",
+      "“Since x(t) decreases from 4 to 1 and y(t) increases from 2 to 5 on 1 &lt; t &lt; 2, the particle moves left and up.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Yön sorusunda iki bileşen için iki ayrı aralık bul, sonra <strong>kesişimlerini</strong> al.",
+    "Eğik atışta “yere çarptığında” = \\(y(t)=0\\); “en yüksekte” = \\(y\\)'nin tepe noktası. İkisini ayrı sor ve ayrı hesapla.",
+    "Hesap makinesi kuralı (sınavın genel yapısı): Section I Part A ve FRQ 3–4 hesap makinesizdir; Part B ile FRQ 1–2'de grafik hesap makinesi (graphing calculator) kullanılır. Bu konu sınavda yok, ama alışkanlık olarak önce elle kur, sonra hesap makinesiyle kontrol et. Kök bulma gibi işlemlerde grafik hesap makinesinin zero/intersect özelliği uygundur."
+   ],
+   "sikHatalar": [
+    "\\(x(t)\\)'nin negatif olmasını “sola gidiyor” sanmak. Konumun işareti değil, \\(x\\)'in <strong>değişim yönü</strong> önemlidir.",
+    "Yatay mesafe için en büyük yükseklik anını kullanmak."
+   ],
+   "terimler": [
+    {
+     "en": "particle",
+     "tr": "parçacık"
+    },
+    {
+     "en": "position",
+     "tr": "konum"
+    },
+    {
+     "en": "horizontal / vertical component",
+     "tr": "yatay / dikey bileşen"
+    },
+    {
+     "en": "projectile motion",
+     "tr": "eğik atış hareketi"
+    },
+    {
+     "en": "moving to the left",
+     "tr": "sola gidiyor"
+    },
+    {
+     "en": "counterclockwise",
+     "tr": "saat yönünün tersine"
+    }
+   ]
+  },
+  {
+   "kod": "4.3",
+   "baslik": "Parametric Functions and Rates of Change",
+   "baslikTr": "Parametrik fonksiyonlar ve değişim hızları",
+   "hedefler": [
+    "\\(x(t)\\) ve \\(y(t)\\)'nin \\(t\\)'ye göre ortalama değişim hızını (average rate of change) hesaplamak.",
+    "\\(y\\)'nin \\(x\\)'e göre ortalama değişim hızını \\(\\frac{\\Delta y}{\\Delta x}\\) olarak bulmak ve yorumlamak.",
+    "Anlık hızlar verildiğinde \\(y\\)'nin \\(x\\)'e göre değişim hızını oranla bulmak."
+   ],
+   "anlatim": "<div class=\"kn-dikkat\"><strong>Sınav notu:</strong> Unit 4 konuları AP Precalculus sınavında <strong>ölçülmez</strong> (Unit 4 is not assessed on the AP Exam). Okullar bu üniteyi yine öğretir; parametre, vektör ve matris fikirleri AP Calculus BC ve üniversite matematiğinin temelidir. Sınav hazırlığında öncelik Unit 1–3'tür.</div>\n<h4>Üç farklı değişim hızı</h4>\n<p>Parametrik bir eğride üç değişken vardır (\\(t, x, y\\)), bu yüzden “değişim hızı” derken hangisine göre olduğunu söylemek zorundayız.</p>\n<table><thead><tr><th>Ne soruluyor?</th><th>\\([t_1,t_2]\\) üzerinde formül</th></tr></thead><tbody>\n<tr><td>\\(x\\)'in \\(t\\)'ye göre ortalama değişim hızı</td><td>\\(\\dfrac{x(t_2)-x(t_1)}{t_2-t_1}\\)</td></tr>\n<tr><td>\\(y\\)'nin \\(t\\)'ye göre ortalama değişim hızı</td><td>\\(\\dfrac{y(t_2)-y(t_1)}{t_2-t_1}\\)</td></tr>\n<tr><td>\\(y\\)'nin \\(x\\)'e göre ortalama değişim hızı</td><td>\\(\\dfrac{y(t_2)-y(t_1)}{x(t_2)-x(t_1)}\\)</td></tr></tbody></table>\n<div class=\"kn-kural\">\\(y\\)'nin \\(x\\)'e göre ortalama değişim hızı, eğri üzerindeki iki nokta arasındaki <strong>kesenin eğimidir (slope of the secant line)</strong>. Paydaki ve paydadaki \\(\\Delta t\\)'ler sadeleşir:\n\\[\\frac{\\Delta y}{\\Delta x}=\\frac{\\Delta y/\\Delta t}{\\Delta x/\\Delta t}\\]</div>\n<p>Örnek: \\(x(t)=t^2+1,\\; y(t)=t^3\\), \\([1,3]\\). \\(x(1)=2, x(3)=10\\Rightarrow\\Delta x=8\\). \\(y(1)=1, y(3)=27\\Rightarrow\\Delta y=26\\). \\(\\frac{\\Delta y}{\\Delta x}=\\frac{26}{8}=\\frac{13}{4}\\). Ayrıca \\(\\frac{\\Delta x}{\\Delta t}=4\\), \\(\\frac{\\Delta y}{\\Delta t}=13\\) ve \\(\\frac{13}{4}\\) gerçekten bu ikisinin oranıdır.</p>\n<h4>Anlık hızlar ve oran</h4>\n<p>Bir anda \\(x\\) saniyede 4 birim artıyor, \\(y\\) saniyede 10 birim azalıyorsa, o anda \\(y\\)'nin \\(x\\)'e göre değişim hızı \\(\\frac{-10}{4}=-\\frac{5}{2}\\)'dir: \\(x\\) bir birim artınca \\(y\\) yaklaşık 2.5 birim azalır. Bu fikir Calculus BC'deki \\(\\frac{dy}{dx}=\\frac{dy/dt}{dx/dt}\\) formülünün ön hazırlığıdır.</p>\n<ul>\n<li>\\(\\Delta x/\\Delta t\\gt 0\\) ve \\(\\Delta y/\\Delta t\\gt 0\\): eğri sağa-yukarı, eğim pozitif.</li>\n<li>\\(\\Delta y=0\\), \\(\\Delta x\\neq 0\\): kesen yatay (horizontal).</li>\n<li>\\(\\Delta x=0\\), \\(\\Delta y\\neq 0\\): kesen dikey (vertical), \\(\\frac{\\Delta y}{\\Delta x}\\) tanımsız.</li>\n</ul>\n<div class=\"kn-dikkat\">“\\(y\\)'nin \\(t\\)'ye göre” ile “\\(y\\)'nin \\(x\\)'e göre” farklı sorulardır. Soru kökünde “with respect to” ifadesinin ardından gelen değişken paydadadır.</div>\n<p>FRQ dili: <em>“The average rate of change of y with respect to x on 1 ≤ t ≤ 3 is 13/4, meaning y increases about 3.25 units per unit increase in x.”</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(x(t)=2t+1,\\; y(t)=t^2-3\\). \\([0,2]\\) üzerinde \\(y\\)'nin \\(t\\)'ye göre ve \\(x\\)'e göre ortalama değişim hızlarını bulun.",
+     "cozum": [
+      "\\(y(0)=-3, y(2)=1\\Rightarrow \\frac{\\Delta y}{\\Delta t}=\\frac{4}{2}=2\\).",
+      "\\(x(0)=1, x(2)=5\\Rightarrow \\Delta x=4\\).",
+      "\\(\\frac{\\Delta y}{\\Delta x}=\\frac{4}{4}=1\\)."
+     ]
+    },
+    {
+     "soru": "Bir anda \\(x(t)\\) saniyede 3 birim artıyor, \\(y(t)\\) saniyede 6 birim azalıyor. O anda \\(y\\)'nin \\(x\\)'e göre değişim hızı nedir?",
+     "cozum": [
+      "\\(\\frac{\\Delta y}{\\Delta t}\\approx -6\\), \\(\\frac{\\Delta x}{\\Delta t}\\approx 3\\).",
+      "Oran: \\(\\frac{-6}{3}=-2\\). \\(x\\) bir birim artınca \\(y\\) yaklaşık 2 birim azalır."
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(x(t)=t^2,\\; y(t)=t+4\\). \\([-1,1]\\) üzerinde \\(y\\)'nin \\(x\\)'e göre ortalama değişim hızı neden tanımsızdır?",
+     "cozum": [
+      "\\(x(-1)=x(1)=1\\Rightarrow\\Delta x=0\\); \\(y(-1)=3, y(1)=5\\Rightarrow\\Delta y=2\\).",
+      "“Because Δx = 0 while Δy ≠ 0, the secant line between the two points is vertical, so the average rate of change of y with respect to x is undefined.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Önce dört değeri bir tabloya yaz: \\(x(t_1), x(t_2), y(t_1), y(t_2)\\). Hata çoğunlukla değer okumada yapılır.",
+    "Cevabın birimini ver: “units of y per unit of x”. Yorum cümlesi FRQ puanı getirir.",
+    "Hesap makinesi kuralı (sınavın genel yapısı): Section I Part A ve FRQ 3–4 hesap makinesizdir; Part B ile FRQ 1–2'de grafik hesap makinesi (graphing calculator) kullanılır. Bu konu sınavda yok, ama alışkanlık olarak önce elle kur, sonra hesap makinesiyle kontrol et."
+   ],
+   "sikHatalar": [
+    "\\(\\frac{\\Delta y}{\\Delta x}\\) yerine \\(\\frac{\\Delta x}{\\Delta y}\\) yazmak.",
+    "En büyük \\(\\Delta y\\)'ye sahip aralığı “en hızlı değişen” sanmak; \\(\\Delta x\\)'e bölmeyi unutmak."
+   ],
+   "terimler": [
+    {
+     "en": "average rate of change",
+     "tr": "ortalama değişim hızı"
+    },
+    {
+     "en": "with respect to",
+     "tr": "-e göre"
+    },
+    {
+     "en": "secant line",
+     "tr": "kesen doğru"
+    },
+    {
+     "en": "slope",
+     "tr": "eğim"
+    },
+    {
+     "en": "undefined",
+     "tr": "tanımsız"
+    }
+   ]
+  },
+  {
+   "kod": "4.4",
+   "baslik": "Parametrically Defined Circles and Lines",
+   "baslikTr": "Parametrik çemberler ve doğrular",
+   "hedefler": [
+    "Merkezi \\((h,k)\\), yarıçapı \\(r\\) olan çemberi istenen başlangıç noktası ve yönle parametrelemek.",
+    "İki nokta arasındaki doğru parçasını (line segment) \\(0\\le t\\le 1\\) ile parametrelemek.",
+    "Verilen parametrik denklemden merkez, yarıçap, yön ve doğru eğimini okumak."
+   ],
+   "anlatim": "<div class=\"kn-dikkat\"><strong>Sınav notu:</strong> Unit 4 konuları AP Precalculus sınavında <strong>ölçülmez</strong> (Unit 4 is not assessed on the AP Exam). Okullar bu üniteyi yine öğretir; parametre, vektör ve matris fikirleri AP Calculus BC ve üniversite matematiğinin temelidir. Sınav hazırlığında öncelik Unit 1–3'tür.</div>\n<h4>Çember (circle)</h4>\n<div class=\"kn-tanim\">Merkezi \\((h,k)\\), yarıçapı \\(r\\) olan çember, saat yönünün tersine (counterclockwise) ve \\((h+r,k)\\)'dan başlayarak:\n\\[x(t)=h+r\\cos t,\\qquad y(t)=k+r\\sin t,\\qquad 0\\le t\\le 2\\pi\\]</div>\n<p>Neden? \\((x-h)^2+(y-k)^2=r^2\\cos^2t+r^2\\sin^2t=r^2\\). Bu, birim çember (unit circle) bilgisinin kaydırılmış ve büyütülmüş hâlidir (Unit 3).</p>\n<table><thead><tr><th>İstenen</th><th>Değişiklik</th></tr></thead><tbody>\n<tr><td>Saat yönünde (clockwise)</td><td>\\(y(t)=k-r\\sin t\\) (ya da \\(t\\) yerine \\(-t\\))</td></tr>\n<tr><td>Yalnız yarım tur</td><td>\\(0\\le t\\le\\pi\\)</td></tr>\n<tr><td>Daha hızlı dönüş (\\(0\\le t\\le 2\\pi\\)'de 2 tur)</td><td>\\(\\cos(2t), \\sin(2t)\\), \\(0\\le t\\le \\pi\\) bir tur</td></tr>\n<tr><td>Tepeden \\((h,k+r)\\) başla, saat yönünde</td><td>\\(x=h+r\\sin t,\\; y=k+r\\cos t\\)</td></tr></tbody></table>\n<p>Yönü kontrol etmenin en güvenli yolu: \\(t=0\\) ve \\(t=\\frac{\\pi}{2}\\) noktalarını hesaplayıp hangi yöne gidildiğine bakmak.</p>\n<h4>Doğru ve doğru parçası (line, line segment)</h4>\n<div class=\"kn-kural\">\\((x_1,y_1)\\)'den \\((x_2,y_2)\\)'ye doğru parçası:\n\\[x(t)=x_1+(x_2-x_1)t,\\qquad y(t)=y_1+(y_2-y_1)t,\\qquad 0\\le t\\le 1\\]\n\\(t=0\\) başlangıç noktası, \\(t=1\\) bitiş noktasıdır. \\(t\\) tüm gerçel sayılar olursa doğrunun tamamı elde edilir.</div>\n<p>\\(x\\) ve \\(y\\) \\(t\\)'nin doğrusal (linear) fonksiyonlarıdır. \\(x=a+bt,\\; y=c+dt\\) doğrusunun eğimi \\(\\frac{d}{b}\\)'dir (\\(b\\neq0\\)), çünkü \\(t\\) bir birim artınca \\(x\\) \\(b\\), \\(y\\) \\(d\\) değişir. Örnek: \\((2,-1)\\)'den \\((8,3)\\)'e: \\(x=2+6t,\\; y=-1+4t\\); eğim \\(\\frac{4}{6}=\\frac{2}{3}\\).</p>\n<p>Aynı doğru parçası farklı biçimlerde yazılabilir: \\(x=8-6t,\\; y=3-4t\\) aynı parçayı ters yönde çizer. Parametreleme tek değildir; bu yüzden şıkları test ederken uç noktaları ve yönü kontrol et.</p>\n<p>FRQ dili: <em>“At t = 0 the point is (2, −1) and at t = 1 it is (8, 3), so the equations trace the segment from (2, −1) to (8, 3).”</em></p>",
+   "ornekler": [
+    {
+     "soru": "Merkezi \\((-1,2)\\), yarıçapı 4 olan çemberi \\((3,2)\\)'den başlayarak saat yönünde bir kez dolaşan parametrik denklemleri yazın.",
+     "cozum": [
+      "Başlangıç \\((h+r,k)=(3,2)\\): \\(x=-1+4\\cos t\\).",
+      "Saat yönü için \\(y=2-4\\sin t\\), \\(0\\le t\\le2\\pi\\).",
+      "Kontrol: \\(t=\\frac{\\pi}{2}\\): \\((-1,-2)\\), yani sağdan alta iniyor: saat yönü."
+     ]
+    },
+    {
+     "soru": "\\(x=1+2t,\\; y=5-3t\\) doğrusu \\(x\\)-eksenini hangi noktada keser?",
+     "cozum": [
+      "\\(y=0\\Rightarrow t=\\frac{5}{3}\\).",
+      "\\(x=1+\\frac{10}{3}=\\frac{13}{3}\\); nokta \\(\\left(\\frac{13}{3},0\\right)\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(x=3\\cos(2t),\\; y=3\\sin(2t),\\; 0\\le t\\le 2\\pi\\) eğrisi çemberi kaç kez dolaşır? Gerekçelendirin.",
+     "cozum": [
+      "Açı \\(2t\\), \\(0\\)'dan \\(4\\pi\\)'ye çıkar.",
+      "Her \\(2\\pi\\)'lik açı artışı bir tur demektir; \\(4\\pi\\) iki tur eder.",
+      "“The angle 2t increases from 0 to 4π, which is two full rotations, so the circle is traced twice counterclockwise.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Çemberde \\(\\cos\\) yatayla, \\(\\sin\\) dikeyle eşleşir; değiştirmek başlangıç noktasını ve yönü değiştirir.",
+    "Doğru parçasında katsayılar <strong>fark</strong>tır: \\(x_2-x_1\\), \\(y_2-y_1\\); bitiş noktasının kendisi değildir.",
+    "Hesap makinesi kuralı (sınavın genel yapısı): Section I Part A ve FRQ 3–4 hesap makinesizdir; Part B ile FRQ 1–2'de grafik hesap makinesi (graphing calculator) kullanılır. Bu konu sınavda yok, ama alışkanlık olarak önce elle kur, sonra hesap makinesiyle kontrol et."
+   ],
+   "sikHatalar": [
+    "\\(x=h+r\\cos t\\) yerine \\(x=h+r^2\\cos t\\) yazmak (yarıçap yerine \\(r^2\\)).",
+    "Merkezin işaretini ters okumak: \\(x=4+3\\cos t\\)'nin merkezi \\(x=4\\)'tür, \\(-4\\) değil."
+   ],
+   "terimler": [
+    {
+     "en": "circle",
+     "tr": "çember"
+    },
+    {
+     "en": "radius",
+     "tr": "yarıçap"
+    },
+    {
+     "en": "center",
+     "tr": "merkez"
+    },
+    {
+     "en": "clockwise",
+     "tr": "saat yönünde"
+    },
+    {
+     "en": "line segment",
+     "tr": "doğru parçası"
+    },
+    {
+     "en": "linear",
+     "tr": "doğrusal"
+    }
+   ]
+  },
+  {
+   "kod": "4.5",
+   "baslik": "Implicitly Defined Functions",
+   "baslikTr": "Kapalı (örtük) tanımlı fonksiyonlar",
+   "hedefler": [
+    "Kapalı denklemle (implicit equation) verilen bir eğride bir noktanın eğri üzerinde olup olmadığını test etmek.",
+    "Verilen bir \\(x\\) için karşılık gelen tüm \\(y\\) değerlerini bulmak.",
+    "Kapalı bağıntıyı fonksiyon parçalarına ayırmak ve fonksiyon olup olmadığını gerekçelendirmek."
+   ],
+   "anlatim": "<div class=\"kn-dikkat\"><strong>Sınav notu:</strong> Unit 4 konuları AP Precalculus sınavında <strong>ölçülmez</strong> (Unit 4 is not assessed on the AP Exam). Okullar bu üniteyi yine öğretir; parametre, vektör ve matris fikirleri AP Calculus BC ve üniversite matematiğinin temelidir. Sınav hazırlığında öncelik Unit 1–3'tür.</div>\n<h4>Açık ve kapalı tanım</h4>\n<p>\\(y=x^2+1\\) <strong>açık (explicit)</strong> bir tanımdır: \\(y\\) yalnız bırakılmıştır. \\(x^2+xy+y^2=7\\) ise <strong>kapalı (implicit)</strong> bir tanımdır: \\(x\\) ile \\(y\\) arasındaki ilişki (relation) bir denklemle verilmiştir ve \\(y\\) yalnız bırakılmamıştır. Kapalı denklemin grafiği, denklemi sağlayan tüm \\((x,y)\\) noktalarıdır.</p>\n<div class=\"kn-tanim\">Bir nokta eğri üzerindedir \\(\\iff\\) koordinatları denkleme konunca eşitlik doğru çıkar. Örnek: \\((1,2)\\) için \\(1+2+4=7\\) doğru, nokta eğri üzerinde.</div>\n<h4>Verilen \\(x\\) için \\(y\\) değerleri</h4>\n<p>\\(x\\)'i yerine koyunca \\(y\\) için bir denklem kalır. \\(x^2+xy+y^2=7\\) ve \\(x=2\\): \\(4+2y+y^2=7\\Rightarrow y^2+2y-3=0\\Rightarrow (y+3)(y-1)=0\\), yani \\(y=1\\) ya da \\(y=-3\\). Aynı \\(x\\)'e iki \\(y\\) karşılık geldiği için bu eğri \\(y=f(x)\\) grafiği değildir.</p>\n<h4>Fonksiyon parçaları</h4>\n<p>Kapalı bir eğri tümüyle fonksiyon olmasa da, parçalara ayrılınca her parça bir fonksiyon olabilir. Çember \\(x^2+y^2=25\\):</p>\n<table><thead><tr><th>Parça</th><th>Açık hâli</th><th>Tanım kümesi</th></tr></thead><tbody>\n<tr><td>Üst yarım (upper half)</td><td>\\(y=\\sqrt{25-x^2}\\)</td><td>\\(-5\\le x\\le 5\\)</td></tr>\n<tr><td>Alt yarım (lower half)</td><td>\\(y=-\\sqrt{25-x^2}\\)</td><td>\\(-5\\le x\\le 5\\)</td></tr></tbody></table>\n<p>Kareye tamamlama (completing the square) ile çözüm: \\(y^2-4y=x\\Rightarrow (y-2)^2=x+4\\Rightarrow y=2\\pm\\sqrt{x+4}\\). Artı işaretli dal üst, eksi işaretli dal alt parçadır.</p>\n<h4>İki değişken birlikte nasıl değişir?</h4><p>Eğri üzerinde birbirine yakın iki nokta için \\(\\frac{\\Delta y}{\\Delta x}\\gt0\\) ise \\(x\\) ve \\(y\\) birlikte artar ya da birlikte azalır; \\(\\frac{\\Delta y}{\\Delta x}\\lt0\\) ise biri artarken diğeri azalır. \\(y\\)'nin \\(x\\)'e göre değişim hızının 0 olduğu yerde eğri yatay, \\(x\\)'in \\(y\\)'ye göre değişim hızının 0 olduğu yerde dikeydir (ör. \\(x^2+y^2=25\\) çemberinde \\((0,5)\\) ve \\((5,0)\\)).</p><h4>Ne zaman fonksiyondur?</h4>\n<ul>\n<li>Denklemden \\(y\\) <strong>tek</strong> bir ifade olarak çözülebiliyorsa (ör. \\(x^2y+y=1\\Rightarrow y=\\frac{1}{x^2+1}\\)) \\(y\\), \\(x\\)'in fonksiyonudur.</li>\n<li>\\(y^2\\) gibi çift kuvvet kalıyorsa genellikle iki dal vardır, fonksiyon değildir.</li>\n<li>Bazen \\(x\\), \\(y\\)'nin fonksiyonudur: \\(x=y^2-4y+3\\).</li>\n</ul>\n<div class=\"kn-dikkat\">Kapalı eğrilerin grafiğini çizmek için grafik hesap makinesine genelde \\(y=\\dots\\) dallarını ayrı ayrı girmek gerekir.</div>\n<p>FRQ dili: <em>“When x = 2, the equation gives y = 1 and y = −3. Since one input has two outputs, the relation does not define y as a function of x.”</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(x^2+xy+y^2=7\\) eğrisinde \\(x=2\\) olan noktaları bulun.",
+     "cozum": [
+      "\\(4+2y+y^2=7\\Rightarrow y^2+2y-3=0\\).",
+      "\\((y+3)(y-1)=0\\Rightarrow y=1\\) ya da \\(y=-3\\).",
+      "Noktalar: \\((2,1)\\) ve \\((2,-3)\\)."
+     ]
+    },
+    {
+     "soru": "\\(y^2-4y=x\\) bağıntısını iki fonksiyon dalına ayırın.",
+     "cozum": [
+      "Kareye tamamla: \\(y^2-4y+4=x+4\\Rightarrow (y-2)^2=x+4\\).",
+      "\\(y-2=\\pm\\sqrt{x+4}\\Rightarrow y=2+\\sqrt{x+4}\\) (üst dal), \\(y=2-\\sqrt{x+4}\\) (alt dal).",
+      "İki dalın tanım kümesi \\(x\\ge -4\\)."
+     ]
+    },
+    {
+     "soru": "(Gerekçelendirin) \\(xy+y=6\\) bağıntısı \\(y\\)'yi \\(x\\)'in fonksiyonu olarak tanımlar mı?",
+     "cozum": [
+      "\\(y(x+1)=6\\Rightarrow y=\\frac{6}{x+1}\\), \\(x\\neq -1\\).",
+      "“Solving gives the single expression y = 6/(x + 1), so each x in the domain has exactly one y; y is a function of x.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Nokta testi en hızlı şık eleme yöntemidir: her şıkkı denkleme koy.",
+    "“How many points” sorusunda ikinci dereceden denklemin diskriminantına bak: pozitif ise iki nokta.",
+    "Hesap makinesi kuralı (sınavın genel yapısı): Section I Part A ve FRQ 3–4 hesap makinesizdir; Part B ile FRQ 1–2'de grafik hesap makinesi (graphing calculator) kullanılır. Bu konu sınavda yok, ama alışkanlık olarak önce elle kur, sonra hesap makinesiyle kontrol et."
+   ],
+   "sikHatalar": [
+    "\\(x\\)'i koyarken \\(xy\\) terimini unutmak.",
+    "\\(y^2=k\\) çözümünde yalnız pozitif kökü almak; \\(\\pm\\) unutulur."
+   ],
+   "terimler": [
+    {
+     "en": "implicitly defined",
+     "tr": "kapalı tanımlı"
+    },
+    {
+     "en": "explicit",
+     "tr": "açık"
+    },
+    {
+     "en": "relation",
+     "tr": "bağıntı"
+    },
+    {
+     "en": "completing the square",
+     "tr": "kareye tamamlama"
+    },
+    {
+     "en": "branch",
+     "tr": "dal"
+    }
+   ]
+  },
+  {
+   "kod": "4.6",
+   "baslik": "Conic Sections",
+   "baslikTr": "Konikler",
+   "hedefler": [
+    "Parabol, elips ve hiperbolün standart denklemlerini tanımak.",
+    "Kareye tamamlayarak merkez, köşeler (vertices) ve eksen uzunluklarını bulmak.",
+    "Hiperbolün asimptotlarını (asymptotes) yazmak."
+   ],
+   "anlatim": "<div class=\"kn-dikkat\"><strong>Sınav notu:</strong> Unit 4 konuları AP Precalculus sınavında <strong>ölçülmez</strong> (Unit 4 is not assessed on the AP Exam). Okullar bu üniteyi yine öğretir; parametre, vektör ve matris fikirleri AP Calculus BC ve üniversite matematiğinin temelidir. Sınav hazırlığında öncelik Unit 1–3'tür.</div>\n<h4>Konik kesitler (conic sections)</h4>\n<p>Bir koniyi düzlemle kesince çember, elips, parabol ya da hiperbol oluşur. Cebirsel olarak hepsi ikinci dereceden (quadratic) kapalı denklemlerdir.</p>\n<table><thead><tr><th>Konik</th><th>Standart biçim</th><th>Tanıma ipucu</th></tr></thead><tbody>\n<tr><td>Parabol (parabola)</td><td>\\(y-k=a(x-h)^2\\) ya da \\(x-h=a(y-k)^2\\)</td><td>yalnız bir değişken kare</td></tr>\n<tr><td>Çember (circle)</td><td>\\((x-h)^2+(y-k)^2=r^2\\)</td><td>iki kare, aynı katsayı, artı</td></tr>\n<tr><td>Elips (ellipse)</td><td>\\(\\dfrac{(x-h)^2}{a^2}+\\dfrac{(y-k)^2}{b^2}=1\\)</td><td>iki kare, farklı pozitif katsayı</td></tr>\n<tr><td>Hiperbol (hyperbola)</td><td>\\(\\dfrac{(x-h)^2}{a^2}-\\dfrac{(y-k)^2}{b^2}=1\\)</td><td>iki kare, zıt işaret</td></tr></tbody></table>\n<h4>Elips</h4>\n<p>Merkez \\((h,k)\\). \\(a\\gt b\\) ise büyük eksen (major axis) yataydır, uzunluğu \\(2a\\), köşeleri \\((h\\pm a,k)\\). Küçük eksen (minor axis) uzunluğu \\(2b\\). Örnek: \\(\\frac{(x-1)^2}{16}+\\frac{(y+2)^2}{9}=1\\): \\(a=4\\), \\(b=3\\), köşeler \\((-3,-2)\\) ve \\((5,-2)\\). Paydalar \\(a^2\\)'dir; uzunluk için karekök almayı unutma. (İleri okuma: odaklar (foci) \\(c^2=a^2-b^2\\) ile bulunur.)</p>\n<h4>Hiperbol</h4>\n<div class=\"kn-kural\">\\(\\frac{(x-h)^2}{a^2}-\\frac{(y-k)^2}{b^2}=1\\) sağa-sola açılır, köşeleri \\((h\\pm a,k)\\), asimptotları \\(y-k=\\pm\\frac{b}{a}(x-h)\\).<br>\\(\\frac{(y-k)^2}{a^2}-\\frac{(x-h)^2}{b^2}=1\\) yukarı-aşağı açılır, asimptotları \\(y-k=\\pm\\frac{a}{b}(x-h)\\).</div>\n<p>Asimptot için güvenli yöntem: sağ tarafı 1 yerine 0 yap ve çöz. \\(\\frac{(y-1)^2}{4}-\\frac{(x+2)^2}{9}=0\\Rightarrow y-1=\\pm\\frac{2}{3}(x+2)\\).</p>\n<h4>Kareye tamamlama</h4>\n<p>\\(x^2+y^2-6x+4y-3=0\\): \\((x^2-6x+9)+(y^2+4y+4)=3+9+4\\Rightarrow (x-3)^2+(y+2)^2=16\\). Merkez \\((3,-2)\\), yarıçap 4. Eklediğin sayıları denklemin <strong>her iki tarafına</strong> ekle.</p>\n<p>FRQ dili: <em>“Completing the square gives (x − 3)² + (y + 2)² = 16, so the graph is a circle with center (3, −2) and radius 4.”</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(9x^2+4y^2=36\\) koniğini tanımlayın; eksen uzunluklarını bulun.",
+     "cozum": [
+      "36'ya böl: \\(\\frac{x^2}{4}+\\frac{y^2}{9}=1\\): iki kare, artı, farklı paydalar: elips.",
+      "Büyük payda \\(y\\) altında: büyük eksen dikey, uzunluk \\(2\\cdot3=6\\); küçük eksen \\(2\\cdot2=4\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\frac{x^2}{9}-\\frac{y^2}{16}=1\\) hiperbolünün köşelerini ve asimptotlarını bulun.",
+     "cozum": [
+      "\\(a=3, b=4\\); köşeler \\((\\pm3,0)\\).",
+      "Asimptotlar: \\(\\frac{x^2}{9}=\\frac{y^2}{16}\\Rightarrow y=\\pm\\frac{4}{3}x\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(y^2-8y-x+10=0\\) denkleminin bir parabol olduğunu gösterin ve köşesini (vertex) bulun.",
+     "cozum": [
+      "\\(y^2-8y+16=x-10+16\\Rightarrow (y-4)^2=x+6\\).",
+      "Yalnız \\(y\\) kare: \\(x+6=(y-4)^2\\), sağa açılan parabol.",
+      "“The equation can be written x = (y − 4)² − 6, a parabola opening right with vertex (−6, 4).”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Tanıma için önce kare terimlerin işaretlerine bak: aynı işaret elips/çember, zıt işaret hiperbol, tek kare parabol.",
+    "Standart biçimde sağ taraf 1 olmalı; değilse böl.",
+    "Hesap makinesi kuralı (sınavın genel yapısı): Section I Part A ve FRQ 3–4 hesap makinesizdir; Part B ile FRQ 1–2'de grafik hesap makinesi (graphing calculator) kullanılır. Bu konu sınavda yok, ama alışkanlık olarak önce elle kur, sonra hesap makinesiyle kontrol et."
+   ],
+   "sikHatalar": [
+    "Paydayı uzunluk sanmak: \\(\\frac{x^2}{16}\\)'da \\(a=4\\)'tür, 16 değil.",
+    "Kareye tamamlarken eklenen sayıyı sağ tarafa eklememek."
+   ],
+   "terimler": [
+    {
+     "en": "conic section",
+     "tr": "konik kesit"
+    },
+    {
+     "en": "ellipse",
+     "tr": "elips"
+    },
+    {
+     "en": "hyperbola",
+     "tr": "hiperbol"
+    },
+    {
+     "en": "parabola",
+     "tr": "parabol"
+    },
+    {
+     "en": "vertex / vertices",
+     "tr": "köşe / köşeler"
+    },
+    {
+     "en": "major axis",
+     "tr": "büyük eksen"
+    },
+    {
+     "en": "asymptote",
+     "tr": "asimptot"
+    }
+   ]
+  },
+  {
+   "kod": "4.7",
+   "baslik": "Parametrization of Implicitly Defined Functions",
+   "baslikTr": "Kapalı tanımlı eğrilerin parametrelenmesi",
+   "hedefler": [
+    "Elips, hiperbol ve parabolü parametrik denklemlerle yazmak.",
+    "Pisagor özdeşlikleriyle parametreyi yok edip kapalı denklemi bulmak.",
+    "Parametre aralığının eğrinin hangi parçasını verdiğini belirlemek."
+   ],
+   "anlatim": "<div class=\"kn-dikkat\"><strong>Sınav notu:</strong> Unit 4 konuları AP Precalculus sınavında <strong>ölçülmez</strong> (Unit 4 is not assessed on the AP Exam). Okullar bu üniteyi yine öğretir; parametre, vektör ve matris fikirleri AP Calculus BC ve üniversite matematiğinin temelidir. Sınav hazırlığında öncelik Unit 1–3'tür.</div>\n<h4>Fikir</h4>\n<p>Kapalı bir eğriyi parametrelemek (parametrize) demek, eğri üzerindeki her noktayı \\((x(t),y(t))\\) biçiminde üreten fonksiyonlar bulmak demektir. Anahtar, trigonometrik özdeşliklerdir (Unit 3):</p>\n<div class=\"kn-kural\">\\[\\cos^2t+\\sin^2t=1\\qquad\\qquad \\sec^2t-\\tan^2t=1\\]</div>\n<table><thead><tr><th>Eğri</th><th>Parametreleme</th><th>Kontrol</th></tr></thead><tbody>\n<tr><td>Elips \\(\\frac{(x-h)^2}{a^2}+\\frac{(y-k)^2}{b^2}=1\\)</td><td>\\(x=h+a\\cos t,\\; y=k+b\\sin t\\)</td><td>\\(\\cos^2t+\\sin^2t=1\\)</td></tr>\n<tr><td>Hiperbol \\(\\frac{(x-h)^2}{a^2}-\\frac{(y-k)^2}{b^2}=1\\)</td><td>\\(x=h+a\\sec t,\\; y=k+b\\tan t\\)</td><td>\\(\\sec^2t-\\tan^2t=1\\)</td></tr>\n<tr><td>Fonksiyon grafiği \\(y=f(x)\\)</td><td>\\(x=t,\\; y=f(t)\\)</td><td>doğrudan</td></tr>\n<tr><td>Yatay parabol \\(x=g(y)\\)</td><td>\\(x=g(t),\\; y=t\\)</td><td>doğrudan</td></tr></tbody></table>\n<p>Elipste katsayılar paydaların <strong>karekökleridir</strong>: \\(\\frac{x^2}{25}+\\frac{y^2}{4}=1\\) için \\(x=5\\cos t,\\; y=2\\sin t\\). Kontrol: \\(\\frac{25\\cos^2t}{25}+\\frac{4\\sin^2t}{4}=1\\).</p>\n<h4>Parametreyi yok etmek (eliminating the parameter)</h4>\n<p>Tersine işlem: \\(x=1+2\\cos t,\\; y=3\\sin t\\). \\(\\cos t=\\frac{x-1}{2}\\), \\(\\sin t=\\frac{y}{3}\\). Özdeşlik: \\(\\frac{(x-1)^2}{4}+\\frac{y^2}{9}=1\\), merkezi \\((1,0)\\) olan dikey elips.</p>\n<p>Cebirsel parametrede yöntem farklıdır: \\(x=t^2+1,\\; y=t-2\\Rightarrow t=y+2\\Rightarrow x=(y+2)^2+1\\).</p>\n<h4>Hangi parça çiziliyor?</h4>\n<ul>\n<li>\\(x=4\\sec t,\\; y=3\\tan t\\), \\(-\\frac{\\pi}{2}\\lt t\\lt\\frac{\\pi}{2}\\): bu aralıkta \\(\\sec t\\ge1\\gt 0\\), yani yalnız <strong>sağ dal (right branch)</strong>.</li>\n<li>\\(\\frac{\\pi}{2}\\lt t\\lt\\frac{3\\pi}{2}\\): \\(\\sec t\\le -1\\), sol dal.</li>\n<li>\\(x=t^2\\) gibi bileşenler yalnız \\(x\\ge0\\) verir; yok ettiğin denklemin tamamı çizilmeyebilir.</li>\n</ul>\n<div class=\"kn-dikkat\">Parametreyi yok edince elde edilen denklem, parametrik eğriden <strong>daha büyük</strong> bir küme verebilir. Cevaba aralığı (restriction) ekle.</div>\n<p>FRQ dili: <em>“Since cos²t + sin²t = 1, ((x − 1)/2)² + (y/3)² = 1, so the curve is an ellipse centered at (1, 0).”</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\frac{(x+2)^2}{9}+\\frac{(y-1)^2}{16}=1\\) elipsini saat yönü tersine bir kez dolaşan denklemleri yazın.",
+     "cozum": [
+      "\\(a=3\\), \\(b=4\\), merkez \\((-2,1)\\).",
+      "\\(x=-2+3\\cos t,\\; y=1+4\\sin t,\\; 0\\le t\\le2\\pi\\)."
+     ]
+    },
+    {
+     "soru": "\\(x=3\\sec t,\\; y=2\\tan t\\) için parametreyi yok edin.",
+     "cozum": [
+      "\\(\\sec t=\\frac{x}{3}\\), \\(\\tan t=\\frac{y}{2}\\).",
+      "\\(\\sec^2t-\\tan^2t=1\\Rightarrow\\frac{x^2}{9}-\\frac{y^2}{4}=1\\): hiperbol."
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(x=\\sqrt{t},\\; y=t\\) (\\(t\\ge0\\)) eğrisi \\(y=x^2\\) parabolünün tamamı mıdır?",
+     "cozum": [
+      "\\(t=x^2\\Rightarrow y=x^2\\).",
+      "Ama \\(x=\\sqrt t\\ge 0\\).",
+      "“The parametric curve is only the right half of y = x², for x ≥ 0, because x = √t cannot be negative.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Şık kontrolü: parametreli ifadeyi kapalı denkleme koy, özdeşlik 1 veriyorsa doğrudur.",
+    "Elips → cos/sin, hiperbol → sec/tan. Toplam “+” ise cos-sin, fark “−” ise sec-tan.",
+    "Hesap makinesi kuralı (sınavın genel yapısı): Section I Part A ve FRQ 3–4 hesap makinesizdir; Part B ile FRQ 1–2'de grafik hesap makinesi (graphing calculator) kullanılır. Bu konu sınavda yok, ama alışkanlık olarak önce elle kur, sonra hesap makinesiyle kontrol et."
+   ],
+   "sikHatalar": [
+    "Katsayı olarak paydanın kendisini yazmak: \\(x=25\\cos t\\) yanlış, \\(x=5\\cos t\\) doğru.",
+    "Parametre aralığının eğriyi kısıtladığını gözden kaçırmak."
+   ],
+   "terimler": [
+    {
+     "en": "parametrize",
+     "tr": "parametrelemek"
+    },
+    {
+     "en": "Pythagorean identity",
+     "tr": "Pisagor özdeşliği"
+    },
+    {
+     "en": "secant / tangent",
+     "tr": "sekant / tanjant"
+    },
+    {
+     "en": "branch",
+     "tr": "dal"
+    },
+    {
+     "en": "restriction",
+     "tr": "kısıtlama"
+    }
+   ]
+  },
+  {
+   "kod": "4.8",
+   "baslik": "Vectors",
+   "baslikTr": "Vektörler",
+   "hedefler": [
+    "Vektörü bileşen biçiminde (component form) yazmak; büyüklük (magnitude) ve yön açısını bulmak.",
+    "Vektör toplama, skalerle çarpma ve birim vektör işlemlerini yapmak.",
+    "Nokta çarpımıyla (dot product) iki vektör arasındaki açıyı ve dikliği belirlemek."
+   ],
+   "anlatim": "<div class=\"kn-dikkat\"><strong>Sınav notu:</strong> Unit 4 konuları AP Precalculus sınavında <strong>ölçülmez</strong> (Unit 4 is not assessed on the AP Exam). Okullar bu üniteyi yine öğretir; parametre, vektör ve matris fikirleri AP Calculus BC ve üniversite matematiğinin temelidir. Sınav hazırlığında öncelik Unit 1–3'tür.</div>\n<h4>Vektör nedir?</h4>\n<div class=\"kn-tanim\">Bir <strong>vektör (vector)</strong>, hem <strong>büyüklüğü (magnitude)</strong> hem <strong>yönü (direction)</strong> olan niceliktir. Düzlemde bileşen biçimi \\(\\vec v=\\langle a,b\\rangle\\): \\(a\\) yatay, \\(b\\) dikey bileşendir. \\(P(x_1,y_1)\\)'den \\(Q(x_2,y_2)\\)'ye vektör \\(\\overrightarrow{PQ}=\\langle x_2-x_1,\\;y_2-y_1\\rangle\\).</div>\n<p>Hız (velocity), kuvvet (force) ve yer değiştirme (displacement) vektördür; sıcaklık ya da kütle ise yalnız büyüklüğü olan skalerdir (scalar).</p>\n<h4>Temel formüller</h4>\n<table><thead><tr><th>Kavram</th><th>Formül</th></tr></thead><tbody>\n<tr><td>Büyüklük</td><td>\\(\\lVert\\vec v\\rVert=\\sqrt{a^2+b^2}\\)</td></tr>\n<tr><td>Yön açısı \\(\\theta\\)</td><td>\\(\\tan\\theta=\\frac{b}{a}\\); \\(\\vec v=\\lVert\\vec v\\rVert\\langle\\cos\\theta,\\sin\\theta\\rangle\\)</td></tr>\n<tr><td>Toplama</td><td>\\(\\langle a,b\\rangle+\\langle c,d\\rangle=\\langle a+c,\\,b+d\\rangle\\)</td></tr>\n<tr><td>Skalerle çarpma</td><td>\\(k\\langle a,b\\rangle=\\langle ka,kb\\rangle\\)</td></tr>\n<tr><td>Birim vektör (unit vector)</td><td>\\(\\frac{\\vec v}{\\lVert\\vec v\\rVert}\\), büyüklüğü 1; \\(\\mathbf i=\\langle1,0\\rangle,\\ \\mathbf j=\\langle0,1\\rangle\\), \\(\\langle a,b\\rangle=a\\mathbf i+b\\mathbf j\\)</td></tr>\n<tr><td>Nokta çarpımı</td><td>\\(\\vec u\\cdot\\vec v=u_1v_1+u_2v_2=\\lVert\\vec u\\rVert\\lVert\\vec v\\rVert\\cos\\theta\\)</td></tr></tbody></table>\n<h4>Yön açısında çeyrek (quadrant) tuzağı</h4>\n<p>\\(\\overrightarrow{PQ}=\\langle -3,3\\rangle\\) için \\(\\tan\\theta=-1\\). Hesap makinesi \\(\\tan^{-1}(-1)=-45^\\circ\\) verir, ama vektör II. bölgededir (\\(a\\lt 0, b\\gt 0\\)): doğru açı \\(135^\\circ\\). Her zaman bileşenlerin işaretinden bölgeyi kontrol et.</p>\n<h4>Nokta çarpımı ve açı</h4>\n<div class=\"kn-kural\">\\[\\cos\\theta=\\frac{\\vec u\\cdot\\vec v}{\\lVert\\vec u\\rVert\\,\\lVert\\vec v\\rVert}\\]\n\\(\\vec u\\cdot\\vec v=0\\iff\\) vektörler <strong>dik (orthogonal / perpendicular)</strong>. Nokta çarpımı pozitifse açı dar (acute), negatifse geniş (obtuse).</div>\n<p>Örnek: \\(\\langle 3,1\\rangle\\) ve \\(\\langle1,2\\rangle\\): nokta çarpımı \\(5\\), büyüklükler \\(\\sqrt{10}\\) ve \\(\\sqrt5\\), \\(\\cos\\theta=\\frac{5}{\\sqrt{50}}=\\frac{1}{\\sqrt2}\\), \\(\\theta=45^\\circ\\).</p>\n<p>Bileşke vektör (resultant): bir uçak \\(\\langle 300,0\\rangle\\) km/sa hızla doğuya giderken rüzgâr \\(\\langle0,40\\rangle\\) eklerse yere göre hız \\(\\langle300,40\\rangle\\), sürat \\(\\sqrt{300^2+40^2}\\approx302.7\\) km/sa.</p>\n<p>Toplam vektörün büyüklüğü kosinüs teoremiyle (Law of Cosines) de bulunur: \\(\\lVert\\vec u\\rVert=3\\), \\(\\lVert\\vec v\\rVert=5\\) ve aralarındaki açı \\(60^\\circ\\) ise uç uca eklenen vektörlerin üçgeninde iç açı \\(180^\\circ-60^\\circ=120^\\circ\\) olur: \\(\\lVert\\vec u+\\vec v\\rVert^2=9+25-2\\cdot3\\cdot5\\cos120^\\circ=49\\), yani \\(\\lVert\\vec u+\\vec v\\rVert=7\\).</p><p>FRQ dili: <em>“Since u · v = 0, the vectors u and v are perpendicular.”</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(P(4,-1)\\), \\(Q(1,3)\\). \\(\\overrightarrow{PQ}\\)'yu, büyüklüğünü ve aynı yöndeki birim vektörü bulun.",
+     "cozum": [
+      "\\(\\overrightarrow{PQ}=\\langle1-4,\\,3-(-1)\\rangle=\\langle-3,4\\rangle\\).",
+      "\\(\\lVert\\overrightarrow{PQ}\\rVert=\\sqrt{9+16}=5\\).",
+      "Birim vektör: \\(\\langle-\\frac35,\\frac45\\rangle\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\vec u=\\langle2,1\\rangle\\), \\(\\vec v=\\langle-1,3\\rangle\\). \\(3\\vec u-2\\vec v\\)'yi bulun.",
+     "cozum": [
+      "\\(3\\vec u=\\langle6,3\\rangle\\), \\(2\\vec v=\\langle-2,6\\rangle\\).",
+      "\\(\\langle6-(-2),\\,3-6\\rangle=\\langle8,-3\\rangle\\)."
+     ]
+    },
+    {
+     "soru": "(Gerekçelendirin) \\(\\langle 4,-6\\rangle\\) ile \\(\\langle 3,2\\rangle\\) dik midir?",
+     "cozum": [
+      "Nokta çarpımı: \\(4\\cdot3+(-6)\\cdot2=12-12=0\\).",
+      "“Because the dot product is 0, the vectors are perpendicular.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Vektörü noktalardan bulurken “bitiş eksi başlangıç” (terminal minus initial) sırasını koru.",
+    "Yön açısında bileşenlerin işaretinden çeyreği belirle; \\(\\tan^{-1}\\) yalnız I. ve IV. bölge açısı verir.",
+    "Hesap makinesi kuralı (sınavın genel yapısı): Section I Part A ve FRQ 3–4 hesap makinesizdir; Part B ile FRQ 1–2'de grafik hesap makinesi (graphing calculator) kullanılır. Bu konu sınavda yok, ama alışkanlık olarak önce elle kur, sonra hesap makinesiyle kontrol et."
+   ],
+   "sikHatalar": [
+    "Büyüklüğü bileşenlerin toplamı sanmak: \\(\\lVert\\langle3,4\\rangle\\rVert=5\\), 7 değil.",
+    "Diklik ile paralelliği karıştırmak: paralelde bileşenler orantılıdır, diklikte nokta çarpımı sıfırdır."
+   ],
+   "terimler": [
+    {
+     "en": "vector",
+     "tr": "vektör"
+    },
+    {
+     "en": "magnitude",
+     "tr": "büyüklük"
+    },
+    {
+     "en": "component form",
+     "tr": "bileşen biçimi"
+    },
+    {
+     "en": "unit vector",
+     "tr": "birim vektör"
+    },
+    {
+     "en": "dot product",
+     "tr": "nokta çarpımı"
+    },
+    {
+     "en": "perpendicular / orthogonal",
+     "tr": "dik"
+    },
+    {
+     "en": "resultant",
+     "tr": "bileşke"
+    }
+   ]
+  },
+  {
+   "kod": "4.9",
+   "baslik": "Vector-Valued Functions",
+   "baslikTr": "Vektör değerli fonksiyonlar",
+   "hedefler": [
+    "Konumu vektör değerli fonksiyon (vector-valued function) \\(\\vec p(t)=\\langle x(t),y(t)\\rangle\\) olarak yazmak.",
+    "Yer değiştirme vektörünü (displacement) ve ortalama hız vektörünü (average velocity) hesaplamak.",
+    "Ortalama hız vektörünün büyüklüğünü yorumlamak."
+   ],
+   "anlatim": "<div class=\"kn-dikkat\"><strong>Sınav notu:</strong> Unit 4 konuları AP Precalculus sınavında <strong>ölçülmez</strong> (Unit 4 is not assessed on the AP Exam). Okullar bu üniteyi yine öğretir; parametre, vektör ve matris fikirleri AP Calculus BC ve üniversite matematiğinin temelidir. Sınav hazırlığında öncelik Unit 1–3'tür.</div>\n<h4>Parametrik fonksiyonun vektör hâli</h4>\n<div class=\"kn-tanim\">Bir <strong>vektör değerli fonksiyon (vector-valued function)</strong>, her \\(t\\)'ye bir vektör atar: \\(\\vec p(t)=\\langle x(t),\\,y(t)\\rangle\\). Vektörün başlangıcı orijindedir, ucu parçacığın konumunu gösterir; bu yüzden \\(\\vec p(t)\\)'ye konum vektörü (position vector) denir.</div>\n<p>Parametrik denklemlerle aynı bilgiyi taşır; fark gösterimdedir. Vektör dili, hareketi <em>toplanabilir</em> nicelikler olarak ele almayı sağlar.</p>\n<h4>Yer değiştirme ve ortalama hız</h4>\n<table><thead><tr><th>Nicelik</th><th>\\([t_1,t_2]\\) üzerinde</th><th>Tür</th></tr></thead><tbody>\n<tr><td>Yer değiştirme (displacement)</td><td>\\(\\vec p(t_2)-\\vec p(t_1)\\)</td><td>vektör</td></tr>\n<tr><td>Ortalama hız (average velocity)</td><td>\\(\\dfrac{\\vec p(t_2)-\\vec p(t_1)}{t_2-t_1}\\)</td><td>vektör</td></tr>\n<tr><td>Ortalama hız büyüklüğü</td><td>\\(\\left\\lVert\\dfrac{\\vec p(t_2)-\\vec p(t_1)}{t_2-t_1}\\right\\rVert\\)</td><td>skaler</td></tr></tbody></table>\n<p>Ortalama hız vektörü, her bileşenin ortalama değişim hızından oluşur: \\(\\left\\langle\\frac{\\Delta x}{\\Delta t},\\frac{\\Delta y}{\\Delta t}\\right\\rangle\\). Örnek: \\(\\vec p(t)=\\langle3t,\\;8-t^2\\rangle\\), \\([0,2]\\): \\(\\vec p(0)=\\langle0,8\\rangle\\), \\(\\vec p(2)=\\langle6,4\\rangle\\). Yer değiştirme \\(\\langle6,-4\\rangle\\), ortalama hız \\(\\langle3,-2\\rangle\\) birim/s, büyüklüğü \\(\\sqrt{13}\\approx3.61\\) birim/s.</p>\n<div class=\"kn-dikkat\">Yer değiştirme <strong>yol uzunluğu (distance traveled)</strong> değildir. Parçacık geri dönerse yer değiştirme küçük, alınan yol büyük olabilir. Ortalama hızın büyüklüğü de bu yüzden ortalama süratten (average speed) küçük olabilir.</div>\n<h4>Önceki ünitelerle bağlantı</h4>\n<p>Bileşenler herhangi bir fonksiyon olabilir: \\(\\vec p(t)=\\langle 2^t,\\;\\log_2(t+1)\\rangle\\). \\([1,3]\\) üzerinde \\(\\vec p(1)=\\langle2,1\\rangle\\), \\(\\vec p(3)=\\langle8,2\\rangle\\), ortalama hız \\(\\langle3,\\frac12\\rangle\\). Üstel ve logaritmik değerleri (Unit 2) doğru hesaplamak burada da şarttır.</p>\n<ul>\n<li>\\(\\vec p(t)\\)'nin \\(x\\)-bileşeni sıfırsa parçacık \\(y\\)-ekseni üzerindedir.</li>\n<li>İki parçacık aynı \\(t\\)'de aynı konumdaysa çarpışırlar (collide); yalnız yolların kesişmesi yetmez.</li>\n</ul>\n<p>FRQ dili: <em>“The average velocity on [0, 2] is ⟨3, −2⟩, so on average the particle moved 3 units right and 2 units down per second.”</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\vec p(t)=\\langle2t+1,\\;t^2\\rangle\\). \\(t=1\\)'den \\(t=3\\)'e yer değiştirme ve ortalama hız vektörünü bulun.",
+     "cozum": [
+      "\\(\\vec p(1)=\\langle3,1\\rangle\\), \\(\\vec p(3)=\\langle7,9\\rangle\\).",
+      "Yer değiştirme \\(\\langle4,8\\rangle\\).",
+      "Ortalama hız \\(\\frac{1}{2}\\langle4,8\\rangle=\\langle2,4\\rangle\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\vec p(t)=\\langle t^2-4t,\\;2t+1\\rangle\\). \\(t\\gt0\\) için parçacık \\(y\\)-eksenini hangi noktada keser?",
+     "cozum": [
+      "\\(t^2-4t=0\\Rightarrow t=0\\) ya da \\(t=4\\); \\(t\\gt0\\) için \\(t=4\\).",
+      "\\(\\vec p(4)=\\langle0,9\\rangle\\): nokta \\((0,9)\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(\\vec a(t)=\\langle t,\\,t\\rangle\\) ve \\(\\vec b(t)=\\langle 2-t,\\,t\\rangle\\) parçacıkları çarpışır mı?",
+     "cozum": [
+      "Aynı \\(t\\)'de eşitlik: \\(t=2-t\\Rightarrow t=1\\); \\(y\\): \\(1=1\\) doğru.",
+      "“At t = 1 both particles are at (1, 1), so they collide.” Yalnız yolların kesişmesi değil, aynı zamanda orada olmaları gerekir."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Ortalama hız sorusunda önce yer değiştirmeyi bul, sonra \\(\\Delta t\\)'ye böl; iki adımı karıştırma.",
+    "“Average velocity” vektör, “speed” skalerdir. Soru büyüklük istiyorsa karekök al.",
+    "Hesap makinesi kuralı (sınavın genel yapısı): Section I Part A ve FRQ 3–4 hesap makinesizdir; Part B ile FRQ 1–2'de grafik hesap makinesi (graphing calculator) kullanılır. Bu konu sınavda yok, ama alışkanlık olarak önce elle kur, sonra hesap makinesiyle kontrol et."
+   ],
+   "sikHatalar": [
+    "Yer değiştirmeyi \\(\\vec p(t_1)+\\vec p(t_2)\\) ile karıştırmak ya da çıkarma sırasını ters almak.",
+    "Ortalama hızın büyüklüğü yerine bileşenlerin toplamını yazmak."
+   ],
+   "terimler": [
+    {
+     "en": "vector-valued function",
+     "tr": "vektör değerli fonksiyon"
+    },
+    {
+     "en": "position vector",
+     "tr": "konum vektörü"
+    },
+    {
+     "en": "displacement",
+     "tr": "yer değiştirme"
+    },
+    {
+     "en": "average velocity",
+     "tr": "ortalama hız (vektör)"
+    },
+    {
+     "en": "speed",
+     "tr": "sürat"
+    },
+    {
+     "en": "collide",
+     "tr": "çarpışmak"
+    }
+   ]
+  },
+  {
+   "kod": "4.10",
+   "baslik": "Matrices",
+   "baslikTr": "Matrisler",
+   "hedefler": [
+    "Matrisin boyutunu (dimensions) ve elemanlarını (entries) okumak.",
+    "Matris toplama, skalerle çarpma ve matris çarpımı yapmak.",
+    "Matris çarpımının ne zaman tanımlı olduğunu ve değişmeli (commutative) olmadığını açıklamak."
+   ],
+   "anlatim": "<div class=\"kn-dikkat\"><strong>Sınav notu:</strong> Unit 4 konuları AP Precalculus sınavında <strong>ölçülmez</strong> (Unit 4 is not assessed on the AP Exam). Okullar bu üniteyi yine öğretir; parametre, vektör ve matris fikirleri AP Calculus BC ve üniversite matematiğinin temelidir. Sınav hazırlığında öncelik Unit 1–3'tür.</div>\n<h4>Matris ve boyut</h4>\n<div class=\"kn-tanim\">Bir <strong>matris (matrix)</strong>, sayıların satır (row) ve sütunlar (column) hâlinde dizilmesidir. \\(m\\) satır ve \\(n\\) sütunlu matrisin boyutu \\(m\\times n\\)'dir. \\(a_{ij}\\): \\(i\\). satır, \\(j\\). sütundaki eleman (entry).</div>\n<p>\\(A=\\begin{bmatrix}2&0&-1\\\\1&3&4\\end{bmatrix}\\) bir \\(2\\times3\\) matristir; \\(a_{23}=4\\).</p>\n<h4>Toplama ve skalerle çarpma</h4>\n<p>Aynı boyuttaki matrisler eleman eleman toplanır. Skalerle çarpmada her eleman çarpılır: \\(3\\begin{bmatrix}1&-2\\\\0&4\\end{bmatrix}=\\begin{bmatrix}3&-6\\\\0&12\\end{bmatrix}\\).</p>\n<h4>Matris çarpımı (matrix multiplication)</h4>\n<div class=\"kn-kural\">\\(A\\) \\(m\\times n\\), \\(B\\) \\(n\\times p\\) ise \\(AB\\) tanımlıdır ve boyutu \\(m\\times p\\)'dir. İç boyutlar eşit olmalı. \\((AB)_{ij}\\) = \\(A\\)'nın \\(i\\). satırı ile \\(B\\)'nin \\(j\\). sütununun nokta çarpımı (row times column).</div>\n<p>\\(\\begin{bmatrix}1&2\\\\3&0\\end{bmatrix}\\begin{bmatrix}2&-1\\\\1&4\\end{bmatrix}\\):</p>\n<table><thead><tr><th>Eleman</th><th>Hesap</th><th>Sonuç</th></tr></thead><tbody>\n<tr><td>\\((1,1)\\)</td><td>\\(1\\cdot2+2\\cdot1\\)</td><td>4</td></tr>\n<tr><td>\\((1,2)\\)</td><td>\\(1\\cdot(-1)+2\\cdot4\\)</td><td>7</td></tr>\n<tr><td>\\((2,1)\\)</td><td>\\(3\\cdot2+0\\cdot1\\)</td><td>6</td></tr>\n<tr><td>\\((2,2)\\)</td><td>\\(3\\cdot(-1)+0\\cdot4\\)</td><td>\\(-3\\)</td></tr></tbody></table>\n<p>Sonuç \\(\\begin{bmatrix}4&7\\\\6&-3\\end{bmatrix}\\). Ters sırada çarpınca \\(BA=\\begin{bmatrix}-1&4\\\\13&2\\end{bmatrix}\\) çıkar: genel olarak \\(AB\\neq BA\\) (matris çarpımı değişmeli değildir, not commutative).</p>\n<h4>Birim matris (identity matrix)</h4>\n<p>\\(I=\\begin{bmatrix}1&0\\\\0&1\\end{bmatrix}\\) için \\(AI=IA=A\\). Sayılarda 1'in rolünü oynar. Matris çarpımı birleşmelidir (associative): \\((AB)C=A(BC)\\).</p>\n<div class=\"kn-dikkat\">Matris çarpımı eleman eleman çarpım <strong>değildir</strong>. \\(\\begin{bmatrix}1&2\\\\3&0\\end{bmatrix}\\) ile \\(\\begin{bmatrix}2&-1\\\\1&4\\end{bmatrix}\\)'yi eleman eleman çarpmak \\(\\begin{bmatrix}2&-2\\\\3&0\\end{bmatrix}\\) verir; bu yanlıştır.</div>\n<p>FRQ dili: <em>“The product AB is defined because A has 3 columns and B has 3 rows; AB is a 2 × 2 matrix.”</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(A\\) \\(2\\times3\\), \\(B\\) \\(3\\times4\\). \\(AB\\) ve \\(BA\\) tanımlı mı? Boyutları nedir?",
+     "cozum": [
+      "\\(AB\\): iç boyutlar 3 ve 3 eşit; tanımlı, boyut \\(2\\times4\\).",
+      "\\(BA\\): \\(3\\times4\\) çarpı \\(2\\times3\\); iç boyutlar 4 ve 2 farklı, tanımsız."
+     ]
+    },
+    {
+     "soru": "\\(A=\\begin{bmatrix}2&0&-1\\\\1&3&4\\end{bmatrix}\\), \\(B=\\begin{bmatrix}1&2\\\\0&-1\\\\5&1\\end{bmatrix}\\). \\(AB\\)'yi bulun.",
+     "cozum": [
+      "1. satır: \\((2\\cdot1+0\\cdot0+(-1)\\cdot5,\\;2\\cdot2+0\\cdot(-1)+(-1)\\cdot1)=(-3,\\,3)\\).",
+      "2. satır: \\((1+0+20,\\;2-3+4)=(21,\\,3)\\).",
+      "\\(AB=\\begin{bmatrix}-3&3\\\\21&3\\end{bmatrix}\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(A=\\begin{bmatrix}1&1\\\\0&1\\end{bmatrix}\\), \\(B=\\begin{bmatrix}1&0\\\\1&1\\end{bmatrix}\\) için \\(AB=BA\\) midir?",
+     "cozum": [
+      "\\(AB=\\begin{bmatrix}2&1\\\\1&1\\end{bmatrix}\\), \\(BA=\\begin{bmatrix}1&1\\\\1&2\\end{bmatrix}\\).",
+      "“Since the (1,1) entries are 2 and 1, AB ≠ BA; matrix multiplication is not commutative.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Çarpmadan önce boyutları yan yana yaz: \\((m\\times \\underline{n})(\\underline{n}\\times p)\\). Altı çizili sayılar eşit değilse tanımsız.",
+    "Tek bir eleman soruluyorsa bütün çarpımı hesaplama; yalnız ilgili satır ve sütunu çarp.",
+    "Hesap makinesi kuralı (sınavın genel yapısı): Section I Part A ve FRQ 3–4 hesap makinesizdir; Part B ile FRQ 1–2'de grafik hesap makinesi (graphing calculator) kullanılır. Bu konu sınavda yok, ama alışkanlık olarak önce elle kur, sonra hesap makinesiyle kontrol et. Grafik hesap makinelerinde matris menüsü vardır; büyük çarpımları kontrol için kullan."
+   ],
+   "sikHatalar": [
+    "Satır yerine sütunla, sütun yerine satırla çarpmak (sonuç transpoze çıkar).",
+    "\\(AB=BA\\) varsaymak."
+   ],
+   "terimler": [
+    {
+     "en": "matrix",
+     "tr": "matris"
+    },
+    {
+     "en": "dimensions",
+     "tr": "boyut"
+    },
+    {
+     "en": "entry",
+     "tr": "eleman"
+    },
+    {
+     "en": "row / column",
+     "tr": "satır / sütun"
+    },
+    {
+     "en": "identity matrix",
+     "tr": "birim matris"
+    },
+    {
+     "en": "commutative",
+     "tr": "değişmeli"
+    }
+   ]
+  },
+  {
+   "kod": "4.11",
+   "baslik": "The Inverse and Determinant of a Matrix",
+   "baslikTr": "Matrisin tersi ve determinantı",
+   "hedefler": [
+    "\\(2\\times2\\) matrisin determinantını (determinant) hesaplamak ve geometrik anlamını açıklamak.",
+    "Determinant sıfır değilse ters matrisi (inverse matrix) bulmak.",
+    "Bir matrisin ters çevrilebilir (invertible) olup olmadığını gerekçelendirmek."
+   ],
+   "anlatim": "<div class=\"kn-dikkat\"><strong>Sınav notu:</strong> Unit 4 konuları AP Precalculus sınavında <strong>ölçülmez</strong> (Unit 4 is not assessed on the AP Exam). Okullar bu üniteyi yine öğretir; parametre, vektör ve matris fikirleri AP Calculus BC ve üniversite matematiğinin temelidir. Sınav hazırlığında öncelik Unit 1–3'tür.</div>\n<h4>Determinant</h4>\n<div class=\"kn-tanim\">\\(A=\\begin{bmatrix}a&b\\\\c&d\\end{bmatrix}\\) için <strong>determinant (determinant)</strong> \\(\\det A=ad-bc\\).</div>\n<p>Geometrik anlam: \\(A\\)'nın sütun vektörleri \\(\\langle a,c\\rangle\\) ve \\(\\langle b,d\\rangle\\)'nin oluşturduğu paralelkenarın (parallelogram) alanı \\(|\\det A|\\)'dır. İşaret, yönelimi gösterir: \\(\\det A\\lt0\\) ise şekil “ters çevrilmiş” (orientation reversed) olur. \\(\\det A=0\\) ise iki sütun paraleldir ve paralelkenar düzleşir (alan 0).</p>\n<p>Örnek: \\(\\langle3,1\\rangle\\) ve \\(\\langle1,4\\rangle\\) vektörlerinin paralelkenarı: \\(\\det\\begin{bmatrix}3&1\\\\1&4\\end{bmatrix}=12-1=11\\), alan 11; aynı vektörlerin üçgeni 5.5.</p>\n<h4>Ters matris</h4>\n<div class=\"kn-kural\">\\(\\det A\\neq0\\) ise\n\\[A^{-1}=\\frac{1}{ad-bc}\\begin{bmatrix}d&-b\\\\-c&a\\end{bmatrix},\\qquad AA^{-1}=A^{-1}A=I\\]\n\\(\\det A=0\\) ise \\(A^{-1}\\) yoktur; \\(A\\) tekil (singular) matristir.</div>\n<p>Yöntem: (1) \\(a\\) ile \\(d\\)'nin yerini değiştir, (2) \\(b\\) ve \\(c\\)'nin işaretini değiştir, (3) determinanta böl.</p>\n<table><thead><tr><th>\\(A\\)</th><th>\\(\\det A\\)</th><th>\\(A^{-1}\\)</th></tr></thead><tbody>\n<tr><td>\\(\\begin{bmatrix}4&3\\\\1&1\\end{bmatrix}\\)</td><td>\\(4-3=1\\)</td><td>\\(\\begin{bmatrix}1&-3\\\\-1&4\\end{bmatrix}\\)</td></tr>\n<tr><td>\\(\\begin{bmatrix}2&1\\\\5&3\\end{bmatrix}\\)</td><td>\\(6-5=1\\)</td><td>\\(\\begin{bmatrix}3&-1\\\\-5&2\\end{bmatrix}\\)</td></tr>\n<tr><td>\\(\\begin{bmatrix}2&4\\\\1&2\\end{bmatrix}\\)</td><td>\\(4-4=0\\)</td><td>yok</td></tr></tbody></table>\n<p>Kontrol her zaman mümkün: \\(\\begin{bmatrix}4&3\\\\1&1\\end{bmatrix}\\begin{bmatrix}1&-3\\\\-1&4\\end{bmatrix}=\\begin{bmatrix}1&0\\\\0&1\\end{bmatrix}\\).</p>\n<h4>Parametreli matrisler</h4>\n<p>“Hangi \\(k\\) için ters yok?” sorusu \\(\\det=0\\) denklemine dönüşür. \\(\\begin{bmatrix}k&6\\\\2&k-1\\end{bmatrix}\\): \\(k(k-1)-12=0\\Rightarrow k^2-k-12=0\\Rightarrow k=4\\) ya da \\(k=-3\\). Burada Unit 1'deki polinom çarpanlarına ayırma kullanılır.</p>\n<p>(İleri okuma: \\(3\\times3\\) determinant da tanımlıdır ve hacim ölçeğini verir; hesap makinesiyle bulunur.)</p>\n<p>FRQ dili: <em>“Since det A = 1 ≠ 0, A is invertible, and A⁻¹ = [[1, −3], [−1, 4]].”</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(A=\\begin{bmatrix}2&1\\\\5&3\\end{bmatrix}\\)'nın tersini bulun ve doğrulayın.",
+     "cozum": [
+      "\\(\\det A=6-5=1\\).",
+      "\\(A^{-1}=\\begin{bmatrix}3&-1\\\\-5&2\\end{bmatrix}\\).",
+      "\\(AA^{-1}=\\begin{bmatrix}6-5&-2+2\\\\15-15&-5+6\\end{bmatrix}=I\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\begin{bmatrix}k&6\\\\2&k-1\\end{bmatrix}\\) hangi \\(k\\) değerlerinde ters çevrilemez?",
+     "cozum": [
+      "\\(\\det=k(k-1)-12=k^2-k-12\\).",
+      "\\((k-4)(k+3)=0\\Rightarrow k=4\\) ya da \\(k=-3\\)."
+     ]
+    },
+    {
+     "soru": "(Gerekçelendirin) \\(\\begin{bmatrix}3&-6\\\\-1&2\\end{bmatrix}\\) matrisinin tersi var mı?",
+     "cozum": [
+      "\\(\\det=3\\cdot2-(-6)(-1)=6-6=0\\).",
+      "“Because the determinant is 0, the matrix is not invertible; its columns are parallel.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Determinantta işaret hatası en sık hatadır: \\(ad-bc\\)'de \\(b\\) ve \\(c\\) negatifse çarpımlarını parantez içinde yaz.",
+    "Ters matris bulduktan sonra bir elemanı çarpımla kontrol et; 30 saniye sürer.",
+    "Hesap makinesi kuralı (sınavın genel yapısı): Section I Part A ve FRQ 3–4 hesap makinesizdir; Part B ile FRQ 1–2'de grafik hesap makinesi (graphing calculator) kullanılır. Bu konu sınavda yok, ama alışkanlık olarak önce elle kur, sonra hesap makinesiyle kontrol et."
+   ],
+   "sikHatalar": [
+    "Ters matris için elemanların tersini almak (\\(\\frac1a,\\frac1b,\\dots\\)).",
+    "Yer değiştirme ve işaret değiştirme adımlarını karıştırmak (\\(b,c\\) yerine \\(a,d\\)'nin işaretini değiştirmek)."
+   ],
+   "terimler": [
+    {
+     "en": "determinant",
+     "tr": "determinant"
+    },
+    {
+     "en": "inverse matrix",
+     "tr": "ters matris"
+    },
+    {
+     "en": "invertible",
+     "tr": "ters çevrilebilir"
+    },
+    {
+     "en": "singular",
+     "tr": "tekil"
+    },
+    {
+     "en": "parallelogram",
+     "tr": "paralelkenar"
+    },
+    {
+     "en": "orientation",
+     "tr": "yönelim"
+    }
+   ]
+  },
+  {
+   "kod": "4.12",
+   "baslik": "Linear Transformations and Matrices",
+   "baslikTr": "Doğrusal dönüşümler ve matrisler",
+   "hedefler": [
+    "Doğrusal dönüşümü (linear transformation) \\(2\\times2\\) matrisle ifade etmek.",
+    "Matrisin sütunlarının \\(\\langle1,0\\rangle\\) ve \\(\\langle0,1\\rangle\\)'in görüntüleri olduğunu kullanmak.",
+    "Dönme, yansıma ve genişleme matrislerini tanımak; bileşke dönüşüm matrisini bulmak."
+   ],
+   "anlatim": "<div class=\"kn-dikkat\"><strong>Sınav notu:</strong> Unit 4 konuları AP Precalculus sınavında <strong>ölçülmez</strong> (Unit 4 is not assessed on the AP Exam). Okullar bu üniteyi yine öğretir; parametre, vektör ve matris fikirleri AP Calculus BC ve üniversite matematiğinin temelidir. Sınav hazırlığında öncelik Unit 1–3'tür.</div>\n<h4>Doğrusal dönüşüm</h4>\n<div class=\"kn-tanim\">\\(L(x,y)=(ax+by,\\;cx+dy)\\) biçimindeki bir dönüşüm <strong>doğrusal dönüşümdür (linear transformation)</strong> ve matrisi \\(A=\\begin{bmatrix}a&b\\\\c&d\\end{bmatrix}\\)'dir: \\(L(\\vec v)=A\\vec v\\).</div>\n<div class=\"kn-kural\">\\(A\\)'nın 1. sütunu \\(L(\\langle1,0\\rangle)\\), 2. sütunu \\(L(\\langle0,1\\rangle)\\)'dir. Bu iki görüntü bilinirse matris yazılır ve her vektörün görüntüsü bulunur: \\(L(\\langle x,y\\rangle)=x\\,L(\\langle1,0\\rangle)+y\\,L(\\langle0,1\\rangle)\\).</div>\n<p>Örnek: \\(L(\\langle1,0\\rangle)=\\langle2,5\\rangle\\), \\(L(\\langle0,1\\rangle)=\\langle-1,3\\rangle\\). Matris \\(\\begin{bmatrix}2&-1\\\\5&3\\end{bmatrix}\\) (görüntüler <strong>sütun</strong> olarak). \\(L(\\langle3,2\\rangle)=3\\langle2,5\\rangle+2\\langle-1,3\\rangle=\\langle4,21\\rangle\\).</p>\n<h4>Temel dönüşümler</h4>\n<table><thead><tr><th>Dönüşüm</th><th>Matris</th></tr></thead><tbody>\n<tr><td>Orijin etrafında \\(\\theta\\) kadar saat yönü tersine dönme (rotation)</td><td>\\(\\begin{bmatrix}\\cos\\theta&-\\sin\\theta\\\\\\sin\\theta&\\cos\\theta\\end{bmatrix}\\)</td></tr>\n<tr><td>\\(90^\\circ\\) saat yönü tersine</td><td>\\(\\begin{bmatrix}0&-1\\\\1&0\\end{bmatrix}\\)</td></tr>\n<tr><td>\\(x\\)-eksenine göre yansıma (reflection)</td><td>\\(\\begin{bmatrix}1&0\\\\0&-1\\end{bmatrix}\\)</td></tr>\n<tr><td>\\(y\\)-eksenine göre yansıma</td><td>\\(\\begin{bmatrix}-1&0\\\\0&1\\end{bmatrix}\\)</td></tr>\n<tr><td>\\(y=x\\) doğrusuna göre yansıma</td><td>\\(\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}\\)</td></tr>\n<tr><td>\\(k\\) katı genişleme (dilation)</td><td>\\(\\begin{bmatrix}k&0\\\\0&k\\end{bmatrix}\\)</td></tr></tbody></table>\n<p>Kontrol: \\(90^\\circ\\) dönme \\((3,1)\\)'i \\((-1,3)\\)'e götürür: \\(\\begin{bmatrix}0&-1\\\\1&0\\end{bmatrix}\\begin{bmatrix}3\\\\1\\end{bmatrix}=\\begin{bmatrix}-1\\\\3\\end{bmatrix}\\).</p>\n<h4>Bileşke dönüşüm (composition)</h4>\n<p>Önce \\(A\\), sonra \\(B\\) uygulanırsa \\(B(A\\vec v)=(BA)\\vec v\\). <strong>Önce uygulanan sağda yazılır.</strong> Örnek: önce \\(90^\\circ\\) dönme \\(R\\), sonra \\(x\\)-eksenine yansıma \\(F\\): matris \\(FR=\\begin{bmatrix}0&-1\\\\-1&0\\end{bmatrix}\\). Sıra ters alınırsa \\(RF=\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}\\) çıkar; farklı dönüşüm.</p>\n<h4>Alan ölçeği</h4>\n<p>Doğrusal dönüşüm alanları \\(|\\det A|\\) katına çıkarır. \\(\\det A\\lt0\\) ise yönelim ters döner (yansımalarda \\(\\det=-1\\)). Dönme matrisinin determinantı \\(\\cos^2\\theta+\\sin^2\\theta=1\\): alan korunur.</p>\n<p>FRQ dili: <em>“The columns of A are the images of ⟨1, 0⟩ and ⟨0, 1⟩, so A = [[2, −1], [5, 3]].”</em></p>",
+   "ornekler": [
+    {
+     "soru": "Orijin etrafında \\(60^\\circ\\) saat yönü tersine dönme matrisini yazın ve \\((2,0)\\)'ın görüntüsünü bulun.",
+     "cozum": [
+      "\\(\\begin{bmatrix}\\cos60^\\circ&-\\sin60^\\circ\\\\\\sin60^\\circ&\\cos60^\\circ\\end{bmatrix}=\\begin{bmatrix}\\frac12&-\\frac{\\sqrt3}{2}\\\\\\frac{\\sqrt3}{2}&\\frac12\\end{bmatrix}\\).",
+      "Görüntü: \\(\\langle2\\cdot\\frac12,\\;2\\cdot\\frac{\\sqrt3}{2}\\rangle=\\langle1,\\sqrt3\\rangle\\)."
+     ]
+    },
+    {
+     "soru": "Üçgen \\((0,0),(2,0),(0,3)\\), \\(A=\\begin{bmatrix}2&1\\\\-1&3\\end{bmatrix}\\) ile dönüştürülüyor. Görüntü üçgenin alanı nedir?",
+     "cozum": [
+      "Asıl alan \\(\\frac12\\cdot2\\cdot3=3\\).",
+      "\\(\\det A=6-(-1)=7\\).",
+      "Yeni alan \\(3\\cdot7=21\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}\\) matrisinin bir yansıma olduğunu açıklayın.",
+     "cozum": [
+      "\\(\\langle x,y\\rangle\\mapsto\\langle y,x\\rangle\\): koordinatların yeri değişir.",
+      "\\(\\det=-1\\): alan korunur, yönelim ters döner.",
+      "“Each point (x, y) is sent to (y, x), which is the reflection over the line y = x.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Görüntüleri matrise <strong>sütun</strong> olarak yerleştir; satır olarak yazmak en sık hatadır.",
+    "Bileşkede “önce uygulanan sağda” kuralını cümleyle yaz: “first A, then B gives BA”.",
+    "Hesap makinesi kuralı (sınavın genel yapısı): Section I Part A ve FRQ 3–4 hesap makinesizdir; Part B ile FRQ 1–2'de grafik hesap makinesi (graphing calculator) kullanılır. Bu konu sınavda yok, ama alışkanlık olarak önce elle kur, sonra hesap makinesiyle kontrol et."
+   ],
+   "sikHatalar": [
+    "Saat yönündeki dönme ile saat yönünün tersindeki dönmeyi karıştırmak (\\(\\sin\\) terimlerinin işaretleri).",
+    "Önce \\(A\\), sonra \\(B\\) uygulanınca bileşke matrisini \\(BA\\) yerine \\(AB\\) yazmak."
+   ],
+   "terimler": [
+    {
+     "en": "linear transformation",
+     "tr": "doğrusal dönüşüm"
+    },
+    {
+     "en": "image",
+     "tr": "görüntü"
+    },
+    {
+     "en": "rotation",
+     "tr": "dönme"
+    },
+    {
+     "en": "reflection",
+     "tr": "yansıma"
+    },
+    {
+     "en": "dilation",
+     "tr": "genişleme"
+    },
+    {
+     "en": "composition",
+     "tr": "bileşke"
+    }
+   ]
+  },
+  {
+   "kod": "4.13",
+   "baslik": "Matrices as Functions",
+   "baslikTr": "Fonksiyon olarak matrisler",
+   "hedefler": [
+    "Matrisi düzlemden düzleme bir fonksiyon olarak kullanmak; girdi-çıktı vektörlerini bulmak.",
+    "Ters fonksiyon (inverse function) olarak ters matrisi kullanıp ön görüntüyü (pre-image) bulmak.",
+    "Bileşke fonksiyonları matris çarpımıyla, tekrar uygulamayı matris kuvvetiyle ifade etmek."
+   ],
+   "anlatim": "<div class=\"kn-dikkat\"><strong>Sınav notu:</strong> Unit 4 konuları AP Precalculus sınavında <strong>ölçülmez</strong> (Unit 4 is not assessed on the AP Exam). Okullar bu üniteyi yine öğretir; parametre, vektör ve matris fikirleri AP Calculus BC ve üniversite matematiğinin temelidir. Sınav hazırlığında öncelik Unit 1–3'tür.</div>\n<h4>Matris = fonksiyon</h4>\n<p>\\(A\\) bir \\(2\\times2\\) matris ise \\(f(\\vec v)=A\\vec v\\), her girdi vektörüne bir çıktı vektörü atayan bir fonksiyondur. Unit 1–2'deki fonksiyon dili aynen geçerlidir: tanım kümesi (domain) tüm düzlem vektörleri, girdi (input) \\(\\vec v\\), çıktı (output) \\(A\\vec v\\).</p>\n<p>Örnek: \\(A=\\begin{bmatrix}1&2\\\\0&1\\end{bmatrix}\\) ve \\(\\vec v=\\langle3,-1\\rangle\\): \\(A\\vec v=\\langle3+2(-1),\\;0+(-1)\\rangle=\\langle1,-1\\rangle\\). Bu matris yatay bir kayma (shear) dönüşümü yapar: \\(y\\) sabit kalır, \\(x\\)'e \\(2y\\) eklenir.</p>\n<h4>Ters fonksiyon ve ön görüntü</h4>\n<div class=\"kn-kural\">\\(f(\\vec v)=A\\vec v\\) fonksiyonunun tersi \\(f^{-1}(\\vec w)=A^{-1}\\vec w\\)'dir. Ters yalnızca \\(\\det A\\neq0\\) iken vardır. “Hangi vektör \\(\\vec w\\)'ye gider?” sorusu \\(\\vec v=A^{-1}\\vec w\\) ile çözülür.</div>\n<p>Örnek: \\(A=\\begin{bmatrix}2&1\\\\1&1\\end{bmatrix}\\), \\(A\\vec v=\\langle5,3\\rangle\\). \\(\\det A=1\\), \\(A^{-1}=\\begin{bmatrix}1&-1\\\\-1&2\\end{bmatrix}\\), \\(\\vec v=\\langle5-3,\\;-5+6\\rangle=\\langle2,1\\rangle\\). Kontrol: \\(\\langle4+1,\\;2+1\\rangle=\\langle5,3\\rangle\\).</p>\n<p>\\(\\det A=0\\) ise fonksiyon bire bir (one-to-one) değildir: farklı girdiler aynı çıktıya gider, düzlem bir doğruya “ezilir”.</p>\n<h4>Bileşke ve kuvvetler</h4>\n<table><thead><tr><th>Fonksiyon dili</th><th>Matris dili</th></tr></thead><tbody>\n<tr><td>\\(g(f(\\vec v))\\), \\(f(\\vec v)=A\\vec v\\), \\(g(\\vec v)=B\\vec v\\)</td><td>\\((BA)\\vec v\\)</td></tr>\n<tr><td>\\(f\\)'yi \\(n\\) kez uygulamak</td><td>\\(A^n\\vec v\\)</td></tr>\n<tr><td>\\(f^{-1}(f(\\vec v))=\\vec v\\)</td><td>\\(A^{-1}A=I\\)</td></tr></tbody></table>\n<p>Dönme matrislerinde kuvvetler dönmeleri toplar. \\(R=\\begin{bmatrix}0&-1\\\\1&0\\end{bmatrix}\\) (\\(90^\\circ\\)) için \\(R^4=I\\), çünkü dört çeyrek dönme tam tur eder. Bu nedenle \\(R^n\\) yalnız \\(n\\)'nin 4'e bölümünden kalana bağlıdır: periyodik davranış (Unit 3 ile bağlantı).</p>\n<div class=\"kn-dikkat\">\\(g\\circ f\\) için matris \\(BA\\)'dır, \\(AB\\) değil: \\(f\\) önce uygulanır ve vektöre en yakın (sağda) durur.</div>\n<p>FRQ dili: <em>“Since det A = 1 ≠ 0, the function f(v) = Av has an inverse, f⁻¹(w) = A⁻¹w.”</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(A=\\begin{bmatrix}3&1\\\\2&1\\end{bmatrix}\\). \\(A\\vec v=\\langle7,5\\rangle\\) olacak şekilde \\(\\vec v\\)'yi bulun.",
+     "cozum": [
+      "\\(\\det A=3-2=1\\); \\(A^{-1}=\\begin{bmatrix}1&-1\\\\-2&3\\end{bmatrix}\\).",
+      "\\(\\vec v=\\langle7-5,\\;-14+15\\rangle=\\langle2,1\\rangle\\).",
+      "Kontrol: \\(\\langle6+1,\\;4+1\\rangle=\\langle7,5\\rangle\\)."
+     ]
+    },
+    {
+     "soru": "\\(R=\\begin{bmatrix}0&-1\\\\1&0\\end{bmatrix}\\). \\(R^{6}\\langle2,0\\rangle\\)'ı bulun.",
+     "cozum": [
+      "\\(R^4=I\\), \\(6=4+2\\) olduğundan \\(R^6=R^2\\).",
+      "\\(R^2=\\begin{bmatrix}-1&0\\\\0&-1\\end{bmatrix}\\) (\\(180^\\circ\\)); sonuç \\(\\langle-2,0\\rangle\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(f(\\vec v)=\\begin{bmatrix}2&4\\\\1&2\\end{bmatrix}\\vec v\\) fonksiyonunun tersi var mı?",
+     "cozum": [
+      "\\(\\det=4-4=0\\).",
+      "Örneğin \\(\\langle2,0\\rangle\\) ve \\(\\langle0,1\\rangle\\) aynı çıktıyı \\(\\langle4,2\\rangle\\) verir.",
+      "“Because the determinant is 0, f is not one-to-one, so f has no inverse.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "“Hangi girdi?” sorusunda \\(A\\)'yı çıktıya uygulama; \\(A^{-1}\\)'i uygula. Sonra ileri çarpımla kontrol et.",
+    "Büyük kuvvetlerde döngü ara: dönme ve yansıma matrisleri belli bir kuvvette \\(I\\) olur.",
+    "Hesap makinesi kuralı (sınavın genel yapısı): Section I Part A ve FRQ 3–4 hesap makinesizdir; Part B ile FRQ 1–2'de grafik hesap makinesi (graphing calculator) kullanılır. Bu konu sınavda yok, ama alışkanlık olarak önce elle kur, sonra hesap makinesiyle kontrol et."
+   ],
+   "sikHatalar": [
+    "Bileşke sırasını ters almak (\\(g\\circ f\\) için \\(AB\\) yazmak).",
+    "Ön görüntü yerine görüntüyü hesaplamak."
+   ],
+   "terimler": [
+    {
+     "en": "input / output",
+     "tr": "girdi / çıktı"
+    },
+    {
+     "en": "pre-image",
+     "tr": "ön görüntü"
+    },
+    {
+     "en": "inverse function",
+     "tr": "ters fonksiyon"
+    },
+    {
+     "en": "one-to-one",
+     "tr": "bire bir"
+    },
+    {
+     "en": "shear",
+     "tr": "kayma dönüşümü"
+    },
+    {
+     "en": "matrix power",
+     "tr": "matris kuvveti"
+    }
+   ]
+  },
+  {
+   "kod": "4.14",
+   "baslik": "Matrices Modeling Contexts",
+   "baslikTr": "Bağlamları modelleyen matrisler",
+   "hedefler": [
+    "Geçiş matrisi (transition matrix) kurmak ve durum vektörünü (state vector) bir adım ileri taşımak.",
+    "Birkaç adım sonrası için matris kuvvetini, önceki durum için ters matrisi kullanmak.",
+    "Uzun dönem (steady state) dağılımını bulmak ve bağlam içinde yorumlamak."
+   ],
+   "anlatim": "<div class=\"kn-dikkat\"><strong>Sınav notu:</strong> Unit 4 konuları AP Precalculus sınavında <strong>ölçülmez</strong> (Unit 4 is not assessed on the AP Exam). Okullar bu üniteyi yine öğretir; parametre, vektör ve matris fikirleri AP Calculus BC ve üniversite matematiğinin temelidir. Sınav hazırlığında öncelik Unit 1–3'tür.</div>\n<h4>Geçiş matrisi (transition matrix)</h4>\n<p>Bir topluluk iki durum arasında (ör. spor salonu A ve B) her ay belli oranlarla geçiş yapıyorsa, bu oranlar bir matrisle yazılır. Bu derste <strong>sütun</strong> kuralını kullanıyoruz: \\(j\\). sütun, \\(j\\). durumdan nereye gidildiğini gösterir ve sütun toplamı 1'dir.</p>\n<p>Örnek: Her ay A üyelerinin %80'i A'da kalır, %20'si B'ye geçer; B üyelerinin %90'ı kalır, %10'u A'ya geçer.</p>\n\\[T=\\begin{bmatrix}0.8&0.1\\\\0.2&0.9\\end{bmatrix}\\quad(\\text{sütunlar: A'dan, B'den; satırlar: A'ya, B'ye})\\]\n<div class=\"kn-kural\">Durum vektörü \\(\\vec s_n=\\langle A_n,B_n\\rangle\\) ise \\(\\vec s_{n+1}=T\\vec s_n\\), \\(\\vec s_n=T^n\\vec s_0\\), önceki ay \\(\\vec s_{n-1}=T^{-1}\\vec s_n\\).</div>\n<h4>Bir adım ileri</h4>\n<p>\\(\\vec s_0=\\langle600,400\\rangle\\): \\(A_1=0.8(600)+0.1(400)=520\\), \\(B_1=0.2(600)+0.9(400)=480\\). Toplam 1000 korunur; bu iyi bir kontroldür.</p>\n<table><thead><tr><th>Ay</th><th>A</th><th>B</th></tr></thead><tbody>\n<tr><td>0</td><td>600</td><td>400</td></tr>\n<tr><td>1</td><td>520</td><td>480</td></tr>\n<tr><td>2</td><td>464</td><td>536</td></tr></tbody></table>\n<h4>Geriye gitmek</h4>\n<p>Bu ay \\(\\langle520,480\\rangle\\) ise geçen ay? \\(\\det T=0.72-0.02=0.7\\), \\(T^{-1}=\\frac{1}{0.7}\\begin{bmatrix}0.9&-0.1\\\\-0.2&0.8\\end{bmatrix}\\). \\(A=\\frac{0.9(520)-0.1(480)}{0.7}=600\\), \\(B=\\frac{-0.2(520)+0.8(480)}{0.7}=400\\). İleri hesapla doğrulanır.</p>\n<h4>Uzun dönem (steady state)</h4>\n<p>Uzun dönemde dağılım değişmez: \\(T\\vec s=\\vec s\\). A'dan çıkan = A'ya giren: \\(0.2A=0.1B\\Rightarrow B=2A\\). Toplam 1000 ile \\(A\\approx333\\), \\(B\\approx667\\). Oran olarak A'nın payı \\(\\frac13\\). Başlangıç dağılımı uzun dönem sonucunu (bu tür matrislerde) değiştirmez.</p>\n<div class=\"kn-dikkat\">Bazı kitaplar satır kuralını kullanır (satır toplamı 1, \\(\\vec s\\,T\\)). Soruda hangi kural kullanıldığını sütun ya da satır toplamlarına bakarak anla.</div>\n<p>Diğer bağlamlar: nüfus göçü, pazar payı, hava durumu (güneşli/yağmurlu), bitki türleri. Hepsinde aynı adımlar: oranları matrise koy, çarp, toplamı kontrol et, sonucu bağlamla yorumla.</p>\n<p>FRQ dili: <em>“After one month, the model predicts 520 members at gym A and 480 at gym B.”</em> Tahminin bir <strong>model</strong> sonucu olduğunu belirtmek iyi bir yorumdur.</p>",
+   "ornekler": [
+    {
+     "soru": "Yukarıdaki \\(T\\) ile \\(\\vec s_1=\\langle520,480\\rangle\\)'den \\(\\vec s_2\\)'yi bulun.",
+     "cozum": [
+      "\\(A_2=0.8(520)+0.1(480)=416+48=464\\).",
+      "\\(B_2=0.2(520)+0.9(480)=104+432=536\\).",
+      "Kontrol: \\(464+536=1000\\)."
+     ]
+    },
+    {
+     "soru": "Hava modeli: güneşli günden sonra %70 güneşli, %30 yağmurlu; yağmurlu günden sonra %40 güneşli, %60 yağmurlu. Uzun dönemde günlerin hangi kesri güneşlidir?",
+     "cozum": [
+      "\\(T=\\begin{bmatrix}0.7&0.4\\\\0.3&0.6\\end{bmatrix}\\), denge: \\(0.3S=0.4Y\\).",
+      "\\(S=\\frac43Y\\), \\(S+Y=1\\Rightarrow Y=\\frac37, S=\\frac47\\)."
+     ]
+    },
+    {
+     "soru": "(Yorumlayın) Bir pazar modelinde \\(T\\vec s_0=\\langle450,550\\rangle\\) bulundu. Bu sonucu bağlamda açıklayın; tahminin sınırlılığı nedir?",
+     "cozum": [
+      "Yorum: “The model predicts 450 customers choose brand A and 550 choose brand B after one period.”",
+      "Sınırlılık: geçiş oranlarının her dönem sabit kaldığı varsayılır; gerçek davranış değişebilir."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Matrisi kurarken önce “kimden kime” tablosu çiz; sütun toplamlarının 1 olduğunu kontrol et.",
+    "Her adımda toplam nüfusun korunduğunu kontrol et; korunmuyorsa matris yanlış kurulmuştur.",
+    "Hesap makinesi kuralı (sınavın genel yapısı): Section I Part A ve FRQ 3–4 hesap makinesizdir; Part B ile FRQ 1–2'de grafik hesap makinesi (graphing calculator) kullanılır. Bu konu sınavda yok, ama alışkanlık olarak önce elle kur, sonra hesap makinesiyle kontrol et. Grafik hesap makinesinde \\(T^n\\) hesaplamak çok adımlı tahminler için idealdir."
+   ],
+   "sikHatalar": [
+    "Yalnız kalanları hesaplayıp gelenleri eklememek (\\(0.8\\cdot600\\) ile durmak).",
+    "Satır ve sütun kuralını karıştırıp matrisi transpoze kullanmak."
+   ],
+   "terimler": [
+    {
+     "en": "transition matrix",
+     "tr": "geçiş matrisi"
+    },
+    {
+     "en": "state vector",
+     "tr": "durum vektörü"
+    },
+    {
+     "en": "steady state",
+     "tr": "denge / uzun dönem durumu"
+    },
+    {
+     "en": "long run",
+     "tr": "uzun dönem"
+    },
+    {
+     "en": "model prediction",
+     "tr": "model tahmini"
+    }
+   ]
+  }
+ ]
+}
