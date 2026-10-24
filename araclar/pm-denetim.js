@@ -51,7 +51,8 @@ function checkQuestions(qs, fields, seen, issues) {
     if (opts.map(o => o.id).join("") !== "ABCD".slice(0, opts.length)) issues.push(`${tag}: şık harf sırası bozuk`);
     for (const o of opts) if (!o.isCorrect && (!o.errorTag || !o.remediation)) issues.push(`${tag}: ${o.id} şıkkında errorTag/remediation eksik`);
     if (FORBIDDEN_SOURCE.test(q.source || "")) issues.push(`${tag}: yanıltıcı source "${q.source}"`);
-    if (/\*\*[^*]+\*\*/.test(JSON.stringify(q))) issues.push(`${tag}: ham Markdown **`);
+    // <code> içi hariç (Java/Javadoc yorumu /** … */ Markdown değildir)
+    if (/\*\*[^*]+\*\*/.test(JSON.stringify(q).replace(/<code>.*?<\/code>/g, "").replace(/\/\*\*/g, ""))) issues.push(`${tag}: ham Markdown **`);
     // 1.23.0: iç içe alanlar (ek, hata açıklamaları) da taranır — ek.ipucu içinde "\text" sekmeye dönmüştü
     const derin = o => (typeof o === "string" ? o : o && typeof o === "object" ? Object.values(o).map(derin).join("") : "");
     if (/[\u0000-\u0009\u000b\u000c\u000e-\u001f]/.test(derin(q.ek) + derin(q.hata_aciklamalari))) issues.push(`${tag}: iç içe alanda kontrol karakteri ya da sekme`);

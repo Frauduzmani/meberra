@@ -177,7 +177,8 @@ function calistir(secenek) {
       .concat(Object.keys(ha).map(k => ["hata " + k, (ha[k] || {}).etiket + " " + (ha[k] || {}).aciklama]));
     metinler.forEach(([ad, v]) => { const s = latexSorunu(v) || paraSorunu(v); if (s) hata(q, `${ad}: ${s}`); });
     if (/[\u0000-\u0009\u000b\u000c\u000e-\u001f]/.test(metinler.map(x => String(x[1])).join(""))) hata(q, "kontrol karakteri ya da sekme (tek ters bölü kaçışı? \\text → sekme+ext)");
-    if (/\*\*[^*]+\*\*/.test(JSON.stringify(q))) hata(q, "ham Markdown **");
+    // <code> içi hariç (Java/Javadoc yorumu /** … */ Markdown değildir)
+    if (/\*\*[^*]+\*\*/.test(JSON.stringify(q).replace(/<code>.*?<\/code>/g, "").replace(/\/\*\*/g, ""))) hata(q, "ham Markdown **");
     // pasaj
     if (q.pasaj != null) {
       if (!meta.pasajlar[q.pasaj] && !yeniPasajlar[q.pasaj]) hata(q, `pasaj bulunamadı: ${q.pasaj}`);
