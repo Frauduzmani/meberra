@@ -2465,6 +2465,7 @@ function apBuildQuestionCard(containerId, q, qIndex) {
     </div>
     <div class="question-body">${q.question}</div>
     ${apSekilHtml(q.sekiller)}
+    ${q.neSoruyor ? `<details class="q-ne"><summary><span aria-hidden="true">🔍</span> Ne soruyor?</summary><p>${apEsc(q.neSoruyor)}</p></details>` : ""}
     <div class="options-container${sekilli ? " sk-secenekli" : ""}" id="opts-container-${q.id}" role="group" aria-label="Soru ${q.number || qIndex + 1} seçenekleri">
       ${optionsHtml}
     </div>

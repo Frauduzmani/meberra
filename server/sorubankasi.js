@@ -183,6 +183,9 @@ function acikSoru(r) {
       source: r.kaynak, question: r.govde, options };
   } else o = { id: r.id, number: r.numara, topic: r.konu, konuKod: konuKodu(r), difficulty: r.zorluk, source: r.kaynak, question: r.govde, options };
   if (sk.length) o.sekiller = sk;
+  // 1.25.0 A2 köprüsü: "Ne soruyor?" cevabı ele vermeyen Türkçe tek cümle — cevaptan önce gönderilir
+  const ns = r.ek && typeof r.ek.neSoruyor === "string" ? r.ek.neSoruyor.trim() : "";
+  if (ns) o.neSoruyor = ns;
   return o;
 }
 /**

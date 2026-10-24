@@ -31,3 +31,13 @@ test("ders sorularının neredeyse tamamında konu kodu var (Calculus, Physics, 
     assert.ok(kodlu / L.length >= 0.97, sayfa + ": " + kodlu + "/" + L.length);
   }
 });
+
+// 1.25.0 A2 köprüsü: ek.neSoruyor (cevabı vermeyen Türkçe tek cümle) cevaptan önce de gönderilir; diğer ek alanları gönderilmez
+test("acikSoru neSoruyor taşır; kavram/ipucu/sikHata taşımaz", () => {
+  const q = JSON.parse(JSON.stringify(S("calc_u4_q6")));
+  q.ek = Object.assign({}, q.ek, { neSoruyor: "Bir noktadaki anlık değişim hızını soruyor.", kavram: "gizli", ipucu: "gizli" });
+  const o = acikSoru(q);
+  assert.equal(o.neSoruyor, "Bir noktadaki anlık değişim hızını soruyor.");
+  assert.ok(!JSON.stringify(o).includes("gizli"));
+  assert.equal(acikSoru(S("calc_u4_q6")).neSoruyor, undefined);
+});

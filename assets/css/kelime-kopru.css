@@ -1,0 +1,41 @@
+/* MEBERRA 1.25.0 — A2 İngilizce köprüsü: kelime balonu, "Ne soruyor?" kutusu, ilk kullanım ipucu */
+.q-ne { margin: 6px 0 12px; }
+.q-ne summary { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; padding: 4px 12px; border-radius: 999px; list-style: none;
+  font-size: var(--fs-14, 14px); font-weight: 600; color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
+.q-ne summary::-webkit-details-marker { display: none; }
+.q-ne summary:hover, .q-ne[open] summary { background: color-mix(in srgb, var(--accent) 18%, transparent); }
+.q-ne summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.q-ne p { margin: 8px 0 0; padding: 10px 14px; border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0;
+  background: var(--surface-2); animation: kk-gir .22s ease-out; }
+
+::highlight(kk-vurgu) { background: color-mix(in srgb, var(--accent) 28%, transparent); }
+.question-body, .frq-soru, .frq-giris { cursor: text; }
+:root[data-tr-yardim="acik"] .question-body, :root[data-tr-yardim="acik"] .frq-soru, :root[data-tr-yardim="acik"] .frq-giris { cursor: help; }
+
+.kk-balon { position: fixed; z-index: 1200; width: min(300px, calc(100vw - 16px)); padding: 12px 14px 10px; border-radius: 14px;
+  background: var(--surface, #fff); color: var(--text, #111); border: 1px solid var(--border, rgba(0,0,0,.12));
+  box-shadow: 0 12px 32px rgba(0,0,0,.18); animation: kk-gir .18s ease-out; }
+.kk-balon[hidden] { display: none; }
+.kk-ust { display: flex; align-items: center; gap: 6px; }
+.kk-kelime { font-size: var(--fs-18, 18px); flex: 1; overflow-wrap: anywhere; }
+.kk-ikon { border: 0; background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--text, #111); border-radius: 999px;
+  width: 32px; height: 32px; font-size: 16px; line-height: 1; cursor: pointer; }
+.kk-ikon:hover { background: color-mix(in srgb, var(--accent) 22%, transparent); }
+.kk-ikon:focus-visible, .kk-alt:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.kk-x { font-size: 20px; }
+.kk-tr { margin: 6px 0 2px; font-size: var(--fs-16, 16px); font-weight: 600; }
+.kk-tr.kk-yok { font-weight: 400; font-size: var(--fs-14, 14px); color: var(--text-muted); }
+.kk-kok { margin: 0; font-size: 13px; color: var(--text-muted); }
+.kk-rozet { display: inline-block; margin-top: 6px; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600;
+  background: var(--surface-2); color: var(--text-muted); }
+.kk-rozet.kk-ap { background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent); }
+.kk-ifade { margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--border, rgba(0,0,0,.15)); font-size: var(--fs-14, 14px); }
+.kk-ifade-en { font-style: italic; }
+.kk-alt { display: block; margin-top: 8px; padding: 0; border: 0; background: none; font-size: 12px; color: var(--text-muted);
+  text-decoration: underline; cursor: pointer; }
+.kk-ipucu { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 0 0 10px; padding: 8px 12px; border-radius: 12px;
+  font-size: var(--fs-14, 14px); background: color-mix(in srgb, var(--accent) 8%, transparent); animation: kk-gir .3s ease-out; }
+.kk-ipucu-x { margin-left: auto; border: 0; border-radius: 999px; padding: 4px 12px; font-weight: 600; cursor: pointer;
+  background: var(--accent); color: #fff; }
+@keyframes kk-gir { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .kk-balon, .kk-ipucu, .q-ne p { animation: none; } }
