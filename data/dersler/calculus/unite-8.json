@@ -1,0 +1,866 @@
+{
+ "ders": "calculus",
+ "unite": 8,
+ "baslik": "Applications of Integration",
+ "baslikTr": "İntegralin Uygulamaları",
+ "konular": [
+  {
+   "kod": "8.1",
+   "baslik": "Finding the Average Value of a Function on an Interval",
+   "baslikTr": "Bir fonksiyonun bir aralıktaki ortalama değeri",
+   "sadeceBC": false,
+   "hedefler": [
+    "Sürekli bir fonksiyonun \\([a,b]\\) aralığındaki ortalama değerini (average value) \\(\\frac{1}{b-a}\\int_a^b f(x)\\,dx\\) ile hesaplamak.",
+    "Ortalama değeri (average value) ortalama değişim hızından (average rate of change) ayırt etmek.",
+    "İntegraller için ortalama değer teoremiyle \\(f(c)=f_{avg}\\) olan \\(c\\) değerini bulmak ve bağlamda birimiyle yorumlamak."
+   ],
+   "anlatim": "<p>Bir sınıftaki 5 öğrencinin notlarının ortalamasını bulmak kolaydır: topla, 5'e böl. Peki sıcaklık gibi <em>her an</em> değişen bir büyüklüğün bir gün boyunca ortalaması nedir? Sonsuz çok değeri toplayamayız; bunun yerine <strong>integral</strong> toplar, aralık uzunluğu da “kaç tane” rolünü oynar.</p>\n<div class=\"kn-tanim\"><strong>Ortalama değer (average value):</strong> \\(f\\), \\([a,b]\\)'de sürekliyse\n\\[ f_{avg}=\\frac{1}{b-a}\\int_a^b f(x)\\,dx. \\]</div>\n<h4>Geometrik anlam</h4>\n<p>\\(f\\ge0\\) ise \\(\\int_a^b f\\,dx\\) eğrinin altındaki alandır. \\(f_{avg}\\), aynı tabana (\\(b-a\\)) sahip ve <strong>aynı alanı</strong> veren dikdörtgenin yüksekliğidir. Eğrinin dikdörtgenin üstünde kalan “tepeleri”, altında kalan “çukurlarını” tam olarak doldurur.</p>\n<h4>Karıştırılan iki kavram</h4>\n<table><thead><tr><th>Kavram</th><th>Formül</th><th>Ne ölçer?</th></tr></thead>\n<tbody>\n<tr><td>average value of \\(f\\)</td><td>\\(\\frac{1}{b-a}\\int_a^b f(x)\\,dx\\)</td><td>\\(f\\)'nin kendisinin ortalaması</td></tr>\n<tr><td>average rate of change of \\(f\\)</td><td>\\(\\frac{f(b)-f(a)}{b-a}\\)</td><td>\\(f'\\)'nün ortalaması (eğim)</td></tr>\n</tbody></table>\n<p>İpucu: \\(f'\\)'nün ortalama değeri \\(\\frac{1}{b-a}\\int_a^b f'(x)\\,dx=\\frac{f(b)-f(a)}{b-a}\\) olur; yani “ortalama değişim hızı” aslında türevin ortalama değeridir. Soruda hangi fonksiyonun ortalamasının istendiğine dikkat et.</p>\n<h4>İntegraller için ortalama değer teoremi (MVT for Integrals)</h4>\n<div class=\"kn-kural\">\\(f\\), \\([a,b]\\)'de sürekliyse en az bir \\(c\\in[a,b]\\) için \\(f(c)=\\frac{1}{b-a}\\int_a^b f(x)\\,dx\\) olur. Yani fonksiyon ortalama değerini en az bir kez <em>alır</em>.</div>\n<p>Bu teorem sürekliliğe dayanır (aslında Ara Değer Teoremi'nin bir sonucudur). Süreksiz bir fonksiyon ortalama değerini hiç almayabilir.</p>\n<h4>Bağlamda yorum</h4>\n<p>\\(T(t)\\) °C, \\(t\\) saat ise \\(\\frac{1}{8}\\int_0^8T(t)\\,dt\\) “ilk 8 saatteki ortalama sıcaklık”tır; birimi °C'dir (integral °C·saat, bölen saat). FRQ'da şöyle yaz: <em>“The average temperature over the time interval \\(0\\le t\\le 8\\) is approximately 19.689 °C.”</em></p>\n<h4>Hesap makinesi bölümü</h4>\n<p>Fonksiyonun ilkeli zor ya da yoksa (\\(e^{-t^2}\\), \\(\\sin(t^2)\\)…) integrali hesap makinesiyle al (fnInt), sonra \\(b-a\\)'ya böl. Cevabı üç ondalıkla yaz; ara sonuçları yuvarlama.</p>\n<h4>Ortalama bilgisinden integrale</h4>\n<p>Bazı sorular ortalamayı verip integrali sorar: \\(\\int_a^b f\\,dx=(b-a)\\,f_{avg}\\). İki aralığın ortalamaları verilirse ortalamaları değil, <strong>integralleri</strong> topla.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=x^2-2x\\) fonksiyonunun \\([0,3]\\) aralığındaki ortalama değerini bulun ve integraller için ortalama değer teoreminin garanti ettiği \\(c\\) değerini belirleyin.",
+     "cozum": [
+      "\\(\\int_0^3(x^2-2x)\\,dx=\\left[\\frac{x^3}{3}-x^2\\right]_0^3=9-9=0\\).",
+      "\\(f_{avg}=\\frac{0}{3}=0\\).",
+      "\\(c^2-2c=0\\Rightarrow c=0\\) ya da \\(c=2\\). Teorem en az bir \\(c\\) garanti eder; \\(c=2\\) açık aralığın içindedir."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi) Bir kafede saatte gelen müşteri sayısı \\(r(t)=20+15\\sin\\left(\\frac{\\pi t}{6}\\right)\\) (müşteri/saat), \\(0\\le t\\le 6\\). İlk 6 saatteki ortalama müşteri geliş hızını bulun ve yorumlayın.",
+     "cozum": [
+      "\\(r_{avg}=\\frac{1}{6}\\int_0^6 r(t)\\,dt\\).",
+      "Elle de olur: \\(\\int_0^6 15\\sin\\frac{\\pi t}{6}\\,dt=15\\cdot\\frac{6}{\\pi}\\left[-\\cos\\frac{\\pi t}{6}\\right]_0^6=\\frac{180}{\\pi}\\); toplam \\(120+\\frac{180}{\\pi}\\approx177.296\\).",
+      "\\(r_{avg}\\approx\\frac{177.296}{6}\\approx29.549\\). “Over the first 6 hours, customers arrive at an average rate of approximately 29.549 customers per hour.”"
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(g\\), \\([1,7]\\)'de sürekli ve \\(\\int_1^7 g(x)\\,dx=18\\). “\\(g(c)=3\\) olan bir \\(c\\) vardır” iddiasını gerekçelendirin.",
+     "cozum": [
+      "\\(g_{avg}=\\frac{1}{7-1}\\int_1^7g(x)\\,dx=\\frac{18}{6}=3\\).",
+      "“Because \\(g\\) is continuous on \\([1,7]\\), by the Mean Value Theorem for Integrals there exists a value \\(c\\) in \\([1,7]\\) such that \\(g(c)=\\frac{1}{6}\\int_1^7g(x)\\,dx=3\\).” Süreklilik koşulunu yazmak puanın parçasıdır."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Formülü yazarak başla: f_avg = (1/(b − a))·∫ f dx. Puanlayıcı kurulumu (setup) ayrı puanlar.",
+    "“Average value of f” ile “average rate of change of f” sorularını karıştırma: biri integral, diğeri fark bölümü ister.",
+    "Bağlamda cevabı birimle ve zaman aralığıyla yaz: “the average … over 0 ≤ t ≤ 8 is … °C”.",
+    "MVT for Integrals'ı kullanırken “f is continuous on [a, b]” cümlesini mutlaka yaz."
+   ],
+   "sikHatalar": [
+    "Uç değerlerin ortalamasını, (f(a) + f(b))/2, ortalama değer sanmak; bu yalnız doğrusal fonksiyonlarda doğrudur.",
+    "b − a yerine b'ye bölmek ya da bölmeyi tamamen unutmak.",
+    "MVT sorusunda c yerine f(c)'yi (ortalama değeri) cevap olarak vermek."
+   ],
+   "terimler": [
+    {
+     "en": "average value",
+     "tr": "ortalama değer"
+    },
+    {
+     "en": "average rate of change",
+     "tr": "ortalama değişim hızı"
+    },
+    {
+     "en": "Mean Value Theorem for Integrals",
+     "tr": "İntegraller için ortalama değer teoremi"
+    },
+    {
+     "en": "interval",
+     "tr": "aralık"
+    }
+   ]
+  },
+  {
+   "kod": "8.2",
+   "baslik": "Connecting Position, Velocity, and Acceleration of Functions Using Integrals",
+   "baslikTr": "Konum, hız ve ivmeyi integrallerle ilişkilendirme",
+   "sadeceBC": false,
+   "hedefler": [
+    "Hızdan (velocity) konumu (position) başlangıç koşuluyla bulmak: \\(x(b)=x(a)+\\int_a^b v(t)\\,dt\\).",
+    "Yer değiştirme (displacement) ile toplam yolu (total distance traveled) ayırt etmek.",
+    "Hız grafiği, tablo ya da formülden konum ekstremumlarını aday testiyle (candidates test) bulmak."
+   ],
+   "anlatim": "<p>Ünite 4'te konumdan türev alarak hıza ve ivmeye gittik. Bu konuda yönü tersine çeviriyoruz: <strong>integral</strong>, ivmeden hıza, hızdan konuma götürür.</p>\n<table><thead><tr><th>Bilinen</th><th>Bulunan</th><th>Formül</th></tr></thead>\n<tbody>\n<tr><td>\\(a(t)\\), \\(v(0)\\)</td><td>\\(v(t)\\)</td><td>\\(v(t)=v(0)+\\int_0^t a(s)\\,ds\\)</td></tr>\n<tr><td>\\(v(t)\\), \\(x(0)\\)</td><td>\\(x(t)\\)</td><td>\\(x(t)=x(0)+\\int_0^t v(s)\\,ds\\)</td></tr>\n</tbody></table>\n<p>Bu, <strong>net değişim teoremidir (net change theorem)</strong>: bir hızın integrali, o büyüklüğün toplam değişimidir.</p>\n<h4>Yer değiştirme mi, toplam yol mu?</h4>\n<div class=\"kn-tanim\"><strong>Displacement (yer değiştirme):</strong> \\(\\int_a^b v(t)\\,dt\\) — işaretli; sağa gidişler \\(+\\), sola gidişler \\(-\\) sayılır.<br/><strong>Total distance (toplam yol):</strong> \\(\\int_a^b |v(t)|\\,dt\\) — her hareket pozitif sayılır.</div>\n<p>Örnek: Parçacık 5 m sağa, sonra 3 m sola giderse yer değiştirme \\(+2\\) m, toplam yol \\(8\\) m'dir.</p>\n<p>Elle hesapta \\(|v|\\)'nin integrali için \\(v(t)=0\\) köklerini bul, aralıkları böl ve her parçanın mutlak değerini topla. Hesap makinesinde doğrudan fnInt(abs(v(t))) yazmak en güvenlisidir.</p>\n<h4>Hız grafiğinden okumak</h4>\n<p>Grafik doğru parçalarından oluşuyorsa integral = <strong>işaretli geometrik alan</strong>. Eksenin üstündeki üçgen ve yamukların alanları pozitif, altındakiler negatiftir. Konum için başlangıç değerini eklemeyi unutma.</p>\n<h4>Konumun maksimumu / minimumu</h4>\n<p>\\(x'(t)=v(t)\\) olduğundan konumun kritik noktaları \\(v(t)=0\\) (ve işaret değişimi) olan anlardır. <strong>Aday testi (candidates test):</strong></p>\n<ol><li>\\(v(t)=0\\) olan \\(t\\) değerlerini bul (gerekirse hesap makinesiyle).</li>\n<li>Her aday ve uç noktalar için \\(x(t)=x(0)+\\int_0^t v\\) hesapla.</li>\n<li>En büyük/küçük değeri seç ve gerekçesini yaz.</li></ol>\n<div class=\"kn-kural\"><strong>FRQ kalıpları:</strong> “\\(x(4)=x(0)+\\int_0^4 v(t)\\,dt=3+1.984=4.984\\).” · “The total distance traveled is \\(\\int_0^5|v(t)|\\,dt\\approx8.064\\).” · “The particle is farthest to the right at \\(t\\approx2.724\\) because \\(v\\) changes from positive to negative there and \\(x(2.724)\\) is greater than the values at the endpoints.”</div>\n<h4>Hız (speed) ve ivme hatırlatması</h4>\n<p>Speed \\(=|v(t)|\\). Bir integral sorusu “average velocity” isterse \\(\\frac{1}{b-a}\\int_a^b v\\,dt\\), “average speed” isterse \\(\\frac{1}{b-a}\\int_a^b|v|\\,dt\\) kullanılır.</p>\n<h4>Kısa kontrol listesi</h4><p>Soru “position” diyorsa başlangıç değeri + integral; “displacement” diyorsa yalnız integral; “distance” diyorsa mutlak değerli integral; “speed” diyorsa \\(|v|\\). Bu dört kelimeyi altını çizerek oku.</p>",
+   "ornekler": [
+    {
+     "soru": "Bir parçacığın hızı \\(v(t)=t^2-4t+3\\) (m/s), \\(0\\le t\\le 4\\) ve \\(x(0)=2\\). \\(x(4)\\)'ü ve toplam yolu bulun.",
+     "cozum": [
+      "\\(\\int_0^4 v\\,dt=\\left[\\frac{t^3}{3}-2t^2+3t\\right]_0^4=\\frac{64}{3}-32+12=\\frac43\\) ⇒ \\(x(4)=2+\\frac43=\\frac{10}{3}\\) m.",
+      "\\(v=(t-1)(t-3)\\): \\([0,1]\\)'de \\(+\\), \\([1,3]\\)'te \\(-\\), \\([3,4]\\)'te \\(+\\).",
+      "Parçalar: \\(\\int_0^1v=\\frac43\\), \\(\\int_1^3v=-\\frac43\\), \\(\\int_3^4v=\\frac43\\). Toplam yol \\(=\\frac43+\\frac43+\\frac43=4\\) m."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi) \\(v(t)=2\\cos(t^{1.5})\\), \\(0\\le t\\le3\\), \\(x(0)=-1\\). Parçacık \\(t=3\\)'te nerededir ve toplam yol nedir?",
+     "cozum": [
+      "\\(x(3)=-1+\\int_0^3 2\\cos(t^{1.5})\\,dt\\approx-1+0.209=-0.791\\) (radyan modu).",
+      "Toplam yol: \\(\\int_0^3|2\\cos(t^{1.5})|\\,dt\\approx3.892\\).",
+      "Yorum: toplam yol yer değiştirmeden çok büyük, çünkü parçacık birkaç kez yön değiştiriyor."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Hız grafiği \\((0,2)\\), \\((3,-2)\\), \\((6,0)\\) noktalarını birleştiren doğru parçalarından oluşuyor; \\(x(0)=5\\). Parçacık en sağda ne zaman bulunur? Gerekçe yazın.",
+     "cozum": [
+      "\\(v=0\\) yalnız \\(t=1.5\\)'te (ve \\(t=6\\)'da). \\(v\\), \\(t=1.5\\)'te pozitiften negatife geçer.",
+      "\\(x(1.5)=5+\\frac12\\cdot1.5\\cdot2=6.5\\); \\(x(6)=6.5-\\frac12\\cdot1.5\\cdot2-\\frac12\\cdot3\\cdot2=6.5-1.5-3=2\\).",
+      "“The particle is farthest to the right at \\(t=1.5\\) because \\(v\\) changes from positive to negative there, and \\(x(1.5)=6.5\\) is greater than \\(x(0)=5\\) and \\(x(6)=2\\).”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Konum sorularında her zaman “başlangıç + integral” yaz; yalnız integral yer değiştirmedir.",
+    "Total distance için hesap makinesinde fnInt(abs(v(t)), t, a, b) kullan; elle bölmekten daha az hata çıkar.",
+    "Grafik sorularında her parçanın alanını şekil üzerinde not et, işaretini ayrı yaz.",
+    "Konumun ekstremumunda aday testini tablo hâlinde göster: t, x(t). Puanlayıcı adayların hepsini görmek ister."
+   ],
+   "sikHatalar": [
+    "Toplam yolu ∫v dt ya da |∫v dt| ile hesaplamak; mutlak değer integralin içinde olmalı.",
+    "Başlangıç konumunu eklemeyi unutmak.",
+    "v(t) = 0 kökünü konumun maksimumu sanıp uç noktaları kontrol etmemek."
+   ],
+   "terimler": [
+    {
+     "en": "displacement",
+     "tr": "yer değiştirme"
+    },
+    {
+     "en": "total distance traveled",
+     "tr": "alınan toplam yol"
+    },
+    {
+     "en": "net change theorem",
+     "tr": "net değişim teoremi"
+    },
+    {
+     "en": "initial condition",
+     "tr": "başlangıç koşulu"
+    },
+    {
+     "en": "candidates test",
+     "tr": "aday testi"
+    }
+   ]
+  },
+  {
+   "kod": "8.3",
+   "baslik": "Using Accumulation Functions and Definite Integrals in Applied Contexts",
+   "baslikTr": "Uygulamalı bağlamlarda birikim fonksiyonları ve belirli integraller",
+   "sadeceBC": false,
+   "hedefler": [
+    "Bir hızın (rate) belirli integralini bağlamda, birimiyle yorumlamak.",
+    "Giriş-çıkış hızlarıyla (rate in / rate out) miktar fonksiyonu \\(A(t)=A(0)+\\int_0^t(\\text{in}-\\text{out})\\,ds\\) kurmak.",
+    "Miktarın artıp azaldığını \\(A'(t)\\) işaretiyle gerekçelendirmek ve maksimum/minimum miktarı aday testiyle bulmak."
+   ],
+   "anlatim": "<p>AP sınavının calculator FRQ bölümünün klasik sorusu: bir tanka su giriyor ve çıkıyor; bir parka insanlar geliyor ve ayrılıyor; bir yola kar yağıyor ve temizleniyor. Hepsi aynı kalıptır.</p>\n<div class=\"kn-tanim\"><strong>Birikim (accumulation):</strong> \\(R(t)\\) bir büyüklüğün değişim hızıysa \\(\\int_a^b R(t)\\,dt\\), \\(t=a\\)'dan \\(t=b\\)'ye kadar o büyüklükteki <strong>toplam değişimdir</strong>.</div>\n<h4>Birim analizi her şeydir</h4>\n<p>\\(R(t)\\) litre/dakika ve \\(t\\) dakika ise \\(\\int R\\,dt\\) birimi (litre/dakika)·dakika = litre. Yorumda <em>aralık + büyüklük + birim</em> üçlüsünü kullan: “\\(\\int_{10}^{30}R(t)\\,dt\\) is the number of liters of water pumped into the pool from \\(t=10\\) to \\(t=30\\) minutes.”</p>\n<h4>Rate in – rate out modeli</h4>\n<p>Giriş hızı \\(E(t)\\), çıkış hızı \\(D(t)\\), başlangıç miktarı \\(A(0)\\) ise</p>\n<div class=\"formul\">\\[ A(t)=A(0)+\\int_0^t\\left(E(s)-D(s)\\right)ds,\\qquad A'(t)=E(t)-D(t). \\]</div>\n<table><thead><tr><th>Soru</th><th>Ne kullanılır?</th></tr></thead>\n<tbody>\n<tr><td>\\(t=6\\)'da miktar?</td><td>\\(A(0)+\\int_0^6(E-D)\\,dt\\)</td></tr>\n<tr><td>\\(t=3\\)'te miktar artıyor mu?</td><td>\\(A'(3)=E(3)-D(3)\\)'ün işareti</td></tr>\n<tr><td>Miktarın değişim hızı \\(t=3\\)'te?</td><td>\\(E(3)-D(3)\\) (integral yok!)</td></tr>\n<tr><td>Maksimum miktar?</td><td>Aday testi: \\(E(t)=D(t)\\) kökleri + uç noktalar</td></tr>\n<tr><td>Bir aralıktaki toplam giriş?</td><td>\\(\\int_a^b E(t)\\,dt\\)</td></tr>\n</tbody></table>\n<h4>Maksimum miktar: neden \\(E=D\\)?</h4>\n<p>\\(A'(t)=E(t)-D(t)\\). Giriş çıkıştan büyükken miktar artar; çıkış girişi geçince azalmaya başlar. Dolayısıyla maksimum, \\(E-D\\)'nin <strong>pozitiften negatife</strong> geçtiği anda (ya da uç noktada) oluşur. Sık hata: giriş hızının en büyük olduğu anı seçmek — o an miktar en <em>hızlı</em> artar ama artış sonra da sürer.</p>\n<h4>Hesap makinesi akışı</h4>\n<ol><li>\\(Y_1=E(x)\\), \\(Y_2=D(x)\\) gir; kesişimi (intersect) bul ve STO ile sakla.</li>\n<li>Her aday için \\(A(0)+\\int_0^{t}(Y_1-Y_2)\\,dx\\) hesapla.</li>\n<li>Sonucu üç ondalıkla ve birimle yaz.</li></ol>\n<div class=\"kn-kural\"><strong>FRQ kalıpları:</strong> “The amount of water in the tank is increasing at \\(t=3\\) because \\(E(3)-D(3)\\gt0\\).” · “\\(A(t)\\) has its absolute maximum at \\(t\\approx6.066\\) because \\(A'(t)=E(t)-D(t)\\) changes from positive to negative there; the candidates are …”</div>\n<h4>Sık görülen soru tipleri</h4><ul><li>“Explain the meaning of \\(\\int_2^5 R(t)\\,dt\\) in context” → aralık + miktar + birim.</li><li>“Is the amount increasing or decreasing at \\(t=c\\)? Give a reason” → \\(E(c)-D(c)\\) işareti.</li><li>“Find the time at which the amount is a minimum” → aday testi; cevapta tüm adayların değerlerini göster.</li></ul>",
+   "ornekler": [
+    {
+     "soru": "Bir otoparka arabalar \\(E(t)=30\\) araba/saat hızla giriyor ve \\(L(t)=6t\\) araba/saat hızla çıkıyor, \\(0\\le t\\le8\\). Başlangıçta 40 araba var. En fazla kaç araba bulunur?",
+     "cozum": [
+      "\\(A'(t)=30-6t=0\\Rightarrow t=5\\); \\(A'\\), \\(+\\)'dan \\(-\\)'ye geçer.",
+      "\\(A(t)=40+\\int_0^t(30-6s)\\,ds=40+30t-3t^2\\). Adaylar: \\(A(0)=40\\), \\(A(5)=40+150-75=115\\), \\(A(8)=40+240-192=88\\).",
+      "Maksimum 115 araba (\\(t=5\\) saat)."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi) Bir havuza su \\(W(t)=12e^{-0.1t}\\) m³/saat hızla giriyor ve \\(P(t)=4+0.5t\\) m³/saat hızla pompalanıyor, \\(0\\le t\\le10\\). \\(t=0\\)'da 100 m³ su var. \\(t=10\\)'da su miktarı nedir? \\(t=4\\)'te su artıyor mu?",
+     "cozum": [
+      "\\(A(10)=100+\\int_0^{10}\\left(12e^{-0.1t}-4-0.5t\\right)dt\\approx100+75.854-40-25=110.854\\) m³.",
+      "\\(A'(4)=W(4)-P(4)=12e^{-0.4}-6\\approx8.044-6=2.044\\gt0\\).",
+      "“The amount of water is increasing at \\(t=4\\) because \\(W(4)-P(4)\\gt0\\).”"
+     ]
+    },
+    {
+     "soru": "(Yorum) \\(H(t)\\) bir sporcunun kalp atım hızıdır (atım/dakika), \\(t\\) dakika. \\(\\frac{1}{20}\\int_0^{20}H(t)\\,dt=132\\) ne anlama gelir? \\(\\int_0^{20}H(t)\\,dt\\) neyi verir?",
+     "cozum": [
+      "\\(\\int_0^{20}H(t)\\,dt\\): ilk 20 dakikadaki toplam kalp atımı sayısı (birim: atım).",
+      "\\(\\frac{1}{20}\\int_0^{20}H\\,dt=132\\): “Over the first 20 minutes, the athlete's average heart rate is 132 beats per minute.” Toplam atım \\(=20\\cdot132=2640\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Önce birimleri yaz: hızın birimi × zaman = miktar. Yorum sorularında birim yoksa puan yoktur.",
+    "“Rate of change of the amount” sorulursa integral alma: A'(t) = in − out.",
+    "Maksimum/minimum sorularında adayları (uç noktalar + in = out) bir tabloda göster; yalnız kritik noktayı yazmak tam puan getirmez.",
+    "Hesap makinesinde kesişimleri sakla (STO), sonuçları erken yuvarlama; final cevap üç ondalık."
+   ],
+   "sikHatalar": [
+    "Başlangıç miktarını eklemeyi unutmak.",
+    "Giriş hızının maksimumunu miktarın maksimumu sanmak.",
+    "“Increasing at t = 3” gerekçesi olarak integral değerini göstermek; gerekçe A'(3)'ün işaretidir."
+   ],
+   "terimler": [
+    {
+     "en": "rate in / rate out",
+     "tr": "giriş hızı / çıkış hızı"
+    },
+    {
+     "en": "accumulation function",
+     "tr": "birikim fonksiyonu"
+    },
+    {
+     "en": "net change",
+     "tr": "net değişim"
+    },
+    {
+     "en": "units",
+     "tr": "birimler"
+    }
+   ]
+  },
+  {
+   "kod": "8.4",
+   "baslik": "Finding the Area Between Curves Expressed as Functions of x",
+   "baslikTr": "x'in fonksiyonu olarak verilen eğriler arasındaki alan",
+   "sadeceBC": false,
+   "hedefler": [
+    "İki eğri arasındaki alanı dikey şeritlerle \\(\\int_a^b\\left(f(x)-g(x)\\right)dx\\) olarak kurmak ve hesaplamak.",
+    "Sınırları kesişim noktalarından (elle ya da hesap makinesiyle) bulmak.",
+    "Üst sınırın değiştiği bölgeleri parçalara bölmek."
+   ],
+   "anlatim": "<p>Ünite 6'da \\(\\int_a^b f(x)\\,dx\\)'i eğri ile \\(x\\)-ekseni arasındaki işaretli alan olarak gördük. Şimdi iki eğri arasındaki alanı bulacağız. Fikir aynı: bölgeyi çok ince <strong>dikey dikdörtgenlere (vertical strips)</strong> böl, alanlarını topla.</p>\n<div class=\"kn-tanim\">\\(a\\le x\\le b\\) üzerinde \\(f(x)\\ge g(x)\\) ise\n\\[ A=\\int_a^b\\left(f(x)-g(x)\\right)dx=\\int_a^b(\\text{top}-\\text{bottom})\\,dx. \\]</div>\n<p>Her şeridin yüksekliği \\(f(x)-g(x)\\), genişliği \\(dx\\)'tir. Fonksiyonlar negatif olsa bile formül çalışır; önemli olan hangisinin <em>üstte</em> olduğudur.</p>\n<h4>Adım adım yöntem</h4>\n<ol><li><strong>Çiz.</strong> Kaba bir eskiz bile hangi eğrinin üstte olduğunu gösterir.</li>\n<li><strong>Kesişimleri bul:</strong> \\(f(x)=g(x)\\) denklemini çöz. Bunlar integral sınırlarıdır (soru başka sınır vermediyse).</li>\n<li><strong>Test noktası:</strong> Aralıktan bir \\(x\\) seç, \\(f\\) ve \\(g\\)'yi karşılaştır.</li>\n<li><strong>Kur ve hesapla:</strong> \\(\\int(\\text{üst}-\\text{alt})\\,dx\\).</li></ol>\n<h4>Bölge bir doğruyla ya da eksenle kapanıyorsa</h4>\n<p>“bounded by \\(y=x\\), \\(y=\\frac1x\\), and \\(x=3\\)” gibi ifadelerde bir sınır kesişimden, diğeri verilen doğrudan gelir. \\(x\\)-ekseni de bir eğridir: \\(y=0\\).</p>\n<h4>Üst sınır değişiyorsa: böl</h4>\n<p>\\(y=\\ln x\\), \\(y=3-x\\) ve \\(x\\)-ekseniyle sınırlı bölgede, soldan sağa giderken üst sınır önce \\(\\ln x\\), kesişimden sonra \\(3-x\\) olur; alt sınır her yerde \\(y=0\\). Bu durumda iki integral gerekir:</p>\n<div class=\"formul\">\\[ A=\\int_1^{c}\\ln x\\,dx+\\int_c^3(3-x)\\,dx,\\quad c\\approx2.208. \\]</div>\n<p>(Bu tür bölgelerde 8.5'teki yatay şerit yöntemi tek integralle çözüm verebilir.)</p>\n<h4>Hesap makinesi bölümü</h4>\n<p>\\(2\\cos x=x^2\\) gibi denklemlerin elle çözümü yoktur. Hesap makinesinde iki grafiği çiz, <em>intersect</em> ile kesişimi bul ve <strong>STO</strong> ile bir harfe (A, B) kaydet. İntegralde bu harfleri kullan. Kesişimi \\(1.02\\) diye yuvarlayıp kullanmak son cevabı üçüncü ondalıkta bozabilir — AP üç ondalık doğruluk ister.</p>\n<div class=\"kn-dikkat\">Alan her zaman pozitiftir. Negatif bir sonuç, üst ve alt eğriyi ters yazdığını gösterir.</div>\n<div class=\"kn-kural\"><strong>FRQ kalıbı:</strong> “Area of \\(R=\\int_{-1.022}^{1.022}\\left(2\\cos x-x^2\\right)dx\\approx2.701\\).” Kurulum (integrand + sınırlar) bir puan, cevap bir puan getirir.</div>\n<h4>Hızlı karar tablosu</h4><p>Bölgeyi çizdikten sonra kendine sor: “Soldan sağa giderken üst sınır hep aynı eğri mi?” Evetse tek integral. Hayırsa ya böl ya da 8.5'teki gibi \\(y\\)'ye göre kur. Alt sınır için de aynı soruyu sor.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(y=x^2\\) ve \\(y=x+6\\) eğrileri arasındaki bölgenin alanını bulun.",
+     "cozum": [
+      "Kesişim: \\(x^2=x+6\\Rightarrow(x-3)(x+2)=0\\Rightarrow x=-2,\\,3\\).",
+      "Test \\(x=0\\): \\(6\\gt0\\) ⇒ üst eğri \\(y=x+6\\).",
+      "\\(A=\\int_{-2}^{3}(x+6-x^2)\\,dx=\\left[\\frac{x^2}{2}+6x-\\frac{x^3}{3}\\right]_{-2}^{3}=\\frac{27}{2}-\\left(-\\frac{22}{3}\\right)=\\frac{125}{6}\\)."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi) \\(y=e^{-x}\\), \\(y=x\\) ve \\(y\\)-ekseniyle sınırlı bölgenin alanını bulun.",
+     "cozum": [
+      "Kesişim: \\(e^{-x}=x\\Rightarrow x\\approx0.567\\) (intersect, STO A).",
+      "\\([0,A]\\)'da \\(e^{-x}\\ge x\\) (\\(x=0\\): \\(1\\gt0\\)).",
+      "\\(A=\\int_0^{0.567}\\left(e^{-x}-x\\right)dx\\approx0.272\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(R\\), \\(y=\\sqrt x\\), \\(y=6-x\\) ve \\(x\\)-ekseniyle sınırlı bölge. \\(R\\)'nin alanını \\(x\\)'e göre integral(ler)le yazın ve hesaplayın.",
+     "cozum": [
+      "Köşeler: \\(\\sqrt x=6-x\\Rightarrow x=4\\) (çünkü \\(x=9\\) sağlamaz); \\(6-x=0\\Rightarrow x=6\\); \\(\\sqrt x=0\\Rightarrow x=0\\).",
+      "\\([0,4]\\)'te üst sınır \\(\\sqrt x\\), \\([4,6]\\)'da \\(6-x\\); alt sınır \\(y=0\\).",
+      "\\(A=\\int_0^4\\sqrt x\\,dx+\\int_4^6(6-x)\\,dx=\\frac{16}{3}+2=\\frac{22}{3}\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her zaman küçük bir eskiz çiz; hangi eğrinin üstte olduğu ve bölgenin kaç parçadan oluştuğu ancak böyle görülür.",
+    "Calculator sorularında kesişimleri STO ile sakla ve integrale harf olarak yaz; erken yuvarlama yapma.",
+    "FRQ'da integrali tam yaz (integrand, dx ve sınırlar), sonra sayısal değeri ver: kurulum puanı ayrıdır.",
+    "x-ekseni bir sınırsa onu y = 0 eğrisi olarak düşün."
+   ],
+   "sikHatalar": [
+    "Üst ve alt eğriyi ters yazıp negatif alan bulmak.",
+    "Üst sınırın değiştiği bölgeyi tek integralle hesaplamak.",
+    "Kesişimleri yuvarlayarak kullanmak, ya da sınırları soruda verilen doğru yerine kesişimden almak."
+   ],
+   "terimler": [
+    {
+     "en": "area between curves",
+     "tr": "eğriler arasındaki alan"
+    },
+    {
+     "en": "vertical strip",
+     "tr": "dikey şerit"
+    },
+    {
+     "en": "point of intersection",
+     "tr": "kesişim noktası"
+    },
+    {
+     "en": "bounded by",
+     "tr": "ile sınırlı"
+    },
+    {
+     "en": "region",
+     "tr": "bölge"
+    }
+   ]
+  },
+  {
+   "kod": "8.5",
+   "baslik": "Finding the Area Between Curves Expressed as Functions of y",
+   "baslikTr": "y'nin fonksiyonu olarak verilen eğriler arasındaki alan",
+   "sadeceBC": false,
+   "hedefler": [
+    "Yatay şeritlerle alanı \\(\\int_c^d\\left(\\text{right}-\\text{left}\\right)dy\\) olarak kurmak.",
+    "Eğrileri \\(x=g(y)\\) biçimine çevirmek ve \\(y\\) sınırlarını bulmak.",
+    "Bir bölge için \\(x\\)'e mi \\(y\\)'ye mi göre integral almanın daha kolay olduğuna karar vermek."
+   ],
+   "anlatim": "<p>Bazı bölgelerde dikey şeritler sorun çıkarır: üst ya da alt sınır yol boyunca değişir, iki-üç integral gerekir. Bölgeyi <strong>yatay şeritlere (horizontal strips)</strong> bölmek çoğu zaman tek integralle çözer.</p>\n<div class=\"kn-tanim\">\\(c\\le y\\le d\\) üzerinde sağdaki eğri \\(x=f(y)\\), soldaki eğri \\(x=g(y)\\) ise\n\\[ A=\\int_c^d\\left(f(y)-g(y)\\right)dy=\\int_c^d(\\text{right}-\\text{left})\\,dy. \\]</div>\n<p>Şeridin uzunluğu sağ − sol, kalınlığı \\(dy\\)'dir. Sınırlar artık \\(y\\) değerleridir.</p>\n<h4>Ne zaman \\(y\\)'ye göre?</h4>\n<ul><li>Eğriler zaten \\(x=y^2\\), \\(x=y^2-4y\\) gibi \\(x=g(y)\\) biçiminde verilmişse.</li>\n<li>\\(x\\)'e göre bölge parçalanıyorsa (üst/alt sınır değişiyorsa) ama sağ/sol sınır değişmiyorsa.</li>\n<li>Bir yatay doğru (\\(y=k\\)) alanı bölüyorsa.</li></ul>\n<h4>Çevirme (inverse) adımı</h4>\n<table><thead><tr><th>\\(x\\)'in fonksiyonu</th><th>\\(y\\)'nin fonksiyonu</th></tr></thead>\n<tbody>\n<tr><td>\\(y=\\sqrt x\\)</td><td>\\(x=y^2\\) (\\(y\\ge0\\))</td></tr>\n<tr><td>\\(y=x-2\\)</td><td>\\(x=y+2\\)</td></tr>\n<tr><td>\\(y=\\ln x\\)</td><td>\\(x=e^y\\)</td></tr>\n<tr><td>\\(y=x^3\\)</td><td>\\(x=y^{1/3}\\)</td></tr>\n</tbody></table>\n<h4>Örnek karşılaştırma</h4>\n<p>\\(y=\\sqrt x\\), \\(y=x-2\\) ve \\(x\\)-ekseniyle sınırlı bölge: \\(x\\)'e göre \\(\\int_0^2\\sqrt x\\,dx+\\int_2^4\\left(\\sqrt x-(x-2)\\right)dx\\) (iki integral). \\(y\\)'ye göre: sol \\(x=y^2\\), sağ \\(x=y+2\\), \\(y\\in[0,2]\\):</p>\n<div class=\"formul\">\\[ A=\\int_0^2\\left(y+2-y^2\\right)dy=\\frac{10}{3}. \\]</div>\n<h4>Sağ/sol kararını test et</h4>\n<p>Aralıktan bir \\(y\\) seç, iki \\(x\\) değerini karşılaştır. Örneğin \\(x=y^2-4y\\) ve \\(y\\)-ekseni (\\(x=0\\)) için \\(y=1\\): \\(x=-3\\lt0\\), yani parabol solda. Alan \\(\\int_0^4\\left(0-(y^2-4y)\\right)dy=\\frac{32}{3}\\).</p>\n<div class=\"kn-dikkat\">“Bottom − top” değil, “<strong>right − left</strong>”. Yatay şeritte yukarı-aşağı yoktur.</div>\n<p>Hesap makinesinde değişken adı fark etmez: \\(\\int_{-1.062}^{1.728}(2+\\sin y-y^2)\\,dy\\) için \\(Y_1=2+\\sin X-X^2\\) yazıp fnInt kullanabilirsin.</p>\n<h4>Neden işe yarar?</h4><p>Yatay şeritte şeridin sağ ucu ve sol ucu hangi eğrilere değiyorsa formüle onlar girer. Eğer bir \\(y\\) aralığında sağ uç farklı bir eğriye geçiyorsa \\(y\\)'ye göre de bölmek gerekir; bu yüzden her iki yöntemi bilmek ve hangisinin daha az parça gerektirdiğine bakmak önemlidir. Sınavda bu karar çoğu zaman tek bir eskizle verilir.</p><p>Kontrol: Aynı bölgenin alanını iki yöntemle hesaplarsan sonuç aynı çıkmalıdır (ör. \\(\\frac{16}{3}-2=\\frac{10}{3}\\)).</p>",
+   "ornekler": [
+    {
+     "soru": "\\(x=y^2\\) ve \\(x=2y+3\\) eğrileri arasındaki alanı bulun.",
+     "cozum": [
+      "Kesişim: \\(y^2=2y+3\\Rightarrow(y-3)(y+1)=0\\Rightarrow y=-1,\\,3\\).",
+      "Test \\(y=0\\): \\(3\\gt0\\) ⇒ sağ eğri \\(x=2y+3\\).",
+      "\\(A=\\int_{-1}^{3}(2y+3-y^2)\\,dy=\\left[y^2+3y-\\frac{y^3}{3}\\right]_{-1}^{3}=9-\\left(-\\frac53\\right)=\\frac{32}{3}\\)."
+     ]
+    },
+    {
+     "soru": "\\(y=\\ln x\\), \\(y=0\\), \\(y=2\\) ve \\(y\\)-ekseniyle sınırlı bölgenin alanını \\(y\\)'ye göre bulun.",
+     "cozum": [
+      "\\(y=\\ln x\\Rightarrow x=e^y\\) (sağ), sol sınır \\(x=0\\).",
+      "\\(A=\\int_0^2 e^y\\,dy=e^2-1\\approx6.389\\).",
+      "(\\(x\\)'e göre aynı bölge \\(\\int_0^1 2\\,dx+\\int_1^{e^2}(2-\\ln x)\\,dx\\) gerektirirdi.)"
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(R\\), \\(y=x^2\\) ve \\(y=9\\) ile sınırlı. \\(y=k\\) yatay doğrusu \\(R\\)'yi eşit alanlı iki parçaya bölüyor. \\(k\\)'yi bulan denklemi yazın ve çözün.",
+     "cozum": [
+      "Yatay şerit uzunluğu \\(2\\sqrt y\\). Toplam alan \\(\\int_0^9 2\\sqrt y\\,dy=36\\).",
+      "Alt parça: \\(\\int_0^k 2\\sqrt y\\,dy=\\frac43k^{3/2}=18\\Rightarrow k^{3/2}=13.5\\).",
+      "\\(k=13.5^{2/3}\\approx5.670\\). Denklem: \\(\\int_0^k2\\sqrt y\\,dy=\\frac12\\int_0^92\\sqrt y\\,dy\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Yatay şeritte formül right − left; sınırlar y değerleri. Bunu FRQ'da açıkça yaz.",
+    "x'e göre iki ya da daha fazla integral gerekiyorsa y'ye göre tek integrali dene.",
+    "Ters fonksiyonu yazarken tanım kümesine dikkat: y = √x ⇒ x = y², ama yalnız y ≥ 0 için.",
+    "Calculator'da Y1'e y'nin fonksiyonunu X değişkeniyle yaz; integral yine fnInt ile alınır."
+   ],
+   "sikHatalar": [
+    "y'ye göre kurulumda x sınırlarını kullanmak.",
+    "Ters fonksiyonu yanlış almak (ör. y = √x için x = √y yazmak).",
+    "Sağ ve sol eğriyi ters yazıp negatif alan bulmak."
+   ],
+   "terimler": [
+    {
+     "en": "horizontal strip",
+     "tr": "yatay şerit"
+    },
+    {
+     "en": "right curve / left curve",
+     "tr": "sağ eğri / sol eğri"
+    },
+    {
+     "en": "with respect to y",
+     "tr": "y'ye göre"
+    },
+    {
+     "en": "inverse function",
+     "tr": "ters fonksiyon"
+    }
+   ]
+  },
+  {
+   "kod": "8.6",
+   "baslik": "Finding the Area Between Curves That Intersect at More Than Two Points",
+   "baslikTr": "İkiden fazla noktada kesişen eğriler arasındaki alan",
+   "sadeceBC": false,
+   "hedefler": [
+    "Eğriler birden çok kez kesiştiğinde toplam alanı \\(\\int_a^b|f(x)-g(x)|\\,dx\\) ile hesaplamak.",
+    "Her kesişim aralığında üst eğriyi belirleyip integrali parçalara bölmek.",
+    "İşaretli integral ile toplam alan arasındaki farkı açıklamak."
+   ],
+   "anlatim": "<p>İki eğri üç ya da daha fazla noktada kesişirse aralarında birden çok kapalı bölge oluşur ve her bölgede “üstteki” eğri değişebilir. Tek bir \\(\\int(f-g)\\,dx\\) bu durumda yanlış sonuç verir, çünkü bazı parçalar negatif sayılır ve diğerlerini götürür.</p>\n<div class=\"kn-tanim\"><strong>Toplam alan:</strong>\n\\[ A=\\int_a^b\\left|f(x)-g(x)\\right|dx. \\]\nElle hesapta: kesişimlerde böl, her parçada üst − alt al, sonuçları topla.</div>\n<h4>Yöntem</h4>\n<ol><li>\\(f(x)-g(x)=0\\) denklemini çöz; kökler \\(x_1\\lt x_2\\lt x_3\\lt\\dots\\)</li>\n<li>Her aralıkta bir test noktasıyla \\(f-g\\)'nin işaretini bul.</li>\n<li>\\(A=\\left|\\int_{x_1}^{x_2}(f-g)\\right|+\\left|\\int_{x_2}^{x_3}(f-g)\\right|+\\dots\\)</li></ol>\n<h4>Örnek: \\(y=x^3\\) ve \\(y=x^2+2x\\)</h4>\n<p>\\(x^3-x^2-2x=x(x-2)(x+1)=0\\Rightarrow x=-1,0,2\\).</p>\n<table><thead><tr><th>Aralık</th><th>Test</th><th>Üst eğri</th><th>Alan</th></tr></thead>\n<tbody>\n<tr><td>\\([-1,0]\\)</td><td>\\(x=-\\frac12\\): \\(-\\frac18\\) vs \\(-\\frac34\\)</td><td>\\(x^3\\)</td><td>\\(\\frac{5}{12}\\)</td></tr>\n<tr><td>\\([0,2]\\)</td><td>\\(x=1\\): \\(1\\) vs \\(3\\)</td><td>\\(x^2+2x\\)</td><td>\\(\\frac{8}{3}\\)</td></tr>\n</tbody></table>\n<p>Toplam alan \\(\\frac{5}{12}+\\frac{8}{3}=\\frac{37}{12}\\). Oysa işaretli integral \\(\\int_{-1}^{2}(x^3-x^2-2x)\\,dx=-\\frac94\\) olur — bu ne alandır ne de anlamlı bir geometrik ölçü.</p>\n<h4>Simetri kısayolu</h4>\n<p>\\(f-g\\) tek fonksiyonsa (ör. \\(\\sin x-(x^3-3x)\\)) işaretli integral \\(0\\) çıkar ama iki bölgenin alanı eşittir: \\(A=2\\int_0^{c}|f-g|\\,dx\\).</p>\n<h4>Hesap makinesi bölümü</h4>\n<p>Kesişimleri bul ve sakla; ardından tek komutla \\(\\int_{x_1}^{x_n}|f(x)-g(x)|\\,dx\\) yaz (abs fonksiyonu). Böylece hangi parçada hangi eğrinin üstte olduğunu düşünmek zorunda kalmazsın — ama FRQ'da yine de integrali doğru yazmalısın.</p>\n<div class=\"kn-dikkat\">Soru bir aralık verirse (ör. \\(0\\le x\\le2\\)) yalnız o aralıktaki kesişimler önemlidir; sınırlar aralığın uçlarıdır.</div>\n<div class=\"kn-kural\"><strong>FRQ kalıbı:</strong> “Total area \\(=\\int_{-1.923}^{1.540}\\left|f(x)-g(x)\\right|dx\\approx4.723\\).” Mutlak değeri yazmazsan ve sonuç işaretli integralse kurulum puanı kaybolur.</div>\n<h4>Toplam alan mı, net alan mı?</h4><p>Soru “area” ya da “total area” diyorsa her zaman pozitif toplamı ver. Soru yalnız “\\(\\int_a^b(f-g)\\,dx\\) değerini bul” diyorsa işaretli sonucu ver. Bu ayrım hem MCQ çeldiricilerinde hem FRQ'da sık sınanır.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(y=x^3-x\\) ile \\(x\\)-ekseni arasındaki toplam alanı bulun.",
+     "cozum": [
+      "Kökler: \\(x(x-1)(x+1)=0\\Rightarrow x=-1,0,1\\).",
+      "\\(\\int_{-1}^{0}(x^3-x)\\,dx=\\frac14\\) (eğri üstte), \\(\\int_0^1(x^3-x)\\,dx=-\\frac14\\) (eğri altta).",
+      "Toplam alan \\(\\frac14+\\frac14=\\frac12\\). (İşaretli integral \\(0\\).)"
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi) \\(f(x)=x^3-3x+1\\) ve \\(g(x)=\\cos x\\) arasındaki toplam alanı bulun.",
+     "cozum": [
+      "Kesişimler: \\(x\\approx-1.923\\), \\(x=0\\), \\(x\\approx1.540\\).",
+      "\\([-1.923,0]\\)'da \\(f\\ge g\\), \\([0,1.540]\\)'da \\(g\\ge f\\).",
+      "Parçalar \\(\\approx3.113\\) ve \\(\\approx1.611\\); \\(A=\\int_{-1.923}^{1.540}|f-g|\\,dx\\approx4.723\\) (toplam, yuvarlanmamış değerlerle alınır)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(\\int_0^2(f-g)\\,dx=3\\), \\(\\int_2^5(f-g)\\,dx=-4\\); \\(f\\) ve \\(g\\) yalnız \\(x=2\\)'de kesişiyor. \\([0,5]\\)'te \\(f\\) ile \\(g\\) arasındaki toplam alan nedir? \\(\\int_0^5(f-g)\\,dx\\) neden alan değildir?",
+     "cozum": [
+      "Toplam alan \\(|3|+|-4|=7\\).",
+      "\\(\\int_0^5(f-g)\\,dx=-1\\): \\([2,5]\\)'te \\(g\\) üstte olduğu için o parça negatif sayılır ve \\([0,2]\\)'deki alanı götürür; alan negatif ya da eksik olamaz."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Kaç kesişim varsa (aralık içinde) o kadar sınır vardır; n kesişim genellikle n − 1 bölge demektir.",
+    "Calculator'da toplam alan için fnInt(abs(f − g)) yaz; elle bölmek gerekmez.",
+    "Simetrik (tek) fark fonksiyonlarında işaretli integral 0 çıkar; bu, alanın 0 olduğu anlamına gelmez.",
+    "FRQ'da her parçanın integralini ayrı yazmak ya da mutlak değerli tek integral yazmak kabul edilir."
+   ],
+   "sikHatalar": [
+    "Tek bir ∫(f − g) dx alıp sonucun mutlak değerini almak.",
+    "Kesişimlerden birini (özellikle negatif ya da x = 0 kökünü) kaçırmak.",
+    "Her aralıkta üst eğrinin aynı kaldığını varsaymak."
+   ],
+   "terimler": [
+    {
+     "en": "total area",
+     "tr": "toplam alan"
+    },
+    {
+     "en": "signed area",
+     "tr": "işaretli alan"
+    },
+    {
+     "en": "absolute value",
+     "tr": "mutlak değer"
+    },
+    {
+     "en": "intersect",
+     "tr": "kesişmek"
+    }
+   ]
+  },
+  {
+   "kod": "8.7",
+   "baslik": "Volumes with Cross Sections: Squares and Rectangles",
+   "baslikTr": "Bilinen kesitli hacimler: kareler ve dikdörtgenler",
+   "sadeceBC": false,
+   "hedefler": [
+    "Bilinen kesitli (known cross sections) bir cismin hacmini \\(V=\\int_a^bA(x)\\,dx\\) ile kurmak.",
+    "Kare ve dikdörtgen kesitlerde kesit alanını tabandaki şerit uzunluğundan yazmak.",
+    "Kesitlerin \\(x\\)-eksenine ya da \\(y\\)-eksenine dik olmasına göre doğru değişkenle integral almak."
+   ],
+   "anlatim": "<p>Bir somun ekmeği düşün: ince dilimlere kesersen, her dilimin hacmi yaklaşık <em>dilim yüzeyinin alanı × kalınlığı</em> olur. Bütün dilimleri toplayınca ekmeğin hacmi çıkar. Integral bu toplamı tam yapar.</p>\n<div class=\"kn-tanim\"><strong>Kesit yöntemi (method of cross sections):</strong> \\(x\\) noktasındaki kesitin alanı \\(A(x)\\) ise\n\\[ V=\\int_a^b A(x)\\,dx. \\]\nKesitler \\(y\\)-eksenine dikse \\(V=\\int_c^d A(y)\\,dy\\).</div>\n<h4>AP'deki kurgu</h4>\n<p>Sorular genellikle şöyle başlar: “The base of a solid is the region \\(R\\)… Cross sections perpendicular to the \\(x\\)-axis are squares.” Yani cismin <strong>tabanı</strong> düzlemdeki bir bölgedir; her \\(x\\)'te tabanın içinde bir doğru parçası (şerit) vardır ve bu parçanın üstüne dik olarak bir kare/dikdörtgen dikilir.</p>\n<ol><li>Şerit uzunluğunu bul: \\(s(x)=\\text{top}-\\text{bottom}\\) (8.4'teki gibi).</li>\n<li>Kesit alanını yaz: kare için \\(A=s^2\\); yüksekliği \\(h\\) olan dikdörtgen için \\(A=s\\cdot h\\).</li>\n<li>Sınırları belirle ve integrali al.</li></ol>\n<table><thead><tr><th>Kesit</th><th>Alan \\(A\\) (şerit uzunluğu \\(s\\))</th></tr></thead>\n<tbody>\n<tr><td>kare (square)</td><td>\\(s^2\\)</td></tr>\n<tr><td>dikdörtgen, yükseklik \\(h\\)</td><td>\\(s\\cdot h\\)</td></tr>\n<tr><td>dikdörtgen, yükseklik \\(=k\\cdot s\\)</td><td>\\(k\\,s^2\\)</td></tr>\n</tbody></table>\n<h4>En sık hata: \\(f^2-g^2\\)</h4>\n<p>Kenar uzunluğu \\(f(x)-g(x)\\) ise kare alanı \\(\\left(f(x)-g(x)\\right)^2\\)'dir. \\(f(x)^2-g(x)^2\\) yazmak pul (washer) yöntemiyle karıştırmaktır ve yanlış sonuç verir.</p>\n<h4>Dik yön ve değişken</h4>\n<p>“perpendicular to the \\(y\\)-axis” ⇒ kesitler yatay şeritler üzerine dikilir; \\(s(y)=\\text{right}-\\text{left}\\), integral \\(dy\\) ile. Örneğin taban \\(y=\\ln x\\), \\(y=0\\), \\(x=e\\) ise \\(y\\)'ye dik kare kesitlerde \\(s(y)=e-e^y\\) ve \\(V=\\int_0^1(e-e^y)^2\\,dy\\).</p>\n<div class=\"kn-dikkat\">Kare ve dikdörtgen kesitlerde \\(\\pi\\) <strong>yoktur</strong>. \\(\\pi\\) yalnız dairesel kesitlerde (yarım daire, disk, pul) gelir.</div>\n<h4>Akıl kontrolü</h4>\n<p>Taban \\(y=x\\), \\(x=0..3\\) üçgeni ve kare kesitler ⇒ \\(V=\\int_0^3x^2\\,dx=9\\); bu, kare tabanlı bir piramittir ve \\(\\frac13\\cdot(3\\cdot3)\\cdot3=9\\) ile tutar. Bilinen bir cisimle karşılaştırmak hatayı yakalar.</p>\n<div class=\"kn-kural\"><strong>FRQ kalıbı:</strong> “Volume \\(=\\int_{-1.316}^{0.537}\\left(2-x^2-e^x\\right)^2dx\\approx1.364\\).” Integrand, sınırlar ve cevap ayrı ayrı puanlanır.</div>\n<h4>Okuma alıştırması</h4><p>“Cross sections perpendicular to the \\(x\\)-axis are rectangles whose height is three times the length of the base” ⇒ \\(A=s\\cdot3s=3s^2\\). “...whose height is 2” ⇒ \\(A=2s\\) ve \\(V=2\\cdot(\\text{taban alanı})\\).</p>",
+   "ornekler": [
+    {
+     "soru": "Taban \\(y=\\sqrt x\\), \\(y=0\\), \\(x=9\\) ile sınırlı. \\(x\\)-eksenine dik kesitler, yüksekliği tabanının iki katı olan dikdörtgenler. Hacmi bulun.",
+     "cozum": [
+      "\\(s(x)=\\sqrt x\\), yükseklik \\(2\\sqrt x\\) ⇒ \\(A(x)=\\sqrt x\\cdot2\\sqrt x=2x\\).",
+      "\\(V=\\int_0^9 2x\\,dx=81\\)."
+     ]
+    },
+    {
+     "soru": "Taban \\(y=4-x^2\\) ve \\(y=x^2-4\\) ile sınırlı bölge; \\(x\\)-eksenine dik kesitler kare. Hacim nedir?",
+     "cozum": [
+      "Kesişim \\(x=\\pm2\\); \\(s(x)=(4-x^2)-(x^2-4)=8-2x^2\\).",
+      "\\(V=\\int_{-2}^{2}(8-2x^2)^2dx=4\\int_{-2}^{2}(4-x^2)^2dx=4\\cdot\\frac{512}{15}=\\frac{2048}{15}\\approx136.533\\)."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi, FRQ tarzı) Taban \\(y=2-x^2\\) ve \\(y=e^x\\) ile sınırlı; \\(x\\)-eksenine dik kesitler kare. Hacmi veren integrali yazın ve hesaplayın.",
+     "cozum": [
+      "Kesişimler: \\(x\\approx-1.316\\) ve \\(x\\approx0.537\\) (STO A, B).",
+      "\\(s(x)=2-x^2-e^x\\) (aralıkta \\(2-x^2\\) üstte).",
+      "\\(V=\\int_A^B\\left(2-x^2-e^x\\right)^2dx\\approx1.364\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Önce şerit uzunluğunu (s) ayrı bir satırda yaz, sonra kesit alanını; doğrudan integrale atlamak hata getirir.",
+    "Kesit yönünü oku: perpendicular to the x-axis ⇒ dx, perpendicular to the y-axis ⇒ dy.",
+    "Kare/dikdörtgen kesitlerde π olmaz; sonuçta π varsa formülü kontrol et.",
+    "Calculator bölümünde sınırları sakla ve (f − g)² ifadesini tek parça olarak gir."
+   ],
+   "sikHatalar": [
+    "Kenarın karesi yerine karelerin farkını, f² − g², almak.",
+    "Taban alanını hacim sanmak (kesit alanını kurmamak).",
+    "Kesitler y-eksenine dikken x'e göre integral almak."
+   ],
+   "terimler": [
+    {
+     "en": "cross section",
+     "tr": "kesit"
+    },
+    {
+     "en": "base of a solid",
+     "tr": "cismin tabanı"
+    },
+    {
+     "en": "perpendicular to",
+     "tr": "-e dik"
+    },
+    {
+     "en": "square / rectangle",
+     "tr": "kare / dikdörtgen"
+    }
+   ]
+  },
+  {
+   "kod": "8.8",
+   "baslik": "Volumes with Cross Sections: Triangles and Semicircles",
+   "baslikTr": "Bilinen kesitli hacimler: üçgenler ve yarım daireler",
+   "sadeceBC": false,
+   "hedefler": [
+    "Eşkenar üçgen, ikizkenar dik üçgen ve yarım daire kesitlerin alanlarını şerit uzunluğu cinsinden yazmak.",
+    "Bu kesitlerle hacim integralini kurmak ve (gerekirse hesap makinesiyle) hesaplamak.",
+    "Çap/yarıçap ve dik kenar/hipotenüs ayrımını doğru yapmak."
+   ],
+   "anlatim": "<p>Yöntem 8.7 ile aynıdır: \\(V=\\int A(x)\\,dx\\). Değişen tek şey kesit alanının formülüdür. Tabandaki şeridin uzunluğuna \\(s\\) diyelim.</p>\n<table><thead><tr><th>Kesit</th><th>\\(s\\) neyi temsil eder?</th><th>Alan \\(A\\)</th></tr></thead>\n<tbody>\n<tr><td>eşkenar üçgen (equilateral triangle)</td><td>kenar</td><td>\\(\\frac{\\sqrt3}{4}s^2\\)</td></tr>\n<tr><td>ikizkenar dik üçgen, dik kenar tabanda (leg in the base)</td><td>dik kenar</td><td>\\(\\frac12s^2\\)</td></tr>\n<tr><td>ikizkenar dik üçgen, hipotenüs tabanda (hypotenuse in the base)</td><td>hipotenüs</td><td>\\(\\frac14s^2\\)</td></tr>\n<tr><td>yarım daire, çap tabanda (semicircle, diameter in the base)</td><td>çap</td><td>\\(\\frac12\\pi\\left(\\frac s2\\right)^2=\\frac{\\pi}{8}s^2\\)</td></tr>\n<tr><td>yüksekliği \\(h\\) olan üçgen</td><td>taban</td><td>\\(\\frac12s\\,h\\)</td></tr>\n</tbody></table>\n<h4>Formüller nereden geliyor?</h4>\n<ul><li><strong>Eşkenar üçgen:</strong> yükseklik \\(\\frac{\\sqrt3}{2}s\\) ⇒ alan \\(\\frac12\\cdot s\\cdot\\frac{\\sqrt3}{2}s=\\frac{\\sqrt3}{4}s^2\\).</li>\n<li><strong>Hipotenüs \\(s\\):</strong> dik kenarlar \\(\\frac{s}{\\sqrt2}\\) ⇒ alan \\(\\frac12\\cdot\\frac{s^2}{2}=\\frac{s^2}{4}\\).</li>\n<li><strong>Yarım daire:</strong> tabandaki şerit <em>çaptır</em>, yarıçap \\(\\frac s2\\)'dir. En çok puan kaybettiren nokta budur.</li></ul>\n<h4>Örnek kurulum</h4>\n<p>Taban \\(y=x\\), \\(y=0\\), \\(x=4\\); \\(x\\)-eksenine dik yarım daireler. Çap \\(s=x\\):</p>\n<div class=\"formul\">\\[ V=\\int_0^4\\frac\\pi8x^2\\,dx=\\frac\\pi8\\cdot\\frac{64}{3}=\\frac{8\\pi}{3}. \\]</div>\n<h4>\\(y\\)-eksenine dik kesitler</h4>\n<p>Taban \\(x=y^2\\) ile \\(x=y+2\\) arasındaysa ve kesitler \\(y\\)-eksenine dik yarım dairelerse çap \\(s(y)=(y+2)-y^2\\), \\(y\\in[-1,2]\\) ve \\(V=\\frac\\pi8\\int_{-1}^{2}\\left(y+2-y^2\\right)^2dy=\\frac{81\\pi}{80}\\).</p>\n<div class=\"kn-dikkat\">Sabit katsayıyı (\\(\\frac{\\sqrt3}{4}\\), \\(\\frac\\pi8\\), \\(\\frac12\\)) integralin dışına çıkar; içerde yalnız \\(s^2\\) kalsın. Böylece hesap makinesine girişte de hata azalır.</div>\n<h4>Hesap makinesi bölümü</h4>\n<p>Taban sınırları sayısal kesişimlerden geliyorsa (ör. \\(2\\sin x=x\\Rightarrow x\\approx1.895\\)) kesişimi sakla, ardından \\(\\frac{\\sqrt3}{4}\\int_0^{A}(2\\sin x-x)^2dx\\) gibi tek bir ifade gir.</p>\n<div class=\"kn-kural\"><strong>FRQ kalıbı:</strong> “Volume \\(=\\frac{\\pi}{8}\\int_0^{1.379}\\left(\\frac{4}{1+x^2}-x\\right)^2dx\\approx3.127\\).” Şekil formülünü (ör. \\(\\frac\\pi8 s^2\\)) yazmak kısmi puan getirir.</div>\n<h4>Okuma alıştırması</h4><p>“Isosceles right triangles with a leg in the base” ⇒ \\(\\frac12s^2\\). “...with the hypotenuse in the base” ⇒ \\(\\frac14s^2\\). “Semicircles with diameters in the base” ⇒ \\(\\frac\\pi8s^2\\). Formülü seçmeden önce bu ifadenin altını çiz.</p>",
+   "ornekler": [
+    {
+     "soru": "Taban \\(y=\\sqrt{x}\\), \\(y=0\\), \\(x=4\\) ile sınırlı; \\(x\\)-eksenine dik kesitler eşkenar üçgen. Hacim nedir?",
+     "cozum": [
+      "\\(s=\\sqrt x\\) ⇒ \\(A(x)=\\frac{\\sqrt3}{4}x\\).",
+      "\\(V=\\frac{\\sqrt3}{4}\\int_0^4x\\,dx=\\frac{\\sqrt3}{4}\\cdot8=2\\sqrt3\\approx3.464\\)."
+     ]
+    },
+    {
+     "soru": "Taban \\(x^2+y^2\\le9\\) diski; \\(x\\)-eksenine dik kesitler, hipotenüsü tabanda olan ikizkenar dik üçgenler. Hacmi bulun.",
+     "cozum": [
+      "Hipotenüs \\(s=2\\sqrt{9-x^2}\\) ⇒ \\(A=\\frac{s^2}{4}=9-x^2\\).",
+      "\\(V=\\int_{-3}^{3}(9-x^2)\\,dx=54-18=36\\)."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi) Taban, birinci bölgede \\(y=2\\sin x\\) ile \\(y=x\\) arasındaki bölge; \\(x\\)-eksenine dik kesitler yarım daire. Hacmi bulun.",
+     "cozum": [
+      "Kesişim \\(x=0\\) ve \\(x\\approx1.895\\); çap \\(s=2\\sin x-x\\).",
+      "\\(V=\\frac\\pi8\\int_0^{1.895}(2\\sin x-x)^2dx\\approx\\frac\\pi8\\cdot0.456\\approx0.179\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Şekil formüllerini ezberle ama türetmeyi de bil: sınavda formül sayfası yoktur.",
+    "Yarım daire sorusunda ilk satıra “r = s/2” yaz; çap-yarıçap hatasını bu önler.",
+    "Katsayıyı dışarı al: V = (√3/4)∫s² dx gibi; FRQ'da bu kurulum açıkça görülsün.",
+    "Kesit yönü y-eksenine dikse s = right − left ve dy kullan."
+   ],
+   "sikHatalar": [
+    "Yarım dairede çapı yarıçap olarak kullanmak (4 kat büyük sonuç).",
+    "Hipotenüs tabandayken dik kenar formülünü (s²/2) kullanmak.",
+    "Eşkenar üçgen alanını √3/2·s² diye hatırlamak."
+   ],
+   "terimler": [
+    {
+     "en": "equilateral triangle",
+     "tr": "eşkenar üçgen"
+    },
+    {
+     "en": "isosceles right triangle",
+     "tr": "ikizkenar dik üçgen"
+    },
+    {
+     "en": "semicircle",
+     "tr": "yarım daire"
+    },
+    {
+     "en": "diameter / radius",
+     "tr": "çap / yarıçap"
+    },
+    {
+     "en": "leg / hypotenuse",
+     "tr": "dik kenar / hipotenüs"
+    }
+   ]
+  },
+  {
+   "kod": "8.9",
+   "baslik": "Volume with Disc Method: Revolving Around the x- or y-Axis",
+   "baslikTr": "Disk yöntemiyle hacim: x- veya y-ekseni etrafında döndürme",
+   "sadeceBC": false,
+   "hedefler": [
+    "Bir bölgeyi \\(x\\)- ya da \\(y\\)-ekseni etrafında döndürerek oluşan dönel cismin hacmini \\(V=\\pi\\int r^2\\) ile bulmak.",
+    "Dönme eksenine göre doğru değişkeni (\\(dx\\) ya da \\(dy\\)) seçmek ve yarıçapı yazmak.",
+    "Sonucu bilinen cisimlerle (koni, küre, silindir) kontrol etmek."
+   ],
+   "anlatim": "<p>Bir bölgeyi bir doğru etrafında 360° döndürürsen bir <strong>dönel cisim (solid of revolution)</strong> oluşur. Bölge dönme eksenine yapışıksa (arada boşluk yoksa) dönme eksenine dik her kesit bir <strong>disktir</strong>.</p>\n<div class=\"kn-tanim\"><strong>Disk yöntemi (disc method):</strong>\n\\[ V=\\pi\\int_a^b\\left[r(x)\\right]^2dx\\quad(\\text{yatay eksen}),\\qquad V=\\pi\\int_c^d\\left[r(y)\\right]^2dy\\quad(\\text{dikey eksen}). \\]\n\\(r\\) = eksenden eğriye uzaklık (disk yarıçapı).</div>\n<p>Bu aslında 8.7–8.8'deki kesit yönteminin özel hâlidir: kesit bir daire, alanı \\(\\pi r^2\\).</p>\n<h4>Hangi değişken?</h4>\n<table><thead><tr><th>Dönme ekseni</th><th>Diskler</th><th>Değişken</th><th>Yarıçap</th></tr></thead>\n<tbody>\n<tr><td>\\(x\\)-ekseni</td><td>dikey</td><td>\\(dx\\)</td><td>\\(r=f(x)\\)</td></tr>\n<tr><td>\\(y\\)-ekseni</td><td>yatay</td><td>\\(dy\\)</td><td>\\(r=x=g(y)\\)</td></tr>\n</tbody></table>\n<p>Kural: <strong>dönme eksenine paralel değişkenle integral al</strong>. \\(y\\)-ekseni etrafında dönüşte fonksiyonu \\(x=g(y)\\) biçimine çevir; örneğin \\(y=\\ln x\\Rightarrow x=e^y\\).</p>\n<h4>Örnek</h4>\n<p>\\(y=\\sqrt x\\), \\(y=0\\), \\(x=4\\) bölgesi \\(x\\)-ekseni etrafında: \\(r=\\sqrt x\\), \\(r^2=x\\):</p>\n<div class=\"formul\">\\[ V=\\pi\\int_0^4x\\,dx=8\\pi. \\]</div>\n<h4>Bilinen cisimlerle kontrol</h4>\n<ul><li>\\(x=\\sqrt{9-y^2}\\) (yarım daire) \\(y\\)-ekseni etrafında ⇒ küre: \\(\\pi\\int_{-3}^{3}(9-y^2)\\,dy=36\\pi=\\frac43\\pi\\cdot27\\).</li>\n<li>\\(y=\\frac{r}{h}x\\), \\(0\\le x\\le h\\) ⇒ koni: \\(\\pi\\int_0^h\\frac{r^2}{h^2}x^2dx=\\frac13\\pi r^2h\\).</li></ul>\n<div class=\"kn-dikkat\">İki klasik hata: (1) \\(r\\)'yi karelememek — \\(\\pi\\int\\sqrt x\\,dx\\) yazmak; (2) üstel ifadeyi yanlış karelemek — \\(\\left(e^{-x^2}\\right)^2=e^{-2x^2}\\), \\(e^{-x^4}\\) değil.</div>\n<h4>Hesap makinesi bölümü</h4>\n<p>\\(\\pi\\int_0^2e^{-2x^2}dx\\) gibi ilkeli olmayan integraller hesap makinesiyle alınır. \\(\\pi\\)'yi integralin dışında bırakmak ya da içine yazmak fark etmez; ama unutmamak şarttır. Hacmi verilen bir sayıya eşitleyen \\(k\\) sorularında \\(Y_1=\\pi\\int_0^X\\ldots\\) tanımla ve \\(Y_2\\) ile kesiştir.</p>\n<div class=\"kn-kural\"><strong>FRQ kalıbı:</strong> “Volume \\(=\\pi\\int_0^2\\left(e^{-x^2}\\right)^2dx\\approx1.969\\).” Yarıçap ifadesinin karesini parantezle açıkça yaz.</div>\n<h4>Kısa kontrol listesi</h4><ol><li>Eksen hangisi? (\\(x\\)-ekseni ⇒ \\(dx\\), \\(y\\)-ekseni ⇒ \\(dy\\))</li><li>Bölge eksene boydan boya değiyor mu? (Evet ⇒ disk)</li><li>Yarıçap \\(r\\) = eksenden eğriye uzaklık; \\(r^2\\) parantezli.</li><li>Sınırlar doğru değişkende mi?</li></ol>",
+   "ornekler": [
+    {
+     "soru": "\\(y=x^3\\), \\(y=0\\), \\(x=2\\) bölgesi \\(x\\)-ekseni etrafında döndürülüyor. Hacim?",
+     "cozum": [
+      "\\(r=x^3\\) ⇒ \\(r^2=x^6\\).",
+      "\\(V=\\pi\\int_0^2x^6\\,dx=\\pi\\cdot\\frac{128}{7}=\\frac{128\\pi}{7}\\)."
+     ]
+    },
+    {
+     "soru": "\\(y=x^2\\), \\(y=4\\) ve \\(y\\)-ekseniyle (\\(x\\ge0\\)) sınırlı bölge \\(y\\)-ekseni etrafında döndürülüyor. Hacim?",
+     "cozum": [
+      "Dikey eksen ⇒ \\(dy\\); \\(x=\\sqrt y\\), \\(y\\in[0,4]\\).",
+      "\\(V=\\pi\\int_0^4(\\sqrt y)^2dy=\\pi\\int_0^4y\\,dy=8\\pi\\)."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi) \\(y=\\sqrt{\\sin x}\\), \\(0\\le x\\le\\pi\\), ile \\(x\\)-ekseni arasındaki bölge \\(x\\)-ekseni etrafında döndürülüyor. Hacmi bulun ve sonucun elle de bulunabileceğini gösterin.",
+     "cozum": [
+      "\\(r^2=\\sin x\\) ⇒ \\(V=\\pi\\int_0^{\\pi}\\sin x\\,dx\\).",
+      "\\(=\\pi\\left[-\\cos x\\right]_0^{\\pi}=2\\pi\\approx6.283\\). Hesap makinesi aynı değeri verir."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Önce dönme eksenini işaretle; dx mi dy mi buna göre seçilir.",
+    "Yarıçapı ayrı satırda yaz (r = …), sonra π∫r² kur.",
+    "Sonucu bildiğin bir cisimle (koni, küre, silindir) karşılaştırarak kontrol et.",
+    "Calculator'da π'yi unutma: fnInt'in önüne π yaz."
+   ],
+   "sikHatalar": [
+    "Yarıçapı karelememek (π∫r dx).",
+    "y-ekseni etrafında dönüşte x'e göre integral almak.",
+    "Disk alanında 2π kullanmak (çevre formülüyle karıştırmak)."
+   ],
+   "terimler": [
+    {
+     "en": "solid of revolution",
+     "tr": "dönel cisim"
+    },
+    {
+     "en": "disc method",
+     "tr": "disk yöntemi"
+    },
+    {
+     "en": "axis of revolution",
+     "tr": "dönme ekseni"
+    },
+    {
+     "en": "radius",
+     "tr": "yarıçap"
+    },
+    {
+     "en": "revolve",
+     "tr": "döndürmek"
+    }
+   ]
+  },
+  {
+   "kod": "8.10",
+   "baslik": "Volume with Disc Method: Revolving Around Other Axes",
+   "baslikTr": "Disk yöntemiyle hacim: diğer eksenler etrafında döndürme",
+   "sadeceBC": false,
+   "hedefler": [
+    "\\(y=k\\) ya da \\(x=h\\) doğruları etrafında dönüşte disk yarıçapını “büyük koordinat − küçük koordinat” olarak yazmak.",
+    "Bölgenin dönme eksenine değdiği (delik olmayan) durumlarda disk yöntemini uygulamak.",
+    "\\((a-b)^2\\) ile \\(a^2-b^2\\) arasındaki farkı kurulumda doğru kullanmak."
+   ],
+   "anlatim": "<p>Dönme ekseni her zaman koordinat ekseni olmaz. AP sorularında sık sık “revolved about the line \\(y=3\\)” ya da “about the line \\(x=-1\\)” görürsün. Yöntem değişmez; değişen yalnız <strong>yarıçapın</strong> nasıl ölçüldüğüdür.</p>\n<div class=\"kn-tanim\"><strong>Yarıçap = uzaklık = büyük koordinat − küçük koordinat.</strong>\n<ul><li>Yatay eksen \\(y=k\\), eğri \\(y=f(x)\\): \\(r=|k-f(x)|\\) ⇒ eksen üstteyse \\(r=k-f(x)\\), alttaysa \\(r=f(x)-k\\).</li>\n<li>Dikey eksen \\(x=h\\), eğri \\(x=g(y)\\): \\(r=|h-g(y)|\\).</li></ul></div>\n<h4>Örnek 1: \\(y=\\sqrt x\\), \\(y=3\\), \\(x=0\\) bölgesi, eksen \\(y=3\\)</h4>\n<p>Bölge \\(y=3\\) doğrusuna yapışık (üst sınırı odur), yani delik yok. Yarıçap \\(r=3-\\sqrt x\\), \\(x\\in[0,9]\\):</p>\n<div class=\"formul\">\\[ V=\\pi\\int_0^9\\left(3-\\sqrt x\\right)^2dx=\\pi\\int_0^9\\left(9-6\\sqrt x+x\\right)dx=\\frac{27\\pi}{2}. \\]</div>\n<div class=\"kn-dikkat\">\\((3-\\sqrt x)^2\\ne9-x\\). İkinci ifade, bölgeyi \\(x\\)-ekseni etrafında döndürüp pul hesaplamaktır — farklı bir cisim.</div>\n<h4>Örnek 2: dikey eksen</h4>\n<p>\\(x=y^2\\) ve \\(x=4\\) bölgesi \\(x=4\\) etrafında: eksen sağda, yarıçap \\(r=4-y^2\\), \\(y\\in[-2,2]\\), \\(V=\\pi\\int_{-2}^{2}(4-y^2)^2dy=\\frac{512\\pi}{15}\\).</p>\n<h4>Eksen bölgenin altında/solunda ise</h4>\n<p>\\(y=f(x)\\ge-2\\) eğrisi ile \\(y=-2\\) arasındaki bölge \\(y=-2\\) etrafında: \\(r=f(x)-(-2)=f(x)+2\\). İşaretle değil <em>uzaklıkla</em> düşün: eksen \\(-2\\)'de, eğri \\(f(x)\\)'te; aradaki mesafe \\(f(x)+2\\).</p>\n<table><thead><tr><th>Eksen</th><th>Konum</th><th>Yarıçap</th></tr></thead>\n<tbody>\n<tr><td>\\(y=k\\)</td><td>bölgenin üstünde</td><td>\\(k-f(x)\\)</td></tr>\n<tr><td>\\(y=k\\)</td><td>bölgenin altında</td><td>\\(f(x)-k\\)</td></tr>\n<tr><td>\\(x=h\\)</td><td>bölgenin sağında</td><td>\\(h-g(y)\\)</td></tr>\n<tr><td>\\(x=h\\)</td><td>bölgenin solunda</td><td>\\(g(y)-h\\)</td></tr>\n</tbody></table>\n<h4>Hesap makinesi bölümü</h4>\n<p>\\(y=x^2+e^x\\) ile \\(y=3\\) arasındaki bölge \\(y=3\\) etrafında: önce \\(x^2+e^x=3\\) köklerini bul (\\(x\\approx-1.677\\), \\(0.834\\)), sonra \\(\\pi\\int\\left(3-x^2-e^x\\right)^2dx\\approx19.975\\). Yarıçap ifadesini tek parantezde gir.</p>\n<div class=\"kn-kural\"><strong>FRQ kalıbı:</strong> “Volume \\(=\\pi\\int_{A}^{B}\\left(3-(x^2+e^x)\\right)^2dx\\approx19.975\\).” Puanlayıcı ayrı ayrı bakar: \\(\\pi\\) ve integral sabiti, sınırlar, doğru yarıçap.</div>\n<h4>Kısa alıştırma</h4><p>\\(y=\\sqrt x\\), \\(y=0\\), \\(x=4\\) bölgesini \\(x=4\\) etrafında döndür: eksen sağda, \\(y\\in[0,2]\\), \\(r=4-y^2\\), \\(V=\\pi\\int_0^2(4-y^2)^2dy=\\frac{256\\pi}{15}\\). Aynı bölgeyi \\(y=2\\) etrafında döndürseydin bölge eksene yalnız bir noktada değerdi; o zaman pul gerekirdi (8.12).</p>",
+   "ornekler": [
+    {
+     "soru": "\\(y=x^2\\) ve \\(y=1\\) arasındaki bölge \\(y=1\\) etrafında döndürülüyor. Hacim?",
+     "cozum": [
+      "Kesişim \\(x=\\pm1\\); eksen bölgenin üst sınırı ⇒ disk, \\(r=1-x^2\\).",
+      "\\(V=\\pi\\int_{-1}^{1}(1-x^2)^2dx=\\pi\\left(2-\\frac43+\\frac25\\right)=\\frac{16\\pi}{15}\\)."
+     ]
+    },
+    {
+     "soru": "\\(y=x+1\\), \\(x=-1\\) ve \\(y=2\\) ile sınırlı üçgen \\(x=-1\\) etrafında döndürülüyor. Hacim?",
+     "cozum": [
+      "\\(x=y-1\\); yarıçap \\((y-1)-(-1)=y\\), \\(y\\in[0,2]\\).",
+      "\\(V=\\pi\\int_0^2y^2dy=\\frac{8\\pi}{3}\\) — yarıçapı 2, yüksekliği 2 olan koni \\(\\left(\\frac13\\pi\\cdot4\\cdot2\\right)\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(y=e^x\\), \\(y=3\\) ve \\(y\\)-ekseniyle sınırlı bölge \\(y=3\\) etrafında döndürülüyor. Hacmi veren integrali yazın ve hesaplayın.",
+     "cozum": [
+      "Sınırlar: \\(e^x=3\\Rightarrow x=\\ln3\\); \\(r=3-e^x\\).",
+      "\\(V=\\pi\\int_0^{\\ln3}(3-e^x)^2dx=\\pi\\left(9\\ln3-12+4\\right)=\\pi(9\\ln3-8)\\approx5.930\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her soruda eksenin bölgenin hangi tarafında olduğunu çiz ve yarıçapı “büyük − küçük” olarak yaz.",
+    "Bölge eksene değiyorsa disk, değmiyorsa pul (8.11–8.12) kullan.",
+    "(a − b)² ifadesini açarken orta terimi (−2ab) unutma; ya da hesap makinesine parantezli gir.",
+    "Dikey eksen x = h için mutlaka dy ile kur ve eğriyi x = g(y) biçimine çevir."
+   ],
+   "sikHatalar": [
+    "Yarıçapı koordinat ekseninden ölçmek (ör. y = 3 etrafında r = √x yazmak).",
+    "(k − f)² yerine k² − f² yazmak.",
+    "Eksen negatif tarafta olduğunda işaret hatası (y = −2 için r = f − 2 yazmak)."
+   ],
+   "terimler": [
+    {
+     "en": "revolved about the line y = k",
+     "tr": "y = k doğrusu etrafında döndürülmüş"
+    },
+    {
+     "en": "distance",
+     "tr": "uzaklık"
+    },
+    {
+     "en": "horizontal / vertical line",
+     "tr": "yatay / dikey doğru"
+    }
+   ]
+  },
+  {
+   "kod": "8.11",
+   "baslik": "Volume with Washer Method: Revolving Around the x- or y-Axis",
+   "baslikTr": "Pul yöntemiyle hacim: x- veya y-ekseni etrafında döndürme",
+   "sadeceBC": false,
+   "hedefler": [
+    "Bölge ile eksen arasında boşluk varsa pul yöntemiyle (washer method) \\(V=\\pi\\int\\left(R^2-r^2\\right)\\) kurmak.",
+    "Dış yarıçapı (outer radius) ve iç yarıçapı (inner radius) eksene uzaklığa göre belirlemek.",
+    "\\(y\\)-ekseni etrafında dönüşte yarıçapları \\(x=g(y)\\) biçiminde yazmak."
+   ],
+   "anlatim": "<p>Bölge dönme eksenine değmiyorsa, döndürünce cismin ortasında bir <strong>delik</strong> oluşur. Dönme eksenine dik kesit artık dolu bir disk değil, ortası boş bir <strong>puldur (washer)</strong> — tıpkı bir rondela ya da CD gibi.</p>\n<div class=\"kn-tanim\"><strong>Pul yöntemi:</strong>\n\\[ V=\\pi\\int_a^b\\left(\\left[R(x)\\right]^2-\\left[r(x)\\right]^2\\right)dx \\]\n\\(R\\) = dış yarıçap (eksenden <em>uzak</em> eğri), \\(r\\) = iç yarıçap (eksene <em>yakın</em> eğri).</div>\n<p>Pulun alanı büyük dairenin alanından küçük dairenin alanını çıkarmaktır: \\(\\pi R^2-\\pi r^2\\).</p>\n<div class=\"kn-dikkat\"><strong>\\(\\pi(R^2-r^2)\\ne\\pi(R-r)^2\\).</strong> Örneğin \\(R=3\\), \\(r=2\\): doğru alan \\(\\pi(9-4)=5\\pi\\), yanlış ifade \\(\\pi\\cdot1=\\pi\\). Bu, Ünite 8'in en çok puan kaybettiren hatasıdır.</div>\n<h4>\\(x\\)-ekseni etrafında</h4>\n<p>\\(y=2x\\) ve \\(y=x^2\\) bölgesi (\\(0\\le x\\le2\\)): \\(x=1\\)'de \\(2\\gt1\\), yani \\(2x\\) eksenden uzak ⇒ \\(R=2x\\), \\(r=x^2\\).</p>\n<div class=\"formul\">\\[ V=\\pi\\int_0^2\\left(4x^2-x^4\\right)dx=\\pi\\left(\\frac{32}{3}-\\frac{32}{5}\\right)=\\frac{64\\pi}{15}. \\]</div>\n<h4>\\(y\\)-ekseni etrafında</h4>\n<p>Yarıçaplar yatay uzaklıklardır, \\(dy\\) ile integral alınır. \\(y=x^3\\) ve \\(y=4x\\) (birinci bölge) için \\(x=y^{1/3}\\) ve \\(x=\\frac y4\\). \\(y=1\\)'de \\(1\\gt\\frac14\\) ⇒ \\(R=y^{1/3}\\), \\(r=\\frac y4\\), \\(y\\in[0,8]\\):</p>\n<div class=\"formul\">\\[ V=\\pi\\int_0^8\\left(y^{2/3}-\\frac{y^2}{16}\\right)dy=\\frac{128\\pi}{15}. \\]</div>\n<h4>Disk mi pul mu?</h4>\n<table><thead><tr><th>Durum</th><th>Yöntem</th></tr></thead>\n<tbody>\n<tr><td>Bölge eksene boydan boya değiyor</td><td>disk: \\(\\pi\\int r^2\\)</td></tr>\n<tr><td>Bölge ile eksen arasında boşluk var</td><td>pul: \\(\\pi\\int(R^2-r^2)\\)</td></tr>\n</tbody></table>\n<p>Not: Bölge eksenin <em>iki tarafına</em> taşıyorsa (ör. \\(x\\)-eksenini kesiyorsa) yöntem doğrudan uygulanmaz; AP soruları bunu genellikle önler, ama kontrol etmek iyi alışkanlıktır.</p>\n<h4>Hesap makinesi bölümü</h4>\n<p>\\(y=x+2\\) ve \\(y=e^x\\) bölgesi: kesişimler \\(x\\approx-1.841\\), \\(1.146\\); \\(R=x+2\\), \\(r=e^x\\gt0\\). \\(V=\\pi\\int\\left((x+2)^2-e^{2x}\\right)dx\\approx17.099\\).</p>\n<div class=\"kn-kural\"><strong>FRQ kalıbı:</strong> “Volume \\(=\\pi\\int_{0}^{2.475}\\left((2\\sin x)^2-\\left(\\frac x2\\right)^2\\right)dx\\approx14.635\\).” Dış ve iç yarıçapı ayrı parantezlerle göster.</div>\n<h4>Kısa alıştırma</h4><p>\\(y=\\sqrt x\\) ve \\(y=\\frac x2\\) bölgesi \\(y\\)-ekseni etrafında: \\(x=y^2\\) ve \\(x=2y\\); \\(y=1\\)'de \\(2\\gt1\\) ⇒ \\(R=2y\\), \\(r=y^2\\), \\(V=\\pi\\int_0^2\\left(4y^2-y^4\\right)dy=\\frac{64\\pi}{15}\\).</p>",
+   "ornekler": [
+    {
+     "soru": "\\(y=\\sqrt x\\) ve \\(y=x\\) bölgesi \\(x\\)-ekseni etrafında döndürülüyor. Hacim?",
+     "cozum": [
+      "Kesişim \\(x=0,1\\); \\(x=\\frac14\\)'te \\(\\frac12\\gt\\frac14\\) ⇒ \\(R=\\sqrt x\\), \\(r=x\\).",
+      "\\(V=\\pi\\int_0^1(x-x^2)\\,dx=\\pi\\left(\\frac12-\\frac13\\right)=\\frac\\pi6\\)."
+     ]
+    },
+    {
+     "soru": "\\(x=y^2\\), \\(x=4\\) ve \\(x\\)-ekseniyle (\\(y\\ge0\\)) sınırlı bölge \\(y\\)-ekseni etrafında döndürülüyor. Hacim?",
+     "cozum": [
+      "\\(y\\in[0,2]\\); \\(R=4\\) (doğru), \\(r=y^2\\) (parabol).",
+      "\\(V=\\pi\\int_0^2(16-y^4)\\,dy=\\pi\\left(32-\\frac{32}{5}\\right)=\\frac{128\\pi}{5}\\)."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi, FRQ tarzı) \\(y=2\\sin x\\) ve \\(y=\\frac x2\\) arasındaki birinci bölgedeki bölge \\(x\\)-ekseni etrafında döndürülüyor. Hacmi veren integrali yazıp hesaplayın.",
+     "cozum": [
+      "Kesişim \\(x=0\\) ve \\(x\\approx2.475\\) (STO A).",
+      "\\(R=2\\sin x\\), \\(r=\\frac x2\\).",
+      "\\(V=\\pi\\int_0^A\\left(4\\sin^2x-\\frac{x^2}{4}\\right)dx\\approx14.635\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "R ve r'yi ayrı satırlarda yaz, sonra π∫(R² − r²) kur. Bu, (R − r)² hatasını önler.",
+    "Dış yarıçap = eksenden uzak eğri; bir test noktasıyla kontrol et.",
+    "y-ekseni etrafında dönüşte her iki eğriyi x = g(y) biçimine çevir ve y sınırlarını kullan.",
+    "Calculator'da integrand'ı (R)^2 − (r)^2 olarak parantezli gir."
+   ],
+   "sikHatalar": [
+    "π∫(R − r)² dx yazmak.",
+    "Dış ve iç yarıçapı ters almak (negatif hacim).",
+    "Deliği yok sayıp disk yöntemiyle yalnız dış eğriyi döndürmek."
+   ],
+   "terimler": [
+    {
+     "en": "washer method",
+     "tr": "pul yöntemi"
+    },
+    {
+     "en": "outer radius",
+     "tr": "dış yarıçap"
+    },
+    {
+     "en": "inner radius",
+     "tr": "iç yarıçap"
+    },
+    {
+     "en": "hole",
+     "tr": "delik"
+    }
+   ]
+  },
+  {
+   "kod": "8.12",
+   "baslik": "Volume with Washer Method: Revolving Around Other Axes",
+   "baslikTr": "Pul yöntemiyle hacim: diğer eksenler etrafında döndürme",
+   "sadeceBC": false,
+   "hedefler": [
+    "\\(y=k\\) ya da \\(x=h\\) doğruları etrafında dönüşte dış ve iç yarıçapı eksene uzaklık olarak yazmak.",
+    "Eksen bölgenin üstünde/altında ya da sağında/solunda olduğunda hangi eğrinin dış yarıçap verdiğini belirlemek.",
+    "Calculator FRQ'larında tam kurulumu (sınırlar, \\(R\\), \\(r\\), \\(\\pi\\)) eksiksiz yazmak."
+   ],
+   "anlatim": "<p>Bu konu, 8.10'daki “eksen kaydırma” fikriyle 8.11'deki pul yöntemini birleştirir. AP calculator FRQ'larının (Area &amp; Volume sorusu) son şıkkı çoğunlukla budur.</p>\n<div class=\"kn-tanim\">Eksen \\(y=k\\) ise her iki yarıçap da \\(k\\)'ye uzaklıktır:\n\\[ V=\\pi\\int_a^b\\left(R^2-r^2\\right)dx,\\quad R=\\text{eksen ile uzak eğri arası},\\ r=\\text{eksen ile yakın eğri arası}. \\]</div>\n<h4>Dört durum</h4>\n<table><thead><tr><th>Eksen</th><th>\\(R\\)</th><th>\\(r\\)</th></tr></thead>\n<tbody>\n<tr><td>\\(y=k\\), bölgenin <strong>altında</strong></td><td>\\(\\text{üst}-k\\)</td><td>\\(\\text{alt}-k\\)</td></tr>\n<tr><td>\\(y=k\\), bölgenin <strong>üstünde</strong></td><td>\\(k-\\text{alt}\\)</td><td>\\(k-\\text{üst}\\)</td></tr>\n<tr><td>\\(x=h\\), bölgenin <strong>solunda</strong></td><td>\\(\\text{sağ}-h\\)</td><td>\\(\\text{sol}-h\\)</td></tr>\n<tr><td>\\(x=h\\), bölgenin <strong>sağında</strong></td><td>\\(h-\\text{sol}\\)</td><td>\\(h-\\text{sağ}\\)</td></tr>\n</tbody></table>\n<p>Dikkat: eksen bölgenin <em>üstündeyse</em> dış yarıçapı <strong>alttaki</strong> eğri verir, çünkü o eksenden daha uzaktır.</p>\n<h4>Örnek: eksen altta</h4>\n<p>\\(y=\\sqrt x\\) ve \\(y=x\\) bölgesi \\(y=-1\\) etrafında: \\(R=\\sqrt x+1\\), \\(r=x+1\\).</p>\n<div class=\"formul\">\\[ V=\\pi\\int_0^1\\left((\\sqrt x+1)^2-(x+1)^2\\right)dx=\\pi\\int_0^1\\left(2\\sqrt x-x-x^2\\right)dx=\\frac\\pi2. \\]</div>\n<h4>Örnek: dikey eksen sağda</h4>\n<p>\\(y=x\\) ve \\(y=x^2\\) bölgesi \\(x=3\\) etrafında. \\(y\\)'ye göre sol eğri \\(x=y\\), sağ eğri \\(x=\\sqrt y\\). Eksen sağda ⇒ \\(R=3-y\\), \\(r=3-\\sqrt y\\):</p>\n<div class=\"formul\">\\[ V=\\pi\\int_0^1\\left((3-y)^2-(3-\\sqrt y)^2\\right)dy=\\frac{5\\pi}{6}. \\]</div>\n<h4>Gizli pul</h4>\n<p>\\(y=\\ln x\\), \\(y=0\\), \\(x=4\\) bölgesi \\(y=-1\\) etrafında: bölgenin alt sınırı \\(x\\)-eksenidir, ama eksen \\(y=-1\\) olduğu için arada 1 birimlik boşluk vardır. \\(R=\\ln x+1\\), \\(r=1\\). Pul olduğunu fark etmek puanın yarısıdır.</p>\n<h4>Hesap makinesi bölümü</h4>\n<p>\\(y=3\\sin\\frac x2\\) ve \\(y=x\\) (birinci bölge) \\(y=4\\) etrafında: kesişim \\(x\\approx2.992\\); eksen üstte ⇒ \\(R=4-x\\), \\(r=4-3\\sin\\frac x2\\); \\(V\\approx14.890\\).</p>\n<div class=\"kn-kural\"><strong>FRQ kalıbı:</strong> “Volume \\(=\\pi\\int_0^{2.992}\\left((4-x)^2-\\left(4-3\\sin\\frac x2\\right)^2\\right)dx\\approx14.890\\).” Kurulum bir puan: \\(\\pi\\), sınırlar ve iki yarıçapın her biri doğru olmalı.</div>\n<h4>Kısa kontrol</h4><p>Hesapladığın hacmi aynı bölgenin koordinat ekseni etrafındaki hacmiyle karşılaştır: eksen bölgeden uzaklaştıkça hacim büyür. Örneğin \\(y=\\sqrt x\\), \\(y=x\\) bölgesi için \\(x\\)-ekseni etrafında \\(\\frac\\pi6\\), \\(y=-1\\) etrafında \\(\\frac\\pi2\\) — beklendiği gibi daha büyük.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(y=x^2\\) ve \\(y=4\\) bölgesi \\(y=5\\) etrafında döndürülüyor. İntegrali kurun ve hesaplayın.",
+     "cozum": [
+      "Eksen üstte; \\(R=5-x^2\\) (parabol uzak), \\(r=5-4=1\\).",
+      "\\(V=\\pi\\int_{-2}^{2}\\left((5-x^2)^2-1\\right)dx=\\pi\\int_{-2}^{2}\\left(24-10x^2+x^4\\right)dx\\).",
+      "\\(=\\pi\\left(96-\\frac{160}{3}+\\frac{64}{5}\\right)=\\frac{832\\pi}{15}\\approx174.254\\)."
+     ]
+    },
+    {
+     "soru": "\\(y=x\\) ve \\(y=x^2\\) bölgesi \\(y=2\\) etrafında döndürülüyor. Hacim?",
+     "cozum": [
+      "Eksen üstte ⇒ \\(R=2-x^2\\) (alt eğri), \\(r=2-x\\) (üst eğri).",
+      "\\(V=\\pi\\int_0^1\\left((2-x^2)^2-(2-x)^2\\right)dx=\\pi\\int_0^1\\left(x^4-5x^2+4x\\right)dx=\\pi\\left(\\frac15-\\frac53+2\\right)=\\frac{8\\pi}{15}\\)."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi) \\(y=\\ln x\\), \\(y=0\\), \\(x=4\\) bölgesi \\(y=-1\\) etrafında döndürülüyor. Hacmi bulun.",
+     "cozum": [
+      "\\(R=\\ln x+1\\), \\(r=1\\), \\(x\\in[1,4]\\).",
+      "\\(V=\\pi\\int_1^4\\left((\\ln x+1)^2-1\\right)dx\\approx24.150\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Ekseni çiz ve iki eğrinin eksene uzaklığını ok ile göster: uzun ok R, kısa ok r.",
+    "Eksen bölgenin üstündeyse dış yarıçap alttaki eğriden gelir — bunu her soruda kontrol et.",
+    "Bölgenin alt sınırı x-ekseni olsa bile eksen y = −1 ise iç yarıçap 1'dir.",
+    "FRQ'da yalnız integral kurulumu istenirse (“set up but do not evaluate”) hesaplama yapma; kurulum eksiksiz olsun."
+   ],
+   "sikHatalar": [
+    "Eksen kaydırmasını yalnız bir yarıçapa uygulamak.",
+    "Eksen üstteyken dış/iç yarıçapı ters almak.",
+    "Bölge eksene değmiyorken disk yöntemi kullanmak (deliği unutmak)."
+   ],
+   "terimler": [
+    {
+     "en": "washer",
+     "tr": "pul (rondela)"
+    },
+    {
+     "en": "about the line",
+     "tr": "doğrusu etrafında"
+    },
+    {
+     "en": "set up but do not evaluate",
+     "tr": "kur ama hesaplama"
+    }
+   ]
+  },
+  {
+   "kod": "8.13",
+   "baslik": "The Arc Length of a Smooth, Planar Curve and Distance Traveled",
+   "baslikTr": "Düzgün düzlemsel bir eğrinin yay uzunluğu ve alınan yol",
+   "sadeceBC": true,
+   "hedefler": [
+    "\\(y=f(x)\\) eğrisinin yay uzunluğunu (arc length) \\(L=\\int_a^b\\sqrt{1+\\left(f'(x)\\right)^2}\\,dx\\) ile kurmak.",
+    "\\(x=g(y)\\) biçimindeki eğriler için \\(dy\\)'ye göre yay uzunluğu yazmak.",
+    "Yay uzunluğunu hesap makinesiyle bulmak ve sonucu kiriş uzunluğuyla akıl kontrolünden geçirmek."
+   ],
+   "anlatim": "<p><strong>(Yalnız BC)</strong> Bir eğrinin uzunluğunu ölçmek için onu çok kısa doğru parçalarına bölelim. \\(\\Delta x\\) yatay, \\(\\Delta y\\) dikey değişim ise her parçanın uzunluğu Pisagor ile \\(\\sqrt{(\\Delta x)^2+(\\Delta y)^2}=\\sqrt{1+\\left(\\frac{\\Delta y}{\\Delta x}\\right)^2}\\,\\Delta x\\) olur. Parçalar küçüldükçe \\(\\frac{\\Delta y}{\\Delta x}\\to f'(x)\\) ve toplam integrale dönüşür.</p>\n<div class=\"kn-tanim\"><strong>Yay uzunluğu (arc length):</strong> \\(f'\\), \\([a,b]\\)'de sürekliyse (eğri düzgün, smooth)\n\\[ L=\\int_a^b\\sqrt{1+\\left(f'(x)\\right)^2}\\,dx. \\]\nEğri \\(x=g(y)\\) biçimindeyse \\(L=\\int_c^d\\sqrt{1+\\left(g'(y)\\right)^2}\\,dy\\).</div>\n<h4>Kurulum adımları</h4>\n<ol><li>Türevi al: \\(y=\\sin x\\Rightarrow y'=\\cos x\\).</li>\n<li>Karesini al: \\((y')^2=\\cos^2x\\).</li>\n<li>Kökün içine \\(1+\\) ekle: \\(L=\\int_0^{\\pi}\\sqrt{1+\\cos^2x}\\,dx\\approx3.820\\).</li></ol>\n<h4>Elle çözülebilen özel durumlar</h4>\n<p>Çoğu yay uzunluğu integralinin ilkeli yoktur; AP bu yüzden onları genellikle calculator bölümüne koyar. Elle çözülebilenlerde \\(1+(y')^2\\) bir tam karedir:</p>\n<table><thead><tr><th>Eğri</th><th>\\(1+(y')^2\\)</th><th>\\(L\\)</th></tr></thead>\n<tbody>\n<tr><td>\\(y=\\frac23x^{3/2}\\), \\(0\\le x\\le3\\)</td><td>\\(1+x\\)</td><td>\\(\\int_0^3\\sqrt{1+x}\\,dx=\\frac{14}{3}\\)</td></tr>\n<tr><td>\\(y=\\ln(\\cos x)\\), \\(0\\le x\\le\\frac\\pi3\\)</td><td>\\(1+\\tan^2x=\\sec^2x\\)</td><td>\\(\\int_0^{\\pi/3}\\sec x\\,dx=\\ln(2+\\sqrt3)\\)</td></tr>\n</tbody></table>\n<div class=\"kn-dikkat\">\\(\\sqrt{1+\\tan^2x}\\ne1+\\tan x\\). Karekök toplama dağılmaz.</div>\n<h4>Akıl kontrolü: kiriş</h4>\n<p>Uç noktaları birleştiren doğru parçasının (chord) uzunluğu \\(\\sqrt{(b-a)^2+(f(b)-f(a))^2}\\)'dir. Eğri bundan <strong>kısa olamaz</strong>. \\(y=e^x\\), \\(0\\le x\\le1\\) için kiriş \\(\\approx1.988\\), yay \\(\\approx2.003\\): mantıklı.</p>\n<h4>“Distance traveled” bağlantısı</h4>\n<p>CED başlığındaki “distance traveled”, eğri üzerinde hareket eden bir noktanın aldığı yolun yay uzunluğuna eşit olmasıdır. Parametrik hareketteki karşılığı (Ünite 9) \\(\\int_a^b\\sqrt{(x'(t))^2+(y'(t))^2}\\,dt\\)'dir; buradaki formül bunun \\(x=t\\) özel hâlidir.</p>\n<h4>Hesap makinesi bölümü</h4>\n<p>Türevi elle al, integrali hesap makinesine ver: fnInt(√(1+(2X)²), X, 0, 2). Yay uzunluğu bilinen bir sayıya eşitse ve sınır bilinmiyorsa \\(Y_1=\\int_0^X\\sqrt{1+4t^2}\\,dt\\) ve \\(Y_2=3\\)'ü kesiştir.</p>\n<div class=\"kn-kural\"><strong>FRQ kalıbı:</strong> “The length of the curve from \\(x=0\\) to \\(x=1\\) is \\(\\int_0^1\\sqrt{1+\\left(e^x\\right)^2}\\,dx\\approx2.003\\).”</div>",
+   "ornekler": [
+    {
+     "soru": "\\(y=\\frac23x^{3/2}\\) eğrisinin \\(x=0\\)'dan \\(x=8\\)'e uzunluğunu bulun.",
+     "cozum": [
+      "\\(y'=x^{1/2}\\) ⇒ \\(1+(y')^2=1+x\\).",
+      "\\(L=\\int_0^8\\sqrt{1+x}\\,dx=\\left[\\frac23(1+x)^{3/2}\\right]_0^8=\\frac23(27-1)=\\frac{52}{3}\\)."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi) \\(y=x^2\\) eğrisinin \\(x=0\\)'dan \\(x=2\\)'ye uzunluğunu bulun ve kirişle karşılaştırın.",
+     "cozum": [
+      "\\(y'=2x\\) ⇒ \\(L=\\int_0^2\\sqrt{1+4x^2}\\,dx\\approx4.647\\).",
+      "Kiriş: \\((0,0)\\)–\\((2,4)\\), \\(\\sqrt{4+16}\\approx4.472\\). \\(L\\gt\\) kiriş ✓."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi) \\(x=\\cos y\\), \\(0\\le y\\le\\pi\\) eğrisinin uzunluğu nedir?",
+     "cozum": [
+      "\\(\\frac{dx}{dy}=-\\sin y\\) ⇒ \\(L=\\int_0^{\\pi}\\sqrt{1+\\sin^2y}\\,dy\\).",
+      "Hesap makinesi: \\(L\\approx3.820\\). (Kiriş \\(\\sqrt{4+\\pi^2}\\approx3.724\\), daha kısa ✓.)"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Önce türevi ayrı satırda yaz, sonra (y')²'yi; kök içinde 1 + (y')² olduğunu her seferinde kontrol et.",
+    "Calculator'da integrand'ı √(1 + (türev)²) olarak parantezli gir.",
+    "Sonucu kiriş uzunluğuyla karşılaştır; yay daha kısa çıkarsa kurulum yanlıştır.",
+    "x = g(y) biçimindeki eğride dy ile integral al ve y sınırlarını kullan."
+   ],
+   "sikHatalar": [
+    "Kökü unutmak ya da kökü terimlere dağıtmak (√(1 + a²) ≠ 1 + a).",
+    "Türevin karesi yerine türevi ya da fonksiyonun kendisini kök içine yazmak.",
+    "x = g(y) eğrisinde dx ile integral almak."
+   ],
+   "terimler": [
+    {
+     "en": "arc length",
+     "tr": "yay uzunluğu"
+    },
+    {
+     "en": "smooth curve",
+     "tr": "düzgün eğri (türevi sürekli)"
+    },
+    {
+     "en": "chord",
+     "tr": "kiriş"
+    },
+    {
+     "en": "planar curve",
+     "tr": "düzlemsel eğri"
+    }
+   ]
+  }
+ ]
+}

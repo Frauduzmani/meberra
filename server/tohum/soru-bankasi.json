@@ -1,5 +1,5 @@
 {
- "surum": 13,
+ "surum": 14,
  "olusturma": "2026-10-21T08:13:59.509Z",
  "aciklama": "Meberra soru bankası tohumu — tek doğruluk kaynağı. Statik olarak SUNULMAZ. Üretici: node araclar/soru-aktar.js",
  "sorular": [
@@ -123400,8 +123400,5043 @@
     }
    },
    "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_1",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 33,
+   "numara": 34,
+   "konu": "8.1 Finding the Average Value of a Function on an Interval",
+   "zorluk": "easy",
+   "govde": "What is the average value of $f(x)=6x^2-4x$ on the interval $[1,3]$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "18"
+    },
+    {
+     "id": "B",
+     "text": "36"
+    },
+    {
+     "id": "C",
+     "text": "12"
+    },
+    {
+     "id": "D",
+     "text": "22"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Formül: $f_{avg}=\\frac{1}{b-a}\\int_a^b f(x)\\,dx$.<br/>2. $\\int_1^3(6x^2-4x)\\,dx=\\left[2x^3-2x^2\\right]_1^3=(54-18)-(2-2)=36$.<br/>3. $f_{avg}=\\frac{36}{3-1}=18$.",
+   "genel_hatirlatma": "Ortalama değer = integral ÷ aralık uzunluğu. Uç değerlerin ortalaması yalnız doğrusal fonksiyonlarda aynı sonucu verir.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Aralık uzunluğuna bölmeyi unutmak.",
+     "aciklama": "$\\int_1^3 f(x)\\,dx=36$ integralin kendisidir; ortalama değer için $b-a=2$'ye bölünür."
+    },
+    "C": {
+     "etiket": "$b-a$ yerine $b$'ye bölmek.",
+     "aciklama": "Bölen aralığın uzunluğu $3-1=2$'dir, $3$ değil."
+    },
+    "D": {
+     "etiket": "Uç değerlerin ortalamasını almak.",
+     "aciklama": "$\\frac{f(1)+f(3)}{2}=\\frac{2+42}{2}=22$; bu, fonksiyonun ortalama değeri değildir (fonksiyon doğrusal değil)."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.1)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Ortalama değer formülü",
+    "ipucu": "Önce integrali al, sonra (b − a)'ya böl.",
+    "sikHata": "Bölmeyi unutmak ya da uç değerlerin ortalamasını almak",
+    "cedKonu": "8.1",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_2",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 34,
+   "numara": 35,
+   "konu": "8.1 Finding the Average Value of a Function on an Interval",
+   "zorluk": "medium",
+   "govde": "<em>(Graphing calculator allowed.)</em> The temperature in a greenhouse is modeled by $T(t)=18+6\\cos(0.3t)$ degrees Celsius, where $t$ is measured in hours, $0\\le t\\le 8$. What is the average temperature in the greenhouse over this time interval?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "18.788 °C"
+    },
+    {
+     "id": "B",
+     "text": "19.689 °C"
+    },
+    {
+     "id": "C",
+     "text": "20.174 °C"
+    },
+    {
+     "id": "D",
+     "text": "157.509 °C"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $T_{avg}=\\frac{1}{8-0}\\int_0^8\\left(18+6\\cos(0.3t)\\right)dt$.<br/>2. Hesap makinesi (radyan modu): $\\int_0^8 T(t)\\,dt\\approx157.509$.<br/>3. $T_{avg}\\approx\\frac{157.509}{8}\\approx19.689$ °C.",
+   "genel_hatirlatma": "Calculator bölümünde integrali fnInt ile al, sonra aralık uzunluğuna böl; cevabı üç ondalıkla ver. Radyan modu şart.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Uç noktaların ortalamasını almak.",
+     "aciklama": "$\\frac{T(0)+T(8)}{2}\\approx18.788$; bu, eğrinin altındaki alanı hesaba katmaz."
+    },
+    "C": {
+     "etiket": "Orta noktadaki değeri ortalama sanmak.",
+     "aciklama": "$T(4)\\approx20.174$ yalnız bir anlık değerdir; ortalama değer integral gerektirir."
+    },
+    "D": {
+     "etiket": "8'e bölmeyi unutmak.",
+     "aciklama": "$\\int_0^8 T(t)\\,dt\\approx157.509$ “derece·saat” birimindedir; ortalama için $8$'e bölünür."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.1)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Bağlamda ortalama değer (hesap makineli)",
+    "ipucu": "fnInt(T, t, 0, 8) / 8",
+    "sikHata": "Ortalama değeri uç değerlerin ortalaması sanmak",
+    "cedKonu": "8.1",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_3",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 35,
+   "numara": 36,
+   "konu": "8.1 Finding the Average Value of a Function on an Interval",
+   "zorluk": "medium",
+   "govde": "A function $f$ is continuous on $[0,10]$. The average value of $f$ on $[0,4]$ is $3$, and the average value of $f$ on $[4,10]$ is $5$. What is the average value of $f$ on $[0,10]$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "4"
+    },
+    {
+     "id": "B",
+     "text": "8"
+    },
+    {
+     "id": "C",
+     "text": "42"
+    },
+    {
+     "id": "D",
+     "text": "4.2"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $\\int_0^4 f\\,dx=4\\cdot3=12$ ve $\\int_4^{10} f\\,dx=6\\cdot5=30$.<br/>2. $\\int_0^{10} f\\,dx=12+30=42$.<br/>3. $f_{avg}=\\frac{42}{10}=4.2$.",
+   "genel_hatirlatma": "Ortalama değer bilgisini integrale çevir: $\\int_a^b f\\,dx=(b-a)\\cdot f_{avg}$. İntegraller toplanır, ortalamalar toplanmaz.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "İki ortalamanın düz ortalamasını almak.",
+     "aciklama": "$\\frac{3+5}{2}=4$ aralıkların uzunluklarının farklı (4 ve 6) olduğunu yok sayar."
+    },
+    "B": {
+     "etiket": "Ortalamaları toplamak.",
+     "aciklama": "Ortalamalar toplanmaz; toplanabilen şey integrallerdir: $12+30=42$."
+    },
+    "C": {
+     "etiket": "Toplam integrali ortalama sanmak.",
+     "aciklama": "$\\int_0^{10} f(x)\\,dx=42$; ortalama değer için $10$'a bölmek gerekir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.1)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Ortalama değerden integrale geçiş",
+    "ipucu": "Her parçanın integralini (uzunluk × ortalama) bul.",
+    "sikHata": "Ortalamaların ortalamasını almak",
+    "cedKonu": "8.1",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_4",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 36,
+   "numara": 37,
+   "konu": "8.1 Finding the Average Value of a Function on an Interval",
+   "zorluk": "hard",
+   "govde": "Let $f(x)=\\sqrt{x}$. By the Mean Value Theorem for Integrals, there is a number $c$ in $(0,9)$ such that $f(c)$ equals the average value of $f$ on $[0,9]$. What is $c$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "2"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{9}{2}$"
+    },
+    {
+     "id": "C",
+     "text": "4"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{9}{4}$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $\\int_0^9\\sqrt{x}\\,dx=\\left[\\frac23x^{3/2}\\right]_0^9=\\frac23\\cdot27=18$.<br/>2. $f_{avg}=\\frac{18}{9}=2$.<br/>3. $f(c)=2\\Rightarrow\\sqrt c=2\\Rightarrow c=4$, ve $4\\in(0,9)$.",
+   "genel_hatirlatma": "İntegraller için ortalama değer teoremi: sürekli $f$ için $f(c)=\\frac{1}{b-a}\\int_a^b f(x)\\,dx$ olacak şekilde bir $c$ vardır. Önce ortalamayı bul, sonra $f(c)$'yi ona eşitle.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$f(c)$ ile $c$'yi karıştırmak.",
+     "aciklama": "Ortalama değer $2$'dir, yani $f(c)=2$. Soru $c$'yi istiyor: $\\sqrt{c}=2\\Rightarrow c=4$."
+    },
+    "B": {
+     "etiket": "Aralığın orta noktasını almak.",
+     "aciklama": "Orta nokta yalnız $f$ doğrusal olsaydı doğru olurdu; $\\sqrt{4.5}\\approx2.12\\ne2$."
+    },
+    "D": {
+     "etiket": "Ortalama değeri uç değerlerin ortalaması sanmak.",
+     "aciklama": "$\\frac{f(0)+f(9)}{2}=\\frac{0+3}{2}=\\frac32$ alıp $\\sqrt c=\\frac32\\Rightarrow c=\\frac94$ bulunur. Bu yalnız doğrusal fonksiyonlarda geçerlidir; ortalama değer $\\frac19\\int_0^9\\sqrt x\\,dx=2$'dir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.1)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "İntegraller için ortalama değer teoremi",
+    "ipucu": "f_avg'ı bul, sonra f(c) = f_avg denklemini çöz.",
+    "sikHata": "c yerine f(c)'yi cevap vermek",
+    "cedKonu": "8.1",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_5",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 37,
+   "numara": 38,
+   "konu": "8.2 Connecting Position, Velocity, and Acceleration of Functions Using Integrals",
+   "zorluk": "medium",
+   "govde": "<em>(Graphing calculator allowed.)</em> A particle moves along the $x$-axis with velocity $v(t)=3\\sin(0.9t)-1$ for $0\\le t\\le 5$. What is the total distance traveled by the particle over this interval?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "-0.964"
+    },
+    {
+     "id": "B",
+     "text": "0.964"
+    },
+    {
+     "id": "C",
+     "text": "7.690"
+    },
+    {
+     "id": "D",
+     "text": "8.064"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Toplam yol $=\\int_0^5|v(t)|\\,dt$.<br/>2. Hesap makinesiyle doğrudan $\\int_0^5|3\\sin(0.9t)-1|\\,dt\\approx8.064$ (radyan modu).<br/>3. Kontrol: $v=0$ köklerinde ($t\\approx0.378$, $t\\approx3.113$) bölüp parçaların mutlak değerlerini toplamak da aynı sonucu verir.",
+   "genel_hatirlatma": "Total distance $=\\int_a^b|v(t)|\\,dt$; displacement $=\\int_a^b v(t)\\,dt$. Hesap makinesinde mutlak değeri integralin içine yaz.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yer değiştirmeyi (displacement) toplam yol sanmak.",
+     "aciklama": "$\\int_0^5 v(t)\\,dt\\approx-0.964$ net yer değiştirmedir; sola ve sağa hareketler birbirini götürür."
+    },
+    "B": {
+     "etiket": "Yer değiştirmenin mutlak değerini almak.",
+     "aciklama": "$\\left|\\int_0^5 v\\,dt\\right|$ yine net değişimdir. Mutlak değer integralin <em>içinde</em> olmalı: $\\int_0^5|v(t)|\\,dt$."
+    },
+    "C": {
+     "etiket": "Bir yön değişimini kaçırmak.",
+     "aciklama": "$v$, $t\\approx0.378$ ve $t\\approx3.113$'te işaret değiştirir. Yalnız $t\\approx3.113$'te bölmek ilk sola gidişi yanlış sayar."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.2)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Toplam yol ve yer değiştirme farkı",
+    "ipucu": "fnInt(abs(v(t)), t, 0, 5)",
+    "sikHata": "∫v dt'yi toplam yol sanmak",
+    "cedKonu": "8.2",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_6",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 38,
+   "numara": 39,
+   "konu": "8.2 Connecting Position, Velocity, and Acceleration of Functions Using Integrals",
+   "zorluk": "medium",
+   "govde": "<em>(Graphing calculator allowed.)</em> A particle moves along the $x$-axis so that its velocity is $v(t)=\\ln(t^2+1)-1$. At time $t=0$, the particle is at $x=3$. What is the position of the particle at $t=4$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "4.984"
+    },
+    {
+     "id": "B",
+     "text": "1.984"
+    },
+    {
+     "id": "C",
+     "text": "1.833"
+    },
+    {
+     "id": "D",
+     "text": "4.833"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Net değişim teoremi: $x(4)=x(0)+\\int_0^4 v(t)\\,dt$.<br/>2. Hesap makinesi: $\\int_0^4\\left(\\ln(t^2+1)-1\\right)dt\\approx1.984$.<br/>3. $x(4)\\approx3+1.984=4.984$.",
+   "genel_hatirlatma": "Konum = başlangıç konumu + hızın integrali: $x(b)=x(a)+\\int_a^b v(t)\\,dt$.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Başlangıç konumunu eklemeyi unutmak.",
+     "aciklama": "$\\int_0^4 v\\,dt\\approx1.984$ yalnız konumdaki <em>değişimdir</em>; $x(4)=x(0)+\\int_0^4 v\\,dt$."
+    },
+    "C": {
+     "etiket": "Konum yerine hızı hesaplamak.",
+     "aciklama": "$v(4)=\\ln17-1\\approx1.833$; bu, $t=4$'teki hızdır, konum değil."
+    },
+    "D": {
+     "etiket": "Başlangıç konumuna hızı eklemek.",
+     "aciklama": "$3+v(4)$ birimsel olarak tutarsızdır: konuma hız değil, hızın integrali (yer değiştirme) eklenir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.2)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Başlangıç koşuluyla konum",
+    "ipucu": "x(4) = x(0) + ∫₀⁴ v(t) dt",
+    "sikHata": "Başlangıç konumunu eklememek",
+    "cedKonu": "8.2",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_7",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 39,
+   "numara": 40,
+   "konu": "8.2 Connecting Position, Velocity, and Acceleration of Functions Using Integrals",
+   "zorluk": "hard",
+   "govde": "A particle moves along the $x$-axis for $0\\le t\\le 7$. Its velocity $v(t)$ is piecewise linear: the graph of $v$ consists of line segments connecting the points $(0,4)$, $(2,0)$, $(5,-3)$, and $(7,0)$. At $t=0$, the particle is at $x=1$. What are the position of the particle at $t=7$ and the total distance it travels for $0\\le t\\le 7$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$x(7)=-2.5$; total distance $=3.5$"
+    },
+    {
+     "id": "B",
+     "text": "$x(7)=-2.5$; total distance $=11.5$"
+    },
+    {
+     "id": "C",
+     "text": "$x(7)=-3.5$; total distance $=11.5$"
+    },
+    {
+     "id": "D",
+     "text": "$x(7)=12.5$; total distance $=11.5$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Alanlar: $[0,2]$ üçgen, $\\frac12\\cdot2\\cdot4=4$ (üstte); $[2,5]$ üçgen, $\\frac12\\cdot3\\cdot3=4.5$ (altta); $[5,7]$ üçgen, $\\frac12\\cdot2\\cdot3=3$ (altta).<br/>2. Yer değiştirme $=4-4.5-3=-3.5$ ⇒ $x(7)=1-3.5=-2.5$.<br/>3. Toplam yol $=4+4.5+3=11.5$.",
+   "genel_hatirlatma": "Hız grafiğinde: işaretli alan ⇒ yer değiştirme (konum için başlangıç değerini ekle), işaretsiz alanların toplamı ⇒ toplam yol.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Toplam yolu yer değiştirmenin büyüklüğü sanmak.",
+     "aciklama": "Net yer değiştirme $4-4.5-3=-3.5$'tir; toplam yol işaretsiz alanların toplamıdır: $4+4.5+3=11.5$."
+    },
+    "C": {
+     "etiket": "Başlangıç konumunu eklemeyi unutmak.",
+     "aciklama": "$-3.5$ yalnız yer değiştirmedir; $x(7)=1+(-3.5)=-2.5$."
+    },
+    "D": {
+     "etiket": "Konumu bulurken alanları işaretsiz toplamak.",
+     "aciklama": "$1+11.5=12.5$ eksenin altındaki alanları da pozitif sayar. Konum için işaretli alan kullanılır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.2)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Hız grafiğinden konum ve toplam yol",
+    "ipucu": "Her parçayı geometrik alanla hesapla; eksenin altındakiler negatif.",
+    "sikHata": "Konumda mutlak alan kullanmak",
+    "cedKonu": "8.2",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_8",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 40,
+   "numara": 41,
+   "konu": "8.2 Connecting Position, Velocity, and Acceleration of Functions Using Integrals",
+   "zorluk": "hard",
+   "govde": "<em>(Graphing calculator allowed.)</em> A particle moves along the $x$-axis with velocity $v(t)=e^{\\sin t}-1.5$ for $0\\le t\\le 6$. The particle is at $x=4$ when $t=0$. What is the greatest position (the maximum value of $x(t)$) of the particle on this interval?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "1.606"
+    },
+    {
+     "id": "B",
+     "text": "3.890"
+    },
+    {
+     "id": "C",
+     "text": "5.606"
+    },
+    {
+     "id": "D",
+     "text": "2.708"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Adaylar: uç noktalar ve $v(t)=0$ olan noktalar. Hesap makinesiyle $e^{\\sin t}=1.5$ ⇒ $t\\approx0.417$ ve $t\\approx2.724$.<br/>2. $x(t)=4+\\int_0^t v(s)\\,ds$: $x(0)=4$, $x(0.417)\\approx3.890$, $x(2.724)\\approx5.606$, $x(6)\\approx2.708$.<br/>3. En büyük değer $\\approx5.606$ ($v$ burada pozitiften negatife geçer).",
+   "genel_hatirlatma": "Konumun maksimumu için aday testi (candidates test): $x(t)=x(0)+\\int_0^t v$ değerini uç noktalarda ve $v=0$ köklerinde hesapla, karşılaştır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Başlangıç konumunu eklemeyi unutmak.",
+     "aciklama": "$\\int_0^{2.724} v\\,dt\\approx1.606$ yer değiştirmedir; $4$ eklenmelidir."
+    },
+    "B": {
+     "etiket": "Yanlış kritik noktayı seçmek.",
+     "aciklama": "$t\\approx0.417$'te $v$ negatiften pozitife geçer; bu, konumun yerel <em>minimumudur</em>: $x\\approx3.890$."
+    },
+    "D": {
+     "etiket": "Sadece son noktayı değerlendirmek.",
+     "aciklama": "$x(6)\\approx2.708$; $t\\approx2.724$'ten sonra parçacık sola gittiği için bu değer en büyük değildir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.2)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Hızdan konum ekstremumu",
+    "ipucu": "Kökleri bul, her aday için 4 + fnInt(v, 0, t) hesapla.",
+    "sikHata": "Yerel minimumu maksimum sanmak",
+    "cedKonu": "8.2",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_9",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 41,
+   "numara": 42,
+   "konu": "8.3 Using Accumulation Functions and Definite Integrals in Applied Contexts",
+   "zorluk": "easy",
+   "govde": "Water is pumped into a swimming pool at a rate of $R(t)$ liters per minute, where $t$ is measured in minutes. Which of the following is the best interpretation of $\\int_{10}^{30}R(t)\\,dt$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The rate, in liters per minute, at which water is pumped into the pool at $t=30$ minutes"
+    },
+    {
+     "id": "B",
+     "text": "The average rate, in liters per minute, at which water is pumped into the pool from $t=10$ to $t=30$ minutes"
+    },
+    {
+     "id": "C",
+     "text": "The number of liters of water pumped into the pool from $t=10$ to $t=30$ minutes"
+    },
+    {
+     "id": "D",
+     "text": "The total amount of water, in liters, in the pool at $t=30$ minutes"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $R(t)$ birimi litre/dakika, $dt$ birimi dakika ⇒ integralin birimi litre.<br/>2. Bir hızın belirli integrali o aralıktaki toplam değişimdir.<br/>3. Yorum: 10. ve 30. dakikalar arasında havuza pompalanan su miktarı (litre).",
+   "genel_hatirlatma": "Hızın integrali = aralıktaki net birikim. Yorumda zaman aralığı, büyüklük ve birim mutlaka yer alır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "İntegrali anlık hız sanmak.",
+     "aciklama": "Anlık hız $R(30)$'dur. Bir hızın integrali birikmiş <em>miktarı</em> verir (litre)."
+    },
+    "B": {
+     "etiket": "Ortalama değer bölmesini unutmak.",
+     "aciklama": "Ortalama hız $\\frac{1}{20}\\int_{10}^{30}R(t)\\,dt$ olurdu; burada $20$'ye bölme yok."
+    },
+    "D": {
+     "etiket": "Değişimi toplam miktar sanmak.",
+     "aciklama": "İntegral yalnız 10–30 dakika arasında <em>eklenen</em> suyu verir; havuzdaki toplam su başlangıç miktarına bağlıdır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.3)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Hızın integralini bağlamda yorumlamak",
+    "ipucu": "Birim analizi: (litre/dakika)·dakika = litre",
+    "sikHata": "İntegrali toplam miktar sanmak",
+    "cedKonu": "8.3",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_10",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 42,
+   "numara": 43,
+   "konu": "8.3 Using Accumulation Functions and Definite Integrals in Applied Contexts",
+   "zorluk": "medium",
+   "govde": "<em>(Graphing calculator allowed.)</em> A tank contains 50 gallons of water at time $t=0$. Water flows into the tank at a rate of $E(t)=10+4\\sin\\left(\\frac{t}{2}\\right)$ gallons per hour and drains out at a rate of $D(t)=2+0.4t^2$ gallons per hour, for $0\\le t\\le 6$. To the nearest thousandth, how many gallons of water are in the tank at $t=6$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "35.120"
+    },
+    {
+     "id": "B",
+     "text": "85.120"
+    },
+    {
+     "id": "C",
+     "text": "125.920"
+    },
+    {
+     "id": "D",
+     "text": "44.164"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $A(6)=50+\\int_0^6\\left(E(t)-D(t)\\right)dt$.<br/>2. Hesap makinesi: $\\int_0^6\\left(10+4\\sin\\frac t2-2-0.4t^2\\right)dt\\approx35.120$.<br/>3. $A(6)\\approx85.120$ galon.",
+   "genel_hatirlatma": "Rate in – rate out: $A(t)=A(0)+\\int_0^t(\\text{giriş}-\\text{çıkış})\\,ds$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Başlangıç miktarını eklememek.",
+     "aciklama": "$\\int_0^6(E-D)\\,dt\\approx35.120$ net değişimdir; tankta başlangıçta 50 galon vardı."
+    },
+    "C": {
+     "etiket": "Çıkış hızını yok saymak.",
+     "aciklama": "Yalnız giriş integralini eklemek, boşalan suyu hesaba katmaz."
+    },
+    "D": {
+     "etiket": "Hızları integral almadan kullanmak.",
+     "aciklama": "$50+E(6)-D(6)$ bir hızı miktara ekler; miktar değişimi için $\\int_0^6(E(t)-D(t))\\,dt$ gerekir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.3)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Giriş-çıkış hızlarıyla birikim",
+    "ipucu": "50 + fnInt(E − D, 0, 6)",
+    "sikHata": "Başlangıç miktarını unutmak",
+    "cedKonu": "8.3",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_11",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 43,
+   "numara": 44,
+   "konu": "8.3 Using Accumulation Functions and Definite Integrals in Applied Contexts",
+   "zorluk": "hard",
+   "govde": "<em>(Graphing calculator allowed.)</em> Sand is added to a pile at a rate of $A(t)=8\\sin\\left(\\frac t3\\right)+3$ tons per hour and is removed at a rate of $B(t)=0.25t^2+1$ tons per hour, for $0\\le t\\le 10$. At $t=0$, the pile contains 20 tons of sand. What is the maximum amount of sand in the pile on the interval $0\\le t\\le 10$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "47.997 tons"
+    },
+    {
+     "id": "B",
+     "text": "27.997 tons"
+    },
+    {
+     "id": "C",
+     "text": "34.474 tons"
+    },
+    {
+     "id": "D",
+     "text": "4.227 tons"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $S(t)=20+\\int_0^t(A-B)\\,dx$; $S'(t)=A(t)-B(t)$.<br/>2. $A(t)=B(t)$ hesap makinesiyle: $t\\approx6.066$ ($A-B$ pozitiften negatife geçer).<br/>3. Adaylar: $S(0)=20$, $S(6.066)\\approx47.997$, $S(10)\\approx4.227$. Maksimum $\\approx47.997$ ton.",
+   "genel_hatirlatma": "Birikimin maksimumu, giriş hızı = çıkış hızı olan anda ya da uç noktada oluşur; aday testini (candidates test) uygula.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Başlangıç miktarını eklememek.",
+     "aciklama": "$\\int_0^{6.066}(A-B)\\,dt\\approx27.997$ yalnız artıştır; yığında başta 20 ton vardı."
+    },
+    "C": {
+     "etiket": "Net hızın maksimum olduğu anı seçmek.",
+     "aciklama": "$t\\approx2.952$'te $A-B$ en büyüktür, yani yığın en <em>hızlı</em> büyür; ama $A-B\\gt0$ olduğu sürece yığın büyümeye devam eder."
+    },
+    "D": {
+     "etiket": "Yalnız son noktayı değerlendirmek.",
+     "aciklama": "$t=10$'daki miktar $\\approx4.227$ ton; $t\\approx6.066$'ten sonra çıkış girişi aştığından bu en büyük değer değildir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.3)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Birikim fonksiyonunun maksimumu",
+    "ipucu": "A(t) = B(t) kökünü bul, adayları karşılaştır.",
+    "sikHata": "Net hızın maksimumunu miktarın maksimumu sanmak",
+    "cedKonu": "8.3",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_12",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 44,
+   "numara": 45,
+   "konu": "8.3 Using Accumulation Functions and Definite Integrals in Applied Contexts",
+   "zorluk": "medium",
+   "govde": "<em>(Graphing calculator allowed.)</em> Snow falls on a parking lot at a rate of $s(t)=3+2\\sin\\left(\\frac{t^2}{5}\\right)$ centimeters per hour, and a machine removes snow at a rate of $p(t)=1+0.8t$ centimeters per hour, where $t$ is measured in hours, $0\\le t\\le 6$. Which of the following statements about the depth of snow at $t=3$ gives a correct conclusion with a valid reason?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "The depth is decreasing, because $p(t)$ is increasing at $t=3$."
+    },
+    {
+     "id": "B",
+     "text": "The depth is increasing, because $\\int_0^3\\left(s(t)-p(t)\\right)dt\\gt0$."
+    },
+    {
+     "id": "C",
+     "text": "The depth is decreasing, because $s'(3)\\lt0$."
+    },
+    {
+     "id": "D",
+     "text": "The depth is increasing, because $s(3)-p(3)\\approx1.548\\gt0$."
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Derinlik $H(t)=H(0)+\\int_0^t(s-p)\\,dx$ ⇒ $H'(t)=s(t)-p(t)$.<br/>2. Hesap makinesi: $s(3)=3+2\\sin(1.8)\\approx4.948$, $p(3)=3.4$.<br/>3. $H'(3)\\approx1.548\\gt0$ ⇒ derinlik artıyor.",
+   "genel_hatirlatma": "“Increasing or decreasing at $t=c$?” sorusunun gerekçesi: $A'(c)=\\text{giriş}(c)-\\text{çıkış}(c)$'nin işareti.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Çıkış hızının artmasını miktarın azalması sanmak.",
+     "aciklama": "Derinliğin değişim hızı $s(3)-p(3)$'tür; $p$'nin artıyor olması derinliğin azaldığını göstermez."
+    },
+    "B": {
+     "etiket": "Birikmiş değişimle anlık değişimi karıştırmak.",
+     "aciklama": "İntegral 0–3 arasındaki toplam değişimi verir; $t=3$ anında artıp artmadığı ise türev $s(3)-p(3)$'e bağlıdır. Sonuç doğru olsa da gerekçe yanlış."
+    },
+    "C": {
+     "etiket": "Yağış hızının türevini kullanmak.",
+     "aciklama": "$s'(3)\\lt0$ yağışın yavaşladığını söyler; derinlik değişimi $s(3)-p(3)$'ün işaretiyle belirlenir (o da pozitif)."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.3)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Birikimin anlık değişim yönü",
+    "ipucu": "A'(3) = s(3) − p(3) işaretine bak.",
+    "sikHata": "İntegral değerini gerekçe göstermek",
+    "cedKonu": "8.3",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_13",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 45,
+   "numara": 46,
+   "konu": "8.3 Using Accumulation Functions and Definite Integrals in Applied Contexts",
+   "zorluk": "hard",
+   "govde": "Oil enters a storage tank at a rate of $r(t)=6t-t^2$ barrels per hour and is pumped out at a constant rate of $5$ barrels per hour, for $0\\le t\\le 6$. At $t=0$ the tank holds $10$ barrels. What is the maximum amount of oil in the tank on $0\\le t\\le 6$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$13$ barrels"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{25}{3}$ barrels"
+    },
+    {
+     "id": "C",
+     "text": "$16$ barrels"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{55}{3}$ barrels"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $A'(t)=6t-t^2-5=-(t-1)(t-5)$; $A'=0$ ⇒ $t=1,\\,5$.<br/>2. $A(t)=10+\\left[3x^2-\\frac{x^3}{3}-5x\\right]_0^t$: $A(0)=10$, $A(1)=10-\\frac73=\\frac{23}{3}$, $A(5)=10+\\frac{25}{3}=\\frac{55}{3}$, $A(6)=16$.<br/>3. Maksimum $\\frac{55}{3}\\approx18.333$ varil ($t=5$).",
+   "genel_hatirlatma": "Aday testi: uç noktalar + giriş = çıkış olan anlar. $A'$ işareti $+$ dan $-$ ye geçtiği yerde yerel maksimum vardır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Giriş hızının maksimumunda durmak.",
+     "aciklama": "$t=3$'te $r$ en büyüktür ama $r(t)\\gt5$ olduğu sürece ($1\\lt t\\lt5$) miktar artmaya devam eder. $A(3)=13$."
+    },
+    "B": {
+     "etiket": "Başlangıç miktarını eklememek.",
+     "aciklama": "$\\int_0^5(r-5)\\,dt=\\frac{25}{3}$ net değişimdir; tankta başta 10 varil vardı."
+    },
+    "C": {
+     "etiket": "Yalnız son noktayı almak.",
+     "aciklama": "$A(6)=16$; $t=5$'ten sonra çıkış girişten büyük olduğu için miktar azalır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.3)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Aday testiyle birikim maksimumu (elle)",
+    "ipucu": "r(t) = 5 denklemini çöz; 4 adayı karşılaştır.",
+    "sikHata": "Giriş hızının maksimumunu miktarın maksimumu sanmak",
+    "cedKonu": "8.3",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_14",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 46,
+   "numara": 47,
+   "konu": "8.4 Finding the Area Between Curves Expressed as Functions of x",
+   "zorluk": "easy",
+   "govde": "What is the area of the region bounded by the graphs of $y=4-x^2$ and $y=x+2$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{9}{2}$"
+    },
+    {
+     "id": "B",
+     "text": "$9$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{27}{2}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{7}{6}$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Kesişim: $4-x^2=x+2\\Rightarrow x^2+x-2=0\\Rightarrow x=-2,\\ 1$.<br/>2. Aradaki bir noktada ($x=0$): $4\\gt2$ ⇒ üst eğri parabol.<br/>3. $A=\\int_{-2}^{1}(2-x-x^2)\\,dx=\\left[2x-\\frac{x^2}{2}-\\frac{x^3}{3}\\right]_{-2}^{1}=\\frac76+\\frac{10}{3}=\\frac92$.",
+   "genel_hatirlatma": "$A=\\int_a^b(\\text{üst}-\\text{alt})\\,dx$; sınırlar kesişim noktalarıdır.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Alt eğriyi çıkarmamak.",
+     "aciklama": "$\\int_{-2}^{1}(4-x^2)\\,dx=9$ yalnız parabolün altındaki alandır; doğrunun altı çıkarılmalı."
+    },
+    "C": {
+     "etiket": "Eğrileri çıkarmak yerine toplamak.",
+     "aciklama": "$\\int_{-2}^{1}\\left[(4-x^2)+(x+2)\\right]dx=\\frac{27}{2}$; alan için üst − alt alınır."
+    },
+    "D": {
+     "etiket": "Alt sınırı 0 almak.",
+     "aciklama": "Kesişimler $x=-2$ ve $x=1$'dir; $\\int_0^1$ bölgenin yalnız bir parçasıdır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.4)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "İki eğri arası alan (x'e göre)",
+    "ipucu": "Kesişimleri bul, test noktasıyla üst eğriyi belirle.",
+    "sikHata": "Yanlış sınırlar",
+    "cedKonu": "8.4",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_15",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 47,
+   "numara": 48,
+   "konu": "8.4 Finding the Area Between Curves Expressed as Functions of x",
+   "zorluk": "medium",
+   "govde": "<em>(Graphing calculator allowed.)</em> What is the area of the region enclosed by the graphs of $y=2\\cos x$ and $y=x^2$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "1.350"
+    },
+    {
+     "id": "B",
+     "text": "3.412"
+    },
+    {
+     "id": "C",
+     "text": "2.701"
+    },
+    {
+     "id": "D",
+     "text": "2.699"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Hesap makinesiyle $2\\cos x=x^2$ ⇒ $x\\approx\\pm1.022$ (kökü <em>sakla</em>, yuvarlama).<br/>2. Aralıkta $2\\cos x\\ge x^2$ (ör. $x=0$: $2\\gt0$).<br/>3. $A=\\int_{-1.022}^{1.022}(2\\cos x-x^2)\\,dx\\approx2.701$.",
+   "genel_hatirlatma": "Calculator sorularında kesişimleri hesap makinesinde bul, hafızaya kaydet (STO) ve integralde o değişkeni kullan; ara değerleri yuvarlamak son cevabı bozar.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Simetriyi kullanırken 2 ile çarpmayı unutmak.",
+     "aciklama": "$\\int_0^{1.022}(2\\cos x-x^2)\\,dx\\approx1.350$ bölgenin yalnız sağ yarısıdır."
+    },
+    "B": {
+     "etiket": "Alt eğriyi çıkarmamak.",
+     "aciklama": "$\\int_{-1.022}^{1.022}2\\cos x\\,dx$ kosinüs eğrisinin altındaki alanın tamamıdır; $x^2$'nin altı çıkarılmalı."
+    },
+    "D": {
+     "etiket": "Kesişimi tahminle yuvarlamak.",
+     "aciklama": "Sınırları $\\pm1$ almak yanlış; kesişim $2\\cos x=x^2$'nin hesap makinesiyle bulunan kökü $x\\approx\\pm1.022$'dir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.4)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Sayısal kesişimle alan",
+    "ipucu": "intersect → STO A → fnInt(2cos x − x², −A, A)",
+    "sikHata": "Kesişimleri erken yuvarlamak",
+    "cedKonu": "8.4",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_16",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 48,
+   "numara": 49,
+   "konu": "8.4 Finding the Area Between Curves Expressed as Functions of x",
+   "zorluk": "easy",
+   "govde": "What is the area of the region bounded by the graphs of $y=\\sqrt{x}$ and $y=\\frac{x}{2}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{16}{3}$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{4}{3}$"
+    },
+    {
+     "id": "C",
+     "text": "$4$"
+    },
+    {
+     "id": "D",
+     "text": "$-\\frac{4}{3}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $\\sqrt x=\\frac x2\\Rightarrow x=\\frac{x^2}{4}\\Rightarrow x=0,\\ 4$.<br/>2. $x=1$'de $\\sqrt1=1\\gt\\frac12$ ⇒ üst eğri $\\sqrt x$.<br/>3. $A=\\int_0^4\\left(\\sqrt x-\\frac x2\\right)dx=\\frac{16}{3}-4=\\frac43$.",
+   "genel_hatirlatma": "Alan her zaman pozitiftir: $\\int(\\text{üst}-\\text{alt})\\,dx$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Alt eğriyi çıkarmamak.",
+     "aciklama": "$\\int_0^4\\sqrt x\\,dx=\\frac{16}{3}$; doğrunun altındaki $4$ birimlik alan çıkarılmalı."
+    },
+    "C": {
+     "etiket": "Yalnız alt eğrinin altındaki alanı almak.",
+     "aciklama": "$\\int_0^4\\frac x2\\,dx=4$ doğrunun altındaki üçgendir, bölgenin kendisi değil."
+    },
+    "D": {
+     "etiket": "Üst ve alt eğriyi ters çıkarmak.",
+     "aciklama": "$\\int_0^4\\left(\\frac x2-\\sqrt x\\right)dx=-\\frac43$; alan negatif olamaz, üst − alt alınmalı."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.4)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Kök ve doğru arasındaki alan",
+    "ipucu": "Kesişim için iki tarafın karesini al.",
+    "sikHata": "Üst/alt sırasını karıştırmak",
+    "cedKonu": "8.4",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_17",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 49,
+   "numara": 50,
+   "konu": "8.4 Finding the Area Between Curves Expressed as Functions of x",
+   "zorluk": "hard",
+   "govde": "<em>(Graphing calculator allowed.)</em> Let $R$ be the region bounded by the graph of $y=\\ln x$, the line $y=3-x$, and the $x$-axis. What is the area of $R$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "0.704"
+    },
+    {
+     "id": "B",
+     "text": "0.855"
+    },
+    {
+     "id": "C",
+     "text": "1.145"
+    },
+    {
+     "id": "D",
+     "text": "1.296"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Köşeler: $\\ln x=0\\Rightarrow x=1$; $3-x=0\\Rightarrow x=3$; $\\ln x=3-x$ ⇒ hesap makinesiyle $x\\approx2.208$.<br/>2. $[1,2.208]$'de üst sınır $\\ln x$, $[2.208,3]$'te üst sınır $3-x$; alt sınır her ikisinde $y=0$.<br/>3. $A=\\int_1^{2.208}\\ln x\\,dx+\\int_{2.208}^{3}(3-x)\\,dx\\approx0.855$.",
+   "genel_hatirlatma": "Üst sınır değişiyorsa bölgeyi o noktada iki integrale böl. (Alternatif: $y$'ye göre tek integral: $\\int_0^{0.792}\\left((3-y)-e^y\\right)dy$.)",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Bölgeyi bölmeden “üst − alt” yazmak.",
+     "aciklama": "$\\int_1^3(3-x-\\ln x)\\,dx$ ln eğrisi ile doğru arasındaki işaretli farkı verir; $x\\gt2.208$'de doğru eğrinin altına iner, bölgenin alt sınırı $x$-eksenidir."
+    },
+    "C": {
+     "etiket": "Yanlış bölgeyi almak.",
+     "aciklama": "$\\int_1^{2.208}(3-x-\\ln x)\\,dx$ eğri ile doğru <em>arasındaki</em> parçadır; $R$ ise $x$-ekseni ile sınırlıdır."
+    },
+    "D": {
+     "etiket": "Doğrunun sınırını yok saymak.",
+     "aciklama": "$\\int_1^3\\ln x\\,dx$ doğrunun üstündeki kısmı da sayar; $x\\gt2.208$'de üst sınır $3-x$'tir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.4)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Bölünmesi gereken bölge",
+    "ipucu": "Bölgeyi çiz; üst sınırın değiştiği x'te böl.",
+    "sikHata": "Tek integralde üst − alt yazmak",
+    "cedKonu": "8.4",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_18",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 50,
+   "numara": 51,
+   "konu": "8.4 Finding the Area Between Curves Expressed as Functions of x",
+   "zorluk": "easy",
+   "govde": "What is the area of the region bounded by the graphs of $y=x$, $y=\\frac{1}{x}$, and the line $x=3$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$4-\\ln 3$"
+    },
+    {
+     "id": "B",
+     "text": "$4+\\ln 3$"
+    },
+    {
+     "id": "C",
+     "text": "$8-\\ln 3$"
+    },
+    {
+     "id": "D",
+     "text": "$\\ln 3-4$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $x=\\frac1x\\Rightarrow x=1$ (birinci bölge, $x\\gt0$); sağ sınır $x=3$.<br/>2. $[1,3]$'te $x\\ge\\frac1x$.<br/>3. $A=\\int_1^3\\left(x-\\frac1x\\right)dx=\\left[\\frac{x^2}{2}-\\ln x\\right]_1^3=\\left(\\frac92-\\ln3\\right)-\\frac12=4-\\ln3$.",
+   "genel_hatirlatma": "Bölge bir dikey doğruyla kapanıyorsa o doğru bir integral sınırıdır; diğer sınır kesişimden gelir.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Alt eğriyi çıkarmak yerine eklemek.",
+     "aciklama": "Alan $\\int_1^3\\left(x-\\frac1x\\right)dx$'tir; $\\frac1x$'in integrali çıkarılır."
+    },
+    "C": {
+     "etiket": "$x$'in ilkelini $x^2$ almak.",
+     "aciklama": "$\\int x\\,dx=\\frac{x^2}{2}$'dir: $\\left[\\frac{x^2}{2}\\right]_1^3=4$, $8$ değil."
+    },
+    "D": {
+     "etiket": "Üst ve alt eğriyi ters yazmak.",
+     "aciklama": "$x\\gt1$ için $x\\gt\\frac1x$; ters çıkarma negatif sonuç verir, alan pozitiftir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.4)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Dikey doğruyla kapanan bölge",
+    "ipucu": "Sol sınır kesişim, sağ sınır x = 3.",
+    "sikHata": "ln teriminin işaretini karıştırmak",
+    "cedKonu": "8.4",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_19",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 51,
+   "numara": 52,
+   "konu": "8.4 Finding the Area Between Curves Expressed as Functions of x",
+   "zorluk": "hard",
+   "govde": "Let $R$ be the region bounded by the graph of $y=\\sqrt{x}$, the $x$-axis, and the line $x=9$. The vertical line $x=k$ divides $R$ into two regions of equal area. What is the value of $k$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "4.500"
+    },
+    {
+     "id": "B",
+     "text": "4.000"
+    },
+    {
+     "id": "C",
+     "text": "5.670"
+    },
+    {
+     "id": "D",
+     "text": "4.327"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Toplam alan: $\\int_0^9\\sqrt x\\,dx=\\frac23\\cdot27=18$; yarısı $9$.<br/>2. $\\int_0^k\\sqrt x\\,dx=\\frac23k^{3/2}=9\\Rightarrow k^{3/2}=13.5$.<br/>3. $k=13.5^{2/3}\\approx5.670$.",
+   "genel_hatirlatma": "“Alanı ikiye bölen doğru” sorularında: parçanın alanını $k$ cinsinden yaz, toplamın yarısına eşitle, $k$'yi çöz.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Aralığın orta noktasını almak.",
+     "aciklama": "$x=4.5$ tabanı ikiye böler, alanı değil; eğri sağda daha yüksek olduğu için sağ parça daha büyük olur."
+    },
+    "B": {
+     "etiket": "Ortalama değer ile alan bölmeyi karıştırmak.",
+     "aciklama": "$\\sqrt x$'in ortalama değeri $2$'dir ve $\\sqrt4=2$; ama bu, alanı ikiye bölen doğru değildir."
+    },
+    "D": {
+     "etiket": "İlkeldeki katsayıyı unutmak.",
+     "aciklama": "$\\int_0^k\\sqrt x\\,dx=\\frac23k^{3/2}$'dir. $\\frac23$'ü atıp $k^{3/2}=9$ yazmak yanlış $k$ verir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.4)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Alanı ikiye bölen dikey doğru",
+    "ipucu": "∫₀ᵏ f dx = (toplam alan)/2",
+    "sikHata": "Orta noktayı cevap sanmak",
+    "cedKonu": "8.4",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_20",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 52,
+   "numara": 53,
+   "konu": "8.5 Finding the Area Between Curves Expressed as Functions of y",
+   "zorluk": "easy",
+   "govde": "What is the area of the region bounded by the graph of $x=y^2$ and the line $x=9$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$18$"
+    },
+    {
+     "id": "B",
+     "text": "$72$"
+    },
+    {
+     "id": "C",
+     "text": "$54$"
+    },
+    {
+     "id": "D",
+     "text": "$36$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Yatay şeritler: sağ sınır $x=9$, sol sınır $x=y^2$.<br/>2. Kesişim: $y^2=9\\Rightarrow y=\\pm3$.<br/>3. $A=\\int_{-3}^{3}(9-y^2)\\,dy=\\left[9y-\\frac{y^3}{3}\\right]_{-3}^{3}=18-(-18)=36$.",
+   "genel_hatirlatma": "$y$'ye göre alan: $A=\\int_c^d(\\text{sağ}-\\text{sol})\\,dy$, sınırlar $y$ değerleridir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Bölgenin yalnız üst yarısını almak.",
+     "aciklama": "$y$ değerleri $-3$'ten $3$'e gider; $\\int_0^3(9-y^2)\\,dy=18$ yarısıdır."
+    },
+    "B": {
+     "etiket": "Sağ ve sol eğriyi toplamak.",
+     "aciklama": "$\\int_{-3}^{3}(9+y^2)\\,dy=72$; alan için sağ − sol alınır."
+    },
+    "C": {
+     "etiket": "Sol sınırı çıkarmamak.",
+     "aciklama": "$\\int_{-3}^{3}9\\,dy=54$ dikdörtgenin alanıdır; parabolün solundaki kısım çıkarılmalı."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.5)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "y'ye göre alan",
+    "ipucu": "Sağ − sol, y sınırları kesişimden.",
+    "sikHata": "Simetrik bölgenin yarısını almak",
+    "cedKonu": "8.5",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_21",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 53,
+   "numara": 54,
+   "konu": "8.5 Finding the Area Between Curves Expressed as Functions of y",
+   "zorluk": "medium",
+   "govde": "Let $R$ be the region in the first quadrant bounded by the graph of $y=\\sqrt{x}$, the line $y=2-x$, and the $x$-axis. Which of the following gives the area of $R$ using a single integral?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\int_0^1\\left(y^2-(2-y)\\right)dy$"
+    },
+    {
+     "id": "B",
+     "text": "$\\int_0^1\\left(2-y-y^2\\right)dy$"
+    },
+    {
+     "id": "C",
+     "text": "$\\int_0^2\\left(\\sqrt x-(2-x)\\right)dx$"
+    },
+    {
+     "id": "D",
+     "text": "$\\int_0^1\\left(2-y-\\sqrt y\\right)dy$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Sınırları $x$ cinsinden yaz: $y=\\sqrt x\\Rightarrow x=y^2$, $y=2-x\\Rightarrow x=2-y$.<br/>2. Kesişim: $y^2=2-y\\Rightarrow y=1$ ($y\\ge0$). $y$ aralığı $[0,1]$.<br/>3. Sağ − sol: $A=\\int_0^1\\left((2-y)-y^2\\right)dy=\\frac76$.",
+   "genel_hatirlatma": "$x$'e göre iki integral gerekiyorsa $y$'ye göre tek integral çoğu zaman mümkündür; önce her eğriyi $x=g(y)$ biçimine çevir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Sağ ve sol sınırı ters yazmak.",
+     "aciklama": "$0\\lt y\\lt1$ için sağ sınır doğrudur ($x=2-y$), sol sınır paraboldür ($x=y^2$)."
+    },
+    "C": {
+     "etiket": "x'e göre tek integralle “üst − alt” yazmak.",
+     "aciklama": "$x$'e göre üst sınır $x=1$'de $\\sqrt x$'ten $2-x$'e değişir ve alt sınır $x$-eksenidir; tek bir $\\sqrt x-(2-x)$ integrali bölgeyi vermez."
+    },
+    "D": {
+     "etiket": "Ters fonksiyonu yanlış almak.",
+     "aciklama": "$y=\\sqrt x\\Rightarrow x=y^2$'dir, $\\sqrt y$ değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.5)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "y'ye göre kurulum",
+    "ipucu": "Her eğriyi x = g(y) biçimine çevir.",
+    "sikHata": "Ters fonksiyonu yanlış almak",
+    "cedKonu": "8.5",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_22",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 54,
+   "numara": 55,
+   "konu": "8.5 Finding the Area Between Curves Expressed as Functions of y",
+   "zorluk": "easy",
+   "govde": "What is the area of the region bounded by the graph of $x=y^2-4y$ and the $y$-axis?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{32}{3}$"
+    },
+    {
+     "id": "B",
+     "text": "$-\\frac{32}{3}$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{16}{3}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{160}{3}$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $y$-ekseni kesişimleri: $y^2-4y=0\\Rightarrow y=0,\\ 4$.<br/>2. $0\\lt y\\lt4$'te $y^2-4y\\lt0$ ⇒ sağ sınır $x=0$.<br/>3. $A=\\int_0^4\\left(0-(y^2-4y)\\right)dy=\\left[2y^2-\\frac{y^3}{3}\\right]_0^4=32-\\frac{64}{3}=\\frac{32}{3}$.",
+   "genel_hatirlatma": "$y$-ekseni $x=0$ doğrusudur; sağ/sol kararını bir test $y$ değeriyle ver.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Sağ − sol sırasını ters almak.",
+     "aciklama": "Eğri $y$-ekseninin solundadır ($x\\le0$); sağ sınır $x=0$, sol sınır $x=y^2-4y$."
+    },
+    "C": {
+     "etiket": "Yalnız tepe noktasına kadar integral almak.",
+     "aciklama": "$y$ değerleri $0$'dan $4$'e gider; $\\int_0^2$ bölgenin yarısıdır."
+    },
+    "D": {
+     "etiket": "Parantezi açarken işaret hatası.",
+     "aciklama": "$0-(y^2-4y)=4y-y^2$'dir; $4y+y^2$ değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.5)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "y-ekseniyle sınırlı bölge",
+    "ipucu": "Test: y = 1 → x = −3 < 0, eğri solda.",
+    "sikHata": "Sağ/sol sırasını ters almak",
+    "cedKonu": "8.5",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_23",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 55,
+   "numara": 56,
+   "konu": "8.5 Finding the Area Between Curves Expressed as Functions of y",
+   "zorluk": "hard",
+   "govde": "<em>(Graphing calculator allowed.)</em> What is the area of the region enclosed by the graphs of $x=y^2$ and $x=2+\\sin y$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "2.893"
+    },
+    {
+     "id": "B",
+     "text": "3.771"
+    },
+    {
+     "id": "C",
+     "text": "4.105"
+    },
+    {
+     "id": "D",
+     "text": "-4.105"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Kesişimler hesap makinesiyle: $y^2=2+\\sin y$ ⇒ $y\\approx-1.062$ ve $y\\approx1.728$.<br/>2. Sağ sınır $x=2+\\sin y$, sol sınır $x=y^2$.<br/>3. $A=\\int_{-1.062}^{1.728}\\left(2+\\sin y-y^2\\right)dy\\approx4.105$.",
+   "genel_hatirlatma": "Eğriler $x=g(y)$ biçimindeyse $y$'ye göre integral al; hesap makinesinde değişken adı fark etmez, sınırlar $y$ değerleridir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yalnız $y\\ge0$ kısmını almak.",
+     "aciklama": "Alt kesişim $y\\approx-1.062$'dir (negatif); bölge $y=0$'ın altına da uzanır."
+    },
+    "B": {
+     "etiket": "$\\sin y$ terimini yok saymak.",
+     "aciklama": "$x=2$ ile $x=y^2$ arasındaki alan farklı bir bölgedir; sağ sınır $2+\\sin y$'dir ve kesişimler simetrik değildir."
+    },
+    "D": {
+     "etiket": "Sağ − sol sırasını ters almak.",
+     "aciklama": "Aralıkta $2+\\sin y\\ge y^2$ (ör. $y=0$: $2\\gt0$); ters çıkarma negatif sonuç verir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.5)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Sayısal kesişimle y'ye göre alan",
+    "ipucu": "Y1 = 2 + sin X − X² kökleri, sonra fnInt.",
+    "sikHata": "Simetri varsaymak",
+    "cedKonu": "8.5",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_24",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 56,
+   "numara": 57,
+   "konu": "8.5 Finding the Area Between Curves Expressed as Functions of y",
+   "zorluk": "medium",
+   "govde": "What is the area of the region in the first quadrant bounded by the graph of $y=\\sqrt{x}$, the line $y=x-2$, and the $x$-axis?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{16}{3}$"
+    },
+    {
+     "id": "B",
+     "text": "$-\\frac{10}{3}$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{4}{3}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{10}{3}$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $y$'ye göre: $x=y^2$ (sol), $x=y+2$ (sağ). Kesişim: $y^2=y+2\\Rightarrow y=2$ ($y\\ge0$).<br/>2. $A=\\int_0^2\\left(y+2-y^2\\right)dy=\\left[\\frac{y^2}{2}+2y-\\frac{y^3}{3}\\right]_0^2=2+4-\\frac83=\\frac{10}{3}$.<br/>3. Kontrol ($x$'e göre): $\\frac{16}{3}-2=\\frac{10}{3}$.",
+   "genel_hatirlatma": "Bölgenin alt sınırı $x$-ekseni olduğunda $x$'e göre iki parça gerekir; $y$'ye göre tek integral daha kısadır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Doğrunun sınırını yok saymak.",
+     "aciklama": "$\\int_0^4\\sqrt x\\,dx=\\frac{16}{3}$ doğrunun sağındaki üçgeni (alan 2) de içerir."
+    },
+    "B": {
+     "etiket": "Sağ − sol sırasını ters almak.",
+     "aciklama": "$y\\in(0,2)$ için sağ sınır $x=y+2$, sol sınır $x=y^2$'dir."
+    },
+    "C": {
+     "etiket": "Yanlış üçgen alanını çıkarmak.",
+     "aciklama": "Çıkarılacak üçgenin köşeleri $(2,0)$, $(4,0)$, $(4,2)$; alanı $\\frac12\\cdot2\\cdot2=2$'dir, $4$ değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.5)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "y'ye göre tek integralle alan",
+    "ipucu": "x = y² ve x = y + 2; y: 0 → 2",
+    "sikHata": "x-ekseni sınırını unutmak",
+    "cedKonu": "8.5",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_25",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 57,
+   "numara": 58,
+   "konu": "8.5 Finding the Area Between Curves Expressed as Functions of y",
+   "zorluk": "hard",
+   "govde": "<em>(Graphing calculator allowed.)</em> Let $R$ be the region bounded by the graph of $y=4-x^2$ and the $x$-axis. The horizontal line $y=k$ divides $R$ into two regions of equal area. What is the value of $k$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "2.000"
+    },
+    {
+     "id": "B",
+     "text": "1.480"
+    },
+    {
+     "id": "C",
+     "text": "2.520"
+    },
+    {
+     "id": "D",
+     "text": "2.667"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Toplam alan $\\int_{-2}^{2}(4-x^2)\\,dx=\\frac{32}{3}$; yarısı $\\frac{16}{3}$.<br/>2. $y=k$'nin üstü ($y$'ye göre, genişlik $2\\sqrt{4-y}$): $\\int_k^4 2\\sqrt{4-y}\\,dy=\\frac43(4-k)^{3/2}=\\frac{16}{3}$ ⇒ $(4-k)^{3/2}=4$.<br/>3. $k=4-4^{2/3}\\approx1.480$.",
+   "genel_hatirlatma": "Yatay doğruyla bölme sorularında $y$'ye göre integral doğal seçimdir; şerit genişliği sağ − sol $=2\\sqrt{4-y}$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yüksekliğin yarısını almak.",
+     "aciklama": "$y=2$ yüksekliği ikiye böler; bölge altta daha geniş olduğu için alt parça daha büyük olur."
+    },
+    "C": {
+     "etiket": "Son adımı unutmak.",
+     "aciklama": "$(4-k)^{3/2}=4\\Rightarrow4-k=4^{2/3}\\approx2.520$; $k$ bunun $4$'ten farkıdır."
+    },
+    "D": {
+     "etiket": "Ortalama değeri bölen doğru sanmak.",
+     "aciklama": "$4-x^2$'nin $[-2,2]$'deki ortalama değeri $\\frac83$'tür; bu, alanı ikiye bölen yükseklik değildir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.5)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Alanı ikiye bölen yatay doğru",
+    "ipucu": "Üst parçanın alanını k cinsinden yaz, 16/3'e eşitle.",
+    "sikHata": "Yüksekliğin yarısını almak",
+    "cedKonu": "8.5",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_26",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 58,
+   "numara": 59,
+   "konu": "8.6 Finding the Area Between Curves That Intersect at More Than Two Points",
+   "zorluk": "easy",
+   "govde": "What is the total area of the regions enclosed by the graph of $y=x^3-4x$ and the $x$-axis?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$8$"
+    },
+    {
+     "id": "B",
+     "text": "$0$"
+    },
+    {
+     "id": "C",
+     "text": "$4$"
+    },
+    {
+     "id": "D",
+     "text": "$16$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Kökler: $x(x^2-4)=0\\Rightarrow x=-2,0,2$.<br/>2. $[-2,0]$'da eğri üstte, $[0,2]$'de altta.<br/>3. $A=\\int_{-2}^{0}(x^3-4x)\\,dx+\\int_0^2(4x-x^3)\\,dx=4+4=8$.",
+   "genel_hatirlatma": "Toplam alan $=\\int|f(x)-g(x)|\\,dx$; her kesişimde böl ve parçaları pozitif topla.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "İşaretli integrali alan sanmak.",
+     "aciklama": "$\\int_{-2}^{2}(x^3-4x)\\,dx=0$; eksenin üstü ve altındaki parçalar birbirini götürür."
+    },
+    "C": {
+     "etiket": "Parçalardan yalnız birini almak.",
+     "aciklama": "$\\int_0^2(4x-x^3)\\,dx=4$ yalnız sağdaki bölgedir; soldaki bölge de 4'tür."
+    },
+    "D": {
+     "etiket": "Simetri çarpanını iki kez kullanmak.",
+     "aciklama": "Toplam alanı ($8$) simetri için bir kez daha $2$ ile çarpmak $16$ verir. Oysa $4+4=8$ zaten iki parçanın toplamıdır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.6)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Birden fazla kesişimde toplam alan",
+    "ipucu": "Köklerde böl, her parçayı pozitif al.",
+    "sikHata": "İşaretli integrali alan sanmak",
+    "cedKonu": "8.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_27",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 59,
+   "numara": 60,
+   "konu": "8.6 Finding the Area Between Curves That Intersect at More Than Two Points",
+   "zorluk": "medium",
+   "govde": "What is the total area of the regions enclosed by the graphs of $y=x^3$ and $y=x^2+2x$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{9}{4}$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{8}{3}$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{37}{12}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{5}{12}$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $x^3=x^2+2x\\Rightarrow x(x-2)(x+1)=0\\Rightarrow x=-1,0,2$.<br/>2. $[-1,0]$: $x^3$ üstte; $[0,2]$: $x^2+2x$ üstte. $F(x)=\\frac{x^4}{4}-\\frac{x^3}{3}-x^2$.<br/>3. $A=\\left[F(0)-F(-1)\\right]-\\left[F(2)-F(0)\\right]=\\frac5{12}+\\frac83=\\frac{37}{12}$.",
+   "genel_hatirlatma": "Her kesişimde üst eğri değişebilir; her aralık için ayrı test noktası kullan.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Tek integral alıp mutlak değer almak.",
+     "aciklama": "$\\left|\\int_{-1}^{2}(x^3-x^2-2x)\\,dx\\right|=\\frac94$; parçalar zıt işaretli olduğu için birbirini kısmen götürür."
+    },
+    "B": {
+     "etiket": "Negatif kesişimi kaçırmak.",
+     "aciklama": "$x^3-x^2-2x=x(x-2)(x+1)$; $x=-1$'deki kesişimi atlarsan $[-1,0]$'daki bölge ($\\frac5{12}$) kaybolur."
+    },
+    "D": {
+     "etiket": "Yalnız soldaki bölgeyi almak.",
+     "aciklama": "$[-1,0]$'daki bölge $\\frac{5}{12}$'dir; $[0,2]$'deki bölge ($\\frac83$) eklenmeli."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.6)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Üç kesişimli iki eğri",
+    "ipucu": "Çarpanlara ayır, her aralıkta üst eğriyi test et.",
+    "sikHata": "Bir kesişimi atlamak",
+    "cedKonu": "8.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_28",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 60,
+   "numara": 61,
+   "konu": "8.6 Finding the Area Between Curves That Intersect at More Than Two Points",
+   "zorluk": "hard",
+   "govde": "<em>(Graphing calculator allowed.)</em> What is the total area of the regions enclosed by the graphs of $y=x^3-3x$ and $y=\\sin x$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "3.483"
+    },
+    {
+     "id": "B",
+     "text": "0.000"
+    },
+    {
+     "id": "C",
+     "text": "4.500"
+    },
+    {
+     "id": "D",
+     "text": "6.966"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Hesap makinesiyle $x^3-3x=\\sin x$ ⇒ $x=0$ ve $x\\approx\\pm1.873$.<br/>2. $(0,1.873)$'te $\\sin x\\gt x^3-3x$ (ör. $x=1$: $0.841\\gt-2$); $(-1.873,0)$'da tersi.<br/>3. $A=\\int_{-1.873}^{1.873}\\left|\\sin x-(x^3-3x)\\right|dx\\approx6.966$.",
+   "genel_hatirlatma": "Hesap makinesinde toplam alan için doğrudan $\\int|f-g|\\,dx$ yazabilirsin; böylece bölme hatası yapmazsın.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Simetrik ikinci bölgeyi unutmak.",
+     "aciklama": "Kesişimler $x\\approx-1.873,\\,0,\\,1.873$; iki bölge vardır ve alanları eşittir."
+    },
+    "B": {
+     "etiket": "Tek integral (işaretli) almak.",
+     "aciklama": "$\\int_{-1.873}^{1.873}\\left(\\sin x-x^3+3x\\right)dx=0$ çünkü fark tek fonksiyondur; alan için mutlak değer gerekir."
+    },
+    "C": {
+     "etiket": "Sinüs eğrisini yok sayıp $x$-eksenini kullanmak.",
+     "aciklama": "$2\\int_0^{\\sqrt3}(3x-x^3)\\,dx=4.5$ kübik eğri ile $x$-ekseni arasındaki alandır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.6)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Sayısal kesişimlerle toplam alan",
+    "ipucu": "fnInt(abs(sin x − x³ + 3x), −A, A)",
+    "sikHata": "İşaretli integral almak",
+    "cedKonu": "8.6",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_29",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 61,
+   "numara": 62,
+   "konu": "8.6 Finding the Area Between Curves That Intersect at More Than Two Points",
+   "zorluk": "hard",
+   "govde": "<em>(Graphing calculator allowed.)</em> The graphs of $f(x)=x^3-3x+1$ and $g(x)=\\cos x$ intersect at three points. What is the total area of the regions enclosed by the two graphs?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "1.502"
+    },
+    {
+     "id": "B",
+     "text": "3.113"
+    },
+    {
+     "id": "C",
+     "text": "4.723"
+    },
+    {
+     "id": "D",
+     "text": "1.611"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Hesap makinesiyle $f(x)=g(x)$ ⇒ $x\\approx-1.923$, $x=0$, $x\\approx1.540$.<br/>2. $[-1.923,0]$'da $f\\ge g$; $[0,1.540]$'de $g\\ge f$.<br/>3. $A=\\int_{-1.923}^{1.540}|f(x)-g(x)|\\,dx\\approx4.723$ (parçalar $\\approx3.113$ ve $\\approx1.611$; toplam yuvarlanmamış değerlerle alınır).",
+   "genel_hatirlatma": "Üç kesişim = iki bölge. Toplam alan, her bölgenin pozitif alanlarının toplamıdır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Tek integral alıp mutlak değer almak.",
+     "aciklama": "$\\left|\\int_{-1.923}^{1.540}(f-g)\\,dx\\right|\\approx1.502$; iki bölge zıt işaretli olduğu için birbirini götürür."
+    },
+    "B": {
+     "etiket": "Yalnız soldaki bölgeyi almak.",
+     "aciklama": "$[-1.923,0]$'daki bölge $\\approx3.113$; $[0,1.540]$'deki bölge de eklenmeli."
+    },
+    "D": {
+     "etiket": "Yalnız sağdaki bölgeyi almak.",
+     "aciklama": "$[0,1.540]$'deki bölge $\\approx1.611$; soldaki bölge unutulmuş."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.6)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Üç kesişim, iki bölge (hesap makineli)",
+    "ipucu": "Üç kökü kaydet; fnInt(abs(f − g)).",
+    "sikHata": "İşaretli integral almak",
+    "cedKonu": "8.6",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_30",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 62,
+   "numara": 63,
+   "konu": "8.6 Finding the Area Between Curves That Intersect at More Than Two Points",
+   "zorluk": "medium",
+   "govde": "What is the total area between the graphs of $y=x$ and $y=x^3$ on the interval $0\\le x\\le 2$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$2$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{9}{4}$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{1}{4}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{5}{2}$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $x=x^3\\Rightarrow x=0,\\ \\pm1$; aralıkta $x=1$'de üst eğri değişir.<br/>2. $\\int_0^1(x-x^3)\\,dx=\\frac12-\\frac14=\\frac14$.<br/>3. $\\int_1^2(x^3-x)\\,dx=(4-2)-\\left(\\frac14-\\frac12\\right)=\\frac94$. Toplam $\\frac14+\\frac94=\\frac52$.",
+   "genel_hatirlatma": "Verilen aralığın içinde kalan her kesişimde böl; aralık dışındaki kesişimler ($x=-1$) önemsizdir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Tek integral almak.",
+     "aciklama": "$\\int_0^2(x^3-x)\\,dx=2$; $[0,1]$'de $x\\gt x^3$ olduğundan o parça negatif sayılmış."
+    },
+    "B": {
+     "etiket": "Yalnız $[1,2]$ parçasını almak.",
+     "aciklama": "$\\int_1^2(x^3-x)\\,dx=\\frac94$; $[0,1]$'deki bölge ($\\frac14$) unutulmuş."
+    },
+    "C": {
+     "etiket": "Yalnız kapalı bölgeyi almak.",
+     "aciklama": "Soru $[0,2]$ aralığının tamamını soruyor; $[1,2]$'deki parça da sayılır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.6)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Aralık içinde üst eğri değişimi",
+    "ipucu": "x = 1'de böl.",
+    "sikHata": "Tek integral almak",
+    "cedKonu": "8.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_31",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 63,
+   "numara": 64,
+   "konu": "8.6 Finding the Area Between Curves That Intersect at More Than Two Points",
+   "zorluk": "easy",
+   "govde": "The graphs of continuous functions $f$ and $g$ intersect only at $x=1$ and $x=4$ on the interval $[0,5]$. It is known that $\\int_0^1\\left(f(x)-g(x)\\right)dx=2$, $\\int_1^4\\left(f(x)-g(x)\\right)dx=-5$, and $\\int_4^5\\left(f(x)-g(x)\\right)dx=1.5$. What is the total area between the graphs of $f$ and $g$ on $[0,5]$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$8.5$"
+    },
+    {
+     "id": "B",
+     "text": "$-1.5$"
+    },
+    {
+     "id": "C",
+     "text": "$1.5$"
+    },
+    {
+     "id": "D",
+     "text": "$5.5$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Her aralıkta $f-g$'nin işareti sabittir (kesişimler yalnız 1 ve 4).<br/>2. Alan $=|2|+|-5|+|1.5|$.<br/>3. $=2+5+1.5=8.5$.",
+   "genel_hatirlatma": "$\\int_a^b|f-g|\\,dx=\\sum\\left|\\int_{\\text{parça}}(f-g)\\,dx\\right|$ — mutlak değer her parçaya ayrı.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Parçaları işaretiyle toplamak.",
+     "aciklama": "$2-5+1.5=-1.5$ işaretli integraldir; alan negatif olamaz."
+    },
+    "C": {
+     "etiket": "İşaretli toplamın mutlak değerini almak.",
+     "aciklama": "$\\left|\\int_0^5(f-g)\\,dx\\right|=1.5$; mutlak değer her parçaya ayrı uygulanmalı."
+    },
+    "D": {
+     "etiket": "Yalnız bir parçanın işaretini düzeltmek.",
+     "aciklama": "$2+5-1.5=5.5$; $[4,5]$ parçası zaten pozitif, çıkarılmaz."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.6)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Verilen integrallerden toplam alan",
+    "ipucu": "Her parçanın mutlak değerini topla.",
+    "sikHata": "Mutlak değeri toplama uygulamak",
+    "cedKonu": "8.6",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_32",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 64,
+   "numara": 65,
+   "konu": "8.7 Volumes with Cross Sections: Squares and Rectangles",
+   "zorluk": "medium",
+   "govde": "The base of a solid is the region bounded by the graph of $y=4-x^2$ and the $x$-axis. Cross sections of the solid perpendicular to the $x$-axis are squares. What is the volume of the solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{32}{3}$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{512}{15}$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{256}{15}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{512\\pi}{15}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Kenar uzunluğu $s(x)=4-x^2$ (üst − alt).<br/>2. Kesit alanı $A(x)=s^2=(4-x^2)^2=16-8x^2+x^4$.<br/>3. $V=\\int_{-2}^{2}(16-8x^2+x^4)\\,dx=2\\left(32-\\frac{64}{3}+\\frac{32}{5}\\right)=\\frac{512}{15}$.",
+   "genel_hatirlatma": "Bilinen kesitli cisim: $V=\\int_a^b A(x)\\,dx$, $A(x)$ = tabandaki şerit uzunluğundan kurulan şeklin alanı.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Taban alanını hacim sanmak.",
+     "aciklama": "$\\int_{-2}^{2}(4-x^2)\\,dx=\\frac{32}{3}$ tabanın alanıdır; kare kesit alanı kenarın <em>karesidir</em>."
+    },
+    "C": {
+     "etiket": "Yalnız yarım aralığı almak.",
+     "aciklama": "$\\int_0^2(4-x^2)^2\\,dx=\\frac{256}{15}$; aralık $[-2,2]$'dir."
+    },
+    "D": {
+     "etiket": "Kesit hacmini dönel cisim sanmak.",
+     "aciklama": "$\\pi$ yalnız dairesel kesitlerde gelir; kare kesit alanı $s^2$'dir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.7)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Kare kesitli cisim",
+    "ipucu": "s = üst − alt, A = s²",
+    "sikHata": "Taban alanını hacim sanmak",
+    "cedKonu": "8.7",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_33",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 65,
+   "numara": 66,
+   "konu": "8.7 Volumes with Cross Sections: Squares and Rectangles",
+   "zorluk": "easy",
+   "govde": "The base of a solid is the triangular region bounded by the line $y=x$, the $x$-axis, and the line $x=3$. Cross sections perpendicular to the $x$-axis are squares. What is the volume of the solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{9}{2}$"
+    },
+    {
+     "id": "B",
+     "text": "$9$"
+    },
+    {
+     "id": "C",
+     "text": "$9\\pi$"
+    },
+    {
+     "id": "D",
+     "text": "$27$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $x$ konumunda kenar $s=x-0=x$.<br/>2. $A(x)=x^2$.<br/>3. $V=\\int_0^3x^2\\,dx=9$. (Kontrol: tabanı kare olan piramit, $\\frac13\\cdot9\\cdot3=9$.)",
+   "genel_hatirlatma": "Kare kesit: $V=\\int s(x)^2\\,dx$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Taban alanını hacim sanmak.",
+     "aciklama": "$\\int_0^3x\\,dx=\\frac92$ üçgen tabanın alanıdır."
+    },
+    "C": {
+     "etiket": "Gereksiz yere $\\pi$ eklemek.",
+     "aciklama": "Kesitler kare; $\\pi$ yalnız disk/yarım daire kesitlerinde gelir."
+    },
+    "D": {
+     "etiket": "İlkelde 3'e bölmeyi unutmak.",
+     "aciklama": "$\\int_0^3x^2\\,dx=\\frac{x^3}{3}\\Big|_0^3=9$; $27$ bölmeyi atlar."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.7)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Basit kare kesit",
+    "ipucu": "Kenar = y değeri.",
+    "sikHata": "Kenarı karelememek",
+    "cedKonu": "8.7",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_34",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 66,
+   "numara": 67,
+   "konu": "8.7 Volumes with Cross Sections: Squares and Rectangles",
+   "zorluk": "medium",
+   "govde": "<em>(Graphing calculator allowed.)</em> The base of a solid is the region enclosed by the graphs of $y=2-x^2$ and $y=e^x$. Cross sections of the solid perpendicular to the $x$-axis are squares. What is the volume of the solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "1.364"
+    },
+    {
+     "id": "B",
+     "text": "1.452"
+    },
+    {
+     "id": "C",
+     "text": "3.537"
+    },
+    {
+     "id": "D",
+     "text": "4.284"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Kesişimler hesap makinesiyle: $2-x^2=e^x$ ⇒ $x\\approx-1.316$ ve $x\\approx0.537$.<br/>2. Kenar $s(x)=2-x^2-e^x$ (aralıkta $2-x^2$ üstte).<br/>3. $V=\\int_{-1.316}^{0.537}\\left(2-x^2-e^x\\right)^2dx\\approx1.364$.",
+   "genel_hatirlatma": "Önce farkı al, sonra karesini: $s^2=(f-g)^2\\ne f^2-g^2$.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Kesit alanı yerine taban alanını hesaplamak.",
+     "aciklama": "$\\int(2-x^2-e^x)\\,dx\\approx1.452$ tabanın alanıdır; kenarın karesi alınmalı."
+    },
+    "C": {
+     "etiket": "Karelerin farkını almak.",
+     "aciklama": "$(2-x^2)^2-(e^x)^2$ pul (washer) yöntemine benzer; kare kenarı farkın kendisidir, kesit alanı $(2-x^2-e^x)^2$."
+    },
+    "D": {
+     "etiket": "Gereksiz yere $\\pi$ ile çarpmak.",
+     "aciklama": "Kare kesitte $\\pi$ yoktur."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.7)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Sayısal sınırlı kare kesit",
+    "ipucu": "Kesişimleri STO et; fnInt((2 − x² − eˣ)²).",
+    "sikHata": "f² − g² yazmak",
+    "cedKonu": "8.7",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_35",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 67,
+   "numara": 68,
+   "konu": "8.7 Volumes with Cross Sections: Squares and Rectangles",
+   "zorluk": "medium",
+   "govde": "The base of a solid is the region bounded by the graphs of $y=\\sqrt{x}$ and $y=x^2$. Cross sections perpendicular to the $x$-axis are rectangles whose base lies in the region and whose height is equal to $x$. What is the volume of the solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{9}{70}$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{1}{3}$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{13}{20}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{3}{20}$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Kesişim: $\\sqrt x=x^2\\Rightarrow x=0,1$; tabandaki uzunluk $\\sqrt x-x^2$.<br/>2. $A(x)=x\\left(\\sqrt x-x^2\\right)=x^{3/2}-x^3$.<br/>3. $V=\\int_0^1\\left(x^{3/2}-x^3\\right)dx=\\frac25-\\frac14=\\frac{3}{20}$.",
+   "genel_hatirlatma": "Dikdörtgen kesit: alan = taban uzunluğu × verilen yükseklik (yükseklik $x$'e bağlı olabilir).",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Dikdörtgen yerine kare kullanmak.",
+     "aciklama": "$\\int_0^1(\\sqrt x-x^2)^2\\,dx=\\frac{9}{70}$ kare kesit hacmidir; burada yükseklik $x$."
+    },
+    "B": {
+     "etiket": "Taban alanını hacim sanmak.",
+     "aciklama": "$\\int_0^1(\\sqrt x-x^2)\\,dx=\\frac13$ tabanın alanıdır; yükseklikle çarpılmalı."
+    },
+    "C": {
+     "etiket": "Çıkarma işaretini kaybetmek.",
+     "aciklama": "$\\int_0^1\\left(x^{3/2}-x^3\\right)dx=\\frac25-\\frac14$; toplamak $\\frac{13}{20}$ verir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.7)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Değişken yükseklikli dikdörtgen kesit",
+    "ipucu": "A(x) = (√x − x²)·x",
+    "sikHata": "Kare formülünü kullanmak",
+    "cedKonu": "8.7",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_36",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 68,
+   "numara": 69,
+   "konu": "8.7 Volumes with Cross Sections: Squares and Rectangles",
+   "zorluk": "hard",
+   "govde": "The base of a solid is the region bounded by the graph of $y=\\ln x$, the $x$-axis, and the line $x=e$. Cross sections of the solid perpendicular to the $y$-axis are squares. What is the volume of the solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "0.718"
+    },
+    {
+     "id": "B",
+     "text": "4.195"
+    },
+    {
+     "id": "C",
+     "text": "1.242"
+    },
+    {
+     "id": "D",
+     "text": "1.000"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $y$'ye göre: sol sınır $x=e^y$, sağ sınır $x=e$; $y\\in[0,1]$. Kenar $s(y)=e-e^y$.<br/>2. $V=\\int_0^1(e-e^y)^2\\,dy=\\int_0^1\\left(e^2-2e\\cdot e^y+e^{2y}\\right)dy$.<br/>3. $=e^2-2e(e-1)+\\frac{e^2-1}{2}=-\\frac{e^2}{2}+2e-\\frac12\\approx1.242$.",
+   "genel_hatirlatma": "“Perpendicular to the $y$-axis” ⇒ $dy$ ile integral, kenar = sağ − sol.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Kesitleri $x$-eksenine dik almak.",
+     "aciklama": "$\\int_1^e(\\ln x)^2\\,dx=e-2$ kesitler $x$-eksenine dik olsaydı doğru olurdu; soru $y$-eksenine dik diyor."
+    },
+    "B": {
+     "etiket": "Karelerin farkını almak.",
+     "aciklama": "$\\int_0^1\\left(e^2-e^{2y}\\right)dy$, $(e-e^y)^2$ yerine $e^2-(e^y)^2$ yazar."
+    },
+    "D": {
+     "etiket": "Taban alanını hacim sanmak.",
+     "aciklama": "$\\int_0^1(e-e^y)\\,dy=1$ tabanın alanıdır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.7)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "y-eksenine dik kare kesit",
+    "ipucu": "x = e^y; kenar e − e^y",
+    "sikHata": "Kesit yönünü karıştırmak",
+    "cedKonu": "8.7",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_37",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 69,
+   "numara": 70,
+   "konu": "8.7 Volumes with Cross Sections: Squares and Rectangles",
+   "zorluk": "medium",
+   "govde": "The base of a solid is the disk $x^2+y^2\\le4$. Cross sections of the solid perpendicular to the $x$-axis are squares. What is the volume of the solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{32}{3}$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{64}{3}$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{32\\pi}{3}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{128}{3}$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $x$ konumunda kiriş: $y$, $-\\sqrt{4-x^2}$'den $\\sqrt{4-x^2}$'ye ⇒ $s=2\\sqrt{4-x^2}$.<br/>2. $A(x)=s^2=4(4-x^2)$.<br/>3. $V=\\int_{-2}^{2}4(4-x^2)\\,dx=4\\cdot\\frac{32}{3}=\\frac{128}{3}$.",
+   "genel_hatirlatma": "Daire tabanlı sorularda kenar, üst yarı çember eksi alt yarı çember: $2\\sqrt{r^2-x^2}$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Kenarı yarım kiriş almak.",
+     "aciklama": "Kenar dairenin tüm kirişidir: $2\\sqrt{4-x^2}$. Yalnız $\\sqrt{4-x^2}$ alınırsa hacim 4'te birine düşer."
+    },
+    "B": {
+     "etiket": "Yalnız yarım aralığı almak.",
+     "aciklama": "$x$, $-2$'den $2$'ye gider; $\\int_0^2$ yarısını verir."
+    },
+    "C": {
+     "etiket": "Küre hacmiyle karıştırmak.",
+     "aciklama": "$\\frac43\\pi r^3$ dairesel kesitli cisim (küre) içindir; burada kesitler kare."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.7)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Daire tabanlı kare kesit",
+    "ipucu": "Kenar = 2√(4 − x²)",
+    "sikHata": "Yarım kiriş almak",
+    "cedKonu": "8.7",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_38",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 70,
+   "numara": 71,
+   "konu": "8.8 Volumes with Cross Sections: Triangles and Semicircles",
+   "zorluk": "easy",
+   "govde": "The base of a solid is the region bounded by the line $y=x$, the $x$-axis, and the line $x=4$. Cross sections perpendicular to the $x$-axis are semicircles whose diameters lie in the base. What is the volume of the solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{32\\pi}{3}$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{64\\pi}{3}$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{8\\pi}{3}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{16\\pi}{3}$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Çap $d=x$, yarıçap $\\frac x2$.<br/>2. Yarım daire alanı $A(x)=\\frac12\\pi\\left(\\frac x2\\right)^2=\\frac{\\pi}{8}x^2$.<br/>3. $V=\\frac\\pi8\\int_0^4x^2\\,dx=\\frac\\pi8\\cdot\\frac{64}{3}=\\frac{8\\pi}{3}$.",
+   "genel_hatirlatma": "Yarım daire kesit: $A=\\frac{\\pi}{8}d^2$ ($d$ = tabandaki uzunluk).",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Çapı yarıçap sanmak.",
+     "aciklama": "Çap $x$ ise yarıçap $\\frac x2$'dir; $\\frac12\\pi x^2$ kullanmak 4 kat büyük sonuç verir."
+    },
+    "B": {
+     "etiket": "Disk alanı formülünü yarıçap = çap ile kullanmak.",
+     "aciklama": "$\\pi x^2$ tam daire ve yarıçap $x$ varsayar; kesit yarım daire ve yarıçapı $\\frac x2$."
+    },
+    "D": {
+     "etiket": "Tam daire almak.",
+     "aciklama": "$\\pi\\left(\\frac x2\\right)^2$ tam dairedir; yarım daire için $\\frac12$ ile çarp."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.8)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Yarım daire kesit",
+    "ipucu": "A = (π/8)·d²",
+    "sikHata": "Çapı yarıçap sanmak",
+    "cedKonu": "8.8",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_39",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 71,
+   "numara": 72,
+   "konu": "8.8 Volumes with Cross Sections: Triangles and Semicircles",
+   "zorluk": "medium",
+   "govde": "The base of a solid is the region bounded by the graph of $y=1-x^2$ and the $x$-axis. Cross sections perpendicular to the $x$-axis are isosceles right triangles with one leg in the base. What is the volume of the solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{16}{15}$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{8}{15}$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{4}{15}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{4\\sqrt3}{15}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Dik kenar $s=1-x^2$, $x\\in[-1,1]$.<br/>2. $A(x)=\\frac12s^2=\\frac12(1-x^2)^2$.<br/>3. $V=\\frac12\\int_{-1}^{1}(1-2x^2+x^4)\\,dx=\\frac12\\cdot\\frac{16}{15}=\\frac{8}{15}$.",
+   "genel_hatirlatma": "Üçgen kesit formülleri: eşkenar $\\frac{\\sqrt3}{4}s^2$; ikizkenar dik (dik kenar tabanda) $\\frac12s^2$; (hipotenüs tabanda) $\\frac14s^2$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Üçgen yerine kare almak.",
+     "aciklama": "$\\int(1-x^2)^2\\,dx=\\frac{16}{15}$ kare kesittir; ikizkenar dik üçgenin alanı $\\frac12s^2$."
+    },
+    "C": {
+     "etiket": "Hipotenüs tabanda sanmak.",
+     "aciklama": "Hipotenüs tabanda olsaydı alan $\\frac14s^2$ olurdu; burada bir <em>dik kenar</em> tabanda."
+    },
+    "D": {
+     "etiket": "Eşkenar üçgen formülü kullanmak.",
+     "aciklama": "$\\frac{\\sqrt3}{4}s^2$ eşkenar üçgen içindir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.8)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "İkizkenar dik üçgen kesit",
+    "ipucu": "Dik kenar tabanda → A = s²/2",
+    "sikHata": "Yanlış üçgen formülü",
+    "cedKonu": "8.8",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_40",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 72,
+   "numara": 73,
+   "konu": "8.8 Volumes with Cross Sections: Triangles and Semicircles",
+   "zorluk": "medium",
+   "govde": "<em>(Graphing calculator allowed.)</em> The base of a solid is the region in the first quadrant enclosed by the graphs of $y=2\\sin x$ and $y=x$. Cross sections perpendicular to the $x$-axis are equilateral triangles. What is the volume of the solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "0.197"
+    },
+    {
+     "id": "B",
+     "text": "0.456"
+    },
+    {
+     "id": "C",
+     "text": "0.228"
+    },
+    {
+     "id": "D",
+     "text": "0.395"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Kesişim: $2\\sin x=x$ ⇒ $x=0$ ve hesap makinesiyle $x\\approx1.895$.<br/>2. Kenar $s=2\\sin x-x$; $A(x)=\\frac{\\sqrt3}{4}(2\\sin x-x)^2$.<br/>3. $V=\\frac{\\sqrt3}{4}\\int_0^{1.895}(2\\sin x-x)^2\\,dx\\approx0.197$.",
+   "genel_hatirlatma": "Eşkenar üçgen kesit: $V=\\frac{\\sqrt3}{4}\\int s(x)^2\\,dx$.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Kare kesit formülü kullanmak.",
+     "aciklama": "$\\int s^2\\,dx\\approx0.456$ kare kesit hacmidir; eşkenar üçgen için $\\frac{\\sqrt3}{4}$ ile çarp."
+    },
+    "C": {
+     "etiket": "İkizkenar dik üçgen formülü kullanmak.",
+     "aciklama": "$\\frac12s^2$ dik kenarı tabanda olan ikizkenar dik üçgen içindir."
+    },
+    "D": {
+     "etiket": "Eşkenar üçgen alanını yanlış hatırlamak.",
+     "aciklama": "Eşkenar üçgenin yüksekliği $\\frac{\\sqrt3}{2}s$, alanı $\\frac12\\cdot s\\cdot\\frac{\\sqrt3}{2}s=\\frac{\\sqrt3}{4}s^2$'dir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.8)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Eşkenar üçgen kesit (hesap makineli)",
+    "ipucu": "Kökü STO et; (√3/4)·fnInt((2 sin x − x)²).",
+    "sikHata": "√3/4 katsayısını unutmak",
+    "cedKonu": "8.8",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_41",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 73,
+   "numara": 74,
+   "konu": "8.8 Volumes with Cross Sections: Triangles and Semicircles",
+   "zorluk": "hard",
+   "govde": "The base of a solid is the region bounded by the graphs of $x=y^2$ and $x=y+2$. Cross sections of the solid perpendicular to the $y$-axis are semicircles whose diameters lie in the base. What is the volume of the solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{81\\pi}{20}$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{81\\pi}{80}$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{9\\pi}{16}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{81\\pi}{40}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Kesişim: $y^2=y+2\\Rightarrow y=-1,\\,2$. Çap $d(y)=(y+2)-y^2$.<br/>2. $d^2=y^4-2y^3-3y^2+4y+4$ ve $\\int_{-1}^{2}d^2\\,dy=\\frac{33}{5}-\\frac{15}{2}-9+6+12=\\frac{81}{10}$.<br/>3. $V=\\frac\\pi8\\cdot\\frac{81}{10}=\\frac{81\\pi}{80}$.",
+   "genel_hatirlatma": "Kesit $y$-eksenine dikse çap = sağ − sol ($y$ cinsinden), integral $dy$ ile.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Çapı yarıçap olarak kullanmak.",
+     "aciklama": "$\\frac12\\pi d^2$ yarıçapı $d$ sayar; doğrusu $\\frac12\\pi\\left(\\frac d2\\right)^2=\\frac\\pi8d^2$."
+    },
+    "C": {
+     "etiket": "Çapın karesini almamak.",
+     "aciklama": "$\\frac\\pi8\\int d\\,dy=\\frac\\pi8\\cdot\\frac92$; alan $d^2$ ile orantılıdır."
+    },
+    "D": {
+     "etiket": "Tam daire almak.",
+     "aciklama": "$\\pi\\left(\\frac d2\\right)^2=\\frac\\pi4d^2$ tam dairedir; yarım daire için $\\frac\\pi8d^2$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.8)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "y-eksenine dik yarım daire kesit",
+    "ipucu": "d = y + 2 − y², A = (π/8)d²",
+    "sikHata": "Çap/yarıçap karışıklığı",
+    "cedKonu": "8.8",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_42",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 74,
+   "numara": 75,
+   "konu": "8.8 Volumes with Cross Sections: Triangles and Semicircles",
+   "zorluk": "hard",
+   "govde": "<em>(Graphing calculator allowed.)</em> Let $R$ be the region in the first quadrant bounded by the graph of $y=\\frac{4}{1+x^2}$, the line $y=x$, and the $y$-axis. $R$ is the base of a solid whose cross sections perpendicular to the $x$-axis are semicircles with diameters in $R$. What is the volume of the solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "3.127"
+    },
+    {
+     "id": "B",
+     "text": "12.507"
+    },
+    {
+     "id": "C",
+     "text": "6.253"
+    },
+    {
+     "id": "D",
+     "text": "4.113"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Kesişim: $\\frac{4}{1+x^2}=x$ ⇒ hesap makinesiyle $x\\approx1.379$; sol sınır $x=0$.<br/>2. Çap $d(x)=\\frac{4}{1+x^2}-x$; $A(x)=\\frac\\pi8d^2$.<br/>3. $V=\\frac\\pi8\\int_0^{1.379}\\left(\\frac{4}{1+x^2}-x\\right)^2dx\\approx3.127$.",
+   "genel_hatirlatma": "Yarım daire kesit: $\\frac{\\pi}{8}\\int d^2$. $\\frac\\pi8$'i integralin dışına çıkar, $d$'yi sade tut.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Çapı yarıçap olarak kullanmak.",
+     "aciklama": "$\\frac\\pi2d^2$, yarıçapı $d$ alır; yarım dairenin alanı $\\frac\\pi8d^2$."
+    },
+    "C": {
+     "etiket": "Tam daire alanı kullanmak.",
+     "aciklama": "$\\frac\\pi4d^2$ çapı $d$ olan tam dairenin alanıdır."
+    },
+    "D": {
+     "etiket": "Karelerin farkını almak.",
+     "aciklama": "Çap $\\frac{4}{1+x^2}-x$'tir; $\\left(\\frac{4}{1+x^2}\\right)^2-x^2$ farkın karesi değildir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.8)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Yarım daire kesit (hesap makineli)",
+    "ipucu": "(π/8)·fnInt((4/(1+x²) − x)², 0, A)",
+    "sikHata": "Çapı yarıçap sanmak",
+    "cedKonu": "8.8",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_43",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 75,
+   "numara": 76,
+   "konu": "8.8 Volumes with Cross Sections: Triangles and Semicircles",
+   "zorluk": "medium",
+   "govde": "The base of a solid is the region bounded by the graph of $y=x^2$ and the line $y=4$. Cross sections perpendicular to the $x$-axis are isosceles right triangles whose hypotenuse lies in the base. What is the volume of the solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{256}{15}$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{512}{15}$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{128\\sqrt3}{15}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{128}{15}$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Hipotenüs $h=4-x^2$, $x\\in[-2,2]$. İkizkenar dik üçgende dik kenar $\\frac{h}{\\sqrt2}$ ⇒ alan $\\frac12\\cdot\\frac{h^2}{2}=\\frac{h^2}{4}$.<br/>2. $\\int_{-2}^{2}(4-x^2)^2\\,dx=\\frac{512}{15}$.<br/>3. $V=\\frac14\\cdot\\frac{512}{15}=\\frac{128}{15}$.",
+   "genel_hatirlatma": "Hipotenüsü tabanda olan ikizkenar dik üçgen: $A=\\frac{h^2}{4}$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Dik kenar tabanda formülünü kullanmak.",
+     "aciklama": "$\\frac12s^2$ dik kenar tabandaysa geçerlidir; hipotenüs tabandaysa alan $\\frac14s^2$."
+    },
+    "B": {
+     "etiket": "Kare kesit formülü kullanmak.",
+     "aciklama": "$\\int s^2\\,dx=\\frac{512}{15}$ kare kesit hacmidir."
+    },
+    "C": {
+     "etiket": "Eşkenar üçgen formülü kullanmak.",
+     "aciklama": "$\\frac{\\sqrt3}{4}s^2$ eşkenar üçgen içindir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.8)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Hipotenüsü tabanda üçgen kesit",
+    "ipucu": "Dik kenar = h/√2",
+    "sikHata": "Dik kenar ile hipotenüsü karıştırmak",
+    "cedKonu": "8.8",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_44",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 76,
+   "numara": 77,
+   "konu": "8.9 Volume with Disc Method: Revolving Around the x- or y-Axis",
+   "zorluk": "easy",
+   "govde": "The region bounded by the graph of $y=\\sqrt{x}$, the $x$-axis, and the line $x=4$ is revolved about the $x$-axis. What is the volume of the resulting solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{16\\pi}{3}$"
+    },
+    {
+     "id": "B",
+     "text": "$16\\pi$"
+    },
+    {
+     "id": "C",
+     "text": "$8\\pi$"
+    },
+    {
+     "id": "D",
+     "text": "$8$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Disk yarıçapı $r(x)=\\sqrt x$.<br/>2. $V=\\pi\\int_0^4(\\sqrt x)^2\\,dx=\\pi\\int_0^4x\\,dx$.<br/>3. $=\\pi\\cdot8=8\\pi$.",
+   "genel_hatirlatma": "Disk yöntemi: $V=\\pi\\int_a^b[r(x)]^2\\,dx$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yarıçapın karesini almamak.",
+     "aciklama": "$\\pi\\int_0^4\\sqrt x\\,dx=\\frac{16\\pi}{3}$; disk alanı $\\pi r^2=\\pi(\\sqrt x)^2=\\pi x$."
+    },
+    "B": {
+     "etiket": "İlkelde 2'ye bölmeyi unutmak.",
+     "aciklama": "$\\int_0^4x\\,dx=\\frac{x^2}{2}\\Big|_0^4=8$, $16$ değil."
+    },
+    "D": {
+     "etiket": "$\\pi$'yi unutmak.",
+     "aciklama": "Disk alanı $\\pi r^2$'dir; $\\pi$ çarpanı hacimde kalır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.9)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "x-ekseni etrafında disk",
+    "ipucu": "r = √x, r² = x",
+    "sikHata": "r'yi karelememek",
+    "cedKonu": "8.9",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_45",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 77,
+   "numara": 78,
+   "konu": "8.9 Volume with Disc Method: Revolving Around the x- or y-Axis",
+   "zorluk": "medium",
+   "govde": "<em>(Graphing calculator allowed.)</em> The region bounded by the graph of $y=e^{-x^2}$, the $x$-axis, the $y$-axis, and the line $x=2$ is revolved about the $x$-axis. What is the volume of the resulting solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "2.771"
+    },
+    {
+     "id": "B",
+     "text": "1.969"
+    },
+    {
+     "id": "C",
+     "text": "0.627"
+    },
+    {
+     "id": "D",
+     "text": "2.848"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Yarıçap $r=e^{-x^2}$ ⇒ $r^2=e^{-2x^2}$.<br/>2. $V=\\pi\\int_0^2e^{-2x^2}\\,dx$ (elle ilkel yok, hesap makinesi şart).<br/>3. $V\\approx1.969$.",
+   "genel_hatirlatma": "Üstel ifadenin karesi: $(e^{u})^2=e^{2u}$. İlkeli olmayan integrallerde hesap makinesi kullan.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yarıçapın karesini almamak.",
+     "aciklama": "$\\pi\\int_0^2e^{-x^2}\\,dx$; doğrusu $\\pi\\int_0^2\\left(e^{-x^2}\\right)^2dx=\\pi\\int_0^2e^{-2x^2}dx$."
+    },
+    "C": {
+     "etiket": "$\\pi$'yi unutmak.",
+     "aciklama": "$\\int_0^2e^{-2x^2}dx\\approx0.627$; disk alanı $\\pi r^2$ olduğundan $\\pi$ ile çarpılmalı."
+    },
+    "D": {
+     "etiket": "Kareyi yanlış yere uygulamak.",
+     "aciklama": "$\\left(e^{-x^2}\\right)^2=e^{-2x^2}$'dir; $e^{-(x^2)^2}=e^{-x^4}$ değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.9)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Disk yöntemi (hesap makineli)",
+    "ipucu": "π·fnInt(e^(−2x²), 0, 2)",
+    "sikHata": "Üsleri yanlış birleştirmek",
+    "cedKonu": "8.9",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_46",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 78,
+   "numara": 79,
+   "konu": "8.9 Volume with Disc Method: Revolving Around the x- or y-Axis",
+   "zorluk": "easy",
+   "govde": "The region bounded by the graph of $y=\\sec x$, the $x$-axis, the $y$-axis, and the line $x=\\frac{\\pi}{4}$ is revolved about the $x$-axis. What is the volume of the resulting solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\pi$"
+    },
+    {
+     "id": "B",
+     "text": "$\\pi\\ln\\left(1+\\sqrt2\\right)$"
+    },
+    {
+     "id": "C",
+     "text": "$\\pi\\left(\\sqrt2-1\\right)$"
+    },
+    {
+     "id": "D",
+     "text": "$2\\pi$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $r=\\sec x$ ⇒ $r^2=\\sec^2x$.<br/>2. $V=\\pi\\int_0^{\\pi/4}\\sec^2x\\,dx=\\pi\\left[\\tan x\\right]_0^{\\pi/4}$.<br/>3. $=\\pi(1-0)=\\pi$.",
+   "genel_hatirlatma": "Disk sorularında $r^2$'nin ilkelini tanı: $\\sec^2x\\to\\tan x$, $\\frac{1}{x^2}\\to-\\frac1x$.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Yarıçapı karelememek.",
+     "aciklama": "$\\pi\\int\\sec x\\,dx$ kullanılmış; doğrusu $\\pi\\int\\sec^2x\\,dx$."
+    },
+    "C": {
+     "etiket": "Yanlış ilkel.",
+     "aciklama": "$\\sec^2x$'in ilkelini $\\sec x$ sanmak $\\pi\\left[\\sec x\\right]_0^{\\pi/4}=\\pi(\\sqrt2-1)$ verir. Oysa $\\sec x$, $\\sec x\\tan x$'in ilkelidir; $\\sec^2x$'in ilkeli $\\tan x$'tir."
+    },
+    "D": {
+     "etiket": "Disk alanında $2\\pi$ kullanmak.",
+     "aciklama": "Disk alanı $\\pi r^2$'dir; $2\\pi r$ çevre formülüdür."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.9)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Trigonometrik disk",
+    "ipucu": "sec²x'in ilkeli tan x",
+    "sikHata": "Kare almadan integral",
+    "cedKonu": "8.9",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_47",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 79,
+   "numara": 80,
+   "konu": "8.9 Volume with Disc Method: Revolving Around the x- or y-Axis",
+   "zorluk": "medium",
+   "govde": "The region bounded by the graph of $y=\\ln x$, the $y$-axis, the $x$-axis, and the line $y=2$ is revolved about the $y$-axis. What is the volume of the resulting solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\pi\\left(e^2-1\\right)$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{\\pi}{2}e^4$"
+    },
+    {
+     "id": "C",
+     "text": "$\\pi\\left(e^4-1\\right)$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{\\pi}{2}\\left(e^4-1\\right)$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $y$-ekseni etrafında ⇒ $dy$, yarıçap yatay uzaklık: $x=e^y$.<br/>2. $V=\\pi\\int_0^2(e^y)^2\\,dy=\\pi\\int_0^2e^{2y}\\,dy$.<br/>3. $=\\pi\\left[\\frac{e^{2y}}{2}\\right]_0^2=\\frac\\pi2(e^4-1)\\approx84.192$.",
+   "genel_hatirlatma": "Dikey eksen etrafında disk: $V=\\pi\\int_c^d[x(y)]^2\\,dy$; fonksiyonu $x=g(y)$ biçimine çevir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yarıçapı karelememek.",
+     "aciklama": "$\\pi\\int_0^2e^y\\,dy$; disk alanı $\\pi(e^y)^2=\\pi e^{2y}$."
+    },
+    "B": {
+     "etiket": "Alt sınırı değerlendirmemek.",
+     "aciklama": "$\\left[\\frac{e^{2y}}{2}\\right]_0^2=\\frac{e^4}{2}-\\frac12$; $y=0$'da değer sıfır değil."
+    },
+    "C": {
+     "etiket": "Zincir kuralı çarpanını unutmak.",
+     "aciklama": "$\\int e^{2y}dy=\\frac12e^{2y}$; $\\frac12$ atılmış."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.9)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "y-ekseni etrafında disk",
+    "ipucu": "x = e^y",
+    "sikHata": "dx ile kurmak",
+    "cedKonu": "8.9",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_48",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 80,
+   "numara": 81,
+   "konu": "8.9 Volume with Disc Method: Revolving Around the x- or y-Axis",
+   "zorluk": "hard",
+   "govde": "<em>(Graphing calculator allowed.)</em> For $k\\gt0$, the region bounded by the graph of $y=e^{-x}$, the $x$-axis, the $y$-axis, and the line $x=k$ is revolved about the $x$-axis. For what value of $k$ is the volume of the resulting solid equal to $1$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "0.383"
+    },
+    {
+     "id": "B",
+     "text": "0.173"
+    },
+    {
+     "id": "C",
+     "text": "0.506"
+    },
+    {
+     "id": "D",
+     "text": "0.330"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $V(k)=\\pi\\int_0^ke^{-2x}\\,dx=\\frac\\pi2\\left(1-e^{-2k}\\right)$.<br/>2. $\\frac\\pi2\\left(1-e^{-2k}\\right)=1\\Rightarrow e^{-2k}=1-\\frac2\\pi$.<br/>3. $k=-\\frac12\\ln\\left(1-\\frac2\\pi\\right)\\approx0.506$ (ya da hesap makinesinde $V(k)=1$ denklemini çöz).",
+   "genel_hatirlatma": "Hacmi verilen bir değere eşitleyen sınır sorularında $V(k)$'yi yaz ve denklemi çöz; hesap makinesinde intersect kullanabilirsin.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yarıçapı karelememek.",
+     "aciklama": "$\\pi\\int_0^ke^{-x}dx=1$ çözülmüş; disk alanı $\\pi e^{-2x}$."
+    },
+    "B": {
+     "etiket": "Disk alanı yerine çevre formülünü kullanmak.",
+     "aciklama": "$2\\pi\\int_0^k e^{-x}\\,dx=1$ çözülürse $k\\approx0.173$ çıkar. Disk kesitinin alanı $\\pi r^2=\\pi e^{-2x}$'tir; $2\\pi r$ çevredir."
+    },
+    "D": {
+     "etiket": "Yarıçapı yanlış karelemek.",
+     "aciklama": "$\\left(e^{-x}\\right)^2=e^{-2x}$'tir, $e^{-x^2}$ değil. $\\pi\\int_0^k e^{-x^2}dx=1$ çözülürse $k\\approx0.330$ çıkar."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.9)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Hacimden bilinmeyen sınır",
+    "ipucu": "Y1 = π·fnInt(e^(−2x), 0, X), Y2 = 1, intersect",
+    "sikHata": "İlkel katsayısı hatası",
+    "cedKonu": "8.9",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_49",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 81,
+   "numara": 82,
+   "konu": "8.9 Volume with Disc Method: Revolving Around the x- or y-Axis",
+   "zorluk": "easy",
+   "govde": "The region bounded by the graph of $x=\\sqrt{9-y^2}$ and the $y$-axis is revolved about the $y$-axis. What is the volume of the resulting solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$18\\pi$"
+    },
+    {
+     "id": "B",
+     "text": "$72\\pi$"
+    },
+    {
+     "id": "C",
+     "text": "$54\\pi$"
+    },
+    {
+     "id": "D",
+     "text": "$36\\pi$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Yarıçap $x=\\sqrt{9-y^2}$, $y\\in[-3,3]$.<br/>2. $V=\\pi\\int_{-3}^{3}(9-y^2)\\,dy=\\pi\\left[9y-\\frac{y^3}{3}\\right]_{-3}^{3}$.<br/>3. $=\\pi(18+18)=36\\pi$ — yarıçapı 3 olan kürenin hacmi $\\frac43\\pi\\cdot27$ ile aynı.",
+   "genel_hatirlatma": "Sonucu bilinen bir geometrik cisimle (küre, koni, silindir) kontrol etmek hatayı yakalar.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yalnız üst yarıyı almak.",
+     "aciklama": "$y$, $-3$'ten $3$'e gider; $\\int_0^3$ yarım küredir."
+    },
+    "B": {
+     "etiket": "Parantez işareti hatası.",
+     "aciklama": "$\\left(\\sqrt{9-y^2}\\right)^2=9-y^2$'dir; $9+y^2$ değil."
+    },
+    "C": {
+     "etiket": "$y^2$ terimini unutmak.",
+     "aciklama": "$\\pi\\int_{-3}^{3}9\\,dy=54\\pi$ silindir hacmidir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.9)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Disk yöntemiyle küre",
+    "ipucu": "r² = 9 − y²",
+    "sikHata": "Yarı aralık",
+    "cedKonu": "8.9",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_50",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 82,
+   "numara": 83,
+   "konu": "8.10 Volume with Disc Method: Revolving Around Other Axes",
+   "zorluk": "easy",
+   "govde": "The region bounded by the graph of $y=x^2$ and the line $y=1$ is revolved about the line $y=1$. What is the volume of the resulting solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{4\\pi}{3}$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{16\\pi}{15}$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{2\\pi}{5}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{8\\pi}{15}$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Yarıçap = eksen − eğri $=1-x^2$.<br/>2. $V=\\pi\\int_{-1}^{1}(1-x^2)^2\\,dx=\\pi\\int_{-1}^{1}(1-2x^2+x^4)\\,dx$.<br/>3. $=\\pi\\left(2-\\frac43+\\frac25\\right)=\\frac{16\\pi}{15}$.",
+   "genel_hatirlatma": "Yatay eksen $y=k$ etrafında disk: $r=|k-f(x)|$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yarıçapı karelememek.",
+     "aciklama": "$\\pi\\int_{-1}^{1}(1-x^2)\\,dx=\\frac{4\\pi}{3}$; disk alanı $\\pi r^2$."
+    },
+    "C": {
+     "etiket": "Yarıçapı $x$-ekseninden ölçmek.",
+     "aciklama": "Dönme ekseni $y=1$; yarıçap $1-x^2$'dir, $x^2$ değil."
+    },
+    "D": {
+     "etiket": "Yalnız yarım aralığı almak.",
+     "aciklama": "$x$, $-1$'den $1$'e gider."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.10)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Yatay doğru etrafında disk",
+    "ipucu": "r = 1 − x²",
+    "sikHata": "r'yi x-ekseninden ölçmek",
+    "cedKonu": "8.10",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_51",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 83,
+   "numara": 84,
+   "konu": "8.10 Volume with Disc Method: Revolving Around Other Axes",
+   "zorluk": "medium",
+   "govde": "The region bounded by the graph of $y=\\sqrt{x}$, the line $y=3$, and the $y$-axis is revolved about the line $y=3$. What is the volume of the resulting solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{27\\pi}{2}$"
+    },
+    {
+     "id": "B",
+     "text": "$9\\pi$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{81\\pi}{2}$"
+    },
+    {
+     "id": "D",
+     "text": "$54\\pi$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Sınırlar: $\\sqrt x=3\\Rightarrow x=9$; $x\\in[0,9]$. Yarıçap $r=3-\\sqrt x$.<br/>2. $r^2=9-6\\sqrt x+x$.<br/>3. $V=\\pi\\int_0^9(9-6\\sqrt x+x)\\,dx=\\pi\\left(81-4\\cdot27+\\frac{81}{2}\\right)=\\frac{27\\pi}{2}$.",
+   "genel_hatirlatma": "$(a-b)^2\\ne a^2-b^2$: önce yarıçapı yaz, sonra karesini aç.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Yarıçapı karelememek.",
+     "aciklama": "$\\pi\\int_0^9(3-\\sqrt x)\\,dx=9\\pi$."
+    },
+    "C": {
+     "etiket": "Pul (washer) gibi karelerin farkını almak.",
+     "aciklama": "$\\pi\\int_0^9\\left(3^2-(\\sqrt x)^2\\right)dx$ $x$-ekseni etrafında dönüşün pul hacmidir; burada eksen $y=3$, yarıçap $3-\\sqrt x$."
+    },
+    "D": {
+     "etiket": "İlkelde $\\frac{x^2}{2}$'yi $x^2$ almak.",
+     "aciklama": "$\\int_0^9x\\,dx=\\frac{81}{2}$'dir, $81$ değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.10)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Bölgenin üstündeki doğru etrafında disk",
+    "ipucu": "r = 3 − √x",
+    "sikHata": "r² yerine a² − b²",
+    "cedKonu": "8.10",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_52",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 84,
+   "numara": 85,
+   "konu": "8.10 Volume with Disc Method: Revolving Around Other Axes",
+   "zorluk": "medium",
+   "govde": "The region bounded by the graph of $x=y^2$ and the line $x=4$ is revolved about the line $x=4$. What is the volume of the resulting solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{256\\pi}{5}$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{32\\pi}{3}$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{512\\pi}{15}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{64\\pi}{5}$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Dikey eksen ⇒ $dy$. Kesişim: $y^2=4\\Rightarrow y=\\pm2$.<br/>2. $r=4-y^2$; $r^2=16-8y^2+y^4$.<br/>3. $V=\\pi\\int_{-2}^{2}(16-8y^2+y^4)\\,dy=\\pi\\left(64-\\frac{128}{3}+\\frac{64}{5}\\right)=\\frac{512\\pi}{15}$.",
+   "genel_hatirlatma": "Dikey eksen $x=h$ etrafında disk: $V=\\pi\\int[h-x(y)]^2\\,dy$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Karelerin farkını almak.",
+     "aciklama": "$\\pi\\int(16-y^4)\\,dy$ $y$-ekseni etrafında pul hacmidir; eksen $x=4$ olduğunda yarıçap $4-y^2$."
+    },
+    "B": {
+     "etiket": "Yarıçapı karelememek.",
+     "aciklama": "$\\pi\\int_{-2}^{2}(4-y^2)\\,dy=\\frac{32\\pi}{3}$."
+    },
+    "D": {
+     "etiket": "Yarıçapı $y$-ekseninden ölçmek.",
+     "aciklama": "$\\pi\\int(y^2)^2\\,dy$, ekseni $x=0$ sayar."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.10)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Dikey doğru etrafında disk",
+    "ipucu": "r = 4 − y², dy ile",
+    "sikHata": "Ekseni y-ekseni sanmak",
+    "cedKonu": "8.10",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_53",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 85,
+   "numara": 86,
+   "konu": "8.10 Volume with Disc Method: Revolving Around Other Axes",
+   "zorluk": "hard",
+   "govde": "The region bounded by the graph of $y=e^x$, the line $y=3$, and the $y$-axis is revolved about the line $y=3$. What is the volume of the resulting solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\pi(9\\ln3-4)$"
+    },
+    {
+     "id": "B",
+     "text": "$\\pi(9\\ln3-8)$"
+    },
+    {
+     "id": "C",
+     "text": "$\\pi(3\\ln3-2)$"
+    },
+    {
+     "id": "D",
+     "text": "$4\\pi$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Sınırlar: $e^x=3\\Rightarrow x=\\ln3$. Yarıçap $r=3-e^x$.<br/>2. $r^2=9-6e^x+e^{2x}$; $\\int_0^{\\ln3}r^2\\,dx=9\\ln3-6(3-1)+\\frac{9-1}{2}=9\\ln3-8$.<br/>3. $V=\\pi(9\\ln3-8)\\approx5.930$.",
+   "genel_hatirlatma": "Bölge dönme eksenine değiyorsa (delik yok) disk; yarıçap = eksen − eğri.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Karelerin farkını almak.",
+     "aciklama": "$\\pi\\int_0^{\\ln3}(9-e^{2x})\\,dx$ $x$-ekseni etrafında pul hacmidir; burada yarıçap $3-e^x$."
+    },
+    "C": {
+     "etiket": "Yarıçapı karelememek.",
+     "aciklama": "$\\pi\\int_0^{\\ln3}(3-e^x)\\,dx$; disk alanı $\\pi r^2$."
+    },
+    "D": {
+     "etiket": "Yarıçapı $x$-ekseninden ölçmek.",
+     "aciklama": "$\\pi\\int_0^{\\ln3}e^{2x}\\,dx=4\\pi$, ekseni $y=0$ sayar."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.10)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Üstel fonksiyon, yatay eksen etrafında disk",
+    "ipucu": "r = 3 − eˣ; karesini aç",
+    "sikHata": "a² − b² yazmak",
+    "cedKonu": "8.10",
+    "hesapMakinesi": "yardımcı",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_54",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 86,
+   "numara": 87,
+   "konu": "8.10 Volume with Disc Method: Revolving Around Other Axes",
+   "zorluk": "hard",
+   "govde": "<em>(Graphing calculator allowed.)</em> Let $R$ be the region enclosed by the graph of $y=x^2+e^x$ and the line $y=3$. $R$ is revolved about the line $y=3$. What is the volume of the resulting solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "48.863"
+    },
+    {
+     "id": "B",
+     "text": "11.473"
+    },
+    {
+     "id": "C",
+     "text": "22.155"
+    },
+    {
+     "id": "D",
+     "text": "19.975"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Hesap makinesiyle $x^2+e^x=3$ ⇒ $x\\approx-1.677$ ve $x\\approx0.834$.<br/>2. Yarıçap $r=3-(x^2+e^x)$.<br/>3. $V=\\pi\\int_{-1.677}^{0.834}\\left(3-x^2-e^x\\right)^2dx\\approx19.975$.",
+   "genel_hatirlatma": "Calculator bölümünde kurulum: kesişimleri sakla, yarıçapı “eksen − eğri” yaz, $\\pi\\int r^2$.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Karelerin farkını almak.",
+     "aciklama": "$\\pi\\int\\left(9-(x^2+e^x)^2\\right)dx$ $x$-ekseni etrafında pul hacmidir."
+    },
+    "B": {
+     "etiket": "Yarıçapı karelememek.",
+     "aciklama": "$\\pi\\int(3-x^2-e^x)\\,dx$, $\\pi\\times$ alan verir."
+    },
+    "C": {
+     "etiket": "Yarıçapı $x$-ekseninden ölçmek.",
+     "aciklama": "$\\pi\\int(x^2+e^x)^2dx$ ekseni $y=0$ sayar."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.10)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Sayısal sınırlı disk (yatay eksen)",
+    "ipucu": "r = 3 − (x² + eˣ)",
+    "sikHata": "Yarıçapı x-ekseninden ölçmek",
+    "cedKonu": "8.10",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_55",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 87,
+   "numara": 88,
+   "konu": "8.10 Volume with Disc Method: Revolving Around Other Axes",
+   "zorluk": "medium",
+   "govde": "Let $R$ be the triangular region bounded by the line $y=x+1$, the line $x=-1$, and the line $y=2$. Which of the following gives the volume of the solid generated when $R$ is revolved about the line $x=-1$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\pi\\int_0^2 (y-1)^2\\,dy$"
+    },
+    {
+     "id": "B",
+     "text": "$\\pi\\int_0^2 (y+1)^2\\,dy$"
+    },
+    {
+     "id": "C",
+     "text": "$\\pi\\int_0^2 y^2\\,dy$"
+    },
+    {
+     "id": "D",
+     "text": "$\\pi\\int_0^2 y\\,dy$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Köşeler: $(-1,0)$, $(-1,2)$, $(1,2)$. Bölge $x=-1$ eksenine değer.<br/>2. $y$ yüksekliğinde yatay disk: $r=(y-1)-(-1)=y$, $y\\in[0,2]$.<br/>3. $V=\\pi\\int_0^2y^2\\,dy=\\frac{8\\pi}{3}$ (yarıçapı 2, yüksekliği 2 olan koni: $\\frac13\\pi\\cdot4\\cdot2$ ✓).",
+   "genel_hatirlatma": "Dikey eksen $x=h$: yarıçap $=x(y)-h$ (eğri eksenin sağındaysa).",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Yarıçapı $y$-ekseninden ölçmek.",
+     "aciklama": "$x=y-1$ eğrinin $y$-eksenine uzaklığıdır; eksen $x=-1$ olduğundan $r=(y-1)-(-1)=y$."
+    },
+    "B": {
+     "etiket": "Ters fonksiyonu yanlış çözüp yarıçapı $y$-ekseninden ölçmek.",
+     "aciklama": "$y=x+1\\Rightarrow x=y-1$'dir, $x=y+1$ değil; ayrıca yarıçap $x=-1$ ekseninden ölçülür: $(y-1)-(-1)=y$."
+    },
+    "D": {
+     "etiket": "Yarıçapı karelememek.",
+     "aciklama": "Disk alanı $\\pi r^2=\\pi y^2$'dir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.10)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Dikey doğru etrafında disk kurulumu",
+    "ipucu": "r = (y − 1) − (−1)",
+    "sikHata": "Ekseni kaydırmayı unutmak",
+    "cedKonu": "8.10",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_56",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 88,
+   "numara": 89,
+   "konu": "8.10 Volume with Disc Method: Revolving Around Other Axes",
+   "zorluk": "easy",
+   "govde": "Let $f$ be a continuous function with $f(x)\\ge -2$ for $0\\le x\\le 4$. The region bounded by the graph of $y=f(x)$, the line $y=-2$, and the lines $x=0$ and $x=4$ is revolved about the line $y=-2$. Which of the following gives the volume of the solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\pi\\int_0^4 \\left(f(x)+2\\right)^2dx$"
+    },
+    {
+     "id": "B",
+     "text": "$\\pi\\int_0^4 \\left(f(x)-2\\right)^2dx$"
+    },
+    {
+     "id": "C",
+     "text": "$\\pi\\int_0^4 \\left(f(x)\\right)^2dx$"
+    },
+    {
+     "id": "D",
+     "text": "$\\pi\\int_0^4 \\left(\\left(f(x)\\right)^2-4\\right)dx$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Dönme ekseni $y=-2$, bölge onun üstünde.<br/>2. Yarıçap = üst − eksen $=f(x)-(-2)=f(x)+2$.<br/>3. $V=\\pi\\int_0^4(f(x)+2)^2\\,dx$.",
+   "genel_hatirlatma": "Yarıçap her zaman bir uzaklıktır: “büyük koordinat − küçük koordinat”.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Eksenin işaretini yanlış almak.",
+     "aciklama": "Uzaklık $f(x)-(-2)=f(x)+2$'dir."
+    },
+    "C": {
+     "etiket": "Ekseni $x$-ekseni sanmak.",
+     "aciklama": "$\\pi\\int f^2\\,dx$, $y=0$ etrafında dönüş içindir."
+    },
+    "D": {
+     "etiket": "Pul formülünü yanlış yerde kullanmak.",
+     "aciklama": "Bölge eksene değdiği için delik yoktur; tek yarıçap $f(x)+2$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.10)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Eksen kaydırma: yarıçap",
+    "ipucu": "r = f(x) − (−2)",
+    "sikHata": "İşaret hatası",
+    "cedKonu": "8.10",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_57",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 89,
+   "numara": 90,
+   "konu": "8.11 Volume with Washer Method: Revolving Around the x- or y-Axis",
+   "zorluk": "easy",
+   "govde": "The region bounded by the graphs of $y=2x$ and $y=x^2$ is revolved about the $x$-axis. What is the volume of the resulting solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{16\\pi}{15}$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{4\\pi}{3}$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{64\\pi}{15}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{32\\pi}{3}$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Kesişim: $2x=x^2\\Rightarrow x=0,2$. Dış yarıçap $R=2x$, iç yarıçap $r=x^2$.<br/>2. $V=\\pi\\int_0^2\\left(4x^2-x^4\\right)dx$.<br/>3. $=\\pi\\left(\\frac{32}{3}-\\frac{32}{5}\\right)=\\frac{64\\pi}{15}$.",
+   "genel_hatirlatma": "Pul (washer) yöntemi: $V=\\pi\\int\\left(R^2-r^2\\right)dx$ — $(R-r)^2$ değil.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Farkın karesini almak.",
+     "aciklama": "$\\pi\\int(2x-x^2)^2dx$ yanlış; pul alanı $\\pi(R^2-r^2)$'dir."
+    },
+    "B": {
+     "etiket": "Alanı $\\pi$ ile çarpmak.",
+     "aciklama": "Bölgenin alanı $\\frac43$'tür; $\\pi\\cdot$alan hacim vermez."
+    },
+    "D": {
+     "etiket": "İç yarıçapı çıkarmamak.",
+     "aciklama": "$\\pi\\int_0^2(2x)^2dx=\\frac{32\\pi}{3}$ deliksiz koninin hacmidir."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.11)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "x-ekseni etrafında pul",
+    "ipucu": "R = 2x, r = x²",
+    "sikHata": "(R − r)² yazmak",
+    "cedKonu": "8.11",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_58",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 90,
+   "numara": 91,
+   "konu": "8.11 Volume with Washer Method: Revolving Around the x- or y-Axis",
+   "zorluk": "medium",
+   "govde": "The region in the first quadrant bounded by the graphs of $y=x^3$ and $y=4x$ is revolved about the $y$-axis. What is the volume of the resulting solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{512\\pi}{21}$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{128\\pi}{15}$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{256\\pi}{105}$"
+    },
+    {
+     "id": "D",
+     "text": "$4\\pi$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $y$'ye göre: $x=y^{1/3}$ (dış, $R$) ve $x=\\frac y4$ (iç, $r$); kesişim $y=0,8$.<br/>2. $V=\\pi\\int_0^8\\left(y^{2/3}-\\frac{y^2}{16}\\right)dy$.<br/>3. $=\\pi\\left(\\frac35\\cdot32-\\frac{512}{48}\\right)=\\pi\\left(\\frac{96}{5}-\\frac{32}{3}\\right)=\\frac{128\\pi}{15}$.",
+   "genel_hatirlatma": "$y$-ekseni etrafında pul: $R$ ve $r$ yatay uzaklıklardır, $x=g(y)$ biçiminde yazılır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$x$-ekseni etrafında hesaplamak.",
+     "aciklama": "$\\pi\\int_0^2\\left(16x^2-x^6\\right)dx$ dönüşü $x$-ekseni etrafında yapar."
+    },
+    "C": {
+     "etiket": "Farkın karesini almak.",
+     "aciklama": "$\\pi\\int_0^8\\left(y^{1/3}-\\frac y4\\right)^2dy$; doğrusu $\\pi\\int(R^2-r^2)\\,dy$."
+    },
+    "D": {
+     "etiket": "Yarıçapları karelememek.",
+     "aciklama": "$\\pi\\int_0^8\\left(y^{1/3}-\\frac y4\\right)dy=4\\pi$, $\\pi\\times$ alan."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.11)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "y-ekseni etrafında pul",
+    "ipucu": "Hangisi eksenden uzak? y = 1'de 1 > 1/4",
+    "sikHata": "dx ile kurmak",
+    "cedKonu": "8.11",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_59",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 91,
+   "numara": 92,
+   "konu": "8.11 Volume with Washer Method: Revolving Around the x- or y-Axis",
+   "zorluk": "medium",
+   "govde": "<em>(Graphing calculator allowed.)</em> Let $R$ be the region in the first quadrant enclosed by the graphs of $y=2\\sin x$ and $y=\\frac{x}{2}$. $R$ is revolved about the $x$-axis. What is the volume of the resulting solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "6.466"
+    },
+    {
+     "id": "B",
+     "text": "6.410"
+    },
+    {
+     "id": "C",
+     "text": "18.602"
+    },
+    {
+     "id": "D",
+     "text": "14.635"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. Kesişim: $2\\sin x=\\frac x2$ ⇒ $x=0$ ve hesap makinesiyle $x\\approx2.475$.<br/>2. $R=2\\sin x$, $r=\\frac x2$.<br/>3. $V=\\pi\\int_0^{2.475}\\left(4\\sin^2x-\\frac{x^2}{4}\\right)dx\\approx14.635$.",
+   "genel_hatirlatma": "Pul: dış eğri eksenden uzak olandır; her iki yarıçap da eksenden ölçülür.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Farkın karesini almak.",
+     "aciklama": "$\\pi\\int(2\\sin x-\\frac x2)^2dx$; pul için $\\pi\\int(R^2-r^2)$."
+    },
+    "B": {
+     "etiket": "Yarıçapları karelememek.",
+     "aciklama": "$\\pi\\int(2\\sin x-\\frac x2)\\,dx$, $\\pi\\times$ alan verir."
+    },
+    "C": {
+     "etiket": "İç yarıçapı çıkarmamak.",
+     "aciklama": "$\\pi\\int(2\\sin x)^2dx$ deliği yok sayar."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.11)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Pul yöntemi (hesap makineli)",
+    "ipucu": "π·fnInt((2 sin x)² − (x/2)², 0, A)",
+    "sikHata": "(R − r)²",
+    "cedKonu": "8.11",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_60",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 92,
+   "numara": 93,
+   "konu": "8.11 Volume with Washer Method: Revolving Around the x- or y-Axis",
+   "zorluk": "hard",
+   "govde": "<em>(Graphing calculator allowed.)</em> Let $R$ be the region enclosed by the graphs of $y=x+2$ and $y=e^x$. $R$ is revolved about the $x$-axis. What is the volume of the resulting solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "17.099"
+    },
+    {
+     "id": "B",
+     "text": "4.853"
+    },
+    {
+     "id": "C",
+     "text": "32.608"
+    },
+    {
+     "id": "D",
+     "text": "6.123"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Hesap makinesiyle $x+2=e^x$ ⇒ $x\\approx-1.841$ ve $x\\approx1.146$.<br/>2. Aralıkta $x+2\\ge e^x\\gt0$ ⇒ $R=x+2$, $r=e^x$.<br/>3. $V=\\pi\\int_{-1.841}^{1.146}\\left((x+2)^2-e^{2x}\\right)dx\\approx17.099$.",
+   "genel_hatirlatma": "Pul yönteminden önce bölgenin eksenin tek tarafında olduğunu kontrol et (burada $e^x\\gt0$).",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Farkın karesini almak.",
+     "aciklama": "$\\pi\\int(x+2-e^x)^2dx$ yanlış; pul alanı $\\pi\\left((x+2)^2-e^{2x}\\right)$."
+    },
+    "C": {
+     "etiket": "İç yarıçapı çıkarmamak.",
+     "aciklama": "$\\pi\\int(x+2)^2dx$ deliksiz cisim içindir."
+    },
+    "D": {
+     "etiket": "Alanı $\\pi$ ile çarpmak.",
+     "aciklama": "$\\pi\\int(x+2-e^x)\\,dx$; yarıçaplar karelenmemiş."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.11)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Sayısal sınırlı pul",
+    "ipucu": "İki kökü STO et; π·fnInt((x+2)² − e^(2x))",
+    "sikHata": "(R − r)²",
+    "cedKonu": "8.11",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_61",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 93,
+   "numara": 94,
+   "konu": "8.11 Volume with Washer Method: Revolving Around the x- or y-Axis",
+   "zorluk": "medium",
+   "govde": "The region in the first quadrant bounded by the graph of $x=y^2$, the line $x=4$, and the $x$-axis is revolved about the $y$-axis. What is the volume of the resulting solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{128\\pi}{5}$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{256\\pi}{15}$"
+    },
+    {
+     "id": "C",
+     "text": "$8\\pi$"
+    },
+    {
+     "id": "D",
+     "text": "$32\\pi$"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. $y\\in[0,2]$ ($y^2=4$). Dış yarıçap $R=4$, iç yarıçap $r=y^2$.<br/>2. $V=\\pi\\int_0^2\\left(16-y^4\\right)dy$.<br/>3. $=\\pi\\left(32-\\frac{32}{5}\\right)=\\frac{128\\pi}{5}$.",
+   "genel_hatirlatma": "Bölge eksene değmiyorsa (aralarında boşluk) pul kullan.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Farkın karesini almak.",
+     "aciklama": "$\\pi\\int_0^2(4-y^2)^2dy$, $x=4$ etrafında disk hacmidir."
+    },
+    "C": {
+     "etiket": "$x$-ekseni etrafında hesaplamak.",
+     "aciklama": "$\\pi\\int_0^4(\\sqrt x)^2dx=8\\pi$ dönüşü $x$-ekseni etrafında yapar."
+    },
+    "D": {
+     "etiket": "İç yarıçapı çıkarmamak.",
+     "aciklama": "$\\pi\\int_0^2 4^2\\,dy=32\\pi$ dolu silindirdir; parabolün solundaki boşluk çıkarılmalı."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.11)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "y-ekseni etrafında pul (sabit dış yarıçap)",
+    "ipucu": "R = 4, r = y²",
+    "sikHata": "Deliği unutmak",
+    "cedKonu": "8.11",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_62",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 94,
+   "numara": 95,
+   "konu": "8.11 Volume with Washer Method: Revolving Around the x- or y-Axis",
+   "zorluk": "hard",
+   "govde": "The region bounded by the graphs of $y=\\sqrt{x}$ and $y=\\frac{x}{2}$ is revolved about the $y$-axis. Which of the following gives the volume of the resulting solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\pi\\int_0^4\\left(x-\\frac{x^2}{4}\\right)dx$"
+    },
+    {
+     "id": "B",
+     "text": "$\\pi\\int_0^2\\left((2y)^2-(y^2)^2\\right)dy$"
+    },
+    {
+     "id": "C",
+     "text": "$\\pi\\int_0^2\\left(2y-y^2\\right)^2dy$"
+    },
+    {
+     "id": "D",
+     "text": "$\\pi\\int_0^2\\left((y^2)^2-(2y)^2\\right)dy$"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $y$'ye göre: $y=\\sqrt x\\Rightarrow x=y^2$; $y=\\frac x2\\Rightarrow x=2y$. Kesişim $y=0,2$.<br/>2. $y=1$'de $2y=2\\gt y^2=1$ ⇒ $R=2y$, $r=y^2$.<br/>3. $V=\\pi\\int_0^2\\left(4y^2-y^4\\right)dy=\\pi\\left(\\frac{32}{3}-\\frac{32}{5}\\right)=\\frac{64\\pi}{15}$.",
+   "genel_hatirlatma": "Dikey eksen etrafında dönüşte “dış” = eksenden yatay olarak daha uzak; $y$-ekseninde bu, daha büyük $x$ demektir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "$x$-ekseni etrafında kurmak.",
+     "aciklama": "Bu, $\\pi\\int(R^2-r^2)\\,dx$ ile $x$-ekseni etrafında dönüştür."
+    },
+    "C": {
+     "etiket": "Farkın karesini almak.",
+     "aciklama": "Pul alanı $\\pi(R^2-r^2)$'dir; $(R-r)^2$ değil."
+    },
+    "D": {
+     "etiket": "İç ve dış yarıçapı ters almak.",
+     "aciklama": "$0\\lt y\\lt2$ için $2y\\gt y^2$; eksenden uzak olan $x=2y$ (doğru) dış yarıçaptır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.11)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "y-ekseni etrafında pul kurulumu",
+    "ipucu": "Test y = 1: hangi x daha büyük?",
+    "sikHata": "R ile r'yi karıştırmak",
+    "cedKonu": "8.11",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_63",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 95,
+   "numara": 96,
+   "konu": "8.12 Volume with Washer Method: Revolving Around Other Axes",
+   "zorluk": "medium",
+   "govde": "The region bounded by the graphs of $y=\\sqrt{x}$ and $y=x$ is revolved about the line $y=-1$. What is the volume of the resulting solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{\\pi}{6}$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{\\pi}{30}$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{\\pi}{2}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{5\\pi}{2}$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Kesişim $x=0,1$; $\\sqrt x\\ge x$. Eksen $y=-1$ bölgenin altında.<br/>2. $R=\\sqrt x+1$, $r=x+1$; $R^2-r^2=2\\sqrt x-x-x^2$.<br/>3. $V=\\pi\\int_0^1\\left(2\\sqrt x-x-x^2\\right)dx=\\pi\\left(\\frac43-\\frac12-\\frac13\\right)=\\frac\\pi2$.",
+   "genel_hatirlatma": "Eksen $y=-k$ (bölgenin altında): $R=f+k$, $r=g+k$ — her iki yarıçaba aynı kaydırma.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Eksen kaydırmasını unutmak.",
+     "aciklama": "$\\pi\\int_0^1(x-x^2)\\,dx=\\frac\\pi6$, $x$-ekseni etrafında dönüştür."
+    },
+    "B": {
+     "etiket": "Farkın karesini almak.",
+     "aciklama": "$\\pi\\int_0^1(\\sqrt x-x)^2dx$; pul için $\\pi(R^2-r^2)$."
+    },
+    "D": {
+     "etiket": "Kaydırmayı yalnız dış yarıçapa uygulamak.",
+     "aciklama": "$R=\\sqrt x+1$ ise $r=x+1$ olmalı; $r=x$ almak yanlış."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.12)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Alttaki doğru etrafında pul",
+    "ipucu": "R = √x + 1, r = x + 1",
+    "sikHata": "Kaydırmayı tek yarıçapa uygulamak",
+    "cedKonu": "8.12",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_64",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 96,
+   "numara": 97,
+   "konu": "8.12 Volume with Washer Method: Revolving Around Other Axes",
+   "zorluk": "hard",
+   "govde": "The region bounded by the graphs of $y=x$ and $y=x^2$ is revolved about the vertical line $x=3$. What is the volume of the resulting solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\frac{7\\pi}{6}$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{\\pi}{30}$"
+    },
+    {
+     "id": "C",
+     "text": "$\\frac{\\pi}{6}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\frac{5\\pi}{6}$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $y$'ye göre: $x=y$ (sol) ve $x=\\sqrt y$ (sağ), $y\\in[0,1]$. Eksen $x=3$ sağda.<br/>2. Eksenden uzak olan sol eğri: $R=3-y$, $r=3-\\sqrt y$.<br/>3. $V=\\pi\\int_0^1\\left((3-y)^2-(3-\\sqrt y)^2\\right)dy=\\pi\\int_0^1\\left(y^2-7y+6\\sqrt y\\right)dy=\\pi\\left(\\frac13-\\frac72+4\\right)=\\frac{5\\pi}{6}$.",
+   "genel_hatirlatma": "Eksen bölgenin sağındaysa yarıçap = eksen − $x$; eksene uzak olan eğri (küçük $x$) dış yarıçapı verir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Ekseni $x=-3$ sanmak.",
+     "aciklama": "Eksen $x=-3$ (bölgenin solunda) olsaydı $R=\\sqrt y+3$, $r=y+3$ olur ve hacim $\\frac{7\\pi}{6}$ çıkardı. Oysa $x=3$ bölgenin sağındadır: $R=3-y$, $r=3-\\sqrt y$."
+    },
+    "B": {
+     "etiket": "Farkın karesini almak.",
+     "aciklama": "$\\pi\\int\\left((3-y)-(3-\\sqrt y)\\right)^2dy=\\pi\\int(\\sqrt y-y)^2dy$ yanlış formül."
+    },
+    "C": {
+     "etiket": "Ekseni $y$-ekseni almak.",
+     "aciklama": "$\\pi\\int_0^1\\left(y-y^2\\right)dy=\\frac\\pi6$, $x=0$ etrafında dönüştür."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.12)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Dikey doğru etrafında pul",
+    "ipucu": "R = 3 − y, r = 3 − √y",
+    "sikHata": "Eksen tarafını karıştırmak",
+    "cedKonu": "8.12",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_65",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 97,
+   "numara": 98,
+   "konu": "8.12 Volume with Washer Method: Revolving Around Other Axes",
+   "zorluk": "hard",
+   "govde": "<em>(Graphing calculator allowed.)</em> Let $R$ be the region in the first quadrant enclosed by the graphs of $y=3\\sin\\left(\\frac{x}{2}\\right)$ and $y=x$. $R$ is revolved about the horizontal line $y=4$. What is the volume of the resulting solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "14.890"
+    },
+    {
+     "id": "B",
+     "text": "12.143"
+    },
+    {
+     "id": "C",
+     "text": "39.176"
+    },
+    {
+     "id": "D",
+     "text": "1.482"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Kesişim: $3\\sin\\frac x2=x$ ⇒ $x=0$ ve hesap makinesiyle $x\\approx2.992$; aralıkta $3\\sin\\frac x2\\ge x$.<br/>2. Eksen $y=4$ üstte ⇒ eksenden uzak olan alt eğri: $R=4-x$, $r=4-3\\sin\\frac x2$.<br/>3. $V=\\pi\\int_0^{2.992}\\left((4-x)^2-\\left(4-3\\sin\\frac x2\\right)^2\\right)dx\\approx14.890$.",
+   "genel_hatirlatma": "Eksen bölgenin üstündeyse: $R$ = eksen − alt eğri, $r$ = eksen − üst eğri.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Ekseni $x$-ekseni almak.",
+     "aciklama": "$\\pi\\int\\left(9\\sin^2\\frac x2-x^2\\right)dx$, $y=0$ etrafında dönüştür."
+    },
+    "C": {
+     "etiket": "Ekseni $y=-4$ sanmak.",
+     "aciklama": "$R=3\\sin\\frac x2+4$ eksenin bölgenin altında olduğunu varsayar; $y=4$ bölgenin üstündedir."
+    },
+    "D": {
+     "etiket": "Farkın karesini almak.",
+     "aciklama": "$\\pi\\int(R-r)^2dx$ yanlış; $\\pi\\int(R^2-r^2)\\,dx$ kullanılır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.12)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Üstteki doğru etrafında pul (hesap makineli)",
+    "ipucu": "R = 4 − x, r = 4 − 3sin(x/2)",
+    "sikHata": "Dış/iç yarıçapı ters almak",
+    "cedKonu": "8.12",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_66",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 98,
+   "numara": 99,
+   "konu": "8.12 Volume with Washer Method: Revolving Around Other Axes",
+   "zorluk": "medium",
+   "govde": "<em>(Graphing calculator allowed.)</em> The region bounded by the graph of $y=\\ln x$, the $x$-axis, and the line $x=4$ is revolved about the line $y=-1$. What is the volume of the resulting solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "8.158"
+    },
+    {
+     "id": "B",
+     "text": "24.150"
+    },
+    {
+     "id": "C",
+     "text": "33.575"
+    },
+    {
+     "id": "D",
+     "text": "7.687"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. Sınırlar: $\\ln x=0\\Rightarrow x=1$; $x\\in[1,4]$. Eksen $y=-1$ bölgenin altında.<br/>2. $R=\\ln x+1$, $r=0+1=1$.<br/>3. $V=\\pi\\int_1^4\\left((\\ln x+1)^2-1\\right)dx\\approx24.150$.",
+   "genel_hatirlatma": "Bölgenin alt sınırı $x$-ekseni olsa bile, eksen $y=-1$ ise iç yarıçap $1$'dir (pul).",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Eksen kaydırmasını unutmak.",
+     "aciklama": "$\\pi\\int_1^4(\\ln x)^2dx$, $x$-ekseni etrafında disk hacmidir."
+    },
+    "C": {
+     "etiket": "İç yarıçapı çıkarmamak.",
+     "aciklama": "Bölge ile eksen arasında 1 birimlik boşluk vardır; $r=0-(-1)=1$ çıkarılmalı."
+    },
+    "D": {
+     "etiket": "$\\pi$'yi unutmak.",
+     "aciklama": "$\\int_1^4\\left((\\ln x+1)^2-1\\right)dx\\approx7.687$; hacim için $\\pi$ ile çarp."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.12)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Eksen kaydırmalı pul (hesap makineli)",
+    "ipucu": "R = ln x + 1, r = 1",
+    "sikHata": "Deliği unutmak",
+    "cedKonu": "8.12",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_67",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 99,
+   "numara": 100,
+   "konu": "8.12 Volume with Washer Method: Revolving Around Other Axes",
+   "zorluk": "medium",
+   "govde": "The region bounded by the graph of $y=x^2$ and the line $y=4$ is revolved about the line $y=5$. Which of the following gives the volume of the resulting solid?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\pi\\int_{-2}^{2}\\left(1-(5-x^2)^2\\right)dx$"
+    },
+    {
+     "id": "B",
+     "text": "$\\pi\\int_{-2}^{2}\\left(4-x^2\\right)^2dx$"
+    },
+    {
+     "id": "C",
+     "text": "$\\pi\\int_{-2}^{2}\\left((5-x^2)^2-1\\right)dx$"
+    },
+    {
+     "id": "D",
+     "text": "$\\pi\\int_{-2}^{2}\\left((5-x^2)^2-4^2\\right)dx$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. Kesişim $x=\\pm2$. Eksen $y=5$ bölgenin üstünde.<br/>2. $R=5-x^2$ (parabol, uzak), $r=5-4=1$ (doğru, yakın).<br/>3. $V=\\pi\\int_{-2}^{2}\\left((5-x^2)^2-1^2\\right)dx$.",
+   "genel_hatirlatma": "Eksen bölgeye değmiyorsa her zaman iki yarıçap vardır.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Dış ve iç yarıçapı ters almak.",
+     "aciklama": "Eksen $y=5$'e uzak olan parabol ($5-x^2\\ge1$) dış yarıçaptır."
+    },
+    "B": {
+     "etiket": "Ekseni $y=4$ sanmak.",
+     "aciklama": "Bu, $y=4$ etrafında disktir; eksen $y=5$ olduğunda 1 birimlik delik oluşur."
+    },
+    "D": {
+     "etiket": "İç yarıçap olarak doğrunun $y$-değerini almak.",
+     "aciklama": "İç yarıçap $y=4$ doğrusunun dönme eksenine ($y=5$) uzaklığıdır: $r=5-4=1$. $4$, doğrunun $x$-eksenine uzaklığıdır."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.12)",
+   "deneme_kodlari": [
+    "calculus-ab",
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Üstteki doğru etrafında pul kurulumu",
+    "ipucu": "R = 5 − x², r = 1",
+    "sikHata": "Ekseni yanlış doğru sanmak",
+    "cedKonu": "8.12",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_68",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 100,
+   "numara": 101,
+   "konu": "8.13 The Arc Length of a Smooth, Planar Curve and Distance Traveled",
+   "zorluk": "easy",
+   "govde": "<span class='card-badge badge-rose'>BC ONLY</span> Which of the following gives the length of the graph of $y=\\sin x$ from $x=0$ to $x=\\pi$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\int_0^{\\pi}\\sqrt{1-\\cos^2x}\\,dx$"
+    },
+    {
+     "id": "B",
+     "text": "$\\int_0^{\\pi}\\left(1+\\cos^2x\\right)dx$"
+    },
+    {
+     "id": "C",
+     "text": "$\\int_0^{\\pi}\\sqrt{1+\\cos x}\\,dx$"
+    },
+    {
+     "id": "D",
+     "text": "$\\int_0^{\\pi}\\sqrt{1+\\cos^2x}\\,dx$"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $y'=\\cos x$.<br/>2. $L=\\int_a^b\\sqrt{1+(y')^2}\\,dx$.<br/>3. $L=\\int_0^{\\pi}\\sqrt{1+\\cos^2x}\\,dx\\approx3.820$.",
+   "genel_hatirlatma": "Arc length: $L=\\int_a^b\\sqrt{1+\\left(f'(x)\\right)^2}\\,dx$ (BC).",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Kök içinde toplama yerine çıkarma yazmak.",
+     "aciklama": "Pisagor'dan gelen formül $\\sqrt{1+(y')^2}$'dir. $\\sqrt{1-\\cos^2x}=\\sin x$ olur ve integral $2$ verir; bu uzunluk değildir."
+    },
+    "B": {
+     "etiket": "Karekökü unutmak.",
+     "aciklama": "Yay uzunluğu $\\int\\sqrt{1+(y')^2}\\,dx$'tir."
+    },
+    "C": {
+     "etiket": "Türevi karelememek.",
+     "aciklama": "Kök içinde $(y')^2=\\cos^2x$ olmalı."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.13)",
+   "deneme_kodlari": [
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Yay uzunluğu kurulumu",
+    "ipucu": "Önce türev, sonra kare, sonra kök.",
+    "sikHata": "Kökü unutmak",
+    "cedKonu": "8.13",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_69",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 101,
+   "numara": 102,
+   "konu": "8.13 The Arc Length of a Smooth, Planar Curve and Distance Traveled",
+   "zorluk": "hard",
+   "govde": "<span class='card-badge badge-rose'>BC ONLY</span> What is the length of the curve $y=\\ln(\\cos x)$ from $x=0$ to $x=\\frac{\\pi}{3}$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "$\\sqrt{3}$"
+    },
+    {
+     "id": "B",
+     "text": "$\\frac{\\pi}{3}+\\ln 2$"
+    },
+    {
+     "id": "C",
+     "text": "$\\ln\\left(2+\\sqrt{3}\\right)$"
+    },
+    {
+     "id": "D",
+     "text": "$\\ln 2$"
+    }
+   ],
+   "dogru": "C",
+   "aciklama": "1. $y'=\\frac{-\\sin x}{\\cos x}=-\\tan x$; $1+(y')^2=1+\\tan^2x=\\sec^2x$.<br/>2. $L=\\int_0^{\\pi/3}\\sec x\\,dx=\\left[\\ln|\\sec x+\\tan x|\\right]_0^{\\pi/3}$.<br/>3. $=\\ln\\left(2+\\sqrt3\\right)-\\ln1=\\ln\\left(2+\\sqrt3\\right)\\approx1.317$.",
+   "genel_hatirlatma": "Elle çözülebilen yay uzunluklarında $1+(y')^2$ çoğu zaman tam kare olur ($\\sec^2x$, $(\\ldots)^2$).",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Karekökü almamak.",
+     "aciklama": "$\\int(1+\\tan^2x)\\,dx=\\int\\sec^2x\\,dx=\\tan x$; kök unutulmuş. $\\sqrt{\\sec^2x}=\\sec x$."
+    },
+    "B": {
+     "etiket": "Kökü terimlere dağıtmak.",
+     "aciklama": "$\\sqrt{1+\\tan^2x}\\ne1+\\tan x$."
+    },
+    "D": {
+     "etiket": "$|y'|$'nin integralini almak.",
+     "aciklama": "$\\int_0^{\\pi/3}\\tan x\\,dx=\\ln2$; formülde $1+$ terimi var."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.13)",
+   "deneme_kodlari": [
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Elle yay uzunluğu",
+    "ipucu": "1 + tan²x = sec²x",
+    "sikHata": "Kökü terimlere dağıtmak",
+    "cedKonu": "8.13",
+    "hesapMakinesi": "gerekmez",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_70",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 102,
+   "numara": 103,
+   "konu": "8.13 The Arc Length of a Smooth, Planar Curve and Distance Traveled",
+   "zorluk": "medium",
+   "govde": "<span class='card-badge badge-rose'>BC ONLY</span> <em>(Graphing calculator allowed.)</em> What is the length of the curve $y=e^x$ from $x=0$ to $x=1$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "1.988"
+    },
+    {
+     "id": "B",
+     "text": "2.003"
+    },
+    {
+     "id": "C",
+     "text": "2.718"
+    },
+    {
+     "id": "D",
+     "text": "1.642"
+    }
+   ],
+   "dogru": "B",
+   "aciklama": "1. $y'=e^x$ ⇒ $(y')^2=e^{2x}$.<br/>2. $L=\\int_0^1\\sqrt{1+e^{2x}}\\,dx$.<br/>3. Hesap makinesi: $L\\approx2.003$.",
+   "genel_hatirlatma": "Yay uzunluğu, aynı uç noktaları birleştiren doğru parçasından her zaman uzun (ya da eşit) olmalıdır — hızlı akıl kontrolü.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Uç noktalar arasındaki doğru parçasını ölçmek.",
+     "aciklama": "$\\sqrt{1^2+(e-1)^2}\\approx1.988$ kirişin uzunluğudur; eğri kirişten biraz daha uzundur."
+    },
+    "C": {
+     "etiket": "Karekökü unutmak.",
+     "aciklama": "$\\int_0^1(1+e^x)\\,dx=e$; formül $\\sqrt{1+(y')^2}$ ve $(y')^2=e^{2x}$."
+    },
+    "D": {
+     "etiket": "Türevi karelememek.",
+     "aciklama": "Kök içinde $(e^x)^2=e^{2x}$ olmalı, $e^x$ değil."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.13)",
+   "deneme_kodlari": [
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Hesap makineli yay uzunluğu",
+    "ipucu": "fnInt(√(1 + e^(2x)), 0, 1)",
+    "sikHata": "Türevi karelememek",
+    "cedKonu": "8.13",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_71",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 103,
+   "numara": 104,
+   "konu": "8.13 The Arc Length of a Smooth, Planar Curve and Distance Traveled",
+   "zorluk": "hard",
+   "govde": "<span class='card-badge badge-rose'>BC ONLY</span> <em>(Graphing calculator allowed.)</em> For $k\\gt0$, the length of the graph of $y=x^2$ from $x=0$ to $x=k$ is $3$. What is the value of $k$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "1.821"
+    },
+    {
+     "id": "B",
+     "text": "1.594"
+    },
+    {
+     "id": "C",
+     "text": "1.303"
+    },
+    {
+     "id": "D",
+     "text": "1.554"
+    }
+   ],
+   "dogru": "D",
+   "aciklama": "1. $y'=2x$ ⇒ $L(k)=\\int_0^k\\sqrt{1+4x^2}\\,dx$.<br/>2. Hesap makinesinde $Y_1=\\int_0^X\\sqrt{1+4t^2}\\,dt$ ve $Y_2=3$ grafiklerinin kesişimi.<br/>3. $k\\approx1.554$.",
+   "genel_hatirlatma": "Bilinmeyen sınır sorularında integrali $X$'in fonksiyonu olarak tanımla ve hedef değerle kesiştir.",
+   "hata_aciklamalari": {
+    "A": {
+     "etiket": "Türevi karelememek.",
+     "aciklama": "$\\int_0^k\\sqrt{1+2x}\\,dx=3$ çözülmüş; $(y')^2=4x^2$."
+    },
+    "B": {
+     "etiket": "Eğri yerine kirişi kullanmak.",
+     "aciklama": "$\\sqrt{k^2+k^4}=3$, $(0,0)$ ile $(k,k^2)$ arasındaki doğru parçasıdır; eğri daha uzun olduğu için gerçek $k$ daha küçüktür."
+    },
+    "C": {
+     "etiket": "Karekökü unutup $1+|y'|$ kullanmak.",
+     "aciklama": "$\\int_0^k(1+2x)\\,dx=k+k^2=3$; formül $\\sqrt{1+(y')^2}$."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.13)",
+   "deneme_kodlari": [
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "Yay uzunluğundan sınır bulma",
+    "ipucu": "Y1 = fnInt(√(1+4T²), T, 0, X), Y2 = 3",
+    "sikHata": "Kiriş uzunluğu kullanmak",
+    "cedKonu": "8.13",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
+  },
+  {
+   "id": "calc_k_u8_72",
+   "tur": "ders",
+   "sayfa": "ap-calculus",
+   "ders": null,
+   "unite_no": 8,
+   "unite": "8",
+   "kutu": "calc-unit8-quiz-container",
+   "kutu_baslik": "Unit 8 Applications of Integration",
+   "dizi": "CALC_UNIT8_QUESTIONS",
+   "sira": 104,
+   "numara": 105,
+   "konu": "8.13 The Arc Length of a Smooth, Planar Curve and Distance Traveled",
+   "zorluk": "medium",
+   "govde": "<span class='card-badge badge-rose'>BC ONLY</span> <em>(Graphing calculator allowed.)</em> What is the length of the curve $x=\\cos y$ for $0\\le y\\le\\pi$?",
+   "secenekler": [
+    {
+     "id": "A",
+     "text": "3.820"
+    },
+    {
+     "id": "B",
+     "text": "3.724"
+    },
+    {
+     "id": "C",
+     "text": "4.712"
+    },
+    {
+     "id": "D",
+     "text": "4.000"
+    }
+   ],
+   "dogru": "A",
+   "aciklama": "1. Eğri $x=g(y)$ biçiminde: $L=\\int_c^d\\sqrt{1+\\left(\\frac{dx}{dy}\\right)^2}\\,dy$.<br/>2. $\\frac{dx}{dy}=-\\sin y$ ⇒ $L=\\int_0^{\\pi}\\sqrt{1+\\sin^2y}\\,dy$.<br/>3. Hesap makinesi: $L\\approx3.820$.",
+   "genel_hatirlatma": "$x=g(y)$ ise yay uzunluğu $dy$ ile: $\\int\\sqrt{1+(g'(y))^2}\\,dy$.",
+   "hata_aciklamalari": {
+    "B": {
+     "etiket": "Uç noktalar arasındaki kirişi ölçmek.",
+     "aciklama": "$(1,0)$ ile $(-1,\\pi)$ arası doğru parçası $\\sqrt{4+\\pi^2}\\approx3.724$; eğri daha uzundur."
+    },
+    "C": {
+     "etiket": "Karekökü unutmak.",
+     "aciklama": "$\\int_0^{\\pi}(1+\\sin^2y)\\,dy=\\frac{3\\pi}{2}$; kök gerekli."
+    },
+    "D": {
+     "etiket": "Türevi karelememek.",
+     "aciklama": "$\\int_0^{\\pi}\\sqrt{1+\\sin y}\\,dy=4$; kök içinde $\\left(\\frac{dx}{dy}\\right)^2=\\sin^2y$ olmalı."
+    }
+   },
+   "kaynak": "AP-style original (CED Topic 8.13)",
+   "deneme_kodlari": [
+    "calculus-bc"
+   ],
+   "pasaj": null,
+   "ek": {
+    "kavram": "y'ye göre yay uzunluğu",
+    "ipucu": "dx/dy = −sin y",
+    "sikHata": "Türevi karelememek",
+    "cedKonu": "8.13",
+    "hesapMakinesi": "gerekli",
+    "uretim": "1.23.0",
+    "onay": {
+     "tarih": "2026-10-24",
+     "kaynak": "bağımsız denetim (sahip yetkisiyle)"
+    }
+   },
+   "durum": "aktif"
   }
  ],
  "icerikGuncelleme": "2026-10-24T14:48:10.000Z",
- "yeniSoruEkleme": "2026-10-24T16:16:48.565Z"
+ "yeniSoruEkleme": "2026-10-24T16:23:43.744Z"
 }
