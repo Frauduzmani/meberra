@@ -1,0 +1,1982 @@
+[
+  {
+    "id": "precalc_hm_u1_1",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 1,
+    "unite": "1",
+    "kutu": "precalc-unit1-quiz-container",
+    "kutu_baslik": "Unit 1 Polynomial and Rational Functions",
+    "dizi": "PRECALC_UNIT1_QUESTIONS",
+    "sira": 0,
+    "numara": 1,
+    "konu": "1.14 Function Model Construction and Application",
+    "zorluk": "medium",
+    "govde": "The table gives the number of visitors $V$, in hundreds, to a new city park $t$ months after the park opened.<br/><table><tr><th>$t$</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr><tr><th>$V$</th><td>3.1</td><td>5.8</td><td>7.9</td><td>9.2</td><td>9.9</td><td>10.1</td><td>9.6</td></tr></table>A quadratic regression is used to model $V$ as a function of $t$. Based on the model, what is the predicted number of visitors, in hundreds, at $t=9$ months?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$6.643$"
+      },
+      {
+        "id": "B",
+        "text": "$13.318$"
+      },
+      {
+        "id": "C",
+        "text": "$7.143$"
+      },
+      {
+        "id": "D",
+        "text": "$8.429$"
+      }
+    ],
+    "dogru": "A",
+    "aciklama": "1. Hesap makinesinde $t$ ve $V$ listelerini girip QuadReg çalıştırın: $V(t)\\approx -0.318t^2+3.618t-0.171$.<br/>2. Katsayıları yuvarlamadan modeli $t=9$'da değerlendirin: $V(9)\\approx 6.643$.<br/>3. Yani yaklaşık 6.643 yüz ziyaretçi tahmin edilir.",
+    "genel_hatirlatma": "Regresyon modelini hesap makinesinde saklayıp (ör. Y1'e) yuvarlamadan değerlendirin; istenen model türünü kullanın.",
+    "hata_aciklamalari": {
+      "B": {
+        "etiket": "Doğrusal regresyon kullanmak",
+        "aciklama": "LinReg modeli $t=9$'da 13.318 verir; veri artıp sonra azaldığından soru ikinci dereceden modeli istiyor."
+      },
+      "C": {
+        "etiket": "Kübik regresyon kullanmak",
+        "aciklama": "CubicReg modeli $t=9$'da 7.143 verir; istenen model ikinci dereceden (quadratic) modeldir."
+      },
+      "D": {
+        "etiket": "Yanlış girdiyle değerlendirmek",
+        "aciklama": "8.429, modelin $t=8$'deki değeridir; istenen $t=9$'dur."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 1.14)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "İkinci dereceden regresyonla tahmin",
+      "ipucu": "QuadReg sonucunu Y1'e kaydedip Y1(9) hesaplayın.",
+      "sikHata": "Yanlış regresyon türü seçmek",
+      "cedKonu": "1.14",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Tablodaki verilere ikinci dereceden regresyon uydurulduğunda modelin dokuzuncu aydaki tahminini soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u1_2",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 1,
+    "unite": "1",
+    "kutu": "precalc-unit1-quiz-container",
+    "kutu_baslik": "Unit 1 Polynomial and Rational Functions",
+    "dizi": "PRECALC_UNIT1_QUESTIONS",
+    "sira": 1,
+    "numara": 2,
+    "konu": "1.14 Function Model Construction and Application",
+    "zorluk": "hard",
+    "govde": "The table shows the depth $d$, in meters, of water in a reservoir, where $w$ is the number of weeks since the first measurement.<br/><table><tr><th>$w$</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr><tr><th>$d$</th><td>12.0</td><td>15.3</td><td>14.1</td><td>11.2</td><td>9.8</td><td>12.5</td></tr></table>A cubic regression is used to model $d$ as a function of $w$. What depth, in meters, does the model predict at $w=1.5$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$13.096$"
+      },
+      {
+        "id": "B",
+        "text": "$14.700$"
+      },
+      {
+        "id": "C",
+        "text": "$15.069$"
+      },
+      {
+        "id": "D",
+        "text": "$12.966$"
+      }
+    ],
+    "dogru": "C",
+    "aciklama": "1. CubicReg: $d(w)\\approx 0.487w^3-3.721w^2+6.529w+12.003$.<br/>2. Saklanan modeli yuvarlamadan $w=1.5$'te değerlendirin: $d(1.5)\\approx 15.069$ m.<br/>3. Tablodaki komşu değerlerin ortalaması (14.700) modelin tahmini değildir; model eğriseldir.",
+    "genel_hatirlatma": "Soru hangi regresyonu istiyorsa onu kullanın; tablo değerlerinin ortalaması model tahmini yerine geçmez.",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "İkinci dereceden regresyon kullanmak",
+        "aciklama": "QuadReg modeli $w=1.5$'te 13.096 verir; istenen kübik modeldir."
+      },
+      "B": {
+        "etiket": "Doğrusal ara değer bulmak",
+        "aciklama": "14.700, $w=1$ ve $w=2$ değerlerinin ortalamasıdır; kübik modelin değeri değildir."
+      },
+      "D": {
+        "etiket": "Doğrusal regresyon kullanmak",
+        "aciklama": "LinReg modeli $w=1.5$'te 12.966 verir; veri doğrusal değil."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 1.14)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Kübik regresyonla tahmin",
+      "ipucu": "CubicReg sonucunu Y1'e kaydedin, sonra Y1(1.5).",
+      "sikHata": "Tablo değerlerinin ortalamasını model tahmini sanmak",
+      "cedKonu": "1.14",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Tablodaki verilere kübik regresyon uydurulduğunda, modelin verilen haftadaki derinlik tahminini soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u1_3",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 1,
+    "unite": "1",
+    "kutu": "precalc-unit1-quiz-container",
+    "kutu_baslik": "Unit 1 Polynomial and Rational Functions",
+    "dizi": "PRECALC_UNIT1_QUESTIONS",
+    "sira": 2,
+    "numara": 3,
+    "konu": "1.5 Polynomial Functions and Complex Zeros",
+    "zorluk": "medium",
+    "govde": "Let $p$ be the function given by $p(x)=x^4-5x^2+2x+1.5$. What is the greatest real zero of $p$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$0.877$"
+      },
+      {
+        "id": "B",
+        "text": "$1.872$"
+      },
+      {
+        "id": "C",
+        "text": "$1.470$"
+      },
+      {
+        "id": "D",
+        "text": "$-2.362$"
+      }
+    ],
+    "dogru": "B",
+    "aciklama": "1. $y=p(x)$ grafiğini çizin; grafik $x$-eksenini dört kez keser.<br/>2. Hesap makinesinin zero komutuyla kesişimler: $x\\approx -2.362,\\ -0.387,\\ 0.877,\\ 1.872$.<br/>3. En büyük gerçel sıfır $x\\approx 1.872$.",
+    "genel_hatirlatma": "Sıfır = grafiğin $x$-eksenini kestiği yer; en büyük sıfır en sağdaki kesişimdir.",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "Başka bir sıfırı seçmek",
+        "aciklama": "0.877 de bir sıfırdır ama en büyük değildir."
+      },
+      "C": {
+        "etiket": "Yerel ekstremumu sıfır sanmak",
+        "aciklama": "1.470, grafiğin yerel minimum noktasının $x$-koordinatıdır; orada $p(x)\\ne0$."
+      },
+      "D": {
+        "etiket": "Mutlak değerce en büyük sıfırı seçmek",
+        "aciklama": "-2.362 mutlak değerce en büyük sıfırdır, fakat istenen en büyük (en sağdaki) sıfırdır."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 1.5)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Polinomun gerçel sıfırlarını grafikle bulmak",
+      "ipucu": "Grafikte en sağdaki x-kesimini zero komutuyla bulun.",
+      "sikHata": "En büyük ile mutlak değerce en büyüğü karıştırmak",
+      "cedKonu": "1.5",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Dördüncü dereceden polinomun gerçel sıfırları arasından en büyüğünü soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u1_4",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 1,
+    "unite": "1",
+    "kutu": "precalc-unit1-quiz-container",
+    "kutu_baslik": "Unit 1 Polynomial and Rational Functions",
+    "dizi": "PRECALC_UNIT1_QUESTIONS",
+    "sira": 3,
+    "numara": 4,
+    "konu": "1.4 Polynomial Functions and Rates of Change",
+    "zorluk": "easy",
+    "govde": "The function $f$ is given by $f(x)=0.4x^3-2.1x^2+1.7x+3.5$. What is the relative minimum value of $f$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$3.033$"
+      },
+      {
+        "id": "B",
+        "text": "$3.877$"
+      },
+      {
+        "id": "C",
+        "text": "$0.467$"
+      },
+      {
+        "id": "D",
+        "text": "$0.498$"
+      }
+    ],
+    "dogru": "D",
+    "aciklama": "1. $y=f(x)$ grafiğini çizin: önce yerel maksimum, sonra yerel minimum vardır (baş katsayı pozitif).<br/>2. minimum komutu: yerel minimum $x\\approx 3.033$ noktasında.<br/>3. Yerel minimum DEĞERİ çıktıdır: $f(3.033)\\approx 0.498$.",
+    "genel_hatirlatma": "\"Value\" çıktıyı ($y$) sorar; ekstremumun yeri ise $x$-koordinatıdır.",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "Yer ile değeri karıştırmak",
+        "aciklama": "3.033, yerel minimumun $x$-koordinatıdır; istenen çıktı değeridir."
+      },
+      "B": {
+        "etiket": "Yerel maksimumu almak",
+        "aciklama": "3.877, yerel maksimum değeridir."
+      },
+      "C": {
+        "etiket": "Yerel maksimumun yerini almak",
+        "aciklama": "0.467, yerel maksimumun $x$-koordinatıdır."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 1.4)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Kübik polinomun yerel minimum değeri",
+      "ipucu": "Hesap makinesinde minimum komutu; çıktı (y) değerini okuyun.",
+      "sikHata": "Ekstremumun x-koordinatını değer sanmak",
+      "cedKonu": "1.4",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Kübik fonksiyonun yerel minimumunda aldığı çıktı değerini soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u1_5",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 1,
+    "unite": "1",
+    "kutu": "precalc-unit1-quiz-container",
+    "kutu_baslik": "Unit 1 Polynomial and Rational Functions",
+    "dizi": "PRECALC_UNIT1_QUESTIONS",
+    "sira": 4,
+    "numara": 5,
+    "konu": "1.8 Rational Functions and Zeros",
+    "zorluk": "hard",
+    "govde": "The functions $r$ and $g$ are given by $r(x)=\\dfrac{3x-2}{x^2+1}$ and $g(x)=0.2x$. What is the greatest value of $x$ for which $r(x)=g(x)$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$0.744$"
+      },
+      {
+        "id": "B",
+        "text": "$0.667$"
+      },
+      {
+        "id": "C",
+        "text": "$3.314$"
+      },
+      {
+        "id": "D",
+        "text": "$-4.058$"
+      }
+    ],
+    "dogru": "C",
+    "aciklama": "1. $y_1=r(x)$ ve $y_2=g(x)$ grafiklerini çizin (paydada $x^2+1\\gt0$, asimptot yok).<br/>2. intersect komutu üç kesişim verir: $x\\approx -4.058,\\ 0.744,\\ 3.314$.<br/>3. (Kontrol: $3x-2=0.2x(x^2+1)$, yani $0.2x^3-2.8x+2=0$ ile aynı kökler.) En büyüğü $x\\approx 3.314$.",
+    "genel_hatirlatma": "İki grafiğin kesişimi $r(x)-g(x)=0$ denkleminin sıfırlarıdır; hepsini bulup isteneni seçin.",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "İlk bulunan kesişimde durmak",
+        "aciklama": "0.744 bir çözümdür ama en büyük değildir."
+      },
+      "B": {
+        "etiket": "Yalnız r'nin sıfırını bulmak",
+        "aciklama": "0.667, $r(x)=0$ çözümüdür; $g(x)$ ile kesişim değildir."
+      },
+      "D": {
+        "etiket": "Mutlak değerce en büyüğü seçmek",
+        "aciklama": "-4.058 mutlak değerce en büyük çözümdür, en büyük çözüm değildir."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 1.8)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Rasyonel ve doğrusal fonksiyonun kesişimi",
+      "ipucu": "İki grafiği çizip intersect ile tüm kesişimleri bulun.",
+      "sikHata": "Yalnız payın sıfırını bulmak",
+      "cedKonu": "1.8",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Rasyonel fonksiyonla doğrusal fonksiyonun eşit olduğu x değerlerinden en büyüğünü soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u1_6",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 1,
+    "unite": "1",
+    "kutu": "precalc-unit1-quiz-container",
+    "kutu_baslik": "Unit 1 Polynomial and Rational Functions",
+    "dizi": "PRECALC_UNIT1_QUESTIONS",
+    "sira": 5,
+    "numara": 6,
+    "konu": "1.2 Rates of Change",
+    "zorluk": "easy",
+    "govde": "The temperature inside a greenhouse, in degrees Fahrenheit, is modeled by $H(t)=-0.03t^3+0.6t^2+2.5t+40$, where $t$ is the number of hours after 6 a.m. and $0\\le t\\le 8$. What is the average rate of change of $H$ over the interval $2\\le t\\le7$, in degrees Fahrenheit per hour?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$5.890$"
+      },
+      {
+        "id": "B",
+        "text": "$29.450$"
+      },
+      {
+        "id": "C",
+        "text": "$5.230$"
+      },
+      {
+        "id": "D",
+        "text": "$3.272$"
+      }
+    ],
+    "dogru": "A",
+    "aciklama": "1. $H(7)= 76.610$ ve $H(2)= 47.160$.<br/>2. Ortalama değişim hızı $=\\dfrac{H(7)-H(2)}{7-2}=\\dfrac{29.450}{5}= 5.890$ °F/saat.",
+    "genel_hatirlatma": "Ortalama değişim hızı: çıktı farkı / girdi farkı (iki uç noktadaki değerler).",
+    "hata_aciklamalari": {
+      "B": {
+        "etiket": "Girdi farkına bölmemek",
+        "aciklama": "29.450 yalnız çıktı değişimidir; $5$ saate bölünmeli."
+      },
+      "C": {
+        "etiket": "Yanlış aralık",
+        "aciklama": "5.230, $[0,7]$ aralığının ortalama değişim hızıdır."
+      },
+      "D": {
+        "etiket": "Girdileri toplamak",
+        "aciklama": "3.272 için $7+2=9$'a bölünmüş; payda $7-2$ olmalı."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 1.2)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Modelden ortalama değişim hızı",
+      "ipucu": "Uç noktalarda H'yi hesaplayın, farkı aralığın uzunluğuna bölün.",
+      "sikHata": "Çıktı farkını girdi farkına bölmeyi unutmak",
+      "cedKonu": "1.2",
+      "hesapMakinesi": "yardımcı",
+      "uretim": "1.28.0",
+      "neSoruyor": "Sera sıcaklığı modelinin verilen zaman aralığındaki ortalama değişim hızını soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u1_7",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 1,
+    "unite": "1",
+    "kutu": "precalc-unit1-quiz-container",
+    "kutu_baslik": "Unit 1 Polynomial and Rational Functions",
+    "dizi": "PRECALC_UNIT1_QUESTIONS",
+    "sira": 6,
+    "numara": 7,
+    "konu": "1.14 Function Model Construction and Application",
+    "zorluk": "medium",
+    "govde": "A model rocket is launched from a platform. The table gives its height $h$, in meters, $s$ seconds after launch.<br/><table><tr><th>$s$</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr><tr><th>$h$</th><td>4.0</td><td>6.9</td><td>8.1</td><td>8.6</td><td>7.4</td><td>5.9</td><td>2.8</td></tr></table>A quadratic regression is used to model $h$ as a function of $s$. What is the residual for the data point at $s=3$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$-0.124$"
+      },
+      {
+        "id": "B",
+        "text": "$0.124$"
+      },
+      {
+        "id": "C",
+        "text": "$8.476$"
+      },
+      {
+        "id": "D",
+        "text": "$2.357$"
+      }
+    ],
+    "dogru": "B",
+    "aciklama": "1. QuadReg: $h(s)\\approx -0.558s^2+3.125s+4.126$.<br/>2. Tahmin: $h(3)\\approx 8.476$.<br/>3. Artık = gerçek − tahmin $=8.6-8.476\\approx 0.124$ (pozitif: model bu noktada gerçeğin altında kalıyor).",
+    "genel_hatirlatma": "Residual = actual − predicted. Pozitif artık: model az tahmin ediyor.",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "Farkı ters almak",
+        "aciklama": "Tahmin − gerçek hesaplanmış; artık gerçek − tahmindir."
+      },
+      "C": {
+        "etiket": "Tahmini artık sanmak",
+        "aciklama": "8.476 modelin tahminidir; artık bunun gerçek değerden farkıdır."
+      },
+      "D": {
+        "etiket": "Doğrusal regresyon kullanmak",
+        "aciklama": "2.357 doğrusal modelin artığıdır; soru ikinci dereceden modeli istiyor."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 1.14)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Regresyon modelinde artık",
+      "ipucu": "Artık = gerçek değer − model tahmini.",
+      "sikHata": "Artığı tahmin − gerçek olarak almak",
+      "cedKonu": "1.14",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "İkinci dereceden regresyon modeline göre tablodaki bir veri noktasının artığını soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u1_8",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 1,
+    "unite": "1",
+    "kutu": "precalc-unit1-quiz-container",
+    "kutu_baslik": "Unit 1 Polynomial and Rational Functions",
+    "dizi": "PRECALC_UNIT1_QUESTIONS",
+    "sira": 7,
+    "numara": 8,
+    "konu": "1.13 Function Model Selection and Assumption Articulation",
+    "zorluk": "medium",
+    "govde": "The table gives the monthly revenue $y$, in thousands of dollars, of a small business $x$ months after it opened.<br/><table><tr><th>$x$</th><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr><tr><th>$y$</th><td>6.5</td><td>7.2</td><td>8.4</td><td>10.1</td><td>11.5</td><td>13.9</td><td>16.2</td></tr></table>A linear regression and a quadratic regression are both used to model $y$ as a function of $x$. At $x=10$, by how much does the prediction of the quadratic model exceed the prediction of the linear model, in thousands of dollars?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$22.036$"
+      },
+      {
+        "id": "B",
+        "text": "$18.686$"
+      },
+      {
+        "id": "C",
+        "text": "$1.914$"
+      },
+      {
+        "id": "D",
+        "text": "$3.350$"
+      }
+    ],
+    "dogru": "D",
+    "aciklama": "1. LinReg: $y\\approx 1.629x+2.400$, $x=10$'da $\\approx 18.686$.<br/>2. QuadReg: $y\\approx 0.160x^2+0.033x+5.750$, $x=10$'da $\\approx 22.036$.<br/>3. Fark $\\approx 22.036-18.686= 3.350$ bin dolar. (Veri yukarı içbükey arttığından ikinci dereceden model daha büyük tahmin verir.)",
+    "genel_hatirlatma": "Modelleri karşılaştırırken her birini aynı girdide değerlendirip farkı alın.",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "Yalnız bir modelin tahmini",
+        "aciklama": "22.036 ikinci dereceden modelin tahminidir, fark değildir."
+      },
+      "B": {
+        "etiket": "Yalnız doğrusal tahmin",
+        "aciklama": "18.686 doğrusal modelin tahminidir."
+      },
+      "C": {
+        "etiket": "Yanlış girdi",
+        "aciklama": "1.914, iki modelin $x=9$'daki farkıdır."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 1.13)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Doğrusal ve ikinci dereceden modelleri karşılaştırmak",
+      "ipucu": "İki regresyonu ayrı Y'lere kaydedip aynı x'te farkını alın.",
+      "sikHata": "Fark yerine tek bir modelin tahminini vermek",
+      "cedKonu": "1.13",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Aynı veriye uydurulan iki regresyon modelinin belirli bir aydaki tahminleri arasındaki farkı soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u1_9",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 1,
+    "unite": "1",
+    "kutu": "precalc-unit1-quiz-container",
+    "kutu_baslik": "Unit 1 Polynomial and Rational Functions",
+    "dizi": "PRECALC_UNIT1_QUESTIONS",
+    "sira": 8,
+    "numara": 9,
+    "konu": "1.12 Transformations of Functions",
+    "zorluk": "medium",
+    "govde": "Let $f(x)=x^3-3x+1$, and let $g$ be the function given by $g(x)=-2f(x+1)+3$. What is the greatest zero of $g$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$0.810$"
+      },
+      {
+        "id": "B",
+        "text": "$1.810$"
+      },
+      {
+        "id": "C",
+        "text": "$1.532$"
+      },
+      {
+        "id": "D",
+        "text": "$2.810$"
+      }
+    ],
+    "dogru": "A",
+    "aciklama": "1. $g(x)=0\\iff f(x+1)=1.5$. $u=x+1$ dersek $u^3-3u+1=1.5$, yani $u^3-3u-0.5=0$.<br/>2. Hesap makinesiyle en büyük kök $u\\approx 1.810$.<br/>3. $x=u-1\\approx 0.810$. (Doğrudan $y=-2f(x+1)+3$ grafiğinin zero değeri de aynıdır.)",
+    "genel_hatirlatma": "$f(x+1)$ grafiği $f$'yi 1 birim SOLA öteler; $u$ değerinden 1 çıkarılır.",
+    "hata_aciklamalari": {
+      "B": {
+        "etiket": "Ötelemeyi unutmak",
+        "aciklama": "1.810, $u=x+1$ değeridir; $x$ için 1 çıkarılmalı."
+      },
+      "C": {
+        "etiket": "f'nin sıfırını almak",
+        "aciklama": "1.532, $f$'nin en büyük sıfırıdır; $g$'nin dönüşümleri hesaba katılmamış."
+      },
+      "D": {
+        "etiket": "Ötelemeyi ters yönde yapmak",
+        "aciklama": "2.810 için 1 eklenmiş; $f(x+1)$ sola ötelemedir."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 1.12)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Dönüştürülmüş fonksiyonun sıfırı",
+      "ipucu": "g'yi doğrudan grafiğe girip zero komutunu kullanın.",
+      "sikHata": "x+1 ötelemesini sağa öteleme sanmak",
+      "cedKonu": "1.12",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Dönüştürülmüş fonksiyon g'nin sıfırları arasından en büyüğünü soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u1_10",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 1,
+    "unite": "1",
+    "kutu": "precalc-unit1-quiz-container",
+    "kutu_baslik": "Unit 1 Polynomial and Rational Functions",
+    "dizi": "PRECALC_UNIT1_QUESTIONS",
+    "sira": 9,
+    "numara": 10,
+    "konu": "1.8 Rational Functions and Zeros",
+    "zorluk": "hard",
+    "govde": "The concentration of a medication in a patient's blood, in milligrams per liter, is modeled by $C(t)=\\dfrac{12t+3}{0.8t^2+4}$, where $t$ is the number of hours after an injection and $t\\ge0$. For how many hours is the concentration greater than 2 milligrams per liter?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$7.057$"
+      },
+      {
+        "id": "B",
+        "text": "$4.690$"
+      },
+      {
+        "id": "C",
+        "text": "$6.614$"
+      },
+      {
+        "id": "D",
+        "text": "$0.443$"
+      }
+    ],
+    "dogru": "C",
+    "aciklama": "1. $C(t)\\gt2$ çözülür; payda her zaman pozitif olduğundan $12t+3\\gt1.6t^2+8$, yani $1.6t^2-12t+5\\lt0$.<br/>2. Kökler (ya da $y=C(t)$ ile $y=2$ kesişimleri): $t\\approx 0.443$ ve $t\\approx 7.057$.<br/>3. Süre $\\approx 7.057-0.443= 6.614$ saat.",
+    "genel_hatirlatma": "\"Ne kadar süre\" sorusu, eşitsizliğin geçerli olduğu aralığın UZUNLUĞUNU ister.",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "Bitiş anını süre sanmak",
+        "aciklama": "7.057, derişimin 2'nin altına indiği andır; başlangıç anı çıkarılmalı."
+      },
+      "B": {
+        "etiket": "Yanlış eşik değeri",
+        "aciklama": "4.690, derişimin 2.5'ten büyük olduğu süredir."
+      },
+      "D": {
+        "etiket": "Başlangıç anını süre sanmak",
+        "aciklama": "0.443, derişimin 2'yi ilk aştığı andır."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 1.8)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Rasyonel modelde eşitsizlik ve süre",
+      "ipucu": "y = C(t) ile y = 2'nin iki kesişimini bulup farkını alın.",
+      "sikHata": "Aralığın uzunluğu yerine bir uç noktasını vermek",
+      "cedKonu": "1.8",
+      "hesapMakinesi": "yardımcı",
+      "uretim": "1.28.0",
+      "neSoruyor": "Rasyonel derişim modeline göre derişimin verilen değerden büyük kaldığı toplam süreyi soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u2_1",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 2,
+    "unite": "2",
+    "kutu": "precalc-unit2-quiz-container",
+    "kutu_baslik": "Unit 2 Exponential and Logarithmic Functions",
+    "dizi": "PRECALC_UNIT2_QUESTIONS",
+    "sira": 10,
+    "numara": 11,
+    "konu": "2.5 Exponential Function Context and Data Modeling",
+    "zorluk": "easy",
+    "govde": "The table gives the number of members $M$ of an online chess club $x$ years after the club was founded.<br/><table><tr><th>$x$</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr><tr><th>$M$</th><td>210</td><td>262</td><td>335</td><td>410</td><td>525</td><td>650</td></tr></table>An exponential regression of the form $M=ab^x$ is used to model the data. To the nearest whole number, how many members does the model predict at $x=8$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$880$"
+      },
+      {
+        "id": "B",
+        "text": "$1289$"
+      },
+      {
+        "id": "C",
+        "text": "$1027$"
+      },
+      {
+        "id": "D",
+        "text": "$1280$"
+      }
+    ],
+    "dogru": "B",
+    "aciklama": "1. ExpReg: $M\\approx 210.074(1.255)^x$.<br/>2. Yuvarlamadan $x=8$'de: $M(8)\\approx 1288.866$.<br/>3. En yakın tam sayı: 1289 üye.",
+    "genel_hatirlatma": "ExpReg tüm veriyi kullanır; yalnız iki noktadan kurulan model aynı sonucu vermez.",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "Doğrusal regresyon kullanmak",
+        "aciklama": "LinReg $x=8$'de yaklaşık 880 verir; büyüme oranı sabit olduğundan üstel model istenmiş."
+      },
+      "C": {
+        "etiket": "Yanlış girdi",
+        "aciklama": "1027, modelin $x=7$'deki değeridir."
+      },
+      "D": {
+        "etiket": "Yalnız uç noktalardan model kurmak",
+        "aciklama": "$(0,210)$ ve $(5,650)$ noktalarından kurulan model 1280 verir; regresyon değildir."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 2.5)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Üstel regresyonla tahmin",
+      "ipucu": "ExpReg sonucunu Y1'e kaydedip Y1(8) hesaplayın.",
+      "sikHata": "Regresyon yerine iki noktadan model kurmak",
+      "cedKonu": "2.5",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Üye sayısı verisine üstel regresyon uydurulduğunda modelin sekizinci yıldaki tahminini soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u2_2",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 2,
+    "unite": "2",
+    "kutu": "precalc-unit2-quiz-container",
+    "kutu_baslik": "Unit 2 Exponential and Logarithmic Functions",
+    "dizi": "PRECALC_UNIT2_QUESTIONS",
+    "sira": 11,
+    "numara": 12,
+    "konu": "2.5 Exponential Function Context and Data Modeling",
+    "zorluk": "hard",
+    "govde": "A cup of coffee is left in a room. The table gives the difference $D$, in degrees Celsius, between the temperature of the coffee and the room temperature, $t$ minutes after the first measurement.<br/><table><tr><th>$t$</th><td>0</td><td>2</td><td>4</td><td>6</td><td>8</td><td>10</td></tr><tr><th>$D$</th><td>74.0</td><td>61.5</td><td>50.2</td><td>41.8</td><td>34.6</td><td>28.3</td></tr></table>An exponential regression of the form $D=ab^t$ is used to model the data. According to the model, at what time $t$ will the difference first equal 15 degrees Celsius?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$12.361$"
+      },
+      {
+        "id": "B",
+        "text": "$7.226$"
+      },
+      {
+        "id": "C",
+        "text": "$17.588$"
+      },
+      {
+        "id": "D",
+        "text": "$16.659$"
+      }
+    ],
+    "dogru": "D",
+    "aciklama": "1. ExpReg: $D\\approx 74.149(0.909)^t$ ($b\\lt1$: üstel azalma).<br/>2. $ab^t=15$ çözülür: $t=\\dfrac{\\ln(15/a)}{\\ln b}$ ya da $y=15$ ile kesişim.<br/>3. $t\\approx 16.659$ dakika.",
+    "genel_hatirlatma": "Modelde bir çıktıya ulaşma zamanı = modeli o değere eşitleyip girdiyi çözmek (intersect).",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "Doğrusal model kullanmak",
+        "aciklama": "LinReg ile 12.361 bulunur; sıcaklık farkı sabit oranla azaldığı için üstel model istenmiş."
+      },
+      "B": {
+        "etiket": "Yarılanma süresini bulmak",
+        "aciklama": "7.226, farkın yarıya inme süresidir; 15 °C'ye inme zamanı değildir."
+      },
+      "C": {
+        "etiket": "Çözmek yerine değerlendirmek",
+        "aciklama": "17.588, modelin $t=15$'teki değeridir (°C); istenen zamandır."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 2.5)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Üstel azalma modelinde zaman çözme",
+      "ipucu": "Y1 = ExpReg modeli, Y2 = 15; intersect.",
+      "sikHata": "Denklemi çözmek yerine modeli değerlendirmek",
+      "cedKonu": "2.5",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Sıcaklık farkı verisine üstel regresyon uydurulduğunda farkın verilen değere ilk ulaştığı zamanı soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u2_3",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 2,
+    "unite": "2",
+    "kutu": "precalc-unit2-quiz-container",
+    "kutu_baslik": "Unit 2 Exponential and Logarithmic Functions",
+    "dizi": "PRECALC_UNIT2_QUESTIONS",
+    "sira": 12,
+    "numara": 13,
+    "konu": "2.14 Logarithmic Function Context and Data Modeling",
+    "zorluk": "medium",
+    "govde": "In a memory study, the table gives the average number of words $y$ a participant can recall after $x$ practice sessions.<br/><table><tr><th>$x$</th><td>1</td><td>2</td><td>4</td><td>6</td><td>9</td><td>12</td></tr><tr><th>$y$</th><td>5.2</td><td>8.9</td><td>12.1</td><td>14.3</td><td>16.0</td><td>17.6</td></tr></table>A natural logarithmic regression of the form $y=a+b\\ln x$ is used to model the data. What is the predicted value of $y$ when $x=20$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$20.099$"
+      },
+      {
+        "id": "B",
+        "text": "$11.735$"
+      },
+      {
+        "id": "C",
+        "text": "$27.191$"
+      },
+      {
+        "id": "D",
+        "text": "$17.578$"
+      }
+    ],
+    "dogru": "A",
+    "aciklama": "1. LnReg: $y\\approx 5.315+4.935\\ln x$.<br/>2. $x=20$: $y\\approx 5.315+4.935\\ln 20\\approx 20.099$.",
+    "genel_hatirlatma": "LnReg doğal logaritma ($\\ln$) kullanır; model değerlendirilirken de $\\ln$ kullanılmalı.",
+    "hata_aciklamalari": {
+      "B": {
+        "etiket": "ln yerine log kullanmak",
+        "aciklama": "Katsayılar $\\log_{10}20$ ile kullanılırsa 11.735 çıkar; model $\\ln$ ile kurulmuştur."
+      },
+      "C": {
+        "etiket": "Doğrusal regresyon kullanmak",
+        "aciklama": "LinReg 27.191 verir; artış yavaşladığı için logaritmik model uygundur."
+      },
+      "D": {
+        "etiket": "Yanlış girdi",
+        "aciklama": "17.578, modelin $x=12$'deki değeridir."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 2.14)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Logaritmik regresyonla tahmin",
+      "ipucu": "LnReg sonucunu Y1'e kaydedip Y1(20).",
+      "sikHata": "ln ile log'u karıştırmak",
+      "cedKonu": "2.14",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Hatırlama verisine doğal logaritmik regresyon uydurulduğunda verilen seans sayısındaki tahmini soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u2_4",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 2,
+    "unite": "2",
+    "kutu": "precalc-unit2-quiz-container",
+    "kutu_baslik": "Unit 2 Exponential and Logarithmic Functions",
+    "dizi": "PRECALC_UNIT2_QUESTIONS",
+    "sira": 13,
+    "numara": 14,
+    "konu": "2.6 Competing Function Model Validation",
+    "zorluk": "medium",
+    "govde": "The table gives the area $A$, in square centimeters, covered by a mold colony $x$ days after it was first observed.<br/><table><tr><th>$x$</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr><tr><th>$A$</th><td>3.2</td><td>4.9</td><td>7.1</td><td>11.0</td><td>16.2</td><td>24.5</td></tr></table>An exponential regression of the form $A=ab^x$ is used to model the data. What is the residual for the data point at $x=4$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$-0.138$"
+      },
+      {
+        "id": "B",
+        "text": "$10.862$"
+      },
+      {
+        "id": "C",
+        "text": "$0.138$"
+      },
+      {
+        "id": "D",
+        "text": "$-2.211$"
+      }
+    ],
+    "dogru": "C",
+    "aciklama": "1. ExpReg: $A\\approx 2.143(1.500)^x$.<br/>2. Tahmin: $A(4)\\approx 10.862$.<br/>3. Artık = gerçek − tahmin $=11.0-10.862\\approx 0.138$.",
+    "genel_hatirlatma": "Artık = gerçek − tahmin; modelin uygunluğu artıkların küçük ve desensiz olmasıyla değerlendirilir.",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "Farkı ters almak",
+        "aciklama": "Tahmin − gerçek hesaplanmış; işaret ters."
+      },
+      "B": {
+        "etiket": "Tahmini artık sanmak",
+        "aciklama": "10.862 modelin tahminidir, artık değildir."
+      },
+      "D": {
+        "etiket": "Doğrusal model kullanmak",
+        "aciklama": "-2.211, doğrusal regresyonun artığıdır; soru üstel modeli istiyor."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 2.6)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Üstel modelde artık",
+      "ipucu": "Önce modelin x = 4'teki tahminini bulun, sonra gerçek değerden çıkarın.",
+      "sikHata": "Artığı tahmin − gerçek almak",
+      "cedKonu": "2.6",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Üstel regresyon modeline göre tablodaki bir veri noktasının artığını soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u2_5",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 2,
+    "unite": "2",
+    "kutu": "precalc-unit2-quiz-container",
+    "kutu_baslik": "Unit 2 Exponential and Logarithmic Functions",
+    "dizi": "PRECALC_UNIT2_QUESTIONS",
+    "sira": 14,
+    "numara": 15,
+    "konu": "2.13 Exponential and Logarithmic Equations and Inequalities",
+    "zorluk": "medium",
+    "govde": "What is the solution to the equation $e^{0.4x}=5-x$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$1.393$"
+      },
+      {
+        "id": "B",
+        "text": "$2.394$"
+      },
+      {
+        "id": "C",
+        "text": "$5.993$"
+      },
+      {
+        "id": "D",
+        "text": "$-4.857$"
+      }
+    ],
+    "dogru": "B",
+    "aciklama": "1. Cebirsel çözüm yok (üstel ve doğrusal ifade karışık); $y_1=e^{0.4x}$ ve $y_2=5-x$ çizilir.<br/>2. $y_1$ artan, $y_2$ azalan olduğundan tek kesişim vardır.<br/>3. intersect: $x\\approx 2.394$ (kontrol: $e^{0.4\\cdot2.394}\\approx 2.606$).",
+    "genel_hatirlatma": "Karışık üstel–doğrusal denklemler grafiklerin kesişimiyle (intersect) çözülür.",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "e yerine 10 tabanı",
+        "aciklama": "1.393, $10^{0.4x}=5-x$ denkleminin çözümüdür."
+      },
+      "C": {
+        "etiket": "İşaret hatası",
+        "aciklama": "5.993, $e^{0.4x}=5+x$ denkleminin çözümlerinden biridir."
+      },
+      "D": {
+        "etiket": "İşaret hatası",
+        "aciklama": "-4.857, $e^{0.4x}=5+x$ denkleminin diğer çözümüdür."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 2.13)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Üstel denklemin grafikle çözümü",
+      "ipucu": "İki tarafı ayrı grafik olarak çizip intersect kullanın.",
+      "sikHata": "Denklemi hesap makinesine yanlış işaretle girmek",
+      "cedKonu": "2.13",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Üstel ifade ile doğrusal ifadenin eşit olduğu x değerini soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u2_6",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 2,
+    "unite": "2",
+    "kutu": "precalc-unit2-quiz-container",
+    "kutu_baslik": "Unit 2 Exponential and Logarithmic Functions",
+    "dizi": "PRECALC_UNIT2_QUESTIONS",
+    "sira": 15,
+    "numara": 16,
+    "konu": "2.13 Exponential and Logarithmic Equations and Inequalities",
+    "zorluk": "hard",
+    "govde": "Which of the following is the solution set of the inequality $\\ln(x+2)\\gt0.5x-1$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$(-1.854,\\ 6.211)$"
+      },
+      {
+        "id": "B",
+        "text": "$(-2,\\ 6.211)$"
+      },
+      {
+        "id": "C",
+        "text": "$(-1.990,\\ 3.477)$"
+      },
+      {
+        "id": "D",
+        "text": "$(-2,\\ -1.854)\\cup(6.211,\\ \\infty)$"
+      }
+    ],
+    "dogru": "A",
+    "aciklama": "1. Tanım kümesi $x\\gt-2$. $y_1=\\ln(x+2)$ ve $y_2=0.5x-1$ çizilir.<br/>2. Kesişimler: $x\\approx -1.854$ ve $x\\approx 6.211$.<br/>3. $x=0$ deneyin: $\\ln2\\approx0.693\\gt-1$ ✓. Logaritma eğrisi bu iki kesişim arasında doğrunun üstündedir; $-2$'ye yakın $\\ln(x+2)\\to-\\infty$ olduğundan orada sağlanmaz.<br/>4. Çözüm: $(-1.854,\\ 6.211)$.",
+    "genel_hatirlatma": "Eşitsizlikte kesişimleri bulun, sonra her bölgeden bir deneme noktasıyla hangi tarafın büyük olduğunu kontrol edin.",
+    "hata_aciklamalari": {
+      "B": {
+        "etiket": "Tanım kümesi sınırını çözüm sanmak",
+        "aciklama": "$x$ $-2$'ye yaklaşırken $\\ln(x+2)\\to-\\infty$; $(-2,\\ -1.854)$ aralığında eşitsizlik sağlanmaz."
+      },
+      "C": {
+        "etiket": "ln yerine log kullanmak",
+        "aciklama": "Bu uç noktalar $\\log(x+2)\\gt0.5x-1$ eşitsizliğine aittir."
+      },
+      "D": {
+        "etiket": "Bölgeleri ters seçmek",
+        "aciklama": "Bu bölgelerde $\\ln(x+2)\\lt0.5x-1$'dir; eşitsizlik yönü ters okunmuş."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 2.13)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Logaritmik eşitsizliğin grafikle çözümü",
+      "ipucu": "Kesişimleri bulun, sonra x = 0 gibi bir deneme noktası kullanın.",
+      "sikHata": "Tanım kümesinin sınırını çözüm aralığına katmak",
+      "cedKonu": "2.13",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Doğal logaritmalı ifadenin doğrusal ifadeden büyük olduğu tüm x değerlerini soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u2_7",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 2,
+    "unite": "2",
+    "kutu": "precalc-unit2-quiz-container",
+    "kutu_baslik": "Unit 2 Exponential and Logarithmic Functions",
+    "dizi": "PRECALC_UNIT2_QUESTIONS",
+    "sira": 16,
+    "numara": 17,
+    "konu": "2.2 Change in Linear and Exponential Functions",
+    "zorluk": "medium",
+    "govde": "The value of investment A, in dollars, is modeled by $A(t)=500(1.06)^t$, and the value of investment B, in dollars, is modeled by $B(t)=800+40t$, where $t$ is the number of years since both investments were made. For $t\\gt0$, at what time $t$ is the value of investment A first equal to the value of investment B?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$8.066$"
+      },
+      {
+        "id": "B",
+        "text": "$1.115$"
+      },
+      {
+        "id": "C",
+        "text": "$18.937$"
+      },
+      {
+        "id": "D",
+        "text": "$19.933$"
+      }
+    ],
+    "dogru": "D",
+    "aciklama": "1. $A(0)=500\\lt B(0)=800$; $A$ üstel (sabit oranla), $B$ doğrusal (sabit miktarla) artar.<br/>2. $y_1=500(1.06)^x$ ve $y_2=800+40x$ çizilir; intersect: $t\\approx 19.933$ yıl.<br/>3. Bu andan sonra üstel model doğrusal modeli geçer.",
+    "genel_hatirlatma": "Üstel büyüme sonunda her doğrusal büyümeyi geçer; geçiş anı kesişimle bulunur.",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "Doğrusal terimi yok saymak",
+        "aciklama": "8.066, $500(1.06)^t=800$ çözümüdür; $40t$ unutulmuş."
+      },
+      "B": {
+        "etiket": "Büyüme çarpanını yanlış yazmak",
+        "aciklama": "1.115, $500(1.6)^t$ kullanılınca bulunur; %6 büyüme çarpanı $1.06$'dır."
+      },
+      "C": {
+        "etiket": "Sürekli büyüme modeli kullanmak",
+        "aciklama": "18.937, $500e^{0.06t}$ ile bulunur; model $(1.06)^t$ ile verilmiştir."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 2.2)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Doğrusal ve üstel modelin kesişimi",
+      "ipucu": "İki modeli çizip t > 0 için intersect kullanın.",
+      "sikHata": "Büyüme çarpanını 1.6 olarak girmek",
+      "cedKonu": "2.2",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Üstel ve doğrusal yatırım modellerinin değerlerinin ilk kez eşit olduğu zamanı soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u2_8",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 2,
+    "unite": "2",
+    "kutu": "precalc-unit2-quiz-container",
+    "kutu_baslik": "Unit 2 Exponential and Logarithmic Functions",
+    "dizi": "PRECALC_UNIT2_QUESTIONS",
+    "sira": 17,
+    "numara": 18,
+    "konu": "2.15 Semi-log Plots",
+    "zorluk": "hard",
+    "govde": "The table gives values of a quantity $y$ at times $x$.<br/><table><tr><th>$x$</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr><tr><th>$y$</th><td>2.5</td><td>4.1</td><td>6.4</td><td>10.6</td><td>16.9</td></tr></table>The points $(x,\\log y)$ are plotted on a semi-log plot, where $\\log$ is the base-10 logarithm, and a linear regression is used to fit a line to these points. Which of the following is closest to the equation of the regression line?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$\\log y=0.477x+0.920$"
+      },
+      {
+        "id": "B",
+        "text": "$\\log y=0.400x+0.207$"
+      },
+      {
+        "id": "C",
+        "text": "$\\log y=0.207x+0.400$"
+      },
+      {
+        "id": "D",
+        "text": "$\\log y=1.612x+2.509$"
+      }
+    ],
+    "dogru": "C",
+    "aciklama": "1. Listeye $x$ ve $\\log y$ değerlerini girin: $\\log 2.5\\approx0.398,\\ \\log 4.1\\approx0.613,\\ \\dots$<br/>2. $(x,\\log y)$ üzerinde LinReg: eğim $\\approx 0.207$, kesişim $\\approx 0.400$.<br/>3. Doğru: $\\log y\\approx 0.207x+0.400$. (Buna karşılık gelen üstel model $y\\approx 2.509(1.612)^x$.)",
+    "genel_hatirlatma": "Yarı-log grafikte doğrusal görünen veri üsteldir: $\\log y=(\\log b)x+\\log a$.",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "log yerine ln kullanmak",
+        "aciklama": "Bu katsayılar $(x,\\ln y)$ verisine aittir; soru 10 tabanlı logaritmayı istiyor."
+      },
+      "B": {
+        "etiket": "Eğim ile kesişimi karıştırmak",
+        "aciklama": "Eğim ve dikey eksen kesişimi yer değiştirmiş."
+      },
+      "D": {
+        "etiket": "Üstel modelin a ve b'sini yazmak",
+        "aciklama": "1.612 ve 2.509, üstel modelin $b$ ve $a$ değerleridir; doğrunun eğimi $\\log b$, kesişimi $\\log a$'dır."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 2.15)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Yarı-log grafikte doğrusal regresyon",
+      "ipucu": "Önce y listesinin log'unu alıp yeni listeye yazın, sonra LinReg.",
+      "sikHata": "ln ile log'u karıştırmak",
+      "cedKonu": "2.15",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Yarı logaritmik grafikteki noktalara uydurulan regresyon doğrusunun denklemini soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u2_9",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 2,
+    "unite": "2",
+    "kutu": "precalc-unit2-quiz-container",
+    "kutu_baslik": "Unit 2 Exponential and Logarithmic Functions",
+    "dizi": "PRECALC_UNIT2_QUESTIONS",
+    "sira": 18,
+    "numara": 19,
+    "konu": "2.8 Inverse Functions",
+    "zorluk": "easy",
+    "govde": "The function $f$ is given by $f(x)=e^x+x$, and $f$ has an inverse function $f^{-1}$. What is the value of $f^{-1}(5)$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$153.413$"
+      },
+      {
+        "id": "B",
+        "text": "$1.307$"
+      },
+      {
+        "id": "C",
+        "text": "$0.007$"
+      },
+      {
+        "id": "D",
+        "text": "$1.609$"
+      }
+    ],
+    "dogru": "B",
+    "aciklama": "1. $f^{-1}(5)=a$ demek $f(a)=5$, yani $e^a+a=5$.<br/>2. $y_1=e^x+x$ ile $y_2=5$ kesişimi: $a\\approx 1.307$.<br/>3. Kontrol: $e^{1.307}+1.307\\approx5$.",
+    "genel_hatirlatma": "$f^{-1}(c)$, $f$'nin $c$ çıktısını verdiği girdidir; $f(x)=c$ çözülür.",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "f(5) hesaplamak",
+        "aciklama": "153.413, $f(5)$ değeridir; ters fonksiyon girdi–çıktıyı yer değiştirir."
+      },
+      "C": {
+        "etiket": "Tersi 1/f sanmak",
+        "aciklama": "0.007, $\\dfrac{1}{f(5)}$'tir; $f^{-1}$ çarpma tersi değildir."
+      },
+      "D": {
+        "etiket": "Yalnız e^x'in tersini almak",
+        "aciklama": "$\\ln 5\\approx1.609$; $+x$ terimi yok sayılmış."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 2.8)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Ters fonksiyon değerini grafikle bulmak",
+      "ipucu": "f(x) = 5 denklemini intersect ile çözün.",
+      "sikHata": "Ters fonksiyonu 1/f(x) sanmak",
+      "cedKonu": "2.8",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Ters fonksiyonun verilen girdideki değerini, yani f'nin hangi girdide o çıktıyı verdiğini soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u2_10",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 2,
+    "unite": "2",
+    "kutu": "precalc-unit2-quiz-container",
+    "kutu_baslik": "Unit 2 Exponential and Logarithmic Functions",
+    "dizi": "PRECALC_UNIT2_QUESTIONS",
+    "sira": 19,
+    "numara": 20,
+    "konu": "2.1 Change in Arithmetic and Geometric Sequences",
+    "zorluk": "easy",
+    "govde": "The sequences $a_n$ and $g_n$ are defined for integers $n\\ge0$ by $a_n=50+6n$ and $g_n=4(1.12)^n$. What is the least value of $n$ for which $g_n\\gt a_n$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$23$"
+      },
+      {
+        "id": "B",
+        "text": "$37$"
+      },
+      {
+        "id": "C",
+        "text": "$39$"
+      },
+      {
+        "id": "D",
+        "text": "$38$"
+      }
+    ],
+    "dogru": "D",
+    "aciklama": "1. Hesap makinesi tablosunda iki diziyi yan yana inceleyin.<br/>2. $n=37$: $g\\approx264.927\\lt a=272$.<br/>3. $n=38$: $g\\approx296.719\\gt a=278$. En küçük $n=38$.",
+    "genel_hatirlatma": "Dizilerde $n$ tam sayıdır; kesişim noktası tam sayı değilse bir sonraki tam sayı kontrol edilir.",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "Doğrusal dizinin artışını yok saymak",
+        "aciklama": "23, $g_n\\gt50$ koşulunun çözümüdür; $a_n$ her adımda 6 artar."
+      },
+      "B": {
+        "etiket": "Aşağı yuvarlamak",
+        "aciklama": "$n=37$'de hâlâ $g_n\\lt a_n$; kesişim yaklaşık $n=37.288$ olduğundan bir sonraki tam sayı alınmalı."
+      },
+      "C": {
+        "etiket": "Bir fazla saymak",
+        "aciklama": "$n=38$'de zaten $g_n\\gt a_n$; en küçük değer istenir."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 2.1)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Geometrik dizinin aritmetik diziyi geçmesi",
+      "ipucu": "Hesap makinesinin tablo özelliğiyle iki diziyi karşılaştırın.",
+      "sikHata": "Gerçel kesişimi aşağı yuvarlamak",
+      "cedKonu": "2.1",
+      "hesapMakinesi": "yardımcı",
+      "uretim": "1.28.0",
+      "neSoruyor": "Geometrik dizinin aritmetik diziden ilk kez büyük olduğu en küçük terim numarasını soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u3_1",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 3,
+    "unite": "3",
+    "kutu": "precalc-unit3-quiz-container",
+    "kutu_baslik": "Unit 3 Trigonometric and Polar Functions",
+    "dizi": "PRECALC_UNIT3_QUESTIONS",
+    "sira": 20,
+    "numara": 21,
+    "konu": "3.7 Sinusoidal Function Context and Data Modeling",
+    "zorluk": "hard",
+    "govde": "The table gives the average daily high temperature $T$, in degrees Celsius, in a city during month $x$ of a year, where $x=1$ represents January.<br/><table><tr><th>$x$</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr><tr><th>$T$</th><td>3.1</td><td>4.6</td><td>8.2</td><td>12.9</td><td>17.4</td><td>21.6</td><td>23.8</td><td>23.1</td><td>19.5</td><td>14.2</td><td>8.6</td><td>4.4</td></tr></table>A sinusoidal regression of the form $T=a\\sin(bx+c)+d$ is used to model the data. What temperature does the model predict at $x=4.5$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$13.445$"
+      },
+      {
+        "id": "B",
+        "text": "$15.150$"
+      },
+      {
+        "id": "C",
+        "text": "$15.450$"
+      },
+      {
+        "id": "D",
+        "text": "$23.748$"
+      }
+    ],
+    "dogru": "C",
+    "aciklama": "1. SinReg: $T\\approx 10.303\\sin(0.523x-2.159)+13.445$ (periyot $\\approx 12.006$ ay).<br/>2. Saklanan modeli yuvarlamadan $x=4.5$'te değerlendirin: $T\\approx 15.450$ °C.<br/>3. Hesap makinesi radyan modunda olmalıdır.",
+    "genel_hatirlatma": "SinReg sonucu $a\\sin(bx+c)+d$: $|a|$ genlik, $d$ orta çizgi, $2\\pi/b$ periyot.",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "Orta çizgiyi tahmin sanmak",
+        "aciklama": "13.445, modelin orta çizgisi $d$'dir; $x=4.5$'teki değer değildir."
+      },
+      "B": {
+        "etiket": "Doğrusal ara değer",
+        "aciklama": "15.150, nisan ve mayıs değerlerinin ortalamasıdır; sinüzoidal modelin değeri değildir."
+      },
+      "D": {
+        "etiket": "Maksimum değeri almak",
+        "aciklama": "23.748, $a+d$ yani modelin maksimumudur."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 3.7)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Sinüzoidal regresyonla tahmin",
+      "ipucu": "SinReg'i radyan modunda çalıştırıp Y1'e kaydedin.",
+      "sikHata": "Orta çizgi veya maksimumu tahmin sanmak",
+      "cedKonu": "3.7",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Aylık sıcaklık verisine sinüzoidal regresyon uydurulduğunda modelin ara bir aydaki tahminini soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u3_2",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 3,
+    "unite": "3",
+    "kutu": "precalc-unit3-quiz-container",
+    "kutu_baslik": "Unit 3 Trigonometric and Polar Functions",
+    "dizi": "PRECALC_UNIT3_QUESTIONS",
+    "sira": 21,
+    "numara": 22,
+    "konu": "3.7 Sinusoidal Function Context and Data Modeling",
+    "zorluk": "medium",
+    "govde": "The pressure inside the chamber of a pump, in kilopascals, is modeled by $P(t)=12.5+9.3\\sin\\big(0.42(t-2.1)\\big)$, where $t$ is measured in seconds. What is the least positive value of $t$ for which $P(t)=18$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$3.607$"
+      },
+      {
+        "id": "B",
+        "text": "$8.073$"
+      },
+      {
+        "id": "C",
+        "text": "$1.507$"
+      },
+      {
+        "id": "D",
+        "text": "$88.424$"
+      }
+    ],
+    "dogru": "A",
+    "aciklama": "1. $\\sin\\big(0.42(t-2.1)\\big)=\\dfrac{18-12.5}{9.3}\\approx0.591$.<br/>2. Radyan modunda $y_1=P(t)$ ve $y_2=18$ kesişimleri: $t\\approx 3.607,\\ 8.073,\\ \\dots$<br/>3. ($t\\lt0$ çözüm yok: bir önceki kesişim negatif.) En küçük pozitif $t\\approx 3.607$ s.",
+    "genel_hatirlatma": "Sinüzoidal denklemin bir periyotta genelde iki çözümü vardır; soruda istenen (en küçük pozitif) seçilir.",
+    "hata_aciklamalari": {
+      "B": {
+        "etiket": "İkinci çözümü seçmek",
+        "aciklama": "8.073 de bir çözümdür ama en küçük pozitif değildir."
+      },
+      "C": {
+        "etiket": "Faz kaymasını unutmak",
+        "aciklama": "1.507, $t-2.1$ yerine $t$ kullanılınca bulunur."
+      },
+      "D": {
+        "etiket": "Derece modunda çözmek",
+        "aciklama": "88.424, arcsin'in derece cinsinden alınmasından gelir; model radyandır."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 3.7)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Sinüzoidal modelde denklem çözme",
+      "ipucu": "Radyan modunda Y1 = P(t), Y2 = 18; ilk pozitif kesişim.",
+      "sikHata": "Hesap makinesini derece modunda kullanmak",
+      "cedKonu": "3.7",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Sinüzoidal basınç modelinin verilen değere ilk kez ulaştığı pozitif zamanı soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u3_3",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 3,
+    "unite": "3",
+    "kutu": "precalc-unit3-quiz-container",
+    "kutu_baslik": "Unit 3 Trigonometric and Polar Functions",
+    "dizi": "PRECALC_UNIT3_QUESTIONS",
+    "sira": 22,
+    "numara": 23,
+    "konu": "3.10 Trigonometric Equations and Inequalities",
+    "zorluk": "medium",
+    "govde": "What is the positive solution to the equation $3\\sin(2x)=x$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$2.279$"
+      },
+      {
+        "id": "B",
+        "text": "$0.670$"
+      },
+      {
+        "id": "C",
+        "text": "$2.679$"
+      },
+      {
+        "id": "D",
+        "text": "$1.339$"
+      }
+    ],
+    "dogru": "D",
+    "aciklama": "1. $y_1=3\\sin(2x)$ (radyan) ve $y_2=x$ çizilir. $x\\gt3$ için $x\\gt3\\ge3\\sin(2x)$, kesişim olamaz.<br/>2. $x=0$ dışında tek pozitif kesişim: $x\\approx 1.339$.<br/>3. Kontrol: $3\\sin(2\\cdot1.339)\\approx1.339$.",
+    "genel_hatirlatma": "Trigonometrik–doğrusal karışık denklemler cebirle çözülmez; grafik kesişimi kullanılır (radyan modu).",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "2x yerine x kullanmak",
+        "aciklama": "2.279, $3\\sin x=x$ denkleminin pozitif çözümüdür."
+      },
+      "B": {
+        "etiket": "Gereksiz yere 2'ye bölmek",
+        "aciklama": "Kesişimin $x$ değeri doğrudan çözümdür; 0.670 çözümün yarısıdır."
+      },
+      "C": {
+        "etiket": "Gereksiz yere 2 ile çarpmak",
+        "aciklama": "2.679, $2x$ değeridir; istenen $x$'tir."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 3.10)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Trigonometrik denklemin grafikle çözümü",
+      "ipucu": "Radyan modunda iki grafiği çizip x > 0 kesişimini bulun.",
+      "sikHata": "2x açısını x ile karıştırmak",
+      "cedKonu": "3.10",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Sinüslü ifade ile doğrusal ifadenin eşit olduğu pozitif x değerini soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u3_4",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 3,
+    "unite": "3",
+    "kutu": "precalc-unit3-quiz-container",
+    "kutu_baslik": "Unit 3 Trigonometric and Polar Functions",
+    "dizi": "PRECALC_UNIT3_QUESTIONS",
+    "sira": 23,
+    "numara": 24,
+    "konu": "3.10 Trigonometric Equations and Inequalities",
+    "zorluk": "hard",
+    "govde": "Which of the following is the solution set of $2\\cos x\\gt0.5x-1.5$ for $0\\le x\\le2\\pi$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$(1.860,\\ 5.336)$"
+      },
+      {
+        "id": "B",
+        "text": "$[0,\\ 1.860)\\cup(5.336,\\ 2\\pi]$"
+      },
+      {
+        "id": "C",
+        "text": "$[0,\\ 1.860)$"
+      },
+      {
+        "id": "D",
+        "text": "$0\\le x\\le2\\pi$"
+      }
+    ],
+    "dogru": "B",
+    "aciklama": "1. $y_1=2\\cos x$ ve $y_2=0.5x-1.5$ radyan modunda çizilir; kesişimler $x\\approx 1.860$ ve $x\\approx 5.336$.<br/>2. Deneme noktaları: $x=0$: $2\\gt-1.5$ ✓; $x=\\pi$: $-2\\gt0.071$ ✗; $x=2\\pi$: $2\\gt1.642$ ✓.<br/>3. Çözüm: $[0,\\ 1.860)\\cup(5.336,\\ 2\\pi]$.",
+    "genel_hatirlatma": "Kesişimler aralığı bölgelere ayırır; her bölgede bir deneme noktası eşitsizliğin yönünü gösterir.",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "Bölgeyi ters seçmek",
+        "aciklama": "Bu aralıkta (ör. $x=\\pi$) $2\\cos x\\lt0.5x-1.5$; yön ters okunmuş."
+      },
+      "C": {
+        "etiket": "Son bölgeyi kaçırmak",
+        "aciklama": "$x=2\\pi$ yakınında kosinüs yeniden büyür; $(5.336,\\ 2\\pi]$ de çözümdür."
+      },
+      "D": {
+        "etiket": "Derece modunda çizmek",
+        "aciklama": "Derece modunda $2\\cos x\\approx2$ kalır ve eşitsizlik her yerde sağlanıyor gibi görünür."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 3.10)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Trigonometrik eşitsizliğin grafikle çözümü",
+      "ipucu": "Kesişimleri bulun ve her bölgeden bir deneme noktası seçin.",
+      "sikHata": "Aralığın sonundaki ikinci çözüm bölgesini kaçırmak",
+      "cedKonu": "3.10",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Verilen aralıkta kosinüslü ifadenin doğrusal ifadeden büyük olduğu tüm x değerlerini soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u3_5",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 3,
+    "unite": "3",
+    "kutu": "precalc-unit3-quiz-container",
+    "kutu_baslik": "Unit 3 Trigonometric and Polar Functions",
+    "dizi": "PRECALC_UNIT3_QUESTIONS",
+    "sira": 24,
+    "numara": 25,
+    "konu": "3.9 Inverse Trigonometric Functions",
+    "zorluk": "easy",
+    "govde": "A wheelchair ramp rises 1.8 meters over a horizontal distance of 6.5 meters. What is the angle, in radians, that the ramp makes with the horizontal ground?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$0.270$"
+      },
+      {
+        "id": "B",
+        "text": "$0.281$"
+      },
+      {
+        "id": "C",
+        "text": "$1.301$"
+      },
+      {
+        "id": "D",
+        "text": "$15.479$"
+      }
+    ],
+    "dogru": "A",
+    "aciklama": "1. Karşı dik kenar 1.8, komşu dik kenar 6.5: $\\tan\\theta=\\dfrac{1.8}{6.5}$.<br/>2. $\\theta=\\arctan\\left(\\dfrac{1.8}{6.5}\\right)\\approx 0.270$ rad (radyan modu).",
+    "genel_hatirlatma": "Dik kenarlar verilince açı $\\arctan(\\text{karşı}/\\text{komşu})$ ile bulunur; birim isteğine (radyan) dikkat.",
+    "hata_aciklamalari": {
+      "B": {
+        "etiket": "Yatay mesafeyi hipotenüs sanmak",
+        "aciklama": "0.281, $\\arcsin(1.8/6.5)$'tir; 6.5 m yatay (komşu) kenardır."
+      },
+      "C": {
+        "etiket": "Oranı ters kurmak",
+        "aciklama": "1.301, $\\arctan(6.5/1.8)$'dir; bu, rampanın dikeyle yaptığı açıdır."
+      },
+      "D": {
+        "etiket": "Derece cinsinden vermek",
+        "aciklama": "15.479 derecedir; soru radyan istiyor."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 3.9)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Ters tanjantla açı bulmak",
+      "ipucu": "Karşı/komşu oranının arctan'ını radyan modunda alın.",
+      "sikHata": "Radyan yerine derece vermek",
+      "cedKonu": "3.9",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Rampanın yükselişi ve yatay uzunluğu verildiğinde yerle yaptığı açıyı radyan cinsinden soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u3_6",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 3,
+    "unite": "3",
+    "kutu": "precalc-unit3-quiz-container",
+    "kutu_baslik": "Unit 3 Trigonometric and Polar Functions",
+    "dizi": "PRECALC_UNIT3_QUESTIONS",
+    "sira": 25,
+    "numara": 26,
+    "konu": "3.15 Rates of Change in Polar Functions",
+    "zorluk": "medium",
+    "govde": "The polar function $r$ is given by $r(\\theta)=2+3\\sin\\theta$. What is the average rate of change of $r$ with respect to $\\theta$ over the interval $0.5\\le\\theta\\le1.2$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$1.358$"
+      },
+      {
+        "id": "B",
+        "text": "$0.647$"
+      },
+      {
+        "id": "C",
+        "text": "$1.940$"
+      },
+      {
+        "id": "D",
+        "text": "$0.052$"
+      }
+    ],
+    "dogru": "C",
+    "aciklama": "1. $r(1.2)=2+3\\sin1.2\\approx4.796$, $r(0.5)=2+3\\sin0.5\\approx3.438$ (radyan).<br/>2. $\\dfrac{r(1.2)-r(0.5)}{1.2-0.5}\\approx\\dfrac{1.358}{0.7}\\approx 1.940$.<br/>3. Pozitif: bu aralıkta nokta ortalama olarak orijinden uzaklaşıyor.",
+    "genel_hatirlatma": "Kutupsal fonksiyonda ortalama değişim hızı $\\dfrac{\\Delta r}{\\Delta\\theta}$'dır.",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "Girdi farkına bölmemek",
+        "aciklama": "1.358 yalnız $\\Delta r$'dir; $0.7$'ye bölünmeli."
+      },
+      "B": {
+        "etiket": "Katsayıyı unutmak",
+        "aciklama": "0.647, yalnız $\\sin\\theta$'nın ortalama değişim hızıdır; 3 katsayısı atlanmış."
+      },
+      "D": {
+        "etiket": "Derece modunda hesaplamak",
+        "aciklama": "0.052, açıların derece sanılmasından gelir; $\\theta$ radyandır."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 3.15)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Kutupsal fonksiyonda ortalama değişim hızı",
+      "ipucu": "r'yi iki uçta radyan modunda hesaplayıp farkı Δθ'ya bölün.",
+      "sikHata": "Hesap makinesini derece modunda kullanmak",
+      "cedKonu": "3.15",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Kutupsal fonksiyonun verilen açı aralığında r'nin ortalama değişim hızını soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u3_7",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 3,
+    "unite": "3",
+    "kutu": "precalc-unit3-quiz-container",
+    "kutu_baslik": "Unit 3 Trigonometric and Polar Functions",
+    "dizi": "PRECALC_UNIT3_QUESTIONS",
+    "sira": 26,
+    "numara": 27,
+    "konu": "3.13 Trigonometry and Polar Coordinates",
+    "zorluk": "medium",
+    "govde": "The point with rectangular coordinates $(-3.2,\\ 5.1)$ is written in polar coordinates $(r,\\theta)$ with $r\\gt0$ and $0\\le\\theta\\lt2\\pi$. Which of the following is closest to $(r,\\theta)$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$(6.021,\\ 5.273)$"
+      },
+      {
+        "id": "B",
+        "text": "$(6.021,\\ 2.131)$"
+      },
+      {
+        "id": "C",
+        "text": "$(6.021,\\ 1.010)$"
+      },
+      {
+        "id": "D",
+        "text": "$(6.021,\\ 2.581)$"
+      }
+    ],
+    "dogru": "B",
+    "aciklama": "1. $r=\\sqrt{(-3.2)^2+5.1^2}\\approx6.021$.<br/>2. Nokta II. bölgede. $\\arctan\\left(\\dfrac{5.1}{-3.2}\\right)\\approx-1.010$ IV. bölge açısıdır; $\\pi$ eklenir: $\\theta\\approx2.131$.<br/>3. Cevap: $(6.021,\\ 2.131)$.",
+    "genel_hatirlatma": "$\\arctan(y/x)$ yalnız I. ve IV. bölge açısı verir; $x\\lt0$ ise $\\pi$ eklenir.",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "Yanlış bölge düzeltmesi",
+        "aciklama": "5.273, arctan sonucuna $2\\pi$ eklenmesiyle bulunur; bu IV. bölgedeki bir açıdır."
+      },
+      "C": {
+        "etiket": "İşaretleri yok saymak",
+        "aciklama": "1.010, $\\arctan(5.1/3.2)$'dir; I. bölge açısı."
+      },
+      "D": {
+        "etiket": "x ve y'yi karıştırmak",
+        "aciklama": "2.581, $\\pi-\\arctan(3.2/5.1)$'dir; tanjant $y/x$ olmalı."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 3.13)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Dik koordinattan kutupsal koordinata",
+      "ipucu": "Önce noktanın bölgesini belirleyin, sonra arctan sonucunu düzeltin.",
+      "sikHata": "arctan sonucunu bölge kontrolü yapmadan kullanmak",
+      "cedKonu": "3.13",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "İkinci bölgedeki bir noktanın pozitif yarıçaplı kutupsal koordinatlarını soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u3_8",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 3,
+    "unite": "3",
+    "kutu": "precalc-unit3-quiz-container",
+    "kutu_baslik": "Unit 3 Trigonometric and Polar Functions",
+    "dizi": "PRECALC_UNIT3_QUESTIONS",
+    "sira": 27,
+    "numara": 28,
+    "konu": "3.8 The Tangent Function",
+    "zorluk": "easy",
+    "govde": "What is the value of $\\theta$ in the interval $\\dfrac{\\pi}{2}\\lt\\theta\\lt\\dfrac{3\\pi}{2}$ for which $\\tan\\theta=2.7$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$1.216$"
+      },
+      {
+        "id": "B",
+        "text": "$1.926$"
+      },
+      {
+        "id": "C",
+        "text": "$3.496$"
+      },
+      {
+        "id": "D",
+        "text": "$4.358$"
+      }
+    ],
+    "dogru": "D",
+    "aciklama": "1. $\\arctan2.7\\approx1.216$, ama bu değer $\\left(-\\dfrac{\\pi}{2},\\dfrac{\\pi}{2}\\right)$'dedir.<br/>2. Tanjantın periyodu $\\pi$: $\\theta=\\pi+\\arctan2.7\\approx4.358$ (III. bölge, tanjant pozitif ✓).",
+    "genel_hatirlatma": "$\\tan$'ın periyodu $\\pi$'dir; aynı tanjant değeri $\\pi$ arayla tekrar eder.",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "Aralığı kontrol etmemek",
+        "aciklama": "1.216 istenen aralıkta değildir."
+      },
+      "B": {
+        "etiket": "Sinüs gibi simetri kullanmak",
+        "aciklama": "1.926 $=\\pi-\\arctan2.7$; orada (II. bölge) tanjant negatiftir."
+      },
+      "C": {
+        "etiket": "Kotanjantla karıştırmak",
+        "aciklama": "3.496 $=\\pi+\\arctan(1/2.7)$; bu $\\cot\\theta=2.7$ çözümüdür."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 3.8)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Tanjantın periyodikliği ile açı bulmak",
+      "ipucu": "arctan değerine π ekleyin ve aralığı kontrol edin.",
+      "sikHata": "arctan'ın tek değerini her aralıkta geçerli sanmak",
+      "cedKonu": "3.8",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Verilen aralıkta tanjantı belirli bir sayıya eşit olan açıyı soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u3_9",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 3,
+    "unite": "3",
+    "kutu": "precalc-unit3-quiz-container",
+    "kutu_baslik": "Unit 3 Trigonometric and Polar Functions",
+    "dizi": "PRECALC_UNIT3_QUESTIONS",
+    "sira": 28,
+    "numara": 29,
+    "konu": "3.11 The Secant, Cosecant, and Cotangent Functions",
+    "zorluk": "hard",
+    "govde": "Which of the following gives all solutions to $\\sec\\theta=-2.4$ in the interval $0\\le\\theta\\lt2\\pi$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$2.001\\ \\text{and}\\ 4.283$"
+      },
+      {
+        "id": "B",
+        "text": "$1.141\\ \\text{and}\\ 5.142$"
+      },
+      {
+        "id": "C",
+        "text": "$3.571\\ \\text{and}\\ 5.853$"
+      },
+      {
+        "id": "D",
+        "text": "$1.141\\ \\text{and}\\ 2.001$"
+      }
+    ],
+    "dogru": "A",
+    "aciklama": "1. $\\sec\\theta=-2.4\\iff\\cos\\theta=-\\dfrac{1}{2.4}\\approx-0.417$.<br/>2. $\\arccos(-0.417)\\approx2.001$ (II. bölge).<br/>3. Kosinüs III. bölgede de negatiftir: $2\\pi-2.001\\approx4.283$.<br/>4. Çözümler: 2.001 ve 4.283.",
+    "genel_hatirlatma": "$\\sec=1/\\cos$; önce $\\cos\\theta$ bulunur, sonra işaretin geçerli olduğu iki bölge kullanılır.",
+    "hata_aciklamalari": {
+      "B": {
+        "etiket": "İşareti kaybetmek",
+        "aciklama": "Bunlar $\\cos\\theta=+\\dfrac{1}{2.4}$ çözümleridir (I. ve IV. bölge)."
+      },
+      "C": {
+        "etiket": "Sekantı kosekantla karıştırmak",
+        "aciklama": "Bunlar $\\csc\\theta=-2.4$, yani $\\sin\\theta=-\\dfrac{1}{2.4}$ çözümleridir."
+      },
+      "D": {
+        "etiket": "Bölgeleri karıştırmak",
+        "aciklama": "1.141'de kosinüs pozitiftir, dolayısıyla $\\sec\\theta\\gt0$; yalnız 2.001 doğrudur."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 3.11)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Sekant denkleminin çözümü",
+      "ipucu": "sec = −2.4 ise cos = −1/2.4; arccos ve 2π − arccos.",
+      "sikHata": "İşaret ya da sec/csc karışıklığı",
+      "cedKonu": "3.11",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Verilen aralıkta sekantı negatif bir sayıya eşit olan tüm açıları soruyor."
+    },
+    "durum": "taslak"
+  },
+  {
+    "id": "precalc_hm_u3_10",
+    "tur": "ders",
+    "sayfa": "ap-precalculus",
+    "ders": null,
+    "unite_no": 3,
+    "unite": "3",
+    "kutu": "precalc-unit3-quiz-container",
+    "kutu_baslik": "Unit 3 Trigonometric and Polar Functions",
+    "dizi": "PRECALC_UNIT3_QUESTIONS",
+    "sira": 29,
+    "numara": 30,
+    "konu": "3.5 Sinusoidal Functions",
+    "zorluk": "easy",
+    "govde": "The function $f$ is given by $f(t)=4.2\\cos(0.8t)+1$. What is the average rate of change of $f$ over the interval $1\\le t\\le3$?",
+    "secenekler": [
+      {
+        "id": "A",
+        "text": "$-6.023$"
+      },
+      {
+        "id": "B",
+        "text": "$-3.012$"
+      },
+      {
+        "id": "C",
+        "text": "$-0.002$"
+      },
+      {
+        "id": "D",
+        "text": "$0.915$"
+      }
+    ],
+    "dogru": "B",
+    "aciklama": "1. Radyan modunda: $f(3)=4.2\\cos2.4+1\\approx-2.097$, $f(1)=4.2\\cos0.8+1\\approx3.926$.<br/>2. $\\dfrac{f(3)-f(1)}{3-1}\\approx\\dfrac{-6.023}{2}\\approx -3.012$.",
+    "genel_hatirlatma": "Ortalama değişim hızı uç noktalardaki değerlerden hesaplanır; trigonometrik değerlerde radyan modu kullanılır.",
+    "hata_aciklamalari": {
+      "A": {
+        "etiket": "Girdi farkına bölmemek",
+        "aciklama": "-6.023 yalnız çıktı farkıdır; 2'ye bölünmeli."
+      },
+      "C": {
+        "etiket": "Derece modunda hesaplamak",
+        "aciklama": "-0.002, kosinüsün derece cinsinden hesaplanmasından gelir."
+      },
+      "D": {
+        "etiket": "Ortalama değeri almak",
+        "aciklama": "0.915, $f(1)$ ve $f(3)$'ün ortalamasıdır; değişim hızı değildir."
+      }
+    },
+    "kaynak": "AP-style original (CED Topic 3.5)",
+    "deneme_kodlari": [
+      "precalculus"
+    ],
+    "pasaj": null,
+    "ek": {
+      "kavram": "Sinüzoidal fonksiyonda ortalama değişim hızı",
+      "ipucu": "Radyan modunda f(3) ve f(1)'i hesaplayıp farkı 2'ye bölün.",
+      "sikHata": "Hesap makinesini derece modunda kullanmak",
+      "cedKonu": "3.5",
+      "hesapMakinesi": "gerekli",
+      "uretim": "1.28.0",
+      "neSoruyor": "Kosinüslü fonksiyonun verilen aralıktaki ortalama değişim hızını soruyor."
+    },
+    "durum": "taslak"
+  }
+]
