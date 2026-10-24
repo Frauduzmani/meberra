@@ -1,6 +1,6 @@
 "use strict";
 // 1.28.0 yeni dersler (Precalculus, Statistics, Physics 2): sayfa kendi adresinde açılır, ünite görünümü CED ünitelerini
-// doğru sayı ve başlıkla gösterir; onaylı sorusu olmayan istasyon "Yakında" durumundadır (hata değil).
+// doğru sayı ve başlıkla gösterir; ünite 1 istasyonunda onaylı sorular yüklenir (1.28.0 içerik dalgası).
 const { test, expect, ogrenciGiris, yatayKaydirmaYok } = require("./yardimci");
 
 const DERSLER = [
@@ -15,7 +15,7 @@ const DERSLER = [
 ];
 
 for (const d of DERSLER) {
-  test(d.baslik + ": ünite görünümü CED üniteleri; sorusuz istasyon Yakında", async ({ page }) => {
+  test(d.baslik + ": ünite görünümü CED üniteleri; ilk ünitede sorular yüklenir", async ({ page }) => {
     await ogrenciGiris(page, "/bugun");
     await page.goto(d.yol);
     await expect(page.getByRole("heading", { level: 1, name: d.baslik })).toBeVisible();
@@ -29,7 +29,8 @@ for (const d of DERSLER) {
     await page.goto(d.yol + "?unite=1");
     const kutu = page.locator("#" + d.kutu);
     await expect(kutu).toBeAttached();
-    await expect(kutu.locator(".sb-durum.is-yakinda")).toBeVisible();
+    await expect(kutu.locator(".question-card:visible").first()).toBeVisible();
+    await expect(kutu.locator(".sb-durum.is-yakinda")).toHaveCount(0);
     await yatayKaydirmaYok(page);
   });
 }

@@ -15,7 +15,9 @@ const test = base.test.extend({
   /** Konsol hataları ve yakalanmamış sayfa hataları. Bilerek hata üreten test `konsolSerbest()` çağırır. */
   konsol: [async ({ page }, use, testInfo) => {
     const hatalar = [];
-    page.on("console", m => { if (m.type() === "error") hatalar.push("console: " + m.text() + " @ " + (m.location().url || "")); });
+    // Test başlığı X-Forwarded-For CDN font isteklerine de gider → CORS ön kontrolü reddeder (yalnız test ortamı; MathJax fontları)
+    const testGurultusu = m => /x-forwarded-for is not allowed|ERR_FAILED/i.test(m.text()) && /cdn\.jsdelivr\.net\/npm\/mathjax/.test(m.text() + " " + (m.location().url || ""));
+    page.on("console", m => { if (m.type() === "error" && !testGurultusu(m)) hatalar.push("console: " + m.text() + " @ " + (m.location().url || "")); });
     page.on("pageerror", e => hatalar.push("pageerror: " + e.message));
     await use(hatalar);
     if (!testInfo.annotations.some(a => a.type === "konsol-serbest") && testInfo.status === testInfo.expectedStatus)
