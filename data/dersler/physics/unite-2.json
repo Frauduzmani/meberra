@@ -1,0 +1,647 @@
+{
+ "ders": "physics",
+ "unite": 2,
+ "baslik": "Force and Translational Dynamics",
+ "baslikTr": "Kuvvet ve Öteleme Dinamiği",
+ "konular": [
+  {
+   "kod": "2.1",
+   "baslik": "Systems and Center of Mass",
+   "baslikTr": "Sistemler ve kütle merkezi",
+   "hedefler": [
+    "Bir problemde sistemi (system) seçmek; iç kuvvet (internal force) ile dış kuvveti (external force) ayırt etmek.",
+    "Kütle merkezinin (center of mass) konumunu \\(x_{cm}=\\frac{\\sum m_i x_i}{\\sum m_i}\\) ile hesaplamak.",
+    "Kütle merkezinin ivmesinin yalnız dış kuvvetlerle değiştiğini gerekçelendirmek."
+   ],
+   "anlatim": "<h4>Sistem nedir? (What is a system?)</h4>\n<div class=\"kn-tanim\"><strong>Sistem (system)</strong>, incelemek için seçtiğimiz bir veya birden çok cisimdir. Sistemin dışındaki her şey <strong>çevre (environment / surroundings)</strong>dir. Seçim size aittir; doğru seçim problemi kolaylaştırır.</div>\n<p>AP Physics 1'de her soruda ilk karar şudur: <em>\"What is my system?\"</em> Bu karar hangi kuvvetlerin hesaba gireceğini belirler.</p>\n<table><thead><tr><th>Kuvvet türü</th><th>Tanım</th><th>Örnek (sistem = iki blok + ip)</th></tr></thead><tbody>\n<tr><td>İç kuvvet (internal force)</td><td>Sistemin iki parçası arasındaki etkileşim</td><td>İpin bloklara uyguladığı gerilme (tension)</td></tr>\n<tr><td>Dış kuvvet (external force)</td><td>Çevredeki bir cismin sisteme uyguladığı kuvvet</td><td>Yerçekimi, masanın normal kuvveti, eldeki çekme kuvveti</td></tr></tbody></table>\n<div class=\"kn-kural\"><strong>Temel kural:</strong> İç kuvvetler Newton'ın 3. yasası gereği çiftler hâlinde gelir ve sistem içinde birbirini götürür. Bu yüzden sistemin <strong>kütle merkezinin ivmesini</strong> yalnızca dış kuvvetler belirler: \\[ \\vec a_{cm}=\\frac{\\sum \\vec F_{ext}}{M_{total}} \\]</div>\n<h4>Kütle merkezi (center of mass)</h4>\n<p>Kütle merkezi, sistemin kütlesinin \"ortalama konumu\"dur; ağırlıklı ortalama (weighted average) olarak hesaplanır:</p>\n<div class=\"formul\">\\[ x_{cm}=\\frac{m_1x_1+m_2x_2+\\dots}{m_1+m_2+\\dots} \\]</div>\n<p>Aynı formül \\(y\\) için de ayrı yazılır. Simetrik ve düzgün (uniform) bir cisimde kütle merkezi geometrik merkezdedir. Kütle merkezi her zaman büyük kütleye <strong>daha yakındır</strong> ve en uçtaki iki cismin arasında kalır. Cismin içinde olmak zorunda değildir (ör. halka, bumerang).</p>\n<h4>Sistemi nokta cisim gibi modellemek</h4>\n<p>Bir sistemin iç yapısı (dönme, şekil değiştirme) sorulmuyorsa, sistemi kütle merkezinde duran tek bir <strong>nokta cisim (object / point particle)</strong> olarak modelleyebiliriz. AP dilinde: <em>\"The system can be modeled as an object because its internal structure does not affect the motion of its center of mass.\"</em></p>\n<h4>Adım adım: hangi sistemi seçmeli?</h4>\n<ol>\n<li>Sorulan büyüklük birkaç cismin <strong>ortak ivmesi</strong> ise hepsini tek sistem al; iç kuvvetler (ip gerilmesi, temas kuvveti) kaybolur.</li>\n<li>Sorulan şey bir <strong>iç kuvvet</strong> ise (ör. ipteki gerilme), o kuvvetin dış kuvvet olduğu daha küçük bir sistem seç (yalnız bir blok).</li>\n<li>Sistem sınırını çizdikten sonra yalnızca sınırı geçen etkileşimleri listele.</li>\n</ol>\n<div class=\"kn-dikkat\">İki araba birbirine çarparken sistem \"iki araba\" ise çarpışma kuvveti iç kuvvettir; sürtünmesiz yatay yolda kütle merkezinin hızı çarpışma boyunca <strong>değişmez</strong>. Tek araba sistemse aynı kuvvet dış kuvvettir ve arabanın hızı değişir.</div>\n<p>FRQ'da puan getiren ifade: <em>\"Because the net external force on the two-cart system is zero, the velocity of the center of mass of the system remains constant.\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "Bir çubuğun üzerinde \\(x=0\\) noktasında \\(2.0\\text{ kg}\\), \\(x=3.0\\text{ m}\\) noktasında \\(4.0\\text{ kg}\\) kütle var (çubuğun kütlesi ihmal). Kütle merkezi nerededir?",
+     "cozum": [
+      "\\(x_{cm}=\\frac{(2.0)(0)+(4.0)(3.0)}{2.0+4.0}=\\frac{12}{6.0}\\).",
+      "\\(x_{cm}=2.0\\text{ m}\\). Kontrol: sonuç büyük kütleye (\\(x=3\\)) daha yakın; mantıklı."
+     ]
+    },
+    {
+     "soru": "Sürtünmesiz masada birbirine iple bağlı A (\\(2\\text{ kg}\\)) ve B (\\(3\\text{ kg}\\)) blokları, A'ya bağlı ikinci bir ip ile \\(10\\text{ N}\\) kuvvetle çekiliyor. Bağlantı ipindeki gerilmeyi bulmak için hangi sistemleri seçersiniz?",
+     "cozum": [
+      "Önce sistem = A + B: tek dış yatay kuvvet \\(10\\text{ N}\\); \\(a=\\frac{10}{5}=2\\text{ m/s}^2\\). Bağlantı ipi bu sistemde iç kuvvettir, görünmez.",
+      "Sonra sistem = yalnız B: tek yatay kuvvet bağlantı gerilmesi \\(T\\). \\(T=m_Ba=(3)(2)=6\\text{ N}\\).",
+      "Ders: ortak ivme için büyük sistem, iç kuvvet için küçük sistem."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Bir patenci buz üzerinde duran bir arkadaşını iter. Patenci + arkadaş sistemi için kütle merkezinin hareketi hakkında ne söylenebilir? Gerekçelendirin.",
+     "cozum": [
+      "İtme kuvvetleri iki kişi arasındadır; seçilen sistemde iç kuvvettir. Dikey dış kuvvetler (yerçekimi ve normal kuvvet) birbirini dengeler, buz sürtünmesizdir.",
+      "Claim: Kütle merkezi başlangıçta durgundu ve durgun kalır. Evidence: net dış kuvvet sıfır. Reasoning: \\(a_{cm}=\\frac{\\sum F_{ext}}{M}=0\\), yani kütle merkezinin hızı değişmez; kişiler zıt yönlere gider ama kütle merkezi yerinde kalır."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her çözümün ilk satırına sistemini yaz: <em>\"Consider the system of block A and block B.\"</em> Puanlayıcı bunu arar.",
+    "Kütle merkezi sorularında cevabın büyük kütleye daha yakın olduğunu kontrol et; değilse pay ile paydayı karıştırmışsındır.",
+    "Hesap makinesi sadece aritmetik için yardımcıdır; AP Physics 1'de tüm bölümlerde hesap makinesi serbesttir ama çoğu soru oran ve mantıkla çözülür.",
+    "\"Internal forces cannot change the motion of the center of mass\" cümlesi gerekçe sorularında doğrudan puan getirir."
+   ],
+   "sikHatalar": [
+    "İç kuvvetleri (ör. iki blok arasındaki ip gerilmesi) sistemin net kuvvetine eklemek.",
+    "Kütle merkezini iki cismin tam ortası sanmak; kütleler farklıysa ağırlıklı ortalama alınır.",
+    "Kütle merkezinin mutlaka cismin maddesi içinde olması gerektiğini düşünmek."
+   ],
+   "terimler": [
+    {
+     "en": "system",
+     "tr": "sistem"
+    },
+    {
+     "en": "surroundings / environment",
+     "tr": "çevre"
+    },
+    {
+     "en": "internal force",
+     "tr": "iç kuvvet"
+    },
+    {
+     "en": "external force",
+     "tr": "dış kuvvet"
+    },
+    {
+     "en": "center of mass",
+     "tr": "kütle merkezi"
+    },
+    {
+     "en": "weighted average",
+     "tr": "ağırlıklı ortalama"
+    }
+   ]
+  },
+  {
+   "kod": "2.2",
+   "baslik": "Forces and Free-Body Diagrams",
+   "baslikTr": "Kuvvetler ve serbest cisim diyagramları",
+   "hedefler": [
+    "Bir cisme etkiyen tüm kuvvetleri belirleyip AP kurallarına uygun serbest cisim diyagramı (free-body diagram, FBD) çizmek.",
+    "Kuvvetleri doğru adlandırmak: ağırlık, normal, gerilme, sürtünme, yay kuvveti.",
+    "FBD'den Newton'ın 2. yasası denklemini bileşen bileşen (component by component) yazmak."
+   ],
+   "anlatim": "<h4>Kuvvet = etkileşim (force is an interaction)</h4>\n<div class=\"kn-tanim\"><strong>Kuvvet (force)</strong>, iki cisim arasındaki bir etkileşimdir ve bir vektördür (büyüklük + yön). Birimi newton: \\(1\\text{ N}=1\\text{ kg·m/s}^2\\). Her kuvvetin bir <strong>kaynağı</strong> vardır: \"kim kime uyguluyor?\"</div>\n<p>Her kuvvet ya <strong>temas kuvveti (contact force)</strong> ya da <strong>alan kuvveti (field force)</strong>dir. AP Physics 1'de tek alan kuvveti yerçekimidir (gravitational force); diğer hepsi temas ister.</p>\n<table><thead><tr><th>Kuvvet</th><th>Sembol</th><th>Yön</th></tr></thead><tbody>\n<tr><td>Ağırlık / yerçekimi (weight)</td><td>\\(F_g=mg\\)</td><td>Daima aşağı (Dünya'nın merkezine)</td></tr>\n<tr><td>Normal kuvvet (normal force)</td><td>\\(F_N\\)</td><td>Yüzeye dik, yüzeyden <em>dışarı</em> doğru</td></tr>\n<tr><td>Gerilme (tension)</td><td>\\(F_T\\)</td><td>İp boyunca, cisimden <em>uzağa</em> (ip sadece çeker)</td></tr>\n<tr><td>Sürtünme (friction)</td><td>\\(F_f\\)</td><td>Yüzeye paralel, kayma (veya kayma eğilimi) yönüne zıt</td></tr>\n<tr><td>Yay kuvveti (spring force)</td><td>\\(F_s\\)</td><td>Yayın denge konumuna geri doğru</td></tr></tbody></table>\n<h4>Tam puan için FBD kuralları</h4>\n<div class=\"kn-kural\"><ol>\n<li>Cismi bir <strong>nokta (dot)</strong> veya kutu olarak çiz; her ok o noktadan <strong>dışarı</strong> başlar.</li>\n<li>Her ok <strong>gerçek bir kuvvettir</strong>; her birini adlandır (\\(F_g\\), \\(F_N\\), \\(F_T\\), \\(F_f\\)). \"Net force\", \"ma\" veya \"centripetal force\" oku <strong>çizme</strong>.</li>\n<li>Bileşenleri (components) ayrı ok olarak <strong>çizme</strong>; gerekiyorsa kesik çizgiyle diyagramın dışında göster.</li>\n<li>Okların uzunlukları göreli büyüklükleri yansıtsın: cisim dikeyde dengedeyse yukarı ve aşağı oklar eşit boyda olmalı.</li>\n<li>Hız (velocity) veya ivme (acceleration) okunu FBD'nin içine koyma.</li>\n</ol></div>\n<p>Puanlayıcı genellikle şunları sayar: doğru sayıda kuvvet, doğru yönler, doğru etiketler, fazladan ok olmaması ve (soru istiyorsa) göreli uzunluklar.</p>\n<h4>FBD'den denkleme</h4>\n<p>Eksenleri ivme yönüne göre seç. Eğik düzlemde \\(x\\) eksenini yüzeye paralel almak işi kolaylaştırır. Sonra her eksen için ayrı yaz:</p>\n<div class=\"formul\">\\[ \\sum F_x = ma_x \\qquad \\sum F_y = ma_y \\]</div>\n<p>Örnek: Eğimi \\(\\theta\\) olan sürtünmesiz rampadaki blok. Kuvvetler: \\(F_g\\) (aşağı), \\(F_N\\) (yüzeye dik). Yüzeye paralel bileşen: \\(mg\\sin\\theta\\); dik bileşen: \\(mg\\cos\\theta\\). Dik yönde ivme yok: \\(F_N=mg\\cos\\theta\\). Paralel yönde: \\(a=g\\sin\\theta\\).</p>\n<div class=\"kn-dikkat\">Normal kuvvet her zaman \\(mg\\)'ye eşit <strong>değildir</strong>. Eğik düzlemde, asansörde, cisme yukarı/aşağı açılı bir ip çekerken veya üstüne bastırırken değişir. \\(F_N\\)'i daima dikey denklemden bul.</div>\n<p>FRQ ifade kalıbı: <em>\"The forces exerted on the block are the gravitational force exerted by Earth, the normal force exerted by the ramp, and the tension exerted by the rope.\"</em> \"Exerted by … on …\" yapısı her kuvvetin kaynağını gösterir.</p>",
+   "ornekler": [
+    {
+     "soru": "Bir kutu, yatayla \\(30^\\circ\\) yukarı açı yapan bir iple pürüzlü yatay zeminde sabit hızla çekiliyor. FBD'de kaç kuvvet olmalı ve hangileri?",
+     "cozum": [
+      "Etkileşimleri listele: Dünya (yerçekimi), zemin (normal + sürtünme: iki ayrı kuvvet), ip (gerilme).",
+      "Dört kuvvet: \\(F_g\\) aşağı, \\(F_N\\) yukarı, \\(F_T\\) yatayla \\(30^\\circ\\) yukarı açılı, \\(F_f\\) harekete zıt (geri).",
+      "Sabit hız: net kuvvet sıfır. Dikeyde \\(F_N+F_T\\sin30^\\circ=F_g\\), yani \\(F_N\\lt F_g\\); diyagramda \\(F_N\\) oku \\(F_g\\)'den kısa çizilmeli."
+     ]
+    },
+    {
+     "soru": "\\(4.0\\text{ kg}\\) blok \\(37^\\circ\\) eğimli sürtünmesiz rampada kayıyor (\\(\\sin37^\\circ\\approx0.60\\), \\(\\cos37^\\circ\\approx0.80\\)). Normal kuvveti ve ivmeyi bulun.",
+     "cozum": [
+      "Dik eksen: \\(F_N=mg\\cos\\theta=(4.0)(10)(0.80)=32\\text{ N}\\).",
+      "Paralel eksen: \\(a=g\\sin\\theta=(10)(0.60)=6.0\\text{ m/s}^2\\), rampa boyunca aşağı."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Bir öğrenci yatay çembersel hareket yapan taş için FBD'ye \"\\(F_c\\) (centripetal force)\" diye ayrı bir ok ekliyor. Bu neden puan kaybettirir?",
+     "cozum": [
+      "Merkezcil kuvvet ayrı bir kuvvet türü değildir; gerçek kuvvetlerin (burada gerilme ve yerçekimi) merkeze doğru olan <em>net</em> bileşeninin adıdır.",
+      "FBD yalnız etkileşimleri gösterir. \"\\(F_c\\)\" eklemek gerilmeyi iki kez saymaktır; puanlayıcı fazladan ok için puan keser."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "FBD çizmeden önce cisme dokunan her şeyi say: her temas en fazla bir normal ve bir sürtünme kuvveti verir; artı yerçekimi.",
+    "Okları noktadan başlat, etiketle, bileşen ve net kuvvet okunu çizme. Bu üç kural puanların çoğunu getirir.",
+    "\"Draw the relative lengths\" deniyorsa dengedeki eksende okları eşit boyda çiz; ivme yönündeki oku daha uzun yap.",
+    "Eğik düzlemde eksenleri yüzeye paralel/dik seç; \\(\\sin\\) paralel bileşen, \\(\\cos\\) dik bileşen (açı yataydan ölçülüyorsa)."
+   ],
+   "sikHatalar": [
+    "Hareket yönünde bir \"hareket kuvveti\" (force of motion) eklemek. Cisim hareket etmek için kuvvete ihtiyaç duymaz; sabit hızda net kuvvet sıfırdır.",
+    "Normal kuvveti her durumda \\(mg\\) almak.",
+    "FBD'ye \\(ma\\) veya \\(F_{net}\\) okunu ayrı bir kuvvet gibi eklemek."
+   ],
+   "terimler": [
+    {
+     "en": "free-body diagram (FBD)",
+     "tr": "serbest cisim diyagramı"
+    },
+    {
+     "en": "normal force",
+     "tr": "normal (dik) kuvvet"
+    },
+    {
+     "en": "tension",
+     "tr": "gerilme"
+    },
+    {
+     "en": "contact force",
+     "tr": "temas kuvveti"
+    },
+    {
+     "en": "field force",
+     "tr": "alan kuvveti"
+    },
+    {
+     "en": "component",
+     "tr": "bileşen"
+    },
+    {
+     "en": "incline / ramp",
+     "tr": "eğik düzlem / rampa"
+    }
+   ]
+  },
+  {
+   "kod": "2.3",
+   "baslik": "Newton's Third Law",
+   "baslikTr": "Newton'ın üçüncü yasası",
+   "hedefler": [
+    "Etki-tepki çiftlerini (third-law pairs) doğru belirlemek: aynı etkileşim, farklı cisimler.",
+    "Üçüncü yasa çiftini, aynı cisme etkiyen dengelenmiş kuvvetlerden (balanced forces) ayırt etmek.",
+    "Eşit kuvvetin farklı kütlelerde farklı ivmeler oluşturduğunu açıklamak."
+   ],
+   "anlatim": "<h4>Yasa</h4>\n<div class=\"kn-tanim\"><strong>Newton's third law:</strong> A cismi B cismine bir kuvvet uyguluyorsa, B de A'ya <strong>aynı büyüklükte, zıt yönde</strong> bir kuvvet uygular: \\[ \\vec F_{A\\text{ on }B}=-\\vec F_{B\\text{ on }A} \\]</div>\n<p>Bu iki kuvvet tek bir <strong>etkileşimin (interaction)</strong> iki yüzüdür. Aynı anda oluşur, aynı anda biter; \"önce etki, sonra tepki\" yoktur.</p>\n<h4>Bir üçüncü yasa çiftinin dört özelliği</h4>\n<table><thead><tr><th>Özellik</th><th>Üçüncü yasa çifti</th><th>Dengelenmiş kuvvetler (ör. kitap masada)</th></tr></thead><tbody>\n<tr><td>Kaç cisim?</td><td><strong>İki farklı</strong> cisme etki eder</td><td>Aynı cisme etki eder</td></tr>\n<tr><td>Kuvvet türü</td><td>Daima aynı tür (ikisi de normal, ikisi de yerçekimi…)</td><td>Farklı türler olabilir (\\(F_g\\) ve \\(F_N\\))</td></tr>\n<tr><td>Büyüklük</td><td>Daima eşit</td><td>Yalnız ivme sıfırsa eşit</td></tr>\n<tr><td>Birbirini götürür mü?</td><td><strong>Hayır</strong> (farklı cisimlerde)</td><td>Evet, o cismin net kuvvetinde</td></tr></tbody></table>\n<div class=\"kn-kural\"><strong>Eş bulma yöntemi:</strong> Kuvveti \"X'in Y'ye uyguladığı ... kuvveti\" diye yaz. Eşi, isimleri yer değiştirerek bulunur: \"Y'nin X'e uyguladığı ... kuvveti\". Örnek: \"Dünya'nın kitaba uyguladığı yerçekimi\"nin eşi \"kitabın Dünya'ya uyguladığı yerçekimi\"dir — masanın normal kuvveti <strong>değildir</strong>.</div>\n<h4>Eşit kuvvet, farklı ivme</h4>\n<p>Kamyon ile küçük bir araba çarpışınca birbirlerine eşit büyüklükte kuvvet uygularlar. Ama \\(a=\\frac{F}{m}\\) olduğu için küçük kütleli araba çok daha büyük ivme kazanır. Sınavın en sevdiği tuzak: \"Büyük olan daha büyük kuvvet uygular\" — <strong>yanlış</strong>. Hız, kütle, kimin \"başlattığı\" fark etmez.</p>\n<h4>Sistem seçimiyle bağlantı</h4>\n<p>İki cisim aynı sistemdeyse aralarındaki üçüncü yasa çifti iç kuvvettir ve toplamı sıfırdır; bu yüzden kütle merkezinin ivmesini değiştiremez (Konu 2.1). At-araba örneğinde araba, atın arabayı arabanın atı çektiğinden daha güçlü çekmesi yüzünden değil (bu iki kuvvet eşittir), <em>arabaya etkiyen</em> çekme kuvveti yolun arabaya uyguladığı dirençten büyük olduğu için ivmelenir. At ise yerin toynaklarına uyguladığı ileri sürtünme kuvveti sayesinde ilerler.</p>\n<div class=\"kn-dikkat\">Yürürken siz yeri geriye itersiniz; yer de sizi <strong>ileri</strong> iter (statik sürtünme). Sizi ileri götüren kuvvet yerin size uyguladığı kuvvettir.</div>\n<p>FRQ ifade kalıbı: <em>\"The force exerted by the truck on the car and the force exerted by the car on the truck form a Newton's third law pair, so they have equal magnitudes. Because the car has less mass, it has a greater magnitude of acceleration.\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "Bir kitap masada duruyor. \"Masanın kitaba uyguladığı normal kuvvet\"in üçüncü yasa eşi nedir?",
+     "cozum": [
+      "İsimleri değiştir: \"kitabın masaya uyguladığı normal (temas) kuvveti\", aşağı yönde.",
+      "Kitabın ağırlığı eş <em>değildir</em>: o, Dünya ile kitap arasındaki farklı bir etkileşimdir ve aynı cisme (kitaba) etki eder."
+     ]
+    },
+    {
+     "soru": "Buzda duran \\(80\\text{ kg}\\) bir adam \\(40\\text{ kg}\\) bir çocuğu \\(120\\text{ N}\\) kuvvetle itiyor. İkisinin ivmesi nedir?",
+     "cozum": [
+      "Üçüncü yasa: çocuk da adama \\(120\\text{ N}\\) uygular.",
+      "Çocuk: \\(a=\\frac{120}{40}=3.0\\text{ m/s}^2\\). Adam: \\(a=\\frac{120}{80}=1.5\\text{ m/s}^2\\), zıt yönde."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Bir öğrenci: \"Atın arabayı çektiği kuvvet ile arabanın atı çektiği kuvvet eşitse birbirini götürür, hiçbir şey hareket edemez.\" Hatayı düzeltin.",
+     "cozum": [
+      "Claim: İddia yanlıştır. Evidence: İki kuvvet farklı cisimlere (biri arabaya, biri ata) etki eder.",
+      "Reasoning: Bir cismin ivmesi yalnız <em>o cisme</em> etkiyen kuvvetlerin toplamıyla belirlenir. Arabanın FBD'sinde yalnız atın çekmesi ve yolun direnci vardır; çekme daha büyükse araba ivmelenir."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Üçüncü yasa çiftini yazarken iki cisim adını da kullan: \"force exerted by A on B\". Tek cisim adı geçen cevap genellikle eksik puan alır.",
+    "\"Which is greater?\" sorusunda üçüncü yasa çifti varsa cevap neredeyse daima \"equal\". Sonra ivmeyi \\(a=F/m\\) ile karşılaştır.",
+    "Çift her zaman aynı türdedir: yerçekiminin eşi yerçekimi, normalin eşi normal.",
+    "Hareket durumu (sabit hız, ivmeli, durgun) üçüncü yasayı değiştirmez."
+   ],
+   "sikHatalar": [
+    "Ağırlık ile normal kuvveti üçüncü yasa çifti sanmak (ikisi aynı cisme etki eder).",
+    "Kütlesi veya hızı büyük olanın daha büyük kuvvet uyguladığını düşünmek.",
+    "Etki-tepki kuvvetlerinin birbirini götürdüğünü, bu yüzden hareketin imkânsız olduğunu sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "third-law pair / action-reaction pair",
+     "tr": "etki-tepki çifti"
+    },
+    {
+     "en": "interaction",
+     "tr": "etkileşim"
+    },
+    {
+     "en": "equal in magnitude",
+     "tr": "büyüklükçe eşit"
+    },
+    {
+     "en": "opposite in direction",
+     "tr": "zıt yönlü"
+    },
+    {
+     "en": "exerted by … on …",
+     "tr": "…'nin …'ye uyguladığı"
+    }
+   ]
+  },
+  {
+   "kod": "2.4",
+   "baslik": "Newton's First Law",
+   "baslikTr": "Newton'ın birinci yasası",
+   "hedefler": [
+    "Net kuvvet sıfırken hızın sabit kaldığını (durgun veya sabit hızlı hareket) açıklamak.",
+    "Denge (equilibrium) koşulunu \\(\\sum\\vec F=0\\) bileşenlerle uygulamak.",
+    "Eylemsizlik (inertia) kavramını ve eylemsiz referans çerçevesini (inertial reference frame) tanımlamak."
+   ],
+   "anlatim": "<h4>Yasa</h4>\n<div class=\"kn-tanim\"><strong>Newton's first law:</strong> Bir cisme etkiyen net kuvvet sıfırsa cismin hızı (velocity) <strong>değişmez</strong>: durgunsa durgun kalır, hareket ediyorsa aynı hız ve aynı yönde düz bir çizgide gider.</div>\n<p>Bu yasa eski sezgimizi düzeltir: hareket etmek için kuvvet <strong>gerekmez</strong>; <em>hızı değiştirmek</em> için net kuvvet gerekir. Buzda kayan bir disk yavaşlıyorsa bunun nedeni hareketin \"kendiliğinden bitmesi\" değil, sürtünme kuvvetidir.</p>\n<h4>Eylemsizlik (inertia)</h4>\n<p>Bir cismin hız değişimine karşı direnme eğilimine <strong>eylemsizlik (inertia)</strong> denir. Eylemsizliğin ölçüsü <strong>kütledir (inertial mass)</strong>. Kütle büyüdükçe aynı net kuvvet daha küçük bir hız değişimi oluşturur. Eylemsizlik bir kuvvet değildir; FBD'ye çizilmez.</p>\n<h4>Denge (equilibrium) — iki tür</h4>\n<table><thead><tr><th>Tür</th><th>Hız</th><th>Net kuvvet</th></tr></thead><tbody>\n<tr><td>Statik denge (static equilibrium)</td><td>Sıfır, sabit</td><td>\\(\\sum\\vec F=0\\)</td></tr>\n<tr><td>Dinamik denge / sabit hız (dynamic equilibrium)</td><td>Sıfırdan farklı, sabit</td><td>\\(\\sum\\vec F=0\\)</td></tr></tbody></table>\n<div class=\"kn-kural\"><strong>\"Constant velocity\" = \"net force is zero\".</strong> Sınav \"moves at constant speed in a straight line\" diyorsa hemen \\(\\sum F_x=0\\) ve \\(\\sum F_y=0\\) yaz.</div>\n<h4>Bileşenlerle denge çözümü</h4>\n<p>Örnek: Bir tabela iki iple asılı. Her ip yatayla \\(\\theta\\) açısı yapıyor. Simetri ile her ipte gerilme \\(T\\):</p>\n<div class=\"formul\">\\[ \\sum F_y=0:\\; 2T\\sin\\theta = mg \\;\\Rightarrow\\; T=\\frac{mg}{2\\sin\\theta} \\]</div>\n<p>Açı küçüldükçe (ipler yataylaştıkça) \\(\\sin\\theta\\) küçülür, gerilme büyür. Bu yüzden bir ipi tamamen yatay germek imkânsızdır: sonsuz gerilme gerekir. Bu tür \"ne olur?\" sorusu AP'de çok yaygındır.</p>\n<h4>Eylemsiz referans çerçevesi</h4>\n<p>Newton yasaları, ivmelenmeyen bir gözlemcinin ölçümlerinde geçerlidir: <strong>inertial reference frame</strong> (durgun veya sabit hızla giden çerçeve). Sabit hızla giden trende top atan biri ile yerdeki biri aynı fiziği görür. Fren yapan otobüste yolcunun \"öne fırlaması\" bir kuvvet değil, eylemsizliktir: otobüs yavaşlar, yolcu hızını korumaya çalışır.</p>\n<div class=\"kn-dikkat\">\"Hareket yönünde kuvvet olmalı\" yanılgısı en yaygın hatadır. Sabit hızla giden bir cismin FBD'sinde ileri ve geri kuvvetler <strong>eşit</strong> uzunlukta çizilir.</div>\n<p>FRQ ifade kalıbı: <em>\"Since the crate moves at constant velocity, its acceleration is zero, so the net force on it is zero; therefore the forward pull equals the friction force in magnitude.\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(12\\text{ kg}\\) bir tabela, yatayla \\(30^\\circ\\) açı yapan iki özdeş iple simetrik asılı. Her ipteki gerilme nedir?",
+     "cozum": [
+      "Dikey denge: \\(2T\\sin30^\\circ=mg\\Rightarrow 2T(0.5)=120\\).",
+      "\\(T=120\\text{ N}\\). Dikkat: ipler yatay olmaya yaklaştıkça gerilme büyür."
+     ]
+    },
+    {
+     "soru": "Bir kutu yatay zeminde \\(50\\text{ N}\\)'luk yatay kuvvetle sabit hızla itiliyor. Kuvvet aniden \\(70\\text{ N}\\)'a çıkarsa ne olur?",
+     "cozum": [
+      "Sabit hız: sürtünme \\(=50\\text{ N}\\) (kinetik sürtünme hızdan bağımsızdır, değişmez).",
+      "Yeni net kuvvet \\(70-50=20\\text{ N}\\) ileri. Kutu ileri yönde ivmelenir, hızlanır; sabit hızlı hareket biter."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Uzayda (ihmal edilebilir kuvvetler) \\(5\\text{ m/s}\\) ile giden bir sondanın motoru kapanıyor. Öğrenci \"sonda yavaşlayıp durur\" diyor. Değerlendirin.",
+     "cozum": [
+      "Claim: Sonda durmaz, \\(5\\text{ m/s}\\) ile aynı yönde gitmeye devam eder.",
+      "Evidence ve reasoning: Motor kapandıktan sonra net kuvvet sıfırdır. Birinci yasaya göre net kuvvet sıfırsa hız değişmez; hareketi sürdürmek için kuvvet gerekmez."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "\"At rest\", \"constant velocity\", \"constant speed in a straight line\" ifadelerini gördüğün an \\(\\sum\\vec F=0\\) yaz.",
+    "\"Constant speed\" tek başına yeterli değil: çembersel harekette hız büyüklüğü sabit ama yön değişir, net kuvvet sıfır değildir.",
+    "Açılı ip sorularında her ipi bileşenlerine ayır, sonra \\(x\\) ve \\(y\\) için iki ayrı denklem yaz.",
+    "Gerekçe kalıbı: \"zero acceleration → zero net force → forces balance\"."
+   ],
+   "sikHatalar": [
+    "Hareketin sürmesi için hareket yönünde net bir kuvvet gerektiğini düşünmek.",
+    "Eylemsizliği bir kuvvet gibi FBD'ye çizmek.",
+    "Sabit hızlı ama dönen (çembersel) bir cisim için net kuvveti sıfır almak."
+   ],
+   "terimler": [
+    {
+     "en": "inertia",
+     "tr": "eylemsizlik"
+    },
+    {
+     "en": "equilibrium",
+     "tr": "denge"
+    },
+    {
+     "en": "constant velocity",
+     "tr": "sabit hız (vektör)"
+    },
+    {
+     "en": "net force",
+     "tr": "net (bileşke) kuvvet"
+    },
+    {
+     "en": "inertial reference frame",
+     "tr": "eylemsiz referans çerçevesi"
+    }
+   ]
+  },
+  {
+   "kod": "2.5",
+   "baslik": "Newton's Second Law",
+   "baslikTr": "Newton'ın ikinci yasası",
+   "hedefler": [
+    "\\(\\vec a=\\frac{\\sum\\vec F}{m}\\) bağıntısını tek cisim ve çok cisimli sistemlere (Atwood, bağlı bloklar, asansör) uygulamak.",
+    "Kuvvet-ivme verisinden veya grafiğinden kütleyi bulmak; doğrusallaştırma (linearization) yapmak.",
+    "Bir değişkeni değiştirince gerilme, normal kuvvet veya ivmenin nasıl değiştiğini nitel (qualitative) olarak gerekçelendirmek."
+   ],
+   "anlatim": "<h4>Yasa</h4>\n<div class=\"kn-tanim\"><strong>Newton's second law:</strong> Bir sistemin kütle merkezinin ivmesi, sisteme etkiyen net dış kuvvetle doğru, sistemin kütlesiyle ters orantılıdır; yönü net kuvvetin yönüdür: \\[ \\vec a_{sys}=\\frac{\\sum\\vec F}{m_{sys}} \\]</div>\n<p>AP bu yasayı \"\\(\\vec F=m\\vec a\\)\" yerine yukarıdaki biçimde yazar: kuvvetler <em>nedendir</em>, ivme <em>sonuçtur</em>. \\(ma\\) bir kuvvet değildir, FBD'ye girmez.</p>\n<h4>Çözüm reçetesi</h4>\n<ol>\n<li>Sistemi seç ve FBD çiz.</li>\n<li>Ekseni ivme yönünde pozitif seç.</li>\n<li>Her eksende \\(\\sum F=ma\\) yaz (ivme yönündeki kuvvetler +, zıt yöndekiler −).</li>\n<li>Bilinmeyen sayısı kadar denklem kur; gerekirse ikinci bir sistem seç.</li>\n<li>Sonucu sınır durumlarla kontrol et (ör. bir kütle sıfır olursa ne olur?).</li>\n</ol>\n<h4>Klasik çok cisimli sistemler (g = 10 m/s²)</h4>\n<table><thead><tr><th>Düzenek</th><th>İvme</th><th>Gerilme / iç kuvvet</th></tr></thead><tbody>\n<tr><td>Atwood makinesi (\\(m_2\\gt m_1\\))</td><td>\\(a=\\frac{(m_2-m_1)g}{m_1+m_2}\\)</td><td>\\(m_1g\\lt T\\lt m_2g\\)</td></tr>\n<tr><td>Masadaki blok \\(M\\) + asılı blok \\(m\\) (sürtünmesiz)</td><td>\\(a=\\frac{mg}{M+m}\\)</td><td>\\(T=Ma\\lt mg\\)</td></tr>\n<tr><td>Temas eden bloklar, \\(F\\) ile itilir</td><td>\\(a=\\frac{F}{m_1+m_2}\\)</td><td>Öndeki bloğa kuvvet \\(=m_{ön}\\,a\\)</td></tr></tbody></table>\n<div class=\"kn-kural\"><strong>Asansör:</strong> Teraziyi okuyan normal kuvvettir. Yukarı pozitif: \\(F_N-mg=ma\\Rightarrow F_N=m(g+a)\\). İvme yukarıysa (yukarı hızlanan <em>veya</em> aşağı yavaşlayan) okuma \\(mg\\)'den büyük; ivme aşağıysa küçüktür. Hız yönü değil, <strong>ivme yönü</strong> belirleyicidir.</div>\n<h4>Veri ve grafik ile ikinci yasa</h4>\n<p>Laboratuvarda bir arabaya farklı net kuvvetler uygulanıp ivme ölçülür. \\(a\\)–\\(F_{net}\\) grafiği orijinden geçen bir doğrudur ve <strong>eğim \\(=\\frac1m\\)</strong>'dir. \\(F_{net}\\)–\\(a\\) grafiğinde ise eğim kütlenin kendisidir. Kuvvet sabit tutulup kütle değiştirilirse \\(a\\)–\\(m\\) grafiği eğridir (hiperbol); doğrusallaştırmak için \\(a\\)'yı \\(\\frac1m\\)'ye karşı çizeriz, eğim \\(F\\) olur.</p>\n<div class=\"kn-dikkat\">Asılı kütle ile çekilen arabada, asılı kütlenin ağırlığı \\(mg\\) ipteki gerilme <strong>değildir</strong>; sistem ivmelendiği için \\(T\\lt mg\\). Toplam kütleyi sabit tutmak isteyen deneyler kütleleri arabadan askıya taşır.</div>\n<p>FRQ ifade kalıbı (nitel): <em>\"Increasing the hanging mass increases the net external force on the system by a larger fraction than it increases the total mass, so the acceleration increases.\"</em> Hem payı hem paydayı ele alan gerekçe tam puan alır.</p>",
+   "ornekler": [
+    {
+     "soru": "Atwood makinesi: \\(3.0\\text{ kg}\\) ve \\(5.0\\text{ kg}\\) kütleler ideal makaradan geçen iple asılı. İvmeyi ve gerilmeyi bulun.",
+     "cozum": [
+      "Sistem = iki kütle + ip: net dış kuvvet \\((5.0-3.0)(10)=20\\text{ N}\\); toplam kütle \\(8.0\\text{ kg}\\); \\(a=2.5\\text{ m/s}^2\\).",
+      "Sistem = yalnız \\(3.0\\text{ kg}\\): \\(T-30=(3.0)(2.5)\\Rightarrow T=37.5\\text{ N}\\).",
+      "Kontrol: \\(30\\lt 37.5\\lt 50\\text{ N}\\). Gerilme iki ağırlığın arasında olmalı; doğru."
+     ]
+    },
+    {
+     "soru": "\\(50\\text{ kg}\\) öğrenci asansördeki terazide duruyor. Asansör aşağı yönde hareket ederken \\(2.0\\text{ m/s}^2\\) ile yavaşlıyor. Terazi kaç N gösterir?",
+     "cozum": [
+      "Aşağı giderken yavaşlamak = ivme <strong>yukarı</strong>, \\(a=+2.0\\text{ m/s}^2\\).",
+      "\\(F_N=m(g+a)=50(10+2.0)=600\\text{ N}\\). Öğrenci kendini daha ağır hisseder."
+     ]
+    },
+    {
+     "soru": "(Veri) Bir arabaya uygulanan net kuvvet ve ölçülen ivme: \\(F\\) (N): 1.0, 2.0, 3.0, 4.0; \\(a\\) (m/s²): 0.40, 0.80, 1.2, 1.6. Arabanın kütlesi nedir? Doğrusal ilişki ne gösterir?",
+     "cozum": [
+      "\\(a\\)–\\(F\\) grafiğinin eğimi \\(\\frac{1.6-0.40}{4.0-1.0}=0.40\\text{ kg}^{-1}=\\frac1m\\).",
+      "\\(m=2.5\\text{ kg}\\). Orijinden geçen doğru, ivmenin net kuvvetle doğru orantılı olduğunu gösterir (\\(a\\propto F_{net}\\)); eğim sabit, çünkü kütle sabit."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Önce tüm sistemi alıp ivmeyi bul, sonra tek cisim seçip iç kuvveti bul. Bu iki adımlı yöntem sınavda zamanı yarıya indirir.",
+    "Asansör sorularında hız yönünü değil ivme yönünü bul: \"slowing down while moving down\" = ivme yukarı.",
+    "Grafik sorusunda eğimin birimini yaz: \\(a\\)–\\(F\\) eğimi kg⁻¹, \\(F\\)–\\(a\\) eğimi kg. Birim, eğimin ne olduğunu söyler.",
+    "Hesap makinesi aritmetik için yardımcıdır; ama çoğu nitel soruda formülü sözel orantıya çevirmek daha hızlıdır."
+   ],
+   "sikHatalar": [
+    "Asılı kütleli sistemde gerilmeyi asılı kütlenin ağırlığına (\\(mg\\)) eşit almak.",
+    "İvmeyi hesaplarken toplam kütle yerine tek bir cismin kütlesine bölmek.",
+    "Asansörde hız yukarıysa okumanın mutlaka büyük olduğunu sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "net external force",
+     "tr": "net dış kuvvet"
+    },
+    {
+     "en": "acceleration",
+     "tr": "ivme"
+    },
+    {
+     "en": "Atwood machine",
+     "tr": "Atwood makinesi"
+    },
+    {
+     "en": "apparent weight",
+     "tr": "görünür ağırlık"
+    },
+    {
+     "en": "slope",
+     "tr": "eğim"
+    },
+    {
+     "en": "linearize",
+     "tr": "doğrusallaştırmak"
+    }
+   ]
+  },
+  {
+   "kod": "2.6",
+   "baslik": "Gravitational Force",
+   "baslikTr": "Kütle çekim kuvveti",
+   "hedefler": [
+    "Newton'ın evrensel çekim yasasını \\(F_g=\\frac{Gm_1m_2}{r^2}\\) oran (ratio) sorularında kullanmak.",
+    "Kütle çekim alanını (gravitational field) \\(g=\\frac{GM}{r^2}\\) ile hesaplamak ve yüzeydeki \\(g\\approx10\\text{ m/s}^2\\) ile ilişkilendirmek.",
+    "Gerçek ağırlık ile görünür ağırlığı (apparent weight) ayırt etmek; ağırlıksızlık hissini açıklamak."
+   ],
+   "anlatim": "<h4>Evrensel çekim yasası (Newton's law of universal gravitation)</h4>\n<div class=\"kn-tanim\">Kütlesi olan her iki cisim birbirini çeker: \\[ F_g=\\frac{Gm_1m_2}{r^2},\\qquad G=6.67\\times10^{-11}\\text{ N·m}^2/\\text{kg}^2 \\] Burada \\(r\\), iki cismin <strong>merkezleri arasındaki</strong> uzaklıktır (center-to-center distance).</div>\n<p>Bu kuvvet bir alan kuvvetidir (temas gerekmez), her zaman çekicidir ve üçüncü yasa çifti olarak iki cisme <strong>eşit büyüklükte</strong> etki eder: Dünya'nın elmaya uyguladığı kuvvet, elmanın Dünya'ya uyguladığı kuvvete eşittir.</p>\n<h4>Ters kare yasası ile oran soruları</h4>\n<p>AP soruları nadiren \\(G\\) ile sayı ister; çoğunlukla \"kütle iki katına, uzaklık üç katına çıkarsa?\" diye sorar. Yöntem: değişen çarpanları formüle koy.</p>\n<table><thead><tr><th>Değişiklik</th><th>Yeni kuvvet</th></tr></thead><tbody>\n<tr><td>\\(m_1\\) iki katı</td><td>\\(2F\\)</td></tr>\n<tr><td>\\(r\\) iki katı</td><td>\\(\\frac{F}{4}\\)</td></tr>\n<tr><td>\\(r\\) üç katı</td><td>\\(\\frac{F}{9}\\)</td></tr>\n<tr><td>\\(m_1\\), \\(m_2\\) ve \\(r\\) iki katı</td><td>\\(\\frac{2\\cdot2}{4}F=F\\)</td></tr></tbody></table>\n<h4>Kütle çekim alanı (gravitational field)</h4>\n<p>Bir gezegenin çevresindeki her noktada <strong>alan şiddeti</strong> \\(\\vec g=\\frac{\\vec F_g}{m}\\) (birim N/kg = m/s²) şöyledir:</p>\n<div class=\"formul\">\\[ g=\\frac{GM}{r^2} \\]</div>\n<p>Dünya yüzeyinde \\(g\\approx9.8\\approx10\\text{ m/s}^2\\). Yüzeyden yükseklik \\(h\\) ise \\(r=R+h\\) kullanılır. Örnek: \\(h=R\\) ise \\(r=2R\\), alan \\(\\frac{g}{4}\\) olur. Bir gezegende \\(M\\) üç katı, \\(R\\) iki katı ise yüzey alanı \\(\\frac{3}{4}g\\)'dir.</p>\n<div class=\"kn-kural\"><strong>Ağırlık (weight):</strong> \\(F_g=mg\\), yerel alanla ölçülür. Kütle (mass) değişmez; ağırlık konuma göre değişir. Yüzeye yakın her cisim, kütlesinden bağımsız olarak aynı \\(g\\) ivmesiyle düşer, çünkü <strong>çekim kütlesi ile eylemsizlik kütlesi eşittir</strong> (gravitational mass = inertial mass): kütle iki katına çıkınca kuvvet de iki katına çıkar, \\(a=\\frac{F}{m}\\) aynı kalır.</div>\n<h4>Görünür ağırlık (apparent weight)</h4>\n<p>Teraziler yerçekimini değil <strong>normal kuvveti</strong> ölçer. Serbest düşen asansörde veya yörüngedeki uzay istasyonunda normal kuvvet sıfırdır; astronotlar \"ağırlıksız\" hisseder ama yerçekimi hâlâ vardır: istasyon yüksekliğinde \\(g\\) yaklaşık \\(9\\text{ m/s}^2\\)'dir. Astronotlar sürekli Dünya'ya doğru düşer; yana doğru hızları yüzünden yere çarpmazlar.</p>\n<div class=\"kn-dikkat\">\"Uzayda yerçekimi yoktur\" yanlıştır. Ağırlıksızlık hissi, normal kuvvetin sıfır olmasından gelir.</div>\n<p>FRQ ifade kalıbı: <em>\"Because the gravitational force is inversely proportional to the square of the distance between the centers, tripling the distance reduces the force to one-ninth of its original value.\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "İki küre arasındaki çekim kuvveti \\(F\\). Bir kürenin kütlesi üç katına çıkarılıyor ve merkezler arası uzaklık yarıya indiriliyor. Yeni kuvvet?",
+     "cozum": [
+      "\\(F'=\\frac{G(3m_1)m_2}{(r/2)^2}=\\frac{3}{1/4}\\cdot\\frac{Gm_1m_2}{r^2}\\).",
+      "\\(F'=12F\\)."
+     ]
+    },
+    {
+     "soru": "Bir gezegenin kütlesi Dünya'nınkinin 2 katı, yarıçapı 2 katı. \\(10\\text{ kg}\\)'lık bir cismin bu gezegenin yüzeyindeki ağırlığı nedir? (\\(g_E=10\\text{ m/s}^2\\))",
+     "cozum": [
+      "\\(g_P=\\frac{G(2M)}{(2R)^2}=\\frac{2}{4}g_E=5\\text{ m/s}^2\\).",
+      "\\(F_g=mg_P=(10)(5)=50\\text{ N}\\). Kütle hâlâ \\(10\\text{ kg}\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Bir öğrenci: \"Ağır taş, hafif taştan daha hızlı düşer çünkü ona daha büyük yerçekimi kuvveti etki eder.\" Hava direnci ihmal edilirse değerlendirin.",
+     "cozum": [
+      "Claim: İki taş aynı ivmeyle düşer. Evidence: Ağır taşa etkiyen kuvvet gerçekten daha büyüktür (\\(F_g=mg\\)).",
+      "Reasoning: Ama ağır taşın eylemsizliği de aynı oranda büyüktür; \\(a=\\frac{F_g}{m}=\\frac{mg}{m}=g\\). Kuvvet ile kütle aynı oranda arttığı için ivme kütleden bağımsızdır."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Oran sorularında \\(G\\)'yi asla sayıyla yazma; değişen çarpanları kesir olarak yaz ve sadeleştir.",
+    "\\(r\\) daima merkezden merkezedir: yüzeyden yükseklik \\(h\\) verilirse \\(r=R+h\\) kullan.",
+    "Hesap makinesi \\(G\\) gibi büyük/küçük üslü sayılarda yardımcıdır; bilimsel gösterimi (scientific notation) doğru gir.",
+    "\"Apparent weight\" sorusunda FBD çiz ve normal kuvveti bul; gerçek ağırlık \\(mg\\) değişmez."
+   ],
+   "sikHatalar": [
+    "Uzaklık iki katına çıkınca kuvveti yarıya indirmek (ters kare unutuluyor: doğrusu \\(\\frac14\\)).",
+    "Yörüngedeki astronota hiç yerçekimi etkimediğini söylemek.",
+    "Yükseklik verilen soruda \\(r\\) yerine \\(h\\) kullanmak."
+   ],
+   "terimler": [
+    {
+     "en": "universal gravitation",
+     "tr": "evrensel çekim"
+    },
+    {
+     "en": "gravitational field strength",
+     "tr": "kütle çekim alan şiddeti"
+    },
+    {
+     "en": "inverse-square law",
+     "tr": "ters kare yasası"
+    },
+    {
+     "en": "apparent weight",
+     "tr": "görünür ağırlık"
+    },
+    {
+     "en": "inertial mass / gravitational mass",
+     "tr": "eylemsizlik kütlesi / çekim kütlesi"
+    },
+    {
+     "en": "weightlessness",
+     "tr": "ağırlıksızlık"
+    }
+   ]
+  },
+  {
+   "kod": "2.7",
+   "baslik": "Kinetic and Static Friction",
+   "baslikTr": "Kinetik ve statik sürtünme",
+   "hedefler": [
+    "Kinetik sürtünmeyi \\(F_f=\\mu_kF_N\\) ile hesaplamak; statik sürtünmenin \\(F_{f,s}\\le\\mu_sF_N\\) eşitsizliği olduğunu açıklamak.",
+    "Sürtünme kuvvetinin yönünü kayma veya kayma eğilimine göre belirlemek (ileri yönlü statik sürtünme dâhil).",
+    "Kuvvet-zaman verisinden \\(\\mu_s\\) ve \\(\\mu_k\\)'yi bulan bir deney tasarlamak ve yorumlamak."
+   ],
+   "anlatim": "<h4>Sürtünme nedir?</h4>\n<div class=\"kn-tanim\"><strong>Sürtünme (friction)</strong>, temas eden iki yüzey arasında, yüzeye <strong>paralel</strong> etkiyen ve yüzeylerin birbirine göre kaymasına (veya kayma eğilimine) karşı koyan temas kuvvetidir. Normal kuvvetle birlikte aynı yüzeyden gelir.</div>\n<table><thead><tr><th></th><th>Statik sürtünme (static friction)</th><th>Kinetik sürtünme (kinetic friction)</th></tr></thead><tbody>\n<tr><td>Ne zaman?</td><td>Yüzeyler birbirine göre kaymıyor</td><td>Yüzeyler birbirine göre kayıyor</td></tr>\n<tr><td>Büyüklük</td><td>\\(0\\le F_{f,s}\\le\\mu_sF_N\\) — gerektiği kadar</td><td>\\(F_{f,k}=\\mu_kF_N\\) — sabit</td></tr>\n<tr><td>Yön</td><td>Kayma <em>eğilimine</em> zıt</td><td>Bağıl kaymaya zıt</td></tr></tbody></table>\n<div class=\"kn-kural\"><strong>Statik sürtünme bir eşitsizliktir.</strong> \\(\\mu_sF_N\\) yalnızca cisim kaymanın eşiğindeyken (on the verge of slipping) ulaşılan <strong>en büyük</strong> değerdir. Masada duran ve kimsenin itmediği bir kitaba etkiyen statik sürtünme <strong>sıfırdır</strong>. Bir kutuyu \\(20\\text{ N}\\) ile itiyorsanız ve kutu kımıldamıyorsa sürtünme tam \\(20\\text{ N}\\)'dir, \\(\\mu_sF_N\\) değil.</div>\n<h4>Katsayılar (coefficients)</h4>\n<p>\\(\\mu_s\\) ve \\(\\mu_k\\) birimsizdir ve yalnızca <strong>yüzey çiftine</strong> bağlıdır (temas alanına ve — AP modeli içinde — hıza bağlı değildir). Genellikle \\(\\mu_k\\lt\\mu_s\\): bir kutuyu harekete geçirmek, hareketini sürdürmekten daha zordur.</p>\n<h4>Bir deney ve grafiği</h4>\n<p>Bir kuvvet sensörüyle (force sensor) yatay zemindeki bloğu yavaşça artan kuvvetle çekin. Kuvvet-zaman grafiğinde önce doğrusal artış (statik sürtünme çekmeye eşit), sonra bir <strong>tepe</strong> (\\(\\mu_sF_N\\)), sonra ani düşüş ve yaklaşık sabit bir değer (\\(\\mu_kF_N\\), blok sabit hızla çekilirken) görülür. Bloğun üstüne ağırlık ekleyip tekrarlarsanız, sürtünme–normal kuvvet grafiğinin <strong>eğimi \\(\\mu\\)</strong>'yü verir. Bu \"linearize and find slope\" tekniği FRQ deney sorularının temelidir.</p>\n<h4>Eğik düzlem ve ileri yönlü sürtünme</h4>\n<p>Eğik düzlemde duran blok için \\(F_N=mg\\cos\\theta\\) ve statik sürtünme rampa boyunca yukarı, \\(mg\\sin\\theta\\)'ya eşittir. Açı artırılınca blok \\(\\tan\\theta=\\mu_s\\) olduğu açıda kaymaya başlar. Yürüyen insan, hızlanan araba, rampada duran araba: hepsinde statik sürtünme hareketin <strong>yönünde</strong> olabilir. Sürtünme \"harekete\" değil, yüzeyler arasındaki <strong>bağıl kaymaya</strong> karşıdır.</p>\n<div class=\"kn-dikkat\">Kutuyu açılı bir iple yukarı doğru çekmek \\(F_N\\)'i azaltır, dolayısıyla kinetik sürtünmeyi de azaltır. Aşağı doğru açılı itmek ise \\(F_N\\)'i ve sürtünmeyi artırır.</div>\n<p>FRQ ifade kalıbı: <em>\"The block remains at rest, so the static friction force is equal in magnitude to the applied force; it has not reached its maximum value of \\(\\mu_sF_N\\).\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(10\\text{ kg}\\) kutu yatay zeminde, \\(\\mu_s=0.50\\), \\(\\mu_k=0.30\\). (a) \\(40\\text{ N}\\) yatay itme, (b) \\(60\\text{ N}\\) yatay itme uygulanıyor; her durumda sürtünme ve ivme nedir?",
+     "cozum": [
+      "\\(F_N=100\\text{ N}\\); en büyük statik sürtünme \\(50\\text{ N}\\), kinetik sürtünme \\(30\\text{ N}\\).",
+      "(a) \\(40\\lt 50\\): kutu kımıldamaz; sürtünme \\(40\\text{ N}\\), ivme sıfır.",
+      "(b) \\(60\\gt 50\\): kutu kayar; sürtünme kinetik \\(30\\text{ N}\\); \\(a=\\frac{60-30}{10}=3.0\\text{ m/s}^2\\)."
+     ]
+    },
+    {
+     "soru": "\\(4.0\\text{ m/s}\\) ile kaymaya başlayan bir disk, \\(\\mu_k=0.20\\) olan yüzeyde durana kadar ne kadar yol alır?",
+     "cozum": [
+      "Tek yatay kuvvet sürtünme: \\(a=\\frac{\\mu_kmg}{m}=\\mu_kg=2.0\\text{ m/s}^2\\) (yavaşlatıcı). Kütle sadeleşir.",
+      "\\(0=v_0^2-2ad\\Rightarrow d=\\frac{16}{2(2.0)}=4.0\\text{ m}\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Hızlanan bir kamyonun düz kasasındaki sandık kaymıyor. Sandığa etkiyen sürtünme hangi yöndedir? Gerekçelendirin.",
+     "cozum": [
+      "Claim: Sürtünme ileri yöndedir (kamyonun hareket yönünde). Evidence: Sandık kamyonla birlikte ileri ivmeleniyor.",
+      "Reasoning: Sandığa etkiyen tek yatay kuvvet sürtünmedir; ikinci yasaya göre ivmeyi sağlayan net kuvvet ileri olmalıdır. Sürtünme olmasaydı sandık kasaya göre geriye kayardı; statik sürtünme bu kayma eğilimine zıt, yani ileri yöndedir."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Önce kontrol et: uygulanan kuvvet \\(\\mu_sF_N\\)'den küçük mü? Küçükse cisim durur ve sürtünme uygulanan kuvvete eşittir.",
+    "\\(F_N\\)'i her zaman dikey (veya yüzeye dik) denklemden bul; \\(mg\\) olduğunu varsayma.",
+    "Deney sorularında \"plot friction force versus normal force; the slope is the coefficient\" cümlesi puan getirir.",
+    "Yalnız sürtünmeyle yavaşlayan cisimde \\(a=\\mu_kg\\): kütle sadeleşir, şıklarda kütleye bağlı cevaplar çeldiricidir."
+   ],
+   "sikHatalar": [
+    "Statik sürtünmeyi her durumda \\(\\mu_sF_N\\) almak.",
+    "Sürtünmenin her zaman hareket yönüne zıt olduğunu sanmak (yürüme, hızlanan araç).",
+    "Temas alanı büyüdükçe sürtünmenin arttığını düşünmek."
+   ],
+   "terimler": [
+    {
+     "en": "static friction",
+     "tr": "statik (durgun) sürtünme"
+    },
+    {
+     "en": "kinetic friction",
+     "tr": "kinetik sürtünme"
+    },
+    {
+     "en": "coefficient of friction",
+     "tr": "sürtünme katsayısı"
+    },
+    {
+     "en": "on the verge of slipping",
+     "tr": "kaymanın eşiğinde"
+    },
+    {
+     "en": "force sensor",
+     "tr": "kuvvet sensörü"
+    },
+    {
+     "en": "relative motion",
+     "tr": "bağıl hareket"
+    }
+   ]
+  },
+  {
+   "kod": "2.8",
+   "baslik": "Spring Forces",
+   "baslikTr": "Yay kuvvetleri",
+   "hedefler": [
+    "Hooke yasasını \\(\\vec F_s=-k\\Delta\\vec x\\) kullanarak yay kuvvetini ve uzamayı hesaplamak.",
+    "Kuvvet-uzama verisi veya grafiğinden yay sabitini (spring constant) eğimden bulmak.",
+    "Seri ve paralel bağlı yaylar için eşdeğer yay sabitini (equivalent spring constant) belirlemek."
+   ],
+   "anlatim": "<h4>Hooke yasası (Hooke's law)</h4>\n<div class=\"kn-tanim\">İdeal bir yayın (ideal spring: kütlesiz, doğrusal) uyguladığı kuvvet, denge (doğal) uzunluğundan ne kadar uzatıldığı veya sıkıştırıldığı ile orantılıdır: \\[ \\vec F_s=-k\\,\\Delta\\vec x \\] \\(k\\): yay sabiti (spring constant, N/m). Eksi işaret, kuvvetin daima <strong>denge konumuna geri</strong> doğru olduğunu söyler (restoring force).</div>\n<p>\\(\\Delta x\\), yayın <strong>doğal uzunluğundan</strong> (unstretched / natural length) farktır; toplam uzunluk değildir. Doğal uzunluğu \\(10\\text{ cm}\\) olan yay \\(14\\text{ cm}\\) olunca \\(\\Delta x=4\\text{ cm}=0.04\\text{ m}\\).</p>\n<h4>Asılı kütle ve denge</h4>\n<p>Bir yaydan \\(m\\) kütlesi asılı ve durgunsa FBD'de yalnız iki kuvvet vardır: yukarı yay kuvveti, aşağı ağırlık. Denge: \\(k\\Delta x=mg\\Rightarrow\\Delta x=\\frac{mg}{k}\\). Kütle iki katına çıkarsa uzama iki katına çıkar.</p>\n<h4>Veriden yay sabiti</h4>\n<table><thead><tr><th>Kuvvet \\(F\\) (N)</th><th>0</th><th>2.0</th><th>4.0</th><th>6.0</th></tr></thead><tbody>\n<tr><td>Uzama \\(\\Delta x\\) (m)</td><td>0</td><td>0.05</td><td>0.10</td><td>0.15</td></tr></tbody></table>\n<p>\\(F\\)–\\(\\Delta x\\) grafiği orijinden geçen doğrudur; <strong>eğim \\(=k=\\frac{6.0}{0.15}=40\\text{ N/m}\\)</strong>. Eksenler ters çizilirse (\\(\\Delta x\\)–\\(F\\)) eğim \\(\\frac1k\\)'dir. Grafik büyük uzamalarda eğilirse yay ideal olmaktan çıkmıştır (elastik sınır aşılmış); Hooke yasası yalnız doğrusal bölgede geçerlidir.</p>\n<h4>Seri ve paralel yaylar</h4>\n<table><thead><tr><th>Bağlantı</th><th>Eşdeğer \\(k\\)</th><th>Neden?</th></tr></thead><tbody>\n<tr><td>Paralel (yan yana, aynı yükü paylaşır)</td><td>\\(k_{eq}=k_1+k_2\\)</td><td>Uzamalar eşit, kuvvetler toplanır</td></tr>\n<tr><td>Seri (uç uca)</td><td>\\(\\frac{1}{k_{eq}}=\\frac1{k_1}+\\frac1{k_2}\\)</td><td>Her yayda aynı kuvvet, uzamalar toplanır</td></tr></tbody></table>\n<p>İki özdeş yay: paralel \\(2k\\) (daha sert), seri \\(\\frac k2\\) (daha yumuşak). Bir yayı ikiye kesmek, her yarıyı \\(2k\\) yapar.</p>\n<div class=\"kn-kural\"><strong>Kuvvet ipe benzer şekilde iletilir:</strong> Kütlesiz bir yay, iki ucunda aynı büyüklükte kuvvet uygular. İki kişi bir yayı karşılıklı \\(30\\text{ N}\\) ile çekiyorsa yay kuvveti \\(30\\text{ N}\\)'dir (\\(60\\) değil), tıpkı duvara bağlı yayı \\(30\\text{ N}\\) ile çekmek gibi.</div>\n<div class=\"kn-dikkat\">Sıkıştırılan yayda kuvvet dışarı doğrudur, uzatılan yayda içeri doğrudur. Yön her zaman \"doğal uzunluğa dönüş\" yönüdür.</div>\n<p>FRQ ifade kalıbı: <em>\"The data are linear with a y-intercept of approximately zero, which indicates that the spring force is directly proportional to the stretch; the slope of the best-fit line is the spring constant.\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(k=250\\text{ N/m}\\) yaydan \\(2.0\\text{ kg}\\) kütle asılı ve durgun. Uzama ne kadardır?",
+     "cozum": [
+      "Denge: \\(k\\Delta x=mg\\Rightarrow\\Delta x=\\frac{(2.0)(10)}{250}\\).",
+      "\\(\\Delta x=0.080\\text{ m}=8.0\\text{ cm}\\)."
+     ]
+    },
+    {
+     "soru": "Her biri \\(k=300\\text{ N/m}\\) iki özdeş yay (a) paralel, (b) seri bağlanıp altına \\(6.0\\text{ kg}\\) asılıyor. Toplam uzamalar?",
+     "cozum": [
+      "(a) \\(k_{eq}=600\\text{ N/m}\\): \\(\\Delta x=\\frac{60}{600}=0.10\\text{ m}\\).",
+      "(b) \\(k_{eq}=150\\text{ N/m}\\): \\(\\Delta x=\\frac{60}{150}=0.40\\text{ m}\\). Seri bağlantı dört kat fazla uzar."
+     ]
+    },
+    {
+     "soru": "(Deney) Bir öğrenci yay sabitini bulmak istiyor; elinde yay, cetvel ve bilinen kütleler var. Bir yöntem önerin.",
+     "cozum": [
+      "Yayın doğal uzunluğunu ölç. Farklı kütleler (ör. 0.10–0.50 kg) asıp her denge uzunluğunu ölç; \\(\\Delta x\\)'i hesapla.",
+      "Her kütle için \\(F=mg\\) hesapla. \\(F\\)'yi \\(\\Delta x\\)'e karşı çiz; en uygun doğrunun (best-fit line) eğimi \\(k\\)'dir. Birden çok ölçüm ve eğim kullanmak tek ölçümdeki hatayı azaltır."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "\\(\\Delta x\\)'i metreye çevir: cm ile hesaplanan \\(k\\) 100 kat yanlış çıkar.",
+    "Grafik sorusunda önce eksenleri oku: \\(F\\)–\\(\\Delta x\\) eğimi \\(k\\), \\(\\Delta x\\)–\\(F\\) eğimi \\(\\frac1k\\).",
+    "Asılı kütle sorusunda FBD çiz; ivme varsa \\(k\\Delta x-mg=ma\\) yaz, denge varsa \\(k\\Delta x=mg\\).",
+    "Seri/paralel karışırsa düşün: paralel = daha çok yay yükü paylaşır = daha sert."
+   ],
+   "sikHatalar": [
+    "\\(\\Delta x\\) yerine yayın toplam uzunluğunu kullanmak.",
+    "Seri yaylarda \\(k\\) değerlerini toplamak.",
+    "İki ucundan \\(F\\) ile çekilen yayın kuvvetini \\(2F\\) sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "spring constant",
+     "tr": "yay sabiti"
+    },
+    {
+     "en": "restoring force",
+     "tr": "geri çağırıcı kuvvet"
+    },
+    {
+     "en": "natural (unstretched) length",
+     "tr": "doğal uzunluk"
+    },
+    {
+     "en": "stretch / compression",
+     "tr": "uzama / sıkışma"
+    },
+    {
+     "en": "in series / in parallel",
+     "tr": "seri / paralel"
+    },
+    {
+     "en": "best-fit line",
+     "tr": "en uygun doğru"
+    }
+   ]
+  },
+  {
+   "kod": "2.9",
+   "baslik": "Circular Motion",
+   "baslikTr": "Çembersel hareket",
+   "hedefler": [
+    "Düzgün çembersel harekette merkezcil ivmeyi \\(a_c=\\frac{v^2}{r}\\) ve hızı \\(v=\\frac{2\\pi r}{T}\\) ile hesaplamak.",
+    "Merkeze doğru net kuvveti gerçek kuvvetlerden (gerilme, normal, sürtünme, yerçekimi) kurmak.",
+    "Dikey çember, düz viraj ve dairesel yörünge problemlerini çözmek; teğetsel ve merkezcil ivmeyi ayırt etmek."
+   ],
+   "anlatim": "<h4>Sabit sürat, değişen hız</h4>\n<div class=\"kn-tanim\"><strong>Düzgün çembersel hareket (uniform circular motion)</strong>: sabit süratle (constant speed) çember üzerinde hareket. Hızın yönü sürekli değiştiği için cisim <strong>ivmelidir</strong>. Bu ivme merkeze doğrudur: \\[ a_c=\\frac{v^2}{r},\\qquad v=\\frac{2\\pi r}{T} \\] \\(T\\): periyot (bir tur süresi).</div>\n<p>Hız vektörü her an çembere <strong>teğettir (tangent)</strong>. İp koparsa cisim teğet doğrultusunda düz gider (birinci yasa); dışarı doğru, merkezden uzağa radyal olarak <em>fırlamaz</em>.</p>\n<h4>Merkezcil kuvvet bir kuvvet türü değildir</h4>\n<div class=\"kn-kural\">Newton'ın ikinci yasası radyal (merkeze doğru) yönde: \\[ \\sum F_{\\text{toward center}}=\\frac{mv^2}{r} \\] Sol taraf gerçek kuvvetlerin merkeze doğru bileşenlerinin toplamıdır. FBD'ye \"\\(F_c\\)\" oku <strong>çizilmez</strong>. \"Centrifugal force\" (merkezkaç) eylemsiz çerçevede yoktur.</div>\n<table><thead><tr><th>Durum</th><th>Merkeze doğru net kuvveti sağlayan</th><th>Denklem</th></tr></thead><tbody>\n<tr><td>Düz virajda araba</td><td>Statik sürtünme</td><td>\\(F_f=\\frac{mv^2}{r}\\); en büyük sürat \\(v=\\sqrt{\\mu_sgr}\\)</td></tr>\n<tr><td>Dikey çemberin en altında ip</td><td>\\(T-mg\\)</td><td>\\(T=mg+\\frac{mv^2}{r}\\)</td></tr>\n<tr><td>Dikey çemberin en üstünde ip</td><td>\\(T+mg\\)</td><td>\\(T=\\frac{mv^2}{r}-mg\\)</td></tr>\n<tr><td>Tepe üzerinden geçen araba</td><td>\\(mg-F_N\\)</td><td>\\(F_N=mg-\\frac{mv^2}{r}\\)</td></tr>\n<tr><td>Dairesel yörüngede uydu</td><td>Kütle çekimi</td><td>\\(\\frac{GMm}{r^2}=\\frac{mv^2}{r}\\Rightarrow v=\\sqrt{\\frac{GM}{r}}\\)</td></tr></tbody></table>\n<h4>Kritik durumlar</h4>\n<p>Dikey çemberin tepesinde ip gevşemeden geçmek için en küçük sürat: \\(T=0\\) iken \\(mg=\\frac{mv^2}{r}\\Rightarrow v_{min}=\\sqrt{gr}\\). Tepe üzerindeki araba \\(v=\\sqrt{gr}\\)'de yolla temasını kaybeder (\\(F_N=0\\)). Bu \"sınır koşulunda bir kuvvet sıfır olur\" fikri AP'nin sevdiği akıl yürütmedir.</p>\n<h4>Yörüngeler ve periyot</h4>\n<p>Uydu için \\(v=\\frac{2\\pi r}{T}\\) ve \\(v^2=\\frac{GM}{r}\\) birleşince \\(T^2=\\frac{4\\pi^2}{GM}r^3\\) (Kepler'in üçüncü yasası) çıkar. Yörünge yarıçapı büyüdükçe sürat azalır, periyot artar. Uydunun kütlesi sonuca girmez.</p>\n<h4>Teğetsel ivme</h4>\n<p>Cisim çember üzerinde hızlanıyor ya da yavaşlıyorsa merkezcil ivmeye ek olarak hıza paralel bir <strong>teğetsel ivme (tangential acceleration)</strong> vardır. Toplam ivme artık merkeze doğru değildir; iki bileşenin vektör toplamıdır.</p>\n<div class=\"kn-dikkat\">Sabit süratle dönen cisimde net kuvvet sıfır <strong>değildir</strong>; merkeze doğrudur ve büyüklüğü \\(\\frac{mv^2}{r}\\)'dir.</div>\n<p>FRQ ifade kalıbı: <em>\"At the top of the loop, both the tension and the gravitational force point toward the center, so their sum provides the centripetal acceleration: \\(F_T+mg=\\frac{mv^2}{r}\\).\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(0.50\\text{ kg}\\) bir taş, \\(1.0\\text{ m}\\) uzunluğundaki iple dikey çember çiziyor. En altta sürat \\(6.0\\text{ m/s}\\). Gerilme nedir?",
+     "cozum": [
+      "En altta merkez yukarıdadır: \\(T-mg=\\frac{mv^2}{r}\\).",
+      "\\(T=(0.50)(10)+\\frac{(0.50)(36)}{1.0}=5+18=23\\text{ N}\\)."
+     ]
+    },
+    {
+     "soru": "Düz bir virajın yarıçapı \\(50\\text{ m}\\), lastik-yol \\(\\mu_s=0.80\\). Arabanın kaymadan alabileceği en büyük sürat nedir?",
+     "cozum": [
+      "Merkezcil kuvvet statik sürtünmeden: \\(\\mu_smg=\\frac{mv^2}{r}\\); kütle sadeleşir.",
+      "\\(v=\\sqrt{\\mu_sgr}=\\sqrt{(0.80)(10)(50)}=\\sqrt{400}=20\\text{ m/s}\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Bir uydu yarıçapı \\(r\\) olan dairesel yörüngeden \\(4r\\) yörüngesine taşınıyor. Sürati nasıl değişir? Gerekçelendirin.",
+     "cozum": [
+      "Kütle çekimi merkezcil kuvveti sağlar: \\(\\frac{GMm}{r^2}=\\frac{mv^2}{r}\\Rightarrow v=\\sqrt{\\frac{GM}{r}}\\).",
+      "\\(r\\) dört katına çıkınca \\(v\\), \\(\\frac{1}{\\sqrt4}=\\frac12\\) katına iner. Claim–evidence–reasoning: daha uzakta çekim kuvveti \\(\\frac{1}{16}\\)'ya düşer; daha küçük merkezcil kuvvet, daha büyük yarıçapla birlikte daha küçük sürat gerektirir."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Merkez yönünü pozitif al: merkeze doğru kuvvetler +, dışarı doğru olanlar −. En alt/en üst noktalarda bu kural işaret hatasını bitirir.",
+    "Periyot veya frekans verilirse önce \\(v=\\frac{2\\pi r}{T}\\) ile sürati bul; çap verilmişse yarıçapı al.",
+    "\"Minimum speed at the top\" sorularında gerilmeyi veya normal kuvveti sıfır al.",
+    "Hesap makinesi karekök ve \\(\\pi\\) içeren aritmetikte yardımcıdır."
+   ],
+   "sikHatalar": [
+    "FBD'ye ayrı bir \"merkezcil kuvvet\" veya \"merkezkaç kuvvet\" oku eklemek.",
+    "Sabit süratli çembersel harekette ivmeyi sıfır almak.",
+    "İp koptuğunda cismin merkezden dışarı doğru radyal fırladığını sanmak (doğrusu: teğet doğrultuda)."
+   ],
+   "terimler": [
+    {
+     "en": "uniform circular motion",
+     "tr": "düzgün çembersel hareket"
+    },
+    {
+     "en": "centripetal acceleration",
+     "tr": "merkezcil ivme"
+    },
+    {
+     "en": "tangential",
+     "tr": "teğetsel"
+    },
+    {
+     "en": "period",
+     "tr": "periyot"
+    },
+    {
+     "en": "radius",
+     "tr": "yarıçap"
+    },
+    {
+     "en": "orbit",
+     "tr": "yörünge"
+    }
+   ]
+  }
+ ]
+}

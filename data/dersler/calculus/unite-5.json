@@ -1,0 +1,776 @@
+{
+ "ders": "calculus",
+ "unite": 5,
+ "baslik": "Analytical Applications of Differentiation",
+ "baslikTr": "Türevin Analitik Uygulamaları",
+ "konular": [
+  {
+   "kod": "5.1",
+   "baslik": "Using the Mean Value Theorem",
+   "baslikTr": "Ortalama Değer Teoremini kullanma",
+   "sadeceBC": false,
+   "hedefler": [
+    "Ortalama Değer Teoreminin (Mean Value Theorem, MVT) iki koşulunu kontrol etmek ve sonucunu doğru ifade etmek.",
+    "Bir aralıkta ortalama değişim hızına eşit anlık değişim hızı veren \\(c\\) değerini cebirle ya da hesap makinesiyle bulmak.",
+    "Tablo verisiyle FRQ tarzı “must there be a value \\(c\\)…?” sorularını tam gerekçeyle yanıtlamak."
+   ],
+   "anlatim": "<p>Bir arabayla 2 saatte 160 km gittiysen ortalama hızın 80 km/sa'tir. Sezgi şunu söyler: yolculuk sırasında hız göstergesi <strong>en az bir anda</strong> tam 80'i göstermiş olmalıdır. Ortalama Değer Teoremi (MVT) bu sezginin matematiksel hâlidir: <strong>ortalama değişim hızı (average rate of change)</strong> bir yerde <strong>anlık değişim hızına (instantaneous rate of change)</strong> eşit olur.</p>\n<div class=\"kn-tanim\"><strong>Mean Value Theorem.</strong> Eğer\n<ol><li>\\(f\\), kapalı aralık \\([a,b]\\) üzerinde <strong>sürekli (continuous)</strong> ve</li>\n<li>\\(f\\), açık aralık \\((a,b)\\) üzerinde <strong>türevlenebilir (differentiable)</strong> ise,</li></ol>\nen az bir \\(c\\in(a,b)\\) vardır ki \\[ f'(c)=\\frac{f(b)-f(a)}{b-a}. \\]</div>\n<p>Geometrik anlam: \\((a,f(a))\\) ile \\((b,f(b))\\) noktalarını birleştiren <strong>kesen doğrusuna (secant line)</strong> paralel en az bir <strong>teğet doğrusu (tangent line)</strong> vardır. Özel durum \\(f(a)=f(b)\\) ise kesenin eğimi 0'dır ve \\(f'(c)=0\\) olan bir \\(c\\) bulunur; buna <strong>Rolle Teoremi (Rolle's Theorem)</strong> denir.</p>\n<h4>Koşullar neden önemli?</h4>\n<table><thead><tr><th>Fonksiyon ve aralık</th><th>Bozulan koşul</th><th>Sonuç</th></tr></thead><tbody>\n<tr><td>\\(f(x)=|x|\\), \\([-1,2]\\)</td><td>\\(x=0\\)'da türevlenemez (köşe)</td><td>Kesen eğimi \\(\\frac13\\); ama \\(f'\\) yalnız \\(-1\\) veya \\(1\\) → böyle \\(c\\) yok.</td></tr>\n<tr><td>\\(f(x)=\\frac1x\\), \\([-1,1]\\)</td><td>\\(x=0\\)'da sürekli değil</td><td>MVT uygulanamaz.</td></tr>\n<tr><td>\\(f(x)=x^3-x\\), \\([0,2]\\)</td><td>yok (polinom)</td><td>\\(3c^2-1=3\\) → \\(c=\\frac{2}{\\sqrt3}\\approx1.155\\).</td></tr></tbody></table>\n<p>Koşullar sağlanmazsa teorem “böyle bir \\(c\\) yoktur” demez; sadece <em>garanti vermez</em>. Koşullar sağlanırsa \\(c\\)'nin varlığı kesindir ama kaç tane olduğu ya da tam yeri söylenmez.</p>\n<div class=\"kn-kural\"><strong>Kısayol:</strong> Türevlenebilirlik süreklilik gerektirir (differentiability implies continuity). Bir FRQ'da “\\(f\\) is differentiable” deniyorsa, sürekliliği de buna dayanarak yazabilirsin: “Because \\(f\\) is differentiable, \\(f\\) is continuous on \\([2,5]\\).”</div>\n<h4>Tablo sorularında MVT (FRQ'nun favorisi)</h4>\n<p>Sadece birkaç değer verilir; formül yoktur. Soru: “Must there be a value \\(c\\), \\(2\\lt c\\lt 5\\), such that \\(f'(c)=4\\)? Justify.” Yapılacaklar: (1) koşulu yaz, (2) kesen eğimini sayılarla hesapla, (3) MVT'yi adıyla an.</p>\n<div class=\"formul\">\\[ \\frac{f(5)-f(2)}{5-2}=\\frac{19-7}{3}=4 \\]</div>\n<p>Tam puanlık cümle: “\\(f\\) is differentiable on \\((2,5)\\) and continuous on \\([2,5]\\), and \\(\\frac{f(5)-f(2)}{5-2}=4\\). Therefore, by the Mean Value Theorem, there is a value \\(c\\) in \\((2,5)\\) such that \\(f'(c)=4\\).”</p>\n<div class=\"kn-dikkat\"><strong>IVT ile karıştırma.</strong> Ara Değer Teoremi (IVT) <em>fonksiyonun değeri</em> hakkındadır (\\(f(c)=k\\)); yalnız süreklilik ister. MVT <em>türevin değeri</em> hakkındadır (\\(f'(c)=\\) kesen eğimi); süreklilik + türevlenebilirlik ister. Soruda \\(f'(c)\\) ya da “rate”, “velocity”, “acceleration” geçiyorsa MVT düşün.</div>\n<p>Hareket bağlamında: konum \\(s(t)\\) ise ortalama hız \\(\\frac{s(b)-s(a)}{b-a}\\) bir anda anlık hız \\(v(c)\\)'ye eşittir; hız \\(v(t)\\) tablosu verilirse aynı mantık ivme \\(a(c)=v'(c)\\) için kullanılır.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=x^3-x\\) fonksiyonu \\([0,2]\\) aralığında MVT koşullarını sağlar mı? Sağlıyorsa sonucu sağlayan \\(c\\) değerini bulun.",
+     "cozum": [
+      "\\(f\\) bir polinomdur; her yerde sürekli ve türevlenebilirdir, dolayısıyla koşullar sağlanır.",
+      "Kesen eğimi: \\(\\dfrac{f(2)-f(0)}{2-0}=\\dfrac{6-0}{2}=3\\).",
+      "\\(f'(c)=3c^2-1=3\\Rightarrow c^2=\\frac43\\Rightarrow c=\\pm\\frac{2}{\\sqrt3}\\). Yalnız \\(c=\\frac{2}{\\sqrt3}\\approx1.155\\) değeri \\((0,2)\\) içindedir."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(g\\) türevlenebilir bir fonksiyondur. \\(g(1)=10\\), \\(g(4)=1\\), \\(g(6)=5\\). \\(1\\lt c\\lt 6\\) aralığında \\(g'(c)=-3\\) olan bir \\(c\\) bulunmak zorunda mıdır? Gerekçelendirin.",
+     "cozum": [
+      "\\(g\\) türevlenebilir olduğundan süreklidir; MVT her alt aralıkta uygulanabilir.",
+      "\\([1,4]\\) üzerindeki kesen eğimi: \\(\\dfrac{1-10}{4-1}=-3\\).",
+      "“Yes. Since \\(g\\) is differentiable on \\((1,4)\\) and continuous on \\([1,4]\\), and \\(\\frac{g(4)-g(1)}{4-1}=-3\\), the Mean Value Theorem guarantees a value \\(c\\) in \\((1,4)\\) with \\(g'(c)=-3\\).” \\((1,4)\\subset(1,6)\\) olduğundan cevap evettir."
+     ]
+    },
+    {
+     "soru": "\\(h(x)=|x-1|\\) için \\([0,3]\\) aralığında \\(h'(c)=\\frac13\\) olan bir \\(c\\) var mıdır? MVT neden garanti vermez?",
+     "cozum": [
+      "Kesen eğimi \\(\\frac{h(3)-h(0)}{3}=\\frac{2-1}{3}=\\frac13\\).",
+      "\\(h\\), \\(x=1\\)'de köşelidir; \\((0,3)\\) üzerinde türevlenebilir değildir, MVT koşulu bozulur.",
+      "Gerçekten \\(h'(x)\\) yalnız \\(-1\\) (\\(x\\lt1\\)) veya \\(1\\) (\\(x\\gt1\\)) değerini alır; \\(\\frac13\\) hiç oluşmaz."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Gerekçede iki koşulu ve kesen eğimini sayılarla yaz; sonra “by the Mean Value Theorem” de. Teoremin adı geçmezse puan kaybedilir.",
+    "Hesap makineli bölümde \\(f'(c)=\\) eğim denklemini grafikte iki eğrinin kesişimi olarak çöz; \\(c\\)'nin açık aralıkta olduğunu kontrol et ve 3 ondalık basamak ver.",
+    "Tablo sorusunda doğru alt aralığı seç: istenen eğimi veren iki tablo değerini ara, tüm aralığın uçlarını kullanmak zorunda değilsin.",
+    "“Differentiable” verilmişse sürekliliği ayrıca kanıtlamana gerek yok: “differentiable implies continuous” yaz."
+   ],
+   "sikHatalar": [
+    "MVT'yi IVT ile karıştırmak: \\(f(c)=k\\) sorusuna MVT, \\(f'(c)=k\\) sorusuna IVT yazmak.",
+    "Bulunan \\(c\\)'nin açık aralık \\((a,b)\\) içinde olup olmadığını kontrol etmemek (ör. negatif kökü de cevap saymak).",
+    "Koşullar bozulunca “böyle bir \\(c\\) kesinlikle yoktur” demek; teorem sadece garanti vermez, yine de \\(c\\) olabilir."
+   ],
+   "terimler": [
+    {
+     "en": "Mean Value Theorem",
+     "tr": "Ortalama Değer Teoremi"
+    },
+    {
+     "en": "Rolle's Theorem",
+     "tr": "Rolle Teoremi"
+    },
+    {
+     "en": "secant line",
+     "tr": "kesen doğrusu"
+    },
+    {
+     "en": "average rate of change",
+     "tr": "ortalama değişim hızı"
+    },
+    {
+     "en": "instantaneous rate of change",
+     "tr": "anlık değişim hızı"
+    },
+    {
+     "en": "hypotheses",
+     "tr": "koşullar (hipotezler)"
+    }
+   ]
+  },
+  {
+   "kod": "5.2",
+   "baslik": "Extreme Value Theorem, Global Versus Local Extrema, and Critical Points",
+   "baslikTr": "Ekstremum Değer Teoremi, mutlak ve yerel ekstremumlar, kritik noktalar",
+   "sadeceBC": false,
+   "hedefler": [
+    "Ekstremum Değer Teoreminin (Extreme Value Theorem, EVT) koşullarını ve neyi garanti ettiğini açıklamak.",
+    "Mutlak (global) ve yerel (local/relative) ekstremumu ayırt etmek.",
+    "Bir fonksiyonun kritik noktalarını (\\(f'=0\\) ya da \\(f'\\) tanımsız, ama \\(f\\) tanımlı) bulmak."
+   ],
+   "anlatim": "<p>Bir fonksiyonun “en büyük” ve “en küçük” değerlerine <strong>ekstremum (extremum, çoğulu extrema)</strong> denir. İki tür vardır ve AP ikisini sürekli ayırt etmeni ister.</p>\n<div class=\"kn-tanim\"><strong>Mutlak (absolute / global) maksimum:</strong> \\(f(c)\\ge f(x)\\), tanım kümesindeki (ya da verilen aralıktaki) <em>her</em> \\(x\\) için.<br><strong>Yerel (relative / local) maksimum:</strong> \\(f(c)\\ge f(x)\\), \\(c\\)'nin <em>çevresindeki</em> her \\(x\\) için (bir açık aralıkta). Minimumlar benzer şekilde tanımlanır.</div>\n<p>Bir dağ silsilesini düşün: her tepe yerel maksimumdur; en yüksek tepe (ya da yolun bittiği uç nokta daha yüksekse o uç) mutlak maksimumdur. Ekstremum bir <strong>değerdir</strong> (\\(y\\)); “nerede” sorusunun cevabı ise \\(x\\)'tir. Soru “What is the maximum value?” diyorsa \\(f(c)\\), “At what x?” diyorsa \\(c\\) yazılır.</p>\n<div class=\"kn-kural\"><strong>Extreme Value Theorem.</strong> \\(f\\), <strong>kapalı aralık</strong> \\([a,b]\\) üzerinde <strong>sürekli</strong> ise, \\(f\\) bu aralıkta hem mutlak maksimum hem mutlak minimum değerine ulaşır (en az birer kez).</div>\n<table><thead><tr><th>Örnek</th><th>Neden EVT uygulanmaz?</th><th>Ne olur?</th></tr></thead><tbody>\n<tr><td>\\(f(x)=x^2\\), \\((0,2)\\)</td><td>Aralık açık</td><td>Ne max ne min değerine ulaşılır (0 ve 4 uçta, dışarıda).</td></tr>\n<tr><td>\\(f(x)=\\frac1x\\), \\([-1,1]\\)</td><td>\\(x=0\\)'da süreksiz</td><td>Değerler sınırsız büyür.</td></tr>\n<tr><td>\\(f(x)=\\cos x\\), \\((0,7)\\)</td><td>Aralık açık</td><td>Yine de max (\\(x=2\\pi\\)) ve min (\\(x=\\pi\\)) var — garanti yok ama olabilir.</td></tr></tbody></table>\n<h4>Kritik nokta (critical point)</h4>\n<div class=\"kn-tanim\">\\(c\\), \\(f\\)'nin tanım kümesinde bir iç nokta olsun. \\(f'(c)=0\\) <strong>ya da</strong> \\(f'(c)\\) <strong>tanımsız</strong> ise \\(c\\) bir <strong>kritik noktadır (critical point / critical number)</strong>.</div>\n<p><strong>Fermat Teoremi:</strong> \\(f\\), iç bir \\(c\\) noktasında yerel ekstremuma sahipse ve \\(f'(c)\\) varsa \\(f'(c)=0\\)'dır. Dolayısıyla yerel ekstremumlar <em>yalnızca</em> kritik noktalarda oluşabilir. Ama tersi doğru değildir: \\(f(x)=x^3\\) için \\(f'(0)=0\\) olduğu hâlde \\(x=0\\)'da ekstremum yoktur.</p>\n<p>Örnek: \\(f(x)=x^{1/3}(x+4)=x^{4/3}+4x^{1/3}\\).</p>\n<div class=\"formul\">\\[ f'(x)=\\tfrac43x^{1/3}+\\tfrac43x^{-2/3}=\\frac{4(x+1)}{3x^{2/3}} \\]</div>\n<p>\\(f'(x)=0\\Rightarrow x=-1\\); \\(f'\\) tanımsız \\(\\Rightarrow x=0\\) (ve \\(f(0)=0\\) tanımlı). Kritik noktalar: \\(x=-1\\) ve \\(x=0\\).</p>\n<div class=\"kn-dikkat\"><strong>Tanım kümesinde olmayan nokta kritik nokta değildir.</strong> \\(f(x)=\\frac{1}{x-2}\\) için \\(f'\\), \\(x=2\\)'de tanımsızdır ama \\(f(2)\\) de tanımsızdır; bu yüzden \\(x=2\\) kritik nokta <em>değildir</em>. Ayrıca kapalı aralığın uç noktaları kritik nokta sayılmaz, ama mutlak ekstremum <strong>adayıdır</strong> (Konu 5.5).</div>\n<p>AP'de yerel ekstremum, aralığın içindeki noktalarda incelenir; uç noktalar yalnızca mutlak ekstremum için kontrol edilir. Kritik noktaları bulmak, Konu 5.3–5.5'teki her testin ilk adımıdır.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=x^{1/3}(x+4)\\) fonksiyonunun kritik noktalarını bulun.",
+     "cozum": [
+      "Çarpımı aç: \\(f(x)=x^{4/3}+4x^{1/3}\\), türev \\(f'(x)=\\frac43x^{1/3}+\\frac43x^{-2/3}\\).",
+      "Ortak payda: \\(f'(x)=\\dfrac{4x+4}{3x^{2/3}}=\\dfrac{4(x+1)}{3x^{2/3}}\\).",
+      "Pay sıfır: \\(x=-1\\). Payda sıfır: \\(x=0\\), ve \\(f(0)=0\\) tanımlıdır. Kritik noktalar: \\(x=-1,\\ x=0\\)."
+     ]
+    },
+    {
+     "soru": "Aşağıdakilerden hangisinin EVT'ye göre \\([0,4]\\) üzerinde mutlak maksimuma sahip olması garantidir? (i) \\(g(x)=\\dfrac{1}{x-3}\\) (ii) \\(h(x)=\\sqrt{x}\\,e^{-x}\\) (iii) \\(k(x)=\\tan x\\)",
+     "cozum": [
+      "(i) \\(x=3\\in[0,4]\\)'te süreksiz → garanti yok. (iii) \\(\\tan x\\), \\(x=\\frac{\\pi}{2}\\approx1.571\\)'de tanımsız → garanti yok.",
+      "(ii) \\(\\sqrt x\\) ve \\(e^{-x}\\), \\([0,4]\\)'te süreklidir; çarpımları da süreklidir. Aralık kapalıdır → EVT uygulanır.",
+      "Cevap: yalnız \\(h\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(f(x)=\\dfrac{x^2}{x-1}\\). \\(x=1\\) bir kritik nokta mıdır? Diğer kritik noktaları bulun.",
+     "cozum": [
+      "Bölüm kuralı: \\(f'(x)=\\dfrac{2x(x-1)-x^2}{(x-1)^2}=\\dfrac{x(x-2)}{(x-1)^2}\\).",
+      "\\(f'(x)=0\\Rightarrow x=0\\) veya \\(x=2\\); ikisi de tanım kümesindedir → kritik noktalar.",
+      "\\(x=1\\)'de \\(f'\\) tanımsızdır ama \\(f(1)\\) de tanımsızdır; “\\(x=1\\) is not a critical point because \\(x=1\\) is not in the domain of \\(f\\).”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Kritik nokta listesi: \\(f'=0\\) çözümleri + \\(f'\\)'nin tanımsız olduğu ama \\(f\\)'nin tanımlı olduğu noktalar. İkinci grubu unutma (\\(x^{2/3}\\), \\(|x|\\), köşeler).",
+    "EVT sorusunda iki kelimeyi ara: “continuous” ve “closed interval”. Biri eksikse garanti yok.",
+    "“Absolute maximum value” sorusunda cevap \\(y\\)-değeridir; “at what value of \\(x\\)” sorusunda \\(x\\)-değeridir. Şıklarda ikisi birden bulunur."
+   ],
+   "sikHatalar": [
+    "\\(f'(c)=0\\) olan her noktada ekstremum olduğunu sanmak (\\(x^3\\), \\(x=0\\)).",
+    "Tanım kümesi dışında kalan, \\(f'\\)'nin tanımsız olduğu noktayı (dikey asimptot) kritik nokta saymak.",
+    "Açık aralıkta ya da süreksiz fonksiyonda EVT'nin garantisini kullanmak."
+   ],
+   "terimler": [
+    {
+     "en": "Extreme Value Theorem",
+     "tr": "Ekstremum Değer Teoremi"
+    },
+    {
+     "en": "absolute (global) maximum",
+     "tr": "mutlak maksimum"
+    },
+    {
+     "en": "relative (local) minimum",
+     "tr": "yerel minimum"
+    },
+    {
+     "en": "critical point",
+     "tr": "kritik nokta"
+    },
+    {
+     "en": "closed interval",
+     "tr": "kapalı aralık"
+    },
+    {
+     "en": "endpoint",
+     "tr": "uç nokta"
+    }
+   ]
+  },
+  {
+   "kod": "5.3",
+   "baslik": "Determining Intervals on Which a Function Is Increasing or Decreasing",
+   "baslikTr": "Fonksiyonun arttığı ve azaldığı aralıkları belirleme",
+   "sadeceBC": false,
+   "hedefler": [
+    "\\(f'\\)'nin işaretinden \\(f\\)'nin arttığı (increasing) ve azaldığı (decreasing) aralıkları bulmak.",
+    "İşaret tablosu (sign chart) kurmak ve formül, grafik ya da tablo olarak verilen \\(f'\\) ile çalışmak.",
+    "Cevabı FRQ'da puan alan gerekçe cümlesiyle yazmak."
+   ],
+   "anlatim": "<p>Türev, teğet doğrusunun eğimidir. Eğim pozitifse grafik sağa doğru yükselir, negatifse alçalır. Bu basit fikir Unit 5'in tamamının temelidir.</p>\n<div class=\"kn-kural\"><strong>Artma/azalma testi (increasing/decreasing test).</strong> Bir aralığın her noktasında\n<ul><li>\\(f'(x)\\gt 0\\) ise \\(f\\) o aralıkta <strong>artandır (increasing)</strong>;</li>\n<li>\\(f'(x)\\lt 0\\) ise \\(f\\) o aralıkta <strong>azalandır (decreasing)</strong>.</li></ul></div>\n<p>Bunun nedeni MVT'dir: \\(x_1\\lt x_2\\) için \\(f(x_2)-f(x_1)=f'(c)(x_2-x_1)\\); \\(f'(c)\\gt0\\) ise fark pozitiftir.</p>\n<h4>İşaret tablosu (sign chart) yöntemi</h4>\n<ol><li>\\(f'(x)\\)'i bul ve mümkünse çarpanlara ayır.</li>\n<li>\\(f'=0\\) ve \\(f'\\) tanımsız noktaları sayı doğrusuna yerleştir (tanım kümesi dışındaki noktalar da sınır olarak işaretlenir).</li>\n<li>Her aralıktan bir test değeri seç ya da çarpanların işaretlerini say.</li>\n<li>İşarete göre artan/azalan yaz.</li></ol>\n<p>Örnek: \\(f'(x)=x^2(x-3)e^{x}\\). \\(e^x\\gt0\\) ve \\(x^2\\ge0\\) olduğundan işareti \\((x-3)\\) belirler.</p>\n<table><thead><tr><th>Aralık</th><th>\\(x\\lt0\\)</th><th>\\(0\\lt x\\lt3\\)</th><th>\\(x\\gt3\\)</th></tr></thead><tbody>\n<tr><td>\\(x^2\\)</td><td>+</td><td>+</td><td>+</td></tr>\n<tr><td>\\(x-3\\)</td><td>−</td><td>−</td><td>+</td></tr>\n<tr><td>\\(f'\\)</td><td>−</td><td>−</td><td>+</td></tr>\n<tr><td>\\(f\\)</td><td>azalan</td><td>azalan</td><td>artan</td></tr></tbody></table>\n<p>\\(x=0\\)'da \\(f'\\) sıfırdır ama <strong>işaret değiştirmez</strong>; \\(f\\), \\((-\\infty,3)\\) boyunca azalır. Çift kuvvetli çarpan (\\(x^2\\), \\((x+1)^4\\)) işaret değiştirmez — bunu görmek zaman kazandırır.</p>\n<h4>Grafik ya da tablo olarak verilen \\(f'\\)</h4>\n<p>\\(f'\\)'nin grafiği verilirse <strong>\\(f'\\)'nin \\(x\\)-ekseninin üstünde olduğu yerler</strong> \\(f\\)'nin arttığı yerlerdir. \\(f'\\)'nin kendisinin artıp azalması burada önemsizdir (o konkavlıktır, 5.6). Bu ayrım AP'de en çok yapılan hatadır.</p>\n<div class=\"kn-kural\"><strong>FRQ gerekçe kalıbı:</strong> “\\(f\\) is increasing on \\((3,\\infty)\\) because \\(f'(x)\\gt0\\) on that interval.” / “\\(f\\) is decreasing on \\((-2,1)\\) because the graph of \\(f'\\) is below the \\(x\\)-axis there.”<br>Sadece “because the derivative is positive” demek yerine hangi fonksiyonun (\\(f'\\)) neyi (işaret) yaptığını ve <em>nerede</em> olduğunu yaz.</div>\n<div class=\"kn-dikkat\">Uç noktaları dahil etmek (\\([0,3]\\) gibi) \\(f\\) orada sürekliyse AP'de kabul edilir; ama tanım kümesi dışındaki noktayı (ör. dikey asimptot) asla dahil etme ve iki ayrı aralığı “\\(\\cup\\)” ile birleştirip “\\(f\\) bu birleşimde artandır” derken dikkatli ol: \\(f(x)=-\\frac1x\\) her iki parçada artandır, ama \\((-\\infty,0)\\cup(0,\\infty)\\) üzerinde değil.</div>\n<p>Hesap makineli sorularda \\(f'\\) karmaşık olabilir (\\(f'(x)=\\sin(x^2)-0.3x\\) gibi). \\(f'\\)'yi grafikle, sıfırlarını “zero” komutuyla bul ve grafiğin eksenin üstünde kaldığı aralıkları oku.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=x^4-8x^2\\) fonksiyonunun arttığı aralıkları bulun.",
+     "cozum": [
+      "\\(f'(x)=4x^3-16x=4x(x-2)(x+2)\\). Sıfırlar: \\(-2,0,2\\).",
+      "İşaretler: \\(x\\lt-2\\): \\((-)(-)(-)=-\\); \\(-2\\lt x\\lt0\\): \\((-)(-)(+)=+\\); \\(0\\lt x\\lt2\\): \\((+)(-)(+)=-\\); \\(x\\gt2\\): \\(+\\).",
+      "\\(f\\), \\((-2,0)\\) ve \\((2,\\infty)\\) üzerinde artandır, çünkü \\(f'(x)\\gt0\\) bu aralıklarda."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(f'\\)'nin bazı değerleri: \\(f'(x)\\), \\(x=-3,-1,1,2,4\\) için sırasıyla \\(-2,0,3,0,-1\\); \\(f'\\)'nin yalnız \\(x=-1\\) ve \\(x=2\\)'de sıfır olduğu ve sürekli olduğu biliniyor. \\(f\\) hangi aralıklarda azalandır? Gerekçelendirin.",
+     "cozum": [
+      "\\(f'\\) sürekli ve sıfırları yalnız \\(-1\\) ile \\(2\\); bu yüzden her aralıkta tek işaret taşır.",
+      "\\(x\\lt-1\\): \\(f'(-3)=-2\\lt0\\); \\(-1\\lt x\\lt2\\): \\(f'(1)=3\\gt0\\); \\(x\\gt2\\): \\(f'(4)=-1\\lt0\\).",
+      "“\\(f\\) is decreasing on \\((-\\infty,-1)\\) and \\((2,\\infty)\\) because \\(f'(x)\\lt0\\) on these intervals.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Çarpanlara ayrılmış \\(f'\\)'de her zaman pozitif çarpanları (\\(e^x\\), \\(x^2+1\\), çift kuvvetler) atarak işareti hızla bul.",
+    "\\(f'\\)'nin grafiği verildiğinde soru “\\(f\\) increasing” diyorsa eksenin <em>üstüne</em>, “\\(f'\\) increasing” diyorsa eğimin yukarı olduğu yere bak.",
+    "Hesap makinesiyle \\(f'\\)'nin sıfırlarını en az 3 ondalık basamakla bul; aralık uçlarında yuvarlama hatası yapma."
+   ],
+   "sikHatalar": [
+    "\\(f'\\) grafiğinin artan olduğu yeri \\(f\\)'nin artan olduğu yer sanmak.",
+    "Çift katlı kökte (\\(f'\\) işaret değiştirmez) aralığı gereksiz yere bölmek ya da işareti yanlış çevirmek.",
+    "Gerekçede “\\(f\\) is positive” yazmak; doğrusu “\\(f'\\) is positive”."
+   ],
+   "terimler": [
+    {
+     "en": "increasing",
+     "tr": "artan"
+    },
+    {
+     "en": "decreasing",
+     "tr": "azalan"
+    },
+    {
+     "en": "sign chart",
+     "tr": "işaret tablosu"
+    },
+    {
+     "en": "test value",
+     "tr": "test değeri"
+    },
+    {
+     "en": "interval",
+     "tr": "aralık"
+    }
+   ]
+  },
+  {
+   "kod": "5.4",
+   "baslik": "Using the First Derivative Test to Determine Relative (Local) Extrema",
+   "baslikTr": "Birinci türev testiyle yerel ekstremumları belirleme",
+   "sadeceBC": false,
+   "hedefler": [
+    "Birinci türev testini (First Derivative Test) kullanarak kritik noktaları yerel maksimum, yerel minimum ya da hiçbiri olarak sınıflandırmak.",
+    "\\(f'\\)'nin formül, grafik ya da işaret tablosuyla verildiği durumlarda yerel ekstremumları bulmak.",
+    "Sonucu “because \\(f'\\) changes from positive to negative at…” kalıbıyla gerekçelendirmek."
+   ],
+   "anlatim": "<p>Bir tepeye çıkarken yol yükselir (\\(f'\\gt0\\)), tepeyi geçince alçalır (\\(f'\\lt0\\)). Tepe noktasında türevin işareti <strong>artıdan eksiye</strong> döner. Birinci türev testi bu gözlemdir.</p>\n<div class=\"kn-kural\"><strong>First Derivative Test.</strong> \\(c\\), sürekli bir \\(f\\)'nin kritik noktası olsun.\n<ul><li>\\(f'\\), \\(c\\)'de <strong>pozitiften negatife</strong> geçiyorsa \\(f\\)'nin \\(c\\)'de <strong>yerel maksimumu (relative maximum)</strong> vardır.</li>\n<li>\\(f'\\), \\(c\\)'de <strong>negatiften pozitife</strong> geçiyorsa \\(f\\)'nin \\(c\\)'de <strong>yerel minimumu (relative minimum)</strong> vardır.</li>\n<li>\\(f'\\) işaret <strong>değiştirmiyorsa</strong> \\(c\\)'de yerel ekstremum yoktur.</li></ul></div>\n<p>Test, \\(f'(c)\\) tanımsız olsa bile çalışır (yeter ki \\(f\\), \\(c\\)'de sürekli olsun). Örneğin \\(f(x)=x^{2/3}\\): \\(f'(x)=\\frac{2}{3x^{1/3}}\\), \\(x\\lt0\\) için negatif, \\(x\\gt0\\) için pozitif → \\(x=0\\)'da yerel minimum (sivri uç, cusp).</p>\n<h4>Adım adım</h4>\n<ol><li>Kritik noktaları bul.</li>\n<li>İşaret tablosu kur.</li>\n<li>Her kritik noktada işaret değişimini oku.</li>\n<li>İstenirse değeri \\(f(c)\\) ile hesapla.</li></ol>\n<p>Örnek: \\(f'(x)=(x+1)(x-2)^2(x-5)\\).</p>\n<table><thead><tr><th>\\(x\\)</th><th>\\(x\\lt-1\\)</th><th>\\(-1\\lt x\\lt2\\)</th><th>\\(2\\lt x\\lt5\\)</th><th>\\(x\\gt5\\)</th></tr></thead><tbody>\n<tr><td>\\(f'\\) işareti</td><td>+</td><td>−</td><td>−</td><td>+</td></tr></tbody></table>\n<p>\\(x=-1\\): + → − ⇒ <strong>yerel maksimum</strong>. \\(x=2\\): − → − ⇒ ekstremum <strong>yok</strong>. \\(x=5\\): − → + ⇒ <strong>yerel minimum</strong>.</p>\n<h4>\\(f'\\)'nin grafiğinden okuma</h4>\n<p>\\(f'\\)'nin grafiği verildiğinde, \\(f\\)'nin yerel maksimumu \\(f'\\) grafiğinin \\(x\\)-eksenini <strong>yukarıdan aşağıya kestiği</strong> yerdedir; yerel minimum ise <strong>aşağıdan yukarıya kestiği</strong> yerdedir. \\(f'\\) grafiğinin ekseni sadece <em>teğet geçtiği</em> (dokunup geri döndüğü) yerde ekstremum yoktur. \\(f'\\) grafiğinin tepe ve çukurları \\(f\\)'nin ekstremumu <strong>değildir</strong> — onlar \\(f\\)'nin büküm noktalarıdır (5.9).</p>\n<div class=\"kn-kural\"><strong>FRQ tam puan cümlesi:</strong><br>“\\(f\\) has a relative maximum at \\(x=-1\\) because \\(f'\\) changes from positive to negative at \\(x=-1\\).”<br>“\\(f\\) has neither a relative maximum nor a relative minimum at \\(x=2\\) because \\(f'\\) does not change sign at \\(x=2\\).”</div>\n<div class=\"kn-dikkat\">“\\(f'(-1)=0\\), so \\(f\\) has a relative maximum” <strong>puan almaz</strong>: \\(f'=0\\) tek başına yeterli değildir. İşaret değişimini söylemelisin. Ayrıca “the slope goes from positive to negative” gibi belirsiz zamirlerden kaçın; fonksiyonun adını (\\(f'\\)) yaz.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(f'(x)=(x+1)(x-2)^2(x-5)\\) ise \\(f\\)'nin yerel ekstremumlarının \\(x\\)-değerlerini bulun ve sınıflandırın.",
+     "cozum": [
+      "Kritik noktalar: \\(-1, 2, 5\\). \\((x-2)^2\\ge0\\) işareti etkilemez.",
+      "İşaret: \\(x\\lt-1\\) için \\(+\\), \\(-1\\lt x\\lt5\\) için \\(-\\), \\(x\\gt5\\) için \\(+\\).",
+      "Yerel maks. \\(x=-1\\) (+ → −), yerel min. \\(x=5\\) (− → +); \\(x=2\\)'de işaret değişmediği için ekstremum yok."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(g(x)=x e^{-x/2}\\). \\(g\\)'nin her yerel ekstremumunu bulun ve türünü gerekçelendirin.",
+     "cozum": [
+      "\\(g'(x)=e^{-x/2}-\\frac{x}{2}e^{-x/2}=e^{-x/2}\\left(1-\\frac x2\\right)\\). \\(e^{-x/2}\\gt0\\), sıfır yalnız \\(x=2\\).",
+      "\\(x\\lt2\\): \\(1-\\frac x2\\gt0\\Rightarrow g'\\gt0\\); \\(x\\gt2\\): \\(g'\\lt0\\).",
+      "“\\(g\\) has a relative maximum at \\(x=2\\) because \\(g'\\) changes from positive to negative at \\(x=2\\).” Değeri \\(g(2)=2e^{-1}\\approx0.736\\)."
+     ]
+    },
+    {
+     "soru": "\\(h(x)=x-3x^{1/3}\\) fonksiyonunun \\(x=0\\)'daki davranışını birinci türev testiyle inceleyin.",
+     "cozum": [
+      "\\(h'(x)=1-x^{-2/3}=\\dfrac{x^{2/3}-1}{x^{2/3}}\\). Kritik noktalar: \\(x=\\pm1\\) (\\(h'=0\\)) ve \\(x=0\\) (\\(h'\\) tanımsız, \\(h(0)=0\\)).",
+      "\\(-1\\lt x\\lt0\\) ve \\(0\\lt x\\lt1\\) için \\(x^{2/3}\\lt1\\) → \\(h'\\lt0\\) iki yanda da.",
+      "İşaret değişmediğinden \\(x=0\\)'da ekstremum yok (dikey teğet). \\(x=-1\\): yerel maks., \\(x=1\\): yerel min."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Yerel ekstremum sorusunda önce işaret tablosu; \\(f''\\)'ye gerek yok. Birinci türev testi her zaman çalışır, ikinci türev testi bazen başarısız olur.",
+    "\\(f'\\) grafiği sorusunda “eksen kesişimi + yön” ara: yukarıdan aşağı = maks, aşağıdan yukarı = min.",
+    "Hesap makineli soruda \\(f'\\)'nin sıfırlarını bulduktan sonra her birinin iki yanında \\(f'\\) değerine bakarak işaret değişimini doğrula."
+   ],
+   "sikHatalar": [
+    "\\(f'\\) grafiğinin tepe noktasını \\(f\\)'nin maksimumu sanmak.",
+    "Gerekçede yalnız “\\(f'(c)=0\\)” yazmak; işaret değişimini belirtmemek.",
+    "\\(f'\\)'nin tanımsız olduğu kritik noktaları (sivri uç, köşe) teste dahil etmemek."
+   ],
+   "terimler": [
+    {
+     "en": "First Derivative Test",
+     "tr": "Birinci türev testi"
+    },
+    {
+     "en": "relative maximum",
+     "tr": "yerel maksimum"
+    },
+    {
+     "en": "changes sign",
+     "tr": "işaret değiştirir"
+    },
+    {
+     "en": "cusp",
+     "tr": "sivri uç"
+    },
+    {
+     "en": "vertical tangent",
+     "tr": "dikey teğet"
+    }
+   ]
+  },
+  {
+   "kod": "5.5",
+   "baslik": "Using the Candidates Test to Determine Absolute (Global) Extrema",
+   "baslikTr": "Aday testiyle mutlak ekstremumları belirleme",
+   "sadeceBC": false,
+   "hedefler": [
+    "Kapalı aralıkta mutlak ekstremumları aday testiyle (Candidates Test / Closed Interval Method) bulmak.",
+    "Aday tablosunu (candidates table) FRQ biçiminde kurup sonucu gerekçelendirmek.",
+    "Açık aralıkta tek kritik nokta argümanını tanımak."
+   ],
+   "anlatim": "<p>Yerel ekstremumlar “komşulara göre” en büyük/küçüktür; mutlak ekstremum ise <strong>tüm aralığa göre</strong>. Kapalı aralıkta sürekli bir fonksiyonun mutlak ekstremumları (EVT bunların varlığını garanti eder) yalnız iki yerde olabilir: <strong>kritik noktalar</strong> ve <strong>uç noktalar</strong>.</p>\n<div class=\"kn-kural\"><strong>Candidates Test.</strong> \\(f\\), \\([a,b]\\) üzerinde sürekli olsun.\n<ol><li>\\((a,b)\\) içindeki kritik noktaları bul.</li>\n<li>\\(f\\)'yi her kritik noktada ve iki uçta (\\(a\\), \\(b\\)) hesapla.</li>\n<li>En büyük değer mutlak maksimum, en küçük değer mutlak minimumdur.</li></ol></div>\n<p>Bu yöntemde işaret tablosuna gerek yoktur; yalnızca değerleri karşılaştırırsın. Örnek: \\(f(x)=x^3-3x^2-9x+4\\), \\([-2,4]\\).</p>\n<p>\\(f'(x)=3x^2-6x-9=3(x-3)(x+1)\\) → kritik noktalar \\(x=-1\\) ve \\(x=3\\) (ikisi de aralıkta).</p>\n<table><thead><tr><th>\\(x\\)</th><th>\\(-2\\) (uç)</th><th>\\(-1\\)</th><th>\\(3\\)</th><th>\\(4\\) (uç)</th></tr></thead><tbody>\n<tr><td>\\(f(x)\\)</td><td>\\(2\\)</td><td>\\(9\\)</td><td>\\(-23\\)</td><td>\\(-16\\)</td></tr></tbody></table>\n<p>Mutlak maksimum değer \\(9\\) (\\(x=-1\\)'de), mutlak minimum değer \\(-23\\) (\\(x=3\\)'te).</p>\n<div class=\"kn-kural\"><strong>FRQ cümlesi:</strong> Tabloyu yaz ve ekle: “The absolute maximum value of \\(f\\) on \\([-2,4]\\) is \\(9\\), which occurs at \\(x=-1\\), because it is the largest of the candidate values.” Puan için <em>tüm</em> adayların (uçlar dahil) değerleri görünmelidir.</div>\n<h4>Aralık dışındaki kritik noktalar</h4>\n<p>\\([a,b]\\) dışında kalan kritik noktalar tabloya <strong>girmez</strong>. \\(f(x)=x^3-12x\\), \\([0,3]\\): kritik noktalar \\(\\pm2\\); yalnız \\(x=2\\) adaydır.</p>\n<h4>Açık aralık ya da tüm reel sayılar</h4>\n<p>Aralık kapalı değilse EVT garanti vermez. Yine de şu argüman sık kullanılır: \\(f\\) bir aralıkta sürekli ve <strong>tek</strong> kritik noktası \\(c\\) olsun. \\(f\\)'nin \\(c\\)'de yerel minimumu varsa (ör. \\(f'\\), − → +), bu aynı zamanda <strong>mutlak minimumdur</strong>; çünkü \\(f\\), \\(c\\)'nin solunda hep azalır, sağında hep artar. Bu “tek kritik nokta” gerekçesi optimizasyonda (5.11) çok işe yarar.</p>\n<div class=\"kn-dikkat\">Grafik ya da tablo sorularında uç noktalar en sık unutulan adaylardır. \\(f\\)'nin \\(x=b\\)'de \\(f'(b)\\ne0\\) olsa bile mutlak maksimumu uçta olabilir. Ayrıca soru “absolute maximum value” diyorsa \\(f(c)\\), “where” diyorsa \\(c\\) yaz.</div>\n<p>Hesap makineli sorularda kritik noktayı \\(f'(x)=0\\) grafiğinden bul, sonra \\(f\\)'yi adaylarda hesapla; ara değerleri yuvarlamadan sakla.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=x^3-3x^2-9x+4\\) fonksiyonunun \\([-2,4]\\) üzerindeki mutlak maksimum ve minimum değerlerini bulun.",
+     "cozum": [
+      "\\(f'(x)=3(x-3)(x+1)\\) → kritik noktalar \\(-1\\), \\(3\\).",
+      "Adaylar: \\(f(-2)=-8-12+18+4=2\\), \\(f(-1)=-1-3+9+4=9\\), \\(f(3)=27-27-27+4=-23\\), \\(f(4)=64-48-36+4=-16\\).",
+      "Mutlak maks. değer \\(9\\) (\\(x=-1\\)), mutlak min. değer \\(-23\\) (\\(x=3\\))."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(g(x)=2\\sin x+\\cos(2x)\\), \\(0\\le x\\le\\pi\\). \\(g\\)'nin mutlak minimum değerini bulun ve gerekçelendirin.",
+     "cozum": [
+      "\\(g'(x)=2\\cos x-2\\sin 2x=2\\cos x(1-2\\sin x)\\). \\((0,\\pi)\\)'de sıfırlar: \\(\\cos x=0\\Rightarrow x=\\frac{\\pi}{2}\\); \\(\\sin x=\\frac12\\Rightarrow x=\\frac{\\pi}{6},\\frac{5\\pi}{6}\\).",
+      "Adaylar: \\(g(0)=1\\), \\(g(\\frac{\\pi}{6})=1+\\frac12=\\frac32\\), \\(g(\\frac{\\pi}{2})=2-1=1\\), \\(g(\\frac{5\\pi}{6})=\\frac32\\), \\(g(\\pi)=1\\).",
+      "Mutlak minimum değer \\(1\\)'dir (\\(x=0,\\frac{\\pi}{2},\\pi\\)'de); “because it is the smallest of the candidate values”."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Kapalı aralık görünce işaret tablosu yerine doğrudan aday tablosu kur; daha hızlı ve hatasızdır.",
+    "Aday tablosunda uç noktaları ilk ve son sütuna yaz; unutmayı engeller.",
+    "Mutlak ekstremum sorusunda tüm adayların değerini göstermek puanın kendisidir; yalnız kazananı yazmak yetmez."
+   ],
+   "sikHatalar": [
+    "Uç noktaları adaylara katmamak.",
+    "Aralık dışındaki kritik noktayı tabloya katmak.",
+    "Ekstremumun yerini (\\(x\\)) değeri (\\(y\\)) yerine vermek ya da tersi."
+   ],
+   "terimler": [
+    {
+     "en": "Candidates Test",
+     "tr": "Aday testi"
+    },
+    {
+     "en": "absolute minimum value",
+     "tr": "mutlak minimum değer"
+    },
+    {
+     "en": "closed interval method",
+     "tr": "kapalı aralık yöntemi"
+    },
+    {
+     "en": "candidate",
+     "tr": "aday"
+    }
+   ]
+  },
+  {
+   "kod": "5.6",
+   "baslik": "Determining Concavity of Functions over Their Domains",
+   "baslikTr": "Fonksiyonların konkavlığını (bükeyliğini) belirleme",
+   "sadeceBC": false,
+   "hedefler": [
+    "\\(f''\\)'nin işaretinden ya da \\(f'\\)'nin artma/azalmasından konkavlığı (concavity) belirlemek.",
+    "Büküm noktalarını (points of inflection) bulmak ve gerekçelendirmek.",
+    "\\(f''=0\\) olmasının tek başına büküm noktası anlamına gelmediğini göstermek."
+   ],
+   "anlatim": "<p>Artan bir grafik iki farklı şekilde artabilir: gittikçe <em>dikleşerek</em> (gülümseyen ağız ∪) ya da gittikçe <em>yatıklaşarak</em> (asık surat ∩). Bu “bükülme yönüne” <strong>konkavlık (concavity)</strong> denir.</p>\n<div class=\"kn-tanim\"><strong>Konkav yukarı (concave up):</strong> \\(f'\\) artandır. Grafik teğet doğrularının <em>üstünde</em> kalır.<br><strong>Konkav aşağı (concave down):</strong> \\(f'\\) azalandır. Grafik teğetlerinin <em>altında</em> kalır.</div>\n<div class=\"kn-kural\"><strong>Konkavlık testi:</strong> Bir aralıkta \\(f''(x)\\gt0\\) ise \\(f\\) konkav yukarı; \\(f''(x)\\lt0\\) ise konkav aşağıdır.</div>\n<p>Dikkat: konkavlık artma/azalmadan <strong>bağımsızdır</strong>. Dört kombinasyon da mümkündür:</p>\n<table><thead><tr><th></th><th>\\(f''\\gt0\\) (konkav yukarı)</th><th>\\(f''\\lt0\\) (konkav aşağı)</th></tr></thead><tbody>\n<tr><td>\\(f'\\gt0\\) (artan)</td><td>gittikçe hızlı artar (\\(e^x\\))</td><td>gittikçe yavaş artar (\\(\\ln x\\))</td></tr>\n<tr><td>\\(f'\\lt0\\) (azalan)</td><td>gittikçe yavaş azalır (\\(e^{-x}\\))</td><td>gittikçe hızlı azalır (\\(-e^x\\))</td></tr></tbody></table>\n<h4>Büküm noktası (point of inflection)</h4>\n<div class=\"kn-tanim\">\\(f\\), \\(x=c\\)'de sürekli olsun. Grafiğin konkavlığı \\(c\\)'de <strong>değişiyorsa</strong> (\\(f''\\) işaret değiştiriyorsa, ya da \\(f'\\) artandan azalana / azalandan artana geçiyorsa) \\((c,f(c))\\) bir <strong>büküm noktasıdır</strong>.</div>\n<p>Adaylar: \\(f''=0\\) ya da \\(f''\\) tanımsız noktalar. Sonra işaret tablosu kurulur. Örnek: \\(f(x)=x^4-4x^3\\).</p>\n<div class=\"formul\">\\[ f''(x)=12x^2-24x=12x(x-2) \\]</div>\n<p>İşaret: \\(x\\lt0\\): \\(+\\); \\(0\\lt x\\lt2\\): \\(-\\); \\(x\\gt2\\): \\(+\\). Konkavlık iki noktada da değişir → büküm noktaları \\(x=0\\) ve \\(x=2\\).</p>\n<div class=\"kn-dikkat\"><strong>\\(f''(c)=0\\) yetmez.</strong> \\(f(x)=x^4\\) için \\(f''(x)=12x^2\\), \\(f''(0)=0\\) ama \\(f''\\) her iki yanda pozitif → konkavlık değişmez → büküm noktası <strong>yok</strong>. Tersine \\(f(x)=x^{1/3}\\) için \\(f''(0)\\) tanımsızdır ama konkavlık değişir → \\(x=0\\)'da büküm noktası <strong>var</strong>.</div>\n<h4>\\(f'\\)'nin grafiğinden konkavlık</h4>\n<p>\\(f'\\) grafiği verildiğinde: \\(f'\\) <strong>artıyorsa</strong> (grafik yukarı gidiyorsa) \\(f\\) konkav yukarı; \\(f'\\) azalıyorsa konkav aşağı. \\(f\\)'nin büküm noktaları, \\(f'\\) grafiğinin <strong>yerel maksimum ve minimum noktalarıdır</strong>. Burada \\(f'\\)'nin işareti (eksenin üstü/altı) önemsizdir.</p>\n<div class=\"kn-kural\"><strong>FRQ cümleleri:</strong> “The graph of \\(f\\) is concave down on \\((0,2)\\) because \\(f''(x)\\lt0\\) there.” / “… because \\(f'\\) is decreasing on \\((0,2)\\).”<br>“The graph of \\(f\\) has a point of inflection at \\(x=2\\) because \\(f''\\) changes sign at \\(x=2\\).” (ya da “\\(f'\\) changes from decreasing to increasing at \\(x=2\\)”).</div>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=x^4-4x^3\\) grafiğinin konkav aşağı olduğu aralığı ve büküm noktalarını bulun.",
+     "cozum": [
+      "\\(f'(x)=4x^3-12x^2\\), \\(f''(x)=12x^2-24x=12x(x-2)\\).",
+      "\\(0\\lt x\\lt2\\) için \\(f''\\lt0\\) → konkav aşağı; dışarıda \\(f''\\gt0\\).",
+      "\\(f''\\), \\(x=0\\) ve \\(x=2\\)'de işaret değiştirir; büküm noktaları \\((0,0)\\) ve \\((2,-16)\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(f'\\)'nin grafiği \\(-3\\le x\\le 4\\) için şu noktaları birleştiren doğru parçalarından oluşuyor: \\((-3,1)\\), \\((-1,-2)\\), \\((2,2)\\), \\((4,0)\\). \\(f\\) grafiğinin konkav yukarı olduğu aralığı ve büküm noktalarını gerekçeyle bulun.",
+     "cozum": [
+      "\\(f'\\), \\((-3,-1)\\)'de azalır (eğim \\(-\\frac32\\)), \\((-1,2)\\)'de artar (eğim \\(\\frac43\\)), \\((2,4)\\)'te azalır (eğim \\(-1\\)).",
+      "“The graph of \\(f\\) is concave up on \\((-1,2)\\) because \\(f'\\) is increasing on that interval.”",
+      "\\(f'\\), \\(x=-1\\)'de azalandan artana, \\(x=2\\)'de artandan azalana geçer → \\(f\\)'nin büküm noktaları \\(x=-1\\) ve \\(x=2\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Konkavlık sorusunda tek sorulacak şey: “\\(f'\\) artıyor mu, azalıyor mu?” ya da “\\(f''\\)'nin işareti ne?”.",
+    "Büküm noktası için hep iki adım: aday bul (\\(f''=0\\)/tanımsız) + işaret değişimini göster.",
+    "Hesap makineli soruda \\(f''\\)'yi elle türetip grafiğini çiz, ekseni kestiği (teğet geçmediği) noktaları say."
+   ],
+   "sikHatalar": [
+    "\\(f''(c)=0\\) olan her noktayı büküm noktası saymak.",
+    "\\(f'\\) grafiği verildiğinde konkavlığı \\(f'\\)'nin işaretinden okumak (o artma/azalmadır).",
+    "Konkav yukarıyı “artan” ile karıştırmak."
+   ],
+   "terimler": [
+    {
+     "en": "concave up",
+     "tr": "konkav yukarı (yukarı bükey)"
+    },
+    {
+     "en": "concave down",
+     "tr": "konkav aşağı (aşağı bükey)"
+    },
+    {
+     "en": "point of inflection",
+     "tr": "büküm noktası"
+    },
+    {
+     "en": "second derivative",
+     "tr": "ikinci türev"
+    },
+    {
+     "en": "concavity",
+     "tr": "konkavlık (bükeylik)"
+    }
+   ]
+  },
+  {
+   "kod": "5.7",
+   "baslik": "Using the Second Derivative Test to Determine Extrema",
+   "baslikTr": "İkinci türev testiyle ekstremumları belirleme",
+   "sadeceBC": false,
+   "hedefler": [
+    "İkinci türev testini (Second Derivative Test) uygulamak ve testin ne zaman sonuç vermediğini bilmek.",
+    "Tek kritik nokta olduğunda ikinci türev testinden mutlak ekstremum sonucuna geçmek.",
+    "Sonucu FRQ'da “\\(f'(c)=0\\) and \\(f''(c)\\gt0\\)” kalıbıyla yazmak."
+   ],
+   "anlatim": "<p>Bir kritik noktada grafik yataysa (\\(f'(c)=0\\)), orada tepe mi çukur mu olduğunu <strong>bükülme yönü</strong> söyler: konkav yukarı (∪) bir yatay noktada çukur, konkav aşağı (∩) bir yatay noktada tepe vardır.</p>\n<div class=\"kn-kural\"><strong>Second Derivative Test.</strong> \\(f'(c)=0\\) ve \\(f''\\), \\(c\\)'nin çevresinde sürekli olsun.\n<ul><li>\\(f''(c)\\gt0\\) ⇒ \\(f\\)'nin \\(c\\)'de <strong>yerel minimumu</strong> vardır.</li>\n<li>\\(f''(c)\\lt0\\) ⇒ \\(f\\)'nin \\(c\\)'de <strong>yerel maksimumu</strong> vardır.</li>\n<li>\\(f''(c)=0\\) ⇒ test <strong>sonuç vermez (inconclusive)</strong>; birinci türev testine dön.</li></ul></div>\n<p>Ezber kolaylığı: \\(f''\\) pozitif → ∪ → <strong>min</strong>; negatif → ∩ → <strong>maks</strong>. İşaretlerin “ters” görünmesi öğrencileri yanıltır; resmi düşün.</p>\n<h4>Testin koşulu: \\(f'(c)=0\\) şart</h4>\n<p>İkinci türev testi, \\(f'(c)\\) tanımsız olan kritik noktalarda (köşe, sivri uç) <strong>kullanılamaz</strong>. Ayrıca \\(f'(c)\\ne0\\) olan bir noktada \\(f''(c)\\)'nin işareti sadece konkavlığı söyler, ekstremum hakkında hiçbir şey söylemez.</p>\n<h4>Sonuç vermeyen durum</h4>\n<table><thead><tr><th>Fonksiyon</th><th>\\(f'(0)\\)</th><th>\\(f''(0)\\)</th><th>Gerçek durum</th></tr></thead><tbody>\n<tr><td>\\(x^4\\)</td><td>0</td><td>0</td><td>yerel min</td></tr>\n<tr><td>\\(-x^4\\)</td><td>0</td><td>0</td><td>yerel maks</td></tr>\n<tr><td>\\(x^3\\)</td><td>0</td><td>0</td><td>ekstremum yok</td></tr></tbody></table>\n<p>Üç farklı sonuç, aynı test verisi: \\(f''(c)=0\\) ise test hiçbir şey söylemez.</p>\n<p>Örnek: \\(f(x)=2x^3-9x^2+12x\\). \\(f'(x)=6(x-1)(x-2)\\), \\(f''(x)=12x-18\\). \\(f''(1)=-6\\lt0\\) → \\(x=1\\)'de yerel maks; \\(f''(2)=6\\gt0\\) → \\(x=2\\)'de yerel min.</p>\n<div class=\"kn-kural\"><strong>FRQ cümlesi:</strong> “\\(f\\) has a relative minimum at \\(x=2\\) because \\(f'(2)=0\\) and \\(f''(2)\\gt0\\).” İki koşulu da yaz; sadece “\\(f''(2)\\gt0\\)” eksik gerekçedir.</div>\n<h4>Tek kritik nokta → mutlak ekstremum</h4>\n<p>\\(f\\) bir aralıkta sürekli, <strong>tek</strong> kritik noktası \\(c\\), ve \\(f'(c)=0\\), \\(f''(c)\\gt0\\) ise \\(f(c)\\) yalnız yerel değil <strong>mutlak minimumdur</strong>. Optimizasyon problemlerinde (5.11) sık kullanılan bu argüman şöyle yazılır: “Since \\(x=c\\) is the only critical point on the interval and \\(f\\) has a relative minimum there, \\(f\\) has an absolute minimum at \\(x=c\\).”</p>\n<div class=\"kn-dikkat\">Kapalı aralıkta birden fazla aday varsa ikinci türev testi tek başına mutlak ekstremumu belirlemez; aday testini (5.5) kullan. Yerel maksimum değeri, bir uç noktadaki değerden küçük olabilir.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=2x^3-9x^2+12x\\) fonksiyonunun yerel ekstremumlarını ikinci türev testiyle sınıflandırın.",
+     "cozum": [
+      "\\(f'(x)=6x^2-18x+12=6(x-1)(x-2)\\) → \\(f'=0\\): \\(x=1,2\\).",
+      "\\(f''(x)=12x-18\\): \\(f''(1)=-6\\lt0\\), \\(f''(2)=6\\gt0\\).",
+      "\\(x=1\\)'de yerel maks. (\\(f(1)=5\\)), \\(x=2\\)'de yerel min. (\\(f(2)=4\\))."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) İki kez türevlenebilir \\(g\\) için \\(g'(3)=0\\) ve \\(g''(x)=x^2-2x-4\\). \\(g\\)'nin \\(x=3\\)'te yerel maks., yerel min. ya da hiçbiri olup olmadığını gerekçelendirin.",
+     "cozum": [
+      "\\(g''(3)=9-6-4=-1\\lt0\\).",
+      "“\\(g\\) has a relative maximum at \\(x=3\\) because \\(g'(3)=0\\) and \\(g''(3)\\lt0\\).”"
+     ]
+    },
+    {
+     "soru": "\\(h(x)=x^2e^{-x}\\) için \\(h\\)'nin tüm \\(x\\) üzerinde mutlak minimumu olup olmadığını inceleyin.",
+     "cozum": [
+      "\\(h'(x)=e^{-x}(2x-x^2)=xe^{-x}(2-x)\\) → kritik noktalar \\(0\\) ve \\(2\\). \\(h''(x)=e^{-x}(x^2-4x+2)\\).",
+      "\\(h''(0)=2\\gt0\\) → \\(x=0\\)'da yerel min, \\(h(0)=0\\). \\(h''(2)=e^{-2}(4-8+2)\\lt0\\) → \\(x=2\\)'de yerel maks.",
+      "İki kritik nokta olduğundan tek nokta argümanı uygulanamaz; ama \\(h(x)=x^2e^{-x}\\ge0\\) her \\(x\\) için ve \\(h(0)=0\\) → mutlak minimum değer \\(0\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Testi kullanmadan önce \\(f'(c)=0\\) olduğunu yaz; bu FRQ'da gerekçenin yarısıdır.",
+    "\\(f''(c)=0\\) çıkarsa hemen birinci türev testine geç; “inconclusive” şıkkı genellikle doğru cevaptır.",
+    "Tablo verilen sorularda (\\(f'\\) ve \\(f''\\) değerleri) yalnızca \\(f'=0\\) olan satırlara ikinci türev testini uygula."
+   ],
+   "sikHatalar": [
+    "\\(f''(c)\\gt0\\)'ı maksimum ile ilişkilendirmek (işaretleri karıştırmak).",
+    "\\(f''(c)=0\\) olduğunda “büküm noktası” ya da “ekstremum yok” diye kesin sonuç çıkarmak.",
+    "\\(f'(c)\\ne0\\) olan bir noktada ikinci türev testiyle ekstremum sonucu çıkarmak."
+   ],
+   "terimler": [
+    {
+     "en": "Second Derivative Test",
+     "tr": "İkinci türev testi"
+    },
+    {
+     "en": "inconclusive",
+     "tr": "sonuç vermez"
+    },
+    {
+     "en": "relative minimum",
+     "tr": "yerel minimum"
+    },
+    {
+     "en": "only critical point",
+     "tr": "tek kritik nokta"
+    }
+   ]
+  },
+  {
+   "kod": "5.8",
+   "baslik": "Sketching Graphs of Functions and Their Derivatives",
+   "baslikTr": "Fonksiyonların ve türevlerinin grafiklerini çizme",
+   "sadeceBC": false,
+   "hedefler": [
+    "\\(f\\)'nin grafiğinden \\(f'\\)'nin grafiğinin özelliklerini (işaret, sıfırlar, artma) çıkarmak.",
+    "\\(f'\\)'nin grafiğinden ya da işaret tablosundan \\(f\\)'nin şeklini kurmak.",
+    "Bir grafiğin \\(f\\), \\(f'\\) ya da \\(f''\\) olup olmadığını özellik eşleştirmesiyle belirlemek."
+   ],
+   "anlatim": "<p>AP sınavında “Which of the following could be the graph of \\(f'\\)?” türü sorular çok yaygındır. Çözüm, ezber değil, bir <strong>çeviri tablosudur</strong>: \\(f\\)'nin her özelliği \\(f'\\)'de belirli bir özelliğe karşılık gelir.</p>\n<table><thead><tr><th>\\(f\\)'nin grafiğinde</th><th>\\(f'\\)'nin grafiğinde</th></tr></thead><tbody>\n<tr><td>artan (increasing)</td><td>\\(x\\)-ekseninin üstünde (\\(f'\\gt0\\))</td></tr>\n<tr><td>azalan</td><td>eksenin altında</td></tr>\n<tr><td>yatay teğet (yerel maks/min)</td><td>sıfır (eksen kesişimi; maks: \\(+\\to-\\), min: \\(-\\to+\\))</td></tr>\n<tr><td>konkav yukarı</td><td>artan</td></tr>\n<tr><td>konkav aşağı</td><td>azalan</td></tr>\n<tr><td>büküm noktası</td><td>yerel maks ya da min</td></tr>\n<tr><td>doğru parçası (eğim \\(m\\))</td><td>yatay doğru \\(y=m\\)</td></tr>\n<tr><td>köşe / sivri uç</td><td>sıçrama ya da tanımsız nokta</td></tr></tbody></table>\n<p>Aynı tablo bir basamak aşağı da çalışır: \\(f'\\) ile \\(f''\\) arasındaki ilişki, \\(f\\) ile \\(f'\\) arasındaki ilişkinin aynısıdır.</p>\n<h4>\\(f\\)'den \\(f'\\)'ye: üç soru</h4>\n<ol><li>\\(f\\) nerede yatay? → \\(f'\\)'nin sıfırları.</li>\n<li>Aralarda \\(f\\) artıyor mu azalıyor mu? → \\(f'\\)'nin işareti.</li>\n<li>\\(f\\) en dik nerede? → \\(|f'|\\)'nin en büyük olduğu yer (genelde büküm noktası).</li></ol>\n<p>Örnek: \\(f\\)'nin \\(x=-1\\)'de yerel maks., \\(x=2\\)'de yerel min. var ve bunlar dışında yatay teğet yok. O hâlde \\(f'\\): \\(x\\lt-1\\) için pozitif, \\(-1\\lt x\\lt2\\) için negatif, \\(x\\gt2\\) için pozitif; eksen kesişimleri tam \\(-1\\) ve \\(2\\)'de. Bu, açılan bir parabol gibi bir \\(f'\\) grafiği demektir (ör. \\(f'(x)=k(x+1)(x-2)\\), \\(k\\gt0\\)).</p>\n<h4>\\(f'\\)'den \\(f\\)'ye</h4>\n<p>\\(f'\\) grafiği verildiğinde \\(f\\)'yi tam çizemezsin (dikey kaydırma bilinmez: \\(f\\) ve \\(f+5\\) aynı türevi verir), ama <strong>şeklini</strong> çizebilirsin. Bir nokta (\\(f(0)=3\\) gibi) verilirse grafik yerine oturur. Değerleri hesaplamak için alan gerekir (Unit 6); Unit 5'te yalnız şekil ve nitel özellikler sorulur.</p>\n<div class=\"kn-kural\"><strong>Eleme stratejisi:</strong> Önce en kolay özelliği kontrol et (\\(f'\\)'nin sıfırları \\(f\\)'nin yatay teğetleriyle aynı \\(x\\)'te mi?). Sonra işaret. Sonra konkavlık. Genelde ilk iki adım üç şıkkı eler.</div>\n<div class=\"kn-dikkat\">Grafiğin <em>yüksekliğini</em> (\\(y\\)-değeri) eğimle karıştırma. \\(f\\)'nin pozitif olduğu yer \\(f'\\)'nin pozitif olduğu yer değildir. Ayrıca \\(f\\)'nin \\(x\\)-kesişimleri \\(f'\\) için özel bir şey ifade etmez.</div>\n<p>FRQ'da “Sketch” istenmez gibi görünse de, “Find all \\(x\\) at which \\(f\\) has a relative max… Justify” sorularının tamamı bu tablonun cümleye dökülmüş hâlidir: “because \\(f'\\) changes from positive to negative”.</p>",
+   "ornekler": [
+    {
+     "soru": "Türevlenebilir \\(f\\)'nin grafiği \\(x=-2\\)'de yerel minimum, \\(x=1\\)'de yerel maksimuma sahip; başka yatay teğeti yok ve \\(x=-0.5\\)'te büküm noktası var. \\(f'\\)'nin grafiği hakkında ne söylenebilir?",
+     "cozum": [
+      "Yatay teğetler → \\(f'(-2)=0\\), \\(f'(1)=0\\).",
+      "\\(x\\lt-2\\): \\(f\\) azalan → \\(f'\\lt0\\); \\(-2\\lt x\\lt1\\): artan → \\(f'\\gt0\\); \\(x\\gt1\\): azalan → \\(f'\\lt0\\).",
+      "\\(f\\)'nin büküm noktası \\(x=-0.5\\) → \\(f'\\)'nin yerel maksimumu orada (\\(f'\\), \\(-2\\) ile \\(1\\) arasında pozitif bir tepe yapar). \\(f'\\), aşağı açılan parabol benzeri bir eğridir."
+     ]
+    },
+    {
+     "soru": "\\(f'\\)'nin işaret tablosu: \\(x\\lt-3\\): \\(+\\); \\(-3\\lt x\\lt0\\): \\(-\\); \\(0\\lt x\\lt4\\): \\(-\\); \\(x\\gt4\\): \\(+\\). Ayrıca \\(f'\\), \\((-\\infty,-2)\\) ve \\((0,2)\\)'de azalan; \\((-2,0)\\) ve \\((2,\\infty)\\)'da artan. \\(f\\)'nin şeklini tarif edin.",
+     "cozum": [
+      "Yerel maks. \\(x=-3\\) (\\(+\\to-\\)), yerel min. \\(x=4\\) (\\(-\\to+\\)); \\(x=0\\)'da işaret değişmez → yatay teğet ama ekstremum yok.",
+      "\\(f\\), \\((-\\infty,-2)\\) ve \\((0,2)\\)'de konkav aşağı (\\(f'\\) azalan), \\((-2,0)\\) ve \\((2,\\infty)\\)'da konkav yukarıdır (\\(f'\\) artan). Büküm noktaları \\(x=-2,\\ 0,\\ 2\\).",
+      "Şekil: yükselir, \\(x=-3\\)'te tepe yapar, inerken \\(x=-2\\)'de konkav yukarıya döner, \\(x=0\\)'da bir an yataylaşır (yatay teğetli büküm noktası) ve konkav aşağı inmeye devam eder, \\(x=2\\)'de yeniden bükülür, \\(x=4\\)'te dip yapar, sonra yükselir."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Bir “bir aşağı” kuralı: \\(f\\)'nin ekstremumu ↔ \\(f'\\)'nin sıfırı; \\(f\\)'nin büküm noktası ↔ \\(f'\\)'nin ekstremumu.",
+    "Şıklarda grafik eşleştirirken önce \\(x\\)-ekseni kesişimlerini dikey çizgiyle hizala; işaret uyuşmazlığı en hızlı elemedir.",
+    "Doğru parçalarından oluşan \\(f\\) için \\(f'\\) basamak (yatay parçalar) şeklindedir; köşelerde \\(f'\\) tanımsızdır."
+   ],
+   "sikHatalar": [
+    "\\(f\\)'nin \\(x\\)-kesişimlerini \\(f'\\)'nin sıfırları sanmak.",
+    "\\(f'\\) grafiğinin tepe noktasını \\(f\\)'nin tepe noktası sanmak.",
+    "\\(f'\\) grafiğinden \\(f\\)'nin kesin değerlerini (yüksekliğini) bilinebilir sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "graph of the derivative",
+     "tr": "türevin grafiği"
+    },
+    {
+     "en": "horizontal tangent",
+     "tr": "yatay teğet"
+    },
+    {
+     "en": "sketch",
+     "tr": "taslak çizmek"
+    },
+    {
+     "en": "vertical shift",
+     "tr": "dikey kaydırma"
+    }
+   ]
+  },
+  {
+   "kod": "5.9",
+   "baslik": "Connecting a Function, Its First Derivative, and Its Second Derivative",
+   "baslikTr": "Fonksiyon, birinci türev ve ikinci türev arasındaki bağlantılar",
+   "sadeceBC": false,
+   "hedefler": [
+    "\\(f\\), \\(f'\\) ve \\(f''\\)'den herhangi birinin grafiği/tablosu verildiğinde diğer ikisi hakkında doğru çıkarımlar yapmak.",
+    "Aynı anda iki koşulu (ör. “\\(f\\) azalan ve konkav yukarı”) sağlayan aralıkları bulmak.",
+    "Grafik/tablo verisinden yapılan çıkarımları doğru fonksiyonu anarak gerekçelendirmek."
+   ],
+   "anlatim": "<p>Unit 5'in kalbi şu zincirdir: <strong>\\(f\\) ← \\(f'\\) ← \\(f''\\)</strong>. Her halka, bir öncekinin “eğimini” anlatır. Sınavda bir fonksiyonun grafiği verilir ve diğer ikisi hakkında soru sorulur; hangi grafiğe baktığını <em>her seferinde</em> kendine söylemelisin.</p>\n<table><thead><tr><th>Soru</th><th>\\(f\\) verilirse</th><th>\\(f'\\) verilirse</th><th>\\(f''\\) verilirse</th></tr></thead><tbody>\n<tr><td>\\(f\\) artan mı?</td><td>grafik yükseliyor mu</td><td>\\(f'\\gt0\\) (eksenin üstü)</td><td>doğrudan söylenemez</td></tr>\n<tr><td>\\(f\\)'nin yerel ekstremumu</td><td>tepe/dip</td><td>\\(f'\\) işaret değiştirir</td><td>yalnız \\(f'(c)=0\\) bilinirse (2. türev testi)</td></tr>\n<tr><td>\\(f\\) konkav yukarı mı?</td><td>∪ şekli</td><td>\\(f'\\) artan</td><td>\\(f''\\gt0\\) (eksenin üstü)</td></tr>\n<tr><td>\\(f\\)'nin büküm noktası</td><td>bükülme değişir</td><td>\\(f'\\)'nin yerel ekstremumu</td><td>\\(f''\\) işaret değiştirir</td></tr></tbody></table>\n<h4>Bileşik koşullar</h4>\n<p>“On which interval is \\(f\\) decreasing and concave up?” sorusu iki işaret tablosunun <strong>kesişimidir</strong>: \\(f'\\lt0\\) <em>ve</em> \\(f''\\gt0\\). Örnek: \\(f'(x)=x^2-4x\\) için \\(f'\\lt0\\) \\((0,4)\\)'te; \\(f''(x)=2x-4\\gt0\\) \\((2,\\infty)\\)'da; kesişim \\((2,4)\\).</p>\n<h4>Sayısal yorum (bağlam)</h4>\n<p>\\(f'\\) ve \\(f''\\) aynı işaretliyse \\(|f'|\\) büyür: fonksiyon <strong>gittikçe hızlanarak</strong> değişir. Hareket problemlerinde bu, hız ve ivme aynı işaretliyse <strong>süratin (speed)</strong> arttığı anlamına gelir. Zıt işaretliyse değişim yavaşlar.</p>\n<table><thead><tr><th>\\(f'\\)</th><th>\\(f''\\)</th><th>Yorum</th></tr></thead><tbody>\n<tr><td>+</td><td>+</td><td>artıyor, artış hızlanıyor</td></tr>\n<tr><td>+</td><td>−</td><td>artıyor, artış yavaşlıyor</td></tr>\n<tr><td>−</td><td>+</td><td>azalıyor, azalış yavaşlıyor</td></tr>\n<tr><td>−</td><td>−</td><td>azalıyor, azalış hızlanıyor</td></tr></tbody></table>\n<div class=\"kn-kural\"><strong>FRQ gerekçe kalıpları:</strong><br>“\\(f\\) has a point of inflection at \\(x=1\\) because \\(f'\\) changes from increasing to decreasing at \\(x=1\\).”<br>“\\(f\\) is decreasing and concave up on \\((2,4)\\) because \\(f'\\lt0\\) and \\(f'\\) is increasing there.”<br>Grafik verilen fonksiyonun adını kullan: \\(f'\\) grafiği verildiyse gerekçe \\(f'\\)'nin davranışıyla yazılır, \\(f''\\) uydurma.</div>\n<div class=\"kn-dikkat\">“\\(f''\\) grafiği verildi, \\(f\\)'nin nerede yerel maksimumu var?” sorusu tek başına <strong>cevaplanamaz</strong>; \\(f'\\)'nin sıfırlarını bilmen gerekir. Şıklarda bunu sınayan “cannot be determined” seçeneğine dikkat et. Tablo verisiyle yapılan çıkarımlarda da \\(f'\\)'nin sürekli olduğu ve aradaki davranışın bilindiği varsayılmadıkça işaret değişimi iddia etme.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(f'(x)=x^2-4x\\). \\(f\\)'nin azalan ve konkav yukarı olduğu aralığı bulun.",
+     "cozum": [
+      "\\(f'(x)=x(x-4)\\lt0\\) ⇔ \\(0\\lt x\\lt4\\).",
+      "\\(f''(x)=2x-4\\gt0\\) ⇔ \\(x\\gt2\\).",
+      "Kesişim: \\((2,4)\\). “… because \\(f'(x)\\lt0\\) and \\(f''(x)\\gt0\\) on \\((2,4)\\).”"
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(f''\\)'nin grafiği \\([0,6]\\)'da sürekli; \\(f''\\), \\((0,3)\\)'te pozitif, \\((3,6)\\)'da negatif. Ayrıca \\(f'(1)=-2\\), \\(f'(3)=1\\), \\(f'(5)=0\\). \\(x=5\\)'te \\(f\\)'nin ne tür bir ekstremumu vardır? \\(f\\)'nin büküm noktası nerededir?",
+     "cozum": [
+      "\\(f'(5)=0\\) ve \\(f''(5)\\lt0\\) → ikinci türev testine göre \\(x=5\\)'te <strong>yerel maksimum</strong>: “because \\(f'(5)=0\\) and \\(f''(5)\\lt0\\).”",
+      "\\(f''\\), \\(x=3\\)'te pozitiften negatife geçer → \\(f\\)'nin büküm noktası \\(x=3\\)'te.",
+      "Ek not: \\(f'\\), \\((1,3)\\)'te artar ve \\(-2\\)'den \\(1\\)'e çıkar; IVT'ye göre \\((1,3)\\)'te \\(f'\\)'nin bir sıfırı (\\(f\\)'nin yerel minimumu) da vardır."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Soruyu okurken grafiğin başlığına yuvarlak çiz: “graph of \\(f'\\)”. Hataların çoğu yanlış grafiği okumaktan gelir.",
+    "İki koşullu sorularda iki ayrı işaret satırı yaz, sonra ortak bölgeyi işaretle.",
+    "“Speed increasing” = hız ve ivme aynı işaretli; Unit 4 ile bağlantılıdır."
+   ],
+   "sikHatalar": [
+    "\\(f''\\) grafiğinin sıfırlarını \\(f\\)'nin ekstremumları sanmak.",
+    "\\(f'\\) grafiği verildiğinde konkavlık gerekçesinde “\\(f''\\gt0\\)” yazıp grafiğin hangi özelliğine dayandığını göstermemek (kabul edilir ama \\(f'\\) artan demek daha güvenlidir).",
+    "Bileşik koşulda aralıkların birleşimini almak (kesişim olmalı)."
+   ],
+   "terimler": [
+    {
+     "en": "point of inflection",
+     "tr": "büküm noktası"
+    },
+    {
+     "en": "speed",
+     "tr": "sürat"
+    },
+    {
+     "en": "concave up",
+     "tr": "konkav yukarı"
+    },
+    {
+     "en": "cannot be determined",
+     "tr": "belirlenemez"
+    }
+   ]
+  },
+  {
+   "kod": "5.10",
+   "baslik": "Introduction to Optimization Problems",
+   "baslikTr": "Optimizasyon problemlerine giriş",
+   "sadeceBC": false,
+   "hedefler": [
+    "Sözel bir problemde optimize edilecek niceliği (objective) ve kısıtı (constraint) belirlemek.",
+    "Kısıtı kullanarak niceliği tek değişkenli bir fonksiyon olarak yazmak ve anlamlı tanım aralığını belirlemek.",
+    "Basit optimizasyon problemlerini türevle çözmek."
+   ],
+   "anlatim": "<p><strong>Optimizasyon (optimization)</strong>, bir niceliği en büyük (maximize) ya da en küçük (minimize) yapmaktır: en az malzemeyle en büyük kutu, en kısa yol, en çok kâr. Calculus bu soruları “kritik nokta + test” ile çözer; zor kısım çoğu zaman <strong>modeli kurmaktır</strong>.</p>\n<h4>Modelleme adımları</h4>\n<ol><li><strong>Resim çiz</strong> ve değişkenleri adlandır (\\(x\\), \\(y\\), \\(r\\), \\(h\\)...).</li>\n<li><strong>Amaç fonksiyonu (objective function):</strong> en büyük/küçük yapılacak niceliği yaz (alan \\(A=xy\\), hacim \\(V=\\pi r^2h\\)...).</li>\n<li><strong>Kısıt (constraint):</strong> değişkenleri bağlayan denklemi yaz (çevre \\(2x+2y=100\\), hacim sabit...).</li>\n<li>Kısıttan bir değişkeni çözüp amaç fonksiyonuna koy → <strong>tek değişkenli</strong> fonksiyon.</li>\n<li><strong>Tanım aralığını (domain)</strong> bağlamdan belirle (uzunluk \\(\\ge0\\) gibi).</li></ol>\n<p>Örnek: Bir nehir kenarında, nehre paralel kenara çit çekilmeyecek şekilde 120 m çitle dikdörtgen bir alan çevrilecek. Nehre dik kenarlar \\(x\\), paralel kenar \\(y\\) olsun.</p>\n<div class=\"formul\">\\[ \\text{Kısıt: } 2x+y=120 \\;\\Rightarrow\\; y=120-2x,\\qquad A(x)=x(120-2x)=120x-2x^2,\\quad 0\\le x\\le60 \\]</div>\n<p>\\(A'(x)=120-4x=0\\Rightarrow x=30\\). Aday testi: \\(A(0)=0\\), \\(A(30)=1800\\), \\(A(60)=0\\). En büyük alan \\(1800\\ \\text{m}^2\\) (\\(x=30\\), \\(y=60\\)).</p>\n<div class=\"kn-kural\"><strong>Tanım aralığı neden önemli?</strong> Kapalı ve sınırlı bir aralık elde edersen aday testi (uçlar + kritik noktalar) mutlak ekstremumu garantiler. Açık aralıkta (\\(x\\gt0\\) gibi) ise “tek kritik nokta” argümanını ya da birinci/ikinci türev testini kullanırsın (5.11).</div>\n<h4>Sık görülen modeller</h4>\n<table><thead><tr><th>Durum</th><th>Amaç</th><th>Kısıt</th></tr></thead><tbody>\n<tr><td>Toplamı sabit iki sayı</td><td>\\(P=xy\\)</td><td>\\(x+y=S\\)</td></tr>\n<tr><td>Kare karton, köşelerden kare kesilir</td><td>\\(V=x(L-2x)^2\\)</td><td>\\(0\\le x\\le\\frac L2\\)</td></tr>\n<tr><td>Eğri üzerinde noktaya en yakın nokta</td><td>\\(D^2=(x-a)^2+(y-b)^2\\)</td><td>\\(y=f(x)\\)</td></tr>\n<tr><td>Fiyat–talep</td><td>Gelir \\(R=p\\cdot q\\)</td><td>\\(q\\) fiyatın fonksiyonu</td></tr></tbody></table>\n<div class=\"kn-dikkat\">Uzaklık problemlerinde \\(D\\) yerine \\(D^2\\)'yi minimize etmek serbesttir (karekök artan bir fonksiyondur, minimum aynı \\(x\\)'te oluşur) ve türevi çok kolaylaştırır. Ama soru “minimum distance” değerini istiyorsa sonunda karekök almayı unutma.</div>\n<p>Cevabı sorunun istediği nicelikle ver: “what value of \\(x\\)”, “what are the dimensions”, “what is the maximum area” farklı cevaplardır. Birimleri yaz.</p>",
+   "ornekler": [
+    {
+     "soru": "Toplamı 30 olan iki negatif olmayan sayıdan birinin karesi ile diğerinin toplamı (\\(S=x^2+y\\)) en küçük olsun. Sayıları bulun.",
+     "cozum": [
+      "Kısıt \\(x+y=30\\Rightarrow y=30-x\\); \\(S(x)=x^2+30-x\\), \\(0\\le x\\le30\\).",
+      "\\(S'(x)=2x-1=0\\Rightarrow x=\\frac12\\). Adaylar: \\(S(0)=30\\), \\(S(\\frac12)=29.75\\), \\(S(30)=900\\).",
+      "En küçük \\(S\\) için \\(x=\\frac12\\), \\(y=29.5\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Kenarı 18 cm olan kare bir kartonun köşelerinden kenarı \\(x\\) olan kareler kesilip kenarlar katlanarak üstü açık kutu yapılıyor. Hacmi \\(x\\) cinsinden yazın, tanım aralığını belirtin ve en büyük hacmi bulun.",
+     "cozum": [
+      "Taban kenarı \\(18-2x\\), yükseklik \\(x\\): \\(V(x)=x(18-2x)^2\\), \\(0\\le x\\le9\\).",
+      "\\(V'(x)=(18-2x)^2-4x(18-2x)=(18-2x)(18-6x)\\) → kritik noktalar \\(x=3\\) ve \\(x=9\\).",
+      "Adaylar: \\(V(0)=0\\), \\(V(3)=3\\cdot144=432\\), \\(V(9)=0\\). En büyük hacim \\(432\\ \\text{cm}^3\\), \\(x=3\\) cm'de."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "İki değişken gördüğünde kısıtı ara; türev almadan önce fonksiyon tek değişkenli olmalı.",
+    "Tanım aralığını bağlamdan yaz; uç noktalar bazen cevaptır (özellikle “minimum” sorularında).",
+    "Uzaklıkta \\(D^2\\), ikinci dereceden fonksiyonlarda tepe noktası formülü (\\(x=-\\frac{b}{2a}\\)) hız kazandırır."
+   ],
+   "sikHatalar": [
+    "Kısıtı yerine koymadan iki değişkenli ifadenin türevini almak.",
+    "Sorulan nicelik yerine kritik \\(x\\)-değerini cevap olarak vermek (ya da tersi).",
+    "Bağlamda anlamsız kritik noktayı (negatif uzunluk) kabul etmek."
+   ],
+   "terimler": [
+    {
+     "en": "optimization",
+     "tr": "optimizasyon (en iyileme)"
+    },
+    {
+     "en": "objective function",
+     "tr": "amaç fonksiyonu"
+    },
+    {
+     "en": "constraint",
+     "tr": "kısıt"
+    },
+    {
+     "en": "dimensions",
+     "tr": "boyutlar"
+    },
+    {
+     "en": "domain",
+     "tr": "tanım aralığı"
+    }
+   ]
+  },
+  {
+   "kod": "5.11",
+   "baslik": "Solving Optimization Problems",
+   "baslikTr": "Optimizasyon problemlerini çözme",
+   "sadeceBC": false,
+   "hedefler": [
+    "Kurulan modelin mutlak ekstremumunu aday testi ya da tek kritik nokta argümanıyla bulmak ve gerekçelendirmek.",
+    "Bağlamlı (geometri, maliyet, hareket) optimizasyon problemlerini çözüp sonucu birimiyle yorumlamak.",
+    "Hesap makinesiyle kritik noktayı bulup sonucu üç ondalık basamakla vermek."
+   ],
+   "anlatim": "<p>5.10'da modeli kurdun; şimdi bulduğun kritik noktanın gerçekten <strong>mutlak</strong> (absolute) maksimum ya da minimum olduğunu kanıtlaman gerekir. FRQ'da bu kanıt, puanın ayrı bir parçasıdır.</p>\n<h4>Üç gerekçe yolu</h4>\n<table><thead><tr><th>Durum</th><th>Yöntem</th><th>Yazılacak cümle</th></tr></thead><tbody>\n<tr><td>Kapalı aralık \\([a,b]\\)</td><td>Aday testi (Candidates Test)</td><td>“Comparing values at the critical point and the endpoints, the maximum is…”</td></tr>\n<tr><td>Açık aralık, tek kritik nokta</td><td>Birinci türev testi</td><td>“\\(A'\\) changes from positive to negative at \\(x=c\\), and \\(x=c\\) is the only critical point, so \\(A\\) has an absolute maximum at \\(x=c\\).”</td></tr>\n<tr><td>Açık aralık, tek kritik nokta</td><td>İkinci türev testi</td><td>“\\(C'(c)=0\\) and \\(C''(c)\\gt0\\), and \\(c\\) is the only critical point, so \\(C\\) has an absolute minimum at \\(c\\).”</td></tr></tbody></table>\n<h4>Örnek: en az malzemeli kutu</h4>\n<p>Tabanı kare, üstü açık bir kutunun hacmi \\(32\\ \\text{m}^3\\). Yüzey alanını en küçük yap. Taban kenarı \\(x\\), yükseklik \\(h\\): kısıt \\(x^2h=32\\Rightarrow h=\\frac{32}{x^2}\\).</p>\n<div class=\"formul\">\\[ S(x)=x^2+4xh=x^2+\\frac{128}{x},\\qquad x\\gt0 \\]</div>\n<p>\\(S'(x)=2x-\\frac{128}{x^2}=0\\Rightarrow x^3=64\\Rightarrow x=4\\). \\(0\\lt x\\lt4\\) için \\(S'\\lt0\\), \\(x\\gt4\\) için \\(S'\\gt0\\); tek kritik nokta → <strong>mutlak minimum</strong>. Boyutlar \\(4\\times4\\times2\\) m, \\(S(4)=16+32=48\\ \\text{m}^2\\).</p>\n<h4>Maliyet ve uzaklık bağlamları</h4>\n<p>Farklı birim maliyetler (ör. kara yolu 3, deniz 5 birim/km) varsa toplam maliyet \\(C(x)=3(\\text{kara})+5\\sqrt{x^2+d^2}\\) gibi yazılır; türevi sıfırlayınca kareköklü denklem çıkar. Bu tür denklemler çoğunlukla <strong>hesap makineli</strong> bölümde gelir: \\(C'(x)\\)'i grafikte çiz, “zero” ile kökü bul, adaylarla karşılaştır.</p>\n<div class=\"kn-kural\"><strong>Hesap makinesi kuralı:</strong> Sonucu <strong>üç ondalık basamağa</strong> doğru (correct to three decimal places) ver; ara sonuçları yuvarlama, makinede sakla. Bir FRQ cevabında “\\(x=2.154\\)” yaz, “\\(\\approx2.15\\)” değil.</div>\n<div class=\"kn-dikkat\">Sık kaçan puanlar: (1) yalnız “\\(A'(c)=0\\)” yazıp maksimum olduğunu kanıtlamamak; (2) açık aralıkta birden fazla kritik nokta varken “tek kritik nokta” argümanını kullanmak; (3) soru “maximum area” derken \\(x\\)'i vermek; (4) birim yazmamak.</div>\n<p>Kontrol alışkanlığı: bulunan cevap bağlamda mantıklı mı? Kutunun kenarı negatif olamaz, en yakın nokta eğri üzerinde olmalı, en büyük alan uçlardaki değerlerden büyük olmalı.</p>",
+   "ornekler": [
+    {
+     "soru": "Tabanı kare, üstü açık, hacmi \\(32\\ \\text{m}^3\\) olan kutunun yüzey alanı en az kaçtır? Mutlak minimum olduğunu gerekçelendirin.",
+     "cozum": [
+      "\\(h=\\frac{32}{x^2}\\), \\(S(x)=x^2+\\frac{128}{x}\\), \\(x\\gt0\\).",
+      "\\(S'(x)=2x-\\frac{128}{x^2}=\\frac{2(x^3-64)}{x^2}=0\\Rightarrow x=4\\).",
+      "\\(S'\\), \\(x=4\\)'te negatiften pozitife geçer ve \\(x=4\\) tek kritik noktadır → mutlak minimum. \\(S(4)=48\\ \\text{m}^2\\)."
+     ]
+    },
+    {
+     "soru": "(Hesap makineli, FRQ tarzı) \\(y=\\ln x\\) eğrisi üzerindeki hangi nokta \\((3,0)\\) noktasına en yakındır?",
+     "cozum": [
+      "\\(D^2(x)=(x-3)^2+(\\ln x)^2\\), \\(x\\gt0\\). \\(\\frac{d}{dx}D^2=2(x-3)+\\frac{2\\ln x}{x}\\).",
+      "Hesap makinesiyle \\(x-3+\\frac{\\ln x}{x}=0\\) çözülür: \\(x\\approx2.632\\) (tek kök; solunda türev negatif, sağında pozitif → tek kritik noktada mutlak minimum).",
+      "Nokta \\(\\approx(2.632,\\ 0.968)\\); en küçük uzaklık \\(\\sqrt{(2.632-3)^2+0.968^2}\\approx1.035\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Açık aralıkta tek kritik nokta varsa gerekçe cümlesinde “only critical point” ifadesini mutlaka kullan.",
+    "Kapalı aralık elde edebiliyorsan (fiziksel sınırlar) aday testi en güvenli yoldur.",
+    "Hesap makineli soruda türevi elle yazmak yerine makinenin sayısal türevini (nDeriv) kullanabilirsin; ama denklemi kâğıda yaz."
+   ],
+   "sikHatalar": [
+    "Kritik noktanın maksimum mu minimum mu olduğunu test etmeden cevap vermek.",
+    "Ara sonuçları yuvarlayıp son cevabı üç ondalıkta yanlış vermek.",
+    "\\(D^2\\)'yi minimize edip \\(D\\) yerine \\(D^2\\) değerini rapor etmek."
+   ],
+   "terimler": [
+    {
+     "en": "absolute minimum",
+     "tr": "mutlak minimum"
+    },
+    {
+     "en": "surface area",
+     "tr": "yüzey alanı"
+    },
+    {
+     "en": "cost function",
+     "tr": "maliyet fonksiyonu"
+    },
+    {
+     "en": "correct to three decimal places",
+     "tr": "üç ondalık basamağa doğru"
+    },
+    {
+     "en": "only critical point",
+     "tr": "tek kritik nokta"
+    }
+   ]
+  },
+  {
+   "kod": "5.12",
+   "baslik": "Exploring Behaviors of Implicit Relations",
+   "baslikTr": "Kapalı (örtük) bağıntıların davranışını inceleme",
+   "sadeceBC": false,
+   "hedefler": [
+    "Kapalı türevle (implicit differentiation) bulunan \\(\\frac{dy}{dx}\\) ile yatay ve dikey teğetleri bulmak.",
+    "\\(\\frac{d^2y}{dx^2}\\)'yi kapalı türevle hesaplayıp bir noktada konkavlığı belirlemek.",
+    "Yatay teğet noktasında \\(\\frac{d^2y}{dx^2}\\)'nin işaretiyle eğrinin yerel maksimum/minimumunu belirlemek."
+   ],
+   "anlatim": "<p>\\(x^2+xy+y^2=7\\) gibi bir eğri \\(y=f(x)\\) biçiminde tek bir fonksiyon değildir, ama yine de “yükseliyor mu, alçalıyor mu, nasıl bükülüyor” sorularını sorabiliriz. Araç: Unit 3'teki <strong>kapalı türev (implicit differentiation)</strong>.</p>\n<h4>Teğet doğruları</h4>\n<p>\\(\\dfrac{dy}{dx}=\\dfrac{N(x,y)}{D(x,y)}\\) biçiminde olsun.</p>\n<table><thead><tr><th>Durum</th><th>Koşul</th><th>Not</th></tr></thead><tbody>\n<tr><td><strong>Yatay teğet (horizontal tangent)</strong></td><td>\\(N=0\\) ve \\(D\\ne0\\)</td><td>Bulunan bağıntıyı eğri denklemine koyup noktaları bul.</td></tr>\n<tr><td><strong>Dikey teğet (vertical tangent)</strong></td><td>\\(D=0\\) ve \\(N\\ne0\\)</td><td>Aynı şekilde eğriye koy.</td></tr>\n<tr><td>Belirsiz</td><td>\\(N=0\\) ve \\(D=0\\)</td><td>Ayrı inceleme gerekir; şıklarda genelde “neither”.</td></tr></tbody></table>\n<p>Örnek: \\(x^2+xy+y^2=12\\). Türev: \\(2x+y+xy'+2yy'=0\\Rightarrow y'=-\\dfrac{2x+y}{x+2y}\\). Yatay teğet: \\(y=-2x\\). Eğriye koy: \\(x^2-2x^2+4x^2=12\\Rightarrow x^2=4\\) → \\((2,-4)\\) ve \\((-2,4)\\). Bu noktalarda \\(x+2y=\\mp6\\ne0\\) ✓.</p>\n<div class=\"kn-dikkat\">“Yatay teğet” için yalnız \\(N=0\\) yazmak yetmez: (1) bulunan noktanın <strong>eğri üzerinde</strong> olduğunu, (2) paydanın sıfır olmadığını kontrol et. Eğri dışındaki bir noktanın teğeti olmaz.</div>\n<h4>İkinci türev ve konkavlık</h4>\n<p>\\(\\frac{d^2y}{dx^2}\\)'yi bulmak için \\(\\frac{dy}{dx}\\)'i tekrar \\(x\\)'e göre türetirsin; \\(y\\)'nin her türevinde \\(y'\\) çarpanı çıkar ve sonra \\(y'\\) yerine bulduğun ifadeyi koyarsın.</p>\n<p>Örnek: \\(x^2+y^2=25\\) çemberi. \\(y'=-\\frac xy\\). Bölüm kuralı:</p>\n<div class=\"formul\">\\[ y''=-\\frac{y-xy'}{y^2}=-\\frac{y+\\frac{x^2}{y}}{y^2}=-\\frac{x^2+y^2}{y^3}=-\\frac{25}{y^3} \\]</div>\n<p>\\(y\\gt0\\) (üst yarı) için \\(y''\\lt0\\) → konkav aşağı; \\(y\\lt0\\) için konkav yukarı. Mantıklı: çemberin üst yarısı ∩, alt yarısı ∪.</p>\n<h4>Kapalı eğride yerel ekstremum</h4>\n<p>Bir noktada \\(\\frac{dy}{dx}=0\\) ve \\(\\frac{d^2y}{dx^2}\\lt0\\) ise eğri (o noktanın çevresinde \\(y\\)'yi \\(x\\)'in fonksiyonu olarak düşünürsek) <strong>yerel maksimuma</strong> sahiptir; \\(\\frac{d^2y}{dx^2}\\gt0\\) ise yerel minimuma. Bu, ikinci türev testinin kapalı bağıntılara uyarlanmış hâlidir.</p>\n<div class=\"kn-kural\"><strong>FRQ cümlesi:</strong> “At the point \\((2,-4)\\), \\(\\frac{dy}{dx}=0\\) and \\(\\frac{d^2y}{dx^2}\\gt0\\), so the curve has a relative minimum at this point.” Önce noktanın eğri üzerinde olduğunu ve \\(\\frac{dy}{dx}=0\\) olduğunu göster.</div>\n<p>Tablo/denklem verilmiş türevlerde (ör. “\\(\\frac{dy}{dx}=\\frac{3x^2}{2y}\\) olduğu gösterilebilir”) türevi yeniden bulmaya çalışma; verilen ifadeyi kullan — FRQ'larda bu genelde “It can be shown that…” cümlesiyle verilir.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(x^2+xy+y^2=12\\) eğrisinin yatay teğetli noktalarını bulun.",
+     "cozum": [
+      "\\(\\frac{dy}{dx}=-\\frac{2x+y}{x+2y}\\). Pay sıfır: \\(y=-2x\\).",
+      "Eğriye koy: \\(x^2+x(-2x)+4x^2=3x^2=12\\Rightarrow x=\\pm2\\). Noktalar \\((2,-4)\\), \\((-2,4)\\).",
+      "Payda: \\(2+2(-4)=-6\\ne0\\), \\(-2+8=6\\ne0\\) ✓. İki nokta da yatay teğetlidir."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir eğri için \\(\\frac{dy}{dx}=\\frac{x-2}{y}\\) olduğu biliniyor ve \\((2,3)\\) noktası eğri üzerindedir. Bu noktada eğrinin yerel maksimumu mu, yerel minimumu mu var? Gerekçelendirin.",
+     "cozum": [
+      "\\((2,3)\\)'te \\(\\frac{dy}{dx}=\\frac{0}{3}=0\\) → yatay teğet.",
+      "\\(\\frac{d^2y}{dx^2}=\\dfrac{y\\cdot1-(x-2)\\frac{dy}{dx}}{y^2}\\). \\((2,3)\\)'te: \\(\\frac{3-0}{9}=\\frac13\\gt0\\).",
+      "“Since \\(\\frac{dy}{dx}=0\\) and \\(\\frac{d^2y}{dx^2}\\gt0\\) at \\((2,3)\\), the curve has a relative minimum at \\((2,3)\\).”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Yatay teğet: pay = 0; dikey teğet: payda = 0. Hangisinin hangisi olduğunu “eğim = \\(\\frac{\\text{yükselme}}{\\text{koşu}}\\)” ile hatırla.",
+    "\\(\\frac{d^2y}{dx^2}\\)'yi sayısal bir noktada isteniyorsa önce \\(\\frac{dy}{dx}\\)'in o noktadaki değerini hesapla; cebirsel sadeleştirmeye gerek kalmaz.",
+    "“It can be shown that \\(\\frac{dy}{dx}=\\)…” verilmişse o ifadeyi kullan; yeniden türetirken yapılan hata puan kaybettirir."
+   ],
+   "sikHatalar": [
+    "Yatay teğet koşulundan çıkan bağıntıyı eğri denklemine koymayı unutup tek bir nokta yerine bir doğru vermek.",
+    "İkinci türevde \\(y'\\)'yi yerine koymayı unutmak ya da \\(y\\)'nin türevini \\(1\\) almak.",
+    "Pay ve paydanın ikisinin de sıfır olduğu noktayı yatay (ya da dikey) teğet saymak."
+   ],
+   "terimler": [
+    {
+     "en": "implicit differentiation",
+     "tr": "kapalı türev"
+    },
+    {
+     "en": "implicit relation",
+     "tr": "kapalı (örtük) bağıntı"
+    },
+    {
+     "en": "horizontal tangent",
+     "tr": "yatay teğet"
+    },
+    {
+     "en": "vertical tangent",
+     "tr": "dikey teğet"
+    },
+    {
+     "en": "It can be shown that",
+     "tr": "… olduğu gösterilebilir"
+    }
+   ]
+  }
+ ]
+}

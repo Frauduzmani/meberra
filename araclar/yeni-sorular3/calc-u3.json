@@ -1,0 +1,2774 @@
+[
+ {
+  "id": "calc_k_u3_1",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 0,
+  "numara": 1,
+  "konu": "3.1 The Chain Rule",
+  "zorluk": "easy",
+  "govde": "If $h(x)=\\left(3x^2-5\\right)^4$, which of the following is $h'(x)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$4\\left(3x^2-5\\right)^3$"
+   },
+   {
+    "id": "B",
+    "text": "$4(6x)^3$"
+   },
+   {
+    "id": "C",
+    "text": "$6x\\left(3x^2-5\\right)^3$"
+   },
+   {
+    "id": "D",
+    "text": "$24x\\left(3x^2-5\\right)^3$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. Dış: $u^4$, iç: $u=3x^2-5$.<br/>2. $h'(x)=4u^3\\cdot u'=4\\left(3x^2-5\\right)^3\\cdot6x$.<br/>3. $h'(x)=24x\\left(3x^2-5\\right)^3$.",
+  "genel_hatirlatma": "Zincir kuralı: dışın türevi (iç aynen kalır) çarpı içinin türevi.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İç türevi unutmak.",
+    "aciklama": "Dış türev $4(3x^2-5)^3$ doğru ama iç fonksiyonun türevi $6x$ ile çarpılmamış."
+   },
+   "B": {
+    "etiket": "Üssü iç fonksiyonun türevine uygulamak.",
+    "aciklama": "Zincir kuralında dış fonksiyonun türevi iç ifadeyle ($3x^2-5$) yazılır; $6x$ yalnızca çarpandır."
+   },
+   "C": {
+    "etiket": "Kuvvet kuralının katsayısını unutmak.",
+    "aciklama": "$u^4$'ün türevi $4u^3$'tür; 4 katsayısı düşmüş. Doğrusu $4\\cdot6x=24x$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.1)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Kuvvet fonksiyonunda zincir kuralı",
+   "ipucu": "$\\frac{d}{dx}u^n=nu^{n-1}u'$",
+   "sikHata": "İç türevi unutmak",
+   "cedKonu": "3.1",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_2",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 1,
+  "numara": 2,
+  "konu": "3.1 The Chain Rule",
+  "zorluk": "medium",
+  "govde": "The table gives values of the differentiable functions $f$ and $g$ and their derivatives.<table><thead><tr><th>$x$</th><th>$f(x)$</th><th>$f'(x)$</th><th>$g(x)$</th><th>$g'(x)$</th></tr></thead><tbody><tr><td>1</td><td>3</td><td>$-2$</td><td>2</td><td>5</td></tr><tr><td>2</td><td>1</td><td>4</td><td>3</td><td>$-1$</td></tr><tr><td>3</td><td>2</td><td>6</td><td>1</td><td>7</td></tr></tbody></table>If $h(x)=f(g(x))$, what is the value of $h'(1)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$-10$"
+   },
+   {
+    "id": "B",
+    "text": "$-4$"
+   },
+   {
+    "id": "C",
+    "text": "$20$"
+   },
+   {
+    "id": "D",
+    "text": "$4$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. Zincir kuralı: $h'(1)=f'(g(1))\\cdot g'(1)$.<br/>2. Tablodan $g(1)=2$, yani $f'(g(1))=f'(2)=4$.<br/>3. $g'(1)=5$.<br/>4. $h'(1)=4\\cdot5=20$.",
+  "genel_hatirlatma": "Önce iç değeri bul ($g(1)$), sonra $f'$'yi o değerde oku.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Aynı satırdan iki türevi çarpmak.",
+    "aciklama": "$f'(1)\\cdot g'(1)=(-2)(5)$ hesaplanmış. Dış türev $g(1)=2$ noktasında okunmalı: $f'(2)$."
+   },
+   "B": {
+    "etiket": "Her iki türevi de yanlış noktada okumak.",
+    "aciklama": "$f'(2)\\cdot g'(2)=4\\cdot(-1)$ hesaplanmış. İç türev $x=1$'de: $g'(1)=5$."
+   },
+   "D": {
+    "etiket": "İç türevi unutmak.",
+    "aciklama": "$f'(g(1))=f'(2)=4$ doğru ama $g'(1)=5$ ile çarpılmamış."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.1)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Tabloyla zincir kuralı",
+   "ipucu": "$f'$ of $g(1)$, times $g'(1)$.",
+   "sikHata": "$f'(1)g'(1)$ hesaplamak",
+   "cedKonu": "3.1",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_3",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 2,
+  "numara": 3,
+  "konu": "3.1 The Chain Rule",
+  "zorluk": "hard",
+  "govde": "The table gives values of the differentiable functions $f$ and $g$ and their derivatives.<table><thead><tr><th>$x$</th><th>$f(x)$</th><th>$f'(x)$</th><th>$g(x)$</th><th>$g'(x)$</th></tr></thead><tbody><tr><td>1</td><td>3</td><td>$-2$</td><td>2</td><td>5</td></tr><tr><td>2</td><td>1</td><td>4</td><td>3</td><td>$-1$</td></tr><tr><td>3</td><td>2</td><td>6</td><td>1</td><td>7</td></tr></tbody></table>If $p(x)=f\\big(g(2x)\\big)$, what is the value of $p'(1)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$-12$"
+   },
+   {
+    "id": "B",
+    "text": "$-6$"
+   },
+   {
+    "id": "C",
+    "text": "$40$"
+   },
+   {
+    "id": "D",
+    "text": "$12$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. Üç katman: $f$ → $g$ → $2x$.<br/>2. $p'(x)=f'\\big(g(2x)\\big)\\cdot g'(2x)\\cdot2$.<br/>3. $x=1$: $g(2)=3$, $f'(3)=6$, $g'(2)=-1$.<br/>4. $p'(1)=6\\cdot(-1)\\cdot2=-12$.",
+  "genel_hatirlatma": "Her katman bir çarpan üretir; değerleri içten dışa doğru bul.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "En içteki $2x$'in türevini unutmak.",
+    "aciklama": "$p'(x)=f'(g(2x))\\cdot g'(2x)\\cdot2$. Üçüncü halka olan 2 çarpanı atlanmış."
+   },
+   "C": {
+    "etiket": "$g(2x)$ yerine $g(x)$ değerlerini kullanmak.",
+    "aciklama": "$x=1$'de iç girdi $2x=2$'dir; $g(1)$ ve $g'(1)$ değil, $g(2)=3$ ve $g'(2)=-1$ kullanılmalı."
+   },
+   "D": {
+    "etiket": "Ortadaki $g'(2x)$ çarpanını unutmak.",
+    "aciklama": "$f'(3)\\cdot2=12$ bulunmuş; $g'(2)=-1$ çarpanı (ve işareti) kaybolmuş."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.1)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Üç katmanlı bileşke, tablo",
+   "ipucu": "İlk iş: $2x$ → $g(2x)$ → $f'(\\cdot)$ sırasıyla girdileri hesapla.",
+   "sikHata": "Bir zincir halkasını atlamak",
+   "cedKonu": "3.1",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_4",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 3,
+  "numara": 4,
+  "konu": "3.1 The Chain Rule",
+  "zorluk": "medium",
+  "govde": "If $y=\\cos^2(3x)$, what is the value of $\\dfrac{dy}{dx}$ at $x=\\dfrac{\\pi}{12}$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$-1$"
+   },
+   {
+    "id": "B",
+    "text": "$3$"
+   },
+   {
+    "id": "C",
+    "text": "$-3$"
+   },
+   {
+    "id": "D",
+    "text": "$-3\\sqrt2$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $y=[\\cos(3x)]^2$: $y'=2\\cos(3x)\\cdot(-\\sin(3x))\\cdot3=-6\\sin(3x)\\cos(3x)$.<br/>2. $x=\\frac{\\pi}{12}$: $3x=\\frac{\\pi}{4}$, $\\sin\\frac{\\pi}{4}=\\cos\\frac{\\pi}{4}=\\frac{\\sqrt2}{2}$.<br/>3. $y'=-6\\cdot\\frac12=-3$.",
+  "genel_hatirlatma": "$\\sin^n u$ ve $\\cos^n u$ en az üç katmanlıdır: kuvvet → trig → iç ifade.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İçteki $3x$'in türevini unutmak.",
+    "aciklama": "$-2\\cos(3x)\\sin(3x)$ yazılmış; zincirin son halkası olan 3 çarpanı eksik."
+   },
+   "B": {
+    "etiket": "$\\cos$'un türevinde işareti kaybetmek.",
+    "aciklama": "$\\frac{d}{dx}\\cos u=-\\sin u\\cdot u'$; eksi işareti düşmüş."
+   },
+   "D": {
+    "etiket": "Kare katmanını atlamak.",
+    "aciklama": "$\\cos^2(3x)=[\\cos(3x)]^2$; dış türev $2\\cos(3x)$ çarpanı yazılmadan $-6\\sin(3x)$ alınmış."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.1)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Trigonometrik kuvvette zincir kuralı",
+   "ipucu": "$\\cos^2(3x)=[\\cos(3x)]^2$ diye yeniden yaz.",
+   "sikHata": "Kuvvet katmanını görmemek",
+   "cedKonu": "3.1",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_5",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 4,
+  "numara": 5,
+  "konu": "3.1 The Chain Rule",
+  "zorluk": "hard",
+  "govde": "The graph of the function $g$ on $[0,6]$ consists of three line segments connecting the points $(0,1)$, $(2,5)$, $(4,3)$, and $(6,3)$. If $h(x)=g\\big(g(x)\\big)$, what is the value of $h'(1)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$4$"
+   },
+   {
+    "id": "B",
+    "text": "$-1$"
+   },
+   {
+    "id": "C",
+    "text": "$-2$"
+   },
+   {
+    "id": "D",
+    "text": "$8$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $h'(1)=g'\\big(g(1)\\big)\\cdot g'(1)$.<br/>2. $x=1$, $(0,1)$–$(2,5)$ parçasında: eğim $\\frac{5-1}{2}=2$, $g(1)=1+2=3$.<br/>3. $x=3$, $(2,5)$–$(4,3)$ parçasında: $g'(3)=\\frac{3-5}{2}=-1$.<br/>4. $h'(1)=(-1)(2)=-2$.",
+  "genel_hatirlatma": "Parçalı doğrusal grafikte türev, o parçanın eğimidir; fonksiyon değeri ise yüksekliktir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "$g'$'yi her iki çarpanda da $x=1$'de okumak.",
+    "aciklama": "$g'(1)\\cdot g'(1)=2\\cdot2$ hesaplanmış. Dış türev $g(1)=3$ noktasında okunmalı: $g'(3)=-1$."
+   },
+   "B": {
+    "etiket": "İç türevi unutmak.",
+    "aciklama": "$g'(g(1))=g'(3)=-1$ doğru ama $g'(1)=2$ ile çarpılmamış."
+   },
+   "D": {
+    "etiket": "Dış çarpanda $g'$ yerine $g$ kullanmak.",
+    "aciklama": "$g(3)\\cdot g'(1)=4\\cdot2$ hesaplanmış; zincir kuralında dış fonksiyonun <em>türevi</em> gerekir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.1)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Grafikle bileşke türevi",
+   "ipucu": "Önce g(1)'i (yükseklik), sonra iki eğimi bul.",
+   "sikHata": "Eğim ile yüksekliği karıştırmak",
+   "cedKonu": "3.1",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_6",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 5,
+  "numara": 6,
+  "konu": "3.1 The Chain Rule",
+  "zorluk": "hard",
+  "govde": "Let $f$ be a differentiable function with $f'(x)=\\dfrac{x}{x^2+1}$ for all $x$. If $h(x)=f\\left(\\sqrt{x}\\right)$ for $x\\gt0$, what is the value of $h'(3)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\dfrac18$"
+   },
+   {
+    "id": "B",
+    "text": "$\\dfrac{\\sqrt3}{4}$"
+   },
+   {
+    "id": "C",
+    "text": "$\\dfrac{3}{10}$"
+   },
+   {
+    "id": "D",
+    "text": "$\\dfrac{\\sqrt3}{20}$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $h'(x)=f'\\left(\\sqrt x\\right)\\cdot\\dfrac{1}{2\\sqrt x}$.<br/>2. $f'\\left(\\sqrt x\\right)=\\dfrac{\\sqrt x}{x+1}$.<br/>3. $h'(x)=\\dfrac{\\sqrt x}{x+1}\\cdot\\dfrac{1}{2\\sqrt x}=\\dfrac{1}{2(x+1)}$.<br/>4. $h'(3)=\\dfrac18$.",
+  "genel_hatirlatma": "$f'(g(x))$'te $f'$ formülüne $x$ yerine $g(x)$ yazılır.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "İç türevi unutmak.",
+    "aciklama": "$f'(\\sqrt3)=\\frac{\\sqrt3}{4}$ doğru ama $\\frac{d}{dx}\\sqrt x=\\frac{1}{2\\sqrt x}$ ile çarpılmamış."
+   },
+   "C": {
+    "etiket": "$f'$'yi iç değer yerine $x$'te okumak ve iç türevi atlamak.",
+    "aciklama": "$f'(3)$ hesaplanmış; zincir kuralı $f'(\\sqrt3)\\cdot\\frac{1}{2\\sqrt3}$ ister."
+   },
+   "D": {
+    "etiket": "Dış türevi $x$ noktasında değerlendirmek.",
+    "aciklama": "$f'(3)\\cdot\\frac{1}{2\\sqrt3}$ yazılmış; dış türev $\\sqrt3$'te olmalı: $f'(\\sqrt3)$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.1)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Türev formülüyle verilen dış fonksiyon",
+   "ipucu": "$f'(\\sqrt x)$: formülde her $x$'i $\\sqrt x$ yap.",
+   "sikHata": "$f'(x)$'i $f'(g(x))$ sanmak",
+   "cedKonu": "3.1",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_7",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 6,
+  "numara": 7,
+  "konu": "3.2 Implicit Differentiation",
+  "zorluk": "easy",
+  "govde": "For the curve $2x^2+3y^2=14$, which of the following gives $\\dfrac{dy}{dx}$ in terms of $x$ and $y$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\dfrac{2x}{3y}$"
+   },
+   {
+    "id": "B",
+    "text": "$-\\dfrac{3y}{2x}$"
+   },
+   {
+    "id": "C",
+    "text": "$\\dfrac{14-4x}{6y}$"
+   },
+   {
+    "id": "D",
+    "text": "$-\\dfrac{2x}{3y}$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. Her iki tarafın $x$'e göre türevi: $4x+6y\\dfrac{dy}{dx}=0$.<br/>2. $\\dfrac{dy}{dx}=-\\dfrac{4x}{6y}=-\\dfrac{2x}{3y}$.",
+  "genel_hatirlatma": "$y$ içeren her terimin türevi $\\frac{dy}{dx}$ çarpanı taşır; sabitin türevi 0.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Tarafları ayırırken işareti kaybetmek.",
+    "aciklama": "$4x+6y\\frac{dy}{dx}=0$ ⇒ $6y\\frac{dy}{dx}=-4x$; eksi işareti kalmalı."
+   },
+   "B": {
+    "etiket": "Kesri ters çevirmek.",
+    "aciklama": "$\\frac{dy}{dx}$ katsayısı $6y$'dir ve paydaya gider: $-\\frac{4x}{6y}$."
+   },
+   "C": {
+    "etiket": "Sabitin türevini sıfır almamak.",
+    "aciklama": "Sağ taraf 14 bir sabittir; türevi 0'dır, 14 olarak kalmaz."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.2)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Kapalı türevin temel adımı",
+   "ipucu": "$\\frac{d}{dx}y^2=2y\\frac{dy}{dx}$",
+   "sikHata": "Sabitin türevini unutmak",
+   "cedKonu": "3.2",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_8",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 7,
+  "numara": 8,
+  "konu": "3.2 Implicit Differentiation",
+  "zorluk": "medium",
+  "govde": "The curve $e^{y}+xy=e$ passes through the point $(0,1)$. What is the value of $\\dfrac{dy}{dx}$ at this point?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$-e$"
+   },
+   {
+    "id": "B",
+    "text": "$-\\dfrac1e$"
+   },
+   {
+    "id": "C",
+    "text": "$0$"
+   },
+   {
+    "id": "D",
+    "text": "$-1$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Türev: $e^{y}\\dfrac{dy}{dx}+y+x\\dfrac{dy}{dx}=0$.<br/>2. $\\dfrac{dy}{dx}=\\dfrac{-y}{e^{y}+x}$.<br/>3. $(0,1)$: $\\dfrac{-1}{e+0}=-\\dfrac1e$.",
+  "genel_hatirlatma": "Kapalı türevde hem zincir ($e^y$) hem çarpım ($xy$) kuralı gerekebilir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Kesri ters çevirmek.",
+    "aciklama": "$\\frac{dy}{dx}(e^y+x)=-y$ ⇒ $\\frac{dy}{dx}=\\frac{-y}{e^y+x}=-\\frac1e$; pay ile payda yer değiştirmiş."
+   },
+   "C": {
+    "etiket": "$xy$ teriminde çarpım kuralını eksik uygulamak.",
+    "aciklama": "$\\frac{d}{dx}(xy)=y+x\\frac{dy}{dx}$; $y$ terimi atlanırsa $\\frac{dy}{dx}(e^y+x)=0$ çıkar."
+   },
+   "D": {
+    "etiket": "$\\frac{d}{dx}e^{y}$'yi yalnızca $\\frac{dy}{dx}$ almak.",
+    "aciklama": "$\\frac{d}{dx}e^{y}=e^{y}\\frac{dy}{dx}$; $e^{y}=e$ çarpanı unutulmuş."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.2)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Üstel terimli kapalı türev",
+   "ipucu": "Önce sayıları koy: $e\\,y'+1+0=0$.",
+   "sikHata": "Çarpım kuralında terim kaybetmek",
+   "cedKonu": "3.2",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_9",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 8,
+  "numara": 9,
+  "konu": "3.2 Implicit Differentiation",
+  "zorluk": "medium",
+  "govde": "Which of the following is an equation of the line tangent to the curve $x^2-xy+y^3=7$ at the point $(1,2)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$y=2$"
+   },
+   {
+    "id": "B",
+    "text": "$y-2=12(x-1)$"
+   },
+   {
+    "id": "C",
+    "text": "$x=1$"
+   },
+   {
+    "id": "D",
+    "text": "$y-2=-\\dfrac{2}{11}(x-1)$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. Türev: $2x-\\left(y+x\\dfrac{dy}{dx}\\right)+3y^2\\dfrac{dy}{dx}=0$.<br/>2. $\\dfrac{dy}{dx}=\\dfrac{y-2x}{3y^2-x}$.<br/>3. $(1,2)$: $\\dfrac{2-2}{12-1}=0$.<br/>4. Eğim 0 olduğundan teğet doğru $y=2$.",
+  "genel_hatirlatma": "Eğim 0 ise teğet yataydır: $y=y_1$.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "$y^3$ teriminde $\\frac{dy}{dx}$ çarpanını unutmak.",
+    "aciklama": "$\\frac{d}{dx}y^3=3y^2\\frac{dy}{dx}$; çarpan unutulunca $2x-y-x\\frac{dy}{dx}+3y^2=0$ ⇒ eğim 12 çıkar."
+   },
+   "C": {
+    "etiket": "Payın sıfır olmasını dikey teğet sanmak.",
+    "aciklama": "$\\frac{dy}{dx}=\\frac{y-2x}{3y^2-x}$'te pay sıfır: bu <em>yatay</em> teğettir. Dikey teğet paydanın sıfır olmasını ister."
+   },
+   "D": {
+    "etiket": "$xy$ teriminde çarpım kuralını uygulamamak.",
+    "aciklama": "$\\frac{d}{dx}(xy)$ yalnızca $\\frac{dy}{dx}$ alınmış; doğrusu $y+x\\frac{dy}{dx}$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.2)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Kapalı eğride teğet doğru",
+   "ipucu": "Noktayı türev denklemine hemen koyup y' için çöz.",
+   "sikHata": "$y^3$'te $y'$ çarpanını unutmak",
+   "cedKonu": "3.2",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_10",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 9,
+  "numara": 10,
+  "konu": "3.2 Implicit Differentiation",
+  "zorluk": "hard",
+  "govde": "At which points does the curve $x^2+xy+y^2=12$ have a horizontal tangent line?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$(-4,2)$ and $(4,-2)$"
+   },
+   {
+    "id": "B",
+    "text": "$(2,2)$ and $(-2,-2)$"
+   },
+   {
+    "id": "C",
+    "text": "$\\left(0,2\\sqrt3\\right)$ and $\\left(0,-2\\sqrt3\\right)$"
+   },
+   {
+    "id": "D",
+    "text": "$(2,-4)$ and $(-2,4)$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. Türev: $2x+y+x\\dfrac{dy}{dx}+2y\\dfrac{dy}{dx}=0$ ⇒ $\\dfrac{dy}{dx}=-\\dfrac{2x+y}{x+2y}$.<br/>2. Yatay teğet: pay $=0$ ⇒ $y=-2x$.<br/>3. Eğriye koy: $x^2-2x^2+4x^2=3x^2=12$ ⇒ $x=\\pm2$.<br/>4. Noktalar $(2,-4)$ ve $(-2,4)$; paydalar $2-8=-6\\neq0$ ve $-2+8=6\\neq0$.",
+  "genel_hatirlatma": "Yatay teğet: pay 0, payda ≠ 0 ve nokta eğri üzerinde.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Yatay ile dikey teğeti karıştırmak.",
+    "aciklama": "Bu noktalarda $\\frac{dy}{dx}$'in paydası $x+2y=0$; bunlar dikey teğet noktalarıdır."
+   },
+   "B": {
+    "etiket": "$x=y$ koşulunu kullanmak.",
+    "aciklama": "$x=y$ olan noktalarda eğim $-\\frac{3x}{3x}=-1$'dir, 0 değil. Yatay teğet için pay $2x+y=0$ olmalı."
+   },
+   "C": {
+    "etiket": "“Yatay teğet” için $x=0$ almak.",
+    "aciklama": "Bunlar $y$-eksenini kestiği noktalar; orada eğim $-\\frac{y}{2y}=-\\frac12$'dir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.2)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Kapalı eğride yatay teğet",
+   "ipucu": "$y=-2x$'i eğri denklemine yerleştir.",
+   "sikHata": "Pay=0 doğrusunu eğriyle kesiştirmemek",
+   "cedKonu": "3.2",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_11",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 10,
+  "numara": 11,
+  "konu": "3.2 Implicit Differentiation",
+  "zorluk": "medium",
+  "govde": "The curve $\\cos(x+y)=y$ passes through the point $\\left(\\dfrac{\\pi}{2},0\\right)$. What is the value of $\\dfrac{dy}{dx}$ at this point?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$-1$"
+   },
+   {
+    "id": "B",
+    "text": "$-\\dfrac12$"
+   },
+   {
+    "id": "C",
+    "text": "$0$"
+   },
+   {
+    "id": "D",
+    "text": "$\\dfrac12$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Türev: $-\\sin(x+y)\\left(1+\\dfrac{dy}{dx}\\right)=\\dfrac{dy}{dx}$.<br/>2. $\\left(\\frac{\\pi}{2},0\\right)$: $\\sin\\frac{\\pi}{2}=1$ ⇒ $-1-\\dfrac{dy}{dx}=\\dfrac{dy}{dx}$.<br/>3. $2\\dfrac{dy}{dx}=-1$ ⇒ $\\dfrac{dy}{dx}=-\\dfrac12$.",
+  "genel_hatirlatma": "İç ifade hem $x$ hem $y$ içeriyorsa iç türev $1+\\frac{dy}{dx}$ gibi iki parçalıdır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İç ifade $x+y$'nin türevini $1$ almak.",
+    "aciklama": "$\\frac{d}{dx}(x+y)=1+\\frac{dy}{dx}$; $\\frac{dy}{dx}$ unutulunca $-\\sin(x+y)=\\frac{dy}{dx}$ ⇒ $-1$."
+   },
+   "C": {
+    "etiket": "İç ifadenin türevini yalnız $\\frac{dy}{dx}$ almak.",
+    "aciklama": "$x$'in türevi olan 1 unutulmuş: $-\\sin(x+y)\\frac{dy}{dx}=\\frac{dy}{dx}$ ⇒ 0."
+   },
+   "D": {
+    "etiket": "$\\cos$'un türevinde işareti kaybetmek.",
+    "aciklama": "$\\frac{d}{dx}\\cos u=-\\sin u\\cdot u'$; eksi işareti düşmüş."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.2)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Trigonometrik kapalı türev",
+   "ipucu": "Önce sayıları yerine koy, sonra y' için çöz.",
+   "sikHata": "İç türevi eksik almak",
+   "cedKonu": "3.2",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_12",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 11,
+  "numara": 12,
+  "konu": "3.2 Implicit Differentiation",
+  "zorluk": "hard",
+  "govde": "Consider the curve defined by $y^3-3y=x$. Which of the following statements are true?<br/>I. At the point $(0,0)$, $\\dfrac{dy}{dx}=-\\dfrac13$.<br/>II. The curve has a vertical tangent line at the point $(-2,1)$.<br/>III. The curve has a horizontal tangent line at some point.",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "I only"
+   },
+   {
+    "id": "B",
+    "text": "I and II only"
+   },
+   {
+    "id": "C",
+    "text": "II and III only"
+   },
+   {
+    "id": "D",
+    "text": "I, II, and III"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Türev: $3y^2\\dfrac{dy}{dx}-3\\dfrac{dy}{dx}=1$ ⇒ $\\dfrac{dy}{dx}=\\dfrac{1}{3y^2-3}$.<br/>2. I: $(0,0)$ eğri üzerinde; $\\frac{1}{-3}=-\\frac13$. Doğru.<br/>3. II: $y=1$ ⇒ $x=1-3=-2$; payda $0$, pay $1\\neq0$ ⇒ dikey teğet. Doğru.<br/>4. III: pay hiçbir zaman 0 değil ⇒ yatay teğet yok. Yanlış.",
+  "genel_hatirlatma": "Yatay teğet pay=0, dikey teğet payda=0 (diğeri sıfır değilken) ister.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Dikey teğet koşulunu kontrol etmemek.",
+    "aciklama": "$\\frac{dy}{dx}=\\frac{1}{3y^2-3}$; $y=1$'de payda 0, pay 1 ≠ 0 ve $(-2,1)$ eğri üzerinde ($1-3=-2$). II doğrudur."
+   },
+   "C": {
+    "etiket": "$(0,0)$'da işareti yanlış hesaplamak ve yatay teğet aramamak.",
+    "aciklama": "$(0,0)$'da $\\frac{1}{0-3}=-\\frac13$, yani I doğru. Pay sabit 1 olduğu için eğim hiçbir yerde 0 olmaz; III yanlış."
+   },
+   "D": {
+    "etiket": "Payın hiç sıfır olamayacağını görmemek.",
+    "aciklama": "$\\frac{dy}{dx}=\\frac{1}{3y^2-3}$'ün payı her zaman 1'dir; yatay teğet yoktur."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.2)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Kapalı eğride teğet türleri",
+   "ipucu": "Payın ve paydanın ayrı ayrı sıfır olabileceği yerlere bak.",
+   "sikHata": "Yatay ile dikey teğet koşullarını karıştırmak",
+   "cedKonu": "3.2",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_13",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 12,
+  "numara": 13,
+  "konu": "3.2 Implicit Differentiation",
+  "zorluk": "medium",
+  "govde": "The point $(2,2)$ lies on the curve $xy^2+y=10$. Using the line tangent to the curve at $(2,2)$, what is the approximate $y$-coordinate of the point on the curve with $x=2.09$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$1.960$"
+   },
+   {
+    "id": "B",
+    "text": "$2.040$"
+   },
+   {
+    "id": "C",
+    "text": "$2.000$"
+   },
+   {
+    "id": "D",
+    "text": "$1.944$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. Türev: $y^2+2xy\\dfrac{dy}{dx}+\\dfrac{dy}{dx}=0$ ⇒ $\\dfrac{dy}{dx}=-\\dfrac{y^2}{2xy+1}$.<br/>2. $(2,2)$: $-\\dfrac{4}{9}$.<br/>3. Teğet: $y\\approx2-\\frac49(x-2)$.<br/>4. $x=2.09$: $y\\approx2-\\frac49(0.09)=2-0.04=1.960$.",
+  "genel_hatirlatma": "Teğet doğru, nokta yakınında eğrinin iyi bir yaklaşımıdır.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Eğimin işaretini kaybetmek.",
+    "aciklama": "$\\frac{dy}{dx}=-\\frac{4}{9}$ negatiftir; $x$ artarken teğet doğru üzerinde $y$ azalır."
+   },
+   "C": {
+    "etiket": "$xy^2$ teriminde çarpım kuralını eksik uygulamak.",
+    "aciklama": "$\\frac{d}{dx}(xy^2)=y^2+2xy\\frac{dy}{dx}$; $y^2$ terimi atlanınca eğim 0 çıkar."
+   },
+   "D": {
+    "etiket": "$+y$ teriminin türevini $1$ almak.",
+    "aciklama": "$\\frac{d}{dx}y=\\frac{dy}{dx}$'tir, 1 değil. Bu hata eğimi $-\\frac58$ yapar."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.2)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Kapalı eğride teğet doğruyla yaklaşım",
+   "ipucu": "$y\\approx y_1+m(x-x_1)$",
+   "sikHata": "$\\frac{d}{dx}y=1$ sanmak",
+   "cedKonu": "3.2",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_14",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 13,
+  "numara": 14,
+  "konu": "3.3 Differentiating Inverse Functions",
+  "zorluk": "easy",
+  "govde": "Let $f$ be a differentiable, one-to-one function with $f(3)=7$ and $f'(3)=\\dfrac12$. If $g$ is the inverse function of $f$, what is $g'(7)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\dfrac12$"
+   },
+   {
+    "id": "B",
+    "text": "$-2$"
+   },
+   {
+    "id": "C",
+    "text": "$2$"
+   },
+   {
+    "id": "D",
+    "text": "$\\dfrac17$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $f(3)=7$ ⇒ $g(7)=3$.<br/>2. $g'(7)=\\dfrac{1}{f'(g(7))}=\\dfrac{1}{f'(3)}=\\dfrac{1}{1/2}=2$.",
+  "genel_hatirlatma": "$f(a)=b$ ise $(f^{-1})'(b)=\\frac{1}{f'(a)}$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Ters fonksiyonun türevini f′ ile aynı sanmak.",
+    "aciklama": "Ters fonksiyonun eğimi karşılıklı terstir: $g'(7)=\\frac{1}{f'(3)}$."
+   },
+   "B": {
+    "etiket": "Karşılıklı ters yerine “negatif karşılıklı” almak.",
+    "aciklama": "Negatif karşılıklı eğim dik doğrular içindir; ters fonksiyonda işaret değişmez."
+   },
+   "D": {
+    "etiket": "$\\frac{1}{f}$ ile $(f^{-1})'$'yi karıştırmak.",
+    "aciklama": "$\\frac{1}{7}$, $f$'nin değerinin tersidir; formül türevin tersini ister: $\\frac{1}{f'(3)}$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.3)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Ters fonksiyon türevi formülü",
+   "ipucu": "Eğimler karşılıklı terstir.",
+   "sikHata": "Negatif karşılıklı almak",
+   "cedKonu": "3.3",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_15",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 14,
+  "numara": 15,
+  "konu": "3.3 Differentiating Inverse Functions",
+  "zorluk": "medium",
+  "govde": "The differentiable function $f$ is increasing for all $x$. Selected values of $f$ and $f'$ are given in the table.<table><thead><tr><th>$x$</th><th>1</th><th>2</th><th>3</th><th>4</th></tr></thead><tbody><tr><td>$f(x)$</td><td>2</td><td>3</td><td>5</td><td>8</td></tr><tr><td>$f'(x)$</td><td>1</td><td>4</td><td>2</td><td>5</td></tr></tbody></table>If $g$ is the inverse function of $f$, what is the value of $g'(3)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\dfrac12$"
+   },
+   {
+    "id": "B",
+    "text": "$4$"
+   },
+   {
+    "id": "C",
+    "text": "$\\dfrac15$"
+   },
+   {
+    "id": "D",
+    "text": "$\\dfrac14$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $g'(3)$ için $f(a)=3$: tablodan $f(2)=3$, yani $a=2$ ve $g(3)=2$.<br/>2. $g'(3)=\\dfrac{1}{f'(2)}=\\dfrac14$.",
+  "genel_hatirlatma": "Tabloda $b$ değerini $f(x)$ satırında ara; o sütunun $f'$ değeri gerekir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "$f'$'yi $x=3$'te okumak.",
+    "aciklama": "$\\frac{1}{f'(3)}$ hesaplanmış. Önce $f(a)=3$ olan $a$ bulunmalı: $a=2$."
+   },
+   "B": {
+    "etiket": "Karşılıklı tersi almamak.",
+    "aciklama": "$f'(2)=4$ doğru nokta ama $g'(3)=\\frac{1}{f'(2)}$'dir."
+   },
+   "C": {
+    "etiket": "$\\frac{1}{f(3)}$ hesaplamak.",
+    "aciklama": "$f(3)=5$ bir fonksiyon değeridir; formül $f'$'nin tersini, doğru noktada ister."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.3)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Tablodan ters fonksiyon türevi",
+   "ipucu": "“$f$ hangi girdide 3 veriyor?”",
+   "sikHata": "Yanlış sütundan okumak",
+   "cedKonu": "3.3",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_16",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 15,
+  "numara": 16,
+  "konu": "3.3 Differentiating Inverse Functions",
+  "zorluk": "medium",
+  "govde": "Let $f(x)=x^5+2x-1$, and let $g$ be the inverse function of $f$. What is the value of $g'(2)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\dfrac{1}{82}$"
+   },
+   {
+    "id": "B",
+    "text": "$\\dfrac17$"
+   },
+   {
+    "id": "C",
+    "text": "$7$"
+   },
+   {
+    "id": "D",
+    "text": "$\\dfrac{1}{35}$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $f(a)=2$: $a^5+2a-1=2$; $a=1$ dene: $1+2-1=2$. ✓ Yani $g(2)=1$.<br/>2. $f'(x)=5x^4+2$ ⇒ $f'(1)=7$.<br/>3. $g'(2)=\\dfrac17$.",
+  "genel_hatirlatma": "Hesap makinesiz bölümde $f(a)=b$'nin çözümü genellikle küçük bir tam sayıdır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "$f'$'yi $x=2$'de değerlendirmek.",
+    "aciklama": "$\\frac{1}{f'(2)}=\\frac{1}{80+2}$ hesaplanmış; önce $f(a)=2$ çözülmeli: $a=1$."
+   },
+   "C": {
+    "etiket": "Karşılıklı tersi almamak.",
+    "aciklama": "$f'(1)=7$ doğru ama $g'(2)=\\frac{1}{f'(1)}$'dir."
+   },
+   "D": {
+    "etiket": "$\\frac{1}{f(2)}$ hesaplamak.",
+    "aciklama": "$f(2)=32+4-1=35$; bu bir fonksiyon değeridir, türev değil."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.3)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Formülden ters fonksiyon türevi",
+   "ipucu": "a = 0, 1, −1, 2'yi dene.",
+   "sikHata": "$f'(b)$ kullanmak",
+   "cedKonu": "3.3",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_17",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 16,
+  "numara": 17,
+  "konu": "3.3 Differentiating Inverse Functions",
+  "zorluk": "hard",
+  "govde": "Let $f(x)=x^3+x+1$, and let $g$ be the inverse function of $f$. Which of the following is an equation of the line tangent to the graph of $g$ at $x=3$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$y-3=4(x-1)$"
+   },
+   {
+    "id": "B",
+    "text": "$y-1=4(x-3)$"
+   },
+   {
+    "id": "C",
+    "text": "$y-3=\\dfrac14(x-1)$"
+   },
+   {
+    "id": "D",
+    "text": "$y-1=\\dfrac14(x-3)$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $f(a)=3$: $a=1$ ($1+1+1=3$). Yani $g(3)=1$.<br/>2. $f'(x)=3x^2+1$ ⇒ $f'(1)=4$ ⇒ $g'(3)=\\frac14$.<br/>3. Teğet: $y-1=\\frac14(x-3)$.",
+  "genel_hatirlatma": "$g=f^{-1}$'in grafiği $(b,a)$'dan geçer ve eğimi $\\frac{1}{f'(a)}$'dır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "$g$ yerine $f$'nin teğetini yazmak.",
+    "aciklama": "Bu, $f$'nin $(1,3)$'teki teğetidir. $g$'nin grafiği $(3,1)$'den geçer ve eğimi $\\frac14$'tür."
+   },
+   "B": {
+    "etiket": "Eğimin karşılıklı tersini almamak.",
+    "aciklama": "Nokta doğru ama $g'(3)=\\frac{1}{f'(1)}=\\frac14$; 4 değil."
+   },
+   "C": {
+    "etiket": "Noktanın koordinatlarını yer değiştirmemek.",
+    "aciklama": "Eğim doğru ama $g(3)=1$ olduğundan nokta $(3,1)$'dir, $(1,3)$ değil."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.3)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Ters fonksiyon grafiğine teğet",
+   "ipucu": "Nokta (b, a), eğim 1/f′(a).",
+   "sikHata": "Noktayı (a, b) almak",
+   "cedKonu": "3.3",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_18",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 17,
+  "numara": 18,
+  "konu": "3.3 Differentiating Inverse Functions",
+  "zorluk": "hard",
+  "govde": "The function $f$ is differentiable and one-to-one, and the line tangent to the graph of $f$ at $x=2$ has equation $y=3x-1$. Let $g$ be the inverse function of $f$, and let $h(x)=\\big[g(x)\\big]^2$. What is the value of $h'(5)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\dfrac43$"
+   },
+   {
+    "id": "B",
+    "text": "$12$"
+   },
+   {
+    "id": "C",
+    "text": "$\\dfrac{10}{3}$"
+   },
+   {
+    "id": "D",
+    "text": "$\\dfrac23$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. Teğet $y=3x-1$, $x=2$'de: $f(2)=5$, $f'(2)=3$.<br/>2. $g(5)=2$, $g'(5)=\\frac{1}{f'(2)}=\\frac13$.<br/>3. $h'(x)=2g(x)g'(x)$ ⇒ $h'(5)=2\\cdot2\\cdot\\frac13=\\frac43$.",
+  "genel_hatirlatma": "Teğet doğru denklemi hem $f(a)$'yı hem $f'(a)$'yı verir.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Ters fonksiyonun türevinde karşılıklı tersi almamak.",
+    "aciklama": "$g'(5)=\\frac{1}{f'(2)}=\\frac13$; 3 alınınca $2\\cdot2\\cdot3=12$ çıkar."
+   },
+   "C": {
+    "etiket": "$g(5)$ yerine 5 kullanmak.",
+    "aciklama": "$h'(5)=2g(5)g'(5)$; $g(5)=2$'dir (çünkü $f(2)=5$), 5 değil."
+   },
+   "D": {
+    "etiket": "Zincir kuralında $g(5)$ çarpanını unutmak.",
+    "aciklama": "$\\frac{d}{dx}[g(x)]^2=2g(x)g'(x)$; yalnızca $2g'(5)$ hesaplanmış."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.3)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Ters fonksiyon + zincir kuralı",
+   "ipucu": "Teğetten f(2) ve f′(2)'yi oku.",
+   "sikHata": "g(5) ile 5'i karıştırmak",
+   "cedKonu": "3.3",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_19",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 18,
+  "numara": 19,
+  "konu": "3.3 Differentiating Inverse Functions",
+  "zorluk": "easy",
+  "govde": "A differentiable, one-to-one function $f$ satisfies $f(4)=-1$ and $f'(4)=-\\dfrac23$. If $g=f^{-1}$, what is $g'(-1)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\dfrac32$"
+   },
+   {
+    "id": "B",
+    "text": "$-\\dfrac23$"
+   },
+   {
+    "id": "C",
+    "text": "$-\\dfrac32$"
+   },
+   {
+    "id": "D",
+    "text": "$\\dfrac14$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $f(4)=-1$ ⇒ $g(-1)=4$.<br/>2. $g'(-1)=\\dfrac{1}{f'(4)}=\\dfrac{1}{-2/3}=-\\dfrac32$.",
+  "genel_hatirlatma": "f azalan ise tersi de azalandır; türevlerin işaretleri aynıdır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İşareti kaybetmek.",
+    "aciklama": "Azalan fonksiyonun tersi de azalandır; $g'$ negatif kalmalı: $\\frac{1}{-2/3}=-\\frac32$."
+   },
+   "B": {
+    "etiket": "Karşılıklı tersi almamak.",
+    "aciklama": "$f'(4)$ aynen yazılmış; $g'(-1)=\\frac{1}{f'(4)}$."
+   },
+   "D": {
+    "etiket": "$\\frac{1}{g(-1)}$ hesaplamak.",
+    "aciklama": "$g(-1)=4$'tür ve $\\frac14$ onun tersidir; formül $\\frac{1}{f'(4)}$ ister."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.3)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Ters fonksiyon türevinde işaret",
+   "ipucu": "İşaret kontrolü yap.",
+   "sikHata": "İşaret değiştirmek",
+   "cedKonu": "3.3",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_20",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 19,
+  "numara": 20,
+  "konu": "3.3 Differentiating Inverse Functions",
+  "zorluk": "medium",
+  "govde": "Let $f(x)=2x+\\cos x$, and let $g$ be the inverse function of $f$. What is the value of $g'(1)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\dfrac{1}{2-\\sin1}$"
+   },
+   {
+    "id": "B",
+    "text": "$\\dfrac12$"
+   },
+   {
+    "id": "C",
+    "text": "$2$"
+   },
+   {
+    "id": "D",
+    "text": "$2-\\sin1$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $f(a)=1$: $a=0$ dene: $0+\\cos0=1$. ✓ Yani $g(1)=0$.<br/>2. $f'(x)=2-\\sin x$ ⇒ $f'(0)=2$.<br/>3. $g'(1)=\\dfrac12$.",
+  "genel_hatirlatma": "$g'(b)$ için önce $g(b)$'yi (yani $f(a)=b$'yi) bul.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "$f'$'yi $x=1$'de değerlendirmek.",
+    "aciklama": "Önce $f(a)=1$ çözülmeli: $f(0)=0+1=1$, yani $a=0$; $f'(1)$ değil $f'(0)$ gerekir."
+   },
+   "C": {
+    "etiket": "Karşılıklı tersi almamak.",
+    "aciklama": "$f'(0)=2$ doğru ama $g'(1)=\\frac{1}{f'(0)}$."
+   },
+   "D": {
+    "etiket": "Yanlış nokta ve karşılıklı ters yok.",
+    "aciklama": "$f'(1)$ hesaplanmış; hem nokta yanlış ($a=0$ olmalı) hem de tersi alınmamış."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.3)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Trigonometrik fonksiyonun tersi",
+   "ipucu": "a = 0 dene.",
+   "sikHata": "$f'(b)$ kullanmak",
+   "cedKonu": "3.3",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_21",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 20,
+  "numara": 21,
+  "konu": "3.4 Differentiating Inverse Trigonometric Functions",
+  "zorluk": "easy",
+  "govde": "Which of the following is $\\dfrac{d}{dx}\\big[\\arccos(2x)\\big]$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$-\\dfrac{1}{\\sqrt{1-4x^2}}$"
+   },
+   {
+    "id": "B",
+    "text": "$\\dfrac{2}{\\sqrt{1-4x^2}}$"
+   },
+   {
+    "id": "C",
+    "text": "$-\\dfrac{2}{\\sqrt{1-4x^2}}$"
+   },
+   {
+    "id": "D",
+    "text": "$-\\dfrac{2}{1+4x^2}$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $\\frac{d}{dx}\\arccos u=-\\dfrac{u'}{\\sqrt{1-u^2}}$.<br/>2. $u=2x$, $u'=2$, $u^2=4x^2$.<br/>3. Sonuç: $-\\dfrac{2}{\\sqrt{1-4x^2}}$.",
+  "genel_hatirlatma": "arcsin ve arccos türevleri yalnız işaretle ayrılır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İç türevi unutmak.",
+    "aciklama": "$u=2x$ ise $u'=2$ payda çarpan olarak gelmeli."
+   },
+   "B": {
+    "etiket": "arccos ile arcsin türevini karıştırmak.",
+    "aciklama": "arccos türevi eksi işaretlidir: $-\\frac{u'}{\\sqrt{1-u^2}}$."
+   },
+   "D": {
+    "etiket": "arctan formülünü kullanmak.",
+    "aciklama": "$\\frac{1}{1+u^2}$ arctan'ın türevidir; arccos karekök içerir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.4)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "arccos türevi",
+   "ipucu": "Karekökün içine u² yaz.",
+   "sikHata": "Eksi işaretini unutmak",
+   "cedKonu": "3.4",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_22",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 21,
+  "numara": 22,
+  "konu": "3.4 Differentiating Inverse Trigonometric Functions",
+  "zorluk": "medium",
+  "govde": "If $f(x)=\\arctan\\left(\\dfrac{x}{3}\\right)$, what is the value of $f'(3)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\dfrac16$"
+   },
+   {
+    "id": "B",
+    "text": "$\\dfrac12$"
+   },
+   {
+    "id": "C",
+    "text": "$\\dfrac{1}{30}$"
+   },
+   {
+    "id": "D",
+    "text": "$\\dfrac{1}{10}$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $f'(x)=\\dfrac{1/3}{1+(x/3)^2}=\\dfrac{3}{9+x^2}$.<br/>2. $f'(3)=\\dfrac{3}{18}=\\dfrac16$.",
+  "genel_hatirlatma": "$\\frac{d}{dx}\\arctan\\frac xa=\\frac{a}{a^2+x^2}$.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "İç türevi unutmak.",
+    "aciklama": "$\\frac{1}{1+1}=\\frac12$ hesaplanmış; $u=\\frac x3$'ün türevi $\\frac13$ ile çarpılmalı."
+   },
+   "C": {
+    "etiket": "Paydada $u^2$ yerine $x^2$ yazmak.",
+    "aciklama": "$\\frac{1}{1+u^2}$'de $u=\\frac x3=1$; $1+9$ değil $1+1$ olmalı."
+   },
+   "D": {
+    "etiket": "İç türevi unutmak ve x² yazmak.",
+    "aciklama": "$\\frac{1}{1+x^2}$ formülü $x=3$'e doğrudan uygulanmış; hem $u^2$ hem $u'$ hatası var."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.4)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "arctan ile zincir kuralı",
+   "ipucu": "Paydada (x/3)² = 1.",
+   "sikHata": "u² yerine x² yazmak",
+   "cedKonu": "3.4",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_23",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 22,
+  "numara": 23,
+  "konu": "3.4 Differentiating Inverse Trigonometric Functions",
+  "zorluk": "medium",
+  "govde": "If $y=\\arcsin\\left(\\sqrt{x}\\right)$ for $0\\lt x\\lt1$, what is the value of $\\dfrac{dy}{dx}$ at $x=\\dfrac12$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\sqrt2$"
+   },
+   {
+    "id": "B",
+    "text": "$\\dfrac{\\sqrt6}{3}$"
+   },
+   {
+    "id": "C",
+    "text": "$-1$"
+   },
+   {
+    "id": "D",
+    "text": "$1$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $\\dfrac{dy}{dx}=\\dfrac{1}{\\sqrt{1-(\\sqrt x)^2}}\\cdot\\dfrac{1}{2\\sqrt x}=\\dfrac{1}{2\\sqrt x\\sqrt{1-x}}$.<br/>2. $x=\\frac12$: $2\\sqrt{\\tfrac12}\\sqrt{\\tfrac12}=2\\cdot\\tfrac12=1$.<br/>3. $\\dfrac{dy}{dx}=1$.",
+  "genel_hatirlatma": "$\\frac{d}{dx}\\arcsin u=\\frac{u'}{\\sqrt{1-u^2}}$; $u=\\sqrt x$ ise $u^2=x$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İç türevi unutmak.",
+    "aciklama": "$\\frac{1}{\\sqrt{1-1/2}}=\\sqrt2$ hesaplanmış; $\\frac{d}{dx}\\sqrt x=\\frac{1}{2\\sqrt x}$ çarpanı eksik."
+   },
+   "B": {
+    "etiket": "Karekökün içine $1-u^2$ yerine $1-x^2$ yazmak.",
+    "aciklama": "$u=\\sqrt x$ ⇒ $u^2=x$; kök içi $1-x=\\frac12$ olmalı, $1-\\frac14$ değil."
+   },
+   "C": {
+    "etiket": "arcsin türevine eksi işareti koymak.",
+    "aciklama": "Eksi işaret arccos türevine aittir; arcsin artan bir fonksiyondur."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.4)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "arcsin ile zincir kuralı",
+   "ipucu": "u² = x olduğunu kullan.",
+   "sikHata": "u² yerine x² yazmak",
+   "cedKonu": "3.4",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_24",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 23,
+  "numara": 24,
+  "konu": "3.4 Differentiating Inverse Trigonometric Functions",
+  "zorluk": "medium",
+  "govde": "Which of the following is an equation of the line tangent to the graph of $y=\\arctan(2x)$ at $x=\\dfrac12$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$y-\\dfrac{\\pi}{4}=\\dfrac12\\left(x-\\dfrac12\\right)$"
+   },
+   {
+    "id": "B",
+    "text": "$y-\\dfrac{\\pi}{4}=x-\\dfrac12$"
+   },
+   {
+    "id": "C",
+    "text": "$y-\\dfrac{\\pi}{4}=\\dfrac85\\left(x-\\dfrac12\\right)$"
+   },
+   {
+    "id": "D",
+    "text": "$y-\\dfrac{\\pi}{3}=x-\\dfrac12$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Nokta: $y=\\arctan(1)=\\dfrac{\\pi}{4}$.<br/>2. Eğim: $y'=\\dfrac{2}{1+4x^2}$ ⇒ $x=\\frac12$'de $\\dfrac{2}{2}=1$.<br/>3. Teğet: $y-\\dfrac{\\pi}{4}=1\\cdot\\left(x-\\dfrac12\\right)$.",
+  "genel_hatirlatma": "Teğet doğru için nokta (özel değer) ve eğim (türev) ayrı ayrı gerekir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İç türevi unutmak.",
+    "aciklama": "$\\frac{1}{1+1}=\\frac12$ alınmış; $u'=2$ ile çarpınca eğim 1 olur."
+   },
+   "C": {
+    "etiket": "Paydada $(2x)^2$ yerine $x^2$ yazmak.",
+    "aciklama": "$\\frac{2}{1+(1/2)^2}=\\frac85$ hesaplanmış; doğrusu $\\frac{2}{1+(2\\cdot\\frac12)^2}=1$."
+   },
+   "D": {
+    "etiket": "$\\arctan1$ değerini yanlış hatırlamak.",
+    "aciklama": "$\\tan\\frac{\\pi}{4}=1$ olduğundan $\\arctan1=\\frac{\\pi}{4}$; $\\frac{\\pi}{3}$ değil."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.4)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Ters trig fonksiyonuna teğet",
+   "ipucu": "arctan 1 = π/4.",
+   "sikHata": "Özel değeri yanlış hatırlamak",
+   "cedKonu": "3.4",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_25",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 24,
+  "numara": 25,
+  "konu": "3.4 Differentiating Inverse Trigonometric Functions",
+  "zorluk": "hard",
+  "govde": "For $x\\gt0$, let $y=\\arctan x+\\arctan\\left(\\dfrac1x\\right)$. Which of the following is $\\dfrac{dy}{dx}$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$0$"
+   },
+   {
+    "id": "B",
+    "text": "$\\dfrac{2}{1+x^2}$"
+   },
+   {
+    "id": "C",
+    "text": "$1$"
+   },
+   {
+    "id": "D",
+    "text": "$\\dfrac{1-x^2}{1+x^2}$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $\\dfrac{d}{dx}\\arctan x=\\dfrac{1}{1+x^2}$.<br/>2. $\\dfrac{d}{dx}\\arctan\\dfrac1x=\\dfrac{1}{1+\\frac{1}{x^2}}\\cdot\\left(-\\dfrac{1}{x^2}\\right)=\\dfrac{x^2}{x^2+1}\\cdot\\left(-\\dfrac{1}{x^2}\\right)=-\\dfrac{1}{x^2+1}$.<br/>3. Toplam: $0$. (Gerçekten $x\\gt0$ için $y=\\frac{\\pi}{2}$ sabittir.)",
+  "genel_hatirlatma": "Türevi sıfır olan fonksiyon bir aralıkta sabittir.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "$\\arctan\\frac1x$'in türevini $\\arctan x$'inkiyle aynı sanmak.",
+    "aciklama": "$\\frac{d}{dx}\\arctan\\frac1x=\\frac{1}{1+(1/x)^2}\\cdot\\left(-\\frac{1}{x^2}\\right)=-\\frac{1}{x^2+1}$; formüle $u=\\frac1x$ yazılmalı ve iç türevle çarpılmalı."
+   },
+   "C": {
+    "etiket": "İç türevi tamamen unutmak.",
+    "aciklama": "$\\frac{1}{1+1/x^2}=\\frac{x^2}{x^2+1}$; iç türev $-\\frac1{x^2}$ ile çarpılmazsa toplam $\\frac{1+x^2}{1+x^2}=1$ çıkar."
+   },
+   "D": {
+    "etiket": "İç türev yerine yalnızca eksi işareti koymak.",
+    "aciklama": "$\\left(\\frac1x\\right)'=-\\frac{1}{x^2}$; yalnız $-1$ alınırsa $\\frac{1}{1+x^2}-\\frac{x^2}{1+x^2}$ çıkar."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.4)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "arctan ile zincir kuralı, sabit fonksiyon",
+   "ipucu": "$\\frac{1}{1+1/x^2}=\\frac{x^2}{x^2+1}$ diye sadeleştir.",
+   "sikHata": "Kesirli iç fonksiyonun türevini unutmak",
+   "cedKonu": "3.4",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_26",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 25,
+  "numara": 26,
+  "konu": "3.4 Differentiating Inverse Trigonometric Functions",
+  "zorluk": "easy",
+  "govde": "What is the slope of the line tangent to the graph of $y=\\arcsin x$ at $x=\\dfrac{\\sqrt3}{2}$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\dfrac12$"
+   },
+   {
+    "id": "B",
+    "text": "$\\dfrac{2\\sqrt3}{3}$"
+   },
+   {
+    "id": "C",
+    "text": "$2$"
+   },
+   {
+    "id": "D",
+    "text": "$-2$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $y'=\\dfrac{1}{\\sqrt{1-x^2}}$.<br/>2. $x=\\frac{\\sqrt3}{2}$: $1-\\frac34=\\frac14$, $\\sqrt{\\frac14}=\\frac12$.<br/>3. Eğim $=2$.",
+  "genel_hatirlatma": "arcsin'in eğimi, sin'in karşılık gelen noktadaki eğiminin tersidir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "$\\sin$'in eğimini almak.",
+    "aciklama": "$\\cos\\frac{\\pi}{3}=\\frac12$, $\\sin x$'in $\\frac{\\pi}{3}$'teki eğimidir; ters fonksiyonun eğimi bunun tersidir."
+   },
+   "B": {
+    "etiket": "Açıyı yanlış eşlemek.",
+    "aciklama": "$\\arcsin\\frac{\\sqrt3}{2}=\\frac{\\pi}{3}$'tür; $\\frac{1}{\\cos(\\pi/6)}$ hesaplanmış."
+   },
+   "D": {
+    "etiket": "arccos formülünü kullanmak.",
+    "aciklama": "Eksi işaret arccos'a aittir; arcsin artandır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.4)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "arcsin türevi bir noktada",
+   "ipucu": "1 − x² = 1/4.",
+   "sikHata": "Karşılıklı tersi almamak",
+   "cedKonu": "3.4",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_27",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 26,
+  "numara": 27,
+  "konu": "3.4 Differentiating Inverse Trigonometric Functions",
+  "zorluk": "medium",
+  "govde": "<em>(Graphing calculator allowed.)</em> If $f(x)=\\arctan\\left(x^2-1\\right)$, what is the value of $f'(1.3)$ to the nearest thousandth?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$0.677$"
+   },
+   {
+    "id": "B",
+    "text": "$1.761$"
+   },
+   {
+    "id": "C",
+    "text": "$0.967$"
+   },
+   {
+    "id": "D",
+    "text": "$0.604$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $f'(x)=\\dfrac{2x}{1+\\left(x^2-1\\right)^2}$.<br/>2. $x=1.3$: $x^2-1=0.69$, $(0.69)^2=0.4761$.<br/>3. $f'(1.3)=\\dfrac{2.6}{1.4761}\\approx1.761$. (Hesap makinesinde $\\frac{d}{dx}$ aracıyla da aynı sonuç çıkar.)",
+  "genel_hatirlatma": "Hesap makineli soruda da formül kontrolü hata yakalar; radyan modunu unutma.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İç türevi unutmak.",
+    "aciklama": "$\\frac{1}{1+(0.69)^2}$ hesaplanmış; $u'=2x=2.6$ ile çarpılmamış."
+   },
+   "C": {
+    "etiket": "Paydada $1+u^2$ yerine $1+x^2$ yazmak.",
+    "aciklama": "$\\frac{2.6}{1+1.69}$ hesaplanmış; payda $1+(x^2-1)^2$ olmalı."
+   },
+   "D": {
+    "etiket": "Türev yerine fonksiyon değerini hesaplamak.",
+    "aciklama": "$\\arctan(0.69)\\approx0.604$, $f(1.3)$'tür; soru $f'(1.3)$'ü istiyor."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.4)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "arctan türevi, sayısal",
+   "ipucu": "nDeriv ile doğrula.",
+   "sikHata": "f ile f′'yü karıştırmak",
+   "cedKonu": "3.4",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_28",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 27,
+  "numara": 28,
+  "konu": "3.5 Selecting Procedures for Calculating Derivatives",
+  "zorluk": "medium",
+  "govde": "If $f(x)=\\dfrac{\\sin(2x)}{x}$, what is the value of $f'\\left(\\dfrac{\\pi}{4}\\right)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$0$"
+   },
+   {
+    "id": "B",
+    "text": "$-\\dfrac{4}{\\pi}$"
+   },
+   {
+    "id": "C",
+    "text": "$\\dfrac{16}{\\pi^2}$"
+   },
+   {
+    "id": "D",
+    "text": "$-\\dfrac{16}{\\pi^2}$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $f'(x)=\\dfrac{2\\cos(2x)\\cdot x-\\sin(2x)\\cdot1}{x^2}$.<br/>2. $x=\\frac{\\pi}{4}$: $\\cos\\frac{\\pi}{2}=0$, $\\sin\\frac{\\pi}{2}=1$ ⇒ pay $=0-1=-1$.<br/>3. Payda $\\frac{\\pi^2}{16}$ ⇒ $f'\\left(\\frac{\\pi}{4}\\right)=-\\dfrac{16}{\\pi^2}$.",
+  "genel_hatirlatma": "Bölüm kuralı: $\\left(\\frac uv\\right)'=\\frac{u'v-uv'}{v^2}$; payda zincir kuralı da gerekebilir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Payın türevini paydanın türevine bölmek.",
+    "aciklama": "$\\frac{2\\cos(2x)}{1}$ hesaplanmış; bölüm kuralı $\\frac{u'v-uv'}{v^2}$'dir."
+   },
+   "B": {
+    "etiket": "Paydanın karesini unutmak.",
+    "aciklama": "Pay $-1$ doğru ama $v^2=\\frac{\\pi^2}{16}$'ya bölünmeli, $\\frac{\\pi}{4}$'e değil."
+   },
+   "C": {
+    "etiket": "Bölüm kuralında çıkarma sırasını ters çevirmek.",
+    "aciklama": "$uv'-u'v$ yazılınca işaret ters döner."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.5)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Bölüm + zincir kuralı",
+   "ipucu": "“Alt çarpı üstün türevi eksi üst çarpı altın türevi”.",
+   "sikHata": "Sırayı ters çevirmek",
+   "cedKonu": "3.5",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_29",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 28,
+  "numara": 29,
+  "konu": "3.5 Selecting Procedures for Calculating Derivatives",
+  "zorluk": "hard",
+  "govde": "The table gives values of the differentiable functions $f$ and $g$ and their derivatives.<table><thead><tr><th>$x$</th><th>$f(x)$</th><th>$f'(x)$</th><th>$g(x)$</th><th>$g'(x)$</th></tr></thead><tbody><tr><td>0</td><td>2</td><td>$-1$</td><td>1</td><td>3</td></tr><tr><td>1</td><td>4</td><td>2</td><td>0</td><td>$-2$</td></tr><tr><td>2</td><td>1</td><td>5</td><td>3</td><td>4</td></tr></tbody></table>If $h(x)=f(x)\\cdot g\\left(x^2+1\\right)$, what is the value of $h'(1)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$38$"
+   },
+   {
+    "id": "B",
+    "text": "$22$"
+   },
+   {
+    "id": "C",
+    "text": "$16$"
+   },
+   {
+    "id": "D",
+    "text": "$-16$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $h'(x)=f'(x)\\,g\\left(x^2+1\\right)+f(x)\\,g'\\left(x^2+1\\right)\\cdot2x$.<br/>2. $x=1$: $x^2+1=2$; $f(1)=4$, $f'(1)=2$, $g(2)=3$, $g'(2)=4$.<br/>3. $h'(1)=2\\cdot3+4\\cdot4\\cdot2=6+32=38$.",
+  "genel_hatirlatma": "Ana yapı çarpım; ikinci çarpan bileşke. Önce çarpım kuralı, sonra zincir kuralı.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Bileşke çarpanda iç türevi ($2x$) unutmak.",
+    "aciklama": "$f(1)\\cdot g'(2)$ terimi $2x=2$ ile çarpılmalı: $4\\cdot4\\cdot2=32$, 16 değil."
+   },
+   "C": {
+    "etiket": "Çarpımın türevini türevlerin çarpımı sanmak.",
+    "aciklama": "$f'(1)\\cdot g'(2)\\cdot2$ hesaplanmış; çarpım kuralı iki terim ister: $f'g+fg'$."
+   },
+   "D": {
+    "etiket": "$g\\left(x^2+1\\right)$ yerine $g(x)$ değerlerini kullanmak.",
+    "aciklama": "$x=1$'de iç girdi $1^2+1=2$'dir; $g(1)$ ve $g'(1)$ değil, $g(2)$ ve $g'(2)$ gerekir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.5)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Çarpım + zincir, tablo",
+   "ipucu": "Gereken değerlerin listesini önce yaz.",
+   "sikHata": "İç türevi unutmak",
+   "cedKonu": "3.5",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_30",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 29,
+  "numara": 30,
+  "konu": "3.5 Selecting Procedures for Calculating Derivatives",
+  "zorluk": "easy",
+  "govde": "If $y=\\dfrac{3}{(2x+1)^2}$, what is the value of $\\dfrac{dy}{dx}$ at $x=1$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$-\\dfrac29$"
+   },
+   {
+    "id": "B",
+    "text": "$-\\dfrac49$"
+   },
+   {
+    "id": "C",
+    "text": "$0$"
+   },
+   {
+    "id": "D",
+    "text": "$-4$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Yeniden yaz: $y=3(2x+1)^{-2}$.<br/>2. $y'=3\\cdot(-2)(2x+1)^{-3}\\cdot2=-12(2x+1)^{-3}$.<br/>3. $x=1$: $-\\dfrac{12}{27}=-\\dfrac49$.",
+  "genel_hatirlatma": "Pay sabitse bölüm kuralı yerine negatif üs kullan.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İç türevi unutmak.",
+    "aciklama": "$3(2x+1)^{-2}$'nin türevi $-6(2x+1)^{-3}\\cdot2$'dir; 2 çarpanı eksik."
+   },
+   "C": {
+    "etiket": "Payın türevini paydanın türevine bölmek.",
+    "aciklama": "Pay sabit olduğu için türevi 0'dır ama bu, bölümün türevinin 0 olduğu anlamına gelmez."
+   },
+   "D": {
+    "etiket": "Üssü $-3$ yerine $-1$ yazmak.",
+    "aciklama": "$\\frac{d}{dx}u^{-2}=-2u^{-3}u'$; payda $(2x+1)^3=27$ olmalı, 3 değil."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.5)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Türevden önce yeniden yazma",
+   "ipucu": "$\\frac{c}{u^n}=cu^{-n}$",
+   "sikHata": "Negatif üste bir azaltmayı yanlış yapmak",
+   "cedKonu": "3.5",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_31",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 30,
+  "numara": 31,
+  "konu": "3.5 Selecting Procedures for Calculating Derivatives",
+  "zorluk": "hard",
+  "govde": "The graph of the function $f$ consists of three line segments connecting the points $(-2,0)$, $(0,4)$, $(3,1)$, and $(5,1)$. Let $k(x)=x\\cdot f(2x)$. What is the value of $k'(1)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$1$"
+   },
+   {
+    "id": "B",
+    "text": "$-2$"
+   },
+   {
+    "id": "C",
+    "text": "$k'(1)$ does not exist because the graph of $f$ has a corner."
+   },
+   {
+    "id": "D",
+    "text": "$0$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. Çarpım + zincir: $k'(x)=f(2x)+x\\cdot f'(2x)\\cdot2$.<br/>2. $x=1$: $2x=2$; $(0,4)$–$(3,1)$ parçasında eğim $-1$, $f(2)=4-2=2$.<br/>3. $k'(1)=2+1\\cdot(-1)\\cdot2=0$.",
+  "genel_hatirlatma": "Grafikte f(c) yükseklik, f′(c) parçanın eğimidir; köşede türev yoktur.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "$f(2x)$'in iç türevi olan 2'yi unutmak.",
+    "aciklama": "$k'(1)=f(2)+1\\cdot f'(2)\\cdot2$; 2 çarpanı olmadan $2-1=1$ çıkar."
+   },
+   "B": {
+    "etiket": "Çarpım kuralının ilk terimini unutmak.",
+    "aciklama": "Yalnızca $x\\cdot f'(2x)\\cdot2$ hesaplanmış; $1\\cdot f(2x)$ terimi de olmalı: $f(2)=2$."
+   },
+   "C": {
+    "etiket": "Köşe noktasının yerini kontrol etmemek.",
+    "aciklama": "Köşeler $x=0$ ve $x=3$'tedir; gereken nokta $2x=2$, $(0,4)$–$(3,1)$ parçasının içindedir ve orada $f'(2)=-1$ vardır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.5)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Çarpım + zincir, grafik",
+   "ipucu": "Önce iç girdi 2x'i hesapla, sonra hangi parçada olduğuna bak.",
+   "sikHata": "Çarpım kuralında terim kaybetmek",
+   "cedKonu": "3.5",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_32",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 31,
+  "numara": 32,
+  "konu": "3.5 Selecting Procedures for Calculating Derivatives",
+  "zorluk": "medium",
+  "govde": "If $f(x)=\\dfrac{e^{3x}}{x^2+1}$, what is the value of $f'(1)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$0$"
+   },
+   {
+    "id": "B",
+    "text": "$-e^3$"
+   },
+   {
+    "id": "C",
+    "text": "$e^3$"
+   },
+   {
+    "id": "D",
+    "text": "$2e^3$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $f'(x)=\\dfrac{3e^{3x}\\left(x^2+1\\right)-e^{3x}\\cdot2x}{\\left(x^2+1\\right)^2}$.<br/>2. $x=1$: pay $=3e^3\\cdot2-e^3\\cdot2=4e^3$; payda $=4$.<br/>3. $f'(1)=e^3$.",
+  "genel_hatirlatma": "Bölüm kuralının payında zincir kuralı gizli olabilir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "$e^{3x}$'in türevinde iç türevi unutmak.",
+    "aciklama": "$\\frac{d}{dx}e^{3x}=3e^{3x}$; $e^{3x}$ alınırsa pay $2e^3-2e^3=0$ olur."
+   },
+   "B": {
+    "etiket": "Bölüm kuralında çıkarma sırasını ters çevirmek.",
+    "aciklama": "$\\frac{uv'-u'v}{v^2}=\\frac{2e^3-6e^3}{4}=-e^3$; sıra $u'v-uv'$ olmalı."
+   },
+   "D": {
+    "etiket": "Paydanın karesini almamak.",
+    "aciklama": "Pay $4e^3$ doğru ama $v^2=4$'e bölünmeli, $v=2$'ye değil."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.5)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Bölüm + üstel zincir",
+   "ipucu": "Payı ve paydayı ayrı ayrı hesapla.",
+   "sikHata": "Paydanın karesini unutmak",
+   "cedKonu": "3.5",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_33",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 32,
+  "numara": 33,
+  "konu": "3.5 Selecting Procedures for Calculating Derivatives",
+  "zorluk": "hard",
+  "govde": "The functions $f$ and $g$ are differentiable with $f(2)=3$, $f'(2)=-1$, $g(2)=0$, and $g'(2)=4$. If $h(x)=\\big[f(x)\\big]^2e^{g(x)}$, what is the value of $h'(2)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$42$"
+   },
+   {
+    "id": "B",
+    "text": "$3$"
+   },
+   {
+    "id": "C",
+    "text": "$-24$"
+   },
+   {
+    "id": "D",
+    "text": "$30$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $h'(x)=2f(x)f'(x)\\,e^{g(x)}+[f(x)]^2e^{g(x)}g'(x)$.<br/>2. $x=2$: $e^{g(2)}=e^0=1$.<br/>3. $h'(2)=2\\cdot3\\cdot(-1)\\cdot1+9\\cdot1\\cdot4=-6+36=30$.",
+  "genel_hatirlatma": "Her çarpanın türevi kendi zincirini taşır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "$[f(x)]^2$'nin türevinde $f'(x)$ çarpanını unutmak.",
+    "aciklama": "$\\frac{d}{dx}[f(x)]^2=2f(x)f'(x)=-6$; yalnızca $2f(2)=6$ alınmış."
+   },
+   "B": {
+    "etiket": "$e^{g(x)}$'in türevinde $g'(x)$'i unutmak.",
+    "aciklama": "$\\frac{d}{dx}e^{g(x)}=e^{g(x)}g'(x)$; $g'(2)=4$ çarpanı eksik olunca $-6+9=3$ çıkar."
+   },
+   "C": {
+    "etiket": "Çarpımın türevini türevlerin çarpımı sanmak.",
+    "aciklama": "$(-6)\\cdot(4)$ hesaplanmış; çarpım kuralı $u'v+uv'$ ister."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.5)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Çarpım + iki zincir",
+   "ipucu": "u = f², v = e^g olarak ayır.",
+   "sikHata": "Zincir kuralı çarpanını unutmak",
+   "cedKonu": "3.5",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_34",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 33,
+  "numara": 34,
+  "konu": "3.5 Selecting Procedures for Calculating Derivatives",
+  "zorluk": "easy",
+  "govde": "If $y=\\ln(\\cos x)$ for $0\\lt x\\lt\\dfrac{\\pi}{2}$, what is the value of $\\dfrac{dy}{dx}$ at $x=\\dfrac{\\pi}{4}$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\sqrt2$"
+   },
+   {
+    "id": "B",
+    "text": "$-1$"
+   },
+   {
+    "id": "C",
+    "text": "$-\\dfrac{\\sqrt2}{2}$"
+   },
+   {
+    "id": "D",
+    "text": "$1$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $\\dfrac{dy}{dx}=\\dfrac{-\\sin x}{\\cos x}=-\\tan x$.<br/>2. $x=\\frac{\\pi}{4}$: $-\\tan\\frac{\\pi}{4}=-1$.",
+  "genel_hatirlatma": "$\\frac{d}{dx}\\ln u=\\frac{u'}{u}$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İç türevi unutmak.",
+    "aciklama": "$\\frac{1}{\\cos x}$ alınmış; $\\frac{d}{dx}\\ln u=\\frac{u'}{u}$ ve $u'=-\\sin x$."
+   },
+   "C": {
+    "etiket": "$\\frac1u$ çarpanını unutmak.",
+    "aciklama": "Yalnızca iç türev $-\\sin x$ alınmış; $\\cos x$'e bölünmeli."
+   },
+   "D": {
+    "etiket": "$\\cos$'un türevinde işareti kaybetmek.",
+    "aciklama": "$\\frac{d}{dx}\\cos x=-\\sin x$; sonuç $-\\tan x$ olmalı."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.5)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Logaritmada zincir kuralı",
+   "ipucu": "Sonuç −tan x.",
+   "sikHata": "u′ çarpanını unutmak",
+   "cedKonu": "3.5",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_35",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 34,
+  "numara": 35,
+  "konu": "3.6 Calculating Higher-Order Derivatives",
+  "zorluk": "easy",
+  "govde": "If $f(x)=x^4-3x^2+5x$, what is the value of $f''(1)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$6$"
+   },
+   {
+    "id": "B",
+    "text": "$3$"
+   },
+   {
+    "id": "C",
+    "text": "$24$"
+   },
+   {
+    "id": "D",
+    "text": "$12$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $f'(x)=4x^3-6x+5$.<br/>2. $f''(x)=12x^2-6$.<br/>3. $f''(1)=6$.",
+  "genel_hatirlatma": "İkinci türev, birinci türevin türevidir.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Birinci türevde durmak.",
+    "aciklama": "$f'(1)=4-6+5=3$; soru ikinci türevi istiyor."
+   },
+   "C": {
+    "etiket": "Üçüncü türevi hesaplamak.",
+    "aciklama": "$f'''(x)=24x$ ⇒ $f'''(1)=24$; bir türev fazla alınmış."
+   },
+   "D": {
+    "etiket": "$-3x^2$ teriminin ikinci türevini unutmak.",
+    "aciklama": "$f''(x)=12x^2-6$; $-6$ terimi kaybolmuş."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.6)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Polinomun ikinci türevi",
+   "ipucu": "Her terimi iki kez türevle.",
+   "sikHata": "Mertebe saymayı karıştırmak",
+   "cedKonu": "3.6",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_36",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 35,
+  "numara": 36,
+  "konu": "3.6 Calculating Higher-Order Derivatives",
+  "zorluk": "easy",
+  "govde": "If $y=e^{-2x}$, which of the following is $\\dfrac{d^4y}{dx^4}$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$-16e^{-2x}$"
+   },
+   {
+    "id": "B",
+    "text": "$-8e^{-2x}$"
+   },
+   {
+    "id": "C",
+    "text": "$16e^{-2x}$"
+   },
+   {
+    "id": "D",
+    "text": "$e^{-2x}$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $\\frac{d^n}{dx^n}e^{kx}=k^ne^{kx}$.<br/>2. $k=-2$, $n=4$: $(-2)^4=16$.<br/>3. $\\dfrac{d^4y}{dx^4}=16e^{-2x}$.",
+  "genel_hatirlatma": "$e^{kx}$'in her türevi bir $k$ çarpanı ekler.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İşareti yanlış takip etmek.",
+    "aciklama": "$(-2)^4=16$ pozitiftir; çift sayıda eksi çarpan işareti pozitif yapar."
+   },
+   "B": {
+    "etiket": "Üçüncü türevde durmak.",
+    "aciklama": "$(-2)^3=-8$ üçüncü türevdir; bir türev daha alınmalı."
+   },
+   "D": {
+    "etiket": "İç türevi unutmak.",
+    "aciklama": "Her türev $-2$ çarpanı getirir; $e^{-2x}$ kendini aynen tekrarlamaz."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.6)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Üstel fonksiyonun yüksek türevi",
+   "ipucu": "(−2)⁴ = 16.",
+   "sikHata": "İşaret hatası",
+   "cedKonu": "3.6",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_37",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 36,
+  "numara": 37,
+  "konu": "3.6 Calculating Higher-Order Derivatives",
+  "zorluk": "medium",
+  "govde": "Which of the following is $\\dfrac{d^{25}}{dx^{25}}\\big[\\sin(2x)\\big]$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$2^{25}\\cos(2x)$"
+   },
+   {
+    "id": "B",
+    "text": "$-2^{25}\\cos(2x)$"
+   },
+   {
+    "id": "C",
+    "text": "$\\cos(2x)$"
+   },
+   {
+    "id": "D",
+    "text": "$2^{25}\\sin(2x)$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $\\sin$ türev döngüsü: $\\sin\\to\\cos\\to-\\sin\\to-\\cos\\to\\sin$ (periyot 4).<br/>2. $25=4\\cdot6+1$ ⇒ birinci türevle aynı: $\\cos$.<br/>3. Her türev 2 çarpanı: $2^{25}\\cos(2x)$.",
+  "genel_hatirlatma": "Trigonometrik türevler 4'lük döngüdedir; n'yi 4'e böl.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Döngüdeki işareti yanlış saymak.",
+    "aciklama": "$25=4\\cdot6+1$; kalan 1 ⇒ $\\sin$'in birinci türevi gibi: $+\\cos$."
+   },
+   "C": {
+    "etiket": "İç türevi unutmak.",
+    "aciklama": "Her türev bir 2 çarpanı ekler; 25 türevde $2^{25}$."
+   },
+   "D": {
+    "etiket": "Kalanı 0 sanmak.",
+    "aciklama": "$25$, 4'e tam bölünmez; kalan 1'dir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.6)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "n'inci türev örüntüsü",
+   "ipucu": "25 mod 4 = 1.",
+   "sikHata": "Katsayıyı unutmak",
+   "cedKonu": "3.6",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_38",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 37,
+  "numara": 38,
+  "konu": "3.6 Calculating Higher-Order Derivatives",
+  "zorluk": "hard",
+  "govde": "The point $(1,2)$ lies on the curve $xy+y^2=6$. At this point, $\\dfrac{dy}{dx}=-\\dfrac25$. What is the value of $\\dfrac{d^2y}{dx^2}$ at $(1,2)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\dfrac{4}{25}$"
+   },
+   {
+    "id": "B",
+    "text": "$\\dfrac{12}{125}$"
+   },
+   {
+    "id": "C",
+    "text": "$\\dfrac{2}{125}$"
+   },
+   {
+    "id": "D",
+    "text": "$-\\dfrac{12}{125}$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Birinci türev: $y+xy'+2yy'=0$.<br/>2. Tekrar türev: $y'+\\left(y'+xy''\\right)+2(y')^2+2yy''=0$.<br/>3. $y''(x+2y)=-2y'-2(y')^2$.<br/>4. $(1,2)$, $y'=-\\frac25$: $y''\\cdot5=\\frac45-\\frac{8}{25}=\\frac{12}{25}$ ⇒ $y''=\\frac{12}{125}$.",
+  "genel_hatirlatma": "İkinci türevde $y$ ve $y'$ hâlâ $x$'in fonksiyonudur; çarpım kuralı her çarpımda gerekir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "$2y\\dfrac{dy}{dx}$'in türevinde $\\left(\\dfrac{dy}{dx}\\right)^2$ terimini kaybetmek.",
+    "aciklama": "$\\frac{d}{dx}\\left(2yy'\\right)=2(y')^2+2yy''$; çarpım kuralı uygulanmazsa $2(y')^2$ düşer."
+   },
+   "C": {
+    "etiket": "$xy'$'nün türevinde bir terimi kaybetmek.",
+    "aciklama": "$\\frac{d}{dx}(xy')=y'+xy''$; $y'$ terimi unutulunca $y'$'nün katsayısı 2 yerine 1 olur."
+   },
+   "D": {
+    "etiket": "Tarafları ayırırken işareti kaybetmek.",
+    "aciklama": "$y''(x+2y)=-2y'-2(y')^2=\\frac45-\\frac{8}{25}=\\frac{12}{25}\\gt0$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.6)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Kapalı ikinci türev",
+   "ipucu": "Sayıları türev denklemine koyup y″ için çöz.",
+   "sikHata": "$(y')^2$ terimini kaybetmek",
+   "cedKonu": "3.6",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_39",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 38,
+  "numara": 39,
+  "konu": "3.6 Calculating Higher-Order Derivatives",
+  "zorluk": "hard",
+  "govde": "Let $f$ be a twice-differentiable function with $f'(1)=3$ and $f''(1)=-1$. If $h(x)=f\\left(x^2\\right)$, what is the value of $h''(1)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$4$"
+   },
+   {
+    "id": "B",
+    "text": "$-4$"
+   },
+   {
+    "id": "C",
+    "text": "$-1$"
+   },
+   {
+    "id": "D",
+    "text": "$2$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $h'(x)=f'\\left(x^2\\right)\\cdot2x$.<br/>2. Çarpım kuralı: $h''(x)=2f'\\left(x^2\\right)+2x\\cdot f''\\left(x^2\\right)\\cdot2x=2f'\\left(x^2\\right)+4x^2f''\\left(x^2\\right)$.<br/>3. $x=1$: $2\\cdot3+4\\cdot(-1)=2$.",
+  "genel_hatirlatma": "Bileşkenin ikinci türevi, birinci türevdeki çarpım nedeniyle çarpım + zincir gerektirir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İkinci türevde $f'(x^2)$'nin iç türevini unutmak.",
+    "aciklama": "$\\frac{d}{dx}f'(x^2)=f''(x^2)\\cdot2x$; $2x$ unutulunca $2f'(1)+2f''(1)=4$ çıkar."
+   },
+   "B": {
+    "etiket": "$h'(x)=2xf'(x^2)$'de çarpım kuralını uygulamamak.",
+    "aciklama": "Yalnızca $2x\\cdot f''(x^2)\\cdot2x$ alınmış; $2f'(x^2)$ terimi de var."
+   },
+   "C": {
+    "etiket": "$h''(1)=f''(1)$ sanmak.",
+    "aciklama": "İç fonksiyon $x^2$ olduğu için zincir ve çarpım kuralı ek terimler üretir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.6)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Bileşkenin ikinci türevi",
+   "ipucu": "h′ = 2x·f′(x²) bir çarpımdır.",
+   "sikHata": "Çarpım kuralını atlamak",
+   "cedKonu": "3.6",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_40",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 39,
+  "numara": 40,
+  "konu": "3.6 Calculating Higher-Order Derivatives",
+  "zorluk": "medium",
+  "govde": "If $f(x)=xe^{x}$, what is the value of $f''(0)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$1$"
+   },
+   {
+    "id": "B",
+    "text": "$0$"
+   },
+   {
+    "id": "C",
+    "text": "$2$"
+   },
+   {
+    "id": "D",
+    "text": "$3$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $f'(x)=e^x+xe^x=e^x(x+1)$.<br/>2. $f''(x)=e^x(x+1)+e^x=e^x(x+2)$.<br/>3. $f''(0)=2$.",
+  "genel_hatirlatma": "$\\frac{d^n}{dx^n}\\left(xe^x\\right)=e^x(x+n)$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Birinci türevde durmak.",
+    "aciklama": "$f'(x)=e^x(x+1)$ ⇒ $f'(0)=1$; ikinci türev gerekiyor."
+   },
+   "B": {
+    "etiket": "Çarpımın ikinci türevini ikinci türevlerin çarpımı sanmak.",
+    "aciklama": "$(x)''\\cdot(e^x)''=0\\cdot e^x$; çarpım kuralı her türevde yeniden uygulanmalı."
+   },
+   "D": {
+    "etiket": "Üçüncü türevi hesaplamak.",
+    "aciklama": "$f'''(x)=e^x(x+3)$ ⇒ $f'''(0)=3$; bir türev fazla."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.6)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Çarpımın ikinci türevi",
+   "ipucu": "Örüntü: e^x(x+n).",
+   "sikHata": "Çarpım kuralını atlamak",
+   "cedKonu": "3.6",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_41",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 40,
+  "numara": 41,
+  "konu": "3.6 Calculating Higher-Order Derivatives",
+  "zorluk": "medium",
+  "govde": "If $\\dfrac{dy}{dx}=x^2+y$, which of the following gives $\\dfrac{d^2y}{dx^2}$ in terms of $x$ and $y$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$x^2+2x+y$"
+   },
+   {
+    "id": "B",
+    "text": "$2x$"
+   },
+   {
+    "id": "C",
+    "text": "$2x+1$"
+   },
+   {
+    "id": "D",
+    "text": "$2x+y$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $\\dfrac{d^2y}{dx^2}=\\dfrac{d}{dx}\\left(x^2+y\\right)=2x+\\dfrac{dy}{dx}$.<br/>2. Yerine koy: $2x+x^2+y$.",
+  "genel_hatirlatma": "İkinci türevde $\\frac{dy}{dx}$ kaldıysa verilen ifadeyle değiştir.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "$y$'yi sabit sanmak.",
+    "aciklama": "$y$, $x$'in fonksiyonudur: $\\frac{d}{dx}y=\\frac{dy}{dx}=x^2+y$."
+   },
+   "C": {
+    "etiket": "$\\frac{d}{dx}y=1$ sanmak.",
+    "aciklama": "$\\frac{d}{dx}y=\\frac{dy}{dx}$'tir; 1 değil."
+   },
+   "D": {
+    "etiket": "$\\frac{dy}{dx}$ yerine $y$ koymak.",
+    "aciklama": "$\\frac{d^2y}{dx^2}=2x+\\frac{dy}{dx}$; $\\frac{dy}{dx}=x^2+y$ yazılmalı."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.6)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "$\\frac{dy}{dx}$ ifadesinden ikinci türev",
+   "ipucu": "y′ yerine x² + y yaz.",
+   "sikHata": "y'yi sabit sanmak",
+   "cedKonu": "3.6",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u3_42",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 3,
+  "unite": "3",
+  "kutu": "calc-unit3-quiz-container",
+  "kutu_baslik": "Unit 3 Composite, Implicit & Inverse Functions",
+  "dizi": "CALC_UNIT3_QUESTIONS",
+  "sira": 41,
+  "numara": 42,
+  "konu": "3.6 Calculating Higher-Order Derivatives",
+  "zorluk": "medium",
+  "govde": "If $f(x)=\\arctan x$, what is the value of $f''(1)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\dfrac12$"
+   },
+   {
+    "id": "B",
+    "text": "$-\\dfrac12$"
+   },
+   {
+    "id": "C",
+    "text": "$-\\dfrac14$"
+   },
+   {
+    "id": "D",
+    "text": "$-1$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $f'(x)=\\left(1+x^2\\right)^{-1}$.<br/>2. $f''(x)=-\\left(1+x^2\\right)^{-2}\\cdot2x=-\\dfrac{2x}{\\left(1+x^2\\right)^2}$.<br/>3. $f''(1)=-\\dfrac{2}{4}=-\\dfrac12$.",
+  "genel_hatirlatma": "Birinci türev bir bileşkeyse ikinci türevde zincir kuralı gerekir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Birinci türevde durmak.",
+    "aciklama": "$f'(1)=\\frac{1}{2}$; soru ikinci türevi istiyor."
+   },
+   "C": {
+    "etiket": "İç türevi unutmak.",
+    "aciklama": "$\\frac{d}{dx}\\left(1+x^2\\right)^{-1}=-\\left(1+x^2\\right)^{-2}\\cdot2x$; $2x$ çarpanı eksik."
+   },
+   "D": {
+    "etiket": "Paydanın karesini unutmak.",
+    "aciklama": "$f''(x)=-\\frac{2x}{\\left(1+x^2\\right)^2}$; payda $4$ olmalı, $2$ değil."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 3.6)",
+  "deneme_kodlari": [
+   "calculus-ab",
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Ters trig fonksiyonun ikinci türevi",
+   "ipucu": "f′'yi negatif üsle yaz.",
+   "sikHata": "İç türevi unutmak",
+   "cedKonu": "3.6",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ }
+]

@@ -24,7 +24,8 @@ const TASLAK = path.resolve(argDeger("--taslak") || path.join(__dirname, "yeni-s
 const KARAR = path.resolve(argDeger("--karar") || path.join(__dirname, "onay2", "ekonomi-english.json"));
 const TOHUM = path.join(ROOT, "server", "tohum", "soru-bankasi.json");
 let URETIM = argDeger("--uretim") || "1.14.0";
-const ONAY = { tarih: "2026-10-21", kaynak: "bağımsız denetim (sahip yetkisiyle)" };
+// 1.23.0: --tarih ile onay günü verilir (varsayılan bugün; eski partiler 2026-10-21 tarihliydi)
+const ONAY = { tarih: argDeger("--tarih") || new Date().toISOString().slice(0, 10), kaynak: argDeger("--onay-kaynak") || "bağımsız denetim (sahip yetkisiyle)" };
 const KURU = process.argv.includes("--kuru");
 
 function yolAta(o, yol, deger) {

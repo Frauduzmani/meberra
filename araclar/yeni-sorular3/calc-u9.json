@@ -1,0 +1,4422 @@
+[
+ {
+  "id": "calc_k_u9_1",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 1,
+  "konu": "9.1 Defining and Differentiating Parametric Equations",
+  "zorluk": "easy",
+  "govde": "<strong>[BC ONLY]</strong> A curve is defined parametrically by $x(t)=e^{t}$ and $y(t)=t^2+3t$. What is the value of $\\frac{dy}{dx}$ at $t=1$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\frac{e}{5}$"
+   },
+   {
+    "id": "B",
+    "text": "$5$"
+   },
+   {
+    "id": "C",
+    "text": "$\\frac{4}{e}$"
+   },
+   {
+    "id": "D",
+    "text": "$\\frac{5}{e}$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $\\frac{dy}{dt}=2t+3$, $\\frac{dx}{dt}=e^{t}$.<br/>2. $\\frac{dy}{dx}=\\frac{2t+3}{e^{t}}$.<br/>3. $t=1$: $\\frac{5}{e}$.",
+  "genel_hatirlatma": "Parametrik eğride eğim: $\\frac{dy}{dx}=\\frac{dy/dt}{dx/dt}$ (payda sıfır olmamalı).",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Kesri ters kurmak.",
+    "aciklama": "$\\frac{dx/dt}{dy/dt}$ hesaplanmış. Doğrusu $\\frac{dy}{dx}=\\frac{dy/dt}{dx/dt}$."
+   },
+   "B": {
+    "etiket": "dx/dt ile bölmeyi unutmak.",
+    "aciklama": "$5=y'(1)$ yalnızca $\\frac{dy}{dt}$'dir; $x'(1)=e$ ile bölünmelidir."
+   },
+   "C": {
+    "etiket": "Türev yerine konum oranı.",
+    "aciklama": "$\\frac{y(1)}{x(1)}=\\frac{4}{e}$ eğim değil, noktanın koordinatlarının oranıdır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.1)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Parametrik türev",
+   "ipucu": "Önce dy/dt ve dx/dt'yi ayrı bul, sonra böl.",
+   "sikHata": "Kesri ters kurmak",
+   "cedKonu": "9.1",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_2",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 2,
+  "konu": "9.1 Defining and Differentiating Parametric Equations",
+  "zorluk": "easy",
+  "govde": "<strong>[BC ONLY]</strong> A curve is defined by $x(t)=t^2+1$ and $y(t)=t^3-12t$ for $t\\ge 0$. At which point $(x,y)$ does the curve have a horizontal tangent line?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$(5,\\,-16)$"
+   },
+   {
+    "id": "B",
+    "text": "$(1,\\,0)$"
+   },
+   {
+    "id": "C",
+    "text": "$(5,\\,16)$"
+   },
+   {
+    "id": "D",
+    "text": "$(2,\\,-16)$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. Yatay teğet: $\\frac{dy}{dt}=0$ ve $\\frac{dx}{dt}\\ne0$.<br/>2. $3t^2-12=0\\Rightarrow t=2$ ($t\\ge0$). $x'(2)=4\\ne0$ ✓.<br/>3. Nokta: $(x(2),y(2))=(5,-16)$.",
+  "genel_hatirlatma": "Yatay teğet: $y'(t)=0,\\ x'(t)\\ne0$. Dikey teğet: $x'(t)=0,\\ y'(t)\\ne0$.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Dikey teğeti yatay sanmak.",
+    "aciklama": "$t=0$'da $x'(0)=0$, $y'(0)=-12\\ne0$; burada teğet <b>dikeydir</b>."
+   },
+   "C": {
+    "etiket": "İşaret hatası.",
+    "aciklama": "$y(2)=8-24=-16$; işaret yanlış hesaplanmış."
+   },
+   "D": {
+    "etiket": "Parametre değerini x sanmak.",
+    "aciklama": "$t=2$ bir parametre değeridir; noktanın apsisi $x(2)=5$'tir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.1)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Yatay/dikey teğet",
+   "ipucu": "Bulduğun t'yi x(t) ve y(t)'ye koyarak noktayı yaz.",
+   "sikHata": "Yatay ve dikey teğet koşullarını karıştırmak",
+   "cedKonu": "9.1",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_3",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 3,
+  "konu": "9.1 Defining and Differentiating Parametric Equations",
+  "zorluk": "easy",
+  "govde": "<strong>[BC ONLY]</strong> A curve is defined by $x(t)=2+3\\cos t$ and $y(t)=-1+3\\sin t$ for $0\\le t\\le 2\\pi$. Which of the following is a Cartesian equation of the curve?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$(x+2)^2+(y-1)^2=9$"
+   },
+   {
+    "id": "B",
+    "text": "$(x-2)^2+(y+1)^2=9$"
+   },
+   {
+    "id": "C",
+    "text": "$(x-2)^2+(y+1)^2=3$"
+   },
+   {
+    "id": "D",
+    "text": "$\\frac{(x-2)^2}{9}+(y+1)^2=1$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $\\cos t=\\frac{x-2}{3}$, $\\sin t=\\frac{y+1}{3}$.<br/>2. $\\cos^2t+\\sin^2t=1\\Rightarrow \\frac{(x-2)^2}{9}+\\frac{(y+1)^2}{9}=1$.<br/>3. $(x-2)^2+(y+1)^2=9$: merkez $(2,-1)$, yarıçap 3.",
+  "genel_hatirlatma": "Trigonometrik parametrede $\\cos^2t+\\sin^2t=1$ özdeşliği parametreyi yok eder.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Merkez işaretini ters almak.",
+    "aciklama": "$x-2=3\\cos t$ olduğundan $(x-2)^2$ yazılır; merkez $(2,-1)$'dir."
+   },
+   "C": {
+    "etiket": "Yarıçapı karesiyle karıştırmak.",
+    "aciklama": "$\\cos^2t+\\sin^2t=1$ kullanılınca sağ taraf $3^2=9$ olur, 3 değil."
+   },
+   "D": {
+    "etiket": "Bir katsayıyı unutmak.",
+    "aciklama": "$y+1=3\\sin t$ olduğundan $(y+1)^2$ de 9'a bölünmelidir; eğri elips değil çemberdir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.1)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Parametreyi yok etmek",
+   "ipucu": "cos t ve sin t'yi yalnız bırak, karelerini topla.",
+   "sikHata": "Merkez işaretini ters almak",
+   "cedKonu": "9.1",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_4",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 4,
+  "konu": "9.1 Defining and Differentiating Parametric Equations",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> A curve is defined by $x(t)=2\\cos t$ and $y(t)=3\\sin t$. Which of the following is an equation of the line tangent to the curve at the point where $t=\\frac{\\pi}{4}$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$y-\\frac{3\\sqrt2}{2}=-\\frac{2}{3}\\left(x-\\sqrt2\\right)$"
+   },
+   {
+    "id": "B",
+    "text": "$y-\\frac{3\\sqrt2}{2}=\\frac{3}{2}\\left(x-\\sqrt2\\right)$"
+   },
+   {
+    "id": "C",
+    "text": "$y-\\frac{3\\sqrt2}{2}=-\\frac{3}{2}\\left(x-\\sqrt2\\right)$"
+   },
+   {
+    "id": "D",
+    "text": "$y-\\sqrt2=-\\frac{3}{2}\\left(x-\\frac{3\\sqrt2}{2}\\right)$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. Nokta: $x=2\\cdot\\frac{\\sqrt2}{2}=\\sqrt2$, $y=3\\cdot\\frac{\\sqrt2}{2}=\\frac{3\\sqrt2}{2}$.<br/>2. $\\frac{dy}{dx}=\\frac{3\\cos t}{-2\\sin t}=-\\frac32\\cot t$; $t=\\frac{\\pi}{4}$'te $-\\frac32$.<br/>3. $y-\\frac{3\\sqrt2}{2}=-\\frac32(x-\\sqrt2)$.",
+  "genel_hatirlatma": "Teğet doğru için iki şey gerekir: nokta $(x(t_0),y(t_0))$ ve eğim $\\frac{y'(t_0)}{x'(t_0)}$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Eğimi ters almak.",
+    "aciklama": "$\\frac{dx/dt}{dy/dt}$ kullanılmış; eğim $\\frac{3\\cos t}{-2\\sin t}=-\\frac32$."
+   },
+   "B": {
+    "etiket": "cos t türevinde işaret hatası.",
+    "aciklama": "$\\frac{d}{dt}(2\\cos t)=-2\\sin t$; eksi işareti unutulmuş."
+   },
+   "D": {
+    "etiket": "Nokta koordinatlarını yer değiştirmek.",
+    "aciklama": "Nokta $(x,y)=(\\sqrt2,\\frac{3\\sqrt2}{2})$'dir; $x$ ve $y$ karıştırılmış."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.1)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Parametrik teğet doğrusu",
+   "ipucu": "Noktayı ve eğimi ayrı ayrı hesapla.",
+   "sikHata": "Eğimi ters almak",
+   "cedKonu": "9.1",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_5",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 5,
+  "konu": "9.1 Defining and Differentiating Parametric Equations",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> A curve is defined by $x(t)=t^3-3t^2$ and $y(t)=t^2-4t$. For which values of $t$ does the curve have a vertical tangent line?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$t=0$ and $t=2$"
+   },
+   {
+    "id": "B",
+    "text": "$t=2$ only"
+   },
+   {
+    "id": "C",
+    "text": "No values of $t$"
+   },
+   {
+    "id": "D",
+    "text": "$t=0$ only"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $x'(t)=3t^2-6t=3t(t-2)$, $y'(t)=2t-4=2(t-2)$.<br/>2. $x'=0$: $t=0$ veya $t=2$.<br/>3. $t=0$: $y'=-4\\ne0$ ⇒ dikey teğet.<br/>4. $t=2$: ikisi de 0. $\\frac{dy}{dx}=\\frac{2(t-2)}{3t(t-2)}=\\frac{2}{3t}\\to\\frac13$ ⇒ eğim $\\frac13$, dikey değil.<br/>5. Cevap: yalnız $t=0$.",
+  "genel_hatirlatma": "$x'(t)=y'(t)=0$ olan noktada sonuç belirsizdir; $\\lim \\frac{y'}{x'}$ ile karar verilir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "0/0 durumunu kontrol etmemek.",
+    "aciklama": "$t=2$'de hem $x'$ hem $y'$ sıfır; $\\lim_{t\\to2}\\frac{dy}{dx}=\\lim_{t\\to2}\\frac{2}{3t}=\\frac13$ olduğundan teğet dikey değildir."
+   },
+   "B": {
+    "etiket": "Yalnızca y'(t) = 0'a bakmak.",
+    "aciklama": "$y'(2)=0$ yatay teğet adayıdır, dikey değil; üstelik orada $x'$ de sıfırdır."
+   },
+   "C": {
+    "etiket": "t = 0'ı gözden kaçırmak.",
+    "aciklama": "$t=0$'da $x'(0)=0$ ve $y'(0)=-4\\ne0$; bu bir dikey teğettir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.1)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Dikey teğet ve 0/0 durumu",
+   "ipucu": "x' = 0 bulduğunda y'nin de sıfır olup olmadığını mutlaka kontrol et.",
+   "sikHata": "0/0 noktasını otomatik dikey teğet saymak",
+   "cedKonu": "9.1",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_6",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 6,
+  "konu": "9.1 Defining and Differentiating Parametric Equations",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> A curve is defined by $x(t)=t^2+\\ln(1+t)$ and $y(t)=\\sin\\left(t^2\\right)$. To the nearest thousandth, what is $\\frac{dy}{dx}$ at $t=1.5$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$-0.554$"
+   },
+   {
+    "id": "B",
+    "text": "$-1.804$"
+   },
+   {
+    "id": "C",
+    "text": "$-1.885$"
+   },
+   {
+    "id": "D",
+    "text": "$0.246$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $y'(t)=2t\\cos(t^2)$ ⇒ $y'(1.5)=3\\cos(2.25)\\approx-1.885$.<br/>2. $x'(t)=2t+\\frac{1}{1+t}$ ⇒ $x'(1.5)=3+0.4=3.4$.<br/>3. $\\frac{dy}{dx}=\\frac{-1.885}{3.4}\\approx-0.554$ (hesap makinesinde nDeriv ile de bulunur).",
+  "genel_hatirlatma": "Hesap makinesinde $\\frac{dy}{dx}$ = nDeriv($y$) / nDeriv($x$); ara sonuçları yuvarlama.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Kesri ters kurmak.",
+    "aciklama": "$\\frac{x'(1.5)}{y'(1.5)}\\approx-1.804$; doğrusu $\\frac{y'}{x'}$."
+   },
+   "C": {
+    "etiket": "Yalnızca dy/dt hesaplamak.",
+    "aciklama": "$y'(1.5)=3\\cos(2.25)\\approx-1.885$; $x'(1.5)=3.4$ ile bölünmedi."
+   },
+   "D": {
+    "etiket": "Konum oranını eğim sanmak.",
+    "aciklama": "$\\frac{y(1.5)}{x(1.5)}\\approx0.246$ eğim değildir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.1)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Hesap makinesiyle parametrik eğim",
+   "ipucu": "İki türevi ayrı hesapla, sonra böl; ara değerleri hafızada tut.",
+   "sikHata": "Kesri ters kurmak",
+   "cedKonu": "9.1",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_7",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 7,
+  "konu": "9.1 Defining and Differentiating Parametric Equations",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> A curve is defined by $x(t)=\\ln(t+1)+t$ and $y(t)=\\cos\\left(t^2\\right)+t$ for $0\\lt t\\lt 2$. What is the least value of $t$ at which the line tangent to the curve has slope $-1$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$1.482$"
+   },
+   {
+    "id": "B",
+    "text": "$1.227$"
+   },
+   {
+    "id": "C",
+    "text": "$1.800$"
+   },
+   {
+    "id": "D",
+    "text": "$0.814$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $x'(t)=\\frac{1}{t+1}+1\\gt0$, $y'(t)=1-2t\\sin(t^2)$.<br/>2. $\\frac{dy}{dx}=-1 \\iff y'(t)+x'(t)=0$.<br/>3. Hesap makinesinde $y_1=y'(t)+x'(t)$ çiz; $(0,2)$'deki kökler $t\\approx1.227$ ve $t\\approx1.482$.<br/>4. En küçük değer: $t\\approx1.227$.",
+  "genel_hatirlatma": "“Slope equals $m$” ⇒ $y'(t)-m\\,x'(t)=0$ denklemini çöz; paydayla uğraşmazsın.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İlk çözüm yerine ikinciyi almak.",
+    "aciklama": "$\\frac{dy}{dx}=-1$ denkleminin $(0,2)$'de iki çözümü var: $1.227$ ve $1.482$. Soru en küçüğünü istiyor."
+   },
+   "C": {
+    "etiket": "Eğim işaretini karıştırmak.",
+    "aciklama": "$t\\approx1.800$'de eğim $+1$'dir; soru $-1$ istiyor."
+   },
+   "D": {
+    "etiket": "Yatay teğeti aramak.",
+    "aciklama": "$t\\approx0.814$'te $y'(t)=0$, yani eğim 0'dır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.1)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Belirli eğim için parametre değeri",
+   "ipucu": "Denklemi y' − m·x' = 0 biçimine getirip kökleri hesap makinesiyle bul.",
+   "sikHata": "Birden çok kökten yanlışını seçmek",
+   "cedKonu": "9.1",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_8",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 8,
+  "konu": "9.2 Second Derivatives of Parametric Equations",
+  "zorluk": "easy",
+  "govde": "<strong>[BC ONLY]</strong> A curve is defined by $x(t)=e^{t}$ and $y(t)=e^{2t}$. What is $\\frac{d^2y}{dx^2}$ in terms of $t$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$2e^{t}$"
+   },
+   {
+    "id": "B",
+    "text": "$4e^{t}$"
+   },
+   {
+    "id": "C",
+    "text": "$2$"
+   },
+   {
+    "id": "D",
+    "text": "$2e^{-t}$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $\\frac{dy}{dx}=\\frac{2e^{2t}}{e^{t}}=2e^{t}$.<br/>2. $\\frac{d^2y}{dx^2}=\\frac{\\frac{d}{dt}(2e^{t})}{x'(t)}=\\frac{2e^{t}}{e^{t}}=2$.<br/>3. Kontrol: $y=x^2$ olduğundan $\\frac{d^2y}{dx^2}=2$ ✓.",
+  "genel_hatirlatma": "$\\frac{d^2y}{dx^2}=\\dfrac{\\frac{d}{dt}\\left(\\frac{dy}{dx}\\right)}{\\frac{dx}{dt}}$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "x'(t) ile bölmeyi unutmak.",
+    "aciklama": "$\\frac{dy}{dx}=2e^{t}$ ve $\\frac{d}{dt}\\left(\\frac{dy}{dx}\\right)=2e^{t}$; bunu $x'(t)=e^{t}$ ile bölmek gerekir."
+   },
+   "B": {
+    "etiket": "İkinci türevlerin oranını almak.",
+    "aciklama": "$\\frac{y''(t)}{x''(t)}=\\frac{4e^{2t}}{e^{t}}$ geçerli bir formül değildir."
+   },
+   "D": {
+    "etiket": "x'(t) ile iki kez bölmek.",
+    "aciklama": "$\\frac{d}{dt}\\left(\\frac{dy}{dx}\\right)$ yalnız bir kez $x'(t)$ ile bölünür."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.2)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Parametrik ikinci türev",
+   "ipucu": "Sonucu parametreyi yok ederek kontrol edebilirsin.",
+   "sikHata": "y''/x'' formülünü kullanmak",
+   "cedKonu": "9.2",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_9",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 9,
+  "konu": "9.2 Second Derivatives of Parametric Equations",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> A curve is defined by $x(t)=t^2+1$ and $y(t)=t^3-3t$ for $t\\gt0$. What is the value of $\\frac{d^2y}{dx^2}$ at $t=2$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\frac{15}{8}$"
+   },
+   {
+    "id": "B",
+    "text": "$6$"
+   },
+   {
+    "id": "C",
+    "text": "$\\frac{15}{16}$"
+   },
+   {
+    "id": "D",
+    "text": "$\\frac{15}{32}$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $\\frac{dy}{dx}=\\frac{3t^2-3}{2t}=\\frac32t-\\frac{3}{2t}$.<br/>2. $\\frac{d}{dt}\\left(\\frac{dy}{dx}\\right)=\\frac32+\\frac{3}{2t^2}$ ⇒ $t=2$'de $\\frac32+\\frac38=\\frac{15}{8}$.<br/>3. $\\frac{d^2y}{dx^2}=\\frac{15/8}{x'(2)}=\\frac{15/8}{4}=\\frac{15}{32}$.",
+  "genel_hatirlatma": "Önce $\\frac{dy}{dx}$'i $t$ cinsinden sadeleştir, sonra $t$'ye göre türev al ve $x'(t)$'ye böl.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "x'(t) ile bölmeyi unutmak.",
+    "aciklama": "$\\frac{d}{dt}\\left(\\frac{dy}{dx}\\right)=\\frac{15}{8}$; $x'(2)=4$ ile bölünmeli."
+   },
+   "B": {
+    "etiket": "İkinci türevlerin oranını almak.",
+    "aciklama": "$\\frac{y''}{x''}=\\frac{6t}{2}=6$ geçerli bir formül değildir."
+   },
+   "C": {
+    "etiket": "x'(t) yerine x''(t) ile bölmek.",
+    "aciklama": "Bölen $x'(2)=4$ olmalı, $x''=2$ değil."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.2)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Parametrik ikinci türev değeri",
+   "ipucu": "dy/dx'i terimlere ayırmak türevi kolaylaştırır.",
+   "sikHata": "Son bölmeyi unutmak",
+   "cedKonu": "9.2",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_10",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 10,
+  "konu": "9.2 Second Derivatives of Parametric Equations",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> A curve is defined by $x(t)=2\\sin t$ and $y(t)=\\cos t$. What is the value of $\\frac{d^2y}{dx^2}$ at $t=\\frac{\\pi}{4}$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$-1$"
+   },
+   {
+    "id": "B",
+    "text": "$-\\frac{\\sqrt2}{2}$"
+   },
+   {
+    "id": "C",
+    "text": "$\\frac12$"
+   },
+   {
+    "id": "D",
+    "text": "$\\frac{\\sqrt2}{2}$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $\\frac{dy}{dx}=\\frac{-\\sin t}{2\\cos t}=-\\frac12\\tan t$.<br/>2. $\\frac{d}{dt}\\left(\\frac{dy}{dx}\\right)=-\\frac12\\sec^2t$; $t=\\frac{\\pi}{4}$'te $-1$.<br/>3. $x'(\\frac{\\pi}{4})=2\\cos\\frac{\\pi}{4}=\\sqrt2$ ⇒ $\\frac{d^2y}{dx^2}=\\frac{-1}{\\sqrt2}=-\\frac{\\sqrt2}{2}$ (concave down).",
+  "genel_hatirlatma": "Elipsin üst yarısı aşağı bükeydir; negatif ikinci türev bu sezgiyle uyumludur.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "x'(t) ile bölmeyi unutmak.",
+    "aciklama": "$\\frac{d}{dt}\\left(-\\frac12\\tan t\\right)=-\\frac12\\sec^2t=-1$; $x'(\\frac{\\pi}{4})=\\sqrt2$ ile bölünmedi."
+   },
+   "C": {
+    "etiket": "İkinci türevlerin oranını almak.",
+    "aciklama": "$\\frac{y''}{x''}=\\frac{-\\cos t}{-2\\sin t}$ geçersiz bir formüldür."
+   },
+   "D": {
+    "etiket": "İşaret hatası.",
+    "aciklama": "$\\frac{dy}{dx}=-\\frac12\\tan t$ ifadesindeki eksi kaybolmuş; eğri burada aşağı bükeydir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.2)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Trigonometrik parametrede ikinci türev",
+   "ipucu": "Sonucun işaretini grafikle kontrol et.",
+   "sikHata": "Son adımda x'(t)'ye bölmeyi unutmak",
+   "cedKonu": "9.2",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_11",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 11,
+  "konu": "9.2 Second Derivatives of Parametric Equations",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> A curve is defined by $x(t)=\\ln t$ and $y(t)=t^2-t$ for $t\\gt0$. For which values of $t$ is the curve concave up?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$t\\gt\\frac14$"
+   },
+   {
+    "id": "B",
+    "text": "All $t\\gt0$"
+   },
+   {
+    "id": "C",
+    "text": "$0\\lt t\\lt\\frac14$"
+   },
+   {
+    "id": "D",
+    "text": "$t\\gt\\frac12$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $x'(t)=\\frac1t$ ⇒ $\\frac{dy}{dx}=\\frac{2t-1}{1/t}=2t^2-t$.<br/>2. $\\frac{d}{dt}\\left(\\frac{dy}{dx}\\right)=4t-1$.<br/>3. $\\frac{d^2y}{dx^2}=\\frac{4t-1}{1/t}=t(4t-1)$.<br/>4. $t\\gt0$ için pozitif ⇔ $t\\gt\\frac14$.",
+  "genel_hatirlatma": "Bükeylik $\\frac{d^2y}{dx^2}$'nin işaretiyle belirlenir; $y''(t)$ ile değil.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "y''(t)'nin işaretine bakmak.",
+    "aciklama": "$y''(t)=2\\gt0$ eğrinin $x$'e göre bükeyliğini vermez; $\\frac{d^2y}{dx^2}$ gerekir."
+   },
+   "C": {
+    "etiket": "İşaret tablosunu ters okumak.",
+    "aciklama": "$t(4t-1)$ ifadesi $0\\lt t\\lt\\frac14$'te negatiftir; orası aşağı bükey."
+   },
+   "D": {
+    "etiket": "dy/dx'in işaretine bakmak.",
+    "aciklama": "$\\frac{dy}{dx}=2t^2-t\\gt0$ koşulu artanlığı verir, bükeyliği değil."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.2)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Parametrik bükeylik aralığı",
+   "ipucu": "d²y/dx²'yi çarpanlara ayırıp işaret tablosu yap.",
+   "sikHata": "y''(t)'nin işaretine bakmak",
+   "cedKonu": "9.2",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_12",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 12,
+  "konu": "9.2 Second Derivatives of Parametric Equations",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> A curve is defined by $x(t)=t^2+t$ and $y(t)=t^3-3t$. Which of the following statements about the curve at the point where $t=1$ is true?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "The tangent line is horizontal and $\\frac{d^2y}{dx^2}=2\\gt0$, so the curve has a relative minimum there."
+   },
+   {
+    "id": "B",
+    "text": "The tangent line is horizontal and $\\frac{d^2y}{dx^2}=3\\gt0$, so the curve has a relative minimum there."
+   },
+   {
+    "id": "C",
+    "text": "The tangent line is horizontal and $\\frac{d^2y}{dx^2}=\\frac23\\gt0$, so the curve has a relative minimum there."
+   },
+   {
+    "id": "D",
+    "text": "The tangent line is vertical, because $\\frac{dy}{dt}=0$ at $t=1$."
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $x'(t)=2t+1$, $y'(t)=3t^2-3$. $t=1$: $x'=3$, $y'=0$ ⇒ $\\frac{dy}{dx}=0$, yatay teğet.<br/>2. $\\frac{d}{dt}\\left(\\frac{3t^2-3}{2t+1}\\right)=\\frac{6t(2t+1)-2(3t^2-3)}{(2t+1)^2}$; $t=1$'de $\\frac{18}{9}=2$.<br/>3. $\\frac{d^2y}{dx^2}=\\frac{2}{3}\\gt0$ ⇒ yukarı bükey; yatay teğetle birlikte göreli minimum (ikinci türev testi).",
+  "genel_hatirlatma": "İkinci türev testi parametrik eğride de çalışır: $\\frac{dy}{dx}=0$ ve $\\frac{d^2y}{dx^2}\\gt0$ ⇒ relative minimum.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "x'(t) ile bölmeyi unutmak.",
+    "aciklama": "$\\frac{d}{dt}\\left(\\frac{dy}{dx}\\right)=2$; bunu $x'(1)=3$ ile bölmek gerekir."
+   },
+   "B": {
+    "etiket": "İkinci türevlerin oranını almak.",
+    "aciklama": "$\\frac{y''(1)}{x''(1)}=\\frac{6}{2}=3$ geçersiz bir formüldür."
+   },
+   "D": {
+    "etiket": "Yatay/dikey koşulunu karıştırmak.",
+    "aciklama": "$y'(1)=0$, $x'(1)=3\\ne0$ ⇒ teğet <b>yataydır</b>."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.2)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Parametrik eğride ikinci türev testi",
+   "ipucu": "FRQ'da gerekçe: 'dy/dx = 0 and d²y/dx² > 0'.",
+   "sikHata": "Son bölmeyi unutmak",
+   "cedKonu": "9.2",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_13",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 13,
+  "konu": "9.2 Second Derivatives of Parametric Equations",
+  "zorluk": "easy",
+  "govde": "<strong>[BC ONLY]</strong> For a parametric curve, $\\frac{dy}{dx}=t^2-\\frac1t$ and $\\frac{dx}{dt}=3t$ for $t\\gt0$. What is the value of $\\frac{d^2y}{dx^2}$ at $t=1$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$3$"
+   },
+   {
+    "id": "B",
+    "text": "$1$"
+   },
+   {
+    "id": "C",
+    "text": "$9$"
+   },
+   {
+    "id": "D",
+    "text": "$0$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $\\frac{d}{dt}\\left(t^2-\\frac1t\\right)=2t+\\frac{1}{t^2}$ ⇒ $t=1$'de $3$.<br/>2. $\\frac{d^2y}{dx^2}=\\frac{3}{dx/dt}=\\frac{3}{3}=1$.",
+  "genel_hatirlatma": "$\\frac{d}{dx}(\\text{bir ifade})=\\frac{\\frac{d}{dt}(\\text{o ifade})}{dx/dt}$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "x'(t) ile bölmeyi unutmak.",
+    "aciklama": "$\\frac{d}{dt}\\left(\\frac{dy}{dx}\\right)=2t+\\frac{1}{t^2}=3$; $\\frac{dx}{dt}=3$ ile bölünmeli."
+   },
+   "C": {
+    "etiket": "Bölmek yerine çarpmak.",
+    "aciklama": "Zincir kuralı $\\frac{d}{dx}=\\frac{d/dt}{dx/dt}$ bölme gerektirir."
+   },
+   "D": {
+    "etiket": "dy/dx'in değerini vermek.",
+    "aciklama": "$t=1$'de $\\frac{dy}{dx}=0$'dır; bu birinci türevdir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.2)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Zincir kuralıyla ikinci türev",
+   "ipucu": "dy/dx verilmişse yalnız t'ye göre türev al ve dx/dt'ye böl.",
+   "sikHata": "Bölme yerine çarpma",
+   "cedKonu": "9.2",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_14",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 14,
+  "konu": "9.2 Second Derivatives of Parametric Equations",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> A curve is defined by $x(t)=\\ln\\left(1+t^2\\right)$ and $y(t)=te^{-t}$. To the nearest thousandth, what is $\\frac{d^2y}{dx^2}$ at $t=2$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$-0.051$"
+   },
+   {
+    "id": "B",
+    "text": "$0.000$"
+   },
+   {
+    "id": "C",
+    "text": "$-0.169$"
+   },
+   {
+    "id": "D",
+    "text": "$-0.063$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $x'(t)=\\frac{2t}{1+t^2}$ ⇒ $x'(2)=0.8$; $y'(t)=e^{-t}(1-t)$ ⇒ $y'(2)=-e^{-2}$.<br/>2. $\\frac{d^2y}{dx^2}=\\frac{x'y''-y'x''}{(x')^3}$; $y''(2)=0$, $x''(2)=-0.24$.<br/>3. $\\frac{0.8\\cdot0-(-e^{-2})(-0.24)}{0.8^3}\\approx-0.063$.",
+  "genel_hatirlatma": "Eşdeğer formül: $\\frac{d^2y}{dx^2}=\\frac{x'(t)y''(t)-y'(t)x''(t)}{\\left(x'(t)\\right)^3}$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "x'(t) ile bölmeyi unutmak.",
+    "aciklama": "$-0.051$ değeri $\\frac{d}{dt}\\left(\\frac{dy}{dx}\\right)$'dir; $x'(2)=0.8$ ile bölünmedi."
+   },
+   "B": {
+    "etiket": "İkinci türevlerin oranını almak.",
+    "aciklama": "$y''(2)=0$ olduğundan $\\frac{y''}{x''}=0$ çıkar; formül geçersiz."
+   },
+   "C": {
+    "etiket": "Birinci türevi vermek.",
+    "aciklama": "$-0.169$ değeri $\\frac{dy}{dx}$'tir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.2)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Hesap makinesiyle ikinci türev",
+   "ipucu": "Hesap makinesinde dy/dx'i t'nin fonksiyonu olarak tanımla, nDeriv al, x'(t)'ye böl.",
+   "sikHata": "x'(t)'ye bölmeyi unutmak",
+   "cedKonu": "9.2",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_15",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 15,
+  "konu": "9.2 Second Derivatives of Parametric Equations",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> A curve is defined by $x(t)=t^2+1$ and $y(t)=\\sin t$ for $0\\lt t\\lt3.5$. At what value of $t$ does the curve change concavity?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$1.571$"
+   },
+   {
+    "id": "B",
+    "text": "$0.860$"
+   },
+   {
+    "id": "C",
+    "text": "$2.798$"
+   },
+   {
+    "id": "D",
+    "text": "$3.142$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $\\frac{dy}{dx}=\\frac{\\cos t}{2t}$.<br/>2. $\\frac{d}{dt}\\left(\\frac{dy}{dx}\\right)=\\frac{-2t\\sin t-2\\cos t}{4t^2}$ ⇒ $\\frac{d^2y}{dx^2}=\\frac{-(t\\sin t+\\cos t)}{4t^3}$ ($x'=2t\\gt0$).<br/>3. İşaret $t\\sin t+\\cos t$ ile değişir; hesap makinesi: $(0,3.5)$'te tek kök $t\\approx2.798$.",
+  "genel_hatirlatma": "Bükeylik değişimi = $\\frac{d^2y}{dx^2}$'nin işaret değiştirdiği yer (yalnızca sıfır olması yetmez).",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Yatay teğeti bükeylik değişimi sanmak.",
+    "aciklama": "$t=\\frac{\\pi}{2}$'de $\\frac{dy}{dx}=0$ olur; bükeylik orada değişmez."
+   },
+   "B": {
+    "etiket": "Bölüm kuralında işaret hatası.",
+    "aciklama": "Pay $-2t\\sin t+2\\cos t$ alınırsa $t\\tan t=1$ çıkar; doğru pay $-2t\\sin t-2\\cos t$."
+   },
+   "D": {
+    "etiket": "y''(t)'nin işaretine bakmak.",
+    "aciklama": "$y''(t)=-\\sin t$ $t=\\pi$'de işaret değiştirir ama bu $x$'e göre bükeylik değildir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.2)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Parametrik bükeylik değişimi",
+   "ipucu": "Pay ifadesini çiz ve kökte işaret değiştirdiğini gör.",
+   "sikHata": "dy/dx = 0 noktasını büküm noktası sanmak",
+   "cedKonu": "9.2",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_16",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 16,
+  "konu": "9.3 Finding Arc Lengths of Curves Given by Parametric Equations",
+  "zorluk": "easy",
+  "govde": "<strong>[BC ONLY]</strong> Which of the following gives the length of the curve defined by $x(t)=t^2$ and $y(t)=\\cos t$ for $0\\le t\\le\\pi$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\displaystyle\\int_0^{\\pi}\\sqrt{4t^2+\\sin^2t}\\,dt$"
+   },
+   {
+    "id": "B",
+    "text": "$\\displaystyle\\int_0^{\\pi}\\sqrt{t^4+\\cos^2t}\\,dt$"
+   },
+   {
+    "id": "C",
+    "text": "$\\displaystyle\\int_0^{\\pi}\\left(2t-\\sin t\\right)dt$"
+   },
+   {
+    "id": "D",
+    "text": "$\\displaystyle\\int_0^{\\pi}\\sqrt{1+\\sin^2t}\\,dt$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $x'(t)=2t$, $y'(t)=-\\sin t$.<br/>2. $L=\\int_0^{\\pi}\\sqrt{(x')^2+(y')^2}\\,dt=\\int_0^{\\pi}\\sqrt{4t^2+\\sin^2t}\\,dt$.",
+  "genel_hatirlatma": "Parametrik yay uzunluğu: $L=\\int_a^b\\sqrt{\\left(\\frac{dx}{dt}\\right)^2+\\left(\\frac{dy}{dt}\\right)^2}\\,dt$.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Türev yerine fonksiyonları kullanmak.",
+    "aciklama": "Formülde $x'(t)$ ve $y'(t)$ olmalı; $x(t)$ ve $y(t)$ değil."
+   },
+   "C": {
+    "etiket": "Karekökü ve kareleri atlamak.",
+    "aciklama": "Bu $x$ ve $y$ değişimlerinin toplamıdır; uzunluk $\\sqrt{(x')^2+(y')^2}$ ister."
+   },
+   "D": {
+    "etiket": "Kartezyen formülü yanlış uyarlamak.",
+    "aciklama": "$\\sqrt{1+(dy/dx)^2}\\,dx$ formülünde $dy/dt$ kullanılmış ve $dx=x'(t)dt$ unutulmuş."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.3)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Yay uzunluğu integrali kurmak",
+   "ipucu": "Önce iki türevi yaz, sonra karelerini topla.",
+   "sikHata": "Türev yerine fonksiyon kullanmak",
+   "cedKonu": "9.3",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_17",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 17,
+  "konu": "9.3 Finding Arc Lengths of Curves Given by Parametric Equations",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> What is the length of the curve defined by $x(t)=3t^2$ and $y(t)=2t^3$ for $0\\le t\\le1$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$4\\sqrt2$"
+   },
+   {
+    "id": "B",
+    "text": "$5$"
+   },
+   {
+    "id": "C",
+    "text": "$2\\sqrt2-1$"
+   },
+   {
+    "id": "D",
+    "text": "$4\\sqrt2-2$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $x'=6t$, $y'=6t^2$ ⇒ $\\sqrt{36t^2+36t^4}=6t\\sqrt{1+t^2}$ ($t\\ge0$).<br/>2. $u=1+t^2$: $\\int_0^1 6t\\sqrt{1+t^2}\\,dt=\\left[2(1+t^2)^{3/2}\\right]_0^1$.<br/>3. $=2\\cdot2\\sqrt2-2=4\\sqrt2-2\\approx3.657$.",
+  "genel_hatirlatma": "Kök içi çoğu zaman ortak çarpan parantezine alınarak $u$-substitution'a hazır hâle gelir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Alt sınırı unutmak.",
+    "aciklama": "$2(1+t^2)^{3/2}$ ifadesinin $t=0$'daki değeri $2$'dir; çıkarılmalı."
+   },
+   "B": {
+    "etiket": "Karekök olmadan türevleri toplamak.",
+    "aciklama": "$\\int_0^1(6t+6t^2)\\,dt=5$ yay uzunluğu değildir."
+   },
+   "C": {
+    "etiket": "Ters türevde katsayıyı kaybetmek.",
+    "aciklama": "$\\int 6t\\sqrt{1+t^2}\\,dt=2(1+t^2)^{3/2}$; 2 katsayısı düşmüş."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.3)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Tam yay uzunluğu",
+   "ipucu": "Kök içinden t² çarpanını çıkar.",
+   "sikHata": "Alt sınırı unutmak",
+   "cedKonu": "9.3",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_18",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 18,
+  "konu": "9.3 Finding Arc Lengths of Curves Given by Parametric Equations",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> What is the length of the curve defined by $x(t)=\\cos^3t$ and $y(t)=\\sin^3t$ for $0\\le t\\le\\frac{\\pi}{2}$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\frac32$"
+   },
+   {
+    "id": "B",
+    "text": "$3$"
+   },
+   {
+    "id": "C",
+    "text": "$6$"
+   },
+   {
+    "id": "D",
+    "text": "$\\sqrt2$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $x'=-3\\cos^2t\\sin t$, $y'=3\\sin^2t\\cos t$.<br/>2. $(x')^2+(y')^2=9\\sin^2t\\cos^2t(\\cos^2t+\\sin^2t)=9\\sin^2t\\cos^2t$ ⇒ hız $3\\sin t\\cos t$ ($0\\le t\\le\\frac{\\pi}{2}$'de $\\ge0$).<br/>3. $L=\\int_0^{\\pi/2}3\\sin t\\cos t\\,dt=\\left[\\frac32\\sin^2t\\right]_0^{\\pi/2}=\\frac32$.",
+  "genel_hatirlatma": "Karekök $\\sqrt{A^2}=|A|$ verir; aralıkta işareti kontrol et.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Ters türevde ½ katsayısını unutmak.",
+    "aciklama": "$\\int_0^{\\pi/2}3\\sin t\\cos t\\,dt=\\frac32$; $\\int\\sin t\\cos t\\,dt=\\frac12\\sin^2t$."
+   },
+   "C": {
+    "etiket": "Tüm eğrinin uzunluğunu vermek.",
+    "aciklama": "6, dört dal birlikte ($0\\le t\\le2\\pi$) uzunluktur; soru tek dalı istiyor."
+   },
+   "D": {
+    "etiket": "Uç noktalar arası doğru parçası.",
+    "aciklama": "$(1,0)$ ile $(0,1)$ arasındaki uzaklık $\\sqrt2$'dir; eğri bu doğru parçası değildir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.3)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Trigonometrik yay uzunluğu",
+   "ipucu": "Ortak çarpanı çıkar ve sin² + cos² = 1 kullan.",
+   "sikHata": "Katsayı kaybı",
+   "cedKonu": "9.3",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_19",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 19,
+  "konu": "9.3 Finding Arc Lengths of Curves Given by Parametric Equations",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> A curve is defined by $x(t)=t+\\cos t$ and $y(t)=2\\ln(t+1)$ for $0\\le t\\le3$. To the nearest thousandth, what is the length of the curve?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$2.951$"
+   },
+   {
+    "id": "B",
+    "text": "$3.590$"
+   },
+   {
+    "id": "C",
+    "text": "$3.053$"
+   },
+   {
+    "id": "D",
+    "text": "$3.783$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $x'(t)=1-\\sin t$, $y'(t)=\\frac{2}{t+1}$.<br/>2. $L=\\int_0^3\\sqrt{(1-\\sin t)^2+\\left(\\frac{2}{t+1}\\right)^2}\\,dt$.<br/>3. Hesap makinesi (fnInt): $L\\approx3.053$.",
+  "genel_hatirlatma": "Yay uzunluğu her zaman uç noktalar arası uzaklıktan büyük ya da ona eşittir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Uç noktalar arası uzaklığı vermek.",
+    "aciklama": "$\\sqrt{\\Delta x^2+\\Delta y^2}\\approx2.951$ yer değiştirmedir; eğri doğru değildir."
+   },
+   "B": {
+    "etiket": "Karekökü unutmak.",
+    "aciklama": "$\\int_0^3\\left[(x')^2+(y')^2\\right]dt\\approx3.590$; integrandın karekökü alınmalı."
+   },
+   "D": {
+    "etiket": "Türevleri toplamak.",
+    "aciklama": "$\\int_0^3(x'+y')\\,dt\\approx3.783$ yay uzunluğu formülü değildir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.3)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Hesap makinesiyle yay uzunluğu",
+   "ipucu": "Sonucu kontrol et: L ≥ uç noktalar arası uzaklık.",
+   "sikHata": "Karekökü unutmak",
+   "cedKonu": "9.3",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_20",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 20,
+  "konu": "9.3 Finding Arc Lengths of Curves Given by Parametric Equations",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> The curve defined by $x(t)=t^2$ and $y(t)=t^3-3t$ crosses itself at the point $(3,0)$, forming a loop. To the nearest thousandth, what is the length of the loop?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$5.368$"
+   },
+   {
+    "id": "B",
+    "text": "$10.735$"
+   },
+   {
+    "id": "C",
+    "text": "$4.885$"
+   },
+   {
+    "id": "D",
+    "text": "$24.385$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $(3,0)$: $t^2=3$ ⇒ $t=\\pm\\sqrt3$; $y(\\pm\\sqrt3)=\\pm3\\sqrt3\\mp3\\sqrt3=0$ ✓. Döngü $-\\sqrt3\\le t\\le\\sqrt3$.<br/>2. $x'=2t$, $y'=3t^2-3$.<br/>3. $L=\\int_{-\\sqrt3}^{\\sqrt3}\\sqrt{4t^2+(3t^2-3)^2}\\,dt\\approx10.735$.",
+  "genel_hatirlatma": "Kendini kesme noktası: farklı iki $t$ değeri aynı $(x,y)$'yi verir. Döngü bu iki $t$ arasındadır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Döngünün yalnız yarısını almak.",
+    "aciklama": "$0\\le t\\le\\sqrt3$ döngünün yarısıdır; döngü $-\\sqrt3\\le t\\le\\sqrt3$ boyunca çizilir."
+   },
+   "C": {
+    "etiket": "Sınırları yatay teğetlerden almak.",
+    "aciklama": "$t=\\pm1$ yatay teğet noktalarıdır; kendini kesme noktası $t=\\pm\\sqrt3$'tür."
+   },
+   "D": {
+    "etiket": "x değerini t değeri sanmak.",
+    "aciklama": "Kesişim noktasında $x=3$, ama $t=\\pm\\sqrt3$'tür; $0\\le t\\le3$ alınmış."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.3)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Döngü uzunluğu",
+   "ipucu": "Önce kesişim noktasındaki iki t değerini bul.",
+   "sikHata": "Sınırları yanlış seçmek",
+   "cedKonu": "9.3",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_21",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 21,
+  "konu": "9.3 Finding Arc Lengths of Curves Given by Parametric Equations",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> A curve is defined by $x(t)=2\\cos t$ and $y(t)=\\sin(2t)$. To the nearest thousandth, what is the length of the curve for $0\\le t\\le\\frac{\\pi}{2}$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$3.049$"
+   },
+   {
+    "id": "B",
+    "text": "$6.283$"
+   },
+   {
+    "id": "C",
+    "text": "$2.000$"
+   },
+   {
+    "id": "D",
+    "text": "$12.194$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $x'=-2\\sin t$, $y'=2\\cos(2t)$.<br/>2. $L=\\int_0^{\\pi/2}\\sqrt{4\\sin^2t+4\\cos^2(2t)}\\,dt$.<br/>3. Hesap makinesi: $L\\approx3.049$.",
+  "genel_hatirlatma": "Hesap makinesinde integrandı tek ifade olarak gir: √((−2sin t)² + (2cos 2t)²).",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Karekökü unutmak.",
+    "aciklama": "$\\int_0^{\\pi/2}\\left(4\\sin^2t+4\\cos^2 2t\\right)dt=2\\pi$; integrandın karekökü alınmalı."
+   },
+   "C": {
+    "etiket": "Uç noktalar arası uzaklık.",
+    "aciklama": "$(2,0)$ ile $(0,0)$ arası uzaklık 2'dir; eğri doğru değildir."
+   },
+   "D": {
+    "etiket": "Aralığı genişletmek.",
+    "aciklama": "$12.194$ tüm eğrinin ($0\\le t\\le2\\pi$) uzunluğudur."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.3)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Hesap makinesiyle yay uzunluğu",
+   "ipucu": "Radyan modunda olduğunu kontrol et.",
+   "sikHata": "Karekökü unutmak",
+   "cedKonu": "9.3",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_22",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 22,
+  "konu": "9.3 Finding Arc Lengths of Curves Given by Parametric Equations",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> A curve is defined by $x(t)=t^2$ and $y(t)=4t$. Let $L(k)$ be the length of the curve from $t=0$ to $t=k$, for $k\\gt0$. What is $L'(2)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$8$"
+   },
+   {
+    "id": "B",
+    "text": "$4\\sqrt5$"
+   },
+   {
+    "id": "C",
+    "text": "$4\\sqrt2$"
+   },
+   {
+    "id": "D",
+    "text": "$32$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $L(k)=\\int_0^k\\sqrt{(2t)^2+4^2}\\,dt$.<br/>2. FTC: $L'(k)=\\sqrt{4k^2+16}$.<br/>3. $L'(2)=\\sqrt{32}=4\\sqrt2$.",
+  "genel_hatirlatma": "Yay uzunluğu fonksiyonunun türevi hızdır (speed): $\\frac{dL}{dt}=\\sqrt{(x')^2+(y')^2}$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Türevleri toplamak.",
+    "aciklama": "$x'(2)+y'(2)=8$; doğrusu $\\sqrt{(x')^2+(y')^2}$."
+   },
+   "B": {
+    "etiket": "Konumun büyüklüğünü almak.",
+    "aciklama": "$\\sqrt{x(2)^2+y(2)^2}=\\sqrt{80}$ başlangıca uzaklıktır, hız değildir."
+   },
+   "D": {
+    "etiket": "Karekökü unutmak.",
+    "aciklama": "$(x')^2+(y')^2=32$; karekök alınmalı."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.3)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Yay uzunluğu ve FTC",
+   "ipucu": "İntegrali çözmene gerek yok; FTC ile integrandı oku.",
+   "sikHata": "Türevleri toplamak",
+   "cedKonu": "9.3",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_23",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 23,
+  "konu": "9.4 Defining and Differentiating Vector-Valued Functions",
+  "zorluk": "easy",
+  "govde": "<strong>[BC ONLY]</strong> The position of a particle is $\\vec{r}(t)=\\left\\langle t^2,\\ e^{3t}\\right\\rangle$. What is the velocity vector of the particle at $t=1$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\left\\langle 1,\\ e^{3}\\right\\rangle$"
+   },
+   {
+    "id": "B",
+    "text": "$\\left\\langle 2,\\ 3e^{3}\\right\\rangle$"
+   },
+   {
+    "id": "C",
+    "text": "$\\left\\langle 2,\\ e^{3}\\right\\rangle$"
+   },
+   {
+    "id": "D",
+    "text": "$\\left\\langle 2,\\ 9e^{3}\\right\\rangle$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $\\vec v(t)=\\vec r\\,'(t)=\\langle2t,\\ 3e^{3t}\\rangle$.<br/>2. $\\vec v(1)=\\langle2,\\ 3e^{3}\\rangle$.",
+  "genel_hatirlatma": "Vektör değerli fonksiyonun türevi bileşen bileşen alınır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Konumu vermek.",
+    "aciklama": "$\\vec r(1)=\\langle1,e^3\\rangle$ konumdur; hız türevdir."
+   },
+   "C": {
+    "etiket": "Zincir kuralını unutmak.",
+    "aciklama": "$\\frac{d}{dt}e^{3t}=3e^{3t}$; 3 çarpanı unutulmuş."
+   },
+   "D": {
+    "etiket": "İvmeyi vermek.",
+    "aciklama": "$\\langle2,9e^{3}\\rangle=\\vec a(1)$, ikinci türevdir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.4)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Hız vektörü",
+   "ipucu": "Her bileşeni ayrı türevle.",
+   "sikHata": "Zincir kuralını unutmak",
+   "cedKonu": "9.4",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_24",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 24,
+  "konu": "9.4 Defining and Differentiating Vector-Valued Functions",
+  "zorluk": "easy",
+  "govde": "<strong>[BC ONLY]</strong> The position of a particle is $\\vec{r}(t)=\\left\\langle 2t,\\ t^2-3\\right\\rangle$. What is the speed of the particle at $t=2$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$6$"
+   },
+   {
+    "id": "B",
+    "text": "$20$"
+   },
+   {
+    "id": "C",
+    "text": "$\\sqrt{17}$"
+   },
+   {
+    "id": "D",
+    "text": "$2\\sqrt5$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $\\vec v(t)=\\langle2,\\ 2t\\rangle$ ⇒ $\\vec v(2)=\\langle2,4\\rangle$.<br/>2. Speed $=|\\vec v(2)|=\\sqrt{4+16}=2\\sqrt5$.",
+  "genel_hatirlatma": "Speed $=|\\vec v(t)|=\\sqrt{(x')^2+(y')^2}$; her zaman $\\ge0$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Bileşenleri toplamak.",
+    "aciklama": "$2+4=6$; hız büyüklüğü $\\sqrt{2^2+4^2}$'dir."
+   },
+   "B": {
+    "etiket": "Karekökü unutmak.",
+    "aciklama": "$2^2+4^2=20$; speed $=\\sqrt{20}$."
+   },
+   "C": {
+    "etiket": "Konumun büyüklüğünü almak.",
+    "aciklama": "$|\\vec r(2)|=|\\langle4,1\\rangle|=\\sqrt{17}$ başlangıca uzaklıktır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.4)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Hız büyüklüğü (speed)",
+   "ipucu": "Speed bir sayıdır, vektör değildir.",
+   "sikHata": "Konum büyüklüğünü almak",
+   "cedKonu": "9.4",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_25",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 25,
+  "konu": "9.4 Defining and Differentiating Vector-Valued Functions",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> A particle moves in the $xy$-plane with position $\\vec{r}(t)=\\left\\langle t^3-t,\\ \\sqrt{t+2}\\right\\rangle$. What is the slope of the line tangent to the path of the particle at $t=2$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\frac{1}{44}$"
+   },
+   {
+    "id": "B",
+    "text": "$44$"
+   },
+   {
+    "id": "C",
+    "text": "$\\frac13$"
+   },
+   {
+    "id": "D",
+    "text": "$\\frac14$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $x'(t)=3t^2-1$ ⇒ $x'(2)=11$; $y'(t)=\\frac{1}{2\\sqrt{t+2}}$ ⇒ $y'(2)=\\frac14$.<br/>2. Eğim $=\\frac{y'(2)}{x'(2)}=\\frac{1/4}{11}=\\frac{1}{44}$.",
+  "genel_hatirlatma": "Yolun eğimi hız vektörünün bileşenlerinden gelir: $\\frac{dy}{dx}=\\frac{y'(t)}{x'(t)}$.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Kesri ters kurmak.",
+    "aciklama": "$\\frac{x'(2)}{y'(2)}=44$; eğim $\\frac{y'}{x'}$'tür."
+   },
+   "C": {
+    "etiket": "Konum oranını almak.",
+    "aciklama": "$\\frac{y(2)}{x(2)}=\\frac{2}{6}$ eğim değildir."
+   },
+   "D": {
+    "etiket": "Yalnızca y'(t)'yi almak.",
+    "aciklama": "$y'(2)=\\frac14$; $x'(2)=11$ ile bölünmeli."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.4)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Yolun teğet eğimi",
+   "ipucu": "Hız vektörü teğet doğrultusundadır.",
+   "sikHata": "Kesri ters kurmak",
+   "cedKonu": "9.4",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_26",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 26,
+  "konu": "9.4 Defining and Differentiating Vector-Valued Functions",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> The position of a particle is $\\vec{r}(t)=\\left\\langle te^{t},\\ \\sin(2t)\\right\\rangle$. What is the acceleration vector of the particle at $t=0$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\left\\langle 1,\\ 2\\right\\rangle$"
+   },
+   {
+    "id": "B",
+    "text": "$\\left\\langle 1,\\ 0\\right\\rangle$"
+   },
+   {
+    "id": "C",
+    "text": "$\\left\\langle 2,\\ -4\\right\\rangle$"
+   },
+   {
+    "id": "D",
+    "text": "$\\left\\langle 2,\\ 0\\right\\rangle$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $\\vec v(t)=\\langle(t+1)e^{t},\\ 2\\cos(2t)\\rangle$.<br/>2. $\\vec a(t)=\\langle(t+2)e^{t},\\ -4\\sin(2t)\\rangle$.<br/>3. $\\vec a(0)=\\langle2,\\ 0\\rangle$.",
+  "genel_hatirlatma": "$\\vec a=\\vec v\\,'=\\vec r\\,''$; her bileşende türev kurallarını (çarpım, zincir) dikkatle uygula.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Hız vektörünü vermek.",
+    "aciklama": "$\\vec v(0)=\\langle1,2\\rangle$; ivme bir türev daha ister."
+   },
+   "B": {
+    "etiket": "Çarpım kuralını unutmak.",
+    "aciklama": "$(te^t)'$'yi $e^t$ almak çarpım kuralını atlar; doğrusu $(t+1)e^t$, sonra $(t+2)e^t$."
+   },
+   "C": {
+    "etiket": "sin türevini yanlış almak.",
+    "aciklama": "$\\frac{d}{dt}(2\\cos2t)=-4\\sin2t$; $t=0$'da 0'dır, $-4\\cos 0$ değil."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.4)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "İvme vektörü",
+   "ipucu": "İki kez türev al; her adımda t = 0'ı sona sakla.",
+   "sikHata": "Çarpım kuralını unutmak",
+   "cedKonu": "9.4",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_27",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 27,
+  "konu": "9.4 Defining and Differentiating Vector-Valued Functions",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> A particle moves in the $xy$-plane with position $\\vec{r}(t)=\\left\\langle t^2-4t,\\ 8-t^3\\right\\rangle$ for $t\\ge0$. At what time is the particle moving straight down?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$t=0$"
+   },
+   {
+    "id": "B",
+    "text": "$t=2$"
+   },
+   {
+    "id": "C",
+    "text": "$t=4$"
+   },
+   {
+    "id": "D",
+    "text": "The particle is never moving straight down."
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $\\vec v(t)=\\langle2t-4,\\ -3t^2\\rangle$.<br/>2. Tam aşağı: $x'(t)=0$ ve $y'(t)\\lt0$.<br/>3. $2t-4=0\\Rightarrow t=2$; $y'(2)=-12\\lt0$ ✓.",
+  "genel_hatirlatma": "Dikey hareket: $x'=0$, $y'\\ne0$ (işaret yönü verir). Yatay hareket: $y'=0$, $x'\\ne0$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "y'(t) = 0'ı dikey hareket sanmak.",
+    "aciklama": "$t=0$'da $\\vec v=\\langle-4,0\\rangle$: parçacık yatay olarak sola gidiyor."
+   },
+   "C": {
+    "etiket": "Konum sıfırını aramak.",
+    "aciklama": "$x(4)=0$ bir konum bilgisidir; $\\vec v(4)=\\langle4,-48\\rangle$ dikey değildir."
+   },
+   "D": {
+    "etiket": "x'(t) = 0 koşulunu atlamak.",
+    "aciklama": "$t=2$'de $x'=0$ ve $y'=-12\\lt0$: tam aşağı doğru hareket."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.4)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Hız bileşenlerinden yön",
+   "ipucu": "Hangi bileşen sıfır, diğerinin işareti ne? İkisini de yaz.",
+   "sikHata": "Yatay ve dikey hareketi karıştırmak",
+   "cedKonu": "9.4",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_28",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 28,
+  "konu": "9.4 Defining and Differentiating Vector-Valued Functions",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> A particle moves in the plane with velocity $\\vec{v}(t)=\\left\\langle t^2,\\ 2t\\right\\rangle$ for $t\\gt0$. At what rate is the speed of the particle changing at $t=2$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$2\\sqrt5$"
+   },
+   {
+    "id": "B",
+    "text": "$24$"
+   },
+   {
+    "id": "C",
+    "text": "$3\\sqrt2$"
+   },
+   {
+    "id": "D",
+    "text": "$4\\sqrt2$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. Speed $s(t)=\\sqrt{t^4+4t^2}=t\\sqrt{t^2+4}$ ($t\\gt0$).<br/>2. $s'(t)=\\sqrt{t^2+4}+\\frac{t^2}{\\sqrt{t^2+4}}$.<br/>3. $s'(2)=\\sqrt8+\\frac{4}{\\sqrt8}=2\\sqrt2+\\sqrt2=3\\sqrt2$. (Kontrol: $\\frac{\\vec v\\cdot\\vec a}{|\\vec v|}=\\frac{24}{4\\sqrt2}=3\\sqrt2$.)",
+  "genel_hatirlatma": "Speed artıyor ⇔ $\\vec v\\cdot\\vec a\\gt0$. Değişim hızının kendisi $\\frac{\\vec v\\cdot\\vec a}{|\\vec v|}$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İvmenin büyüklüğünü almak.",
+    "aciklama": "$|\\vec a(2)|=|\\langle4,2\\rangle|=2\\sqrt5$; hız büyüklüğünün türevi $|\\vec a|$ değildir."
+   },
+   "B": {
+    "etiket": "|v| ile bölmeyi unutmak.",
+    "aciklama": "$\\vec v\\cdot\\vec a=16+8=24$; $\\frac{d}{dt}|\\vec v|=\\frac{\\vec v\\cdot\\vec a}{|\\vec v|}$."
+   },
+   "D": {
+    "etiket": "Hızın kendisini vermek.",
+    "aciklama": "$|\\vec v(2)|=\\sqrt{32}=4\\sqrt2$ speed'in değeridir, değişim hızı değil."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.4)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Speed'in değişim hızı",
+   "ipucu": "Speed'i t'nin fonksiyonu olarak yaz ve türevini al.",
+   "sikHata": "|a|'yı speed'in türevi sanmak",
+   "cedKonu": "9.4",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_29",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 29,
+  "konu": "9.4 Defining and Differentiating Vector-Valued Functions",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> The position of a particle is $\\vec{r}(t)=\\left\\langle \\sqrt{t+1}\\,\\cos t,\\ te^{-0.3t}\\right\\rangle$. To the nearest thousandth, what is the speed of the particle at $t=2$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$1.313$"
+   },
+   {
+    "id": "B",
+    "text": "$1.709$"
+   },
+   {
+    "id": "C",
+    "text": "$2.921$"
+   },
+   {
+    "id": "D",
+    "text": "$0.316$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Hesap makinesi (nDeriv): $x'(2)\\approx-1.695$, $y'(2)\\approx0.220$.<br/>2. Speed $=\\sqrt{(-1.695)^2+(0.220)^2}\\approx1.709$.",
+  "genel_hatirlatma": "Speed = $\\sqrt{x'(t)^2+y'(t)^2}$; türevleri hesap makinesinde sakla, sonra birleştir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Konumun büyüklüğünü almak.",
+    "aciklama": "$|\\vec r(2)|\\approx1.313$ başlangıca uzaklıktır."
+   },
+   "C": {
+    "etiket": "Karekökü unutmak.",
+    "aciklama": "$(x')^2+(y')^2\\approx2.921$; speed bunun kareköküdür."
+   },
+   "D": {
+    "etiket": "İvmenin büyüklüğünü almak.",
+    "aciklama": "$|\\vec a(2)|\\approx0.316$; soru hız büyüklüğünü istiyor."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.4)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Hesap makinesiyle speed",
+   "ipucu": "Ara türev değerlerini değişkenlere ata.",
+   "sikHata": "Karekökü unutmak",
+   "cedKonu": "9.4",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_30",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 30,
+  "konu": "9.4 Defining and Differentiating Vector-Valued Functions",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> The position of a particle is $\\vec{r}(t)=\\left\\langle t^3-4t,\\ 3\\sin t\\right\\rangle$. The speed of the particle at $t=0$ is 5. For $t\\gt0$, at what time is the speed of the particle first equal to 5 again?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$1.212$"
+   },
+   {
+    "id": "B",
+    "text": "$1.155$"
+   },
+   {
+    "id": "C",
+    "text": "$1.730$"
+   },
+   {
+    "id": "D",
+    "text": "$2.428$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $\\vec v(t)=\\langle3t^2-4,\\ 3\\cos t\\rangle$; $|\\vec v(0)|=\\sqrt{16+9}=5$ ✓.<br/>2. $y_1=\\sqrt{(3t^2-4)^2+9\\cos^2t}$ ve $y_2=5$ çiz.<br/>3. Speed önce azalır (min ≈ 1.13), sonra artar; $t\\gt0$ için ilk kesişim $t\\approx1.730$.",
+  "genel_hatirlatma": "“Speed = k” sorusunda $|\\vec v(t)|$'yi çiz ve yatay doğruyla kesiştir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Speed'in minimumunu almak.",
+    "aciklama": "$t\\approx1.212$'de speed en küçüktür (yaklaşık 1.13); 5'e eşit değildir."
+   },
+   "B": {
+    "etiket": "x'(t) = 0'ı çözmek.",
+    "aciklama": "$3t^2-4=0$ yalnız yatay bileşeni sıfırlar; speed'i 5 yapmaz."
+   },
+   "D": {
+    "etiket": "Konum büyüklüğünü 5'e eşitlemek.",
+    "aciklama": "$|\\vec r(t)|=5$ başlangıca uzaklıktır; soru $|\\vec v(t)|=5$ istiyor."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.4)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Speed denklemi çözmek",
+   "ipucu": "Grafikte tüm kesişimleri gör, istenen ilkini seç.",
+   "sikHata": "Konum ile hızı karıştırmak",
+   "cedKonu": "9.4",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_31",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 31,
+  "konu": "9.5 Integrating Vector-Valued Functions",
+  "zorluk": "easy",
+  "govde": "<strong>[BC ONLY]</strong> Evaluate $\\displaystyle\\int_0^2\\left\\langle 3t^2,\\ 4t\\right\\rangle dt$.",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\left\\langle 12,\\ 4\\right\\rangle$"
+   },
+   {
+    "id": "B",
+    "text": "$\\left\\langle 8,\\ 16\\right\\rangle$"
+   },
+   {
+    "id": "C",
+    "text": "$\\left\\langle 4,\\ 4\\right\\rangle$"
+   },
+   {
+    "id": "D",
+    "text": "$\\left\\langle 8,\\ 8\\right\\rangle$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. Bileşen bileşen: $\\int_0^2 3t^2\\,dt=\\left[t^3\\right]_0^2=8$.<br/>2. $\\int_0^2 4t\\,dt=\\left[2t^2\\right]_0^2=8$.<br/>3. Sonuç $\\langle8,8\\rangle$.",
+  "genel_hatirlatma": "Vektör değerli fonksiyonun integrali her bileşenin ayrı integralidir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İntegral yerine türev almak.",
+    "aciklama": "$\\langle6t,4\\rangle$'ün $t=2$ değeri; integral ters türev ister."
+   },
+   "B": {
+    "etiket": "Kuvvet kuralında bölmeyi unutmak.",
+    "aciklama": "$\\int4t\\,dt=2t^2$; $4t^2$ değil."
+   },
+   "C": {
+    "etiket": "Aralık uzunluğuna bölmek.",
+    "aciklama": "$\\langle4,4\\rangle$ ortalama değerdir; integral $\\langle8,8\\rangle$'dir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.5)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Vektör integrali",
+   "ipucu": "Her bileşeni ayrı integralle.",
+   "sikHata": "Türevle karıştırmak",
+   "cedKonu": "9.5",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_32",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 32,
+  "konu": "9.5 Integrating Vector-Valued Functions",
+  "zorluk": "easy",
+  "govde": "<strong>[BC ONLY]</strong> A particle has velocity $\\vec{v}(t)=\\left\\langle 2t,\\ \\cos t\\right\\rangle$ and position $\\vec{r}(0)=\\langle 1,\\ 2\\rangle$. What is $\\vec{r}\\left(\\frac{\\pi}{2}\\right)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\left\\langle 1+\\frac{\\pi^2}{4},\\ 3\\right\\rangle$"
+   },
+   {
+    "id": "B",
+    "text": "$\\left\\langle \\frac{\\pi^2}{4},\\ 1\\right\\rangle$"
+   },
+   {
+    "id": "C",
+    "text": "$\\left\\langle \\pi,\\ 0\\right\\rangle$"
+   },
+   {
+    "id": "D",
+    "text": "$\\left\\langle 1+\\frac{\\pi^2}{4},\\ 1\\right\\rangle$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $x(t)=1+\\int_0^t2u\\,du=1+t^2$ ⇒ $x(\\frac{\\pi}{2})=1+\\frac{\\pi^2}{4}$.<br/>2. $y(t)=2+\\int_0^t\\cos u\\,du=2+\\sin t$ ⇒ $y(\\frac{\\pi}{2})=3$.",
+  "genel_hatirlatma": "$\\vec r(b)=\\vec r(a)+\\int_a^b\\vec v(t)\\,dt$.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Başlangıç konumunu eklememek.",
+    "aciklama": "Bu yalnızca yer değiştirmedir; $\\vec r(0)$ eklenmeli."
+   },
+   "C": {
+    "etiket": "Hız değerini konum sanmak.",
+    "aciklama": "$\\vec v(\\frac{\\pi}{2})=\\langle\\pi,0\\rangle$ hızdır."
+   },
+   "D": {
+    "etiket": "cos t'nin ters türevinde işaret.",
+    "aciklama": "$\\int\\cos t\\,dt=\\sin t$; $-\\sin t$ alınca $2-1=1$ çıkar."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.5)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Hızdan konum",
+   "ipucu": "Başlangıç konumunu ekle.",
+   "sikHata": "Başlangıç değerini unutmak",
+   "cedKonu": "9.5",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_33",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 33,
+  "konu": "9.5 Integrating Vector-Valued Functions",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> A particle has acceleration $\\vec{a}(t)=\\left\\langle 6t,\\ -e^{-t}\\right\\rangle$ and velocity $\\vec{v}(0)=\\langle 1,\\ 1\\rangle$. What is $\\vec{v}(1)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\left\\langle 3,\\ \\frac1e-1\\right\\rangle$"
+   },
+   {
+    "id": "B",
+    "text": "$\\left\\langle 4,\\ \\frac1e\\right\\rangle$"
+   },
+   {
+    "id": "C",
+    "text": "$\\left\\langle 4,\\ 2-\\frac1e\\right\\rangle$"
+   },
+   {
+    "id": "D",
+    "text": "$\\left\\langle 6,\\ -\\frac1e\\right\\rangle$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $v_x(1)=1+\\int_0^16t\\,dt=1+3=4$.<br/>2. $v_y(1)=1+\\int_0^1-e^{-t}\\,dt=1+\\left[e^{-t}\\right]_0^1=1+(e^{-1}-1)=\\frac1e$.<br/>3. $\\vec v(1)=\\langle4,\\frac1e\\rangle$.",
+  "genel_hatirlatma": "$\\vec v(b)=\\vec v(a)+\\int_a^b\\vec a(t)\\,dt$; her bileşende başlangıç değeri ayrı eklenir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Başlangıç hızını eklememek.",
+    "aciklama": "Bu yalnızca $\\int_0^1\\vec a\\,dt$'dir; $\\vec v(0)$ eklenmeli."
+   },
+   "C": {
+    "etiket": "e^(−t)'nin ters türevinde işaret.",
+    "aciklama": "$\\int-e^{-t}\\,dt=e^{-t}+C$; $-e^{-t}$ alınırsa işaret ters döner."
+   },
+   "D": {
+    "etiket": "İvme değerini vermek.",
+    "aciklama": "$\\vec a(1)=\\langle6,-e^{-1}\\rangle$; hız istenmiş."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.5)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "İvmeden hız",
+   "ipucu": "Üstel ters türevde işareti iki kez kontrol et.",
+   "sikHata": "Ters türevde işaret hatası",
+   "cedKonu": "9.5",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_34",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 34,
+  "konu": "9.5 Integrating Vector-Valued Functions",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> A particle moves with velocity $\\vec{v}(t)=\\left\\langle \\frac{1}{t+1},\\ 2te^{t^2}\\right\\rangle$. What is the displacement vector of the particle from $t=0$ to $t=1$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\left\\langle \\ln2,\\ e\\right\\rangle$"
+   },
+   {
+    "id": "B",
+    "text": "$\\left\\langle \\frac12,\\ 2e\\right\\rangle$"
+   },
+   {
+    "id": "C",
+    "text": "$\\left\\langle \\ln2,\\ e-1\\right\\rangle$"
+   },
+   {
+    "id": "D",
+    "text": "$\\left\\langle \\ln2,\\ 2e-2\\right\\rangle$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $\\int_0^1\\frac{dt}{t+1}=\\ln2$.<br/>2. $u=t^2$: $\\int_0^12te^{t^2}dt=\\left[e^{t^2}\\right]_0^1=e-1$.<br/>3. Yer değiştirme $\\langle\\ln2,\\ e-1\\rangle$.",
+  "genel_hatirlatma": "Displacement $=\\int_a^b\\vec v(t)\\,dt$ (bir vektör); distance traveled ise $\\int_a^b|\\vec v(t)|\\,dt$ (bir sayı).",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Alt sınırı unutmak.",
+    "aciklama": "$\\left[e^{t^2}\\right]_0^1=e-1$; $e^0=1$ çıkarılmalı."
+   },
+   "B": {
+    "etiket": "Hız değerini vermek.",
+    "aciklama": "$\\vec v(1)=\\langle\\frac12,2e\\rangle$; yer değiştirme integral ister."
+   },
+   "D": {
+    "etiket": "u-substitution'da 2t'yi iki kez saymak.",
+    "aciklama": "$u=t^2$, $du=2t\\,dt$ ⇒ $\\int2te^{t^2}dt=e^{t^2}$; ek 2 çarpanı yok."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.5)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Yer değiştirme vektörü",
+   "ipucu": "Her bileşen için uygun integral tekniğini seç.",
+   "sikHata": "Alt sınırı unutmak",
+   "cedKonu": "9.5",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_35",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 35,
+  "konu": "9.5 Integrating Vector-Valued Functions",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> A particle has velocity $\\vec{v}(t)=\\left\\langle \\pi\\cos(\\pi t),\\ 3t^2\\right\\rangle$, and its position at $t=2$ is $\\vec{r}(2)=\\langle 4,\\ 10\\rangle$. What is $\\vec{r}(0)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\left\\langle 4,\\ 2\\right\\rangle$"
+   },
+   {
+    "id": "B",
+    "text": "$\\left\\langle 4,\\ 18\\right\\rangle$"
+   },
+   {
+    "id": "C",
+    "text": "$\\left\\langle 0,\\ 8\\right\\rangle$"
+   },
+   {
+    "id": "D",
+    "text": "$\\left\\langle 4,\\ -2\\right\\rangle$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $\\int_0^2\\pi\\cos(\\pi t)\\,dt=\\left[\\sin(\\pi t)\\right]_0^2=0$.<br/>2. $\\int_0^23t^2\\,dt=8$.<br/>3. $\\vec r(0)=\\vec r(2)-\\langle0,8\\rangle=\\langle4,2\\rangle$.",
+  "genel_hatirlatma": "$\\vec r(a)=\\vec r(b)-\\int_a^b\\vec v(t)\\,dt$: bilinen noktadan geriye doğru da gidilebilir.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Yer değiştirmeyi eklemek.",
+    "aciklama": "Geriye gidiyoruz: $\\vec r(0)=\\vec r(2)-\\int_0^2\\vec v\\,dt$."
+   },
+   "C": {
+    "etiket": "Yalnızca yer değiştirmeyi vermek.",
+    "aciklama": "$\\int_0^2\\vec v\\,dt=\\langle0,8\\rangle$ yer değiştirmedir; konum değildir."
+   },
+   "D": {
+    "etiket": "İntegral yerine türev kullanmak.",
+    "aciklama": "$y$ bileşeninde $10-6\\cdot2=-2$ hesaplanmış; $\\int_0^23t^2dt=8$ olmalı."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.5)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Geriye doğru konum",
+   "ipucu": "Hangi zamandan hangisine gittiğini yaz, işareti ondan çıkar.",
+   "sikHata": "Toplama/çıkarma yönünü karıştırmak",
+   "cedKonu": "9.5",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_36",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 36,
+  "konu": "9.5 Integrating Vector-Valued Functions",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> Evaluate $\\displaystyle\\int_0^1\\left\\langle te^{t},\\ \\frac{2t}{1+t^2}\\right\\rangle dt$.",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\left\\langle e,\\ \\ln2\\right\\rangle$"
+   },
+   {
+    "id": "B",
+    "text": "$\\left\\langle 1,\\ 2\\ln2\\right\\rangle$"
+   },
+   {
+    "id": "C",
+    "text": "$\\left\\langle 0,\\ \\ln2\\right\\rangle$"
+   },
+   {
+    "id": "D",
+    "text": "$\\left\\langle 1,\\ \\ln2\\right\\rangle$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. Parçalı integral: $\\int te^tdt=te^t-e^t$ ⇒ $\\left[te^t-e^t\\right]_0^1=0-(-1)=1$.<br/>2. $\\int_0^1\\frac{2t}{1+t^2}dt=\\left[\\ln(1+t^2)\\right]_0^1=\\ln2$.<br/>3. Sonuç $\\langle1,\\ln2\\rangle$.",
+  "genel_hatirlatma": "Bileşenlerden biri BC tekniklerini (integration by parts) gerektirebilir; yine de her bileşen bağımsızdır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Parçalı integralde ikinci terimi unutmak.",
+    "aciklama": "$\\int te^tdt=te^t-e^t$; yalnız $te^t$ alınırsa $e$ çıkar."
+   },
+   "B": {
+    "etiket": "u-substitution'da 2 çarpanını iki kez saymak.",
+    "aciklama": "$u=1+t^2$, $du=2t\\,dt$ ⇒ $\\int\\frac{2t}{1+t^2}dt=\\ln(1+t^2)$."
+   },
+   "C": {
+    "etiket": "Alt sınırı unutmak.",
+    "aciklama": "$\\left[te^t-e^t\\right]_0^1=0-(-1)=1$; $t=0$'daki $-1$ çıkarılmalı."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.5)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Vektör integrali ve parçalı integral",
+   "ipucu": "Parçalı integralde u = t, dv = e^t dt seç.",
+   "sikHata": "Alt sınırdaki değeri unutmak",
+   "cedKonu": "9.5",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_37",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 37,
+  "konu": "9.5 Integrating Vector-Valued Functions",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> A particle has velocity $\\vec{v}(t)=\\left\\langle \\cos\\left(t^2\\right),\\ \\frac{2}{1+t^3}\\right\\rangle$ for $t\\ge0$, and $\\vec{r}(0)=\\langle 2,\\ -1\\rangle$. What is $\\vec{r}(2)$, with each component rounded to the nearest thousandth?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\left\\langle 0.461,\\ 2.180\\right\\rangle$"
+   },
+   {
+    "id": "B",
+    "text": "$\\left\\langle 2.461,\\ 1.180\\right\\rangle$"
+   },
+   {
+    "id": "C",
+    "text": "$\\left\\langle -0.654,\\ 0.222\\right\\rangle$"
+   },
+   {
+    "id": "D",
+    "text": "$\\left\\langle 2.461,\\ 3.180\\right\\rangle$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $\\int_0^2\\cos(t^2)\\,dt\\approx0.461$ ⇒ $x(2)\\approx2.461$.<br/>2. $\\int_0^2\\frac{2}{1+t^3}\\,dt\\approx2.180$ ⇒ $y(2)\\approx-1+2.180=1.180$.",
+  "genel_hatirlatma": "Elementer ters türevi olmayan integrallerde (ör. $\\cos t^2$) hesap makinesi şarttır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Başlangıç konumunu eklememek.",
+    "aciklama": "Bu yer değiştirmedir; $\\langle2,-1\\rangle$ eklenmeli."
+   },
+   "C": {
+    "etiket": "Hız değerini vermek.",
+    "aciklama": "$\\vec v(2)$ konum değildir."
+   },
+   "D": {
+    "etiket": "Başlangıç değerinin işaretini kaybetmek.",
+    "aciklama": "$y(0)=-1$; $-1+2.180=1.180$ olmalı."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.5)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Hesap makinesiyle konum",
+   "ipucu": "Her bileşen için fnInt kullan, başlangıç değerini ekle.",
+   "sikHata": "Başlangıç konumunu unutmak",
+   "cedKonu": "9.5",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_38",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 38,
+  "konu": "9.5 Integrating Vector-Valued Functions",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> A particle has velocity $\\vec{v}(t)=\\left\\langle \\ln(t+2),\\ \\sin\\sqrt t\\right\\rangle$ for $t\\ge0$, and its position at $t=1$ is $\\langle -3,\\ 1\\rangle$. To the nearest thousandth, how far is the particle from the origin at $t=4$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$4.145$"
+   },
+   {
+    "id": "B",
+    "text": "$5.068$"
+   },
+   {
+    "id": "C",
+    "text": "$5.305$"
+   },
+   {
+    "id": "D",
+    "text": "$5.314$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $x(4)=-3+\\int_1^4\\ln(t+2)\\,dt\\approx-3+4.455=1.455$.<br/>2. $y(4)=1+\\int_1^4\\sin\\sqrt t\\,dt\\approx1+2.881=3.881$.<br/>3. Uzaklık $=\\sqrt{1.455^2+3.881^2}\\approx4.145$.",
+  "genel_hatirlatma": "Orijine uzaklık $=|\\vec r(t)|$; önce konumu bul, sonra büyüklüğünü al.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "İntegrali yanlış zamandan başlatmak.",
+    "aciklama": "Konum $t=1$'de verilmiş; integral $\\int_1^4$ olmalı, $\\int_0^4$ değil."
+   },
+   "C": {
+    "etiket": "Yer değiştirmenin büyüklüğünü vermek.",
+    "aciklama": "$|\\int_1^4\\vec v\\,dt|\\approx5.305$; başlangıç konumu eklenmeden uzaklık hesaplanmış."
+   },
+   "D": {
+    "etiket": "Alınan yolu vermek.",
+    "aciklama": "$\\int_1^4|\\vec v|\\,dt\\approx5.314$ distance traveled'dır; orijine uzaklık değil."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.5)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Konum ve orijine uzaklık",
+   "ipucu": "Ara sonuçları yuvarlamadan sakla.",
+   "sikHata": "Alınan yol, yer değiştirme ve konumu karıştırmak",
+   "cedKonu": "9.5",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_39",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 39,
+  "konu": "9.6 Solving Motion Problems Using Parametric and Vector-Valued Functions",
+  "zorluk": "easy",
+  "govde": "<strong>[BC ONLY]</strong> A particle moves in the $xy$-plane with position $(x(t),\\,y(t))$ for $a\\le t\\le b$. Which of the following gives the total distance traveled by the particle over this interval?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\sqrt{\\left(x(b)-x(a)\\right)^2+\\left(y(b)-y(a)\\right)^2}$"
+   },
+   {
+    "id": "B",
+    "text": "$\\displaystyle\\int_a^b\\left(x'(t)+y'(t)\\right)dt$"
+   },
+   {
+    "id": "C",
+    "text": "$\\sqrt{\\left(x'(b)\\right)^2+\\left(y'(b)\\right)^2}$"
+   },
+   {
+    "id": "D",
+    "text": "$\\displaystyle\\int_a^b\\sqrt{\\left(x'(t)\\right)^2+\\left(y'(t)\\right)^2}\\,dt$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. Alınan yol = speed'in integrali.<br/>2. Speed $=|\\vec v(t)|=\\sqrt{(x')^2+(y')^2}$.<br/>3. Total distance $=\\int_a^b\\sqrt{(x')^2+(y')^2}\\,dt$ (parametrik yay uzunluğuyla aynı formül).",
+  "genel_hatirlatma": "Distance traveled $=\\int|\\vec v|\\,dt$ (sayı); displacement $=\\int\\vec v\\,dt$ (vektör).",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Yer değiştirmeyi alınan yol sanmak.",
+    "aciklama": "Bu, başlangıç ve bitiş noktaları arasındaki düz uzaklıktır (displacement'ın büyüklüğü)."
+   },
+   "B": {
+    "etiket": "Bileşenleri toplamak.",
+    "aciklama": "Bu $\\Delta x+\\Delta y$'dir; ne yol ne de yer değiştirmedir."
+   },
+   "C": {
+    "etiket": "Anlık hızı vermek.",
+    "aciklama": "Bu $t=b$ anındaki speed'dir; yol için speed'in integrali gerekir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.6)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Alınan yol formülü",
+   "ipucu": "Yol her zaman ≥ yer değiştirmenin büyüklüğü.",
+   "sikHata": "Yol ile yer değiştirmeyi karıştırmak",
+   "cedKonu": "9.6",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_40",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 40,
+  "konu": "9.6 Solving Motion Problems Using Parametric and Vector-Valued Functions",
+  "zorluk": "easy",
+  "govde": "<strong>[BC ONLY]</strong> A particle moves in the $xy$-plane with position $x(t)=t^2-4t$ and $y(t)=2t+1$ for $0\\le t\\le5$. At what point $(x,y)$ is the particle farthest to the left?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$(0,\\ 1)$"
+   },
+   {
+    "id": "B",
+    "text": "$(5,\\ 11)$"
+   },
+   {
+    "id": "C",
+    "text": "$(-4,\\ 5)$"
+   },
+   {
+    "id": "D",
+    "text": "$(2,\\ 5)$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. En sol nokta ⇒ $x(t)$'nin mutlak minimumu.<br/>2. $x'(t)=2t-4=0\\Rightarrow t=2$; adaylar: $x(0)=0$, $x(2)=-4$, $x(5)=5$.<br/>3. Minimum $x(2)=-4$, $y(2)=5$ ⇒ $(-4,5)$.",
+  "genel_hatirlatma": "“Farthest left/right” ⇒ $x(t)$'nin uç değeri; “highest/lowest” ⇒ $y(t)$'nin uç değeri. Candidates Test kullan.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Başlangıç noktasını almak.",
+    "aciklama": "$t=0$'da $x=0$; ama $x$ önce azalır ($x'(0)=-4$)."
+   },
+   "B": {
+    "etiket": "En sağ noktayı almak.",
+    "aciklama": "$t=5$'te $x=5$ en büyüktür; soru en solu (en küçük $x$) istiyor."
+   },
+   "D": {
+    "etiket": "Parametre değerini x sanmak.",
+    "aciklama": "$t=2$ zamandır; o andaki $x$ değeri $x(2)=-4$'tür."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.6)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Konumun uç değeri",
+   "ipucu": "Kritik noktaları ve uç noktaları birlikte karşılaştır.",
+   "sikHata": "Uç noktaları kontrol etmemek",
+   "cedKonu": "9.6",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_41",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 41,
+  "konu": "9.6 Solving Motion Problems Using Parametric and Vector-Valued Functions",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> A particle moves in the plane with velocity $\\vec{v}(t)=\\left\\langle 2t,\\ t^2-1\\right\\rangle$. What is the total distance traveled by the particle from $t=0$ to $t=3$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$3\\sqrt{13}$"
+   },
+   {
+    "id": "B",
+    "text": "$12$"
+   },
+   {
+    "id": "C",
+    "text": "$15$"
+   },
+   {
+    "id": "D",
+    "text": "$10$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Speed$^2=4t^2+(t^2-1)^2=t^4+2t^2+1=(t^2+1)^2$ ⇒ speed $=t^2+1$.<br/>2. Distance $=\\int_0^3(t^2+1)\\,dt=9+3=12$.",
+  "genel_hatirlatma": "No-calculator sorularda speed çoğu zaman tam kareye dönüşür; kök içini açıp kontrol et.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Yer değiştirmenin büyüklüğünü vermek.",
+    "aciklama": "$\\int_0^3\\vec v\\,dt=\\langle9,6\\rangle$, büyüklüğü $3\\sqrt{13}$; bu düz uzaklıktır."
+   },
+   "C": {
+    "etiket": "Bileşen integrallerini toplamak.",
+    "aciklama": "$9+6=15$; speed'in integrali alınmalı."
+   },
+   "D": {
+    "etiket": "t = 3'teki speed'i vermek.",
+    "aciklama": "$|\\vec v(3)|=10$ anlık hızdır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.6)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Tam kare speed ile yol",
+   "ipucu": "Kök içini açınca (a + b)² kalıbını ara.",
+   "sikHata": "Yer değiştirmeyi yol sanmak",
+   "cedKonu": "9.6",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_42",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 42,
+  "konu": "9.6 Solving Motion Problems Using Parametric and Vector-Valued Functions",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> A particle moves in the $xy$-plane with $x'(t)=e^{\\sin t}$ and $y'(t)=t\\cos t-1$. To the nearest thousandth, what is the speed of the particle at $t=1.5$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$1.438$"
+   },
+   {
+    "id": "B",
+    "text": "$8.151$"
+   },
+   {
+    "id": "C",
+    "text": "$2.855$"
+   },
+   {
+    "id": "D",
+    "text": "$1.818$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $x'(1.5)=e^{\\sin1.5}\\approx2.711$, $y'(1.5)=1.5\\cos1.5-1\\approx-0.894$.<br/>2. Speed $=\\sqrt{2.711^2+0.894^2}\\approx2.855$.",
+  "genel_hatirlatma": "Speed $=\\sqrt{(x')^2+(y')^2}$; hesap makinesini radyan modunda kullan.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İvmenin büyüklüğünü almak.",
+    "aciklama": "$|\\vec a(1.5)|\\approx1.438$; speed hız vektörünün büyüklüğüdür."
+   },
+   "B": {
+    "etiket": "Karekökü unutmak.",
+    "aciklama": "$(x')^2+(y')^2\\approx8.151$; speed $\\sqrt{8.151}$."
+   },
+   "D": {
+    "etiket": "Bileşenleri toplamak.",
+    "aciklama": "$x'+y'\\approx1.818$ büyüklük değildir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.6)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Bileşenlerden speed",
+   "ipucu": "Bileşenleri hafızaya al, sonra birleştir.",
+   "sikHata": "Karekökü unutmak",
+   "cedKonu": "9.6",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_43",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 43,
+  "konu": "9.6 Solving Motion Problems Using Parametric and Vector-Valued Functions",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> A particle moves with velocity $\\vec{v}(t)=\\left\\langle \\sqrt t\\cos t,\\ \\sin\\left(\\frac{t^2}{2}\\right)\\right\\rangle$ for $t\\ge0$. To the nearest thousandth, what is the total distance traveled by the particle from $t=0$ to $t=3$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$1.180$"
+   },
+   {
+    "id": "B",
+    "text": "$3.600$"
+   },
+   {
+    "id": "C",
+    "text": "$1.974$"
+   },
+   {
+    "id": "D",
+    "text": "$2.856$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. Distance $=\\int_0^3\\sqrt{t\\cos^2t+\\sin^2\\left(\\frac{t^2}{2}\\right)}\\,dt$.<br/>2. Hesap makinesi: $\\approx2.856$.",
+  "genel_hatirlatma": "Distance traveled $=\\int_a^b|\\vec v(t)|\\,dt$; yön değişse de speed hep pozitiftir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Yer değiştirmenin büyüklüğünü vermek.",
+    "aciklama": "$|\\int_0^3\\vec v\\,dt|\\approx1.180$ düz uzaklıktır; parçacık yön değiştirir."
+   },
+   "B": {
+    "etiket": "Bileşen mutlak değerlerini toplamak.",
+    "aciklama": "$\\int(|x'|+|y'|)dt$ yatay ve dikey yolların toplamıdır, eğri boyunca yol değil."
+   },
+   "C": {
+    "etiket": "t = 3'teki speed'i vermek.",
+    "aciklama": "$|\\vec v(3)|\\approx1.974$ anlık hızdır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.6)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Hesap makinesiyle alınan yol",
+   "ipucu": "fnInt içine √(x'² + y'²) yaz.",
+   "sikHata": "Yer değiştirme ile yolu karıştırmak",
+   "cedKonu": "9.6",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_44",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 44,
+  "konu": "9.6 Solving Motion Problems Using Parametric and Vector-Valued Functions",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> A particle moves in the $xy$-plane so that $y'(t)=2-te^{0.4t}$ for $0\\le t\\le3$, and $y(0)=1$. To the nearest thousandth, what is the maximum $y$-coordinate of the particle on this interval?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$2.403$"
+   },
+   {
+    "id": "B",
+    "text": "$1.403$"
+   },
+   {
+    "id": "C",
+    "text": "$1.225$"
+   },
+   {
+    "id": "D",
+    "text": "$1.000$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $y'(t)=0$ ⇒ $te^{0.4t}=2$ ⇒ $t\\approx1.225$; $y'$ burada $+$'dan $-$'ye geçer.<br/>2. Adaylar: $y(0)=1$, $y(1.225)=1+\\int_0^{1.225}y'(t)\\,dt\\approx2.403$, $y(3)=1+\\int_0^{3}y'(t)\\,dt\\approx-3.400$.<br/>3. Maksimum $\\approx2.403$.",
+  "genel_hatirlatma": "Uç değer sorularında: kritik nokta + uç noktalar; her birinde değeri integral ve başlangıç koşuluyla hesapla.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Başlangıç değerini eklememek.",
+    "aciklama": "$\\int_0^{1.225}y'(t)\\,dt\\approx1.403$ değişimdir; $y(0)=1$ eklenmeli."
+   },
+   "C": {
+    "etiket": "Zamanı cevap vermek.",
+    "aciklama": "$t\\approx1.225$ maksimumun olduğu andır; soru $y$ değerini istiyor."
+   },
+   "D": {
+    "etiket": "Başlangıç noktasını maksimum sanmak.",
+    "aciklama": "$y'(0)=2\\gt0$; $y$ başta artıyor, bu yüzden $t=0$ maksimum olamaz."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.6)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Hızdan konumun maksimumu",
+   "ipucu": "Kökü hafızaya al ve integralin üst sınırı olarak kullan.",
+   "sikHata": "Başlangıç koşulunu eklememek",
+   "cedKonu": "9.6",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_45",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 45,
+  "konu": "9.6 Solving Motion Problems Using Parametric and Vector-Valued Functions",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> A particle moves in the plane with velocity $\\vec{v}(t)=\\left\\langle \\ln\\left(1+t^2\\right)-1,\\ \\sin(2t)+0.5t\\right\\rangle$. To the nearest thousandth, what is the rate of change of the speed of the particle at $t=1.2$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$1.385$"
+   },
+   {
+    "id": "B",
+    "text": "$-1.054$"
+   },
+   {
+    "id": "C",
+    "text": "$-1.350$"
+   },
+   {
+    "id": "D",
+    "text": "$1.280$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Speed $s(t)=\\sqrt{\\left(\\ln(1+t^2)-1\\right)^2+\\left(\\sin2t+0.5t\\right)^2}$.<br/>2. Hesap makinesi: $s'(1.2)\\approx-1.054$ (nDeriv).<br/>3. Negatif ⇒ $t=1.2$'de speed azalıyor (parçacık yavaşlıyor).",
+  "genel_hatirlatma": "Speed'in değişim hızı $\\frac{d}{dt}|\\vec v|$; işareti $\\vec v\\cdot\\vec a$ ile aynıdır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "İvmenin büyüklüğünü almak.",
+    "aciklama": "$|\\vec a(1.2)|\\approx1.385$; speed'in türevi $|\\vec a|$ değildir."
+   },
+   "C": {
+    "etiket": "Speed ile bölmeyi unutmak.",
+    "aciklama": "$\\vec v\\cdot\\vec a\\approx-1.350$; $\\frac{d}{dt}|\\vec v|=\\frac{\\vec v\\cdot\\vec a}{|\\vec v|}$."
+   },
+   "D": {
+    "etiket": "Speed'in değerini vermek.",
+    "aciklama": "$|\\vec v(1.2)|\\approx1.280$; değişim hızı istenmiş."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.6)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Speed'in türevi",
+   "ipucu": "Speed'i y1 olarak gir ve nDeriv(y1) al.",
+   "sikHata": "|a|'yı speed'in türevi sanmak",
+   "cedKonu": "9.6",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_46",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 46,
+  "konu": "9.7 Defining Polar Coordinates and Differentiating in Polar Form",
+  "zorluk": "easy",
+  "govde": "<strong>[BC ONLY]</strong> What are the rectangular coordinates of the point with polar coordinates $(r,\\theta)=\\left(4,\\ \\frac{2\\pi}{3}\\right)$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\left(2,\\ 2\\sqrt3\\right)$"
+   },
+   {
+    "id": "B",
+    "text": "$\\left(2\\sqrt3,\\ -2\\right)$"
+   },
+   {
+    "id": "C",
+    "text": "$\\left(-2,\\ 2\\sqrt3\\right)$"
+   },
+   {
+    "id": "D",
+    "text": "$\\left(-2,\\ -2\\sqrt3\\right)$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $x=r\\cos\\theta=4\\cdot\\left(-\\frac12\\right)=-2$.<br/>2. $y=r\\sin\\theta=4\\cdot\\frac{\\sqrt3}{2}=2\\sqrt3$.",
+  "genel_hatirlatma": "$x=r\\cos\\theta,\\ y=r\\sin\\theta,\\ r^2=x^2+y^2$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "cos işaretini yanlış almak.",
+    "aciklama": "$\\cos\\frac{2\\pi}{3}=-\\frac12$; nokta ikinci bölgededir."
+   },
+   "B": {
+    "etiket": "sin ve cos'u yer değiştirmek.",
+    "aciklama": "$x=r\\cos\\theta$, $y=r\\sin\\theta$; tersi değil."
+   },
+   "D": {
+    "etiket": "sin işaretini yanlış almak.",
+    "aciklama": "$\\sin\\frac{2\\pi}{3}=\\frac{\\sqrt3}{2}\\gt0$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.7)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Kutupsal–kartezyen dönüşüm",
+   "ipucu": "Açının bölgesini önce belirle, işaretler oradan gelir.",
+   "sikHata": "sin ve cos'u karıştırmak",
+   "cedKonu": "9.7",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_47",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 47,
+  "konu": "9.7 Defining Polar Coordinates and Differentiating in Polar Form",
+  "zorluk": "easy",
+  "govde": "<strong>[BC ONLY]</strong> A polar curve is given by $r=f(\\theta)$, where $f$ is differentiable. Which of the following is $\\frac{dy}{d\\theta}$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$f'(\\theta)\\sin\\theta+f(\\theta)\\cos\\theta$"
+   },
+   {
+    "id": "B",
+    "text": "$f'(\\theta)\\cos\\theta-f(\\theta)\\sin\\theta$"
+   },
+   {
+    "id": "C",
+    "text": "$f'(\\theta)\\sin\\theta$"
+   },
+   {
+    "id": "D",
+    "text": "$f'(\\theta)\\sin\\theta-f(\\theta)\\cos\\theta$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $y=r\\sin\\theta=f(\\theta)\\sin\\theta$.<br/>2. Çarpım kuralı: $\\frac{dy}{d\\theta}=f'(\\theta)\\sin\\theta+f(\\theta)\\cos\\theta$.",
+  "genel_hatirlatma": "$\\frac{dy}{dx}=\\dfrac{dy/d\\theta}{dx/d\\theta}=\\dfrac{r'\\sin\\theta+r\\cos\\theta}{r'\\cos\\theta-r\\sin\\theta}$.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "dx/dθ ile karıştırmak.",
+    "aciklama": "Bu $x=f(\\theta)\\cos\\theta$'nın türevidir."
+   },
+   "C": {
+    "etiket": "Çarpım kuralını unutmak.",
+    "aciklama": "$y=f(\\theta)\\sin\\theta$ bir çarpımdır; $f(\\theta)\\cos\\theta$ terimi eksik."
+   },
+   "D": {
+    "etiket": "sin türevinde işaret hatası.",
+    "aciklama": "$\\frac{d}{d\\theta}\\sin\\theta=+\\cos\\theta$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.7)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Kutupsal türev",
+   "ipucu": "Formülü ezberleme; y = r sin θ'dan her seferinde türet.",
+   "sikHata": "Çarpım kuralını unutmak",
+   "cedKonu": "9.7",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_48",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 48,
+  "konu": "9.7 Defining Polar Coordinates and Differentiating in Polar Form",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> What is the slope of the line tangent to the polar curve $r=2\\sin(2\\theta)$ at $\\theta=\\frac{\\pi}{4}$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$0$"
+   },
+   {
+    "id": "B",
+    "text": "$1$"
+   },
+   {
+    "id": "C",
+    "text": "undefined"
+   },
+   {
+    "id": "D",
+    "text": "$-1$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $r(\\frac{\\pi}{4})=2$, $r'=4\\cos2\\theta=0$.<br/>2. $\\frac{dy}{d\\theta}=0+2\\cdot\\frac{\\sqrt2}{2}=\\sqrt2$, $\\frac{dx}{d\\theta}=0-2\\cdot\\frac{\\sqrt2}{2}=-\\sqrt2$.<br/>3. $\\frac{dy}{dx}=\\frac{\\sqrt2}{-\\sqrt2}=-1$.",
+  "genel_hatirlatma": "$\\frac{dr}{d\\theta}=0$ eğimin sıfır olduğu anlamına gelmez; noktanın orijine en uzak olduğunu gösterir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "dr/dθ'yı eğim sanmak.",
+    "aciklama": "$\\frac{dr}{d\\theta}=4\\cos\\frac{\\pi}{2}=0$; bu eğim değil, uzaklığın değişim hızıdır."
+   },
+   "B": {
+    "etiket": "İşaret hatası.",
+    "aciklama": "$\\frac{dx}{d\\theta}=r'\\cos\\theta-r\\sin\\theta=-\\sqrt2$; eksi işareti kaybolmuş."
+   },
+   "C": {
+    "etiket": "Paydayı sıfır sanmak.",
+    "aciklama": "$\\frac{dx}{d\\theta}=-\\sqrt2\\ne0$; eğim tanımlıdır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.7)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Kutupsal eğim",
+   "ipucu": "Önce r ve r' değerlerini bul, sonra formüle koy.",
+   "sikHata": "dr/dθ'yı eğim sanmak",
+   "cedKonu": "9.7",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_49",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 49,
+  "konu": "9.7 Defining Polar Coordinates and Differentiating in Polar Form",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> The polar curve $r=4\\cos\\theta$ for $0\\le\\theta\\le\\frac{\\pi}{2}$ is the upper half of a circle. At which point $(x,y)$ on this curve is the tangent line horizontal?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$(2,\\ 2)$"
+   },
+   {
+    "id": "B",
+    "text": "$(4,\\ 0)$"
+   },
+   {
+    "id": "C",
+    "text": "$(0,\\ 0)$"
+   },
+   {
+    "id": "D",
+    "text": "$\\left(2\\sqrt2,\\ \\frac{\\pi}{4}\\right)$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $y=4\\cos\\theta\\sin\\theta=2\\sin2\\theta$ ⇒ $\\frac{dy}{d\\theta}=4\\cos2\\theta=0$ ⇒ $\\theta=\\frac{\\pi}{4}$.<br/>2. $\\frac{dx}{d\\theta}=\\frac{d}{d\\theta}(4\\cos^2\\theta)=-4\\sin2\\theta=-4\\ne0$ ✓.<br/>3. $r=2\\sqrt2$ ⇒ $(x,y)=(2\\sqrt2\\cos\\frac{\\pi}{4},\\,2\\sqrt2\\sin\\frac{\\pi}{4})=(2,2)$.",
+  "genel_hatirlatma": "Kutupsal eğride yatay teğet: $\\frac{dy}{d\\theta}=0$ ve $\\frac{dx}{d\\theta}\\ne0$.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Dikey teğeti yatay sanmak.",
+    "aciklama": "$\\theta=0$'da $\\frac{dx}{d\\theta}=0$, $\\frac{dy}{d\\theta}=4\\ne0$: teğet dikeydir."
+   },
+   "C": {
+    "etiket": "r = 0 noktasını seçmek.",
+    "aciklama": "$\\theta=\\frac{\\pi}{2}$'de eğri orijinden geçer ve teğeti $\\theta=\\frac{\\pi}{2}$ doğrultusundadır, yani dikeydir."
+   },
+   "D": {
+    "etiket": "Kutupsal koordinatı kartezyen sanmak.",
+    "aciklama": "$(r,\\theta)=(2\\sqrt2,\\frac{\\pi}{4})$ kutupsal yazımdır; kartezyen karşılığı $(2,2)$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.7)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Kutupsal yatay teğet",
+   "ipucu": "y'yi θ cinsinden yazıp sadeleştir (2 sin 2θ).",
+   "sikHata": "Kutupsal ve kartezyen koordinatları karıştırmak",
+   "cedKonu": "9.7",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_50",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 50,
+  "konu": "9.7 Defining Polar Coordinates and Differentiating in Polar Form",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> What is the slope of the line tangent to the polar curve $r=\\theta$ at $\\theta=\\frac{\\pi}{2}$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$-\\frac{\\pi}{2}$"
+   },
+   {
+    "id": "B",
+    "text": "$\\frac{2}{\\pi}$"
+   },
+   {
+    "id": "C",
+    "text": "$1$"
+   },
+   {
+    "id": "D",
+    "text": "$-\\frac{2}{\\pi}$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $x=\\theta\\cos\\theta$, $y=\\theta\\sin\\theta$.<br/>2. $\\frac{dy}{d\\theta}=\\sin\\theta+\\theta\\cos\\theta=1$, $\\frac{dx}{d\\theta}=\\cos\\theta-\\theta\\sin\\theta=-\\frac{\\pi}{2}$ ($\\theta=\\frac{\\pi}{2}$).<br/>3. $\\frac{dy}{dx}=\\frac{1}{-\\pi/2}=-\\frac{2}{\\pi}$.",
+  "genel_hatirlatma": "Kutupsal eğimde her zaman $x(\\theta)$ ve $y(\\theta)$'ya dön; $r'$ tek başına eğim değildir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Kesri ters kurmak.",
+    "aciklama": "$\\frac{dx/d\\theta}{dy/d\\theta}$ hesaplanmış."
+   },
+   "B": {
+    "etiket": "dx/dθ işaretini kaybetmek.",
+    "aciklama": "$\\frac{dx}{d\\theta}=\\cos\\theta-\\theta\\sin\\theta=-\\frac{\\pi}{2}$; negatiftir."
+   },
+   "C": {
+    "etiket": "dr/dθ'yı eğim sanmak.",
+    "aciklama": "$\\frac{dr}{d\\theta}=1$ her yerde; bu eğim değildir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.7)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Spiral eğimi",
+   "ipucu": "θ = π/2'de cos = 0, sin = 1: terimler hızla sadeleşir.",
+   "sikHata": "Kesri ters kurmak",
+   "cedKonu": "9.7",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_51",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 51,
+  "konu": "9.7 Defining Polar Coordinates and Differentiating in Polar Form",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> A polar curve is given by $r=3-2\\sin\\left(\\theta^2\\right)$. To the nearest thousandth, what is the rate of change of the $x$-coordinate with respect to $\\theta$ at $\\theta=1$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$-1.107$"
+   },
+   {
+    "id": "B",
+    "text": "$-2.276$"
+   },
+   {
+    "id": "C",
+    "text": "$-2.161$"
+   },
+   {
+    "id": "D",
+    "text": "$-0.059$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $x(\\theta)=\\left(3-2\\sin\\theta^2\\right)\\cos\\theta$.<br/>2. Hesap makinesi: $\\frac{dx}{d\\theta}\\Big|_{\\theta=1}\\approx-2.276$.<br/>3. Elle kontrol: $r(1)\\approx1.317$, $r'(1)=-4\\cos1\\approx-2.161$ ⇒ $-2.161\\cos1-1.317\\sin1\\approx-2.276$.",
+  "genel_hatirlatma": "$\\frac{dx}{d\\theta}=r'\\cos\\theta-r\\sin\\theta$, $\\frac{dy}{d\\theta}=r'\\sin\\theta+r\\cos\\theta$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "dy/dθ hesaplamak.",
+    "aciklama": "$-1.107$, $y=r\\sin\\theta$'nın türevidir."
+   },
+   "C": {
+    "etiket": "dr/dθ'yı vermek.",
+    "aciklama": "$\\frac{dr}{d\\theta}\\approx-2.161$; $x=r\\cos\\theta$'nın türevi istenmiş."
+   },
+   "D": {
+    "etiket": "İşaret hatası.",
+    "aciklama": "$\\frac{dx}{d\\theta}=r'\\cos\\theta-r\\sin\\theta$; $+r\\sin\\theta$ alınmış."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.7)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Kutupsal x(θ) türevi",
+   "ipucu": "x(θ) = r(θ)cos θ'yı doğrudan nDeriv'e gir.",
+   "sikHata": "dr/dθ ile dx/dθ'yı karıştırmak",
+   "cedKonu": "9.7",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_52",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 52,
+  "konu": "9.7 Defining Polar Coordinates and Differentiating in Polar Form",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> A polar curve is given by $r=\\theta\\cos\\theta$ for $0\\le\\theta\\le\\frac{\\pi}{2}$. To the nearest thousandth, what is the maximum $y$-coordinate of points on the curve?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$0.425$"
+   },
+   {
+    "id": "B",
+    "text": "$0.561$"
+   },
+   {
+    "id": "C",
+    "text": "$0.455$"
+   },
+   {
+    "id": "D",
+    "text": "$1.014$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $y(\\theta)=\\theta\\cos\\theta\\sin\\theta=\\frac{\\theta}{2}\\sin2\\theta$.<br/>2. $\\frac{dy}{d\\theta}=\\frac12\\sin2\\theta+\\theta\\cos2\\theta=0$ ⇒ hesap makinesi: $\\theta\\approx1.014$.<br/>3. Uç noktalarda $y=0$; $y(1.014)\\approx0.455$ maksimumdur.",
+  "genel_hatirlatma": "En yüksek nokta: $y(\\theta)$'nın maksimumu. En uzak nokta: $r(\\theta)$'nın maksimumu. Bunlar farklıdır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "r'nin maksimumundaki y'yi almak.",
+    "aciklama": "$\\frac{dr}{d\\theta}=0$ ($\\theta\\approx0.860$) orijine en uzak noktadır; en yüksek nokta $\\frac{dy}{d\\theta}=0$'dan gelir."
+   },
+   "B": {
+    "etiket": "Maksimum r'yi vermek.",
+    "aciklama": "$r_{max}\\approx0.561$ uzaklıktır, $y$ koordinatı değildir."
+   },
+   "D": {
+    "etiket": "θ değerini vermek.",
+    "aciklama": "$\\theta\\approx1.014$ maksimumun olduğu açıdır; $y$ değeri istenmiş."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.7)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Kutupsal eğride uç y değeri",
+   "ipucu": "y(θ)'yı çizip maximum komutunu kullan.",
+   "sikHata": "r'nin maksimumunu y'nin maksimumu sanmak",
+   "cedKonu": "9.7",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_53",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 53,
+  "konu": "9.7 Defining Polar Coordinates and Differentiating in Polar Form",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> A polar curve is given by $r=\\theta+2\\cos\\theta$. To the nearest thousandth, what is the slope of the line tangent to the curve at $\\theta=2$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$0.586$"
+   },
+   {
+    "id": "B",
+    "text": "$-0.819$"
+   },
+   {
+    "id": "C",
+    "text": "$-2.185$"
+   },
+   {
+    "id": "D",
+    "text": "$1.706$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $x=r\\cos\\theta$, $y=r\\sin\\theta$; hesap makinesiyle $\\theta=2$'de $\\frac{dy}{d\\theta}\\approx-1.230$, $\\frac{dx}{d\\theta}\\approx-0.721$.<br/>2. $\\frac{dy}{dx}=\\frac{-1.230}{-0.721}\\approx1.706$.",
+  "genel_hatirlatma": "Teğetin eğimi $\\frac{dy/d\\theta}{dx/d\\theta}$; $\\tan\\theta$ yalnızca orijinden geçen ışının eğimidir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Kesri ters kurmak.",
+    "aciklama": "$\\frac{dx/d\\theta}{dy/d\\theta}\\approx0.586$; eğim $\\frac{dy/d\\theta}{dx/d\\theta}$."
+   },
+   "B": {
+    "etiket": "dr/dθ'yı vermek.",
+    "aciklama": "$r'(2)=1-2\\sin2\\approx-0.819$ eğim değildir."
+   },
+   "C": {
+    "etiket": "Yarıçap doğrusunun eğimini almak.",
+    "aciklama": "$\\tan2\\approx-2.185$, orijinden noktaya giden doğrunun eğimidir; teğetin değil."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.7)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Hesap makinesiyle kutupsal eğim",
+   "ipucu": "x(θ) ve y(θ)'yı ayrı ayrı nDeriv ile hesapla, sonra böl.",
+   "sikHata": "tan θ'yı teğet eğimi sanmak",
+   "cedKonu": "9.7",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_54",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 54,
+  "konu": "9.8 Finding the Area of a Polar Region or the Area Bounded by a Single Polar Curve",
+  "zorluk": "easy",
+  "govde": "<strong>[BC ONLY]</strong> Which of the following gives the area of the region enclosed by the polar curve $r=3+2\\cos\\theta$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\displaystyle\\frac12\\int_0^{2\\pi}(3+2\\cos\\theta)^2\\,d\\theta$"
+   },
+   {
+    "id": "B",
+    "text": "$\\displaystyle\\int_0^{2\\pi}(3+2\\cos\\theta)^2\\,d\\theta$"
+   },
+   {
+    "id": "C",
+    "text": "$\\displaystyle\\frac12\\int_0^{2\\pi}(3+2\\cos\\theta)\\,d\\theta$"
+   },
+   {
+    "id": "D",
+    "text": "$\\displaystyle\\frac12\\int_0^{\\pi}(3+2\\cos\\theta)^2\\,d\\theta$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $r=3+2\\cos\\theta\\gt0$ her $\\theta$ için; eğri $0\\le\\theta\\le2\\pi$'de bir kez çizilir.<br/>2. $A=\\frac12\\int_0^{2\\pi}r^2\\,d\\theta=\\frac12\\int_0^{2\\pi}(3+2\\cos\\theta)^2\\,d\\theta$.",
+  "genel_hatirlatma": "Kutupsal alan: $A=\\frac12\\int_\\alpha^\\beta r^2\\,d\\theta$ (ince dilimler daire dilimidir: $\\frac12r^2\\Delta\\theta$).",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "½ katsayısını unutmak.",
+    "aciklama": "Kutupsal alan formülü $\\frac12\\int r^2\\,d\\theta$'dır."
+   },
+   "C": {
+    "etiket": "r'nin karesini almamak.",
+    "aciklama": "İntegrand $r^2$ olmalı; $r$ değil."
+   },
+   "D": {
+    "etiket": "Yalnız yarım bölgeyi almak.",
+    "aciklama": "$0\\le\\theta\\le\\pi$ eğrinin üst yarısıdır; tüm bölge $0$'dan $2\\pi$'ye."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.8)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Kutupsal alan formülü",
+   "ipucu": "Sınırları eğrinin bir kez çizildiği aralıktan seç.",
+   "sikHata": "½'yi unutmak",
+   "cedKonu": "9.8",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_55",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 55,
+  "konu": "9.8 Finding the Area of a Polar Region or the Area Bounded by a Single Polar Curve",
+  "zorluk": "easy",
+  "govde": "<strong>[BC ONLY]</strong> What is the area of the region enclosed by the polar curve $r=6\\sin\\theta$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$18\\pi$"
+   },
+   {
+    "id": "B",
+    "text": "$36\\pi$"
+   },
+   {
+    "id": "C",
+    "text": "$9\\pi$"
+   },
+   {
+    "id": "D",
+    "text": "$6$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $A=\\frac12\\int_0^{\\pi}36\\sin^2\\theta\\,d\\theta=18\\int_0^{\\pi}\\frac{1-\\cos2\\theta}{2}d\\theta$.<br/>2. $=18\\cdot\\frac{\\pi}{2}=9\\pi$. (Kontrol: çember $x^2+(y-3)^2=9$, alan $9\\pi$ ✓.)",
+  "genel_hatirlatma": "$r=a\\sin\\theta$ ve $r=a\\cos\\theta$ çemberleri $\\theta$'nın $\\pi$ uzunluğundaki aralığında bir kez çizilir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Eğriyi iki kez taramak.",
+    "aciklama": "$r=6\\sin\\theta$, $0\\le\\theta\\le\\pi$'de bir kez çizilir; $0$–$2\\pi$ alanı iki kez sayar."
+   },
+   "B": {
+    "etiket": "Yarıçapı 6 sanmak.",
+    "aciklama": "Bu çemberin çapı 6'dır, yarıçapı 3."
+   },
+   "D": {
+    "etiket": "r'nin karesini almamak.",
+    "aciklama": "$\\frac12\\int_0^{\\pi}6\\sin\\theta\\,d\\theta=6$; integrand $r^2$ olmalı."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.8)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Kutupsal çember alanı",
+   "ipucu": "sin² için yarım açı özdeşliğini kullan.",
+   "sikHata": "0–2π aralığında alanı iki kez saymak",
+   "cedKonu": "9.8",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_56",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 56,
+  "konu": "9.8 Finding the Area of a Polar Region or the Area Bounded by a Single Polar Curve",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> Consider the spiral $r=2\\theta$ for $0\\le\\theta\\le\\pi$. What is the area of the region bounded by the spiral and the $x$-axis, that is, the region swept out by the radius as $\\theta$ goes from $0$ to $\\pi$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\frac{4\\pi^3}{3}$"
+   },
+   {
+    "id": "B",
+    "text": "$\\frac{2\\pi^3}{3}$"
+   },
+   {
+    "id": "C",
+    "text": "$\\pi^2$"
+   },
+   {
+    "id": "D",
+    "text": "$\\frac{\\pi^3}{3}$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $A=\\frac12\\int_0^{\\pi}(2\\theta)^2\\,d\\theta=2\\int_0^{\\pi}\\theta^2\\,d\\theta$.<br/>2. $=2\\cdot\\frac{\\pi^3}{3}=\\frac{2\\pi^3}{3}\\approx20.671$.",
+  "genel_hatirlatma": "Spiral gibi kapalı olmayan eğrilerde alan, yarıçapın taradığı bölgedir: yine $\\frac12\\int r^2d\\theta$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "½ katsayısını unutmak.",
+    "aciklama": "$\\int_0^{\\pi}4\\theta^2\\,d\\theta=\\frac{4\\pi^3}{3}$; $\\frac12$ ile çarpılmalı."
+   },
+   "C": {
+    "etiket": "r'nin karesini almamak.",
+    "aciklama": "$\\int_0^{\\pi}2\\theta\\,d\\theta=\\pi^2$; integrand $r^2$ olmalı."
+   },
+   "D": {
+    "etiket": "r²'yi yanlış açmak.",
+    "aciklama": "$(2\\theta)^2=4\\theta^2$; $2\\theta^2$ alınmış."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.8)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Taranan alan",
+   "ipucu": "(kθ)² = k²θ²; katsayının karesini unutma.",
+   "sikHata": "r²'yi yanlış açmak",
+   "cedKonu": "9.8",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_57",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 57,
+  "konu": "9.8 Finding the Area of a Polar Region or the Area Bounded by a Single Polar Curve",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> What is the area of the region in the first quadrant enclosed by the polar curve $r=2+\\sin\\theta$ and the coordinate axes?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\frac{9\\pi}{8}$"
+   },
+   {
+    "id": "B",
+    "text": "$\\frac{9\\pi}{8}+2$"
+   },
+   {
+    "id": "C",
+    "text": "$\\frac{9\\pi}{4}+4$"
+   },
+   {
+    "id": "D",
+    "text": "$\\frac{5\\pi}{4}+2$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $A=\\frac12\\int_0^{\\pi/2}(4+4\\sin\\theta+\\sin^2\\theta)\\,d\\theta$.<br/>2. $\\int_0^{\\pi/2}4\\,d\\theta=2\\pi$, $\\int_0^{\\pi/2}4\\sin\\theta\\,d\\theta=4$, $\\int_0^{\\pi/2}\\sin^2\\theta\\,d\\theta=\\frac{\\pi}{4}$.<br/>3. $A=\\frac12\\left(2\\pi+4+\\frac{\\pi}{4}\\right)=\\frac{9\\pi}{8}+2\\approx5.534$.",
+  "genel_hatirlatma": "Birinci bölge ⇒ $0\\le\\theta\\le\\frac{\\pi}{2}$ (r pozitifken).",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Karede çapraz terimi unutmak.",
+    "aciklama": "$(2+\\sin\\theta)^2=4+4\\sin\\theta+\\sin^2\\theta$; $4\\sin\\theta$ terimi düşmüş."
+   },
+   "C": {
+    "etiket": "½ katsayısını unutmak.",
+    "aciklama": "Kutupsal alan $\\frac12\\int r^2d\\theta$'dır."
+   },
+   "D": {
+    "etiket": "sin²'nin integralini yanlış almak.",
+    "aciklama": "$\\int_0^{\\pi/2}\\sin^2\\theta\\,d\\theta=\\frac{\\pi}{4}$, $\\frac{\\pi}{2}$ değil."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.8)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Kısmi kutupsal alan",
+   "ipucu": "Kareyi açınca her terimi ayrı integralle.",
+   "sikHata": "Çapraz terimi unutmak",
+   "cedKonu": "9.8",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_58",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 58,
+  "konu": "9.8 Finding the Area of a Polar Region or the Area Bounded by a Single Polar Curve",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> The limaçon $r=1+2\\cos\\theta$ has an inner loop. What is the area of the region that lies inside the outer loop and outside the inner loop?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\pi+3\\sqrt3$"
+   },
+   {
+    "id": "B",
+    "text": "$3\\pi$"
+   },
+   {
+    "id": "C",
+    "text": "$2\\pi+\\frac{3\\sqrt3}{2}$"
+   },
+   {
+    "id": "D",
+    "text": "$\\pi-\\frac{3\\sqrt3}{2}$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $r=0$ ⇒ $\\cos\\theta=-\\frac12$ ⇒ $\\theta=\\frac{2\\pi}{3},\\frac{4\\pi}{3}$; iç döngü $\\frac{2\\pi}{3}\\le\\theta\\le\\frac{4\\pi}{3}$.<br/>2. $\\frac12\\int(1+4\\cos\\theta+4\\cos^2\\theta)d\\theta=\\frac12\\left[3\\theta+4\\sin\\theta+\\sin2\\theta\\right]$. İç döngü: $\\pi-\\frac{3\\sqrt3}{2}$.<br/>3. Dış döngü (iç döngüyü içerir): $\\frac12\\int_{-2\\pi/3}^{2\\pi/3}r^2d\\theta=2\\pi+\\frac{3\\sqrt3}{2}$.<br/>4. Fark: $2\\pi+\\frac{3\\sqrt3}{2}-\\left(\\pi-\\frac{3\\sqrt3}{2}\\right)=\\pi+3\\sqrt3$.",
+  "genel_hatirlatma": "İç döngüsü olan limaçonda önce $r=0$ açılarını bul; döngüleri ayrı integralle.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "0–2π integralini doğrudan almak.",
+    "aciklama": "$\\frac12\\int_0^{2\\pi}r^2d\\theta=3\\pi$ iç döngüyü iki kez sayar; aranan bölge değildir."
+   },
+   "C": {
+    "etiket": "İç döngüyü çıkarmamak.",
+    "aciklama": "Bu dış döngünün tüm alanıdır; iç döngü çıkarılmalı."
+   },
+   "D": {
+    "etiket": "İç döngünün alanını vermek.",
+    "aciklama": "Bu yalnız iç döngüdür."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.8)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Limaçon döngüleri arası alan",
+   "ipucu": "Simetriyi kullan, ama sınırları r = 0 açılarından al.",
+   "sikHata": "0–2π integralini tek bölge sanmak",
+   "cedKonu": "9.8",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_59",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 59,
+  "konu": "9.8 Finding the Area of a Polar Region or the Area Bounded by a Single Polar Curve",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> The curve $r=\\theta+\\cos(2\\theta)$ for $0\\le\\theta\\le\\pi$ starts on the positive $x$-axis and ends on the negative $x$-axis, and $r\\gt0$ on this interval. To the nearest thousandth, what is the area of the region bounded by the curve and the $x$-axis?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$11.906$"
+   },
+   {
+    "id": "B",
+    "text": "$2.467$"
+   },
+   {
+    "id": "C",
+    "text": "$0.539$"
+   },
+   {
+    "id": "D",
+    "text": "$5.953$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $A=\\frac12\\int_0^{\\pi}\\left(\\theta+\\cos2\\theta\\right)^2d\\theta$.<br/>2. Hesap makinesi: $A\\approx5.953$.",
+  "genel_hatirlatma": "Hesap makinesinde $\\frac12$'yi integralin dışına yazmayı unutma.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "½ katsayısını unutmak.",
+    "aciklama": "$\\int_0^{\\pi}r^2d\\theta\\approx11.906$; $\\frac12$ ile çarpılmalı."
+   },
+   "B": {
+    "etiket": "r'nin karesini almamak.",
+    "aciklama": "$\\frac12\\int_0^{\\pi}r\\,d\\theta$ alan formülü değildir."
+   },
+   "C": {
+    "etiket": "Sınırı π/2 almak.",
+    "aciklama": "$0\\le\\theta\\le\\frac{\\pi}{2}$ yalnız birinci bölgedir; bölge $\\pi$'ye kadar uzanır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.8)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Hesap makinesiyle kutupsal alan",
+   "ipucu": "Radyan modunu kontrol et.",
+   "sikHata": "½'yi unutmak",
+   "cedKonu": "9.8",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_60",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 60,
+  "konu": "9.8 Finding the Area of a Polar Region or the Area Bounded by a Single Polar Curve",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> Let $R$ be the region enclosed by the spiral $r=1+\\frac{\\theta}{2}$ for $0\\le\\theta\\le2\\pi$ and the segment of the positive $x$-axis from $x=1$ to $x=1+\\pi$. The ray $\\theta=k$, for $0\\lt k\\lt2\\pi$, divides $R$ into two regions of equal area. To the nearest thousandth, what is $k$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$3.142$"
+   },
+   {
+    "id": "B",
+    "text": "$4.025$"
+   },
+   {
+    "id": "C",
+    "text": "$4.605$"
+   },
+   {
+    "id": "D",
+    "text": "$11.673$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $A(k)=\\frac12\\int_0^{k}\\left(1+\\frac{\\theta}{2}\\right)^2d\\theta=\\frac13\\left[\\left(1+\\frac{k}{2}\\right)^3-1\\right]$.<br/>2. Toplam alan $A(2\\pi)\\approx23.347$.<br/>3. $A(k)=11.673$ ⇒ hesap makinesi: $k\\approx4.605$.",
+  "genel_hatirlatma": "“Divides into two equal areas” ⇒ birikim fonksiyonu kurup toplamın yarısına eşitle.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Açıyı yarıya bölmek.",
+    "aciklama": "$r$ arttığı için alan $\\theta$'ya orantılı değildir; $k=\\pi$ alanı yarıya bölmez."
+   },
+   "B": {
+    "etiket": "r'nin karesini almamak.",
+    "aciklama": "$\\frac12\\int r\\,d\\theta$ ile kurulan denklem yanlış $k$ verir."
+   },
+   "D": {
+    "etiket": "Alanın yarısını cevap vermek.",
+    "aciklama": "$11.673$ bölgenin alanının yarısıdır; soru açıyı istiyor."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.8)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Alanı yarıya bölen ışın",
+   "ipucu": "Üst sınırı bilinmeyen bir integral denklemini çöz.",
+   "sikHata": "Açıyı yarıya bölmek",
+   "cedKonu": "9.8",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_61",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 61,
+  "konu": "9.9 Finding the Area of the Region Bounded by Two Polar Curves",
+  "zorluk": "easy",
+  "govde": "<strong>[BC ONLY]</strong> The curves $r=3\\sin\\theta$ and $r=1+\\sin\\theta$ intersect at $\\theta=\\frac{\\pi}{6}$ and $\\theta=\\frac{5\\pi}{6}$. Which of the following gives the area of the region inside $r=3\\sin\\theta$ and outside $r=1+\\sin\\theta$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\displaystyle\\frac12\\int_{\\pi/6}^{5\\pi/6}\\left(3\\sin\\theta-1-\\sin\\theta\\right)^2d\\theta$"
+   },
+   {
+    "id": "B",
+    "text": "$\\displaystyle\\frac12\\int_{0}^{\\pi}\\left(9\\sin^2\\theta-(1+\\sin\\theta)^2\\right)d\\theta$"
+   },
+   {
+    "id": "C",
+    "text": "$\\displaystyle\\int_{\\pi/6}^{5\\pi/6}\\left(9\\sin^2\\theta-(1+\\sin\\theta)^2\\right)d\\theta$"
+   },
+   {
+    "id": "D",
+    "text": "$\\displaystyle\\frac12\\int_{\\pi/6}^{5\\pi/6}\\left(9\\sin^2\\theta-(1+\\sin\\theta)^2\\right)d\\theta$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. Dıştaki eğri $R=3\\sin\\theta$, içteki $r=1+\\sin\\theta$ ($\\frac{\\pi}{6}\\le\\theta\\le\\frac{5\\pi}{6}$).<br/>2. $A=\\frac12\\int_{\\pi/6}^{5\\pi/6}(R^2-r^2)\\,d\\theta$ (değeri $\\pi$).",
+  "genel_hatirlatma": "İki kutupsal eğri arası alan: $\\frac12\\int(r_{dış}^2-r_{iç}^2)\\,d\\theta$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Farkın karesini almak.",
+    "aciklama": "$\\frac12\\int(R^2-r^2)$ doğrudur; $(R-r)^2$ değil."
+   },
+   "B": {
+    "etiket": "Kesişim açılarını kullanmamak.",
+    "aciklama": "Sınırlar kesişim açıları olmalı; $0$–$\\frac{\\pi}{6}$'da kardioid dıştadır."
+   },
+   "C": {
+    "etiket": "½ katsayısını unutmak.",
+    "aciklama": "Kutupsal alan formülünde $\\frac12$ vardır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.9)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "İki eğri arası alan integrali",
+   "ipucu": "Hangi eğrinin dışta olduğunu bir test açısıyla kontrol et (ör. θ = π/2).",
+   "sikHata": "Farkın karesini almak",
+   "cedKonu": "9.9",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_62",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 62,
+  "konu": "9.9 Finding the Area of the Region Bounded by Two Polar Curves",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> What is the area of the region inside the circle $r=2\\cos\\theta$ and outside the circle $r=1$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\frac{\\pi}{3}+\\frac{\\sqrt3}{2}$"
+   },
+   {
+    "id": "B",
+    "text": "$\\frac{2\\pi}{3}+\\sqrt3$"
+   },
+   {
+    "id": "C",
+    "text": "$\\frac{\\pi}{6}+\\frac{\\sqrt3}{4}$"
+   },
+   {
+    "id": "D",
+    "text": "$\\frac{\\pi}{3}-\\frac{\\sqrt3}{2}$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. Kesişim: $2\\cos\\theta=1$ ⇒ $\\theta=\\pm\\frac{\\pi}{3}$.<br/>2. $A=\\frac12\\int_{-\\pi/3}^{\\pi/3}(4\\cos^2\\theta-1)d\\theta=\\frac12\\int_{-\\pi/3}^{\\pi/3}(1+2\\cos2\\theta)d\\theta$.<br/>3. $=\\frac12\\left[\\theta+\\sin2\\theta\\right]_{-\\pi/3}^{\\pi/3}=\\frac12\\left(\\frac{2\\pi}{3}+\\sqrt3\\right)=\\frac{\\pi}{3}+\\frac{\\sqrt3}{2}\\approx1.913$.",
+  "genel_hatirlatma": "Kesişim açılarını $r_1=r_2$ denkleminden bul; simetri varsa bir yarıyı hesaplayıp ikiyle çarpabilirsin.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "½ katsayısını unutmak.",
+    "aciklama": "$\\int_{-\\pi/3}^{\\pi/3}(4\\cos^2\\theta-1)d\\theta=\\frac{2\\pi}{3}+\\sqrt3$; $\\frac12$ ile çarpılmalı."
+   },
+   "C": {
+    "etiket": "Yalnız üst yarıyı almak.",
+    "aciklama": "$0\\le\\theta\\le\\frac{\\pi}{3}$ bölgenin yarısıdır; $-\\frac{\\pi}{3}$'ten başlamalı."
+   },
+   "D": {
+    "etiket": "sin 2θ değerinde işaret hatası.",
+    "aciklama": "$\\left[\\theta+\\sin2\\theta\\right]_{-\\pi/3}^{\\pi/3}=\\frac{2\\pi}{3}+\\sqrt3$; sinüs teriminin işareti ters alınmış."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.9)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "İki çember arası alan",
+   "ipucu": "cos² için 1 + cos 2θ özdeşliğini kullan.",
+   "sikHata": "Bölgenin yalnız yarısını almak",
+   "cedKonu": "9.9",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_63",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 63,
+  "konu": "9.9 Finding the Area of the Region Bounded by Two Polar Curves",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> What is the area of the region that lies inside both the circle $r=1$ and the circle $r=2\\sin\\theta$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\frac{\\pi}{3}+\\frac{\\sqrt3}{2}$"
+   },
+   {
+    "id": "B",
+    "text": "$\\pi$"
+   },
+   {
+    "id": "C",
+    "text": "$\\frac{2\\pi}{3}-\\frac{\\sqrt3}{2}$"
+   },
+   {
+    "id": "D",
+    "text": "$\\frac{2\\pi}{3}+\\frac{\\sqrt3}{2}$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. Kesişim: $2\\sin\\theta=1$ ⇒ $\\theta=\\frac{\\pi}{6},\\frac{5\\pi}{6}$.<br/>2. Simetri ($\\theta=\\frac{\\pi}{2}$): $0\\le\\theta\\le\\frac{\\pi}{6}$'da sınır $r=2\\sin\\theta$, $\\frac{\\pi}{6}\\le\\theta\\le\\frac{\\pi}{2}$'de sınır $r=1$.<br/>3. $A=2\\left[\\frac12\\int_0^{\\pi/6}4\\sin^2\\theta\\,d\\theta+\\frac12\\int_{\\pi/6}^{\\pi/2}1\\,d\\theta\\right]=\\left(\\frac{\\pi}{3}-\\frac{\\sqrt3}{2}\\right)+\\frac{\\pi}{3}$.<br/>4. $A=\\frac{2\\pi}{3}-\\frac{\\sqrt3}{2}\\approx1.228$.",
+  "genel_hatirlatma": "“Inside both” bölgelerinde her açı aralığında <b>içteki</b> eğri sınırdır; integral parçalara ayrılır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Yanlış bölgeyi hesaplamak.",
+    "aciklama": "Bu, $r=2\\sin\\theta$'nın içinde ve $r=1$'in dışındaki alandır."
+   },
+   "B": {
+    "etiket": "Bir çemberin tüm alanını vermek.",
+    "aciklama": "$r=2\\sin\\theta$ çemberinin (ve $r=1$'in) alanı $\\pi$'dir; ortak bölge daha küçüktür."
+   },
+   "D": {
+    "etiket": "sin 2θ teriminde işaret hatası.",
+    "aciklama": "$\\int_0^{\\pi/6}4\\sin^2\\theta\\,d\\theta=\\left[2\\theta-\\sin2\\theta\\right]_0^{\\pi/6}=\\frac{\\pi}{3}-\\frac{\\sqrt3}{2}$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.9)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Ortak bölge alanı",
+   "ipucu": "Her aralıkta orijinden ışın çiz: önce hangi eğriye çarpıyor?",
+   "sikHata": "Ortak bölgeyle fark bölgesini karıştırmak",
+   "cedKonu": "9.9",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_64",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 64,
+  "konu": "9.9 Finding the Area of the Region Bounded by Two Polar Curves",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> To the nearest thousandth, what is the area of the region inside the circle $r=3\\sin\\theta$ and outside the limaçon $r=2+\\cos\\theta$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$0.626$"
+   },
+   {
+    "id": "B",
+    "text": "$2.939$"
+   },
+   {
+    "id": "C",
+    "text": "$5.879$"
+   },
+   {
+    "id": "D",
+    "text": "$0.000$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Kesişim: $3\\sin\\theta=2+\\cos\\theta$ ⇒ hesap makinesi: $\\theta\\approx1.006$ ve $\\theta\\approx2.779$.<br/>2. $A=\\frac12\\int_{1.006}^{2.779}\\left(9\\sin^2\\theta-(2+\\cos\\theta)^2\\right)d\\theta$.<br/>3. $A\\approx2.939$ (kesişim değerlerini yuvarlamadan hafızadan kullan).",
+  "genel_hatirlatma": "Calculator-active sorularda kesişim açılarını hesap makinesinde sakla; yuvarlanmış sınırlar sonucu bozabilir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Farkın karesini almak.",
+    "aciklama": "$\\frac12\\int(R-r)^2d\\theta\\approx0.626$; doğrusu $\\frac12\\int(R^2-r^2)d\\theta$."
+   },
+   "C": {
+    "etiket": "½ katsayısını unutmak.",
+    "aciklama": "$\\int(R^2-r^2)d\\theta\\approx5.879$; $\\frac12$ ile çarpılmalı."
+   },
+   "D": {
+    "etiket": "Sınırları 0 ve π almak.",
+    "aciklama": "$\\frac12\\int_0^{\\pi}(9\\sin^2\\theta-(2+\\cos\\theta)^2)d\\theta=0$; sınırlar kesişim açıları olmalı."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.9)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Sayısal kesişimli alan",
+   "ipucu": "Kesişimleri A ve B olarak sakla, integrali fnInt(…, θ, A, B) ile al.",
+   "sikHata": "Sınırları yuvarlamak veya yanlış seçmek",
+   "cedKonu": "9.9",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_65",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 65,
+  "konu": "9.9 Finding the Area of the Region Bounded by Two Polar Curves",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> What is the area of the region inside one petal of the rose $r=2\\sin(2\\theta)$ in the first quadrant and outside the circle $r=1$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\frac{\\pi}{3}+\\frac{\\sqrt3}{2}$"
+   },
+   {
+    "id": "B",
+    "text": "$\\frac{\\pi}{6}+\\frac{\\sqrt3}{4}$"
+   },
+   {
+    "id": "C",
+    "text": "$\\frac{\\pi}{2}$"
+   },
+   {
+    "id": "D",
+    "text": "$\\frac{\\pi}{6}-\\frac{\\sqrt3}{4}$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Kesişim: $2\\sin2\\theta=1$ ⇒ $2\\theta=\\frac{\\pi}{6},\\frac{5\\pi}{6}$ ⇒ $\\theta=\\frac{\\pi}{12},\\frac{5\\pi}{12}$.<br/>2. $A=\\frac12\\int_{\\pi/12}^{5\\pi/12}(4\\sin^22\\theta-1)d\\theta=\\frac12\\int(1-2\\cos4\\theta)d\\theta$.<br/>3. $=\\frac12\\left[\\theta-\\frac12\\sin4\\theta\\right]_{\\pi/12}^{5\\pi/12}=\\frac12\\left(\\frac{\\pi}{3}+\\frac{\\sqrt3}{2}\\right)=\\frac{\\pi}{6}+\\frac{\\sqrt3}{4}\\approx0.957$.",
+  "genel_hatirlatma": "Gül eğrisinde kesişim açılarını $n\\theta$ için çöz, sonra $n$'e böl.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "½ katsayısını unutmak.",
+    "aciklama": "$\\int_{\\pi/12}^{5\\pi/12}(4\\sin^22\\theta-1)d\\theta=\\frac{\\pi}{3}+\\frac{\\sqrt3}{2}$; $\\frac12$ ile çarpılmalı."
+   },
+   "C": {
+    "etiket": "Tüm yaprağın alanını vermek.",
+    "aciklama": "$\\frac12\\int_0^{\\pi/2}4\\sin^22\\theta\\,d\\theta=\\frac{\\pi}{2}$ yaprağın tamamıdır; çember içi çıkarılmalı."
+   },
+   "D": {
+    "etiket": "sin 4θ değerinde işaret hatası.",
+    "aciklama": "$\\sin\\frac{5\\pi}{3}=-\\frac{\\sqrt3}{2}$; çıkarma yapılırken işaret ters alınmış."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.9)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Yaprak ve çember arası alan",
+   "ipucu": "sin² 2θ = (1 − cos 4θ)/2.",
+   "sikHata": "Kesişim açılarını 2'ye bölmeyi unutmak",
+   "cedKonu": "9.9",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_66",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 66,
+  "konu": "9.9 Finding the Area of the Region Bounded by Two Polar Curves",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> Let $R$ be the region in the first quadrant that lies inside the circle $r=3\\cos\\theta$ and outside the spiral $r=\\theta$. To the nearest thousandth, what is the area of $R$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$2.305$"
+   },
+   {
+    "id": "B",
+    "text": "$6.348$"
+   },
+   {
+    "id": "C",
+    "text": "$2.888$"
+   },
+   {
+    "id": "D",
+    "text": "$3.174$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. Kesişim: $3\\cos\\theta=\\theta$ ⇒ hesap makinesi: $\\theta=a\\approx1.170$.<br/>2. $0\\le\\theta\\le a$'da $3\\cos\\theta\\ge\\theta$.<br/>3. $A=\\frac12\\int_0^{a}\\left(9\\cos^2\\theta-\\theta^2\\right)d\\theta\\approx3.174$.",
+  "genel_hatirlatma": "Bölgenin açısal sınırları: başlangıçta (θ = 0) ve kesişimde. Sonrasında eğrilerin sırası değişir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Farkın karesini almak.",
+    "aciklama": "$\\frac12\\int(R-r)^2d\\theta$ yanlış formüldür."
+   },
+   "B": {
+    "etiket": "½ katsayısını unutmak.",
+    "aciklama": "Kutupsal alan $\\frac12\\int(R^2-r^2)d\\theta$."
+   },
+   "C": {
+    "etiket": "Üst sınırı π/2 almak.",
+    "aciklama": "$\\theta\\gt1.170$'te spiral çemberin dışındadır; integrand negatif olur ve alanı azaltır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.9)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Sayısal kesişimli kutupsal alan",
+   "ipucu": "Kesişimi hafızaya al ve üst sınır yap.",
+   "sikHata": "Sınırı kesişim yerine π/2 almak",
+   "cedKonu": "9.9",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_67",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 67,
+  "konu": "9.9 Finding the Area of the Region Bounded by Two Polar Curves",
+  "zorluk": "medium",
+  "govde": "<strong>[BC ONLY]</strong> <em>(Graphing calculator allowed.)</em> To the nearest thousandth, what is the area of the region inside the circle $r=4$ and outside the limaçon $r=3+2\\sin\\theta$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$21.730$"
+   },
+   {
+    "id": "B",
+    "text": "$8.881$"
+   },
+   {
+    "id": "C",
+    "text": "$43.461$"
+   },
+   {
+    "id": "D",
+    "text": "$15.708$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. Kesişim: $3+2\\sin\\theta=4$ ⇒ $\\sin\\theta=\\frac12$ ⇒ $\\theta=\\frac{\\pi}{6},\\frac{5\\pi}{6}$.<br/>2. Çember dışta olduğu aralık: $\\frac{5\\pi}{6}\\le\\theta\\le\\frac{13\\pi}{6}$ (burada $\\sin\\theta\\le\\frac12$).<br/>3. $A=\\frac12\\int_{5\\pi/6}^{13\\pi/6}\\left(16-(3+2\\sin\\theta)^2\\right)d\\theta\\approx21.730$ (tam değer $\\frac{10\\pi}{3}+\\frac{13\\sqrt3}{2}$).",
+  "genel_hatirlatma": "Dış eğri aralığı $2\\pi$'yi aşabilir; sınırları $\\frac{5\\pi}{6}$'dan $\\frac{13\\pi}{6}$'ya yazmak doğru bölgeyi tek parçada verir.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Farkın karesini almak.",
+    "aciklama": "$\\frac12\\int(4-r)^2d\\theta$ yanlış formüldür."
+   },
+   "C": {
+    "etiket": "½ katsayısını unutmak.",
+    "aciklama": "$\\int(16-r^2)d\\theta$ değeri; $\\frac12$ eksik."
+   },
+   "D": {
+    "etiket": "Bütün alanları çıkarmak.",
+    "aciklama": "$16\\pi-11\\pi=5\\pi$: limaçonun çemberin dışına taşan kısmı da çıkarılmış."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.9)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Sınırı 2π'yi aşan aralık",
+   "ipucu": "Hangi aralıkta çemberin dışta olduğunu bir test açısıyla (θ = 3π/2) kontrol et.",
+   "sikHata": "Toplam alanları doğrudan çıkarmak",
+   "cedKonu": "9.9",
+   "hesapMakinesi": "gerekli",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "calc_k_u9_68",
+  "tur": "ders",
+  "sayfa": "ap-calculus",
+  "ders": null,
+  "unite_no": 9,
+  "unite": "9",
+  "kutu": "calc-unit9-quiz-container",
+  "kutu_baslik": "Unit 9 Parametric Equations, Polar Coordinates & Vector-Valued Functions",
+  "dizi": "CALC_UNIT9_QUESTIONS",
+  "sira": 0,
+  "numara": 68,
+  "konu": "9.9 Finding the Area of the Region Bounded by Two Polar Curves",
+  "zorluk": "hard",
+  "govde": "<strong>[BC ONLY]</strong> What is the area of the region that lies inside the cardioid $r=1+\\cos\\theta$ and outside the circle $r=3\\cos\\theta$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\pi$"
+   },
+   {
+    "id": "B",
+    "text": "$\\frac{5\\pi}{4}$"
+   },
+   {
+    "id": "C",
+    "text": "$\\frac{\\pi}{4}$"
+   },
+   {
+    "id": "D",
+    "text": "$\\frac{3\\pi}{2}$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. Kesişim: $1+\\cos\\theta=3\\cos\\theta$ ⇒ $\\cos\\theta=\\frac12$ ⇒ $\\theta=\\pm\\frac{\\pi}{3}$.<br/>2. Ortak bölge $=2\\left[\\frac12\\int_0^{\\pi/3}(1+\\cos\\theta)^2d\\theta+\\frac12\\int_{\\pi/3}^{\\pi/2}9\\cos^2\\theta\\,d\\theta\\right]=\\frac{5\\pi}{4}$.<br/>3. Kardioid alanı $\\frac{3\\pi}{2}$ ⇒ aranan alan $\\frac{3\\pi}{2}-\\frac{5\\pi}{4}=\\frac{\\pi}{4}$.",
+  "genel_hatirlatma": "“Inside A, outside B” = Alan(A) − Alan(A ∩ B). Ortak bölge her aralıkta içteki eğriyle hesaplanır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Ters bölgeyi hesaplamak.",
+    "aciklama": "$\\pi$, çemberin içinde ve kardioidin dışındaki alandır."
+   },
+   "B": {
+    "etiket": "Ortak bölgeyi vermek.",
+    "aciklama": "$\\frac{5\\pi}{4}$ iki eğrinin ortak alanıdır; kardioidden çıkarılmalı."
+   },
+   "D": {
+    "etiket": "Çemberi çıkarmamak.",
+    "aciklama": "$\\frac{3\\pi}{2}$ kardioidin tüm alanıdır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 9.9)",
+  "deneme_kodlari": [
+   "calculus-bc"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Fark bölgesi = bütün − ortak",
+   "ipucu": "Ortak bölgeyi parçalara ayırıp simetri kullan.",
+   "sikHata": "Ortak bölge ile fark bölgesini karıştırmak",
+   "cedKonu": "9.9",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ }
+]

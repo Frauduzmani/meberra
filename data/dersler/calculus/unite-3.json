@@ -1,0 +1,441 @@
+{
+ "ders": "calculus",
+ "unite": 3,
+ "baslik": "Differentiation: Composite, Implicit, and Inverse Functions",
+ "baslikTr": "Türev: Bileşke, Kapalı ve Ters Fonksiyonlar",
+ "konular": [
+  {
+   "kod": "3.1",
+   "baslik": "The Chain Rule",
+   "baslikTr": "Zincir kuralı",
+   "sadeceBC": false,
+   "hedefler": [
+    "Bileşke fonksiyonda (composite function) dış ve iç fonksiyonu tanımak ve zincir kuralını uygulamak.",
+    "Zincir kuralını tablo (table) ve grafikle (graph) verilen fonksiyonlarda kullanmak.",
+    "İki ya da daha fazla katmanlı (multi-layer) bileşkelerin türevini adım adım almak."
+   ],
+   "anlatim": "<p>Şimdiye kadar \\(x^5\\), \\(\\sin x\\), \\(e^x\\) gibi “tek parça” fonksiyonların türevini aldık. Peki \\(\\sin(x^2)\\) ya da \\((3x+1)^{10}\\) gibi bir fonksiyonun içine başka bir fonksiyon yerleştirilmiş ifadeler? Bunlara <strong>bileşke fonksiyon (composite function)</strong> denir ve türevleri <strong>zincir kuralı (chain rule)</strong> ile alınır. AP sınavında zincir kuralı neredeyse her türev sorusunun içinde gizlidir; bu konu ünitenin temelidir.</p>\n<h4>Dış fonksiyon, iç fonksiyon</h4>\n<p>\\(h(x)=f(g(x))\\) yazıldığında \\(g\\) <strong>iç fonksiyon (inner function)</strong>, \\(f\\) <strong>dış fonksiyon (outer function)</strong>dur. Hesap makinesinde \\(h(2)\\)'yi hesaplarken önce yaptığın işlem içtir, en son yaptığın işlem dıştır. Örneğin \\(\\sin(x^2)\\) için önce \\(x^2\\) hesaplanır (iç), sonra sinüs alınır (dış).</p>\n<div class=\"kn-kural\"><strong>Zincir kuralı:</strong> \\(h(x)=f(g(x))\\) ise\n\\[h'(x)=f'(g(x))\\cdot g'(x).\\]\nLeibniz gösterimiyle (Leibniz notation): \\(y=f(u)\\), \\(u=g(x)\\) ise \\(\\dfrac{dy}{dx}=\\dfrac{dy}{du}\\cdot\\dfrac{du}{dx}\\).<br>Sözle: <em>dışın türevi (içi aynen bırakarak) çarpı içinin türevi.</em></div>\n<p>En sık yapılan hata, dış fonksiyonun türevini alırken içi de değiştirmektir. \\(f'(g(x))\\) ifadesinde \\(f'\\) fonksiyonu <strong>\\(g(x)\\) noktasında</strong> değerlendirilir, \\(x\\) noktasında değil.</p>\n<h4>En çok kullanılan kalıplar</h4>\n<table><thead><tr><th>Fonksiyon</th><th>Türev</th><th>Örnek</th></tr></thead><tbody>\n<tr><td>\\([u(x)]^n\\)</td><td>\\(n[u(x)]^{n-1}\\cdot u'(x)\\)</td><td>\\(\\frac{d}{dx}(3x^2+1)^4=4(3x^2+1)^3\\cdot 6x\\)</td></tr>\n<tr><td>\\(\\sqrt{u}\\)</td><td>\\(\\dfrac{u'}{2\\sqrt{u}}\\)</td><td>\\(\\frac{d}{dx}\\sqrt{x^2+9}=\\frac{2x}{2\\sqrt{x^2+9}}\\)</td></tr>\n<tr><td>\\(\\sin u\\), \\(\\cos u\\)</td><td>\\(\\cos u\\cdot u'\\), \\(-\\sin u\\cdot u'\\)</td><td>\\(\\frac{d}{dx}\\cos(5x)=-5\\sin(5x)\\)</td></tr>\n<tr><td>\\(e^{u}\\)</td><td>\\(e^{u}\\cdot u'\\)</td><td>\\(\\frac{d}{dx}e^{x^3}=3x^2e^{x^3}\\)</td></tr>\n<tr><td>\\(\\ln u\\)</td><td>\\(\\dfrac{u'}{u}\\)</td><td>\\(\\frac{d}{dx}\\ln(x^2+1)=\\frac{2x}{x^2+1}\\)</td></tr>\n<tr><td>\\(a^{u}\\)</td><td>\\(a^{u}\\ln a\\cdot u'\\)</td><td>\\(\\frac{d}{dx}2^{3x}=3\\ln2\\cdot 2^{3x}\\)</td></tr>\n</tbody></table>\n<h4>Çok katmanlı bileşkeler</h4>\n<p>\\(y=\\sin^3(4x)=[\\sin(4x)]^3\\) üç katmanlıdır: küp (en dış) → sinüs → \\(4x\\) (en iç). Dıştan içe doğru her katmanın türevini alıp çarparız:\n\\[y'=3\\sin^2(4x)\\cdot\\cos(4x)\\cdot 4=12\\sin^2(4x)\\cos(4x).\\]\nBir zincirdeki her halka bir çarpan üretir. Katman sayısı kadar çarpan görmüyorsan bir halkayı unutmuşsundur.</p>\n<h4>Tabloyla verilen fonksiyonlar</h4>\n<p>AP sınavı formülü verilmeyen \\(f\\) ve \\(g\\) için değerleri bir tabloda verir. \\(h(x)=f(g(x))\\) ise \\(h'(1)\\) için:</p>\n<ol>\n<li>Önce iç değeri bul: \\(g(1)\\) — tablodan oku.</li>\n<li>Sonra \\(f'\\)'yi <strong>o değerde</strong> oku: \\(f'(g(1))\\).</li>\n<li>\\(g'(1)\\)'i oku ve çarp.</li>\n</ol>\n<p>Tabloda aynı satırdan iki sayı çarpmak (\\(f'(1)\\cdot g'(1)\\)) en klasik çeldiricidir.</p>\n<h4>Grafikle verilen fonksiyonlar</h4>\n<p>\\(g\\) doğru parçalarından oluşan (piecewise linear) bir grafikle verildiyse \\(g'(x)\\), \\(x\\)'in bulunduğu parçanın <strong>eğimidir (slope)</strong>: \\(\\frac{\\Delta y}{\\Delta x}\\). Köşe (corner) noktalarında \\(g'\\) yoktur; bu durumda bileşkenin türevi o noktada zincir kuralıyla hesaplanamaz.</p>\n<div class=\"kn-dikkat\"><strong>FRQ ifadesi:</strong> Sayıları yazmadan önce kuralı göster: “By the chain rule, \\(h'(1)=f'(g(1))\\cdot g'(1)=f'(2)\\cdot g'(1)=4\\cdot5=20\\).” Puanlayıcı (reader) ara adımı görmek ister; yalnız “20” yazmak genellikle tam puan getirmez.</div>",
+   "ornekler": [
+    {
+     "soru": "Aşağıdaki tablo türevlenebilir \\(f\\) ve \\(g\\) için değerleri veriyor. \\(h(x)=f(g(x))\\) ise \\(h'(2)\\) kaçtır?<table><thead><tr><th>\\(x\\)</th><th>\\(f(x)\\)</th><th>\\(f'(x)\\)</th><th>\\(g(x)\\)</th><th>\\(g'(x)\\)</th></tr></thead><tbody><tr><td>2</td><td>7</td><td>-1</td><td>5</td><td>3</td></tr><tr><td>5</td><td>0</td><td>6</td><td>2</td><td>-4</td></tr></tbody></table>",
+     "cozum": [
+      "Zincir kuralı: \\(h'(2)=f'(g(2))\\cdot g'(2)\\).",
+      "Tablodan \\(g(2)=5\\), yani \\(f'(g(2))=f'(5)=6\\). Ayrıca \\(g'(2)=3\\).",
+      "\\(h'(2)=6\\cdot3=18\\). (Çeldirici: \\(f'(2)\\cdot g'(2)=-3\\).)"
+     ]
+    },
+    {
+     "soru": "\\(y=\\sqrt{\\cos(2x)+3}\\) için \\(\\dfrac{dy}{dx}\\)'i bulun ve \\(x=\\dfrac{\\pi}{4}\\)'teki değerini hesaplayın.",
+     "cozum": [
+      "Katmanlar: karekök (dış) → \\(\\cos(2x)+3\\) → \\(2x\\) (en iç).",
+      "\\(\\dfrac{dy}{dx}=\\dfrac{1}{2\\sqrt{\\cos(2x)+3}}\\cdot(-\\sin(2x))\\cdot2=\\dfrac{-\\sin(2x)}{\\sqrt{\\cos(2x)+3}}\\).",
+      "\\(x=\\frac{\\pi}{4}\\): \\(\\sin\\frac{\\pi}{2}=1\\), \\(\\cos\\frac{\\pi}{2}=0\\). \\(\\dfrac{dy}{dx}=\\dfrac{-1}{\\sqrt3}=-\\dfrac{\\sqrt3}{3}\\)."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) \\(g\\)'nin grafiği \\((0,4)\\), \\((3,1)\\) ve \\((5,5)\\) noktalarını birleştiren iki doğru parçasıdır. \\(f\\) türevlenebilir ve \\(f'(2)=-3\\)'tür. \\(k(x)=f(g(x))\\) ise \\(k'(2)\\)'yi bulun. \\(k'(3)\\) zincir kuralıyla hesaplanabilir mi? Açıklayın.",
+     "cozum": [
+      "\\(x=2\\), \\([0,3]\\) parçasındadır: \\(g(x)=4-x\\), yani \\(g(2)=2\\) ve eğim \\(g'(2)=\\frac{1-4}{3-0}=-1\\).",
+      "Zincir kuralı: \\(k'(2)=f'(g(2))\\cdot g'(2)=f'(2)\\cdot(-1)=(-3)(-1)=3\\).",
+      "\\(x=3\\)'te \\(g\\)'nin grafiğinde köşe (corner) vardır: soldan eğim \\(-1\\), sağdan eğim \\(\\frac{5-1}{5-3}=2\\). \\(g'(3)\\) olmadığı için zincir kuralı \\(x=3\\)'te uygulanamaz. Ders: önce iç fonksiyonun değerini ve türevini kontrol et."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her zaman önce iç değeri hesapla, sonra dış türevi o değerde oku: “\\(f'\\) of \\(g\\) of 1, times \\(g'\\) of 1”.",
+    "FRQ'da zincir kuralını sembollerle yaz (“\\(h'(x)=f'(g(x))g'(x)\\)”), sonra tablo değerlerini yerleştir; puan genellikle bu kurulum için verilir.",
+    "Hesap makinesi bölümünde (calculator active) \\(f'(a)\\) değerini makinenin nDeriv/\\(\\frac{d}{dx}\\) aracıyla doğrudan bulabilirsin; ama elle türev almayı gerektiren sorular hesap makinesiz bölümdedir.",
+    "Katman sayısını say: \\(n\\) katman → \\(n\\) çarpan. Bu, cevabı kontrol etmenin en hızlı yoludur."
+   ],
+   "sikHatalar": [
+    "Dış türevi \\(x\\)'te değerlendirmek: \\(f'(g(1))\\) yerine \\(f'(1)\\) okumak.",
+    "İç türevi unutmak: \\(\\frac{d}{dx}\\sin(3x)=\\cos(3x)\\) yazmak (doğrusu \\(3\\cos(3x)\\)).",
+    "\\(\\frac{d}{dx}(x^2+1)^5\\) için \\(5(2x)^4\\) yazmak: üssü iç fonksiyonun türevine uygulamak."
+   ],
+   "terimler": [
+    {
+     "en": "composite function",
+     "tr": "bileşke fonksiyon"
+    },
+    {
+     "en": "chain rule",
+     "tr": "zincir kuralı"
+    },
+    {
+     "en": "inner function",
+     "tr": "iç fonksiyon"
+    },
+    {
+     "en": "outer function",
+     "tr": "dış fonksiyon"
+    },
+    {
+     "en": "piecewise linear",
+     "tr": "parçalı doğrusal"
+    },
+    {
+     "en": "evaluate",
+     "tr": "(bir noktada) değerini hesaplamak"
+    }
+   ]
+  },
+  {
+   "kod": "3.2",
+   "baslik": "Implicit Differentiation",
+   "baslikTr": "Kapalı türev",
+   "sadeceBC": false,
+   "hedefler": [
+    "Kapalı (implicit) olarak tanımlı bir eğride \\(\\frac{dy}{dx}\\)'i, \\(y\\)'yi \\(x\\)'in fonksiyonu sayarak bulmak.",
+    "Eğri üzerindeki bir noktada teğet doğrunun (tangent line) eğimini ve denklemini yazmak.",
+    "Yatay (horizontal) ve dikey (vertical) teğetlerin olduğu noktaları belirlemek."
+   ],
+   "anlatim": "<p>\\(y=x^3-2x\\) gibi bir denklemde \\(y\\) yalnız bırakılmıştır: buna <strong>açık (explicit)</strong> tanım denir. Ama \\(x^2+y^2=25\\) ya da \\(x^3+y^3=6xy\\) gibi eğrilerde \\(y\\)'yi tek bir formülle yalnız bırakmak zor ya da imkânsızdır. Böyle bir denklem \\(y\\)'yi \\(x\\)'in fonksiyonu olarak <strong>kapalı (implicit)</strong> biçimde tanımlar. Türevini almak için \\(y\\)'yi çözmemize gerek yoktur.</p>\n<div class=\"kn-tanim\"><strong>Temel fikir:</strong> \\(y\\), \\(x\\)'in bilinmeyen bir fonksiyonudur: \\(y=y(x)\\). Bu yüzden \\(y\\) içeren her terimin türevi zincir kuralıyla alınır ve bir \\(\\dfrac{dy}{dx}\\) çarpanı üretir:\n\\[\\frac{d}{dx}\\left(y^3\\right)=3y^2\\frac{dy}{dx},\\qquad \\frac{d}{dx}(\\sin y)=\\cos y\\,\\frac{dy}{dx},\\qquad \\frac{d}{dx}\\left(e^{y}\\right)=e^{y}\\frac{dy}{dx}.\\]</div>\n<h4>Adım adım yöntem</h4>\n<ol>\n<li>Denklemin <strong>iki tarafının</strong> da \\(x\\)'e göre türevini al. Sabitin türevi 0'dır.</li>\n<li>\\(x\\) terimleri normal türevlenir; \\(y\\) terimleri “türev çarpı \\(\\frac{dy}{dx}\\)” olur.</li>\n<li>\\(x\\) ve \\(y\\)'nin çarpımı varsa <strong>çarpım kuralı (product rule)</strong> kullan: \\(\\frac{d}{dx}(xy)=1\\cdot y+x\\frac{dy}{dx}\\).</li>\n<li>\\(\\frac{dy}{dx}\\) içeren terimleri bir tarafa topla, \\(\\frac{dy}{dx}\\) parantezine al ve böl.</li>\n</ol>\n<p><strong>Örnek:</strong> \\(x^2+xy+y^2=7\\).<br>Türev: \\(2x+\\left(y+x\\frac{dy}{dx}\\right)+2y\\frac{dy}{dx}=0\\).<br>Topla: \\(\\frac{dy}{dx}(x+2y)=-(2x+y)\\), yani \\(\\dfrac{dy}{dx}=-\\dfrac{2x+y}{x+2y}\\).</p>\n<p>Sonuç genellikle hem \\(x\\) hem \\(y\\) içerir. Bir noktadaki eğimi bulmak için <strong>o noktanın iki koordinatını da</strong> yerine koyarız. Önce noktanın gerçekten eğri üzerinde olduğunu kontrol etmek iyi bir alışkanlıktır.</p>\n<h4>Teğet doğru</h4>\n<p>\\((x_1,y_1)\\) noktasında eğim \\(m=\\left.\\frac{dy}{dx}\\right|_{(x_1,y_1)}\\) ise teğet doğru: \\(y-y_1=m(x-x_1)\\). AP sınavında doğru denklemini bu nokta-eğim biçiminde (point-slope form) bırakmak tamamen kabul edilir.</p>\n<h4>Yatay ve dikey teğetler</h4>\n<table><thead><tr><th>Durum</th><th>Koşul (\\(\\frac{dy}{dx}=\\frac{N}{D}\\) için)</th><th>Ek şart</th></tr></thead><tbody>\n<tr><td>Yatay teğet (horizontal tangent)</td><td>\\(N=0\\), \\(D\\neq0\\)</td><td>Nokta eğri denklemini sağlamalı</td></tr>\n<tr><td>Dikey teğet (vertical tangent)</td><td>\\(D=0\\), \\(N\\neq0\\)</td><td>Nokta eğri denklemini sağlamalı</td></tr>\n<tr><td>\\(\\frac00\\)</td><td>\\(N=0\\) ve \\(D=0\\)</td><td>Ayrıca incelenmeli; karar verilemez</td></tr></tbody></table>\n<p>Yöntem: \\(N=0\\) denklemini (örneğin \\(y=-2x\\)) eğri denklemine yerleştir ve noktaları bul. Yalnız \\(N=0\\)'ı çözüp bırakmak yarım cevaptır; çünkü \\(y=-2x\\) bir doğrudur, eğri üzerindeki noktalar değil.</p>\n<div class=\"kn-dikkat\"><strong>FRQ'da “Show that \\(\\frac{dy}{dx}=\\dots\\)”</strong> diye sorulursa, türev alma satırını (her iki tarafın türevi) mutlaka yaz ve verilen sonuca cebirle ulaş. Sonuç zaten soruda verildiği için yalnız onu tekrar yazmak puan getirmez. Sonraki şıklarda verilen \\(\\frac{dy}{dx}\\) ifadesini kullanırsın; kendi bulduğun hatalı ifadeyi değil.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(x^3+y^3=6xy\\) eğrisi üzerindeki \\((3,3)\\) noktasında teğet doğrunun denklemini yazın.",
+     "cozum": [
+      "Kontrol: \\(27+27=54=6\\cdot9\\). Nokta eğri üzerinde.",
+      "Türev: \\(3x^2+3y^2\\frac{dy}{dx}=6y+6x\\frac{dy}{dx}\\) ⇒ \\(\\frac{dy}{dx}(3y^2-6x)=6y-3x^2\\) ⇒ \\(\\dfrac{dy}{dx}=\\dfrac{2y-x^2}{y^2-2x}\\).",
+      "\\((3,3)\\): \\(\\dfrac{6-9}{9-6}=-1\\). Teğet: \\(y-3=-1(x-3)\\)."
+     ]
+    },
+    {
+     "soru": "\\(x^2-xy+y^2=27\\) eğrisinin dikey teğetlerinin olduğu noktaları bulun.",
+     "cozum": [
+      "Türev: \\(2x-y-x\\frac{dy}{dx}+2y\\frac{dy}{dx}=0\\) ⇒ \\(\\dfrac{dy}{dx}=\\dfrac{y-2x}{2y-x}\\).",
+      "Dikey teğet: payda sıfır, \\(2y-x=0\\), yani \\(x=2y\\). Eğriye koy: \\(4y^2-2y^2+y^2=3y^2=27\\) ⇒ \\(y=\\pm3\\).",
+      "Noktalar \\((6,3)\\) ve \\((-6,-3)\\). Pay kontrolü: \\((6,3)\\)'te \\(3-12=-9\\neq0\\); \\((-6,-3)\\)'te \\(-3+12=9\\neq0\\). İkisi de gerçek dikey teğettir."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) \\(e^{y}+xy=e\\) eğrisi \\((0,1)\\)'den geçer. Eğrinin bu noktada artan mı azalan mı olduğunu gerekçesiyle belirtin.",
+     "cozum": [
+      "Türev: \\(e^{y}\\frac{dy}{dx}+y+x\\frac{dy}{dx}=0\\) ⇒ \\(\\dfrac{dy}{dx}=\\dfrac{-y}{e^{y}+x}\\).",
+      "\\((0,1)\\): \\(\\dfrac{dy}{dx}=-\\dfrac1e\\lt0\\).",
+      "“Since \\(\\frac{dy}{dx}=-\\frac1e\\lt0\\) at \\((0,1)\\), \\(y\\) is decreasing at that point.” Gerekçede türevin işaretini ve noktayı birlikte söylemek gerekir."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "\\(y\\)'li her terimin türevinin sonuna hemen \\(\\frac{dy}{dx}\\) (ya da \\(y'\\)) yaz; sonra eklemeyi unutmak en çok puan kaybettiren hatadır.",
+    "\\(xy\\), \\(x^2y\\), \\(xe^{y}\\) gibi terimlerde çarpım kuralı şarttır; iki terim çıkmalı.",
+    "Bir noktadaki eğim için önce \\(\\frac{dy}{dx}\\)'i genel olarak çözmek zorunda değilsin: türev aldıktan hemen sonra \\(x\\) ve \\(y\\) değerlerini koyup \\(y'\\)'yi bir sayı denklemi olarak çözmek daha hızlıdır.",
+    "FRQ'da teğet doğruyu \\(y-y_1=m(x-x_1)\\) biçiminde bırak; sadeleştirme hatası riskini azaltır."
+   ],
+   "sikHatalar": [
+    "\\(\\frac{d}{dx}(y^2)=2y\\) yazmak (\\(\\frac{dy}{dx}\\) çarpanı unutuldu).",
+    "\\(\\frac{d}{dx}(xy)=\\frac{dy}{dx}\\) ya da \\(=y\\) yazmak; çarpım kuralı atlandı.",
+    "Yatay teğet için yalnız payı sıfıra eşitleyip noktanın eğri üzerinde olup olmadığını kontrol etmemek."
+   ],
+   "terimler": [
+    {
+     "en": "implicit differentiation",
+     "tr": "kapalı türev"
+    },
+    {
+     "en": "explicit",
+     "tr": "açık (y yalnız bırakılmış)"
+    },
+    {
+     "en": "tangent line",
+     "tr": "teğet doğru"
+    },
+    {
+     "en": "horizontal tangent",
+     "tr": "yatay teğet"
+    },
+    {
+     "en": "vertical tangent",
+     "tr": "dikey teğet"
+    },
+    {
+     "en": "point-slope form",
+     "tr": "nokta-eğim biçimi"
+    }
+   ]
+  },
+  {
+   "kod": "3.3",
+   "baslik": "Differentiating Inverse Functions",
+   "baslikTr": "Ters fonksiyonların türevi",
+   "sadeceBC": false,
+   "hedefler": [
+    "Ters fonksiyonun türevi formülünü \\((f^{-1})'(b)=\\frac{1}{f'(a)}\\), \\(f(a)=b\\) doğru noktada kullanmak.",
+    "Tablodan, grafikten ya da formülden \\(f(a)=b\\) eşitliğini sağlayan \\(a\\)'yı bulmak.",
+    "Ters fonksiyonun grafiğine teğet doğrunun denklemini yazmak."
+   ],
+   "anlatim": "<p>\\(f\\) bire bir (one-to-one) bir fonksiyonsa tersi \\(g=f^{-1}\\) vardır: \\(f(a)=b\\) ise \\(g(b)=a\\). Grafikte \\(g\\), \\(f\\)'nin \\(y=x\\) doğrusuna göre yansımasıdır (reflection). Yansıma \\(x\\) ile \\(y\\)'nin yerini değiştirdiği için eğimdeki “dikey değişim / yatay değişim” oranı da ters döner: <strong>eğimler karşılıklı terstir (reciprocal)</strong>.</p>\n<div class=\"kn-kural\"><strong>Ters fonksiyonun türevi:</strong> \\(f\\) türevlenebilir ve bire bir, \\(f(a)=b\\) ve \\(f'(a)\\neq0\\) ise\n\\[g'(b)=(f^{-1})'(b)=\\frac{1}{f'(a)}=\\frac{1}{f'\\big(g(b)\\big)}.\\]</div>\n<h4>Formül nereden geliyor?</h4>\n<p>Her \\(x\\) için \\(f(g(x))=x\\)'tir. İki tarafın türevini zincir kuralıyla alalım: \\(f'(g(x))\\cdot g'(x)=1\\). Buradan \\(g'(x)=\\dfrac{1}{f'(g(x))}\\). Yani bu formül yeni bir kural değil; zincir kuralının bir uygulamasıdır. Sınavda formülü unutursan bu iki satırı yazarak geri kazanabilirsin.</p>\n<h4>En önemli adım: doğru noktayı bulmak</h4>\n<p>\\(g'(b)\\) soruluyorsa, \\(f'\\)'yi \\(b\\)'de <strong>değil</strong>, \\(f(a)=b\\) olan \\(a\\)'da değerlendiririz. Yani önce “\\(f\\) hangi girdide \\(b\\) çıktısını veriyor?” sorusunu cevapla.</p>\n<table><thead><tr><th>Veri türü</th><th>\\(a\\)'yı nasıl bulurum?</th></tr></thead><tbody>\n<tr><td>Tablo</td><td>\\(f(x)\\) satırında \\(b\\) değerini ara; o sütunun \\(x\\)'i \\(a\\)'dır.</td></tr>\n<tr><td>Formül (hesap makinesiz)</td><td>\\(f(x)=b\\) denklemini dene: genelde \\(a=0,\\pm1,2\\) gibi küçük bir tam sayıdır.</td></tr>\n<tr><td>Formül (hesap makineli)</td><td>\\(f(x)=b\\)'yi grafik/çözücü ile çöz, değeri sakla, \\(f'\\)'ye koy.</td></tr>\n<tr><td>Grafik</td><td>\\(f\\)'nin grafiğinde \\(y=b\\) yüksekliğindeki noktayı bul, oradaki teğetin eğimini oku.</td></tr></tbody></table>\n<p><strong>Örnek:</strong> \\(f(x)=x^3+2x+1\\), \\(g=f^{-1}\\). \\(g'(4)\\) için \\(x^3+2x+1=4\\) ⇒ \\(x=1\\) (\\(1+2+1=4\\)). \\(f'(x)=3x^2+2\\) ⇒ \\(f'(1)=5\\). Sonuç: \\(g'(4)=\\frac15\\).</p>\n<h4>Ters fonksiyonun teğet doğrusu</h4>\n<p>\\(g\\)'nin grafiği \\((b,a)\\) noktasından geçer (koordinatlar yer değiştirir). Teğet: \\(y-a=\\dfrac{1}{f'(a)}(x-b)\\). Çeldiricilerde sık görülen yanlışlar: noktayı \\((a,b)\\) almak ya da eğimi \\(f'(a)\\) bırakmak.</p>\n<div class=\"kn-dikkat\">\\(f'(a)=0\\) ise \\(g\\), \\(b\\)'de türevlenemez: \\(f\\)'nin yatay teğeti, yansıyınca \\(g\\)'nin <strong>dikey teğeti</strong> olur. Ayrıca \\(f\\) artan ise \\(g\\) de artandır; bu yüzden \\(f'\\gt0\\) iken \\(g'\\) de pozitif çıkmalıdır — işaret kontrolü olarak kullan.</div>\n<p>FRQ'da şöyle yaz: “Since \\(f(2)=5\\), \\(g(5)=2\\), so \\(g'(5)=\\dfrac{1}{f'(g(5))}=\\dfrac{1}{f'(2)}=\\dfrac13\\).” Hangi noktayı neden kullandığını göstermek puanlayıcının aradığı şeydir.</p>",
+   "ornekler": [
+    {
+     "soru": "Bire bir, türevlenebilir \\(f\\) için tablo: \\(f(1)=4\\), \\(f'(1)=2\\); \\(f(4)=6\\), \\(f'(4)=3\\); \\(f(6)=9\\),\\(f'(6)=\\frac12\\). \\(g=f^{-1}\\) ise \\(g'(4)\\) kaçtır?",
+     "cozum": [
+      "\\(g'(4)\\) için \\(f(a)=4\\) olan \\(a\\)'yı ara: tabloda \\(f(1)=4\\), yani \\(a=1\\).",
+      "\\(g'(4)=\\dfrac{1}{f'(1)}=\\dfrac{1}{2}\\).",
+      "Çeldirici: \\(\\frac{1}{f'(4)}=\\frac13\\) (yanlış satır)."
+     ]
+    },
+    {
+     "soru": "\\(f(x)=e^{2x}+x\\) ve \\(g=f^{-1}\\). \\(g\\)'nin grafiğine \\(x=1\\)'deki teğet doğrunun denklemini yazın.",
+     "cozum": [
+      "\\(f(a)=1\\): \\(a=0\\) için \\(e^0+0=1\\). Yani \\(g(1)=0\\).",
+      "\\(f'(x)=2e^{2x}+1\\) ⇒ \\(f'(0)=3\\) ⇒ \\(g'(1)=\\frac13\\).",
+      "Teğet: \\(y-0=\\frac13(x-1)\\), yani \\(y=\\frac13(x-1)\\)."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) \\(f\\) türevlenebilir ve artan, \\(f(3)=-2\\), \\(f'(3)=4\\). \\(h(x)=x\\cdot f^{-1}(x)\\) ise \\(h'(-2)\\)'yi bulun.",
+     "cozum": [
+      "Çarpım kuralı: \\(h'(x)=f^{-1}(x)+x\\cdot(f^{-1})'(x)\\).",
+      "\\(f(3)=-2\\) ⇒ \\(f^{-1}(-2)=3\\) ve \\((f^{-1})'(-2)=\\frac{1}{f'(3)}=\\frac14\\).",
+      "\\(h'(-2)=3+(-2)\\cdot\\frac14=3-\\frac12=\\frac52\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "“\\(g'(b)\\)” görünce ilk iş: \\(f(?)=b\\). Bu tek soru sınavdaki ters fonksiyon maddelerinin çoğunu çözer.",
+    "Hesap makinesiz bölümde \\(f(x)=b\\) denklemini çözmek zor görünüyorsa küçük tam sayıları dene; sorular buna göre kurulur.",
+    "Hesap makineli bölümde \\(f(x)=b\\)'nin kökünü sakla (store) ve yuvarlamadan kullan; sonucu üç ondalık basamağa (three decimal places) yuvarla.",
+    "İşaret kontrolü: \\(f\\) artan ise \\(g'\\gt0\\), azalan ise \\(g'\\lt0\\)."
+   ],
+   "sikHatalar": [
+    "\\(g'(b)=\\frac{1}{f'(b)}\\) yazmak: \\(f'\\)'yi yanlış noktada değerlendirmek.",
+    "\\((f^{-1})'\\)'yi \\(-\\frac{1}{f'}\\) ya da \\(\\frac{1}{f}\\) sanmak; ters fonksiyonu “negatif karşılıklı” ya da “bir bölü fonksiyon” ile karıştırmak.",
+    "Ters fonksiyonun teğet doğrusunda noktanın koordinatlarını yer değiştirmeyi unutmak."
+   ],
+   "terimler": [
+    {
+     "en": "inverse function",
+     "tr": "ters fonksiyon"
+    },
+    {
+     "en": "one-to-one",
+     "tr": "bire bir"
+    },
+    {
+     "en": "reciprocal",
+     "tr": "çarpmaya göre ters (1 bölü)"
+    },
+    {
+     "en": "reflection over y = x",
+     "tr": "y = x'e göre yansıma"
+    },
+    {
+     "en": "store (calculator)",
+     "tr": "değeri hesap makinesinde saklamak"
+    }
+   ]
+  },
+  {
+   "kod": "3.4",
+   "baslik": "Differentiating Inverse Trigonometric Functions",
+   "baslikTr": "Ters trigonometrik fonksiyonların türevi",
+   "sadeceBC": false,
+   "hedefler": [
+    "arcsin, arccos ve arctan fonksiyonlarının türevlerini bilmek ve zincir kuralıyla birlikte kullanmak.",
+    "Bu türevlerin kapalı türev ve ters fonksiyon kuralından nasıl çıktığını açıklamak.",
+    "Ters trigonometrik fonksiyonların özel değerlerini kullanarak teğet doğru ve eğim sorularını çözmek."
+   ],
+   "anlatim": "<p>\\(\\sin x\\) bire bir değildir; tersini tanımlamak için tanım kümesi \\(\\left[-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right]\\) ile sınırlanır. Bu sınırlı fonksiyonun tersi \\(\\arcsin x\\) (ya da \\(\\sin^{-1}x\\)) olur: \\(y=\\arcsin x \\iff \\sin y=x\\), \\(-\\frac{\\pi}{2}\\le y\\le\\frac{\\pi}{2}\\). Dikkat: \\(\\sin^{-1}x\\) bir <strong>ters fonksiyon (inverse function)</strong> gösterimidir, \\(\\frac{1}{\\sin x}\\) değildir.</p>\n<h4>arcsin türevinin elde edilişi</h4>\n<p>\\(\\sin y=x\\) denkleminde kapalı türev al: \\(\\cos y\\,\\frac{dy}{dx}=1\\) ⇒ \\(\\frac{dy}{dx}=\\frac{1}{\\cos y}\\). \\(y\\) aralığında \\(\\cos y\\ge0\\) olduğundan \\(\\cos y=\\sqrt{1-\\sin^2y}=\\sqrt{1-x^2}\\). Sonuç:</p>\n<div class=\"kn-kural\"><table><thead><tr><th>Fonksiyon</th><th>Türev</th><th>Zincir kuralı ile (\\(u=u(x)\\))</th><th>Tanım kümesi</th></tr></thead><tbody>\n<tr><td>\\(\\arcsin x\\)</td><td>\\(\\dfrac{1}{\\sqrt{1-x^2}}\\)</td><td>\\(\\dfrac{u'}{\\sqrt{1-u^2}}\\)</td><td>\\(-1\\lt x\\lt1\\) (türev için)</td></tr>\n<tr><td>\\(\\arccos x\\)</td><td>\\(-\\dfrac{1}{\\sqrt{1-x^2}}\\)</td><td>\\(-\\dfrac{u'}{\\sqrt{1-u^2}}\\)</td><td>\\(-1\\lt x\\lt1\\)</td></tr>\n<tr><td>\\(\\arctan x\\)</td><td>\\(\\dfrac{1}{1+x^2}\\)</td><td>\\(\\dfrac{u'}{1+u^2}\\)</td><td>tüm reel sayılar</td></tr></tbody></table></div>\n<p>arccos türevi arcsin türevinin negatifidir; çünkü \\(\\arcsin x+\\arccos x=\\frac{\\pi}{2}\\) sabittir ve sabitin türevi 0'dır. arctan türevi de aynı yolla çıkar: \\(\\tan y=x\\) ⇒ \\(\\sec^2y\\,y'=1\\) ⇒ \\(y'=\\frac{1}{1+\\tan^2y}=\\frac{1}{1+x^2}\\). (arccot, arcsec, arccsc türevleri sınavda nadirdir; gerekirse aynı yolla türetilebilir.)</p>\n<h4>Zincir kuralıyla</h4>\n<p>İçeride \\(x\\)'ten farklı bir ifade varsa iki hata yapılabilir: iç türevi unutmak ve karekökün içine \\(x^2\\) yerine \\(u^2\\)'yi yazmamak.</p>\n<ul>\n<li>\\(\\frac{d}{dx}\\arcsin(3x)=\\dfrac{3}{\\sqrt{1-9x^2}}\\) (karekökün içinde \\((3x)^2=9x^2\\)).</li>\n<li>\\(\\frac{d}{dx}\\arctan\\left(\\frac{x}{a}\\right)=\\dfrac{\\frac1a}{1+\\frac{x^2}{a^2}}=\\dfrac{a}{a^2+x^2}\\).</li>\n<li>\\(\\frac{d}{dx}\\arctan(e^{x})=\\dfrac{e^{x}}{1+e^{2x}}\\).</li>\n</ul>\n<h4>Bilmen gereken özel değerler</h4>\n<table><thead><tr><th>\\(x\\)</th><th>\\(\\arcsin x\\)</th><th>\\(\\arccos x\\)</th><th>\\(x\\)</th><th>\\(\\arctan x\\)</th></tr></thead><tbody>\n<tr><td>\\(0\\)</td><td>\\(0\\)</td><td>\\(\\frac{\\pi}{2}\\)</td><td>\\(0\\)</td><td>\\(0\\)</td></tr>\n<tr><td>\\(\\frac12\\)</td><td>\\(\\frac{\\pi}{6}\\)</td><td>\\(\\frac{\\pi}{3}\\)</td><td>\\(\\frac{1}{\\sqrt3}\\)</td><td>\\(\\frac{\\pi}{6}\\)</td></tr>\n<tr><td>\\(\\frac{\\sqrt2}{2}\\)</td><td>\\(\\frac{\\pi}{4}\\)</td><td>\\(\\frac{\\pi}{4}\\)</td><td>\\(1\\)</td><td>\\(\\frac{\\pi}{4}\\)</td></tr>\n<tr><td>\\(\\frac{\\sqrt3}{2}\\)</td><td>\\(\\frac{\\pi}{3}\\)</td><td>\\(\\frac{\\pi}{6}\\)</td><td>\\(\\sqrt3\\)</td><td>\\(\\frac{\\pi}{3}\\)</td></tr></tbody></table>\n<p>Teğet doğru sorularında bu tablo noktanın \\(y\\) değerini, türev formülü de eğimi verir. Örneğin \\(y=\\arctan(2x)\\) için \\(x=\\frac12\\)'de \\(y=\\arctan1=\\frac{\\pi}{4}\\) ve \\(y'=\\frac{2}{1+1}=1\\): teğet \\(y-\\frac{\\pi}{4}=x-\\frac12\\).</p>\n<div class=\"kn-dikkat\">Ters trigonometrik fonksiyonun türevi ile ters fonksiyon kuralı (3.3) aynı şeydir: \\(\\arcsin\\)'in \\(x=\\frac12\\)'deki eğimi, \\(\\sin\\)'in \\(\\frac{\\pi}{6}\\)'daki eğiminin tersidir: \\(\\frac{1}{\\cos(\\pi/6)}=\\frac{2}{\\sqrt3}\\). Formülle de \\(\\frac{1}{\\sqrt{1-1/4}}=\\frac{2}{\\sqrt3}\\) çıkar. İki yol tutarlıdır.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=\\arccos(x^2)\\) için \\(f'\\left(\\dfrac{1}{\\sqrt2}\\right)\\)'yi bulun.",
+     "cozum": [
+      "\\(u=x^2\\), \\(u'=2x\\): \\(f'(x)=-\\dfrac{2x}{\\sqrt{1-x^4}}\\).",
+      "\\(x=\\frac{1}{\\sqrt2}\\): \\(x^4=\\frac14\\), \\(\\sqrt{1-\\frac14}=\\frac{\\sqrt3}{2}\\), pay \\(2x=\\sqrt2\\).",
+      "\\(f'=-\\dfrac{\\sqrt2}{\\sqrt3/2}=-\\dfrac{2\\sqrt2}{\\sqrt3}=-\\dfrac{2\\sqrt6}{3}\\)."
+     ]
+    },
+    {
+     "soru": "\\(y=x\\arctan x\\) için \\(\\dfrac{dy}{dx}\\)'i \\(x=1\\)'de hesaplayın.",
+     "cozum": [
+      "Çarpım kuralı: \\(y'=\\arctan x+\\dfrac{x}{1+x^2}\\).",
+      "\\(x=1\\): \\(\\arctan1=\\frac{\\pi}{4}\\), \\(\\frac{1}{2}\\).",
+      "\\(y'(1)=\\dfrac{\\pi}{4}+\\dfrac12\\)."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) Bir öğrenci “\\(h(x)=\\arcsin x+\\arccos x\\) fonksiyonunun türevi \\(\\frac{2}{\\sqrt{1-x^2}}\\)'dir” diyor. Hatasını bulun ve \\(h\\) hakkında ne söylenebileceğini açıklayın.",
+     "cozum": [
+      "\\(\\arccos x\\)'in türevi \\(-\\frac{1}{\\sqrt{1-x^2}}\\)'dir; öğrenci eksi işaretini unutmuş.",
+      "\\(h'(x)=\\frac{1}{\\sqrt{1-x^2}}-\\frac{1}{\\sqrt{1-x^2}}=0\\), \\(-1\\lt x\\lt1\\).",
+      "Türevi sıfır olan fonksiyon aralıkta sabittir: \\(h(x)=h(0)=0+\\frac{\\pi}{2}=\\frac{\\pi}{2}\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Üç formülü ezberle; “arc-co” ile başlayanların (arccos) türevi eksi işaretlidir.",
+    "Zincir kuralında karekökün ya da paydanın içine \\(u^2\\) yazılır; \\(x^2\\) değil.",
+    "Sınav sorularında açılar radyandır (radians); hesap makinen radyan modunda olmalı.",
+    "Formülü unutursan: \\(y=\\arcsin x\\) ⇒ \\(\\sin y=x\\) yazıp kapalı türev al; üç satırda geri gelir."
+   ],
+   "sikHatalar": [
+    "\\(\\sin^{-1}x\\)'i \\(\\frac{1}{\\sin x}\\) sanıp türevini \\(-\\frac{\\cos x}{\\sin^2x}\\) almak.",
+    "\\(\\frac{d}{dx}\\arctan(2x)=\\frac{2}{1+x^2}\\) yazmak (doğrusu \\(\\frac{2}{1+4x^2}\\)).",
+    "arccos türevinde eksi işaretini unutmak."
+   ],
+   "terimler": [
+    {
+     "en": "inverse trigonometric function",
+     "tr": "ters trigonometrik fonksiyon"
+    },
+    {
+     "en": "arcsine",
+     "tr": "arksinüs"
+    },
+    {
+     "en": "arctangent",
+     "tr": "arktanjant"
+    },
+    {
+     "en": "restricted domain",
+     "tr": "sınırlandırılmış tanım kümesi"
+    },
+    {
+     "en": "radian mode",
+     "tr": "radyan modu"
+    }
+   ]
+  },
+  {
+   "kod": "3.5",
+   "baslik": "Selecting Procedures for Calculating Derivatives",
+   "baslikTr": "Türev hesaplamada yöntem seçimi",
+   "sadeceBC": false,
+   "hedefler": [
+    "Bir ifadenin yapısına bakarak hangi türev kurallarının hangi sırayla gerektiğini belirlemek.",
+    "Türev almadan önce ifadeyi sadeleştirmenin (rewriting) işi kolaylaştırdığı durumları tanımak.",
+    "Çarpım, bölüm ve zincir kurallarını tablo, grafik ve formülle verilen fonksiyonlarda birlikte kullanmak."
+   ],
+   "anlatim": "<p>Bu konuda yeni bir kural yok. Amaç, öğrendiğin tüm kuralları (kuvvet, çarpım, bölüm, zincir, kapalı türev, ters fonksiyon) <strong>doğru sırayla</strong> seçebilmek. AP sınavında zorluk çoğu zaman tek bir kuraldan değil, kuralların birleşiminden gelir.</p>\n<h4>Yöntem: en dıştaki işlem hangisi?</h4>\n<p>İfadeyi “hesap makinesinde en son hangi tuşa basardım?” diye oku. En son işlem ifadenin <strong>ana yapısını</strong> belirler; ilk kural odur. Sonra her parçanın içine inersin.</p>\n<table><thead><tr><th>Ana yapı</th><th>İlk kural</th><th>Örnek</th></tr></thead><tbody>\n<tr><td>İki fonksiyonun çarpımı</td><td>Çarpım kuralı \\((uv)'=u'v+uv'\\)</td><td>\\(x^2\\cos(3x)\\)</td></tr>\n<tr><td>İki fonksiyonun bölümü</td><td>Bölüm kuralı \\(\\left(\\frac uv\\right)'=\\frac{u'v-uv'}{v^2}\\)</td><td>\\(\\frac{e^{2x}}{x+1}\\)</td></tr>\n<tr><td>Fonksiyonun içinde fonksiyon</td><td>Zincir kuralı</td><td>\\(\\sqrt{x^3+\\sin x}\\)</td></tr>\n<tr><td>\\(x\\) ve \\(y\\) karışık denklem</td><td>Kapalı türev</td><td>\\(x^2y+\\sin y=4\\)</td></tr>\n<tr><td>\\(f^{-1}\\) içeren ifade</td><td>Ters fonksiyon kuralı</td><td>\\((f^{-1})'(3)\\)</td></tr></tbody></table>\n<p>Örnek: \\(y=x^2\\cos(3x)\\). Ana yapı çarpım; ikinci çarpan bileşke. \\(y'=2x\\cos(3x)+x^2\\cdot(-\\sin(3x))\\cdot3=2x\\cos(3x)-3x^2\\sin(3x)\\).</p>\n<h4>Önce yeniden yaz (rewrite), sonra türev al</h4>\n<ul>\n<li><strong>Payda sabitse</strong> bölüm kuralına gerek yok: \\(\\frac{x^3+5x}{4}=\\frac14(x^3+5x)\\).</li>\n<li><strong>Pay sabitse</strong> negatif üs kullan: \\(\\frac{3}{(2x+1)^2}=3(2x+1)^{-2}\\) ⇒ türev \\(-12(2x+1)^{-3}\\).</li>\n<li><strong>Kökler</strong> kesirli üs olur: \\(\\sqrt[3]{x^2}=x^{2/3}\\).</li>\n<li><strong>Logaritma özellikleri</strong>: \\(\\ln\\left(\\frac{x^2}{x+1}\\right)=2\\ln x-\\ln(x+1)\\) türevi çok daha kolaydır.</li>\n<li><strong>Payı paydaya böl</strong>: \\(\\frac{x^2+x}{x}=x+1\\) (\\(x\\neq0\\)).</li>\n</ul>\n<h4>Tablo ve grafikle birleşik sorular</h4>\n<p>Sınavın en sevdiği yapı: \\(h(x)=f(x)\\cdot g(3x)\\) ya da \\(k(x)=\\frac{f(x)}{g(x^2)}\\) gibi bir fonksiyon ve değer tablosu. Sistemli çalış:</p>\n<ol>\n<li>Kuralı sembollerle yaz: \\(h'(x)=f'(x)g(3x)+f(x)\\cdot g'(3x)\\cdot3\\).</li>\n<li>Gereken her değerin listesini çıkar: \\(f(1)\\), \\(f'(1)\\), \\(g(3)\\), \\(g'(3)\\).</li>\n<li>Tablodan oku, yerine koy, hesapla.</li>\n</ol>\n<p>Grafikle verilen parçalı doğrusal fonksiyonlarda \\(f(c)\\) bir yükseklik, \\(f'(c)\\) ise o parçanın eğimidir. Köşe noktasında türev yoktur; ama türevi istenen nokta köşede değilse sorun yoktur.</p>\n<div class=\"kn-dikkat\">Bölüm kuralında sıra önemlidir: pay “alttaki çarpı üsttekinin türevi <strong>eksi</strong> üstteki çarpı alttakinin türevi”dir. Sırayı ters çevirmek işaret hatası verir. Bölüm yerine çarpım + negatif üs (\\(u\\cdot v^{-1}\\)) kullanmak da tamamen geçerlidir.</div>\n<p>FRQ'da “\\(h'(1)=f'(1)g(3)+3f(1)g'(3)=\\dots\\)” gibi bir satırı sayılarla birlikte yazmak, hesap hatası olsa bile kurulum puanını (setup point) korur.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(f(2)=3\\), \\(f'(2)=-1\\), \\(g(2)=4\\), \\(g'(2)=5\\) veriliyor. \\(k(x)=\\dfrac{f(x)}{g(x)}\\) ise \\(k'(2)\\) kaçtır?",
+     "cozum": [
+      "Bölüm kuralı: \\(k'(2)=\\dfrac{f'(2)g(2)-f(2)g'(2)}{[g(2)]^2}\\).",
+      "\\(=\\dfrac{(-1)(4)-(3)(5)}{16}=\\dfrac{-4-15}{16}=-\\dfrac{19}{16}\\)."
+     ]
+    },
+    {
+     "soru": "\\(y=\\ln\\left(\\dfrac{x^3}{\\sqrt{x^2+1}}\\right)\\) için \\(\\dfrac{dy}{dx}\\)'i bulun.",
+     "cozum": [
+      "Önce yeniden yaz: \\(y=3\\ln x-\\frac12\\ln(x^2+1)\\) (\\(x\\gt0\\)).",
+      "\\(\\dfrac{dy}{dx}=\\dfrac3x-\\dfrac12\\cdot\\dfrac{2x}{x^2+1}=\\dfrac3x-\\dfrac{x}{x^2+1}\\).",
+      "Bu yol, zincir + bölüm + karekök kurallarını iç içe kullanmaktan çok daha az hata riski taşır."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) Tablo: \\(f(1)=2\\), \\(f'(1)=-3\\), \\(g(1)=1\\), \\(g'(1)=4\\), \\(g(2)=0\\), \\(g'(2)=6\\). \\(h(x)=g(f(x))+x\\,g(x)\\) ise \\(h'(1)\\)'i bulun; her terim için hangi kuralı kullandığınızı belirtin.",
+     "cozum": [
+      "İlk terim bileşke (chain rule): \\(\\frac{d}{dx}g(f(x))=g'(f(x))f'(x)\\). \\(x=1\\): \\(g'(2)\\cdot(-3)=6\\cdot(-3)=-18\\).",
+      "İkinci terim çarpım (product rule): \\(\\frac{d}{dx}[xg(x)]=g(x)+xg'(x)\\). \\(x=1\\): \\(1+4=5\\).",
+      "\\(h'(1)=-18+5=-13\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Başlamadan önce ifadeyi bir “ağaç” gibi düşün: kök (en son işlem) → dallar. Her düğüm bir kural.",
+    "Bölüm kuralı yerine sadeleştirme ya da negatif üs mümkünse onu seç; daha az cebir, daha az hata.",
+    "Tablo sorularında gereken değerlerin listesini önce yaz, sonra tabloya bak; yanlış satırdan okuma riski azalır.",
+    "Çoktan seçmelide şıklar sadeleştirilmiş olabilir; kendi cevabını sadeleştirmeden önce bir noktada sayısal kontrol (örneğin \\(x=0\\)) yapabilirsin."
+   ],
+   "sikHatalar": [
+    "Çarpımın türevini türevlerin çarpımı sanmak: \\((uv)'=u'v'\\).",
+    "Bölüm kuralında paydaki çıkarma sırasını ters çevirmek ya da paydanın karesini unutmak.",
+    "Çarpım içindeki bileşke çarpanda zincir kuralının iç türevini unutmak."
+   ],
+   "terimler": [
+    {
+     "en": "product rule",
+     "tr": "çarpım kuralı"
+    },
+    {
+     "en": "quotient rule",
+     "tr": "bölüm kuralı"
+    },
+    {
+     "en": "rewrite",
+     "tr": "yeniden yazmak / sadeleştirmek"
+    },
+    {
+     "en": "negative exponent",
+     "tr": "negatif üs"
+    },
+    {
+     "en": "setup",
+     "tr": "kurulum (çözümün ilk denklemi)"
+    }
+   ]
+  },
+  {
+   "kod": "3.6",
+   "baslik": "Calculating Higher-Order Derivatives",
+   "baslikTr": "Yüksek mertebeden türevler",
+   "sadeceBC": false,
+   "hedefler": [
+    "İkinci ve daha yüksek mertebeden türevleri farklı gösterimlerle (notation) hesaplamak.",
+    "Kapalı tanımlı eğrilerde \\(\\frac{d^2y}{dx^2}\\)'yi \\(\\frac{dy}{dx}\\)'i yerine koyarak bulmak.",
+    "Tekrarlayan türev örüntülerini (sin, cos, \\(e^{kx}\\)) kullanarak \\(n\\)'inci türevi bulmak."
+   ],
+   "anlatim": "<p>Bir fonksiyonun türevi de bir fonksiyondur; onun da türevini alabiliriz. \\(f'\\)'nin türevine <strong>ikinci türev (second derivative)</strong> \\(f''\\) denir; onun türevi üçüncü türev \\(f'''\\) olur, vb.</p>\n<h4>Gösterimler (notation)</h4>\n<table><thead><tr><th>Mertebe</th><th>Lagrange</th><th>Leibniz</th><th>Okunuşu</th></tr></thead><tbody>\n<tr><td>1</td><td>\\(f'(x)\\), \\(y'\\)</td><td>\\(\\dfrac{dy}{dx}\\)</td><td>“f prime”</td></tr>\n<tr><td>2</td><td>\\(f''(x)\\), \\(y''\\)</td><td>\\(\\dfrac{d^2y}{dx^2}\\)</td><td>“f double prime”, “d two y d x squared”</td></tr>\n<tr><td>3</td><td>\\(f'''(x)\\)</td><td>\\(\\dfrac{d^3y}{dx^3}\\)</td><td>“third derivative”</td></tr>\n<tr><td>\\(n\\)</td><td>\\(f^{(n)}(x)\\)</td><td>\\(\\dfrac{d^ny}{dx^n}\\)</td><td>“n-th derivative”</td></tr></tbody></table>\n<p>\\(f^{(4)}\\) gösterimindeki parantez önemlidir: \\(f^4\\) kuvvet anlamına gelir, \\(f^{(4)}\\) dördüncü türev.</p>\n<h4>Anlamı</h4>\n<p>\\(f''\\), \\(f'\\)'nin değişim hızıdır. Hareket problemlerinde \\(s(t)\\) konum ise \\(s'(t)=v(t)\\) hız (velocity), \\(s''(t)=a(t)\\) ivmedir (acceleration). Grafikte \\(f''\\) eğrinin bükeyliğini (concavity) söyler; bu Ünite 5'te ayrıntılı işlenir.</p>\n<h4>Örüntüler</h4>\n<ul>\n<li>Polinom: her türev derecesini 1 azaltır; \\(n\\). dereceden polinomun \\((n+1)\\). türevi 0'dır.</li>\n<li>\\(e^{kx}\\): \\(\\frac{d^n}{dx^n}e^{kx}=k^ne^{kx}\\). Örneğin \\(\\frac{d^3}{dx^3}e^{-2x}=-8e^{-2x}\\).</li>\n<li>\\(\\sin x\\) türevleri 4'lük döngüdür: \\(\\sin\\to\\cos\\to-\\sin\\to-\\cos\\to\\sin\\). \\(n\\)'yi 4'e böl, kalana bak. \\(\\sin(kx)\\) için her türev ayrıca \\(k\\) çarpanı ekler.</li>\n</ul>\n<h4>Kapalı türevde ikinci türev</h4>\n<p>Bu, AP'nin en sevdiği zor maddelerden biridir. Adımlar:</p>\n<ol>\n<li>\\(\\frac{dy}{dx}\\)'i \\(x\\) ve \\(y\\) cinsinden bul.</li>\n<li>Bu ifadenin türevini tekrar al. \\(y\\) hâlâ \\(x\\)'in fonksiyonudur; \\(y\\)'li her terim yine \\(\\frac{dy}{dx}\\) çarpanı üretir (bölüm/çarpım kuralı gerekebilir).</li>\n<li>Ortaya çıkan \\(\\frac{dy}{dx}\\)'in yerine 1. adımdaki ifadeyi koy; gerekirse eğri denklemiyle sadeleştir.</li>\n</ol>\n<p><strong>Örnek:</strong> \\(x^2+y^2=25\\). \\(\\frac{dy}{dx}=-\\frac{x}{y}\\). Bölüm kuralı:\n\\[\\frac{d^2y}{dx^2}=-\\frac{y\\cdot1-x\\frac{dy}{dx}}{y^2}=-\\frac{y+\\frac{x^2}{y}}{y^2}=-\\frac{x^2+y^2}{y^3}=-\\frac{25}{y^3}.\\]\nSon adımda eğri denklemini (\\(x^2+y^2=25\\)) kullandık. \\((3,4)\\)'te \\(\\frac{d^2y}{dx^2}=-\\frac{25}{64}\\).</p>\n<p>Belirli bir noktada istendiğinde daha hızlı yol: önce o noktadaki \\(y'\\) sayısını bul, sonra ikinci türev denklemine \\(x\\), \\(y\\), \\(y'\\) sayılarını koy.</p>\n<h4>\\(\\frac{dy}{dx}\\) bir \\(x,y\\) ifadesi olarak verildiyse</h4>\n<p>Örneğin \\(\\frac{dy}{dx}=x^2+y\\) ise \\(\\frac{d^2y}{dx^2}=2x+\\frac{dy}{dx}=2x+x^2+y\\). Bu tip, diferansiyel denklem sorularında (Ünite 7) sürekli karşına çıkar.</p>\n<div class=\"kn-dikkat\"><strong>FRQ'da:</strong> “Find \\(\\frac{d^2y}{dx^2}\\) in terms of \\(x\\) and \\(y\\)” deniyorsa son cevapta \\(\\frac{dy}{dx}\\) kalmamalıdır; yerine koymayı göster. Ara ifadeyi (\\(\\frac{dy}{dx}\\)'li hâli) de yazmak kısmi puan sağlar.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(f(x)=x^3\\ln x\\) için \\(f''(1)\\)'i bulun.",
+     "cozum": [
+      "\\(f'(x)=3x^2\\ln x+x^3\\cdot\\frac1x=3x^2\\ln x+x^2\\).",
+      "\\(f''(x)=6x\\ln x+3x^2\\cdot\\frac1x+2x=6x\\ln x+5x\\).",
+      "\\(f''(1)=0+5=5\\)."
+     ]
+    },
+    {
+     "soru": "\\(y^2-x^2=3\\) eğrisi için \\(\\dfrac{d^2y}{dx^2}\\)'yi \\(x\\) ve \\(y\\) cinsinden bulun.",
+     "cozum": [
+      "\\(2y\\,y'-2x=0\\) ⇒ \\(y'=\\dfrac{x}{y}\\).",
+      "\\(y''=\\dfrac{y\\cdot1-x\\,y'}{y^2}=\\dfrac{y-\\frac{x^2}{y}}{y^2}=\\dfrac{y^2-x^2}{y^3}\\).",
+      "Eğri denklemi \\(y^2-x^2=3\\): \\(y''=\\dfrac{3}{y^3}\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\dfrac{d^{30}}{dx^{30}}\\big[\\cos(2x)\\big]\\) ifadesini bulun.",
+     "cozum": [
+      "\\(\\cos\\) döngüsü: \\(\\cos\\to-\\sin\\to-\\cos\\to\\sin\\to\\cos\\). \\(30=4\\cdot7+2\\), kalan 2 ⇒ \\(-\\cos\\).",
+      "Her türev bir \\(2\\) çarpanı ekler: \\(2^{30}\\).",
+      "Sonuç: \\(-2^{30}\\cos(2x)\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Kapalı ikinci türevde belirli bir nokta istendiyse önce \\(y'\\)'yi sayı olarak bul; sonra her şeyi sayıyla yerine koy.",
+    "\\(y''\\) ifadesinde \\(y'\\) kaldıysa iş bitmemiştir; yerine koy ve mümkünse eğri denklemiyle sadeleştir.",
+    "\\(n\\)'inci türevde önce ilk 3–4 türevi yaz, örüntüyü gör, sonra genelle.",
+    "Hesap makineli bölümde \\(f''(a)\\) gerekirse \\(f'\\)'yi elle bulup makinede onun türevini (nDeriv) alabilirsin."
+   ],
+   "sikHatalar": [
+    "İkinci türevi alırken \\(y\\)'yi sabit sanmak; \\(\\frac{d}{dx}\\left(\\frac{x}{y}\\right)=\\frac1y\\) yazmak.",
+    "\\(\\frac{d}{dx}(y\\,y')\\) türevinde çarpım kuralını unutup \\((y')^2\\) terimini kaybetmek.",
+    "\\(f^{(4)}\\) ile \\(f^4\\)'ü karıştırmak."
+   ],
+   "terimler": [
+    {
+     "en": "second derivative",
+     "tr": "ikinci türev"
+    },
+    {
+     "en": "higher-order derivative",
+     "tr": "yüksek mertebeden türev"
+    },
+    {
+     "en": "acceleration",
+     "tr": "ivme"
+    },
+    {
+     "en": "concavity",
+     "tr": "bükeylik"
+    },
+    {
+     "en": "in terms of x and y",
+     "tr": "x ve y cinsinden"
+    }
+   ]
+  }
+ ]
+}

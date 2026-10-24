@@ -1,0 +1,645 @@
+{
+ "ders": "calculus",
+ "unite": 7,
+ "baslik": "Differential Equations",
+ "baslikTr": "Diferansiyel Denklemler",
+ "konular": [
+  {
+   "kod": "7.1",
+   "baslik": "Modeling Situations with Differential Equations",
+   "baslikTr": "Diferansiyel denklemlerle durum modellemek",
+   "sadeceBC": false,
+   "hedefler": [
+    "Sözel bir değişim cümlesini (\"the rate of change of … is proportional to …\") diferansiyel denkleme (differential equation) çevirmek.",
+    "Giriş–çıkış (rate in − rate out) içeren durumlar için net hız modeli kurmak ve orantı sabitinin işaretini bağlamdan belirlemek.",
+    "Verilen bir sayısal bilgiyle orantı sabiti \\(k\\)'yi bulmak ve modelin bir değerini birimiyle yorumlamak."
+   ],
+   "anlatim": "<p>Bir <strong>diferansiyel denklem (differential equation)</strong>, bilinmeyen bir fonksiyonu kendi türevleriyle ilişkilendiren denklemdir. Ünite 7'nin ilk adımı, sözel bir durumu bu dile çevirmektir. AP sınavında bu çeviri hem MCQ'da hem de FRQ'nun ilk maddesinde karşına çıkar.</p>\n<h4>Çeviri sözlüğü</h4>\n<table><thead><tr><th>İngilizce ifade</th><th>Matematik</th></tr></thead><tbody>\n<tr><td>the rate of change of \\(y\\) with respect to \\(t\\)</td><td>\\(\\frac{dy}{dt}\\)</td></tr>\n<tr><td>… is proportional to \\(y\\)</td><td>\\(=ky\\)</td></tr>\n<tr><td>… is inversely proportional to \\(y\\)</td><td>\\(=\\frac{k}{y}\\)</td></tr>\n<tr><td>… is proportional to the square root of \\(y\\)</td><td>\\(=k\\sqrt{y}\\)</td></tr>\n<tr><td>… is jointly proportional to \\(y\\) and \\(M-y\\)</td><td>\\(=ky(M-y)\\)</td></tr>\n<tr><td>… is proportional to the difference between \\(T\\) and \\(A\\)</td><td>\\(=k(T-A)\\)</td></tr>\n<tr><td>… is removed at a constant rate of 3 units per hour</td><td>\\(-3\\) terimi</td></tr>\n</tbody></table>\n<div class=\"kn-tanim\"><strong>Orantılı (proportional):</strong> \"\\(A\\) is proportional to \\(B\\)\" ⇔ bir sabit \\(k\\) için \\(A=kB\\). \\(k\\)'ye <strong>orantı sabiti (constant of proportionality)</strong> denir. \"Inversely proportional\" ⇔ \\(A=\\frac{k}{B}\\).</div>\n<h4>Adım adım model kurmak</h4>\n<ol><li>Değişkenleri ve birimleri yaz: hangi büyüklük değişiyor (\\(y\\)), neye göre değişiyor (\\(t\\))?</li>\n<li>Sol taraf her zaman o büyüklüğün türevidir: \\(\\frac{dy}{dt}\\).</li>\n<li>Sağ taraf: cümledeki \"proportional to …\" kısmını yukarıdaki tablodan çevir.</li>\n<li>Giriş ve çıkış varsa topla/çıkar: <em>net rate = rate in − rate out</em>.</li>\n<li>\\(k\\)'nin işaretini bağlamdan çıkar (büyüklük artıyor mu, azalıyor mu?) ve verilen bir sayısal bilgiyle \\(k\\)'yi bul.</li></ol>\n<p>Örnek: Bir göldeki kirletici miktarı \\(Q\\) kilogram. Göle günde 4 kg kirletici giriyor ve göl, içindeki miktarın %10'unu her gün dışarı atıyor. Net hız: \\[ \\frac{dQ}{dt}=4-0.1Q \\] Burada 4 bir <em>giriş hızı (rate in)</em>, \\(0.1Q\\) ise bir <em>çıkış hızı (rate out)</em>dır.</p>\n<h4>Modeli okumak: işaret ve denge</h4>\n<p>Model kurulduktan sonra, çözmeden bile bilgi okunur. \\(\\frac{dQ}{dt}=4-0.1Q\\) için \\(Q\\lt40\\) iken türev pozitiftir (miktar artar), \\(Q\\gt40\\) iken negatiftir (miktar azalır). \\(Q=40\\) iken \\(\\frac{dQ}{dt}=0\\): bu sabit değer bir <strong>denge çözümü (equilibrium solution)</strong>dür.</p>\n<div class=\"kn-dikkat\"><strong>\\(k\\)'nin işareti:</strong> Soru \"\\(k\\) is a positive constant\" diyorsa, azalan bir büyüklüğü \\(-k\\) ile yazmalısın (ör. tanktan sızan su: \\(\\frac{dh}{dt}=-k\\sqrt{h}\\)). Yalnızca \"\\(k\\) is a constant\" deniyorsa işareti \\(k\\)'nin içine bırakabilirsin; sonra veriden \\(k\\lt0\\) çıkar.</div>\n<h4>FRQ dili</h4>\n<p>Bir değeri yorumlarken birimiyle cevap ver: \"When \\(Q=30\\) kilograms, the amount of pollutant is increasing at a rate of 1 kilogram per day.\" Bu cümlede değişkenin değeri, artıyor/azalıyor bilgisi, sayı ve birim bir aradadır. \"Proportional\" kelimesini model cümlesinde aynen kullanmak puanlayıcının aradığı dildir: \"The rate of change of \\(Q\\) is \\(4\\) minus a quantity proportional to \\(Q\\).\"</p>\n<div class=\"kn-kural\"><strong>Özet:</strong> Sol taraf = türev; \"proportional to X\" = \\(k\\cdot X\\); giriş artı, çıkış eksi; denge = türevin sıfır olduğu sabit değer.</div>",
+   "ornekler": [
+    {
+     "soru": "5000 kişilik bir kasabada bir haberi duymuş kişi sayısı \\(N(t)\\). Haberin yayılma hızı, haberi duymuş olanların sayısı ile henüz duymamış olanların sayısının çarpımıyla orantılıdır. Bir diferansiyel denklem yazın.",
+     "cozum": [
+      "Değişen büyüklük \\(N\\), sol taraf \\(\\frac{dN}{dt}\\). Haberi duymamış kişi sayısı \\(5000-N\\).",
+      "\"Jointly proportional to \\(N\\) and \\(5000-N\\)\" ⇒ \\(\\frac{dN}{dt}=kN(5000-N)\\). Haber yayıldığı için \\(N\\) artar ⇒ \\(k\\gt0\\)."
+     ]
+    },
+    {
+     "soru": "Bir hastaya damardan saatte 2 mg ilaç veriliyor; vücut ilacı, kandaki miktar \\(A\\)'nın saatte %5'i oranında atıyor. Modeli yazın. \\(A=30\\) mg iken ilaç miktarı artıyor mu, azalıyor mu? Gerekçelendirin.",
+     "cozum": [
+      "Net hız = giriş − çıkış: \\(\\frac{dA}{dt}=2-0.05A\\).",
+      "\\(A=30\\) ⇒ \\(\\frac{dA}{dt}=2-1.5=0.5\\gt0\\).",
+      "\"Since \\(\\frac{dA}{dt}=0.5\\gt0\\) when \\(A=30\\), the amount of drug is increasing at a rate of 0.5 mg per hour.\""
+     ]
+    },
+    {
+     "soru": "Oda sıcaklığı \\(22^\\circ\\text{C}\\). Bir çorbanın sıcaklığı \\(T\\), \\(T\\) ile oda sıcaklığı arasındaki farkla orantılı bir hızla değişiyor. Çorba \\(72^\\circ\\text{C}\\) iken dakikada \\(5^\\circ\\text{C}\\) soğuyor. Diferansiyel denklemi \\(k\\)'nin sayısal değeriyle yazın.",
+     "cozum": [
+      "Model: \\(\\frac{dT}{dt}=k(T-22)\\).",
+      "\"Soğuyor\" ⇒ \\(T=72\\) iken \\(\\frac{dT}{dt}=-5\\). Yerine koy: \\(-5=k(72-22)=50k\\) ⇒ \\(k=-0.1\\).",
+      "Sonuç: \\(\\frac{dT}{dt}=-0.1(T-22)\\). Kontrol: \\(T\\gt22\\) iken türev negatif, çorba soğuyor ✓."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "\"Rate of change of y\" her zaman sol tarafta dy/dt olur; sağ tarafa t'yi yalnızca cümle zamana bağlılık söylüyorsa koy.",
+    "Sayısal bir bilgi verilmişse (ör. \"when T = 72, it is cooling at 5 degrees per minute\") modele koyup k'yi bul; \"cooling / decreasing\" ⇒ türev negatif.",
+    "FRQ yorumunda \"is increasing/decreasing at a rate of … units per …\" kalıbını kullan ve birimi unutma.",
+    "Bu konuda hesap makinesi gerekmez; iş tamamen çeviri ve işaret okumadır."
+   ],
+   "sikHatalar": [
+    "\"Proportional to the difference\" ifadesinde parantezi unutmak: k(T − 20) yerine kT − 20 yazmak.",
+    "\"Inversely proportional to the square of y\" ifadesini k/y ya da k·y² olarak çevirmek (doğrusu k/y²).",
+    "\"k > 0\" verilmişken azalan bir büyüklükte eksi işaretini unutmak."
+   ],
+   "terimler": [
+    {
+     "en": "differential equation",
+     "tr": "diferansiyel denklem"
+    },
+    {
+     "en": "proportional / inversely proportional",
+     "tr": "orantılı / ters orantılı"
+    },
+    {
+     "en": "jointly proportional",
+     "tr": "ortak (çarpımla) orantılı"
+    },
+    {
+     "en": "constant of proportionality",
+     "tr": "orantı sabiti"
+    },
+    {
+     "en": "rate in / rate out",
+     "tr": "giriş hızı / çıkış hızı"
+    },
+    {
+     "en": "equilibrium solution",
+     "tr": "denge çözümü"
+    }
+   ]
+  },
+  {
+   "kod": "7.2",
+   "baslik": "Verifying Solutions for Differential Equations",
+   "baslikTr": "Diferansiyel denklem çözümlerini doğrulamak",
+   "sadeceBC": false,
+   "hedefler": [
+    "Bir fonksiyonun ve türevlerinin bir diferansiyel denklemi her \\(x\\) için sağlayıp sağlamadığını kontrol etmek.",
+    "Genel çözüm (general solution) ile özel çözüm (particular solution) arasındaki farkı bilmek ve başlangıç koşuluyla sabiti bulmak.",
+    "İkinci mertebe ve kapalı (implicit) biçimde verilen çözümleri doğrulamak."
+   ],
+   "anlatim": "<p>Bir fonksiyonun bir diferansiyel denklemin <strong>çözümü (solution)</strong> olması, fonksiyonu ve türevlerini denkleme koyduğunda denklemin, tanım aralığındaki <em>her</em> \\(x\\) için doğru (özdeş) olması demektir. Denklemi çözmeyi bilmesen bile doğrulamayı her zaman yapabilirsin: türev al, yerine koy, iki tarafı karşılaştır.</p>\n<h4>Doğrulama algoritması</h4>\n<ol><li>Aday fonksiyonun gereken türevlerini al (\\(y'\\), gerekiyorsa \\(y''\\)).</li>\n<li>Denklemin <strong>sol tarafını</strong> ve <strong>sağ tarafını</strong> ayrı ayrı hesapla.</li>\n<li>İkisini sadeleştir. Tüm \\(x\\) için aynıysa çözümdür; tek bir \\(x\\) için bile farklıysa çözüm değildir.</li>\n<li>Başlangıç koşulu (initial condition) verilmişse onu da kontrol et.</li></ol>\n<p>Örnek: \\(y=3e^{2x}-1\\), \\(y'=2y+2\\) denkleminin çözümü mü? Sol: \\(y'=6e^{2x}\\). Sağ: \\(2(3e^{2x}-1)+2=6e^{2x}\\). İki taraf her \\(x\\) için eşit ⇒ evet, çözümdür.</p>\n<h4>Genel çözüm ve özel çözüm</h4>\n<div class=\"kn-tanim\"><strong>Genel çözüm (general solution):</strong> keyfi bir sabit (\\(C\\)) içeren çözüm ailesi, ör. \\(y=Ce^{2x}-1\\). <strong>Özel çözüm (particular solution):</strong> başlangıç koşuluyla \\(C\\)'si belirlenmiş tek çözüm; ör. \\(y(0)=2\\) ⇒ \\(C-1=2\\) ⇒ \\(C=3\\).</div>\n<p>Bir aile verildiğinde özel çözümü bulmak için verilen \\(x\\) ve \\(y\\) değerlerini koyup \\(C\\)'yi çöz. Ailenin gerçekten denklemi sağladığını önce doğrulamak iyi bir alışkanlıktır; şıklarda denklemi sağlamayan \"güzel görünen\" aileler sık çıkar.</p>\n<h4>İkinci mertebe denklemler</h4>\n<p>\\(y''+9y=0\\) gibi denklemlerde iki türev gerekir. \\(y=\\sin(3x)\\) için \\(y''=-9\\sin(3x)\\) ⇒ \\(-9\\sin3x+9\\sin3x=0\\) ✓. Aday \\(y=e^{kx}\\) ise ve \\(k\\) isteniyorsa: yerine koy, her terimde ortak çarpan olan \\(e^{kx}\\)'i sadeleştir (\\(e^{kx}\\ne0\\)). Geriye \\(k\\) için cebirsel bir denklem kalır. Aynı fikir \\(y=x^k\\) adayında da çalışır: ortak çarpan \\(x^k\\) olur.</p>\n<h4>Kapalı (implicit) çözümler</h4>\n<p>Bazen çözüm \\(x^2+y^2=25\\) gibi kapalı biçimde verilir. Kapalı türev al: \\(2x+2y\\,y'=0\\) ⇒ \\(y'=-\\frac{x}{y}\\). Yani bu çemberin parçaları \\(\\frac{dy}{dx}=-\\frac{x}{y}\\) denkleminin çözüm eğrileridir. Bir eğri ailesinin hangi denklemi sağladığını bulmak için: türev al, sonra sabiti (\\(C\\)) yok et.</p>\n<div class=\"kn-dikkat\">Birkaç noktada denklemin sağlanması yetmez: \"solution\" demek, aralıktaki <strong>her</strong> noktada sağlanması demektir. Tersine, tek bir noktada sağlanmaması fonksiyonu eler; şık elerken bunu kullan.</div>\n<p>FRQ'da \"Verify that … is a solution\" nadiren tek başına sorulur; ama ayırma yöntemiyle bulduğun özel çözümü bu yöntemle kontrol etmek, işaret ve sabit hatalarını yakalar.</p>\n<div class=\"kn-kural\"><strong>Özet:</strong> Türev al → iki tarafa koy → özdeşlik mi? Başlangıç koşulu → \\(C\\).</div>",
+   "ornekler": [
+    {
+     "soru": "\\(y=x^2+\\dfrac{C}{x}\\) ailesinin \\(x\\gt0\\) için \\(xy'+y=3x^2\\) denklemini sağladığını gösterin ve \\(y(1)=4\\) koşulunu sağlayan özel çözümü bulun.",
+     "cozum": [
+      "\\(y'=2x-\\frac{C}{x^2}\\) ⇒ \\(xy'=2x^2-\\frac{C}{x}\\).",
+      "\\(xy'+y=2x^2-\\frac{C}{x}+x^2+\\frac{C}{x}=3x^2\\) ✓ (her \\(x\\gt0\\) için).",
+      "\\(y(1)=1+C=4\\) ⇒ \\(C=3\\) ⇒ \\(y=x^2+\\frac{3}{x}\\)."
+     ]
+    },
+    {
+     "soru": "Hangi \\(k\\) sabitleri için \\(y=e^{kx}\\), \\(y''+y'-2y=0\\) denkleminin çözümüdür?",
+     "cozum": [
+      "\\(y'=ke^{kx}\\), \\(y''=k^2e^{kx}\\). Yerine koy: \\(e^{kx}(k^2+k-2)=0\\).",
+      "\\(e^{kx}\\ne0\\) ⇒ \\(k^2+k-2=(k+2)(k-1)=0\\) ⇒ \\(k=1\\) ya da \\(k=-2\\)."
+     ]
+    },
+    {
+     "soru": "\\(y=\\dfrac{1}{x+1}\\) fonksiyonunun \\(x\\gt-1\\) için \\(y'=-y^2\\) denkleminin çözümü olduğunu doğrulayın.",
+     "cozum": [
+      "Sol taraf: \\(y'=-\\frac{1}{(x+1)^2}\\).",
+      "Sağ taraf: \\(-y^2=-\\frac{1}{(x+1)^2}\\). İki taraf her \\(x\\gt-1\\) için eşit ⇒ çözümdür."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Şıklı sorularda önce en basit noktayı (ör. x = 0) dene: denklemi tek noktada sağlamayan şık hemen elenir.",
+    "\\(y=e^{kx}\\) ya da \\(y=x^k\\) adaylarında ortak çarpanı sadeleştir; geriye k için ikinci dereceden bir denklem kalır, iki kökü de kontrol et.",
+    "Kapalı bir eğri ailesi için: kapalı türev al, sonra sabiti yok edecek şekilde y' çöz.",
+    "Başlangıç koşulunu koymadan önce ailenin denklemi sağladığından emin ol."
+   ],
+   "sikHatalar": [
+    "Denklemi yalnızca bir noktada kontrol edip fonksiyonu \"çözüm\" saymak.",
+    "\\(y=e^{kx}\\) için bulunan ikinci dereceden denklemin yalnızca bir kökünü almak.",
+    "Özel çözümde C'yi bulurken x ve y değerlerini yer değiştirerek koymak."
+   ],
+   "terimler": [
+    {
+     "en": "solution of a differential equation",
+     "tr": "diferansiyel denklemin çözümü"
+    },
+    {
+     "en": "general solution",
+     "tr": "genel çözüm"
+    },
+    {
+     "en": "particular solution",
+     "tr": "özel çözüm"
+    },
+    {
+     "en": "initial condition",
+     "tr": "başlangıç koşulu"
+    },
+    {
+     "en": "second-order differential equation",
+     "tr": "ikinci mertebe diferansiyel denklem"
+    },
+    {
+     "en": "implicit solution",
+     "tr": "kapalı çözüm"
+    }
+   ]
+  },
+  {
+   "kod": "7.3",
+   "baslik": "Sketching Slope Fields",
+   "baslikTr": "Eğim alanı çizmek",
+   "sadeceBC": false,
+   "hedefler": [
+    "Bir diferansiyel denklemden verilen noktalarda eğimleri hesaplayıp eğim alanı (slope field) çizmek.",
+    "Yalnız \\(x\\)'e, yalnız \\(y\\)'ye ya da ikisine bağlı denklemlerin eğim alanındaki kalıplarını tanımak.",
+    "Sözle ya da tabloyla tarif edilen bir eğim alanını doğru diferansiyel denklemle eşleştirmek."
+   ],
+   "anlatim": "<p>Bir diferansiyel denklem \\(\\frac{dy}{dx}=f(x,y)\\), düzlemdeki <em>her</em> noktada, oradan geçen çözüm eğrisinin eğimini söyler. Bu eğimleri her ızgara noktasına küçük bir doğru parçası olarak çizersen <strong>eğim alanı (slope field)</strong> elde edersin. Eğim alanı, denklemi çözmeden çözüm eğrilerinin şeklini görmeni sağlar.</p>\n<h4>Elle çizim adımları</h4>\n<ol><li>Izgara noktalarını seç (AP'de genelde \\(-2\\le x\\le2\\), \\(-2\\le y\\le2\\) gibi tam sayı noktaları).</li>\n<li>Her noktada \\(f(x,y)\\)'yi hesapla.</li>\n<li>Eğim 0 ⇒ yatay parça; pozitif ⇒ sağa doğru yükselen; negatif ⇒ sağa doğru alçalan; mutlak değeri büyük ⇒ daha dik parça.</li></ol>\n<p>Örnek: \\(\\frac{dy}{dx}=x-y\\) için birkaç nokta:</p>\n<table><thead><tr><th>\\((x,y)\\)</th><th>\\((0,0)\\)</th><th>\\((1,0)\\)</th><th>\\((0,1)\\)</th><th>\\((2,1)\\)</th><th>\\((-1,1)\\)</th></tr></thead>\n<tbody><tr><td>eğim \\(x-y\\)</td><td>0</td><td>1</td><td>−1</td><td>1</td><td>−2</td></tr></tbody></table>\n<h4>Kalıpları hızlı tanımak</h4>\n<table><thead><tr><th>Denklem biçimi</th><th>Eğim alanında ne görürsün?</th></tr></thead><tbody>\n<tr><td>\\(\\frac{dy}{dx}=f(x)\\) (yalnız \\(x\\))</td><td>Aynı <strong>dikey</strong> doğru üzerindeki (aynı \\(x\\)) parçalar paraleldir. Çözüm eğrileri birbirinin dikey ötelemesidir.</td></tr>\n<tr><td>\\(\\frac{dy}{dx}=g(y)\\) (yalnız \\(y\\); autonomous)</td><td>Aynı <strong>yatay</strong> doğru üzerindeki (aynı \\(y\\)) parçalar paraleldir. \\(g(c)=0\\) ise \\(y=c\\) boyunca bütün parçalar yataydır: denge çözümü.</td></tr>\n<tr><td>\\(\\frac{dy}{dx}=f(x,y)\\) (ikisi de)</td><td>Eğim, \\(f(x,y)=c\\) eğrileri (<em>isocline</em>) boyunca sabittir.</td></tr>\n</tbody></table>\n<p>Eş eğim eğrileri (isoclines) çizimi hızlandırır: \\(\\frac{dy}{dx}=x-y\\) için \\(y=x\\) doğrusu boyunca eğim 0, \\(y=x-1\\) doğrusu boyunca eğim 1'dir. Yani bu alanda yatay parçalar \\(y=x\\) doğrusu üzerinde dizilir.</p>\n<div class=\"kn-tanim\"><strong>Çözüm eğrisi (solution curve):</strong> eğim alanındaki parçalara her noktada teğet olan kesintisiz bir eğri. Bir başlangıç noktasından geçen çözüm eğrisini çizerken parçaları bir akıntının yönü gibi izle; parçaları dik kesme, onlara paralel ilerle.</div>\n<h4>Bir eğim alanını denklemle eşleştirmek</h4>\n<p>Şıklar arasında seçim yaparken önce ayırt edici özellikleri test et: (1) yatay parçalar nerede (eğim = 0)? (2) dört bölgede eğimin işareti ne? (3) aynı \\(x\\) ya da aynı \\(y\\) üzerinde parçalar paralel mi? Çoğu zaman iki-üç nokta yanlış şıkların hepsini eler.</p>\n<div class=\"kn-dikkat\">FRQ'da istenen her noktaya bir parça çiz; parçanın işareti ve yaklaşık dikliği doğru olmalı. Eğim 0 olan noktada parça tam yatay olmalı. Eğimin tanımsız olduğu noktada (ör. \\(\\frac{x}{y}\\) için \\(y=0\\), \\(x\\ne0\\)) parça dikeydir; \\(\\frac{0}{0}\\) olan noktalarda parça çizilmez.</div>\n<div class=\"kn-kural\"><strong>Özet:</strong> Her noktada eğimi hesapla → parça çiz. Yalnız \\(x\\) ⇒ dikey sütunlarda aynı eğim; yalnız \\(y\\) ⇒ yatay satırlarda aynı eğim.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(\\frac{dy}{dx}=y-x^2\\) için \\((-1,0)\\), \\((0,0)\\), \\((1,0)\\), \\((-1,1)\\), \\((0,1)\\), \\((1,1)\\) noktalarındaki eğimleri bulun ve parçaları tarif edin.",
+     "cozum": [
+      "\\(y=0\\) satırı: \\((-1,0)\\): \\(0-1=-1\\); \\((0,0)\\): \\(0\\); \\((1,0)\\): \\(-1\\).",
+      "\\(y=1\\) satırı: \\((-1,1)\\): \\(1-1=0\\); \\((0,1)\\): \\(1\\); \\((1,1)\\): \\(0\\).",
+      "Yani \\((0,0)\\), \\((-1,1)\\), \\((1,1)\\)'de yatay; \\((0,1)\\)'de eğimi 1 olan; \\((\\pm1,0)\\)'da eğimi −1 olan parçalar çizilir."
+     ]
+    },
+    {
+     "soru": "Bir eğim alanı şöyle tarif ediliyor: aynı \\(y\\) koordinatına sahip tüm parçalar paralel; \\(y=2\\) boyunca parçalar yatay; \\(y\\gt2\\) iken eğimler pozitif, \\(y\\lt2\\) iken negatif. \\(\\frac{dy}{dx}=y-2\\), \\(\\frac{dy}{dx}=2-y\\), \\(\\frac{dy}{dx}=x-2\\) denklemlerinden hangisi?",
+     "cozum": [
+      "Aynı \\(y\\)'de paralel ⇒ eğim yalnız \\(y\\)'ye bağlı ⇒ \\(x-2\\) elenir.",
+      "\\(y=3\\) için \\(y-2=1\\gt0\\) ✓, \\(2-y=-1\\) ✗ ⇒ cevap \\(\\frac{dy}{dx}=y-2\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(\\frac{dy}{dx}=\\frac{xy}{2}\\) için \\(x\\in\\{-1,0,1\\}\\), \\(y\\in\\{-1,0,1\\}\\) olan dokuz noktada eğim alanını çizmek için gereken eğimleri listeleyin.",
+     "cozum": [
+      "\\(x=0\\) sütunu ve \\(y=0\\) satırı: eğim 0 (beş yatay parça).",
+      "\\((1,1)\\) ve \\((-1,-1)\\): \\(\\frac{1}{2}\\); \\((1,-1)\\) ve \\((-1,1)\\): \\(-\\frac12\\).",
+      "Parçalar \\(\\pm\\frac12\\) eğimli, hafif eğik çizilir; işaretler birinci ve üçüncü bölgede pozitif, ikinci ve dördüncü bölgede negatif."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Eşleştirme sorularında önce yatay parçaların yerini bul: dy/dx = 0 denklemini sağlayan doğru/eğri çoğu şıkkı eler.",
+    "Aynı sütunda eğimler aynıysa denklem yalnız x'e, aynı satırda aynıysa yalnız y'ye bağlıdır.",
+    "FRQ'da parçaları kısa ve eşit uzunlukta çiz; eğimi 1 olan parça 45°, eğimi 2 olan daha dik olmalı.",
+    "Bir tablo verilmişse her şıkkı en az iki noktada test et; tek nokta birden fazla şıkkı doğru gösterebilir."
+   ],
+   "sikHatalar": [
+    "Koordinatları ters koymak: (2, 1) noktasında x = 1, y = 2 alarak eğim hesaplamak.",
+    "Yalnız y'ye bağlı bir denklemde parçaların dikey sütunlarda aynı olduğunu sanmak (doğrusu yatay satırlarda aynıdır).",
+    "Negatif eğimli parçayı sağa doğru yükselen çizmek."
+   ],
+   "terimler": [
+    {
+     "en": "slope field",
+     "tr": "eğim alanı"
+    },
+    {
+     "en": "line segment",
+     "tr": "doğru parçası"
+    },
+    {
+     "en": "solution curve",
+     "tr": "çözüm eğrisi"
+    },
+    {
+     "en": "isocline",
+     "tr": "eş eğim eğrisi"
+    },
+    {
+     "en": "autonomous differential equation",
+     "tr": "otonom (yalnız y'ye bağlı) diferansiyel denklem"
+    }
+   ]
+  },
+  {
+   "kod": "7.4",
+   "baslik": "Reasoning Using Slope Fields",
+   "baslikTr": "Eğim alanlarıyla akıl yürütmek",
+   "sadeceBC": false,
+   "hedefler": [
+    "\\(\\frac{dy}{dx}\\)'in işaretinden çözümün artan/azalan olduğu yerleri belirlemek.",
+    "\\(\\frac{d^2y}{dx^2}\\)'yi kapalı türevle bulup içbükeyliği ve yerel ekstremumları gerekçelendirmek.",
+    "Denge çözümleri ve işaret tablosuyla bir çözümün uzun vadeli davranışını (limitini) belirlemek."
+   ],
+   "anlatim": "<p>Eğim alanı yalnızca bir resim değildir; denklemle birlikte, çözümü bulmadan çözüm hakkında sonuç çıkarmamızı sağlar. AP bu konuda üç tür soru sorar: (1) Çözüm nerede artan, nerede azalan? (2) Çözüm nerede yukarı ya da aşağı içbükey? (3) Uzun vadede çözüm neye yaklaşır?</p>\n<h4>Artan / azalan: \\(\\frac{dy}{dx}\\)'in işareti</h4>\n<p>Bir noktada \\(\\frac{dy}{dx}\\gt0\\) ise o noktadan geçen çözüm eğrisi orada artandır; \\(\\lt0\\) ise azalandır. Örnek: \\(\\frac{dy}{dx}=y(3-y)\\) için \\(0\\lt y\\lt3\\) iken türev pozitif, \\(y\\gt3\\) iken negatiftir.</p>\n<h4>İçbükeylik: \\(\\frac{d^2y}{dx^2}\\)</h4>\n<p>İkinci türevi bulmak için \\(\\frac{dy}{dx}\\)'i \\(x\\)'e göre <strong>kapalı türevle (implicit differentiation)</strong> türet: \\(y\\) içeren her terimde zincir kuralı bir \\(\\frac{dy}{dx}\\) çarpanı getirir. Sonra \\(\\frac{dy}{dx}\\) yerine denklemin sağ tarafını koy.</p>\n<div class=\"formul\">\\[ \\frac{dy}{dx}=x+y^2 \\;\\Rightarrow\\; \\frac{d^2y}{dx^2}=1+2y\\frac{dy}{dx}=1+2y\\,(x+y^2) \\]</div>\n<p>\\((0,1)\\) noktasında: \\(\\frac{dy}{dx}=1\\) ve \\(\\frac{d^2y}{dx^2}=1+2(1)(1)=3\\gt0\\) ⇒ çözüm eğrisi orada artan ve yukarı içbükeydir (concave up).</p>\n<h4>Yerel ekstremum</h4>\n<p>Bir noktada \\(\\frac{dy}{dx}=0\\) ve \\(\\frac{d^2y}{dx^2}\\gt0\\) ise çözümün orada <strong>yerel minimumu (relative minimum)</strong>, \\(\\frac{d^2y}{dx^2}\\lt0\\) ise <strong>yerel maksimumu (relative maximum)</strong> vardır (ikinci türev testi).</p>\n<h4>Denge çözümleri ve uzun vadeli davranış</h4>\n<div class=\"kn-tanim\"><strong>Denge çözümü (equilibrium solution):</strong> \\(\\frac{dy}{dx}=0\\)'ı her \\(x\\) için sağlayan sabit fonksiyon \\(y=c\\). Eğim alanında yatay parçalardan oluşan yatay bir doğrudur.</div>\n<p>\\(\\frac{dy}{dx}=y(3-y)\\) için dengeler \\(y=0\\) ve \\(y=3\\)'tür. İşaret tablosu:</p>\n<table><thead><tr><th>Aralık</th><th>\\(y\\lt0\\)</th><th>\\(0\\lt y\\lt3\\)</th><th>\\(y\\gt3\\)</th></tr></thead>\n<tbody><tr><td>\\(\\frac{dy}{dx}\\)</td><td>−</td><td>+</td><td>−</td></tr>\n<tr><td>Çözüm</td><td>azalır, 0'dan uzaklaşır</td><td>artar, 3'e yaklaşır</td><td>azalır, 3'e yaklaşır</td></tr></tbody></table>\n<p>Dolayısıyla \\(y(0)\\gt0\\) olan her çözüm için \\(\\lim_{x\\to\\infty}y(x)=3\\). Çevresindeki çözümler kendisine yaklaştığı için \\(y=3\\) <em>kararlı (stable)</em>, çevresindeki çözümler uzaklaştığı için \\(y=0\\) <em>kararsız (unstable)</em> dengedir.</p>\n<div class=\"kn-dikkat\">Bu ünitedeki tipik denklemlerde (sağ tarafı ve onun \\(y\\)'ye göre türevi sürekli) iki çözüm eğrisi birbirini kesemez. Bu yüzden \\(0\\lt y(0)\\lt3\\) ile başlayan çözüm hiçbir zaman \\(y=3\\) çizgisini geçemez, yalnızca ona yaklaşır.</div>\n<p>FRQ ifadesi: \"Since \\(\\frac{dy}{dx}=0\\) and \\(\\frac{d^2y}{dx^2}=3\\gt0\\) at the point \\((2,1)\\), \\(f\\) has a relative minimum at \\(x=2\\).\" Ekstremum gerekçesinde iki bilginin de (birinci türev 0, ikinci türevin işareti) yazılması gerekir.</p>\n<div class=\"kn-kural\"><strong>Özet:</strong> İşaret ⇒ artan/azalan; \\(y''\\) (kapalı türev + yerine koy) ⇒ içbükeylik ve ekstremum; dengeler + işaret tablosu ⇒ limit.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(\\frac{dy}{dx}=x^2-y\\). \\((1,3)\\) noktasından geçen çözüm eğrisi orada artan mı azalan mı, yukarı mı aşağı mı içbükey?",
+     "cozum": [
+      "\\(\\frac{dy}{dx}=1-3=-2\\lt0\\) ⇒ azalan.",
+      "\\(\\frac{d^2y}{dx^2}=2x-\\frac{dy}{dx}=2-(-2)=4\\gt0\\) ⇒ yukarı içbükey."
+     ]
+    },
+    {
+     "soru": "\\(\\frac{dy}{dx}=(y-1)(y-4)\\) ve \\(y(0)=2\\). \\(\\lim_{x\\to\\infty}y(x)\\) nedir?",
+     "cozum": [
+      "Dengeler: \\(y=1\\), \\(y=4\\). \\(y=2\\)'de \\(\\frac{dy}{dx}=(1)(-2)=-2\\lt0\\) ⇒ çözüm azalır.",
+      "\\(1\\lt y\\lt4\\) bölgesinde türev hep negatif; çözüm \\(y=1\\)'i geçemez ⇒ \\(\\lim_{x\\to\\infty}y=1\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(y=f(x)\\), \\(\\frac{dy}{dx}=2x(y+1)\\) denkleminin \\(f(0)=2\\) koşulunu sağlayan çözümü. \\(f\\)'nin \\(x=0\\)'da yerel minimumu mu, maksimumu mu var? Gerekçelendirin.",
+     "cozum": [
+      "\\((0,2)\\)'de \\(\\frac{dy}{dx}=0\\).",
+      "\\(\\frac{d^2y}{dx^2}=2(y+1)+2x\\frac{dy}{dx}\\) ⇒ \\((0,2)\\)'de \\(2(3)+0=6\\gt0\\).",
+      "\"Since \\(f'(0)=0\\) and \\(f''(0)=6\\gt0\\), \\(f\\) has a relative minimum at \\(x=0\\).\""
+     ]
+    }
+   ],
+   "ipuclari": [
+    "d²y/dx² hesaplarken y'li terimlerde dy/dx çarpanını unutma, sonra dy/dx yerine denklemin sağ tarafını koy.",
+    "Limit sorularında önce dengeleri bul, sonra başlangıç değerinin hangi aralıkta olduğuna ve oradaki işarete bak.",
+    "Ekstremum gerekçesi iki parçalıdır: \"dy/dx = 0\" ve \"d²y/dx² > 0 (ya da < 0)\".",
+    "Çözüm eğrileri kesişmez: bir denge çizgisinin bir tarafında başlayan çözüm o tarafta kalır."
+   ],
+   "sikHatalar": [
+    "d²y/dx²'de y'nin türevini 0 sanmak (y'yi sabit gibi türetmek).",
+    "İçbükeyliği dy/dx'in işaretinden okumak (artan ≠ yukarı içbükey).",
+    "y(0) iki denge arasındayken çözümün üstteki dengeyi geçip sonsuza gideceğini sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "equilibrium solution",
+     "tr": "denge çözümü"
+    },
+    {
+     "en": "stable / unstable equilibrium",
+     "tr": "kararlı / kararsız denge"
+    },
+    {
+     "en": "implicit differentiation",
+     "tr": "kapalı türev"
+    },
+    {
+     "en": "concave up / concave down",
+     "tr": "yukarı / aşağı içbükey"
+    },
+    {
+     "en": "relative minimum / maximum",
+     "tr": "yerel minimum / maksimum"
+    },
+    {
+     "en": "long-run behavior",
+     "tr": "uzun vadeli davranış"
+    }
+   ]
+  },
+  {
+   "kod": "7.5",
+   "baslik": "Approximating Solutions Using Euler's Method",
+   "baslikTr": "Euler yöntemiyle yaklaşık çözüm",
+   "sadeceBC": true,
+   "hedefler": [
+    "Euler yöntemiyle (Euler's method) verilen adım boyunda bir başlangıç değer probleminin çözümünü yaklaşık hesaplamak.",
+    "Çalışmayı adım tablosuyla düzenlemek ve her adımda eğimi bir önceki yaklaşık noktadan almak.",
+    "Çözümün içbükeyliğinden Euler tahmininin fazla (overestimate) mı eksik (underestimate) mi olduğunu gerekçelendirmek."
+   ],
+   "anlatim": "<p><strong>Euler yöntemi (Euler's method)</strong>, bir başlangıç değer probleminin (initial value problem) çözümünü küçük teğet doğrusu adımlarıyla yaklaşık hesaplar. Konu 4.6'daki doğrusallaştırmanın art arda uygulanmasıdır: her adımda bulunduğun noktadaki eğimle kısa bir doğru boyunca ilerlersin. (Bu konu yalnız BC sınavındadır.)</p>\n<h4>Formül</h4>\n<div class=\"formul\">\\[ x_{n+1}=x_n+\\Delta x,\\qquad y_{n+1}=y_n+\\Delta x\\cdot\\frac{dy}{dx}\\Big|_{(x_n,\\,y_n)} \\]</div>\n<p>Her adımda: <em>şu anki noktadaki</em> eğimi denklemden hesapla, adım boyuyla (step size) çarp, \\(y\\)'ye ekle. Sonra yeni noktaya geç ve tekrarla.</p>\n<h4>Tabloyla düzenli çalış</h4>\n<p>Örnek: \\(\\frac{dy}{dx}=x+2y\\), \\(y(0)=1\\), \\(\\Delta x=0.5\\) ile \\(y(1)\\)'i tahmin et.</p>\n<table><thead><tr><th>\\(x_n\\)</th><th>\\(y_n\\)</th><th>eğim \\(x_n+2y_n\\)</th><th>\\(\\Delta y=0.5\\cdot\\text{eğim}\\)</th></tr></thead>\n<tbody><tr><td>0</td><td>1</td><td>2</td><td>1</td></tr>\n<tr><td>0.5</td><td>2</td><td>4.5</td><td>2.25</td></tr>\n<tr><td>1</td><td>4.25</td><td>—</td><td>—</td></tr></tbody></table>\n<p>Sonuç: \\(y(1)\\approx4.25\\).</p>\n<h4>Fazla mı, eksik mi?</h4>\n<p>Euler her adımda teğet doğrusunu izler. Çözüm eğrisi aralıkta <strong>yukarı içbükey</strong> ise teğet doğruları eğrinin altında kalır ⇒ Euler tahmini bir <strong>underestimate</strong>'tir; <strong>aşağı içbükey</strong> ise <strong>overestimate</strong>'tir. İçbükeyliği \\(\\frac{d^2y}{dx^2}\\)'den (kapalı türevle) bulursun. Örnekte \\(\\frac{d^2y}{dx^2}=1+2\\frac{dy}{dx}=1+2(x+2y)\\); çözüm \\([0,1]\\) aralığında \\(y\\gt0\\) ve artan olduğundan bu ifade pozitiftir, yani 4.25 bir underestimate'tir.</p>\n<div class=\"kn-dikkat\">En sık hata: ikinci adımda eğimi yine başlangıç noktasında hesaplamak. Her adımın eğimi, <strong>bir önceki adımda bulduğun yaklaşık</strong> \\(y_n\\) değeriyle ve güncel \\(x_n\\) ile hesaplanır.</div>\n<h4>Adım boyu ve doğruluk</h4>\n<p>Adım sayısı arttıkça (\\(\\Delta x\\) küçüldükçe) tahmin genellikle gerçek değere yaklaşır. AP'de genelde 2 ya da 3 adım sorulur. \"Two steps of equal size\" ifadesi aralığı adım sayısına bölmen gerektiğini söyler: \\(x=0\\)'dan \\(x=1\\)'e iki eşit adım ⇒ \\(\\Delta x=0.5\\).</p>\n<p>FRQ'da her adımı yaz: \"\\(f(0.5)\\approx1+0.5(2)=2\\); \\(f(1)\\approx2+0.5(4.5)=4.25\\)\". Yalnızca son sayıyı yazmak, ara adımda bir hata olduğunda kısmi puanı kaybettirir. Hesap makineli bölümde ara değerleri yuvarlamadan sakla.</p>\n<div class=\"kn-kural\"><strong>Özet:</strong> yeni \\(y\\) = eski \\(y\\) + \\(\\Delta x\\) · (eski noktadaki eğim). Concave up ⇒ underestimate, concave down ⇒ overestimate.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(\\frac{dy}{dx}=1-xy\\), \\(y(0)=2\\). İki eşit adımla Euler yöntemini kullanarak \\(y(1)\\)'i tahmin edin.",
+     "cozum": [
+      "\\(\\Delta x=0.5\\). \\((0,2)\\)'de eğim \\(1-0=1\\) ⇒ \\(y(0.5)\\approx2+0.5(1)=2.5\\).",
+      "\\((0.5,\\,2.5)\\)'te eğim \\(1-1.25=-0.25\\) ⇒ \\(y(1)\\approx2.5+0.5(-0.25)=2.375\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\frac{dy}{dx}=y\\), \\(y(0)=1\\). \\(\\Delta x=0.5\\) ile iki adımda \\(y(1)\\)'i tahmin edin; tahmin fazla mı eksik mi?",
+     "cozum": [
+      "\\(y(0.5)\\approx1+0.5(1)=1.5\\); \\(y(1)\\approx1.5+0.5(1.5)=2.25\\).",
+      "\\(\\frac{d^2y}{dx^2}=\\frac{dy}{dx}=y\\gt0\\) ⇒ çözüm yukarı içbükey ⇒ teğetler eğrinin altında ⇒ 2.25 bir underestimate (gerçek değer \\(e\\approx2.718\\))."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi) \\(\\frac{dy}{dx}=\\sin(x+y)\\), \\(y(0)=1\\). \\(\\Delta x=0.2\\) ile iki adımda \\(y(0.4)\\)'ü tahmin edin.",
+     "cozum": [
+      "\\((0,1)\\)'de eğim \\(\\sin1\\approx0.84147\\) ⇒ \\(y(0.2)\\approx1+0.2(0.84147)\\approx1.16829\\).",
+      "\\((0.2,\\,1.16829)\\)'da eğim \\(\\sin(1.36829)\\approx0.97958\\) ⇒ \\(y(0.4)\\approx1.16829+0.2(0.97958)\\approx1.364\\) (radyan modu!)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Tablo kur: x, y, eğim, Δx·eğim sütunları hatayı neredeyse sıfırlar.",
+    "\"n steps of equal size\" ⇒ Δx = (son x − ilk x)/n.",
+    "Over/under gerekçesi: \"Since d²y/dx² > 0 on the interval, the solution curve is concave up, so the Euler approximation is an underestimate.\"",
+    "Trigonometrik denklemlerde hesap makinesinin radyan modunda olduğundan emin ol."
+   ],
+   "sikHatalar": [
+    "Her adımda eğimi başlangıç noktasında hesaplamak.",
+    "x değerini güncellemeyi unutmak (eğimi hep eski x ile hesaplamak).",
+    "Concave up iken tahmini overestimate sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "Euler's method",
+     "tr": "Euler yöntemi"
+    },
+    {
+     "en": "step size",
+     "tr": "adım boyu"
+    },
+    {
+     "en": "initial value problem",
+     "tr": "başlangıç değer problemi"
+    },
+    {
+     "en": "approximation",
+     "tr": "yaklaşık değer"
+    },
+    {
+     "en": "overestimate / underestimate",
+     "tr": "fazla / eksik tahmin"
+    }
+   ]
+  },
+  {
+   "kod": "7.6",
+   "baslik": "Finding General Solutions Using Separation of Variables",
+   "baslikTr": "Değişkenlerine ayırma ile genel çözüm bulmak",
+   "sadeceBC": false,
+   "hedefler": [
+    "Bir diferansiyel denklemin ayrılabilir (separable) olup olmadığını tanımak.",
+    "Değişkenlerine ayırma (separation of variables) yöntemiyle genel çözümü \\(+C\\) ile bulmak.",
+    "\\(+C\\)'yi doğru yerde yazmak ve \\(y\\)'yi yalnız bırakırken sabiti doğru biçimde dönüştürmek."
+   ],
+   "anlatim": "<p>\\(\\frac{dy}{dx}=g(x)\\,h(y)\\) biçimindeki — sağ tarafı \"yalnız \\(x\\)'li bir çarpan × yalnız \\(y\\)'li bir çarpan\" olan — denklemlere <strong>ayrılabilir (separable)</strong> denir. Bunları <strong>değişkenlerine ayırma (separation of variables)</strong> yöntemiyle çözeriz: tüm \\(y\\)'leri \\(dy\\) ile bir tarafa, tüm \\(x\\)'leri \\(dx\\) ile diğer tarafa topla ve iki tarafın integralini al.</p>\n<h4>Yöntem</h4>\n<ol><li><strong>Ayır:</strong> \\(\\frac{1}{h(y)}\\,dy=g(x)\\,dx\\) (\\(h(y)\\ne0\\)).</li>\n<li><strong>İntegral al:</strong> \\(\\int\\frac{1}{h(y)}\\,dy=\\int g(x)\\,dx\\).</li>\n<li><strong>Tek bir \\(+C\\) yaz:</strong> iki tarafın sabitleri birleşir.</li>\n<li><strong>Gerekirse \\(y\\)'yi yalnız bırak.</strong></li></ol>\n<p>Örnek: \\(\\frac{dy}{dx}=\\frac{x^2}{y^3}\\). Ayır: \\(y^3\\,dy=x^2\\,dx\\). İntegral: \\(\\frac{y^4}{4}=\\frac{x^3}{3}+C\\). Bu bir <em>kapalı (implicit)</em> genel çözümdür; \\(y^4=\\frac{4x^3}{3}+4C\\) yazıp \\(4C\\)'yi yeni bir sabit \\(K\\) olarak adlandırabilirsin.</p>\n<h4>Ayrılabilir mi? Hızlı test</h4>\n<table><thead><tr><th>Denklem</th><th>Ayrılabilir mi?</th><th>Neden</th></tr></thead><tbody>\n<tr><td>\\(\\frac{dy}{dx}=xy+y\\)</td><td>Evet</td><td>\\(=y(x+1)\\)</td></tr>\n<tr><td>\\(\\frac{dy}{dx}=e^{x-y}\\)</td><td>Evet</td><td>\\(=e^{x}\\cdot e^{-y}\\)</td></tr>\n<tr><td>\\(\\frac{dy}{dx}=x+y\\)</td><td>Hayır</td><td>toplam; çarpıma ayrılmaz</td></tr>\n<tr><td>\\(\\frac{dy}{dx}=\\sin(xy)\\)</td><td>Hayır</td><td>\\(x\\) ve \\(y\\) iç içe</td></tr>\n</tbody></table>\n<h4>Üstel çözüme götüren durum</h4>\n<p>\\(\\frac{dy}{dx}=k(y-M)\\) ⇒ \\(\\frac{dy}{y-M}=k\\,dx\\) ⇒ \\(\\ln|y-M|=kx+C\\) ⇒ \\(|y-M|=e^{C}e^{kx}\\) ⇒ \\(y=M+Ae^{kx}\\). Burada \\(A=\\pm e^{C}\\); \\(A=0\\) da denge çözümü \\(y=M\\)'yi verir.</p>\n<div class=\"kn-dikkat\"><strong>\\(+C\\)'nin yeri:</strong> \\(C\\), integral alındığı anda, \\(y\\) yalnız bırakılmadan <em>önce</em> yazılır. \\(\\ln y=x^2+C\\) ⇒ \\(y=e^{x^2+C}=Ae^{x^2}\\). \\(y=e^{x^2}+C\\) yazmak YANLIŞTIR: bu fonksiyon denklemi sağlamaz.</div>\n<h4>Bölme ile kaybolan çözümler</h4>\n<p>\\(h(y)\\)'ye bölerken \\(h(c)=0\\) olan sabit çözümleri (\\(y=c\\)) kaybedebilirsin. Örneğin \\(\\frac{dy}{dx}=xy^2\\) denkleminde \\(y=0\\) da bir çözümdür. AP genelde bunu sormaz; soru kökündeki \"for \\(y\\ne0\\)\" ifadesinin nedeni budur.</p>\n<p>FRQ puanlaması (ayırma sorularında): (1) değişkenleri doğru ayırma, (2) iki tarafın doğru ters türevleri, (3) \\(+C\\)'nin varlığı, (4) başlangıç koşulunun kullanımı, (5) \\(y\\)'yi çözme. \\(+C\\)'siz bir çözüm, sonraki puanları da kaybettirir.</p>\n<div class=\"kn-kural\"><strong>Özet:</strong> Ayır → integral → tek \\(+C\\) → \\(y\\)'yi yalnız bırak. \\(x+y\\) toplamı ayrılamaz; \\(e^{x+y}\\) ise ayrılır.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(\\frac{dy}{dx}=\\dfrac{2x+1}{\\cos y}\\) denkleminin genel çözümünü bulun.",
+     "cozum": [
+      "Ayır: \\(\\cos y\\,dy=(2x+1)\\,dx\\).",
+      "İntegral: \\(\\sin y=x^2+x+C\\). (Kapalı genel çözüm.)"
+     ]
+    },
+    {
+     "soru": "\\(\\frac{dy}{dx}=y^2e^{x}\\) denkleminin genel çözümünü \\(y\\) yalnız kalacak şekilde yazın (\\(y\\ne0\\)).",
+     "cozum": [
+      "Ayır: \\(y^{-2}\\,dy=e^{x}\\,dx\\). İntegral: \\(-\\frac{1}{y}=e^{x}+C\\).",
+      "Ters çevir: \\(y=-\\dfrac{1}{e^{x}+C}\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\frac{dy}{dx}=3x^2(y+2)\\) denkleminin genel çözümünü bulun.",
+     "cozum": [
+      "Ayır: \\(\\frac{dy}{y+2}=3x^2\\,dx\\) ⇒ \\(\\ln|y+2|=x^3+C\\).",
+      "\\(|y+2|=e^{C}e^{x^3}\\) ⇒ \\(y=-2+Ae^{x^3}\\) (\\(A\\) herhangi bir sabit)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Ayırmadan önce sağ tarafı çarpanlarına ayır: \\(xy+y=y(x+1)\\), \\(e^{x-y}=e^{x}\\cdot e^{-y}\\).",
+    "+C'yi integral alır almaz yaz; y'yi yalnız bıraktıktan sonra eklemek hatalıdır.",
+    "\\(\\int\\frac{dy}{y-M}=\\ln|y-M|\\); mutlak değeri yazmak ve sonra \\(A=\\pm e^{C}\\) ile kaldırmak FRQ'da tam puan getirir.",
+    "Bulduğun genel çözümü türetip denkleme koyarak kontrol et (Konu 7.2)."
+   ],
+   "sikHatalar": [
+    "dy/dx = x + y gibi toplamları \"ayırmaya\" çalışmak (dy − y dx = x dx anlamsızdır).",
+    "\\(y=e^{x^2}+C\\) yazmak; doğrusu \\(y=Ae^{x^2}\\).",
+    "∫ sin y dy = cos y yazmak (doğrusu −cos y)."
+   ],
+   "terimler": [
+    {
+     "en": "separable differential equation",
+     "tr": "ayrılabilir diferansiyel denklem"
+    },
+    {
+     "en": "separation of variables",
+     "tr": "değişkenlerine ayırma"
+    },
+    {
+     "en": "antiderivative",
+     "tr": "ters türev"
+    },
+    {
+     "en": "constant of integration",
+     "tr": "integral sabiti"
+    },
+    {
+     "en": "general solution",
+     "tr": "genel çözüm"
+    }
+   ]
+  },
+  {
+   "kod": "7.7",
+   "baslik": "Finding Particular Solutions Using Initial Conditions and Separation of Variables",
+   "baslikTr": "Başlangıç koşulu ve değişkenlerine ayırma ile özel çözüm bulmak",
+   "sadeceBC": false,
+   "hedefler": [
+    "Ayırma yöntemiyle bulunan genel çözümde başlangıç koşulunu kullanarak \\(C\\)'yi belirlemek.",
+    "Karekök ya da mutlak değer içeren çözümlerde başlangıç değerine göre doğru işareti seçmek.",
+    "Özel çözümün tanım aralığını (domain) başlangıç noktasını içeren en geniş açık aralık olarak belirlemek."
+   ],
+   "anlatim": "<p>Başlangıç koşulu (initial condition) \\(y(x_0)=y_0\\), genel çözüm ailesinden tek bir eğriyi seçer. AP FRQ'larında tek başına en çok puan getiren iş budur: \"Find the particular solution \\(y=f(x)\\) to the differential equation with the initial condition \\(f(1)=2\\).\" Bu madde genelde 5 puandır ve puanlar sıralı adımlara verilir.</p>\n<h4>Beş adım</h4>\n<ol><li>Değişkenleri ayır.</li>\n<li>İki tarafın ters türevini al.</li>\n<li>\\(+C\\) ekle.</li>\n<li><strong>Hemen</strong> başlangıç koşulunu koy ve \\(C\\)'yi bul (\\(y\\)'yi yalnız bırakmadan, en sade hâlde).</li>\n<li>\\(y\\)'yi yalnız bırak; gerekiyorsa işaret/kök seçimini yap ve tanım aralığını belirle.</li></ol>\n<p>Örnek: \\(\\frac{dy}{dx}=\\frac{2x}{y}\\), \\(f(1)=-2\\).<br>Ayır: \\(y\\,dy=2x\\,dx\\). İntegral: \\(\\frac{y^2}{2}=x^2+C\\). Koşul: \\(\\frac{4}{2}=1+C\\) ⇒ \\(C=1\\). Çöz: \\(y^2=2x^2+2\\) ⇒ \\(y=\\pm\\sqrt{2x^2+2}\\). Başlangıç değeri negatif olduğu için <strong>\\(y=-\\sqrt{2x^2+2}\\)</strong>.</p>\n<h4>Neden \\(C\\)'yi erken bulmalı?</h4>\n<p>Erken bulmak cebiri sadeleştirir ve mutlak değer/işaret sorununu çözer: \\(\\ln|y|=x^2+C\\) ve \\(y(0)=-3\\) ⇒ \\(\\ln3=C\\) ⇒ \\(|y|=3e^{x^2}\\). \\(y\\) negatif başladığı ve sıfırı geçemediği için \\(y=-3e^{x^2}\\).</p>\n<h4>Tanım aralığı (domain)</h4>\n<div class=\"kn-tanim\">Özel çözümün tanım aralığı, başlangıç noktasını içeren ve çözümün tanımlı ve türevlenebilir olduğu (ve denklemin anlamlı kaldığı) <strong>en geniş açık aralıktır</strong>.</div>\n<p>Örnek: \\(\\frac{dy}{dx}=y^2\\), \\(y(0)=\\frac12\\) ⇒ \\(-\\frac1y=x+C\\) ⇒ \\(-2=C\\) ⇒ \\(y=\\frac{1}{2-x}\\). Fonksiyon \\(x=2\\)'de tanımsız; başlangıç noktası \\(x=0\\) olduğu için tanım aralığı \\(x\\lt2\\). \\(x\\gt2\\) kısmı aynı formülle yazılsa da <em>bu</em> çözümün parçası değildir.</p>\n<p>Karekök içeren çözümlerde kökün içi pozitif olmalıdır; çünkü denklemde \\(y\\)'ye bölüyorsan \\(y=0\\) olamaz. Örneğin \\(y=-\\sqrt{4-x^2}\\) için tanım aralığı \\(-2\\lt x\\lt2\\).</p>\n<div class=\"kn-dikkat\">1. adımda (ayırma) yanlış yaparsan AP genelde o maddenin kalan puanlarını vermez. \\(+C\\)'yi unutursan \\(C\\)'ye bağlı tüm puanlar gider. Bu iki adımı her zaman kontrol et.</div>\n<p>Kontrol: bulduğun fonksiyonu türetip denkleme koy (Konu 7.2) ve \\(f(x_0)=y_0\\)'ı doğrula. Hesap makineli sorularda özel çözümü bulduktan sonra bir değer (ör. \\(f(2.5)\\)) istenebilir; önce tam formülü yaz, sonra sayıyı hesapla.</p>\n<div class=\"kn-kural\"><strong>Özet:</strong> Ayır → integral → \\(+C\\) → koşulu koy → \\(y\\)'yi çöz → işareti ve aralığı seç.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(\\frac{dy}{dx}=xy^2\\), \\(y(0)=-1\\). Özel çözümü bulun.",
+     "cozum": [
+      "Ayır ve integral al: \\(y^{-2}dy=x\\,dx\\) ⇒ \\(-\\frac{1}{y}=\\frac{x^2}{2}+C\\).",
+      "Koşul: \\(-\\frac{1}{-1}=0+C\\) ⇒ \\(C=1\\).",
+      "\\(-\\frac1y=\\frac{x^2+2}{2}\\) ⇒ \\(y=-\\dfrac{2}{x^2+2}\\); payda hiç sıfır olmadığından tüm reel sayılarda tanımlı."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) \\(\\frac{dy}{dx}=\\frac{x}{y}\\), \\(f(2)=1\\). Özel çözümü ve tanım aralığını bulun.",
+     "cozum": [
+      "\\(y\\,dy=x\\,dx\\) ⇒ \\(\\frac{y^2}{2}=\\frac{x^2}{2}+C\\) ⇒ \\(\\frac12=2+C\\) ⇒ \\(C=-\\frac32\\).",
+      "\\(y^2=x^2-3\\); \\(f(2)=1\\gt0\\) ⇒ \\(y=\\sqrt{x^2-3}\\).",
+      "\\(y\\ne0\\) olmalı ⇒ \\(x^2\\gt3\\); \\(x=2\\)'yi içeren aralık: \\(x\\gt\\sqrt3\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\frac{dy}{dx}=e^{-y}\\cos x\\), \\(y(0)=0\\). Özel çözümü ve tanım aralığını bulun.",
+     "cozum": [
+      "\\(e^{y}dy=\\cos x\\,dx\\) ⇒ \\(e^{y}=\\sin x+C\\) ⇒ \\(1=0+C\\) ⇒ \\(C=1\\).",
+      "\\(y=\\ln(1+\\sin x)\\). \\(1+\\sin x\\gt0\\) olmalı; \\(\\sin x=-1\\) ilk kez \\(x=-\\frac{\\pi}{2}\\) ve \\(x=\\frac{3\\pi}{2}\\)'de olur.",
+      "Tanım aralığı: \\(-\\frac{\\pi}{2}\\lt x\\lt\\frac{3\\pi}{2}\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "C'yi y'yi yalnız bırakmadan önce bul; ln|y| ve karekök durumlarında işaret sorunu kendiliğinden çözülür.",
+    "Karekök alırken ± yaz, sonra başlangıç değerinin işaretine göre birini seç ve neden seçtiğini söyle.",
+    "Tanım aralığı başlangıç noktasını içermeli ve açık aralık olmalı; formülün tanımlı olduğu her yer değil.",
+    "FRQ'da puan sırası: ayırma, ters türevler, +C, koşulu kullanma, y'yi çözme."
+   ],
+   "sikHatalar": [
+    "C'yi, y'yi yalnız bıraktıktan sonra eklemek (ör. y = √(2x²) + C).",
+    "Başlangıç değeri negatifken pozitif karekökü seçmek.",
+    "Tanım aralığını x ≠ 2 gibi iki parçalı bir küme olarak vermek."
+   ],
+   "terimler": [
+    {
+     "en": "particular solution",
+     "tr": "özel çözüm"
+    },
+    {
+     "en": "initial condition",
+     "tr": "başlangıç koşulu"
+    },
+    {
+     "en": "domain of a solution",
+     "tr": "çözümün tanım aralığı"
+    },
+    {
+     "en": "open interval",
+     "tr": "açık aralık"
+    },
+    {
+     "en": "separation of variables",
+     "tr": "değişkenlerine ayırma"
+    }
+   ]
+  },
+  {
+   "kod": "7.8",
+   "baslik": "Exponential Models with Differential Equations",
+   "baslikTr": "Diferansiyel denklemlerle üstel modeller",
+   "sadeceBC": false,
+   "hedefler": [
+    "\\(\\frac{dy}{dt}=ky\\) denkleminin çözümünün \\(y=y_0e^{kt}\\) olduğunu bilmek ve bağlamda kullanmak.",
+    "İki veriden \\(k\\)'yi bulmak; katlanma süresi ve yarılanma ömrü hesaplamak.",
+    "\\(\\frac{dy}{dt}=k(y-M)\\) (Newton'un soğuma yasası) modelini çözmek ve yorumlamak."
+   ],
+   "anlatim": "<p>\"Bir büyüklüğün değişim hızı, büyüklüğün kendisiyle orantılıdır\" cümlesi \\(\\frac{dy}{dt}=ky\\) demektir. Bu denklemin çözümü her zaman aynı biçimdedir ve AB'nin en çok kullanılan modelidir: nüfus artışı, radyoaktif bozunma, sürekli faiz, ilacın vücuttan atılması.</p>\n<div class=\"kn-kural\">\\[ \\frac{dy}{dt}=ky,\\quad y(0)=y_0 \\;\\Longrightarrow\\; y=y_0e^{kt} \\]</div>\n<p>Türetme (ayırma ile): \\(\\frac{dy}{y}=k\\,dt\\) ⇒ \\(\\ln|y|=kt+C\\) ⇒ \\(y=Ae^{kt}\\); \\(t=0\\) ⇒ \\(A=y_0\\).</p>\n<table><thead><tr><th>\\(k\\)'nin işareti</th><th>Anlam</th></tr></thead><tbody>\n<tr><td>\\(k\\gt0\\)</td><td>üstel büyüme (exponential growth)</td></tr>\n<tr><td>\\(k\\lt0\\)</td><td>üstel azalma (exponential decay)</td></tr></tbody></table>\n<h4>\\(k\\)'yi bulmak</h4>\n<p>İkinci bir veriden: \\(y(0)=200\\), \\(y(5)=600\\) ⇒ \\(600=200e^{5k}\\) ⇒ \\(k=\\frac{\\ln3}{5}\\approx0.2197\\). Katlanma süresi (doubling time): \\(2=e^{kT}\\) ⇒ \\(T=\\frac{\\ln2}{k}\\). Yarılanma ömrü (half-life): \\(T_{1/2}=\\frac{\\ln2}{|k|}\\). Eşdeğer biçim: \"her \\(d\\) yılda iki katına çıkıyor\" ⇒ \\(y=y_0\\cdot2^{t/d}\\).</p>\n<h4>\\(k\\)'nin yorumu</h4>\n<p>\\(\\frac{dy}{dt}=0.03y\\) demek, büyüklük o anki değerinin %3'ü oranında (birim zamanda) <em>anlık</em> olarak artıyor demektir. Bu, \"yılda %3 artış\" ile aynı şey değildir: bir yıllık çarpan \\(e^{0.03}\\approx1.0305\\)'tir.</p>\n<h4>Ötelenmiş üstel model: Newton'un soğuma yasası</h4>\n<p>\\(\\frac{dy}{dt}=k(y-M)\\) denklemi, \\(y\\) ile \\(M\\) arasındaki <em>farkın</em> üstel olarak değiştiğini söyler: \\[ y-M=(y_0-M)e^{kt}\\;\\Rightarrow\\;y=M+(y_0-M)e^{kt} \\] \\(k\\lt0\\) ise \\(y\\to M\\). Örnek: \\(T(0)=90\\), oda \\(20^\\circ\\text{C}\\), \\(k=-0.1\\) ⇒ \\(T=20+70e^{-0.1t}\\).</p>\n<div class=\"kn-dikkat\">Newton modelinde \\(k\\)'yi bulurken <strong>farkları</strong> oranla: \\(\\frac{T(t)-M}{T(0)-M}=e^{kt}\\). Sıcaklıkların kendisini oranlamak (\\(\\frac{T(t)}{T(0)}\\)) yanlış \\(k\\) verir.</div>\n<h4>Hesap makinesi</h4>\n<p>\\(k=\\frac{\\ln(\\ldots)}{t}\\) gibi değerleri hesap makinesinde sakla ve yuvarlamadan kullan; AP üç ondalık basamak ister ve ara yuvarlama son cevabı bozabilir. FRQ'da kurulumu (\\(600=200e^{5k}\\)) yaz, sonra sayıyı ver.</p>\n<p>FRQ yorumu: \"The rate of change of \\(y\\) is proportional to \\(y\\).\" Bir hız sorulursa \\(\\frac{dy}{dt}\\)'yi doğrudan denklemden oku: \\(y=500\\) iken \\(\\frac{dy}{dt}=500k\\); çözümü bulmana gerek yoktur.</p>",
+   "ornekler": [
+    {
+     "soru": "Bir bakteri kültürü \\(\\frac{dy}{dt}=ky\\) modeline uyuyor. \\(y(0)=200\\), \\(y(5)=600\\). \\(y(10)\\) kaçtır? (Hesap makinesiz.)",
+     "cozum": [
+      "\\(600=200e^{5k}\\) ⇒ \\(e^{5k}=3\\).",
+      "\\(y(10)=200e^{10k}=200\\left(e^{5k}\\right)^2=200\\cdot9=1800\\)."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi) Bir metal parçanın sıcaklığı \\(\\frac{dT}{dt}=k(T-20)\\) modeline uyuyor; \\(T(0)=90\\), \\(T(5)=60\\). \\(T(15)\\)'i bulun.",
+     "cozum": [
+      "Farklar: \\(T-20=70e^{kt}\\); \\(40=70e^{5k}\\) ⇒ \\(e^{5k}=\\frac47\\) ⇒ \\(k=\\frac{\\ln(4/7)}{5}\\approx-0.1119\\).",
+      "\\(T(15)=20+70\\left(\\frac47\\right)^3=20+\\frac{4480}{343}\\approx33.061^\\circ\\text{C}\\)."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi) Kandaki ilaç miktarı \\(\\frac{dA}{dt}=-0.2A\\), \\(A(0)=50\\) mg (\\(t\\) saat). Yarılanma ömrünü ve miktarın 10 mg'a düştüğü zamanı bulun.",
+     "cozum": [
+      "\\(A=50e^{-0.2t}\\). Yarılanma: \\(e^{-0.2t}=\\frac12\\) ⇒ \\(t=\\frac{\\ln2}{0.2}\\approx3.466\\) saat.",
+      "\\(10=50e^{-0.2t}\\) ⇒ \\(t=\\frac{\\ln5}{0.2}\\approx8.047\\) saat."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "dy/dt = ky gördüğün an \\(y=y_0e^{kt}\\) yaz; AP her seferinde ayırma göstermeni istemez ama FRQ \"use separation of variables\" diyorsa göstermelisin.",
+    "Eşit aralıklı veride hesap makinesiz kısayol: \\(e^{5k}=3\\) ise \\(e^{10k}=9\\).",
+    "Newton modelinde ortam sıcaklığını önce çıkar: farklar üstel değişir.",
+    "k'yi hesap makinesinde sakla; 0.22 gibi yuvarlanmış değerle devam etmek son basamağı bozar."
+   ],
+   "sikHatalar": [
+    "Newton modelinde T(t)/T(0) oranıyla k bulmak.",
+    "k = 0.03'ü \"her yıl %3 artış\" olarak yorumlamak.",
+    "Yarılanma ömründe ln 2 / k ifadesinde k'nin negatif olduğunu unutup negatif süre bulmak."
+   ],
+   "terimler": [
+    {
+     "en": "exponential growth / decay",
+     "tr": "üstel büyüme / azalma"
+    },
+    {
+     "en": "doubling time",
+     "tr": "katlanma süresi"
+    },
+    {
+     "en": "half-life",
+     "tr": "yarılanma ömrü"
+    },
+    {
+     "en": "Newton's Law of Cooling",
+     "tr": "Newton'un soğuma yasası"
+    },
+    {
+     "en": "ambient temperature",
+     "tr": "ortam sıcaklığı"
+    },
+    {
+     "en": "growth constant",
+     "tr": "büyüme sabiti"
+    }
+   ]
+  },
+  {
+   "kod": "7.9",
+   "baslik": "Logistic Models with Differential Equations",
+   "baslikTr": "Diferansiyel denklemlerle lojistik modeller",
+   "sadeceBC": true,
+   "hedefler": [
+    "Lojistik denklemi (logistic differential equation) tanımak ve taşıma kapasitesini (carrying capacity) okumak.",
+    "Çözmeden limit, en hızlı büyüme anı (\\(P=\\frac{L}{2}\\)) ve en büyük büyüme hızını belirlemek.",
+    "Lojistik çözüm \\(P(t)=\\frac{L}{1+Ae^{-kt}}\\) ile verilen bağlam sorularını çözmek."
+   ],
+   "anlatim": "<p>Gerçek nüfuslar sonsuza kadar üstel büyüyemez; kaynaklar sınırlıdır. <strong>Lojistik model (logistic model)</strong>, büyümenin küçük nüfusta neredeyse üstel başladığı, ama bir <strong>taşıma kapasitesine (carrying capacity)</strong> yaklaştıkça yavaşladığı durumu anlatır. (Bu konu yalnız BC sınavındadır.)</p>\n<div class=\"kn-kural\">\\[ \\frac{dP}{dt}=kP\\left(1-\\frac{P}{L}\\right)\\qquad\\text{ya da}\\qquad \\frac{dP}{dt}=cP\\,(L-P) \\]</div>\n<p>Burada \\(k\\gt0\\) büyüme sabiti, \\(L\\) taşıma kapasitesidir. İkinci biçimde \\(c=\\frac{k}{L}\\).</p>\n<h4>Çözmeden okunabilenler</h4>\n<table><thead><tr><th>Durum</th><th>Sonuç</th></tr></thead><tbody>\n<tr><td>Denge çözümleri</td><td>\\(P=0\\) ve \\(P=L\\)</td></tr>\n<tr><td>\\(0\\lt P(0)\\lt L\\)</td><td>\\(P\\) artar ve \\(\\lim_{t\\to\\infty}P(t)=L\\)</td></tr>\n<tr><td>\\(P(0)\\gt L\\)</td><td>\\(P\\) azalır ve \\(\\lim_{t\\to\\infty}P(t)=L\\)</td></tr>\n<tr><td>En hızlı büyüme</td><td>\\(P=\\frac{L}{2}\\) iken (bükülme noktası)</td></tr>\n<tr><td>En büyük büyüme hızı</td><td>\\(\\frac{dP}{dt}=k\\cdot\\frac{L}{2}\\cdot\\frac12=\\frac{kL}{4}\\)</td></tr>\n</tbody></table>\n<h4>Neden \\(\\frac{L}{2}\\)?</h4>\n<p>\\(\\frac{dP}{dt}\\), \\(P\\)'nin ikinci dereceden bir fonksiyonudur: \\(g(P)=kP-\\frac{k}{L}P^2\\). Parabolün tepe noktası \\(g'(P)=k-\\frac{2k}{L}P=0\\) ⇒ \\(P=\\frac L2\\). Ayrıca zincir kuralıyla \\(\\frac{d^2P}{dt^2}=g'(P)\\cdot\\frac{dP}{dt}\\); bu yüzden \\(0\\lt P\\lt\\frac L2\\) iken grafik yukarı içbükey, \\(\\frac L2\\lt P\\lt L\\) iken aşağı içbükeydir. \\(P=\\frac L2\\) bir <strong>bükülme noktası (point of inflection)</strong>dır.</p>\n<h4>Açık çözüm</h4>\n<p>Kısmi kesirlerle (partial fractions) çözülürse: \\[ P(t)=\\frac{L}{1+Ae^{-kt}},\\qquad A=\\frac{L-P_0}{P_0} \\] Örnek: \\(L=1000\\), \\(P_0=100\\), \\(k=0.5\\) ⇒ \\(A=9\\) ⇒ \\(P(t)=\\frac{1000}{1+9e^{-0.5t}}\\). Nüfus \\(500\\)'e, \\(9e^{-0.5t}=1\\) ⇒ \\(t=2\\ln9\\approx4.394\\) anında ulaşır; en hızlı büyüme o andadır.</p>\n<div class=\"kn-dikkat\">\\(L\\)'yi tanımak için önce \\(kP\\) parantezine al: \\(\\frac{dP}{dt}=0.2P-0.001P^2=0.2P(1-0.005P)=0.2P\\left(1-\\frac{P}{200}\\right)\\) ⇒ \\(L=200\\). \\(P^2\\)'nin katsayısının tersini (\\(1000\\)) \\(L\\) sanma.</div>\n<p>AP soruları genellikle açık çözümü istemez; limit, \\(\\frac L2\\), en büyük hız ve içbükeylik sorulur. FRQ ifadesi: \"Since \\(0\\lt P(0)\\lt L\\), \\(\\lim_{t\\to\\infty}P(t)=L\\).\" Hesap makineli sorularda \\(P(t)\\) verilir ve belirli bir an (ör. \\(P=\\frac L2\\) olduğu an) istenir.</p>",
+   "ornekler": [
+    {
+     "soru": "\\(\\frac{dP}{dt}=0.6P-0.0003P^2\\). Taşıma kapasitesini, en hızlı büyümenin olduğu \\(P\\) değerini ve en büyük büyüme hızını bulun.",
+     "cozum": [
+      "\\(0.6P(1-0.0005P)=0.6P\\left(1-\\frac{P}{2000}\\right)\\) ⇒ \\(L=2000\\).",
+      "En hızlı büyüme \\(P=1000\\)'de; hız \\(0.6(1000)-0.0003(1000)^2=600-300=300\\) (birim/zaman)."
+     ]
+    },
+    {
+     "soru": "Aynı model için \\(P(0)=2500\\) ise çözümün davranışını ve içbükeyliğini açıklayın.",
+     "cozum": [
+      "\\(P\\gt L\\) ⇒ \\(\\frac{dP}{dt}\\lt0\\): nüfus azalır ve \\(\\lim_{t\\to\\infty}P=2000\\).",
+      "\\(\\frac{d^2P}{dt^2}=(0.6-0.0006P)\\frac{dP}{dt}\\); \\(P\\gt2000\\) iken ilk çarpan negatif, ikinci çarpan negatif ⇒ çarpım pozitif ⇒ yukarı içbükey."
+     ]
+    },
+    {
+     "soru": "(Hesap makinesi) \\(P(t)=\\dfrac{600}{1+5e^{-0.3t}}\\). \\(P(0)\\)'ı, \\(L\\)'yi ve nüfusun en hızlı büyüdüğü anı bulun.",
+     "cozum": [
+      "\\(P(0)=\\frac{600}{6}=100\\); \\(L=600\\); model \\(\\frac{dP}{dt}=0.3P\\left(1-\\frac{P}{600}\\right)\\).",
+      "En hızlı büyüme \\(P=300\\)'de: \\(1+5e^{-0.3t}=2\\) ⇒ \\(e^{-0.3t}=\\frac15\\) ⇒ \\(t=\\frac{\\ln5}{0.3}\\approx5.365\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Önce kP(1 − P/L) biçimine getir; L'yi ancak böyle güvenle okursun.",
+    "\"Fastest growing\" ⇒ P = L/2; \"maximum rate\" ⇒ dP/dt'yi P = L/2'de hesapla (kL/4).",
+    "lim P(t) sorusunda P(0) > 0 ise cevap L'dir (P(0) > L olsa bile).",
+    "P(t) formülü verilmişse L, payın kendisidir; A = (L − P₀)/P₀ ilişkisiyle kontrol et."
+   ],
+   "sikHatalar": [
+    "En hızlı büyümenin P = L'de olduğunu sanmak (L'de hız sıfırdır).",
+    "0.2P − 0.001P² modelinde L = 1000 demek (doğrusu 200).",
+    "P(0) > L iken nüfusun sonsuza büyüyeceğini sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "logistic differential equation",
+     "tr": "lojistik diferansiyel denklem"
+    },
+    {
+     "en": "carrying capacity",
+     "tr": "taşıma kapasitesi"
+    },
+    {
+     "en": "point of inflection",
+     "tr": "bükülme noktası"
+    },
+    {
+     "en": "partial fractions",
+     "tr": "kısmi kesirler"
+    },
+    {
+     "en": "growth rate",
+     "tr": "büyüme hızı"
+    }
+   ]
+  }
+ ]
+}

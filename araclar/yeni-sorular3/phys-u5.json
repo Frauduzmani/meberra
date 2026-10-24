@@ -1,0 +1,4292 @@
+[
+ {
+  "id": "phys_k_u5_1",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 0,
+  "numara": 1,
+  "konu": "5.1 Rotational Kinematics: Angular Acceleration from a Table",
+  "zorluk": "easy",
+  "govde": "A turntable's angular velocity is recorded at equal time intervals, as shown in the table.<br/><table class='u-table'><tr><th>$t$ (s)</th><th>0</th><th>1.0</th><th>2.0</th><th>3.0</th><th>4.0</th></tr><tr><td>$\\omega$ (rad/s)</td><td>2.0</td><td>3.5</td><td>5.0</td><td>6.5</td><td>8.0</td></tr></table>What is the magnitude of the turntable's angular acceleration?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$2.0\\text{ rad/s}^2$"
+   },
+   {
+    "id": "B",
+    "text": "$1.5\\text{ rad/s}^2$"
+   },
+   {
+    "id": "C",
+    "text": "$8.0\\text{ rad/s}^2$"
+   },
+   {
+    "id": "D",
+    "text": "$0.67\\text{ rad/s}^2$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Her 1.0 s'de $\\omega$ 1.5 rad/s artıyor; değişim düzgün, $\\alpha$ sabit.<br/>2. $\\alpha = \\dfrac{\\Delta\\omega}{\\Delta t} = \\dfrac{8.0 - 2.0}{4.0 - 0} = 1.5\\text{ rad/s}^2$.",
+  "genel_hatirlatma": "Açısal ivme $\\omega$–$t$ grafiğinin eğimidir: $\\alpha = \\Delta\\omega/\\Delta t$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Başlangıç açısal hızını yok saymak",
+    "aciklama": "$8.0/4.0 = 2.0$ hesabı turntable durgun başlıyormuş gibi yapar. $\\alpha = \\Delta\\omega/\\Delta t = (8.0 - 2.0)/4.0$ olmalıdır."
+   },
+   "C": {
+    "etiket": "Son açısal hızı ivme sanmak",
+    "aciklama": "8.0 rad/s, $t = 4.0$ s anındaki açısal hızdır; ivme, açısal hızın birim zamandaki değişimidir."
+   },
+   "D": {
+    "etiket": "Oranı ters kurmak",
+    "aciklama": "$\\Delta t/\\Delta\\omega = 4.0/6.0$ hesaplanmış; birimi s/(rad/s) olur, açısal ivme değildir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.1)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "α = Δω/Δt",
+   "ipucu": "Tablodaki iki satırın farkını al.",
+   "sikHata": "Son ω'yı toplam süreye bölmek",
+   "cedKonu": "5.1",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_2",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 1,
+  "numara": 2,
+  "konu": "5.1 Rotational Kinematics: Angular Displacement from Tabulated Data",
+  "zorluk": "medium",
+  "govde": "The angular velocity of a wheel that has a constant angular acceleration is shown in the table.<br/><table class='u-table'><tr><th>$t$ (s)</th><th>0</th><th>2.0</th><th>4.0</th></tr><tr><td>$\\omega$ (rad/s)</td><td>4.0</td><td>8.0</td><td>12</td></tr></table>Through what angle does the wheel turn between $t = 0$ and $t = 4.0\\text{ s}$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$48\\text{ rad}$"
+   },
+   {
+    "id": "B",
+    "text": "$16\\text{ rad}$"
+   },
+   {
+    "id": "C",
+    "text": "$32\\text{ rad}$"
+   },
+   {
+    "id": "D",
+    "text": "$24\\text{ rad}$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $\\alpha$ sabit olduğundan ortalama açısal hız $\\tfrac12(\\omega_0 + \\omega) = \\tfrac12(4.0 + 12) = 8.0$ rad/s.<br/>2. $\\Delta\\theta = (8.0)(4.0) = 32$ rad.<br/>3. Kontrol: $\\alpha = 2.0$ rad/s², $\\omega_0 t + \\tfrac12\\alpha t^2 = 16 + 16 = 32$ rad.",
+  "genel_hatirlatma": "$\\Delta\\theta$, $\\omega$–$t$ grafiğinin altındaki alandır; sabit $\\alpha$'da bu alan bir yamuktur.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Son açısal hızı tüm süre boyunca sabit almak",
+    "aciklama": "$12 \\times 4.0 = 48$ rad, tekerlek baştan beri 12 rad/s ile dönseydi geçerli olurdu. Hız arttığı için ortalama açısal hız kullanılmalı."
+   },
+   "B": {
+    "etiket": "Yalnız ilk açısal hızı kullanmak",
+    "aciklama": "$4.0 \\times 4.0 = 16$ rad, ivmeden gelen $\\tfrac12\\alpha t^2 = 16$ rad katkısını atlar."
+   },
+   "D": {
+    "etiket": "Grafiği orijinden başlayan üçgen sanmak",
+    "aciklama": "$\\tfrac12(12)(4.0) = 24$ rad, $\\omega_0 = 0$ olsaydı doğru olurdu; burada $\\omega_0 = 4.0$ rad/s."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.1)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Δθ = ½(ω₀+ω)t",
+   "ipucu": "Yamuk alanı = ortalama ω × süre.",
+   "sikHata": "Son ω × t almak",
+   "cedKonu": "5.1",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_3",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 2,
+  "numara": 3,
+  "konu": "5.1 Rotational Kinematics: Sign Convention for Slowing Rotation",
+  "zorluk": "easy",
+  "govde": "Counterclockwise is defined as the positive direction. A disk is rotating clockwise and its rate of rotation is decreasing. Which of the following correctly gives the signs of the disk's angular velocity $\\omega$ and angular acceleration $\\alpha$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\omega \\lt 0$ and $\\alpha \\lt 0$"
+   },
+   {
+    "id": "B",
+    "text": "$\\omega \\gt 0$ and $\\alpha \\lt 0$"
+   },
+   {
+    "id": "C",
+    "text": "$\\omega \\lt 0$ and $\\alpha \\gt 0$"
+   },
+   {
+    "id": "D",
+    "text": "$\\omega \\gt 0$ and $\\alpha \\gt 0$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. CW dönme, CCW pozitif kuralında $\\omega \\lt 0$ demektir.<br/>2. Dönme yavaşlıyorsa $\\alpha$, $\\omega$'ya zıt işaretlidir: $\\alpha \\gt 0$.",
+  "genel_hatirlatma": "$\\omega$ ve $\\alpha$ aynı işaretliyse hızlanma, zıt işaretliyse yavaşlama vardır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Negatif ivmeyi “yavaşlama” sanmak",
+    "aciklama": "$\\omega$ ve $\\alpha$ aynı işaretli olsaydı dönme hızlanırdı. CW yavaşlamada $\\alpha$, $\\omega$'ya zıt yani pozitiftir."
+   },
+   "B": {
+    "etiket": "İşaret kuralını ters uygulamak",
+    "aciklama": "Bu seçenek CCW dönüp yavaşlayan diski anlatır. Soruda CCW pozitif tanımlı ve disk CW dönüyor, yani $\\omega \\lt 0$."
+   },
+   "D": {
+    "etiket": "Büyüklükleri işaret sanmak",
+    "aciklama": "Büyüklükler her zaman pozitiftir ama işaret yönü gösterir; CW dönme negatiftir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.1)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "İşaret kuralı",
+   "ipucu": "Önce ω'nın işaretini, sonra α'yı ona göre belirle.",
+   "sikHata": "Negatif α = yavaşlama sanmak",
+   "cedKonu": "5.1",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_4",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 3,
+  "numara": 4,
+  "konu": "5.1 Rotational Kinematics: Converting Revolutions to Radians",
+  "zorluk": "easy",
+  "govde": "A potter's wheel turns through exactly $3.0$ revolutions. What is the magnitude of its angular displacement?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$3.0\\text{ rad}$"
+   },
+   {
+    "id": "B",
+    "text": "$9.4\\text{ rad}$"
+   },
+   {
+    "id": "C",
+    "text": "$19\\text{ rad}$"
+   },
+   {
+    "id": "D",
+    "text": "$1080\\text{ rad}$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $1\\text{ rev} = 2\\pi\\text{ rad}$.<br/>2. $\\Delta\\theta = 3.0 \\times 2\\pi = 6\\pi \\approx 18.8 \\approx 19$ rad.",
+  "genel_hatirlatma": "Dönme kinematiğinde açılar radyan ile yazılır: devir × $2\\pi$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Devri radyan sanmak",
+    "aciklama": "Bir devir $2\\pi$ rad'dır; 3.0 devir 3.0 rad değildir."
+   },
+   "B": {
+    "etiket": "Bir devri $\\pi$ rad almak",
+    "aciklama": "$3.0\\pi \\approx 9.4$; yarım tur $\\pi$ rad, tam tur $2\\pi$ rad'dır."
+   },
+   "D": {
+    "etiket": "Dereceyi radyan yazmak",
+    "aciklama": "$3 \\times 360^\\circ = 1080^\\circ$; bu derece cinsindendir, radyana çevrilmemiş."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.1)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "rev → rad",
+   "ipucu": "1 devir = 2π rad",
+   "sikHata": "Devir sayısını radyan sanmak",
+   "cedKonu": "5.1",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_5",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 4,
+  "numara": 5,
+  "konu": "5.1 Rotational Kinematics: Angle Turned While Coming to Rest",
+  "zorluk": "medium",
+  "govde": "A spinning wheel has an initial angular velocity of $12\\text{ rad/s}$. It slows down with a constant angular acceleration of magnitude $3.0\\text{ rad/s}^2$ until it stops. Through what angle does the wheel turn while it is slowing down?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$24\\text{ rad}$"
+   },
+   {
+    "id": "B",
+    "text": "$48\\text{ rad}$"
+   },
+   {
+    "id": "C",
+    "text": "$72\\text{ rad}$"
+   },
+   {
+    "id": "D",
+    "text": "$4.0\\text{ rad}$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $\\omega^2 = \\omega_0^2 + 2\\alpha\\Delta\\theta$, $\\omega = 0$, $\\alpha = -3.0$ rad/s².<br/>2. $0 = 144 - 6.0\\,\\Delta\\theta$ → $\\Delta\\theta = 24$ rad.<br/>3. Kontrol: $t = 4.0$ s, ortalama $\\omega = 6.0$ rad/s, $6.0 \\times 4.0 = 24$ rad.",
+  "genel_hatirlatma": "Süre bilinmiyorsa zamansız denklemi kullanın: $\\omega^2 = \\omega_0^2 + 2\\alpha\\Delta\\theta$.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "$2$ çarpanını unutmak",
+    "aciklama": "$\\omega_0^2/\\alpha = 144/3.0 = 48$; doğru bağıntı $0 = \\omega_0^2 - 2\\alpha\\Delta\\theta$, yani $\\Delta\\theta = \\omega_0^2/(2\\alpha)$."
+   },
+   "C": {
+    "etiket": "İvmenin işaretini ters almak",
+    "aciklama": "$t = 4.0$ s ile $\\omega_0 t + \\tfrac12\\alpha t^2 = 48 + 24$ yazılmış; yavaşlamada ivme terimi çıkarılır: $48 - 24$."
+   },
+   "D": {
+    "etiket": "Durma süresini açı sanmak",
+    "aciklama": "$\\omega_0/\\alpha = 4.0$ s durma süresidir, açı değildir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.1)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "ω² = ω₀² + 2αΔθ",
+   "ipucu": "Bilinmeyen t'yi içermeyen denklemi seç.",
+   "sikHata": "2 çarpanını unutmak",
+   "cedKonu": "5.1",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_6",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 5,
+  "numara": 6,
+  "konu": "5.1 Rotational Kinematics: Angular Velocity from Angular Position Data",
+  "zorluk": "hard",
+  "govde": "A wheel starts from rest. Its angular position is measured at several times, as shown in the table.<br/><table class='u-table'><tr><th>$t$ (s)</th><th>0</th><th>1.0</th><th>2.0</th><th>3.0</th><th>4.0</th></tr><tr><td>$\\theta$ (rad)</td><td>0</td><td>1.0</td><td>4.0</td><td>9.0</td><td>16</td></tr></table>What is the instantaneous angular velocity of the wheel at $t = 3.0\\text{ s}$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$3.0\\text{ rad/s}$"
+   },
+   {
+    "id": "B",
+    "text": "$5.0\\text{ rad/s}$"
+   },
+   {
+    "id": "C",
+    "text": "$9.0\\text{ rad/s}$"
+   },
+   {
+    "id": "D",
+    "text": "$6.0\\text{ rad/s}$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $\\theta = t^2$ (rad) ilişkisi görülüyor: durgun başlangıçla $\\theta = \\tfrac12\\alpha t^2$ → $\\tfrac12\\alpha = 1.0$, $\\alpha = 2.0$ rad/s².<br/>2. $\\omega = \\alpha t = (2.0)(3.0) = 6.0$ rad/s.<br/>3. Kontrol: 2.5 s ile 3.5 s ortalamaları 5.0 ve 7.0 rad/s; 3.0 s'deki değer 6.0 rad/s.",
+  "genel_hatirlatma": "Anlık açısal hız $\\theta$–$t$ eğrisinin o andaki eğimidir; parabol ise önce $\\alpha$'yı bulun.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Ortalama ile anlık hızı karıştırmak",
+    "aciklama": "$9.0/3.0 = 3.0$ rad/s, 0–3 s arasındaki <em>ortalama</em> açısal hızdır. Hız artarken anlık değer ortalamadan büyüktür."
+   },
+   "B": {
+    "etiket": "Aralık ortalamasını o anın değeri sanmak",
+    "aciklama": "$(9.0 - 4.0)/1.0 = 5.0$ rad/s, 2–3 s aralığının ortalamasıdır; sabit $\\alpha$'da bu değer $t = 2.5$ s'deki anlık hıza eşittir."
+   },
+   "C": {
+    "etiket": "Açısal konumu açısal hız sanmak",
+    "aciklama": "9.0 rad, $t = 3.0$ s'deki konumdur; hız konumun değişim hızıdır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.1)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "θ = ½αt², ω = αt",
+   "ipucu": "θ değerleri t² ile orantılı mı?",
+   "sikHata": "θ/t ortalamasını anlık ω sanmak",
+   "cedKonu": "5.1",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_7",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 6,
+  "numara": 7,
+  "konu": "5.1 Rotational Kinematics: Rotation That Reverses Direction",
+  "zorluk": "medium",
+  "govde": "Counterclockwise is positive. A disk has an angular velocity of $+6.0\\text{ rad/s}$ when a constant angular acceleration of $-2.0\\text{ rad/s}^2$ begins to act. What is the disk's angular velocity $5.0\\text{ s}$ later?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$+4.0\\text{ rad/s}$"
+   },
+   {
+    "id": "B",
+    "text": "$0$"
+   },
+   {
+    "id": "C",
+    "text": "$-4.0\\text{ rad/s}$"
+   },
+   {
+    "id": "D",
+    "text": "$-16\\text{ rad/s}$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $\\omega = \\omega_0 + \\alpha t = 6.0 + (-2.0)(5.0) = -4.0$ rad/s.<br/>2. Eksi işaret: disk artık saat yönünde dönüyor (3.0 s'de durup yön değiştirdi).",
+  "genel_hatirlatma": "Sabit ivme durma anında kaybolmaz; $\\omega = \\omega_0 + \\alpha t$ işaretiyle birlikte uygulanır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Yön değişimini fark etmemek",
+    "aciklama": "Büyüklük 4.0 rad/s doğru ama disk 3.0 s'de durup ters döner; işaret negatiftir."
+   },
+   "B": {
+    "etiket": "Durunca durgun kalacağını varsaymak",
+    "aciklama": "İvme 5.0 s boyunca etki ediyor; disk durduktan sonra da açısal hız azalmaya (negatif yönde büyümeye) devam eder."
+   },
+   "D": {
+    "etiket": "İşaretleri karıştırmak",
+    "aciklama": "$-(6.0 + 10)$ yazılmış; doğru hesap $\\omega = \\omega_0 + \\alpha t = 6.0 + (-2.0)(5.0)$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.1)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "ω = ω₀ + αt",
+   "ipucu": "İşaretleri koru.",
+   "sikHata": "Yön değişimini görmemek",
+   "cedKonu": "5.1",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_8",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 7,
+  "numara": 8,
+  "konu": "5.1 Rotational Kinematics: Net Angular Displacement versus Total Angle",
+  "zorluk": "hard",
+  "govde": "Counterclockwise is positive. A disk has an initial angular velocity of $+8.0\\text{ rad/s}$ and a constant angular acceleration of $-4.0\\text{ rad/s}^2$. For the time interval from $t = 0$ to $t = 3.0\\text{ s}$, which of the following gives the disk's net angular displacement and the total angle through which it turns?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "Net: $+6.0\\text{ rad}$; total: $6.0\\text{ rad}$"
+   },
+   {
+    "id": "B",
+    "text": "Net: $+6.0\\text{ rad}$; total: $10\\text{ rad}$"
+   },
+   {
+    "id": "C",
+    "text": "Net: $+10\\text{ rad}$; total: $10\\text{ rad}$"
+   },
+   {
+    "id": "D",
+    "text": "Net: $+42\\text{ rad}$; total: $42\\text{ rad}$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Net: $\\Delta\\theta = \\omega_0 t + \\tfrac12\\alpha t^2 = 8.0(3.0) + \\tfrac12(-4.0)(9.0) = 24 - 18 = 6.0$ rad.<br/>2. Durma anı: $0 = 8.0 - 4.0t$ → $t = 2.0$ s; bu sürede $\\tfrac12(8.0)(2.0) = 8.0$ rad döner.<br/>3. 2.0–3.0 s: durgun halden ters yönde $\\tfrac12(4.0)(1.0)^2 = 2.0$ rad.<br/>4. Toplam açı $8.0 + 2.0 = 10$ rad; net $8.0 - 2.0 = 6.0$ rad.",
+  "genel_hatirlatma": "Yön değiştiren harekette toplam dönülen açıyı bulmak için hareketi $\\omega = 0$ anında ikiye bölün.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Toplam açıyı net yer değiştirmeye eşit sanmak",
+    "aciklama": "Disk $t = 2.0$ s'de durup ters döner; ters dönüşteki 2.0 rad da toplam açıya eklenir."
+   },
+   "C": {
+    "etiket": "Ters dönüşü pozitif saymak",
+    "aciklama": "Ters yöndeki 2.0 rad net yer değiştirmeden çıkarılmalıdır: $8.0 - 2.0 = 6.0$ rad."
+   },
+   "D": {
+    "etiket": "İvme işaretini ters almak",
+    "aciklama": "$24 + 18 = 42$ hesabı ivmeyi pozitif alır; disk yavaşlıyor, $\\tfrac12\\alpha t^2 = -18$ rad."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.1)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Net Δθ vs toplam açı",
+   "ipucu": "Önce ω = 0 anını bul.",
+   "sikHata": "Net yer değiştirmeyi toplam açı sanmak",
+   "cedKonu": "5.1",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_9",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 8,
+  "numara": 9,
+  "konu": "5.1 Rotational Kinematics: Linearizing Data to Find Angular Acceleration",
+  "zorluk": "medium",
+  "govde": "A student releases a wheel from rest so that it turns with a constant angular acceleration $\\alpha$. The student records the angle $\\theta$ the wheel has turned at several times $t$. Which graph of the data should be a straight line whose slope equals $\\alpha/2$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$\\theta$ as a function of $t$"
+   },
+   {
+    "id": "B",
+    "text": "$\\theta$ as a function of $t^2$"
+   },
+   {
+    "id": "C",
+    "text": "$\\omega$ as a function of $t^2$"
+   },
+   {
+    "id": "D",
+    "text": "$\\theta$ as a function of $1/t$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Durgun halden sabit $\\alpha$: $\\theta = \\tfrac12\\alpha t^2$.<br/>2. Bu, $y = mx$ biçimindedir: $y = \\theta$, $x = t^2$, eğim $m = \\alpha/2$.<br/>3. $\\alpha = 2 \\times \\text{eğim}$.",
+  "genel_hatirlatma": "Doğrusallaştırma: denklemi $y = mx + b$ biçimine getirip $x$ ekseni için uygun değişkeni seçin.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Parabolü doğru sanmak",
+    "aciklama": "$\\theta = \\tfrac12\\alpha t^2$ olduğundan $\\theta$–$t$ grafiği paraboldür; eğimi sabit değildir ve anlık $\\omega$'ya eşittir."
+   },
+   "C": {
+    "etiket": "Yanlış değişkeni karelemek",
+    "aciklama": "$\\omega = \\alpha t$, $t$ ile doğrusal; $t^2$'ye karşı eğri verir. Ayrıca öğrenci $\\omega$'yı değil $\\theta$'yı ölçüyor."
+   },
+   "D": {
+    "etiket": "Ters orantı varsaymak",
+    "aciklama": "$\\theta$, $t$ ile artar; $1/t$'ye karşı çizim doğrusal değildir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.1)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Doğrusallaştırma θ vs t²",
+   "ipucu": "Denklemi y = mx biçiminde yaz.",
+   "sikHata": "θ–t grafiğini doğru sanmak",
+   "cedKonu": "5.1",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_10",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 9,
+  "numara": 10,
+  "konu": "5.1 Rotational Kinematics: Converting rpm to rad/s",
+  "zorluk": "easy",
+  "govde": "A record turntable rotates at a constant $45$ revolutions per minute. What is its angular velocity in radians per second?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$0.75\\text{ rad/s}$"
+   },
+   {
+    "id": "B",
+    "text": "$4.7\\text{ rad/s}$"
+   },
+   {
+    "id": "C",
+    "text": "$283\\text{ rad/s}$"
+   },
+   {
+    "id": "D",
+    "text": "$2700\\text{ rad/s}$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $45\\text{ rev/min} = 45/60 = 0.75$ rev/s.<br/>2. $\\omega = 0.75 \\times 2\\pi \\approx 4.7$ rad/s.",
+  "genel_hatirlatma": "rpm → rad/s: $\\times 2\\pi$, $\\div 60$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Devir/s'yi rad/s sanmak",
+    "aciklama": "$45/60 = 0.75$ devir/s'dir; radyan için $2\\pi$ ile çarpılmalı."
+   },
+   "C": {
+    "etiket": "Dakikayı saniyeye çevirmemek",
+    "aciklama": "$45 \\times 2\\pi = 283$ rad/<em>dakika</em>dır; 60'a bölünmeli."
+   },
+   "D": {
+    "etiket": "60 ile bölmek yerine çarpmak",
+    "aciklama": "$45 \\times 60$ birimi anlamsızdır; dakikadan saniyeye geçerken 60'a bölünür."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.1)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "rpm → rad/s",
+   "ipucu": "Önce rev/s, sonra rad/s.",
+   "sikHata": "60'a bölmeyi unutmak",
+   "cedKonu": "5.1",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_11",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 10,
+  "numara": 11,
+  "konu": "5.1 Rotational Kinematics: Average Angular Velocity over Two Phases",
+  "zorluk": "hard",
+  "govde": "A motor spins up a fan and then keeps it turning at a constant rate. The fan's angular velocity is shown in the table; between the listed times, it changes linearly.<br/><table class='u-table'><tr><th>$t$ (s)</th><th>0</th><th>2.0</th><th>4.0</th><th>6.0</th></tr><tr><td>$\\omega$ (rad/s)</td><td>0</td><td>4.0</td><td>8.0</td><td>8.0</td></tr></table>What is the fan's average angular velocity for the interval $t = 0$ to $t = 6.0\\text{ s}$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$5.3\\text{ rad/s}$"
+   },
+   {
+    "id": "B",
+    "text": "$4.0\\text{ rad/s}$"
+   },
+   {
+    "id": "C",
+    "text": "$5.0\\text{ rad/s}$"
+   },
+   {
+    "id": "D",
+    "text": "$8.0\\text{ rad/s}$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $\\Delta\\theta$ = alan: 0–4 s üçgen $\\tfrac12(4.0)(8.0) = 16$ rad; 4–6 s dikdörtgen $(2.0)(8.0) = 16$ rad.<br/>2. Toplam $32$ rad.<br/>3. $\\omega_{avg} = 32/6.0 \\approx 5.3$ rad/s.",
+  "genel_hatirlatma": "$\\omega_{avg} = \\Delta\\theta/\\Delta t$; ivme sabit değilse $\\tfrac12(\\omega_0 + \\omega)$ kullanılamaz.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Uç değerlerin ortalamasını almak",
+    "aciklama": "$\\tfrac12(0 + 8.0)$ yalnız $\\alpha$ tüm aralıkta sabitse geçerlidir; 4–6 s'de $\\omega$ sabit, ivme yok."
+   },
+   "C": {
+    "etiket": "Tablo değerlerinin aritmetik ortalaması",
+    "aciklama": "$(0 + 4 + 8 + 8)/4 = 5.0$; ortalama açısal hız zamana göre ağırlıklıdır: $\\Delta\\theta/\\Delta t$."
+   },
+   "D": {
+    "etiket": "Son değeri ortalama sanmak",
+    "aciklama": "8.0 rad/s yalnız son 2.0 s'deki değerdir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.1)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "ω_avg = Δθ/Δt",
+   "ipucu": "Önce alanı bul.",
+   "sikHata": "Uç değer ortalaması almak",
+   "cedKonu": "5.1",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_12",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 11,
+  "numara": 12,
+  "konu": "5.2 Connecting Linear and Rotational Motion: Arc Length of a Point on a Disk",
+  "zorluk": "easy",
+  "govde": "A disk of radius $0.40\\text{ m}$ rotates through an angle of $5.0\\text{ rad}$ about its fixed central axle. How far does a point on the rim travel along its circular path?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$12.5\\text{ m}$"
+   },
+   {
+    "id": "B",
+    "text": "$0.080\\text{ m}$"
+   },
+   {
+    "id": "C",
+    "text": "$2.0\\text{ m}$"
+   },
+   {
+    "id": "D",
+    "text": "$13\\text{ m}$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $s = r\\Delta\\theta$ (θ radyan).<br/>2. $s = (0.40)(5.0) = 2.0$ m.",
+  "genel_hatirlatma": "Yay uzunluğu: $s = r\\theta$, $\\theta$ radyan cinsinden.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Açıyı yarıçapa bölmek",
+    "aciklama": "$s = r\\theta$; $\\theta/r = 12.5$ yanlış bağıntıdır ve birimi m değildir."
+   },
+   "B": {
+    "etiket": "Yarıçapı açıya bölmek",
+    "aciklama": "$r/\\theta$ bağıntısı yoktur; yay uzunluğu yarıçap ile açının çarpımıdır."
+   },
+   "D": {
+    "etiket": "Gereksiz $2\\pi$ çarpanı",
+    "aciklama": "$2\\pi r\\theta \\approx 12.6$; açı zaten radyan cinsinden verildi, $2\\pi$ yalnız devirden radyana geçerken gerekir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.2)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "s = rθ",
+   "ipucu": "Radyan tanımı.",
+   "sikHata": "Gereksiz 2π",
+   "cedKonu": "5.2",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_13",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 12,
+  "numara": 13,
+  "konu": "5.2 Connecting Linear and Rotational Motion: Angular Velocity from Speeds at Several Radii",
+  "zorluk": "medium",
+  "govde": "Sensors measure the speed of four marks painted on a rotating platform at different distances $r$ from its axis.<br/><table class='u-table'><tr><th>$r$ (m)</th><th>0.50</th><th>1.0</th><th>1.5</th><th>2.0</th></tr><tr><td>$v$ (m/s)</td><td>1.5</td><td>3.0</td><td>4.5</td><td>6.0</td></tr></table>What is the angular velocity of the platform?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$3.0\\text{ rad/s}$"
+   },
+   {
+    "id": "B",
+    "text": "$0.33\\text{ rad/s}$"
+   },
+   {
+    "id": "C",
+    "text": "$6.0\\text{ rad/s}$"
+   },
+   {
+    "id": "D",
+    "text": "$1.5\\text{ rad/s}$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. Katı platformda her nokta aynı $\\omega$'ya sahiptir: $v = r\\omega$.<br/>2. $v/r$ her satırda $3.0$: örneğin $6.0/2.0 = 3.0$ rad/s.<br/>3. $v$–$r$ grafiğinin eğimi $\\omega$'dır.",
+  "genel_hatirlatma": "Katı cisimde $v \\propto r$ ve oran (eğim) açısal hızdır.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Oranı ters kurmak",
+    "aciklama": "$r/v = 0.33$ s/rad; açısal hız $\\omega = v/r$'dir."
+   },
+   "C": {
+    "etiket": "En büyük hızı açısal hız sanmak",
+    "aciklama": "6.0 m/s, en dıştaki işaretin teğetsel hızıdır; $\\omega$ için $r = 2.0$ m'ye bölünmeli."
+   },
+   "D": {
+    "etiket": "İlk satırdaki hızı açısal hız sanmak",
+    "aciklama": "1.5 m/s, $r = 0.50$ m'deki teğetsel hızdır; $\\omega = 1.5/0.50$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.2)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "v = rω",
+   "ipucu": "v–r eğimi ω.",
+   "sikHata": "v'yi ω sanmak",
+   "cedKonu": "5.2",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_14",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 13,
+  "numara": 14,
+  "konu": "5.2 Connecting Linear and Rotational Motion: Distance a Block Descends from a Spinning Pulley",
+  "zorluk": "medium",
+  "govde": "A string is wound around a pulley of radius $0.10\\text{ m}$, and a block hangs from the string. Starting from rest, the pulley's angular velocity increases uniformly to $20\\text{ rad/s}$ in $4.0\\text{ s}$. The string does not slip. How far does the block descend in this time?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$4.0\\text{ m}$"
+   },
+   {
+    "id": "B",
+    "text": "$8.0\\text{ m}$"
+   },
+   {
+    "id": "C",
+    "text": "$2.0\\text{ m}$"
+   },
+   {
+    "id": "D",
+    "text": "$40\\text{ m}$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $\\Delta\\theta = \\tfrac12(\\omega_0 + \\omega)t = \\tfrac12(0 + 20)(4.0) = 40$ rad.<br/>2. İp kaymadığı için blok, kasnak kenarıyla aynı yolu alır: $s = R\\Delta\\theta = (0.10)(40) = 4.0$ m.",
+  "genel_hatirlatma": "Kaymayan ipte bloğun yer değiştirmesi, hızı ve ivmesi $R\\Delta\\theta$, $R\\omega$, $R\\alpha$'dır.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Son açısal hızı tüm süre boyunca kullanmak",
+    "aciklama": "$r\\omega_f t = (0.10)(20)(4.0) = 8.0$ m; kasnak hızlanıyor, ortalama $\\omega = 10$ rad/s olmalı."
+   },
+   "C": {
+    "etiket": "Bloğun son hızını mesafe sanmak",
+    "aciklama": "$r\\omega_f = 2.0$ m/s bloğun son <em>hızıdır</em>, inilen mesafe değildir."
+   },
+   "D": {
+    "etiket": "Açıyı mesafe sanmak",
+    "aciklama": "40 rad kasnağın döndüğü açıdır; $s = r\\Delta\\theta$ ile metreye çevrilmeli."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.2)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "s = RΔθ (ip kaymıyor)",
+   "ipucu": "Önce açıyı bul.",
+   "sikHata": "ω_f × t kullanmak",
+   "cedKonu": "5.2",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_15",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 14,
+  "numara": 15,
+  "konu": "5.2 Connecting Linear and Rotational Motion: Comparing Points While a Disk Speeds Up",
+  "zorluk": "easy",
+  "govde": "A rigid disk is speeding up as it rotates about a fixed axle through its center. Point P is a distance $r$ from the axle and point Q is a distance $2r$ from the axle. Which statement correctly compares the two points?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "They have the same angular acceleration, and Q has twice the tangential acceleration of P."
+   },
+   {
+    "id": "B",
+    "text": "Q has twice the angular acceleration of P, and they have the same tangential acceleration."
+   },
+   {
+    "id": "C",
+    "text": "They have the same angular acceleration and the same tangential acceleration."
+   },
+   {
+    "id": "D",
+    "text": "P has twice the angular acceleration of Q because it is closer to the axle."
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. Katı disk: tüm noktalar için tek $\\alpha$.<br/>2. $a_T = r\\alpha$: $a_{T,Q} = 2r\\alpha = 2a_{T,P}$.",
+  "genel_hatirlatma": "Açısal nicelikler cisim için ortak, doğrusal nicelikler $r$ ile orantılıdır.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Açısal ve teğetsel nicelikleri yer değiştirmek",
+    "aciklama": "Katı cisimde $\\alpha$ her noktada aynıdır; $r$ ile artan $a_T = r\\alpha$'dır."
+   },
+   "C": {
+    "etiket": "Teğetsel ivmenin $r$'ye bağlılığını unutmak",
+    "aciklama": "$a_T = r\\alpha$; uzaklık iki katı olunca teğetsel ivme de iki katıdır."
+   },
+   "D": {
+    "etiket": "Eksene yakın noktanın daha hızlı döndüğünü sanmak",
+    "aciklama": "Katı cismin tüm noktaları aynı sürede aynı açıyı döner; $\\omega$ ve $\\alpha$ ortaktır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.2)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "a_T = rα",
+   "ipucu": "Ortak olan α.",
+   "sikHata": "Farklı noktalara farklı α vermek",
+   "cedKonu": "5.2",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_16",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 15,
+  "numara": 16,
+  "konu": "5.2 Connecting Linear and Rotational Motion: Total Acceleration of a Rim Point",
+  "zorluk": "hard",
+  "govde": "At a certain instant, a wheel rotating about a fixed axle has an angular velocity of $4.0\\text{ rad/s}$ and an angular acceleration of $6.0\\text{ rad/s}^2$. What is the magnitude of the linear acceleration of a point on the wheel $0.50\\text{ m}$ from the axle at that instant?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$8.5\\text{ m/s}^2$"
+   },
+   {
+    "id": "B",
+    "text": "$11\\text{ m/s}^2$"
+   },
+   {
+    "id": "C",
+    "text": "$3.0\\text{ m/s}^2$"
+   },
+   {
+    "id": "D",
+    "text": "$2.0\\text{ m/s}^2$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $a_T = r\\alpha = (0.50)(6.0) = 3.0$ m/s².<br/>2. $a_c = \\omega^2 r = (16)(0.50) = 8.0$ m/s².<br/>3. $a = \\sqrt{3.0^2 + 8.0^2} = \\sqrt{73} \\approx 8.5$ m/s².",
+  "genel_hatirlatma": "Hızlanan dönmede noktanın ivmesinin iki dik bileşeni vardır: $a_T = r\\alpha$ ve $a_c = \\omega^2 r$.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Dik bileşenleri doğrudan toplamak",
+    "aciklama": "$8.0 + 3.0 = 11$; teğetsel ve merkezcil ivme birbirine diktir, Pisagor ile birleştirilir."
+   },
+   "C": {
+    "etiket": "Merkezcil ivmeyi unutmak",
+    "aciklama": "$a_T = r\\alpha = 3.0$ m/s² yalnız teğetsel bileşendir; dönen noktanın merkezcil ivmesi de vardır."
+   },
+   "D": {
+    "etiket": "Hızı ivme sanmak",
+    "aciklama": "$r\\omega = 2.0$ m/s noktanın teğetsel <em>hızıdır</em>."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.2)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "a = √(a_T² + a_c²)",
+   "ipucu": "İki bileşeni ayrı bul.",
+   "sikHata": "Bileşenleri toplamak",
+   "cedKonu": "5.2",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_17",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 16,
+  "numara": 17,
+  "konu": "5.2 Connecting Linear and Rotational Motion: Pulleys Connected by a Belt",
+  "zorluk": "medium",
+  "govde": "A belt connects a small pulley of radius $0.10\\text{ m}$ to a large pulley of radius $0.30\\text{ m}$ without slipping. The small pulley rotates at $12\\text{ rad/s}$. What is the angular velocity of the large pulley?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$36\\text{ rad/s}$"
+   },
+   {
+    "id": "B",
+    "text": "$4.0\\text{ rad/s}$"
+   },
+   {
+    "id": "C",
+    "text": "$12\\text{ rad/s}$"
+   },
+   {
+    "id": "D",
+    "text": "$1.2\\text{ rad/s}$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Kaymayan kayış: $r_1\\omega_1 = r_2\\omega_2$.<br/>2. $(0.10)(12) = (0.30)\\omega_2$ → $\\omega_2 = 4.0$ rad/s.",
+  "genel_hatirlatma": "Kayış ve dişli sistemlerinde ortak olan kenar hızıdır: $r_1\\omega_1 = r_2\\omega_2$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Yarıçap oranını ters uygulamak",
+    "aciklama": "$12 \\times 3$ büyük kasnağı daha hızlı döndürür; aynı kenar hızında büyük yarıçap daha <em>küçük</em> $\\omega$ demektir."
+   },
+   "C": {
+    "etiket": "Açısal hızları eşit sanmak",
+    "aciklama": "Kayış kenar hızlarını eşitler, açısal hızları değil."
+   },
+   "D": {
+    "etiket": "Kayış hızını açısal hız sanmak",
+    "aciklama": "$r_1\\omega_1 = 1.2$ m/s kayışın hızıdır; $\\omega_2 = 1.2/0.30$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.2)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "r₁ω₁ = r₂ω₂",
+   "ipucu": "Kayış hızı ortak.",
+   "sikHata": "ω'ları eşit almak",
+   "cedKonu": "5.2",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_18",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 17,
+  "numara": 18,
+  "konu": "5.2 Connecting Linear and Rotational Motion: Finding a Spool's Radius from Data",
+  "zorluk": "hard",
+  "govde": "To find the radius $R$ of a spool, a student pulls thread off the spool without slipping and records the length $d$ of thread removed after $N$ complete revolutions of the spool.<br/><table class='u-table'><tr><th>$N$ (rev)</th><th>1</th><th>2</th><th>3</th><th>4</th></tr><tr><td>$d$ (m)</td><td>0.31</td><td>0.63</td><td>0.94</td><td>1.26</td></tr></table>What is the radius of the spool?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$0.050\\text{ m}$"
+   },
+   {
+    "id": "B",
+    "text": "$0.31\\text{ m}$"
+   },
+   {
+    "id": "C",
+    "text": "$0.10\\text{ m}$"
+   },
+   {
+    "id": "D",
+    "text": "$2.0\\text{ m}$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $d$–$N$ eğimi $\\approx 0.314$ m/devir (ör. $(1.26 - 0.31)/3$).<br/>2. Bir devir $2\\pi$ rad: $d = R\\theta = R(2\\pi N)$ → eğim $= 2\\pi R$.<br/>3. $R = 0.314/(2\\pi) \\approx 0.050$ m.",
+  "genel_hatirlatma": "$s = R\\theta$ yalnız radyanla geçerlidir; açı devir cinsindeyse eğim $2\\pi R$ olur.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Eğimi doğrudan yarıçap sanmak",
+    "aciklama": "Eğim 0.31 m/devirdir; bir devirde çekilen ip çevre uzunluğu $2\\pi R$'dir, yarıçap değil."
+   },
+   "C": {
+    "etiket": "Çapı yarıçap sanmak",
+    "aciklama": "$0.31/\\pi \\approx 0.10$ m çaptır; yarıçap bunun yarısıdır."
+   },
+   "D": {
+    "etiket": "Devri radyana çevirirken çarpmak",
+    "aciklama": "$0.31 \\times 2\\pi$ hesabı yanlış yöndedir; $R = \\text{eğim}/(2\\pi)$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.2)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "d = R·2πN",
+   "ipucu": "Eğimin birimi m/devir.",
+   "sikHata": "Eğimi R sanmak",
+   "cedKonu": "5.2",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_19",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 18,
+  "numara": 19,
+  "konu": "5.2 Connecting Linear and Rotational Motion: Angular Acceleration from a Rim Point's Speed",
+  "zorluk": "medium",
+  "govde": "The speed of a point on the rim of a wheel of radius $0.25\\text{ m}$ increases uniformly from $2.0\\text{ m/s}$ to $5.0\\text{ m/s}$ in $1.5\\text{ s}$. What is the magnitude of the wheel's angular acceleration?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$2.0\\text{ rad/s}^2$"
+   },
+   {
+    "id": "B",
+    "text": "$0.50\\text{ rad/s}^2$"
+   },
+   {
+    "id": "C",
+    "text": "$12\\text{ rad/s}^2$"
+   },
+   {
+    "id": "D",
+    "text": "$8.0\\text{ rad/s}^2$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $a_T = \\Delta v/\\Delta t = (5.0 - 2.0)/1.5 = 2.0$ m/s².<br/>2. $\\alpha = a_T/r = 2.0/0.25 = 8.0$ rad/s².",
+  "genel_hatirlatma": "$a_T = r\\alpha$; açısal ivmeye geçmek için yarıçapa bölün.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Teğetsel ivmeyi açısal ivme sanmak",
+    "aciklama": "$\\Delta v/\\Delta t = 2.0$ m/s² teğetsel ivmedir; $\\alpha = a_T/r$."
+   },
+   "B": {
+    "etiket": "Yarıçapla çarpmak",
+    "aciklama": "$a_T r = 0.50$; doğru bağıntı $a_T = r\\alpha$, yani $\\alpha = a_T/r$."
+   },
+   "C": {
+    "etiket": "Açısal hız değişimini ivme sanmak",
+    "aciklama": "$\\Delta\\omega = 3.0/0.25 = 12$ rad/s; bunun 1.5 s'ye bölünmesi gerekir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.2)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "α = a_T/r",
+   "ipucu": "Önce a_T.",
+   "sikHata": "Süreye bölmeyi unutmak",
+   "cedKonu": "5.2",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_20",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 19,
+  "numara": 20,
+  "konu": "5.2 Connecting Linear and Rotational Motion: Scaling Speed and Centripetal Acceleration with Radius",
+  "zorluk": "medium",
+  "govde": "A platform rotates with constant angular velocity. Point A is a distance $r$ from the axis. The table lists possible values for a point B at distance $2r$, each expressed as a multiple of the corresponding value for A.<br/><table class='u-table'><tr><th>Choice</th><th>$\\omega_B/\\omega_A$</th><th>$v_B/v_A$</th><th>$a_{c,B}/a_{c,A}$</th></tr><tr><td>I</td><td>1</td><td>2</td><td>4</td></tr><tr><td>II</td><td>1</td><td>2</td><td>2</td></tr><tr><td>III</td><td>2</td><td>2</td><td>2</td></tr><tr><td>IV</td><td>1</td><td>2</td><td>1/2</td></tr></table>Which row is correct?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "I"
+   },
+   {
+    "id": "B",
+    "text": "II"
+   },
+   {
+    "id": "C",
+    "text": "III"
+   },
+   {
+    "id": "D",
+    "text": "IV"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Katı cisim: $\\omega_B = \\omega_A$.<br/>2. $v = r\\omega$ → $v_B = 2v_A$.<br/>3. $a_c = \\omega^2 r$ → $a_{c,B} = 2a_{c,A}$.",
+  "genel_hatirlatma": "Katı cisimde ortak nicelik $\\omega$'dır; $a_c$ için $\\omega^2 r$ biçimini kullanın.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Merkezcil ivmede hızın karesini $r$'ye bölmeyi unutmak",
+    "aciklama": "$v^2$ dört katına çıkar ama $r$ de iki katıdır: $a_c = v^2/r$ → 2 kat."
+   },
+   "C": {
+    "etiket": "Açısal hızın $r$ ile arttığını sanmak",
+    "aciklama": "Katı platformda her nokta aynı $\\omega$'ya sahiptir."
+   },
+   "D": {
+    "etiket": "$a_c = v^2/r$'de $v$'yi sabit tutmak",
+    "aciklama": "Katı cisimde $r$ artınca $v$ de artar; sabit olan $\\omega$'dır ve $a_c = \\omega^2 r \\propto r$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.2)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "a_c = ω²r",
+   "ipucu": "Sabit kalan niceliği seç.",
+   "sikHata": "a_c = v²/r'de v'yi sabit tutmak",
+   "cedKonu": "5.2",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_21",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 20,
+  "numara": 21,
+  "konu": "5.2 Connecting Linear and Rotational Motion: Fan Blade Tip Speed",
+  "zorluk": "easy",
+  "govde": "The tip of a fan blade is $0.50\\text{ m}$ from the axis of rotation and moves with a speed of $15\\text{ m/s}$. What is the angular velocity of the fan?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$30\\text{ rad/s}$"
+   },
+   {
+    "id": "B",
+    "text": "$7.5\\text{ rad/s}$"
+   },
+   {
+    "id": "C",
+    "text": "$15\\text{ rad/s}$"
+   },
+   {
+    "id": "D",
+    "text": "$0.033\\text{ rad/s}$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $v = r\\omega$ → $\\omega = v/r$.<br/>2. $\\omega = 15/0.50 = 30$ rad/s.",
+  "genel_hatirlatma": "$v = r\\omega$ ile teğetsel hızdan açısal hıza geçilir.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Yarıçapla çarpmak",
+    "aciklama": "$vr = 7.5$; $v = r\\omega$ olduğundan $\\omega = v/r$."
+   },
+   "C": {
+    "etiket": "Teğetsel hızı açısal hız sanmak",
+    "aciklama": "15 m/s doğrusal hızdır; birimleri farklıdır."
+   },
+   "D": {
+    "etiket": "Oranı ters kurmak",
+    "aciklama": "$r/v$ hesaplanmış; birimi s'dir, açısal hız değildir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.2)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "ω = v/r",
+   "ipucu": "Birimleri kontrol et.",
+   "sikHata": "v'yi ω sanmak",
+   "cedKonu": "5.2",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_22",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 21,
+  "numara": 22,
+  "konu": "5.2 Connecting Linear and Rotational Motion: Angle Turned from Rim Speed Data",
+  "zorluk": "hard",
+  "govde": "A disk of radius $0.20\\text{ m}$ starts from rest. The speed $v$ of a point on its rim is recorded in the table.<br/><table class='u-table'><tr><th>$t$ (s)</th><th>0</th><th>1.0</th><th>2.0</th><th>3.0</th></tr><tr><td>$v$ (m/s)</td><td>0</td><td>0.60</td><td>1.20</td><td>1.80</td></tr></table>Through what angle does the disk rotate from $t = 0$ to $t = 3.0\\text{ s}$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$2.7\\text{ rad}$"
+   },
+   {
+    "id": "B",
+    "text": "$27\\text{ rad}$"
+   },
+   {
+    "id": "C",
+    "text": "$0.54\\text{ rad}$"
+   },
+   {
+    "id": "D",
+    "text": "$13.5\\text{ rad}$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $v$ düzgün artıyor: $a_T = 0.60$ m/s², $\\alpha = a_T/r = 3.0$ rad/s².<br/>2. $\\Delta\\theta = \\tfrac12\\alpha t^2 = \\tfrac12(3.0)(9.0) = 13.5$ rad.<br/>3. Kontrol: $s = \\tfrac12(0 + 1.80)(3.0) = 2.7$ m, $\\theta = 2.7/0.20 = 13.5$ rad.",
+  "genel_hatirlatma": "Doğrusal verilerden açısal niceliğe geçmek için $\\theta = s/r$, $\\omega = v/r$, $\\alpha = a_T/r$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Yay uzunluğunu açı sanmak",
+    "aciklama": "$\\tfrac12(1.80)(3.0) = 2.7$ m, kenar noktasının aldığı yoldur; açı $s/r$ ile bulunur."
+   },
+   "B": {
+    "etiket": "Son hızı tüm süre boyunca kullanmak",
+    "aciklama": "$(1.80)(3.0)/0.20 = 27$; hız sıfırdan arttığı için ortalama hız (0.90 m/s) kullanılmalı."
+   },
+   "C": {
+    "etiket": "Yay uzunluğunu yarıçapla çarpmak",
+    "aciklama": "$s \\cdot r = 0.54$; doğru bağıntı $\\theta = s/r$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.2)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "θ = s/r",
+   "ipucu": "Önce yay uzunluğu, sonra r'ye böl.",
+   "sikHata": "Metreyi radyan sanmak",
+   "cedKonu": "5.2",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_23",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 22,
+  "numara": 23,
+  "konu": "5.3 Torque: Force Directed Toward the Hinge",
+  "zorluk": "easy",
+  "govde": "A student pushes on the outer edge of a door of width $w$ with a force of magnitude $F$. The force is directed horizontally straight toward the hinges, along the plane of the door. What is the magnitude of the torque this force exerts on the door about the hinges?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$Fw$"
+   },
+   {
+    "id": "B",
+    "text": "$Fw/2$"
+   },
+   {
+    "id": "C",
+    "text": "Zero"
+   },
+   {
+    "id": "D",
+    "text": "$F/w$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. Kuvvetin etki çizgisi menteşeden geçiyor: kuvvet kolu $r_\\perp = 0$.<br/>2. $\\tau = r_\\perp F = 0$. Kapıyı itmek yerine menteşeye bastırır.",
+  "genel_hatirlatma": "Etki çizgisi eksenden geçen kuvvet tork üretmez.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Uzaklığı kuvvet kolu sanmak",
+    "aciklama": "$\\tau = rF\\sin\\theta$; kuvvet $\\vec r$ boyunca ($\\theta = 180^\\circ$) olduğundan $\\sin\\theta = 0$."
+   },
+   "B": {
+    "etiket": "Kütle merkezini kuvvet uygulama noktası sanmak",
+    "aciklama": "Kuvvet kenara uygulanıyor ve etki çizgisi menteşeden geçiyor; kuvvet kolu sıfırdır."
+   },
+   "D": {
+    "etiket": "Tork formülünü yanlış hatırlamak",
+    "aciklama": "Tork kuvvet × kuvvet koludur; bölme yoktur, ayrıca burada kuvvet kolu sıfır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.3)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "τ = r⊥F",
+   "ipucu": "Etki çizgisi eksenden geçiyor mu?",
+   "sikHata": "Fw yazmak",
+   "cedKonu": "5.3",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_24",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 23,
+  "numara": 24,
+  "konu": "5.3 Torque: Net Torque from a Force Table",
+  "zorluk": "medium",
+  "govde": "A horizontal meter stick is pivoted at its $0\\text{ cm}$ end. Three forces act on it as listed in the table (counterclockwise is positive; an upward force to the right of the pivot tends to rotate the stick counterclockwise).<br/><table class='u-table'><tr><th>Force</th><th>Magnitude (N)</th><th>Position (cm)</th><th>Direction</th></tr><tr><td>$F_1$</td><td>4.0</td><td>30</td><td>up, perpendicular to stick</td></tr><tr><td>$F_2$</td><td>2.0</td><td>80</td><td>down, perpendicular to stick</td></tr><tr><td>$F_3$</td><td>6.0</td><td>50</td><td>along the stick, away from pivot</td></tr></table>What is the net torque on the stick about the pivot?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$0.40\\text{ N}\\cdot\\text{m}$, counterclockwise"
+   },
+   {
+    "id": "B",
+    "text": "$2.8\\text{ N}\\cdot\\text{m}$"
+   },
+   {
+    "id": "C",
+    "text": "$5.8\\text{ N}\\cdot\\text{m}$"
+   },
+   {
+    "id": "D",
+    "text": "$0.40\\text{ N}\\cdot\\text{m}$, clockwise"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $\\tau_1 = +(0.30)(4.0) = +1.2$ N·m.<br/>2. $\\tau_2 = -(0.80)(2.0) = -1.6$ N·m.<br/>3. $\\tau_3 = 0$ (kuvvet $\\vec r$'ye paralel).<br/>4. $\\tau_{net} = -0.40$ N·m → 0.40 N·m saat yönünde.",
+  "genel_hatirlatma": "Net tork işaretli toplamdır; $\\vec r$'ye paralel kuvvetler tork vermez.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Net torkun yönünü yanlış belirlemek",
+    "aciklama": "CCW tork $+1.2$, CW tork $-1.6$ N·m; büyük olan CW torktur."
+   },
+   "B": {
+    "etiket": "Zıt yönlü torkları toplamak",
+    "aciklama": "$1.2 + 1.6$; torklar işaretleriyle toplanır."
+   },
+   "C": {
+    "etiket": "Çubuk boyunca kuvvete tork vermek",
+    "aciklama": "$F_3$'ün etki çizgisi pivottan geçer, torku sıfırdır; ayrıca zıt yönlü torklar çıkarılmalıdır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.3)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Στ işaretli toplam",
+   "ipucu": "Her kuvvete ayrı işaret ver.",
+   "sikHata": "Büyüklükleri toplamak",
+   "cedKonu": "5.3",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_25",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 24,
+  "numara": 25,
+  "konu": "5.3 Torque: Ranking Torques Using Lever Arms",
+  "zorluk": "medium",
+  "govde": "Four forces are applied, one at a time, to a wheel that can rotate about a fixed axle. For each force, the table gives its magnitude, the distance $r$ from the axle to the point of application, and the angle $\\theta$ between the force and the line from the axle to that point.<br/><table class='u-table'><tr><th>Force</th><th>$F$ (N)</th><th>$r$ (m)</th><th>$\\theta$</th></tr><tr><td>P</td><td>10</td><td>0.60</td><td>90°</td></tr><tr><td>Q</td><td>20</td><td>0.25</td><td>90°</td></tr><tr><td>R</td><td>15</td><td>0.50</td><td>90°</td></tr><tr><td>S</td><td>40</td><td>0.20</td><td>30°</td></tr></table>Which force exerts the greatest torque about the axle?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "S"
+   },
+   {
+    "id": "B",
+    "text": "P"
+   },
+   {
+    "id": "C",
+    "text": "R"
+   },
+   {
+    "id": "D",
+    "text": "Q"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $\\tau = rF\\sin\\theta$.<br/>2. P: $6.0$; Q: $5.0$; R: $7.5$; S: $4.0$ N·m.<br/>3. En büyük: R.",
+  "genel_hatirlatma": "Tork; kuvvet, uzaklık ve aradaki açının sinüsünün çarpımıdır; tek bir etken yetmez.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "En büyük kuvvetin en büyük torku verdiğini sanmak",
+    "aciklama": "$\\tau_S = (0.20)(40)\\sin 30^\\circ = 4.0$ N·m; açı ve kısa kuvvet kolu torku küçültür."
+   },
+   "B": {
+    "etiket": "En uzak noktayı seçmek",
+    "aciklama": "$\\tau_P = 6.0$ N·m; uzaklık büyük ama kuvvet küçük. $\\tau_R = 7.5$ N·m daha büyüktür."
+   },
+   "D": {
+    "etiket": "Kuvvet kolunu dikkate almamak",
+    "aciklama": "$\\tau_Q = 5.0$ N·m; 20 N büyük olsa da 0.25 m kısadır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.3)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "τ = rF sinθ",
+   "ipucu": "Her satırı hesapla.",
+   "sikHata": "Yalnız F'ye bakmak",
+   "cedKonu": "5.3",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_26",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 25,
+  "numara": 26,
+  "konu": "5.3 Torque: Gravitational Torque on a Tilted Rod",
+  "zorluk": "hard",
+  "govde": "A uniform rod of length $2.0\\text{ m}$ and mass $3.0\\text{ kg}$ is pivoted at one end. It is held at rest at an angle of $60^\\circ$ above the horizontal. What is the magnitude of the torque exerted by gravity on the rod about the pivot? (Use $g = 10\\text{ m/s}^2$.)",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$30\\text{ N}\\cdot\\text{m}$"
+   },
+   {
+    "id": "B",
+    "text": "$15\\text{ N}\\cdot\\text{m}$"
+   },
+   {
+    "id": "C",
+    "text": "$26\\text{ N}\\cdot\\text{m}$"
+   },
+   {
+    "id": "D",
+    "text": "$60\\text{ N}\\cdot\\text{m}$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Ağırlık $mg = 30$ N, kütle merkezinde (pivottan 1.0 m) etki eder.<br/>2. Kuvvet kolu = yatay uzaklık: $(1.0)\\cos 60^\\circ = 0.50$ m.<br/>3. $\\tau = (30)(0.50) = 15$ N·m.",
+  "genel_hatirlatma": "Ağırlığın torku: $mg \\times$ kütle merkezinin pivota yatay uzaklığı.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Çubuğu yatay sanmak",
+    "aciklama": "$(30)(1.0) = 30$ N·m yalnız yatay çubukta doğrudur; eğik çubukta kuvvet kolu yatay uzaklıktır."
+   },
+   "C": {
+    "etiket": "Yanlış trigonometrik fonksiyon",
+    "aciklama": "$\\sin 60^\\circ$ kullanılmış; ağırlık düşey, kütle merkezinin yatay uzaklığı $(L/2)\\cos 60^\\circ$."
+   },
+   "D": {
+    "etiket": "Ağırlığı uçta etki ediyor sanmak",
+    "aciklama": "Düzgün çubuğun ağırlığı ortasından ($L/2$) etki eder; ayrıca açı hesaba katılmamış."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.3)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "τ_g = mg(L/2)cosφ",
+   "ipucu": "Düşey kuvvet için yatay uzaklık.",
+   "sikHata": "sin/cos karıştırmak",
+   "cedKonu": "5.3",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_27",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 26,
+  "numara": 27,
+  "konu": "5.3 Torque: Effect of Moving the Point of Application",
+  "zorluk": "easy",
+  "govde": "A force perpendicular to a door exerts a torque $\\tau$ about the hinges. The same force, still perpendicular to the door, is then applied at a point half as far from the hinges. What torque does it now exert?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$2\\tau$"
+   },
+   {
+    "id": "B",
+    "text": "$\\tau/4$"
+   },
+   {
+    "id": "C",
+    "text": "$\\tau/2$"
+   },
+   {
+    "id": "D",
+    "text": "$\\tau$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. Dik kuvvet: $\\tau = rF$.<br/>2. $r \\to r/2$ → $\\tau \\to \\tau/2$.",
+  "genel_hatirlatma": "Dik kuvvette tork, eksene uzaklıkla doğru orantılıdır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Yakın noktanın daha etkili olduğunu sanmak",
+    "aciklama": "Kuvvet kolu kısaldıkça tork azalır: $\\tau = rF$."
+   },
+   "B": {
+    "etiket": "Torku uzaklığın karesiyle orantılı sanmak",
+    "aciklama": "$r^2$ eylemsizlik momentinde görülür; tork $r$ ile doğrusal orantılıdır."
+   },
+   "D": {
+    "etiket": "Torkun yalnız kuvvete bağlı olduğunu sanmak",
+    "aciklama": "Tork kuvvet kadar kuvvet koluna da bağlıdır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.3)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "τ ∝ r",
+   "ipucu": "τ = rF",
+   "sikHata": "τ ∝ r² sanmak",
+   "cedKonu": "5.3",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_28",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 27,
+  "numara": 28,
+  "konu": "5.3 Torque: Net Torque on a Stepped Pulley",
+  "zorluk": "medium",
+  "govde": "A stepped pulley has an inner radius of $0.10\\text{ m}$ and an outer radius of $0.30\\text{ m}$. Two tangential forces act on it, as listed.<br/><table class='u-table'><tr><th>Force</th><th>Magnitude (N)</th><th>Applied at</th><th>Tends to rotate</th></tr><tr><td>$F_A$</td><td>50</td><td>inner radius</td><td>counterclockwise</td></tr><tr><td>$F_B$</td><td>20</td><td>outer radius</td><td>clockwise</td></tr></table>What is the net torque on the pulley about its axle?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$1.0\\text{ N}\\cdot\\text{m}$, clockwise"
+   },
+   {
+    "id": "B",
+    "text": "$1.0\\text{ N}\\cdot\\text{m}$, counterclockwise"
+   },
+   {
+    "id": "C",
+    "text": "$11\\text{ N}\\cdot\\text{m}$"
+   },
+   {
+    "id": "D",
+    "text": "$13\\text{ N}\\cdot\\text{m}$, counterclockwise"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $\\tau_A = +(0.10)(50) = +5.0$ N·m (CCW).<br/>2. $\\tau_B = -(0.30)(20) = -6.0$ N·m (CW).<br/>3. $\\tau_{net} = -1.0$ N·m → 1.0 N·m saat yönünde.",
+  "genel_hatirlatma": "Kasnakta tork = teğetsel kuvvet × o kuvvetin yarıçapı; yönler işaretle toplanır.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Büyük kuvvetin kazandığını sanmak",
+    "aciklama": "50 N daha büyük ama kuvvet kolu 0.10 m: 5.0 N·m. 20 N'nin torku 6.0 N·m'dir."
+   },
+   "C": {
+    "etiket": "Zıt torkları toplamak",
+    "aciklama": "$5.0 + 6.0$; zıt yönlü torklar çıkarılır."
+   },
+   "D": {
+    "etiket": "Yarıçapları yer değiştirmek",
+    "aciklama": "$50(0.30) - 20(0.10) = 13$; her kuvvet kendi uygulandığı yarıçapla çarpılır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.3)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Kademeli kasnakta net tork",
+   "ipucu": "Her kuvvete kendi yarıçapı.",
+   "sikHata": "Büyük kuvvet kazanır sanmak",
+   "cedKonu": "5.3",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_29",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 28,
+  "numara": 29,
+  "konu": "5.3 Torque: Linearizing Force versus Distance Data",
+  "zorluk": "hard",
+  "govde": "A student measures the perpendicular force $F$ needed to just loosen a bolt with a wrench when the force is applied at different distances $r$ from the bolt. The torque required is the same in every trial.<br/><table class='u-table'><tr><th>$r$ (m)</th><th>0.10</th><th>0.20</th><th>0.40</th><th>0.50</th></tr><tr><td>$F$ (N)</td><td>24</td><td>12</td><td>6.0</td><td>4.8</td></tr></table>Which graph would produce a straight line, and what does its slope represent?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$F$ versus $r$; the slope is the torque, $2.4\\text{ N}\\cdot\\text{m}$."
+   },
+   {
+    "id": "B",
+    "text": "$F$ versus $1/r$; the slope is $1/\\tau = 0.42\\text{ (N}\\cdot\\text{m)}^{-1}$."
+   },
+   {
+    "id": "C",
+    "text": "$F$ versus $r^2$; the slope is the torque, $2.4\\text{ N}\\cdot\\text{m}$."
+   },
+   {
+    "id": "D",
+    "text": "$F$ versus $1/r$; the slope is the torque, $2.4\\text{ N}\\cdot\\text{m}$."
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. Sabit tork: $\\tau = rF$ → $F = \\tau \\cdot (1/r)$.<br/>2. $y = F$, $x = 1/r$ seçilince doğru elde edilir, eğim $= \\tau$.<br/>3. Her satırda $rF = 2.4$ N·m: eğim $2.4$ N·m.",
+  "genel_hatirlatma": "Ters orantılı veriler $1/x$'e karşı çizilince doğrusallaşır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Ters orantıyı doğrusal sanmak",
+    "aciklama": "$F = \\tau/r$; $F$–$r$ grafiği hiperboldür, sabit eğimi yoktur."
+   },
+   "B": {
+    "etiket": "Eğimi ters yorumlamak",
+    "aciklama": "$F = \\tau(1/r)$; $y = mx$ ile karşılaştırınca eğim $\\tau$'nun kendisidir."
+   },
+   "C": {
+    "etiket": "Yanlış değişkeni karelemek",
+    "aciklama": "$F$, $r^2$ ile doğrusal değildir; $1/r$ ile doğrusaldır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.3)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "F = τ/r doğrusallaştırma",
+   "ipucu": "Denklemi y = mx yaz.",
+   "sikHata": "F–r'yi doğru sanmak",
+   "cedKonu": "5.3",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_30",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 29,
+  "numara": 30,
+  "konu": "5.3 Torque: Torque Depends on the Chosen Axis",
+  "zorluk": "medium",
+  "govde": "A horizontal beam lies along the $x$-axis. A single $10\\text{ N}$ downward force acts on the beam at $x = 3.0\\text{ m}$. Counterclockwise is positive. What torque does this force exert about the point $x = 5.0\\text{ m}$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$20\\text{ N}\\cdot\\text{m}$, clockwise"
+   },
+   {
+    "id": "B",
+    "text": "$30\\text{ N}\\cdot\\text{m}$, clockwise"
+   },
+   {
+    "id": "C",
+    "text": "$50\\text{ N}\\cdot\\text{m}$, counterclockwise"
+   },
+   {
+    "id": "D",
+    "text": "$20\\text{ N}\\cdot\\text{m}$, counterclockwise"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. Kuvvet kolu: $|5.0 - 3.0| = 2.0$ m.<br/>2. Büyüklük: $(2.0)(10) = 20$ N·m.<br/>3. Yön: eksenin solundaki aşağı kuvvet çubuğu CCW döndürür.",
+  "genel_hatirlatma": "Tork seçilen eksene bağlıdır; her hesapta ekseni açıkça belirtin.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Eksen değişince yönün değişmeyeceğini sanmak",
+    "aciklama": "Kuvvet, $x = 5.0$ m noktasının <em>solunda</em> aşağı doğrudur; sol taraf aşağı inerse dönme CCW'dir."
+   },
+   "B": {
+    "etiket": "Orijine göre tork almak",
+    "aciklama": "$(3.0)(10)$ orijine göre torktur; soru $x = 5.0$ m noktasını soruyor."
+   },
+   "C": {
+    "etiket": "Uzaklığı orijinden ölçmek",
+    "aciklama": "Kuvvet kolu, seçilen eksenden kuvvetin uygulandığı noktaya uzaklıktır: $5.0 - 3.0 = 2.0$ m."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.3)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Eksen seçimi",
+   "ipucu": "Uzaklığı seçilen noktadan ölç.",
+   "sikHata": "Orijine göre hesaplamak",
+   "cedKonu": "5.3",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_31",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 30,
+  "numara": 31,
+  "konu": "5.3 Torque: Torque from a Force with Two Components",
+  "zorluk": "medium",
+  "govde": "A horizontal rod is pivoted at its left end. At the right end, $0.50\\text{ m}$ from the pivot, a force is applied that has a horizontal component of $6.0\\text{ N}$ (directed away from the pivot) and a vertical component of $8.0\\text{ N}$ (upward). What is the magnitude of the torque about the pivot?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$5.0\\text{ N}\\cdot\\text{m}$"
+   },
+   {
+    "id": "B",
+    "text": "$3.0\\text{ N}\\cdot\\text{m}$"
+   },
+   {
+    "id": "C",
+    "text": "$4.0\\text{ N}\\cdot\\text{m}$"
+   },
+   {
+    "id": "D",
+    "text": "$7.0\\text{ N}\\cdot\\text{m}$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $\\vec r$ yatay; yatay bileşen ona paralel → tork vermez.<br/>2. $\\tau = rF_\\perp = (0.50)(8.0) = 4.0$ N·m.",
+  "genel_hatirlatma": "Torku yalnız kuvvetin $\\vec r$'ye dik bileşeni üretir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Toplam kuvvetin hepsini dik saymak",
+    "aciklama": "$10\\text{ N} \\times 0.50$ m; kuvvetin yalnız çubuğa dik bileşeni tork verir."
+   },
+   "B": {
+    "etiket": "Yanlış bileşeni kullanmak",
+    "aciklama": "Yatay bileşen çubuk boyuncadır ve torku sıfırdır; dik olan düşey bileşendir."
+   },
+   "D": {
+    "etiket": "Bileşenleri cebirsel toplamak",
+    "aciklama": "$(6.0 + 8.0)(0.50)$; vektör bileşenleri böyle toplanmaz ve paralel bileşen tork vermez."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.3)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "τ = rF⊥",
+   "ipucu": "Hangi bileşen çubuğa dik?",
+   "sikHata": "Kuvvetin tamamını kullanmak",
+   "cedKonu": "5.3",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_32",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 31,
+  "numara": 32,
+  "konu": "5.3 Torque: Net Torque with Three Forces at Different Angles",
+  "zorluk": "hard",
+  "govde": "A horizontal rod of length $1.2\\text{ m}$ is pivoted at its center. The forces on it are listed in the table. Counterclockwise is positive.<br/><table class='u-table'><tr><th>Force</th><th>Magnitude (N)</th><th>Point of application</th><th>Direction</th></tr><tr><td>$F_1$</td><td>8.0</td><td>left end</td><td>straight down</td></tr><tr><td>$F_2$</td><td>5.0</td><td>0.30 m right of center</td><td>straight up</td></tr><tr><td>$F_3$</td><td>6.0</td><td>right end</td><td>30° below the horizontal, pointing away from the pivot</td></tr></table>What is the net torque on the rod about the pivot?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$3.2\\text{ N}\\cdot\\text{m}$, counterclockwise"
+   },
+   {
+    "id": "B",
+    "text": "$5.1\\text{ N}\\cdot\\text{m}$, clockwise"
+   },
+   {
+    "id": "C",
+    "text": "$8.1\\text{ N}\\cdot\\text{m}$, counterclockwise"
+   },
+   {
+    "id": "D",
+    "text": "$4.5\\text{ N}\\cdot\\text{m}$, counterclockwise"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $\\tau_1 = +(0.60)(8.0) = +4.8$ N·m.<br/>2. $\\tau_2 = +(0.30)(5.0) = +1.5$ N·m.<br/>3. $F_{3\\perp} = 6.0\\sin30^\\circ = 3.0$ N (aşağı), $\\tau_3 = -(0.60)(3.0) = -1.8$ N·m.<br/>4. $\\tau_{net} = 4.8 + 1.5 - 1.8 = +4.5$ N·m (CCW).",
+  "genel_hatirlatma": "Her kuvvet için ayrı ayrı: dik bileşen, kuvvet kolu, yön. Sonra işaretli topla.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Dik bileşen için cos kullanmak",
+    "aciklama": "$F_3$ yatayla $30^\\circ$ yapıyor; çubuğa dik bileşeni $6.0\\sin 30^\\circ = 3.0$ N'dur, $6.0\\cos 30^\\circ$ değil."
+   },
+   "B": {
+    "etiket": "Sol uçtaki kuvvetin yönünü yanlış belirlemek",
+    "aciklama": "Pivotun solunda aşağı kuvvet sol ucu indirir: dönme CCW'dir, $+4.8$ N·m."
+   },
+   "C": {
+    "etiket": "Tüm torkları işaretsiz toplamak",
+    "aciklama": "$F_3$'ün dik bileşeni sağ ucu aşağı çeker ve CW tork verir; çıkarılmalıdır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.3)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Στ = Σ(±r F⊥)",
+   "ipucu": "Tabloya bir tork sütunu ekle.",
+   "sikHata": "Açıda sin/cos karışıklığı",
+   "cedKonu": "5.3",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_33",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 32,
+  "numara": 33,
+  "konu": "5.3 Torque: Torque from a Couple on a Steering Wheel",
+  "zorluk": "medium",
+  "govde": "A driver turns a steering wheel of radius $0.20\\text{ m}$ by pushing with each hand on opposite sides of the rim. Each hand exerts a $15\\text{ N}$ force tangent to the rim, and the two forces point in opposite directions so that both tend to turn the wheel the same way. What is the magnitude of the net torque on the wheel?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$0$"
+   },
+   {
+    "id": "B",
+    "text": "$3.0\\text{ N}\\cdot\\text{m}$"
+   },
+   {
+    "id": "C",
+    "text": "$12\\text{ N}\\cdot\\text{m}$"
+   },
+   {
+    "id": "D",
+    "text": "$6.0\\text{ N}\\cdot\\text{m}$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. Her el: $\\tau = rF = (0.20)(15) = 3.0$ N·m, ikisi aynı yönde.<br/>2. $\\tau_{net} = 2(3.0) = 6.0$ N·m. Net kuvvet ise sıfırdır (kuvvet çifti).",
+  "genel_hatirlatma": "Kuvvet çiftinde net kuvvet sıfır olabilir ama net tork sıfır değildir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Net kuvvet sıfırsa net torkun da sıfır olduğunu sanmak",
+    "aciklama": "Kuvvetler zıt yönlüdür ve net kuvvet sıfırdır, ama ikisi de aynı yönde döndürür; torklar toplanır."
+   },
+   "B": {
+    "etiket": "Yalnız bir eli hesaba katmak",
+    "aciklama": "$(0.20)(15) = 3.0$ N·m tek elin torkudur; iki el aynı yönde tork verir."
+   },
+   "C": {
+    "etiket": "Kuvvet kolu olarak çapı almak",
+    "aciklama": "Her elin kuvvet kolu eksene uzaklıktır (0.20 m), çap (0.40 m) değil."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.3)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Kuvvet çifti (couple)",
+   "ipucu": "Her kuvvetin döndürme yönüne bak.",
+   "sikHata": "ΣF = 0 ⇒ Στ = 0 sanmak",
+   "cedKonu": "5.3",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_34",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 33,
+  "numara": 34,
+  "konu": "5.4 Rotational Inertia: Rotational Inertia of Point Masses on a Rod",
+  "zorluk": "easy",
+  "govde": "Three small spheres are fixed to a light rod that rotates about an axis perpendicular to the rod at one end. Their masses and distances from the axis are listed.<br/><table class='u-table'><tr><th>Sphere</th><th>Mass (kg)</th><th>Distance from axis (m)</th></tr><tr><td>1</td><td>2.0</td><td>0.10</td></tr><tr><td>2</td><td>2.0</td><td>0.20</td></tr><tr><td>3</td><td>2.0</td><td>0.30</td></tr></table>What is the rotational inertia of the system about the axis?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$1.2\\text{ kg}\\cdot\\text{m}^2$"
+   },
+   {
+    "id": "B",
+    "text": "$0.54\\text{ kg}\\cdot\\text{m}^2$"
+   },
+   {
+    "id": "C",
+    "text": "$0.28\\text{ kg}\\cdot\\text{m}^2$"
+   },
+   {
+    "id": "D",
+    "text": "$0.72\\text{ kg}\\cdot\\text{m}^2$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $I = \\sum m_i r_i^2 = 2.0(0.010) + 2.0(0.040) + 2.0(0.090)$.<br/>2. $I = 0.020 + 0.080 + 0.18 = 0.28$ kg·m².",
+  "genel_hatirlatma": "Nokta kütleler için $I = \\sum mr^2$; her terimde ayrı kare.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Uzaklığın karesini almamak",
+    "aciklama": "$\\sum mr = 2.0(0.60) = 1.2$; eylemsizlik momenti $\\sum mr^2$'dir."
+   },
+   "B": {
+    "etiket": "Tüm kütleyi en uzak noktada toplamak",
+    "aciklama": "$6.0(0.30)^2 = 0.54$; her küre kendi uzaklığıyla katkı verir."
+   },
+   "D": {
+    "etiket": "Uzaklıkları toplayıp karelemek",
+    "aciklama": "$2.0(0.10 + 0.20 + 0.30)^2$; kareler tek tek alınıp toplanır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.4)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "I = Σmr²",
+   "ipucu": "m, r, mr² tablosu kur.",
+   "sikHata": "Σmr hesaplamak",
+   "cedKonu": "5.4",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_35",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 34,
+  "numara": 35,
+  "konu": "5.4 Rotational Inertia: Ranking Rotational Inertia",
+  "zorluk": "medium",
+  "govde": "Each of four systems consists of a single small object attached to a light rod that rotates about a fixed axis. The table gives the object's mass and its distance from the axis.<br/><table class='u-table'><tr><th>System</th><th>Mass (kg)</th><th>Distance (m)</th></tr><tr><td>P</td><td>4.0</td><td>0.50</td></tr><tr><td>Q</td><td>1.0</td><td>1.2</td></tr><tr><td>R</td><td>2.0</td><td>0.80</td></tr><tr><td>S</td><td>8.0</td><td>0.30</td></tr></table>Which system has the greatest rotational inertia about its axis?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "S"
+   },
+   {
+    "id": "B",
+    "text": "Q"
+   },
+   {
+    "id": "C",
+    "text": "R"
+   },
+   {
+    "id": "D",
+    "text": "P"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $I = mr^2$: P $1.0$, Q $1.44$, R $1.28$, S $0.72$ kg·m².<br/>2. En büyük Q: uzaklığın karesi küçük kütleyi dengeledi.",
+  "genel_hatirlatma": "$I$ kütleyle doğrusal, uzaklıkla karesel artar; uzaklık daha baskındır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "En büyük kütleyi seçmek",
+    "aciklama": "$I_S = 8.0(0.09) = 0.72$ kg·m²; kütle eksene yakın olduğu için en küçüklerden biridir."
+   },
+   "C": {
+    "etiket": "Kütle ve uzaklık çarpımına ($mr$) bakmak",
+    "aciklama": "$m r$ ölçütüyle R (1.6) öne çıkar; ama $I = mr^2$: $I_R = 1.28$ kg·m²."
+   },
+   "D": {
+    "etiket": "Uzaklığın karesini atlamak",
+    "aciklama": "$I_P = 4.0(0.25) = 1.0$ kg·m²; Q'nun 1.44 kg·m²'sinden küçük."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.4)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "I = mr²",
+   "ipucu": "Karesini almayı unutma.",
+   "sikHata": "En ağırını seçmek",
+   "cedKonu": "5.4",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_36",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 35,
+  "numara": 36,
+  "konu": "5.4 Rotational Inertia: Rotational Inertia about Different Axes",
+  "zorluk": "medium",
+  "govde": "A light rod of length $1.0\\text{ m}$ has a $3.0\\text{ kg}$ point mass at one end and a $1.0\\text{ kg}$ point mass at the other end. What is the ratio of the system's rotational inertia about a perpendicular axis through the $1.0\\text{ kg}$ end to its rotational inertia about a perpendicular axis through the center of the rod?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "3.0"
+   },
+   {
+    "id": "B",
+    "text": "1.0"
+   },
+   {
+    "id": "C",
+    "text": "4.0"
+   },
+   {
+    "id": "D",
+    "text": "0.33"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. Merkez ekseni: $I_c = 3.0(0.50)^2 + 1.0(0.50)^2 = 0.75 + 0.25 = 1.0$ kg·m².<br/>2. 1.0 kg'lık uç ekseni: $I_u = 3.0(1.0)^2 + 1.0(0)^2 = 3.0$ kg·m².<br/>3. Oran $= 3.0$.",
+  "genel_hatirlatma": "Eylemsizlik momenti eksene bağlıdır; eksen değişince her $r$ yeniden ölçülür.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Eksen değişince $I$'nın değişmediğini sanmak",
+    "aciklama": "Merkeze göre $I = 1.0$ kg·m², 1.0 kg'lık uca göre $I = 3.0$ kg·m²; $r$'ler eksene göre yeniden ölçülmeli."
+   },
+   "C": {
+    "etiket": "Tüm kütleyi 1.0 m uzakta saymak",
+    "aciklama": "1.0 kg'lık kütle eksen üzerindedir ($r = 0$) ve katkı vermez; yalnız 3.0 kg'lık kütle 1.0 m uzaktadır."
+   },
+   "D": {
+    "etiket": "Oranı ters kurmak",
+    "aciklama": "Soru uç eksenin merkez eksene oranını istiyor: $3.0/1.0$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.4)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "I eksene bağlı",
+   "ipucu": "Eksen üzerindeki kütle r = 0.",
+   "sikHata": "r'leri eski eksenden ölçmek",
+   "cedKonu": "5.4",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_37",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 36,
+  "numara": 37,
+  "konu": "5.4 Rotational Inertia: Composite Object: Disk with Added Mass",
+  "zorluk": "medium",
+  "govde": "A uniform solid disk of mass $2.0\\text{ kg}$ and radius $0.30\\text{ m}$ rotates about a perpendicular axis through its center ($I_{disk} = \\tfrac12 MR^2$). A small $0.50\\text{ kg}$ lump of clay is stuck to the rim. What is the rotational inertia of the disk–clay system about the axis?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$0.090\\text{ kg}\\cdot\\text{m}^2$"
+   },
+   {
+    "id": "B",
+    "text": "$0.135\\text{ kg}\\cdot\\text{m}^2$"
+   },
+   {
+    "id": "C",
+    "text": "$0.11\\text{ kg}\\cdot\\text{m}^2$"
+   },
+   {
+    "id": "D",
+    "text": "$0.225\\text{ kg}\\cdot\\text{m}^2$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Disk: $\\tfrac12(2.0)(0.30)^2 = 0.090$ kg·m².<br/>2. Kil (nokta kütle, $r = R$): $(0.50)(0.30)^2 = 0.045$ kg·m².<br/>3. Toplam: $0.135$ kg·m².",
+  "genel_hatirlatma": "Bileşik cisimde parçaların $I$'ları aynı eksene göre toplanır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Kili hesaba katmamak",
+    "aciklama": "$0.090$ kg·m² yalnız diskin $I$'sıdır; kenardaki kil $mR^2$ ekler."
+   },
+   "C": {
+    "etiket": "Kili diskin parçası gibi dağıtmak",
+    "aciklama": "$\\tfrac12(2.5)(0.09) \\approx 0.11$ kili diskin içine yaymış olur; kil tümüyle kenarda, $I_{kil} = mR^2$."
+   },
+   "D": {
+    "etiket": "Diske çember formülü uygulamak",
+    "aciklama": "$(2.5)(0.09)$ disk için $MR^2$ kullanır; dolu diskte $\\tfrac12 MR^2$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.4)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "I_toplam = ΣI_parça",
+   "ipucu": "Parça parça hesapla.",
+   "sikHata": "Kili unutmak",
+   "cedKonu": "5.4",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_38",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 37,
+  "numara": 38,
+  "konu": "5.4 Rotational Inertia: Finding Mass from Parallel-Axis Data",
+  "zorluk": "hard",
+  "govde": "A student measures the rotational inertia $I$ of a uniform rod about several axes, each perpendicular to the rod and a distance $d$ from its center.<br/><table class='u-table'><tr><th>$d$ (m)</th><th>0</th><th>0.10</th><th>0.20</th><th>0.30</th></tr><tr><td>$I$ (kg·m²)</td><td>0.040</td><td>0.060</td><td>0.120</td><td>0.220</td></tr></table>Using the parallel axis theorem, $I = I_{cm} + Md^2$, what is the mass $M$ of the rod?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$0.60\\text{ kg}$"
+   },
+   {
+    "id": "B",
+    "text": "$0.040\\text{ kg}$"
+   },
+   {
+    "id": "C",
+    "text": "$0.50\\text{ kg}$"
+   },
+   {
+    "id": "D",
+    "text": "$2.0\\text{ kg}$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $I$'yı $d^2$'ye karşı çizince doğru: eğim $M$, kesişim $I_{cm}$.<br/>2. $d^2$: 0, 0.010, 0.040, 0.090 m².<br/>3. $M = (0.220 - 0.040)/(0.090 - 0) = 2.0$ kg. Kontrol: $0.040 + 2.0(0.010) = 0.060$ ✓.",
+  "genel_hatirlatma": "$I = I_{cm} + Md^2$: $I$–$d^2$ grafiğinin eğimi kütle, kesişimi $I_{cm}$'dir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "$I$–$d$ eğimini kütle sanmak",
+    "aciklama": "$(0.22 - 0.04)/0.30 = 0.60$; teorem $d^2$ ile doğrusaldır, eğim $\\Delta I/\\Delta(d^2)$ alınmalı."
+   },
+   "B": {
+    "etiket": "Kesişimi kütle sanmak",
+    "aciklama": "0.040 kg·m², $d = 0$'daki değer yani $I_{cm}$'dir."
+   },
+   "C": {
+    "etiket": "Eğimi ters almak",
+    "aciklama": "$\\Delta(d^2)/\\Delta I = 0.09/0.18 = 0.50$; $M = \\Delta I/\\Delta(d^2)$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.4)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Paralel eksen, I vs d²",
+   "ipucu": "d'nin karesini al.",
+   "sikHata": "I–d eğimini kullanmak",
+   "cedKonu": "5.4",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_39",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 38,
+  "numara": 39,
+  "konu": "5.4 Rotational Inertia: Effect of Mass Distribution",
+  "zorluk": "easy",
+  "govde": "Two wheels have the same mass and the same radius. In wheel A, almost all the mass is concentrated in a thin rim. In wheel B, the mass is spread uniformly throughout a solid disk. Which wheel has the greater rotational inertia about its central axle?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "Wheel B"
+   },
+   {
+    "id": "B",
+    "text": "Wheel A"
+   },
+   {
+    "id": "C",
+    "text": "They are equal because they have the same mass and radius."
+   },
+   {
+    "id": "D",
+    "text": "It cannot be determined without knowing how fast the wheels rotate."
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $I = \\sum mr^2$: A'da tüm kütle $r = R$'de.<br/>2. B'de kütlenin bir kısmı eksene yakın, ortalama $r^2$ daha küçük.<br/>3. $I_A = MR^2 \\gt I_B = \\tfrac12 MR^2$.",
+  "genel_hatirlatma": "Kütle eksenden uzakta toplandıkça $I$ büyür.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Dolu cismin daha “ağır” göründüğünü düşünmek",
+    "aciklama": "Kütleler eşit; B'nin kütlesinin çoğu eksene yakındır, bu yüzden $I_B = \\tfrac12 MR^2 \\lt I_A = MR^2$."
+   },
+   "C": {
+    "etiket": "$I$'nın yalnız kütle ve boyuta bağlı olduğunu sanmak",
+    "aciklama": "$I$ kütlenin eksene göre <em>dağılımına</em> bağlıdır."
+   },
+   "D": {
+    "etiket": "$I$'yı harekete bağlı sanmak",
+    "aciklama": "Eylemsizlik momenti yalnız kütle dağılımı ve eksene bağlıdır, açısal hıza bağlı değildir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.4)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Kütle dağılımı",
+   "ipucu": "Kütle nerede?",
+   "sikHata": "Aynı kütle = aynı I",
+   "cedKonu": "5.4",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_40",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 39,
+  "numara": 40,
+  "konu": "5.4 Rotational Inertia: Scaling Rotational Inertia of a Hoop",
+  "zorluk": "medium",
+  "govde": "A thin hoop of mass $M$ and radius $R$ has rotational inertia $I_0 = MR^2$ about its central axis. A second thin hoop has mass $2M$ and radius $R/2$. What is the rotational inertia of the second hoop about its central axis?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$I_0$"
+   },
+   {
+    "id": "B",
+    "text": "$2I_0$"
+   },
+   {
+    "id": "C",
+    "text": "$I_0/2$"
+   },
+   {
+    "id": "D",
+    "text": "$I_0/4$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $I = MR^2$ → $I_2 = (2M)(R/2)^2 = 2M \\cdot \\tfrac{R^2}{4}$.<br/>2. $I_2 = \\tfrac12 MR^2 = I_0/2$.",
+  "genel_hatirlatma": "Oran sorularında $I \\propto MR^2$ yazıp çarpanları yerleştirin.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Yarıçapı karelemeyi unutmak",
+    "aciklama": "$2M \\times R/2 = MR$ gibi doğrusal düşünülmüş; $I \\propto R^2$, yarıçap yarıya inince $I$ dörtte birine düşer."
+   },
+   "B": {
+    "etiket": "Yarıçap değişimini yok saymak",
+    "aciklama": "Yalnız kütle iki katı alınmış; $R^2$ çarpanı $\\tfrac14$'tür."
+   },
+   "D": {
+    "etiket": "Kütle değişimini yok saymak",
+    "aciklama": "Yalnız yarıçap etkisi alınmış; kütle iki katı olduğu için $\\tfrac14 \\times 2 = \\tfrac12$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.4)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "I ∝ MR²",
+   "ipucu": "Çarpanları ayrı ayrı uygula.",
+   "sikHata": "R'yi karelemeyi unutmak",
+   "cedKonu": "5.4",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_41",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 40,
+  "numara": 41,
+  "konu": "5.4 Rotational Inertia: Change in Rotational Inertia When Masses Move Inward",
+  "zorluk": "medium",
+  "govde": "Two $1.5\\text{ kg}$ beads sit on a light horizontal rod, one on each side of a vertical rotation axis, each $0.40\\text{ m}$ from the axis. Both beads are moved to $0.20\\text{ m}$ from the axis. By how much does the rotational inertia of the system decrease?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$0.24\\text{ kg}\\cdot\\text{m}^2$"
+   },
+   {
+    "id": "B",
+    "text": "$0.36\\text{ kg}\\cdot\\text{m}^2$"
+   },
+   {
+    "id": "C",
+    "text": "$0.18\\text{ kg}\\cdot\\text{m}^2$"
+   },
+   {
+    "id": "D",
+    "text": "$0.12\\text{ kg}\\cdot\\text{m}^2$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $I_i = 2(1.5)(0.40)^2 = 0.48$ kg·m².<br/>2. $I_f = 2(1.5)(0.20)^2 = 0.12$ kg·m².<br/>3. Azalma: $0.48 - 0.12 = 0.36$ kg·m² (uzaklık yarıya inince $I$ dörtte birine düştü).",
+  "genel_hatirlatma": "$I \\propto r^2$: kütleleri eksene yaklaştırmak $I$'yı hızla azaltır.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "$I$'yı $r$ ile doğrusal orantılı sanmak",
+    "aciklama": "Uzaklık yarıya inince $I$'nın da yarıya ineceği varsayılmış ($0.48 \\to 0.24$); $I \\propto r^2$ olduğundan dörtte birine iner."
+   },
+   "C": {
+    "etiket": "Yalnız bir boncuğu saymak",
+    "aciklama": "$1.5(0.16 - 0.04) = 0.18$ tek boncuğun katkısıdır; iki boncuk var."
+   },
+   "D": {
+    "etiket": "Son değeri değişim sanmak",
+    "aciklama": "$0.12$ kg·m² yeni eylemsizlik momentidir; azalma $0.48 - 0.12$'dir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.4)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "I = Σmr², değişim",
+   "ipucu": "Önce iki I'yı ayrı hesapla.",
+   "sikHata": "Değişim yerine son değeri vermek",
+   "cedKonu": "5.4",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_42",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 41,
+  "numara": 42,
+  "konu": "5.4 Rotational Inertia: Point Masses at the Corners of a Rectangle",
+  "zorluk": "hard",
+  "govde": "Four $1.0\\text{ kg}$ point masses are connected by light rods to form a rectangle. Their coordinates are listed. The system rotates about an axis perpendicular to the plane of the rectangle through mass 1.<br/><table class='u-table'><tr><th>Mass</th><th>$x$ (m)</th><th>$y$ (m)</th></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>2</td><td>0.30</td><td>0</td></tr><tr><td>3</td><td>0</td><td>0.40</td></tr><tr><td>4</td><td>0.30</td><td>0.40</td></tr></table>What is the rotational inertia of the system about this axis?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$0.25\\text{ kg}\\cdot\\text{m}^2$"
+   },
+   {
+    "id": "B",
+    "text": "$1.2\\text{ kg}\\cdot\\text{m}^2$"
+   },
+   {
+    "id": "C",
+    "text": "$0.74\\text{ kg}\\cdot\\text{m}^2$"
+   },
+   {
+    "id": "D",
+    "text": "$0.50\\text{ kg}\\cdot\\text{m}^2$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. Eksen kütle 1'de: $r_1 = 0$.<br/>2. $r_2 = 0.30$, $r_3 = 0.40$, $r_4 = \\sqrt{0.09 + 0.16} = 0.50$ m.<br/>3. $I = 1.0(0 + 0.090 + 0.16 + 0.25) = 0.50$ kg·m².",
+  "genel_hatirlatma": "$r$, eksenden kütleye dik uzaklıktır; düzlemde $r^2 = x^2 + y^2$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Ekseni dikdörtgenin merkezine koymak",
+    "aciklama": "Merkeze göre her kütle 0.25 m uzaktadır ve $4(0.0625) = 0.25$ çıkar; ama eksen kütle 1'den geçiyor."
+   },
+   "B": {
+    "etiket": "Uzaklıkların karesini almamak",
+    "aciklama": "$0.30 + 0.40 + 0.50 = 1.2$; $I = \\sum mr^2$."
+   },
+   "C": {
+    "etiket": "Köşegen uzaklığını yanlış bulmak",
+    "aciklama": "Kütle 4'ün uzaklığı $0.30 + 0.40 = 0.70$ m değil, $\\sqrt{0.30^2 + 0.40^2} = 0.50$ m'dir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.4)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "I = Σm(x²+y²)",
+   "ipucu": "r² = x² + y²",
+   "sikHata": "Köşegeni kenarların toplamı sanmak",
+   "cedKonu": "5.4",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_43",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 42,
+  "numara": 43,
+  "konu": "5.4 Rotational Inertia: Why a Rod Is Easier to Spin about Its Center",
+  "zorluk": "medium",
+  "govde": "A uniform rod is easier to start rotating about a perpendicular axis through its center than about a perpendicular axis through one end. Which statement best explains this?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "About the center, gravity exerts a larger torque that helps start the rotation."
+   },
+   {
+    "id": "B",
+    "text": "About the center, half of the rod's mass does not contribute to the rotational inertia."
+   },
+   {
+    "id": "C",
+    "text": "The rod's mass is smaller when it rotates about its center."
+   },
+   {
+    "id": "D",
+    "text": "About the center, the rod's mass is on average closer to the axis, and rotational inertia depends on the square of each element's distance from the axis."
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $I = \\sum mr^2$; merkez eksende en uzak eleman $L/2$, uç eksende $L$ uzaklıkta.<br/>2. Bu yüzden $I_{merkez} = \\tfrac{1}{12}ML^2 \\lt I_{uç} = \\tfrac13 ML^2$ (4 kat fark).<br/>3. Daha küçük $I$, aynı torkla daha büyük $\\alpha$ demektir.",
+  "genel_hatirlatma": "Kütle merkezinden geçen eksen en küçük eylemsizlik momentini verir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Torku eylemsizlikle karıştırmak",
+    "aciklama": "Soru döndürmeye karşı direnci (eylemsizliği) soruyor; merkezden geçen eksene göre yer çekiminin torku zaten sıfırdır."
+   },
+   "B": {
+    "etiket": "Kütlenin bir kısmının katkı vermediğini sanmak",
+    "aciklama": "Her iki yarı da $\\sum mr^2$'ye katkı verir; yalnız ortalama $r^2$ daha küçüktür."
+   },
+   "C": {
+    "etiket": "Kütlenin eksene bağlı olduğunu sanmak",
+    "aciklama": "Kütle değişmez; değişen kütlenin eksene göre dağılımıdır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.4)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "I_cm en küçük",
+   "ipucu": "Ortalama r² hangi eksende küçük?",
+   "sikHata": "Kütlenin eksene göre değiştiğini sanmak",
+   "cedKonu": "5.4",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_44",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 43,
+  "numara": 44,
+  "konu": "5.4 Rotational Inertia: Using a Given Formula for a Solid Disk",
+  "zorluk": "easy",
+  "govde": "A uniform solid disk has mass $4.0\\text{ kg}$ and radius $0.50\\text{ m}$. Its rotational inertia about a perpendicular axis through its center is $I = \\tfrac12 MR^2$. What is $I$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$0.50\\text{ kg}\\cdot\\text{m}^2$"
+   },
+   {
+    "id": "B",
+    "text": "$1.0\\text{ kg}\\cdot\\text{m}^2$"
+   },
+   {
+    "id": "C",
+    "text": "$2.0\\text{ kg}\\cdot\\text{m}^2$"
+   },
+   {
+    "id": "D",
+    "text": "$0.25\\text{ kg}\\cdot\\text{m}^2$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $I = \\tfrac12 MR^2 = \\tfrac12(4.0)(0.50)^2$.<br/>2. $I = \\tfrac12(4.0)(0.25) = 0.50$ kg·m².",
+  "genel_hatirlatma": "Verilen formülü doğru değerlerle kullanın; $R$'nin karesini almayı unutmayın.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "$\\tfrac12$ çarpanını unutmak",
+    "aciklama": "$MR^2 = 1.0$ kg·m² ince çember formülüdür."
+   },
+   "C": {
+    "etiket": "Yarıçapı karelemeyi unutmak",
+    "aciklama": "$MR = 2.0$; formülde $R^2$ var ve birim kg·m² olmalı."
+   },
+   "D": {
+    "etiket": "$\\tfrac12$ çarpanını iki kez uygulamak",
+    "aciklama": "$\\tfrac12 \\cdot \\tfrac12 MR^2 = 0.25$; formülde tek bir $\\tfrac12$ vardır: $\\tfrac12(4.0)(0.25) = 0.50$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.4)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "I = ½MR²",
+   "ipucu": "Önce R².",
+   "sikHata": "½'yi unutmak",
+   "cedKonu": "5.4",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_45",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 44,
+  "numara": 45,
+  "konu": "5.5 Rotational Equilibrium and Newton's First Law in Rotational Form: Which See-Saw Arrangement Balances",
+  "zorluk": "easy",
+  "govde": "A uniform see-saw is pivoted at its center. Four arrangements of two children are listed, giving each child's mass and distance from the pivot.<br/><table class='u-table'><tr><th>Arrangement</th><th>Left child</th><th>Right child</th></tr><tr><td>W</td><td>20 kg at 1.5 m</td><td>30 kg at 1.0 m</td></tr><tr><td>X</td><td>20 kg at 2.0 m</td><td>40 kg at 0.50 m</td></tr><tr><td>Y</td><td>25 kg at 1.2 m</td><td>30 kg at 1.2 m</td></tr><tr><td>Z</td><td>10 kg at 3.0 m</td><td>20 kg at 2.0 m</td></tr></table>Which arrangement is in rotational equilibrium?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "X"
+   },
+   {
+    "id": "B",
+    "text": "Y"
+   },
+   {
+    "id": "C",
+    "text": "W"
+   },
+   {
+    "id": "D",
+    "text": "Z"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. Pivot ortada: tahtanın ağırlığı tork vermez. Denge: $m_L d_L = m_R d_R$.<br/>2. W: $20(1.5) = 30 = 30(1.0)$ ✓. Diğerleri eşit değil.",
+  "genel_hatirlatma": "Ortadan pivotlu tahterevallide denge: $m_1 d_1 = m_2 d_2$ ($g$ sadeleşir).",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Kütle oranını uzaklıkla değil uzaklık farkıyla eşlemek",
+    "aciklama": "Sol: $20(2.0) = 40$, sağ: $40(0.50) = 20$ kg·m; eşit değil, sol aşağı iner."
+   },
+   "B": {
+    "etiket": "Eşit uzaklığın dengeye yettiğini sanmak",
+    "aciklama": "Uzaklıklar eşit ama kütleler farklı: $30 \\ne 36$ kg·m."
+   },
+   "D": {
+    "etiket": "Toplam uzaklık ya da toplam kütleye bakmak",
+    "aciklama": "Sol: $10(3.0) = 30$, sağ: $20(2.0) = 40$ kg·m; sağ aşağı iner."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.5)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "m₁d₁ = m₂d₂",
+   "ipucu": "Her satırda md çarpımını karşılaştır.",
+   "sikHata": "Yalnız uzaklığa bakmak",
+   "cedKonu": "5.5",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_46",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 45,
+  "numara": 46,
+  "konu": "5.5 Rotational Equilibrium and Newton's First Law in Rotational Form: Support Forces on a Loaded Beam",
+  "zorluk": "medium",
+  "govde": "A horizontal beam rests on two supports, A and B. The forces and their positions are listed in the table (positions measured from support A).<br/><table class='u-table'><tr><th>Item</th><th>Force</th><th>Position (m)</th></tr><tr><td>Support A</td><td>$N_A$ (up)</td><td>0</td></tr><tr><td>Weight of uniform beam</td><td>200 N (down)</td><td>2.0</td></tr><tr><td>Box</td><td>300 N (down)</td><td>3.0</td></tr><tr><td>Support B</td><td>$N_B$ (up)</td><td>4.0</td></tr></table>What is the magnitude of $N_A$?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$175\\text{ N}$"
+   },
+   {
+    "id": "B",
+    "text": "$325\\text{ N}$"
+   },
+   {
+    "id": "C",
+    "text": "$250\\text{ N}$"
+   },
+   {
+    "id": "D",
+    "text": "$500\\text{ N}$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. Ekseni B'ye koyun ($N_B$ düşer): $N_A(4.0) = 200(2.0) + 300(1.0) = 700$.<br/>2. $N_A = 175$ N.<br/>3. Kontrol: $N_B = 500 - 175 = 325$ N; A'ya göre $325(4.0) = 1300 = 200(2.0) + 300(3.0)$ ✓.",
+  "genel_hatirlatma": "Bilinmeyen bir kuvveti bulmak için ekseni diğer bilinmeyenin üzerine koyun.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Diğer desteğin kuvvetini vermek",
+    "aciklama": "A'ya göre tork alınınca $N_B = 325$ N bulunur; soru $N_A$'yı istiyor: $500 - 325$."
+   },
+   "C": {
+    "etiket": "Yükü desteklere eşit paylaştırmak",
+    "aciklama": "Kutu ortada değil, B'ye daha yakın; B daha fazla yük taşır."
+   },
+   "D": {
+    "etiket": "Toplam ağırlığı tek desteğe vermek",
+    "aciklama": "İki destek birlikte $500$ N taşır; tork dengesiyle paylaştırılmalı."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.5)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Στ = 0 eksen seçimi",
+   "ipucu": "Eksen B'de.",
+   "sikHata": "Eşit paylaşım",
+   "cedKonu": "5.5",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_47",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 46,
+  "numara": 47,
+  "konu": "5.5 Rotational Equilibrium and Newton's First Law in Rotational Form: How Far Can a Person Walk Before Tipping",
+  "zorluk": "hard",
+  "govde": "A uniform plank of length $6.0\\text{ m}$ and mass $30\\text{ kg}$ rests on two supports, one at its left end ($x = 0$) and one at $x = 4.0\\text{ m}$. A $60\\text{ kg}$ person walks from the center toward the right end. What is the largest value of $x$ the person can reach before the plank begins to tip?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$5.5\\text{ m}$"
+   },
+   {
+    "id": "B",
+    "text": "$4.5\\text{ m}$"
+   },
+   {
+    "id": "C",
+    "text": "$6.0\\text{ m}$"
+   },
+   {
+    "id": "D",
+    "text": "$5.0\\text{ m}$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Devrilme başlarken sol destek kuvveti sıfırdır; tahta yalnız $x = 4.0$ m desteğine dayanır.<br/>2. Bu desteğe göre: tahtanın ağırlığı (300 N, $x = 3.0$ m, kuvvet kolu 1.0 m) ile kişinin ağırlığı (600 N, kuvvet kolu $x - 4.0$) dengelenir.<br/>3. $300(1.0) = 600(x - 4.0)$ → $x - 4.0 = 0.50$ → $x = 4.5$ m.",
+  "genel_hatirlatma": "Devrilme anında kalkan destekteki normal kuvvet sıfırdır; torkları kalan desteğe göre alın.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Tahtanın kuvvet kolunu yanlış noktadan ölçmek",
+    "aciklama": "$300(3.0) = 600(x - 4.0)$ yazılmış; devrilme ekseni $x = 4.0$ m'deki destektir, tahtanın ağırlığının bu eksene kuvvet kolu $1.0$ m'dir."
+   },
+   "C": {
+    "etiket": "Kütleleri ters yerleştirmek",
+    "aciklama": "$600(1.0) = 300(x - 4.0)$ hesabı tahtanın ve kişinin ağırlığını yer değiştirir."
+   },
+   "D": {
+    "etiket": "Kütleleri hesaba katmamak",
+    "aciklama": "Kişinin desteğin dışına, tahtanın kütle merkezinin içerideki uzaklığı (1.0 m) kadar gidebileceği varsayılmış; kişi tahtanın iki katı ağırdır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.5)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Devrilme koşulu N = 0",
+   "ipucu": "Eksen devrilme kenarında.",
+   "sikHata": "Kuvvet kolunu uçtan ölçmek",
+   "cedKonu": "5.5",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_48",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 47,
+  "numara": 48,
+  "konu": "5.5 Rotational Equilibrium and Newton's First Law in Rotational Form: Balancing a Meter Stick with Two Hanging Masses",
+  "zorluk": "medium",
+  "govde": "A uniform meter stick hangs from a string attached at its $50\\text{ cm}$ mark. A $0.30\\text{ kg}$ mass hangs at the $20\\text{ cm}$ mark. Where must a $0.20\\text{ kg}$ mass be hung for the stick to balance horizontally?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "At the $80\\text{ cm}$ mark"
+   },
+   {
+    "id": "B",
+    "text": "At the $70\\text{ cm}$ mark"
+   },
+   {
+    "id": "C",
+    "text": "At the $5\\text{ cm}$ mark"
+   },
+   {
+    "id": "D",
+    "text": "At the $95\\text{ cm}$ mark"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. Çubuk ortasından asılı: kendi ağırlığı tork vermez.<br/>2. $0.30(50 - 20) = 0.20\\,d$ → $d = 45$ cm.<br/>3. Kütle pivotun sağında: $50 + 45 = 95$ cm.",
+  "genel_hatirlatma": "Ortadan asılı düzgün çubukta $m_1 d_1 = m_2 d_2$; uzaklıklar pivottan ölçülür.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Simetrik konumun dengelediğini sanmak",
+    "aciklama": "80 cm, pivottan aynı uzaklık (30 cm); kütleler farklı olduğu için torklar eşit olmaz."
+   },
+   "B": {
+    "etiket": "Kütle oranını ters uygulamak",
+    "aciklama": "$d = 30 \\times (0.20/0.30) = 20$ cm hesabı oranı ters kurar; hafif kütle daha <em>uzağa</em> asılmalı."
+   },
+   "C": {
+    "etiket": "Pivotun yanlış tarafına koymak",
+    "aciklama": "Aynı taraftaki iki kütlenin torkları toplanır, dengelenmez."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.5)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "m₁d₁ = m₂d₂",
+   "ipucu": "Uzaklığı pivottan ölç.",
+   "sikHata": "Ölçek değerini uzaklık sanmak",
+   "cedKonu": "5.5",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_49",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 48,
+  "numara": 49,
+  "konu": "5.5 Rotational Equilibrium and Newton's First Law in Rotational Form: Hinge Force on a Beam Held by a Vertical Rope",
+  "zorluk": "hard",
+  "govde": "A uniform horizontal beam is hinged to a wall at its left end and held level by a vertical rope. The forces on the beam are listed (positions measured from the hinge; use $g = 10\\text{ m/s}^2$).<br/><table class='u-table'><tr><th>Item</th><th>Force</th><th>Position (m)</th></tr><tr><td>Hinge</td><td>$F_H$ (vertical, direction unknown)</td><td>0</td></tr><tr><td>Weight of beam (8.0 kg, length 2.0 m)</td><td>80 N down</td><td>1.0</td></tr><tr><td>Rope</td><td>$T$ up</td><td>1.5</td></tr><tr><td>Lamp (4.0 kg)</td><td>40 N down</td><td>2.0</td></tr></table>What is the force exerted by the hinge on the beam?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$13\\text{ N}$, upward"
+   },
+   {
+    "id": "B",
+    "text": "$107\\text{ N}$, upward"
+   },
+   {
+    "id": "C",
+    "text": "$13\\text{ N}$, downward"
+   },
+   {
+    "id": "D",
+    "text": "$120\\text{ N}$, upward"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. Menteşeye göre tork ($F_H$ düşer): $T(1.5) = 80(1.0) + 40(2.0) = 160$ → $T \\approx 106.7$ N.<br/>2. $\\sum F_y = 0$: $F_H + 106.7 = 80 + 40$ → $F_H \\approx 13$ N.<br/>3. Pozitif çıktı: menteşe kirişi yukarı iter.",
+  "genel_hatirlatma": "Önce menteşeye göre torkla bilinmeyen ip kuvvetini, sonra kuvvet dengesiyle menteşe kuvvetini bulun.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "İp gerilmesini menteşe kuvveti sanmak",
+    "aciklama": "Menteşeye göre tork alınca $T \\approx 107$ N bulunur; menteşe kuvveti $\\sum F_y = 0$'dan gelir."
+   },
+   "C": {
+    "etiket": "Kuvvet dengesinde işaret hatası",
+    "aciklama": "$F_H + T = 120$ N → $F_H = 120 - 107 = +13$ N, yani yukarı."
+   },
+   "D": {
+    "etiket": "İpin taşıdığı yükü unutmak",
+    "aciklama": "120 N toplam ağırlıktır; ip bunun çoğunu taşır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.5)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Στ = 0 ve ΣF = 0 birlikte",
+   "ipucu": "Menteşeyi eksen seç.",
+   "sikHata": "Yalnız tork denklemini kullanmak",
+   "cedKonu": "5.5",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_50",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 49,
+  "numara": 50,
+  "konu": "5.5 Rotational Equilibrium and Newton's First Law in Rotational Form: Choosing the Axis in an Equilibrium Problem",
+  "zorluk": "medium",
+  "govde": "A student solving for the tension in a cable that holds a hinged beam in equilibrium decides to calculate torques about the hinge. What is the main advantage of this choice?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "The net torque is zero only about the hinge, so no other point would give a valid equation."
+   },
+   {
+    "id": "B",
+    "text": "The weight of the beam exerts no torque about the hinge."
+   },
+   {
+    "id": "C",
+    "text": "Choosing the hinge makes the tension equal to the weight of the beam."
+   },
+   {
+    "id": "D",
+    "text": "The unknown force exerted by the hinge has zero lever arm about the hinge, so it does not appear in the torque equation."
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. Dengedeki cisimde $\\sum\\tau = 0$ her noktaya göre geçerlidir.<br/>2. Menteşe kuvvetinin büyüklüğü ve yönü bilinmez; menteşeye göre kuvvet kolu sıfır olduğundan denklemden düşer ve tek bilinmeyen gerilme kalır.",
+  "genel_hatirlatma": "Ekseni bilinmeyen kuvvetin üzerine koymak o bilinmeyeni yok eder.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Net torkun yalnız pivota göre sıfır olduğunu sanmak",
+    "aciklama": "Dengede net tork <em>her</em> noktaya göre sıfırdır; menteşe yalnız işi kolaylaştırır."
+   },
+   "B": {
+    "etiket": "Ağırlığın torkunu yok saymak",
+    "aciklama": "Kirişin ağırlığı kütle merkezinde etki eder ve menteşeye göre kuvvet kolu vardır."
+   },
+   "C": {
+    "etiket": "Eksen seçiminin sonucu değiştirdiğini sanmak",
+    "aciklama": "Eksen seçimi fiziksel sonucu değiştirmez; yalnız denklemi sadeleştirir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.5)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Akıllı eksen seçimi",
+   "ipucu": "Hangi kuvvet bilinmiyor?",
+   "sikHata": "Στ = 0 yalnız pivota göre sanmak",
+   "cedKonu": "5.5",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_51",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 50,
+  "numara": 51,
+  "konu": "5.5 Rotational Equilibrium and Newton's First Law in Rotational Form: Finding a Meter Stick's Mass from Balance Data",
+  "zorluk": "hard",
+  "govde": "A uniform meter stick of unknown mass $M$ has its center of mass at the $50\\text{ cm}$ mark. A student hangs a mass $m$ at the $0\\text{ cm}$ mark and slides a knife-edge pivot until the stick balances, recording the pivot position $x$.<br/><table class='u-table'><tr><th>$m$ (g)</th><th>50</th><th>100</th><th>150</th><th>200</th></tr><tr><td>$x$ (cm)</td><td>33.3</td><td>25.0</td><td>20.0</td><td>16.7</td></tr></table>What is the mass $M$ of the meter stick?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$100\\text{ g}$"
+   },
+   {
+    "id": "B",
+    "text": "$25\\text{ g}$"
+   },
+   {
+    "id": "C",
+    "text": "$200\\text{ g}$"
+   },
+   {
+    "id": "D",
+    "text": "$50\\text{ g}$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. Pivota göre: asılı kütlenin kuvvet kolu $x$, çubuğun ağırlığınınki $(50 - x)$.<br/>2. $m x = M(50 - x)$ → $M = \\dfrac{mx}{50 - x}$.<br/>3. 100 g satırı: $M = 100(25)/25 = 100$ g. 50 g satırı: $50(33.3)/16.7 \\approx 100$ g. Hepsi tutarlı.",
+  "genel_hatirlatma": "Düzgün çubuğun ağırlığı ortasından etki eder; pivot ortada değilse bu ağırlık tork verir ve bilinmeyen kütle bulunabilir.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Kuvvet kollarını ters eşlemek",
+    "aciklama": "$m(50 - x) = Mx$ yazılmış (ör. 50 g satırı: $50(16.7)/33.3 = 25$ g); asılı kütlenin kuvvet kolu $x$, çubuğun ağırlığınınki $50 - x$'tir."
+   },
+   "C": {
+    "etiket": "Asılı kütlenin kuvvet kolunu kütle merkezinden ölçmek",
+    "aciklama": "$m(50) = M(50 - x)$ yazılmış (100 g satırı: $5000/25 = 200$ g); kuvvet kolları pivottan ölçülür, asılı kütle için $x$."
+   },
+   "D": {
+    "etiket": "Çubuğun ağırlığının kuvvet kolunu 0 cm işaretinden ölçmek",
+    "aciklama": "$mx = M(50)$ yazılmış (100 g satırı: $2500/50 = 50$ g); çubuğun ağırlığı pivottan $50 - x$ uzaklıktadır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.5)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Bilinmeyen kütle, tork dengesi",
+   "ipucu": "Çubuğun ağırlığını da bir kuvvet olarak çiz.",
+   "sikHata": "Çubuğun ağırlığını unutmak",
+   "cedKonu": "5.5",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_52",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 51,
+  "numara": 52,
+  "konu": "5.5 Rotational Equilibrium and Newton's First Law in Rotational Form: Net Torque about Another Point in Equilibrium",
+  "zorluk": "easy",
+  "govde": "A beam is in static equilibrium. A student calculates the net torque on the beam about its left end and finds it to be zero. What is the net torque on the beam about its right end?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "Zero"
+   },
+   {
+    "id": "B",
+    "text": "It has the same magnitude as the torque from the weight about the left end, but opposite direction."
+   },
+   {
+    "id": "C",
+    "text": "It cannot be determined without knowing all the forces."
+   },
+   {
+    "id": "D",
+    "text": "It equals the weight of the beam times the beam's length."
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. Statik dengede $\\sum F = 0$ ve $\\sum\\tau = 0$.<br/>2. $\\sum F = 0$ iken net tork eksen seçimine bağlı değildir; sağ uca göre de sıfırdır.",
+  "genel_hatirlatma": "Dengedeki cismin net torku herhangi bir noktaya göre sıfırdır.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Eksen değişince net torkun yön değiştirdiğini sanmak",
+    "aciklama": "Tek tek torklar eksene göre değişir ama dengede <em>net</em> tork her noktaya göre sıfırdır."
+   },
+   "C": {
+    "etiket": "Denge koşulunun eksene bağlı olduğunu sanmak",
+    "aciklama": "$\\sum F = 0$ ve bir noktaya göre $\\sum\\tau = 0$ ise, her noktaya göre $\\sum\\tau = 0$'dır."
+   },
+   "D": {
+    "etiket": "Ağırlığın torkunu net tork sanmak",
+    "aciklama": "Ağırlığın sağ uca göre torku vardır ama destek kuvvetlerinin torkları onu dengeler."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.5)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Στ = 0 her noktaya göre",
+   "ipucu": "Denge her eksende denge.",
+   "sikHata": "Eksen seçiminin dengeyi değiştirdiğini sanmak",
+   "cedKonu": "5.5",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_53",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 52,
+  "numara": 53,
+  "konu": "5.5 Rotational Equilibrium and Newton's First Law in Rotational Form: Two People Carrying a Loaded Plank",
+  "zorluk": "medium",
+  "govde": "Two people carry a uniform horizontal plank, one at each end. The plank and its load are described in the table (use $g = 10\\text{ m/s}^2$).<br/><table class='u-table'><tr><th>Quantity</th><th>Value</th></tr><tr><td>Plank length</td><td>3.0 m</td></tr><tr><td>Plank mass</td><td>30 kg</td></tr><tr><td>Load mass</td><td>60 kg</td></tr><tr><td>Load position</td><td>1.0 m from the left end</td></tr></table>What upward force does the person at the left end exert?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$350\\text{ N}$"
+   },
+   {
+    "id": "B",
+    "text": "$450\\text{ N}$"
+   },
+   {
+    "id": "C",
+    "text": "$550\\text{ N}$"
+   },
+   {
+    "id": "D",
+    "text": "$400\\text{ N}$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. Sağ uca göre tork: $F_L(3.0) = 300(1.5) + 600(2.0) = 450 + 1200 = 1650$.<br/>2. $F_L = 550$ N.<br/>3. Kontrol: $F_R = 900 - 550 = 350$ N.",
+  "genel_hatirlatma": "Ekseni bir taşıyıcının üzerine koyarak diğerinin kuvvetini tek denklemde bulun.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Diğer kişinin kuvvetini vermek",
+    "aciklama": "350 N sağdaki kişinin kuvvetidir; yük sola yakın olduğu için soldaki kişi daha fazla taşır."
+   },
+   "B": {
+    "etiket": "Yükü eşit paylaştırmak",
+    "aciklama": "$900/2$; yük ortada değil."
+   },
+   "D": {
+    "etiket": "Tahtanın ağırlığını unutmak",
+    "aciklama": "Yalnız yük ele alınmış: $600(2.0)/3.0 = 400$ N; tahtanın 300 N'luk ağırlığı da paylaşılır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.5)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Στ = 0, iki destek",
+   "ipucu": "Eksen sağ uçta.",
+   "sikHata": "Tahtanın ağırlığını unutmak",
+   "cedKonu": "5.5",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_54",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 53,
+  "numara": 54,
+  "konu": "5.5 Rotational Equilibrium and Newton's First Law in Rotational Form: Constant Angular Velocity and Net Torque",
+  "zorluk": "easy",
+  "govde": "A wheel spins with a constant angular velocity of $5.0\\text{ rad/s}$ on a frictionless axle. Which statement about the net torque on the wheel is correct?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "A constant net torque in the direction of rotation is needed to keep the wheel spinning."
+   },
+   {
+    "id": "B",
+    "text": "The net torque is zero, because the angular velocity is not changing."
+   },
+   {
+    "id": "C",
+    "text": "The net torque is proportional to the angular velocity."
+   },
+   {
+    "id": "D",
+    "text": "The net torque is nonzero because points on the wheel have centripetal acceleration."
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $\\omega$ sabit → $\\alpha = 0$.<br/>2. $\\sum\\tau = I\\alpha = 0$.",
+  "genel_hatirlatma": "Net tork sıfırsa açısal hız sabittir (dönmede Newton'un birinci yasası).",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Hareketi sürdürmek için kuvvet/tork gerektiğini sanmak",
+    "aciklama": "Newton'un birinci yasası (dönme): tork yalnız $\\omega$'yı <em>değiştirmek</em> için gerekir."
+   },
+   "C": {
+    "etiket": "Torku $\\omega$ ile orantılı sanmak",
+    "aciklama": "$\\sum\\tau = I\\alpha$; tork açısal hızla değil açısal ivmeyle ilişkilidir."
+   },
+   "D": {
+    "etiket": "Merkezcil ivmeyi açısal ivme sanmak",
+    "aciklama": "Merkezcil ivme noktaların yön değişimidir; $\\alpha = 0$ olduğu için net tork sıfırdır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.5)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "Newton I (dönme)",
+   "ipucu": "α = 0 mı?",
+   "sikHata": "Dönmeyi sürdürmek için tork gerekir sanmak",
+   "cedKonu": "5.5",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_55",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 54,
+  "numara": 55,
+  "konu": "5.5 Rotational Equilibrium and Newton's First Law in Rotational Form: Cable Tension on a Hinged Beam with a Load",
+  "zorluk": "hard",
+  "govde": "A uniform horizontal beam of length $2.0\\text{ m}$ is hinged to a wall at its left end. A cable attached to the right end makes a $30^\\circ$ angle with the beam and pulls up and toward the wall. The other forces on the beam are listed (positions measured from the hinge; use $g = 10\\text{ m/s}^2$).<br/><table class='u-table'><tr><th>Item</th><th>Force</th><th>Position (m)</th></tr><tr><td>Weight of beam (10 kg)</td><td>100 N down</td><td>1.0</td></tr><tr><td>Hanging crate (20 kg)</td><td>200 N down</td><td>1.5</td></tr></table>What is the tension in the cable?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$200\\text{ N}$"
+   },
+   {
+    "id": "B",
+    "text": "$230\\text{ N}$"
+   },
+   {
+    "id": "C",
+    "text": "$300\\text{ N}$"
+   },
+   {
+    "id": "D",
+    "text": "$400\\text{ N}$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. Menteşeye göre tork (menteşe kuvveti düşer).<br/>2. CCW: $T\\sin30^\\circ(2.0) = T(1.0)$. CW: $100(1.0) + 200(1.5) = 400$ N·m.<br/>3. $T = 400$ N.",
+  "genel_hatirlatma": "Eğik kabloda yalnız kirişe dik bileşen ($T\\sin\\theta$) menteşeye göre tork verir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Kablonun dik bileşenini almamak",
+    "aciklama": "$T(2.0) = 400$ yazılmış; kablonun kirişe dik bileşeni $T\\sin 30^\\circ$'dir."
+   },
+   "B": {
+    "etiket": "Yanlış trigonometrik fonksiyon",
+    "aciklama": "$T\\cos 30^\\circ$ kirişe paralel bileşendir ve menteşeye göre tork vermez; dik bileşen $T\\sin 30^\\circ$."
+   },
+   "C": {
+    "etiket": "Gerilmeyi toplam ağırlık sanmak",
+    "aciklama": "Kablo eğik olduğu ve menteşe de yük taşıdığı için $T$ toplam ağırlığa eşit değildir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.5)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "T sinθ · L = Σ(mg·x)",
+   "ipucu": "Menteşeye göre tork al.",
+   "sikHata": "sin/cos karışıklığı",
+   "cedKonu": "5.5",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_56",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 55,
+  "numara": 56,
+  "konu": "5.6 Newton's Second Law in Rotational Form: Angular Acceleration from Torque and Inertia",
+  "zorluk": "easy",
+  "govde": "A net torque of $6.0\\text{ N}\\cdot\\text{m}$ acts on a wheel whose rotational inertia about its fixed axle is $1.5\\text{ kg}\\cdot\\text{m}^2$. What is the magnitude of the wheel's angular acceleration?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$4.0\\text{ rad/s}^2$"
+   },
+   {
+    "id": "B",
+    "text": "$9.0\\text{ rad/s}^2$"
+   },
+   {
+    "id": "C",
+    "text": "$0.25\\text{ rad/s}^2$"
+   },
+   {
+    "id": "D",
+    "text": "$7.5\\text{ rad/s}^2$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. $\\alpha = \\sum\\tau/I$.<br/>2. $\\alpha = 6.0/1.5 = 4.0$ rad/s².",
+  "genel_hatirlatma": "$\\alpha = \\sum\\tau/I$: $a = F/m$'nin dönme karşılığı.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Bölmek yerine çarpmak",
+    "aciklama": "$\\tau I = 9.0$; Newton'un ikinci yasası $\\alpha = \\tau/I$."
+   },
+   "C": {
+    "etiket": "Oranı ters kurmak",
+    "aciklama": "$I/\\tau = 0.25$; büyük tork daha <em>büyük</em> ivme vermelidir."
+   },
+   "D": {
+    "etiket": "Nicelikleri toplamak",
+    "aciklama": "Farklı birimli nicelikler toplanamaz."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.6)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "α = τ/I",
+   "ipucu": "F = ma ile eşle.",
+   "sikHata": "τ·I hesaplamak",
+   "cedKonu": "5.6",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_57",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 56,
+  "numara": 57,
+  "konu": "5.6 Newton's Second Law in Rotational Form: Rotational Inertia and Friction from Torque Data",
+  "zorluk": "hard",
+  "govde": "A student applies different known torques $\\tau$ to a wheel on an axle that has a small constant frictional torque, and measures the resulting angular acceleration $\\alpha$.<br/><table class='u-table'><tr><th>$\\tau$ (N·m)</th><th>0.10</th><th>0.20</th><th>0.30</th><th>0.40</th></tr><tr><td>$\\alpha$ (rad/s²)</td><td>0.30</td><td>0.80</td><td>1.30</td><td>1.80</td></tr></table>What is the rotational inertia of the wheel?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$0.33\\text{ kg}\\cdot\\text{m}^2$"
+   },
+   {
+    "id": "B",
+    "text": "$0.22\\text{ kg}\\cdot\\text{m}^2$"
+   },
+   {
+    "id": "C",
+    "text": "$5.0\\text{ kg}\\cdot\\text{m}^2$"
+   },
+   {
+    "id": "D",
+    "text": "$0.20\\text{ kg}\\cdot\\text{m}^2$"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $\\tau_{uyg} - \\tau_f = I\\alpha$ → $\\tau_{uyg} = I\\alpha + \\tau_f$.<br/>2. $\\tau$–$\\alpha$ eğimi: $I = (0.40 - 0.10)/(1.80 - 0.30) = 0.30/1.50 = 0.20$ kg·m².<br/>3. Kesişim: $\\tau_f = 0.10 - 0.20(0.30) = 0.040$ N·m.",
+  "genel_hatirlatma": "Sürtünme varken $I$, $\\tau$–$\\alpha$ grafiğinin eğimidir; kesişim sürtünme torkudur.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Tek satırdan $\\tau/\\alpha$ almak",
+    "aciklama": "$0.10/0.30 = 0.33$; sürtünme torku olduğu için $\\tau = I\\alpha + \\tau_f$, $I$ eğimden bulunur."
+   },
+   "B": {
+    "etiket": "Son satırdan $\\tau/\\alpha$ almak",
+    "aciklama": "$0.40/1.80 \\approx 0.22$; sürtünme yine dahil edilmiş olur, yalnız etkisi küçülür."
+   },
+   "C": {
+    "etiket": "Eğimi ters yorumlamak",
+    "aciklama": "$\\Delta\\alpha/\\Delta\\tau = 5.0$; $I = \\Delta\\tau/\\Delta\\alpha$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.6)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "τ = Iα + τ_f",
+   "ipucu": "Eğim, tek nokta değil.",
+   "sikHata": "Tek satırdan τ/α",
+   "cedKonu": "5.6",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_58",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 57,
+  "numara": 58,
+  "konu": "5.6 Newton's Second Law in Rotational Form: Pulley with Unequal Tensions",
+  "zorluk": "medium",
+  "govde": "A string passes over a pulley of radius $0.10\\text{ m}$ and rotational inertia $0.020\\text{ kg}\\cdot\\text{m}^2$ that turns on a frictionless axle. The tensions in the string on the two sides of the pulley are $12\\text{ N}$ and $10\\text{ N}$. What is the magnitude of the pulley's angular acceleration?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$110\\text{ rad/s}^2$"
+   },
+   {
+    "id": "B",
+    "text": "$10\\text{ rad/s}^2$"
+   },
+   {
+    "id": "C",
+    "text": "$1.0\\text{ rad/s}^2$"
+   },
+   {
+    "id": "D",
+    "text": "$100\\text{ rad/s}^2$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Net tork: $(T_1 - T_2)R = (12 - 10)(0.10) = 0.20$ N·m.<br/>2. $\\alpha = \\tau/I = 0.20/0.020 = 10$ rad/s².",
+  "genel_hatirlatma": "Kütleli kasnakta net tork iki gerilmenin farkından gelir: $(T_1 - T_2)R = I\\alpha$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Gerilmeleri toplamak",
+    "aciklama": "$(12 + 10)(0.10)/0.020$; iki gerilme kasnağı zıt yönlerde döndürür, torklar çıkarılır."
+   },
+   "C": {
+    "etiket": "Doğrusal ivmeyi açısal ivme sanmak",
+    "aciklama": "$a = R\\alpha = 1.0$ m/s² ipin ivmesidir."
+   },
+   "D": {
+    "etiket": "Yarıçapı torka katmamak",
+    "aciklama": "$(12 - 10)/0.020$; tork kuvvet farkının yarıçapla çarpımıdır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.6)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "(T₁ − T₂)R = Iα",
+   "ipucu": "Gerilmeler zıt yönde döndürür.",
+   "sikHata": "Gerilmeleri toplamak",
+   "cedKonu": "5.6",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_59",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 58,
+  "numara": 59,
+  "konu": "5.6 Newton's Second Law in Rotational Form: Table Block, Hanging Block, and Massive Pulley",
+  "zorluk": "hard",
+  "govde": "A $2.0\\text{ kg}$ block on a frictionless horizontal table is connected by a light string over a pulley to a hanging $1.0\\text{ kg}$ block. The pulley is a uniform solid disk of mass $2.0\\text{ kg}$ ($I = \\tfrac12 MR^2$), and the string does not slip. What is the magnitude of the acceleration of the blocks? (Use $g = 10\\text{ m/s}^2$.)",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$3.3\\text{ m/s}^2$"
+   },
+   {
+    "id": "B",
+    "text": "$2.5\\text{ m/s}^2$"
+   },
+   {
+    "id": "C",
+    "text": "$2.0\\text{ m/s}^2$"
+   },
+   {
+    "id": "D",
+    "text": "$5.0\\text{ m/s}^2$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Asılı blok: $m_2 g - T_2 = m_2 a$. Masadaki blok: $T_1 = m_1 a$.<br/>2. Kasnak: $(T_2 - T_1)R = I\\alpha = \\tfrac12 MR^2(a/R)$ → $T_2 - T_1 = \\tfrac12 Ma$.<br/>3. Toplayınca: $m_2 g = (m_1 + m_2 + \\tfrac12 M)a$ → $a = 10/(2.0 + 1.0 + 1.0) = 2.5$ m/s².",
+  "genel_hatirlatma": "Kütleli disk kasnak, sistemin “etkin kütlesine” $I/R^2 = M/2$ ekler.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Kasnağı kütlesiz saymak",
+    "aciklama": "$10/(2.0 + 1.0)$; kasnağın eylemsizliği paydaya $M/2 = 1.0$ kg ekler."
+   },
+   "C": {
+    "etiket": "Diske çember formülü uygulamak",
+    "aciklama": "$I = MR^2$ alınırsa paydaya 2.0 kg eklenir: $10/5.0$. Disk için $\\tfrac12 MR^2$."
+   },
+   "D": {
+    "etiket": "Yalnız masadaki bloğu hızlandırmak",
+    "aciklama": "$m_2 g/m_1$; tüm sistem (iki blok ve kasnak) birlikte ivmelenir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.6)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "a = m₂g/(m₁+m₂+I/R²)",
+   "ipucu": "Üç denklemi topla.",
+   "sikHata": "Kasnağı kütlesiz saymak",
+   "cedKonu": "5.6",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_60",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 59,
+  "numara": 60,
+  "konu": "5.6 Newton's Second Law in Rotational Form: Comparing Tensions on Both Sides of a Massive Pulley",
+  "zorluk": "hard",
+  "govde": "A $3.0\\text{ kg}$ cart on a frictionless horizontal track is connected by a light string over a pulley to a hanging $2.0\\text{ kg}$ block. The pulley is a uniform solid disk of mass $2.0\\text{ kg}$ ($I = \\tfrac12 MR^2$), and the string does not slip. Using $g = 10\\text{ m/s}^2$, which row gives the tensions in the horizontal segment ($T_1$) and in the vertical segment ($T_2$) of the string?<br/><table class='u-table'><tr><th>Row</th><th>$T_1$ (N)</th><th>$T_2$ (N)</th></tr><tr><td>1</td><td>10</td><td>13</td></tr><tr><td>2</td><td>12</td><td>12</td></tr><tr><td>3</td><td>13</td><td>10</td></tr><tr><td>4</td><td>20</td><td>20</td></tr></table>",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "Row 2"
+   },
+   {
+    "id": "B",
+    "text": "Row 3"
+   },
+   {
+    "id": "C",
+    "text": "Row 4"
+   },
+   {
+    "id": "D",
+    "text": "Row 1"
+   }
+  ],
+  "dogru": "D",
+  "aciklama": "1. $a = \\dfrac{m_2 g}{m_1 + m_2 + M/2} = \\dfrac{20}{3.0 + 2.0 + 1.0} \\approx 3.33$ m/s².<br/>2. $T_1 = m_1 a = 3.0(3.33) = 10$ N.<br/>3. $T_2 = m_2(g - a) = 2.0(10 - 3.33) \\approx 13$ N.<br/>4. Kontrol: $(T_2 - T_1)R = \\tfrac12 MR^2(a/R)$ → $T_2 - T_1 = 1.0(3.33) \\approx 3.3$ N ✓.",
+  "genel_hatirlatma": "Kütleli kasnağın iki tarafındaki gerilmeler farklıdır; fark, kasnağı ivmelendiren torku sağlar.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Kütleli kasnakta gerilmeleri eşit almak",
+    "aciklama": "Gerilmeler eşit olsaydı kasnağa net tork etmez, kasnak açısal ivme kazanamazdı. (12 N, kütlesiz kasnak sonucudur.)"
+   },
+   "B": {
+    "etiket": "Gerilmeleri yer değiştirmek",
+    "aciklama": "Kasnak asılı blok tarafına doğru ivmelenir; bu yöndeki tork daha büyük olmalı, yani $T_2 \\gt T_1$."
+   },
+   "C": {
+    "etiket": "Gerilmeyi asılı bloğun ağırlığı sanmak",
+    "aciklama": "Asılı blok aşağı ivmelendiği için $T_2 \\lt m_2 g = 20$ N."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.6)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "T₂ − T₁ = (I/R²)a",
+   "ipucu": "Önce a'yı bul.",
+   "sikHata": "T₁ = T₂ almak",
+   "cedKonu": "5.6",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_61",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 60,
+  "numara": 61,
+  "konu": "5.6 Newton's Second Law in Rotational Form: Ranking Accelerations with Different Pulleys",
+  "zorluk": "medium",
+  "govde": "The same block hangs from a light string wrapped around each of three pulleys, which turn on frictionless axles. The pulleys are described in the table.<br/><table class='u-table'><tr><th>Pulley</th><th>Shape</th><th>Mass</th><th>Radius</th><th>Rotational inertia</th></tr><tr><td>P</td><td>solid disk</td><td>$M$</td><td>$R$</td><td>$\\tfrac12 MR^2$</td></tr><tr><td>Q</td><td>thin hoop</td><td>$M$</td><td>$R$</td><td>$MR^2$</td></tr><tr><td>S</td><td>solid disk</td><td>$2M$</td><td>$R$</td><td>$MR^2$</td></tr></table>Which ranks the magnitude of the block's acceleration, from greatest to least?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$a_P = a_Q = a_S$"
+   },
+   {
+    "id": "B",
+    "text": "$a_P \\gt a_Q = a_S$"
+   },
+   {
+    "id": "C",
+    "text": "$a_S \\gt a_P \\gt a_Q$"
+   },
+   {
+    "id": "D",
+    "text": "$a_Q \\gt a_P \\gt a_S$"
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. $a = \\dfrac{mg}{m + I/R^2}$.<br/>2. $I/R^2$: P $M/2$, Q $M$, S $M$.<br/>3. Küçük $I$ → büyük $a$: $a_P \\gt a_Q = a_S$.",
+  "genel_hatirlatma": "Blok ivmesini belirleyen kasnağın kütlesi değil, $I/R^2$'dir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Kasnağın eylemsizliğini yok saymak",
+    "aciklama": "Blok ivmesi $a = mg/(m + I/R^2)$; $I$ farklıysa ivme farklıdır."
+   },
+   "C": {
+    "etiket": "Daha ağır kasnağın daha hızlı döndürdüğünü sanmak",
+    "aciklama": "Kasnağın kütlesi tork üretmez, yalnız eylemsizlik ekler; S'nin $I$'sı en büyüklerdendir."
+   },
+   "D": {
+    "etiket": "Şekle göre yanlış sıralama",
+    "aciklama": "Çemberin $I$'sı aynı kütleli diskten büyüktür; bu yüzden Q, P'den yavaş ivmelendirir."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.6)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "a = mg/(m + I/R²)",
+   "ipucu": "Her kasnak için I/R² hesapla.",
+   "sikHata": "Kütle ile I'yı karıştırmak",
+   "cedKonu": "5.6",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_62",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 61,
+  "numara": 62,
+  "konu": "5.6 Newton's Second Law in Rotational Form: Time for Friction to Stop a Flywheel",
+  "zorluk": "medium",
+  "govde": "A flywheel with rotational inertia $2.0\\text{ kg}\\cdot\\text{m}^2$ spins at $30\\text{ rad/s}$. The motor is switched off, and a constant frictional torque of $3.0\\text{ N}\\cdot\\text{m}$ slows it. How long does it take the flywheel to stop?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$45\\text{ s}$"
+   },
+   {
+    "id": "B",
+    "text": "$10\\text{ s}$"
+   },
+   {
+    "id": "C",
+    "text": "$20\\text{ s}$"
+   },
+   {
+    "id": "D",
+    "text": "$0.050\\text{ s}$"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $\\alpha = \\tau/I = 3.0/2.0 = 1.5$ rad/s² (yavaşlatıcı).<br/>2. $t = \\omega_0/|\\alpha| = 30/1.5 = 20$ s.",
+  "genel_hatirlatma": "Önce Newton'un ikinci yasasıyla $\\alpha$'yı, sonra kinematikle süreyi bulun.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Nicelikleri yanlış birleştirmek",
+    "aciklama": "$\\omega\\tau/I = 45$; önce $\\alpha = \\tau/I$, sonra $t = \\omega/\\alpha$."
+   },
+   "B": {
+    "etiket": "Eylemsizlik momentini unutmak",
+    "aciklama": "$\\omega/\\tau = 10$; açısal ivme torku $I$'ya bölerek bulunur."
+   },
+   "D": {
+    "etiket": "Oranı ters kurmak",
+    "aciklama": "$\\tau/(I\\omega)$; yavaşlama süresi büyük $I$ ve büyük $\\omega$ ile uzamalıdır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.6)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "α = τ/I, t = ω/α",
+   "ipucu": "İki adım: dinamik, kinematik.",
+   "sikHata": "I'yı atlamak",
+   "cedKonu": "5.6",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_63",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 62,
+  "numara": 63,
+  "konu": "5.6 Newton's Second Law in Rotational Form: Tension in a String on a Massive Pulley",
+  "zorluk": "medium",
+  "govde": "A block of mass $m$ hangs from a light string wrapped around a pulley that has nonzero rotational inertia and a frictionless axle. The block is released and accelerates downward. Which statement correctly describes the tension $T$ in the string and the net torque on the pulley?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$T = mg$, and the net torque on the pulley is $mgR$."
+   },
+   {
+    "id": "B",
+    "text": "$T \\lt mg$, and the net torque on the pulley is $TR$, which is not zero."
+   },
+   {
+    "id": "C",
+    "text": "$T \\gt mg$, because the pulley resists rotating."
+   },
+   {
+    "id": "D",
+    "text": "$T \\lt mg$, and the net torque on the pulley is zero because the axle exerts a balancing force."
+   }
+  ],
+  "dogru": "B",
+  "aciklama": "1. Blok: $mg - T = ma$, $a \\gt 0$ → $T \\lt mg$.<br/>2. Kasnak: tek tork ipin gerilmesinden, $\\tau = TR = I\\alpha \\ne 0$.",
+  "genel_hatirlatma": "İvmelenen asılı blokta $T \\ne mg$; kasnağı döndüren tork $TR$'dir.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Blok ivmelenirken gerilmeyi ağırlık sanmak",
+    "aciklama": "Blok aşağı ivmelendiği için $mg - T = ma \\gt 0$, yani $T \\lt mg$."
+   },
+   "C": {
+    "etiket": "Kasnağın direncini gerilmeyi artırıyor sanmak",
+    "aciklama": "$T \\gt mg$ olsaydı blok yukarı ivmelenirdi."
+   },
+   "D": {
+    "etiket": "Mil kuvvetinin tork verdiğini sanmak",
+    "aciklama": "Mil kuvveti eksenden geçer, tork vermez; kasnak ivmelendiği için net tork sıfır olamaz."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.6)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "mg − T = ma, TR = Iα",
+   "ipucu": "Blok ivmelenirse kuvvetler dengede değil.",
+   "sikHata": "T = mg almak",
+   "cedKonu": "5.6",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_64",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 63,
+  "numara": 64,
+  "konu": "5.6 Newton's Second Law in Rotational Form: Motor Torque from Angular Velocity Data",
+  "zorluk": "hard",
+  "govde": "A motor applies a constant torque to a wheel ($I = 0.50\\text{ kg}\\cdot\\text{m}^2$) that also experiences a constant frictional torque. At $t = 4.0\\text{ s}$ the motor is switched off. The wheel's angular velocity is shown in the table; between the listed times, it changes linearly.<br/><table class='u-table'><tr><th>$t$ (s)</th><th>0</th><th>2.0</th><th>4.0</th><th>5.0</th><th>6.0</th></tr><tr><td>$\\omega$ (rad/s)</td><td>0</td><td>8.0</td><td>16</td><td>12</td><td>8.0</td></tr></table>What is the magnitude of the torque applied by the motor?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$4.0\\text{ N}\\cdot\\text{m}$"
+   },
+   {
+    "id": "B",
+    "text": "$2.0\\text{ N}\\cdot\\text{m}$"
+   },
+   {
+    "id": "C",
+    "text": "$8.0\\text{ N}\\cdot\\text{m}$"
+   },
+   {
+    "id": "D",
+    "text": "$0.13\\text{ N}\\cdot\\text{m}$"
+   }
+  ],
+  "dogru": "A",
+  "aciklama": "1. Motor kapalıyken (4–6 s): $\\alpha = (8.0 - 16)/2.0 = -4.0$ rad/s² → $\\tau_f = I|\\alpha| = 0.50(4.0) = 2.0$ N·m.<br/>2. Motor açıkken (0–4 s): $\\alpha = 16/4.0 = 4.0$ rad/s² → $\\tau_{net} = 2.0$ N·m.<br/>3. $\\tau_m - \\tau_f = \\tau_{net}$ → $\\tau_m = 2.0 + 2.0 = 4.0$ N·m.",
+  "genel_hatirlatma": "Motor torkunu bulmak için önce yavaşlamadan sürtünme torkunu bulun; net tork = motor − sürtünme.",
+  "hata_aciklamalari": {
+   "B": {
+    "etiket": "Net torku motor torku sanmak",
+    "aciklama": "İlk 4.0 s'de $I\\alpha = 2.0$ N·m <em>net</em> torktur; motor sürtünmeyi de yenmektedir."
+   },
+   "C": {
+    "etiket": "$I\\omega$'yı tork sanmak",
+    "aciklama": "$I\\omega_{max} = 0.50(16) = 8.0$; bu açısal momentumdur (Unit 6), tork değil."
+   },
+   "D": {
+    "etiket": "$I/\\alpha$ hesaplamak",
+    "aciklama": "$0.50/4.0$; Newton'un ikinci yasası $\\tau = I\\alpha$."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.6)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "τ_m − τ_f = Iα",
+   "ipucu": "Yavaşlama evresi τ_f'yi verir.",
+   "sikHata": "Net torku motor torku sanmak",
+   "cedKonu": "5.6",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_65",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 64,
+  "numara": 65,
+  "konu": "5.6 Newton's Second Law in Rotational Form: Angular Acceleration from Several Applied Forces",
+  "zorluk": "medium",
+  "govde": "A disk with rotational inertia $0.40\\text{ kg}\\cdot\\text{m}^2$ can rotate about a fixed frictionless axle through its center. Three forces act on it, as listed.<br/><table class='u-table'><tr><th>Force</th><th>Magnitude (N)</th><th>Distance from axle (m)</th><th>Direction</th></tr><tr><td>$F_1$</td><td>20</td><td>0.30</td><td>tangent, counterclockwise</td></tr><tr><td>$F_2$</td><td>10</td><td>0.20</td><td>tangent, clockwise</td></tr><tr><td>$F_3$</td><td>15</td><td>0.30</td><td>radially outward</td></tr></table>What is the disk's angular acceleration?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "$20\\text{ rad/s}^2$, counterclockwise"
+   },
+   {
+    "id": "B",
+    "text": "$10\\text{ rad/s}^2$, clockwise"
+   },
+   {
+    "id": "C",
+    "text": "$10\\text{ rad/s}^2$, counterclockwise"
+   },
+   {
+    "id": "D",
+    "text": "$21\\text{ rad/s}^2$, counterclockwise"
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $\\tau_1 = +(0.30)(20) = +6.0$ N·m; $\\tau_2 = -(0.20)(10) = -2.0$ N·m; $\\tau_3 = 0$.<br/>2. $\\tau_{net} = +4.0$ N·m.<br/>3. $\\alpha = 4.0/0.40 = 10$ rad/s², CCW.",
+  "genel_hatirlatma": "$\\alpha$ net torkla aynı yöndedir; radyal kuvvetler tork vermez.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "Zıt torkları toplamak",
+    "aciklama": "$(6.0 + 2.0)/0.40 = 20$; $F_2$ ters yönde döndürür, torkları çıkarılır."
+   },
+   "B": {
+    "etiket": "Net torkun yönünü yanlış belirlemek",
+    "aciklama": "CCW tork 6.0, CW tork 2.0 N·m; net tork ve dolayısıyla $\\alpha$ CCW'dir."
+   },
+   "D": {
+    "etiket": "Radyal kuvvete tork vermek",
+    "aciklama": "$F_3$ eksenden dışarı doğrudur, etki çizgisi eksenden geçer; torku sıfırdır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.6)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "α = Στ/I",
+   "ipucu": "Önce net tork.",
+   "sikHata": "Radyal kuvveti saymak",
+   "cedKonu": "5.6",
+   "hesapMakinesi": "yardımcı",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ },
+ {
+  "id": "phys_k_u5_66",
+  "tur": "ders",
+  "sayfa": "ap-physics",
+  "ders": null,
+  "unite_no": 6,
+  "unite": "5",
+  "kutu": "phys-unit5-rotation-quiz-container",
+  "kutu_baslik": "Unit 5 Torque and Rotational Dynamics",
+  "dizi": "PHYS_UNIT5_QUESTIONS",
+  "sira": 65,
+  "numara": 66,
+  "konu": "5.6 Newton's Second Law in Rotational Form: Proportional Reasoning with Rotational Inertia",
+  "zorluk": "easy",
+  "govde": "The same net torque is applied to two wheels that rotate about fixed axles. Wheel 2 has twice the rotational inertia of wheel 1. How does the angular acceleration of wheel 2 compare with that of wheel 1?",
+  "secenekler": [
+   {
+    "id": "A",
+    "text": "It is twice as large."
+   },
+   {
+    "id": "B",
+    "text": "It is the same, because the torques are equal."
+   },
+   {
+    "id": "C",
+    "text": "It is half as large."
+   },
+   {
+    "id": "D",
+    "text": "It is one-fourth as large."
+   }
+  ],
+  "dogru": "C",
+  "aciklama": "1. $\\alpha = \\tau/I$, $\\tau$ aynı.<br/>2. $I_2 = 2I_1$ → $\\alpha_2 = \\alpha_1/2$.",
+  "genel_hatirlatma": "Sabit torkta $\\alpha \\propto 1/I$.",
+  "hata_aciklamalari": {
+   "A": {
+    "etiket": "$\\alpha$'yı $I$ ile doğru orantılı sanmak",
+    "aciklama": "$\\alpha = \\tau/I$; $I$ büyüdükçe $\\alpha$ küçülür."
+   },
+   "B": {
+    "etiket": "Açısal ivmenin yalnız torka bağlı olduğunu sanmak",
+    "aciklama": "Aynı kuvvet farklı kütlelere farklı ivme verdiği gibi, aynı tork farklı $I$'lara farklı $\\alpha$ verir."
+   },
+   "D": {
+    "etiket": "Gereksiz kare almak",
+    "aciklama": "$r^2$ $I$'nın içindedir; $\\alpha$, $I$ ile ters (birinci kuvvetten) orantılıdır."
+   }
+  },
+  "kaynak": "AP-style original (CED Topic 5.6)",
+  "deneme_kodlari": [
+   "physics-1"
+  ],
+  "pasaj": null,
+  "ek": {
+   "kavram": "α ∝ 1/I",
+   "ipucu": "a = F/m benzetmesi.",
+   "sikHata": "α ∝ I sanmak",
+   "cedKonu": "5.6",
+   "hesapMakinesi": "gerekmez",
+   "uretim": "1.23.0"
+  },
+  "durum": "taslak"
+ }
+]

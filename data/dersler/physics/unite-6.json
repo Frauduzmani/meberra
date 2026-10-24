@@ -1,0 +1,429 @@
+{
+ "ders": "physics",
+ "unite": 6,
+ "baslik": "Energy and Momentum of Rotating Systems",
+ "baslikTr": "Dönen Sistemlerde Enerji ve Momentum",
+ "konular": [
+  {
+   "kod": "6.1",
+   "baslik": "Rotational Kinetic Energy",
+   "baslikTr": "Dönme kinetik enerjisi",
+   "hedefler": [
+    "Sabit eksen etrafında dönen bir cismin dönme kinetik enerjisini (rotational kinetic energy) \\(K_{rot}=\\tfrac12 I\\omega^2\\) ile hesaplamak.",
+    "Bir sistemin toplam kinetik enerjisini öteleme ve dönme kinetik enerjilerinin toplamı olarak yazmak ve aralarındaki paylaşımı yorumlamak.",
+    "Eylemsizlik momenti (rotational inertia) ve açısal sürat değiştiğinde \\(K_{rot}\\)'un nasıl ölçeklendiğini oranlarla açıklamak."
+   ],
+   "anlatim": "<p>Unit 3'te hareket eden bir cismin <strong>öteleme kinetik enerjisi (translational kinetic energy)</strong> \\(K=\\tfrac12 mv^2\\) idi. Unit 5'te dönmeyi öğrendik: dönen cismin “dönmeye karşı eylemsizliği” <strong>eylemsizlik momenti (rotational inertia)</strong> \\(I\\), hızının karşılığı <strong>açısal sürat (angular speed)</strong> \\(\\omega\\)'dır. Unit 6, Unit 3'teki enerji ve Unit 4'teki momentum fikirlerini dönen sistemlere taşır.</p>\n<div class=\"kn-tanim\"><strong>Tanım:</strong> Sabit bir eksen etrafında \\(\\omega\\) açısal süratiyle dönen, o eksene göre eylemsizlik momenti \\(I\\) olan cismin dönme kinetik enerjisi \\[ K_{rot} = \\tfrac12 I\\omega^2 \\] Birim: \\(\\text{kg}\\cdot\\text{m}^2\\cdot(\\text{rad/s})^2 = \\text{J}\\). Radyan birimsizdir; bu yüzden sonuç joule çıkar.</div>\n<h4>Formül nereden geliyor?</h4>\n<p>Dönen cismi küçük parçalara bölün. Eksenden \\(r\\) uzaklıktaki \\(m\\) kütleli parça \\(v=\\omega r\\) süratiyle döner ve \\(\\tfrac12 m(\\omega r)^2\\) kinetik enerjiye sahiptir. Tüm parçaları toplayınca \\(\\tfrac12(\\sum m r^2)\\omega^2 = \\tfrac12 I\\omega^2\\) elde edilir. Yani dönme kinetik enerjisi “yeni bir enerji türü” değildir; parçaların öteleme kinetik enerjilerinin toplamıdır. Bu yüzden eksene uzak kütle daha fazla enerji taşır.</p>\n<h4>Eylemsizlik momenti hatırlatması</h4>\n<table><thead><tr><th>Cisim (eksen)</th><th>\\(I\\)</th></tr></thead>\n<tbody><tr><td>Nokta kütle, eksenden \\(r\\) uzakta</td><td>\\(mr^2\\)</td></tr>\n<tr><td>İnce halka (hoop), merkezden</td><td>\\(MR^2\\)</td></tr>\n<tr><td>Dolu disk / silindir (solid disk), merkezden</td><td>\\(\\tfrac12 MR^2\\)</td></tr>\n<tr><td>Dolu küre (solid sphere), merkezden</td><td>\\(\\tfrac25 MR^2\\)</td></tr>\n<tr><td>İnce çubuk (rod), merkezden / uçtan</td><td>\\(\\tfrac1{12}ML^2\\) / \\(\\tfrac13 ML^2\\)</td></tr></tbody></table>\n<p>AP sınavında karmaşık şekillerin \\(I\\) değeri genellikle verilir; sizden beklenen, doğru \\(I\\)'yı doğru eksene göre kullanmak ve noktasal kütleleri \\(\\sum mr^2\\) ile eklemektir. \\(I\\) <strong>eksene bağlıdır</strong>: aynı çubuk ucundan döndürülünce merkezine göre 4 kat büyük \\(I\\)'ya sahiptir, aynı \\(\\omega\\)'da 4 kat \\(K_{rot}\\) taşır.</p>\n<h4>Oranlarla düşünmek</h4>\n<table><thead><tr><th>Değişiklik</th><th>Yeni \\(K_{rot}\\)</th></tr></thead>\n<tbody><tr><td>\\(\\omega\\) 2 katı</td><td>\\(4K\\)</td></tr>\n<tr><td>Aynı \\(M\\), yarıçap \\(R\\) 2 katı (aynı şekil, aynı \\(\\omega\\))</td><td>\\(4K\\) (çünkü \\(I\\propto R^2\\))</td></tr>\n<tr><td>Halka yerine aynı \\(M,R\\)'li disk</td><td>\\(\\tfrac12 K\\)</td></tr></tbody></table>\n<h4>Toplam kinetik enerji (system kinetic energy)</h4>\n<p>Bir cisim hem kütle merkezi hareket ederken hem de dönüyorsa toplam kinetik enerjisi \\[ K_{tot} = \\tfrac12 M v_{cm}^2 + \\tfrac12 I_{cm}\\omega^2 \\] olur. Buradaki \\(I_{cm}\\) kütle merkezinden geçen eksene göredir. Örneğin buz üzerinde kayarken aynı anda dönen bir disk iki terime de sahiptir. Yuvarlanmada (6.5) \\(v_{cm}\\) ile \\(\\omega\\) birbirine bağlanır; kaymada bağımsızdır.</p>\n<h4>Deneysel temsil: \\(K\\)–\\(\\omega^2\\) grafiği</h4>\n<p>\\(K_{rot}=\\tfrac12 I\\omega^2\\) olduğundan \\(K_{rot}\\)'u \\(\\omega^2\\)'ye karşı çizerseniz orijinden geçen doğru elde edilir; <strong>eğim (slope) \\(=\\tfrac12 I\\)</strong>, yani \\(I = 2\\times\\text{eğim}\\). Laboratuvar FRQ'larında bu doğrusallaştırma (linearization) sık istenir.</p>\n<div class=\"kn-kural\"><strong>Özet:</strong> \\(K_{rot}=\\tfrac12 I\\omega^2\\); skalerdir, daima \\(\\ge 0\\); \\(I\\) ile doğru, \\(\\omega^2\\) ile doğru orantılıdır. Dönen ve öteleme yapan cisimde iki terimi toplayın.</div>\n<div class=\"kn-dikkat\">FRQ ifadesi: “The rotational kinetic energy is \\(\\tfrac12 I\\omega^2\\); because the mass of the hoop is farther from the axis, the hoop has the larger rotational inertia and therefore the larger rotational kinetic energy at the same angular speed.” Sadece “hoop has more” yazmak gerekçe puanı almaz.</div>",
+   "ornekler": [
+    {
+     "soru": "Kütlesi \\(2.0\\text{ kg}\\), yarıçapı \\(0.30\\text{ m}\\) olan dolu disk (\\(I=\\tfrac12 MR^2\\)) sabit eksen etrafında \\(20\\text{ rad/s}\\) ile dönüyor. (a) \\(K_{rot}\\) nedir? (b) \\(\\omega\\) yarıya inerse \\(K_{rot}\\) ne olur?",
+     "cozum": [
+      "(a) \\(I=\\tfrac12(2.0)(0.30)^2 = 0.090\\text{ kg}\\cdot\\text{m}^2\\).",
+      "\\(K_{rot}=\\tfrac12(0.090)(20)^2 = 18\\text{ J}\\).",
+      "(b) \\(K\\propto\\omega^2\\): \\(\\omega\\) yarıya inince \\(K\\) dörtte birine iner: \\(4.5\\text{ J}\\). Kaybolan \\(13.5\\text{ J}\\) sürtünme ile iç enerjiye geçmiştir."
+     ]
+    },
+    {
+     "soru": "İki adet \\(0.50\\text{ kg}\\)'lık küçük top, kütlesi ihmal edilen \\(0.80\\text{ m}\\) uzunluğundaki çubuğun uçlarına takılmış; sistem çubuğun ortasından geçen eksen etrafında \\(10\\text{ rad/s}\\) ile dönüyor. Toplam dönme kinetik enerjisi nedir?",
+     "cozum": [
+      "Her top eksenden \\(r=0.40\\text{ m}\\) uzaktadır: \\(I = 2(0.50)(0.40)^2 = 0.16\\text{ kg}\\cdot\\text{m}^2\\).",
+      "\\(K_{rot} = \\tfrac12(0.16)(10)^2 = 8.0\\text{ J}\\).",
+      "Kontrol: her topun sürati \\(v=\\omega r = 4.0\\text{ m/s}\\); \\(2\\times\\tfrac12(0.50)(4.0)^2 = 8.0\\text{ J}\\). İki yöntem aynı sonucu verir."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Aynı kütle ve yarıçaplı bir halka ve bir dolu disk aynı \\(\\omega\\) ile dönüyor. Bir öğrenci “kütleleri ve yarıçapları aynı olduğu için kinetik enerjileri eşittir” diyor. Değerlendirin.",
+     "cozum": [
+      "<strong>Claim:</strong> The claim is incorrect; the hoop has twice the rotational kinetic energy of the disk.",
+      "<strong>Evidence:</strong> \\(K_{rot}=\\tfrac12 I\\omega^2\\) with \\(I_{hoop}=MR^2\\) and \\(I_{disk}=\\tfrac12 MR^2\\).",
+      "<strong>Reasoning:</strong> Kinetic energy depends on how the mass is distributed relative to the axis, not only on total mass. All of the hoop's mass is at distance \\(R\\), so each part moves faster on average than the disk's parts at the same \\(\\omega\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Önce eksenini belirleyin, sonra o eksene göre \\(I\\)'yı yazın; aynı cisim farklı eksende farklı \\(I\\)'ya sahiptir.",
+    "Physics 1'de hesap makinesi tüm bölümlerde serbesttir; yine de \\(\\tfrac12\\) çarpanlarını (biri \\(I\\)'da, biri \\(K\\)'da) ayrı ayrı kontrol edin.",
+    "\\(\\omega\\) her zaman rad/s olmalı; dakikada devir (rpm) verildiyse \\(2\\pi/60\\) ile çevirin.",
+    "Puanlayıcı “rotational inertia depends on mass distribution” gibi açık bir dağılım gerekçesi arar."
+   ],
+   "sikHatalar": [
+    "\\(K_{rot}=\\tfrac12 I\\omega\\) yazmak (kareyi unutmak); bu açısal momentumun yarısıdır, enerji değildir.",
+    "Dolu disk için halka formülü \\(MR^2\\) kullanmak ya da eksenden uzaklığı yerine çubuk boyunu almak.",
+    "Hem dönen hem kayan cisimde yalnız bir kinetik enerji terimini hesaplamak."
+   ],
+   "terimler": [
+    {
+     "en": "rotational kinetic energy",
+     "tr": "dönme kinetik enerjisi"
+    },
+    {
+     "en": "rotational inertia",
+     "tr": "eylemsizlik momenti"
+    },
+    {
+     "en": "angular speed",
+     "tr": "açısal sürat"
+    },
+    {
+     "en": "axis of rotation",
+     "tr": "dönme ekseni"
+    },
+    {
+     "en": "linearization",
+     "tr": "doğrusallaştırma"
+    }
+   ]
+  },
+  {
+   "kod": "6.2",
+   "baslik": "Torque and Work",
+   "baslikTr": "Tork ve iş",
+   "hedefler": [
+    "Sabit bir torkun yaptığı işi \\(W=\\tau\\Delta\\theta\\) ile hesaplamak; değişken torkta tork–açı grafiğinin altındaki alanı kullanmak.",
+    "Dönme için iş–enerji teoremini (\\(W_{net}=\\Delta K_{rot}\\)) uygulamak ve işin işaretini yorumlamak.",
+    "Makara–ip sistemlerinde enerjinin öteleme ve dönme biçimleri arasında nasıl paylaşıldığını açıklamak."
+   ],
+   "anlatim": "<p>Unit 3'te bir kuvvetin işi \\(W = F_\\parallel d\\) idi. Dönmede kuvvetin dönme etkisi <strong>tork (torque)</strong> \\(\\tau = rF_\\perp\\), yer değiştirmenin karşılığı <strong>açısal yer değiştirme (angular displacement)</strong> \\(\\Delta\\theta\\)'dır.</p>\n<div class=\"kn-tanim\"><strong>Tanım:</strong> Sabit bir tork \\(\\tau\\), cisim \\(\\Delta\\theta\\) (radyan) kadar dönerken \\[ W = \\tau\\,\\Delta\\theta \\] kadar iş yapar. Tork dönme yönündeyse iş pozitif, dönmeye zıtsa negatiftir.</div>\n<h4>Neden \\(\\tau\\Delta\\theta\\)?</h4>\n<p>Yarıçapı \\(r\\) olan bir makaraya teğet \\(F\\) kuvveti uygulayın. Makara \\(\\Delta\\theta\\) dönerken kuvvetin uygulama noktası yay boyunca \\(s=r\\Delta\\theta\\) yol alır. İş \\(W = Fs = F r\\Delta\\theta = \\tau\\Delta\\theta\\). Yani “tork çarpı açı” ile “kuvvet çarpı yay uzunluğu” aynı şeydir. İpten \\(d\\) metre çekilmişse \\(W = Fd\\) daha hızlıdır.</p>\n<h4>Dönme için iş–enerji teoremi</h4>\n<p>Sabit eksenli katı bir cisimde \\[ W_{net} = \\sum\\tau\\,\\Delta\\theta = \\Delta K_{rot} = \\tfrac12 I\\omega_f^2 - \\tfrac12 I\\omega_i^2 \\] Net iş pozitifse cisim hızlanır, negatifse yavaşlar. Fren torku sorularında \\(\\Delta\\theta\\)'yı bulmanın en kısa yolu budur: \\(\\tau_{fren}\\Delta\\theta = K_i\\).</p>\n<h4>Değişken tork: grafik altındaki alan</h4>\n<p>Tork açıyla değişiyorsa iş, <strong>tork–açısal konum grafiğinin altındaki alandır (area under the \\(\\tau\\)–\\(\\theta\\) graph)</strong>. Eksenin altındaki alan (zıt tork) negatif iştir.</p>\n<table><thead><tr><th>Aralık</th><th>Tork</th><th>Alan (iş)</th></tr></thead>\n<tbody><tr><td>0–2 rad</td><td>sabit \\(+5\\text{ N}\\cdot\\text{m}\\)</td><td>\\(+10\\text{ J}\\)</td></tr>\n<tr><td>2–4 rad</td><td>\\(+5\\)'ten 0'a doğrusal</td><td>\\(+5\\text{ J}\\) (üçgen)</td></tr>\n<tr><td>4–5 rad</td><td>sabit \\(-3\\text{ N}\\cdot\\text{m}\\)</td><td>\\(-3\\text{ J}\\)</td></tr></tbody></table>\n<p>Bu örnekte net iş \\(+12\\text{ J}\\); durgun başlayan cismin son \\(K_{rot}\\)'u \\(12\\text{ J}\\) olur.</p>\n<h4>Güç</h4>\n<p>Sabit torkla dönen milde aktarılan güç (power) \\(P = \\tau\\omega\\)'dır (\\(P=Fv\\)'nin dönme karşılığı). Sabit \\(\\omega\\)'da dönen bir taşlama çarkında motor pozitif, sürtünme eşit büyüklükte negatif iş yapar; net iş sıfır, \\(K_{rot}\\) sabittir.</p>\n<h4>Sistem seçimi: makara ve asılı blok</h4>\n<p>Kütleli bir makaraya sarılı ipin ucundaki blok düşerken ip gerilimi makaraya pozitif tork uygular ve ona iş yapar; bloğa ise yukarı yönlü kuvvetle negatif iş yapar. Blok + makara + Dünya sistemini seçerseniz gerilim iç kuvvettir ve \\[ Mgh = \\tfrac12 m v^2 + \\tfrac12 I\\omega^2,\\qquad \\omega = v/R \\] yazılır. Kaybedilen kütleçekim potansiyel enerjisi blok ile makara arasında \\(m : I/R^2\\) oranında paylaşılır.</p>\n<div class=\"kn-kural\"><strong>Özet:</strong> \\(W=\\tau\\Delta\\theta\\) (radyan!), \\(W_{net}=\\Delta K_{rot}\\), değişken tork → grafik alanı, \\(P=\\tau\\omega\\).</div>\n<div class=\"kn-dikkat\">FRQ ifadesi: “The frictional torque is opposite the angular velocity, so it does negative work, decreasing the rotational kinetic energy of the wheel.” Açıyı devir olarak bırakmayın; \\(1\\text{ rev}=2\\pi\\text{ rad}\\).</div>",
+   "ornekler": [
+    {
+     "soru": "\\(I = 0.50\\text{ kg}\\cdot\\text{m}^2\\) olan bir çark sürtünmesiz eksende durgundur. \\(4.0\\text{ N}\\cdot\\text{m}\\)'lik sabit tork çarkı \\(9.0\\text{ rad}\\) döndürüyor. Son açısal sürat nedir?",
+     "cozum": [
+      "\\(W = \\tau\\Delta\\theta = (4.0)(9.0) = 36\\text{ J}\\).",
+      "\\(W = \\Delta K_{rot}\\): \\(36 = \\tfrac12(0.50)\\omega^2 \\Rightarrow \\omega^2 = 144\\).",
+      "\\(\\omega = 12\\text{ rad/s}\\). (Kinematik yolu: \\(\\alpha = 8\\text{ rad/s}^2\\), \\(\\omega^2 = 2\\alpha\\Delta\\theta = 144\\) aynı sonucu verir.)"
+     ]
+    },
+    {
+     "soru": "\\(3.0\\text{ kg}\\)'lık blok, eksenine sürtünmesiz takılı ve \\(I = 0.12\\text{ kg}\\cdot\\text{m}^2\\), \\(R = 0.20\\text{ m}\\) olan makaraya sarılı ipe asılıdır. Durgun bırakılan blok \\(1.0\\text{ m}\\) düştüğünde sürati nedir? (\\(g = 10\\text{ m/s}^2\\))",
+     "cozum": [
+      "Sistem: blok + makara + Dünya. \\(mgh = (3.0)(10)(1.0) = 30\\text{ J}\\).",
+      "\\(\\omega = v/R\\): \\(\\tfrac12 I\\omega^2 = \\tfrac12 (I/R^2) v^2 = \\tfrac12(3.0)v^2\\). Toplam: \\(\\tfrac12(3.0)v^2 + \\tfrac12(3.0)v^2 = 3.0v^2\\).",
+      "\\(3.0v^2 = 30 \\Rightarrow v = \\sqrt{10} \\approx 3.2\\text{ m/s}\\). Burada \\(I/R^2 = m\\) olduğundan enerji yarı yarıya paylaşılır."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir öğrenci “motor çarkı sabit açısal süratle döndürdüğüne göre motor çarka iş yapmıyor” diyor. Değerlendirin.",
+     "cozum": [
+      "<strong>Claim:</strong> The motor does positive work on the wheel; the net work is zero.",
+      "<strong>Evidence:</strong> The motor's torque is in the direction of rotation, so \\(W_{motor} = \\tau_{motor}\\Delta\\theta \\gt 0\\). Friction exerts an opposing torque, so \\(W_{friction} \\lt 0\\).",
+      "<strong>Reasoning:</strong> Because \\(\\omega\\) is constant, \\(\\Delta K_{rot} = 0 = W_{net}\\), so the two works have equal magnitudes. The motor's energy is transferred to internal (thermal) energy by friction."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Açıyı daima radyana çevirin: \\(n\\) devir \\(= 2\\pi n\\) rad.",
+    "İp çekiliyorsa \\(W = F\\cdot(\\text{çekilen ip uzunluğu})\\) en hızlı yoldur; \\(F\\)'yi açıyla çarpmayın.",
+    "Grafik sorularında eksen altındaki alanı negatif alın ve parçaları (dikdörtgen + üçgen) ayrı ayrı hesaplayın.",
+    "Makaralı sistemlerde sistemi açıkça yazın (“block–pulley–Earth system”); puanlayıcı bunu arar."
+   ],
+   "sikHatalar": [
+    "Torku açısal yer değiştirme yerine yay uzunluğu ya da devir sayısıyla çarpmak.",
+    "Zıt yöndeki torkun işini pozitif alıp alanları mutlak değerle toplamak.",
+    "Kütleli makarayı yok sayıp \\(v=\\sqrt{2gh}\\) kullanmak."
+   ],
+   "terimler": [
+    {
+     "en": "torque",
+     "tr": "tork"
+    },
+    {
+     "en": "angular displacement",
+     "tr": "açısal yer değiştirme"
+    },
+    {
+     "en": "work–energy theorem",
+     "tr": "iş–enerji teoremi"
+    },
+    {
+     "en": "area under the curve",
+     "tr": "eğri altındaki alan"
+    },
+    {
+     "en": "power",
+     "tr": "güç"
+    }
+   ]
+  },
+  {
+   "kod": "6.3",
+   "baslik": "Angular Momentum and Angular Impulse",
+   "baslikTr": "Açısal momentum ve açısal itme",
+   "hedefler": [
+    "Katı cisim için \\(L = I\\omega\\), noktasal parçacık için \\(L = mvr_\\perp\\) ile açısal momentumu (angular momentum) hesaplamak ve yönünü (saat yönü / saat yönü tersi) belirtmek.",
+    "Açısal itme (angular impulse) \\(\\tau\\Delta t\\)'nin açısal momentum değişimine eşit olduğunu kullanmak.",
+    "Tork–zaman grafiğinin alanından \\(\\Delta L\\)'yi, açısal momentum–zaman grafiğinin eğiminden net torku bulmak."
+   ],
+   "anlatim": "<p>Unit 4'te doğrusal momentum (linear momentum) \\(p = mv\\) ve itme (impulse) \\(F\\Delta t = \\Delta p\\) vardı. Dönmedeki karşılıkları <strong>açısal momentum (angular momentum)</strong> \\(L\\) ve <strong>açısal itme (angular impulse)</strong> \\(\\tau\\Delta t\\)'dir.</p>\n<div class=\"kn-tanim\"><strong>Katı cisim:</strong> Sabit eksen etrafında dönen cisim için \\[ L = I\\omega \\] Birim: \\(\\text{kg}\\cdot\\text{m}^2/\\text{s}\\). Yön, dönme yönüyle aynıdır; Physics 1'de “clockwise / counterclockwise” ya da \\(+/-\\) ile belirtilir.</div>\n<h4>Noktasal parçacığın açısal momentumu</h4>\n<p>Bir parçacığın açısal momentumu, <strong>seçilen bir noktaya göre</strong> tanımlanır: \\[ L = mvr_\\perp = mvr\\sin\\theta \\] Burada \\(r_\\perp\\), noktadan hız doğrultusuna (çizgisine) olan dik uzaklıktır; \\(\\theta\\), \\(\\vec r\\) ile \\(\\vec v\\) arasındaki açıdır. Önemli sonuç: <strong>düz çizgide sabit hızla giden parçacığın bir noktaya göre açısal momentumu sabittir</strong>, çünkü \\(r_\\perp\\) değişmez. Parçacık dönmüyor olsa bile açısal momentumu olabilir; bu, 6.4'te “kil topu çubuğa çarpar” tipi soruların anahtarıdır.</p>\n<table><thead><tr><th>Durum</th><th>\\(L\\)</th></tr></thead>\n<tbody><tr><td>Hız noktaya doğru (\\(\\theta = 0\\))</td><td>0</td></tr>\n<tr><td>Hız \\(\\vec r\\)'ye dik</td><td>\\(mvr\\)</td></tr>\n<tr><td>Arada bir açı</td><td>\\(mvr\\sin\\theta\\)</td></tr></tbody></table>\n<p>Birden çok parçacık için açısal momentumlar <strong>işaretleriyle</strong> toplanır: saat yönü tersi dönenler \\(+\\), saat yönündekiler \\(-\\).</p>\n<h4>Açısal itme–momentum teoremi</h4>\n<div class=\"kn-kural\">\\[ \\tau_{net}\\,\\Delta t = \\Delta L \\] Net dış tork, açısal momentumun değişim hızıdır: \\(\\tau_{net} = \\Delta L/\\Delta t\\).</div>\n<p>Aynı tork aynı süre boyunca iki farklı çarka uygulanırsa ikisi de <strong>aynı \\(\\Delta L\\)</strong>'yi kazanır; ama \\(I\\)'sı küçük olanın \\(\\Delta\\omega\\)'sı büyük olur (\\(\\Delta\\omega = \\Delta L/I\\)). Kuvvet teğet uygulanıyorsa \\(\\tau = rF\\) yazıp \\(\\Delta L = rF\\Delta t\\) bulunur.</p>\n<h4>Grafik temsilleri</h4>\n<table><thead><tr><th>Grafik</th><th>Okunan nicelik</th></tr></thead>\n<tbody><tr><td>\\(\\tau\\)–\\(t\\)</td><td>Alan \\(= \\Delta L\\) (eksen altı negatif)</td></tr>\n<tr><td>\\(L\\)–\\(t\\)</td><td>Eğim \\(= \\tau_{net}\\); yatay bölüm → net tork sıfır</td></tr>\n<tr><td>\\(\\omega\\)–\\(t\\)</td><td>Eğim \\(= \\alpha\\); \\(\\tau_{net} = I\\alpha\\)</td></tr></tbody></table>\n<p>Son açısal momentum, <em>başlangıç</em> \\(L\\)'ye alanın eklenmesiyle bulunur: \\(L_f = L_i + \\text{alan}\\). Başlangıç değerini unutmak en sık hatadır.</p>\n<div class=\"kn-dikkat\">FRQ ifadesi: “The net external torque on the wheel equals the rate of change of its angular momentum; since \\(L\\) is constant between 3 s and 4 s, the net torque is zero in that interval.” \\(L = mvr_\\perp\\) kullanırken hangi noktaya göre aldığınızı yazın: “about point P”.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(0.40\\text{ kg}\\)'lık disk, merkezinden geçen eksene göre \\(I = 0.020\\text{ kg}\\cdot\\text{m}^2\\)'dir ve \\(30\\text{ rad/s}\\) ile döner. Fren \\(6.0\\text{ s}\\) boyunca sabit torkla diski durduruyor. (a) İlk \\(L\\)? (b) Fren torkunun büyüklüğü?",
+     "cozum": [
+      "(a) \\(L_i = I\\omega = (0.020)(30) = 0.60\\text{ kg}\\cdot\\text{m}^2/\\text{s}\\).",
+      "(b) \\(\\Delta L = 0 - 0.60 = -0.60\\). \\(\\tau = \\Delta L/\\Delta t = -0.60/6.0 = -0.10\\text{ N}\\cdot\\text{m}\\).",
+      "Büyüklük \\(0.10\\text{ N}\\cdot\\text{m}\\); eksi işaret torkun dönmeye zıt olduğunu gösterir."
+     ]
+    },
+    {
+     "soru": "\\(2.0\\text{ kg}\\)'lık bir kutu sürtünmesiz yüzeyde \\(3.0\\text{ m/s}\\) ile düz bir çizgide kayıyor. \\(P\\) noktasının bu çizgiye dik uzaklığı \\(4.0\\text{ m}\\)'dir. Kutu \\(P\\)'ye en yakın noktadayken ve \\(10\\text{ m}\\) ilerledikten sonra \\(P\\)'ye göre açısal momentumu nedir?",
+     "cozum": [
+      "\\(L = mvr_\\perp = (2.0)(3.0)(4.0) = 24\\text{ kg}\\cdot\\text{m}^2/\\text{s}\\).",
+      "\\(10\\text{ m}\\) sonra \\(r\\) büyür ama \\(r\\sin\\theta = r_\\perp = 4.0\\text{ m}\\) değişmez.",
+      "Kutuya net tork yoktur (net kuvvet sıfır), bu yüzden \\(L\\) yine \\(24\\text{ kg}\\cdot\\text{m}^2/\\text{s}\\)'dir."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir çarkın açısal momentumu 0–2 s arasında \\(4.0\\)'tan \\(10\\text{ kg}\\cdot\\text{m}^2/\\text{s}\\)'ye doğrusal artıyor, 2–5 s arasında sabit kalıyor. Net torku her aralık için açıklayın.",
+     "cozum": [
+      "0–2 s: \\(\\tau_{net} = \\Delta L/\\Delta t = (10-4.0)/2.0 = 3.0\\text{ N}\\cdot\\text{m}\\), dönme yönünde ve sabit (çünkü \\(L\\)–\\(t\\) doğrusal).",
+      "2–5 s: \\(L\\) sabit, eğim sıfır; “the net external torque is zero, although individual torques may still act if they cancel.”"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "\\(L = mvr_\\perp\\)'de \\(r_\\perp\\) noktadan hız <em>doğrultusuna</em> dik uzaklıktır, parçacığa olan uzaklık değildir.",
+    "\\(\\tau\\)–\\(t\\) alanı \\(\\Delta L\\)'dir; son değeri bulmak için başlangıç \\(L\\)'yi ekleyin.",
+    "Birden çok cisimde dönme yönleri için işaret kuralını en başta yazın (CCW \\(+\\)).",
+    "Kuvvet ve süre verilmişse önce torku \\(\\tau = rF_\\perp\\) bulun; \\(F\\Delta t\\) doğrusal itmedir, açısal itme değildir."
+   ],
+   "sikHatalar": [
+    "Düz çizgide giden parçacığın açısal momentumu olmadığını sanmak.",
+    "Zıt yönde dönen cisimlerin \\(L\\)'lerini büyüklükleriyle toplamak.",
+    "\\(L\\) ile \\(K_{rot}\\)'u karıştırmak: \\(\\tfrac12 I\\omega^2\\) açısal momentum değildir."
+   ],
+   "terimler": [
+    {
+     "en": "angular momentum",
+     "tr": "açısal momentum"
+    },
+    {
+     "en": "angular impulse",
+     "tr": "açısal itme"
+    },
+    {
+     "en": "perpendicular distance",
+     "tr": "dik uzaklık"
+    },
+    {
+     "en": "counterclockwise",
+     "tr": "saat yönünün tersi"
+    },
+    {
+     "en": "rate of change",
+     "tr": "değişim hızı"
+    }
+   ]
+  },
+  {
+   "kod": "6.4",
+   "baslik": "Conservation of Angular Momentum",
+   "baslikTr": "Açısal momentumun korunumu",
+   "hedefler": [
+    "Bir sistemin açısal momentumunun, net dış tork sıfır olduğunda korunduğunu (conserved) açıklamak ve uygun sistemi seçmek.",
+    "Patenci, dönen platform, eş eksenli disk ve “parçacık çubuğa çarpar” durumlarında \\(L_i = L_f\\) yazıp son açısal sürati bulmak.",
+    "Açısal momentum korunurken dönme kinetik enerjisinin artabileceğini ya da azalabileceğini, enerjinin nereye gittiğini açıklamak."
+   ],
+   "anlatim": "<p>6.3'te \\(\\tau_{net}\\Delta t = \\Delta L\\) gördük. Sistemin üzerine etkiyen <strong>net dış tork (net external torque)</strong> sıfırsa \\(\\Delta L = 0\\) olur: sistemin toplam açısal momentumu korunur. Bu, Unit 4'teki momentum korunumunun dönme karşılığıdır.</p>\n<div class=\"kn-kural\"><strong>Korunum ilkesi:</strong> \\(\\tau_{net,ext} = 0 \\Rightarrow L_{sys,i} = L_{sys,f}\\). Tek cisim için \\(I_i\\omega_i = I_f\\omega_f\\).</div>\n<h4>Sistem seçimi (system choice)</h4>\n<p>Korunum her zaman <em>bir sistem</em> ve <em>bir nokta/eksen</em> için yazılır. İç torklar (sistemin parçalarının birbirine uyguladığı torklar) toplam \\(L\\)'yi değiştirmez; yalnızca açısal momentumu parçalar arasında aktarır.</p>\n<table><thead><tr><th>Durum</th><th>Sistem</th><th>Neden \\(L\\) korunur?</th></tr></thead>\n<tbody><tr><td>Patenci kollarını çekiyor</td><td>Patenci</td><td>Buz sürtünmesiz; kol kasları iç kuvvet</td></tr>\n<tr><td>Disk üstüne disk düşüyor</td><td>İki disk</td><td>Aradaki sürtünme iç tork; eksen sürtünmesiz</td></tr>\n<tr><td>Çocuk dönen platformda yürüyor</td><td>Çocuk + platform</td><td>Ayak–platform kuvvetleri iç</td></tr>\n<tr><td>Kil topu menteşeli çubuğa yapışıyor</td><td>Kil + çubuk, menteşeye göre</td><td>Menteşe kuvveti menteşeden geçer: torku sıfır</td></tr></tbody></table>\n<p>Son satır önemlidir: menteşe (pivot) büyük bir kuvvet uygular, bu yüzden <strong>doğrusal momentum korunmaz</strong>; ama bu kuvvetin menteşeye göre moment kolu sıfır olduğundan <strong>açısal momentum korunur</strong>. Çarpmadan önce topun \\(L = mvr_\\perp\\), sonra sistemin \\(L = (I_{rod} + mr^2)\\omega\\)'dır.</p>\n<h4>Kinetik enerji ne olur?</h4>\n<p>\\(K_{rot} = \\tfrac12 I\\omega^2 = \\dfrac{L^2}{2I}\\). \\(L\\) sabitken \\(I\\) azalırsa \\(K\\) <strong>artar</strong>. Patenci kollarını çektiğinde ekstra enerji, kaslarının kollara yaptığı pozitif <strong>iç işten (internal work)</strong>, yani vücudun kimyasal enerjisinden gelir. Tersine, iki disk yapışınca (rotational inelastic collision) \\(K\\) <strong>azalır</strong>; fark sürtünmeyle iç enerjiye geçer.</p>\n<table><thead><tr><th></th><th>\\(I\\)</th><th>\\(\\omega\\)</th><th>\\(L\\)</th><th>\\(K_{rot}\\)</th></tr></thead>\n<tbody><tr><td>Kollar açık</td><td>\\(3I_0\\)</td><td>\\(\\omega_0\\)</td><td>\\(3I_0\\omega_0\\)</td><td>\\(\\tfrac32 I_0\\omega_0^2\\)</td></tr>\n<tr><td>Kollar kapalı</td><td>\\(I_0\\)</td><td>\\(3\\omega_0\\)</td><td>\\(3I_0\\omega_0\\)</td><td>\\(\\tfrac92 I_0\\omega_0^2\\)</td></tr></tbody></table>\n<h4>Zıt yönde dönen cisimler</h4>\n<p>Saat yönünde dönen disk ile saat yönü tersine dönen disk birleşirse \\(L\\)'ler <strong>işaretleriyle</strong> toplanır: \\(I_A\\omega_A - I_B\\omega_B = (I_A+I_B)\\omega_f\\). Ortak dönme yönü, açısal momentumu büyük olanın yönüdür.</p>\n<div class=\"kn-dikkat\">FRQ ifadesi: “Taking the skater as the system, the ice exerts negligible torque about the spin axis, so the skater's angular momentum is conserved. Pulling her arms in decreases her rotational inertia, so her angular speed must increase.” Önce sistemi ve neden dış tork olmadığını yazın; sonra \\(I\\) ve \\(\\omega\\)'nın nasıl değiştiğini.</div>",
+   "ornekler": [
+    {
+     "soru": "\\(I = 2.4\\text{ kg}\\cdot\\text{m}^2\\) olan bir patenci kolları açıkken \\(3.0\\text{ rad/s}\\) ile dönüyor. Kollarını çekince \\(I = 0.80\\text{ kg}\\cdot\\text{m}^2\\) oluyor. Son \\(\\omega\\) ve \\(K_f/K_i\\) nedir?",
+     "cozum": [
+      "\\(L = (2.4)(3.0) = 7.2\\text{ kg}\\cdot\\text{m}^2/\\text{s}\\). \\(\\omega_f = 7.2/0.80 = 9.0\\text{ rad/s}\\).",
+      "\\(K_i = \\tfrac12(2.4)(9.0) = 10.8\\text{ J}\\), \\(K_f = \\tfrac12(0.80)(81) = 32.4\\text{ J}\\).",
+      "\\(K_f/K_i = 3 = I_i/I_f\\). Artış, patencinin kaslarının yaptığı iç işten gelir."
+     ]
+    },
+    {
+     "soru": "Uzunluğu \\(1.2\\text{ m}\\), menteşeye göre \\(I = 0.48\\text{ kg}\\cdot\\text{m}^2\\) olan bir çubuk bir ucundan sürtünmesiz menteşeye takılı ve durgundur. \\(0.10\\text{ kg}\\)'lık kil topu çubuğa dik \\(12\\text{ m/s}\\) ile serbest uca çarpıp yapışıyor. Çarpma sonrası \\(\\omega\\)?",
+     "cozum": [
+      "Sistem: kil + çubuk, menteşeye göre. Menteşe kuvvetinin torku yok → \\(L\\) korunur (doğrusal momentum korunmaz).",
+      "\\(L_i = mvr = (0.10)(12)(1.2) = 1.44\\text{ kg}\\cdot\\text{m}^2/\\text{s}\\).",
+      "\\(I_f = 0.48 + (0.10)(1.2)^2 = 0.624\\text{ kg}\\cdot\\text{m}^2\\); \\(\\omega = 1.44/0.624 \\approx 2.3\\text{ rad/s}\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Dönen bir platformun kenarında duran öğrenci merkeze doğru yürüyor. Platformun açısal süratine ne olur? Sistemi belirterek açıklayın.",
+     "cozum": [
+      "<strong>Claim:</strong> The platform's angular speed increases.",
+      "<strong>Evidence/Reasoning:</strong> Take the student and platform as the system. The axle is frictionless, so there is no net external torque and the system's angular momentum is constant.",
+      "As the student moves closer to the axis, her contribution \\(mr^2\\) to the rotational inertia decreases, so the total \\(I\\) decreases and \\(\\omega = L/I\\) must increase."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her korunum cevabına “system = …, no net external torque because …” cümlesiyle başlayın.",
+    "Menteşeli/pivotlu çarpışmalarda doğrusal momentum değil, pivota göre açısal momentum korunur.",
+    "\\(K = L^2/2I\\) ilişkisi, \\(L\\) sabitken enerjinin nasıl değiştiğini tek satırda gösterir.",
+    "Zıt yönlerde dönen cisimler için işaretleri tabloya yazın; son yön, net \\(L\\)'nin işaretidir."
+   ],
+   "sikHatalar": [
+    "Açısal momentum korunurken kinetik enerjinin de korunduğunu sanmak.",
+    "Çarpan parçacığın son eylemsizlik momentine katkısını (\\(mr^2\\)) unutmak.",
+    "Pivot kuvveti varken doğrusal momentum korunumunu kullanmak."
+   ],
+   "terimler": [
+    {
+     "en": "conservation of angular momentum",
+     "tr": "açısal momentumun korunumu"
+    },
+    {
+     "en": "net external torque",
+     "tr": "net dış tork"
+    },
+    {
+     "en": "internal work",
+     "tr": "iç iş"
+    },
+    {
+     "en": "pivot",
+     "tr": "menteşe, dönme noktası"
+    },
+    {
+     "en": "rotational inelastic collision",
+     "tr": "dönmeli esnek olmayan çarpışma"
+    }
+   ]
+  },
+  {
+   "kod": "6.5",
+   "baslik": "Rolling",
+   "baslikTr": "Yuvarlanma",
+   "hedefler": [
+    "Kaymadan yuvarlanma (rolling without slipping) koşulunu \\(v_{cm} = \\omega R\\) olarak yazmak ve tekerleğin farklı noktalarının süratlerini belirlemek.",
+    "Yuvarlanan cismin toplam kinetik enerjisini öteleme ve dönme paylarına ayırmak; eğik düzlem yarışlarını şekil çarpanıyla açıklamak.",
+    "Kaymadan yuvarlanmada statik sürtünmenin iş yapmadığını, kayarak yuvarlanmada kinetik sürtünmenin mekanik enerjiyi azalttığını açıklamak."
+   ],
+   "anlatim": "<p>Bir top ya da tekerlek yerde yuvarlanırken hem kütle merkezi ilerler hem de cisim kendi merkezi etrafında döner. Toplam kinetik enerji 6.1'deki gibi iki terimlidir.</p>\n<div class=\"kn-tanim\"><strong>Kaymadan yuvarlanma (rolling without slipping):</strong> Cismin yere değen noktası o an yere göre durgundur. Bu koşul \\[ v_{cm} = \\omega R,\\qquad a_{cm} = \\alpha R \\] demektir. Bir tam dönüşte cisim çevresi kadar, yani \\(2\\pi R\\) ilerler.</div>\n<h4>Tekerleğin noktalarının sürati</h4>\n<table><thead><tr><th>Nokta</th><th>Yere göre sürat</th></tr></thead>\n<tbody><tr><td>Yere değen nokta</td><td>0</td></tr>\n<tr><td>Merkez</td><td>\\(v_{cm}\\)</td></tr>\n<tr><td>Tepe noktası</td><td>\\(2v_{cm}\\)</td></tr></tbody></table>\n<h4>Enerji paylaşımı (energy distribution)</h4>\n<p>\\(I = \\beta MR^2\\) yazalım (\\(\\beta\\): şekil çarpanı; halka 1, disk \\(\\tfrac12\\), dolu küre \\(\\tfrac25\\), ince kabuk küre \\(\\tfrac23\\)). \\(\\omega = v/R\\) koyunca \\[ K_{tot} = \\tfrac12 Mv^2 + \\tfrac12\\beta MR^2\\left(\\tfrac{v}{R}\\right)^2 = \\tfrac12(1+\\beta)Mv^2 \\] Dönme payı \\(\\dfrac{\\beta}{1+\\beta}\\), öteleme payı \\(\\dfrac{1}{1+\\beta}\\)'dır.</p>\n<table><thead><tr><th>Cisim</th><th>\\(\\beta\\)</th><th>Öteleme payı</th><th>Dönme payı</th></tr></thead>\n<tbody><tr><td>Dolu küre</td><td>2/5</td><td>5/7 ≈ 71%</td><td>2/7 ≈ 29%</td></tr>\n<tr><td>Dolu silindir</td><td>1/2</td><td>2/3 ≈ 67%</td><td>1/3 ≈ 33%</td></tr>\n<tr><td>Kabuk küre</td><td>2/3</td><td>3/5 = 60%</td><td>2/5 = 40%</td></tr>\n<tr><td>Halka</td><td>1</td><td>1/2</td><td>1/2</td></tr></tbody></table>\n<h4>Eğik düzlem yarışı</h4>\n<p>Durgun bırakılan cisim \\(h\\) yüksekliğinden kaymadan yuvarlanırsa (sistem: cisim + Dünya) \\(Mgh = \\tfrac12(1+\\beta)Mv^2\\), yani \\[ v = \\sqrt{\\frac{2gh}{1+\\beta}} \\] Kütle ve yarıçap sadeleşir! Yarışı yalnızca \\(\\beta\\) belirler: \\(\\beta\\) küçük olan (kütlesi eksene yakın olan) daha az enerjiyi dönmeye ayırır, daha hızlıdır. Sıralama: dolu küre &gt; dolu silindir &gt; kabuk küre &gt; halka. Sürtünmesiz rampada <em>kayan</em> (dönmeyen) bir kutu ise tüm enerjiyi ötelemeye verir ve \\(v=\\sqrt{2gh}\\) ile hepsini geçer; ama bitişte toplam kinetik enerjileri aynıdır (\\(Mgh\\)).</p>\n<h4>Statik sürtünmenin rolü</h4>\n<p>Kaymadan yuvarlanmada sürtünme <strong>statik (static friction)</strong>tir ve değme noktası kaymadığı için <strong>iş yapmaz</strong>; mekanik enerji korunur. Eğik düzlemde statik sürtünme rampa boyunca yukarı yönelir ve dönmeyi sağlayan torku verir. Düz zeminde sabit hızla yuvarlanan cisimde sürtünme gerekmez (sıfırdır).</p>\n<h4>Kayarak yuvarlanma (rolling with slipping)</h4>\n<p>Dönmeden fırlatılan bir bowling topu önce kayar: \\(v_{cm} \\gt \\omega R\\). Kinetik sürtünme hareket yönüne zıttır; \\(v_{cm}\\)'yi azaltır, aynı anda tork uygulayıp \\(\\omega\\)'yı artırır. \\(v_{cm} = \\omega R\\) olduğu anda kayma biter ve top kaymadan yuvarlanır. Kayma süresince kinetik sürtünme mekanik enerjiyi iç enerjiye dönüştürür; toplam \\(K\\) azalır.</p>\n<div class=\"kn-dikkat\">FRQ ifadesi: “Because the sphere rolls without slipping, the point of contact is instantaneously at rest, so static friction does no work and the mechanical energy of the sphere–Earth system is conserved. The sphere has a smaller rotational inertia per \\(MR^2\\) than the hoop, so a larger fraction of the energy is translational and it reaches the bottom first.”</div>",
+   "ornekler": [
+    {
+     "soru": "Kütlesi \\(2.0\\text{ kg}\\) olan dolu silindir \\(0.60\\text{ m}\\) yüksekliğindeki rampadan durgun halden kaymadan yuvarlanıyor. Dipte \\(v\\), \\(K_{trans}\\) ve \\(K_{rot}\\) nedir? (\\(g = 10\\text{ m/s}^2\\))",
+     "cozum": [
+      "\\(Mgh = (2.0)(10)(0.60) = 12\\text{ J}\\) = \\(\\tfrac12(1+\\tfrac12)Mv^2 = 1.5v^2\\).",
+      "\\(v^2 = 8.0 \\Rightarrow v \\approx 2.8\\text{ m/s}\\).",
+      "\\(K_{trans} = \\tfrac12(2.0)(8.0) = 8.0\\text{ J}\\), \\(K_{rot} = 12 - 8.0 = 4.0\\text{ J}\\): 2/3 – 1/3 paylaşımı."
+     ]
+    },
+    {
+     "soru": "Yarıçapı \\(0.35\\text{ m}\\) olan bir bisiklet tekerleği kaymadan yuvarlanıyor ve merkezi \\(7.0\\text{ m/s}\\) ile ilerliyor. (a) \\(\\omega\\)? (b) Tepe noktasının yere göre sürati? (c) \\(10\\) tam dönüşte alınan yol?",
+     "cozum": [
+      "(a) \\(\\omega = v/R = 7.0/0.35 = 20\\text{ rad/s}\\).",
+      "(b) Tepe noktası \\(2v_{cm} = 14\\text{ m/s}\\); değme noktası 0.",
+      "(c) \\(d = 10 \\times 2\\pi R = 10 \\times 2\\pi(0.35) \\approx 22\\text{ m}\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Aynı kütle ve yarıçaplı bir halka ve bir dolu küre aynı yükseklikten durgun bırakılıyor ve kaymadan yuvarlanıyor. Hangisi dibe önce ulaşır? Enerjiyle gerekçelendirin.",
+     "cozum": [
+      "<strong>Claim:</strong> The solid sphere reaches the bottom first.",
+      "<strong>Evidence:</strong> Both lose the same gravitational potential energy \\(Mgh\\), and static friction does no work, so \\(Mgh = \\tfrac12(1+\\beta)Mv^2\\).",
+      "<strong>Reasoning:</strong> The sphere's mass is closer to its axis (\\(\\beta = 2/5 \\lt 1\\)), so a smaller fraction of \\(Mgh\\) becomes rotational energy and a larger fraction becomes translational. At every height it moves faster than the hoop."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Yarış sorularında önce \\(\\beta\\)'yı karşılaştırın; kütle ve yarıçap verilse bile sonuca etki etmez.",
+    "“Rolls without slipping” ifadesini gördüğünüz an \\(v = \\omega R\\) yazın ve statik sürtünmenin iş yapmadığını not edin.",
+    "Hesap makinesi serbesttir; ama \\(v\\) için önce sembolik ifade (\\(\\sqrt{2gh/(1+\\beta)}\\)) yazmak hem puan getirir hem hatayı azaltır.",
+    "Enerji çubuk grafiklerinde \\(K_{trans}\\) ve \\(K_{rot}\\)'u ayrı çubuklarla gösterin."
+   ],
+   "sikHatalar": [
+    "Yuvarlanan cisim için \\(v=\\sqrt{2gh}\\) kullanmak (dönme enerjisini unutmak).",
+    "Ağır ya da büyük olan cismin daha hızlı yuvarlandığını sanmak.",
+    "Kaymadan yuvarlanmada sürtünmenin enerjiyi “yediğini” düşünmek."
+   ],
+   "terimler": [
+    {
+     "en": "rolling without slipping",
+     "tr": "kaymadan yuvarlanma"
+    },
+    {
+     "en": "static friction",
+     "tr": "statik sürtünme"
+    },
+    {
+     "en": "center of mass",
+     "tr": "kütle merkezi"
+    },
+    {
+     "en": "point of contact",
+     "tr": "değme noktası"
+    },
+    {
+     "en": "rolling with slipping",
+     "tr": "kayarak yuvarlanma"
+    }
+   ]
+  },
+  {
+   "kod": "6.6",
+   "baslik": "Motion of Orbiting Satellites",
+   "baslikTr": "Yörüngedeki uyduların hareketi",
+   "hedefler": [
+    "Dairesel yörüngede uydunun süratini, periyodunu ve enerjisini kütleçekim kuvvetinin merkezcil kuvvet olmasından türetmek.",
+    "Eliptik yörüngede uydu–gezegen sisteminin açısal momentumunun ve mekanik enerjisinin korunduğunu açıklamak; yakın ve uzak noktalarda sürat karşılaştırmak.",
+    "Kaçış süratini (escape velocity) toplam mekanik enerjinin sıfır olması koşuluyla bulmak."
+   ],
+   "anlatim": "<p>Bir uydunun (satellite) gezegen etrafındaki hareketi, Unit 2'deki kütleçekimi (gravitation), Unit 3'teki enerji ve 6.4'teki açısal momentum korunumunu birleştirir. Uydunun kütlesi \\(m\\), merkezdeki cismin kütlesi \\(M \\gg m\\)'dir; merkezdeki cismin hareketini yok sayarız.</p>\n<h4>Dairesel yörünge (circular orbit)</h4>\n<p>Kütleçekim kuvveti merkezcil kuvveti sağlar: \\[ \\frac{GMm}{r^2} = \\frac{mv^2}{r} \\Rightarrow v = \\sqrt{\\frac{GM}{r}} \\] Sürat <strong>uydunun kütlesinden bağımsızdır</strong>; yalnız \\(M\\) ve \\(r\\)'ye bağlıdır. Yarıçap 4 katına çıkarsa sürat yarıya iner. \\(v = 2\\pi r/T\\) yazınca Kepler'in üçüncü yasası (Kepler's third law) çıkar: \\[ T^2 = \\frac{4\\pi^2}{GM}\\,r^3 \\] Aynı merkez cisim etrafındaki uydular için \\(T^2/r^3\\) sabittir; \\(r\\) 4 katına çıkarsa \\(T\\) 8 katına çıkar. Bir uydunun \\(r\\) ve \\(v\\) (ya da \\(T\\)) verisinden merkez kütle bulunabilir: \\(M = v^2 r/G\\).</p>\n<h4>Enerji</h4>\n<p>Uydu–gezegen sisteminin kütleçekim potansiyel enerjisi, sonsuzda sıfır alınarak \\(U_G = -\\dfrac{GMm}{r}\\)'dir. Dairesel yörüngede \\(K = \\tfrac12 mv^2 = \\dfrac{GMm}{2r}\\), dolayısıyla</p>\n<table><thead><tr><th>Nicelik</th><th>Dairesel yörüngede</th><th>Örnek</th></tr></thead>\n<tbody><tr><td>\\(K\\)</td><td>\\(+\\dfrac{GMm}{2r}\\)</td><td>\\(+5\\times10^9\\text{ J}\\)</td></tr>\n<tr><td>\\(U_G\\)</td><td>\\(-\\dfrac{GMm}{r}\\)</td><td>\\(-10\\times10^9\\text{ J}\\)</td></tr>\n<tr><td>\\(E = K + U_G\\)</td><td>\\(-\\dfrac{GMm}{2r}\\)</td><td>\\(-5\\times10^9\\text{ J}\\)</td></tr></tbody></table>\n<p>Negatif toplam enerji, sistemin <strong>bağlı (bound)</strong> olduğunu gösterir. Daha büyük yörüngeye çıkmak için \\(E\\) artırılmalıdır (daha az negatif); bu sırada \\(K\\) azalır, \\(U_G\\) artar. Dairesel yörüngede kütleçekim kuvveti hıza her an dik olduğundan iş yapmaz; sürat sabittir.</p>\n<h4>Eliptik yörünge ve Kepler'in ikinci yasası</h4>\n<p>Kütleçekim kuvveti her zaman gezegenin merkezine yönelir; gezegenin merkezine göre moment kolu sıfırdır, <strong>torku sıfırdır</strong>. Bu yüzden uydunun açısal momentumu \\(L = mvr_\\perp\\) korunur. En yakın (periapsis) ve en uzak (apoapsis) noktalarda hız yarıçapa diktir: \\[ r_1 v_1 = r_2 v_2 \\] Yakın noktada daha hızlı, uzak noktada daha yavaştır. “Eşit zamanlarda eşit alanlar taranır” ifadesi (Kepler's second law) bu korunumun sonucudur. Ayrıca dış kuvvet olmadığı için uydu–gezegen sisteminin mekanik enerjisi \\(E = \\tfrac12 mv^2 - \\tfrac{GMm}{r}\\) de korunur: uydu yaklaşırken \\(U_G\\) azalır, \\(K\\) aynı miktarda artar.</p>\n<h4>Kaçış sürati (escape velocity)</h4>\n<p>Uydunun sonsuza ulaşabilmesi için sistemin toplam enerjisi en az sıfır olmalıdır: \\(\\tfrac12 mv_{esc}^2 - \\tfrac{GMm}{r} = 0\\), \\[ v_{esc} = \\sqrt{\\frac{2GM}{r}} = \\sqrt2\\,v_{circ} \\] Aynı noktada dairesel yörünge süratinin \\(\\sqrt2\\) katıdır ve uydunun kütlesine bağlı değildir.</p>\n<div class=\"kn-dikkat\">FRQ ifadesi: “The gravitational force on the satellite is always directed toward the planet's center, so it exerts no torque about that point. Therefore the satellite's angular momentum about the planet is constant, and since \\(L = mvr\\) at the closest and farthest points, the speed is greatest where \\(r\\) is smallest.” Uydunun tek başına enerjisinden değil, <em>uydu–gezegen sisteminin</em> enerjisinden söz edin.</div>",
+   "ornekler": [
+    {
+     "soru": "Kütlesi \\(6.0\\times10^{24}\\text{ kg}\\) olan gezegen etrafında \\(r = 8.0\\times10^6\\text{ m}\\) yarıçaplı dairesel yörüngede dönen uydunun sürati ve periyodu nedir? (\\(G = 6.67\\times10^{-11}\\text{ N}\\cdot\\text{m}^2/\\text{kg}^2\\))",
+     "cozum": [
+      "\\(v = \\sqrt{GM/r} = \\sqrt{(6.67\\times10^{-11})(6.0\\times10^{24})/(8.0\\times10^6)} = \\sqrt{5.0\\times10^7} \\approx 7.1\\times10^3\\text{ m/s}\\).",
+      "\\(T = 2\\pi r/v = 2\\pi(8.0\\times10^6)/(7.1\\times10^3) \\approx 7.1\\times10^3\\text{ s}\\) (yaklaşık 2 saat)."
+     ]
+    },
+    {
+     "soru": "Eliptik yörüngedeki bir uydu en yakın noktada \\(r_1 = 1.0\\times10^7\\text{ m}\\) uzaklıkta \\(9.0\\times10^3\\text{ m/s}\\) ile hareket ediyor. En uzak nokta \\(r_2 = 3.0\\times10^7\\text{ m}\\)'dir. Oradaki sürati nedir?",
+     "cozum": [
+      "Gezegene göre tork yok → \\(L\\) korunur. Bu iki noktada hız yarıçapa dik: \\(mv_1r_1 = mv_2r_2\\).",
+      "\\(v_2 = v_1 r_1/r_2 = (9.0\\times10^3)(1.0)/(3.0) = 3.0\\times10^3\\text{ m/s}\\).",
+      "Enerji yorumu: uzak noktada \\(U_G\\) daha büyük (daha az negatif), bu yüzden \\(K\\) daha küçüktür; iki sonuç tutarlıdır."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) İki uydu aynı yarıçaplı dairesel yörüngededir; A'nın kütlesi B'ninkinin iki katıdır. Süratlerini ve sistem enerjilerini karşılaştırın.",
+     "cozum": [
+      "<strong>Speed:</strong> \\(GMm/r^2 = mv^2/r\\) gives \\(v = \\sqrt{GM/r}\\); the satellite's mass cancels, so \\(v_A = v_B\\).",
+      "<strong>Energy:</strong> \\(E = -GMm/2r\\) is proportional to \\(m\\), so the A–planet system has twice as much (twice as negative) total energy; more work is needed to move A to a higher orbit."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Dairesel yörünge sorusunda ilk satır daima \\(GMm/r^2 = mv^2/r\\)'dir; puanlayıcı bu başlangıcı arar.",
+    "Bilimsel gösterimde hesap makinesi kullanın; üsleri ayrı toplayıp kontrol edin.",
+    "Eliptik yörüngede süratleri açısal momentumla (\\(r_1v_1 = r_2v_2\\)), enerjileri mekanik enerji korunumuyla karşılaştırın.",
+    "\\(U_G\\) negatiftir; “daha büyük” potansiyel enerji, sıfıra daha yakın demektir."
+   ],
+   "sikHatalar": [
+    "Uydunun süratinin kendi kütlesine bağlı olduğunu sanmak.",
+    "Eliptik yörüngede sabit sürat varsaymak ya da \\(v \\propto r\\) yazmak.",
+    "Dairesel yörüngede \\(K = -U_G\\) almak; doğrusu \\(K = -U_G/2\\)."
+   ],
+   "terimler": [
+    {
+     "en": "satellite",
+     "tr": "uydu"
+    },
+    {
+     "en": "circular orbit",
+     "tr": "dairesel yörünge"
+    },
+    {
+     "en": "elliptical orbit",
+     "tr": "eliptik yörünge"
+    },
+    {
+     "en": "escape velocity",
+     "tr": "kaçış sürati"
+    },
+    {
+     "en": "bound system",
+     "tr": "bağlı sistem"
+    },
+    {
+     "en": "Kepler's laws",
+     "tr": "Kepler yasaları"
+    }
+   ]
+  }
+ ]
+}

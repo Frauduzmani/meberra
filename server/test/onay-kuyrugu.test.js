@@ -9,11 +9,17 @@ const os = require("os");
 const path = require("path");
 const { olustur } = require("../uygulama");
 const { TOHUM, TOHUM_AYAR, tohumSurumOku } = require("../sorubankasi");
+// 1.23.0: calc Unit 1 istasyonu = tohumdaki aktifler − bu testte taslağa çevrilen 1.11.0 soruları (tohumdan hesaplanır)
+const _TV = JSON.parse(require("fs").readFileSync(require("path").join(__dirname, "..", "tohum", "soru-bankasi.json"), "utf8"));
+const CALC1_ISTASYON = _TV.sorular.filter(x => x.kutu === "calc-unit1-quiz-container" && x.durum === "aktif" && !(x.ek && x.ek.uretim === "1.11.0")).length;
 
 // 1.11.0: gerçek tohumda taslak kalmadı (bağımsız denetim kararları uygulandı: araclar/onay/UYGULANAN.md). Onay kuyruğu
 // davranışı, 1.11.0 üretimlerinin onay öncesi hâli (hepsi taslak) olan bir sınama tohumuyla sınanır.
 const GERCEK = JSON.parse(fs.readFileSync(TOHUM, "utf8"));
 const GUNCEL = JSON.parse(JSON.stringify(GERCEK));
+// 1.23.0: phys/bio Unit 8 kutularına aktif sorular eklendi; "taslak-yalnız yeni kutu" senaryosu için sınama tohumundan çıkarılır
+const YENI_KUTU = ["phys-unit8-quiz-container", "bio-unit8-quiz-container"];
+GUNCEL.sorular = GUNCEL.sorular.filter(r => !YENI_KUTU.includes(r.kutu) || (r.ek && r.ek.uretim === "1.11.0"));
 GUNCEL.sorular.forEach(r => { if (r.ek && r.ek.uretim === "1.11.0") { r.durum = "taslak"; delete r.ek.onay; delete r.ek.redNedeni; } });
 const TASLAK = GUNCEL.sorular.filter(r => r.durum === "taslak");
 const FIZIK8 = TASLAK.filter(r => r.kutu === "phys-unit8-quiz-container").map(r => r.id);
@@ -98,10 +104,10 @@ test("taslak öğrenciye hiçbir uçta sunulmaz (Premium öğrenci bile)", async
   assert.equal((await o("GET", "/api/sorular-bankasi/ap-physics/9")).durum, 404);
   assert.equal((await o("GET", "/api/sorular-bankasi/ap-biology/bio-unit8-quiz-container")).durum, 404);
   r = await o("GET", "/api/sorular-bankasi/ap-calculus/1");
-  assert.equal(r.govde.kutular[0].sorular.length, 27); // 1.14.1: +5 şekilli (aktif)
+  assert.equal(r.govde.kutular[0].sorular.length, CALC1_ISTASYON); // 1.14.1: +5 şekilli (aktif); 1.23.0: tohumdan
   assert.equal(icerir(r.govde, CALC1), false);
   r = await o("GET", "/api/sorular-bankasi/ap-calculus");
-  assert.equal(r.govde.kutular.find(k => k.kutu === "calc-unit1-quiz-container").toplam, 27, "sayılar taslağı içermez");
+  assert.equal(r.govde.kutular.find(k => k.kutu === "calc-unit1-quiz-container").toplam, CALC1_ISTASYON, "sayılar taslağı içermez");
   // cevap ve getir (Bugünkü tekrar)
   assert.equal((await o("POST", "/api/sorular-bankasi/cevap", { soruId: CALC1[0], secim: "A" })).durum, 404);
   r = await o("POST", "/api/sorular-bankasi/getir", { anahtarlar: ["ap-calculus|" + CALC1[0], "ap-physics|" + FIZIK8[0]] });

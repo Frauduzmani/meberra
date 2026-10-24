@@ -69,7 +69,9 @@ MZ.duyurular.forEach(m => eskiMaddeler.push(m));
 const yeniId = {};
 (function gez(o) { if (Array.isArray(o)) o.forEach(gez); else if (o && typeof o === "object") { if (typeof o.metin === "string" && o.id) yeniId[o.id] = o; else Object.values(o).forEach(gez); } })([V, DUY]);
 const eksik = eskiMaddeler.filter(m => !m.id || !yeniId[m.id]);
-const degisti = (y, m) => !esit(Object.assign({}, y, { hedef: undefined, bitis: m.bitis, dil: undefined }), Object.assign({}, m, { hedef: undefined, dil: undefined }));
+// 1.23.0: kaynak bağlantıları URL ile karşılaştırılır; görünen ad kısaltılabilir (9107493: anabin adlarından "TUR-BV…" eki kaldırıldı)
+const kaynakUrl = k => Array.isArray(k) ? k.map(x => x && x.url) : k;
+const degisti = (y, m) => !esit(Object.assign({}, y, { hedef: undefined, bitis: m.bitis, dil: undefined, kaynak: kaynakUrl(y.kaynak) }), Object.assign({}, m, { hedef: undefined, dil: undefined, kaynak: kaynakUrl(m.kaynak) }));
 // PM bir maddeyi güncellediyse sonKontrol ilerler: bu "güncellendi" sayılır; tarih aynıyken içerik değişmişse hata
 const guncel = eskiMaddeler.filter(m => m.id && yeniId[m.id] && degisti(yeniId[m.id], m) && yeniId[m.id].sonKontrol > m.sonKontrol);
 const farkli = eskiMaddeler.filter(m => m.id && yeniId[m.id] && degisti(yeniId[m.id], m) && !(yeniId[m.id].sonKontrol > m.sonKontrol));

@@ -1,0 +1,448 @@
+{
+ "ders": "physics",
+ "unite": 5,
+ "baslik": "Torque and Rotational Dynamics",
+ "baslikTr": "Tork ve Dönme Dinamiği",
+ "konular": [
+  {
+   "kod": "5.1",
+   "baslik": "Rotational Kinematics",
+   "baslikTr": "Dönme kinematiği",
+   "hedefler": [
+    "Sabit bir eksen etrafında dönen katı cismin (rigid body) açısal yer değiştirme (angular displacement), açısal hız (angular velocity) ve açısal ivmesini (angular acceleration) tanımlamak ve işaret kuralıyla (sign convention) yazmak.",
+    "Sabit açısal ivme için dönme kinematiği denklemlerini kullanmak; devir, radyan ve rpm arasında dönüşüm yapmak.",
+    "\\(\\theta\\)–\\(t\\) ve \\(\\omega\\)–\\(t\\) grafikleri ile tablolarından eğim (slope) ve alan (area) okuyarak \\(\\omega\\), \\(\\alpha\\) ve \\(\\Delta\\theta\\) bulmak."
+   ],
+   "anlatim": "<p>Unit 5'te cisimleri artık nokta parçacık değil, <strong>katı (rigid) genişletilmiş cisim (extended object)</strong> olarak ele alıyoruz: tekerlek, kasnak (pulley), kapı, çubuk. İlk adım dönmeyi tarif etmektir. Bu konudaki her şey Unit 1'deki doğrusal kinematiğin birebir kopyasıdır; yalnız harfler değişir.</p>\n<div class=\"kn-tanim\"><strong>Tanımlar (sabit eksen):</strong> Açısal konum \\(\\theta\\) (rad); açısal yer değiştirme \\(\\Delta\\theta = \\theta_f - \\theta_i\\); ortalama açısal hız \\(\\omega_{avg} = \\dfrac{\\Delta\\theta}{\\Delta t}\\) (rad/s); ortalama açısal ivme \\(\\alpha_{avg} = \\dfrac{\\Delta\\omega}{\\Delta t}\\) (rad/s²).</div>\n<h4>1. Radyan ve birim dönüşümü</h4>\n<p>Radyan, yay uzunluğunun yarıçapa oranıdır: \\(\\theta = s/r\\). Bu yüzden radyan aslında birimsizdir ama sonuçta “rad” yazılır. Dönüşümler:</p>\n<table><thead><tr><th>Verilen</th><th>Radyana çevirme</th><th>Örnek</th></tr></thead>\n<tbody><tr><td>devir (revolution)</td><td>\\(\\times 2\\pi\\)</td><td>3 devir = \\(6\\pi \\approx 18.8\\) rad</td></tr>\n<tr><td>derece</td><td>\\(\\times \\pi/180\\)</td><td>\\(90^\\circ = \\pi/2\\) rad</td></tr>\n<tr><td>rpm (devir/dakika)</td><td>\\(\\times 2\\pi/60\\)</td><td>60 rpm = \\(2\\pi \\approx 6.3\\) rad/s</td></tr></tbody></table>\n<h4>2. Katı cisimde her nokta aynı açıyı döner</h4>\n<p>Katı bir cisim sabit eksen etrafında dönerken eksene yakın ve uzak tüm noktalar aynı sürede <strong>aynı açıyı</strong> tarar. Dolayısıyla \\(\\theta\\), \\(\\omega\\) ve \\(\\alpha\\) cismin tamamı için tek değerdir. (Noktaların doğrusal hızları ise farklıdır; bu 5.2'nin konusudur.)</p>\n<h4>3. İşaret kuralı (sign convention)</h4>\n<p>Dönme yönü bir işaretle gösterilir. AP'de genellikle <strong>saat yönünün tersi (counterclockwise, CCW) pozitif</strong>, saat yönü (clockwise, CW) negatif seçilir; ama soruda farklı tanımlanırsa ona uyun ve FRQ'da kendi seçiminizi yazın: “Taking counterclockwise as positive, …”.</p>\n<table><thead><tr><th>\\(\\omega\\)</th><th>\\(\\alpha\\)</th><th>Hareket</th></tr></thead>\n<tbody><tr><td>+</td><td>+</td><td>CCW dönüyor, hızlanıyor</td></tr>\n<tr><td>+</td><td>−</td><td>CCW dönüyor, yavaşlıyor</td></tr>\n<tr><td>−</td><td>+</td><td>CW dönüyor, yavaşlıyor</td></tr>\n<tr><td>−</td><td>−</td><td>CW dönüyor, hızlanıyor</td></tr></tbody></table>\n<p>Kural: \\(\\omega\\) ile \\(\\alpha\\) <strong>aynı işaretliyse</strong> dönme hızlanır, zıt işaretliyse yavaşlar. Negatif \\(\\alpha\\) tek başına “yavaşlıyor” anlamına gelmez.</p>\n<h4>4. Sabit açısal ivme denklemleri</h4>\n<table><thead><tr><th>Doğrusal (Unit 1)</th><th>Dönme (Unit 5)</th></tr></thead>\n<tbody><tr><td>\\(v = v_0 + at\\)</td><td>\\(\\omega = \\omega_0 + \\alpha t\\)</td></tr>\n<tr><td>\\(\\Delta x = v_0 t + \\tfrac12 a t^2\\)</td><td>\\(\\Delta\\theta = \\omega_0 t + \\tfrac12 \\alpha t^2\\)</td></tr>\n<tr><td>\\(v^2 = v_0^2 + 2a\\Delta x\\)</td><td>\\(\\omega^2 = \\omega_0^2 + 2\\alpha\\Delta\\theta\\)</td></tr>\n<tr><td>\\(\\Delta x = \\tfrac12(v_0+v)t\\)</td><td>\\(\\Delta\\theta = \\tfrac12(\\omega_0+\\omega)t\\)</td></tr></tbody></table>\n<p>Bu denklemler <em>yalnız \\(\\alpha\\) sabitken</em> geçerlidir. Beş nicelikten (\\(\\omega_0, \\omega, \\alpha, \\Delta\\theta, t\\)) üçü biliniyorsa diğerlerini bulursunuz; istenmeyen niceliği içermeyen denklemi seçin.</p>\n<h4>5. Grafik ve tablo okuma</h4>\n<ul><li>\\(\\theta\\)–\\(t\\) grafiğinin <strong>eğimi</strong> \\(\\omega\\)'dır; parabol ise \\(\\alpha\\) sabittir.</li>\n<li>\\(\\omega\\)–\\(t\\) grafiğinin <strong>eğimi</strong> \\(\\alpha\\), <strong>altındaki alan</strong> \\(\\Delta\\theta\\)'dır (eksenin altındaki alan negatif).</li>\n<li>Tabloda eşit zaman aralıklarında \\(\\omega\\) eşit miktarda değişiyorsa \\(\\alpha\\) sabittir: \\(\\alpha = \\Delta\\omega/\\Delta t\\).</li>\n<li>Durgun halden sabit \\(\\alpha\\): \\(\\theta = \\tfrac12\\alpha t^2\\); \\(\\theta\\)'yı \\(t^2\\)'ye karşı çizerseniz doğru elde edilir, eğim \\(\\alpha/2\\) olur (deney tasarımı sorusu).</li></ul>\n<div class=\"kn-dikkat\">Yön değiştiren dönmede (ör. \\(\\omega_0 \\gt 0\\), \\(\\alpha \\lt 0\\) ve cisim durup ters döner) <strong>net açısal yer değiştirme</strong> ile <strong>toplam dönülen açı</strong> farklıdır. Toplam açıyı bulmak için hareketi durma anında ikiye bölün.</div>\n<div class=\"kn-kural\"><strong>Özet:</strong> \\(x \\to \\theta\\), \\(v \\to \\omega\\), \\(a \\to \\alpha\\). Radyan kullanın, işaret kuralını yazın, \\(\\alpha\\) sabit değilse denklemleri değil grafik alanını kullanın.</div>",
+   "ornekler": [
+    {
+     "soru": "Bir tornanın aynası \\(\\omega_0 = 40\\text{ rad/s}\\) ile dönerken motor kapatılıyor ve sabit açısal ivmeyle \\(8.0\\text{ s}\\)'de duruyor. (a) Açısal ivme nedir? (b) Durana kadar kaç devir döner?",
+     "cozum": [
+      "(a) \\(\\alpha = \\dfrac{\\omega - \\omega_0}{t} = \\dfrac{0 - 40}{8.0} = -5.0\\text{ rad/s}^2\\) (dönme yönü pozitif alındı; eksi işaret yavaşlamayı gösterir).",
+      "(b) \\(\\Delta\\theta = \\tfrac12(\\omega_0 + \\omega)t = \\tfrac12(40 + 0)(8.0) = 160\\text{ rad}\\).",
+      "Devir sayısı: \\(160/(2\\pi) \\approx 25\\) devir."
+     ]
+    },
+    {
+     "soru": "Bir tekerleğin açısal hızı tabloda verilmiştir (değişim aralıklarda doğrusaldır). <table><thead><tr><th>\\(t\\) (s)</th><th>0</th><th>2.0</th><th>4.0</th><th>6.0</th></tr></thead><tbody><tr><td>\\(\\omega\\) (rad/s)</td><td>3.0</td><td>7.0</td><td>11</td><td>15</td></tr></tbody></table> 0–6.0 s arasında açısal ivmeyi ve açısal yer değiştirmeyi bulun.",
+     "cozum": [
+      "Her 2.0 s'de \\(\\omega\\) 4.0 rad/s artıyor; \\(\\alpha\\) sabit: \\(\\alpha = 4.0/2.0 = 2.0\\text{ rad/s}^2\\).",
+      "\\(\\Delta\\theta\\), \\(\\omega\\)–\\(t\\) grafiğinin altındaki yamuğun alanıdır: \\(\\tfrac12(3.0 + 15)(6.0) = 54\\text{ rad}\\).",
+      "Kontrol: \\(\\omega_0 t + \\tfrac12\\alpha t^2 = 3(6) + \\tfrac12(2)(36) = 18 + 36 = 54\\text{ rad}\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Saat yönünün tersi pozitif alınmıştır. Bir diskin açısal hızı \\(-6.0\\text{ rad/s}\\), açısal ivmesi \\(+2.0\\text{ rad/s}^2\\)'dir. Bir öğrenci “açısal ivme pozitif olduğu için disk hızlanıyor” diyor. İddiayı değerlendirin.",
+     "cozum": [
+      "<strong>Claim:</strong> The claim is incorrect; the disk is slowing down.",
+      "<strong>Reasoning:</strong> The disk rotates clockwise (\\(\\omega \\lt 0\\)) while \\(\\alpha \\gt 0\\). Because \\(\\omega\\) and \\(\\alpha\\) have opposite signs, the magnitude of the angular velocity decreases.",
+      "Sayısal kontrol: 1.0 s sonra \\(\\omega = -6.0 + 2.0 = -4.0\\text{ rad/s}\\); büyüklük 6'dan 4'e düştü. 3.0 s'de disk durur, sonra CCW dönmeye başlar."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her soruda önce birimleri radyana çevirin; devir ya da rpm ile kinematik denklemi kullanmak en sık sayısal hatadır.",
+    "FRQ'da ilk satıra işaret kuralını yazın: “Taking counterclockwise as positive.” Puanlayıcı işaretleri bu cümleye göre okur.",
+    "Tabloda \\(\\alpha\\)'yı bulurken \\(\\Delta\\omega/\\Delta t\\) kullanın; son \\(\\omega\\)'yı toplam süreye bölmek yalnız durgun başlangıçta doğrudur.",
+    "Hesap makinesi Physics 1'de serbesttir; \\(2\\pi\\) çarpanlarında kullanın, ama denklem seçimini önce sembolik yapın."
+   ],
+   "sikHatalar": [
+    "\\(\\Delta\\theta = \\tfrac12\\alpha t^2\\) formülünü \\(\\omega_0 \\ne 0\\) iken kullanmak (\\(\\omega_0 t\\) terimini unutmak).",
+    "Negatif açısal ivmeyi her zaman “yavaşlama” sanmak; işaretleri \\(\\omega\\) ile karşılaştırmamak.",
+    "rpm'yi rad/s'ye çevirirken 60'a bölmeyi ya da \\(2\\pi\\) ile çarpmayı unutmak.",
+    "Yön değiştiren harekette net açısal yer değiştirme ile toplam dönülen açıyı karıştırmak."
+   ],
+   "terimler": [
+    {
+     "en": "rigid body",
+     "tr": "katı cisim (şekli değişmeyen)"
+    },
+    {
+     "en": "angular displacement",
+     "tr": "açısal yer değiştirme"
+    },
+    {
+     "en": "angular velocity",
+     "tr": "açısal hız"
+    },
+    {
+     "en": "angular acceleration",
+     "tr": "açısal ivme"
+    },
+    {
+     "en": "counterclockwise / clockwise",
+     "tr": "saat yönünün tersi / saat yönü"
+    },
+    {
+     "en": "revolution",
+     "tr": "devir, tam tur"
+    }
+   ]
+  },
+  {
+   "kod": "5.2",
+   "baslik": "Connecting Linear and Rotational Motion",
+   "baslikTr": "Doğrusal ve dönme hareketini ilişkilendirme",
+   "hedefler": [
+    "Dönen katı cisim üzerindeki bir noktanın yay uzunluğu, teğetsel hız (tangential speed) ve teğetsel ivmesini \\(s = r\\theta\\), \\(v = r\\omega\\), \\(a_T = r\\alpha\\) ile açısal niceliklere bağlamak.",
+    "Bir noktanın merkezcil ivmesini (centripetal acceleration) \\(a_c = \\omega^2 r\\) ile bulmak ve toplam ivmenin bileşenlerini ayırt etmek.",
+    "Kasnak–ip, kayış (belt) ve dişli sistemlerinde kaymama (no slipping) koşulunu kullanmak."
+   ],
+   "anlatim": "<p>5.1'de dönen cismin tamamı için tek bir \\(\\theta\\), \\(\\omega\\), \\(\\alpha\\) bulduk. Şimdi soru şu: cisim üzerindeki belirli bir nokta <strong>ne kadar yol alıyor, ne kadar hızlı gidiyor?</strong> Cevap, noktanın eksene uzaklığı \\(r\\)'ye bağlıdır.</p>\n<div class=\"kn-tanim\"><strong>Bağlantı denklemleri</strong> (\\(\\theta\\), \\(\\omega\\), \\(\\alpha\\) radyan cinsinden): \\[ s = r\\Delta\\theta \\qquad v = r\\omega \\qquad a_T = r\\alpha \\] \\(s\\): yay uzunluğu (arc length), \\(v\\): teğetsel hız (tangential speed), \\(a_T\\): teğetsel ivme (tangential acceleration).</div>\n<h4>1. Aynı \\(\\omega\\), farklı \\(v\\)</h4>\n<p>Atlıkarıncada (merry-go-round) eksenden 1 m ve 3 m uzakta oturan iki çocuk aynı sürede bir tur atar; açısal hızları eşittir. Ama dıştaki çocuk 3 kat uzun çember çizdiği için teğetsel hızı 3 kattır. Katı cisimde:</p>\n<table><thead><tr><th>Nicelik</th><th>\\(r\\) ile ilişki</th><th>\\(r\\) iki katına çıkınca</th></tr></thead>\n<tbody><tr><td>\\(\\theta\\), \\(\\omega\\), \\(\\alpha\\)</td><td>bağımsız (her nokta aynı)</td><td>değişmez</td></tr>\n<tr><td>\\(s\\), \\(v\\), \\(a_T\\)</td><td>\\(\\propto r\\)</td><td>2 katı</td></tr>\n<tr><td>\\(a_c = \\omega^2 r = v^2/r\\)</td><td>\\(\\propto r\\) (\\(\\omega\\) sabitken)</td><td>2 katı</td></tr></tbody></table>\n<p>Dikkat: \\(a_c = v^2/r\\) formülüne bakıp “\\(r\\) artınca \\(a_c\\) azalır” demek yanlıştır, çünkü katı cisimde \\(r\\) artınca \\(v\\) de artar. Sabit tutulan nicelik \\(\\omega\\)'dır, bu yüzden \\(a_c = \\omega^2 r\\) biçimini kullanın.</p>\n<h4>2. Teğetsel ve merkezcil ivme</h4>\n<p>Hızlanan bir tekerleğin kenarındaki noktanın iki ivme bileşeni vardır: hız büyüklüğünü değiştiren <strong>teğetsel</strong> \\(a_T = r\\alpha\\) (çembere teğet) ve yönü değiştiren <strong>merkezcil</strong> \\(a_c = \\omega^2 r\\) (merkeze doğru). Bu iki bileşen diktir: \\[ a = \\sqrt{a_T^2 + a_c^2} \\] Sabit \\(\\omega\\) ile dönen cisimde \\(\\alpha = 0\\), dolayısıyla \\(a_T = 0\\) ama \\(a_c \\ne 0\\).</p>\n<h4>3. İp, kayış ve kaymama koşulu</h4>\n<p>Kasnağa sarılı ip kaymadan açılıyorsa ipin (ve ona bağlı bloğun) hareketi kasnak kenarının hareketine eşittir: blok \\(\\Delta y = R\\Delta\\theta\\) iner, hızı \\(v = R\\omega\\), ivmesi \\(a = R\\alpha\\). İki kasnağı bağlayan kayışta kayış her noktada aynı hızda hareket eder, bu yüzden <strong>kenar hızları eşittir</strong>: \\[ r_1\\omega_1 = r_2\\omega_2 \\] Küçük kasnak daha hızlı döner. Bisiklet zinciri ve birbirine geçen dişliler de aynı kuralla çalışır.</p>\n<h4>4. Deney tasarımı</h4>\n<p>Bir makaranın yarıçapını ölçmek için ipi çekip çekilen uzunluk \\(d\\)'yi dönme açısı \\(\\theta\\)'ya karşı çizebilirsiniz: \\(d = R\\theta\\) olduğundan doğrunun eğimi \\(R\\)'dir. Açı devir cinsinden ölçülürse eğim \\(2\\pi R\\) olur; birime dikkat.</p>\n<div class=\"kn-dikkat\">Bağlantı denklemleri yalnız <strong>radyan</strong> ile geçerlidir. \\(v = r\\omega\\)'da \\(\\omega\\)'yı rpm ya da devir/s ile yazmak sonucu \\(2\\pi\\) (ve 60) çarpanı kadar bozar.</div>\n<div class=\"kn-kural\"><strong>FRQ ifadesi:</strong> “Because the disk is rigid, all points have the same angular velocity; since \\(v = r\\omega\\), the point farther from the axis has the greater speed.”</div>",
+   "ornekler": [
+    {
+     "soru": "Yarıçapı \\(0.50\\text{ m}\\) olan bir çark durgun halden \\(\\alpha = 4.0\\text{ rad/s}^2\\) ile dönmeye başlıyor. \\(t = 1.5\\text{ s}\\) anında kenardaki bir noktanın (a) teğetsel ivmesi, (b) merkezcil ivmesi ve (c) toplam ivmesi nedir?",
+     "cozum": [
+      "(a) \\(a_T = r\\alpha = (0.50)(4.0) = 2.0\\text{ m/s}^2\\).",
+      "(b) \\(\\omega = \\alpha t = 6.0\\text{ rad/s}\\); \\(a_c = \\omega^2 r = (36)(0.50) = 18\\text{ m/s}^2\\).",
+      "(c) Bileşenler dik: \\(a = \\sqrt{2.0^2 + 18^2} \\approx 18.1\\text{ m/s}^2\\)."
+     ]
+    },
+    {
+     "soru": "Bir kayış, yarıçapları \\(0.050\\text{ m}\\) (motor) ve \\(0.20\\text{ m}\\) (fan) olan iki kasnağı kaymadan bağlıyor. Motor kasnağı \\(80\\text{ rad/s}\\) ile dönüyor. Fan kasnağının açısal hızı ve kayışın hızı nedir?",
+     "cozum": [
+      "Kayış hızı = motor kasnağının kenar hızı: \\(v = r_1\\omega_1 = (0.050)(80) = 4.0\\text{ m/s}\\).",
+      "Fan kasnağının kenarı da aynı hızda: \\(\\omega_2 = v/r_2 = 4.0/0.20 = 20\\text{ rad/s}\\).",
+      "Yarıçap 4 kat olduğu için açısal hız 4'te 1'e düştü: \\(r_1\\omega_1 = r_2\\omega_2\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Sabit açısal hızla dönen bir platformda P noktası eksenden \\(r\\), Q noktası \\(2r\\) uzaklıktadır. Bir öğrenci “\\(a_c = v^2/r\\) olduğundan Q'nun merkezcil ivmesi daha küçüktür” diyor. Değerlendirin.",
+     "cozum": [
+      "<strong>Claim:</strong> Incorrect. Q has twice the centripetal acceleration of P.",
+      "<strong>Reasoning:</strong> Both points share the same \\(\\omega\\) because the platform is rigid. Q's speed is \\(v_Q = 2r\\omega = 2v_P\\), so \\(a_{c,Q} = v_Q^2/(2r) = 4v_P^2/(2r) = 2a_{c,P}\\). Equivalently \\(a_c = \\omega^2 r \\propto r\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Oran sorularında önce neyin ortak olduğunu yazın: katı cisimde \\(\\omega\\) ortak, kayışta kenar hızı \\(v\\) ortak.",
+    "İp–kasnak problemlerinde “the string does not slip, so \\(a = R\\alpha\\)” cümlesini yazın; 5.6'daki birleşik problemlerde bu bağıntı puan getirir.",
+    "Toplam ivme istenirse iki dik bileşeni ayrı hesaplayıp Pisagor ile birleştirin; bileşenleri toplamak hatadır."
+   ],
+   "sikHatalar": [
+    "\\(\\omega\\)'yı rpm ya da devir/s olarak \\(v = r\\omega\\)'ya koymak.",
+    "Katı cismin farklı noktalarının farklı açısal hıza sahip olduğunu sanmak.",
+    "Kayışla bağlı kasnaklarda açısal hızları eşit almak (eşit olan kenar hızıdır).",
+    "Sabit hızla dönen cismin hiç ivmesi olmadığını düşünmek (merkezcil ivme vardır)."
+   ],
+   "terimler": [
+    {
+     "en": "arc length",
+     "tr": "yay uzunluğu"
+    },
+    {
+     "en": "tangential speed",
+     "tr": "teğetsel hız (sürat)"
+    },
+    {
+     "en": "tangential acceleration",
+     "tr": "teğetsel ivme"
+    },
+    {
+     "en": "centripetal acceleration",
+     "tr": "merkezcil ivme"
+    },
+    {
+     "en": "without slipping",
+     "tr": "kaymadan"
+    },
+    {
+     "en": "pulley / belt",
+     "tr": "kasnak, makara / kayış"
+    }
+   ]
+  },
+  {
+   "kod": "5.3",
+   "baslik": "Torque",
+   "baslikTr": "Tork",
+   "hedefler": [
+    "Torku (torque) bir kuvvetin seçilen eksen etrafında döndürme etkisi olarak tanımlamak ve \\(\\tau = rF\\sin\\theta = r_\\perp F\\) ile hesaplamak.",
+    "Kuvvet kolu (lever arm) ve etki çizgisi (line of action) kavramlarını kullanarak hangi kuvvetin tork üretmediğini belirlemek.",
+    "İşaret kuralıyla birden çok torku toplayarak net torku (net torque) bulmak ve torkun eksen seçimine bağlı olduğunu açıklamak."
+   ],
+   "anlatim": "<p>Bir kapıyı menteşeye yakın iterseniz zor açılır; kolundan iterseniz kolay. Aynı kuvvet, farklı <strong>döndürme etkisi</strong>. Bu etkinin ölçüsü <strong>torktur (torque)</strong>, sembolü \\(\\tau\\) (tau), birimi \\(\\text{N}\\cdot\\text{m}\\).</p>\n<div class=\"kn-tanim\"><strong>Tanım:</strong> Eksenden kuvvetin uygulandığı noktaya çizilen konum vektörünün uzunluğu \\(r\\), \\(\\vec r\\) ile \\(\\vec F\\) arasındaki açı \\(\\theta\\) ise \\[ \\tau = rF\\sin\\theta = r_\\perp F = rF_\\perp \\] \\(r_\\perp = r\\sin\\theta\\): <strong>kuvvet kolu (lever arm, moment arm)</strong>, eksenden kuvvetin etki çizgisine (line of action) olan dik uzaklık. \\(F_\\perp = F\\sin\\theta\\): kuvvetin \\(\\vec r\\)'ye dik bileşeni.</div>\n<h4>1. Torku belirleyen üç şey</h4>\n<table><thead><tr><th>Etken</th><th>Etkisi</th><th>Kapı örneği</th></tr></thead>\n<tbody><tr><td>Kuvvetin büyüklüğü \\(F\\)</td><td>\\(\\tau \\propto F\\)</td><td>Daha sert itmek</td></tr>\n<tr><td>Eksene uzaklık \\(r\\)</td><td>\\(\\tau \\propto r\\)</td><td>Kola yakın itmek</td></tr>\n<tr><td>Açı \\(\\theta\\)</td><td>\\(\\sin\\theta\\): en büyük \\(90^\\circ\\)'de</td><td>Kapı yüzeyine dik itmek</td></tr></tbody></table>\n<p>Kuvvet doğrudan eksene doğru (ya da eksenden dışarı) yönelirse \\(\\theta = 0^\\circ\\) veya \\(180^\\circ\\), \\(\\sin\\theta = 0\\) ve tork <strong>sıfırdır</strong>. Etki çizgisi eksenden geçen kuvvet ne kadar büyük olursa olsun döndürmez. Eksene uygulanan kuvvet (\\(r = 0\\)) de tork üretmez; bu yüzden menteşe ya da mil kuvvetleri, o noktaya göre tork hesabına girmez.</p>\n<h4>2. Kuvvet kolunu bulmanın iki yolu</h4>\n<ol><li><strong>Bileşen yolu:</strong> Kuvveti \\(\\vec r\\)'ye paralel ve dik bileşenlere ayırın. Paralel bileşen tork üretmez; \\(\\tau = rF_\\perp\\).</li>\n<li><strong>Kuvvet kolu yolu:</strong> Kuvvetin etki çizgisini uzatın, eksenden bu çizgiye dik inin; \\(\\tau = r_\\perp F\\).</li></ol>\n<p>Örnek: Yatay çubuğun ucuna (pivottan 0.50 m) yatayla \\(30^\\circ\\) açı yapan 10 N kuvvet uygulanıyor. Dik bileşen \\(10\\sin 30^\\circ = 5.0\\text{ N}\\); \\(\\tau = 0.50 \\times 5.0 = 2.5\\text{ N}\\cdot\\text{m}\\). Yatay bileşen çubuk boyunca olduğu için tork vermez.</p>\n<h4>3. İşaret ve net tork</h4>\n<p>Tork, cismi döndürme <strong>yönüne</strong> göre işaret alır: saat yönünün tersi (CCW) pozitif, saat yönü (CW) negatif (ya da sorudaki kural). Net tork işaretli toplamdır: \\(\\tau_{net} = \\sum \\tau_i\\). Bir torkun yönünü bulmak için kendinize sorun: “Yalnız bu kuvvet etki etseydi cisim hangi yöne dönerdi?” Pivotun sağında yukarı kuvvet CCW, solunda yukarı kuvvet CW döndürür.</p>\n<h4>4. Tork eksene bağlıdır</h4>\n<p>Aynı kuvvet farklı eksenlere göre farklı tork verir: \\(r_\\perp\\) değişir, yön bile değişebilir. Bu yüzden her tork hesabında “about which point?” sorusunu cevaplayın. Yer çekimi genişletilmiş cisme <strong>kütle merkezinde (center of mass)</strong> etki ediyormuş gibi alınır: düzgün (uniform) çubuğun ağırlığı ortasından etki eder.</p>\n<h4>5. Kuvvet çifti (couple)</h4>\n<p>Direksiyonu iki elle zıt yönlerde çevirmek: net kuvvet sıfır olabilir ama torklar aynı yöndedir ve toplanır. Net kuvvetin sıfır olması net torkun sıfır olduğu anlamına gelmez.</p>\n<div class=\"kn-dikkat\">Eğik çubukta ağırlığın kuvvet kolu yatay uzaklıktır: pivottan \\(L/2\\) uzaklıktaki kütle merkezi, yatayla \\(\\phi\\) açısında ise \\(r_\\perp = (L/2)\\cos\\phi\\).</div>\n<div class=\"kn-kural\"><strong>FRQ ifadesi:</strong> “The force exerted by the hinge exerts no torque about the hinge because its lever arm is zero.” / “Force \\(F_2\\) has the larger lever arm, so it exerts the larger torque.”</div>",
+   "ornekler": [
+    {
+     "soru": "Ortasından pivotlu, \\(2.0\\text{ m}\\) uzunluğunda yatay bir çubuğa şu kuvvetler etki ediyor: sol uçta aşağı \\(6.0\\text{ N}\\); pivotun \\(0.50\\text{ m}\\) sağında aşağı \\(10\\text{ N}\\); sağ uçta çubuk boyunca sağa \\(4.0\\text{ N}\\). CCW pozitif alarak net torku bulun.",
+     "cozum": [
+      "Sol uçta aşağı kuvvet: sol taraf aşağı iner, dönme CCW: \\(\\tau_1 = +(1.0)(6.0) = +6.0\\text{ N}\\cdot\\text{m}\\).",
+      "Pivotun sağında aşağı kuvvet CW: \\(\\tau_2 = -(0.50)(10) = -5.0\\text{ N}\\cdot\\text{m}\\).",
+      "Çubuk boyunca kuvvetin etki çizgisi pivottan geçer: \\(\\tau_3 = 0\\).",
+      "\\(\\tau_{net} = 6.0 - 5.0 + 0 = +1.0\\text{ N}\\cdot\\text{m}\\) (CCW)."
+     ]
+    },
+    {
+     "soru": "Bir somun anahtarına (wrench) uzaklık \\(r\\) değiştirilerek aynı torku üretmek için gereken kuvvet ölçülüyor: \\(r = 0.10, 0.20, 0.30\\text{ m}\\) için \\(F = 30, 15, 10\\text{ N}\\). Hangi grafik doğrusal olur, eğimi nedir?",
+     "cozum": [
+      "Sabit torkta \\(F = \\tau / r\\); \\(F\\), \\(r\\) ile ters orantılı.",
+      "\\(F\\)'yi \\(1/r\\)'ye karşı çizersek doğru elde edilir: \\(1/r = 10, 5, 3.3\\text{ m}^{-1}\\).",
+      "Eğim \\(= \\tau = F r = 3.0\\text{ N}\\cdot\\text{m}\\) (her satırda \\(Fr = 3.0\\))."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Bir öğrenci “Kapıya uygulanan kuvvet büyüdükçe tork her zaman büyür” diyor. Bu iddiayı değerlendirin.",
+     "cozum": [
+      "<strong>Claim:</strong> The claim is not always true.",
+      "<strong>Reasoning:</strong> Torque is \\(\\tau = r_\\perp F\\), so it depends on the lever arm as well as on \\(F\\). A larger force whose line of action passes close to (or through) the hinge has a small (or zero) lever arm and can exert a smaller torque than a smaller force applied perpendicular to the door far from the hinge."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Her tork hesabının başına ekseni yazın: “Taking torques about the pivot …”. Eksen yazılmazsa puanlayıcı hesabı yorumlayamaz.",
+    "\\(\\sin\\theta\\)'daki açı \\(\\vec r\\) ile \\(\\vec F\\) arasındaki açıdır; soruda verilen açının hangi doğruyla ölçüldüğünü kontrol edin.",
+    "Tork ile iş aynı birime (N·m) sahiptir ama farklı niceliklerdir; torku joule ile yazmayın.",
+    "Hesap makinesi serbesttir; \\(\\sin\\)/\\(\\cos\\) için derece modunu kontrol edin."
+   ],
+   "sikHatalar": [
+    "Kuvvetin tamamını kuvvet koluyla çarpmak (dik bileşeni almamak).",
+    "Etki çizgisi eksenden geçen kuvvete tork vermek.",
+    "Zıt yönlü torkları işaretsiz toplamak.",
+    "Eğik çubukta kuvvet kolu olarak çubuk boyunca uzaklığı almak."
+   ],
+   "terimler": [
+    {
+     "en": "torque",
+     "tr": "tork, döndürme momenti"
+    },
+    {
+     "en": "lever arm (moment arm)",
+     "tr": "kuvvet kolu"
+    },
+    {
+     "en": "line of action",
+     "tr": "kuvvetin etki çizgisi"
+    },
+    {
+     "en": "axis of rotation / pivot",
+     "tr": "dönme ekseni / pivot (dayanak)"
+    },
+    {
+     "en": "net torque",
+     "tr": "net tork"
+    },
+    {
+     "en": "center of mass",
+     "tr": "kütle merkezi"
+    }
+   ]
+  },
+  {
+   "kod": "5.4",
+   "baslik": "Rotational Inertia",
+   "baslikTr": "Eylemsizlik momenti",
+   "hedefler": [
+    "Eylemsizlik momentini (rotational inertia) bir cismin açısal hız değişimine direnci olarak açıklamak ve nokta kütleler için \\(I = \\sum m_i r_i^2\\) ile hesaplamak.",
+    "Verilen formülleri (\\(\\tfrac12 MR^2\\), \\(MR^2\\), \\(\\tfrac{1}{12}ML^2\\), \\(\\tfrac13 ML^2\\)) ve paralel eksen teoremini (parallel axis theorem) \\(I = I_{cm} + Md^2\\) kullanmak.",
+    "Kütle dağılımı ve eksen konumu değişince \\(I\\)'nın nasıl değiştiğini oran akıl yürütmesiyle açıklamak."
+   ],
+   "anlatim": "<p>Doğrusal harekette kütle, hız değişimine direnci ölçer. Dönmede bu rolü <strong>eylemsizlik momenti (rotational inertia, moment of inertia)</strong> \\(I\\) oynar. Ama \\(I\\) yalnız kütleye değil, kütlenin <strong>eksene göre nasıl dağıldığına</strong> bağlıdır.</p>\n<div class=\"kn-tanim\"><strong>Tanım (nokta kütleler):</strong> \\[ I = \\sum m_i r_i^2 \\] \\(r_i\\): her kütlenin <em>dönme eksenine</em> dik uzaklığı. Birim: \\(\\text{kg}\\cdot\\text{m}^2\\). Tek nokta kütle için \\(I = mr^2\\).</div>\n<h4>1. Neden \\(r^2\\)?</h4>\n<p>Uzaktaki kütle aynı \\(\\omega\\) için daha hızlı hareket eder (\\(v = r\\omega\\)); onu hızlandırmak daha zordur. Bu yüzden uzaklık karesiyle etki eder: kütleyi eksenden iki kat uzağa taşımak katkısını <strong>dört katına</strong> çıkarır. Aynı kütleli iki tekerlekten, kütlesi kenarda toplanan (hoop) daha büyük \\(I\\)'ya sahiptir.</p>\n<h4>2. Hesap tablosu</h4>\n<p>Örnek: hafif bir çubuk üzerinde eksenden \\(0.10, 0.20, 0.30\\text{ m}\\) uzaklıkta \\(2.0\\text{ kg}\\)'lık üç küre.</p>\n<table><thead><tr><th>Kütle (kg)</th><th>\\(r\\) (m)</th><th>\\(mr^2\\) (kg·m²)</th></tr></thead>\n<tbody><tr><td>2.0</td><td>0.10</td><td>0.020</td></tr>\n<tr><td>2.0</td><td>0.20</td><td>0.080</td></tr>\n<tr><td>2.0</td><td>0.30</td><td>0.180</td></tr>\n<tr><td colspan=\"2\"><strong>Toplam</strong></td><td><strong>0.28</strong></td></tr></tbody></table>\n<p>Eksen üzerindeki bir kütle (\\(r = 0\\)) \\(I\\)'ya hiç katkı vermez.</p>\n<h4>3. Verilen formüller</h4>\n<p>AP Physics 1'de sürekli cisimlerin \\(I\\) formülleri soruda <strong>verilir</strong>; ezberlemek gerekmez ama yorumlamak gerekir:</p>\n<table><thead><tr><th>Cisim, eksen</th><th>\\(I\\)</th></tr></thead>\n<tbody><tr><td>İnce çember (hoop), merkezden</td><td>\\(MR^2\\)</td></tr>\n<tr><td>Dolu disk/silindir, merkezden</td><td>\\(\\tfrac12 MR^2\\)</td></tr>\n<tr><td>Düzgün çubuk, ortasından</td><td>\\(\\tfrac{1}{12}ML^2\\)</td></tr>\n<tr><td>Düzgün çubuk, ucundan</td><td>\\(\\tfrac13 ML^2\\)</td></tr></tbody></table>\n<p>Katsayı ne kadar küçükse kütle eksene o kadar yakın toplanmıştır. Bileşik cisimde (disk + kenarına yapışmış kil) her parçanın \\(I\\)'sı ayrı hesaplanıp <strong>toplanır</strong>.</p>\n<h4>4. Eksen değişince: paralel eksen teoremi</h4>\n<p>Kütle merkezinden geçen eksene göre \\(I_{cm}\\) biliniyorsa, ona paralel ve \\(d\\) uzaklıktaki eksene göre \\[ I = I_{cm} + Md^2 \\] Kütle merkezinden geçen eksen her zaman en küçük \\(I\\)'yı verir. Örnek: çubuk için \\(\\tfrac{1}{12}ML^2 + M(L/2)^2 = \\tfrac13 ML^2\\), tablodaki uç formülüyle aynı. Deneyde \\(I\\)'yı \\(d^2\\)'ye karşı çizerseniz eğim \\(M\\), kesişim (intercept) \\(I_{cm}\\) olur.</p>\n<h4>5. Oran akıl yürütmesi</h4>\n<p>\\(I \\propto M\\) ve \\(I \\propto R^2\\). Kütlesi 2 katı, yarıçapı yarısı olan çemberin \\(I\\)'sı \\(2 \\times \\tfrac14 = \\tfrac12\\) katıdır.</p>\n<div class=\"kn-dikkat\">\\(r\\) daima <strong>eksene</strong> olan dik uzaklıktır, cismin merkezine ya da başka bir kütleye olan uzaklık değil. Eksen değişince tüm \\(r\\)'leri yeniden ölçün.</div>\n<div class=\"kn-kural\"><strong>FRQ ifadesi:</strong> “Moving the masses closer to the axis decreases the rotational inertia because \\(I = \\sum mr^2\\) depends on the square of the distance from the axis.”</div>",
+   "ornekler": [
+    {
+     "soru": "Kütlesi \\(1.0\\text{ kg}\\) ve uzunluğu \\(1.2\\text{ m}\\) olan düzgün bir çubuğun (\\(I_{cm} = \\tfrac{1}{12}ML^2\\)) uçlarına \\(0.50\\text{ kg}\\)'lık birer küçük küre takılıyor. Ortasından geçen dik eksene göre toplam \\(I\\) nedir?",
+     "cozum": [
+      "Çubuk: \\(\\tfrac{1}{12}(1.0)(1.2)^2 = 0.12\\text{ kg}\\cdot\\text{m}^2\\).",
+      "Küreler eksenden \\(0.60\\text{ m}\\) uzakta: \\(2 \\times (0.50)(0.60)^2 = 0.36\\text{ kg}\\cdot\\text{m}^2\\).",
+      "Toplam: \\(I = 0.12 + 0.36 = 0.48\\text{ kg}\\cdot\\text{m}^2\\)."
+     ]
+    },
+    {
+     "soru": "Kütlesi \\(2.0\\text{ kg}\\), yarıçapı \\(0.20\\text{ m}\\) olan dolu disk (\\(I_{cm} = \\tfrac12 MR^2\\)) kenarındaki bir noktadan geçen, diske dik eksen etrafında döndürülüyor. \\(I\\) nedir?",
+     "cozum": [
+      "\\(I_{cm} = \\tfrac12(2.0)(0.20)^2 = 0.040\\text{ kg}\\cdot\\text{m}^2\\).",
+      "Eksen merkezden \\(d = R = 0.20\\text{ m}\\) uzakta: \\(Md^2 = (2.0)(0.040) = 0.080\\text{ kg}\\cdot\\text{m}^2\\).",
+      "\\(I = 0.040 + 0.080 = 0.12\\text{ kg}\\cdot\\text{m}^2\\) (\\(= \\tfrac32 MR^2\\))."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Aynı kütle ve yarıçaplı iki tekerlek var: A'nın kütlesi kenarında, B'nin kütlesi düzgün dağılmış. Aynı torkla durgun halden döndürülürse hangisi daha hızlı açısal hız kazanır? Gerekçelendirin.",
+     "cozum": [
+      "<strong>Claim:</strong> Wheel B gains angular speed faster.",
+      "<strong>Reasoning:</strong> A's mass is all at distance \\(R\\), while much of B's mass is closer to the axis, so \\(I_A \\gt I_B\\) (\\(MR^2\\) vs \\(\\tfrac12 MR^2\\)). With the same torque, \\(\\alpha = \\tau/I\\) is larger for B (5.6)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Nokta kütle sorularında tablo kurun: \\(m\\), \\(r\\), \\(mr^2\\) sütunları; hata yapma riski azalır.",
+    "Formül soruda verilir; sizden beklenen doğru formülü doğru eksene uygulamaktır. Paralel eksen teoremi yalnız \\(I_{cm}\\)'den başlar.",
+    "Oran sorularında sayı koymayın: \\(I \\propto MR^2\\) yazıp çarpanları yerine koyun."
+   ],
+   "sikHatalar": [
+    "\\(\\sum mr\\) (kare almadan) hesaplamak.",
+    "Uzaklığı eksene değil cismin merkezine ya da başka bir kütleye göre ölçmek.",
+    "Paralel eksen teoremini kütle merkezi olmayan bir eksenden başlatmak.",
+    "Aynı kütleli cisimlerin aynı \\(I\\)'ya sahip olduğunu sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "rotational inertia (moment of inertia)",
+     "tr": "eylemsizlik momenti"
+    },
+    {
+     "en": "point mass",
+     "tr": "nokta kütle"
+    },
+    {
+     "en": "mass distribution",
+     "tr": "kütle dağılımı"
+    },
+    {
+     "en": "parallel axis theorem",
+     "tr": "paralel eksen teoremi"
+    },
+    {
+     "en": "hoop / solid disk / uniform rod",
+     "tr": "ince çember / dolu disk / düzgün çubuk"
+    }
+   ]
+  },
+  {
+   "kod": "5.5",
+   "baslik": "Rotational Equilibrium and Newton's First Law in Rotational Form",
+   "baslikTr": "Dönme dengesi ve Newton'un birinci yasasının dönme biçimi",
+   "hedefler": [
+    "Statik dengedeki (static equilibrium) genişletilmiş cisim için \\(\\sum F = 0\\) ve herhangi bir noktaya göre \\(\\sum\\tau = 0\\) koşullarını yazmak.",
+    "Bilinmeyen kuvvetin etki noktasını eksen seçerek tahterevalli, kiriş (beam), menteşeli çubuk ve devrilme (tipping) problemlerini çözmek.",
+    "Net tork sıfırken açısal hızın sabit kaldığını (dönmede Newton'un birinci yasası) açıklamak."
+   ],
+   "anlatim": "<p>Unit 2'de nokta cisim için denge \\(\\sum\\vec F = 0\\) demekti. Genişletilmiş cisimde bu yetmez: iki eşit, zıt kuvvet farklı noktalara uygulanırsa cisim öteleme yapmaz ama <strong>döner</strong>. Bu yüzden iki koşul gerekir.</p>\n<div class=\"kn-tanim\"><strong>Dönme dengesi:</strong> Bir katı cisim için \\[ \\sum F_x = 0, \\qquad \\sum F_y = 0, \\qquad \\sum\\tau = 0 \\;(\\text{herhangi bir noktaya göre}) \\] Bu koşullar sağlanıyorsa cismin hem kütle merkezinin hızı hem açısal hızı sabittir.</div>\n<h4>1. Newton'un birinci yasası, dönme biçimi</h4>\n<p>Net tork sıfırsa açısal hız <strong>değişmez</strong>: duran cisim durur, sabit \\(\\omega\\) ile dönen cisim aynı \\(\\omega\\) ile dönmeye devam eder. Sürtünmesiz milde dönen tekerleği döndürmeye devam ettirmek için tork <em>gerekmez</em>. “Statik” denge \\(\\omega = 0\\) olan özel durumdur.</p>\n<h4>2. Neden “herhangi bir nokta”?</h4>\n<p>Cisim dengedeyse ve \\(\\sum F = 0\\) ise net tork her noktaya göre sıfırdır. Bu bir <strong>strateji</strong> verir: ekseni bilinmeyen kuvvetlerin uygulandığı noktaya koyun; o kuvvetlerin kuvvet kolu sıfır olur ve denklemden düşer.</p>\n<table><thead><tr><th>Problem</th><th>Akıllı eksen</th><th>Neden</th></tr></thead>\n<tbody><tr><td>Menteşeli kiriş + kablo</td><td>Menteşe</td><td>Menteşe kuvvetinin iki bileşeni bilinmez</td></tr>\n<tr><td>İki destekli kalas</td><td>Desteklerden biri</td><td>O desteğin kuvveti düşer, diğeri bulunur</td></tr>\n<tr><td>Devrilme sınırı</td><td>Devrilme kenarındaki destek</td><td>Diğer destek kuvveti sıfıra iner</td></tr>\n<tr><td>Duvara dayalı merdiven</td><td>Merdivenin tabanı</td><td>Zemin normal kuvveti ve sürtünme düşer</td></tr></tbody></table>\n<h4>3. Adım adım yöntem</h4>\n<ol><li>Serbest cisim diyagramını (free-body diagram) cismin <em>şeklini</em> koruyarak çizin; her kuvveti uygulandığı noktaya koyun. Düzgün cismin ağırlığı ortasındadır.</li>\n<li>İşaret kuralını ve ekseni yazın.</li>\n<li>\\(\\sum\\tau = 0\\): CCW torkların toplamı = CW torkların toplamı.</li>\n<li>Gerekirse \\(\\sum F_y = 0\\) ve \\(\\sum F_x = 0\\) ile kalan bilinmeyenleri bulun.</li>\n<li>Sonucu kontrol edin: destek kuvveti negatif çıktıysa o destek çekmeli (ya da cisim devrilir).</li></ol>\n<h4>4. Tahterevalli ve terazi</h4>\n<p>Ortasından pivotlu düzgün tahterevallide ağırlık pivot üzerindedir ve tork vermez; denge \\(m_1 g d_1 = m_2 g d_2\\), yani \\(m_1 d_1 = m_2 d_2\\). Pivot ortada değilse tahtanın kendi ağırlığı da tork verir ve hesaba girer. Bu ilke, bilinmeyen bir kütleyi ölçmek için de kullanılır.</p>\n<h4>5. Devrilme (tipping)</h4>\n<p>Bir kalas iki desteğin dışına uzanıyorsa, üzerinde yürüyen kişi uca doğru gittikçe iç destekteki normal kuvvet azalır. Devrilme anında o kuvvet <strong>sıfır</strong> olur; dış desteğe göre tork alıp kişinin en uç konumunu bulursunuz.</p>\n<div class=\"kn-dikkat\">“Torkların toplamı sıfır” ile “kuvvetlerin toplamı sıfır” ayrı koşullardır; ikisi birbirini garantilemez. Bir kuvvet çifti \\(\\sum F = 0\\) ama \\(\\sum\\tau \\ne 0\\) verir.</div>\n<div class=\"kn-kural\"><strong>FRQ ifadeleri:</strong> “Because the beam is in static equilibrium, the net torque about any point is zero.” “Choosing the hinge as the axis eliminates the unknown hinge force.” “At the instant the plank begins to tip, the normal force from the left support becomes zero.”</div>",
+   "ornekler": [
+    {
+     "soru": "Kütlesi \\(10\\text{ kg}\\), uzunluğu \\(4.0\\text{ m}\\) olan düzgün kalas iki uçtan desteklenmiştir. Sol uçtan \\(1.0\\text{ m}\\) uzağa \\(40\\text{ kg}\\)'lık bir kutu konuyor. Destek kuvvetlerini bulun (\\(g = 10\\text{ m/s}^2\\)).",
+     "cozum": [
+      "Ekseni sol desteğe koyun: \\(N_R(4.0) = (100)(2.0) + (400)(1.0)\\) → \\(N_R = 600/4.0 = 150\\text{ N}\\).",
+      "\\(\\sum F_y = 0\\): \\(N_L = 100 + 400 - 150 = 350\\text{ N}\\).",
+      "Kontrol (sağ uca göre): \\(N_L(4.0) = 100(2.0) + 400(3.0) = 1400\\) → \\(N_L = 350\\text{ N}\\). ✓"
+     ]
+    },
+    {
+     "soru": "\\(2.0\\text{ m}\\) uzunluğunda, \\(6.0\\text{ kg}\\)'lık düzgün yatay kiriş sol ucundan duvara menteşelidir; sağ ucundaki kablo kirişle \\(30^\\circ\\) açı yaparak yukarı ve duvara doğru çekiyor. Kablo gerilmesi nedir?",
+     "cozum": [
+      "Ekseni menteşeye koyun; menteşe kuvveti düşer.",
+      "Kablonun kirişe dik bileşeni \\(T\\sin 30^\\circ\\), kuvvet kolu 2.0 m (CCW); ağırlık 60 N, kuvvet kolu 1.0 m (CW).",
+      "\\(T\\sin30^\\circ(2.0) = 60(1.0)\\) → \\(T(1.0) = 60\\) → \\(T = 60\\text{ N}\\)."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Sürtünmesiz bir milde sabit \\(8.0\\text{ rad/s}\\) ile dönen bir volan için bir öğrenci “dönmeye devam etmesi için üzerinde net bir tork olmalı” diyor. Değerlendirin.",
+     "cozum": [
+      "<strong>Claim:</strong> Incorrect; the net torque is zero.",
+      "<strong>Reasoning:</strong> By Newton's first law in rotational form, an object's angular velocity changes only if a net torque acts on it. Because \\(\\omega\\) is constant, \\(\\alpha = 0\\), so \\(\\sum\\tau = I\\alpha = 0\\). A torque would be needed only to change \\(\\omega\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "İlk denklem olarak tork denklemini, ekseni bilinmeyen kuvvetin üzerine koyarak yazın; çoğu kez tek adımda cevap çıkar.",
+    "Puanlayıcı “net torque about any point is zero” ve eksen seçimini açıkça ister; yalnız sayısal sonuç tam puan almaz.",
+    "Destek kuvveti negatif çıkarsa varsayımınızı yeniden düşünün: tahta devrilir ya da o destek aşağı çekmelidir.",
+    "Hesap makinesi yardımcıdır ama çoğu denge MCQ'sunda \\(g\\) sadeleşir; önce sembolik yazın."
+   ],
+   "sikHatalar": [
+    "Düzgün kiriş ya da tahterevallinin kendi ağırlığının torkunu unutmak (pivot ortada değilken).",
+    "Kuvvet kolunu eksenden değil kirişin ucundan ölçmek.",
+    "Yalnız \\(\\sum\\tau = 0\\) yazıp \\(\\sum F = 0\\) koşulunu kullanmamak.",
+    "Dönen cismin dönmeye devam etmesi için tork gerektiğini sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "static equilibrium",
+     "tr": "statik denge"
+    },
+    {
+     "en": "rotational equilibrium",
+     "tr": "dönme dengesi"
+    },
+    {
+     "en": "support / normal force",
+     "tr": "destek / normal kuvvet"
+    },
+    {
+     "en": "hinge",
+     "tr": "menteşe"
+    },
+    {
+     "en": "beam / plank",
+     "tr": "kiriş / kalas"
+    },
+    {
+     "en": "tip over",
+     "tr": "devrilmek"
+    }
+   ]
+  },
+  {
+   "kod": "5.6",
+   "baslik": "Newton's Second Law in Rotational Form",
+   "baslikTr": "Newton'un ikinci yasasının dönme biçimi",
+   "hedefler": [
+    "Sabit eksenli katı cisim için \\(\\alpha = \\dfrac{\\sum\\tau}{I}\\) bağıntısını kullanarak açısal ivmeyi, torku ya da eylemsizlik momentini bulmak.",
+    "Kütleli kasnaklı (massive pulley) sistemlerde öteleme ve dönme denklemlerini \\(a = R\\alpha\\) ile birleştirmek; iki taraftaki gerilmelerin neden farklı olduğunu açıklamak.",
+    "Tork–açısal ivme verilerinden grafik çizerek \\(I\\) ve sürtünme torkunu belirlemek."
+   ],
+   "anlatim": "<p>5.5'te net tork sıfırdı. Şimdi net tork sıfır değil: cisim <strong>açısal ivme</strong> kazanır. Bu, \\(F_{net} = ma\\)'nın dönme karşılığıdır.</p>\n<div class=\"kn-tanim\"><strong>Newton'un ikinci yasası (dönme):</strong> \\[ \\alpha_{sys} = \\frac{\\sum\\tau}{I_{sys}} \\] Torklar ve \\(I\\) <em>aynı eksene</em> göre alınır. \\(\\alpha\\), net torkla aynı yöndedir (aynı işaret).</div>\n<h4>1. Doğrusal–dönme eşlemesi</h4>\n<table><thead><tr><th>Doğrusal</th><th>Dönme</th></tr></thead>\n<tbody><tr><td>Kuvvet \\(F\\)</td><td>Tork \\(\\tau\\)</td></tr>\n<tr><td>Kütle \\(m\\)</td><td>Eylemsizlik momenti \\(I\\)</td></tr>\n<tr><td>\\(a = F_{net}/m\\)</td><td>\\(\\alpha = \\tau_{net}/I\\)</td></tr></tbody></table>\n<p>Oranlar: aynı tork, iki kat \\(I\\) → yarı \\(\\alpha\\). Aynı \\(I\\), iki kat tork → iki kat \\(\\alpha\\).</p>\n<h4>2. Kütleli kasnak: üç denklem</h4>\n<p>Kütlesi \\(m\\) olan blok, yarıçapı \\(R\\), eylemsizlik momenti \\(I\\) olan kasnağa sarılı ipe asılı ve iniyor. Aşağıyı pozitif alarak:</p>\n<ol><li>Blok (öteleme): \\(mg - T = ma\\)</li>\n<li>Kasnak (dönme): \\(TR = I\\alpha\\)</li>\n<li>Kaymama: \\(a = R\\alpha\\)</li></ol>\n<p>Birleştirince \\[ a = \\frac{mg}{m + I/R^2} \\] Dolu disk kasnak için \\(I/R^2 = M/2\\): \\(a = \\dfrac{mg}{m + M/2}\\). Sonucu yorumlayın: kasnak kütlesizse (\\(I = 0\\)) \\(a = g\\); \\(I\\) büyüdükçe \\(a\\) küçülür. Ayrıca \\(T = m(g - a) \\lt mg\\): blok ivmelendiği için gerilme ağırlıktan küçüktür.</p>\n<h4>3. İki taraftaki gerilmeler neden farklı?</h4>\n<p>Atwood düzeneğinde kasnağın kütlesi varsa ipin iki tarafındaki gerilmeler <strong>eşit değildir</strong>: \\((T_1 - T_2)R = I\\alpha\\). Gerilmeler eşit olsaydı net tork sıfır olur, kasnak açısal ivme kazanamazdı. Kütlesiz kasnak varsayımında (\\(I = 0\\)) gerilmeler eşittir; Unit 2'deki çözümler bu yüzden işliyordu.</p>\n<h4>4. Sürtünme torku ve deney</h4>\n<p>Gerçek bir milde sürtünme torku \\(\\tau_f\\) dönmeye karşı koyar: \\(\\tau_{uyg} - \\tau_f = I\\alpha\\). Deneyde uygulanan torku \\(\\alpha\\)'ya karşı çizerseniz \\[ \\tau_{uyg} = I\\alpha + \\tau_f \\] doğrusu elde edilir: <strong>eğim \\(= I\\)</strong>, <strong>dikey kesişim \\(= \\tau_f\\)</strong>. Tek bir satırdan \\(\\tau/\\alpha\\) hesaplamak sürtünme varsa yanlış \\(I\\) verir. Motor kapatıldıktan sonraki yavaşlamadan da \\(\\tau_f = I|\\alpha|\\) bulunur.</p>\n<h4>5. Çözüm stratejisi</h4>\n<ul><li>Her cisim için ayrı serbest cisim diyagramı çizin; kasnakta kuvvetleri uygulandıkları noktada gösterin.</li>\n<li>İşaret kuralını hareket yönüyle uyumlu seçin (blok aşağı iniyorsa kasnak o yönde döner).</li>\n<li>Bilinmeyen sayısı kadar denklem yazın; kaymama koşulu çoğu zaman eksik halkadır.</li></ul>\n<div class=\"kn-dikkat\">\\(\\sum\\tau = I\\alpha\\)'yı sabit dönme eksenine (mile) göre yazın ve \\(I\\)'yı da aynı eksene göre alın. Mil kuvveti (pivot force) bu eksenden geçtiği için tork vermez ve denklemden düşer.</div>\n<div class=\"kn-kural\"><strong>FRQ ifadeleri:</strong> “Because the pulley has rotational inertia, a net torque is required to give it angular acceleration, so \\(T_1 \\gt T_2\\).” “The block accelerates downward, so the tension is less than the block's weight.”</div>",
+   "ornekler": [
+    {
+     "soru": "Kütlesi \\(4.0\\text{ kg}\\), yarıçapı \\(0.20\\text{ m}\\) olan dolu disk kasnağa (\\(I = \\tfrac12 MR^2\\)) sarılı ipe \\(2.0\\text{ kg}\\)'lık blok asılı. Bloğun ivmesi ve ipteki gerilme nedir? (\\(g = 10\\text{ m/s}^2\\))",
+     "cozum": [
+      "\\(I/R^2 = M/2 = 2.0\\text{ kg}\\); \\(a = \\dfrac{mg}{m + M/2} = \\dfrac{20}{2.0 + 2.0} = 5.0\\text{ m/s}^2\\).",
+      "\\(T = m(g - a) = 2.0(10 - 5.0) = 10\\text{ N}\\).",
+      "Kontrol (kasnak): \\(TR = (10)(0.20) = 2.0\\text{ N}\\cdot\\text{m}\\); \\(I\\alpha = \\tfrac12(4.0)(0.04)(5.0/0.20) = (0.080)(25) = 2.0\\text{ N}\\cdot\\text{m}\\). ✓"
+     ]
+    },
+    {
+     "soru": "Bir öğrenci bir tekerleğe farklı torklar uygulayıp açısal ivmeyi ölçüyor: <table><thead><tr><th>\\(\\tau\\) (N·m)</th><th>0.30</th><th>0.50</th><th>0.70</th></tr></thead><tbody><tr><td>\\(\\alpha\\) (rad/s²)</td><td>1.0</td><td>2.0</td><td>3.0</td></tr></tbody></table> Tekerleğin \\(I\\)'sını ve sürtünme torkunu bulun.",
+     "cozum": [
+      "\\(\\tau\\)–\\(\\alpha\\) doğrusu: eğim \\(= \\Delta\\tau/\\Delta\\alpha = 0.20/1.0 = 0.20\\text{ kg}\\cdot\\text{m}^2 = I\\).",
+      "Kesişim: \\(0.30 = 0.20(1.0) + \\tau_f\\) → \\(\\tau_f = 0.10\\text{ N}\\cdot\\text{m}\\).",
+      "Tek satırdan \\(0.30/1.0 = 0.30\\) bulmak sürtünmeyi \\(I\\)'ya katmak olurdu."
+     ]
+    },
+    {
+     "soru": "(FRQ tarzı) Kütleli bir kasnak üzerinden geçen ipin iki ucuna \\(m_1 \\gt m_2\\) kütleleri asılmıştır. İpin iki tarafındaki gerilmeleri karşılaştırın ve gerekçelendirin.",
+     "cozum": [
+      "<strong>Claim:</strong> \\(T_1 \\gt T_2\\) (the tension on the side of \\(m_1\\) is greater).",
+      "<strong>Reasoning:</strong> The system accelerates with \\(m_1\\) moving down, so the pulley has an angular acceleration in that direction. The pulley has nonzero rotational inertia, so by \\(\\sum\\tau = I\\alpha\\) a nonzero net torque \\((T_1 - T_2)R\\) is required; therefore \\(T_1 \\gt T_2\\)."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Kasnak problemlerinde üç denklemi (blok, kasnak, kaymama) ayrı satırlarda yazın; puanlayıcı her birine ayrı puan verir.",
+    "Sonucu sınır durumlarla kontrol edin: \\(I \\to 0\\) iken kütlesiz kasnak sonucuna dönmeli.",
+    "Deney sorusunda “plot \\(\\tau\\) vs. \\(\\alpha\\); the slope is \\(I\\)” cümlesini yazın; kesişimin anlamını (sürtünme torku) açıklayın.",
+    "Hesap makinesi yardımcıdır; ama \\(I/R^2\\) gibi ifadeleri önce sembolik sadeleştirmek hatayı azaltır."
+   ],
+   "sikHatalar": [
+    "Asılı blok için \\(T = mg\\) almak (blok ivmelenirken).",
+    "Kütleli kasnağın iki tarafındaki gerilmeleri eşit almak.",
+    "Dolu disk için \\(I = MR^2\\) kullanmak ya da \\(I\\)'yı \\(R^2\\)'ye bölmeyi unutmak.",
+    "Sürtünme varken tek veri noktasından \\(I = \\tau/\\alpha\\) hesaplamak."
+   ],
+   "terimler": [
+    {
+     "en": "angular acceleration",
+     "tr": "açısal ivme"
+    },
+    {
+     "en": "net torque",
+     "tr": "net tork"
+    },
+    {
+     "en": "massive pulley",
+     "tr": "kütleli kasnak"
+    },
+    {
+     "en": "tension",
+     "tr": "gerilme (ip kuvveti)"
+    },
+    {
+     "en": "frictional torque",
+     "tr": "sürtünme torku"
+    },
+    {
+     "en": "slope / intercept",
+     "tr": "eğim / kesişim"
+    }
+   ]
+  }
+ ]
+}

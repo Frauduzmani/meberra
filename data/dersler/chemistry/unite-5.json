@@ -1,0 +1,762 @@
+{
+ "ders": "chemistry",
+ "unite": 5,
+ "baslik": "Kinetics",
+ "baslikTr": "Kinetik",
+ "konular": [
+  {
+   "kod": "5.1",
+   "baslik": "Reaction Rates",
+   "baslikTr": "Tepkime hızları",
+   "hedefler": [
+    "Tepkime hızını (reaction rate) derişimin zamanla değişimi olarak tanımlamak ve stokiyometrik katsayılarla türler arasındaki hızları ilişkilendirmek.",
+    "Derişim–zaman verisinden ortalama hız (average rate) hesaplamak; anlık hızı (instantaneous rate) eğimle yorumlamak.",
+    "Derişim, sıcaklık, yüzey alanı ve katalizörün hızı nasıl etkilediğini çarpışma diliyle açıklamak.",
+    "Hızın basınç, renk (absorbans) ya da iletkenlik gibi ölçülebilir bir özellikle nasıl izlendiğini açıklamak."
+   ],
+   "anlatim": "<h4>Hız ne demek?</h4>\n<div class=\"kn-tanim\"><strong>Tepkime hızı (reaction rate)</strong>, birim zamanda bir reaktifin derişimindeki azalma ya da bir ürünün derişimindeki artmadır. Birimi genellikle \\(\\text{M s}^{-1}\\) (mol L⁻¹ s⁻¹) olur. Hız her zaman <strong>pozitif</strong> bir sayı olarak verilir; bu yüzden reaktiflerin önüne eksi işareti konur.</div>\n<p>Genel tepkime \\(a\\text{A} + b\\text{B} \\rightarrow c\\text{C} + d\\text{D}\\) için tek bir \"tepkime hızı\" tanımlanır:</p>\n<div class=\"formul\">\\[ \\text{rate} = -\\frac{1}{a}\\frac{\\Delta[\\text{A}]}{\\Delta t} = -\\frac{1}{b}\\frac{\\Delta[\\text{B}]}{\\Delta t} = \\frac{1}{c}\\frac{\\Delta[\\text{C}]}{\\Delta t} = \\frac{1}{d}\\frac{\\Delta[\\text{D}]}{\\Delta t} \\]</div>\n<p>Yani her türün değişim hızı kendi katsayısıyla orantılıdır. Örnek: \\(\\text{N}_2 + 3\\text{H}_2 \\rightarrow 2\\text{NH}_3\\) tepkimesinde \\(\\text{H}_2\\), \\(\\text{N}_2\\)'nin <em>üç katı</em> hızla tükenir; \\(\\text{NH}_3\\) ise \\(\\text{N}_2\\)'nin <em>iki katı</em> hızla oluşur.</p>\n<h4>Ortalama hız ve anlık hız</h4>\n<table><thead><tr><th>Kavram</th><th>Nasıl bulunur?</th><th>Grafikte karşılığı</th></tr></thead><tbody>\n<tr><td>Ortalama hız (average rate)</td><td>\\(\\Delta[\\text{X}]/\\Delta t\\) iki zaman noktası arasında</td><td>Derişim–zaman eğrisinde iki noktayı birleştiren kirişin (secant) eğimi</td></tr>\n<tr><td>Anlık hız (instantaneous rate)</td><td>Belirli bir anda</td><td>O noktadaki teğetin (tangent) eğimi</td></tr>\n<tr><td>Başlangıç hızı (initial rate)</td><td>\\(t = 0\\) anındaki anlık hız</td><td>Eğrinin başlangıçtaki teğeti</td></tr>\n</tbody></table>\n<p>Çoğu tepkimede reaktif tükendikçe hız azalır: derişim–zaman eğrisi başta dik, sonra yatıktır. Sebep: daha az reaktif tanecik, birim zamanda daha az çarpışma demektir. Hız sabiti \\(k\\) ise sabit sıcaklıkta <strong>değişmez</strong>.</p>\n<h4>Hızı etkileyen etkenler</h4>\n<ul>\n<li><strong>Derişim / kısmi basınç:</strong> birim hacimde daha çok tanecik, daha sık çarpışma.</li>\n<li><strong>Sıcaklık:</strong> daha çok çarpışmanın enerjisi aktivasyon enerjisini (activation energy, \\(E_a\\)) aşar; ayrıca çarpışma sıklığı biraz artar.</li>\n<li><strong>Yüzey alanı (surface area):</strong> katı reaktif toz hâline getirilirse çarpışmaya açık tanecik sayısı artar.</li>\n<li><strong>Katalizör (catalyst):</strong> daha düşük \\(E_a\\)'lı yeni bir yol sağlar (5.11).</li>\n</ul>\n<h4>Hız nasıl ölçülür?</h4>\n<p>Derişim doğrudan ölçülemiyorsa onunla orantılı bir özellik izlenir: renkli bir türün <strong>absorbansı</strong> (Beer–Lambert: \\(A = \\varepsilon b c\\)), sabit hacimli kapta gaz mol sayısı değişiyorsa <strong>toplam basınç</strong>, iyon sayısı değişiyorsa <strong>iletkenlik</strong>, ya da toplanan gazın hacmi. Basınç verisinde dikkat: toplam basınçtaki değişim, tek bir türün basınç değişimine eşit değildir; stokiyometri tablosu (ICE benzeri) kurmak gerekir.</p>\n<div class=\"kn-dikkat\">\"Rate of reaction\" ile \"rate of disappearance of A\" aynı şey değildir; katsayı 1 değilse aralarında katsayı kadar fark vardır. Soru hangisini istiyor, önce onu belirle.</div>\n<p>FRQ ifade kalıbı: <em>\"As the reaction proceeds, [A] decreases, so there are fewer collisions between reactant particles per unit time, and the rate decreases.\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "\\(4\\text{PH}_3(g) \\rightarrow \\text{P}_4(g) + 6\\text{H}_2(g)\\) tepkimesinde \\(\\text{H}_2\\) bir anda \\(0.090\\text{ M s}^{-1}\\) hızla oluşuyor. \\(\\text{PH}_3\\)'ün tükenme hızı ve tepkime hızı nedir?",
+     "cozum": [
+      "Tepkime hızı: \\(\\text{rate} = \\frac{1}{6}\\frac{\\Delta[\\text{H}_2]}{\\Delta t} = \\frac{0.090}{6} = 0.015\\text{ M s}^{-1}\\).",
+      "\\(\\text{PH}_3\\): \\(-\\frac{\\Delta[\\text{PH}_3]}{\\Delta t} = 4 \\times 0.015 = 0.060\\text{ M s}^{-1}\\).",
+      "Kontrol: \\(\\text{PH}_3\\) (katsayı 4), \\(\\text{H}_2\\)'den (katsayı 6) daha yavaş değişmeli; \\(0.060 \\lt 0.090\\). Doğru."
+     ]
+    },
+    {
+     "soru": "\\(\\text{A} \\rightarrow 2\\text{B}\\) için \\([\\text{A}]\\): \\(t = 0\\) s'de 0.600 M, \\(t = 50\\) s'de 0.450 M, \\(t = 100\\) s'de 0.360 M. (a) 0–50 s ve 50–100 s aralıklarında A'nın ortalama tükenme hızlarını bulun. (b) B'nin 0–50 s'deki ortalama oluşum hızı nedir? (c) Hızın neden azaldığını açıklayın.",
+     "cozum": [
+      "(a) 0–50 s: \\((0.600-0.450)/50 = 0.0030\\text{ M s}^{-1}\\); 50–100 s: \\((0.450-0.360)/50 = 0.0018\\text{ M s}^{-1}\\).",
+      "(b) B iki kat hızla oluşur: \\(2 \\times 0.0030 = 0.0060\\text{ M s}^{-1}\\).",
+      "(c) <em>\"As [A] decreases, fewer A particles collide per unit time, so the rate decreases.\"</em> Hız sabiti değişmez; değişen derişimdir."
+     ]
+    },
+    {
+     "soru": "Rijit bir kapta \\(2\\text{N}_2\\text{O}(g) \\rightarrow 2\\text{N}_2(g) + \\text{O}_2(g)\\) sabit sıcaklıkta yürüyor. Toplam basınç 0.500 atm'den (saf \\(\\text{N}_2\\text{O}\\)) 60 s'de 0.560 atm'ye çıkıyor. \\(\\text{N}_2\\text{O}\\)'nun ortalama tükenme hızı (atm s⁻¹) nedir?",
+     "cozum": [
+      "\\(\\text{O}_2\\) basıncı \\(x\\) artsın: \\(\\text{N}_2\\text{O}\\) \\(2x\\) azalır, \\(\\text{N}_2\\) \\(2x\\) artar. Net değişim: \\(-2x + 2x + x = +x\\).",
+      "\\(x = 0.060\\text{ atm}\\), dolayısıyla \\(\\text{N}_2\\text{O}\\) \\(0.120\\text{ atm}\\) azalmıştır.",
+      "Hız: \\(0.120/60 = 0.0020\\text{ atm s}^{-1}\\). Toplam basınç değişimini doğrudan kullanmak (0.0010) yanlış olurdu."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi tüm sınavda serbesttir; ama katsayı oranını önce kafadan kur: büyük katsayılı tür daha hızlı değişir.",
+    "Ortalama hız sorularında hangi zaman aralığının istendiğine bak; \\(t=0\\)'dan değil, verilen iki noktadan hesapla.",
+    "Açıklama sorularında hız değişimini \"collisions per unit time\" ifadesine bağla; \\(k\\)'nın değiştiğini söyleme.",
+    "Basınç ya da absorbans verisinde önce ölçülen niceliği derişime (ya da tek türün basıncına) çevir."
+   ],
+   "sikHatalar": [
+    "Tüm türlerin aynı hızla değiştiğini sanmak (katsayıları yok saymak).",
+    "Toplam basınç değişimini bir reaktifin basınç değişimi gibi kullanmak.",
+    "Reaktif tükendikçe hız sabitinin (k) küçüldüğünü söylemek."
+   ],
+   "terimler": [
+    {
+     "en": "reaction rate",
+     "tr": "tepkime hızı"
+    },
+    {
+     "en": "average rate",
+     "tr": "ortalama hız"
+    },
+    {
+     "en": "instantaneous rate",
+     "tr": "anlık hız"
+    },
+    {
+     "en": "initial rate",
+     "tr": "başlangıç hızı"
+    },
+    {
+     "en": "surface area",
+     "tr": "yüzey alanı"
+    },
+    {
+     "en": "absorbance",
+     "tr": "absorbans (soğurma)"
+    }
+   ]
+  },
+  {
+   "kod": "5.2",
+   "baslik": "Introduction to Rate Law",
+   "baslikTr": "Hız yasasına giriş",
+   "hedefler": [
+    "Başlangıç hızları tablosundan (initial-rates table) her reaktifin derecesini (order) bulmak.",
+    "Hız sabitini (rate constant, k) doğru birimiyle hesaplamak ve yeni koşullarda hızı tahmin etmek.",
+    "Tepkime derecelerinin denkleşmiş denklemden değil deneyden belirlendiğini açıklamak."
+   ],
+   "anlatim": "<h4>Hız yasası (rate law)</h4>\n<div class=\"kn-tanim\">\\(a\\text{A} + b\\text{B} \\rightarrow \\text{ürünler}\\) için hız yasası: \\(\\text{rate} = k[\\text{A}]^m[\\text{B}]^n\\). \\(m\\) ve \\(n\\) <strong>tepkime dereceleri (reaction orders)</strong>, \\(m+n\\) <strong>toplam derece (overall order)</strong>, \\(k\\) <strong>hız sabiti (rate constant)</strong>dir. \\(k\\) yalnız sıcaklığa (ve katalizöre) bağlıdır; derişimle değişmez.</div>\n<div class=\"kn-dikkat\">\\(m\\) ve \\(n\\) genellikle denklemdeki \\(a\\) ve \\(b\\) katsayıları <strong>değildir</strong>. Dereceler <em>deneyle</em> bulunur. Katsayılar ancak tepkime tek basamaklı (elementary) ise dereceye eşittir (5.4).</div>\n<h4>Başlangıç hızları yöntemi (method of initial rates)</h4>\n<ol>\n<li>Yalnız bir reaktifin derişiminin değiştiği iki deney seç.</li>\n<li>Derişim oranını ve hız oranını yaz: \\(\\dfrac{\\text{rate}_2}{\\text{rate}_1} = \\left(\\dfrac{[\\text{A}]_2}{[\\text{A}]_1}\\right)^m\\).</li>\n<li>Derişim ×2 iken hız ×1 ise \\(m=0\\); ×2 ise \\(m=1\\); ×4 ise \\(m=2\\). Derişim ×3 iken hız ×9 ise \\(m=2\\).</li>\n<li>Hiçbir iki deneyde yalnız A değişmiyorsa, önce diğer reaktifin derecesini bul, sonra onun etkisini hız oranından ayır.</li>\n<li>Herhangi bir deneyin verisini yerine koyarak \\(k\\)'yı hesapla.</li>\n</ol>\n<table><thead><tr><th>Derece</th><th>Derişim ×2 olunca hız</th><th>Anlamı</th></tr></thead><tbody>\n<tr><td>0</td><td>×1 (değişmez)</td><td>Hız o reaktiften bağımsız</td></tr>\n<tr><td>1</td><td>×2</td><td>Hız derişimle doğru orantılı</td></tr>\n<tr><td>2</td><td>×4</td><td>Hız derişimin karesiyle orantılı</td></tr>\n</tbody></table>\n<h4>k'nın birimi</h4>\n<p>Hızın birimi her zaman \\(\\text{M s}^{-1}\\) olduğundan \\(k\\)'nın birimi toplam dereceye göre değişir: \\(k = \\dfrac{\\text{M s}^{-1}}{\\text{M}^{\\text{toplam derece}}}\\).</p>\n<table><thead><tr><th>Toplam derece</th><th>k birimi</th></tr></thead><tbody>\n<tr><td>0</td><td>\\(\\text{M s}^{-1}\\)</td></tr>\n<tr><td>1</td><td>\\(\\text{s}^{-1}\\)</td></tr>\n<tr><td>2</td><td>\\(\\text{M}^{-1}\\text{ s}^{-1}\\)</td></tr>\n<tr><td>3</td><td>\\(\\text{M}^{-2}\\text{ s}^{-1}\\)</td></tr>\n</tbody></table>\n<p>Birim ters yönden de okunur: \\(k = 0.045\\text{ M}^{-1}\\text{ s}^{-1}\\) verildiyse tepkime toplamda ikinci derecedir.</p>\n<p>FRQ ifade kalıbı: <em>\"Between experiments 1 and 2, [B] is held constant while [A] doubles and the rate quadruples; therefore the reaction is second order with respect to A.\"</em> Hangi deneyleri karşılaştırdığını ve neyin sabit tutulduğunu mutlaka yaz.</p>",
+   "ornekler": [
+    {
+     "soru": "Veriler (\\(\\text{A} + \\text{B} \\rightarrow \\text{C}\\)):<table><thead><tr><th>Deney</th><th>[A] (M)</th><th>[B] (M)</th><th>Başlangıç hızı (M s⁻¹)</th></tr></thead><tbody><tr><td>1</td><td>0.20</td><td>0.10</td><td>\\(3.0\\times10^{-4}\\)</td></tr><tr><td>2</td><td>0.40</td><td>0.10</td><td>\\(6.0\\times10^{-4}\\)</td></tr><tr><td>3</td><td>0.20</td><td>0.30</td><td>\\(2.7\\times10^{-3}\\)</td></tr></tbody></table>Hız yasasını ve \\(k\\)'yı bulun.",
+     "cozum": [
+      "Deney 1→2: [B] sabit, [A] ×2, hız ×2 ⇒ A'ya göre birinci derece.",
+      "Deney 1→3: [A] sabit, [B] ×3, hız ×9 ⇒ B'ye göre ikinci derece. \\(\\text{rate} = k[\\text{A}][\\text{B}]^2\\).",
+      "\\(k = \\dfrac{3.0\\times10^{-4}}{(0.20)(0.10)^2} = 0.15\\text{ M}^{-2}\\text{ s}^{-1}\\)."
+     ]
+    },
+    {
+     "soru": "\\(\\text{rate} = k[\\text{X}]^2[\\text{Y}]\\) olan bir tepkimede [X] yarıya iner, [Y] dört katına çıkarsa hız nasıl değişir?",
+     "cozum": [
+      "Hız oranı: \\((0.5)^2 \\times 4\\).",
+      "\\(= 0.25 \\times 4 = 1\\): hız değişmez."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) \\(2\\text{NO}(g) + \\text{Cl}_2(g) \\rightarrow 2\\text{NOCl}(g)\\) için bir öğrenci \"hız yasası mutlaka \\(k[\\text{NO}]^2[\\text{Cl}_2]\\)'dir\" diyor. Bu iddiayı değerlendirin.",
+     "cozum": [
+      "Denkleşmiş denklem yalnız toplam stokiyometriyi gösterir; tepkimenin kaç basamakta yürüdüğünü söylemez.",
+      "Dereceler başlangıç hızları deneyleriyle belirlenmelidir. Bu hız yasası ancak tepkime tek bir elementary step ise ya da deney bunu gösteriyorsa doğrudur. <em>\"Reaction orders must be determined experimentally.\"</em>"
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi serbest; ama oranları önce tam sayıya yuvarla: 1.98 ≈ 2, 8.9 ≈ 9.",
+    "k'yı her zaman birimiyle yaz; birim, toplam dereceyi doğrudan gösterir ve FRQ'da ayrı puandır.",
+    "Tabloda iki derişim birlikte değişiyorsa önce bilinen derecenin katkısını hız oranından ayır.",
+    "Gerekçede \"held constant\" ifadesini ve karşılaştırdığın deney numaralarını mutlaka kullan."
+   ],
+   "sikHatalar": [
+    "Dereceleri denkleşmiş denklemin katsayılarından almak.",
+    "k'nın birimini toplam dereceden bağımsız olarak \\(\\text{M s}^{-1}\\) yazmak.",
+    "Derişim ×3 iken hız ×9 olduğunda dereceyi 3 sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "rate law",
+     "tr": "hız yasası"
+    },
+    {
+     "en": "rate constant",
+     "tr": "hız sabiti"
+    },
+    {
+     "en": "reaction order",
+     "tr": "tepkime derecesi"
+    },
+    {
+     "en": "overall order",
+     "tr": "toplam derece"
+    },
+    {
+     "en": "method of initial rates",
+     "tr": "başlangıç hızları yöntemi"
+    }
+   ]
+  },
+  {
+   "kod": "5.3",
+   "baslik": "Concentration Changes Over Time",
+   "baslikTr": "Derişimin zamanla değişimi",
+   "hedefler": [
+    "Sıfırıncı, birinci ve ikinci derece için integral hız yasalarını (integrated rate laws) kullanmak.",
+    "\\([\\text{A}]\\), \\(\\ln[\\text{A}]\\) ve \\(1/[\\text{A}]\\) – zaman grafiklerinden hangisinin doğrusal olduğuna bakarak dereceyi ve eğimden \\(k\\)'yı bulmak.",
+    "Birinci derece yarılanma ömrünü (half-life) hesaplamak ve derişimden bağımsız olduğunu açıklamak."
+   ],
+   "anlatim": "<h4>Üç doğrusal grafik</h4>\n<p>Tek reaktifli \\(\\text{A} \\rightarrow \\text{ürünler}\\) tepkimesinde derece, derişimin zamanla nasıl azaldığını belirler. AP sınavında derece genellikle \"hangi grafik doğrusal?\" sorusuyla bulunur.</p>\n<table><thead><tr><th>Derece</th><th>Integral hız yasası</th><th>Doğrusal grafik</th><th>Eğim</th><th>Yarılanma ömrü</th></tr></thead><tbody>\n<tr><td>0</td><td>\\([\\text{A}]_t = [\\text{A}]_0 - kt\\)</td><td>\\([\\text{A}]\\) – \\(t\\)</td><td>\\(-k\\)</td><td>\\(\\dfrac{[\\text{A}]_0}{2k}\\)</td></tr>\n<tr><td>1</td><td>\\(\\ln[\\text{A}]_t = \\ln[\\text{A}]_0 - kt\\)</td><td>\\(\\ln[\\text{A}]\\) – \\(t\\)</td><td>\\(-k\\)</td><td>\\(\\dfrac{0.693}{k}\\) (sabit)</td></tr>\n<tr><td>2</td><td>\\(\\dfrac{1}{[\\text{A}]_t} = \\dfrac{1}{[\\text{A}]_0} + kt\\)</td><td>\\(1/[\\text{A}]\\) – \\(t\\)</td><td>\\(+k\\)</td><td>\\(\\dfrac{1}{k[\\text{A}]_0}\\)</td></tr>\n</tbody></table>\n<div class=\"kn-kural\">Birinci derecede yarılanma ömrü \\(t_{1/2} = \\dfrac{\\ln 2}{k}\\) <strong>başlangıç derişimine bağlı değildir</strong>. Her yarılanma ömründe kalan miktar yarıya iner: \\(n\\) yarılanma sonra kalan kesir \\((1/2)^n\\). Radyoaktif bozunma birinci derecedir. AP formül sayfasında yalnız birinci derece \\(t_{1/2}\\) bağıntısı vardır; sıfırıncı ve ikinci derece yarılanma ifadeleri AP'de ezber olarak istenmez; gerekirse integral hız yasasından türetilir.</div>\n<h4>Veri tablosundan derece bulma</h4>\n<p>Tabloya \\(\\ln[\\text{A}]\\) ve \\(1/[\\text{A}]\\) sütunları ekle; ardışık eşit zaman aralıklarında hangi sütunun <strong>eşit miktarda</strong> değiştiğine bak. Eşit değişen sütun doğrusaldır.</p>\n<table><thead><tr><th>t (s)</th><th>[A] (M)</th><th>ln[A]</th><th>1/[A] (M⁻¹)</th></tr></thead><tbody>\n<tr><td>0</td><td>0.800</td><td>−0.223</td><td>1.25</td></tr>\n<tr><td>50</td><td>0.400</td><td>−0.916</td><td>2.50</td></tr>\n<tr><td>100</td><td>0.200</td><td>−1.609</td><td>5.00</td></tr>\n</tbody></table>\n<p>Burada \\(\\ln[\\text{A}]\\) her 50 s'de 0.693 azalıyor (doğrusal); \\(1/[\\text{A}]\\) eşit artmıyor. Tepkime birinci derecedir; \\(k = 0.693/50 = 0.0139\\text{ s}^{-1}\\) ve \\(t_{1/2} = 50\\) s. Kısa yol: derişim sabit sürede yarıya iniyorsa birinci derecedir.</p>\n<h4>Hesap stratejisi</h4>\n<ul>\n<li>Birinci derecede: \\(\\ln\\dfrac{[\\text{A}]_0}{[\\text{A}]_t} = kt\\). Kalan yüzde verilirse \\([\\text{A}]_t/[\\text{A}]_0\\) oranını kullan; mutlak derişim gerekmez.</li>\n<li>İkinci derecede yarılanma ömrü her seferinde <strong>iki katına</strong> çıkar (derişim yarıya indikçe).</li>\n<li>Sıfırıncı derecede derişim sabit hızla azalır; yarılanma ömrü derişimle birlikte kısalır.</li>\n</ul>\n<p>FRQ ifade kalıbı: <em>\"The plot of ln[A] versus time is linear, so the reaction is first order in A; the rate constant equals the negative of the slope.\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "Birinci derece bir bozunmada \\(k = 0.0462\\text{ min}^{-1}\\). (a) Yarılanma ömrü nedir? (b) Başlangıç miktarının %12.5'inin kalması ne kadar sürer?",
+     "cozum": [
+      "(a) \\(t_{1/2} = 0.693/0.0462 = 15.0\\text{ min}\\).",
+      "(b) %12.5 = \\((1/2)^3\\): üç yarılanma ömrü ⇒ \\(3 \\times 15.0 = 45.0\\text{ min}\\).",
+      "Kontrol: \\(\\ln(1/0.125) = 2.079\\); \\(2.079/0.0462 = 45.0\\text{ min}\\). Aynı."
+     ]
+    },
+    {
+     "soru": "İkinci derece bir tepkimede \\(k = 0.20\\text{ M}^{-1}\\text{ s}^{-1}\\), \\([\\text{A}]_0 = 0.50\\text{ M}\\). [A]'nın 0.10 M olması ne kadar sürer?",
+     "cozum": [
+      "\\(\\dfrac{1}{0.10} - \\dfrac{1}{0.50} = kt\\) ⇒ \\(10.0 - 2.0 = 8.0\\text{ M}^{-1}\\).",
+      "\\(t = 8.0/0.20 = 40\\text{ s}\\)."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) Bir öğrenci \\([\\text{A}]\\)–\\(t\\) verisinden \\(1/[\\text{A}]\\)–\\(t\\) grafiğini çiziyor ve eğimi \\(0.035\\text{ M}^{-1}\\text{ s}^{-1}\\) olan bir doğru elde ediyor. Ne sonuç çıkarır?",
+     "cozum": [
+      "\\(1/[\\text{A}]\\)–\\(t\\) doğrusal ⇒ tepkime A'ya göre ikinci derecedir.",
+      "Eğim \\(= +k\\) ⇒ \\(k = 0.035\\text{ M}^{-1}\\text{ s}^{-1}\\); birim de ikinci dereceyle tutarlıdır."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi serbest; ln tuşunu kullanırken derişim oranını (\\([\\text{A}]_0/[\\text{A}]_t\\)) önce hesapla, işaret hatası azalır.",
+    "Grafik sorusunda üç grafiği ezberle: [A] → 0. derece, ln[A] → 1. derece, 1/[A] → 2. derece.",
+    "Birinci derecede eğim \\(-k\\), ikinci derecede \\(+k\\)'dır; k her zaman pozitif yazılır.",
+    "Sabit yarılanma ömrü birinci derecenin parmak izidir; gerekçede bunu söyle."
+   ],
+   "sikHatalar": [
+    "İkinci derece tepkimede yarılanma ömrünü sabit sanıp ardışık yarılanmaları eşit almak.",
+    "ln[A]–t grafiğinin eğimini k'nın kendisi (işaretiyle) yazmak: k negatif olamaz.",
+    "Kalan yüzde yerine tükenen yüzdeyi integral yasaya koymak."
+   ],
+   "terimler": [
+    {
+     "en": "integrated rate law",
+     "tr": "integral hız yasası"
+    },
+    {
+     "en": "half-life",
+     "tr": "yarılanma ömrü"
+    },
+    {
+     "en": "first order",
+     "tr": "birinci derece"
+    },
+    {
+     "en": "linear plot",
+     "tr": "doğrusal grafik"
+    },
+    {
+     "en": "slope",
+     "tr": "eğim"
+    }
+   ]
+  },
+  {
+   "kod": "5.4",
+   "baslik": "Elementary Reactions",
+   "baslikTr": "Temel (tek basamaklı) tepkimeler",
+   "hedefler": [
+    "Elementary reaction (temel tepkime) kavramını ve molekülerliği (molecularity) tanımlamak.",
+    "Bir elementary step'in hız yasasını doğrudan katsayılarından yazmak.",
+    "Üç molekül çarpışması gerektiren (termolecular) basamakların neden nadir olduğunu açıklamak."
+   ],
+   "anlatim": "<h4>Elementary reaction nedir?</h4>\n<div class=\"kn-tanim\"><strong>Elementary reaction (elementary step)</strong>, tek bir moleküler olayda (tek çarpışma ya da tek molekülün parçalanması) gerçekleşen tepkimedir. Denklemi, gerçekten hangi taneciklerin çarpıştığını gösterir.</div>\n<p>Basamakta reaktif olarak yer alan tanecik sayısına <strong>molekülerlik (molecularity)</strong> denir:</p>\n<table><thead><tr><th>Molekülerlik</th><th>Örnek basamak</th><th>Hız yasası</th></tr></thead><tbody>\n<tr><td>Unimolecular (tek moleküllü)</td><td>\\(\\text{N}_2\\text{O}_4 \\rightarrow 2\\text{NO}_2\\)</td><td>\\(k[\\text{N}_2\\text{O}_4]\\)</td></tr>\n<tr><td>Bimolecular (iki moleküllü)</td><td>\\(\\text{NO} + \\text{O}_3 \\rightarrow \\text{NO}_2 + \\text{O}_2\\)</td><td>\\(k[\\text{NO}][\\text{O}_3]\\)</td></tr>\n<tr><td>Bimolecular</td><td>\\(2\\text{HI} \\rightarrow \\text{H}_2 + \\text{I}_2\\)</td><td>\\(k[\\text{HI}]^2\\)</td></tr>\n<tr><td>Termolecular (üç moleküllü)</td><td>\\(2\\text{NO} + \\text{O}_2 \\rightarrow 2\\text{NO}_2\\)</td><td>\\(k[\\text{NO}]^2[\\text{O}_2]\\)</td></tr>\n</tbody></table>\n<div class=\"kn-kural\">Yalnız elementary step'lerde: <strong>derece = katsayı</strong>. Çünkü basamağın hızı, o taneciklerin çarpışma sıklığıyla orantılıdır; çarpışma sıklığı da her taneciğin derişimiyle orantılıdır. İki A taneciği gerekiyorsa sıklık \\([\\text{A}]\\times[\\text{A}] = [\\text{A}]^2\\) ile artar.</div>\n<h4>Neden termolecular basamak nadir?</h4>\n<p>Üç taneciğin aynı anda, doğru yönelimle (orientation) ve yeterli enerjiyle aynı noktada buluşması, iki taneciğin çarpışmasından çok daha az olasıdır. Bu yüzden gerçek mekanizmalar çoğunlukla uni- ve bimolecular basamaklardan oluşur; dört ya da daha fazla taneciğin aynı anda çarpışması pratikte hiç olmaz.</p>\n<h4>Toplam tepkime ile karışıklık</h4>\n<p>\"Bu tepkime elementary'dir\" bilgisi verilmedikçe toplam denklemin katsayılarından hız yasası yazılamaz (5.2). Soru metninde <em>elementary</em> kelimesini görürsen katsayıları üs olarak kullanabilirsin.</p>\n<p>Elementary step'in hızı stokiyometriyle de bağlanır: \\(2\\text{NO} + \\text{O}_2 \\rightarrow 2\\text{NO}_2\\) basamağının hızı \\(k[\\text{NO}]^2[\\text{O}_2]\\) ise, NO bu hızın <strong>iki katı</strong> hızla tükenir (5.1 ilişkisi).</p>\n<p>FRQ ifade kalıbı: <em>\"Because the step is elementary, its rate law can be written from its stoichiometry: rate = k[NO][O₃]; the step is bimolecular.\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "Elementary step \\(\\text{H} + \\text{Br}_2 \\rightarrow \\text{HBr} + \\text{Br}\\) için molekülerliği ve hız yasasını yazın; \\(k\\)'nın birimi nedir?",
+     "cozum": [
+      "İki tanecik çarpışıyor ⇒ bimolecular.",
+      "\\(\\text{rate} = k[\\text{H}][\\text{Br}_2]\\); toplam derece 2 ⇒ \\(k\\): \\(\\text{M}^{-1}\\text{ s}^{-1}\\)."
+     ]
+    },
+    {
+     "soru": "Elementary step \\(2\\text{A} + \\text{B} \\rightarrow \\text{C}\\)'nin hızı bir anda \\(4.0\\times10^{-3}\\text{ M s}^{-1}\\)'dir. [A] üç katına çıkarılıp [B] yarıya indirilirse basamağın hızı ne olur?",
+     "cozum": [
+      "Elementary ⇒ \\(\\text{rate} = k[\\text{A}]^2[\\text{B}]\\).",
+      "Oran: \\(3^2 \\times 0.5 = 4.5\\).",
+      "Yeni hız: \\(4.5 \\times 4.0\\times10^{-3} = 1.8\\times10^{-2}\\text{ M s}^{-1}\\)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Bir öğrenci \\(\\text{CH}_4 + 2\\text{O}_2 \\rightarrow \\text{CO}_2 + 2\\text{H}_2\\text{O}\\) tepkimesinin tek basamakta yürüdüğünü öne sürüyor. Bu iddiayı değerlendirin.",
+     "cozum": [
+      "Tek basamak, bir CH₄ ve iki O₂ molekülünün <em>aynı anda</em> çarpışmasını (termolecular) gerektirirdi.",
+      "Üç taneciğin doğru yönelim ve yeterli enerjiyle aynı anda çarpışması çok düşük olasılıklıdır; ayrıca birçok bağın aynı anda kopup oluşması gerekir. Tepkime büyük olasılıkla çok basamaklı bir mekanizmayla yürür."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Bu konuda hesap makinesi genelde gerekmez; oran soruları kafadan yapılır.",
+    "Soru \"elementary\" diyorsa katsayılar = dereceler; demiyorsa katsayıları üs olarak kullanma.",
+    "Molekülerlik her zaman pozitif tam sayıdır (1, 2, nadiren 3); derece ise kesirli ya da sıfır olabilir.",
+    "Termolecular basamağın nadirliğini \"simultaneous collision of three particles is improbable\" diye gerekçelendir."
+   ],
+   "sikHatalar": [
+    "Toplam (elementary olmayan) denklemin katsayılarından hız yasası yazmak.",
+    "Molekülerlik ile toplam dereceyi her tepkime için aynı şey sanmak.",
+    "\\(2\\text{A}\\) içeren basamağın hız yasasını \\(k[\\text{A}]\\) yazmak (kareyi unutmak)."
+   ],
+   "terimler": [
+    {
+     "en": "elementary reaction",
+     "tr": "temel (tek basamaklı) tepkime"
+    },
+    {
+     "en": "molecularity",
+     "tr": "molekülerlik"
+    },
+    {
+     "en": "unimolecular",
+     "tr": "tek moleküllü"
+    },
+    {
+     "en": "bimolecular",
+     "tr": "iki moleküllü"
+    },
+    {
+     "en": "termolecular",
+     "tr": "üç moleküllü"
+    }
+   ]
+  },
+  {
+   "kod": "5.5",
+   "baslik": "Collision Model",
+   "baslikTr": "Çarpışma modeli",
+   "hedefler": [
+    "Etkin bir çarpışmanın (effective collision) iki koşulunu açıklamak: yeterli enerji ve uygun yönelim.",
+    "Maxwell–Boltzmann dağılımını kullanarak sıcaklığın hızı neden artırdığını açıklamak.",
+    "Derişim, yüzey alanı ve inert gaz eklemenin çarpışma sıklığına etkisini değerlendirmek."
+   ],
+   "anlatim": "<h4>Çarpışma modeli (collision model)</h4>\n<p>Taneciklerin tepkimeye girmesi için çarpışmaları gerekir; ama her çarpışma ürün vermez. Ürün veren çarpışmaya <strong>etkin çarpışma (effective / successful collision)</strong> denir. İki şart vardır:</p>\n<ol>\n<li><strong>Enerji:</strong> Çarpışan taneciklerin kinetik enerjisi en az <strong>aktivasyon enerjisi (activation energy, \\(E_a\\))</strong> kadar olmalı; ancak o zaman bağlar kopup yeniden düzenlenebilir.</li>\n<li><strong>Yönelim (orientation):</strong> Tanecikler, tepkimeye girecek atomlar birbirine bakacak şekilde çarpışmalı. Örneğin \\(\\text{NO} + \\text{O}_3\\) tepkimesinde O₃'ün uçtaki O atomu NO'nun N atomuna çarpmalıdır.</li>\n</ol>\n<div class=\"kn-kural\">Hız ∝ (birim zamandaki çarpışma sayısı) × (enerjisi \\(\\ge E_a\\) olan çarpışmaların kesri) × (uygun yönelimli çarpışmaların kesri).</div>\n<h4>Maxwell–Boltzmann dağılımı</h4>\n<p>Bir gazdaki taneciklerin hepsi aynı enerjiye sahip değildir. Kinetik enerji–tanecik sayısı grafiği (Maxwell–Boltzmann distribution) sağa doğru uzun kuyruklu bir tepedir. \\(E_a\\) çizgisinin sağındaki alan, yeterli enerjili taneciklerin kesridir.</p>\n<table><thead><tr><th>Değişiklik</th><th>Eğriye etkisi</th><th>Hıza etkisi ve sebebi</th></tr></thead><tbody>\n<tr><td>Sıcaklık artışı</td><td>Tepe sağa kayar ve alçalır, kuyruk kalınlaşır; toplam alan (tanecik sayısı) aynı</td><td>\\(E_a\\)'yı aşan kesir <strong>çok</strong> artar; çarpışma sıklığı az artar. Ana sebep birincisi.</td></tr>\n<tr><td>Katalizör</td><td>Eğri değişmez; \\(E_a\\) çizgisi sola kayar</td><td>Aynı sıcaklıkta \\(E_a\\)'yı aşan kesir artar</td></tr>\n<tr><td>Derişim artışı</td><td>Kesir değişmez</td><td>Birim hacimde daha çok tanecik ⇒ daha sık çarpışma</td></tr>\n</tbody></table>\n<div class=\"kn-dikkat\">Sıcaklık artınca \\(E_a\\) <strong>değişmez</strong>. Değişen, \\(E_a\\)'yı aşan taneciklerin kesridir. \"Molecules collide more often\" tek başına yeterli açıklama değildir; puanlayıcı enerji dağılımı argümanını arar.</div>\n<h4>Çarpışma sıklığını ne değiştirir, ne değiştirmez?</h4>\n<ul>\n<li>Katıyı toz hâline getirmek: yüzeydeki tanecik sayısı ve çarpışma sıklığı artar.</li>\n<li>Sabit hacimde inert gaz (ör. Ar) eklemek: reaktiflerin derişimi değişmez ⇒ hız (ideal davranışta) değişmez. Ar ile çarpışmalar ürün vermez.</li>\n<li>Aynı derişimdeki çözeltiden daha fazla eklemek: derişim aynı kaldığı için başlangıç hızı değişmez (yalnız toplam ürün miktarı değişebilir).</li>\n</ul>\n<p>FRQ ifade kalıbı: <em>\"At the higher temperature, a greater fraction of collisions have energy equal to or greater than the activation energy, so the frequency of effective collisions and the rate increase.\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "Bir gaz tepkimesinde sıcaklık 298 K'den 308 K'e çıkarıldığında hız yaklaşık iki katına çıkıyor; oysa çarpışma sıklığı yalnız yaklaşık %2 artıyor. Hızdaki büyük artışı açıklayın.",
+     "cozum": [
+      "%2'lik çarpışma sıklığı artışı hızın iki katına çıkmasını açıklayamaz.",
+      "Maxwell–Boltzmann dağılımı sıcaklıkla sağa kayar; \\(E_a\\)'yı aşan çarpışmaların kesri belirgin şekilde artar (dağılımın kuyruğu).",
+      "<em>\"A much larger fraction of collisions now have E ≥ Ea, so effective collisions per second roughly double.\"</em>"
+     ]
+    },
+    {
+     "soru": "Rijit bir kaba, \\(\\text{H}_2\\) ve \\(\\text{I}_2\\) içeren karışım sabit sıcaklıktayken He gazı ekleniyor. Toplam basınç iki katına çıkıyor. Hız nasıl değişir?",
+     "cozum": [
+      "Hacim ve mol sayıları aynı ⇒ \\([\\text{H}_2]\\) ve \\([\\text{I}_2]\\) değişmez.",
+      "He ile çarpışmalar ürün vermez; reaktifler arası çarpışma sıklığı değişmez ⇒ hız değişmez."
+     ]
+    },
+    {
+     "soru": "(Açıklama) \\(\\text{Cl} + \\text{HI} \\rightarrow \\text{HCl} + \\text{I}\\) tepkimesinde \\(E_a\\)'yı aşan pek çok çarpışma yine de ürün vermiyor. Neden?",
+     "cozum": [
+      "Cl atomunun H ucuna çarpması gerekir; I ucuna çarpan Cl, H–Cl bağı oluşturamaz.",
+      "Yeterli enerjili ama yanlış yönelimli (improper orientation) çarpışmalar etkin değildir."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Bu konuda hesap makinesi gerekmez; sorular açıklama ve grafik yorumu üzerinedir.",
+    "Sıcaklık sorusunda iki etkiyi say ama \"fraction of collisions with E ≥ Ea\" etkisini baskın olarak vurgula.",
+    "Maxwell–Boltzmann grafiğinde eğri altındaki toplam alan sabittir; sıcak eğri daha alçak ve daha geniştir.",
+    "Katalizörü grafikte göstermek için eğriyi değil, \\(E_a\\) çizgisini sola kaydır."
+   ],
+   "sikHatalar": [
+    "Sıcaklık artınca aktivasyon enerjisinin azaldığını söylemek.",
+    "Sabit hacimde inert gaz eklenince toplam basınç arttığı için hızın arttığını sanmak.",
+    "Yeterli enerjili her çarpışmanın ürün verdiğini düşünmek (yönelimi unutmak)."
+   ],
+   "terimler": [
+    {
+     "en": "collision model",
+     "tr": "çarpışma modeli"
+    },
+    {
+     "en": "effective collision",
+     "tr": "etkin çarpışma"
+    },
+    {
+     "en": "activation energy",
+     "tr": "aktivasyon enerjisi"
+    },
+    {
+     "en": "orientation",
+     "tr": "yönelim"
+    },
+    {
+     "en": "Maxwell–Boltzmann distribution",
+     "tr": "Maxwell–Boltzmann dağılımı"
+    }
+   ]
+  },
+  {
+   "kod": "5.6",
+   "baslik": "Reaction Energy Profile",
+   "baslikTr": "Tepkime enerji profili",
+   "hedefler": [
+    "Enerji profilinden (reaction energy profile) ileri ve geri aktivasyon enerjilerini ve ΔH'yi okumak.",
+    "Geçiş hâlini (transition state, activated complex) tanımlamak.",
+    "Hızın ΔH'ye değil aktivasyon enerjisine bağlı olduğunu açıklamak."
+   ],
+   "anlatim": "<h4>Enerji profili nasıl okunur?</h4>\n<p>Enerji profili (reaction energy profile / energy diagram), tepkime ilerledikçe (reaction coordinate) sistemin potansiyel enerjisini gösterir. Tek basamaklı bir tepkimede tek bir tepe vardır.</p>\n<div class=\"kn-tanim\"><strong>Geçiş hâli (transition state)</strong> ya da <strong>aktiflenmiş kompleks (activated complex)</strong>: profilin tepe noktasındaki, bağların kısmen kopmuş ve kısmen oluşmuş olduğu en yüksek enerjili düzenlenme. Ömrü çok kısadır; yalıtılamaz ve bir ara ürün (intermediate) <em>değildir</em>.</div>\n<table><thead><tr><th>Nicelik</th><th>Profilde nasıl okunur?</th></tr></thead><tbody>\n<tr><td>\\(E_{a,\\text{ileri}}\\) (forward)</td><td>Geçiş hâli − reaktifler</td></tr>\n<tr><td>\\(E_{a,\\text{geri}}\\) (reverse)</td><td>Geçiş hâli − ürünler</td></tr>\n<tr><td>\\(\\Delta H\\)</td><td>Ürünler − reaktifler (= \\(E_{a,\\text{ileri}} - E_{a,\\text{geri}}\\))</td></tr>\n</tbody></table>\n<div class=\"kn-kural\">\\(\\Delta H = E_{a,\\text{ileri}} - E_{a,\\text{geri}}\\). Ekzotermik tepkimede (\\(\\Delta H \\lt 0\\)) geri aktivasyon enerjisi ileri olandan büyüktür; endotermik tepkimede tersi.</div>\n<h4>Sayısal örnek</h4>\n<table><thead><tr><th>Nokta</th><th>Enerji (kJ/mol)</th></tr></thead><tbody>\n<tr><td>Reaktifler</td><td>30</td></tr><tr><td>Geçiş hâli</td><td>110</td></tr><tr><td>Ürünler</td><td>−20</td></tr>\n</tbody></table>\n<p>\\(E_{a,\\text{ileri}} = 110 - 30 = 80\\text{ kJ/mol}\\); \\(E_{a,\\text{geri}} = 110 - (-20) = 130\\text{ kJ/mol}\\); \\(\\Delta H = -20 - 30 = -50\\text{ kJ/mol}\\) (ekzotermik). Kontrol: \\(80 - 130 = -50\\).</p>\n<h4>Termodinamik ve kinetik ayrı şeylerdir</h4>\n<p>\\(\\Delta H\\) ne kadar enerji açığa çıktığını söyler; ne kadar <em>hızlı</em> olduğunu söylemez. Hızı belirleyen, tepenin yüksekliği yani \\(E_a\\)'dır. Çok ekzotermik bir tepkime (ör. odunun yanması) oda sıcaklığında çok yavaş olabilir çünkü \\(E_a\\) büyüktür. Aynı sıcaklık ve benzer derişimlerde, \\(E_a\\)'sı küçük olan tepkimenin hız sabiti daha büyüktür.</p>\n<p>Sıcaklık değiştiğinde profildeki enerjiler (\\(E_a\\), \\(\\Delta H\\)) değişmez; değişen, tepeyi aşabilecek taneciklerin kesridir (5.5). Profili değiştiren tek şey yeni bir yol (katalizör, 5.11) sağlamaktır.</p>\n<p>FRQ ifade kalıbı: <em>\"Reaction X has the lower activation energy, so at the same temperature a larger fraction of collisions have sufficient energy to react, and X is faster. The value of ΔH does not determine the rate.\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "Bir enerji profilinde reaktifler 15 kJ/mol, geçiş hâli 90 kJ/mol, ürünler 55 kJ/mol'dedir. \\(E_{a,\\text{ileri}}\\), \\(E_{a,\\text{geri}}\\) ve \\(\\Delta H\\)'yi bulun.",
+     "cozum": [
+      "\\(E_{a,\\text{ileri}} = 90 - 15 = 75\\text{ kJ/mol}\\); \\(E_{a,\\text{geri}} = 90 - 55 = 35\\text{ kJ/mol}\\).",
+      "\\(\\Delta H = 55 - 15 = +40\\text{ kJ/mol}\\) (endotermik). Kontrol: \\(75 - 35 = 40\\)."
+     ]
+    },
+    {
+     "soru": "Bir tepkimenin \\(E_{a,\\text{ileri}} = 64\\text{ kJ/mol}\\) ve \\(\\Delta H = -38\\text{ kJ/mol}\\)'dür. Geri tepkimenin aktivasyon enerjisi nedir?",
+     "cozum": [
+      "\\(\\Delta H = E_{a,\\text{ileri}} - E_{a,\\text{geri}}\\) ⇒ \\(E_{a,\\text{geri}} = 64 - (-38)\\).",
+      "\\(E_{a,\\text{geri}} = 102\\text{ kJ/mol}\\); ekzotermik olduğu için ileri olandan büyük, beklendiği gibi."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) Tepkime P: \\(E_a = 40\\text{ kJ/mol}\\), \\(\\Delta H = -10\\text{ kJ/mol}\\). Tepkime Q: \\(E_a = 95\\text{ kJ/mol}\\), \\(\\Delta H = -250\\text{ kJ/mol}\\). Aynı koşullarda hangisi daha hızlıdır? Açıklayın.",
+     "cozum": [
+      "Hız, \\(\\Delta H\\)'ye değil \\(E_a\\)'ya bağlıdır.",
+      "P'nin \\(E_a\\)'sı daha küçük ⇒ aynı sıcaklıkta P'de çarpışmaların daha büyük kesri \\(E_a\\)'yı aşar ⇒ P daha hızlıdır. Q'nun daha ekzotermik olması hızını artırmaz."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi gerekmez; profilden çıkarma işlemleri kafadan yapılır.",
+    "Her zaman \"tepe − başladığın yer\" kuralını kullan: ileri için reaktifler, geri için ürünler.",
+    "\\(\\Delta H = E_{a,\\text{ileri}} - E_{a,\\text{geri}}\\) ile cevabını mutlaka kontrol et.",
+    "Gerekçede hızı \\(E_a\\)'ya bağla; ΔH'den hız çıkarımı yapan cevap puan almaz."
+   ],
+   "sikHatalar": [
+    "Aktivasyon enerjisini sıfırdan (eksen tabanından) tepeye kadar okumak.",
+    "Daha ekzotermik tepkimenin daha hızlı olduğunu sanmak.",
+    "Geçiş hâlini yalıtılabilen bir ara ürün sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "reaction energy profile",
+     "tr": "tepkime enerji profili"
+    },
+    {
+     "en": "transition state",
+     "tr": "geçiş hâli"
+    },
+    {
+     "en": "activated complex",
+     "tr": "aktiflenmiş kompleks"
+    },
+    {
+     "en": "reaction coordinate",
+     "tr": "tepkime koordinatı"
+    },
+    {
+     "en": "exothermic",
+     "tr": "ekzotermik (ısı veren)"
+    },
+    {
+     "en": "endothermic",
+     "tr": "endotermik (ısı alan)"
+    }
+   ]
+  },
+  {
+   "kod": "5.7",
+   "baslik": "Introduction to Reaction Mechanisms",
+   "baslikTr": "Tepkime mekanizmalarına giriş",
+   "hedefler": [
+    "Bir mekanizmanın basamaklarını toplayarak toplam denklemi elde etmek.",
+    "Ara ürünü (intermediate) ve katalizörü (catalyst) basamaklardan tanımak.",
+    "Bir mekanizmanın deneysel kanıtla nasıl desteklendiğini (ama kanıtlanamadığını) açıklamak."
+   ],
+   "anlatim": "<h4>Mekanizma (reaction mechanism)</h4>\n<div class=\"kn-tanim\"><strong>Tepkime mekanizması</strong>, toplam tepkimenin hangi elementary step'lerin sırasıyla gerçekleştiğini anlatan öneridir. Basamaklar toplandığında <strong>toplam denklem (overall equation)</strong> elde edilmelidir.</div>\n<h4>Ara ürün ve katalizör</h4>\n<table><thead><tr><th>Tür</th><th>Mekanizmadaki yeri</th><th>Toplam denklemde</th></tr></thead><tbody>\n<tr><td>Ara ürün (intermediate)</td><td>Önce <strong>ürün</strong> olarak oluşur, sonra bir basamakta <strong>reaktif</strong> olarak tükenir</td><td>Görünmez</td></tr>\n<tr><td>Katalizör (catalyst)</td><td>Önce <strong>reaktif</strong> olarak kullanılır, sonra bir basamakta yeniden <strong>oluşur</strong>; başlangıçta vardır</td><td>Görünmez</td></tr>\n</tbody></table>\n<p>Örnek mekanizma:</p>\n<div class=\"formul\">\\[ \\begin{aligned} &\\text{Basamak 1: } \\text{H}_2\\text{O}_2 + \\text{I}^- \\rightarrow \\text{H}_2\\text{O} + \\text{IO}^- \\\\ &\\text{Basamak 2: } \\text{H}_2\\text{O}_2 + \\text{IO}^- \\rightarrow \\text{H}_2\\text{O} + \\text{O}_2 + \\text{I}^- \\\\ &\\text{Toplam: } 2\\text{H}_2\\text{O}_2 \\rightarrow 2\\text{H}_2\\text{O} + \\text{O}_2 \\end{aligned} \\]</div>\n<p>\\(\\text{IO}^-\\) basamak 1'de oluşup basamak 2'de tükendiği için <strong>ara ürün</strong>dür. \\(\\text{I}^-\\) basamak 1'de harcanıp basamak 2'de geri geldiği için <strong>katalizör</strong>dür.</p>\n<h4>Basamakları toplama</h4>\n<ol>\n<li>Tüm basamakların sol taraflarını ve sağ taraflarını ayrı ayrı topla.</li>\n<li>Her iki tarafta görünen türleri sadeleştir (katsayılara dikkat; bir basamak gerekirse ×2 alınır).</li>\n<li>Kalan denklem verilen toplam denklemle aynı değilse mekanizma kabul edilemez.</li>\n</ol>\n<h4>Ara ürün mü, geçiş hâli mi?</h4>\n<p>Ara ürün enerji profilinde iki tepe arasındaki bir <strong>vadide</strong> (yerel minimum) bulunur, gerçek bir türdür ve bazen spektroskopiyle tespit edilir. Geçiş hâli ise <strong>tepede</strong>dir ve yalıtılamaz.</p>\n<h4>Mekanizma kanıtlanamaz</h4>\n<p>Bir mekanizma ancak <em>desteklenir</em>: (1) basamakların toplamı toplam denkleme eşit olmalı, (2) mekanizmanın öngördüğü hız yasası deneysel hız yasasıyla uyuşmalı (5.8), (3) önerilen ara ürünün tepkime sırasında tespit edilmesi güçlü bir destek olur. Birden fazla mekanizma aynı veriyle uyumlu olabilir.</p>\n<p>FRQ ifade kalıbı: <em>\"IO⁻ is an intermediate because it is produced in step 1 and consumed in step 2; it does not appear in the overall equation.\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "Mekanizma: Basamak 1: \\(\\text{NO} + \\text{Cl}_2 \\rightarrow \\text{NOCl}_2\\); Basamak 2: \\(\\text{NOCl}_2 + \\text{NO} \\rightarrow 2\\text{NOCl}\\). Toplam denklemi ve ara ürünü yazın.",
+     "cozum": [
+      "Topla: \\(\\text{NO} + \\text{Cl}_2 + \\text{NOCl}_2 + \\text{NO} \\rightarrow \\text{NOCl}_2 + 2\\text{NOCl}\\).",
+      "\\(\\text{NOCl}_2\\) sadeleşir: \\(2\\text{NO} + \\text{Cl}_2 \\rightarrow 2\\text{NOCl}\\). Ara ürün: \\(\\text{NOCl}_2\\)."
+     ]
+    },
+    {
+     "soru": "Toplam tepkime \\(\\text{O}_3 + \\text{O} \\rightarrow 2\\text{O}_2\\) için basamak 1: \\(\\text{Cl} + \\text{O}_3 \\rightarrow \\text{ClO} + \\text{O}_2\\). Basamak 2 ne olmalı? Ara ürün ve katalizörü belirtin.",
+     "cozum": [
+      "Toplam denklemden basamak 1'i çıkar: kalan \\(\\text{ClO} + \\text{O} \\rightarrow \\text{Cl} + \\text{O}_2\\).",
+      "\\(\\text{ClO}\\): oluşup tükeniyor ⇒ ara ürün. \\(\\text{Cl}\\): başta harcanıp sonra geri geliyor ⇒ katalizör."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) İki mekanizma da toplam denkleme uyuyor. Hangi deneysel gözlem birini diğerine tercih ettirebilir?",
+     "cozum": [
+      "Her mekanizma farklı bir hız yasası öngörebilir; deneysel hız yasasıyla karşılaştırılır.",
+      "Ayrıca yalnız bir mekanizmada bulunan bir ara ürünün tepkime sırasında tespit edilmesi o mekanizmayı destekler. Yine de mekanizma kesin olarak \"kanıtlanmış\" olmaz."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Bu konuda hesap makinesi gerekmez.",
+    "Ara ürün: önce sağda, sonra solda. Katalizör: önce solda, sonra sağda. Bu sırayı ezberle.",
+    "Basamakları toplarken katsayılı türleri tek tek say; bir \\(\\text{NO}\\) fazla kalırsa mekanizma toplamı tutmuyor demektir.",
+    "Gerekçede \"produced in step … and consumed in step …\" kalıbını kullan."
+   ],
+   "sikHatalar": [
+    "Ara ürün ile katalizörü karıştırmak (oluşma/tükenme sırasını ters okumak).",
+    "Ara ürünü geçiş hâliyle aynı şey sanmak.",
+    "Toplam denkleme uyan bir mekanizmanın kanıtlanmış olduğunu söylemek."
+   ],
+   "terimler": [
+    {
+     "en": "reaction mechanism",
+     "tr": "tepkime mekanizması"
+    },
+    {
+     "en": "intermediate",
+     "tr": "ara ürün"
+    },
+    {
+     "en": "catalyst",
+     "tr": "katalizör"
+    },
+    {
+     "en": "overall equation",
+     "tr": "toplam denklem"
+    },
+    {
+     "en": "elementary step",
+     "tr": "temel basamak"
+    }
+   ]
+  },
+  {
+   "kod": "5.8",
+   "baslik": "Reaction Mechanism and Rate Law",
+   "baslikTr": "Tepkime mekanizması ve hız yasası",
+   "hedefler": [
+    "Hız belirleyen basamağı (rate-determining step) tanımlamak.",
+    "İlk basamağı yavaş olan bir mekanizmadan hız yasası türetmek.",
+    "Bir mekanizmanın deneysel hız yasasıyla tutarlı olup olmadığına karar vermek."
+   ],
+   "anlatim": "<h4>Hız belirleyen basamak</h4>\n<div class=\"kn-tanim\">Çok basamaklı bir mekanizmada en yavaş basamağa <strong>hız belirleyen basamak (rate-determining step / rate-limiting step)</strong> denir. Toplam tepkime, bu basamaktan daha hızlı ilerleyemez; bu yüzden toplam hız yasası yavaş basamağın hız yasasıyla belirlenir.</div>\n<p>Benzetme: üç kişilik bir montaj hattında en yavaş işçi saatte 10 parça üretiyorsa, diğerleri ne kadar hızlı olursa olsun hat saatte 10 parça çıkarır.</p>\n<h4>Yavaş basamak ilk basamaksa</h4>\n<p>Yavaş basamak birinci basamaksa, hız yasası o elementary step'in katsayılarından doğrudan yazılır. Yavaş basamaktan sonraki hızlı basamaklar hızı etkilemez; onlarda yer alan (ve yavaş basamakta olmayan) reaktifler hız yasasına girmez.</p>\n<div class=\"formul\">\\[ \\begin{aligned} &\\text{Basamak 1 (yavaş): } \\text{NO}_2\\text{Cl} \\rightarrow \\text{NO}_2 + \\text{Cl} \\\\ &\\text{Basamak 2 (hızlı): } \\text{NO}_2\\text{Cl} + \\text{Cl} \\rightarrow \\text{NO}_2 + \\text{Cl}_2 \\\\ &\\text{Hız yasası: } \\text{rate} = k[\\text{NO}_2\\text{Cl}] \\end{aligned} \\]</div>\n<p>Toplam denklem \\(2\\text{NO}_2\\text{Cl} \\rightarrow 2\\text{NO}_2 + \\text{Cl}_2\\) olduğu hâlde hız yasası \\(\\text{NO}_2\\text{Cl}\\)'ye göre <em>birinci</em> derecedir.</p>\n<div class=\"kn-dikkat\">Hız yasasında <strong>ara ürün bulunamaz</strong>: ara ürünün derişimi deneyde kontrol edilemez. Yavaş basamakta bir ara ürün varsa (yavaş basamak ikinci basamaksa) ara ürün önceki hızlı dengeden yazılan ifadeyle değiştirilir (5.9). Katalizör ise yavaş basamakta yer alıyorsa hız yasasında <em>görünebilir</em>; çünkü derişimi başta bilinen ve kontrol edilen bir türdür.</div>\n<h4>Tutarlılık kontrolü</h4>\n<table><thead><tr><th>Şart</th><th>Soru</th></tr></thead><tbody>\n<tr><td>1. Stokiyometri</td><td>Basamaklar toplamı toplam denkleme eşit mi?</td></tr>\n<tr><td>2. Kinetik</td><td>Yavaş basamaktan türetilen hız yasası deneysel hız yasasıyla aynı mı?</td></tr>\n<tr><td>3. Fizik</td><td>Basamaklar makul mü (çoğunlukla uni-/bimolecular)?</td></tr>\n</tbody></table>\n<p>Üç şart da sağlanıyorsa mekanizma <em>tutarlıdır (consistent)</em>; yine de kesin kanıt değildir. Farklı mekanizmalar aynı hız yasasını verebilir.</p>\n<p>FRQ ifade kalıbı: <em>\"The mechanism is consistent with the rate law because the rate law of the slow (rate-determining) step, rate = k[A][B], matches the experimentally determined rate law, and the steps add up to the overall equation.\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "Toplam: \\(2\\text{A} + \\text{B} \\rightarrow \\text{A}_2\\text{B}\\). Mekanizma: Basamak 1 (yavaş): \\(\\text{A} + \\text{B} \\rightarrow \\text{AB}\\); Basamak 2 (hızlı): \\(\\text{AB} + \\text{A} \\rightarrow \\text{A}_2\\text{B}\\). Hız yasasını yazın.",
+     "cozum": [
+      "Yavaş basamak birinci basamak ⇒ hız yasası onun katsayılarından: \\(\\text{rate} = k[\\text{A}][\\text{B}]\\).",
+      "İkinci A yalnız hızlı basamakta yer aldığından A'ya göre derece 2 değil 1'dir."
+     ]
+    },
+    {
+     "soru": "Deneysel hız yasası \\(\\text{rate} = k[(\\text{CH}_3)_3\\text{CBr}]\\) olan \\((\\text{CH}_3)_3\\text{CBr} + \\text{OH}^- \\rightarrow (\\text{CH}_3)_3\\text{COH} + \\text{Br}^-\\) için hangi basamak yavaş olmalıdır?",
+     "cozum": [
+      "Hız \\([\\text{OH}^-]\\)'den bağımsız ⇒ \\(\\text{OH}^-\\) yavaş basamakta (ve öncesinde) yer almamalı.",
+      "Uygun öneri: Basamak 1 (yavaş): \\((\\text{CH}_3)_3\\text{CBr} \\rightarrow (\\text{CH}_3)_3\\text{C}^+ + \\text{Br}^-\\); Basamak 2 (hızlı): \\((\\text{CH}_3)_3\\text{C}^+ + \\text{OH}^- \\rightarrow (\\text{CH}_3)_3\\text{COH}\\)."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) Deneysel hız yasası \\(\\text{rate} = k[\\text{NO}_2][\\text{F}_2]\\) olan \\(2\\text{NO}_2 + \\text{F}_2 \\rightarrow 2\\text{NO}_2\\text{F}\\) için önerilen mekanizma: Basamak 1: \\(\\text{NO}_2 + \\text{F}_2 \\rightarrow \\text{NO}_2\\text{F} + \\text{F}\\); Basamak 2: \\(\\text{NO}_2 + \\text{F} \\rightarrow \\text{NO}_2\\text{F}\\). Hangi basamak yavaş olmalı?",
+     "cozum": [
+      "Basamak 1 yavaş olsaydı: \\(\\text{rate} = k_1[\\text{NO}_2][\\text{F}_2]\\) — deneysel hız yasasıyla aynı.",
+      "Basamak 2 yavaş olsaydı hız yasası ara ürün F'yi içerirdi ve deneysel yasayı vermezdi. Sonuç: basamak 1 hız belirleyendir; basamaklar toplamı da toplam denkleme eşittir."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Bu konuda hesap makinesi gerekmez.",
+    "Önce yavaş basamağı bul; ilk basamaksa hız yasasını doğrudan katsayılarından yaz.",
+    "Son cevapta ara ürün kaldıysa iş bitmemiştir: ya yavaş basamak yanlış seçildi ya da 5.9'daki yerine koyma gerekir.",
+    "\"Consistent\" demek için hem toplam denklemi hem hız yasasını kontrol ettiğini yaz."
+   ],
+   "sikHatalar": [
+    "Hız yasasını toplam denklemin katsayılarından yazmak.",
+    "Hızlı basamaktaki reaktifleri de hız yasasına eklemek.",
+    "Tutarlı bir mekanizmanın kanıtlanmış olduğunu söylemek."
+   ],
+   "terimler": [
+    {
+     "en": "rate-determining step",
+     "tr": "hız belirleyen basamak"
+    },
+    {
+     "en": "consistent with",
+     "tr": "ile tutarlı"
+    },
+    {
+     "en": "experimental rate law",
+     "tr": "deneysel hız yasası"
+    },
+    {
+     "en": "slow step",
+     "tr": "yavaş basamak"
+    },
+    {
+     "en": "fast step",
+     "tr": "hızlı basamak"
+    }
+   ]
+  },
+  {
+   "kod": "5.9",
+   "baslik": "Pre-Equilibrium Approximation",
+   "baslikTr": "Ön denge yaklaşımı",
+   "hedefler": [
+    "Hızlı ve tersinir bir ilk basamağın ardından yavaş basamak gelen mekanizmadan hız yasası türetmek.",
+    "Ara ürünün derişimini hızlı dengenin denge sabitiyle (K = k₁/k₋₁) reaktifler cinsinden yazmak.",
+    "Ön denge yaklaşımının hangi koşulda geçerli olduğunu açıklamak."
+   ],
+   "anlatim": "<h4>Sorun: yavaş basamakta ara ürün var</h4>\n<p>Yavaş basamak ikinci basamaksa, onun hız yasası genellikle ilk basamakta oluşan bir ara ürünü içerir. Ara ürünün derişimi deneyde kontrol edilemediği için hız yasasında kalamaz. Çözüm: <strong>ön denge yaklaşımı (pre-equilibrium approximation)</strong>.</p>\n<div class=\"kn-tanim\">İlk basamak <strong>hızlı ve tersinir</strong> ise (\\(k_{-1} \\gg k_2\\)), ara ürün ileri ve geri yönde çok kez oluşup bozunur; yavaş basamak onu çok az tüketir. Bu nedenle ilk basamak <strong>dengede</strong> kabul edilir: ileri hız = geri hız.</div>\n<h4>Türetme adımları</h4>\n<div class=\"formul\">\\[ \\begin{aligned} &\\text{Basamak 1 (hızlı, denge): } \\text{NO} + \\text{Br}_2 \\rightleftharpoons \\text{NOBr}_2 \\\\ &\\text{Basamak 2 (yavaş): } \\text{NOBr}_2 + \\text{NO} \\rightarrow 2\\text{NOBr} \\end{aligned} \\]</div>\n<ol>\n<li>Yavaş basamağın hız yasası: \\(\\text{rate} = k_2[\\text{NOBr}_2][\\text{NO}]\\) (ara ürün içeriyor).</li>\n<li>Hızlı denge: \\(k_1[\\text{NO}][\\text{Br}_2] = k_{-1}[\\text{NOBr}_2]\\) ⇒ \\([\\text{NOBr}_2] = \\dfrac{k_1}{k_{-1}}[\\text{NO}][\\text{Br}_2] = K_1[\\text{NO}][\\text{Br}_2]\\).</li>\n<li>Yerine koy: \\(\\text{rate} = k_2K_1[\\text{NO}]^2[\\text{Br}_2] = k[\\text{NO}]^2[\\text{Br}_2]\\), burada \\(k = k_2K_1 = \\dfrac{k_2k_1}{k_{-1}}\\).</li>\n</ol>\n<div class=\"kn-kural\">Sonuç hız yasası, yavaş basamak <strong>ve ondan önceki</strong> basamaklardaki tüm reaktiflerin (ara ürünler hariç) derişimlerini içerir. Kısa yol: yavaş basamağa kadar olan basamakları topla, ara ürünleri sadeleştir; kalan reaktifler ve katsayıları hız yasasını verir (yalnız ön denge varsa). Yavaş basamaktan önceki hızlı dengede açığa çıkan ve sonra tüketilmeyen bir tür ise hız yasasının paydasına girer (ör. \\(\\text{O}_3\\) mekanizmasında \\([\\text{O}_2]^{-1}\\)).</div>\n<h4>Kesirli ve negatif dereceler</h4>\n<table><thead><tr><th>Hızlı denge</th><th>Ara ürün ifadesi</th><th>Sonuç</th></tr></thead><tbody>\n<tr><td>\\(\\text{Cl}_2 \\rightleftharpoons 2\\text{Cl}\\)</td><td>\\([\\text{Cl}] = K^{1/2}[\\text{Cl}_2]^{1/2}\\)</td><td>\\(\\text{Cl}_2\\)'ye göre yarım derece</td></tr>\n<tr><td>\\(\\text{O}_3 \\rightleftharpoons \\text{O}_2 + \\text{O}\\)</td><td>\\([\\text{O}] = K[\\text{O}_3]/[\\text{O}_2]\\)</td><td>\\(\\text{O}_2\\)'ye göre −1 derece (ürün hızı yavaşlatır)</td></tr>\n</tbody></table>\n<p>Elementary bir dengede \\(K = k_{\\text{ileri}}/k_{\\text{geri}}\\). Hızlı basamak dengede olduğu için gözlenen hız sabiti, yavaş basamağın \\(k\\)'sı ile ilk dengenin \\(K\\)'sının çarpımıdır.</p>\n<div class=\"kn-dikkat\">Ön denge yaklaşımı ancak birinci basamağın geri tepkimesi, ikinci basamaktan çok hızlıysa geçerlidir. Basamak 1 tersinir değilse ya da yavaşsa, hız yasası doğrudan basamak 1'den yazılır (5.8).</div>\n<p>FRQ ifade kalıbı: <em>\"Because step 1 is fast and reversible, it reaches equilibrium: k₁[NO][Br₂] = k₋₁[NOBr₂]. Substituting [NOBr₂] into the rate law of the slow step gives rate = k[NO]²[Br₂], which contains no intermediates.\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "Mekanizma: Basamak 1 (hızlı denge): \\(2\\text{NO} \\rightleftharpoons \\text{N}_2\\text{O}_2\\); Basamak 2 (yavaş): \\(\\text{N}_2\\text{O}_2 + \\text{H}_2 \\rightarrow \\text{N}_2\\text{O} + \\text{H}_2\\text{O}\\). Hız yasasını türetin.",
+     "cozum": [
+      "Yavaş basamak: \\(\\text{rate} = k_2[\\text{N}_2\\text{O}_2][\\text{H}_2]\\).",
+      "Denge: \\([\\text{N}_2\\text{O}_2] = K_1[\\text{NO}]^2\\).",
+      "\\(\\text{rate} = k_2K_1[\\text{NO}]^2[\\text{H}_2] = k[\\text{NO}]^2[\\text{H}_2]\\)."
+     ]
+    },
+    {
+     "soru": "Hızlı denge \\(\\text{A} + \\text{B} \\rightleftharpoons \\text{C}\\) için \\(k_1 = 4.0\\times10^{3}\\text{ M}^{-1}\\text{ s}^{-1}\\), \\(k_{-1} = 2.0\\times10^{2}\\text{ s}^{-1}\\); yavaş basamak \\(\\text{C} \\rightarrow \\text{D}\\) için \\(k_2 = 0.050\\text{ s}^{-1}\\). Gözlenen hız sabiti nedir?",
+     "cozum": [
+      "\\(K_1 = k_1/k_{-1} = 4.0\\times10^{3}/2.0\\times10^{2} = 20\\text{ M}^{-1}\\).",
+      "\\(\\text{rate} = k_2[\\text{C}] = k_2K_1[\\text{A}][\\text{B}]\\); \\(k = 0.050 \\times 20 = 1.0\\text{ M}^{-1}\\text{ s}^{-1}\\) (toplam ikinci derece)."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) Basamak 1 (hızlı denge): \\(\\text{Br}_2 \\rightleftharpoons 2\\text{Br}\\); Basamak 2 (yavaş): \\(\\text{Br} + \\text{H}_2 \\rightarrow \\text{HBr} + \\text{H}\\). Deneysel olarak hız \\([\\text{Br}_2]\\) dört katına çıkınca iki katına çıkıyor. Mekanizma bununla tutarlı mı?",
+     "cozum": [
+      "\\([\\text{Br}] = K^{1/2}[\\text{Br}_2]^{1/2}\\) ⇒ \\(\\text{rate} = k_2K^{1/2}[\\text{H}_2][\\text{Br}_2]^{1/2}\\).",
+      "\\([\\text{Br}_2]\\) ×4 ⇒ hız ×\\(4^{1/2}\\) = ×2. Gözlemle tutarlı."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi bu konuda nadiren gerekir; \\(K = k_1/k_{-1}\\) gibi basit bölmeler için yardımcıdır.",
+    "Son hız yasanda ara ürün kalmadığını mutlaka kontrol et.",
+    "\\(\\rightleftharpoons\\) okunu gördüğünde ve sonra \"slow\" basamağı geldiğinde ön denge yaklaşımını kullan.",
+    "Gerekçede \"step 1 is fast and reversible, so forward rate = reverse rate\" cümlesini yaz."
+   ],
+   "sikHatalar": [
+    "Hız yasasında ara ürünü bırakmak.",
+    "\\(K\\)'yı ters yazmak (\\(k_{-1}/k_1\\)).",
+    "\\(\\text{X}_2 \\rightleftharpoons 2\\text{X}\\) dengesinde karekökü unutup X₂'ye göre birinci derece yazmak."
+   ],
+   "terimler": [
+    {
+     "en": "pre-equilibrium approximation",
+     "tr": "ön denge yaklaşımı"
+    },
+    {
+     "en": "fast reversible step",
+     "tr": "hızlı tersinir basamak"
+    },
+    {
+     "en": "equilibrium constant",
+     "tr": "denge sabiti"
+    },
+    {
+     "en": "substitution",
+     "tr": "yerine koyma"
+    },
+    {
+     "en": "observed rate constant",
+     "tr": "gözlenen hız sabiti"
+    }
+   ]
+  },
+  {
+   "kod": "5.10",
+   "baslik": "Multistep Reaction Energy Profile",
+   "baslikTr": "Çok basamaklı tepkimenin enerji profili",
+   "hedefler": [
+    "Çok basamaklı profilde basamak sayısını, ara ürünleri ve geçiş hâllerini saymak.",
+    "Profilden hız belirleyen basamağı ve her basamağın ΔH'sini belirlemek.",
+    "Profili mekanizma ve hız yasasıyla ilişkilendirmek."
+   ],
+   "anlatim": "<h4>Tepeler ve vadiler</h4>\n<p>Çok basamaklı bir mekanizmanın enerji profilinde her elementary step için <strong>bir tepe</strong> (geçiş hâli) vardır. İki tepe arasındaki her <strong>vadi</strong> (yerel minimum) bir ara üründür.</p>\n<table><thead><tr><th>Profilde</th><th>Anlamı</th></tr></thead><tbody>\n<tr><td>Tepe sayısı</td><td>Basamak sayısı</td></tr>\n<tr><td>Tepeler arası vadi sayısı</td><td>Ara ürün sayısı (= basamak sayısı − 1)</td></tr>\n<tr><td>Bir basamağın \\(E_a\\)'sı</td><td>O basamağın tepesi − o basamağın <em>başladığı</em> vadi (ya da reaktifler)</td></tr>\n<tr><td>Bir basamağın \\(\\Delta H\\)'si</td><td>O basamağın sonundaki enerji − başındaki enerji</td></tr>\n<tr><td>Toplam \\(\\Delta H\\)</td><td>Ürünler − reaktifler (basamakların \\(\\Delta H\\) toplamı)</td></tr>\n</tbody></table>\n<h4>Sayısal örnek</h4>\n<table><thead><tr><th>Nokta</th><th>Enerji (kJ/mol)</th></tr></thead><tbody>\n<tr><td>Reaktifler</td><td>0</td></tr><tr><td>TS1</td><td>85</td></tr><tr><td>Ara ürün</td><td>30</td></tr><tr><td>TS2</td><td>60</td></tr><tr><td>Ürünler</td><td>−40</td></tr>\n</tbody></table>\n<p>Basamak 1: \\(E_a = 85\\), \\(\\Delta H = +30\\) (endotermik). Basamak 2: \\(E_a = 60 - 30 = 30\\), \\(\\Delta H = -70\\) (ekzotermik). Toplam \\(\\Delta H = -40\\text{ kJ/mol}\\). Basamak 1'in hem \\(E_a\\)'sı daha büyük hem de tepesi daha yüksek ⇒ <strong>hız belirleyen basamak 1</strong>.</p>\n<div class=\"kn-kural\">AP sınavında hız belirleyen basamak, aktivasyon enerjisi en büyük (çoğu zaman tepesi de en yüksek) basamaktır. Sınav soruları bu iki ölçütün aynı sonucu verdiği profillerle kurulur.</div>\n<h4>Profil ve hız yasası</h4>\n<ul>\n<li>İlk tepe en yüksekse: ilk basamak yavaş ⇒ hız yasası doğrudan basamak 1'den (5.8).</li>\n<li>İkinci tepe en yüksekse ve ilk basamak düşük bir tepeyle hızla dengeye geliyorsa: ön denge yaklaşımı (5.9).</li>\n</ul>\n<div class=\"kn-dikkat\">Ara ürünün vadisi derin ve onu tüketecek basamağın tepesi yüksekse ara ürün birikir ve tespit edilebilir. Sığ bir vadideki ara ürün çok kısa ömürlüdür.</div>\n<p>Katalizli yol çoğunlukla <em>daha fazla</em> tepeye sahiptir ama her tepe katalizsiz yolun tek tepesinden daha alçaktır; reaktif ve ürün enerjileri (dolayısıyla \\(\\Delta H\\)) aynı kalır (5.11).</p>\n<p>FRQ ifade kalıbı: <em>\"Step 1 is the rate-determining step because it has the largest activation energy; the energy well between the two maxima represents the intermediate.\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "Üç basamaklı bir profil: reaktifler 0, TS1 40, I₁ 10, TS2 50, I₂ −15, TS3 70, ürünler −30 (kJ/mol). Hız belirleyen basamak hangisidir?",
+     "cozum": [
+      "\\(E_{a1} = 40 - 0 = 40\\); \\(E_{a2} = 50 - 10 = 40\\); \\(E_{a3} = 70 - (-15) = 85\\).",
+      "Basamak 3'ün \\(E_a\\)'sı en büyük ve tepesi (70) en yüksek ⇒ hız belirleyen basamak 3."
+     ]
+    },
+    {
+     "soru": "Aynı profilde ara ürün sayısını ve basamak 2'nin \\(\\Delta H\\)'sini bulun.",
+     "cozum": [
+      "Tepeler arası iki vadi (I₁, I₂) ⇒ iki ara ürün.",
+      "Basamak 2: \\(\\Delta H = -15 - 10 = -25\\text{ kJ/mol}\\) (ekzotermik)."
+     ]
+    },
+    {
+     "soru": "(Gerekçe) İki basamaklı bir profilde ikinci tepe daha yüksek ve ilk vadi reaktiflerin biraz üstünde. Hız yasası nasıl türetilmelidir?",
+     "cozum": [
+      "İkinci basamak yavaş; birinci basamak düşük tepe nedeniyle hızlı ve (ara ürün geri dönebildiği için) tersinirdir.",
+      "Ön denge yaklaşımı kullanılır: ara ürün derişimi ilk basamağın dengesinden yazılıp yavaş basamağın hız yasasına konur."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi gerekmez; tüm işlemler profilden çıkarmadır.",
+    "Her basamağın \\(E_a\\)'sını o basamağın başladığı noktadan ölç, sıfırdan değil.",
+    "Tepe say = basamak; tepeler arası vadi say = ara ürün.",
+    "Gerekçede \"largest activation energy\" ifadesini ve sayısal değeri birlikte ver."
+   ],
+   "sikHatalar": [
+    "Her basamağın aktivasyon enerjisini reaktiflerin enerjisinden ölçmek.",
+    "Reaktif ve ürün uçlarını da ara ürün olarak saymak.",
+    "Toplam ΔH'yi en yüksek tepeden okumak."
+   ],
+   "terimler": [
+    {
+     "en": "multistep reaction",
+     "tr": "çok basamaklı tepkime"
+    },
+    {
+     "en": "energy well",
+     "tr": "enerji vadisi (yerel minimum)"
+    },
+    {
+     "en": "rate-limiting step",
+     "tr": "hız sınırlayan basamak"
+    },
+    {
+     "en": "local maximum",
+     "tr": "yerel maksimum"
+    }
+   ]
+  },
+  {
+   "kod": "5.11",
+   "baslik": "Catalysis",
+   "baslikTr": "Kataliz",
+   "hedefler": [
+    "Katalizörün tepkimeyi daha düşük aktivasyon enerjili yeni bir yolla hızlandırdığını açıklamak.",
+    "Homojen, heterojen (yüzey) ve enzim katalizini ayırt etmek.",
+    "Katalizörün ΔH'yi ve denge konumunu değiştirmediğini, ileri ve geri hızları birlikte artırdığını açıklamak."
+   ],
+   "anlatim": "<h4>Katalizör ne yapar?</h4>\n<div class=\"kn-tanim\"><strong>Katalizör (catalyst)</strong>, tepkimeye katılan ama sonunda değişmeden geri kazanılan bir türdür. Tepkime için <strong>farklı bir mekanizma</strong> (yeni yol, new pathway) sağlar; bu yolun aktivasyon enerjisi daha düşüktür. Böylece aynı sıcaklıkta daha büyük bir çarpışma kesri \\(E_a\\)'yı aşar ve hız sabiti \\(k\\) büyür.</div>\n<table><thead><tr><th>Değişen</th><th>Değişmeyen</th></tr></thead><tbody>\n<tr><td>Mekanizma, \\(E_{a,\\text{ileri}}\\) ve \\(E_{a,\\text{geri}}\\) (ikisi de aynı miktarda azalır), \\(k_{\\text{ileri}}\\) ve \\(k_{\\text{geri}}\\), dengeye ulaşma süresi</td><td>Reaktif ve ürün enerjileri, \\(\\Delta H\\), denge sabiti \\(K\\), denge derişimleri</td></tr>\n</tbody></table>\n<div class=\"kn-dikkat\">Katalizör dengeyi kaydırmaz ve ürün verimini artırmaz; yalnız dengeye <em>daha çabuk</em> ulaşılmasını sağlar. Çünkü ileri ve geri tepkimeyi aynı oranda hızlandırır.</div>\n<h4>Kataliz türleri</h4>\n<ul>\n<li><strong>Homojen kataliz (homogeneous):</strong> katalizör reaktiflerle aynı fazdadır. Mekanizmada önce tüketilip sonra yeniden oluşur. Örnek: \\(\\text{Fe}^{3+}\\) iyonlarının \\(\\text{S}_2\\text{O}_8^{2-} + 2\\text{I}^- \\rightarrow 2\\text{SO}_4^{2-} + \\text{I}_2\\) tepkimesini hızlandırması.</li>\n<li><strong>Heterojen (yüzey) kataliz (heterogeneous / surface):</strong> katalizör farklı fazdadır, genellikle katı metal. Reaktif molekülleri yüzeye tutunur (adsorption), bağlar zayıflar, uygun yönelimde bir araya gelirler; ürün yüzeyden ayrılır (desorption). Örnek: Pt ya da Ni üzerinde \\(\\text{C}_2\\text{H}_4 + \\text{H}_2 \\rightarrow \\text{C}_2\\text{H}_6\\).</li>\n<li><strong>Enzim katalizi (enzyme):</strong> substrat enzimin aktif bölgesine (active site) bağlanır; geçiş hâli kararlı hâle getirilir ya da reaktifler doğru yönelimde tutulur. Substrat derişimi çok yüksekse tüm aktif bölgeler dolar ve hız artık substrat derişimine bağlı olmaz (substrata göre sıfırıncı derece gibi davranır).</li>\n<li><strong>Asit–baz katalizi:</strong> \\(\\text{H}^+\\) bir reaktifi protonlayarak daha reaktif hâle getirir, sonra geri verilir.</li>\n</ul>\n<h4>Sayısal ilişki</h4>\n<p>Katalizsiz \\(E_{a,\\text{ileri}} = 100\\), \\(\\Delta H = -30\\) (kJ/mol) ⇒ \\(E_{a,\\text{geri}} = 130\\). Katalizör ileri \\(E_a\\)'yı 60'a düşürürse geri \\(E_a\\) da aynı miktarda (40 kJ/mol) düşer: \\(130 - 40 = 90\\). Kontrol: \\(60 - 90 = -30\\), ΔH aynı.</p>\n<p>Katalizör yavaş basamakta yer alıyorsa hız yasasında görünebilir: \\(\\text{rate} = k[\\text{H}_2\\text{O}_2][\\text{I}^-]\\).</p>\n<p>FRQ ifade kalıbı: <em>\"The catalyst provides an alternative reaction pathway with a lower activation energy, so a greater fraction of collisions have sufficient energy to react at the same temperature.\"</em></p>",
+   "ornekler": [
+    {
+     "soru": "Mekanizma: Basamak 1: \\(2\\text{Fe}^{3+} + 2\\text{I}^- \\rightarrow 2\\text{Fe}^{2+} + \\text{I}_2\\); Basamak 2: \\(2\\text{Fe}^{2+} + \\text{S}_2\\text{O}_8^{2-} \\rightarrow 2\\text{Fe}^{3+} + 2\\text{SO}_4^{2-}\\). Katalizörü ve ara ürünü belirleyin.",
+     "cozum": [
+      "\\(\\text{Fe}^{3+}\\): basamak 1'de harcanıyor, basamak 2'de geri oluşuyor ⇒ katalizör.",
+      "\\(\\text{Fe}^{2+}\\): basamak 1'de oluşuyor, basamak 2'de tükeniyor ⇒ ara ürün. Toplam: \\(\\text{S}_2\\text{O}_8^{2-} + 2\\text{I}^- \\rightarrow 2\\text{SO}_4^{2-} + \\text{I}_2\\)."
+     ]
+    },
+    {
+     "soru": "Katalizsiz bir tepkimede \\(E_{a,\\text{ileri}} = 150\\text{ kJ/mol}\\), \\(E_{a,\\text{geri}} = 110\\text{ kJ/mol}\\). Katalizör \\(E_{a,\\text{ileri}}\\)'yi 95 kJ/mol'e indiriyor. Katalizli \\(E_{a,\\text{geri}}\\) ve \\(\\Delta H\\) nedir?",
+     "cozum": [
+      "\\(\\Delta H = 150 - 110 = +40\\text{ kJ/mol}\\); katalizör bunu değiştirmez.",
+      "\\(E_{a,\\text{geri}} = 95 - 40 = 55\\text{ kJ/mol}\\) (her iki yön 55 kJ/mol azaldı)."
+     ]
+    },
+    {
+     "soru": "(Açıklama) Dengedeki bir gaz karışımına sabit sıcaklıkta katalizör ekleniyor. Ürün miktarı değişir mi?",
+     "cozum": [
+      "Katalizör ileri ve geri hızları aynı oranda artırır; \\(K\\) değişmez.",
+      "Karışım zaten dengede olduğundan derişimler değişmez; ürün miktarı aynı kalır."
+     ]
+    }
+   ],
+   "ipuclari": [
+    "Hesap makinesi gerekmez; aktivasyon enerjisi farkları kafadan bulunur.",
+    "Katalizör sorusunda iki kelime: \"alternative pathway\" ve \"lower activation energy\". İkisini de yaz.",
+    "Profilde katalizli eğri aynı başlangıç ve bitiş seviyelerine sahip olmalı; yalnız tepe(ler) alçalır.",
+    "Enzim doygunluğu sorusunda \"all active sites are occupied\" ifadesini kullan."
+   ],
+   "sikHatalar": [
+    "Katalizörün dengeyi ürünler yönüne kaydırdığını ya da verimi artırdığını söylemek.",
+    "Katalizörün taneciklere enerji verdiğini ya da sıcaklığı artırdığını düşünmek.",
+    "Katalizörün yalnız ileri tepkimeyi hızlandırdığını sanmak."
+   ],
+   "terimler": [
+    {
+     "en": "catalyst",
+     "tr": "katalizör"
+    },
+    {
+     "en": "alternative pathway",
+     "tr": "alternatif yol"
+    },
+    {
+     "en": "homogeneous catalysis",
+     "tr": "homojen kataliz"
+    },
+    {
+     "en": "heterogeneous catalysis",
+     "tr": "heterojen kataliz"
+    },
+    {
+     "en": "adsorption",
+     "tr": "yüzeye tutunma (adsorpsiyon)"
+    },
+    {
+     "en": "active site",
+     "tr": "aktif bölge"
+    }
+   ]
+  }
+ ]
+}

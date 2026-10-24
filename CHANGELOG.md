@@ -9,6 +9,16 @@ Meberra [anlamsal sürümleme](https://semver.org/lang/tr/) kullanır: `ANA.ARA.
 Her sürümde: `package.json` → `version` güncellenir, bu dosyaya not eklenir, git'te `vX.Y.Z` etiketi atılır.
 Sürüm numarası `/api/health` yanıtında ve yönetici panelinde görünür. Android uygulamasının (Google Play) `versionName` değeri buradaki sürümle aynı tutulur.
 
+## [1.23.0] — 2026-10-24
+### Eklendi
+- **Konu modu** (ders sayfaları): ünite açılınca üstte konu yolu (CED konuları, her konuda çözülen/toplam). Konu seçilince hedefler, ayrıntılı Türkçe anlatım (AP terimleri İngilizcesiyle), çözümlü örnekler, sınav ipuçları, sık hatalar, terimler ve altında yalnız o konunun soruları. "Ünite testi" tüm soruları gösterir; adres `?unite=N&konu=N.M`. `assets/js/konu-modu.js`, `assets/css/konu-modu.css`; sunucu sorularla `konuKod` gönderir.
+- **Konu anlatımları** `data/dersler/<ders>/unite-<n>.json`: Calculus AB/BC 1–10 (111 konu), Physics 1 1–8 (43), Chemistry 1–9 (91), Biology 1–8 (65) — toplam 35 ünite, 310 konu. Denetim ve dizin: `node araclar/ders-veri-denetim.js [--dizin]`.
+- **2304 yeni özgün AP-style soru** (Calculus 724, Physics 1 418, Chemistry 626, Biology 536); her CED konusunda en az 8 aktif soru. Hepsi yazardan bağımsız ikinci denetimden geçti (yanlış anahtar 0; düzeltilenler `ek.onay` kaydında). Soru bankası 3625 aktif soru, tohum sürümü 42.
+### Değişti
+- `araclar/onay2-uygula.js`: onay tarihi `--tarih` (varsayılan bugün) ve `--onay-kaynak` ile.
+- `pm-denetim`, `yeni-soru-ekle`, `ders-veri-denetim`: sekme dahil kontrol karakteri ve ters bölüsü kaybolmuş LaTeX komutu yakalanır.
+- Sunucu testlerindeki sabit soru sayıları tohumdan hesaplanır.
+
 ## [1.22.1] — 2026-10-24
 ### Düzeltildi
 - Ders sayfalarında ham görünen formüller (Calculus, Chemistry, Physics, Biology; `<code>` içindeki LaTeX) MathJax ile çizilir.
